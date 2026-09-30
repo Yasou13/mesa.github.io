@@ -115,11 +115,13 @@ em { color: var(--purple-soft); font-style: normal; }
   backdrop-filter: blur(18px);
 }
 .logo { display: inline-flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 820; letter-spacing: .08em; }
-.mesa-mark { display: grid; width: 33px; height: 33px; grid-template-columns: repeat(5, 1fr); gap: 2px; align-items: end; }
-.mesa-mark i { display: block; height: 100%; background: var(--purple); border-radius: 2px; }
-.mesa-mark i:nth-child(1), .mesa-mark i:nth-child(5) { height: 48%; }
-.mesa-mark i:nth-child(2), .mesa-mark i:nth-child(4) { height: 76%; }
-.mesa-mark i:nth-child(3) { height: 100%; }
+.mesa-mark {
+  display: block;
+  width: 33px;
+  height: 33px;
+  background: var(--purple);
+  clip-path: polygon(0 100%, 0 0, 20% 0, 50% 47%, 80% 0, 100% 0, 100% 100%, 78% 100%, 78% 43%, 50% 86%, 22% 43%, 22% 100%);
+}
 .site-header nav { display: flex; align-items: center; gap: 30px; }
 .site-header nav > a { position: relative; color: #d4d0d9; font-size: 14px; }
 .site-header nav > a:hover, .site-header nav > a.active { color: #fff; }
