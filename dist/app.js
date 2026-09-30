@@ -1,81 +1,265 @@
 const app = document.querySelector('#app');
 const page = app.dataset.page || 'home';
-document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="/pages.css">');
-document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="/visual-fixes.css">');
-const mark = `<span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>`;
-const logo = `<a class="logo" href="/" aria-label="Cognee home">${mark}<span>cognee</span></a>`;
+const base = app.dataset.base || './';
+
+const repos = {
+  core: 'https://github.com/Yasou13/MESA',
+  data: 'https://github.com/Yasou13/MESA_Data',
+  qa: 'https://github.com/Yasou13/MESA_QA',
+  certification: 'https://github.com/Yasou13/MESA_E2E_Certification',
+  law: 'https://github.com/Yasou13/MESA_Law',
+  profile: 'https://github.com/Yasou13'
+};
+
+const docs = {
+  readme: `${repos.core}/blob/main/README.md`,
+  architecture: `${repos.core}/blob/main/docs/architecture-v4.md`,
+  security: `${repos.core}/blob/main/SECURITY.md`,
+  contributing: `${repos.core}/blob/main/CONTRIBUTING.md`,
+  installation: `${repos.core}/blob/main/docs/installation.md`,
+  api: `${repos.core}/blob/main/docs/api-reference.md`,
+  mcp: `${repos.core}/blob/main/README_MCP.md`,
+  rebuild: `${repos.core}/blob/main/docs/v4-rebuild-runbook.md`,
+  certificationAudit: `${repos.certification}/blob/main/reports/independent-audit/REPORT.md`,
+  dataGuide: `${repos.data}/blob/main/docs/KULLANIM_KILAVUZU.md`,
+  lawStatus: `${repos.law}/blob/master/docs/mvp-final-verification.md`
+};
+
+const route = (path = '') => `${base}${path}`;
+const external = (href, label, className = '') =>
+  `<a class="${className}" href="${href}" target="_blank" rel="noopener noreferrer">${label}<span aria-hidden="true"> ↗</span></a>`;
+const cta = (label, href, kind = 'primary', isExternal = false) =>
+  `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}${isExternal ? '<span aria-hidden="true"> ↗</span>' : ''}</a>`;
+
+const mark = `<span class="mesa-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>`;
+const logo = `<a class="logo" href="${route()}" aria-label="MESA home">${mark}<span>MESA</span></a>`;
 
 function header(active = '') {
-  return `<header class="site-header"><div class="nav-shell">${logo}<button class="menu-toggle" aria-label="Open menu" aria-expanded="false">Menu</button><nav aria-label="Main navigation"><a class="${active === 'product' ? 'active' : ''}" href="/product/">Product⌄</a><a href="/docs/">Docs↗</a><a href="/#community">Resources⌄</a><a class="${active === 'company' ? 'active' : ''}" href="/company/">Company⌄</a><a href="/#pricing">Pricing</a><a href="https://github.com/topoteretes/cognee">◉ Star <b>31.2k</b></a><a href="#">Log in</a><a class="pill purple" href="#get-started">Sign up</a></nav></div></header>`;
-}
-
-const pixels = `<div class="pixel-spray" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>`;
-const button = (label, secondary = false) => `<a class="pill ${secondary ? 'outline' : 'purple'}" href="#get-started">${label}</a>`;
-
-function testimonials() {
-  const items = [
-    ['@svpino', '“Knowledge graphs for representing information are unbeatable. I used cognee.”'],
-    ['@iruletheworldmo', '“Bookmark this immediately, cognee just solved the biggest problem with AI skills/prompts.”'],
-    ['@akshay_pachaar', '“Build agents that never forget. Cognee is an open-source tool built for exactly this.”'],
-    ['@SaadTajiknow', '“Most AI agents today have the memory of a goldfish. That’s why cognee is a game changer.”'],
-    ['@flores', '“Been using cognee for over 7 months now after migrating from Graphiti. Great product.”'],
-    ['@_Matt_Bel', '“Almost 24 hours since I added cognee across Codex — I’m noticing faster agents.”']
+  const nav = [
+    ['mesa', 'MESA', 'mesa/'],
+    ['ecosystem', 'Ecosystem', 'ecosystem/'],
+    ['docs', 'Docs', 'docs/'],
+    ['certification', 'Certification', 'certification/']
   ];
-  return `<section class="community" id="community"><div class="section-row"><p class="eyebrow">COGNEE COMMUNITY</p>${button('Join')}</div><div class="quotes">${items.map((x, i) => `<article class="quote"><div class="quote-user"><span class="avatar a${i}"></span>${x[0]}<span>↗</span></div><p>${x[1]}</p></article>`).join('')}</div></section>`;
+  return `<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        ${logo}
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          ${nav.map(([key, label, path]) => `<a${active === key ? ' class="active" aria-current="page"' : ''} href="${route(path)}">${label}</a>`).join('')}
+          ${external(repos.core, 'GitHub', 'nav-github')}
+        </nav>
+      </div>
+    </header>`;
 }
 
 function footer() {
-  return `<section class="grid-cta" id="get-started">${pixels}<div class="inner"><p class="eyebrow">GET STARTED</p><h2>Give your agents memory <em>in 60 seconds.</em></h2><p>Start with the open-source package, connect an agent through MCP<br>or the SDK, and move to Cognee Cloud when you need managed<br>scale.</p>${button('Start building')}<div class="micro">$ pip install cognee　•　Open-source</div></div></section><footer><div class="social"><p class="eyebrow">JOIN OUR COMMUNITY</p><div class="social-icons"><b>◉</b><b>𝕏</b><b>in</b><b>♪</b><b>●</b><b>▶</b><b>◉</b></div>${button('Newsletter')}</div><div class="footer-links"><div>About Us<br>Partners<br>Pricing<br>Cost Calculator<br>Academy<br>FAQ</div><div>Company Brain<br>Cloud<br>Cognee SDK<br>Enterprise<br>Docs ↗<br>Benchmarks</div><div>Blog<br>Newsroom<br>Brand Resources<br>Events<br>Community<br>Careers</div><div>Privacy Notice<br>Cookie Policy ↗<br>Cookie settings<br>Terms and Conditions (US)<br>Impressum</div><div>Cognee vs Zep<br>Cognee vs mem0<br>Cognee vs Supermemory<br>Migrating from Mem0<br>Migrating from Graphiti</div></div><div class="legal">© 2026 Topoteretes UG. Schönhauser Allee 163, Berlin.<br>All rights reserved.</div><div class="footer-logo">cognee</div></footer>`;
+  return `<section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions">${cta('Read the quickstart', route('docs/'))}${cta('View source', repos.core, 'secondary', true)}</div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand">${logo}<p>Memory Engine for Structured Agents.</p><p class="footer-note">V4 release candidate · Production NO-GO</p></div>
+      <div class="footer-groups">
+        <div><h3>Project</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('ecosystem/')}">Ecosystem</a><a href="${route('status/')}">Project status</a>${external(repos.core, 'GitHub')}</div>
+        <div><h3>Ecosystem</h3><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
+        <div><h3>Documentation</h3>${external(docs.readme, 'Quickstart')}${external(docs.architecture, 'Architecture')}${external(docs.security, 'Security')}${external(docs.contributing, 'Contributing')}<a href="${route('docs/mcp/')}">MCP integration</a></div>
+        <div><h3>Source</h3>${external(repos.profile, 'GitHub profile')}${external(repos.data, 'Data repository')}${external(repos.qa, 'QA repository')}${external(repos.certification, 'Certification repository')}</div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>`;
+}
+
+function statusStrip() {
+  return `<section class="status-strip" aria-label="Current project status">
+      <div><small>CORE LINE</small><strong>v0.7.1 / V4</strong></div>
+      <div><small>MATURITY</small><strong>Release Candidate</strong></div>
+      <div><small>FINAL MVP CERTIFICATION</small><strong>In progress</strong></div>
+      <div><small>PRODUCTION</small><strong class="status-no-go">NO-GO</strong></div>
+    </section>`;
+}
+
+function architectureFlow() {
+  const items = [
+    ['01', 'Sources', 'Exact source text and version identity'],
+    ['02', 'Admission', 'Authorized, dataset-scoped mutation'],
+    ['03', 'Validation', 'Deterministic, single, or dual policy'],
+    ['04', 'SQL ledger', 'Catalog, ownership, assertions, outbox'],
+    ['05', 'Projections', 'Vector then Graph V2, idempotently'],
+    ['06', 'Retrieval', 'BM25 + vector + assertion rank fusion'],
+    ['07', 'Clients', 'REST, sync/async SDK, MCP']
+  ];
+  return `<div class="architecture-flow">${items.map(([n, title, text]) => `<div class="flow-step"><span>${n}</span><strong>${title}</strong><small>${text}</small></div>`).join('<b aria-hidden="true">→</b>')}</div>`;
+}
+
+function ecosystemCards() {
+  const cards = [
+    ['Core', 'mesa/', 'Durable memory engine', 'Owns the V4 catalog, authorization, mutation lifecycle, projections, retrieval, API, SDK, and MCP surfaces.', repos.core],
+    ['Data', 'data/', 'Turkish legal-data pipeline', 'Collects from configured official sources, preserves raw bytes, canonicalizes records, gates quality, and publishes reviewed releases.', repos.data],
+    ['QA', 'qa/', 'Detached endurance testing', 'Exercises correctness, temporal change, cross-session persistence, restart durability, and bounded candidate repair.', repos.qa],
+    ['Certification', 'certification/', 'Independent Profile B harness', 'Defines frozen evidence, ground truth, hard gates, and fail-closed verdicts for the legal end-to-end profile.', repos.certification],
+    ['Law', 'law/', 'Legal workflow application', 'A matter and document workflow with review, provenance, deadlines, drafting controls, and a pinned MESA V4 HTTP boundary.', repos.law]
+  ];
+  return `<div class="ecosystem-grid">${cards.map(([title, path, role, text, repo], i) => `<article class="ecosystem-card">
+      <div class="card-index">0${i + 1}</div><p class="eyebrow">${role}</p><h3>MESA ${title}</h3><p>${text}</p>
+      <div class="card-links"><a href="${route(path)}">Explore ${title}<span aria-hidden="true"> →</span></a>${external(repo, 'Repository')}</div>
+    </article>`).join('')}</div>`;
 }
 
 function home() {
-  return `${header()}<main>
-  <section class="hero grid-bg">${pixels}<div class="hero-copy"><h1>Memory for People,<br>Teams, and Agents</h1><p>Connect <em>Slack, GitHub, Linear</em> to Cognee and help agents recall<br>what your company knows.</p><div class="actions">${button('Start building')}${button('Book a call', true)}</div><div class="works"><span>WORKS WITH</span> ✣ Claude Code　•　◉ Codex　•　▤ Skill　•　〽 MCP　•　● OpenClaw　•　▣ Hermes</div></div><div class="hero-stats"><span>№ 1　GITHUB TRENDING<br><b>#1 Repository Of The Day</b></span><span><b>5M+</b> SDK runs/month</span><span><b>31.2k</b> GitHub Stars</span><span>PART OF BERKELEY XCELERATOR</span></div></section>
-  <section class="problem"><div class="problem-head"><div><p class="eyebrow">THE PROBLEM</p><h2>Agents <em>get lost</em> in your complex<br>systems.</h2><p>Start wherever it hurts most.</p></div><div class="alerts"><span>△　<b>Can't connect</b> what you already know.</span><span>△　<b>Can't remember</b> what you just did.</span><span>△　<b>Can't follow</b> your rules.</span></div></div><div class="problem-cards"><article class="featured"><small>01　—　FOR TEAMS</small><h3>Knowledge is scattered</h3><p>The answer is spread across a doc, a ticket, and your Claude session, leaving your colleagues to redo work already done.</p><mark>Cognee connects all your data into one brain</mark><a>Learn more →</a><div class="mosaic purple-mosaic"></div></article><article><small>02　—　FOR AGENT BUILDERS</small><h3>Agent experience is discarded</h3><p>Your agent is solving a task it already solved last week, wasting tokens and your time.</p><mark>Cognee gives your agents memory.</mark><a>Learn more →</a><div class="mosaic"></div></article><article><small>03　—　FOR ENTERPRISES</small><h3>Domain rules are guessed</h3><p>Your organization runs on rules no model was trained on, so your agents invent their own.</p><mark>Cognee generates the ontologies your agents follow.</mark><a>Learn more →</a><div class="mosaic"></div></article></div></section>
-  <div class="trust-strip">TRUSTED BY ENGINEERS FROM　　BAYER　　UNIVERSITY OF WYOMING　　RUST ENGINE　　MICROSOFT</div>
-  <section class="terminal-section"><h2>Memory that improves</h2><div class="terminal"><div class="terminal-top"><span>● ● ●　cognee@localhost:8000</span><span>DONE</span></div><pre><b>$</b> pip install cognee\n\n<b>$</b> await cognee.agents()\n<span>✓ 3 agents connected · company brain active · knowledge wiki synced</span>\n\n<b>$</b> await cognee.remember("relevant context for agent memory")\n<span>→ ontology-guide.md:38 · domain rules ground ambiguous terms\n→ ai-memory-notes.md:112 · graph links facts across sessions\n→ support-notes.md:19 · answer keeps citations attached</span>\n\n<b>$</b> await cognee.recall("Which sources explain how ontologies improve agent memory?")\n<span>✓ search 40ms · answer assembled from relevant memories</span>\n\n<b>$</b> await cognee.improve({ feedback: "use citation 2 first" })</pre><div class="terminal-bottom">3 AGENTS　 1,284 DOCS　 6,418 ENTITIES　 5 CITATIONS <button>REPLAY</button></div></div></section>
-  <section class="webinar"><div class="tabs">WEBINAR　　BAYER　　UNIVERSITY OF WYOMING　　RUST ENGINE　　BEAM　　COGNEE</div><div class="webinar-copy"><p class="eyebrow">WEBINAR</p><h2>Learn how to connect Slack,<br>GitHub, Linear to Cognee and<br>help agents recall what your<br>company knows in a 1h webinar.</h2><div class="actions">${button('Get the recording', true)}${button('Book a call', true)}</div></div><div class="integration-symbols">✣　●　◩</div></section>
-  ${testimonials()}
-  <section class="build"><p class="eyebrow">HOW WE BUILD</p><h2>Your company builds a shared company<br>brain for agents.</h2><div class="build-cards"><article><b>5 min</b><small>LOCAL</small><h3>Give your agent durable memory</h3><p>Install Cognee and connect it to Claude Code, Cursor, or any MCP client. Your agent keeps project context across sessions.</p><code>$ pip install cognee</code></article><article><b>1 day</b><small>CONNECT</small><h3>Connect the data your agents should know</h3><p>We connect your GitHub org, Slack, or Linear — plus warehouses, docs, and APIs — into one recallable memory layer.</p><code>$ cognee.add("github://your-org")</code></article><article class="purple-card"><b>1 week</b><small>PRODUCTION</small><h3>Ship agents that understand your domain</h3><p>We deploy Cognee BYOC — in your own cloud — behind customer-facing agents.</p><code>$ cognee.search("…") # cited answers</code></article></div></section>
-  <section class="loop"><h2>Stay in the loop</h2><p>Cognee product & events updates, insights into our AI memory research and practical guides — in your inbox every two weeks.</p><button>Subscribe</button></section>
-  <section class="api"><div><p class="eyebrow">USE COGNEE WITH</p><h2>Any agent.<br><em>One memory API.</em></h2><p>First-party integrations for Claude Code, Cursor, LangGraph,<br>OpenClaw, and more, plus an MCP server so compatible agents<br>can read and write Cognee memory without custom glue.</p></div><div class="api-map"><span>MCP server</span><span>Codex</span><span>Claude Code</span><span>LangGraph</span><span>CURSOR</span><span>Hermes<br>Agent</span><span>OpenClaw</span><span>Skill</span><span>crewai</span><span>+ build your own</span></div></section>
-  <section class="ask"><p class="eyebrow">ASK AN AI</p><h2>Don't take our word for it.</h2><p>Ask ChatGPT, Perplexity or Claude what they know about cognee. Same<br>question, three independent answers.</p><div class="prompt">I'm evaluating cognee (cognee.ai), the open-source AI memory engine for agents. What does it do, how does it compare to Mem0, Zep and Letta, what are its strengths and weaknesses, and who is it best for?<div class="actions">${button('Ask ChatGPT　↗')}${button('Ask Perplexity　↗')}${button('Ask Claude　↗')}${button('Copy prompt', true)}</div></div></section>
-  <div class="backed">BACKED BY　　<b>Pebblebed</b>　　<b>Vermilion Cliffs</b>　　<b>42 CAP</b>　　<b>ANGEL INVEST</b></div>
-  ${footer()}</main>`;
+  return `${header('home')}<main id="main-content">
+    <section class="hero grid-bg">
+      <div class="hero-orbit" aria-hidden="true"><span></span><span></span><span></span><span></span><i>M</i></div>
+      <div class="hero-copy">
+        <p class="eyebrow">MEMORY ENGINE FOR STRUCTURED AGENTS</p>
+        <h1>Memory with evidence,<br><em>not mystery.</em></h1>
+        <p>MESA is an open-source, durable memory engine for AI agents. Its V4 release candidate keeps source provenance and dataset scope attached from admission through retrieval.</p>
+        <div class="actions">${cta('Explore MESA', route('mesa/'))}${cta('View on GitHub', repos.core, 'secondary', true)}</div>
+      </div>
+      <a class="scroll-cue" href="#why-mesa">Explore the system <span aria-hidden="true">↓</span></a>
+    </section>
+    ${statusStrip()}
+    <section class="section problem-section" id="why-mesa">
+      <div class="section-heading"><div><p class="eyebrow">WHY MESA</p><h2>Agent memory needs<br><em>boundaries and lineage.</em></h2></div><p>Retrieval is only useful when the system can say which source, revision, dataset, and policy produced a result—and when failed writes cannot leak into active memory.</p></div>
+      <div class="principle-grid">
+        <article><span>01</span><h3>Durable lifecycle</h3><p>Accepted mutations move through a ledger, ordered projection lanes, retries, dead-letter handling, replay, and source-owned rollback.</p><a href="${route('mesa/')}">Follow the lifecycle →</a></article>
+        <article><span>02</span><h3>Scoped by design</h3><p>Server-created sessions bind a principal to tenant, workspace, agent, and an immutable authorized dataset set.</p><a href="${route('mesa/#security')}">Review isolation →</a></article>
+        <article><span>03</span><h3>Evidence in retrieval</h3><p>Dataset-filtered BM25, vector, and assertion-relational lanes fuse ranked results while retaining provenance.</p><a href="${route('mesa/#retrieval')}">Inspect retrieval →</a></article>
+      </div>
+    </section>
+    <section class="section architecture-section grid-bg" id="architecture">
+      <div class="section-heading"><div><p class="eyebrow">V4 ARCHITECTURE</p><h2>One decision path.<br><em>Three physical stores.</em></h2></div><p>MESA Data can prepare upstream legal releases; MESA Core owns admission, validation, projections, and retrieval. SQLite is the decision source, with LanceDB and Kuzu as ordered projections.</p></div>
+      ${architectureFlow()}
+      <div class="section-actions">${cta('Read architecture', route('mesa/'))}${cta('Source document', docs.architecture, 'text', true)}</div>
+    </section>
+    <section class="section ecosystem-section" id="ecosystem"><div class="section-heading"><div><p class="eyebrow">THE ECOSYSTEM</p><h2>Separate systems.<br><em>Explicit contracts.</em></h2></div><p>Each repository has a narrow role. The website preserves those boundaries rather than presenting one undifferentiated product.</p></div>${ecosystemCards()}</section>
+    <section class="section reliability-section">
+      <div class="section-heading"><div><p class="eyebrow">CORRECTNESS SURFACES</p><h2>Reliability is a process,<br><em>not a badge.</em></h2></div></div>
+      <div class="reliability-list">
+        <article><strong>Provenance</strong><p>Source, revision, chunk, pipeline, and embedding identity can travel with canonical artifacts and retrieval results.</p></article>
+        <article><strong>Isolation</strong><p>Dataset filters are applied to SQL, vector, and graph lanes before fusion; agent IDs alone are not tenant credentials.</p></article>
+        <article><strong>QA</strong><p>A detachable system evaluates behavior over sessions and restarts without writing to the baseline checkout.</p></article>
+        <article><strong>Certification</strong><p>Profile B defines evidence and hard gates for one legal path. It does not certify the full MESA MVP.</p></article>
+      </div>
+    </section>
+    <section class="section quickstart-section" id="quickstart">
+      <div class="quickstart-copy"><p class="eyebrow">SAFE-CORE QUICKSTART</p><h2>Start from the<br><em>locked environment.</em></h2><p>The documented default Compose profile keeps model and external-provider access disabled and commits accepted records as durable raw memories.</p>${cta('Full installation guide', docs.installation, 'text', true)}</div>
+      <div class="terminal" aria-label="MESA safe-core quickstart commands"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>mesa / safe-core</strong><button class="copy-button" type="button" data-copy-target="quickstart-code">Copy</button></div><pre id="quickstart-code"><code>git clone https://github.com/Yasou13/MESA.git
+cd MESA
+export MESA_API_KEY=local-dev-key
+export MESA_PRINCIPAL_ID=local-compose-principal
+docker compose config --quiet
+docker compose up --build -d
+
+curl --fail -H "X-API-Key: $MESA_API_KEY" \
+  http://localhost:8000/health</code></pre></div>
+    </section>
+    ${footer()}</main>`;
 }
 
-function product() {
-  return `${header('product')}<main class="product-page"><section class="product-problem"><p class="eyebrow">THE PROBLEM</p><h1>Agents don't have a reasoning problem. They have a<br><em>disconnected</em> data problem.</h1><p>Your agents rely on data scattered across dozens of tools, and every run produces more of it: decisions, traces, drafts that live nowhere.</p><div class="mini-cards"><article><b>Facts change</b><p>May was indexed Tuesday and refunded Friday. A stale store keeps both.</p><mark>Cognee updates as your data does.</mark></article><article><b>Answers are scattered</b><p>One question, and the pieces sit in a doc, a thread, a ticket.</p><mark>Cognee connects them.</mark></article><article><b>Agents don't share</b><p>Two agents on one account, ten different fragments.</p><mark>Shared memory means shared facts.</mark></article></div></section><section class="sharper"><p class="eyebrow">SELF-IMPROVING</p><h2>Memory that gets <em>sharper</em> with use.</h2><p>Cognee reinforces what matters and prunes what doesn't. Frequently used and corrected knowledge is promoted.</p><div class="network"><div class="before">BEFORE</div><div class="nodes"></div><div class="after">AFTER</div></div></section><section class="deployment"><p class="eyebrow">DEPLOYMENT</p><div class="section-row"><h2>Runs where your data lives. <em>Even fully offline.</em></h2>${button('Talk deployment')}</div><p>Run cognee fully in your environment — your VPC, an air-gapped network, or your own machines.</p><div class="metric-cards"><article><b>100%</b><p>of your data stays inside your network</p></article><article><b>$0</b><p>in AI model fees when you run it on your own hardware</p></article><article><b>BYOC</b><p>deploy in your own cloud account</p></article></div></section><section class="product-build"><div><p class="eyebrow">FOR PRODUCT BUILDERS</p><h2>Ship a company brain inside your product: one<br>isolated brain per customer.</h2><p>Support bots, sales intelligence, document Q&A: products across industries embed cognee as their memory layer.</p></div>${button('See multi-tenant Cloud', true)}</section><section class="ready grid-bg">${pixels}<p class="eyebrow">GET STARTED</p><h2>Ready to give your company a brain?<br>See it answer on your own data, before you<br>commit.</h2>${button('Book a call')}</section></main>`;
+function mesa() {
+  return `${header('mesa')}<main id="main-content">
+    <section class="page-hero grid-bg"><p class="eyebrow">MESA CORE · V0.7.1</p><h1>A durable memory engine<br>with <em>structured evidence.</em></h1><p>The V4 release candidate introduces canonical provenance, selectable validation, dataset isolation, ordered projections, and versioned REST, SDK, and MCP operations.</p><div class="actions">${cta('Source repository', repos.core, 'primary', true)}${cta('Documentation', route('docs/'), 'secondary')}</div></section>
+    ${statusStrip()}
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">MEMORY LIFECYCLE</p><h2>Admission to retrieval,<br><em>without hidden writes.</em></h2></div><p>A rejected mutation creates no active SQL, vector, entity, edge, or assertion artifact. Accepted work follows ordered, idempotent lanes.</p></div>${architectureFlow()}</section>
+    <section class="section surface-section" id="security"><div class="surface-copy"><p class="eyebrow">SECURITY BOUNDARY</p><h2>Agents are context.<br><em>Tenants are boundaries.</em></h2><p>V4 authorization follows principal → tenant → workspace → dataset → agent → server-created session. Roles inherit down the catalog. Purge and rollback require explicit dataset permissions.</p>${cta('Read security policy', docs.security, 'text', true)}</div><div class="scope-visual" role="img" aria-label="Nested MESA authorization scopes"><span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Session</strong></span></strong></span></strong></span></div></section>
+    <section class="section retrieval-section" id="retrieval"><div class="section-heading"><div><p class="eyebrow">RETRIEVAL V2</p><h2>Multiple signals.<br><em>One bounded result.</em></h2></div><p>Authorized dataset filters reach every lane before rank fusion. Higher fused scores are better.</p></div><div class="lane-grid"><article><span>LEXICAL</span><h3>BM25</h3><p>Exact and lexical evidence from the SQL-owned corpus.</p></article><article><span>SEMANTIC</span><h3>Vector</h3><p>LanceDB projection with embedding provenance.</p></article><article><span>RELATIONAL</span><h3>Assertions</h3><p>Graph V2 assertion relations; Kuzu neighbour traversal is not advertised as a retrieval capability.</p></article><article class="fusion"><span>FUSION</span><h3>True RRF</h3><p>Rank fusion followed by a deterministic, bounded legal reranker.</p></article></div></section>
+    <section class="section storage-section"><div><p class="eyebrow">PHYSICAL STORES</p><h2>SQLite decides.<br><em>Projections follow.</em></h2></div><div class="storage-grid"><article><strong>SQLite</strong><p>Catalog, authorization, mutation/pipeline ledger, ownership, assertions, and ordered outbox.</p></article><article><strong>LanceDB</strong><p>Idempotent vector projection with embedding identity.</p></article><article><strong>Kuzu</strong><p>Idempotent Graph V2 projection, not the assertion decision source.</p></article></div></section>
+    <section class="section client-section"><div class="section-heading"><div><p class="eyebrow">CLIENT SURFACES</p><h2>Versioned access<br><em>around one lifecycle.</em></h2></div></div><div class="client-grid"><a href="${docs.api}" target="_blank" rel="noopener noreferrer"><span>HTTP</span><strong>V4 REST API</strong><small>Catalog, sessions, memory, mutations, operations</small></a><a href="${docs.readme}" target="_blank" rel="noopener noreferrer"><span>PYTHON</span><strong>Sync & async SDK</strong><small>MesaV4Client and version-matched operations</small></a><a href="${route('docs/mcp/')}"><span>PROTOCOL</span><strong>MCP</strong><small>Legacy direct stdio plus the V4 gateway/bridge path</small></a></div></section>
+    ${footer()}</main>`;
 }
 
-function enterprise() {
-  return `${header('product')}<main class="enterprise-page grid-bg">${pixels}<section><p class="eyebrow">COMPANY BRAIN<br><span>Cloud<br>Cognee SDK<br>Enterprise</span></p><h1>Your company, one brain.<br>Ask it anything.</h1><p>Cognee builds one brain from everything your company writes: docs, chats, tickets, code. Your agents write back into it too. Context stops living in fragments, so work stops getting done twice.</p><div class="actions">${button('Book a demo')}${button('Try it on your data', true)}</div><div class="brain-map"><span>Marketing</span><span>Product</span><span>Engineering</span><span>Finance</span><i></i><i></i><i></i><i></i></div></section></main>`;
+function ecosystem() {
+  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact grid-bg"><p class="eyebrow">ECOSYSTEM</p><h1>One memory project.<br><em>Five explicit roles.</em></h1><p>Core, legal data, QA, certification, and an application layer evolve in separate repositories with observable boundaries.</p></section><section class="section ecosystem-section">${ecosystemCards()}</section><section class="section boundary-section"><p class="eyebrow">BOUNDARY MAP</p><h2>How the parts relate</h2><div class="boundary-map"><div><strong>MESA Data</strong><small>Reviewed legal release</small></div><b>→</b><div><strong>MESA Core</strong><small>Canonical memory lifecycle</small></div><b>→</b><div><strong>MESA Law</strong><small>HTTP-bound legal workflow</small></div><i></i><div class="below"><strong>MESA QA</strong><small>Detached behavior testing</small></div><div class="below"><strong>E2E Certification</strong><small>Frozen Profile B evidence</small></div></div></section>${footer()}</main>`;
 }
 
-function cloud() {
-  return `${header('product')}<main class="cloud-page grid-bg">${pixels}<section><div><p class="eyebrow">COGNEE CLOUD</p><h1>AI Memory, Fully<br>Managed</h1><p>A serverless memory platform for your agents.<br>Connect your tools, share memory across sessions,<br>and let it improve itself.</p><div class="actions">${button('Start building')}${button('Book a demo', true)}</div></div><div class="cloud-pixels">${Array.from({ length: 48 }, (_, i) => `<i class="p${i % 7}"></i>`).join('')}</div></section><div class="frameworks"><b>CURSOR</b><span>Continue</span><span>Cline</span><span>Zed</span><span>Gemini</span><span>Open Code</span><span>Kiro</span><span>Roo Code</span><span>Goose</span></div></main>`;
+function dataPage() {
+  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact data-accent"><p class="eyebrow">MESA DATA</p><h1>Legal data with an<br><em>auditable release path.</em></h1><p>MESA Data is specifically a Turkish legal-data platform. It is not presented as a universal ingestion service.</p><div class="actions">${cta('Repository', repos.data, 'primary', true)}${cta('Usage guide', docs.dataGuide, 'secondary', true)}</div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">CONFIGURED SOURCES</p><h2>Official sources,<br><em>policy-bound access.</em></h2></div><p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p></div><div class="source-table" role="table" aria-label="MESA Data configured sources"><div role="row"><strong role="columnheader">Source</strong><strong role="columnheader">Mode</strong><strong role="columnheader">State</strong><strong role="columnheader">Role</strong></div><div role="row"><span>Resmî Gazete</span><span>Approved web</span><span class="ok">Enabled</span><span>Original publication</span></div><div role="row"><span>Mevzuat Bilgi Sistemi</span><span>Manual</span><span class="ok">Enabled</span><span>Consolidated text</span></div><div role="row"><span>Anayasa Mahkemesi</span><span>Manual</span><span class="ok">Enabled</span><span>Official case law</span></div><div role="row"><span>Yargıtay</span><span>Manual</span><span class="muted">Disabled</span><span>Official case law</span></div></div></section>
+    <section class="section pipeline-section grid-bg"><p class="eyebrow">RELEASE PIPELINE</p><h2>Raw bytes remain traceable.</h2><div class="pipeline"><div><span>01</span><strong>Collect</strong><small>Allowlisted HTTPS or manual file</small></div><div><span>02</span><strong>Preserve</strong><small>Immutable raw artifact + SHA-256</small></div><div><span>03</span><strong>Canonicalize</strong><small>Versioned canonical JSONL</small></div><div><span>04</span><strong>Gate</strong><small>Quality, privacy, legal metadata</small></div><div><span>05</span><strong>Review</strong><small>Safe auto-approval or human exception</small></div><div><span>06</span><strong>Release</strong><small>Build, verify, freeze, human approval</small></div><div><span>07</span><strong>Publish</strong><small>Human-started, idempotent MESA delivery</small></div></div><div class="notice"><strong>Human boundary</strong><p>MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.</p></div></section>${footer()}</main>`;
 }
 
-function company() {
-  return `${header('company')}<main class="company-page"><section><div><p class="eyebrow">COLLABORATION</p><h1>Invite the team into a<br><em>shared workspace.</em></h1><p>One international team, one memory. Collaborate<br>wherever your people are around the globe.</p></div><img src="/assets/team-collage.png" alt="Cognee team members around the globe"></section><div class="sessions"><p class="eyebrow">SESSIONS</p><h2>One memory, your agents handoff.</h2></div></main>`;
+function qaPage() {
+  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact"><p class="eyebrow">MESA QA</p><h1>Test the candidate.<br><em>Protect the baseline.</em></h1><p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p><div class="actions">${cta('Repository', repos.qa, 'primary', true)}</div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">EVALUATION SCOPE</p><h2>Behavior over time,<br><em>not just unit calls.</em></h2></div></div><div class="principle-grid"><article><span>01</span><h3>Correctness</h3><p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p></article><article><span>02</span><h3>Endurance</h3><p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p></article><article><span>03</span><h3>Restart durability</h3><p>Scenarios restart candidate processes and verify that expected memory survives.</p></article></div></section>
+    <section class="section worktree-section grid-bg"><div><p class="eyebrow">BOUNDED REPAIR</p><h2>Candidate-only changes.</h2><p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p></div><ol><li><span>1</span>Baseline checkout remains read-only</li><li><span>2</span>Dedicated candidate worktree and isolated storage</li><li><span>3</span>Pre-fix failure required before patching</li><li><span>4</span>Policy-limited diff and verification gates</li><li><span>5</span>No automatic merge or push to main</li></ol></section>${footer()}</main>`;
 }
 
-function docShell(content, active = '') {
-  return `<div class="doc-app"><aside>${logo}<select><option>Cognee</option></select><input placeholder="Search…"><small>Products</small><a class="${active === 'overview' ? 'active' : ''}" href="/docs/">Cognee</a><a>Cognee Cloud</a><a>Rust SDK</a><a>TypeScript SDK</a><small>Getting Started</small><a>Introduction</a><a>Installation</a><a>Quickstart</a><a href="/docs/mcp-overview/">Cognee & MCP</a><small>Integrations</small><a>Claude Code</a><a>Cursor</a><a>Codex</a></aside><div class="doc-main"><div class="doc-top">Documentation　　Deploy　　Integrations　　MCP　　HTTP API　　Python API</div>${content}</div></div>`;
+function certification() {
+  return `${header('certification')}<main id="main-content"><section class="page-hero compact certification-accent"><p class="eyebrow">MESA PROFILE B</p><h1>Evidence before<br><em>certification language.</em></h1><p>The legal E2E repository defines the independent harness and evidence contract for MESA Data → MESA. Profile B is one profile, not full MESA MVP certification.</p><div class="actions">${cta('Certification repository', repos.certification, 'primary', true)}${cta('Current independent audit', docs.certificationAudit, 'secondary', true)}</div></section>
+    <section class="cert-status"><div><small>CURRENT HARDENED PATH</small><strong>BLOCKED</strong></div><p>No current passing runtime certification transaction has been executed. Mandatory B0–B14 gates remain unverified until authoritative runtime, scoring, and metric producers are registered and proven.</p></section>
+    <section class="section compare-section"><div><p class="eyebrow">WHAT PROFILE B IS DESIGNED TO PROVE</p><ul class="check-list"><li>Official legal data acquisition and byte preservation</li><li>Canonicalization without silent Turkish text loss</li><li>Native MESA Data → MESA V4 delivery</li><li>Scoped ingestion, provenance, idempotency, and restart persistence</li><li>Frozen retrieval and grounded-answer gates</li><li>Observable graph participation on designated relational queries</li></ul></div><div><p class="eyebrow">WHAT IT DOES NOT PROVE</p><ul class="cross-list"><li>Full MESA MVP certification</li><li>General production readiness</li><li>Every workload, provider, or deployment shape</li><li>Universal latency, uptime, or retrieval guarantees</li><li>That a historical qualification run remains a valid current verdict</li></ul></div></section>
+    <section class="section historical-note"><p class="eyebrow">STATUS TRANSPARENCY</p><h2>The historical result is preserved,<br><em>but not promoted.</em></h2><p>The exposed 2026-09-01 run remains useful qualification/regression evidence. A later independent audit found integrity defects, invalidated its use as a Profile B v2 certification result, hardened the harness to fail closed, and recorded the remaining runtime-producer blockers.</p>${cta('Read the audit', docs.certificationAudit, 'text', true)}</section>${footer()}</main>`;
 }
 
-function docs() {
-  return docShell(`<article class="docs-article"><p class="eyebrow">COGNEE</p><h1>Build AI Memory with Cognee</h1><p>Cognee turns documents and conversations into memory that AI agents can recall. Learn how to install it, use the Python API or MCP server, and deploy it.</p><div class="doc-callout"><b>Get Started with Cognee</b><p>Quickstart your journey with Cognee. Install, configure, and run your first example to build AI memory applications.</p></div><img src="/assets/docs-diagram.png" alt="Cognee knowledge graph architecture diagram"><h2>Choose the best product for you</h2><p>All four build the same kind of memory — a knowledge graph you fill with remember and query with recall.</p><input class="doc-question" placeholder="Ask a question…"></article>`, 'overview');
+function lawPage() {
+  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact"><p class="eyebrow">MESA LAW</p><h1>A legal workflow<br><em>at an explicit boundary.</em></h1><p>A multi-service legal matter and document workflow. Its MESA relationship is an HTTP contract—not an embedded copy of Core.</p><div class="actions">${cta('Explore repository', repos.law, 'primary', true)}${cta('Law-side status', docs.lawStatus, 'secondary', true)}</div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">VERIFIED REPOSITORY SCOPE</p><h2>Cases, documents,<br><em>review, and evidence.</em></h2></div><p>Current code includes a Next.js web app, FastAPI and Java API work, workers, PostgreSQL migrations, document parsing, matter-level access controls, deadlines, review state, drafting controls, and provenance-aware QA.</p></div><div class="law-grid"><article><h3>Matter workspace</h3><p>Tenant-scoped matters, parties, members, timelines, claims, evidence, and document revisions.</p></article><article><h3>Human review</h3><p>Review queues, immutable audit records, citation verification, and approval gates before external draft use.</p></article><article><h3>MESA binding</h3><p>Catalog onboarding and V4 mutation state are tracked over HTTP. A 202 admission is not presented as publication; only COMMITTED is success.</p></article><article><h3>MVP limits</h3><p>External legal research and AI draft generation are disabled in the documented MVP contract.</p></article></div></section>
+    <section class="section law-status"><p class="eyebrow">CURRENT STATUS</p><h2>Law-side gates pass.<br><em>Overall integration: NO-GO.</em></h2><p>The latest repository report says isolated Law code, contract, database, frontend, and stub gates passed. The full running stack and live MESA Core integration were not executed, so overall MVP GO is not claimed.</p>${cta('Read verification report', docs.lawStatus, 'text', true)}</section>${footer()}</main>`;
 }
 
-function mcp() {
-  return docShell(`<article class="docs-article"><p class="eyebrow">SETUP</p><h1>Cognee MCP Overview</h1><p>Connect Cognee to MCP-compatible AI tools like Claude, Cursor, and Cline.</p><p>Cognee MCP brings persistent AI memory to your workflow through the Model Context Protocol.</p><h2>What is MCP?</h2><p>The <b>Model Context Protocol (MCP)</b> is a standard for adding specialized tools to AI assistants. It allows AI tools like Claude or Cursor to work with external systems such as databases, APIs, and AI platforms.</p><p>With MCP, each AI assistant needs custom integrations for every external system. This creates duplication and inconsistency across tools.</p><p>MCP provides a single method for extending AI assistants with:</p><ul><li><b>Standardized connections</b> between AI tools and external systems</li><li><b>Secure data access</b> with built-in authentication and permissions</li><li><b>Tool interoperability</b> so you can switch between AI providers</li><li><b>Persistent memory</b> that survives across conversations and sessions</li></ul><h2>How Cognee MCP Works</h2><p>Cognee MCP exposes specialized tools through the MCP protocol. These tools handle memory, search and retrieval.</p><input class="doc-question" placeholder="Ask a question…"></article>`);
+function docsPage() {
+  const groups = [
+    ['Start', [['Core README & quickstart', docs.readme], ['Installation', docs.installation], ['API reference', docs.api]]],
+    ['Understand', [['V4 architecture', docs.architecture], ['Security policy', docs.security], ['Rebuild runbook', docs.rebuild]]],
+    ['Integrate', [['MCP integration guide', route('docs/mcp/'), false], ['Contributing', docs.contributing], ['MESA Data guide', docs.dataGuide]]],
+    ['Verify', [['Project status', route('status/'), false], ['Certification audit', docs.certificationAudit], ['Law-side verification', docs.lawStatus]]]
+  ];
+  return `${header('docs')}<main id="main-content"><section class="page-hero compact docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Read the contract.<br><em>Then run the code.</em></h1><p>This site links to current source documents instead of maintaining a stale mirror.</p></section><section class="section docs-grid">${groups.map(([name, links]) => `<section><p class="eyebrow">${name}</p>${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}</section>`).join('')}</section>
+    <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre id="install-code"><code>git clone https://github.com/Yasou13/MESA.git
+cd MESA
+uv sync --locked --extra dev</code></pre></div></section>${footer()}</main>`;
 }
 
-const renderers = { home, product, enterprise, cloud, company, docs, mcp };
-app.innerHTML = renderers[page]();
-document.querySelector('.menu-toggle')?.addEventListener('click', (event) => {
-  const nav = document.querySelector('.site-header nav');
-  nav.classList.toggle('open');
-  event.currentTarget.setAttribute('aria-expanded', nav.classList.contains('open'));
+function mcpPage() {
+  return `${header('docs')}<main id="main-content"><section class="page-hero compact"><p class="eyebrow">MODEL CONTEXT PROTOCOL</p><h1>Two integration paths.<br><em>Different runtime contracts.</em></h1><p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p><div class="actions">${cta('Source guide', docs.mcp, 'primary', true)}${cta('Core repository', repos.core, 'secondary', true)}</div></section>
+    <section class="section mcp-paths"><article><p class="eyebrow">LEGACY V3-COMPATIBLE</p><h2>Direct stdio server</h2><p><code>mesa_mcp.server</code> runs an MCP JSON-RPC stdio stream and calls the public MESA HTTP API; it does not open storage databases directly. The root README documents five project-memory tools.</p><div class="tag-row"><span>stdio</span><span>HTTP API</span><span>project scope</span></div></article><article class="highlight"><p class="eyebrow">CURRENT V4 PATH</p><h2>Gateway + local bridge</h2><p>A separately supervised HTTP gateway owns credentials, policy, approvals, operation state, and connections. Codex can connect directly to its <code>/mcp</code> endpoint; Antigravity uses a binding-scoped stdio bridge.</p><div class="tag-row"><span>V4</span><span>approvals</span><span>binding-scoped</span></div></article></section>
+    <section class="section tool-section"><div class="section-heading"><div><p class="eyebrow">V4 BRIDGE TOOLS</p><h2>Operations expose<br><em>their real state.</em></h2></div><p>Writes return durable operation IDs. Default policy may return PENDING_APPROVAL rather than holding stdio open.</p></div><div class="tool-list"><div><code>mesa_health</code><span>Bridge, gateway, MESA, and spool health</span></div><div><code>mesa_recall</code><span>Scoped V4 search or token-bounded context</span></div><div><code>mesa_remember</code><span>Durable write operation</span></div><div><code>mesa_improve</code><span>Revision operation with idempotency key</span></div><div><code>mesa_forget</code><span>Purge operation; never queued offline</span></div><div><code>mesa_get_operation_status</code><span>Approval and mutation progress</span></div></div></section>
+    <section class="section mcp-guard"><p class="eyebrow">BOUNDARY NOTES</p><ul class="check-list"><li>stdout is reserved for MCP JSON-RPC; logs go to stderr</li><li>bridges do not import or access storage backends</li><li>credentials live outside project configuration</li><li>missing client/workspace bindings fail closed</li><li>the exact supported host depends on the selected integration path</li></ul></section>${footer()}</main>`;
+}
+
+function statusPage() {
+  return `${header()}<main id="main-content"><section class="page-hero compact status-accent"><p class="eyebrow">PROJECT STATUS</p><h1>Transparent by default.<br><em>No borrowed confidence.</em></h1><p>Status below reflects current repository documentation and the hardened independent certification audit available on 2026-09-30.</p></section>${statusStrip()}
+    <section class="section status-timeline"><article><span>CORE</span><h2>V4 release candidate</h2><p>MESA package line v0.7.1. Production remains NO-GO pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>The harness now fails closed, but authoritative runtime/scoring/metric producers and a current valid final run remain absent.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Law-side pass / overall NO-GO</h2><p>Local Law-side gates passed; full-stack and live Core integration gates were not run.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
+}
+
+function notFound() {
+  return `${header()}<main id="main-content" class="not-found grid-bg"><div><p class="eyebrow">404 · ROUTE NOT FOUND</p><h1>This memory<br><em>does not exist.</em></h1><p>The page may have moved during the MESA ecosystem rebuild.</p><div class="actions">${cta('Return home', route())}${cta('Open docs', route('docs/'), 'secondary')}${cta('GitHub', repos.core, 'text', true)}</div></div></main>`;
+}
+
+const renderers = { home, mesa, ecosystem, data: dataPage, qa: qaPage, certification, law: lawPage, docs: docsPage, mcp: mcpPage, status: statusPage, notFound };
+app.innerHTML = (renderers[page] || notFound)();
+
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('#main-navigation');
+toggle?.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+});
+
+document.querySelectorAll('.copy-button').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const target = document.getElementById(button.dataset.copyTarget);
+    const text = target?.innerText || '';
+    try {
+      await navigator.clipboard.writeText(text);
+      button.textContent = 'Copied';
+    } catch {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(target);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      button.textContent = 'Selected';
+    }
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+  });
 });
