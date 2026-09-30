@@ -31,7 +31,7 @@ const external = (href, label, className = '') =>
 const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}${isExternal ? '<span aria-hidden="true"> ↗</span>' : ''}</a>`;
 
-const mark = `<span class="mesa-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>`;
+const mark = `<span class="mesa-mark" aria-hidden="true"></span>`;
 const logo = `<a class="logo" href="${route()}" aria-label="MESA home">${mark}<span>MESA</span></a>`;
 
 function header(active = '') {
@@ -260,6 +260,6 @@ document.querySelectorAll('.copy-button').forEach((button) => {
       selection.addRange(range);
       button.textContent = 'Selected';
     }
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 3000);
   });
 });
