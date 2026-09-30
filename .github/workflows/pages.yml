@@ -19,14 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/checkout@v6
       - name: Build static artifact
         run: python3 scripts/build_site.py --repository "$GITHUB_REPOSITORY"
       - name: Verify routes and links
         run: python3 scripts/check_site.py _site
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -42,4 +42,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

@@ -1,73 +1,117 @@
 # MESA ecosystem website
 
-A dependency-free static landing page, ecosystem portal, documentation gateway,
-and status surface for MESA. Published files are authored in `dist/`; the Pages
-workflow produces `_site/` with deployment-specific metadata.
+The official static introduction, ecosystem map, documentation gateway, and
+status surface for MESA. The site is dependency-free at runtime and uses real
+semantic HTML; JavaScript only enhances the mobile menu and copy buttons.
+
+Current deployment target:
+`https://yasou13.github.io/mesa.github.io/`
+
+## Architecture
+
+- `site-data.json` — version, release status, repository URLs, route metadata
+- `scripts/render_site.mjs` — shared layout and static page content renderer
+- `dist/` — committed static HTML plus CSS, JavaScript, favicon, and social card
+- `scripts/build_site.py` — produces a deployment-specific `_site/` artifact
+- `scripts/check_site.py` — validates static content, metadata, links, anchors,
+  assets, and legacy-brand absence
+
+No React, Vue, Next.js, CMS, backend, or npm dependencies are used. Node.js is
+needed only to run the dependency-free static renderer during a build.
 
 ## Routes
 
-- `/` — Home
+- `/` — value proposition, problem, ecosystem, example path, and use cases
 - `/mesa/` — MESA Core
-- `/ecosystem/` — ecosystem overview
+- `/ecosystem/` — ecosystem overview and component boundaries
 - `/data/` — MESA Data
 - `/qa/` — MESA QA
-- `/certification/` — Profile B scope and status
+- `/certification/` — Profile B scope and current status
 - `/law/` — MESA Law
-- `/docs/` and `/docs/mcp/` — documentation gateway
-- `/status/` — project status
+- `/docs/` and `/docs/mcp/` — documentation and MCP integration
+- `/status/` — release and certification status
+- `/404.html` — project-site-safe custom 404
 
 ## Local preview
 
-Preview the source directly:
+Build the exact project-site artifact, validate it, and serve it over HTTP:
 
 ```bash
-python3 -m http.server 8000 --directory dist
-```
-
-For an exact built artifact with metadata resolved to localhost:
-
-```bash
-python3 scripts/build_site.py
+python3 scripts/build_site.py --repository Yasou13/mesa.github.io
 python3 scripts/check_site.py _site
 python3 -m http.server 8000 --directory _site
 ```
 
-Open `http://localhost:8000/`. Do not open pages with `file://`; nested routes,
-the clipboard API, and 404 behavior should be tested through HTTP.
+Open `http://localhost:8000/`. Do not use `file://`; nested routes, clipboard
+behavior, and 404 handling should be tested through HTTP.
+
+To regenerate the committed `dist/` HTML after changing content or metadata:
+
+```bash
+node scripts/render_site.mjs \
+  --output dist \
+  --site-url https://yasou13.github.io/mesa.github.io/
+```
+
+## Build modes
+
+The build derives its public URL from `GITHUB_REPOSITORY` or `--repository`:
+
+- `Yasou13/Yasou13.github.io` → `https://yasou13.github.io/`
+- `Yasou13/mesa.github.io` → `https://yasou13.github.io/mesa.github.io/`
+
+Both modes render deployment-specific canonical URLs, Open Graph URLs,
+social-image URLs, sitemap entries, robots metadata, internal navigation, and
+404 links. Page and asset paths are not hard-coded to either deployment mode.
 
 ## GitHub Pages deployment
 
-The workflow at `.github/workflows/pages.yml` uses the official custom Pages
-workflow: checkout, Pages configuration, static artifact upload, and deploy.
+The workflow in `.github/workflows/pages.yml` builds, validates, uploads, and
+deploys the static artifact with the official GitHub Pages actions.
 
-1. Push this repository to GitHub and merge the site branch to `main`.
-2. In **Settings → Pages → Build and deployment**, choose **GitHub Actions**.
-3. Push to `main` or run the workflow manually.
+One repository setting is required before the first deployment:
 
-The build derives its URL from `GITHUB_REPOSITORY`:
+1. Open **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Push to `main` or manually run **Deploy MESA site to GitHub Pages**.
 
-- Repository `Yasou13/Yasou13.github.io` publishes as the user site at
-  `https://yasou13.github.io/`.
-- Any other repository name publishes as a project site at
-  `https://yasou13.github.io/<repository>/`.
+If `actions/configure-pages` reports `Get Pages site failed` with `Not Found`,
+Pages has not yet been enabled for the repository. Select **GitHub Actions** in
+the setting above, then rerun the failed workflow. The action's automatic
+`enablement` option cannot use the default `GITHUB_TOKEN`; it requires a
+separately managed token with additional administration permissions, so this
+repository intentionally uses the safer one-time setting instead.
 
-Navigation and assets use page-relative URLs, so both modes work. The build
-also writes the correct absolute Open Graph URL, sitemap URLs, robots sitemap
-location, and 404 base path for the selected repository name.
+## Validation
 
-The current Git remote is an internal preview remote. It is intentionally not
-changed or used for live deployment by this rebuild.
-
-## Verification
+Project-site build:
 
 ```bash
-python3 scripts/build_site.py --repository Yasou13/Yasou13.github.io
-python3 scripts/check_site.py _site
-python3 scripts/build_site.py --repository Yasou13/mesa-website
-python3 scripts/check_site.py _site
+python3 scripts/build_site.py \
+  --output /tmp/mesa-pages-project \
+  --repository Yasou13/mesa.github.io
+python3 scripts/check_site.py /tmp/mesa-pages-project
+```
+
+User-site build:
+
+```bash
+python3 scripts/build_site.py \
+  --output /tmp/mesa-pages-user \
+  --repository Yasou13/Yasou13.github.io
+python3 scripts/check_site.py /tmp/mesa-pages-user
+```
+
+Additional checks:
+
+```bash
+node --check dist/app.js
+node --check scripts/render_site.mjs
+python3 -m compileall -q scripts
 git diff --check
 ```
 
-`scripts/check_site.py` verifies route entry points, local assets, metadata,
-known dynamic route references and anchors, forbidden empty links, and legacy
-brand absence in the published artifact.
+The checker requires real page text, one semantic `main` and `h1`, unique page
+metadata, canonical/Open Graph/Twitter fields, valid internal files and
+anchors, safe external-link attributes, and the absence of legacy branding in
+the published artifact.
