@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import os
 import shutil
+import subprocess
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -48,6 +49,15 @@ def main() -> int:
         shutil.rmtree(output)
     shutil.copytree(source, output)
 
+    node = shutil.which("node")
+    renderer = Path(__file__).with_name("render_site.mjs")
+    if node is None:
+        raise SystemExit("Node.js is required to render the static HTML pages")
+    subprocess.run(
+        [node, str(renderer), "--output", str(output), "--site-url", site_url],
+        check=True,
+    )
+
     replacements = {"{{SITE_URL}}": site_url, "{{BASE_PATH}}": base_path}
     for path in output.rglob("*"):
         if not path.is_file() or path.suffix not in TEXT_SUFFIXES:
@@ -73,4 +83,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

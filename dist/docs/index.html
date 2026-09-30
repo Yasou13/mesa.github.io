@@ -1,8 +1,62 @@
 <!doctype html>
-<html lang="en"><head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation Hub — MESA</title>
-  <meta name="description" content="Source-linked quickstart, architecture, security, API, MCP, contribution, and ecosystem documentation for MESA.">
-  <meta name="theme-color" content="#070609"><meta property="og:title" content="MESA Documentation Hub"><meta property="og:description" content="Read the current source contracts, then run the code."><meta property="og:type" content="website"><meta property="og:url" content="{{SITE_URL}}docs/"><meta name="twitter:card" content="summary">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../styles.css">
-</head><body><div id="app" data-page="docs" data-base="../"></div><script src="../app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA Documentation Hub — Start, Understand, Integrate</title>
+  <meta name="description" content="Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation.">
+  <meta name="theme-color" content="#070609">
+  
+  <link rel="canonical" href="https://yasou13.github.io/mesa.github.io/docs/">
+  <meta property="og:title" content="MESA Documentation Hub — Start, Understand, Integrate">
+  <meta property="og:description" content="Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yasou13.github.io/mesa.github.io/docs/">
+  <meta property="og:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA Documentation Hub — Start, Understand, Integrate">
+  <meta name="twitter:description" content="Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation.">
+  <meta name="twitter:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../mesa/">MESA</a><a href="../ecosystem/">Ecosystem</a><a class="active" aria-current="page" href="../docs/">Docs</a><a href="../certification/">Certification</a>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Read the contract.<br><em>Then run the code.</em></h1><p>This site links to current source documents instead of maintaining a stale mirror.</p></section><section class="section docs-grid"><section><p class="eyebrow">Start</p><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Core README & quickstart<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/installation.md" target="_blank" rel="noopener noreferrer">Installation<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/api-reference.md" target="_blank" rel="noopener noreferrer">API reference<span aria-hidden="true"> ↗</span></a></section><section><p class="eyebrow">Understand</p><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">V4 architecture<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security policy<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer">Rebuild runbook<span aria-hidden="true"> ↗</span></a></section><section><p class="eyebrow">Integrate</p><a href="../docs/mcp/">MCP integration guide<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Data/blob/main/docs/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener noreferrer">MESA Data guide<span aria-hidden="true"> ↗</span></a></section><section><p class="eyebrow">Verify</p><a href="../status/">Project status<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/main/reports/independent-audit/REPORT.md" target="_blank" rel="noopener noreferrer">Certification audit<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Law/blob/master/docs/mvp-final-verification.md" target="_blank" rel="noopener noreferrer">Law-side verification<span aria-hidden="true"> ↗</span></a></section></section>
+    <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre id="install-code"><code>git clone https://github.com/Yasou13/MESA.git
+cd MESA
+uv sync --locked --extra dev</code></pre></div></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../docs/">Read the quickstart</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">V4 release candidate · Production NO-GO</p></div>
+      <div class="footer-groups">
+        <div><h3>Project</h3><a href="../mesa/">MESA Core</a><a href="../ecosystem/">Ecosystem</a><a href="../status/">Project status</a><a class="" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a></div>
+        <div><h3>Ecosystem</h3><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Quickstart<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Architecture<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing<span aria-hidden="true"> ↗</span></a><a href="../docs/mcp/">MCP integration</a></div>
+        <div><h3>Source</h3><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">GitHub profile<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer">Data repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">QA repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification" target="_blank" rel="noopener noreferrer">Certification repository<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer></main>
+  <script src="../app.js"></script>
+</body>
+</html>
