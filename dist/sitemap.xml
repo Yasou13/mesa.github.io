@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{SITE_URL}}</loc></url>
+  <url><loc>{{SITE_URL}}mesa/</loc></url>
+  <url><loc>{{SITE_URL}}ecosystem/</loc></url>
+  <url><loc>{{SITE_URL}}data/</loc></url>
+  <url><loc>{{SITE_URL}}qa/</loc></url>
+  <url><loc>{{SITE_URL}}certification/</loc></url>
+  <url><loc>{{SITE_URL}}law/</loc></url>
+  <url><loc>{{SITE_URL}}docs/</loc></url>
+  <url><loc>{{SITE_URL}}docs/mcp/</loc></url>
+  <url><loc>{{SITE_URL}}status/</loc></url>
+</urlset>
+
