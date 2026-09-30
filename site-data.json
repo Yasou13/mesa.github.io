@@ -1,0 +1,72 @@
+{
+  "project": {
+    "name": "MESA",
+    "fullName": "Memory Engine for Structured Agents",
+    "version": "0.7.1",
+    "runtime": "V4",
+    "maturity": "Release Candidate",
+    "certification": "In progress",
+    "production": "NO-GO",
+    "statusAsOf": "2026-09-30"
+  },
+  "repositories": {
+    "core": "https://github.com/Yasou13/MESA",
+    "data": "https://github.com/Yasou13/MESA_Data",
+    "qa": "https://github.com/Yasou13/MESA_QA",
+    "certification": "https://github.com/Yasou13/MESA_E2E_Certification",
+    "law": "https://github.com/Yasou13/MESA_Law",
+    "profile": "https://github.com/Yasou13"
+  },
+  "pages": {
+    "home": {
+      "path": "",
+      "title": "MESA — Evidence-Aware Memory Infrastructure",
+      "description": "MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember."
+    },
+    "mesa": {
+      "path": "mesa/",
+      "title": "MESA Core — Structured, Evidence-Aware Agent Memory",
+      "description": "Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces."
+    },
+    "ecosystem": {
+      "path": "ecosystem/",
+      "title": "MESA Ecosystem — Data, Memory, Quality, and Applications",
+      "description": "Understand how MESA Data, Core, QA, E2E Certification, and MESA Law connect through explicit system boundaries."
+    },
+    "data": {
+      "path": "data/",
+      "title": "MESA Data — Auditable Turkish Legal Data",
+      "description": "MESA Data preserves, canonicalizes, reviews, and publishes Turkish legal-source releases through an auditable pipeline."
+    },
+    "qa": {
+      "path": "qa/",
+      "title": "MESA QA — Detached Correctness and Endurance Testing",
+      "description": "MESA QA tests memory correctness, temporal behavior, cross-session persistence, and restart durability outside the baseline checkout."
+    },
+    "certification": {
+      "path": "certification/",
+      "title": "MESA E2E Certification — Profile B Scope and Status",
+      "description": "Review the evidence contract, limits, and current blocked status of the MESA Data to MESA legal Profile B certification path."
+    },
+    "law": {
+      "path": "law/",
+      "title": "MESA Law — Evidence-Aware Legal Workflow",
+      "description": "MESA Law is a legal matter and document workflow that integrates with MESA Core through a versioned HTTP boundary."
+    },
+    "docs": {
+      "path": "docs/",
+      "title": "MESA Documentation Hub — Start, Understand, Integrate",
+      "description": "Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation."
+    },
+    "mcp": {
+      "path": "docs/mcp/",
+      "title": "MESA MCP Integration — Direct Server and V4 Gateway",
+      "description": "Compare MESA's legacy direct MCP server with the current V4 gateway and binding-scoped bridge integration path."
+    },
+    "status": {
+      "path": "status/",
+      "title": "MESA Project Status — Release and Certification",
+      "description": "Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness."
+    }
+  }
+}

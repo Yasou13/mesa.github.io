@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dependency-free static route, asset, metadata, and link contract checks."""
+"""Dependency-free checks for static HTML, metadata, routes, assets, and links."""
 
 from __future__ import annotations
 
@@ -10,58 +10,109 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-ROUTES = (
-    "",
-    "mesa/",
-    "ecosystem/",
-    "data/",
-    "qa/",
-    "certification/",
-    "law/",
-    "docs/",
-    "docs/mcp/",
-    "status/",
-)
+ROUTES = ("", "mesa/", "ecosystem/", "data/", "qa/", "certification/", "law/", "docs/", "docs/mcp/", "status/")
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
 
 class PageParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
-        self.refs: list[tuple[str, str]] = []
-        self.title = False
-        self.description = False
+        self.refs: list[tuple[str, str, dict[str, str | None]]] = []
+        self.ids: set[str] = set()
+        self.title_parts: list[str] = []
+        self.text_parts: list[str] = []
+        self.description: str | None = None
+        self.canonical: str | None = None
+        self.og_title: str | None = None
+        self.og_description: str | None = None
+        self.og_url: str | None = None
+        self.og_image: str | None = None
+        self.twitter_card: str | None = None
+        self.main_count = 0
+        self.h1_count = 0
+        self._in_title = False
+        self._hidden_depth = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        if values.get("id"):
+            self.ids.add(str(values["id"]))
         if tag == "title":
-            self.title = True
-        if tag == "meta" and values.get("name") == "description" and values.get("content"):
-            self.description = True
+            self._in_title = True
+        if tag in {"script", "style"}:
+            self._hidden_depth += 1
+        if tag == "main":
+            self.main_count += 1
+        if tag == "h1":
+            self.h1_count += 1
+        if tag == "meta":
+            name, prop, content = values.get("name"), values.get("property"), values.get("content")
+            if name == "description":
+                self.description = content
+            elif name == "twitter:card":
+                self.twitter_card = content
+            elif prop == "og:title":
+                self.og_title = content
+            elif prop == "og:description":
+                self.og_description = content
+            elif prop == "og:url":
+                self.og_url = content
+            elif prop == "og:image":
+                self.og_image = content
+        if tag == "link" and values.get("rel") == "canonical":
+            self.canonical = values.get("href")
         for key in ("href", "src"):
             value = values.get(key)
             if value:
-                self.refs.append((key, value))
+                self.refs.append((tag, str(value), values))
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
+        if tag in {"script", "style"} and self._hidden_depth:
+            self._hidden_depth -= 1
+
+    def handle_data(self, data: str) -> None:
+        cleaned = " ".join(data.split())
+        if not cleaned:
+            return
+        if self._in_title:
+            self.title_parts.append(cleaned)
+        if not self._hidden_depth:
+            self.text_parts.append(cleaned)
+
+    @property
+    def title(self) -> str:
+        return " ".join(self.title_parts)
+
+    @property
+    def visible_text(self) -> str:
+        return " ".join(self.text_parts)
 
 
 def resolve_local(page: Path, root: Path, value: str) -> Path | None:
     parsed = urlsplit(value)
-    if parsed.scheme or value.startswith("//") or value.startswith("{{"):
+    if parsed.scheme or value.startswith("//"):
         return None
     clean = parsed.path
     if not clean:
-        return None
+        return page.resolve()
     if clean.startswith("/"):
         target = root / clean.lstrip("/")
-        # A built project-site 404 uses its deployed /<repository>/ prefix.
-        # The artifact root itself already represents that prefix.
-        if not target.exists() and len(Path(clean).parts) > 2:
-            target = root.joinpath(*Path(clean).parts[2:])
+        deployed_parts = clean.strip("/").split("/") if clean.strip("/") else []
+        if not target.exists() and deployed_parts:
+            target = root.joinpath(*deployed_parts[1:])
     else:
         target = page.parent / clean
     if clean.endswith("/"):
         target /= "index.html"
     return target.resolve()
+
+
+def parse_page(page: Path) -> PageParser:
+    parsed = PageParser()
+    parsed.feed(page.read_text(encoding="utf-8"))
+    return parsed
 
 
 def main() -> int:
@@ -72,52 +123,73 @@ def main() -> int:
     errors: list[str] = []
     internal_refs = 0
     external_refs = 0
+    titles: set[str] = set()
+    descriptions: set[str] = set()
 
-    for route in ROUTES:
-        page = root / route / "index.html" if route else root / "index.html"
+    route_pages = [root / route / "index.html" if route else root / "index.html" for route in ROUTES]
+    for route, page in zip(ROUTES, route_pages, strict=True):
         if not page.is_file():
             errors.append(f"missing route: /{route}")
-    for required in ("404.html", "favicon.svg", "robots.txt", "sitemap.xml", ".nojekyll"):
+    for required in ("404.html", "favicon.svg", "og-image.png", "robots.txt", "sitemap.xml", ".nojekyll"):
         if not (root / required).is_file():
             errors.append(f"missing required file: {required}")
 
-    for page in root.rglob("*.html"):
+    pages = sorted(root.rglob("*.html"))
+    parsed_pages = {page.resolve(): parse_page(page) for page in pages}
+    for page, parsed in parsed_pages.items():
+        relative = page.relative_to(root)
         text = page.read_text(encoding="utf-8")
-        parsed = PageParser()
-        parsed.feed(text)
         if not parsed.title:
-            errors.append(f"missing title: {page.relative_to(root)}")
+            errors.append(f"missing title: {relative}")
+        elif parsed.title in titles and page.name != "404.html":
+            errors.append(f"duplicate title: {relative}")
+        titles.add(parsed.title)
         if not parsed.description:
-            errors.append(f"missing description: {page.relative_to(root)}")
+            errors.append(f"missing description: {relative}")
+        elif parsed.description in descriptions and page.name != "404.html":
+            errors.append(f"duplicate description: {relative}")
+        descriptions.add(parsed.description or "")
+        if not all((parsed.canonical, parsed.og_title, parsed.og_description, parsed.og_url, parsed.og_image, parsed.twitter_card)):
+            errors.append(f"incomplete social/canonical metadata: {relative}")
+        if parsed.main_count != 1:
+            errors.append(f"expected one main element: {relative}")
+        if parsed.h1_count != 1:
+            errors.append(f"expected one h1: {relative}")
+        if page.name != "404.html" and len(parsed.visible_text) < 250:
+            errors.append(f"insufficient static HTML content: {relative}")
+        if 'id="app"' in text or "requires JavaScript to render" in text:
+            errors.append(f"JavaScript-only shell found: {relative}")
+        if "{{" in text or "}}" in text:
+            errors.append(f"unresolved build token: {relative}")
         for marker in FORBIDDEN:
             if marker in text:
-                errors.append(f"forbidden link pattern {marker}: {page.relative_to(root)}")
-        for _, value in parsed.refs:
-            if urlsplit(value).scheme in {"http", "https"}:
+                errors.append(f"forbidden link pattern {marker}: {relative}")
+        for tag, value, attrs in parsed.refs:
+            split = urlsplit(value)
+            if split.scheme in {"http", "https"}:
                 external_refs += 1
+                rel = set((attrs.get("rel") or "").split())
+                if tag == "a" and (attrs.get("target") != "_blank" or not {"noopener", "noreferrer"}.issubset(rel)):
+                    errors.append(f"unsafe external link: {relative} -> {value}")
                 continue
             target = resolve_local(page, root, value)
             if target is None:
                 continue
             internal_refs += 1
             if not target.exists():
-                errors.append(f"missing local target: {page.relative_to(root)} -> {value}")
+                errors.append(f"missing local target: {relative} -> {value}")
+                continue
+            if split.fragment and target.suffix == ".html":
+                target_parser = parsed_pages.get(target) or parse_page(target)
+                if split.fragment not in target_parser.ids:
+                    errors.append(f"missing anchor: {relative} -> {value}")
 
-    app_js = (root / "app.js").read_text(encoding="utf-8")
-    for marker in FORBIDDEN:
-        if marker in app_js:
-            errors.append(f"forbidden link pattern {marker}: app.js")
-    for value in re.findall(r"route\('([^']*)'\)", app_js):
-        clean, _, fragment = value.partition("#")
-        target = root / clean
-        if clean.endswith("/"):
-            target /= "index.html"
-        internal_refs += 1
-        if not target.exists():
-            errors.append(f"missing route referenced by app.js: {value}")
-        if fragment and f'id="{fragment}"' not in app_js:
-            errors.append(f"missing dynamic anchor referenced by app.js: {value}")
-    external_refs += len(re.findall(r"https://", app_js))
+    home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
+    ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
+    if "Memory with evidence" not in home_text or "MESA helps AI systems" not in home_text:
+        errors.append("home page lacks required static value proposition")
+    if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
+        errors.append("ecosystem page lacks required static component content")
 
     forbidden_brand = re.compile(r"cognee|topoteretes|cognee\.ai", re.IGNORECASE)
     for path in root.rglob("*"):
@@ -130,7 +202,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"SITE CHECK PASS: {len(ROUTES)} routes, {internal_refs} internal references, {external_refs} external references")
+    print(f"SITE CHECK PASS: {len(ROUTES)} routes, {len(pages)} HTML files, {internal_refs} internal references, {external_refs} external references")
     return 0
 
 

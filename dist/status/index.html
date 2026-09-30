@@ -1,8 +1,65 @@
 <!doctype html>
-<html lang="en"><head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Project Status — MESA</title>
-  <meta name="description" content="Current MESA release-candidate, certification, historical evidence, and MESA Law integration status with source links.">
-  <meta name="theme-color" content="#070609"><meta property="og:title" content="MESA Project Status"><meta property="og:description" content="Release candidate, certification in progress, production NO-GO."><meta property="og:type" content="website"><meta property="og:url" content="{{SITE_URL}}status/"><meta name="twitter:card" content="summary">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../styles.css">
-</head><body><div id="app" data-page="status" data-base="../"></div><script src="../app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA Project Status — Release and Certification</title>
+  <meta name="description" content="Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness.">
+  <meta name="theme-color" content="#070609">
+  
+  <link rel="canonical" href="https://yasou13.github.io/mesa.github.io/status/">
+  <meta property="og:title" content="MESA Project Status — Release and Certification">
+  <meta property="og:description" content="Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yasou13.github.io/mesa.github.io/status/">
+  <meta property="og:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA Project Status — Release and Certification">
+  <meta name="twitter:description" content="Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness.">
+  <meta name="twitter:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../mesa/">MESA</a><a href="../ecosystem/">Ecosystem</a><a href="../docs/">Docs</a><a href="../certification/">Certification</a>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact status-accent"><p class="eyebrow">PROJECT STATUS</p><h1>Transparent by default.<br><em>No borrowed confidence.</em></h1><p>Status below reflects current repository documentation and the hardened independent certification audit available on 2026-09-30.</p></section><section class="status-strip" aria-label="Current project status">
+      <div><small>CORE LINE</small><strong>v0.7.1 / V4</strong></div>
+      <div><small>MATURITY</small><strong>Release Candidate</strong></div>
+      <div><small>FINAL MVP CERTIFICATION</small><strong>In progress</strong></div>
+      <div><small>PRODUCTION</small><strong class="status-no-go">NO-GO</strong></div>
+    </section>
+    <section class="section status-timeline"><article><span>CORE</span><h2>V4 release candidate</h2><p>MESA package line v0.7.1. Production remains NO-GO pending final MVP certification and required production-like gates.</p><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Canonical architecture<span aria-hidden="true"> ↗</span></a></article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>The harness now fails closed, but authoritative runtime/scoring/metric producers and a current valid final run remain absent.</p><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/main/reports/independent-audit/REPORT.md" target="_blank" rel="noopener noreferrer">Independent audit<span aria-hidden="true"> ↗</span></a></article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md" target="_blank" rel="noopener noreferrer">Invalidation record<span aria-hidden="true"> ↗</span></a></article><article><span>MESA LAW</span><h2>Law-side pass / overall NO-GO</h2><p>Local Law-side gates passed; full-stack and live Core integration gates were not run.</p><a class="" href="https://github.com/Yasou13/MESA_Law/blob/master/docs/mvp-final-verification.md" target="_blank" rel="noopener noreferrer">Verification report<span aria-hidden="true"> ↗</span></a></article></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../docs/">Read the quickstart</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">V4 release candidate · Production NO-GO</p></div>
+      <div class="footer-groups">
+        <div><h3>Project</h3><a href="../mesa/">MESA Core</a><a href="../ecosystem/">Ecosystem</a><a href="../status/">Project status</a><a class="" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a></div>
+        <div><h3>Ecosystem</h3><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Quickstart<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Architecture<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing<span aria-hidden="true"> ↗</span></a><a href="../docs/mcp/">MCP integration</a></div>
+        <div><h3>Source</h3><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">GitHub profile<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer">Data repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">QA repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification" target="_blank" rel="noopener noreferrer">Certification repository<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer></main>
+  <script src="../app.js"></script>
+</body>
+</html>

@@ -3,22 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA — Memory Engine for Structured Agents</title>
-  <meta name="description" content="MESA is an open-source durable memory engine with canonical provenance, dataset isolation, structured projections, and evidence-grounded retrieval.">
+  <title>MESA — Evidence-Aware Memory Infrastructure</title>
+  <meta name="description" content="MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.">
   <meta name="theme-color" content="#070609">
-  <meta property="og:title" content="MESA — Memory Engine for Structured Agents">
-  <meta property="og:description" content="Durable agent memory with source provenance, dataset scope, and explicit release-candidate status.">
+  
+  <link rel="canonical" href="https://yasou13.github.io/mesa.github.io/">
+  <meta property="og:title" content="MESA — Evidence-Aware Memory Infrastructure">
+  <meta property="og:description" content="MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{SITE_URL}}">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="MESA — Memory Engine for Structured Agents">
-  <meta name="twitter:description" content="Durable agent memory with source provenance and dataset scope.">
+  <meta property="og:url" content="https://yasou13.github.io/mesa.github.io/">
+  <meta property="og:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA — Evidence-Aware Memory Infrastructure">
+  <meta name="twitter:description" content="MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.">
+  <meta name="twitter:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div id="app" data-page="home" data-base="./"></div>
-  <noscript>This site requires JavaScript to render its static page content. Source documentation remains available at https://github.com/Yasou13/MESA.</noscript>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="./mesa/">MESA</a><a href="./ecosystem/">Ecosystem</a><a href="./docs/">Docs</a><a href="./certification/">Certification</a>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content">
+    <section class="hero grid-bg">
+      <div class="hero-orbit" aria-hidden="true"><span></span><span></span><span></span><span></span><i>M</i></div>
+      <div class="hero-copy">
+        <p class="eyebrow">EVIDENCE-AWARE MEMORY INFRASTRUCTURE</p>
+        <h1>Memory with evidence,<br><em>not mystery.</em></h1>
+        <p>MESA helps AI systems remember information without losing where it came from, how it relates, or which data boundary it belongs to. It is open-source infrastructure for assistants and agent workflows that need traceable context.</p>
+        <div class="actions"><a class="button primary" href="./ecosystem/">Explore the ecosystem</a><a class="button secondary" href="./mesa/">How MESA works</a></div>
+      </div>
+      <a class="scroll-cue" href="#the-problem">Why it matters <span aria-hidden="true">↓</span></a>
+    </section>
+    <section class="section problem-section" id="the-problem">
+      <div class="section-heading"><div><p class="eyebrow">THE PROBLEM</p><h2>Remembering is easy.<br><em>Remembering responsibly is not.</em></h2></div><p>Agent context can become detached from its source, mixed across data boundaries, or stale across sessions. MESA treats memory as a controlled lifecycle instead of an unstructured pile of retrieved text.</p></div>
+      <div class="principle-grid">
+        <article><span>01</span><h3>Context loses its source</h3><p>MESA carries source and revision identity through admission and retrieval, so returned context can remain traceable.</p><a href="./mesa/">See the lifecycle →</a></article>
+        <article><span>02</span><h3>Boundaries become unclear</h3><p>Catalog scopes and server-created sessions keep tenant and dataset authorization attached to memory operations.</p><a href="./mesa/#security">Review isolation →</a></article>
+        <article><span>03</span><h3>Memory stops at one query</h3><p>A durable mutation and projection lifecycle supports updates, retries, replay, rollback, and retrieval across sessions.</p><a href="./mesa/#retrieval">Inspect retrieval →</a></article>
+      </div>
+    </section>
+    <section class="section reliability-section grid-bg" id="why-mesa">
+      <div class="section-heading"><div><p class="eyebrow">WHY MESA</p><h2>Useful context needs<br><em>evidence, structure, and scope.</em></h2></div><p>MESA combines several retrieval signals, but its differentiator is the contract around them: provenance, authorization, lifecycle state, and observable outcomes remain part of the system.</p></div>
+      <div class="reliability-list">
+        <article><strong>Evidence</strong><p>Keep source, revision, chunk, pipeline, and embedding identity connected to memory and retrieval results.</p></article>
+        <article><strong>Structure</strong><p>Preserve assertions and relationships alongside lexical and semantic signals instead of flattening everything into text.</p></article>
+        <article><strong>Scope</strong><p>Apply authorized dataset boundaries before results from SQL, vector, and relational lanes are fused.</p></article>
+        <article><strong>Lifecycle</strong><p>Expose whether a write was accepted, projected, retried, rejected, rolled back, or still awaiting action.</p></article>
+      </div>
+      <div class="section-actions"><a class="button primary" href="./mesa/">Read the Core architecture</a><a class="button text" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Source document<span aria-hidden="true"> ↗</span></a></div>
+    </section>
+    <section class="section ecosystem-intro" id="ecosystem"><div class="section-heading"><div><p class="eyebrow">THE ECOSYSTEM</p><h2>From trusted sources<br><em>to usable application context.</em></h2></div><p>Data prepares reviewed inputs. Core manages memory. Applications consume scoped retrieval. QA and E2E Certification evaluate the chain from outside it.</p></div><div class="ecosystem-flow" aria-label="MESA ecosystem flow"><div><small>PREPARE</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>REMEMBER</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>APPLY</small><strong>MESA Law</strong></div></div><div class="quality-rail"><span>QUALITY LAYERS</span><strong>MESA QA</strong><i>+</i><strong>E2E Certification</strong></div><div class="section-actions"><a class="button primary" href="./ecosystem/">Explore all five roles</a></div></section>
+    <section class="section journey-section grid-bg"><div class="section-heading"><div><p class="eyebrow">ONE CONCRETE PATH</p><h2>A legal source becomes<br><em>traceable application context.</em></h2></div><p>This is the ecosystem’s documented legal path—not a claim that every domain or deployment is already supported.</p></div><ol class="journey-flow"><li><span>01</span><strong>Official source</strong><small>A configured legal source or reviewed manual file</small></li><li><span>02</span><strong>MESA Data</strong><small>Preserve, canonicalize, gate, release</small></li><li><span>03</span><strong>MESA Core</strong><small>Authorize, admit, validate, project</small></li><li><span>04</span><strong>Scoped retrieval</strong><small>Lexical, vector, and assertion signals with evidence</small></li><li><span>05</span><strong>MESA Law</strong><small>Use context through a versioned HTTP boundary</small></li></ol></section>
+    <section class="section use-cases"><div class="section-heading"><div><p class="eyebrow">TARGET USE CASES</p><h2>Built for systems where<br><em>context needs an audit trail.</em></h2></div><p>These are intended evaluation scenarios, not claims of current customer deployments.</p></div><div class="use-case-grid"><article><span>01</span><h3>Internal AI assistants</h3><p>Agents that need to retrieve organization knowledge while keeping data scope and source identity visible.</p></article><article><span>02</span><h3>Knowledge-heavy agents</h3><p>Long-running workflows that benefit from durable updates, relationships, and evidence-aware retrieval.</p></article><article><span>03</span><h3>Provenance-sensitive domains</h3><p>Workflows where answers must remain connected to reviewed sources. MESA Law is the current vertical example.</p></article></div></section>
+    <aside class="development-note" aria-label="Development status"><div><p class="eyebrow">DEVELOPMENT STATUS</p><strong>Core v0.7.1 · Release Candidate</strong><p>Final MVP certification is in progress; production remains NO-GO.</p></div><a class="button secondary" href="./status/">See current status</a></aside>
+    <section class="section quickstart-section" id="quickstart">
+      <div class="quickstart-copy"><p class="eyebrow">SAFE-CORE QUICKSTART</p><h2>Start from the<br><em>locked environment.</em></h2><p>The documented default Compose profile keeps model and external-provider access disabled and commits accepted records as durable raw memories.</p><a class="button text" href="https://github.com/Yasou13/MESA/blob/main/docs/installation.md" target="_blank" rel="noopener noreferrer">Full installation guide<span aria-hidden="true"> ↗</span></a></div>
+      <div class="terminal" aria-label="MESA safe-core quickstart commands"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>mesa / safe-core</strong><button class="copy-button" type="button" data-copy-target="quickstart-code">Copy</button></div><pre id="quickstart-code"><code>git clone https://github.com/Yasou13/MESA.git
+cd MESA
+export MESA_API_KEY=local-dev-key
+export MESA_PRINCIPAL_ID=local-compose-principal
+docker compose config --quiet
+docker compose up --build -d
+
+curl --fail -H "X-API-Key: $MESA_API_KEY"   http://localhost:8000/health</code></pre></div>
+    </section>
+    <section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="./docs/">Read the quickstart</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">V4 release candidate · Production NO-GO</p></div>
+      <div class="footer-groups">
+        <div><h3>Project</h3><a href="./mesa/">MESA Core</a><a href="./ecosystem/">Ecosystem</a><a href="./status/">Project status</a><a class="" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a></div>
+        <div><h3>Ecosystem</h3><a href="./data/">MESA Data</a><a href="./qa/">MESA QA</a><a href="./certification/">E2E Certification</a><a href="./law/">MESA Law</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Quickstart<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Architecture<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing<span aria-hidden="true"> ↗</span></a><a href="./docs/mcp/">MCP integration</a></div>
+        <div><h3>Source</h3><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">GitHub profile<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer">Data repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">QA repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification" target="_blank" rel="noopener noreferrer">Certification repository<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer></main>
   <script src="./app.js"></script>
 </body>
 </html>

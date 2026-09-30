@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">MESA — Memory with evidence, not mystery.</title>
+  <desc id="desc">Social preview for the MESA evidence-aware memory infrastructure website.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#b896ff" stroke-opacity=".13"/>
+    </pattern>
+    <radialGradient id="glow" cx="80%" cy="44%" r="58%">
+      <stop offset="0" stop-color="#7550bd" stop-opacity=".43"/>
+      <stop offset="1" stop-color="#070609" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#070609"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(72 67)">
+    <path d="M0 52V0h12l20 26L52 0h12v52H50V20L32 44 14 20v32Z" fill="#b896ff"/>
+    <text x="84" y="42" fill="#f4f2f8" font-family="DejaVu Sans,Arial,sans-serif" font-size="34" font-weight="700">MESA</text>
+  </g>
+  <text x="72" y="262" fill="#f4f2f8" font-family="DejaVu Sans,Arial,sans-serif" font-size="68" font-weight="400">Memory with evidence,</text>
+  <text x="72" y="347" fill="#d7c5ff" font-family="DejaVu Sans,Arial,sans-serif" font-size="68" font-weight="400">not mystery.</text>
+  <text x="76" y="437" fill="#aaa5b4" font-family="DejaVu Sans,Arial,sans-serif" font-size="26">Evidence-aware memory infrastructure for AI systems</text>
+  <line x1="76" y1="505" x2="1124" y2="505" stroke="#3a3442"/>
+  <text x="76" y="557" fill="#b896ff" font-family="DejaVu Sans Mono,monospace" font-size="18" letter-spacing="3">OPEN SOURCE · STRUCTURED · TRACEABLE</text>
+  <g transform="translate(970 196)" fill="none" stroke="#b896ff" stroke-opacity=".45">
+    <circle cx="0" cy="0" r="128"/>
+    <circle cx="0" cy="0" r="82"/>
+    <circle cx="0" cy="0" r="36"/>
+    <path d="M-90-90 90 90M90-90-90 90"/>
+    <circle cx="96" cy="-84" r="8" fill="#b896ff" stroke="none"/>
+  </g>
+</svg>

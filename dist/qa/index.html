@@ -1,8 +1,61 @@
 <!doctype html>
-<html lang="en"><head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA QA — Detached Endurance and Correctness Testing</title>
-  <meta name="description" content="MESA QA evaluates correctness, temporal behavior, persistence, and restart durability in an isolated candidate worktree.">
-  <meta name="theme-color" content="#070609"><meta property="og:title" content="MESA QA"><meta property="og:description" content="Test the candidate while protecting the baseline."><meta property="og:type" content="website"><meta property="og:url" content="{{SITE_URL}}qa/"><meta name="twitter:card" content="summary">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../styles.css">
-</head><body><div id="app" data-page="qa" data-base="../"></div><script src="../app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA QA — Detached Correctness and Endurance Testing</title>
+  <meta name="description" content="MESA QA tests memory correctness, temporal behavior, cross-session persistence, and restart durability outside the baseline checkout.">
+  <meta name="theme-color" content="#070609">
+  
+  <link rel="canonical" href="https://yasou13.github.io/mesa.github.io/qa/">
+  <meta property="og:title" content="MESA QA — Detached Correctness and Endurance Testing">
+  <meta property="og:description" content="MESA QA tests memory correctness, temporal behavior, cross-session persistence, and restart durability outside the baseline checkout.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yasou13.github.io/mesa.github.io/qa/">
+  <meta property="og:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA QA — Detached Correctness and Endurance Testing">
+  <meta name="twitter:description" content="MESA QA tests memory correctness, temporal behavior, cross-session persistence, and restart durability outside the baseline checkout.">
+  <meta name="twitter:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../mesa/">MESA</a><a class="active" aria-current="page" href="../ecosystem/">Ecosystem</a><a href="../docs/">Docs</a><a href="../certification/">Certification</a>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact"><p class="eyebrow">MESA QA</p><h1>Test the candidate.<br><em>Protect the baseline.</em></h1><p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">Repository<span aria-hidden="true"> ↗</span></a></div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">EVALUATION SCOPE</p><h2>Behavior over time,<br><em>not just unit calls.</em></h2></div></div><div class="principle-grid"><article><span>01</span><h3>Correctness</h3><p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p></article><article><span>02</span><h3>Endurance</h3><p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p></article><article><span>03</span><h3>Restart durability</h3><p>Scenarios restart candidate processes and verify that expected memory survives.</p></article></div></section>
+    <section class="section worktree-section grid-bg"><div><p class="eyebrow">BOUNDED REPAIR</p><h2>Candidate-only changes.</h2><p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p></div><ol><li><span>1</span>Baseline checkout remains read-only</li><li><span>2</span>Dedicated candidate worktree and isolated storage</li><li><span>3</span>Pre-fix failure required before patching</li><li><span>4</span>Policy-limited diff and verification gates</li><li><span>5</span>No automatic merge or push to main</li></ol></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../docs/">Read the quickstart</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">V4 release candidate · Production NO-GO</p></div>
+      <div class="footer-groups">
+        <div><h3>Project</h3><a href="../mesa/">MESA Core</a><a href="../ecosystem/">Ecosystem</a><a href="../status/">Project status</a><a class="" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a></div>
+        <div><h3>Ecosystem</h3><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Quickstart<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Architecture<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing<span aria-hidden="true"> ↗</span></a><a href="../docs/mcp/">MCP integration</a></div>
+        <div><h3>Source</h3><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">GitHub profile<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer">Data repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">QA repository<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification" target="_blank" rel="noopener noreferrer">Certification repository<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer></main>
+  <script src="../app.js"></script>
+</body>
+</html>
