@@ -4,13 +4,30 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
 
-ROUTES = ("", "mesa/", "ecosystem/", "data/", "qa/", "certification/", "law/", "docs/", "docs/mcp/", "status/")
+ROUTES = (
+    "",
+    "how-it-works/",
+    "ecosystem/",
+    "mesa/",
+    "data/",
+    "qa/",
+    "certification/",
+    "law/",
+    "use-cases/",
+    "evaluation/",
+    "docs/",
+    "docs/mcp/",
+    "status/",
+    "about/",
+    "faq/",
+)
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
 
@@ -28,6 +45,9 @@ class PageParser(HTMLParser):
         self.og_url: str | None = None
         self.og_image: str | None = None
         self.twitter_card: str | None = None
+        self.twitter_title: str | None = None
+        self.twitter_description: str | None = None
+        self.twitter_image: str | None = None
         self.main_count = 0
         self.h1_count = 0
         self._in_title = False
@@ -51,6 +71,12 @@ class PageParser(HTMLParser):
                 self.description = content
             elif name == "twitter:card":
                 self.twitter_card = content
+            elif name == "twitter:title":
+                self.twitter_title = content
+            elif name == "twitter:description":
+                self.twitter_description = content
+            elif name == "twitter:image":
+                self.twitter_image = content
             elif prop == "og:title":
                 self.og_title = content
             elif prop == "og:description":
@@ -130,7 +156,15 @@ def main() -> int:
     for route, page in zip(ROUTES, route_pages, strict=True):
         if not page.is_file():
             errors.append(f"missing route: /{route}")
-    for required in ("404.html", "favicon.svg", "og-image.png", "robots.txt", "sitemap.xml", ".nojekyll"):
+    for required in (
+        "404.html",
+        "CNAME",
+        "favicon.svg",
+        "og-image.png",
+        "robots.txt",
+        "sitemap.xml",
+        ".nojekyll",
+    ):
         if not (root / required).is_file():
             errors.append(f"missing required file: {required}")
 
@@ -149,8 +183,24 @@ def main() -> int:
         elif parsed.description in descriptions and page.name != "404.html":
             errors.append(f"duplicate description: {relative}")
         descriptions.add(parsed.description or "")
-        if not all((parsed.canonical, parsed.og_title, parsed.og_description, parsed.og_url, parsed.og_image, parsed.twitter_card)):
+        if not all(
+            (
+                parsed.canonical,
+                parsed.og_title,
+                parsed.og_description,
+                parsed.og_url,
+                parsed.og_image,
+                parsed.twitter_card,
+                parsed.twitter_title,
+                parsed.twitter_description,
+                parsed.twitter_image,
+            )
+        ):
             errors.append(f"incomplete social/canonical metadata: {relative}")
+        if parsed.canonical != parsed.og_url:
+            errors.append(f"canonical/og:url mismatch: {relative}")
+        if parsed.og_image != parsed.twitter_image:
+            errors.append(f"Open Graph/Twitter image mismatch: {relative}")
         if parsed.main_count != 1:
             errors.append(f"expected one main element: {relative}")
         if parsed.h1_count != 1:
@@ -161,6 +211,23 @@ def main() -> int:
             errors.append(f"JavaScript-only shell found: {relative}")
         if "{{" in text or "}}" in text:
             errors.append(f"unresolved build token: {relative}")
+        json_ld_match = re.search(
+            r'<script type="application/ld\+json">(.*?)</script>', text, re.DOTALL
+        )
+        if not json_ld_match:
+            errors.append(f"missing JSON-LD: {relative}")
+        else:
+            try:
+                structured = json.loads(json_ld_match.group(1))
+                schema_types = {
+                    item.get("@type")
+                    for item in structured.get("@graph", [])
+                    if isinstance(item, dict)
+                }
+                if not {"WebSite", "SoftwareSourceCode"}.issubset(schema_types):
+                    errors.append(f"incomplete JSON-LD graph: {relative}")
+            except (json.JSONDecodeError, AttributeError):
+                errors.append(f"invalid JSON-LD: {relative}")
         for marker in FORBIDDEN:
             if marker in text:
                 errors.append(f"forbidden link pattern {marker}: {relative}")
@@ -192,6 +259,44 @@ def main() -> int:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
+
+    static_markers = {
+        "how-it-works/": ("Six steps", "Four origins", "MESA QA"),
+        "mesa/": ("Four signals", "Graph paths", "True RRF"),
+        "law/": ("PRIMARY REFERENCE IMPLEMENTATION", "Official legal source"),
+        "use-cases/": ("Agent memory", "Expected benefit"),
+        "evaluation/": ("MESA QA", "E2E CERTIFICATION", "Certification remains blocked"),
+        "about/": ("WHO MAINTAINS IT", "Open a GitHub issue"),
+        "faq/": ("Is MESA a vector database?", "Is MESA production-ready?"),
+    }
+    for route, markers in static_markers.items():
+        page = root / route / "index.html"
+        visible = parsed_pages.get(page.resolve(), PageParser()).visible_text
+        for marker in markers:
+            if marker not in visible:
+                errors.append(f"missing static marker at /{route}: {marker}")
+
+    home_parser = parsed_pages.get((root / "index.html").resolve())
+    if home_parser and home_parser.canonical:
+        site_url = home_parser.canonical
+        sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
+        for route in ROUTES:
+            expected = f"<loc>{site_url}{route}</loc>"
+            if expected not in sitemap:
+                errors.append(f"sitemap missing route: /{route}")
+        robots = (root / "robots.txt").read_text(encoding="utf-8")
+        if f"Sitemap: {site_url}sitemap.xml" not in robots:
+            errors.append("robots.txt sitemap URL does not match canonical origin")
+        if site_url == "https://mesamemory.dev/":
+            if (root / "CNAME").read_text(encoding="utf-8").strip() != "mesamemory.dev":
+                errors.append("CNAME does not match mesamemory.dev")
+            published_text = "\n".join(
+                path.read_text(encoding="utf-8")
+                for path in root.rglob("*")
+                if path.is_file() and path.suffix in {".html", ".xml", ".txt"}
+            )
+            if "yasou13.github.io/mesa.github.io" in published_text:
+                errors.append("legacy GitHub Pages URL leaked into custom-domain artifact")
 
     forbidden_brand = re.compile(r"cognee|topoteretes|cognee\.ai", re.IGNORECASE)
     for path in root.rglob("*"):
