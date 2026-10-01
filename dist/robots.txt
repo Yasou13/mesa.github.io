@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: {{SITE_URL}}sitemap.xml
-
+Sitemap: https://mesamemory.dev/sitemap.xml

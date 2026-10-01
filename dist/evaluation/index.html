@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA Documentation Hub — Start, Understand, Integrate</title>
-  <meta name="description" content="Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation.">
+  <title>MESA Evaluation & Trust — QA, Evidence, and Certification</title>
+  <meta name="description" content="Understand the distinct roles of MESA QA and E2E Certification, current evidence, blocked gates, and publication limits.">
   <meta name="theme-color" content="#070609">
   
-  <link rel="canonical" href="https://mesamemory.dev/docs/">
-  <meta property="og:title" content="MESA Documentation Hub — Start, Understand, Integrate">
-  <meta property="og:description" content="Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation.">
+  <link rel="canonical" href="https://mesamemory.dev/evaluation/">
+  <meta property="og:title" content="MESA Evaluation & Trust — QA, Evidence, and Certification">
+  <meta property="og:description" content="Understand the distinct roles of MESA QA and E2E Certification, current evidence, blocked gates, and publication limits.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mesamemory.dev/docs/">
+  <meta property="og:url" content="https://mesamemory.dev/evaluation/">
   <meta property="og:image" content="https://mesamemory.dev/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA Documentation Hub — Start, Understand, Integrate">
-  <meta name="twitter:description" content="Find MESA quickstart, architecture, security, API, MCP, ecosystem, and verification documentation.">
+  <meta name="twitter:title" content="MESA Evaluation & Trust — QA, Evidence, and Certification">
+  <meta name="twitter:description" content="Understand the distinct roles of MESA QA and E2E Certification, current evidence, blocked gates, and publication limits.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.7.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -34,14 +34,14 @@
           <span></span><span></span><span></span>
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
-          <a href="../how-it-works/">How it works</a><a href="../ecosystem/">Ecosystem</a><a href="../use-cases/">Use cases</a><a class="active" aria-current="page" href="../docs/">Docs</a>
+          <a href="../how-it-works/">How it works</a><a href="../ecosystem/">Ecosystem</a><a href="../use-cases/">Use cases</a><a href="../docs/">Docs</a>
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Read the contract.<br><em>Then run the code.</em></h1><p>This site links to current source documents instead of maintaining a stale mirror.</p></section><section class="section docs-grid"><section><p class="eyebrow">Start</p><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Core README & quickstart<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/installation.md" target="_blank" rel="noopener noreferrer">Installation<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/api-reference.md" target="_blank" rel="noopener noreferrer">API reference<span aria-hidden="true"> ↗</span></a></section><section><p class="eyebrow">Understand</p><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">V4 architecture<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security policy<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer">Rebuild runbook<span aria-hidden="true"> ↗</span></a></section><section><p class="eyebrow">Integrate</p><a href="../docs/mcp/">MCP integration guide<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Data/blob/main/docs/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener noreferrer">MESA Data guide<span aria-hidden="true"> ↗</span></a></section><section><p class="eyebrow">Verify</p><a href="../status/">Project status<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/main/reports/independent-audit/REPORT.md" target="_blank" rel="noopener noreferrer">Certification audit<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA_Law/blob/master/docs/mvp-final-verification.md" target="_blank" rel="noopener noreferrer">Law-side verification<span aria-hidden="true"> ↗</span></a></section></section>
-    <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre id="install-code"><code>git clone https://github.com/Yasou13/MESA.git
-cd MESA
-uv sync --locked --extra dev</code></pre></div></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+    </header><main id="main-content"><section class="page-hero compact status-accent"><p class="eyebrow">EVALUATION & TRUST</p><h1>Two layers.<br><em>Two different questions.</em></h1><p>MESA separates ongoing behavioral testing from profile-specific certification evidence. Neither is presented as a substitute for production proof.</p></section>
+    <section class="section evaluation-compare"><article><p class="eyebrow">MESA QA</p><h2>Does the candidate keep behaving correctly?</h2><ul class="check-list"><li>memory correctness and independent ground truth</li><li>temporal updates, correction, and forgetting</li><li>cross-session persistence and restart durability</li><li>sustained endurance profiles</li><li>isolated candidate repair with no automatic merge or push</li></ul><a href="../qa/">Explore MESA QA →</a></article><article><p class="eyebrow">E2E CERTIFICATION</p><h2>Can this exact profile prove its required guarantees?</h2><ul class="check-list"><li>frozen inputs, identity, and evidence bindings</li><li>authoritative runtime, scoring, and metric producers</li><li>hard gates and independent finalization</li><li>profile-bounded evidence and verdicts</li><li>fail-closed handling of missing or unverified gates</li></ul><a href="../certification/">Explore certification →</a></article></section>
+    <section class="section trust-state grid-bg"><div><p class="eyebrow">CURRENT EVIDENCE STATE</p><h2>Harness integrity improved.<br><em>Certification remains blocked.</em></h2></div><div><p>The independent audit corrected reproduced integrity defects and verified fail-closed behavior. It did not execute a legitimate passing runtime certification transaction.</p><p>Authoritative runtime, ground-truth join, scoring, health, and mandatory metric producers remain unavailable for a current PASS.</p><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/main/reports/independent-audit/REPORT.md" target="_blank" rel="noopener noreferrer">Read the independent audit<span aria-hidden="true"> ↗</span></a></div></section>
+    <section class="section future-benchmarks"><p class="eyebrow">BENCHMARK PUBLICATION</p><h2>No placeholder numbers.</h2><p>Historical or synthetic diagnostics are not promoted as current production guarantees. Publishable retrieval quality, latency, resource, and endurance results should follow valid certification and clearly identified methodology.</p></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
