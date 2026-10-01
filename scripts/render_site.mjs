@@ -66,7 +66,7 @@ function footer() {
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand">${logo()}<p>${project.fullName}.</p><p class="footer-note">${project.runtime} ${project.maturity.toLowerCase()} · Production ${project.production}</p></div>
+      <div class="footer-brand">${logo()}<p>${project.fullName}.</p><p class="footer-note">v${project.version} · ${project.runtime} ${project.maturity.toLowerCase()} · <a href="${route('status/')}">View status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="${route('how-it-works/')}">How it works</a><a href="${route('use-cases/')}">Use cases</a><a href="${route('evaluation/')}">Evaluation & trust</a><a href="${route('status/')}">Project status</a></div>
         <div><h3>Ecosystem</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
