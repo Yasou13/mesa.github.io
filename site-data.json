@@ -2,12 +2,15 @@
   "project": {
     "name": "MESA",
     "fullName": "Memory Engine for Structured Agents",
+    "domain": "https://mesamemory.dev/",
     "version": "0.7.1",
     "runtime": "V4",
     "maturity": "Release Candidate",
     "certification": "In progress",
     "production": "NO-GO",
-    "statusAsOf": "2026-09-30"
+    "statusAsOf": "2026-10-01",
+    "maintainer": "Yasou13",
+    "license": "MIT"
   },
   "repositories": {
     "core": "https://github.com/Yasou13/MESA",
@@ -15,7 +18,8 @@
     "qa": "https://github.com/Yasou13/MESA_QA",
     "certification": "https://github.com/Yasou13/MESA_E2E_Certification",
     "law": "https://github.com/Yasou13/MESA_Law",
-    "profile": "https://github.com/Yasou13"
+    "profile": "https://github.com/Yasou13",
+    "issues": "https://github.com/Yasou13/MESA/issues"
   },
   "pages": {
     "home": {
@@ -27,6 +31,11 @@
       "path": "mesa/",
       "title": "MESA Core — Structured, Evidence-Aware Agent Memory",
       "description": "Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces."
+    },
+    "howItWorks": {
+      "path": "how-it-works/",
+      "title": "How MESA Works — From Source to Evidence-Aware Context",
+      "description": "Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture."
     },
     "ecosystem": {
       "path": "ecosystem/",
@@ -53,6 +62,16 @@
       "title": "MESA Law — Evidence-Aware Legal Workflow",
       "description": "MESA Law is a legal matter and document workflow that integrates with MESA Core through a versioned HTTP boundary."
     },
+    "useCases": {
+      "path": "use-cases/",
+      "title": "MESA Use Cases — Structured Memory Where Evidence Matters",
+      "description": "Explore realistic evaluation scenarios for MESA, including agent memory, knowledge-heavy assistants, and provenance-sensitive workflows."
+    },
+    "evaluation": {
+      "path": "evaluation/",
+      "title": "MESA Evaluation & Trust — QA, Evidence, and Certification",
+      "description": "Understand the distinct roles of MESA QA and E2E Certification, current evidence, blocked gates, and publication limits."
+    },
     "docs": {
       "path": "docs/",
       "title": "MESA Documentation Hub — Start, Understand, Integrate",
@@ -67,6 +86,16 @@
       "path": "status/",
       "title": "MESA Project Status — Release and Certification",
       "description": "Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness."
+    },
+    "about": {
+      "path": "about/",
+      "title": "About MESA — Open-Source Evidence-Aware Memory",
+      "description": "Learn why MESA exists, how the public multi-repository project is maintained, and where to inspect source or open an issue."
+    },
+    "faq": {
+      "path": "faq/",
+      "title": "MESA FAQ — Architecture, Interfaces, Scope, and Status",
+      "description": "Direct answers about MESA, vector search, RAG, provenance, MCP, local operation, MESA Law, QA, certification, and production status."
     }
   }
 }
