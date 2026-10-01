@@ -386,11 +386,11 @@ function documentShell({ title, description, canonical, content, assetBase, noIn
   <script type="application/ld+json">${structuredData}</script>
   <link rel="icon" href="${assetBase}favicon.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="${assetBase}styles.css">
+  <link rel="stylesheet" href="${assetBase}styles.css?v=${project.statusAsOf}">
 </head>
 <body>
 ${content}
-  <script src="${assetBase}app.js"></script>
+  <script src="${assetBase}app.js?v=${project.statusAsOf}"></script>
 </body>
 </html>
 `;

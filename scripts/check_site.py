@@ -50,6 +50,7 @@ class PageParser(HTMLParser):
         self.twitter_image: str | None = None
         self.main_count = 0
         self.h1_count = 0
+        self.heading_levels: list[int] = []
         self._in_title = False
         self._hidden_depth = 0
 
@@ -65,6 +66,8 @@ class PageParser(HTMLParser):
             self.main_count += 1
         if tag == "h1":
             self.h1_count += 1
+        if re.fullmatch(r"h[1-6]", tag):
+            self.heading_levels.append(int(tag[1]))
         if tag == "meta":
             name, prop, content = values.get("name"), values.get("property"), values.get("content")
             if name == "description":
@@ -205,6 +208,15 @@ def main() -> int:
             errors.append(f"expected one main element: {relative}")
         if parsed.h1_count != 1:
             errors.append(f"expected one h1: {relative}")
+        if parsed.heading_levels and parsed.heading_levels[0] != 1:
+            errors.append(f"first heading is not h1: {relative}")
+        for previous, current in zip(
+            parsed.heading_levels, parsed.heading_levels[1:], strict=False
+        ):
+            if current > previous + 1:
+                errors.append(
+                    f"heading level jumps from h{previous} to h{current}: {relative}"
+                )
         if page.name != "404.html" and len(parsed.visible_text) < 250:
             errors.append(f"insufficient static HTML content: {relative}")
         if 'id="app"' in text or "requires JavaScript to render" in text:
