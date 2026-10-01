@@ -180,4 +180,148 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/faq/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/faq/" />
   </url>
+  <url>
+    <loc>https://mesamemory.dev/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/resources/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/resources/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/resources/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/resources/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/resources/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/resources/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/glossary/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/glossary/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/glossary/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/glossary/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/glossary/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/glossary/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/glossary/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/glossary/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/tools/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/tools/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/tools/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/tools/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/tools/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/tools/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/methodology/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/methodology/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/methodology/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/methodology/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/methodology/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/methodology/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/methodology/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/methodology/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/semantic-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/semantic-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/semantic-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/semantic-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/keyword-vs-semantic-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/keyword-vs-semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/keyword-vs-semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/keyword-vs-semantic-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/keyword-vs-semantic-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/keyword-vs-semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/keyword-vs-semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/keyword-vs-semantic-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/guides/verify-ai-yargitay-decision/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/glossary/provenance/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/glossary/provenance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/glossary/provenance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/glossary/provenance/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/glossary/provenance/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/glossary/provenance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/glossary/provenance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/glossary/provenance/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/methodology/retrieval-evaluation/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/methodology/retrieval-evaluation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/methodology/retrieval-evaluation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/methodology/retrieval-evaluation/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/methodology/retrieval-evaluation/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/methodology/retrieval-evaluation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/methodology/retrieval-evaluation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/methodology/retrieval-evaluation/" />
+  </url>
 </urlset>
