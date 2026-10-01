@@ -2,6 +2,30 @@
 
 Audit date: 2026-09-30
 
+## Product-experience hardening follow-up — 2026-10-01
+
+The live custom-domain site and current generator matched before this pass. The
+existing rebuild was technically strong but still read mainly as a repository
+gateway: the homepage had no product-output view, the public flow and deep Core
+architecture were combined, developer usage stopped at installation, MESA Law
+was not yet framed as the primary reference implementation, and About, FAQ,
+Use Cases, and Evaluation routes did not exist.
+
+The canonical repositories were re-read at their then-current public HEADs:
+
+- `Yasou13/MESA` at `7c03eff`
+- `Yasou13/MESA_Data` at `6b5a444`
+- `Yasou13/MESA_QA` at `4f6c7ec`
+- `Yasou13/MESA_E2E_Certification` at `4ec51e0`
+- `Yasou13/MESA_Law` at `e71f785`
+
+The most important correction is retrieval terminology. Core advanced after
+the original site audit: current API/runtime/tests expose four origins
+(`vector`, `bm25`, `assertion`, `graph`) and a deterministic four-lane fixture.
+The website now follows that executable contract, labels the example as a
+fixture rather than a live result, and records the shorter architecture-doc
+wording difference in `CLAIMS.md`.
+
 ## Starting point
 
 The repository contained a seven-route Cognee reference-site reconstruction:

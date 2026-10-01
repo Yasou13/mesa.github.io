@@ -22,14 +22,19 @@ needed only to run the dependency-free static renderer during a build.
 ## Routes
 
 - `/` — value proposition, problem, ecosystem, example path, and use cases
+- `/how-it-works/` — simple public flow, verified retrieval fixture, technical path
 - `/mesa/` — MESA Core
 - `/ecosystem/` — ecosystem overview and component boundaries
 - `/data/` — MESA Data
 - `/qa/` — MESA QA
 - `/certification/` — Profile B scope and current status
 - `/law/` — MESA Law
+- `/use-cases/` — realistic evaluation scenarios and project boundaries
+- `/evaluation/` — QA versus E2E Certification and current evidence state
 - `/docs/` and `/docs/mcp/` — documentation and MCP integration
 - `/status/` — release and certification status
+- `/about/` — project purpose, public maintainer identity, and contact path
+- `/faq/` — concise product, architecture, interface, and status answers
 - `/404.html` — project-site-safe custom 404
 
 ## Local preview
@@ -128,5 +133,18 @@ git diff --check
 
 The checker requires real page text, one semantic `main` and `h1`, unique page
 metadata, canonical/Open Graph/Twitter fields, valid internal files and
-anchors, safe external-link attributes, and the absence of legacy branding in
-the published artifact.
+anchors, valid JSON-LD, complete sitemap coverage, safe external-link
+attributes, and the absence of legacy branding in the published artifact.
+
+## Updating public project data
+
+Edit `site-data.json` for the Core version, maturity, certification summary,
+status date, repository URLs, maintainer identity, or route metadata. Do not
+duplicate these values in generated HTML. Then update source-backed copy in
+`scripts/render_site.mjs`, record claim evidence in `CLAIMS.md`, regenerate
+`dist/`, and run both production and project-site validation modes.
+
+The social card source is `dist/og-image.svg`; the committed
+`dist/og-image.png` is the 1200×630 published asset. `dist/CNAME` records the
+custom domain, while the build still renders URLs from the Pages-reported
+deployment base so preview/fallback artifacts remain testable.
