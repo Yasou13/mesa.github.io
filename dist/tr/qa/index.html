@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA QA — Ayrık Doğruluk ve Dayanıklılık Testleri</title>
+  <meta name="description" content="MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar.">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/qa/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/qa/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/qa/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/qa/">
+  <meta property="og:title" content="MESA QA — Ayrık Doğruluk ve Dayanıklılık Testleri">
+  <meta property="og:description" content="MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/tr/qa/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA QA — Ayrık Doğruluk ve Dayanıklılık Testleri">
+  <meta name="twitter:description" content="MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.7.1","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../styles.css?v=cd534df13cb4">
+</head>
+<body>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a href="../how-it-works/">Nasıl çalışır</a><a class="active" aria-current="page" href="../ecosystem/">Ekosistem</a><a href="../use-cases/">Kullanım alanları</a><a href="../docs/">Dokümanlar</a>
+          <div class="language-switch" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../qa/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../qa/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact qa-hero"><p class="eyebrow">MESA QA</p><h1>Adayı sınayın.<br><em>Baseline'ı koruyun.</em></h1><p>MESA'yı kanonik MCP yüzeyi üzerinden uzun süreli davranış kontrollerine tabi tutan haricî ve ayrılabilir test mühendisliği sistemi.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">Depo<span aria-hidden="true"> ↗</span></a></div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">DEĞERLENDİRME KAPSAMI</p><h2>Zaman içindeki davranış;<br><em>yalnızca birim çağrıları değil.</em></h2></div></div><div class="principle-grid"><article><span>01</span><h3>Doğruluk</h3><p>Bağımsız SQLite ground truth, bir LLM'den kendini puanlamasını istemek yerine hafıza sonuçlarını değerlendirir.</p></article><article><span>02</span><h3>Dayanıklılık</h3><p>Profiller sürdürülen hatırlama/geri çağırma döngülerini, zamansal güncellemeleri, düzeltmeleri, unutmayı ve oturum rotasyonunu kapsar.</p></article><article><span>03</span><h3>Yeniden başlatma dayanıklılığı</h3><p>Senaryolar aday süreçleri yeniden başlatır ve beklenen hafızanın korunduğunu doğrular.</p></article></div></section>
+    <section class="section worktree-section grid-bg"><div><p class="eyebrow">SINIRLANDIRILMIŞ ONARIM</p><h2>Yalnızca adaya yönelik değişiklikler.</h2><p>Yeniden üretilebilir bir kusur bulunduğunda QA başarısız bir regresyon yazabilir, en küçük onarımı uygulayabilir, adayı yeniden başlatabilir ve sonucu doğrulayabilir.</p></div><ol><li><span>1</span>Baseline checkout salt okunur kalır</li><li><span>2</span>Adaya ayrılmış worktree ve yalıtılmış depolama</li><li><span>3</span>Patch öncesinde düzeltme öncesi hata zorunludur</li><li><span>4</span>Politikayla sınırlandırılmış diff ve doğrulama kapıları</li><li><span>5</span>main'e otomatik merge veya push yoktur</li></ol></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
+        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
+        <p>MESA etkin biçimde geliştiriliyor. Tam V4 çalışma zamanını değerlendirmeden önce belgelenmiş safe-core profiliyle başlayın ve sürüm adayı sınırlarını inceleyin.</p>
+        <div class="actions"><a class="button primary" href="../docs/">Hızlı başlangıcı okuyun</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">Kaynak kodunu görüntüle<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.7.1 · V4 sürüm adayı · <a href="../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Keşfet</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../use-cases/">Kullanım alanları</a><a href="../evaluation/">Değerlendirme ve güven</a><a href="../status/">Proje durumu</a></div>
+        <div><h3>Ekosistem</h3><a href="../mesa/">MESA Core</a><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Dokümantasyon</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Hızlı başlangıç<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Mimari<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Güvenlik<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Katkı<span aria-hidden="true"> ↗</span></a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer">Issue aç<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">Bakımcı profili<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
+    </footer></main>
+  <script src="../../app.js?v=ef177010b5bc"></script>
+</body>
+</html>

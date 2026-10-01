@@ -436,9 +436,8 @@ function documentShell({ title, description, canonical, content, assetBase, lang
   <title>${title}</title>
   <meta name="description" content="${description}">
   <meta name="theme-color" content="#0b0c0f">
-  ${noIndex ? '<meta name="robots" content="noindex">' : ''}
-  <link rel="canonical" href="${canonical}">
-  ${alternateUrls ? `<link rel="alternate" hreflang="en" href="${alternateUrls.en}">
+${noIndex ? '  <meta name="robots" content="noindex">\n' : ''}  <link rel="canonical" href="${canonical}">
+${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.en}">
   <link rel="alternate" hreflang="tr" href="${alternateUrls.tr}">
   <link rel="alternate" hreflang="x-default" href="${alternateUrls.en}">` : ''}
   <meta property="og:title" content="${title}">

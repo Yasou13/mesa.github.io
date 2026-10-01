@@ -28,6 +28,7 @@ ROUTES = (
     "about/",
     "faq/",
 )
+LOCALIZED_ROUTES = ROUTES + tuple(f"tr/{route}" for route in ROUTES)
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
 
@@ -48,6 +49,9 @@ class PageParser(HTMLParser):
         self.twitter_title: str | None = None
         self.twitter_description: str | None = None
         self.twitter_image: str | None = None
+        self.html_lang: str | None = None
+        self.og_locale: str | None = None
+        self.alternates: dict[str, str] = {}
         self.main_count = 0
         self.h1_count = 0
         self.heading_levels: list[int] = []
@@ -56,6 +60,8 @@ class PageParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        if tag == "html":
+            self.html_lang = values.get("lang")
         if values.get("id"):
             self.ids.add(str(values["id"]))
         if tag == "title":
@@ -88,8 +94,12 @@ class PageParser(HTMLParser):
                 self.og_url = content
             elif prop == "og:image":
                 self.og_image = content
+            elif prop == "og:locale":
+                self.og_locale = content
         if tag == "link" and values.get("rel") == "canonical":
             self.canonical = values.get("href")
+        if tag == "link" and values.get("rel") == "alternate" and values.get("hreflang"):
+            self.alternates[str(values["hreflang"])] = str(values.get("href") or "")
         for key in ("href", "src"):
             value = values.get(key)
             if value:
@@ -155,8 +165,8 @@ def main() -> int:
     titles: set[str] = set()
     descriptions: set[str] = set()
 
-    route_pages = [root / route / "index.html" if route else root / "index.html" for route in ROUTES]
-    for route, page in zip(ROUTES, route_pages, strict=True):
+    route_pages = [root / route / "index.html" if route else root / "index.html" for route in LOCALIZED_ROUTES]
+    for route, page in zip(LOCALIZED_ROUTES, route_pages, strict=True):
         if not page.is_file():
             errors.append(f"missing route: /{route}")
     for required in (
@@ -186,6 +196,12 @@ def main() -> int:
         elif parsed.description in descriptions and page.name != "404.html":
             errors.append(f"duplicate description: {relative}")
         descriptions.add(parsed.description or "")
+        expected_language = "tr" if str(relative).startswith("tr/") else "en"
+        if page.name != "404.html" and parsed.html_lang != expected_language:
+            errors.append(f"incorrect html lang at {relative}: {parsed.html_lang}")
+        expected_locale = "tr_TR" if expected_language == "tr" else "en_US"
+        if page.name != "404.html" and parsed.og_locale != expected_locale:
+            errors.append(f"incorrect og:locale at {relative}: {parsed.og_locale}")
         if not all(
             (
                 parsed.canonical,
@@ -256,7 +272,9 @@ def main() -> int:
                 continue
             internal_refs += 1
             if tag == "a" and attrs.get("aria-label") == "MESA home" and target != (root / "index.html").resolve():
-                errors.append(f"home logo does not target site root: {relative} -> {value}")
+                errors.append(f"English home logo does not target site root: {relative} -> {value}")
+            if tag == "a" and attrs.get("aria-label") == "MESA ana sayfa" and target != (root / "tr/index.html").resolve():
+                errors.append(f"Turkish home logo does not target /tr/: {relative} -> {value}")
             if not target.exists():
                 errors.append(f"missing local target: {relative} -> {value}")
                 continue
@@ -288,11 +306,58 @@ def main() -> int:
             if marker not in visible:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
+    turkish_markers = {
+        "tr/": ("KANIT ODAKLI HAFIZA", "MESA yaklaşımı", "GELİŞTİRME DURUMU"),
+        "tr/how-it-works/": ("Altı adım", "Dört kaynak", "KALİTE KATMANLARI"),
+        "tr/mesa/": ("Dört sinyal", "Graph path", "Gerçek RRF"),
+        "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
+        "tr/use-cases/": ("Ajan hafızası", "Beklenen yarar"),
+        "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon hâlâ engelli"),
+        "tr/about/": ("KİM SÜRDÜRÜYOR", "GitHub issue aç"),
+        "tr/faq/": ("MESA bir vektör veritabanı mı?", "MESA üretime hazır mı?"),
+    }
+    for route, markers in turkish_markers.items():
+        page = root / route / "index.html"
+        visible = parsed_pages.get(page.resolve(), PageParser()).visible_text
+        for marker in markers:
+            if marker not in visible:
+                errors.append(f"missing Turkish static marker at /{route}: {marker}")
+
+    english_home = parsed_pages.get((root / "index.html").resolve())
+    if english_home and english_home.canonical:
+        origin = english_home.canonical
+        for route in ROUTES:
+            for localized, language in ((route, "en"), (f"tr/{route}", "tr")):
+                page = root / localized / "index.html" if localized else root / "index.html"
+                parsed = parsed_pages.get(page.resolve())
+                if not parsed:
+                    continue
+                expected_canonical = f"{origin}{localized}"
+                expected_alternates = {
+                    "en": f"{origin}{route}",
+                    "tr": f"{origin}tr/{route}",
+                    "x-default": f"{origin}{route}",
+                }
+                if parsed.canonical != expected_canonical:
+                    errors.append(f"incorrect localized canonical: {page.relative_to(root)}")
+                if parsed.alternates != expected_alternates:
+                    errors.append(f"incorrect hreflang set: {page.relative_to(root)}")
+                switch_language = "tr" if language == "en" else "en"
+                counterpart_route = f"tr/{route}" if switch_language == "tr" else route
+                counterpart = root / counterpart_route / "index.html" if counterpart_route else root / "index.html"
+                if not any(
+                    attrs.get("hreflang") == switch_language
+                    and resolve_local(page, root, value) == counterpart.resolve()
+                    for tag, value, attrs in parsed.refs
+                    if tag == "a"
+                ):
+                    errors.append(f"missing context-preserving language switch: {page.relative_to(root)}")
+
     home_parser = parsed_pages.get((root / "index.html").resolve())
     if home_parser and home_parser.canonical:
         site_url = home_parser.canonical
         sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
-        for route in ROUTES:
+        for route in LOCALIZED_ROUTES:
             expected = f"<loc>{site_url}{route}</loc>"
             if expected not in sitemap:
                 errors.append(f"sitemap missing route: /{route}")
@@ -321,7 +386,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"SITE CHECK PASS: {len(ROUTES)} routes, {len(pages)} HTML files, {internal_refs} internal references, {external_refs} external references")
+    print(f"SITE CHECK PASS: {len(LOCALIZED_ROUTES)} localized routes, {len(pages)} HTML files, {internal_refs} internal references, {external_refs} external references")
     return 0
 
 

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar</title>
+  <meta name="description" content="MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın.">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/ecosystem/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/ecosystem/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/ecosystem/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/ecosystem/">
+  <meta property="og:title" content="MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar">
+  <meta property="og:description" content="MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/tr/ecosystem/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar">
+  <meta name="twitter:description" content="MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.7.1","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../styles.css?v=cd534df13cb4">
+</head>
+<body>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a href="../how-it-works/">Nasıl çalışır</a><a class="active" aria-current="page" href="../ecosystem/">Ekosistem</a><a href="../use-cases/">Kullanım alanları</a><a href="../docs/">Dokümanlar</a>
+          <div class="language-switch" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../ecosystem/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../ecosystem/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact"><p class="eyebrow">MESA EKOSİSTEMİ</p><h1>Açık sınırlar.<br><em>Sınırlar boyunca kanıt.</em></h1><p>Beş depo; hazırlama, hafıza, uygulama, davranış testi ve bağımsız kanıt sorumluluklarını ayırır. Genel platform modeli, güncel hukuk referans yolundan ayrıdır.</p></section>
+    <section class="section boundary-section grid-bg"><div class="section-heading"><div><p class="eyebrow">GENEL PLATFORM MODELİ</p><h2>Core, kaynaklarla<br><em>uygulamaların arasında yer alır.</em></h2></div><p>Hazırlama MESA Data veya uyumlu başka bir kaynak işlem hattı tarafından yapılabilir. MESA Law bir uygulamadır; zorunlu çalışma zamanı aşaması değildir.</p></div><div class="platform-map" aria-label="Genel MESA platform modeli"><div class="map-runtime"><div><small>GİRDİ</small><strong>Kaynaklar</strong><span>İncelenmiş materyal</span></div><b aria-hidden="true">→</b><div><small>HAZIRLA</small><strong>Veri alım katmanı</strong><span>MESA Data veya uyumlu üretici</span></div><b aria-hidden="true">→</b><div class="core-node"><small>HAFIZA</small><strong>MESA Core</strong><span>Kabul · geri getirme · kanıt</span></div><b aria-hidden="true">→</b><div><small>ÇIKTI</small><strong>Uygulama</strong><span>Sürümlenmiş API / SDK / MCP</span></div></div><div class="map-quality"><span>ÇALIŞMA ZAMANI DIŞI DEĞERLENDİRME</span><a href="../qa/">MESA QA</a><i>zaman içindeki davranış</i><a href="../certification/">E2E Certification</a><i>profil kanıtı ve hüküm</i></div></div></section>
+    <section class="section legal-reference archive-texture"><div class="section-heading"><div><p class="eyebrow copper">GÜNCEL HUKUK REFERANS YOLU</p><h2>Somut bir yol;<br><em>evrensel bir bağımlılık değil.</em></h2></div><p>Bu, güncel Profile B ve MESA Law yapısıdır. Bilinçli olarak hukuk referans uygulaması şeklinde etiketlenmiştir.</p></div><div class="ecosystem-flow legal-flow" aria-label="Güncel hukuk referans uygulaması"><div><small>KAYNAK</small><strong>Resmî hukuk kaynakları</strong></div><b aria-hidden="true">→</b><div><small>HAZIRLA</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>HAFIZA</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>REFERANS UYGULAMA</small><strong>MESA Law</strong></div></div></section>
+    <section class="section ecosystem-section"><div class="section-heading"><div><p class="eyebrow">BEŞ AÇIK ROL</p><h2>Farklı sahipliklere sahip<br><em>depo sınırları.</em></h2></div><p>Her bileşen ne olduğunu, neden var olduğunu ve teknik olarak neleri yönettiğini açıklar.</p></div><div class="ecosystem-grid"><article class="ecosystem-card">
+      <div class="card-index">01</div><p class="eyebrow">Hafıza katmanı</p><h3>MESA Core</h3><p class="card-summary">Yetkilendirilmiş bilgiyi kabul eder; kanıtını veya veri kapsamını kaybetmeden geri getirilebilir kılar.</p>
+      <details><summary>Teknik rol</summary><p>V4 katalog, yetkilendirme, mutasyon yaşam döngüsü, projeksiyon, geri getirme, API, SDK ve MCP yüzeylerini yönetir.</p></details>
+      <div class="card-links"><a href="../mesa/">Core'u inceleyin<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">Depo<span aria-hidden="true"> ↗</span></a></div>
+    </article><article class="ecosystem-card">
+      <div class="card-index">02</div><p class="eyebrow">Kaynak hazırlama katmanı</p><h3>MESA Data</h3><p class="card-summary">İncelenmiş Türkiye hukuk kaynaklarını MESA Core'un kabul edebileceği izlenebilir sürümlere dönüştürür.</p>
+      <details><summary>Teknik rol</summary><p>Ham baytları korur, kayıtları kanonikleştirir, kalite kapılarını uygular, sürümleri dondurur ve insan tarafından başlatılan bir yayıncı kullanır.</p></details>
+      <div class="card-links"><a href="../data/">Data'yı inceleyin<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer">Depo<span aria-hidden="true"> ↗</span></a></div>
+    </article><article class="ecosystem-card">
+      <div class="card-index">03</div><p class="eyebrow">Davranış testi katmanı</p><h3>MESA QA</h3><p class="card-summary">Aday build'lerin zaman içinde beklendiği gibi hatırlayıp güncellediğini, unuttuğunu ve kurtarıldığını sınar.</p>
+      <details><summary>Teknik rol</summary><p>Doğruluk, zamansal değişim, oturumlar arası kalıcılık, yeniden başlatma dayanıklılığı ve sınırlandırılmış aday onarımını sınar.</p></details>
+      <div class="card-links"><a href="../qa/">QA'yı inceleyin<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">Depo<span aria-hidden="true"> ↗</span></a></div>
+    </article><article class="ecosystem-card">
+      <div class="card-index">04</div><p class="eyebrow">Kanıt ve hüküm katmanı</p><h3>MESA Certification</h3><p class="card-summary">Başarılı bir sonuç bildirilmeden önce uçtan uca bir hukuk profilinin neleri kanıtlaması gerektiğini tanımlar.</p>
+      <details><summary>Teknik rol</summary><p>Dondurulmuş kanıt, bağımsız ground truth, katı kapılar ve hata durumunda kapanan Profile B hükümleri kullanır.</p></details>
+      <div class="card-links"><a href="../certification/">Certification'ı inceleyin<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification" target="_blank" rel="noopener noreferrer">Depo<span aria-hidden="true"> ↗</span></a></div>
+    </article><article class="ecosystem-card">
+      <div class="card-index">05</div><p class="eyebrow">Uygulama katmanı</p><h3>MESA Law</h3><p class="card-summary">Bir hukuk dosyası ve belge iş akışının açık bir hizmet sınırı üzerinden MESA'yı nasıl kullanabileceğini gösterir.</p>
+      <details><summary>Teknik rol</summary><p>İnceleme, kaynak izi, süreler, taslak kontrolleri ve sabitlenmiş bir MESA V4 HTTP sözleşmesi ekler.</p></details>
+      <div class="card-links"><a href="../law/">Law'u inceleyin<span aria-hidden="true"> →</span></a><a class="" href="https://github.com/Yasou13/MESA_Law" target="_blank" rel="noopener noreferrer">Depo<span aria-hidden="true"> ↗</span></a></div>
+    </article></div></section>
+    <section class="section journey-section grid-bg"><div class="section-heading"><div><p class="eyebrow copper">UÇTAN UCA ÖRNEK</p><h2>Hukuk kanıtı,<br><em>bağını korur.</em></h2></div><p>İncelenmiş bir hukuk kaynağı; yerel staging'i veya 202 yanıtını başarılı yayımlama gibi göstermeden dondurulmuş Data sürümünden, yetkili Core kabulünden, kapsamlı geri getirmeden ve Law iş akışından geçebilir.</p></div><ol class="journey-flow"><li><span>01</span><strong>Edin</strong><small>Onaylı ya da manuel resmî kaynak</small></li><li><span>02</span><strong>Sürüm oluştur</strong><small>Değişmez kanıt ve kanonik kayıtlar</small></li><li><span>03</span><strong>Kabul et</strong><small>Yetkili, dataset kapsamlı mutasyon</small></li><li><span>04</span><strong>Geri getir</strong><small>Kaynak iziyle sıralanmış bağlam</small></li><li><span>05</span><strong>Kullan</strong><small>HTTP sözleşmesi üzerinden Law iş akışı</small></li></ol></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
+        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
+        <p>MESA etkin biçimde geliştiriliyor. Tam V4 çalışma zamanını değerlendirmeden önce belgelenmiş safe-core profiliyle başlayın ve sürüm adayı sınırlarını inceleyin.</p>
+        <div class="actions"><a class="button primary" href="../docs/">Hızlı başlangıcı okuyun</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">Kaynak kodunu görüntüle<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.7.1 · V4 sürüm adayı · <a href="../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Keşfet</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../use-cases/">Kullanım alanları</a><a href="../evaluation/">Değerlendirme ve güven</a><a href="../status/">Proje durumu</a></div>
+        <div><h3>Ekosistem</h3><a href="../mesa/">MESA Core</a><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Dokümantasyon</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Hızlı başlangıç<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Mimari<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Güvenlik<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Katkı<span aria-hidden="true"> ↗</span></a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer">Issue aç<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">Bakımcı profili<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
+    </footer></main>
+  <script src="../../app.js?v=ef177010b5bc"></script>
+</body>
+</html>

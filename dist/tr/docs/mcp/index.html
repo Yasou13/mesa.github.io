@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA MCP Entegrasyonu — Doğrudan Sunucu ve V4 Gateway</title>
+  <meta name="description" content="MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın.">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/mcp/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/mcp/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/mcp/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/mcp/">
+  <meta property="og:title" content="MESA MCP Entegrasyonu — Doğrudan Sunucu ve V4 Gateway">
+  <meta property="og:description" content="MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/mcp/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA MCP Entegrasyonu — Doğrudan Sunucu ve V4 Gateway">
+  <meta name="twitter:description" content="MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.7.1","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../styles.css?v=cd534df13cb4">
+</head>
+<body>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a href="../../how-it-works/">Nasıl çalışır</a><a href="../../ecosystem/">Ekosistem</a><a href="../../use-cases/">Kullanım alanları</a><a class="active" aria-current="page" href="../../docs/">Dokümanlar</a>
+          <div class="language-switch" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../docs/mcp/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../docs/mcp/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact"><p class="eyebrow">MODEL CONTEXT PROTOCOL</p><h1>İki entegrasyon yolu.<br><em>Farklı çalışma zamanı sözleşmeleri.</em></h1><p>MESA MCP dokümantasyonu, eski doğrudan stdio sunucusunu güncel V4 gateway ve yerel köprü yolundan ayırır.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA/blob/main/README_MCP.md" target="_blank" rel="noopener noreferrer">Kaynak kılavuzu<span aria-hidden="true"> ↗</span></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">Core deposu<span aria-hidden="true"> ↗</span></a></div></section>
+    <section class="section mcp-paths"><article><p class="eyebrow">ESKİ V3 UYUMLU</p><h2>Doğrudan stdio sunucusu</h2><p><code>mesa_mcp.server</code> bir MCP JSON-RPC stdio akışı çalıştırır ve herkese açık MESA HTTP API'yi çağırır; depolama veritabanlarını doğrudan açmaz. Kök README beş proje hafızası aracını belgeler.</p><div class="tag-row"><span>stdio</span><span>HTTP API</span><span>proje kapsamı</span></div></article><article class="highlight"><p class="eyebrow">GÜNCEL V4 YOLU</p><h2>Gateway + yerel köprü</h2><p>Ayrı yönetilen bir HTTP gateway; kimlik bilgilerini, politikayı, onayları, işlem durumunu ve bağlantıları yönetir. Codex doğrudan <code>/mcp</code> endpoint'ine bağlanabilir; Antigravity ise bağlama kapsamlı bir stdio köprüsü kullanır.</p><div class="tag-row"><span>V4</span><span>onaylar</span><span>bağlama kapsamlı</span></div></article></section>
+    <section class="section tool-section"><div class="section-heading"><div><p class="eyebrow">V4 KÖPRÜ ARAÇLARI</p><h2>İşlemler gerçek<br><em>durumlarını görünür kılar.</em></h2></div><p>Yazma işlemleri kalıcı işlem kimlikleri döndürür. Varsayılan politika, stdio'yu açık tutmak yerine PENDING_APPROVAL döndürebilir.</p></div><div class="tool-list"><div><code>mesa_health</code><span>Köprü, gateway, MESA ve spool sağlığı</span></div><div><code>mesa_recall</code><span>Kapsamlı V4 araması veya token sınırlandırılmış bağlam</span></div><div><code>mesa_remember</code><span>Kalıcı yazma işlemi</span></div><div><code>mesa_improve</code><span>Idempotency anahtarlı revizyon işlemi</span></div><div><code>mesa_forget</code><span>Tasfiye işlemi; çevrimdışı kuyruğa alınmaz</span></div><div><code>mesa_get_operation_status</code><span>Onay ve mutasyon ilerlemesi</span></div></div></section>
+    <section class="section mcp-guard"><p class="eyebrow">SINIR NOTLARI</p><ul class="check-list"><li>stdout MCP JSON-RPC için ayrılmıştır; günlükler stderr'e gider</li><li>köprüler depolama backend'lerini içe aktarmaz veya onlara erişmez</li><li>kimlik bilgileri proje yapılandırmasının dışında tutulur</li><li>eksik istemci/workspace bağları hata durumunda kapanır</li><li>desteklenen ana makine seçilen entegrasyon yoluna bağlıdır</li></ul></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
+        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
+        <p>MESA etkin biçimde geliştiriliyor. Tam V4 çalışma zamanını değerlendirmeden önce belgelenmiş safe-core profiliyle başlayın ve sürüm adayı sınırlarını inceleyin.</p>
+        <div class="actions"><a class="button primary" href="../../docs/">Hızlı başlangıcı okuyun</a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">Kaynak kodunu görüntüle<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.7.1 · V4 sürüm adayı · <a href="../../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Keşfet</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../use-cases/">Kullanım alanları</a><a href="../../evaluation/">Değerlendirme ve güven</a><a href="../../status/">Proje durumu</a></div>
+        <div><h3>Ekosistem</h3><a href="../../mesa/">MESA Core</a><a href="../../data/">MESA Data</a><a href="../../qa/">MESA QA</a><a href="../../certification/">E2E Certification</a><a href="../../law/">MESA Law</a></div>
+        <div><h3>Dokümantasyon</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer">Hızlı başlangıç<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Mimari<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Güvenlik<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Katkı<span aria-hidden="true"> ↗</span></a><a href="../../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer">Issue aç<span aria-hidden="true"> ↗</span></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer">Bakımcı profili<span aria-hidden="true"> ↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
+    </footer></main>
+  <script src="../../../app.js?v=ef177010b5bc"></script>
+</body>
+</html>

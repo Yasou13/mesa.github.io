@@ -10,6 +10,8 @@ URL redirects to this configured custom domain.
 ## Architecture
 
 - `site-data.json` — version, release status, repository URLs, route metadata
+- `content/tr.json` — complete Turkish metadata and build-time translation map
+- `docs/localization-glossary.md` — agreed English/Turkish technical terminology
 - `scripts/render_site.mjs` — shared layout and static page content renderer
 - `dist/` — committed static HTML plus CSS, JavaScript, favicon, and social card
 - `dist/fonts/` — self-hosted OFL Instrument Sans, Instrument Serif, and Commit Mono assets plus licenses
@@ -25,6 +27,11 @@ runtime dependency or asset request, does not block hero text, and resolves to a
 static composition for reduced-motion users.
 
 ## Routes
+
+English is the source and default language. Existing English URLs remain
+unchanged. Every public route also has a static Turkish counterpart under
+`/tr/`; for example, `/ecosystem/` maps to `/tr/ecosystem/`. Route slugs stay
+the same in both languages. The EN/TR control preserves the current page.
 
 - `/` — value proposition, problem, ecosystem, example path, and use cases
 - `/how-it-works/` — simple public flow, verified retrieval fixture, technical path
@@ -42,6 +49,8 @@ static composition for reduced-motion users.
 - `/faq/` — concise product, architecture, interface, and status answers
 - `/404.html` — project-site-safe custom 404
 
+The same list is generated below `/tr/`, including `/tr/docs/mcp/`.
+
 ## Local preview
 
 Build the exact deployed artifact, validate it, and serve it over HTTP:
@@ -52,8 +61,10 @@ python3 scripts/check_site.py _site
 python3 -m http.server 8000 --directory _site
 ```
 
-Open `http://localhost:8000/`. Do not use `file://`; nested routes, clipboard
-behavior, and 404 handling should be tested through HTTP.
+Open `http://localhost:8000/` for English and `http://localhost:8000/tr/` for
+Turkish. Nested routes such as `http://localhost:8000/tr/ecosystem/` must also
+be tested. Do not use `file://`; nested routes, clipboard behavior, and 404
+handling should be tested through HTTP.
 
 To regenerate the committed `dist/` HTML after changing content or metadata:
 
@@ -138,8 +149,25 @@ git diff --check
 
 The checker requires real page text, one semantic `main` and `h1`, unique page
 metadata, canonical/Open Graph/Twitter fields, valid internal files and
-anchors, valid JSON-LD, complete sitemap coverage, safe external-link
-attributes, and the absence of legacy branding in the published artifact.
+anchors, valid JSON-LD, both language route sets, matching `lang`, canonical,
+hreflang, language-switch and sitemap pairs, safe external-link attributes,
+and the absence of legacy branding in the published artifact.
+
+## Localization workflow
+
+English renderer copy remains the source. Turkish copy and metadata live in
+`content/tr.json`; shared version, status, route, repository, code, and fixture
+data remain in `site-data.json` or the renderer. The renderer produces complete
+HTML for both languages and fails when a new English text node has no Turkish
+translation or explicit intentional-English entry. This makes source-copy drift
+visible during the build instead of silently falling back to English.
+
+To edit a translation, update `content/tr.json` and keep terminology aligned
+with `docs/localization-glossary.md`. To add a localized page, add its English
+route metadata and renderer as usual, then add matching Turkish `title`,
+`description`, and body strings. Run the production build and checker shown
+above. Each page canonicalizes to itself; every pair exposes `en`, `tr`, and
+English `x-default` alternates. The sitemap includes both URLs.
 
 ## Updating public project data
 
