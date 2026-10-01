@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-ROUTES = (
+CORE_ROUTES = (
     "",
     "how-it-works/",
     "ecosystem/",
@@ -28,6 +28,21 @@ ROUTES = (
     "about/",
     "faq/",
 )
+HUB_DATA = json.loads(
+    (Path(__file__).resolve().parents[1] / "content" / "hub.json").read_text(encoding="utf-8")
+)
+HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
+    entry["path"]
+    for entry in HUB_DATA["entries"]
+    if entry.get("indexable") and not entry.get("draft")
+)
+HUB_ENTRY_ROUTES = {
+    entry["path"]
+    for entry in HUB_DATA["entries"]
+    if entry.get("indexable") and not entry.get("draft")
+}
+HUB_SECTION_ROUTES = {section["path"] for section in HUB_DATA["sections"]}
+ROUTES = CORE_ROUTES + HUB_ROUTES
 LOCALIZED_ROUTES = ROUTES + tuple(f"tr/{route}" for route in ROUTES)
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
@@ -255,6 +270,15 @@ def main() -> int:
                 }
                 if not {"WebSite", "SoftwareSourceCode"}.issubset(schema_types):
                     errors.append(f"incomplete JSON-LD graph: {relative}")
+                route_name = str(relative).removesuffix("index.html")
+                unlocalized_route = route_name.removeprefix("tr/")
+                if (
+                    unlocalized_route in HUB_SECTION_ROUTES | HUB_ENTRY_ROUTES
+                    and "BreadcrumbList" not in schema_types
+                ):
+                    errors.append(f"missing BreadcrumbList JSON-LD: {relative}")
+                if unlocalized_route in HUB_ENTRY_ROUTES and "Article" not in schema_types:
+                    errors.append(f"missing Article JSON-LD: {relative}")
             except (json.JSONDecodeError, AttributeError):
                 errors.append(f"invalid JSON-LD: {relative}")
         for marker in FORBIDDEN:
@@ -299,6 +323,9 @@ def main() -> int:
         "evaluation/": ("MESA QA", "E2E CERTIFICATION", "Certification remains blocked"),
         "about/": ("WHO MAINTAINS IT", "Open a GitHub issue"),
         "faq/": ("Is MESA a vector database?", "Is MESA production-ready?"),
+        "resources/": ("Six surfaces. One knowledge graph.", "METHODOLOGY"),
+        "research/keyword-vs-semantic-search/": ("No results yet", "Planned protocol · no results"),
+        "guides/verify-ai-yargitay-decision/": ("Capture the exact claim", "Existence is not relevance"),
     }
     for route, markers in static_markers.items():
         page = root / route / "index.html"
@@ -316,6 +343,12 @@ def main() -> int:
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon hâlâ engelli"),
         "tr/about/": ("KİM SÜRDÜRÜYOR", "GitHub issue aç"),
         "tr/faq/": ("MESA bir vektör veritabanı mı?", "MESA üretime hazır mı?"),
+        "tr/resources/": ("Altı alan. Tek bilgi ağı.", "METODOLOJİ"),
+        "tr/learn/semantic-search/": ("Semantic Search Nedir?", "Retrieval hukuki otorite değildir"),
+        "tr/research/keyword-vs-semantic-search/": ("Henüz sonuç yok", "Planlanan protokol · sonuç yok"),
+        "tr/guides/verify-ai-yargitay-decision/": ("İddiayı aynen kaydedin", "Var olmak, ilgili olmak değildir"),
+        "tr/glossary/provenance/": ("Provenance", "Hukuki örnek"),
+        "tr/methodology/retrieval-evaluation/": ("Relevance judgment", "Raporlama ve düzeltmeler"),
     }
     for route, markers in turkish_markers.items():
         page = root / route / "index.html"
@@ -362,6 +395,10 @@ def main() -> int:
             expected = f"<loc>{site_url}{route}</loc>"
             if expected not in sitemap:
                 errors.append(f"sitemap missing route: /{route}")
+        for entry in HUB_DATA["entries"]:
+            if entry.get("draft") or not entry.get("indexable"):
+                if entry["path"] in sitemap:
+                    errors.append(f"draft or non-indexable hub route leaked into sitemap: {entry['path']}")
         robots = (root / "robots.txt").read_text(encoding="utf-8")
         if f"Sitemap: {site_url}sitemap.xml" not in robots:
             errors.append("robots.txt sitemap URL does not match canonical origin")

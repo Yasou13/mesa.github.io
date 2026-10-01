@@ -11,6 +11,8 @@ URL redirects to this configured custom domain.
 
 - `site-data.json` — version, release status, repository URLs, route metadata
 - `content/tr.json` — complete Turkish metadata and build-time translation map
+- `content/hub.json` — validated bilingual content model for Learn, Research,
+  Guides, Glossary, Tools, Methodology, relationships, and publication state
 - `docs/localization-glossary.md` — agreed English/Turkish technical terminology
 - `scripts/render_site.mjs` — shared layout and static page content renderer
 - `dist/` — committed static HTML plus CSS, JavaScript, favicon, and social card
@@ -50,6 +52,25 @@ the same in both languages. The EN/TR control preserves the current page.
 - `/404.html` — project-site-safe custom 404
 
 The same list is generated below `/tr/`, including `/tr/docs/mcp/`.
+
+### Knowledge and research routes
+
+The content hub is statically rendered in both languages. Index routes are
+`/resources/`, `/learn/`, `/research/`, `/guides/`, `/glossary/`, `/tools/`,
+and `/methodology/`, with matching `/tr/` routes. The initial reviewed detail
+routes demonstrate each long-form template without inventing benchmark data:
+
+- `/learn/semantic-search/`
+- `/research/keyword-vs-semantic-search/` (planned protocol; no results)
+- `/guides/verify-ai-yargitay-decision/`
+- `/glossary/provenance/`
+- `/methodology/retrieval-evaluation/`
+
+Add future publications to `content/hub.json`. The renderer validates required
+metadata, route and ID uniqueness, locale coverage, research-specific fields,
+and relationship targets before writing HTML. Only non-draft, indexable entries
+are rendered and added to the sitemap. Relationships produce related-content
+links, while real EN/TR pairs receive reciprocal hreflang metadata.
 
 ## Local preview
 
