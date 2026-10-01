@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -8,6 +9,15 @@ const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data
 const project = siteData.project;
 const repos = siteData.repositories;
 let base = './';
+const assetVersion = (filename) => crypto
+  .createHash('sha256')
+  .update(fs.readFileSync(path.join(repositoryRoot, 'dist', filename)))
+  .digest('hex')
+  .slice(0, 12);
+const assetVersions = {
+  css: assetVersion('styles.css'),
+  js: assetVersion('app.js')
+};
 
 const docs = {
   readme: `${repos.core}/blob/main/README.md`,
@@ -426,11 +436,11 @@ function documentShell({ title, description, canonical, content, assetBase, noIn
   <script type="application/ld+json">${structuredData}</script>
   <link rel="icon" href="${assetBase}favicon.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="${assetBase}styles.css?v=${project.statusAsOf}">
+  <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
 </head>
 <body>
 ${content}
-  <script src="${assetBase}app.js?v=${project.statusAsOf}"></script>
+  <script src="${assetBase}app.js?v=${assetVersions.js}"></script>
 </body>
 </html>
 `;
