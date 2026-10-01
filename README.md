@@ -4,8 +4,8 @@ The official static introduction, ecosystem map, documentation gateway, and
 status surface for MESA. The site is dependency-free at runtime and uses real
 semantic HTML; JavaScript only enhances the mobile menu and copy buttons.
 
-Current deployment target:
-`https://yasou13.github.io/mesa.github.io/`
+Current deployment target: `https://mesamemory.dev/`. The GitHub Pages project
+URL redirects to this configured custom domain.
 
 ## Architecture
 
@@ -34,10 +34,10 @@ needed only to run the dependency-free static renderer during a build.
 
 ## Local preview
 
-Build the exact project-site artifact, validate it, and serve it over HTTP:
+Build the exact deployed artifact, validate it, and serve it over HTTP:
 
 ```bash
-python3 scripts/build_site.py --repository Yasou13/mesa.github.io
+python3 scripts/build_site.py --site-url https://mesamemory.dev/
 python3 scripts/check_site.py _site
 python3 -m http.server 8000 --directory _site
 ```
@@ -50,12 +50,14 @@ To regenerate the committed `dist/` HTML after changing content or metadata:
 ```bash
 node scripts/render_site.mjs \
   --output dist \
-  --site-url https://yasou13.github.io/mesa.github.io/
+  --site-url https://mesamemory.dev/
 ```
 
 ## Build modes
 
-The build derives its public URL from `GITHUB_REPOSITORY` or `--repository`:
+The build accepts the exact public URL through `--site-url`. Without that
+option, it derives a GitHub Pages fallback from `GITHUB_REPOSITORY` or
+`--repository`:
 
 - `Yasou13/Yasou13.github.io` → `https://yasou13.github.io/`
 - `Yasou13/mesa.github.io` → `https://yasou13.github.io/mesa.github.io/`
@@ -63,10 +65,14 @@ The build derives its public URL from `GITHUB_REPOSITORY` or `--repository`:
 Both modes render deployment-specific canonical URLs, Open Graph URLs,
 social-image URLs, sitemap entries, robots metadata, internal navigation, and
 404 links. Page and asset paths are not hard-coded to either deployment mode.
+The production workflow uses the `base_url` reported by GitHub Pages, so a
+configured custom domain such as `https://mesamemory.dev/` automatically wins
+over these fallbacks.
 
 ## GitHub Pages deployment
 
-The workflow in `.github/workflows/pages.yml` builds, validates, uploads, and
+The workflow in `.github/workflows/pages.yml` reads the configured Pages URL,
+builds and validates against that exact origin/base path, then uploads and
 deploys the static artifact with the official GitHub Pages actions.
 
 One repository setting is required before the first deployment:
@@ -84,7 +90,16 @@ repository intentionally uses the safer one-time setting instead.
 
 ## Validation
 
-Project-site build:
+Custom-domain production build:
+
+```bash
+python3 scripts/build_site.py \
+  --output /tmp/mesa-pages-production \
+  --site-url https://mesamemory.dev/
+python3 scripts/check_site.py /tmp/mesa-pages-production
+```
+
+Project-site fallback build:
 
 ```bash
 python3 scripts/build_site.py \
