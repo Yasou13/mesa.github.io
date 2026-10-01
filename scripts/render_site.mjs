@@ -6,9 +6,13 @@ import { fileURLToPath } from 'node:url';
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
 const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data.json'), 'utf8'));
+const trContent = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'tr.json'), 'utf8'));
 const project = siteData.project;
 const repos = siteData.repositories;
 let base = './';
+let currentLanguage = 'en';
+let currentPage = siteData.pages.home;
+let alternateHref = './tr/';
 const assetVersion = (filename) => crypto
   .createHash('sha256')
   .update(fs.readFileSync(path.join(repositoryRoot, 'dist', filename)))
@@ -42,7 +46,17 @@ const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}${isExternal ? '<span aria-hidden="true"> ↗</span>' : ''}</a>`;
 
 const mark = `<span class="mesa-mark" aria-hidden="true"></span>`;
-const logo = () => `<a class="logo" href="${route()}" aria-label="MESA home">${mark}<span>MESA</span></a>`;
+const logo = () => `<a class="logo" href="${route()}" aria-label="${currentLanguage === 'tr' ? 'MESA ana sayfa' : 'MESA home'}">${mark}<span>MESA</span></a>`;
+
+function languageControl() {
+  const enHref = currentLanguage === 'en' ? `${base}${currentPage.path}` : alternateHref;
+  const trHref = currentLanguage === 'tr' ? `${base}${currentPage.path}` : alternateHref;
+  return `<div class="language-switch" aria-label="${currentLanguage === 'tr' ? 'Dil seçimi' : 'Language'}">
+    <a lang="en" hreflang="en"${currentLanguage === 'en' ? ' class="active" aria-current="page"' : ''} href="${enHref}">EN<span class="sr-only"> · ${currentLanguage === 'tr' ? 'İngilizce' : 'English'}</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr"${currentLanguage === 'tr' ? ' class="active" aria-current="page"' : ''} href="${trHref}">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>`;
+}
 
 function header(active = '') {
   const nav = [
@@ -60,6 +74,7 @@ function header(active = '') {
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
           ${nav.map(([key, label, path]) => `<a${active === key ? ' class="active" aria-current="page"' : ''} href="${route(path)}">${label}</a>`).join('')}
+          ${languageControl()}
           ${external(repos.core, 'GitHub', 'nav-github')}
         </nav>
       </div>
@@ -362,7 +377,7 @@ function statusPage() {
 }
 
 function notFound() {
-  return `${header()}<main id="main-content" class="not-found grid-bg"><div><p class="eyebrow">404 · ROUTE NOT FOUND</p><h1>This memory<br><em>does not exist.</em></h1><p>The page may have moved during the MESA ecosystem rebuild.</p><div class="actions">${cta('Return home', route())}${cta('How MESA works', route('how-it-works/'), 'secondary')}${cta('Open docs', route('docs/'), 'secondary')}${cta('GitHub', repos.core, 'text', true)}</div></div></main>`;
+  return `${header()}<main id="main-content" class="not-found grid-bg"><div><p class="eyebrow">404 · ROUTE NOT FOUND / SAYFA BULUNAMADI</p><h1>This memory does not exist.<br><em>Bu hafıza mevcut değil.</em></h1><p>The page may have moved. Sayfa taşınmış olabilir.</p><div class="actions">${cta('English home', route())}${cta('Türkçe ana sayfa', `${route()}tr/`, 'secondary')}${cta('Open docs', route('docs/'), 'secondary')}${cta('GitHub', repos.core, 'text', true)}</div></div></main>`;
 }
 
 const renderers = {
@@ -393,17 +408,19 @@ function relativeBase(routePath) {
   return depth ? '../'.repeat(depth) : './';
 }
 
-function documentShell({ title, description, canonical, content, assetBase, noIndex = false }) {
+function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false }) {
   const socialImage = `${siteUrl}og-image.png`;
+  const locale = language === 'tr' ? 'tr_TR' : 'en_US';
+  const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
   const structuredData = JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'WebSite', name: project.name, url: siteUrl, description: siteData.pages.home.description },
+      { '@type': 'WebSite', name: project.name, url: siteUrl, inLanguage: language, description },
       {
         '@type': 'SoftwareSourceCode',
         name: project.fullName,
         alternateName: project.name,
-        description: siteData.pages.home.description,
+        description,
         codeRepository: repos.core,
         license: `${repos.core}/blob/main/LICENSE`,
         version: project.version,
@@ -412,7 +429,7 @@ function documentShell({ title, description, canonical, content, assetBase, noIn
     ]
   }).replaceAll('<', '\\u003c');
   return `<!doctype html>
-<html lang="en">
+<html lang="${language}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -421,14 +438,19 @@ function documentShell({ title, description, canonical, content, assetBase, noIn
   <meta name="theme-color" content="#0b0c0f">
   ${noIndex ? '<meta name="robots" content="noindex">' : ''}
   <link rel="canonical" href="${canonical}">
+  ${alternateUrls ? `<link rel="alternate" hreflang="en" href="${alternateUrls.en}">
+  <link rel="alternate" hreflang="tr" href="${alternateUrls.tr}">
+  <link rel="alternate" hreflang="x-default" href="${alternateUrls.en}">` : ''}
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonical}">
+  <meta property="og:locale" content="${locale}">
+  <meta property="og:locale:alternate" content="${alternateLocale}">
   <meta property="og:image" content="${socialImage}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta property="og:image:alt" content="${language === 'tr' ? 'MESA — Kanıtıyla birlikte hafıza.' : 'MESA — Memory with evidence, not mystery.'}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${description}">
@@ -451,26 +473,98 @@ const rawSiteUrl = argument('--site-url', 'https://yasou13.github.io/mesa.github
 const siteUrl = rawSiteUrl.endsWith('/') ? rawSiteUrl : `${rawSiteUrl}/`;
 const basePath = new URL(siteUrl).pathname;
 
-for (const [key, metadata] of Object.entries(siteData.pages)) {
-  base = relativeBase(metadata.path);
-  const content = renderers[key]();
-  const destination = path.join(outputDirectory, metadata.path, 'index.html');
-  fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.writeFileSync(destination, documentShell({
-    title: metadata.title,
-    description: metadata.description,
-    canonical: `${siteUrl}${metadata.path}`,
-    content,
-    assetBase: base
-  }));
+function localizeHtml(html, translations) {
+  let protectedDepth = 0;
+  return html.split(/(<[^>]+>)/g).map((token) => {
+    if (token.startsWith('<')) {
+      const closing = token.match(/^<\/(code|pre|script|style)\b/i);
+      const opening = token.match(/^<(code|pre|script|style)\b/i);
+      if (closing) protectedDepth = Math.max(0, protectedDepth - 1);
+      const localizedTag = token.replace(/(aria-label|title)="([^"]+)"/g, (match, attribute, value) =>
+        translations[value] ? `${attribute}="${translations[value]}"` : match);
+      if (opening && !token.endsWith('/>')) protectedDepth += 1;
+      return localizedTag;
+    }
+    if (protectedDepth) return token;
+    const leading = token.match(/^\s*/)?.[0] ?? '';
+    const trailing = token.match(/\s*$/)?.[0] ?? '';
+    const value = token.trim();
+    return value && Object.hasOwn(translations, value)
+      ? `${leading}${translations[value]}${trailing}`
+      : token;
+  }).join('');
+}
+
+function localizableText(html) {
+  let protectedDepth = 0;
+  const values = [];
+  for (const token of html.split(/(<[^>]+>)/g)) {
+    if (token.startsWith('<')) {
+      if (token.match(/^<\/(code|pre|script|style)\b/i)) protectedDepth = Math.max(0, protectedDepth - 1);
+      if (token.match(/^<(code|pre|script|style)\b/i) && !token.endsWith('/>')) protectedDepth += 1;
+      continue;
+    }
+    const value = token.trim();
+    if (!protectedDepth && value) values.push(value);
+  }
+  return values;
+}
+
+function assertCompleteLocalization(key, englishContent, localizedContent) {
+  const english = localizableText(englishContent);
+  const localized = localizableText(localizedContent);
+  if (english.length !== localized.length) {
+    throw new Error(`Localization structure drift for ${key}: ${english.length} source nodes, ${localized.length} Turkish nodes`);
+  }
+  const intentional = new Set(trContent.intentionalEnglish);
+  const untranslated = english.filter((source, index) =>
+    source === localized[index] && /[A-Za-z]/.test(source) && !intentional.has(source));
+  if (untranslated.length) {
+    throw new Error(`Untranslated Turkish content in ${key}: ${[...new Set(untranslated)].join(' | ')}`);
+  }
+}
+
+for (const language of ['en', 'tr']) {
+  for (const [key, metadata] of Object.entries(siteData.pages)) {
+    currentLanguage = language;
+    currentPage = metadata;
+    const localizedPath = language === 'tr' ? `tr/${metadata.path}` : metadata.path;
+    base = relativeBase(metadata.path);
+    alternateHref = language === 'en'
+      ? `${base}tr/${metadata.path}`
+      : `${relativeBase(localizedPath)}${metadata.path}`;
+    const englishContent = renderers[key]();
+    const localizedMetadata = language === 'tr' ? trContent.pages[key] : metadata;
+    if (!localizedMetadata?.title || !localizedMetadata?.description) {
+      throw new Error(`Missing ${language} metadata for ${key}`);
+    }
+    const content = language === 'tr' ? localizeHtml(englishContent, trContent.strings) : englishContent;
+    if (language === 'tr') assertCompleteLocalization(key, englishContent, content);
+    const destination = path.join(outputDirectory, localizedPath, 'index.html');
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.writeFileSync(destination, documentShell({
+      title: localizedMetadata.title,
+      description: localizedMetadata.description,
+      canonical: `${siteUrl}${localizedPath}`,
+      content,
+      language,
+      alternateUrls: { en: `${siteUrl}${metadata.path}`, tr: `${siteUrl}tr/${metadata.path}` },
+      assetBase: relativeBase(localizedPath)
+    }));
+  }
 }
 
 const sitemapEntries = Object.values(siteData.pages)
-  .map(({ path: routePath }) => `  <url><loc>${siteUrl}${routePath}</loc></url>`)
+  .flatMap(({ path: routePath }) => [routePath, `tr/${routePath}`].map((localizedPath) => `  <url>
+    <loc>${siteUrl}${localizedPath}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}${routePath}" />
+    <xhtml:link rel="alternate" hreflang="tr" href="${siteUrl}tr/${routePath}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}${routePath}" />
+  </url>`))
   .join('\n');
 fs.writeFileSync(
   path.join(outputDirectory, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapEntries}\n</urlset>\n`
 );
 fs.writeFileSync(
   path.join(outputDirectory, 'robots.txt'),
@@ -478,6 +572,9 @@ fs.writeFileSync(
 );
 
 base = basePath;
+currentLanguage = 'en';
+currentPage = siteData.pages.home;
+alternateHref = `${basePath}tr/`;
 fs.mkdirSync(outputDirectory, { recursive: true });
 fs.writeFileSync(path.join(outputDirectory, '404.html'), documentShell({
   title: 'Page Not Found — MESA',
@@ -485,7 +582,8 @@ fs.writeFileSync(path.join(outputDirectory, '404.html'), documentShell({
   canonical: `${siteUrl}404.html`,
   content: notFound(),
   assetBase: basePath,
+  language: 'en',
   noIndex: true
 }));
 
-console.log(`Rendered ${Object.keys(siteData.pages).length} static routes and 404.html for ${siteUrl}`);
+console.log(`Rendered ${Object.keys(siteData.pages).length * 2} localized static routes and 404.html for ${siteUrl}`);

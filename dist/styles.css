@@ -709,10 +709,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
   height: 27px;
   background: var(--purple);
 }
-.site-header nav { gap: 28px; }
+.site-header nav { gap: 22px; }
 .site-header nav > a { color: #c2c0c5; font-size: 13px; }
 .site-header .nav-github { padding: 8px 14px; border-radius: 9px; }
 .site-header nav > a.active::after { background: var(--copper); }
+.language-switch { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font: 600 11px/1 "Commit Mono", monospace; letter-spacing: .05em; }
+.language-switch a { color: var(--muted); }
+.language-switch a:hover, .language-switch a.active { color: var(--ink); }
+.language-switch a.active { text-decoration: underline; text-decoration-color: var(--copper); text-underline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 .button {
   min-height: 48px;
@@ -1047,6 +1052,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
   .section { padding-block: 88px; }
   .nav-shell { border-radius: 10px; }
   .js .site-header nav { border-radius: 8px; background: rgba(11,12,15,.98); }
+  .language-switch { width: fit-content; margin: 7px 11px; }
   .hero { min-height: 820px; padding-top: 160px; }
   .page-hero.compact { min-height: 590px; }
   .hero h1, .page-hero h1, .not-found h1 { font-size: clamp(50px, 13vw, 72px); }
