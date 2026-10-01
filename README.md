@@ -177,7 +177,7 @@ duplicate these values in generated HTML. Then update source-backed copy in
 `scripts/render_site.mjs`, record claim evidence in `CLAIMS.md`, regenerate
 `dist/`, and run both production and project-site validation modes.
 
-The social card source is `dist/og-image.svg`; the committed
-`dist/og-image.png` is the 1200×630 published asset. `dist/CNAME` records the
+The social card sources are `dist/og-image.svg` and `dist/og-image-tr.svg`;
+their committed PNG files are the 1200×630 published assets. `dist/CNAME` records the
 custom domain, while the build still renders URLs from the Pages-reported
 deployment base so preview/fallback artifacts remain testable.

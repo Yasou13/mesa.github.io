@@ -409,7 +409,7 @@ function relativeBase(routePath) {
 }
 
 function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false }) {
-  const socialImage = `${siteUrl}og-image.png`;
+  const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
   const structuredData = JSON.stringify({

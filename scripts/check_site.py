@@ -174,6 +174,7 @@ def main() -> int:
         "CNAME",
         "favicon.svg",
         "og-image.png",
+        "og-image-tr.png",
         "robots.txt",
         "sitemap.xml",
         ".nojekyll",

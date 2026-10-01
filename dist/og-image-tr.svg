@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">MESA — Hafıza, kanıtıyla birlikte.</title>
+  <desc id="desc">İzlenen bir kanıt grafiğine sahip obsidyen arşiv sosyal önizlemesi.</desc>
+  <rect width="1200" height="630" fill="#0b0c0f"/>
+  <rect x="42" y="38" width="1116" height="554" rx="4" fill="none" stroke="#2b2c31"/>
+  <g transform="translate(72 65)">
+    <path d="M0 42V0h10l16 21L42 0h10v42H41V16L26 36 11 16v26Z" fill="#7562a8"/>
+    <text x="70" y="33" fill="#f1efe9" font-family="DejaVu Sans,Arial,sans-serif" font-size="27" font-weight="700" letter-spacing="3">MESA</text>
+  </g>
+  <text x="72" y="245" fill="#f1efe9" font-family="DejaVu Sans,Arial,sans-serif" font-size="68" font-weight="400">Hafıza, kanıtıyla</text>
+  <text x="72" y="326" fill="#f1efe9" font-family="DejaVu Serif,Georgia,serif" font-size="68" font-style="italic">birlikte.</text>
+  <text x="76" y="406" fill="#9b9aa2" font-family="DejaVu Sans,Arial,sans-serif" font-size="23">Yapay zekâ sistemleri için kanıt odaklı hafıza altyapısı</text>
+  <line x1="76" y1="493" x2="1124" y2="493" stroke="#2b2c31"/>
+  <text x="76" y="545" fill="#a99bd0" font-family="DejaVu Sans Mono,monospace" font-size="15" letter-spacing="3">KAYNAK  →  HAFIZA  →  KANIT</text>
+  <g fill="none" stroke="#383941" stroke-width="2">
+    <path d="M750 142C826 96 854 185 916 163S1028 101 1092 153"/>
+    <path d="M750 142C778 239 850 244 916 163"/>
+    <path d="M806 320C862 247 918 282 958 349S1030 426 1104 388"/>
+    <path d="M916 163C948 224 915 286 958 349"/>
+  </g>
+  <path d="M750 142C826 96 854 185 916 163C948 224 915 286 958 349S1030 426 1104 388" fill="none" stroke="#7562a8" stroke-width="3"/>
+  <path d="M958 349C1004 327 1049 340 1104 388" fill="none" stroke="#b97852" stroke-width="3"/>
+  <g fill="#14151a" stroke="#7562a8" stroke-width="3">
+    <circle cx="750" cy="142" r="8"/><circle cx="916" cy="163" r="9"/><circle cx="958" cy="349" r="10"/>
+  </g>
+  <circle cx="1104" cy="388" r="11" fill="#14151a" stroke="#b97852" stroke-width="3"/>
+  <text x="1060" y="426" fill="#b97852" font-family="DejaVu Sans Mono,monospace" font-size="12" letter-spacing="2">KANIT</text>
+</svg>
