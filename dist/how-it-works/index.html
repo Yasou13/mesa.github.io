@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>How MESA Works — From Source to Evidence-Aware Context</title>
   <meta name="description" content="Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.">
-  <meta name="theme-color" content="#070609">
+  <meta name="theme-color" content="#0b0c0f">
   
   <link rel="canonical" href="https://mesamemory.dev/how-it-works/">
   <meta property="og:title" content="How MESA Works — From Source to Evidence-Aware Context">
@@ -43,6 +43,9 @@
     <section class="section reliability-section grid-bg"><div class="section-heading"><div><p class="eyebrow">WHAT TRAVELS WITH MEMORY</p><h2>More than<br><em>a similarity score.</em></h2></div><p>Current V4 responses can include catalog identity, source evidence, assertion identity, pipeline identity, embedding provenance, and contributing retrieval origins.</p></div><div class="reliability-list"><article><strong>Source</strong><p>Document, revision, chunk, source reference, and bounded evidence span.</p></article><article><strong>Structure</strong><p>Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.</p></article><article><strong>Scope</strong><p>Tenant and authorized dataset eligibility resolved before lane ranking and fusion.</p></article><article><strong>State</strong><p>Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.</p></article></div></section>
     <section class="section action-section" id="verified-example"><div class="section-heading"><div><p class="eyebrow">VERIFIED REPOSITORY EXAMPLE</p><h2>Four origins.<br><em>One evidence identity.</em></h2></div><p>The fixture creates one canonical assertion, makes all four origins rank it first, and checks deterministic replay plus a fused score of 4/61.</p></div><div class="action-example">
     <div class="action-query"><span>QUERY</span><strong>“Alice”</strong><small>Exact deterministic fixture query · not a live benchmark</small></div>
+    <div class="fixture-trace" role="img" aria-label="Alice knows Aurora, supported by source chunk 1 in document 1">
+      <div class="trace-node"><small>ENTITY</small><strong>Alice</strong></div><span class="trace-edge"><i></i><b>knows</b></span><div class="trace-node"><small>ENTITY</small><strong>Aurora</strong></div><span class="trace-evidence"><i></i><b>evidence</b></span><div class="trace-node evidence"><small>SOURCE</small><strong>source-chunk-1</strong><em>doc-1 / chunk-1</em></div>
+    </div>
     <div class="action-output">
       <section><span>RETRIEVED KNOWLEDGE</span><dl><div><dt>subject</dt><dd>Alice</dd></div><div><dt>predicate</dt><dd>knows</dd></div><div><dt>object</dt><dd>Aurora</dd></div></dl></section>
       <section><span>EVIDENCE</span><dl><div><dt>source</dt><dd>source-chunk-1</dd></div><div><dt>document</dt><dd>doc-1</dd></div><div><dt>chunk</dt><dd>chunk-1</dd></div><div><dt>span</dt><dd>“Alice knows Aurora”</dd></div></dl></section>

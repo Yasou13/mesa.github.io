@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MESA mark">
-  <rect width="64" height="64" rx="14" fill="#09070c"/>
-  <path d="M13 47V17l19 18 19-18v30" fill="none" stroke="#b896ff" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
-  <rect x="28" y="31" width="8" height="8" rx="1" fill="#f4f2f8"/>
+  <rect width="64" height="64" rx="8" fill="#0b0c0f"/>
+  <path d="M13 47V17l19 18 19-18v30" fill="none" stroke="#7562a8" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
+  <rect x="28" y="31" width="8" height="8" rx="1" fill="#b97852"/>
 </svg>

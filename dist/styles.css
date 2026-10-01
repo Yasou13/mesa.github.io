@@ -653,6 +653,10 @@ code, pre, .eyebrow, .card-index, .flow-step span, .public-flow span,
 }
 em {
   color: var(--ink);
+  font-family: inherit;
+  font-style: normal;
+}
+.hero h1 em, .page-hero h1 em {
   font-family: "Instrument Serif", Georgia, serif;
   font-style: italic;
   font-weight: 400;
@@ -846,6 +850,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
   opacity: .6;
 }
 .page-hero h1 { max-width: 1050px; font-weight: 500; }
+.qa-hero::after, .law-hero::after {
+  content: "";
+  position: absolute;
+  left: max(32px, calc((100vw - var(--max)) / 2));
+  bottom: 0;
+  width: 180px;
+  height: 3px;
+  background: var(--mineral);
+}
+.law-hero::after { background: var(--copper); }
 .data-accent, .certification-accent, .docs-accent, .status-accent { background: var(--black); }
 .data-accent::after, .certification-accent::after, .docs-accent::after, .status-accent::after {
   content: "";
@@ -1034,6 +1048,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
   .nav-shell { border-radius: 10px; }
   .js .site-header nav { border-radius: 8px; background: rgba(11,12,15,.98); }
   .hero { min-height: 820px; padding-top: 160px; }
+  .page-hero.compact { min-height: 590px; }
   .hero h1, .page-hero h1, .not-found h1 { font-size: clamp(50px, 13vw, 72px); }
   .evidence-path { top: 120px; right: -285px; width: 630px; opacity: .34; }
   .path-readout { display: none; }

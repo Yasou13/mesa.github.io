@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MESA QA — Detached Correctness and Endurance Testing</title>
   <meta name="description" content="MESA QA tests memory correctness, temporal behavior, cross-session persistence, and restart durability outside the baseline checkout.">
-  <meta name="theme-color" content="#070609">
+  <meta name="theme-color" content="#0b0c0f">
   
   <link rel="canonical" href="https://mesamemory.dev/qa/">
   <meta property="og:title" content="MESA QA — Detached Correctness and Endurance Testing">
@@ -38,7 +38,7 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact"><p class="eyebrow">MESA QA</p><h1>Test the candidate.<br><em>Protect the baseline.</em></h1><p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">Repository<span aria-hidden="true"> ↗</span></a></div></section>
+    </header><main id="main-content"><section class="page-hero compact qa-hero"><p class="eyebrow">MESA QA</p><h1>Test the candidate.<br><em>Protect the baseline.</em></h1><p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer">Repository<span aria-hidden="true"> ↗</span></a></div></section>
     <section class="section"><div class="section-heading"><div><p class="eyebrow">EVALUATION SCOPE</p><h2>Behavior over time,<br><em>not just unit calls.</em></h2></div></div><div class="principle-grid"><article><span>01</span><h3>Correctness</h3><p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p></article><article><span>02</span><h3>Endurance</h3><p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p></article><article><span>03</span><h3>Restart durability</h3><p>Scenarios restart candidate processes and verify that expected memory survives.</p></article></div></section>
     <section class="section worktree-section grid-bg"><div><p class="eyebrow">BOUNDED REPAIR</p><h2>Candidate-only changes.</h2><p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p></div><ol><li><span>1</span>Baseline checkout remains read-only</li><li><span>2</span>Dedicated candidate worktree and isolated storage</li><li><span>3</span>Pre-fix failure required before patching</li><li><span>4</span>Policy-limited diff and verification gates</li><li><span>5</span>No automatic merge or push to main</li></ol></section><section class="closing-cta grid-bg" aria-labelledby="closing-title">
       <div>
