@@ -12,12 +12,17 @@ URL redirects to this configured custom domain.
 - `site-data.json` — version, release status, repository URLs, route metadata
 - `scripts/render_site.mjs` — shared layout and static page content renderer
 - `dist/` — committed static HTML plus CSS, JavaScript, favicon, and social card
+- `dist/fonts/` — self-hosted OFL Instrument Sans, Instrument Serif, and Commit Mono assets plus licenses
 - `scripts/build_site.py` — produces a deployment-specific `_site/` artifact
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 
 No React, Vue, Next.js, CMS, backend, or npm dependencies are used. Node.js is
 needed only to run the dependency-free static renderer during a build.
+
+The homepage Evidence Path is an inline SVG animated with CSS. It adds no
+runtime dependency or asset request, does not block hero text, and resolves to a
+static composition for reduced-motion users.
 
 ## Routes
 

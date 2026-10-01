@@ -2,6 +2,47 @@
 
 Audit date: 2026-09-30
 
+## Final identity and product UX pass — 2026-10-01
+
+The source-backed information architecture was sound at the start of this pass,
+but the presentation repeated the same purple grid, gradient-emphasis heading,
+and rectangular card language across most routes. The live hero used a generic
+orbit mark, the homepage's six-step flow repeated too much of the detailed
+explanation, the ecosystem's legal path could still be read as the universal
+platform shape, and the documentation route exposed only four broad link
+groups.
+
+The final pass keeps the dependency-free static renderer and verified product
+copy, while introducing the Obsidian Archive system:
+
+- Instrument Sans is the dominant UI and body face; Instrument Serif is limited
+  to page-hero editorial accents; Commit Mono is reserved for code, identifiers,
+  evidence, and technical metadata. All three are self-hosted under the SIL OFL.
+- The palette is neutral-first, with dusty violet for MESA identity, mineral for
+  structural relationships, and copper only for evidence/provenance traces.
+- Grid is now reserved for system/architecture sections; plain obsidian carries
+  narrative content; fine archive texture marks evidence surfaces.
+- A CSS-animated inline SVG Evidence Path replaces the orbit illustration. It
+  uses no animation dependency, adds no request, and becomes a static graph
+  under `prefers-reduced-motion`.
+- The homepage now alternates editorial, system, and archive sections and uses
+  a four-step public flow. The verified fixture receives a compact graph trace.
+- The ecosystem centerpiece explicitly separates a generic
+  sources → preparation → Core → application model from the current legal
+  MESA Data → Core → Law reference path. QA and Certification remain external
+  quality layers.
+- The docs hub now has Start, Understand, Build, Operate, Trust, Reference, and
+  Contribute groups, all backed by existing routes or source material.
+- Core, Data, QA, Certification, Law, Evaluation, Status, About, FAQ, and MCP
+  retain distinct content purposes while sharing one visual grammar.
+
+Final automated checks covered 15 routes at 1440, 1280, 1024, 768, and 390 px.
+All 75 browser checks passed for page-level overflow, semantic `main`/`h1`,
+font loading, and console errors. Reduced-motion emulation reported no traversal
+animation and no smooth scrolling. Production and project-path artifacts passed
+the static checker, and all 21 unique public links returned a successful or
+redirect response.
+
 ## Product-experience hardening follow-up — 2026-10-01
 
 The live custom-domain site and current generator matched before this pass. The

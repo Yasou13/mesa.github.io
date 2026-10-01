@@ -2,13 +2,18 @@
 
 Verification date: 2026-10-01
 
+Core HEAD was rechecked at `8af7941` before the final visual pass. That merge
+adds the V4 temporal request schema in `mesa_api/v4_router.py` plus its focused
+test and lockfile update; it does not change the version, storage ownership,
+retrieval origins, interface boundaries, or readiness claims recorded below.
+
 This checklist records the source used for important public website claims.
 It is not a substitute for the repositories' own release or certification
 authority.
 
 | Claim | Source | Result |
 |---|---|---|
-| Core is version 0.7.1, V4 release candidate, production `NO-GO` | `Yasou13/MESA` `README.md`, `pyproject.toml`, `docs/architecture-v4.md` at `7c03eff` | Verified |
+| Core is version 0.7.1, V4 release candidate, production `NO-GO` | `Yasou13/MESA` `README.md`, `pyproject.toml`, `docs/architecture-v4.md` at `8af7941` | Verified |
 | SQLite is canonical; LanceDB and Kùzu are derived projections | Core architecture, API reference, DAO/provider code at `7c03eff` | Verified |
 | V4 retrieval can report vector, BM25, assertion, and graph origins | Core `docs/api-reference.md`, `mesa_api/v4_router.py`, DAO retrieval, and `tests/test_v4_independent_retrieval_audit.py` at `7c03eff` | Verified |
 | The public fixture has `Alice knows Aurora`, all four lanes at rank 1, and expected RRF `4/61` | Core `test_real_four_lanes_fuse_once_and_repeat_deterministically` at `7c03eff` | Verified; labelled fixture, not benchmark |
