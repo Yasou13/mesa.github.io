@@ -255,7 +255,8 @@ em { color: var(--purple-soft); font-style: normal; }
 .terminal-bar i { width: 9px; height: 9px; border-radius: 50%; background: #6d6575; }
 .terminal-bar i:nth-child(2) { background: var(--purple-deep); }
 .terminal-bar i:nth-child(3) { background: var(--purple); }
-.copy-button { justify-self: end; padding: 5px 10px; border: 1px solid #504859; border-radius: 5px; background: transparent; color: var(--purple-soft); cursor: pointer; }
+.copy-button { display: none; justify-self: end; padding: 5px 10px; border: 1px solid #504859; border-radius: 5px; background: transparent; color: var(--purple-soft); cursor: pointer; }
+.js .copy-button { display: block; }
 .terminal pre { margin: 0; padding: 28px; overflow-x: auto; color: #e9e4ef; font: 13px/1.8 "SFMono-Regular", Consolas, monospace; white-space: pre; }
 
 .closing-cta { min-height: 570px; padding: 110px max(32px, calc((100vw - var(--max)) / 2)); border-top: 1px solid var(--line); background-color: #0b090d; }
@@ -407,9 +408,11 @@ em { color: var(--purple-soft); font-style: normal; }
 @media (max-width: 800px) {
   .section { width: min(100% - 38px, var(--max)); padding: 82px 0; }
   .site-header { position: absolute; }
-  .menu-toggle { display: block; }
-  .site-header nav { display: none; position: absolute; left: 18px; right: 18px; top: 84px; padding: 16px; align-items: stretch; flex-direction: column; gap: 4px; border: 1px solid var(--line); border-radius: 15px; background: rgba(7,6,9,.98); }
-  .site-header nav.open { display: flex; }
+  .nav-shell { flex-wrap: wrap; }
+  .site-header nav { display: flex; position: static; flex: 1 0 100%; padding: 16px 0 4px; align-items: stretch; flex-direction: column; gap: 4px; }
+  .js .menu-toggle { display: block; }
+  .js .site-header nav { display: none; position: absolute; left: 18px; right: 18px; top: 84px; padding: 16px; border: 1px solid var(--line); border-radius: 15px; background: rgba(7,6,9,.98); }
+  .js .site-header nav.open { display: flex; }
   .site-header nav > a { padding: 11px; }
   .site-header nav > a.active::after { display: none; }
   .site-header .nav-github { border-radius: 8px; }

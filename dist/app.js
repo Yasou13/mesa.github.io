@@ -22,6 +22,6 @@ document.querySelectorAll('.copy-button').forEach((button) => {
       selection.addRange(range);
       button.textContent = 'Selected';
     }
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 3000);
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 5000);
   });
 });
