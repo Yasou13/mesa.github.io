@@ -176,6 +176,8 @@ def main() -> int:
             if target is None:
                 continue
             internal_refs += 1
+            if tag == "a" and attrs.get("aria-label") == "MESA home" and target != (root / "index.html").resolve():
+                errors.append(f"home logo does not target site root: {relative} -> {value}")
             if not target.exists():
                 errors.append(f"missing local target: {relative} -> {value}")
                 continue

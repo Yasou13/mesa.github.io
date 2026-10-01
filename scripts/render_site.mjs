@@ -30,7 +30,7 @@ const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}${isExternal ? '<span aria-hidden="true"> ↗</span>' : ''}</a>`;
 
 const mark = `<span class="mesa-mark" aria-hidden="true"></span>`;
-const logo = `<a class="logo" href="${route()}" aria-label="MESA home">${mark}<span>MESA</span></a>`;
+const logo = () => `<a class="logo" href="${route()}" aria-label="MESA home">${mark}<span>MESA</span></a>`;
 
 function header(active = '') {
   const nav = [
@@ -42,7 +42,7 @@ function header(active = '') {
   return `<a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
-        ${logo}
+        ${logo()}
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
           <span></span><span></span><span></span>
         </button>
@@ -64,7 +64,7 @@ function footer() {
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand">${logo}<p>${project.fullName}.</p><p class="footer-note">${project.runtime} ${project.maturity.toLowerCase()} · Production ${project.production}</p></div>
+      <div class="footer-brand">${logo()}<p>${project.fullName}.</p><p class="footer-note">${project.runtime} ${project.maturity.toLowerCase()} · Production ${project.production}</p></div>
       <div class="footer-groups">
         <div><h3>Project</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('ecosystem/')}">Ecosystem</a><a href="${route('status/')}">Project status</a>${external(repos.core, 'GitHub')}</div>
         <div><h3>Ecosystem</h3><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
@@ -268,6 +268,7 @@ function documentShell({ title, description, canonical, content, assetBase, noIn
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${socialImage}">
   <link rel="icon" href="${assetBase}favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="${assetBase}styles.css">
 </head>
 <body>
