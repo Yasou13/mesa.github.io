@@ -390,6 +390,7 @@ function validateHubData() {
   const sectionIds = new Set(hubData.sections.map(({ id }) => id));
   const entryIds = new Set();
   const paths = new Set();
+  const supportedBlocks = new Set(['paragraph', 'list', 'numbered-list', 'checklist', 'warning', 'callout', 'example', 'definition', 'quote', 'code', 'image', 'diagram', 'references', 'table']);
   if (hubData.schemaVersion !== 1) throw new Error('Unsupported content hub schema version');
   for (const section of hubData.sections) {
     if (!section.id || !section.path || !section.locales?.en || !section.locales?.tr) throw new Error(`Invalid hub section: ${section.id}`);
@@ -403,6 +404,11 @@ function validateHubData() {
     if (entryIds.has(entry.id) || paths.has(entry.path)) throw new Error(`Duplicate hub id or route: ${entry.id}`);
     if (!entry.locales?.en?.sections || !entry.locales?.tr?.sections || !entry.seo?.en || !entry.seo?.tr) throw new Error(`Incomplete locale data: ${entry.id}`);
     if (entry.type === 'research' && (!entry.status || !entry.dataset || !entry.metrics || !entry.limitations || !entry.methodology)) throw new Error(`Incomplete research metadata: ${entry.id}`);
+    if (entry.reviewers && (!Array.isArray(entry.reviewers.technical || []) || !Array.isArray(entry.reviewers.legal || []))) throw new Error(`Invalid reviewer metadata: ${entry.id}`);
+    for (const locale of ['en', 'tr']) for (const section of entry.locales[locale].sections) for (const block of section.blocks) {
+      if (!supportedBlocks.has(block.kind)) throw new Error(`Unsupported ${block.kind} block in ${entry.id}`);
+      if (['image', 'diagram'].includes(block.kind) && !block.alt) throw new Error(`Missing accessible diagram/image text in ${entry.id}`);
+    }
     entryIds.add(entry.id);
     paths.add(entry.path);
   }
@@ -413,6 +419,7 @@ function validateHubData() {
   for (const section of ['resources', 'learn', 'research', 'guides', 'glossary', 'tools', 'methodology']) {
     if (!sectionIds.has(section)) throw new Error(`Missing required hub section: ${section}`);
   }
+  for (const tool of hubData.tools) if (tool.status === 'available' && !tool.route) throw new Error(`Available tool has no route: ${tool.id}`);
 }
 validateHubData();
 
@@ -445,7 +452,7 @@ function renderHubIndex(section) {
   } else if (section.id === 'learn') {
     body = `<section class="section topic-section" aria-labelledby="topics-title"><div class="section-heading"><div><p class="eyebrow">${hubText('TOPIC CLUSTERS', 'KONU KÜMELERİ')}</p><h2 id="topics-title">${hubText('Choose a subject to build from.', 'Derinleşmek için bir konu seçin.')}</h2></div><p>${hubText('Empty clusters remain honest until reviewed content is published.', 'İncelenmiş içerik yayımlanana kadar boş kümeler dürüstçe boş kalır.')}</p></div><div class="topic-grid">${hubData.topics.map((topic) => { const related = topic.related.map((id) => hubEntries.get(id)).filter((entry) => entry && !entry.draft); return `<article><h3>${escapeHtml(topic.labels[currentLanguage])}</h3><p>${escapeHtml(topic.descriptions[currentLanguage])}</p>${related.length ? `<ul>${related.map((entry) => `<li><a href="${route(entry.path)}">${escapeHtml(entry.locales[currentLanguage].title)}</a></li>`).join('')}</ul>` : `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</article>`; }).join('')}</div></section>`;
   } else if (section.id === 'tools') {
-    body = `<section class="section"><div class="tool-card-grid">${hubData.tools.map((tool) => { const copy = tool.locales[currentLanguage]; return `<article class="tool-card"><span>${escapeHtml(tool.category)}</span><h2>${escapeHtml(copy.title)}</h2><p>${escapeHtml(copy.description)}</p><strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong></article>`; }).join('')}</div></section>`;
+    body = `<section class="section"><div class="tool-card-grid">${hubData.tools.map((tool) => { const copy = tool.locales[currentLanguage]; const available = tool.status === 'available' && tool.route; return `<article class="tool-card">${tool.icon ? `<span class="tool-icon" aria-hidden="true">${escapeHtml(tool.icon)}</span>` : ''}<span>${escapeHtml(tool.category)}</span><h2>${escapeHtml(copy.title)}</h2><p>${escapeHtml(copy.description)}</p>${available ? `<a href="${route(tool.route)}">${hubText('Open tool', 'Aracı aç')}<span aria-hidden="true"> →</span></a>` : `<strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong>`}</article>`; }).join('')}</div></section>`;
   } else {
     const contentType = section.id === 'guides' ? 'guide' : section.id === 'glossary' ? 'glossary' : section.id;
     const entries = publishedEntries().filter(({ type }) => type === contentType);
@@ -458,9 +465,15 @@ function renderHubIndex(section) {
 function renderHubBlock(block) {
   if (block.kind === 'paragraph') return `<p>${escapeHtml(block.text)}</p>`;
   if (block.kind === 'list') return `<ul>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  if (block.kind === 'numbered-list') return `<ol>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>`;
   if (block.kind === 'checklist') return `<ul class="article-checklist">${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
-  if (block.kind === 'warning' || block.kind === 'callout') return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${escapeHtml(block.text)}</p></aside>`;
+  if (['warning', 'callout', 'example'].includes(block.kind)) return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${escapeHtml(block.text)}</p></aside>`;
   if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${escapeHtml(block.text)}</dd></dl>`;
+  if (block.kind === 'quote') return `<blockquote><p>${escapeHtml(block.text)}</p>${block.cite ? `<cite>${escapeHtml(block.cite)}</cite>` : ''}</blockquote>`;
+  if (block.kind === 'code') return `<pre class="article-code"><code>${escapeHtml(block.code)}</code></pre>`;
+  if (block.kind === 'image') return `<figure><img src="${route(block.src)}" alt="${escapeHtml(block.alt)}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
+  if (block.kind === 'diagram') return `<figure class="article-diagram" role="img" aria-label="${escapeHtml(block.alt)}"><ol>${block.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
+  if (block.kind === 'references') return `<ol class="reference-list">${block.items.map((item) => `<li>${item.href ? external(item.href, escapeHtml(item.label)) : escapeHtml(item.label)}</li>`).join('')}</ol>`;
   if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${escapeHtml(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   throw new Error(`Unsupported hub block type: ${block.kind}`);
 }
@@ -470,7 +483,16 @@ function renderResearchMetadata(entry) {
   const limitations = currentLanguage === 'tr'
     ? ['Henüz deney yürütülmedi.', 'Veri seti büyüklüğü, skor veya performans iddiası sunulmuyor.', 'Protokol ön kayıttan önce değişebilir.']
     : entry.limitations;
-  return `<section class="research-record" aria-labelledby="research-record-title"><h2 id="research-record-title">${hubText('Research record', 'Araştırma kaydı')}</h2><dl><div><dt>${hubText('Status', 'Durum')}</dt><dd>${hubText('Planned protocol · no results', 'Planlanan protokol · sonuç yok')}</dd></div><div><dt>${hubText('MESA version', 'MESA sürümü')}</dt><dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd></div><div><dt>${hubText('Dataset', 'Veri seti')}</dt><dd>${hubText('Not selected; criteria must be frozen first', 'Seçilmedi; önce seçim ölçütleri dondurulmalı')}</dd></div><div><dt>${hubText('Models', 'Modeller')}</dt><dd>${hubText('To be declared and version-pinned', 'Beyan edilip sürümü sabitlenecek')}</dd></div><div><dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt><dd>${entry.metrics.map(escapeHtml).join(' · ')}</dd></div></dl><div class="limitations"><h3>${hubText('Known limitations', 'Bilinen sınırlılıklar')}</h3><ul>${limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div></section>`;
+  const reviewers = [
+    ...(entry.reviewers?.technical || []).map((name) => [hubText('Technical reviewer', 'Teknik reviewer'), name]),
+    ...(entry.reviewers?.legal || []).map((name) => [hubText('Legal reviewer', 'Hukuk reviewer'), name])
+  ];
+  const evidenceLinks = [
+    entry.repository ? external(entry.repository, hubText('Code repository', 'Kod repository’si')) : '',
+    entry.datasetUrl ? external(entry.datasetUrl, hubText('Dataset record', 'Veri seti kaydı')) : '',
+    ...(entry.methodology || []).map((id) => { const method = hubEntries.get(id); return method ? `<a href="${route(method.path)}">${escapeHtml(method.locales[currentLanguage].title)}<span aria-hidden="true"> →</span></a>` : ''; })
+  ].filter(Boolean);
+  return `<section class="research-record" aria-labelledby="research-record-title"><h2 id="research-record-title">${hubText('Research record', 'Araştırma kaydı')}</h2><dl><div><dt>${hubText('Status', 'Durum')}</dt><dd>${hubText('Planned protocol · no results', 'Planlanan protokol · sonuç yok')}</dd></div><div><dt>${hubText('MESA version', 'MESA sürümü')}</dt><dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd></div><div><dt>${hubText('Dataset', 'Veri seti')}</dt><dd>${hubText('Not selected; criteria must be frozen first', 'Seçilmedi; önce seçim ölçütleri dondurulmalı')}</dd></div><div><dt>${hubText('Models', 'Modeller')}</dt><dd>${hubText('To be declared and version-pinned', 'Beyan edilip sürümü sabitlenecek')}</dd></div><div><dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt><dd>${entry.metrics.map(escapeHtml).join(' · ')}</dd></div>${reviewers.map(([label, name]) => `<div><dt>${label}</dt><dd>${escapeHtml(name)}</dd></div>`).join('')}</dl>${evidenceLinks.length ? `<div class="research-links">${evidenceLinks.join('')}</div>` : ''}<div class="limitations"><h3>${hubText('Known limitations', 'Bilinen sınırlılıklar')}</h3><ul>${limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div></section>`;
 }
 
 function renderHubEntry(entry) {
@@ -485,7 +507,8 @@ function renderHubEntry(entry) {
   const sections = localized.sections.map((sectionItem) => `<section id="${escapeHtml(sectionItem.id)}" class="article-section"><h2>${escapeHtml(sectionItem.title)}<a class="heading-anchor" href="#${escapeHtml(sectionItem.id)}" aria-label="${hubText('Link to this section', 'Bu bölüme bağlantı')}" title="${hubText('Copy section link', 'Bölüm bağlantısını kopyala')}">#</a></h2>${sectionItem.blocks.map(renderHubBlock).join('')}</section>`).join('');
   const relatedHtml = `<section class="related-content" aria-labelledby="related-title"><p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p><h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2><div class="publication-grid">${related.map(hubCard).join('')}</div></section>`;
   const productCta = `<aside class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></aside>`;
-  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<aside class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></aside>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
+  const updated = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.updatedAt}T00:00:00Z`));
+  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Updated', 'Güncelleme')}</dt><dd><time datetime="${entry.updatedAt}">${updated}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<aside class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></aside>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
 }
 
 function notFound() {

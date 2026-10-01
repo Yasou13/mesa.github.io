@@ -1169,6 +1169,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
 .article-callout { margin: 30px 0; padding: 24px; border: 1px solid var(--line); background: var(--surface); }
 .article-callout.warning { border-left: 4px solid var(--amber); background: #1d1913; }
 .article-callout.callout { border-left: 4px solid var(--purple); }
+.article-callout.example { border-left: 4px solid var(--mineral); }
 .article-callout strong { color: var(--ink); font-size: 17px; }
 .article-callout p { margin: 8px 0 0; font-size: 16px; }
 .article-checklist { padding: 0; list-style: none; }
@@ -1177,6 +1178,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
 .definition { margin: 30px 0; padding: 28px; border: 1px solid var(--line); background: var(--surface-2); }
 .definition dt { color: var(--purple-soft); font-size: 25px; font-weight: 650; }
 .definition dd { margin: 12px 0 0; color: var(--muted); font-size: 18px; }
+.article-section blockquote { margin: 30px 0; padding: 8px 0 8px 28px; border-left: 3px solid var(--purple); }
+.article-section blockquote p { color: var(--ink); font: italic 25px/1.45 "Instrument Serif", Georgia, serif; }
+.article-section blockquote cite, .article-section figcaption { color: var(--muted-2); font-size: 13px; }
+.article-code { overflow-x: auto; margin: 30px 0; padding: 24px; border: 1px solid var(--line); background: #0b0c0f; color: #d9d4e0; }
+.article-section figure { margin: 34px 0; }
+.article-section figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.article-section figcaption { margin-top: 10px; }
+.article-diagram ol { display: flex; margin: 0; padding: 0; overflow-x: auto; list-style: none; }
+.article-diagram li { min-width: 160px; padding: 22px; border: 1px solid var(--line); background: var(--surface); }
+.article-diagram li + li { position: relative; margin: 0 0 0 28px; }
+.article-diagram li + li::before { content: "→"; position: absolute; left: -20px; color: var(--mineral); }
+.reference-list a, .research-links a { color: var(--purple-soft); }
+.reference-list li + li { margin-top: 12px; }
 .table-scroll { overflow-x: auto; margin: 30px 0; }
 .article-section table { width: 100%; border-collapse: collapse; }
 .article-section th, .article-section td { padding: 15px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
@@ -1189,6 +1203,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
 .research-record dd { margin: 7px 0 0; color: var(--ink); }
 .limitations { margin-top: 30px; }
 .limitations h3 { font-size: 20px; }
+.research-links { display: flex; margin-top: 22px; flex-wrap: wrap; gap: 12px 22px; }
 .related-content { padding: 90px 0; border-top: 1px solid var(--line); }
 .related-content > h2 { max-width: 760px; margin-bottom: 45px; font-size: clamp(36px, 4vw, 58px); font-weight: 450; letter-spacing: -.04em; }
 .related-content .publication-grid { grid-template-columns: repeat(3, 1fr); }
