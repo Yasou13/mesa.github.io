@@ -7,6 +7,7 @@ const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
 const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data.json'), 'utf8'));
 const trContent = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'tr.json'), 'utf8'));
+const hubData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'hub.json'), 'utf8'));
 const project = siteData.project;
 const repos = siteData.repositories;
 let base = './';
@@ -63,6 +64,7 @@ function header(active = '') {
     ['how', 'How it works', 'how-it-works/'],
     ['ecosystem', 'Ecosystem', 'ecosystem/'],
     ['use-cases', 'Use cases', 'use-cases/'],
+    ['resources', 'Resources', 'resources/'],
     ['docs', 'Docs', 'docs/'],
   ];
   return `<a class="skip-link" href="#main-content">Skip to content</a>
@@ -95,7 +97,8 @@ function footer() {
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="${route('how-it-works/')}">How it works</a><a href="${route('use-cases/')}">Use cases</a><a href="${route('evaluation/')}">Evaluation & trust</a><a href="${route('status/')}">Project status</a></div>
         <div><h3>Ecosystem</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
-        <div><h3>Documentation</h3>${external(docs.readme, 'Quickstart')}${external(docs.architecture, 'Architecture')}${external(docs.security, 'Security')}${external(docs.contributing, 'Contributing')}<a href="${route('docs/mcp/')}">MCP integration</a></div>
+        <div><h3>Resources</h3><a href="${route('learn/')}">Learn</a><a href="${route('research/')}">Research</a><a href="${route('guides/')}">Guides</a><a href="${route('glossary/')}">Glossary</a><a href="${route('methodology/')}">Methodology</a></div>
+        <div><h3>Documentation</h3>${external(docs.readme, 'Quickstart')}${external(docs.architecture, 'Architecture')}${external(docs.security, 'Security')}<a href="${route('docs/mcp/')}">MCP integration</a></div>
         <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}</div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
@@ -376,6 +379,115 @@ function statusPage() {
     <section class="section status-timeline"><article><span>CORE</span><h2>${project.runtime} ${project.maturity.toLowerCase()}</h2><p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>The harness now fails closed, but authoritative runtime/scoring/metric producers and a current valid final run remain absent.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Law-side pass / overall ${project.production}</h2><p>Local Law-side gates passed; full-stack and live Core integration gates were not run.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
 }
 
+const hubSections = new Map(hubData.sections.map((section) => [section.id, section]));
+const hubEntries = new Map(hubData.entries.map((entry) => [entry.id, entry]));
+const hubTypeLabels = {
+  en: { learn: 'Learn', research: 'Research', guide: 'Guide', glossary: 'Glossary', methodology: 'Methodology' },
+  tr: { learn: 'Learn', research: 'Research', guide: 'Rehber', glossary: 'Sözlük', methodology: 'Metodoloji' }
+};
+
+function validateHubData() {
+  const sectionIds = new Set(hubData.sections.map(({ id }) => id));
+  const entryIds = new Set();
+  const paths = new Set();
+  if (hubData.schemaVersion !== 1) throw new Error('Unsupported content hub schema version');
+  for (const section of hubData.sections) {
+    if (!section.id || !section.path || !section.locales?.en || !section.locales?.tr) throw new Error(`Invalid hub section: ${section.id}`);
+    if (paths.has(section.path)) throw new Error(`Duplicate hub route: ${section.path}`);
+    paths.add(section.path);
+  }
+  for (const entry of hubData.entries) {
+    for (const field of ['id', 'type', 'slug', 'path', 'author', 'category']) {
+      if (!entry[field]) throw new Error(`Missing ${field} on hub entry ${entry.id || '(unknown)'}`);
+    }
+    if (entryIds.has(entry.id) || paths.has(entry.path)) throw new Error(`Duplicate hub id or route: ${entry.id}`);
+    if (!entry.locales?.en?.sections || !entry.locales?.tr?.sections || !entry.seo?.en || !entry.seo?.tr) throw new Error(`Incomplete locale data: ${entry.id}`);
+    if (entry.type === 'research' && (!entry.status || !entry.dataset || !entry.metrics || !entry.limitations || !entry.methodology)) throw new Error(`Incomplete research metadata: ${entry.id}`);
+    entryIds.add(entry.id);
+    paths.add(entry.path);
+  }
+  for (const relation of [
+    ...hubData.topics.flatMap(({ related }) => related),
+    ...hubData.entries.flatMap(({ related }) => related)
+  ]) if (!entryIds.has(relation)) throw new Error(`Unknown content relation: ${relation}`);
+  for (const section of ['resources', 'learn', 'research', 'guides', 'glossary', 'tools', 'methodology']) {
+    if (!sectionIds.has(section)) throw new Error(`Missing required hub section: ${section}`);
+  }
+}
+validateHubData();
+
+const escapeHtml = (value) => String(value)
+  .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+const hubText = (en, tr) => currentLanguage === 'tr' ? tr : en;
+const hubChrome = (html) => currentLanguage === 'tr' ? localizeHtml(html, trContent.strings) : html;
+const publishedEntries = () => hubData.entries.filter(({ draft, indexable }) => !draft && indexable);
+
+function hubBreadcrumb(items) {
+  return `<nav class="breadcrumbs" aria-label="${hubText('Breadcrumb', 'İçerik yolu')}"><ol>${items.map((item, index) => `<li>${item.path ? `<a href="${route(item.path)}">${escapeHtml(item.label)}</a>` : `<span aria-current="page">${escapeHtml(item.label)}</span>`}${index < items.length - 1 ? '<span aria-hidden="true">/</span>' : ''}</li>`).join('')}</ol></nav>`;
+}
+
+function hubCard(entry) {
+  const localized = entry.locales[currentLanguage];
+  const type = hubTypeLabels[currentLanguage][entry.type];
+  return `<article class="resource-card"><p class="resource-type">${escapeHtml(type)}</p><h3><a href="${route(entry.path)}">${escapeHtml(localized.title)}</a></h3><p>${escapeHtml(localized.summary)}</p><div><span>${entry.readingMinutes} ${hubText('min read', 'dk okuma')}</span><a href="${route(entry.path)}">${hubText('Read', 'Oku')}<span aria-hidden="true"> →</span></a></div></article>`;
+}
+
+function renderHubIndex(section) {
+  const localized = section.locales[currentLanguage];
+  const breadcrumbs = hubBreadcrumb([
+    { label: hubText('Home', 'Ana sayfa'), path: '' },
+    ...(section.id === 'resources' ? [] : [{ label: hubText('Resources', 'Kaynaklar'), path: 'resources/' }]),
+    { label: localized.eyebrow }
+  ]);
+  let body = '';
+  if (section.id === 'resources') {
+    body = `<section class="section resource-map" aria-labelledby="resource-map-title"><div class="section-heading"><div><p class="eyebrow">${hubText('CONNECTED PUBLISHING', 'BAĞLANTILI YAYIN')}</p><h2 id="resource-map-title">${hubText('Six surfaces. One knowledge graph.', 'Altı alan. Tek bilgi ağı.')}</h2></div><p>${hubText('Move from a concept to a practical workflow, research evidence, and the method behind it without losing context.', 'Bir kavramdan pratik iş akışına, araştırma kanıtına ve arkasındaki yönteme bağlamı kaybetmeden ilerleyin.')}</p></div><div class="resource-section-grid">${hubData.sections.filter(({ id }) => id !== 'resources').map((item) => { const copy = item.locales[currentLanguage]; return `<a href="${route(item.path)}"><span>${escapeHtml(copy.eyebrow)}</span><strong>${escapeHtml(copy.heading)}</strong><p>${escapeHtml(copy.intro)}</p><i aria-hidden="true">→</i></a>`; }).join('')}</div></section>`;
+  } else if (section.id === 'learn') {
+    body = `<section class="section topic-section" aria-labelledby="topics-title"><div class="section-heading"><div><p class="eyebrow">${hubText('TOPIC CLUSTERS', 'KONU KÜMELERİ')}</p><h2 id="topics-title">${hubText('Choose a subject to build from.', 'Derinleşmek için bir konu seçin.')}</h2></div><p>${hubText('Empty clusters remain honest until reviewed content is published.', 'İncelenmiş içerik yayımlanana kadar boş kümeler dürüstçe boş kalır.')}</p></div><div class="topic-grid">${hubData.topics.map((topic) => { const related = topic.related.map((id) => hubEntries.get(id)).filter((entry) => entry && !entry.draft); return `<article><h3>${escapeHtml(topic.labels[currentLanguage])}</h3><p>${escapeHtml(topic.descriptions[currentLanguage])}</p>${related.length ? `<ul>${related.map((entry) => `<li><a href="${route(entry.path)}">${escapeHtml(entry.locales[currentLanguage].title)}</a></li>`).join('')}</ul>` : `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</article>`; }).join('')}</div></section>`;
+  } else if (section.id === 'tools') {
+    body = `<section class="section"><div class="tool-card-grid">${hubData.tools.map((tool) => { const copy = tool.locales[currentLanguage]; return `<article class="tool-card"><span>${escapeHtml(tool.category)}</span><h2>${escapeHtml(copy.title)}</h2><p>${escapeHtml(copy.description)}</p><strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong></article>`; }).join('')}</div></section>`;
+  } else {
+    const contentType = section.id === 'guides' ? 'guide' : section.id === 'glossary' ? 'glossary' : section.id;
+    const entries = publishedEntries().filter(({ type }) => type === contentType);
+    const future = section.id === 'methodology' ? `<aside class="methodology-scope"><p class="eyebrow">${hubText('SUPPORTED NEXT', 'SONRAKİ DESTEKLENEN ALANLAR')}</p><ul><li>${hubText('Dataset selection', 'Veri seti seçimi')}</li><li>${hubText('Relevance judgment', 'Relevance judgment')}</li><li>${hubText('Dataset versioning', 'Veri seti sürümleme')}</li><li>${hubText('Corrections policy', 'Düzeltme politikası')}</li></ul><p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu alanlar içerik modeli tarafından desteklenir; yayımlanmamış sayfalar route olarak gösterilmez.')}</p></aside>` : '';
+    body = `<section class="section publication-index"><div><h2 class="sr-only">${hubText('Published resources', 'Yayımlanmış kaynaklar')}</h2><div class="publication-grid">${entries.map(hubCard).join('') || `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</div></div>${future}</section>`;
+  }
+  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<section class="page-hero compact knowledge-hero"><p class="eyebrow">${escapeHtml(localized.eyebrow)}</p><h1>${escapeHtml(localized.heading)}</h1><p>${escapeHtml(localized.intro)}</p></section>${body}${hubChrome(footer())}</main>`;
+}
+
+function renderHubBlock(block) {
+  if (block.kind === 'paragraph') return `<p>${escapeHtml(block.text)}</p>`;
+  if (block.kind === 'list') return `<ul>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  if (block.kind === 'checklist') return `<ul class="article-checklist">${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  if (block.kind === 'warning' || block.kind === 'callout') return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${escapeHtml(block.text)}</p></aside>`;
+  if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${escapeHtml(block.text)}</dd></dl>`;
+  if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${escapeHtml(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  throw new Error(`Unsupported hub block type: ${block.kind}`);
+}
+
+function renderResearchMetadata(entry) {
+  if (entry.type !== 'research') return '';
+  const limitations = currentLanguage === 'tr'
+    ? ['Henüz deney yürütülmedi.', 'Veri seti büyüklüğü, skor veya performans iddiası sunulmuyor.', 'Protokol ön kayıttan önce değişebilir.']
+    : entry.limitations;
+  return `<section class="research-record" aria-labelledby="research-record-title"><h2 id="research-record-title">${hubText('Research record', 'Araştırma kaydı')}</h2><dl><div><dt>${hubText('Status', 'Durum')}</dt><dd>${hubText('Planned protocol · no results', 'Planlanan protokol · sonuç yok')}</dd></div><div><dt>${hubText('MESA version', 'MESA sürümü')}</dt><dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd></div><div><dt>${hubText('Dataset', 'Veri seti')}</dt><dd>${hubText('Not selected; criteria must be frozen first', 'Seçilmedi; önce seçim ölçütleri dondurulmalı')}</dd></div><div><dt>${hubText('Models', 'Modeller')}</dt><dd>${hubText('To be declared and version-pinned', 'Beyan edilip sürümü sabitlenecek')}</dd></div><div><dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt><dd>${entry.metrics.map(escapeHtml).join(' · ')}</dd></div></dl><div class="limitations"><h3>${hubText('Known limitations', 'Bilinen sınırlılıklar')}</h3><ul>${limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div></section>`;
+}
+
+function renderHubEntry(entry) {
+  const localized = entry.locales[currentLanguage];
+  const sectionId = entry.type === 'guide' ? 'guides' : entry.type;
+  const section = hubSections.get(sectionId);
+  const typeLabel = hubTypeLabels[currentLanguage][entry.type];
+  const date = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.publishedAt}T00:00:00Z`));
+  const related = entry.related.map((id) => hubEntries.get(id)).filter((item) => item && !item.draft && item.indexable);
+  const breadcrumbs = hubBreadcrumb([{ label: hubText('Home', 'Ana sayfa'), path: '' }, { label: hubText('Resources', 'Kaynaklar'), path: 'resources/' }, { label: section.locales[currentLanguage].eyebrow, path: section.path }, { label: localized.title }]);
+  const toc = `<nav class="article-toc" aria-label="${hubText('On this page', 'Bu sayfada')}"><strong>${hubText('On this page', 'Bu sayfada')}</strong><ol>${localized.sections.map((sectionItem) => `<li><a href="#${escapeHtml(sectionItem.id)}">${escapeHtml(sectionItem.title)}</a></li>`).join('')}</ol></nav>`;
+  const sections = localized.sections.map((sectionItem) => `<section id="${escapeHtml(sectionItem.id)}" class="article-section"><h2>${escapeHtml(sectionItem.title)}<a class="heading-anchor" href="#${escapeHtml(sectionItem.id)}" aria-label="${hubText('Link to this section', 'Bu bölüme bağlantı')}" title="${hubText('Copy section link', 'Bölüm bağlantısını kopyala')}">#</a></h2>${sectionItem.blocks.map(renderHubBlock).join('')}</section>`).join('');
+  const relatedHtml = `<section class="related-content" aria-labelledby="related-title"><p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p><h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2><div class="publication-grid">${related.map(hubCard).join('')}</div></section>`;
+  const productCta = `<aside class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></aside>`;
+  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<aside class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></aside>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
+}
+
 function notFound() {
   return `${header()}<main id="main-content" class="not-found grid-bg"><div><p class="eyebrow">404 · ROUTE NOT FOUND / SAYFA BULUNAMADI</p><h1>This memory does not exist.<br><em>Bu hafıza mevcut değil.</em></h1><p>The page may have moved. Sayfa taşınmış olabilir.</p><div class="actions">${cta('English home', route())}${cta('Türkçe ana sayfa', `${route()}tr/`, 'secondary')}${cta('Open docs', route('docs/'), 'secondary')}${cta('GitHub', repos.core, 'text', true)}</div></div></main>`;
 }
@@ -408,7 +520,7 @@ function relativeBase(routePath) {
   return depth ? '../'.repeat(depth) : './';
 }
 
-function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false }) {
+function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [] }) {
   const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
@@ -425,7 +537,8 @@ function documentShell({ title, description, canonical, content, assetBase, lang
         license: `${repos.core}/blob/main/LICENSE`,
         version: project.version,
         url: siteUrl
-      }
+      },
+      ...structuredNodes
     ]
   }).replaceAll('<', '\\u003c');
   return `<!doctype html>
@@ -442,7 +555,7 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="alternate" hreflang="x-default" href="${alternateUrls.en}">` : ''}
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="${pageType}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:locale" content="${locale}">
   <meta property="og:locale:alternate" content="${alternateLocale}">
@@ -553,7 +666,72 @@ for (const language of ['en', 'tr']) {
   }
 }
 
-const sitemapEntries = Object.values(siteData.pages)
+const hubRoutes = [
+  ...hubData.sections.map((section) => ({ kind: 'section', data: section, path: section.path, indexable: true })),
+  ...hubData.entries.map((entry) => ({ kind: 'entry', data: entry, path: entry.path, indexable: entry.indexable && !entry.draft }))
+].filter(({ indexable }) => indexable);
+
+function hubStructuredNodes(item, language, canonical) {
+  const isEntry = item.kind === 'entry';
+  const data = item.data;
+  const localized = data.locales[language];
+  const sectionId = isEntry ? (data.type === 'guide' ? 'guides' : data.type) : data.id;
+  const section = hubSections.get(sectionId);
+  const crumbs = [
+    [language === 'tr' ? 'Ana sayfa' : 'Home', language === 'tr' ? `${siteUrl}tr/` : siteUrl],
+    ...(data.id === 'resources' ? [] : [[language === 'tr' ? 'Kaynaklar' : 'Resources', `${siteUrl}${language === 'tr' ? 'tr/' : ''}resources/`]]),
+    ...(isEntry ? [[section.locales[language].eyebrow, `${siteUrl}${language === 'tr' ? 'tr/' : ''}${section.path}`]] : []),
+    [isEntry ? localized.title : localized.eyebrow, canonical]
+  ];
+  const nodes = [{
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map(([name, itemUrl], index) => ({ '@type': 'ListItem', position: index + 1, name, item: itemUrl }))
+  }];
+  if (isEntry) nodes.push({
+    '@type': 'Article',
+    headline: localized.title,
+    description: data.seo[language].description,
+    datePublished: data.publishedAt,
+    dateModified: data.updatedAt,
+    inLanguage: language,
+    mainEntityOfPage: canonical,
+    author: { '@type': 'Organization', name: data.author },
+    publisher: { '@type': 'Organization', name: 'MESA', url: siteUrl },
+    articleSection: hubTypeLabels[language][data.type],
+    keywords: data.tags.join(', ')
+  });
+  return nodes;
+}
+
+for (const language of ['en', 'tr']) {
+  for (const item of hubRoutes) {
+    const routePath = item.path;
+    const localizedPath = language === 'tr' ? `tr/${routePath}` : routePath;
+    currentLanguage = language;
+    currentPage = { path: routePath };
+    base = relativeBase(routePath);
+    alternateHref = language === 'en'
+      ? `${base}tr/${routePath}`
+      : `${relativeBase(localizedPath)}${routePath}`;
+    const metadata = item.kind === 'entry' ? item.data.seo[language] : item.data.locales[language];
+    const canonical = `${siteUrl}${localizedPath}`;
+    const destination = path.join(outputDirectory, localizedPath, 'index.html');
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.writeFileSync(destination, documentShell({
+      title: metadata.title,
+      description: metadata.description,
+      canonical,
+      content: item.kind === 'entry' ? renderHubEntry(item.data) : renderHubIndex(item.data),
+      language,
+      alternateUrls: { en: `${siteUrl}${routePath}`, tr: `${siteUrl}tr/${routePath}` },
+      assetBase: relativeBase(localizedPath),
+      pageType: item.kind === 'entry' ? 'article' : 'website',
+      structuredNodes: hubStructuredNodes(item, language, canonical)
+    }));
+  }
+}
+
+const sitemapEntries = [...Object.values(siteData.pages), ...hubRoutes.map(({ path: routePath }) => ({ path: routePath }))]
   .flatMap(({ path: routePath }) => [routePath, `tr/${routePath}`].map((localizedPath) => `  <url>
     <loc>${siteUrl}${localizedPath}</loc>
     <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}${routePath}" />
@@ -585,4 +763,4 @@ fs.writeFileSync(path.join(outputDirectory, '404.html'), documentShell({
   noIndex: true
 }));
 
-console.log(`Rendered ${Object.keys(siteData.pages).length * 2} localized static routes and 404.html for ${siteUrl}`);
+console.log(`Rendered ${(Object.keys(siteData.pages).length + hubRoutes.length) * 2} localized static routes and 404.html for ${siteUrl}`);

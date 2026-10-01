@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "sections": [
+    {
+      "id": "resources",
+      "path": "resources/",
+      "locales": {
+        "en": {"title": "MESA Resources — Learn, Research, Guides, and Methods", "description": "Explore MESA's connected learning, research, guide, glossary, tool, and methodology resources.", "eyebrow": "KNOWLEDGE & RESEARCH", "heading": "Evidence-aware knowledge, connected.", "intro": "A durable publishing layer for practical guidance, technical concepts, research protocols, and transparent methods."},
+        "tr": {"title": "MESA Kaynakları — Öğrenme, Araştırma, Rehberler ve Yöntemler", "description": "MESA'nın bağlantılı öğrenme, araştırma, rehber, sözlük, araç ve metodoloji kaynaklarını keşfedin.", "eyebrow": "BİLGİ & ARAŞTIRMA", "heading": "Kanıt odaklı, bağlantılı bilgi.", "intro": "Pratik rehberler, teknik kavramlar, araştırma protokolleri ve şeffaf yöntemler için kalıcı bir yayın katmanı."}
+      }
+    },
+    {
+      "id": "learn",
+      "path": "learn/",
+      "locales": {
+        "en": {"title": "MESA Learn — Topic-Based Learning Hub", "description": "Learn legal research, retrieval, semantic search, RAG, knowledge graphs, and AI memory through connected topic clusters.", "eyebrow": "LEARN", "heading": "Build understanding by topic, not chronology.", "intro": "Topic clusters connect explanations to practical guides, research protocols, methodology, and glossary concepts."},
+        "tr": {"title": "MESA Learn — Konu Bazlı Öğrenme Merkezi", "description": "Hukuki araştırma, retrieval, semantic search, RAG, bilgi grafikleri ve AI memory konularını bağlantılı kümelerle öğrenin.", "eyebrow": "LEARN", "heading": "Kronolojiyle değil, konuyla derinleşin.", "intro": "Konu kümeleri; açıklamaları pratik rehberlere, araştırma protokollerine, metodolojiye ve sözlük kavramlarına bağlar."}
+      }
+    },
+    {
+      "id": "research",
+      "path": "research/",
+      "locales": {
+        "en": {"title": "MESA Research — Protocols, Benchmarks, and Findings", "description": "Read transparent MESA research protocols, methods, limitations, and reproducibility notes without invented results.", "eyebrow": "RESEARCH", "heading": "Methods before metrics.", "intro": "Research publications separate planned work, executed experiments, results, limitations, and reproducibility evidence."},
+        "tr": {"title": "MESA Research — Protokoller, Benchmark'lar ve Bulgular", "description": "Uydurma sonuçlar olmadan şeffaf MESA araştırma protokollerini, yöntemleri, sınırlılıkları ve yeniden üretilebilirlik notlarını okuyun.", "eyebrow": "RESEARCH", "heading": "Metriklerden önce yöntem.", "intro": "Araştırma yayınları planlanan çalışmayı, yürütülen deneyleri, sonuçları, sınırlılıkları ve yeniden üretilebilirlik kanıtını birbirinden ayırır."}
+      }
+    },
+    {
+      "id": "guides",
+      "path": "guides/",
+      "locales": {
+        "en": {"title": "MESA Guides — Practical, Evidence-Aware Workflows", "description": "Follow practical guides for legal research, verification, retrieval, and evidence-aware AI workflows.", "eyebrow": "GUIDES", "heading": "Start with the problem. Keep the evidence.", "intro": "Step-by-step guidance with warnings, checklists, examples, related concepts, and restrained product context."},
+        "tr": {"title": "MESA Rehberleri — Pratik, Kanıt Odaklı İş Akışları", "description": "Hukuki araştırma, doğrulama, retrieval ve kanıt odaklı yapay zekâ iş akışları için pratik rehberleri izleyin.", "eyebrow": "REHBERLER", "heading": "Sorundan başlayın. Kanıtı koruyun.", "intro": "Uyarılar, kontrol listeleri, örnekler, ilgili kavramlar ve ölçülü ürün bağlamı içeren adım adım rehberler."}
+      }
+    },
+    {
+      "id": "glossary",
+      "path": "glossary/",
+      "locales": {
+        "en": {"title": "MESA Glossary — Legal AI and Retrieval Concepts", "description": "Understand the legal AI, retrieval, provenance, and memory concepts used throughout MESA resources.", "eyebrow": "GLOSSARY", "heading": "Shared terms for a connected knowledge graph.", "intro": "Only concepts used by MESA topic clusters are included; each term points back to practical and research context."},
+        "tr": {"title": "MESA Sözlüğü — Legal AI ve Retrieval Kavramları", "description": "MESA kaynaklarında kullanılan legal AI, retrieval, provenance ve memory kavramlarını anlayın.", "eyebrow": "SÖZLÜK", "heading": "Bağlantılı bilgi ağı için ortak kavramlar.", "intro": "Yalnızca MESA konu kümelerinde kullanılan kavramlar yer alır; her terim pratik ve araştırma bağlamına geri bağlanır."}
+      }
+    },
+    {
+      "id": "tools",
+      "path": "tools/",
+      "locales": {
+        "en": {"title": "MESA Tools — Practical Research Utilities", "description": "See the focused, transparent utilities planned for MESA's legal research and AI evaluation workflows.", "eyebrow": "TOOLS", "heading": "Useful tools, when they are ready.", "intro": "This index exposes planned utility categories without pretending unfinished tools already work."},
+        "tr": {"title": "MESA Araçları — Pratik Araştırma Yardımcıları", "description": "MESA'nın hukuki araştırma ve yapay zekâ değerlendirme iş akışları için planlanan odaklı araçlarını görün.", "eyebrow": "ARAÇLAR", "heading": "Hazır olduklarında gerçekten yararlı araçlar.", "intro": "Bu dizin, tamamlanmamış araçlar çalışıyormuş gibi davranmadan planlanan yardımcı kategorilerini gösterir."}
+      }
+    },
+    {
+      "id": "methodology",
+      "path": "methodology/",
+      "locales": {
+        "en": {"title": "MESA Research Methodology — Evaluation and Reproducibility", "description": "Review MESA's foundation for dataset selection, relevance judgment, retrieval metrics, versioning, limitations, and corrections.", "eyebrow": "METHODOLOGY", "heading": "Trust starts with visible methods.", "intro": "Methodology pages define how evidence should be selected, judged, measured, versioned, reproduced, limited, and corrected."},
+        "tr": {"title": "MESA Araştırma Metodolojisi — Değerlendirme ve Yeniden Üretilebilirlik", "description": "MESA'nın veri seti seçimi, relevance judgement, retrieval metrikleri, sürümleme, sınırlılıklar ve düzeltmeler temelini inceleyin.", "eyebrow": "METODOLOJİ", "heading": "Güven, görünür yöntemlerle başlar.", "intro": "Metodoloji sayfaları kanıtın nasıl seçileceğini, değerlendirileceğini, ölçüleceğini, sürümleneceğini, yeniden üretileceğini, sınırlandırılacağını ve düzeltileceğini tanımlar."}
+      }
+    }
+  ],
+  "topics": [
+    {"id": "legal-research", "labels": {"en": "Legal Research", "tr": "Hukuki Araştırma"}, "descriptions": {"en": "Finding, evaluating, and verifying legal authority.", "tr": "Hukuki otoriteyi bulma, değerlendirme ve doğrulama."}, "related": ["verify-ai-yargitay"]},
+    {"id": "legal-ai", "labels": {"en": "Legal AI", "tr": "Legal AI"}, "descriptions": {"en": "Responsible AI-assisted legal workflows.", "tr": "Sorumlu, yapay zekâ destekli hukuk iş akışları."}, "related": ["verify-ai-yargitay", "provenance"]},
+    {"id": "legislation", "labels": {"en": "Legislation", "tr": "Mevzuat"}, "descriptions": {"en": "Source-aware statutory research and change tracking.", "tr": "Kaynak odaklı mevzuat araştırması ve değişiklik takibi."}, "related": []},
+    {"id": "knowledge-management", "labels": {"en": "Knowledge Management", "tr": "Bilgi Yönetimi"}, "descriptions": {"en": "Durable, scoped, and reviewable organizational knowledge.", "tr": "Kalıcı, kapsamlı ve incelenebilir kurumsal bilgi."}, "related": ["provenance"]},
+    {"id": "search-retrieval", "labels": {"en": "Search & Retrieval", "tr": "Search & Retrieval"}, "descriptions": {"en": "Lexical, semantic, hybrid, and structured retrieval.", "tr": "Lexical, semantic, hybrid ve yapılandırılmış retrieval."}, "related": ["semantic-search", "keyword-semantic-protocol"]},
+    {"id": "semantic-search-topic", "labels": {"en": "Semantic Search", "tr": "Semantic Search"}, "descriptions": {"en": "Retrieval by meaning and context rather than exact terms alone.", "tr": "Yalnızca aynı kelimelerle değil, anlam ve bağlamla retrieval."}, "related": ["semantic-search", "keyword-semantic-protocol"]},
+    {"id": "rag", "labels": {"en": "RAG", "tr": "RAG"}, "descriptions": {"en": "Grounding generation in retrieved source material.", "tr": "Üretimi geri getirilen kaynak materyale dayandırma."}, "related": ["provenance"]},
+    {"id": "knowledge-graph", "labels": {"en": "Knowledge Graph", "tr": "Knowledge Graph"}, "descriptions": {"en": "Explicit entities, assertions, and relationships.", "tr": "Açık varlıklar, iddialar ve ilişkiler."}, "related": []},
+    {"id": "ai-memory", "labels": {"en": "AI Memory", "tr": "AI Memory"}, "descriptions": {"en": "Evidence-aware information retained across agent activity.", "tr": "Ajan etkinliği boyunca korunan kanıt odaklı bilgi."}, "related": ["provenance"]}
+  ],
+  "tools": [
+    {"id": "query-builder", "category": "research", "status": "planned", "locales": {"en": {"title": "Legal Research Query Builder", "description": "Structure a research question into concepts, authorities, exclusions, and verification steps."}, "tr": {"title": "Hukuki Araştırma Sorgu Oluşturucu", "description": "Bir araştırma sorusunu kavramlara, otoritelere, hariç tutmalara ve doğrulama adımlarına ayırın."}}},
+    {"id": "decision-checklist", "category": "verification", "status": "planned", "locales": {"en": {"title": "Case-Law Verification Checklist", "description": "Turn a cited decision into a repeatable source and relevance review."}, "tr": {"title": "Emsal Karar Doğrulama Kontrol Listesi", "description": "Atıf verilen bir kararı tekrarlanabilir kaynak ve uygunluk incelemesine dönüştürün."}}},
+    {"id": "retrieval-checker", "category": "evaluation", "status": "planned", "locales": {"en": {"title": "Retrieval Architecture Checker", "description": "Document retrieval signals, scope boundaries, provenance, and evaluation gaps."}, "tr": {"title": "Retrieval Mimarisi Denetleyicisi", "description": "Retrieval sinyallerini, kapsam sınırlarını, provenance'ı ve değerlendirme boşluklarını belgeleyin."}}}
+  ],
+  "entries": [
+    {
+      "id": "semantic-search", "type": "learn", "slug": "semantic-search", "path": "learn/semantic-search/", "publishedAt": "2026-10-01", "updatedAt": "2026-10-01", "author": "MESA contributors", "tags": ["semantic-search", "retrieval"], "category": "Search & Retrieval", "draft": false, "indexable": true, "readingMinutes": 6,
+      "seo": {"en": {"title": "What Is Semantic Search? — MESA Learn", "description": "Understand semantic search, how it differs from keyword search, its limits, and why provenance still matters."}, "tr": {"title": "Semantic Search Nedir? — MESA Learn", "description": "Semantic search'ün ne olduğunu, keyword search'ten farkını, sınırlarını ve provenance'ın neden hâlâ önemli olduğunu anlayın."}},
+      "locales": {
+        "en": {"title": "What is semantic search?", "summary": "Semantic search retrieves information by estimated meaning and context, not only by exact word overlap.", "shortAnswer": "It can find conceptually related text when the query and source use different words, but relevance still needs evaluation and source evidence.", "sections": [
+          {"id": "simple-explanation", "title": "Simple explanation", "blocks": [{"kind": "paragraph", "text": "Keyword search asks which documents contain the terms. Semantic search asks which documents appear to express a related meaning. In practice, strong systems often combine both signals rather than treating either as universally superior."}]},
+          {"id": "how-it-works", "title": "How it works", "blocks": [{"kind": "list", "items": ["Convert the query and candidate text into comparable representations.", "Estimate similarity within the authorized corpus.", "Rank candidates and preserve their source identity.", "Evaluate relevance against explicit judgments rather than intuition alone."]}]},
+          {"id": "legal-example", "title": "Legal research example", "blocks": [{"kind": "paragraph", "text": "A researcher may ask about an employer ending an employment relationship for loss of trust while a decision uses different doctrinal wording. Semantic retrieval may surface the conceptually related decision; the researcher must still verify the court, chamber, date, full text, and legal fit."}, {"kind": "warning", "title": "Retrieval is not authority", "text": "A high similarity score does not prove that a decision exists, is current, or supports the proposed conclusion."}]},
+          {"id": "when-it-matters", "title": "Why it matters", "blocks": [{"kind": "paragraph", "text": "Meaning-based retrieval can broaden recall, while lexical retrieval can preserve exact citations and terminology. Hybrid approaches can be useful when their contribution is measured transparently."}]}
+        ]},
+        "tr": {"title": "Semantic Search Nedir?", "summary": "Semantic search, bilgiyi yalnızca aynı kelimelere göre değil, tahmin edilen anlam ve bağlama göre geri getirir.", "shortAnswer": "Sorgu ile kaynak farklı kelimeler kullandığında kavramsal olarak ilgili metni bulabilir; yine de relevance değerlendirmesi ve kaynak kanıtı gerekir.", "sections": [
+          {"id": "basit-aciklama", "title": "Basit açıklama", "blocks": [{"kind": "paragraph", "text": "Keyword search, hangi belgelerin terimleri içerdiğini sorar. Semantic search ise hangi belgelerin ilişkili bir anlam ifade ettiğini tahmin eder. Güçlü sistemler pratikte birini evrensel olarak üstün saymak yerine çoğu zaman iki sinyali birleştirir."}]},
+          {"id": "nasil-calisir", "title": "Nasıl çalışır?", "blocks": [{"kind": "list", "items": ["Sorguyu ve aday metinleri karşılaştırılabilir temsillere dönüştürür.", "Yetkili veri kümesi içinde benzerliği tahmin eder.", "Adayları sıralar ve kaynak kimliklerini korur.", "Relevance'ı yalnızca sezgiyle değil, açık değerlendirmelerle ölçer."]}]},
+          {"id": "hukuki-ornek", "title": "Hukuki araştırma örneği", "blocks": [{"kind": "paragraph", "text": "Bir araştırmacı, güven kaybı nedeniyle iş ilişkisinin sona erdirilmesini ararken karar farklı bir doktrinsel ifade kullanabilir. Semantic retrieval kavramsal olarak ilgili kararı bulabilir; araştırmacı yine de mahkemeyi, daireyi, tarihi, tam metni ve hukuki uygunluğu doğrulamalıdır."}, {"kind": "warning", "title": "Retrieval hukuki otorite değildir", "text": "Yüksek benzerlik skoru, kararın var olduğunu, güncel olduğunu veya önerilen sonucu desteklediğini kanıtlamaz."}]},
+          {"id": "neden-onemli", "title": "Neden önemli?", "blocks": [{"kind": "paragraph", "text": "Anlam tabanlı retrieval recall'u genişletebilir; lexical retrieval ise kesin atıfları ve terminolojiyi koruyabilir. Hybrid yaklaşımlar, katkıları şeffaf biçimde ölçüldüğünde yararlı olabilir."}]}
+        ]
+      }
+      },
+      "related": ["keyword-semantic-protocol", "provenance", "retrieval-evaluation"]
+    },
+    {
+      "id": "keyword-semantic-protocol", "type": "research", "slug": "keyword-vs-semantic-search", "path": "research/keyword-vs-semantic-search/", "publishedAt": "2026-10-01", "updatedAt": "2026-10-01", "author": "MESA contributors", "tags": ["benchmark", "retrieval", "semantic-search"], "category": "Retrieval Evaluation", "draft": false, "indexable": true, "readingMinutes": 9,
+      "status": "planned-protocol", "systemVersion": "To be pinned before execution", "dataset": "Not selected; selection and licensing criteria must be frozen before execution", "models": "To be declared and version-pinned before execution", "metrics": ["Recall@k", "nDCG@k", "MRR", "latency distribution"], "limitations": ["No experiment has been executed.", "No dataset size, score, or performance claim is reported.", "The protocol may change before preregistration."], "methodology": ["retrieval-evaluation"],
+      "seo": {"en": {"title": "Keyword vs Semantic Search — Planned Research Protocol", "description": "Review MESA's planned, result-free protocol for comparing keyword, semantic, and hybrid legal retrieval."}, "tr": {"title": "Keyword vs Semantic Search — Planlanan Araştırma Protokolü", "description": "Keyword, semantic ve hybrid hukuki retrieval karşılaştırması için MESA'nın sonuç içermeyen planlı protokolünü inceleyin."}},
+      "locales": {
+        "en": {"title": "Keyword vs semantic search", "subtitle": "A planned retrieval benchmark protocol", "summary": "This publication defines a proposed comparison. It reports no benchmark result.", "sections": [
+          {"id": "research-question", "title": "Research question", "blocks": [{"kind": "paragraph", "text": "Under a frozen legal retrieval corpus and independently judged query set, how do lexical, semantic, and hybrid retrieval differ in relevance and operational cost?"}]},
+          {"id": "why-this-matters", "title": "Why this matters", "blocks": [{"kind": "paragraph", "text": "Search approaches are often compared with broad claims that hide corpus, query, relevance, and configuration choices. A useful comparison must make those choices inspectable."}]},
+          {"id": "dataset", "title": "Dataset", "blocks": [{"kind": "callout", "title": "Not selected", "text": "The corpus will not be described by an invented size. Source eligibility, licensing, temporal cut-off, deduplication, and version identity must be recorded before execution."}]},
+          {"id": "experimental-setup", "title": "Experimental setup", "blocks": [{"kind": "list", "items": ["Freeze the corpus, query set, judgments, and system configurations.", "Run lexical, semantic, and hybrid conditions against identical eligible documents.", "Keep query construction separate from relevance judgment.", "Record failures and zero-result queries, not only favorable examples."]}]},
+          {"id": "results", "title": "Results", "blocks": [{"kind": "warning", "title": "No results yet", "text": "No benchmark run has been completed. Tables and charts will be added only after evidence artifacts are available."}]},
+          {"id": "reproducibility", "title": "Reproducibility", "blocks": [{"kind": "paragraph", "text": "A publishable run should record dataset identity, query and judgment versions, model identifiers, configuration, code revision, seeds where applicable, environment, raw outputs, and analysis steps."}]}
+        ]},
+        "tr": {"title": "Keyword vs Semantic Search", "subtitle": "Planlanan retrieval benchmark protokolü", "summary": "Bu yayın önerilen bir karşılaştırmayı tanımlar. Herhangi bir benchmark sonucu sunmaz.", "sections": [
+          {"id": "arastirma-sorusu", "title": "Araştırma sorusu", "blocks": [{"kind": "paragraph", "text": "Dondurulmuş bir hukuk retrieval veri kümesi ve bağımsız değerlendirilen sorgu seti altında lexical, semantic ve hybrid retrieval relevance ve operasyonel maliyet bakımından nasıl farklılaşır?"}]},
+          {"id": "neden-onemli", "title": "Neden önemli?", "blocks": [{"kind": "paragraph", "text": "Arama yaklaşımları çoğu zaman veri kümesi, sorgu, relevance ve yapılandırma seçimlerini gizleyen geniş iddialarla karşılaştırılır. Yararlı bir karşılaştırma bu seçimleri incelenebilir kılmalıdır."}]},
+          {"id": "veri-seti", "title": "Veri seti", "blocks": [{"kind": "callout", "title": "Henüz seçilmedi", "text": "Uydurma bir büyüklük verilmeyecektir. Kaynak uygunluğu, lisans, zamansal kesim, tekilleştirme ve sürüm kimliği çalıştırmadan önce kaydedilmelidir."}]},
+          {"id": "deney-duzeni", "title": "Deney düzeni", "blocks": [{"kind": "list", "items": ["Veri kümesini, sorgu setini, değerlendirmeleri ve sistem yapılandırmalarını dondur.", "Lexical, semantic ve hybrid koşulları aynı uygun belgeler üzerinde çalıştır.", "Sorgu üretimini relevance değerlendirmesinden ayır.", "Yalnızca olumlu örnekleri değil, hataları ve sıfır sonuçlu sorguları da kaydet."]}]},
+          {"id": "sonuclar", "title": "Sonuçlar", "blocks": [{"kind": "warning", "title": "Henüz sonuç yok", "text": "Benchmark çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir."}]},
+          {"id": "yeniden-uretilebilirlik", "title": "Yeniden üretilebilirlik", "blocks": [{"kind": "paragraph", "text": "Yayımlanabilir bir çalışma; veri seti kimliğini, sorgu ve değerlendirme sürümlerini, model kimliklerini, yapılandırmayı, kod revizyonunu, uygun olduğunda seed değerlerini, ortamı, ham çıktıları ve analiz adımlarını kaydetmelidir."}]}
+        ]
+      }
+      },
+      "related": ["semantic-search", "retrieval-evaluation", "provenance"]
+    },
+    {
+      "id": "verify-ai-yargitay", "type": "guide", "slug": "verify-ai-yargitay-decision", "path": "guides/verify-ai-yargitay-decision/", "publishedAt": "2026-10-01", "updatedAt": "2026-10-01", "author": "MESA contributors", "tags": ["legal-research", "verification", "provenance"], "category": "Legal Research", "draft": false, "indexable": true, "readingMinutes": 7,
+      "seo": {"en": {"title": "How to Verify an AI-Cited Yargıtay Decision — MESA Guide", "description": "Use a cautious, repeatable workflow to verify the identity, source, text, and relevance of an AI-cited Yargıtay decision."}, "tr": {"title": "AI'nin Verdiği Yargıtay Kararı Nasıl Doğrulanır? — MESA Rehberi", "description": "Yapay zekânın atıf verdiği Yargıtay kararının kimliğini, kaynağını, metnini ve relevance'ını dikkatli bir iş akışıyla doğrulayın."}},
+      "locales": {
+        "en": {"title": "How do you verify an AI-cited Yargıtay decision?", "summary": "Treat the citation as an unverified lead until the decision identity, authoritative text, quoted passage, and legal fit are checked.", "shortAnswer": "Locate the decision independently, match its identifiers, read the full text, trace every quotation, and document what the decision does and does not establish.", "sections": [
+          {"id": "capture-claim", "title": "1. Capture the exact claim", "blocks": [{"kind": "paragraph", "text": "Save the decision number, chamber, date, quoted passage, and the conclusion the AI attached to it. Missing identifiers are a warning, not an invitation to guess."}]},
+          {"id": "find-source", "title": "2. Find an authoritative or traceable source", "blocks": [{"kind": "paragraph", "text": "Search independently using the stated identifiers and distinctive phrases. Prefer an official publication where available; otherwise record the repository and retrieval date."}]},
+          {"id": "match-identity", "title": "3. Match identity and text", "blocks": [{"kind": "list", "items": ["Court and chamber", "Docket and decision numbers", "Decision date", "Parties or anonymized factual pattern", "Quoted passage in its surrounding context"]}]},
+          {"id": "assess-fit", "title": "4. Assess legal fit", "blocks": [{"kind": "warning", "title": "Existence is not relevance", "text": "A real decision can still be factually distinguishable, superseded, exceptional, or unrelated to the proposed conclusion."}, {"kind": "paragraph", "text": "Identify the issue, material facts, reasoning, holding, procedural posture, and any later authority before relying on the citation."}]},
+          {"id": "record", "title": "5. Record the verification trail", "blocks": [{"kind": "checklist", "items": ["Stable source or saved artifact", "Identifiers and access date", "Exact supporting passage", "Reason the passage is relevant", "Contrary or limiting authority", "Reviewer and review date when the workflow requires one"]}]}
+        ]},
+        "tr": {"title": "AI'nin Verdiği Yargıtay Kararı Nasıl Doğrulanır?", "summary": "Karar kimliği, güvenilir metin, alıntılanan bölüm ve hukuki uygunluk kontrol edilene kadar atfı doğrulanmamış bir araştırma ipucu sayın.", "shortAnswer": "Kararı bağımsız bulun, kimlik bilgilerini eşleştirin, tam metni okuyun, her alıntının izini sürün ve kararın neyi ortaya koyup koymadığını kaydedin.", "sections": [
+          {"id": "iddiayi-kaydet", "title": "1. İddiayı aynen kaydedin", "blocks": [{"kind": "paragraph", "text": "Esas ve karar numarasını, daireyi, tarihi, alıntılanan bölümü ve yapay zekânın buna bağladığı sonucu saklayın. Eksik kimlik bilgileri tahmin daveti değil, uyarıdır."}]},
+          {"id": "kaynagi-bul", "title": "2. Güvenilir veya izlenebilir kaynağı bulun", "blocks": [{"kind": "paragraph", "text": "Belirtilen kimlik bilgileri ve ayırt edici ifadelerle bağımsız arama yapın. Mümkünse resmî yayını tercih edin; değilse repository bilgisini ve erişim tarihini kaydedin."}]},
+          {"id": "kimligi-eslestir", "title": "3. Kimliği ve metni eşleştirin", "blocks": [{"kind": "list", "items": ["Mahkeme ve daire", "Esas ve karar numaraları", "Karar tarihi", "Taraflar veya anonimleştirilmiş olay örgüsü", "Alıntılanan bölümün çevresindeki bağlam"]}]},
+          {"id": "uygunlugu-degerlendir", "title": "4. Hukuki uygunluğu değerlendirin", "blocks": [{"kind": "warning", "title": "Var olmak, ilgili olmak değildir", "text": "Gerçek bir karar yine de olgusal olarak ayrışabilir, sonraki içtihatla aşılmış olabilir, istisnai olabilir veya önerilen sonuçla ilgisiz olabilir."}, {"kind": "paragraph", "text": "Atfa güvenmeden önce hukuki sorunu, maddi olguları, gerekçeyi, hükmü, usulî aşamayı ve sonraki otoriteleri belirleyin."}]},
+          {"id": "izi-kaydet", "title": "5. Doğrulama izini kaydedin", "blocks": [{"kind": "checklist", "items": ["Stabil kaynak veya saklanan çıktı", "Kimlik bilgileri ve erişim tarihi", "Tam destekleyici bölüm", "Bölümün neden ilgili olduğu", "Aksi yöndeki veya sınırlayıcı otorite", "İş akışı gerektiriyorsa reviewer ve inceleme tarihi"]}]}
+        ]
+      }
+      },
+      "related": ["provenance", "semantic-search"]
+    },
+    {
+      "id": "provenance", "type": "glossary", "slug": "provenance", "path": "glossary/provenance/", "publishedAt": "2026-10-01", "updatedAt": "2026-10-01", "author": "MESA contributors", "tags": ["provenance", "evidence"], "category": "Evidence", "draft": false, "indexable": true, "readingMinutes": 4,
+      "seo": {"en": {"title": "Provenance — MESA Glossary", "description": "Learn what provenance means in legal AI, retrieval, and evidence-aware memory systems."}, "tr": {"title": "Provenance Nedir? — MESA Sözlüğü", "description": "Provenance'ın legal AI, retrieval ve kanıt odaklı memory sistemlerinde ne anlama geldiğini öğrenin."}},
+      "locales": {
+        "en": {"title": "Provenance", "summary": "Provenance is the recorded origin and processing history of information.", "shortAnswer": "It answers where information came from, which version was used, how it was transformed, and which evidence supports its use.", "sections": [
+          {"id": "simple", "title": "Simple explanation", "blocks": [{"kind": "definition", "term": "Provenance", "text": "A trace from a claim or retrieved item back to its source identity and relevant processing steps."}]},
+          {"id": "legal-example", "title": "Legal example", "blocks": [{"kind": "paragraph", "text": "For a cited decision, provenance may include the court, chamber, docket and decision identifiers, date, source URL or preserved artifact, retrieval date, document version, and exact supporting span."}]},
+          {"id": "technical", "title": "Technical explanation", "blocks": [{"kind": "paragraph", "text": "In a retrieval system, provenance can connect a result to document, revision, chunk, evidence span, pipeline version, model version, authorization scope, and contributing retrieval signals."}]},
+          {"id": "importance", "title": "Why it matters", "blocks": [{"kind": "paragraph", "text": "Without provenance, a plausible answer may be difficult to inspect, reproduce, correct, or safely rely on."}]}
+        ]},
+        "tr": {"title": "Provenance", "summary": "Provenance, bilginin kaydedilmiş kökeni ve işlenme geçmişidir.", "shortAnswer": "Bilginin nereden geldiğini, hangi sürümün kullanıldığını, nasıl dönüştürüldüğünü ve kullanımını hangi kanıtın desteklediğini açıklar.", "sections": [
+          {"id": "basit", "title": "Basit açıklama", "blocks": [{"kind": "definition", "term": "Provenance", "text": "Bir iddia veya retrieval sonucundan kaynak kimliğine ve ilgili işleme adımlarına uzanan iz."}]},
+          {"id": "hukuki-ornek", "title": "Hukuki örnek", "blocks": [{"kind": "paragraph", "text": "Atıf verilen bir karar için provenance; mahkeme, daire, esas ve karar kimlikleri, tarih, kaynak URL'si veya saklanan çıktı, erişim tarihi, belge sürümü ve tam destekleyici bölümü içerebilir."}]},
+          {"id": "teknik", "title": "Teknik açıklama", "blocks": [{"kind": "paragraph", "text": "Bir retrieval sisteminde provenance; sonucu belgeye, revizyona, chunk'a, evidence span'e, pipeline sürümüne, model sürümüne, yetkilendirme kapsamına ve katkıda bulunan retrieval sinyallerine bağlayabilir."}]},
+          {"id": "onem", "title": "Neden önemli?", "blocks": [{"kind": "paragraph", "text": "Provenance olmadan makul görünen bir yanıtı incelemek, yeniden üretmek, düzeltmek veya güvenle kullanmak zorlaşabilir."}]}
+        ]
+      }
+      },
+      "related": ["verify-ai-yargitay", "semantic-search", "keyword-semantic-protocol"]
+    },
+    {
+      "id": "retrieval-evaluation", "type": "methodology", "slug": "retrieval-evaluation", "path": "methodology/retrieval-evaluation/", "publishedAt": "2026-10-01", "updatedAt": "2026-10-01", "author": "MESA contributors", "tags": ["methodology", "retrieval", "evaluation"], "category": "Evaluation", "draft": false, "indexable": true, "readingMinutes": 8,
+      "seo": {"en": {"title": "Retrieval Evaluation Methodology — MESA Research", "description": "Review the minimum evidence, judgments, metrics, versioning, and reporting rules for MESA retrieval evaluations."}, "tr": {"title": "Retrieval Değerlendirme Metodolojisi — MESA Research", "description": "MESA retrieval değerlendirmeleri için asgari kanıt, judgment, metrik, sürümleme ve raporlama kurallarını inceleyin."}},
+      "locales": {
+        "en": {"title": "Retrieval evaluation", "summary": "A minimum methodology for claims about whether a retrieval system finds useful, source-grounded material.", "shortAnswer": "Freeze inputs, separate query creation from judgment, report multiple metrics and failure cases, and bind every result to versions and raw evidence.", "sections": [
+          {"id": "scope", "title": "Scope", "blocks": [{"kind": "paragraph", "text": "This method applies to comparative retrieval evaluations. It does not turn one corpus or query set into a universal performance claim."}]},
+          {"id": "selection", "title": "Dataset and query selection", "blocks": [{"kind": "list", "items": ["Define source eligibility and temporal cut-off.", "Record licensing and preservation constraints.", "Version corpus, queries, and exclusions.", "Include difficult and zero-result cases deliberately."]}]},
+          {"id": "judgment", "title": "Relevance judgment", "blocks": [{"kind": "paragraph", "text": "Judgment guidance should define graded relevance, evidence requirements, disagreement handling, and reviewer independence. System output must not silently define its own ground truth."}]},
+          {"id": "metrics", "title": "Metrics", "blocks": [{"kind": "table", "headers": ["Measure", "Question"], "rows": [["Recall@k", "Was relevant material retrieved within the cut-off?"], ["nDCG@k", "Were more relevant items ranked earlier?"], ["MRR", "How early did the first relevant item appear?"], ["Latency distribution", "What operational cost accompanied retrieval?"]]}]},
+          {"id": "reporting", "title": "Reporting and corrections", "blocks": [{"kind": "checklist", "items": ["Configuration and code revision", "Dataset, query, and judgment versions", "Aggregate and per-query outputs", "Failure cases and exclusions", "Known limitations", "Correction date and change record when findings are amended"]}]}
+        ]},
+        "tr": {"title": "Retrieval değerlendirmesi", "summary": "Bir retrieval sisteminin yararlı ve kaynağa dayalı materyali bulup bulmadığına ilişkin iddialar için asgari metodoloji.", "shortAnswer": "Girdileri dondurun, sorgu üretimini judgment'tan ayırın, birden fazla metriği ve hata örneklerini raporlayın, her sonucu sürümlere ve ham kanıta bağlayın.", "sections": [
+          {"id": "kapsam", "title": "Kapsam", "blocks": [{"kind": "paragraph", "text": "Bu yöntem karşılaştırmalı retrieval değerlendirmelerine uygulanır. Tek bir veri kümesini veya sorgu setini evrensel performans iddiasına dönüştürmez."}]},
+          {"id": "secim", "title": "Veri seti ve sorgu seçimi", "blocks": [{"kind": "list", "items": ["Kaynak uygunluğunu ve zamansal kesimi tanımlayın.", "Lisans ve saklama sınırlarını kaydedin.", "Veri kümesini, sorguları ve hariç tutmaları sürümleyin.", "Zor ve sıfır sonuçlu örnekleri bilinçli biçimde dahil edin."]}]},
+          {"id": "judgment", "title": "Relevance judgment", "blocks": [{"kind": "paragraph", "text": "Judgment rehberi; dereceli relevance'ı, kanıt gereksinimlerini, anlaşmazlık yönetimini ve reviewer bağımsızlığını tanımlamalıdır. Sistem çıktısı kendi ground truth'unu sessizce belirlememelidir."}]},
+          {"id": "metrikler", "title": "Metrikler", "blocks": [{"kind": "table", "headers": ["Ölçüm", "Soru"], "rows": [["Recall@k", "İlgili materyal kesim içinde geri getirildi mi?"], ["nDCG@k", "Daha ilgili öğeler daha önce sıralandı mı?"], ["MRR", "İlk ilgili öğe ne kadar erken göründü?"], ["Gecikme dağılımı", "Retrieval hangi operasyonel maliyetle gerçekleşti?"]]}]},
+          {"id": "raporlama", "title": "Raporlama ve düzeltmeler", "blocks": [{"kind": "checklist", "items": ["Yapılandırma ve kod revizyonu", "Veri seti, sorgu ve judgment sürümleri", "Toplu ve sorgu bazlı çıktılar", "Hata örnekleri ve hariç tutmalar", "Bilinen sınırlılıklar", "Bulgular değiştirildiğinde düzeltme tarihi ve değişiklik kaydı"]}]}
+        ]
+      }
+      },
+      "related": ["keyword-semantic-protocol", "semantic-search", "provenance"]
+    }
+  ]
+}
