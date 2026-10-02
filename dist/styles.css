@@ -656,10 +656,15 @@ em {
   font-family: inherit;
   font-style: normal;
 }
-.hero h1 em, .page-hero h1 em {
+.hero h1 em, .closing-cta h2 em, .editorial-quote em {
   font-family: "Instrument Serif", Georgia, serif;
   font-style: italic;
   font-weight: 400;
+}
+.page-hero h1 em {
+  font-family: "Instrument Sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
 }
 h1, h2, h3 { letter-spacing: -.045em; }
 p { color: var(--muted); }
@@ -764,77 +769,163 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
 .scroll-cue { color: var(--muted-2); font-family: "Commit Mono", monospace; font-size: 10px; }
 .hero-orbit { display: none; }
 
+.hero-archival-bg {
+  position: absolute;
+  top: 40px;
+  right: -120px;
+  width: min(85vw, 1100px);
+  height: auto;
+  pointer-events: none;
+  opacity: .055;
+  mix-blend-mode: screen;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 70% at 70% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 40%, black 20%, transparent 80%);
+}
+.hero-archival-bg img { width: 100%; height: auto; display: block; }
+
 .evidence-path {
   position: absolute;
-  z-index: 0;
-  top: 150px;
-  right: max(-70px, calc((100vw - var(--max)) / 2 - 90px));
-  width: min(58vw, 790px);
-  height: 650px;
-  opacity: .8;
+  z-index: 1;
+  top: 130px;
+  right: max(-50px, calc((100vw - var(--max)) / 2 - 80px));
+  width: min(58vw, 760px);
+  height: 560px;
+  opacity: .9;
   pointer-events: none;
 }
 .evidence-path svg { width: 100%; height: 100%; overflow: visible; }
-.graph-lines path {
+.graph-dormant-mesh path {
   fill: none;
-  stroke: #34333b;
+  stroke: rgba(255,255,255,.07);
   stroke-width: 1;
+  stroke-dasharray: 2 4;
   vector-effect: non-scaling-stroke;
 }
-.traversal-path, .evidence-path-line {
+.graph-dormant-nodes circle {
+  fill: #121317;
+  stroke: rgba(255,255,255,.12);
+  stroke-width: 1;
+}
+.traversal-seg, .branch-probe {
   fill: none;
-  stroke: var(--purple);
   stroke-width: 2;
   stroke-linecap: round;
-  stroke-dasharray: .14 .86;
-  stroke-dashoffset: 1;
-  filter: drop-shadow(0 0 7px rgba(117,98,168,.4));
-  animation: trace-path 8s cubic-bezier(.55,.1,.35,1) infinite;
+  vector-effect: non-scaling-stroke;
 }
-.evidence-path-line {
+.traversal-seg.seg-1 {
+  stroke: var(--purple-soft);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: traversal-step-1 9s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+.branch-probe {
+  stroke: var(--mineral);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0;
+  animation: probe-fade 9s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+.traversal-seg.seg-2 {
+  stroke: var(--purple-soft);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: traversal-step-2 9s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+.traversal-seg.seg-3 {
   stroke: var(--copper);
-  stroke-dasharray: .22 .78;
-  animation-delay: 3.35s;
-  filter: drop-shadow(0 0 6px rgba(185,120,82,.34));
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: traversal-step-3 9s cubic-bezier(.4, 0, .2, 1) infinite;
 }
-.graph-nodes circle {
-  fill: #171820;
-  stroke: #4e4b59;
+.active-node {
+  fill: #14151c;
   stroke-width: 1.5;
-  animation: node-pulse 8s ease-in-out infinite;
+  transition: all .3s ease;
 }
-.graph-nodes circle:nth-child(2) { animation-delay: 1.35s; }
-.graph-nodes circle:nth-child(6) { animation-delay: 2.7s; }
-.graph-nodes circle:nth-child(7) { animation-delay: 3.55s; }
-.graph-nodes circle:nth-child(9) { animation-delay: 4.7s; }
-.graph-nodes .evidence-node { stroke: var(--copper); }
-.graph-labels text { fill: #716e79; font: 11px "Commit Mono", monospace; letter-spacing: .08em; }
-.graph-labels .copper-label { fill: var(--copper); }
-.path-readout {
-  position: absolute;
-  right: 60px;
-  bottom: 52px;
-  display: grid;
-  width: 260px;
-  padding: 15px 17px;
-  border: 1px solid var(--line);
-  border-left-color: var(--copper);
-  background: rgba(15,16,20,.86);
-  font-size: 10px;
-  letter-spacing: .06em;
+.active-node.node-source {
+  stroke: #4e4b59;
+  animation: node-source-pulse 9s ease-in-out infinite;
 }
-.path-readout span { color: var(--copper); }
-.path-readout strong { margin-block: 7px; color: #cfccd2; font-weight: 450; }
-.path-readout small { color: var(--muted-2); }
-@keyframes trace-path {
-  0%, 9% { stroke-dashoffset: 1; opacity: 0; }
-  15% { opacity: 1; }
-  64%, 78% { stroke-dashoffset: 0; opacity: 1; }
-  100% { stroke-dashoffset: -.18; opacity: 0; }
+.active-node.node-memory {
+  stroke: #4e4b59;
+  animation: node-memory-pulse 9s ease-in-out infinite;
 }
-@keyframes node-pulse {
-  0%, 12%, 82%, 100% { fill: #171820; stroke: #4e4b59; }
-  34%, 54% { fill: #7562a8; stroke: #a99bd0; }
+.active-node.node-ledger {
+  stroke: #4e4b59;
+  animation: node-ledger-pulse 9s ease-in-out infinite;
+}
+.active-node.node-evidence {
+  stroke: #4e4b59;
+  animation: node-evidence-pulse 9s ease-in-out infinite;
+}
+.graph-labels text {
+  fill: #615f69;
+  font: 10px "Commit Mono", monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.graph-labels .copper-label {
+  fill: #806050;
+  animation: label-copper-glow 9s ease-in-out infinite;
+}
+
+@keyframes traversal-step-1 {
+  0%, 4% { stroke-dashoffset: 100; opacity: 0; }
+  6% { opacity: .9; }
+  18%, 76% { stroke-dashoffset: 0; opacity: .9; }
+  84%, 100% { stroke-dashoffset: 0; opacity: .15; }
+}
+
+@keyframes probe-fade {
+  0%, 18% { stroke-dashoffset: 100; opacity: 0; }
+  22% { opacity: .5; stroke-dashoffset: 40; }
+  27% { stroke-dashoffset: 0; opacity: .4; }
+  32%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes traversal-step-2 {
+  0%, 22% { stroke-dashoffset: 100; opacity: 0; }
+  25% { opacity: .9; }
+  38%, 76% { stroke-dashoffset: 0; opacity: .9; }
+  84%, 100% { stroke-dashoffset: 0; opacity: .15; }
+}
+
+@keyframes traversal-step-3 {
+  0%, 40% { stroke-dashoffset: 100; opacity: 0; }
+  43% { opacity: 1; }
+  56%, 76% { stroke-dashoffset: 0; opacity: 1; }
+  84%, 100% { stroke-dashoffset: 0; opacity: .15; }
+}
+
+@keyframes node-source-pulse {
+  0%, 3% { fill: #14151c; stroke: #4e4b59; filter: none; }
+  6%, 78% { fill: #242232; stroke: var(--purple-soft); filter: drop-shadow(0 0 6px rgba(169,155,208,.45)); }
+  84%, 100% { fill: #14151c; stroke: #4e4b59; filter: none; }
+}
+
+@keyframes node-memory-pulse {
+  0%, 17% { fill: #14151c; stroke: #4e4b59; filter: none; }
+  20%, 78% { fill: #242232; stroke: var(--purple-soft); filter: drop-shadow(0 0 7px rgba(169,155,208,.5)); }
+  84%, 100% { fill: #14151c; stroke: #4e4b59; filter: none; }
+}
+
+@keyframes node-ledger-pulse {
+  0%, 37% { fill: #14151c; stroke: #4e4b59; filter: none; }
+  40%, 78% { fill: #242232; stroke: var(--purple-soft); filter: drop-shadow(0 0 7px rgba(169,155,208,.5)); }
+  84%, 100% { fill: #14151c; stroke: #4e4b59; filter: none; }
+}
+
+@keyframes node-evidence-pulse {
+  0%, 54% { fill: #14151c; stroke: #4e4b59; filter: none; }
+  58%, 78% { fill: #2a1c16; stroke: var(--copper); filter: drop-shadow(0 0 10px rgba(185,120,82,.7)); }
+  84%, 100% { fill: #14151c; stroke: #4e4b59; filter: none; }
+}
+
+@keyframes label-copper-glow {
+  0%, 54% { fill: #806050; }
+  58%, 78% { fill: var(--copper); filter: drop-shadow(0 0 4px rgba(185,120,82,.6)); }
+  84%, 100% { fill: #806050; filter: none; }
 }
 
 .page-hero {
@@ -912,6 +1003,199 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
 .public-flow li:first-child { border-left: 1px solid var(--line); }
 .public-flow span, .flow-step span, .journey-flow span { color: var(--mineral); }
 .public-flow li:not(:last-child)::after { color: var(--mineral); }
+
+/* Problem section asymmetric composition */
+.problem-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+.problem-narrative > p {
+  font-size: clamp(20px, 1.8vw, 24px);
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 36px;
+  font-weight: 450;
+}
+.problem-specimen {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.problem-specimen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #0d0e12;
+  opacity: .88;
+}
+.specimen-caption {
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+  font: 11px/1.45 "Commit Mono", monospace;
+  color: var(--muted-2);
+  letter-spacing: .04em;
+  background: var(--surface-2);
+}
+.problem-ledger {
+  display: flex;
+  flex-direction: column;
+}
+.problem-entry {
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+}
+.problem-entry:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.problem-entry > span {
+  display: block;
+  color: var(--mineral);
+  font: 11px "Commit Mono", monospace;
+  letter-spacing: .14em;
+  margin-bottom: 12px;
+}
+.problem-entry h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 520;
+  color: var(--ink);
+}
+.problem-entry p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* MESA in Action centerpiece specimen plate */
+.specimen-plate {
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid var(--line-strong);
+  background: #0b0c0f;
+  box-shadow: 0 40px 100px rgba(0,0,0,.5);
+}
+.specimen-frame {
+  position: relative;
+  padding: 0;
+}
+.specimen-corner {
+  position: absolute;
+  color: var(--muted-2);
+  font: 15px "Commit Mono", monospace;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 5;
+}
+.specimen-corner.top-left { top: -7px; left: -7px; }
+.specimen-corner.top-right { top: -7px; right: -7px; }
+.specimen-corner.bottom-left { bottom: -7px; left: -7px; }
+.specimen-corner.bottom-right { bottom: -7px; right: -7px; }
+.specimen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--line);
+  background: #111216;
+}
+.specimen-id, .specimen-tag {
+  font: 10px "Commit Mono", monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.specimen-id { color: var(--copper); }
+.specimen-tag { color: var(--muted-2); }
+
+/* Use cases ledger */
+.use-case-ledger {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+.ledger-row {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1.4fr) minmax(220px, .6fr);
+  gap: 36px;
+  align-items: center;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background-color .2s ease;
+}
+.ledger-row:hover {
+  background: rgba(255,255,255,.012);
+}
+.ledger-index {
+  font: 13px "Commit Mono", monospace;
+  color: var(--copper);
+  letter-spacing: .1em;
+}
+.ledger-body h3 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 520;
+  color: var(--ink);
+}
+.ledger-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.ledger-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.ledger-tag {
+  font: 10px "Commit Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--mineral);
+  text-transform: uppercase;
+}
+.ledger-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--purple-soft);
+  text-decoration: none;
+}
+.ledger-link:hover {
+  color: var(--ink);
+}
+
+/* Subpage archival plates */
+.subpage-archival-figure {
+  margin: 48px 0 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.archival-figure-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #090a0d;
+  padding: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.archival-figure-wrap img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  opacity: .84;
+}
+.archival-caption {
+  padding: 14px 20px;
+  font: 11px/1.5 "Commit Mono", monospace;
+  color: var(--muted-2);
+  letter-spacing: .04em;
+  background: var(--surface-2);
+}
 
 .action-section { background-color: #0e0f12; }
 .action-example {
@@ -1059,6 +1343,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
   .evidence-path { top: 120px; right: -285px; width: 630px; opacity: .34; }
   .path-readout { display: none; }
   .section-heading { gap: 35px; }
+  .problem-layout { grid-template-columns: 1fr; gap: 40px; }
+  .ledger-row { grid-template-columns: 48px 1fr; gap: 18px; }
+  .ledger-meta { grid-column: 2; align-items: flex-start; }
+  .specimen-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero-archival-bg { opacity: .03; }
   .reliability-list article { grid-template-columns: 42px 1fr; }
   .reliability-list p { grid-column: 2; }
   .use-case-grid article { grid-template-columns: 56px 1fr; gap: 12px; }
@@ -1086,6 +1375,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
   .trace-edge, .trace-evidence { width: 30%; margin: 0 auto; transform: rotate(90deg); }
   .trace-evidence, .trace-node.evidence { grid-column: auto; }
   .trace-node.evidence { width: 100%; }
+  .ledger-row { grid-template-columns: 1fr; gap: 12px; }
+  .ledger-meta { grid-column: auto; align-items: flex-start; }
+  .specimen-header { padding: 14px 18px; }
   .use-case-grid article { grid-template-columns: 1fr; }
   .use-case-grid p { grid-column: auto; }
   .reliability-list article { grid-template-columns: 32px 1fr; }
@@ -1093,9 +1385,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--mineral); outli
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .traversal-path, .evidence-path-line, .graph-nodes circle { animation: none !important; }
-  .traversal-path { stroke-dasharray: 1 0; stroke-dashoffset: 0; opacity: .45; }
-  .evidence-path-line { stroke-dasharray: 1 0; stroke-dashoffset: 0; opacity: .7; }
+  .traversal-seg, .branch-probe, .active-node, .copper-label { animation: none !important; }
+  .traversal-seg { stroke-dashoffset: 0 !important; opacity: .4 !important; }
+  .branch-probe { opacity: 0 !important; }
+  .active-node.node-evidence { stroke: var(--copper) !important; fill: #2a1c16 !important; }
+  .copper-label { fill: var(--copper) !important; }
 }
 
 /* Knowledge and research hub */
