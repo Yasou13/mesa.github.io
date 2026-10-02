@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" fill="none" role="presentation" aria-hidden="true">
+  <defs>
+    <radialGradient id="celestial-fade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7562a8" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#7562a8" stop-opacity="0.12"/>
+      <stop offset="75%" stop-color="#7562a8" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0b0c0f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Background glow -->
+  <circle cx="400" cy="400" r="380" fill="url(#celestial-fade)"/>
+  
+  <!-- Outer coordinate rings -->
+  <circle cx="400" cy="400" r="360" stroke="#3b3749" stroke-width="0.75" stroke-dasharray="2 4"/>
+  <circle cx="400" cy="400" r="340" stroke="#2c2a38" stroke-width="0.5"/>
+  <circle cx="400" cy="400" r="280" stroke="#3b3749" stroke-width="0.75"/>
+  <circle cx="400" cy="400" r="220" stroke="#2c2a38" stroke-width="0.5" stroke-dasharray="1 3"/>
+  <circle cx="400" cy="400" r="160" stroke="#3b3749" stroke-width="0.75"/>
+  <circle cx="400" cy="400" r="90" stroke="#2c2a38" stroke-width="0.5"/>
+  
+  <!-- Meridian and equatorial axes -->
+  <line x1="400" y1="20" x2="400" y2="780" stroke="#3b3749" stroke-width="0.75"/>
+  <line x1="20" y1="400" x2="780" y2="400" stroke="#3b3749" stroke-width="0.75"/>
+  <line x1="145" y1="145" x2="655" y2="655" stroke="#2c2a38" stroke-width="0.5" stroke-dasharray="3 3"/>
+  <line x1="145" y1="655" x2="655" y2="145" stroke="#2c2a38" stroke-width="0.5" stroke-dasharray="3 3"/>
+  
+  <!-- Celestial triangulation network -->
+  <g stroke="#7562a8" stroke-width="0.85" opacity="0.65">
+    <polygon points="400,160 520,240 460,340 340,320 280,220"/>
+    <polygon points="520,240 640,280 580,420 460,340"/>
+    <polygon points="460,340 580,420 500,540 380,480"/>
+    <polygon points="340,320 460,340 380,480 260,440"/>
+    <polygon points="280,220 340,320 260,440 180,320"/>
+    <line x1="400" y1="160" x2="460" y2="340"/>
+    <line x1="520" y1="240" x2="380" y2="480"/>
+    <line x1="280" y1="220" x2="460" y2="340"/>
+  </g>
+  
+  <!-- Degree tick marks -->
+  <g stroke="#4e4b5e" stroke-width="0.75">
+    <line x1="400" y1="36" x2="400" y2="44"/>
+    <line x1="400" y1="756" x2="400" y2="764"/>
+    <line x1="36" y1="400" x2="44" y2="400"/>
+    <line x1="756" y1="400" x2="764" y2="400"/>
+    <line x1="143" y1="143" x2="149" y2="149"/>
+    <line x1="651" y1="651" x2="657" y2="657"/>
+    <line x1="143" y1="657" x2="149" y2="651"/>
+    <line x1="651" y1="149" x2="657" y2="143"/>
+  </g>
+  
+  <!-- Celestial nodes -->
+  <g fill="#0b0c0f" stroke="#7562a8" stroke-width="1.2">
+    <circle cx="400" cy="160" r="3.5"/>
+    <circle cx="520" cy="240" r="3"/>
+    <circle cx="640" cy="280" r="2.5"/>
+    <circle cx="580" cy="420" r="3"/>
+    <circle cx="500" cy="540" r="3.5"/>
+    <circle cx="380" cy="480" r="3"/>
+    <circle cx="260" cy="440" r="2.5"/>
+    <circle cx="180" cy="320" r="3"/>
+    <circle cx="280" cy="220" r="3.5"/>
+    <circle cx="460" cy="340" r="4" stroke="#b97852" stroke-width="1.5" fill="#1b151a"/>
+  </g>
+</svg>
