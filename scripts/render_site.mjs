@@ -591,9 +591,9 @@ function renderHubBlock(block) {
   if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${renderFormattedText(block.text)}</dd></dl>`;
   if (block.kind === 'quote') return `<blockquote><p>${renderFormattedText(block.text)}</p>${block.cite ? `<cite>${renderFormattedText(block.cite)}</cite>` : ''}</blockquote>`;
   if (block.kind === 'code') return `<pre class="article-code"><code>${escapeHtml(block.code)}</code></pre>`;
-  if (block.kind === 'image') return `<figure><img src="${route(block.src)}" alt="${escapeHtml(block.alt)}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
+  if (block.kind === 'image') return `<figure><img src="${asset(block.src)}" alt="${escapeHtml(block.alt)}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
   if (block.kind === 'diagram') return `<figure class="article-diagram" role="img" aria-label="${escapeHtml(block.alt)}"><ol>${block.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
-  if (block.kind === 'references') return `<ol class="reference-list">${block.items.map((item) => `<li>${item.href ? external(item.href, escapeHtml(item.label)) : escapeHtml(item.label)}</li>`).join('')}</ol>`;
+  if (block.kind === 'references') return `<ol class="reference-list">${block.items.map((item) => `<li>${item.href ? (item.href.startsWith('http') ? external(item.href, escapeHtml(item.label)) : `<a href="${route(item.href)}">${escapeHtml(item.label)}</a>`) : escapeHtml(item.label)}</li>`).join('')}</ol>`;
   if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${renderFormattedText(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   throw new Error(`Unsupported hub block type: ${block.kind}`);
 }
