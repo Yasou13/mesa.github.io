@@ -469,6 +469,20 @@ const hubText = (en, tr) => currentLanguage === 'tr' ? tr : en;
 const hubChrome = (html) => currentLanguage === 'tr' ? localizeHtml(html, trContent.strings) : html;
 const publishedEntries = () => hubData.entries.filter(({ draft, indexable }) => !draft && indexable);
 
+function renderFormattedText(text) {
+  if (!text) return '';
+  let escaped = escapeHtml(text);
+  escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
+  escaped = escaped.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, href) => {
+    if (href.startsWith('http://') || href.startsWith('https://')) {
+      return external(href, label);
+    }
+    const cleanHref = href.startsWith('/') ? href.slice(1) : href;
+    return `<a href="${route(cleanHref)}">${label}</a>`;
+  });
+  return escaped;
+}
+
 function hubBreadcrumb(items) {
   return `<nav class="breadcrumbs" aria-label="${hubText('Breadcrumb', 'İçerik yolu')}"><ol>${items.map((item, index) => `<li>${item.path ? `<a href="${route(item.path)}">${escapeHtml(item.label)}</a>` : `<span aria-current="page">${escapeHtml(item.label)}</span>`}${index < items.length - 1 ? '<span aria-hidden="true">/</span>' : ''}</li>`).join('')}</ol></nav>`;
 }
@@ -477,6 +491,72 @@ function hubCard(entry) {
   const localized = entry.locales[currentLanguage];
   const type = hubTypeLabels[currentLanguage][entry.type];
   return `<article class="resource-card"><p class="resource-type">${escapeHtml(type)}</p><h3><a href="${route(entry.path)}">${escapeHtml(localized.title)}</a></h3><p>${escapeHtml(localized.summary)}</p><div><span>${entry.readingMinutes} ${hubText('min read', 'dk okuma')}</span><a href="${route(entry.path)}">${hubText('Read', 'Oku')}<span aria-hidden="true"> →</span></a></div></article>`;
+}
+
+function renderLearnHubIndex() {
+  const isTr = currentLanguage === 'tr';
+  const featuredIds = ['what-is-ai-memory', 'rag-vs-ai-memory', 'evidence-aware-memory'];
+  const featuredEntries = featuredIds.map((id) => hubEntries.get(id)).filter(Boolean);
+
+  const featuredHtml = `<section class="section start-here-section" aria-labelledby="start-here-title"><div class="section-heading"><div><p class="eyebrow">${hubText('START HERE', 'BURADAN BAŞLAYIN')}</p><h2 id="start-here-title">${hubText('Three foundational cornerstones.', 'Üç temel köşe taşı.')}</h2></div><p>${hubText('If you are new to AI memory systems, start with these core conceptual guides.', 'AI memory sistemlerine yeniyseniz, bu üç temel kavramsal rehberle başlayın.')}</p></div><div class="featured-grid">${featuredEntries.map((entry) => {
+    const copy = entry.locales[currentLanguage];
+    return `<article class="featured-card"><span class="featured-badge">${escapeHtml(entry.category)}</span><h3><a href="${route(entry.path)}">${escapeHtml(copy.title)}</a></h3><p>${escapeHtml(copy.summary)}</p><div class="featured-footer"><span>${entry.readingMinutes} ${hubText('min read', 'dk okuma')}</span><a href="${route(entry.path)}">${hubText('Read guide', 'Rehberi oku')}<span aria-hidden="true"> →</span></a></div></article>`;
+  }).join('')}</div></section>`;
+
+  const learningPathSteps = [
+    { num: '01', id: 'what-is-ai-memory', titleEn: 'What Is AI Memory?', titleTr: 'AI Memory Nedir?', descEn: 'Short vs long-term memory, persistence, and context limits.', descTr: 'Kısa ve uzun süreli hafıza, kalıcılık ve bağlam sınırları.' },
+    { num: '02', id: 'rag-vs-ai-memory', titleEn: 'RAG vs AI Memory', titleTr: 'RAG ve AI Memory Farkı', descEn: 'External corpus retrieval vs persistent mutable state.', descTr: 'Dış veri kümesi retrieval\'ı ile kalıcı durum arasındaki fark.' },
+    { num: '03', id: 'structured-vs-unstructured-memory', titleEn: 'Structured Memory', titleTr: 'Yapılandırılmış Hafıza', descEn: 'Text chunks vs assertions, relations, and typed facts.', descTr: 'Metin parçaları ile iddialar, ilişkiler ve tipli olgular.' },
+    { num: '04', id: 'evidence-aware-memory', titleEn: 'Evidence-Aware Memory', titleTr: 'Kanıt Odaklı Hafıza', descEn: 'Attaching source identity, evidence spans, and scopes.', descTr: 'Kaynak kimliğini, kanıt aralığını ve kapsamı bağlama.' }
+  ];
+
+  const pathHtml = `<section class="section learning-path-section" aria-labelledby="learning-path-title"><div class="section-heading"><div><p class="eyebrow">${hubText('NEW TO AI MEMORY?', 'AI MEMORY ALANINA YENİ MİSİNİZ?')}</p><h2 id="learning-path-title">${hubText('A sequenced learning curriculum.', 'Sıralı bir öğrenme müfredatı.')}</h2></div><p>${hubText('Follow this path to build an accurate mental model from first principles before inspecting architecture.', 'Mimariyi incelemeden önce ilk ilkelerden doğru bir zihinsel model kurmak için bu sırayı izleyin.')}</p></div><div class="learning-path-grid">${learningPathSteps.map((step) => {
+    const entry = hubEntries.get(step.id);
+    const title = isTr ? step.titleTr : step.titleEn;
+    const desc = isTr ? step.descTr : step.descEn;
+    const link = entry ? route(entry.path) : route('learn/');
+    return `<div class="learning-step-card"><span class="step-num">${hubText('Step', 'Adım')} ${step.num}</span><h3><a href="${link}">${escapeHtml(title)}</a></h3><p>${escapeHtml(desc)}</p></div>`;
+  }).join('')}</div><div class="learning-bridge"><div><strong>${hubText('Ready to see how these ideas become architecture?', 'Bu fikirlerin mimariye nasıl dönüştüğünü görmeye hazır mısınız?')}</strong><p>${hubText('Move from conceptual principles to MESA\'s verifiable four-lane implementation.', 'Kavramsal ilkelerden MESA\'nın doğrulanabilir dört hatlı uygulamasına geçin.')}</p></div><div class="learning-bridge-links"><a href="${route('how-it-works/')}">${hubText('How MESA Works', 'MESA Nasıl Çalışır')} →</a><a href="${route('mesa/')}">${hubText('MESA Architecture', 'MESA Mimarisi')} →</a><a href="${route('docs/')}">${hubText('Quickstart', 'Hızlı Başlangıç')} →</a></div></div></section>`;
+
+  const learnEntries = publishedEntries().filter(({ type }) => type === 'learn');
+  const categories = [
+    {
+      titleEn: 'Foundations',
+      titleTr: 'Temeller',
+      descEn: 'Core principles of state, memory boundaries, and representations in agent architectures.',
+      descTr: 'Ajan mimarilerinde durum, hafıza sınırları ve bilgi temsillerinin temel ilkeleri.',
+      filter: (entry) => entry.category === 'Foundations' || entry.category === 'Temeller'
+    },
+    {
+      titleEn: 'Memory & Retrieval',
+      titleTr: 'Hafıza & Geri Getirme',
+      descEn: 'Vector similarity, lexical BM25, graph traversals, and hybrid fusion mechanics.',
+      descTr: 'Vektör benzerliği, lexical BM25, graph gezinimleri ve hybrid birleştirme mekaniği.',
+      filter: (entry) => entry.category === 'Memory & Retrieval' || entry.category === 'Search & Retrieval' || entry.category === 'Hafıza & Geri Getirme'
+    },
+    {
+      titleEn: 'Evidence & Trust',
+      titleTr: 'Kanıt & Güven',
+      descEn: 'Provenance records, source anchoring, authorization scopes, and verifiable auditability.',
+      descTr: 'Provenance kayıtları, kaynak bağlama, yetkilendirme kapsamları ve denetlenebilirlik.',
+      filter: (entry) => entry.category === 'Evidence & Trust' || entry.category === 'Evidence' || entry.category === 'Kanıt & Güven'
+    }
+  ];
+
+  const categoriesHtml = `<section class="section categories-section" aria-labelledby="categories-title"><div class="section-heading"><div><p class="eyebrow">${hubText('EXPLORE BY TOPIC', 'KONULARA GÖRE KEŞFEDİN')}</p><h2 id="categories-title">${hubText('All educational articles.', 'Tüm eğitici makaleler.')}</h2></div><p>${hubText('Grounded technical pieces without marketing fluff or invented claims.', 'Pazarlama abartısı veya uydurma iddialar içermeyen teknik metinler.')}</p></div>${categories.map((cat) => {
+    const catEntries = learnEntries.filter(cat.filter);
+    if (!catEntries.length) return '';
+    return `<div class="category-cluster"><div class="category-cluster-header"><h3>${escapeHtml(isTr ? cat.titleTr : cat.titleEn)}</h3><p>${escapeHtml(isTr ? cat.descTr : cat.descEn)}</p></div><div class="publication-grid">${catEntries.map(hubCard).join('')}</div></div>`;
+  }).join('')}</section>`;
+
+  const topicsHtml = `<section class="section topic-section" aria-labelledby="topics-title"><div class="section-heading"><div><p class="eyebrow">${hubText('TOPIC CLUSTERS', 'KONU KÜMELERİ')}</p><h2 id="topics-title">${hubText('Connected knowledge taxonomy.', 'Bağlantılı bilgi sınıflandırması.')}</h2></div><p>${hubText('Connect concepts to practical guides, research protocols, and formal definitions.', 'Kavramları pratik rehberlere, araştırma protokollerine ve resmî tanımlara bağlayın.')}</p></div><div class="topic-grid">${hubData.topics.map((topic) => {
+    const related = topic.related.map((id) => hubEntries.get(id)).filter((entry) => entry && !entry.draft);
+    return `<article><h3>${escapeHtml(topic.labels[currentLanguage])}</h3><p>${escapeHtml(topic.descriptions[currentLanguage])}</p>${related.length ? `<ul>${related.map((entry) => `<li><a href="${route(entry.path)}">${escapeHtml(entry.locales[currentLanguage].title)}</a></li>`).join('')}</ul>` : `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</article>`;
+  }).join('')}</div></section>`;
+
+  const canonicalHtml = `<section class="section canonical-section" aria-labelledby="canonical-title"><div class="section-heading"><div><p class="eyebrow">${hubText('CANONICAL REFERENCES', 'RESMÎ REFERANSLAR')}</p><h2 id="canonical-title">${hubText('Explore MESA system specifications.', 'MESA sistem spesifikasyonlarını inceleyin.')}</h2></div><p>${hubText('Educational articles explain general concepts. Canonical pages document the concrete implementation.', 'Eğitici makaleler genel kavramları açıklar. Resmî sayfalar ise somut uygulamayı belgeler.')}</p></div><div class="canonical-resources-grid"><div class="canonical-resource-item"><span>${hubText('Architecture', 'Mimari')}</span><strong>MESA Core</strong><p>${hubText('Canonical SQLite store, LanceDB vector, and Kùzu graph projections.', 'Kanonik SQLite deposu, LanceDB vektör ve Kùzu graph projeksiyonları.')}</p><a href="${route('mesa/')}">${hubText('Inspect Core', 'Core\'u İncele')} →</a></div><div class="canonical-resource-item"><span>${hubText('Data Flow', 'Veri Akışı')}</span><strong>${hubText('How It Works', 'Nasıl Çalışır')}</strong><p>${hubText('End-to-end evidence admission, four-lane retrieval, and verification fixture.', 'Uçtan uca kanıt kabulü, dört hatlı retrieval ve doğrulama fixture\'ı.')}</p><a href="${route('how-it-works/')}">${hubText('Follow the flow', 'Akışı takip et')} →</a></div><div class="canonical-resource-item"><span>${hubText('Documentation', 'Belgeler')}</span><strong>${hubText('Documentation Hub', 'Belge Merkezi')}</strong><p>${hubText('Integration guides, API reference, MCP bridge, and setup instructions.', 'Entegrasyon rehberleri, API referansı, MCP köprüsü ve kurulum bilgileri.')}</p><a href="${route('docs/')}">${hubText('Open docs', 'Belgeleri aç')} →</a></div><div class="canonical-resource-item"><span>${hubText('Open Source', 'Açık Kaynak')}</span><strong>${hubText('GitHub Repository', 'GitHub Deposu')}</strong><p>${hubText('Inspect the MIT-licensed source code, test suites, and issue tracker.', 'MIT lisanslı kaynak kodu, test suitlerini ve issue takipçisini inceleyin.')}</p>${external(repos.core, hubText('View on GitHub', 'GitHub\'da gör'))}</div></div></section>`;
+
+  return `${featuredHtml}${pathHtml}${categoriesHtml}${topicsHtml}${canonicalHtml}`;
 }
 
 function renderHubIndex(section) {
@@ -490,7 +570,7 @@ function renderHubIndex(section) {
   if (section.id === 'resources') {
     body = `<section class="section resource-map" aria-labelledby="resource-map-title"><div class="section-heading"><div><p class="eyebrow">${hubText('CONNECTED PUBLISHING', 'BAĞLANTILI YAYIN')}</p><h2 id="resource-map-title">${hubText('Six surfaces. One knowledge graph.', 'Altı alan. Tek bilgi ağı.')}</h2></div><p>${hubText('Move from a concept to a practical workflow, research evidence, and the method behind it without losing context.', 'Bir kavramdan pratik iş akışına, araştırma kanıtına ve arkasındaki yönteme bağlamı kaybetmeden ilerleyin.')}</p></div><div class="resource-section-grid">${hubData.sections.filter(({ id }) => id !== 'resources').map((item) => { const copy = item.locales[currentLanguage]; return `<a href="${route(item.path)}"><span>${escapeHtml(copy.eyebrow)}</span><strong>${escapeHtml(copy.heading)}</strong><p>${escapeHtml(copy.intro)}</p><i aria-hidden="true">→</i></a>`; }).join('')}</div></section>`;
   } else if (section.id === 'learn') {
-    body = `<section class="section topic-section" aria-labelledby="topics-title"><div class="section-heading"><div><p class="eyebrow">${hubText('TOPIC CLUSTERS', 'KONU KÜMELERİ')}</p><h2 id="topics-title">${hubText('Choose a subject to build from.', 'Derinleşmek için bir konu seçin.')}</h2></div><p>${hubText('Empty clusters remain honest until reviewed content is published.', 'İncelenmiş içerik yayımlanana kadar boş kümeler dürüstçe boş kalır.')}</p></div><div class="topic-grid">${hubData.topics.map((topic) => { const related = topic.related.map((id) => hubEntries.get(id)).filter((entry) => entry && !entry.draft); return `<article><h3>${escapeHtml(topic.labels[currentLanguage])}</h3><p>${escapeHtml(topic.descriptions[currentLanguage])}</p>${related.length ? `<ul>${related.map((entry) => `<li><a href="${route(entry.path)}">${escapeHtml(entry.locales[currentLanguage].title)}</a></li>`).join('')}</ul>` : `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</article>`; }).join('')}</div></section>`;
+    body = renderLearnHubIndex();
   } else if (section.id === 'tools') {
     body = `<section class="section"><div class="tool-card-grid">${hubData.tools.map((tool) => { const copy = tool.locales[currentLanguage]; const available = tool.status === 'available' && tool.route; return `<article class="tool-card">${tool.icon ? `<span class="tool-icon" aria-hidden="true">${escapeHtml(tool.icon)}</span>` : ''}<span>${escapeHtml(tool.category)}</span><h2>${escapeHtml(copy.title)}</h2><p>${escapeHtml(copy.description)}</p>${available ? `<a href="${route(tool.route)}">${hubText('Open tool', 'Aracı aç')}<span aria-hidden="true"> →</span></a>` : `<strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong>`}</article>`; }).join('')}</div></section>`;
   } else {
@@ -503,18 +583,18 @@ function renderHubIndex(section) {
 }
 
 function renderHubBlock(block) {
-  if (block.kind === 'paragraph') return `<p>${escapeHtml(block.text)}</p>`;
-  if (block.kind === 'list') return `<ul>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
-  if (block.kind === 'numbered-list') return `<ol>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ol>`;
-  if (block.kind === 'checklist') return `<ul class="article-checklist">${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
-  if (['warning', 'callout', 'example'].includes(block.kind)) return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${escapeHtml(block.text)}</p></aside>`;
-  if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${escapeHtml(block.text)}</dd></dl>`;
-  if (block.kind === 'quote') return `<blockquote><p>${escapeHtml(block.text)}</p>${block.cite ? `<cite>${escapeHtml(block.cite)}</cite>` : ''}</blockquote>`;
+  if (block.kind === 'paragraph') return `<p>${renderFormattedText(block.text)}</p>`;
+  if (block.kind === 'list') return `<ul>${block.items.map((item) => `<li>${renderFormattedText(item)}</li>`).join('')}</ul>`;
+  if (block.kind === 'numbered-list') return `<ol>${block.items.map((item) => `<li>${renderFormattedText(item)}</li>`).join('')}</ol>`;
+  if (block.kind === 'checklist') return `<ul class="article-checklist">${block.items.map((item) => `<li>${renderFormattedText(item)}</li>`).join('')}</ul>`;
+  if (['warning', 'callout', 'example'].includes(block.kind)) return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${renderFormattedText(block.text)}</p></aside>`;
+  if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${renderFormattedText(block.text)}</dd></dl>`;
+  if (block.kind === 'quote') return `<blockquote><p>${renderFormattedText(block.text)}</p>${block.cite ? `<cite>${renderFormattedText(block.cite)}</cite>` : ''}</blockquote>`;
   if (block.kind === 'code') return `<pre class="article-code"><code>${escapeHtml(block.code)}</code></pre>`;
   if (block.kind === 'image') return `<figure><img src="${route(block.src)}" alt="${escapeHtml(block.alt)}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
   if (block.kind === 'diagram') return `<figure class="article-diagram" role="img" aria-label="${escapeHtml(block.alt)}"><ol>${block.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
   if (block.kind === 'references') return `<ol class="reference-list">${block.items.map((item) => `<li>${item.href ? external(item.href, escapeHtml(item.label)) : escapeHtml(item.label)}</li>`).join('')}</ol>`;
-  if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${escapeHtml(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${renderFormattedText(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   throw new Error(`Unsupported hub block type: ${block.kind}`);
 }
 
@@ -546,7 +626,10 @@ function renderHubEntry(entry) {
   const toc = `<nav class="article-toc" aria-label="${hubText('On this page', 'Bu sayfada')}"><strong>${hubText('On this page', 'Bu sayfada')}</strong><ol>${localized.sections.map((sectionItem) => `<li><a href="#${escapeHtml(sectionItem.id)}">${escapeHtml(sectionItem.title)}</a></li>`).join('')}</ol></nav>`;
   const sections = localized.sections.map((sectionItem) => `<section id="${escapeHtml(sectionItem.id)}" class="article-section"><h2>${escapeHtml(sectionItem.title)}<a class="heading-anchor" href="#${escapeHtml(sectionItem.id)}" aria-label="${hubText('Link to this section', 'Bu bölüme bağlantı')}" title="${hubText('Copy section link', 'Bölüm bağlantısını kopyala')}">#</a></h2>${sectionItem.blocks.map(renderHubBlock).join('')}</section>`).join('');
   const relatedHtml = `<section class="related-content" aria-labelledby="related-title"><p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p><h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2><div class="publication-grid">${related.map(hubCard).join('')}</div></section>`;
-  const productCta = `<aside class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></aside>`;
+  const customCta = entry.productCta?.locales?.[currentLanguage];
+  const productCta = customCta
+    ? `<aside class="contextual-cta"><div><p class="eyebrow">${escapeHtml(customCta.eyebrow)}</p><h2>${escapeHtml(customCta.heading)}</h2><p>${escapeHtml(customCta.description)}</p></div><a class="button secondary" href="${route(entry.productCta.href)}">${escapeHtml(customCta.button)}</a></aside>`
+    : `<aside class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></aside>`;
   const updated = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.updatedAt}T00:00:00Z`));
   return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Updated', 'Güncelleme')}</dt><dd><time datetime="${entry.updatedAt}">${updated}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<aside class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></aside>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
 }

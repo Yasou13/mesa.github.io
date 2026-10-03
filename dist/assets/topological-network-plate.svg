@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360" fill="none" role="presentation" aria-hidden="true">
+  <!-- Specimen border -->
+  <rect x="2" y="2" width="596" height="356" stroke="#25242b" stroke-width="1"/>
+  <rect x="7" y="7" width="586" height="346" stroke="#1c1b22" stroke-width="0.5"/>
+
+  <!-- Radial topological coordinate grid -->
+  <g transform="translate(300, 180)" stroke="#22202a" stroke-width="0.5">
+    <circle cx="0" cy="0" r="160" stroke-dasharray="2 4"/>
+    <circle cx="0" cy="0" r="110" stroke-dasharray="2 4"/>
+    <circle cx="0" cy="0" r="60" stroke-dasharray="2 4"/>
+    <line x1="-170" y1="0" x2="170" y2="0" stroke="#2d2b38"/>
+    <line x1="0" y1="-150" x2="0" y2="150" stroke="#2d2b38"/>
+  </g>
+
+  <!-- Multi-hop Network Edges (Background Graph) -->
+  <g stroke="#3a3748" stroke-width="0.75" opacity="0.6">
+    <line x1="120" y1="110" x2="220" y2="80"/>
+    <line x1="120" y1="110" x2="150" y2="220"/>
+    <line x1="220" y1="80" x2="330" y2="90"/>
+    <line x1="150" y1="220" x2="250" y2="260"/>
+    <line x1="250" y1="260" x2="380" y2="250"/>
+    <line x1="380" y1="250" x2="480" y2="200"/>
+    <line x1="330" y1="90" x2="450" y2="120"/>
+    <line x1="450" y1="120" x2="480" y2="200"/>
+  </g>
+
+  <!-- Active 2-Hop Traversal Path (Highlighted in Mineral & Copper) -->
+  <path d="M150 220 L280 170 L420 160" stroke="#72b7b2" stroke-width="2" opacity="0.9"/>
+  <path d="M280 170 L350 240" stroke="#b97852" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <!-- Network Nodes -->
+  <!-- Node A: Query Subject -->
+  <g transform="translate(150, 220)">
+    <circle cx="0" cy="0" r="14" fill="#0b0c0f" stroke="#72b7b2" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4" fill="#72b7b2"/>
+  </g>
+  <!-- Node B: Intermediate Entity (Bridge) -->
+  <g transform="translate(280, 170)">
+    <circle cx="0" cy="0" r="18" fill="#0b0c0f" stroke="#72b7b2" stroke-width="1.8"/>
+    <circle cx="0" cy="0" r="6" fill="#72b7b2"/>
+  </g>
+  <!-- Node C: Multi-hop Target Entity -->
+  <g transform="translate(420, 160)">
+    <circle cx="0" cy="0" r="16" fill="#0b0c0f" stroke="#7562a8" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="5" fill="#7562a8"/>
+  </g>
+  <!-- Node D: Scope Constraint / Authority -->
+  <g transform="translate(350, 240)">
+    <circle cx="0" cy="0" r="12" fill="#0b0c0f" stroke="#b97852" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="3" fill="#b97852"/>
+  </g>
+
+  <!-- Peripheral Context Nodes -->
+  <circle cx="120" cy="110" r="8" fill="#14131a" stroke="#484457" stroke-width="1"/>
+  <circle cx="220" cy="80" r="9" fill="#14131a" stroke="#484457" stroke-width="1"/>
+  <circle cx="330" cy="90" r="8" fill="#14131a" stroke="#484457" stroke-width="1"/>
+  <circle cx="250" cy="260" r="8" fill="#14131a" stroke="#484457" stroke-width="1"/>
+  <circle cx="380" cy="250" r="8" fill="#14131a" stroke="#484457" stroke-width="1"/>
+  <circle cx="450" cy="120" r="9" fill="#14131a" stroke="#484457" stroke-width="1"/>
+  <circle cx="480" cy="200" r="8" fill="#14131a" stroke="#484457" stroke-width="1"/>
+
+  <!-- Typography Annotations in Commit Mono -->
+  <g font-family="monospace" font-size="8" fill="#5c586c" letter-spacing="0.08em">
+    <text x="45" y="40">ANALYSIS SITUS · MULTI-HOP ENTITY RELATIONS</text>
+    <text x="75" y="245" fill="#72b7b2">HOP 0 (SUBJECT)</text>
+    <text x="235" y="145" fill="#72b7b2">HOP 1 (RELATION BRIDGE)</text>
+    <text x="420" y="135" fill="#7562a8">HOP 2 (TARGET CONTEXT)</text>
+    <text x="365" y="260" fill="#b97852">SCOPE BOUNDARY</text>
+    <text x="45" y="325">TOPOLOGICAL TRAVERSAL: k-HOP RESOLUTION WITHOUT GLOBAL DENSE SCAN</text>
+  </g>
+</svg>

@@ -76,6 +76,39 @@ In accordance with Section 13–16 of the Art Direction Specification:
 
 ---
 
+## 7. Provenance Lineage & Source Cataloging Plate
+- **File**: `dist/assets/provenance-lineage-plate.svg`
+- **Title**: *Arbor Scientiae & Catalogus Fontium* (Source Lineage & Archival Cataloging)
+- **Original Source / Artist**: Ramon Llull (c. 1232–1316) / Denis Diderot & Jean le Rond d'Alembert, *Système figuré des connoissances humaines* (1751)
+- **Institution / Archive**: Bibliothèque nationale de France / University of Barcelona Digital Archive (Public Domain)
+- **License**: Public Domain (historical encyclopedic engraving)
+- **Where Used**: Learn Hub (`/learn/what-is-provenance-in-ai/`, `/learn/what-is-evidence-aware-memory/`)
+- **Conceptual Purpose**: Visually conveys information derivation: an origin document span extracted and bound into a canonical, tamper-evident assertion.
+
+---
+
+## 8. Topological Network Plate
+- **File**: `dist/assets/topological-network-plate.svg`
+- **Title**: *Analysis Situs & Graphica Nodal* (Topological Node Graph & Multi-Hop Paths)
+- **Original Source / Artist**: Leonhard Euler (1707–1783), *Solutio problematis ad geometriam situs pertinentis* (1736, Commentarii Academiae Scientiarum Imperialis Petropolitanae)
+- **Institution / Archive**: Saint Petersburg Academy of Sciences / Euler Archive (Public Domain)
+- **License**: Public Domain (foundational paper in graph theory)
+- **Where Used**: Learn Hub (`/learn/why-graphs-matter-in-ai-memory/`)
+- **Conceptual Purpose**: Illustrates multi-hop relational path traversal between entities, demonstrating why relational queries can resolve context that flat similarity searches miss.
+
+---
+
+## 9. Taxonomic Classification Plate
+- **File**: `dist/assets/taxonomic-classification-plate.svg`
+- **Title**: *Systema Naturae & Dichotomia Cognitiva* (Structured Schema Taxonomy vs Fluid Text Chunks)
+- **Original Source / Artist**: Carl Linnaeus (1707–1778), *Systema Naturae* (1735) / Petrus Ramus (1515–1572)
+- **Institution / Archive**: National Library of Sweden / British Library (Public Domain)
+- **License**: Public Domain (historical scientific taxonomy)
+- **Where Used**: Learn Hub (`/learn/structured-vs-unstructured-memory/`)
+- **Conceptual Purpose**: Contrasts unstructured, diffuse text chunks against typed assertions with explicit entity bindings, evidence spans, and scope constraints.
+
+---
+
 ## Summary of Compliance
 - External Copyrighted Artworks Used: 0
 - Stock Images Used: 0

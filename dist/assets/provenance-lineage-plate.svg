@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360" fill="none" role="presentation" aria-hidden="true">
+  <!-- Specimen border -->
+  <rect x="2" y="2" width="596" height="356" stroke="#25242b" stroke-width="1"/>
+  <rect x="7" y="7" width="586" height="346" stroke="#1c1b22" stroke-width="0.5"/>
+  
+  <!-- Grid calibration axes -->
+  <line x1="40" y1="180" x2="560" y2="180" stroke="#363342" stroke-width="0.75" stroke-dasharray="2 3"/>
+  <line x1="120" y1="30" x2="120" y2="330" stroke="#2a2834" stroke-width="0.5" stroke-dasharray="2 3"/>
+  <line x1="280" y1="30" x2="280" y2="330" stroke="#2a2834" stroke-width="0.5" stroke-dasharray="2 3"/>
+  <line x1="440" y1="30" x2="440" y2="330" stroke="#2a2834" stroke-width="0.5" stroke-dasharray="2 3"/>
+
+  <!-- Provenance Lineage: Origin Root (Left) -->
+  <g transform="translate(100, 180)">
+    <rect x="-40" y="-55" width="80" height="110" rx="2" stroke="#7562a8" stroke-width="1.2" fill="#121118"/>
+    <line x1="-30" y1="-35" x2="10" y2="-35" stroke="#7562a8" stroke-width="1"/>
+    <line x1="-30" y1="-20" x2="25" y2="-20" stroke="#484257" stroke-width="0.75"/>
+    <line x1="-30" y1="-5" x2="20" y2="-5" stroke="#484257" stroke-width="0.75"/>
+    <!-- Highlighted Evidence Span in Source -->
+    <rect x="-30" y="8" width="55" height="16" fill="rgba(185, 120, 82, 0.2)" stroke="#b97852" stroke-width="0.75"/>
+    <line x1="-26" y1="16" x2="20" y2="16" stroke="#b97852" stroke-width="1"/>
+    <line x1="-30" y1="34" x2="15" y2="34" stroke="#484257" stroke-width="0.75"/>
+  </g>
+
+  <!-- Derivation Connector / Transform Pipeline -->
+  <path d="M145 196 C190 196 210 130 260 130" stroke="#b97852" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <path d="M145 196 C190 196 210 230 260 230" stroke="#72b7b2" stroke-width="1.2"/>
+  <circle cx="260" cy="130" r="3" fill="#b97852"/>
+  <circle cx="260" cy="230" r="3" fill="#72b7b2"/>
+
+  <!-- Extraction Intermediate Nodes -->
+  <g transform="translate(290, 130)">
+    <circle cx="0" cy="0" r="22" stroke="#b97852" stroke-width="1" fill="#181411"/>
+    <circle cx="0" cy="0" r="4" fill="#b97852"/>
+    <line x1="22" y1="0" x2="90" y2="30" stroke="#b97852" stroke-width="0.75"/>
+  </g>
+  <g transform="translate(290, 230)">
+    <circle cx="0" cy="0" r="22" stroke="#72b7b2" stroke-width="1" fill="#0e1717"/>
+    <circle cx="0" cy="0" r="4" fill="#72b7b2"/>
+    <line x1="22" y1="0" x2="90" y2="-30" stroke="#72b7b2" stroke-width="0.75"/>
+  </g>
+
+  <!-- Immutable Provenance Assertion (Right) -->
+  <g transform="translate(430, 180)">
+    <rect x="-45" y="-60" width="130" height="120" rx="3" stroke="#72b7b2" stroke-width="1.2" fill="#0e1717"/>
+    <rect x="-35" y="-48" width="110" height="20" fill="#162222"/>
+    <line x1="-30" y1="-38" x2="60" y2="-38" stroke="#72b7b2" stroke-width="1"/>
+    <!-- Provenance metadata binding lines -->
+    <line x1="-35" y1="-15" x2="50" y2="-15" stroke="#3d5755" stroke-width="0.75"/>
+    <line x1="-35" y1="0" x2="35" y2="0" stroke="#3d5755" stroke-width="0.75"/>
+    <line x1="-35" y1="15" x2="65" y2="15" stroke="#3d5755" stroke-width="0.75"/>
+    <!-- Tamper-evident seal badge -->
+    <circle cx="55" cy="40" r="10" stroke="#b97852" stroke-width="0.75" stroke-dasharray="2 2" fill="#1b1511"/>
+    <circle cx="55" cy="40" r="3" fill="#b97852"/>
+  </g>
+
+  <!-- Compass Rosette / Archival Marker -->
+  <g transform="translate(540, 50)" stroke="#363342" stroke-width="0.5">
+    <circle cx="0" cy="0" r="18" stroke-dasharray="2 2"/>
+    <path d="M0 -18 L0 18 M-18 0 L18 0"/>
+    <circle cx="0" cy="0" r="2" fill="#72b7b2"/>
+  </g>
+
+  <!-- Typography Annotations in Commit Mono -->
+  <g font-family="monospace" font-size="8" fill="#5c586c" letter-spacing="0.08em">
+    <text x="45" y="40">CATALOGUS FONTIUM · PROVENANCE DERIVATION</text>
+    <text x="60" y="310">SOURCE DOCUMENT (S₀)</text>
+    <text x="240" y="85" fill="#b97852">EXTRACTED EVIDENCE SPAN [c₁..c₂]</text>
+    <text x="240" y="275" fill="#72b7b2">CANONICAL HASH BINDING</text>
+    <text x="415" y="310">AUDITABLE ASSERTION (A*)</text>
+  </g>
+</svg>

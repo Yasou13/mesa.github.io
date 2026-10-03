@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360" fill="none" role="presentation" aria-hidden="true">
+  <!-- Specimen border -->
+  <rect x="2" y="2" width="596" height="356" stroke="#25242b" stroke-width="1"/>
+  <rect x="7" y="7" width="586" height="346" stroke="#1c1b22" stroke-width="0.5"/>
+
+  <!-- Dividing vertical axis: Unstructured (Left) vs Structured (Right) -->
+  <line x1="300" y1="25" x2="300" y2="335" stroke="#363342" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Left: Unstructured Text Chunks (Continuous fluid streams) -->
+  <g transform="translate(45, 65)">
+    <rect x="0" y="0" width="210" height="70" rx="3" stroke="#484457" stroke-width="1" fill="#111016"/>
+    <line x1="15" y1="20" x2="195" y2="20" stroke="#383445" stroke-width="2"/>
+    <line x1="15" y1="35" x2="165" y2="35" stroke="#383445" stroke-width="2"/>
+    <line x1="15" y1="50" x2="180" y2="50" stroke="#383445" stroke-width="2"/>
+
+    <rect x="0" y="85" width="210" height="70" rx="3" stroke="#484457" stroke-width="1" fill="#111016"/>
+    <line x1="15" y1="105" x2="175" y2="105" stroke="#383445" stroke-width="2"/>
+    <line x1="15" y1="120" x2="190" y2="120" stroke="#383445" stroke-width="2"/>
+    <line x1="15" y1="135" x2="140" y2="135" stroke="#383445" stroke-width="2"/>
+
+    <rect x="0" y="170" width="210" height="70" rx="3" stroke="#484457" stroke-width="1" fill="#111016"/>
+    <line x1="15" y1="190" x2="185" y2="190" stroke="#383445" stroke-width="2"/>
+    <line x1="15" y1="205" x2="170" y2="205" stroke="#383445" stroke-width="2"/>
+    <line x1="15" y1="220" x2="155" y2="220" stroke="#383445" stroke-width="2"/>
+
+    <!-- Diffuse fuzzy semantic boundary cloud -->
+    <path d="M-5 -5 Q105 -15 215 -5 Q225 125 215 245 Q105 255 -5 245 Z" stroke="#7562a8" stroke-width="0.75" stroke-dasharray="2 3" opacity="0.5"/>
+  </g>
+
+  <!-- Right: Structured Schema Taxonomy (Typed trees and explicit relations) -->
+  <g transform="translate(345, 65)">
+    <!-- Root Schema Node: Canonical Assertion -->
+    <rect x="35" y="0" width="150" height="32" rx="2" stroke="#72b7b2" stroke-width="1.2" fill="#0d1818"/>
+    <text x="50" y="20" font-family="monospace" font-size="9" fill="#72b7b2">ASSERTION [UUID]</text>
+
+    <!-- Branching Tree Lines -->
+    <path d="M110 32 L110 60 M110 60 L45 80 M110 60 L175 80" stroke="#72b7b2" stroke-width="1"/>
+
+    <!-- Subject Entity -->
+    <rect x="0" y="80" width="90" height="34" rx="2" stroke="#72b7b2" stroke-width="1" fill="#111a1a"/>
+    <text x="12" y="100" font-family="monospace" font-size="8" fill="#72b7b2">SUBJECT : ENTITY</text>
+
+    <!-- Object / Relation Target -->
+    <rect x="130" y="80" width="90" height="34" rx="2" stroke="#72b7b2" stroke-width="1" fill="#111a1a"/>
+    <text x="142" y="100" font-family="monospace" font-size="8" fill="#72b7b2">PREDICATE : REL</text>
+
+    <!-- Downward Lineage: Evidence Span & Scope Constraints -->
+    <path d="M45 114 L45 145 M175 114 L175 145" stroke="#b97852" stroke-width="1" stroke-dasharray="2 2"/>
+
+    <rect x="0" y="145" width="90" height="36" rx="2" stroke="#b97852" stroke-width="1" fill="#191411"/>
+    <text x="10" y="162" font-family="monospace" font-size="7.5" fill="#b97852">EVIDENCE SPAN</text>
+    <text x="10" y="173" font-family="monospace" font-size="7" fill="#6d5448">chars [312..480]</text>
+
+    <rect x="130" y="145" width="90" height="36" rx="2" stroke="#b97852" stroke-width="1" fill="#191411"/>
+    <text x="140" y="162" font-family="monospace" font-size="7.5" fill="#b97852">SCOPE BOUNDS</text>
+    <text x="140" y="173" font-family="monospace" font-size="7" fill="#6d5448">tenant · agent · t</text>
+  </g>
+
+  <!-- Typography Annotations in Commit Mono -->
+  <g font-family="monospace" font-size="8" fill="#5c586c" letter-spacing="0.08em">
+    <text x="45" y="40">DICHOTOMIA · SYSTEMA REPRESENTATIONIS</text>
+    <text x="65" y="325" fill="#7562a8">UNSTRUCTURED (FUZZY CHUNKS)</text>
+    <text x="365" y="325" fill="#72b7b2">STRUCTURED (TYPED ASSERTIONS)</text>
+  </g>
+</svg>
