@@ -2960,6 +2960,1090 @@
       ]
     },
     {
+      "id": "evidence-aware-memory",
+      "type": "learn",
+      "slug": "what-is-evidence-aware-memory",
+      "path": "learn/what-is-evidence-aware-memory/",
+      "publishedAt": "2026-10-01",
+      "updatedAt": "2026-10-01",
+      "author": "MESA contributors",
+      "tags": [
+        "evidence",
+        "provenance",
+        "ai-memory",
+        "auditability"
+      ],
+      "category": "Evidence & Trust",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 8,
+      "seo": {
+        "en": {
+          "title": "What Is Evidence-Aware Memory? — MESA Learn",
+          "description": "Understand evidence-aware memory: attaching source identity, exact evidence character spans, and authorization scopes to every agent assertion."
+        },
+        "tr": {
+          "title": "Kanıt Odaklı Hafıza (Evidence-Aware Memory) Nedir? — MESA Learn",
+          "description": "Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama."
+        }
+      },
+      "productCta": {
+        "href": "docs/",
+        "locales": {
+          "en": {
+            "eyebrow": "EVIDENCE IN PRACTICE",
+            "heading": "Read how MESA enforces evidence contracts.",
+            "description": "Inspect the developer documentation for asserting memories with source spans and tenant scopes.",
+            "button": "Open Documentation"
+          },
+          "tr": {
+            "eyebrow": "UYGULAMADA KANIT",
+            "heading": "MESA'nın kanıt sözleşmelerini nasıl uyguladığını okuyun.",
+            "description": "Kaynak aralıkları ve tenant kapsamlarıyla hafıza oluşturmak için geliştirici dokümantasyonunu inceleyin.",
+            "button": "Belgeleri Aç"
+          }
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "What is evidence-aware memory?",
+          "subtitle": "The conceptual foundation of attaching source identity, exact spans, and scope to agent knowledge",
+          "summary": "Evidence-aware memory is an architectural paradigm where an AI system cannot store or recall an assertion without binding it to verifiable source identity, evidence spans, and authorization scopes.",
+          "shortAnswer": "Traditional agent memory records what happened; evidence-aware memory records what happened, who said it, which source document proves it, what exact character span supports it, and what scope permits reading it.",
+          "sections": [
+            {
+              "id": "grounding-crisis",
+              "title": "The grounding crisis in autonomous agent memory",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Most conversational and agent frameworks treat memory as an unverified string store. An LLM observes a conversation, extracts a summary such as 'Customer has approved the revised contract terms', and persists that sentence in a database."
+                },
+                {
+                  "kind": "warning",
+                  "title": "The untraceable claim dilemma",
+                  "text": "Two weeks later, the agent takes irreversible actions based on that memory. When audited, neither human reviewers nor the system can determine whether that assertion was an authorized statement, a misinterpreted draft, an out-of-date assumption, or a model hallucination. The memory exists, but its grounding does not."
+                },
+                {
+                  "kind": "image",
+                  "src": "assets/provenance-lineage-plate.svg",
+                  "alt": "Archival plate illustrating source documents with highlighted evidence spans connecting through derivation pipelines into tamper-evident canonical assertions",
+                  "caption": "Evidence-aware memory: A claim derives legitimacy strictly from its lineage, source identity, and exact textual evidence span."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Evidence-Aware Memory",
+                  "text": "A memory architecture in which knowledge claims cannot exist as detached propositions; every admitted record is cryptographically or structurally bound to its origin source, exact supporting span, and scope boundaries."
+                }
+              ]
+            },
+            {
+              "id": "five-elements",
+              "title": "The five structural elements of evidence-aware memory",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "To be truly evidence-aware, every recalled memory must resolve five distinct questions:"
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "1. Statement (Proposition): The factual claim or relation (e.g. `(Matter 402, status, FILED)`).",
+                    "2. Source Identity: The immutable identifier, cryptographic hash, or official URI of the originating document or transaction.",
+                    "3. Evidence Span: The precise character offset or byte span `[c_start..c_end]` within the source document that contains the supporting text.",
+                    "4. Scope Bounds: The security perimeter defining which tenant, workspace, agent, and temporal window may access this assertion.",
+                    "5. Lifecycle State: The auditable status of the record (`COMMITTED`, `PENDING_REVIEW`, `SUPERSEDED`, or `RETRACTED`)."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "comparison-example",
+              "title": "Casual memory vs evidence-aware memory",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "The difference between casual string memory and evidence-aware memory is evident in how data is structured for execution:"
+                },
+                {
+                  "kind": "code",
+                  "code": "// Casual string memory (untraceable)\n{\n  \"memory\": \"Client requested arbitration in Zurich under ICC rules.\"\n}\n\n// Evidence-aware memory assertion (MESA paradigm)\n{\n  \"assertion_id\": \"asrt_88b14a2\",\n  \"statement\": {\n    \"subject\": \"Contract_2024_09\",\n    \"predicate\": \"arbitration_clause\",\n    \"object\": \"ICC_Zurich\"\n  },\n  \"source\": {\n    \"source_id\": \"doc_contract_v2.pdf\",\n    \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"evidence_span\": [4120, 4285],\n    \"quoted_text\": \"All disputes arising out of the present contract shall be finally settled under the Rules of Arbitration of the International Chamber of Commerce by one or more arbitrators in Zurich.\"\n  },\n  \"scope\": {\n    \"tenant_id\": \"tenant_legal_corp\",\n    \"workspace_id\": \"matter_402\",\n    \"valid_from\": \"2024-09-01T00:00:00Z\"\n  },\n  \"status\": \"COMMITTED\"\n}"
+                }
+              ]
+            },
+            {
+              "id": "high-stakes-compliance",
+              "title": "Why evidence awareness is mandatory in high-stakes domains",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "In legal, medical, regulatory, and financial operations, autonomous agents cannot ask users to 'trust' an answer. Every assertion must be auditable:"
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Domain",
+                    "Failure Mode of Casual Memory",
+                    "Evidence-Aware Safeguard"
+                  ],
+                  "rows": [
+                    [
+                      "Legal AI",
+                      "Citing non-existent precedents or superseded statutory articles",
+                      "Attaches official gazette edition, article number, and verification trace (see [MESA Law](law/))"
+                    ],
+                    [
+                      "Medical Decisions",
+                      "Relying on outdated patient dosage instructions",
+                      "Enforces temporal scope and links claim to exact clinician note timestamp"
+                    ],
+                    [
+                      "Financial Audits",
+                      "Conflating preliminary budget estimates with approved figures",
+                      "Requires signed transaction hashes and authorization scope verification"
+                    ],
+                    [
+                      "Multi-Tenant SaaS",
+                      "Leaking private company strategy across workspace boundaries",
+                      "Applies strict pre-retrieval tenant filtering to prevent cross-contamination"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "concept-vs-mesa",
+              "title": "General concept vs MESA's implementation",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "The general concept of evidence-aware memory can be implemented across various software stacks. What matters is the architectural commitment to grounding claims in verifiable sources before recall."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "In [MESA Core](mesa/), this commitment is enforced at the database level: SQLite acts as the canonical store for assertions, evidence spans, and scopes. Search projections ([LanceDB](mesa/) for vectors, [Kùzu](mesa/) for graphs) derive their entries strictly from these canonical assertions. Learn how evidence flows through the system in [How MESA Works](how-it-works/)."
+                }
+              ]
+            },
+            {
+              "id": "references",
+              "title": "References",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "W3C PROV-DM: The PROV Data Model (W3C Recommendation 2013)",
+                      "href": "https://www.w3.org/TR/prov-dm/"
+                    },
+                    {
+                      "label": "MESA Core Architecture Specification",
+                      "href": "https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md"
+                    },
+                    {
+                      "label": "What Is Provenance in AI Systems? — MESA Learn",
+                      "href": "learn/what-is-provenance-in-ai/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Kanıt odaklı hafıza (evidence-aware memory) nedir?",
+          "subtitle": "Ajan bilgisine kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamını bağlamanın kavramsal temeli",
+          "summary": "Kanıt odaklı hafıza; bir yapay zekâ sisteminin herhangi bir iddiayı doğrulanabilir kaynak kimliği, kanıt aralıkları ve yetkilendirme kapsamı olmaksızın saklayamayacağı veya geri çağıramayacağı bir mimari paradigmadır.",
+          "shortAnswer": "Geleneksel ajan hafızası ne olduğunu kaydeder; kanıt odaklı hafıza ise ne olduğunu, kimin söylediğini, hangi kaynak belgenin kanıtladığını, hangi karakter aralığının desteklediğini ve hangi kapsamın okumaya izin verdiğini kaydeder.",
+          "sections": [
+            {
+              "id": "grounding-crisis",
+              "title": "Otonom ajan hafızasında temellendirme krizi",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Çoğu konuşma ve ajan kütüphanesi hafızayı doğrulanmamış bir metin deposu olarak ele alır. LLM konuşmayı gözlemler, 'Müvekkil revize sözleşme şartlarını onayladı' gibi bir özet çıkarır ve bu cümleyi veritabanına kaydeder."
+                },
+                {
+                  "kind": "warning",
+                  "title": "İzlenemeyen iddia açmazı",
+                  "text": "İki hafta sonra ajan bu hafızaya dayanarak geri dönüşü olmayan işlemler yapar. Denetim yapıldığında ne insan inceleyiciler ne de sistem bu iddianın yetkili bir beyan mı, yanlış anlaşılmış bir taslak mı yoksa bir model halüsinasyonu mu olduğunu anlayabilir. Hafıza vardır ama kanıtı yoktur."
+                },
+                {
+                  "kind": "image",
+                  "src": "assets/provenance-lineage-plate.svg",
+                  "alt": "Kaynak belgelerdeki kanıt aralıklarının türetim boru hatlarından geçerek kanonik assertion'lara bağlandığını gösteren tarihi gravür plakası",
+                  "caption": "Kanıt odaklı hafıza: Bir iddia meşruiyetini yalnızca kaynak kimliğinden, kesin metin aralığından ve türetim izinden alır."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Kanıt Odaklı Hafıza (Evidence-Aware Memory)",
+                  "text": "Bilgi iddialarının bağlamsız cümleler olarak var olamayacağı; kabul edilen her kaydın köken kaynağına, kesin kanıt aralığına ve yetki sınırlarına yapısal olarak bağlandığı hafıza mimarisi."
+                }
+              ]
+            },
+            {
+              "id": "five-elements",
+              "title": "Kanıt odaklı hafızanın beş temel unsuru",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Gerçek anlamda kanıt odaklı olabilmesi için geri çağrılan her hafıza kaydı beş soruyu yanıtlamalıdır:"
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "1. İddia (Proposition): Olgusal iddia veya bağıntı (örneğin `(Dosya 402, durum, AÇILDI)`).",
+                    "2. Kaynak Kimliği (Source Identity): Belgenin veya işlemin değiştirilemez URI'si, kriptografik özeti (hash) veya resmî sicil kimliği.",
+                    "3. Kanıt Aralığı (Evidence Span): Kaynak belge içinde destekleyici metni barındıran kesin karakter veya bayt aralığı `[c_başlangıç..c_bitiş]`.",
+                    "4. Kapsam Sınırları (Scope Bounds): Bu iddiaya hangi tenant, workspace, ajan ve zaman penceresinin erişebileceğini tanımlayan güvenlik sınırı.",
+                    "5. Yaşam Döngüsü Durumu (Lifecycle State): Kaydın denetlenebilir durumu (`COMMITTED`, `PENDING_REVIEW`, `SUPERSEDED` veya `RETRACTED`)."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "comparison-example",
+              "title": "Gelişigüzel hafıza ile kanıt odaklı hafıza karşılaştırması",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Gelişigüzel metin hafızası ile kanıt odaklı hafıza arasındaki fark, verinin yürütüm için nasıl modellendiğinde açıkça görülür:"
+                },
+                {
+                  "kind": "code",
+                  "code": "// Gelişigüzel metin hafızası (kaynağı izlenemez)\n{\n  \"memory\": \"Müvekkil uyuşmazlığın Zürih'te ICC kurallarına göre çözülmesini istedi.\"\n}\n\n// Kanıt odaklı hafıza assertion'ı (MESA paradigması)\n{\n  \"assertion_id\": \"asrt_88b14a2\",\n  \"statement\": {\n    \"subject\": \"Sozlesme_2024_09\",\n    \"predicate\": \"tahkim_sarti\",\n    \"object\": \"ICC_Zurih\"\n  },\n  \"source\": {\n    \"source_id\": \"sozlesme_v2.pdf\",\n    \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"evidence_span\": [4120, 4285],\n    \"quoted_text\": \"İşbu sözleşmeden doğan tüm uyuşmazlıklar Milletlerarası Ticaret Odası Tahkim Kuralları uyarınca Zürih'te nihai olarak çözümlenecektir.\"\n  },\n  \"scope\": {\n    \"tenant_id\": \"tenant_hukuk\",\n    \"workspace_id\": \"dosya_402\",\n    \"valid_from\": \"2024-09-01T00:00:00Z\"\n  },\n  \"status\": \"COMMITTED\"\n}"
+                }
+              ]
+            },
+            {
+              "id": "high-stakes-compliance",
+              "title": "Kanıt odaklılık kritik alanlarda neden zorunludur?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Hukuk, tıp, regülasyon ve finans alanlarında otonom ajanlar kullanıcılardan 'kendilerine güvenmelerini' isteyemez. Her iddia denetlenebilir olmalıdır:"
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Alan",
+                    "Gelişigüzel Hafızanın Hata Modu",
+                    "Kanıt Odaklı Güvenlik Ağı"
+                  ],
+                  "rows": [
+                    [
+                      "Hukuk Yapay Zekâsı",
+                      "Var olmayan emsal kararlar veya mülga kanun maddeleri atfetme",
+                      "Resmî gazete sayısını, madde numarasını ve doğrulama izini bağlar (bkz. [MESA Law](law/))"
+                    ],
+                    [
+                      "Tıbbi Kararlar",
+                      "Eski hasta dozaj talimatlarına güvenme",
+                      "Zamansal kapsamı zorunlu kılar ve iddiayı hekim notunun tam zaman damgasına bağlar"
+                    ],
+                    [
+                      "Finansal Denetim",
+                      "Taslak bütçe tahminlerini onaylanmış rakamlarla karıştırma",
+                      "İmzalı işlem özetleri ve yetkilendirme kapsam doğrulaması gerektirir"
+                    ],
+                    [
+                      "Çoklu Şirket (SaaS)",
+                      "Şirket stratejisini workspace sınırlarının dışına sızdırma",
+                      "Çapraz veri sızıntısını önlemek için geri getirme öncesi sıkı tenant filtrelemesi uygular"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "concept-vs-mesa",
+              "title": "Genel kavram ile MESA'nın uygulaması",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Kanıt odaklı hafıza genel bir kavram olarak farklı yazılım mimarilerinde uygulanabilir. Önemli olan, iddiaları geri çağırmadan önce doğrulanabilir kaynaklara bağlama ilkesidir."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "[MESA Core](mesa/) içinde bu ilke veritabanı seviyesinde uygulanır: SQLite; assertion'ların, kanıt aralıklarının ve kapsamların kanonik deposudur. Arama projeksiyonları (vektörler için [LanceDB](mesa/), grafikler için [Kùzu](mesa/)) verilerini doğrudan bu kanonik kayıtlardan türetir. Kanıtın sistemde nasıl aktığını [MESA Nasıl Çalışır](how-it-works/) sayfasında görebilirsiniz."
+                }
+              ]
+            },
+            {
+              "id": "references",
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "W3C PROV-DM: The PROV Data Model (W3C Tavsiyesi 2013)",
+                      "href": "https://www.w3.org/TR/prov-dm/"
+                    },
+                    {
+                      "label": "MESA Core Mimari Spesifikasyonu",
+                      "href": "https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md"
+                    },
+                    {
+                      "label": "Yapay Zekâ Sistemlerinde Provenance Nedir? — MESA Learn",
+                      "href": "learn/what-is-provenance-in-ai/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "provenance-in-ai",
+        "what-is-ai-memory",
+        "memory-scope-and-authorization"
+      ]
+    },
+    {
+      "id": "provenance-in-ai",
+      "type": "learn",
+      "slug": "what-is-provenance-in-ai",
+      "path": "learn/what-is-provenance-in-ai/",
+      "publishedAt": "2026-10-01",
+      "updatedAt": "2026-10-01",
+      "author": "MESA contributors",
+      "tags": [
+        "provenance",
+        "auditability",
+        "evidence",
+        "trust"
+      ],
+      "category": "Evidence & Trust",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 7,
+      "seo": {
+        "en": {
+          "title": "What Is Provenance in AI Systems? — MESA Learn",
+          "description": "Learn what provenance means in AI systems: origin entity, transformation pipelines, exact evidence spans, and the distinction between citation and provenance."
+        },
+        "tr": {
+          "title": "Yapay Zekâ Sistemlerinde Provenance Nedir? — MESA Learn",
+          "description": "Yapay zekâda provenance'ın ne anlama geldiğini öğrenin: köken varlığı, dönüşüm süreçleri, kesin kanıt aralıkları ve atıf ile provenance arasındaki fark."
+        }
+      },
+      "productCta": {
+        "href": "law/",
+        "locales": {
+          "en": {
+            "eyebrow": "PROVENANCE IN PRACTICE",
+            "heading": "See how provenance operates in MESA Law.",
+            "description": "Explore how legal matter workflows enforce tamper-evident source tracking.",
+            "button": "Explore MESA Law"
+          },
+          "tr": {
+            "eyebrow": "UYGULAMADA PROVENANCE",
+            "heading": "Provenance yaklaşımının MESA Law uygulamasını görün.",
+            "description": "Hukuki dava iş akışlarının değiştirilemez kaynak takibini nasıl uyguladığını inceleyin.",
+            "button": "MESA Law’u İncele"
+          }
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "What is provenance in AI systems?",
+          "subtitle": "Distinguishing superficial citations from tamper-evident source records, spans, and transformation trails",
+          "summary": "Provenance is the complete, recorded history of information: its origin entity, ingestion transformations, supporting evidence spans, and authorization lifecycle.",
+          "shortAnswer": "A citation is a pointer; provenance is an auditable, tamper-evident lineage explaining where a fact originated, how it was processed, and why it is valid to use right now.",
+          "sections": [
+            {
+              "id": "citation-vs-provenance",
+              "title": "The crucial distinction: Citation vs provenance",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "In contemporary conversational AI, models frequently produce casual citations: footnotes like '[1]' pointing to a URL, or natural language remarks like 'According to recent court decisions...'. These are not provenance."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Citation is not verification",
+                  "text": "A citation tells you where someone claims to have found an answer. It does not prove the document exists, that the cited text was not fabricated, that the version used was current, or that the quotation supports the conclusion."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Provenance, by contrast, is a formal computer science and information theory concept: it is an immutable, inspectable audit trail tracking data from its origin through every processing step to its current use."
+                }
+              ]
+            },
+            {
+              "id": "w3c-prov-foundation",
+              "title": "The conceptual foundation: Entities, activities, and agents",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "The international standard for data provenance (W3C PROV-DM) defines three foundational building blocks:"
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "PROV Element",
+                    "Definition",
+                    "AI Memory Example"
+                  ],
+                  "rows": [
+                    [
+                      "Entity",
+                      "A physical, digital, or conceptual thing with distinct state",
+                      "The official PDF release of Resmî Gazete issue #32450"
+                    ],
+                    [
+                      "Activity",
+                      "An action that creates, transforms, or uses entities",
+                      "Document parsing, canonical JSONL extraction, chunk embedding"
+                    ],
+                    [
+                      "Agent",
+                      "An actor bearing responsibility for an activity",
+                      "The ingestion pipeline service, a verified human reviewer, an AI model"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "diagram",
+                  "alt": "W3C PROV diagram: Entity derived from Entity via Activity associated with Agent",
+                  "steps": [
+                    "Origin Document (Entity)",
+                    "Extraction & Chunking (Activity)",
+                    "Admitted Assertion (Derived Entity)",
+                    "Review & Signature (Agent)"
+                  ],
+                  "caption": "The W3C PROV-DM model: Information derivation is modeled as explicit relationships between entities, activities, and agents."
+                }
+              ]
+            },
+            {
+              "id": "components-of-provenance",
+              "title": "What makes a complete AI provenance record?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "An audit-ready provenance record in a reliable AI system includes seven mandatory attributes:"
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "1. Origin Identity: Stable URI, official registration identifier, or content-addressable hash (SHA-256).",
+                    "2. Exact Evidence Span: Character start and end offsets `[start..end]` anchoring the exact supporting passage.",
+                    "3. Temporal Snapshot: Timestamp of when the source was published, retrieved, and parsed.",
+                    "4. Pipeline Version: Exact Git commit hash or Docker image tag of the software that performed extraction.",
+                    "5. Model Identifier: Pinned model ID and version (e.g. `text-embedding-3-small@v1`) if embeddings or LLMs were used.",
+                    "6. Authorization Scope: Tenant and workspace bounds that define who is legally allowed to inspect or use this fact.",
+                    "7. Invalidation Link: If superseded, a pointer to the newer authority that replaced this record."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "defense-against-drift",
+              "title": "Why provenance protects against model drift and hallucinations",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Provenance is not merely regulatory overhead; it is a powerful technical safeguard in autonomous systems:"
+                },
+                {
+                  "kind": "list",
+                  "items": [
+                    "Automated Entailment Checking: A guardrail model can fetch the exact evidence span from the source and verify that the LLM's generated response is mathematically entailed by the source passage.",
+                    "Cascade Invalidation: When a legal statute or API document is amended, the system uses provenance graphs to immediately invalidate all downstream memory assertions that depended on that source.",
+                    "Deterministic Debugging: When an agent produces an unexpected answer, developers can trace every input assertion back to the exact byte offset in the source document."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "mesa-provenance",
+              "title": "Provenance in the MESA ecosystem",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "In MESA, provenance is treated as an architectural invariant across repositories:"
+                },
+                {
+                  "kind": "list",
+                  "items": [
+                    "In [MESA Data](data/), raw official Turkish legal sources (PDF and HTML) are preserved as immutable byte bedrock, with character spans mapped into canonical JSONL.",
+                    "In [MESA Core](mesa/), every memory retrieval returns the source document hash and character span alongside the assertion.",
+                    "In [MESA Law](law/), lawyers can click any AI recommendation to highlight the exact authoritative passage in the official gazette."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "references",
+              "title": "References and standards",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Moreau & Missier (2013) — W3C PROV-DM: The PROV Data Model",
+                      "href": "https://www.w3.org/TR/prov-dm/"
+                    },
+                    {
+                      "label": "Buneman et al. (2001) — Why and Where: A Characterization of Data Provenance (ICDT '01)",
+                      "href": "https://link.springer.com/chapter/10.1007/3-540-44503-X_20"
+                    },
+                    {
+                      "label": "Provenance Definition — MESA Glossary",
+                      "href": "glossary/provenance/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Yapay zekâ sistemlerinde provenance nedir?",
+          "subtitle": "Yüzeysel atıflar ile değiştirilemez kaynak kayıtları, kanıt aralıkları ve dönüşüm izlerinin ayırt edilmesi",
+          "summary": "Provenance, bilginin eksiksiz ve kaydedilmiş geçmişidir: köken varlığı, ingestion dönüşümleri, destekleyici kanıt aralıkları ve yetkilendirme yaşam döngüsü.",
+          "shortAnswer": "Atıf bir işarettir; provenance ise bir olgunun nereden kaynaklandığını, nasıl işlendiğini ve şu anda kullanılmasının neden geçerli olduğunu açıklayan denetlenebilir bir köken çizgisidir.",
+          "sections": [
+            {
+              "id": "citation-vs-provenance",
+              "title": "Kritik ayrım: Atıf ile provenance arasındaki fark",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Günümüz üretken yapay zekâ uygulamalarında modeller sık sık gelişigüzel atıflar üretir: bir URL'ye işaret eden '[1]' dipnotları veya 'Yargıtay kararlarına göre...' gibi serbest dilli ifadeler. Bunlar provenance değildir."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Atıf doğrulama değildir",
+                  "text": "Bir atıf yalnızca bir cevabın nerede bulunduğu iddiasını taşır. Belgenin gerçekten var olduğunu, alıntının uydurulmadığını, kullanılan sürümün güncel olduğunu veya alıntının varılan sonucu desteklediğini kanıtlamaz."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Buna karşılık provenance (kaynak izi), bilgisayar biliminde biçimsel bir kavramdır: veriyi kökeninden başlayarak her işleme adımından geçip mevcut kullanımına kadar takip eden değiştirilemez, incelenebilir bir denetim izidir."
+                }
+              ]
+            },
+            {
+              "id": "w3c-prov-foundation",
+              "title": "Kavramsal temel: Varlıklar, faaliyetler ve aktörler",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Veri provenance'ı için uluslararası standart olan W3C PROV-DM, üç temel yapı taşı tanımlar:"
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "PROV Unsuru",
+                    "Tanım",
+                    "AI Hafıza Örneği"
+                  ],
+                  "rows": [
+                    [
+                      "Varlık (Entity)",
+                      "Belirgin bir duruma sahip fiziksel, dijital veya kavramsal nesne",
+                      "Resmî Gazete 32450 sayılı nüshasının orijinal PDF dosyası"
+                    ],
+                    [
+                      "Faaliyet (Activity)",
+                      "Varlıkları oluşturan, dönüştüren veya kullanan eylem",
+                      "Belge ayrıştırma, kanonik JSONL çıkarma, parça embedding'i"
+                    ],
+                    [
+                      "Aktör (Agent)",
+                      "Bir faaliyetten sorumlu olan kişi, sistem veya model",
+                      "Ingestion servisi, onaylayan hukukçu reviewer, yapay zekâ modeli"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "diagram",
+                  "alt": "W3C PROV şeması: Faaliyet aracılığıyla Varlıktan türetilen ve Aktör ile ilişkilendirilen Varlık",
+                  "steps": [
+                    "Kaynak Belge (Varlık)",
+                    "Ayrıştırma ve Çıkarım (Faaliyet)",
+                    "Kabul Edilen İddia (Türetilmiş Varlık)",
+                    "İnceleme ve Onay (Aktör)"
+                  ],
+                  "caption": "W3C PROV-DM modeli: Bilgi türetimi, varlıklar, faaliyetler ve aktörler arasındaki açık ilişkiler olarak modellenir."
+                }
+              ]
+            },
+            {
+              "id": "components-of-provenance",
+              "title": "Eksiksiz bir yapay zekâ provenance kaydı neleri içerir?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Güvenilir bir yapay zekâ sisteminde denetime hazır bir provenance kaydı yedi zorunlu nitelik taşır:"
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "1. Köken Kimliği: Kararlı URL, resmî sicil kimliği veya kriptografik içerik özeti (SHA-256).",
+                    "2. Kesin Kanıt Aralığı: Destekleyici metin bölümünü sabitleyen karakter başlangıç ve bitiş aralıkları `[başlangıç..bitiş]`.",
+                    "3. Zamansal Anlık Görüntü: Kaynağın yayımlandığı, çekildiği ve işlendiği zaman damgaları.",
+                    "4. Pipeline Sürümü: Çıkarımı yürüten yazılımın tam Git commit hash'i veya sürüm etiketi.",
+                    "5. Model Tanımlayıcısı: Vektörleştirme veya çıkarımda kullanılan modelin sabitlenmiş sürümü (örneğin `text-embedding-3-small@v1`).",
+                    "6. Yetkilendirme Kapsamı: Bu veriyi inceleme veya kullanma yetkisine sahip tenant ve workspace sınırları.",
+                    "7. Geçersiz Kılma Bağlantısı: Mevzuat veya olgu değiştiğinde bu kaydın yerine geçen yeni otoriteye işaret eden bağlantı."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "defense-against-drift",
+              "title": "Provenance model sapmasına ve halüsinasyona karşı nasıl korur?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Provenance yalnızca mevzuat yükümlülüğü değil; otonom sistemlerde güçlü bir teknik koruma kalkanıdır:"
+                },
+                {
+                  "kind": "list",
+                  "items": [
+                    "Otomatik Doğrulama (Entailment Check): Bir denetim modeli, üretilen cevabın kaynak belgedeki kanıt aralığı tarafından matematiksel olarak desteklendiğini kullanıcıya sunmadan önce kontrol edebilir.",
+                    "Kademeli Geçersiz Kılma: Bir kanun maddesi değiştiğinde, sistem provenance grafiğini kullanarak o maddeye dayanan tüm hafıza iddialarını anında geçersiz kılabilir.",
+                    "Deterministik Hata Ayıklama: Bir ajan beklenmedik bir cevap ürettiğinde, mühendisler her girdi assertion'ını kaynak belgedeki tam bayt aralığına kadar takip edebilir."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "mesa-provenance",
+              "title": "MESA ekosisteminde provenance",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA projesinde provenance, tüm depolar arasında mimari bir ilke olarak uygulanır:"
+                },
+                {
+                  "kind": "list",
+                  "items": [
+                    "[MESA Data](data/) içinde resmî hukuk kaynakları (PDF ve HTML) değiştirilemez bayt temeli olarak saklanır ve karakter aralıkları kanonik JSONL kayıtlarına işlenir.",
+                    "[MESA Core](mesa/) içinde her hafıza sorgusu, assertion ile birlikte kaynak belge özetini ve kanıt aralığını döndürür.",
+                    "[MESA Law](law/) içinde avukatlar, yapay zekânın sunduğu her tespiti tıklayarak Resmî Gazete'deki orijinal kanıt metnini anında inceleyebilir."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "references",
+              "title": "Kaynaklar ve standartlar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Moreau & Missier (2013) — W3C PROV-DM: The PROV Data Model",
+                      "href": "https://www.w3.org/TR/prov-dm/"
+                    },
+                    {
+                      "label": "Buneman vd. (2001) — Why and Where: A Characterization of Data Provenance (ICDT '01)",
+                      "href": "https://link.springer.com/chapter/10.1007/3-540-44503-X_20"
+                    },
+                    {
+                      "label": "Provenance Tanımı — MESA Sözlüğü",
+                      "href": "glossary/provenance/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "evidence-aware-memory",
+        "provenance",
+        "verify-ai-yargitay"
+      ]
+    },
+    {
+      "id": "memory-scope-and-authorization",
+      "type": "learn",
+      "slug": "memory-scope-and-authorization",
+      "path": "learn/memory-scope-and-authorization/",
+      "publishedAt": "2026-10-01",
+      "updatedAt": "2026-10-01",
+      "author": "MESA contributors",
+      "tags": [
+        "authorization",
+        "multi-agent",
+        "security",
+        "scope",
+        "tenancy"
+      ],
+      "category": "Evidence & Trust",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 8,
+      "seo": {
+        "en": {
+          "title": "Memory Scope and Authorization in Multi-Agent Systems — MESA Learn",
+          "description": "Understand multi-tenant isolation, workspace perimeters, agent privacy, and why authorization must be enforced prior to retrieval fusion in AI memory."
+        },
+        "tr": {
+          "title": "Çok Ajanlı Sistemlerde Hafıza Kapsamı ve Yetkilendirme — MESA Learn",
+          "description": "Çok kiracılı (multi-tenant) izolasyonu, workspace sınırlarını, ajan gizliliğini ve yetkilendirmenin neden retrieval birleşiminden önce uygulanması gerektiğini anlayın."
+        }
+      },
+      "productCta": {
+        "href": "mesa/",
+        "locales": {
+          "en": {
+            "eyebrow": "SECURITY ARCHITECTURE",
+            "heading": "Inspect MESA's pre-fusion authorization filters.",
+            "description": "See how dataset, tenant, workspace, and agent bounds are enforced before search execution.",
+            "button": "Inspect MESA Core"
+          },
+          "tr": {
+            "eyebrow": "GÜVENLİK MİMARİSİ",
+            "heading": "MESA'nın birleşim öncesi yetkilendirme filtrelerini inceleyin.",
+            "description": "Arama yürütülmeden önce dataset, tenant, workspace ve ajan sınırlarının nasıl uygulandığını görün.",
+            "button": "MESA Core'u İncele"
+          }
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "Memory scope and authorization in multi-agent systems",
+          "subtitle": "Why security, tenant boundaries, and access controls must be enforced before retrieval fusion",
+          "summary": "Multi-agent systems require rigorous memory scoping across tenants, workspaces, agents, and temporal windows to prevent data leakage and cross-context contamination.",
+          "shortAnswer": "Authorization in agent memory cannot be an afterthought: scopes must be validated before vector or keyword retrieval runs, ensuring agents never recall data outside their authorized perimeter.",
+          "sections": [
+            {
+              "id": "leakage-problem",
+              "title": "The multi-agent data leakage problem",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "When multiple agents collaborate in enterprise environments, they share data infrastructure. If memory lacks explicit boundary enforcement, semantic search becomes a massive security vulnerability."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Semantic search has no concept of confidentiality",
+                  "text": "A query like 'What were the executive compensation terms discussed last week?' will retrieve relevant records strictly based on cosine similarity. Dense embeddings do not understand ethical walls, organizational hierarchies, or tenant boundaries."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Without boundary enforcement, an agent assisting a marketing contractor could inadvertently retrieve confidential acquisition strategies stored by an executive agent in the same underlying database."
+                }
+              ]
+            },
+            {
+              "id": "dimensions-of-scope",
+              "title": "The six dimensions of memory scoping",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "In production memory engines, security is modeled along six orthogonal dimensions:"
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Scope Dimension",
+                    "Boundary Type",
+                    "Example",
+                    "Enforcement Role"
+                  ],
+                  "rows": [
+                    [
+                      "Tenant ID",
+                      "Organizational isolation",
+                      "Enterprise Account A vs Account B",
+                      "Absolute isolation: zero cross-tenant query execution"
+                    ],
+                    [
+                      "Workspace ID",
+                      "Project / Team perimeter",
+                      "Matter 402 vs Matter 510",
+                      "Controls which projects or client files an agent can read"
+                    ],
+                    [
+                      "Agent ID",
+                      "Private scratchpad",
+                      "ResearchAgent vs ReviewAgent",
+                      "Allows agents to maintain private working memory before sharing"
+                    ],
+                    [
+                      "Session ID",
+                      "Ephemeral lifecycle",
+                      "Interactive conversation turn",
+                      "Isolates temporary conversation state from durable memory"
+                    ],
+                    [
+                      "Temporal Window",
+                      "Validity duration",
+                      "`valid_from` to `valid_until`",
+                      "Excludes expired, preliminary, or superseded assertions"
+                    ],
+                    [
+                      "Jurisdiction",
+                      "Regulatory boundary",
+                      "TR vs EU data boundary",
+                      "Ensures compliance with local data sovereignty mandates"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "pre-filtering-vs-post-filtering",
+              "title": "Why pre-filtering is mathematically mandatory",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "A common mistake in agent development is post-filtering: querying the vector database for top-k results globally, and then discarding unauthorized results using an `if` statement."
+                },
+                {
+                  "kind": "diagram",
+                  "alt": "Diagram contrasting flawed Post-Filtering (which causes top-k starvation) with correct Pre-Filtering (which searches strictly within the authorized partition)",
+                  "steps": [
+                    "Flawed Post-Filter: Global Search -> Top 10 from Tenant B -> Filtered Out -> Zero Results returned to Tenant A",
+                    "Correct Pre-Filter: Scope Filter (Tenant A) -> Scoped Vector Scan -> 10 relevant results returned to Tenant A"
+                  ],
+                  "caption": "Post-filtering causes result starvation; pre-filtering guarantees search executes exclusively within authorized partitions."
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "Top-k Starvation: If the top 20 global vector matches belong to another tenant, post-filtering strips them all out, returning an empty list to the user even if dozens of valid records exist at ranks 21–50.",
+                    "Performance Overhead: Calculating vector distances over millions of unauthorized rows wastes GPU and CPU cycles.",
+                    "Data Leakage Timing: Timing and cache side-channels can leak information when global indexes process unauthorized candidates."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "scoped-collaboration",
+              "title": "Scoped collaboration between autonomous agents",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Multi-agent workflows require nuanced permission models where agents share common workspace context while retaining private working memory:"
+                },
+                {
+                  "kind": "example",
+                  "title": "Collaborative agent workflow",
+                  "text": "Agent A (Legal Researcher) writes assertions to `workspace:matter_104` with public visibility. Agent B (Partner Reviewer) reads workspace assertions, conducts a confidential fee audit, and writes assertions to `agent:reviewer_private`. When Agent A queries memory, it sees only the public matter assertions, while Agent B sees both."
+                }
+              ]
+            },
+            {
+              "id": "mesa-scope-architecture",
+              "title": "How MESA enforces memory authorization",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "In [MESA Core](mesa/), scope is not an optional tag: every memory table schema includes required `dataset_id`, `tenant_id`, `agent_id`, and temporal boundary columns."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Retrieval routers apply SQL `WHERE` clauses and vector metadata partition filters *before* candidate generation begins. Furthermore, MESA supports Profile B security certification gates, ensuring that memory boundaries are tamper-evident and fail closed. Learn more in the [MESA Core Documentation](mesa/)."
+                }
+              ]
+            },
+            {
+              "id": "references",
+              "title": "References",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Sandhu et al. (1996) — Role-Based Access Control Models (IEEE Computer)",
+                      "href": "https://ieeexplore.ieee.org/document/485845"
+                    },
+                    {
+                      "label": "Saltzer & Schroeder (1975) — The Protection of Information in Computer Systems",
+                      "href": "https://www.cs.virginia.edu/~evans/cs551/saltzer/"
+                    },
+                    {
+                      "label": "MESA Evaluation & Security Gates",
+                      "href": "https://mesamemory.dev/evaluation/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Çok ajanlı sistemlerde hafıza kapsamı ve yetkilendirme",
+          "subtitle": "Güvenlik, kiracı (tenant) sınırları ve erişim denetimlerinin neden retrieval birleşiminden önce uygulanması gerektiği",
+          "summary": "Çok ajanlı sistemler; veri sızıntısını ve bağlam kirlenmesini önlemek için kiracılar, çalışma alanları, ajanlar ve zaman pencereleri arasında titiz bir hafıza kapsamı gerektirir.",
+          "shortAnswer": "Ajan hafızasında yetkilendirme sonradan düşünülen bir yama olamaz: kapsamlar vektör veya kelime araması çalıştırılmadan önce doğrulanmalı, ajanların yetki sınırları dışındaki verilere erişmesi engellenmelidir.",
+          "sections": [
+            {
+              "id": "leakage-problem",
+              "title": "Çok ajanlı sistemlerde veri sızıntısı sorunu",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Kurumsal ortamlarda birden fazla ajan işbirliği yaptığında ortak veri altyapısını paylaşır. Hafıza belirgin sınır denetimlerine sahip değilse, anlamsal arama devasa bir güvenlik açığına dönüşür."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Anlamsal aramanın gizlilik kavramı yoktur",
+                  "text": "'Geçen hafta konuşulan yönetici tazminat şartları nelerdi?' gibi bir sorgu, sonuçları yalnızca kosinüs benzerliğine göre geri getirir. Dense embedding'ler şirket içi bilgi duvarlarını, organizasyon hiyerarşisini veya kiracı (tenant) sınırlarını tanımaz."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Sınır denetimi olmadan, bir pazarlama yüklenicisine yardımcı olan ajan, aynı veritabanında üst düzey bir ajanın sakladığı gizli şirket satın alma stratejilerini yanlışlıkla geri çağırabilir."
+                }
+              ]
+            },
+            {
+              "id": "dimensions-of-scope",
+              "title": "Hafıza kapsamının altı boyutu",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Üretim sınıfı hafıza motorlarında güvenlik altı bağımsız eksende modellenir:"
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Kapsam Boyutu",
+                    "Sınır Türü",
+                    "Örnek",
+                    "Uygulama Rolü"
+                  ],
+                  "rows": [
+                    [
+                      "Tenant ID",
+                      "Kurumsal izolasyon",
+                      "Kurumsal Hesap A ile Hesap B",
+                      "Mutlak izolasyon: kiracılar arası sorgu yürütümü sıfırdır"
+                    ],
+                    [
+                      "Workspace ID",
+                      "Proje / Ekip sınırı",
+                      "Dosya 402 ile Dosya 510",
+                      "Ajanın hangi proje veya müvekkil dosyalarını okuyabileceğini belirler"
+                    ],
+                    [
+                      "Agent ID",
+                      "Özel scratchpad",
+                      "AraştırmaAjanı ile DenetimAjanı",
+                      "Ajanların paylaşmadan önce özel çalışma hafızası tutmasını sağlar"
+                    ],
+                    [
+                      "Session ID",
+                      "Oturum yaşam döngüsü",
+                      "Canlı konuşma turu",
+                      "Geçici konuşma durumunu kalıcı hafızadan izole eder"
+                    ],
+                    [
+                      "Zaman Penceresi",
+                      "Geçerlilik süresi",
+                      "`valid_from` ile `valid_until`",
+                      "Süresi dolmuş, taslak veya yürürlükten kalkmış iddiaları dışlar"
+                    ],
+                    [
+                      "Yargı Yetkisi",
+                      "Mevzuat sınırı",
+                      "TR ile AB veri sınırı",
+                      "Yerel veri egemenliği kurallarına uyumu güvenceye alır"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "pre-filtering-vs-post-filtering",
+              "title": "Ön filtreleme neden matematiksel olarak zorunludur?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Ajan geliştirmede sıkça yapılan bir hata sonradan filtrelemedir (post-filtering): vektör veritabanını genel olarak sorgulayıp ilk k sonucu almak, ardından yetkisiz olanları bir `if` koşuluyla ayıklamak."
+                },
+                {
+                  "kind": "diagram",
+                  "alt": "Sonradan Filtreleme (top-k açlığına yol açan) ile Doğru Ön Filtrelemeyi (yalnızca yetkili bölmede arama yapan) karşılaştıran şema",
+                  "steps": [
+                    "Hatalı Sonradan Filtreleme: Genel Arama -> Tenant B'den ilk 10 sonuç -> Ayıklandı -> Tenant A'ya sıfır sonuç döndü",
+                    "Doğru Ön Filtreleme: Kapsam Filtresi (Tenant A) -> Kapsamlı Vektör Taraması -> Tenant A'ya 10 ilgili sonuç döndü"
+                  ],
+                  "caption": "Sonradan filtreleme sonuç açlığına yol açar; ön filtreleme aramanın yalnızca yetkili bölümlerde çalışmasını garanti eder."
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "Top-k Açlığı: Genel vektör eşleşmelerinin ilk 20'si başka bir kiracıya aitse, sonradan filtreleme hepsini eler; sistemde 21-50. sıralarda onlarca geçerli kayıt olmasına rağmen kullanıcıya boş liste döner.",
+                    "İşlem Maliyeti: Milyonlarca yetkisiz satır üzerinde vektör mesafesi hesaplamak GPU ve CPU kaynaklarını israf eder.",
+                    "Veri Sızıntısı Riski: Genel indekslerin yetkisiz adayları işlemesi zamanlama ve önbellek yan kanalları üzerinden bilgi sızdırabilir."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "scoped-collaboration",
+              "title": "Otonom ajanlar arasında kapsamlı işbirliği",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Çok ajanlı iş akışları, ajanların ortak bir çalışma alanı bağlamını paylaşırken özel hafızalarını koruyabildiği incelikli bir izin modeli gerektirir:"
+                },
+                {
+                  "kind": "example",
+                  "title": "İşbirlikçi ajan senaryosu",
+                  "text": "Ajan A (Araştırmacı) `workspace:dosya_104` kapsamına herkese açık iddialar yazar. Ajan B (Denetçi) bu iddiaları okur, gizli bir ücret denetimi yapar ve `agent:denetci_ozel` kapsamına yazar. Ajan A hafızayı sorguladığında yalnızca genel iddiaları görürken, Ajan B her iki katmanı da görebilir."
+                }
+              ]
+            },
+            {
+              "id": "mesa-scope-architecture",
+              "title": "MESA hafıza yetkilendirmesini nasıl uygular?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "[MESA Core](mesa/) içinde kapsam isteğe bağlı bir etiket değildir: her hafıza tablosu şeması zorunlu `dataset_id`, `tenant_id`, `agent_id` ve zamansal sınır sütunlarını içerir."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Retrieval router'ları, aday üretimi başlamadan *önce* SQL `WHERE` koşullarını ve vektör metaveri bölüm filtrelerini uygular. Ayrıca MESA, Profile B güvenlik sertifikasyon kapılarını destekleyerek hafıza sınırlarının kurcalamaya karşı korumalı olmasını ve hata durumunda kapanmasını (fail-closed) sağlar. Detayları [MESA Core Dokümantasyonu](mesa/) sayfasında bulabilirsiniz."
+                }
+              ]
+            },
+            {
+              "id": "references",
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Sandhu vd. (1996) — Role-Based Access Control Models (IEEE Computer)",
+                      "href": "https://ieeexplore.ieee.org/document/485845"
+                    },
+                    {
+                      "label": "Saltzer & Schroeder (1975) — The Protection of Information in Computer Systems",
+                      "href": "https://www.cs.virginia.edu/~evans/cs551/saltzer/"
+                    },
+                    {
+                      "label": "MESA Değerlendirme ve Güvenlik Kapıları",
+                      "href": "https://mesamemory.dev/evaluation/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "evidence-aware-memory",
+        "what-is-ai-memory",
+        "hybrid-retrieval"
+      ]
+    },
+    {
       "id": "keyword-semantic-protocol",
       "type": "research",
       "slug": "keyword-vs-semantic-search",
