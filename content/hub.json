@@ -154,7 +154,8 @@
         "tr": "Hukuki otoriteyi bulma, değerlendirme ve doğrulama."
       },
       "related": [
-        "verify-ai-yargitay"
+        "verify-ai-yargitay",
+        "provenance-in-ai"
       ]
     },
     {
@@ -169,7 +170,8 @@
       },
       "related": [
         "verify-ai-yargitay",
-        "provenance"
+        "provenance-in-ai",
+        "evidence-aware-memory"
       ]
     },
     {
@@ -182,7 +184,10 @@
         "en": "Source-aware statutory research and change tracking.",
         "tr": "Kaynak odaklı mevzuat araştırması ve değişiklik takibi."
       },
-      "related": []
+      "related": [
+        "provenance-in-ai",
+        "evidence-aware-memory"
+      ]
     },
     {
       "id": "knowledge-management",
@@ -195,7 +200,9 @@
         "tr": "Kalıcı, kapsamlı ve incelenebilir kurumsal bilgi."
       },
       "related": [
-        "provenance"
+        "structured-vs-unstructured-memory",
+        "why-graphs-matter",
+        "provenance-in-ai"
       ]
     },
     {
@@ -209,8 +216,10 @@
         "tr": "Lexical, semantic, hybrid ve yapılandırılmış retrieval."
       },
       "related": [
-        "semantic-search",
-        "keyword-semantic-protocol"
+        "hybrid-retrieval",
+        "vector-search-limits",
+        "reciprocal-rank-fusion",
+        "semantic-search"
       ]
     },
     {
@@ -225,6 +234,7 @@
       },
       "related": [
         "semantic-search",
+        "vector-search-limits",
         "keyword-semantic-protocol"
       ]
     },
@@ -239,7 +249,9 @@
         "tr": "Üretimi geri getirilen kaynak materyale dayandırma."
       },
       "related": [
-        "provenance"
+        "rag-vs-ai-memory",
+        "what-is-ai-memory",
+        "hybrid-retrieval"
       ]
     },
     {
@@ -252,7 +264,10 @@
         "en": "Explicit entities, assertions, and relationships.",
         "tr": "Açık varlıklar, iddialar ve ilişkiler."
       },
-      "related": []
+      "related": [
+        "why-graphs-matter",
+        "structured-vs-unstructured-memory"
+      ]
     },
     {
       "id": "ai-memory",
@@ -265,7 +280,10 @@
         "tr": "Ajan etkinliği boyunca korunan kanıt odaklı bilgi."
       },
       "related": [
-        "provenance"
+        "what-is-ai-memory",
+        "evidence-aware-memory",
+        "structured-vs-unstructured-memory",
+        "memory-scope-and-authorization"
       ]
     }
   ],
@@ -329,7 +347,7 @@
         "semantic-search",
         "retrieval"
       ],
-      "category": "Search & Retrieval",
+      "category": "Memory & Retrieval",
       "draft": false,
       "indexable": true,
       "readingMinutes": 6,
@@ -460,9 +478,9 @@
         }
       },
       "related": [
-        "keyword-semantic-protocol",
-        "provenance",
-        "retrieval-evaluation"
+        "vector-search-limits",
+        "hybrid-retrieval",
+        "keyword-semantic-protocol"
       ]
     },
     {
@@ -4239,9 +4257,9 @@
         }
       },
       "related": [
+        "hybrid-retrieval",
         "semantic-search",
-        "retrieval-evaluation",
-        "provenance"
+        "retrieval-evaluation"
       ]
     },
     {
@@ -4424,8 +4442,9 @@
         }
       },
       "related": [
+        "provenance-in-ai",
         "provenance",
-        "semantic-search"
+        "evidence-aware-memory"
       ]
     },
     {
@@ -4553,9 +4572,9 @@
         }
       },
       "related": [
-        "verify-ai-yargitay",
-        "semantic-search",
-        "keyword-semantic-protocol"
+        "provenance-in-ai",
+        "evidence-aware-memory",
+        "verify-ai-yargitay"
       ]
     },
     {
@@ -4769,8 +4788,8 @@
       },
       "related": [
         "keyword-semantic-protocol",
-        "semantic-search",
-        "provenance"
+        "reciprocal-rank-fusion",
+        "hybrid-retrieval"
       ]
     }
   ]
