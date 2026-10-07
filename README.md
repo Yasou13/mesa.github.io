@@ -174,6 +174,17 @@ python3 -m compileall -q scripts
 git diff --check
 ```
 
+With the local HTTP preview running and Google Chrome installed, run the
+dependency-free responsive browser check:
+
+```bash
+node scripts/check_browser_layout.mjs --base-url http://127.0.0.1:8000/
+```
+
+It opens every localized route in headless Chrome, checks the homepage at 320,
+390, 768, 1024, 1440, and 1920 px, verifies document overflow and image decode,
+and exercises the mobile menu's open/Escape-close behavior.
+
 The checker requires real page text, one semantic `main` and `h1`, unique page
 metadata, canonical/Open Graph/Twitter fields, valid internal files and
 anchors, valid JSON-LD, both language route sets, matching `lang`, canonical,
