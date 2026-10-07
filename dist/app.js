@@ -11,6 +11,14 @@ toggle?.addEventListener('click', () => {
   toggle.setAttribute('aria-label', open ? labels.close : labels.open);
 });
 
+nav?.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', labels.open);
+  });
+});
+
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape' || !nav?.classList.contains('open')) return;
   nav.classList.remove('open');
@@ -51,4 +59,19 @@ document.querySelectorAll('.heading-anchor').forEach((link) => {
     }
     window.setTimeout(() => link.setAttribute('title', isTurkish ? 'Bölüm bağlantısını kopyala' : 'Copy section link'), 3500);
   });
+});
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const saveData = navigator.connection?.saveData === true;
+
+document.querySelectorAll('.scene-media__video').forEach((video) => {
+  const layer = video.closest('.scene-media');
+  video.addEventListener('error', () => layer?.setAttribute('data-media-state', 'error'));
+  video.addEventListener('canplay', () => layer?.setAttribute('data-media-state', 'ready'));
+  if (reduceMotion || saveData) {
+    video.pause();
+    layer?.setAttribute('data-media-state', reduceMotion ? 'reduced-motion' : 'save-data');
+    return;
+  }
+  video.play().catch(() => layer?.setAttribute('data-media-state', 'paused'));
 });

@@ -13,6 +13,8 @@ URL redirects to this configured custom domain.
 - `content/tr.json` — complete Turkish metadata and build-time translation map
 - `content/hub.json` — validated bilingual content model for Learn, Research,
   Guides, Glossary, Tools, Methodology, relationships, and publication state
+- `content/media-scenes.json` — asset-optional five-scene media contract, focal
+  points, crop behavior, overlays, and fallback state
 - `docs/localization-glossary.md` — agreed English/Turkish technical terminology
 - `scripts/render_site.mjs` — shared layout and static page content renderer
 - `dist/` — committed static HTML plus CSS, JavaScript, favicon, and social card
@@ -24,9 +26,13 @@ URL redirects to this configured custom domain.
 No React, Vue, Next.js, CMS, backend, or npm dependencies are used. Node.js is
 needed only to run the dependency-free static renderer during a build.
 
-The homepage Evidence Path is an inline SVG animated with CSS. It adds no
-runtime dependency or asset request, does not block hero text, and resolves to a
-static composition for reduced-motion users.
+The homepage uses five semantic scene boundaries and a reusable decorative
+media layer. Until final posters or videos are configured, it emits only static
+dark CSS surfaces and makes no missing asset requests. Future media remains
+separate from readable HTML, cannot intercept input, and falls back to the
+poster or static surface for reduced-motion, Save-Data, playback rejection, or
+media errors. The complete contract is documented in
+`docs/design/03_SCENE_STORYBOARD_AND_ASSET_CONTRACT.md`.
 
 ## Routes
 

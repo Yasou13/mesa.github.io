@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "mediaRoot": "media/",
+  "scenes": [
+    {
+      "id": "event-horizon",
+      "purpose": "Homepage opening and future right-weighted black-hole hero",
+      "overlayOpacity": 0.56,
+      "focalPoint": { "desktop": "76% 44%", "mobile": "52% 28%" },
+      "fit": "cover",
+      "assets": { "poster": null, "mobilePoster": null, "webm": null, "mp4": null }
+    },
+    {
+      "id": "flyby",
+      "purpose": "Slow flyby transition supporting the problem statement",
+      "overlayOpacity": 0.68,
+      "focalPoint": { "desktop": "64% 50%", "mobile": "50% 35%" },
+      "fit": "cover",
+      "assets": { "poster": null, "mobilePoster": null, "webm": null, "mp4": null }
+    },
+    {
+      "id": "deep-space",
+      "purpose": "Deep-space breathing room for the approach",
+      "overlayOpacity": 0.72,
+      "focalPoint": { "desktop": "70% 45%", "mobile": "50% 34%" },
+      "fit": "cover",
+      "assets": { "poster": null, "mobilePoster": null, "webm": null, "mp4": null }
+    },
+    {
+      "id": "connections",
+      "purpose": "Transition from distant points to ecosystem relationships",
+      "overlayOpacity": 0.74,
+      "focalPoint": { "desktop": "58% 50%", "mobile": "50% 40%" },
+      "fit": "cover",
+      "assets": { "poster": null, "mobilePoster": null, "webm": null, "mp4": null }
+    },
+    {
+      "id": "structure",
+      "purpose": "MESA in Action and the verified retrieval structure",
+      "overlayOpacity": 0.78,
+      "focalPoint": { "desktop": "50% 50%", "mobile": "50% 42%" },
+      "fit": "cover",
+      "assets": { "poster": null, "mobilePoster": null, "webm": null, "mp4": null }
+    }
+  ]
+}

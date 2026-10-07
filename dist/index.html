@@ -27,7 +27,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.7.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="./styles.css?v=4e54bb16a19a">
+  <link rel="stylesheet" href="./styles.css?v=f42b56be977a">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -48,52 +48,8 @@
         </nav>
       </div>
     </header><main id="main-content">
-    <section class="hero">
-      <div class="hero-archival-bg" aria-hidden="true"><img src="./assets/hero-astronomical-trace.svg" alt="" loading="eager" width="1200" height="800"></div>
-      <div class="evidence-path" aria-hidden="true">
-    <svg viewBox="0 0 760 560" role="presentation">
-      <g class="graph-dormant-mesh">
-        <path d="M120 140 C190 90 230 150 290 180"/>
-        <path d="M290 180 C260 250 240 290 230 330"/>
-        <path d="M290 180 C340 190 370 230 410 270"/>
-        <path d="M410 270 C460 230 490 210 530 210"/>
-        <path d="M410 270 C460 310 500 350 560 380"/>
-        <path d="M290 180 C360 120 420 110 480 100"/>
-        <path d="M480 100 C560 110 610 130 670 160"/>
-        <path d="M530 210 C590 170 630 160 670 160"/>
-        <path d="M230 330 C240 390 250 430 270 460"/>
-        <path d="M270 460 C380 500 480 470 560 380"/>
-        <path d="M560 380 C610 400 640 420 680 450"/>
-        <path d="M670 160 C690 280 680 370 680 450"/>
-      </g>
-      <g class="graph-dormant-nodes">
-        <circle cx="480" cy="100" r="4"/>
-        <circle cx="670" cy="160" r="5"/>
-        <circle cx="530" cy="210" r="5"/>
-        <circle cx="230" cy="330" r="5"/>
-        <circle cx="270" cy="460" r="5"/>
-        <circle cx="680" cy="450" r="6"/>
-      </g>
-      <g class="graph-active-traversal">
-        <path class="traversal-seg seg-1" pathLength="100" d="M120 140 C190 110 240 150 290 180"/>
-        <path class="branch-probe" pathLength="100" d="M290 180 C260 240 240 280 230 330"/>
-        <path class="traversal-seg seg-2" pathLength="100" d="M290 180 C340 200 370 230 410 270"/>
-        <path class="traversal-seg seg-3" pathLength="100" d="M410 270 C460 310 500 340 560 380"/>
-      </g>
-      <g class="graph-active-nodes">
-        <circle class="active-node node-source" cx="120" cy="140" r="7"/>
-        <circle class="active-node node-memory" cx="290" cy="180" r="8"/>
-        <circle class="active-node node-ledger" cx="410" cy="270" r="8"/>
-        <circle class="active-node node-evidence" cx="560" cy="380" r="10"/>
-      </g>
-      <g class="graph-labels">
-        <text x="96" y="118">source</text>
-        <text x="272" y="156">memory</text>
-        <text x="424" y="268">retrieve</text>
-        <text class="copper-label" x="584" y="386">evidence</text>
-      </g>
-    </svg>
-  </div>
+    <section class="hero scene scene--event-horizon" data-scene="event-horizon">
+      <div class="scene-media" aria-hidden="true" data-scene-media="event-horizon" data-media-state="fallback" style="--scene-overlay:0.56;--scene-focal-desktop:76% 44%;--scene-focal-mobile:52% 28%;--scene-fit:cover"><div class="scene-media__fallback"></div><div class="scene-media__veil"></div></div>
       <div class="hero-copy">
         <p class="eyebrow">EVIDENCE-AWARE MEMORY INFRASTRUCTURE</p>
         <h1>Memory with <em>evidence</em>,<br>not mystery.</h1>
@@ -102,24 +58,23 @@
       </div>
       <a class="scroll-cue" href="#the-problem">Why it matters <span aria-hidden="true">↓</span></a>
     </section>
-    <section class="section problem-section" id="the-problem">
+    <section class="section problem-section scene scene--flyby" id="the-problem" data-scene="flyby">
+      <div class="scene-media" aria-hidden="true" data-scene-media="flyby" data-media-state="fallback" style="--scene-overlay:0.68;--scene-focal-desktop:64% 50%;--scene-focal-mobile:50% 35%;--scene-fit:cover"><div class="scene-media__fallback"></div><div class="scene-media__veil"></div></div>
       <div class="problem-layout">
         <div class="problem-narrative">
           <p class="eyebrow">THE PROBLEM</p>
           <h2>Remembering is easy.<br><em>Remembering responsibly is not.</em></h2>
           <p>Agent context can become detached from its source, mixed across data boundaries, or stale across sessions. MESA treats memory as a controlled lifecycle instead of an unstructured pile of retrieved text.</p>
-          <figure class="problem-specimen" aria-hidden="true">
-            <img src="./assets/cartographic-triangulation-plate.svg" alt="" loading="lazy" width="600" height="480">
-          </figure>
         </div>
         <div class="problem-ledger">
-          <article><span>01 · PROBLEM</span><h3>The answer survives. Its source does not.</h3><p><strong>MESA approach:</strong> source, revision, chunk, evidence, pipeline, and embedding identity remain connected to retrieval.</p><p class="why-line">Why it matters: applications can inspect what returned context is based on.</p></article>
-          <article><span>02 · PROBLEM</span><h3>Relevant text loses its relationships.</h3><p><strong>MESA approach:</strong> assertions and graph paths complement lexical and semantic retrieval without replacing the SQL decision source.</p><p class="why-line">Why it matters: structured connections can remain visible instead of being flattened away.</p></article>
-          <article><span>03 · PROBLEM</span><h3>Memory crosses the wrong boundary.</h3><p><strong>MESA approach:</strong> server-created sessions bind authorized tenant, workspace, dataset, and agent scope before ranking.</p><p class="why-line">Why it matters: scope is part of retrieval, not a filter added after the result.</p></article>
+          <article class="problem-entry"><span>01 · PROBLEM</span><h3>The answer survives. Its source does not.</h3><p><strong>MESA approach:</strong> source, revision, chunk, evidence, pipeline, and embedding identity remain connected to retrieval.</p><p class="why-line">Why it matters: applications can inspect what returned context is based on.</p></article>
+          <article class="problem-entry"><span>02 · PROBLEM</span><h3>Relevant text loses its relationships.</h3><p><strong>MESA approach:</strong> assertions and graph paths complement lexical and semantic retrieval without replacing the SQL decision source.</p><p class="why-line">Why it matters: structured connections can remain visible instead of being flattened away.</p></article>
+          <article class="problem-entry"><span>03 · PROBLEM</span><h3>Memory crosses the wrong boundary.</h3><p><strong>MESA approach:</strong> server-created sessions bind authorized tenant, workspace, dataset, and agent scope before ranking.</p><p class="why-line">Why it matters: scope is part of retrieval, not a filter added after the result.</p></article>
         </div>
       </div>
     </section>
-    <section class="section reliability-section" id="why-mesa">
+    <section class="section reliability-section scene scene--deep-space" id="why-mesa" data-scene="deep-space">
+      <div class="scene-media" aria-hidden="true" data-scene-media="deep-space" data-media-state="fallback" style="--scene-overlay:0.72;--scene-focal-desktop:70% 45%;--scene-focal-mobile:50% 34%;--scene-fit:cover"><div class="scene-media__fallback"></div><div class="scene-media__veil"></div></div>
       <div class="section-heading"><div><p class="eyebrow">WHY MESA</p><h2>Useful context needs<br><em>evidence, structure, and scope.</em></h2></div><p>MESA combines several retrieval signals, but its differentiator is the contract around them: provenance, authorization, lifecycle state, and observable outcomes remain part of the system.</p></div>
       <div class="reliability-list">
         <article><svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3.5h9l3 3V20.5H6z"/><path d="M15 3.5v3h3M9 11h6M9 15h4"/><circle cx="17.5" cy="16.5" r="3"/></svg><strong>Evidence</strong><p>Keep source, revision, chunk, pipeline, and embedding identity connected to memory and retrieval results.</p></article>
@@ -130,7 +85,8 @@
       <div class="section-actions"><a class="button primary" href="./mesa/"><span>Read the Core architecture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button text" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Source document</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
     </section>
     <section class="section how-preview grid-bg" id="how-it-works"><div class="section-heading"><div><p class="eyebrow">HOW MESA WORKS</p><h2>Source to context<br><em>in one readable path.</em></h2></div><p>The public flow stays simple here. Admission, projections, recovery, and the full retrieval contract live on the dedicated explanation.</p></div><ol class="public-flow" aria-label="Simple MESA flow"><li><span>01</span><strong>Source</strong><small>Exact source material and identity</small></li><li><span>02</span><strong>Remember</strong><small>Core admits scoped memory and keeps evidence</small></li><li><span>03</span><strong>Retrieve</strong><small>Authorized signals are rank-fused</small></li><li><span>04</span><strong>Verify & use</strong><small>Provenance and scope travel with context</small></li></ol><div class="section-actions"><a class="button primary" href="./how-it-works/"><span>Explore the full flow</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="./mesa/"><span>Technical architecture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
-    <section class="section action-section" id="mesa-in-action"><div class="section-heading centerpiece-heading"><div><p class="eyebrow copper">MESA IN ACTION · VERIFIED FIXTURE</p><h2>A result with<br><em>its basis still attached.</em></h2></div><p>This example comes from Core’s deterministic four-lane retrieval test. It proves the fixture contract; it is not a claim about live deployment performance.</p></div><div class="action-example specimen-plate">
+    <section class="section ecosystem-intro scene scene--connections" id="ecosystem" data-scene="connections"><div class="scene-media" aria-hidden="true" data-scene-media="connections" data-media-state="fallback" style="--scene-overlay:0.74;--scene-focal-desktop:58% 50%;--scene-focal-mobile:50% 40%;--scene-fit:cover"><div class="scene-media__fallback"></div><div class="scene-media__veil"></div></div><div class="section-heading"><div><p class="eyebrow">THE ECOSYSTEM</p><h2>From trusted sources<br><em>to usable application context.</em></h2></div><p>Data prepares reviewed inputs. Core manages memory. Applications consume scoped retrieval. QA and E2E Certification evaluate the chain from outside it.</p></div><div class="ecosystem-flow" aria-label="MESA ecosystem flow"><div><small>PREPARE</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>REMEMBER</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>APPLY</small><strong>MESA Law</strong></div></div><div class="quality-rail"><span>QUALITY LAYERS</span><strong>MESA QA</strong><i>+</i><strong>E2E Certification</strong></div><div class="section-actions"><a class="button primary" href="./ecosystem/"><span>Explore all five roles</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="./evaluation/"><span>Evaluation & trust</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <section class="section action-section scene scene--structure" id="mesa-in-action" data-scene="structure"><div class="scene-media" aria-hidden="true" data-scene-media="structure" data-media-state="fallback" style="--scene-overlay:0.78;--scene-focal-desktop:50% 50%;--scene-focal-mobile:50% 42%;--scene-fit:cover"><div class="scene-media__fallback"></div><div class="scene-media__veil"></div></div><div class="section-heading centerpiece-heading"><div><p class="eyebrow copper">MESA IN ACTION · VERIFIED FIXTURE</p><h2>A result with<br><em>its basis still attached.</em></h2></div><p>This example comes from Core’s deterministic four-lane retrieval test. It proves the fixture contract; it is not a claim about live deployment performance.</p></div><div class="action-example specimen-plate">
     <div class="specimen-frame">
       <div class="action-query"><span>QUERY</span><strong>“Alice”</strong><small>Exact deterministic fixture query · not a live benchmark</small></div>
       <div class="fixture-trace" role="img" aria-label="Alice knows Aurora, supported by source chunk 1 in document 1">
@@ -144,24 +100,8 @@
       <div class="context-output"><span>APPLICATION CONTEXT</span><div><code>UNTRUSTED_MEMORY_EVIDENCE { subject: "Alice", relation: "knows", object: "Aurora", source: "source-chunk-1" }</code><small>Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</small></div></div>
     </div>
   </div><div class="proof-links"><a class="" href="https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer"><span>Inspect the fixture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/v4-final-independent-audit.md" target="_blank" rel="noopener noreferrer"><span>Read the retrieval audit</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></section>
-    <section class="section use-cases"><div class="section-heading"><div><p class="eyebrow">TARGET USE CASES</p><h2>For systems where<br><em>context needs an audit trail.</em></h2></div><p>These are evaluation scenarios, not claims of current customers or deployments.</p></div><div class="use-case-ledger"><article><span>01</span><h3>Agent memory</h3><p>Long-running agents that need durable updates, explicit lifecycle state, and scoped retrieval.</p></article><article><span>02</span><h3>Knowledge-heavy assistants</h3><p>Assistants that benefit from lexical, semantic, assertion, and graph-path signals around one evidence record.</p></article><article><span>03</span><h3>Provenance-sensitive workflows</h3><p>Domains where returned context should remain connected to reviewed sources. MESA Law is the current vertical example.</p></article></div><div class="section-actions"><a class="button primary" href="./use-cases/"><span>Explore use cases</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
-    <section class="section ecosystem-intro" id="ecosystem"><div class="section-heading"><div><p class="eyebrow">THE ECOSYSTEM</p><h2>From trusted sources<br><em>to usable application context.</em></h2></div><p>Data prepares reviewed inputs. Core manages memory. Applications consume scoped retrieval. QA and E2E Certification evaluate the chain from outside it.</p></div><div class="ecosystem-flow" aria-label="MESA ecosystem flow"><div><small>PREPARE</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>REMEMBER</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>APPLY</small><strong>MESA Law</strong></div></div><div class="quality-rail"><span>QUALITY LAYERS</span><strong>MESA QA</strong><i>+</i><strong>E2E Certification</strong></div><div class="section-actions"><a class="button primary" href="./ecosystem/"><span>Explore all five roles</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="./evaluation/"><span>Evaluation & trust</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
-    <section class="section build-section"><div class="section-heading"><div><p class="eyebrow">BUILD WITH MESA</p><h2>Store. Wait. Retrieve.<br><em>Inspect the evidence.</em></h2></div><p>The version-specific Python client follows the same catalog, session, mutation, search, and provenance contract exposed over HTTP. MCP provides a separate protocol surface.</p></div><div class="build-grid"><ol><li><span>01</span><strong>Start a scoped session</strong></li><li><span>02</span><strong>Insert exact source text</strong></li><li><span>03</span><strong>Wait for COMMITTED</strong></li><li><span>04</span><strong>Search and inspect provenance</strong></li></ol><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>Python · MesaV4Client</strong><button class="copy-button" type="button" data-copy-target="sdk-code">Copy</button></div><pre id="sdk-code"><code>with MesaV4Client(url, api_key=credential) as client:
-    session = client.start_session(
-        tenant_id="tenant-a", workspace_id="workspace-a",
-        dataset_ids=["dataset-a"], agent_id="agent-a")
-    accepted = client.insert(
-        session_id=session["session_id"], dataset_id="dataset-a",
-        document_id="doc-a", revision_id="rev-1", chunk_id="chunk-1",
-        title="Contract A", source_ref="contract://a",
-        content="Exact source text")
-    committed = client.wait_until_committed(accepted["mutation_id"])
-    assert committed["state"] == "COMMITTED"
-    results = client.search(
-        session_id=session["session_id"], query="source text")
-    print(results["results"][0]["retrieval_provenance"])</code></pre></div></div><div class="interface-row"><span>EXPOSED INTERFACES</span><strong>Python SDK</strong><strong>HTTP API</strong><strong>MCP</strong><i>Internal stores: SQLite · LanceDB · Kùzu</i></div></section>
-    <section class="section journey-section archive-texture"><div class="section-heading"><div><p class="eyebrow copper">REFERENCE IMPLEMENTATION</p><h2>MESA Law makes<br><em>the boundary concrete.</em></h2></div><p>A provenance-sensitive legal workflow demonstrates the intended ecosystem shape. Its live Core integration remains unproven, so it is a reference implementation—not a customer case study.</p></div><ol class="journey-flow"><li><span>01</span><strong>Official source</strong><small>Configured legal source or reviewed manual file</small></li><li><span>02</span><strong>MESA Data</strong><small>Preserve, canonicalize, gate, release</small></li><li><span>03</span><strong>MESA Core</strong><small>Authorize, admit, validate, project</small></li><li><span>04</span><strong>Evidence-aware retrieval</strong><small>Four signals, provenance, bounded context</small></li><li><span>05</span><strong>MESA Law</strong><small>Legal matter and document workflow over HTTP</small></li></ol><div class="section-actions"><a class="button primary" href="./law/"><span>Explore MESA Law</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
-    <section class="section home-trust"><div class="section-heading"><div><p class="eyebrow">EVALUATION & TRUST</p><h2>Behavior over time.<br><em>Evidence for the verdict.</em></h2></div><p>MESA QA tests whether candidate behavior remains correct. E2E Certification asks whether an exact frozen profile can prove its required contract.</p></div><div class="trust-pair"><a href="./qa/"><span>QA / SEQUENCE</span><strong>Remember → restart → retrieve</strong><small>Correctness, temporal change, persistence, endurance</small></a><a class="evidence-package" href="./certification/"><span>CERT / MANIFEST</span><strong>Profile B · BLOCKED</strong><small>Required producers remain unavailable for a current PASS</small></a></div><div class="section-actions"><a class="button secondary" href="./evaluation/"><span>Open Evaluation & Trust</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <section class="section use-cases"><div class="section-heading"><div><p class="eyebrow">TARGET USE CASES</p><h2>For systems where<br><em>context needs an audit trail.</em></h2></div><p>These are evaluation scenarios, not claims of current customers or deployments.</p></div><div class="use-case-ledger"><article class="ledger-row"><span class="ledger-index">01</span><div class="ledger-body"><h3>Agent memory</h3><p>Long-running agents that need durable updates, explicit lifecycle state, and scoped retrieval.</p></div></article><article class="ledger-row"><span class="ledger-index">02</span><div class="ledger-body"><h3>Knowledge-heavy assistants</h3><p>Assistants that benefit from lexical, semantic, assertion, and graph-path signals around one evidence record.</p></div></article><article class="ledger-row"><span class="ledger-index">03</span><div class="ledger-body"><h3>Provenance-sensitive workflows</h3><p>Domains where returned context should remain connected to reviewed sources. MESA Law is the current vertical example.</p></div></article></div><div class="section-actions"><a class="button primary" href="./use-cases/"><span>Explore use cases</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <section class="section discovery-section"><div><p class="eyebrow">CONTINUE EXPLORING</p><h2>Learn the ideas.<br><em>Inspect the implementation.</em></h2><p>Move from foundational concepts to source-linked architecture, integration guides, and evaluation methodology.</p></div><div class="discovery-links"><a class="button primary" href="./learn/"><span>Explore Learn</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="./docs/"><span>Read the docs</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button text" href="./methodology/"><span>Review methodology</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
     <aside class="development-note" aria-label="Development status"><div><p class="eyebrow">DEVELOPMENT STATUS</p><strong>Core v0.7.1 · Release Candidate</strong><p>Final MVP certification is in progress; production remains NO-GO.</p></div><a class="button secondary" href="./status/"><span>See current status</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></aside>
     <section class="closing-cta" aria-labelledby="closing-title">
       <div>
@@ -182,6 +122,6 @@
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
     </footer></main>
-  <script src="./app.js?v=4403d3203bc7"></script>
+  <script src="./app.js?v=2a0d40090a83"></script>
 </body>
 </html>
