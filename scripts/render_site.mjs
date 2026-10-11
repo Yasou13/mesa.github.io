@@ -92,8 +92,8 @@ const external = (href, label, className = '') =>
 const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}><span>${label}</span>${icon(isExternal ? 'external' : 'arrow', isExternal ? 'icon-external' : 'icon-arrow')}</a>`;
 
-const mark = `<span class="mesa-mark" aria-hidden="true"></span>`;
-const logo = () => `<a class="logo" href="${route()}" aria-label="${currentLanguage === 'tr' ? 'MESA ana sayfa' : 'MESA home'}">${mark}<span>MESA</span></a>`;
+const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-logo.png')}" alt="" width="1254" height="1254"></span>`;
+const logo = () => `<a class="logo" href="${route()}" aria-label="${currentLanguage === 'tr' ? 'MESA ana sayfa' : 'MESA home'}">${mark()}<span>MESA</span></a>`;
 
 function languageControl() {
   const enHref = currentLanguage === 'en' ? `${base}${currentPage.path}` : alternateHref;
