@@ -23,7 +23,8 @@ const assetVersion = (filename) => crypto
   .slice(0, 12);
 const assetVersions = {
   css: assetVersion('styles.css'),
-  js: assetVersion('app.js')
+  js: assetVersion('app.js'),
+  logo: assetVersion('assets/mesa-logo.png')
 };
 
 const requiredSceneIds = ['event-horizon', 'flyby', 'deep-space', 'connections', 'structure'];
@@ -92,7 +93,7 @@ const external = (href, label, className = '') =>
 const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}><span>${label}</span>${icon(isExternal ? 'external' : 'arrow', isExternal ? 'icon-external' : 'icon-arrow')}</a>`;
 
-const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-logo.png')}" alt="" width="1254" height="1254"></span>`;
+const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-logo.png')}?v=${assetVersions.logo}" alt="" width="1254" height="1254"></span>`;
 const logo = () => `<a class="logo" href="${route()}" aria-label="${currentLanguage === 'tr' ? 'MESA ana sayfa' : 'MESA home'}">${mark()}<span>MESA</span></a>`;
 
 function languageControl() {
@@ -755,7 +756,7 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${socialImage}">
   <script type="application/ld+json">${structuredData}</script>
-  <link rel="icon" href="${assetBase}favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="${assetBase}assets/mesa-logo.png?v=${assetVersions.logo}" type="image/png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
 </head>
