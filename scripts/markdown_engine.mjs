@@ -12,56 +12,55 @@ export function escapeHtml(str = '') {
 }
 
 export function slugify(text = '') {
-  return String(text)
-    .toLowerCase()
-    .replace(/<[^>]+>/g, '') // strip html
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/[\s_]+/g, '-');
+  return String(text).toLowerCase().replace(/ı/g, 'i').normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '').replace(/<[^>]+>/g, '')
+    .replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/[\s_]+/g, '-') || 'section';
+}
+
+// Validate raw destinations before escaping or introducing formatting markup.
+export function safeMarkdownUrl(value, { image = false } = {}) {
+  const url = String(value).trim();
+  if (!url || /[\u0000-\u0020\u007f<>`\\]/.test(url) || url.startsWith('//')) return null;
+  if (/^[a-z][a-z\d+.-]*:/i.test(url) && !new RegExp(image ? '^https?:' : '^(https?:|mailto:)','i').test(url)) return null;
+  return url;
+}
+
+function inlineText(text) {
+  return escapeHtml(text)
+    .replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/(^|[^a-zA-Z0-9])_([^_]+)_(?![a-zA-Z0-9])/g, '$1<em>$2</em>')
+    .replace(/\$(.+?)\$/g, '<span class="math-inline" role="math">$1</span>');
 }
 
 export function renderInlineMarkdown(text = '', { base = './', route = (p) => `${base}${p}` } = {}) {
-  let out = escapeHtml(text);
-
-  // Inline math: $equation$ (not preceded or followed by digits)
-  out = out.replace(/\$(.+?)\$/g, '<span class="math-inline" role="math">$1</span>');
-
-  // Inline code: `code`
-  out = out.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
-
-  // Bold & Italic: ***text***
-  out = out.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
-
-  // Bold: **text** or __text__
-  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  out = out.replace(/__([^_]+)__/g, '<strong>$1</strong>');
-
-  // Italic: *text* or _text_
-  out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  out = out.replace(/(^|[^a-zA-Z0-9])_([^_]+)_(?![a-zA-Z0-9])/g, '$1<em>$2</em>');
-
-  // Links: [text](href)
-  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, href) => {
-    const isExt = href.startsWith('http://') || href.startsWith('https://');
-    if (isExt) {
-      return `<a href="${href}" target="_blank" rel="noopener noreferrer"><span>${linkText}</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>`;
+  // Protected inline code and link destinations must never be reformatted.
+  const tokens = /`([^`]+)`|(!?)\[([^\]]*)\]\(([^\s)]+)(?:\s+"([^"]*)")?\)/g;
+  let output = '';
+  let cursor = 0;
+  for (const match of String(text).matchAll(tokens)) {
+    output += inlineText(String(text).slice(cursor, match.index));
+    cursor = match.index + match[0].length;
+    if (match[1] !== undefined) {
+      output += `<code class="inline-code">${escapeHtml(match[1])}</code>`;
+      continue;
     }
-    if (href.startsWith('#')) {
-      return `<a href="${href}">${linkText}</a>`;
+    const image = match[2] === '!';
+    const href = safeMarkdownUrl(match[4], { image });
+    const label = inlineText(match[3]);
+    if (!href) { output += image ? escapeHtml(match[3]) : label; continue; }
+    const external = /^https?:/i.test(href);
+    const destination = external || href.startsWith('#') || /^mailto:/i.test(href)
+      ? href : route(href.replace(/^\//, ''));
+    if (image) {
+      output += `<img src="${escapeHtml(destination)}" alt="${escapeHtml(match[3])}" loading="lazy">`;
+    } else {
+      output += `<a href="${escapeHtml(destination)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}</a>`;
     }
-    let target = href;
-    let hash = '';
-    if (target.includes('#')) {
-      const parts = target.split('#');
-      target = parts[0];
-      hash = '#' + parts[1];
-    }
-    const cleanTarget = target.replace(/^\//, '');
-    const finalHref = `${route(cleanTarget)}${hash}`;
-    return `<a href="${finalHref}">${linkText}</a>`;
-  });
-
-  return out;
+  }
+  return output + inlineText(String(text).slice(cursor));
 }
 
 export function renderMarkdown(markdown = '', options = {}) {
@@ -81,11 +80,15 @@ export function renderMarkdown(markdown = '', options = {}) {
   let quoteLines = [];
   let quoteAlert = null; // 'NOTE', 'WARNING', 'TIP', 'IMPORTANT'
   let codeBlockCounter = 0;
+  const headingIds = new Map();
 
   function flushList() {
     if (!inList) return;
     const tag = listType;
-    htmlParts.push(`<${tag}>${listItems.map((it) => `<li>${renderInlineMarkdown(it, options)}</li>`).join('')}</${tag}>`);
+    htmlParts.push(`<${tag}>${listItems.map((it) => {
+      const check = it.match(/^\[([ xX])\]\s+(.+)$/);
+      return check ? `<li><input type="checkbox" disabled${check[1].toLowerCase() === 'x' ? ' checked' : ''}> ${renderInlineMarkdown(check[2], options)}</li>` : `<li>${renderInlineMarkdown(it, options)}</li>`;
+    }).join('')}</${tag}>`);
     inList = false;
     listItems = [];
   }
@@ -237,7 +240,10 @@ export function renderMarkdown(markdown = '', options = {}) {
       }
       const rawText = headingMatch[2].trim();
       const cleanText = rawText.replace(/[*_`]/g, '');
-      const id = slugify(cleanText);
+      const slug = slugify(cleanText);
+      const count = headingIds.get(slug) || 0;
+      headingIds.set(slug, count + 1);
+      const id = count ? `${slug}-${count}` : slug;
       headings.push({ level, title: cleanText, id });
 
       // Only levels 2, 3, 4 receive heading anchors
@@ -245,7 +251,7 @@ export function renderMarkdown(markdown = '', options = {}) {
         const anchor = `<a class="heading-anchor" href="#${id}" aria-label="Link to section: ${escapeHtml(cleanText)}" title="Copy link to this section">#</a>`;
         htmlParts.push(`<h${level} id="${id}">${renderInlineMarkdown(rawText, options)}${anchor}</h${level}>`);
       } else {
-        htmlParts.push(`<h${level}>${renderInlineMarkdown(rawText, options)}</h${level}>`);
+        htmlParts.push(`<h${level} id="${id}">${renderInlineMarkdown(rawText, options)}</h${level}>`);
       }
       continue;
     }
@@ -274,7 +280,7 @@ export function renderMarkdown(markdown = '', options = {}) {
       const checkMatch = itemContent.match(/^\[([ xX])\]\s+(.+)$/);
       if (checkMatch) {
         const isChecked = checkMatch[1].toLowerCase() === 'x';
-        listItems.push(`<input type="checkbox" disabled${isChecked ? ' checked' : ''}> <span>${checkMatch[2]}</span>`);
+        listItems.push(itemContent);
       } else {
         listItems.push(itemContent);
       }
@@ -310,7 +316,9 @@ export function renderMarkdown(markdown = '', options = {}) {
       flushTable();
       flushQuote();
       const alt = escapeHtml(imgMatch[1]);
-      const src = escapeHtml(imgMatch[2]);
+      const safeSrc = safeMarkdownUrl(imgMatch[2], { image: true });
+      if (!safeSrc) { htmlParts.push(`<p>${alt}</p>`); continue; }
+      const src = escapeHtml(/^https?:/i.test(safeSrc) ? safeSrc : (options.route || ((p) => `${options.base || './'}${p}`))(safeSrc.replace(/^\//, '')));
       const caption = imgMatch[3] ? `<figcaption>${escapeHtml(imgMatch[3])}</figcaption>` : '';
       htmlParts.push(`<figure class="article-image"><img src="${src}" alt="${alt}" loading="lazy">${caption}</figure>`);
       continue;
@@ -326,6 +334,10 @@ export function renderMarkdown(markdown = '', options = {}) {
   flushList();
   flushTable();
   flushQuote();
+
+  if (inCodeBlock) {
+    htmlParts.push(`<pre class="article-code"><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`);
+  }
 
   return {
     html: htmlParts.join('\n'),

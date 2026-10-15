@@ -782,15 +782,15 @@ function documentShell({ title, description, canonical, content, assetBase, lang
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title}</title>
-  <meta name="description" content="${description}">
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(description)}">
   <meta name="theme-color" content="#0b0c0f">
 ${noIndex ? '  <meta name="robots" content="noindex">\n' : ''}  <link rel="canonical" href="${canonical}">
 ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.en}">
   <link rel="alternate" hreflang="tr" href="${alternateUrls.tr}">
   <link rel="alternate" hreflang="x-default" href="${alternateUrls.en}">` : ''}
-  <meta property="og:title" content="${title}">
-  <meta property="og:description" content="${description}">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:type" content="${pageType}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:locale" content="${locale}">
@@ -800,8 +800,8 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="${language === 'tr' ? 'MESA — Kanıtıyla birlikte hafıza.' : 'MESA — Memory with evidence, not mystery.'}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${title}">
-  <meta name="twitter:description" content="${description}">
+  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${socialImage}">
   <script type="application/ld+json">${structuredData}</script>
   <link rel="icon" href="${assetBase}assets/mesa-logo.png?v=${assetVersions.logo}" type="image/png">

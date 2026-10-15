@@ -37,8 +37,8 @@ def main() -> int:
     output = args.output.resolve()
     if not source.is_dir():
         raise SystemExit(f"source directory does not exist: {source}")
-    if output == source or source in output.parents:
-        raise SystemExit("output must not be the source directory or inside it")
+    if output == source or source in output.parents or output in source.parents or output == Path(__file__).resolve().parents[1] or output in Path(__file__).resolve().parents[1].parents:
+        raise SystemExit("output must not overlap the source or repository root")
 
     site_url = deployment_url(args.repository, args.site_url)
     base_path = urlsplit(site_url).path or "/"
@@ -48,6 +48,10 @@ def main() -> int:
     if output.exists():
         shutil.rmtree(output)
     shutil.copytree(source, output)
+    # HTML is generated; copying old pages would expose withdrawn entries.
+    # Only the disposable artifact is pruned. Authoritative dist assets survive.
+    for old_page in output.rglob("*.html"):
+        old_page.unlink()
 
     node = shutil.which("node")
     renderer = Path(__file__).with_name("render_site.mjs")
