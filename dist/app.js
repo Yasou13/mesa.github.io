@@ -197,6 +197,10 @@ function closeSearchModal() {
   searchReturnFocus?.focus();
 }
 
+function searchText(value) {
+  return String(value).toLocaleLowerCase(isTurkish ? 'tr-TR' : 'en-US').normalize('NFC');
+}
+
 function performSearch(query) {
   if (!query) {
     searchResultsList.innerHTML = `<li class="search-result-empty">${isTurkish ? 'Aramak için yazın...' : 'Type to search...'}</li>`;
@@ -210,14 +214,14 @@ function performSearch(query) {
   }
 
   const lang = isTurkish ? 'tr' : 'en';
-  const q = query.toLowerCase();
+  const q = searchText(query);
 
   const results = searchIndexData
     .filter((item) => (item.language === lang || !item.language) && (
-      item.title.toLowerCase().includes(q) ||
-      (item.summary && item.summary.toLowerCase().includes(q)) ||
-      (item.section && item.section.toLowerCase().includes(q)) ||
-      (item.keywords && item.keywords.some((k) => k.toLowerCase().includes(q)))
+      searchText(item.title).includes(q) ||
+      (item.summary && searchText(item.summary).includes(q)) ||
+      (item.section && searchText(item.section).includes(q)) ||
+      (item.keywords && item.keywords.some((k) => searchText(k).includes(q)))
     ))
     .slice(0, 10);
 
