@@ -1,0 +1,9 @@
+# Bilingual verification
+
+176 indexable public routes = 88 EN/TR route pairs; 27 Core editorial guide pairs provide equivalent concepts and identical executable code blocks. All ecosystem references have paired localized scope/maturity context plus the same complete source appendix. All 13 newly created logical pages have Turkish equivalents.
+
+`assertCompleteLocalization` remains active for the product and public core pages. New editorial templates register paired EN/TR text in `render_product.mjs`; they do not bypass the gate. Core guide metadata and Markdown share a catalog and immutable baseline. `documentation.test.mjs` checks complete Core route coverage, paired section counts, identical code blocks, source/copy-target anchors, unique IDs and localized generated controls for every native document.
+
+Turkish interface corrections include MCP navigation, source labels, code-copy controls and heading-link labels. Proper names, API identifiers, code and the named Reciprocal Rank Fusion algorithm intentionally retain their technical spelling. Canonical, language metadata, hreflang and language-switch destinations are checked for all routes in custom-domain, user-site and project-site builds. Browser tests exercise EN/TR search paths, Turkish İ/ı handling, keyboard focus restoration, disclosures and arithmetic.
+
+Important boundary: these are localized editorial guides, not a claim that all upstream source paragraphs have been translated. Full configuration tables, contracts and historical reports remain clearly labeled **original-language source appendices**, in the same form on both locale routes. This preserves source evidence and equivalent coverage without rewriting historical reports. A sentence-by-sentence translation of every appendix remains outside the completed editorial layer.

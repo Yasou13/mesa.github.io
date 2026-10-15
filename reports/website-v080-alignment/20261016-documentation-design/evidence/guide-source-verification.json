@@ -1,0 +1,240 @@
+[
+  {
+    "path": "README.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "f38ca17f4192ccffb6911e97a48f4c9e335b84b760a36e18acaa73537e7bfc12",
+    "bytes": 5556,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "README_MCP.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "b93e5d8d6eca5d3b7ae3f968a4260b9dc42a052e71c4ddbe666152724b3eae8b",
+    "bytes": 6893,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docker-compose.v4.yml",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "3fb49ac3ab19d5adcb6b481db3eb4c5783df75876f3cb4f9608e3dff004cd2ba",
+    "bytes": 2837,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docker-compose.yml",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "2ad52c0bf1cf17b9ff11c8133e8dac93dd63723e927f38c0f33f6a338f74d228",
+    "bytes": 1614,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/README.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "22bcd751c0ac20830a3a3b07a24f3ab338040ffe3cdcaaafa7e67f934215d2f9",
+    "bytes": 2354,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/RUNBOOK.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "3d299bbd26bed8726cc6d69070643855ff360b7a690c2e38012c222b0007ade5",
+    "bytes": 8469,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/api-reference.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "e8b301e6a89076549366c00fc49b023ef5f15e986dfecfe8efc2e3e5e729984b",
+    "bytes": 20198,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/architecture-v4.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "f9e54eadc1a44f6773dd3b2496e9a42a87e7c7eb63c96a13079f97a634d8d1df",
+    "bytes": 9639,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/cli-reference.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "209ce87f567f90060350df5de9a42ffc54fab1d43efc8f1aaa88fa144f2ae37c",
+    "bytes": 2395,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/colab_kurulum_rehberi.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "31550f101e68596c824243dff2d94e4b2d39cf8d1b2c076c3594d270704a7757",
+    "bytes": 4104,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/concepts-and-ingestion.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "bab1dd3f263e823f3a5d7aa2ba38683954c01977abf015915cf1399c17e62c62",
+    "bytes": 5232,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/configuration.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "8650b13f31c8edd94f1fd8efe50fa477f5f34764ba264753eed87042112615af",
+    "bytes": 10831,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/ecosystem.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "cde5907fcc59c17cdae4ce348cce4435dc884ac61b4f262f674f75836dfebd14",
+    "bytes": 2145,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/getting-started.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "7b19bfbcb2abb6623a42ff8177f13046a4c164ed4b9a7e8bb034e8db57c6ad8b",
+    "bytes": 3804,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/installation.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "6f8b10f63b4bd6f54ea2af739fc8a7530042f67068adbc315c86a44e0f567506",
+    "bytes": 7106,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/migration-v0.8.0.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "fa08dd25e60993f9d6f86fa51065184cf07060e5af6b7b8e194bcb9a583d1715",
+    "bytes": 2676,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/performance-and-limitations.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "9fa965a6ab5208ccfa3eed1e22f994f09a148857d9e1335f96463b5b9621c91d",
+    "bytes": 2694,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/release-notes-v0.8.0.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "68110730c89b5c95866fce948f74b0b81802322e22690717904337690139d5c5",
+    "bytes": 2740,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/release.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "2c8b27e1e600659ddb65dad16e2b4c48d5ce640ec486703d0425d0bed5c5b14a",
+    "bytes": 5460,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/retrieval-and-graph.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "03ffb8fddefefb68b18e3e57c2a94ca758b258a75097bd5ae47ce5a2083970f6",
+    "bytes": 5086,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/security-and-privacy.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "d8382f0b904b23dc42aa33b222368d2fa44013d660d0dea578091959b68620e9",
+    "bytes": 3303,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/testing.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "31ea9494f20435e7b7e6e23cde2397f053a3ce616d817aaf4f758c1ecc993e12",
+    "bytes": 2078,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/troubleshooting.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "7776c1669e9b7b3b10c57e74384dbc1a318c004d5db12ce5cd0e87e8ba4f257c",
+    "bytes": 3024,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/v4-final-independent-audit.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "8e1600b2d12b58963598a9904e30bd793f5b51260051a702d87c0eb50af1745c",
+    "bytes": 12435,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "docs/v4-rebuild-runbook.md",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "b7d25074bf5678af3b889b40cd19ae74861054e9a7dc0aba202f71844d6155f2",
+    "bytes": 14414,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "examples/v3_quickstart.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "80b612be07a83235a484fa8ebd25480d5f4e658cafeda11916ca92412fb3dc4d",
+    "bytes": 2353,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_api/v4_router.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "619144a2d3b70a16e1bf24abf9a42b0de974eba15075829d53650d23b7b1ab3f",
+    "bytes": 53411,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_client/client.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "c104057d4bdd4a191c63570ec1692d2b02d03df6695042ae2b1b2d44d2c9f628",
+    "bytes": 34983,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_memory/config.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "4dc3d3a35935090c88bd02c0623d37db1c5cce0a9f862ce81bdca8eebf0c5f9d",
+    "bytes": 39006,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_memory/context_builder.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "e78e5bb012d0f6cb3acdb417934610bf72221f0f2d4f6a6cdc3d1464ee562ee5",
+    "bytes": 29144,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_storage/dao.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "1b9b3192b7e6a57334fecd338e399b4b824aeb4f1a58dc0adee6e2789db054db",
+    "bytes": 453200,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_storage/kuzu_provider.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "1638a856e7460f3c8d01c0219ef85ff165ca41434d478bd9eab047e079005ab7",
+    "bytes": 67420,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "mesa_storage/retrieval_scope.py",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "46df91f9f8549607240b29110d7735f8694b4a5f96099058dafff0afba4f53b1",
+    "bytes": 4741,
+    "status": "exists at release commit"
+  },
+  {
+    "path": "pyproject.toml",
+    "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "sha256": "5f9f6a0e4bd6eb7f8c20631ce2036992b347a587f6f233b57a35ce0f6983149e",
+    "bytes": 9130,
+    "status": "exists at release commit"
+  }
+]

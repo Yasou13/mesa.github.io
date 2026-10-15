@@ -1,0 +1,62 @@
+{
+  "https://mesamemory.dev/": [
+    {
+      "command": [
+        "python3",
+        "scripts/check_site.py",
+        "_site"
+      ],
+      "exit_code": 0,
+      "stdout": "SITE CHECK PASS: 176 localized routes, 179 HTML files, 14643 internal references, 1939 external references\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_public_artifact.py",
+        "_site"
+      ],
+      "exit_code": 0,
+      "stdout": "PUBLIC ARTIFACT SECRET CHECK PASS: 187 text artifacts; no recognized privileged credentials\n"
+    }
+  ],
+  "https://yasou13.github.io/": [
+    {
+      "command": [
+        "python3",
+        "scripts/check_site.py",
+        "/tmp/mesa-v080-user-site"
+      ],
+      "exit_code": 0,
+      "stdout": "SITE CHECK PASS: 176 localized routes, 179 HTML files, 14643 internal references, 1939 external references\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_public_artifact.py",
+        "/tmp/mesa-v080-user-site"
+      ],
+      "exit_code": 0,
+      "stdout": "PUBLIC ARTIFACT SECRET CHECK PASS: 187 text artifacts; no recognized privileged credentials\n"
+    }
+  ],
+  "https://yasou13.github.io/mesa.github.io/": [
+    {
+      "command": [
+        "python3",
+        "scripts/check_site.py",
+        "/tmp/mesa-v080-project-site"
+      ],
+      "exit_code": 0,
+      "stdout": "SITE CHECK PASS: 176 localized routes, 179 HTML files, 14643 internal references, 1939 external references\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_public_artifact.py",
+        "/tmp/mesa-v080-project-site"
+      ],
+      "exit_code": 0,
+      "stdout": "PUBLIC ARTIFACT SECRET CHECK PASS: 187 text artifacts; no recognized privileged credentials\n"
+    }
+  ]
+}

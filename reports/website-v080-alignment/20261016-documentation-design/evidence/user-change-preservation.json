@@ -1,0 +1,415 @@
+{
+  "preexisting_values": 42,
+  "excluded_all": true,
+  "checks": [
+    {
+      "path": [
+        "updatedAt"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "qa",
+        "pages",
+        0,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "qa",
+        "pages",
+        1,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "qa",
+        "pages",
+        2,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "qa",
+        "pages",
+        3,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "qa",
+        "last_sync"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "law",
+        "pages",
+        0,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "law",
+        "pages",
+        1,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "law",
+        "pages",
+        2,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "law",
+        "pages",
+        3,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "law",
+        "last_sync"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        0,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        1,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        2,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        3,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        4,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        5,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        6,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        7,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        8,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        9,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        10,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        11,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        12,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        13,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        14,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "pages",
+        15,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "core",
+        "last_sync"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "pages",
+        0,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "pages",
+        1,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "pages",
+        2,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "pages",
+        3,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "pages",
+        4,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "pages",
+        5,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "data",
+        "last_sync"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "pages",
+        0,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "pages",
+        1,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "pages",
+        2,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "pages",
+        3,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "pages",
+        4,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "pages",
+        5,
+        "last_synced"
+      ],
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": [
+        "repositories",
+        "e2e",
+        "last_sync"
+      ],
+      "unchanged_from_HEAD": true
+    }
+  ],
+  "restored_exact_original_values": 42,
+  "working_diff_only_original_timestamp_fields": true,
+  "implementation_commit": "ad688fa99cc4f336e964bcfb3c2005b70c2a9ee7"
+}

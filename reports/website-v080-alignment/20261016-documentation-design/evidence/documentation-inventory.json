@@ -1,0 +1,345 @@
+[
+  {
+    "source_file": "ARCHITECTURE.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/ARCHITECTURE.md"
+  },
+  {
+    "source_file": "CHANGELOG.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/CHANGELOG.md"
+  },
+  {
+    "source_file": "CONTRIBUTING.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/CONTRIBUTING.md"
+  },
+  {
+    "source_file": "README.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README.md"
+  },
+  {
+    "source_file": "README_MCP.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md"
+  },
+  {
+    "source_file": "SECURITY.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/SECURITY.md"
+  },
+  {
+    "source_file": "docs/Mesa_Control_Panel.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/Mesa_Control_Panel.md"
+  },
+  {
+    "source_file": "docs/README.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/README.md"
+  },
+  {
+    "source_file": "docs/RUNBOOK.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/RUNBOOK.md"
+  },
+  {
+    "source_file": "docs/adr/0001-use-sqlite-wal-and-lancedb-for-async-memory.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0001-use-sqlite-wal-and-lancedb-for-async-memory.md"
+  },
+  {
+    "source_file": "docs/adr/0002-pivot-from-rrf-to-alpha-reranking.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0002-pivot-from-rrf-to-alpha-reranking.md"
+  },
+  {
+    "source_file": "docs/adr/0003-adaptive-llm-routing-with-telemetry.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0003-adaptive-llm-routing-with-telemetry.md"
+  },
+  {
+    "source_file": "docs/adr/0004-async-background-tasks-vs-celery.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0004-async-background-tasks-vs-celery.md"
+  },
+  {
+    "source_file": "docs/adr/0005-pagerank-quarantine.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0005-pagerank-quarantine.md"
+  },
+  {
+    "source_file": "docs/adr/0006-spreading-activation.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0006-spreading-activation.md"
+  },
+  {
+    "source_file": "docs/adr/0007-wal-queue-phantom-write.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0007-wal-queue-phantom-write.md"
+  },
+  {
+    "source_file": "docs/adr/0008-benchmark-architecture.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0008-benchmark-architecture.md"
+  },
+  {
+    "source_file": "docs/adr/0009-v4-ledger-and-single-storage-owner.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0009-v4-ledger-and-single-storage-owner.md"
+  },
+  {
+    "source_file": "docs/adr/0010-v4-rrf-and-pagerank-observation.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0010-v4-rrf-and-pagerank-observation.md"
+  },
+  {
+    "source_file": "docs/adr/0011-v4-tenant-dataset-authorization.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0011-v4-tenant-dataset-authorization.md"
+  },
+  {
+    "source_file": "docs/adr/0012-memory-dao-repository-boundaries.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0012-memory-dao-repository-boundaries.md"
+  },
+  {
+    "source_file": "docs/adr/0013-one-way-production-layer-dependencies.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0013-one-way-production-layer-dependencies.md"
+  },
+  {
+    "source_file": "docs/adr/0014-v4-closure-and-staged-evolution.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0014-v4-closure-and-staged-evolution.md"
+  },
+  {
+    "source_file": "docs/adr/0015-bounded-adaptive-query-planning.md",
+    "classification": "decision record",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/adr/0015-bounded-adaptive-query-planning.md"
+  },
+  {
+    "source_file": "docs/api-reference.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md"
+  },
+  {
+    "source_file": "docs/architecture-v4.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md"
+  },
+  {
+    "source_file": "docs/ci-assurance.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/ci-assurance.md"
+  },
+  {
+    "source_file": "docs/cli-reference.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/cli-reference.md"
+  },
+  {
+    "source_file": "docs/colab_kurulum_rehberi.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/colab_kurulum_rehberi.md"
+  },
+  {
+    "source_file": "docs/concepts-and-ingestion.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md"
+  },
+  {
+    "source_file": "docs/configuration.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/configuration.md"
+  },
+  {
+    "source_file": "docs/ecosystem.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/ecosystem.md"
+  },
+  {
+    "source_file": "docs/getting-started.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/getting-started.md"
+  },
+  {
+    "source_file": "docs/historical_benchmarks/BENCHMARK_INTEGRITY_LOG.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/historical_benchmarks/BENCHMARK_INTEGRITY_LOG.md"
+  },
+  {
+    "source_file": "docs/historical_benchmarks/v0.2.0_results.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/historical_benchmarks/v0.2.0_results.md"
+  },
+  {
+    "source_file": "docs/historical_benchmarks/v0.4.2_results.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/historical_benchmarks/v0.4.2_results.md"
+  },
+  {
+    "source_file": "docs/historical_benchmarks/v0.5.1_contradiction_results.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/historical_benchmarks/v0.5.1_contradiction_results.md"
+  },
+  {
+    "source_file": "docs/historical_benchmarks/v0.6.0_final_results.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/historical_benchmarks/v0.6.0_final_results.md"
+  },
+  {
+    "source_file": "docs/installation.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md"
+  },
+  {
+    "source_file": "docs/migration-v0.8.0.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/migration-v0.8.0.md"
+  },
+  {
+    "source_file": "docs/performance-and-limitations.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/performance-and-limitations.md"
+  },
+  {
+    "source_file": "docs/release-notes-v0.8.0.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release-notes-v0.8.0.md"
+  },
+  {
+    "source_file": "docs/release.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release.md"
+  },
+  {
+    "source_file": "docs/retrieval-and-graph.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md"
+  },
+  {
+    "source_file": "docs/security-and-privacy.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/security-and-privacy.md"
+  },
+  {
+    "source_file": "docs/testing.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/testing.md"
+  },
+  {
+    "source_file": "docs/troubleshooting.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/troubleshooting.md"
+  },
+  {
+    "source_file": "docs/v4-final-independent-audit.md",
+    "classification": "historical",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-final-independent-audit.md"
+  },
+  {
+    "source_file": "docs/v4-rebuild-runbook.md",
+    "classification": "maintained guide",
+    "version": "0.8.0",
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-rebuild-runbook.md"
+  }
+]

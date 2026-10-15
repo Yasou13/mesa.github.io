@@ -1,0 +1,82 @@
+[
+  {
+    "command": [
+      "python3",
+      "scripts/check_site.py",
+      "_site"
+    ],
+    "exit_code": 0,
+    "stdout": "SITE CHECK PASS: 176 localized routes, 179 HTML files, 14643 internal references, 1939 external references\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "scripts/check_public_artifact.py",
+      "_site"
+    ],
+    "exit_code": 0,
+    "stdout": "PUBLIC ARTIFACT SECRET CHECK PASS: 187 text artifacts; no recognized privileged credentials\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_*.py"
+    ],
+    "exit_code": 0,
+    "stdout": "[OK] test: a855a65be68336d5686d5a329353e22540fa09eb\n[OK] test: a855a65be68336d5686d5a329353e22540fa09eb\n[FAILED] test: OSError: synchronization failed; cache retained\n",
+    "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.751s\n\nOK\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/tests/admin.test.mjs"
+    ],
+    "exit_code": 0,
+    "stdout": "✔ admin fails closed (en) (0.786292ms)\n✔ admin fails closed (tr) (0.122001ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5.61482\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "scripts/tests/claims.test.mjs"
+    ],
+    "exit_code": 0,
+    "stdout": "✔ current claims retain external certification blockers and dated Law evidence (1.236371ms)\n✔ package versions and source commits are backed by immutable imports (2.640906ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 7.939225\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "scripts/tests/documentation.test.mjs"
+    ],
+    "exit_code": 0,
+    "stdout": "✔ all Core routes have a paired guide at the same immutable release baseline (4.567594ms)\n✔ localized docs keep source anchors and copy targets without duplicate IDs (64.553765ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 73.837461\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "scripts/tests/markdown.test.mjs"
+    ],
+    "exit_code": 0,
+    "stdout": "✔ hostile content cannot create active HTML or unsafe destinations (1.920431ms)\n✔ code remains literal; duplicate headings receive distinct anchors (1.134827ms)\n✔ checklists, tables, images, captions and literal math render safely (0.920376ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 8.203466\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "scripts/tests/search.test.mjs"
+    ],
+    "exit_code": 0,
+    "stdout": "✔ search handles dotted and dotless Turkish I (1.357747ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5.920502\n",
+    "stderr": ""
+  }
+]

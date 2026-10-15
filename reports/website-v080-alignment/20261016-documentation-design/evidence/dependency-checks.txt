@@ -1,0 +1,5 @@
+Disposable release archive: 07d387f9a4592ea39518fea549e9cf8330051e1f
+uv 0.10.8; Python 3.10.12
+uv lock --check --offline: Resolved 251 packages in 2ms; exit 0
+UV_CACHE_DIR=/tmp/mesa-v080-uv-cache uv pip check --python /home/yasin/Desktop/MESA/.venv/bin/python: Checked 159 packages in 37ms; All installed packages are compatible; exit 0
+No fresh environment installation claimed.

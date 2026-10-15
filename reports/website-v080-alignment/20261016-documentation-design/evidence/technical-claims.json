@@ -1,0 +1,352 @@
+[
+  {
+    "website_section": "Home / Core",
+    "claim": "Evidence-aware, scoped memory infrastructure",
+    "repository": "MESA",
+    "source": "README.md",
+    "line": 1,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented; production qualification incomplete",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README.md#L1"
+  },
+  {
+    "website_section": "Architecture",
+    "claim": "SQLite owns canonical catalog, assertions and mutation decisions",
+    "repository": "MESA",
+    "source": "docs/architecture-v4.md",
+    "line": 12,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md#L12"
+  },
+  {
+    "website_section": "Architecture",
+    "claim": "LanceDB and Kùzu are derived projections",
+    "repository": "MESA",
+    "source": "docs/architecture-v4.md",
+    "line": 12,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md#L12"
+  },
+  {
+    "website_section": "Architecture",
+    "claim": "V4 needs a single combined storage owner",
+    "repository": "MESA",
+    "source": "docs/installation.md",
+    "line": 41,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented topology constraint",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md#L41"
+  },
+  {
+    "website_section": "Ingestion",
+    "claim": "Durable admission is not COMMITTED completion",
+    "repository": "MESA",
+    "source": "docs/concepts-and-ingestion.md",
+    "line": 41,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md#L41"
+  },
+  {
+    "website_section": "Ingestion",
+    "claim": "SQL → vector → graph is recoverable, not cross-store ACID",
+    "repository": "MESA",
+    "source": "docs/architecture-v4.md",
+    "line": 12,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented ordered projection",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md#L12"
+  },
+  {
+    "website_section": "Ingestion",
+    "claim": "Modes 0/1/2 select deterministic/single/A-B validation",
+    "repository": "MESA",
+    "source": "docs/configuration.md",
+    "line": 30,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented, provider-dependent",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/configuration.md#L30"
+  },
+  {
+    "website_section": "Scope",
+    "claim": "Principal/tenant/workspace/dataset/agent/session are resolved server-side",
+    "repository": "MESA",
+    "source": "mesa_api/v4_router.py",
+    "line": 210,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_api/v4_router.py#L210"
+  },
+  {
+    "website_section": "Scope",
+    "claim": "Sessions bind an immutable authorized dataset set",
+    "repository": "MESA",
+    "source": "docs/security-and-privacy.md",
+    "line": 5,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/security-and-privacy.md#L5"
+  },
+  {
+    "website_section": "Security",
+    "claim": "Agent identity is context, not a credential",
+    "repository": "MESA",
+    "source": "docs/api-reference.md",
+    "line": 276,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented boundary",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md#L276"
+  },
+  {
+    "website_section": "Security",
+    "claim": "Keys use salted scrypt; TLS and at-rest protection remain operator concerns",
+    "repository": "MESA",
+    "source": "docs/security-and-privacy.md",
+    "line": 11,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented / operator responsibility",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/security-and-privacy.md#L11"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "Four vector/BM25/assertion/graph lane order",
+    "repository": "MESA",
+    "source": "mesa_storage/retrieval_scope.py",
+    "line": 9,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py#L9"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "RRF k=60; weights 1.0; one-based ranks",
+    "repository": "MESA",
+    "source": "mesa_storage/retrieval_scope.py",
+    "line": 8,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented configurable defaults",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py#L8"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "A duplicate casts one vote per lane",
+    "repository": "MESA",
+    "source": "mesa_storage/retrieval_scope.py",
+    "line": 8,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented; released retrieval tests executed",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py#L8"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "BM25 and assertion citation boosts are lane-local",
+    "repository": "MESA",
+    "source": "mesa_storage/dao.py",
+    "line": 6188,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented; not direct RRF increments",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/dao.py#L6188"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "Legal reranking factors 1.5/1.25/0.25/1.0 follow fusion",
+    "repository": "MESA",
+    "source": "mesa_storage/dao.py",
+    "line": 6732,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented query-dependent rule",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/dao.py#L6732"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "Graph paths reconcile with canonical assertion evidence",
+    "repository": "MESA",
+    "source": "docs/retrieval-and-graph.md",
+    "line": null,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md"
+  },
+  {
+    "website_section": "Graph",
+    "claim": "Traversal bounds limit seeds/hops/frontier/fan-out/time",
+    "repository": "MESA",
+    "source": "docs/retrieval-and-graph.md",
+    "line": 22,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented resource limits; no latency guarantee",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md#L22"
+  },
+  {
+    "website_section": "Graph",
+    "claim": "Projection-only adapters do not advertise neighbor traversal",
+    "repository": "MESA",
+    "source": "docs/api-reference.md",
+    "line": 24,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Runtime-dependent",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md#L24"
+  },
+  {
+    "website_section": "Retrieval",
+    "claim": "Backend failures are explicit 503; no silent alternate embedding model",
+    "repository": "MESA",
+    "source": "docs/api-reference.md",
+    "line": 72,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented failure contract",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md#L72"
+  },
+  {
+    "website_section": "Context",
+    "claim": "2048-token default applies to formatted evidence",
+    "repository": "MESA",
+    "source": "docs/retrieval-and-graph.md",
+    "line": 60,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented configurable default",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md#L60"
+  },
+  {
+    "website_section": "Context",
+    "claim": "Offline UTF-8 byte counting is conservative, not exact BPE",
+    "repository": "MESA",
+    "source": "docs/api-reference.md",
+    "line": 198,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented fallback",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md#L198"
+  },
+  {
+    "website_section": "Context",
+    "claim": "Adaptive context is opt-in and bounded; Q0 retained on failure",
+    "repository": "MESA",
+    "source": "docs/retrieval-and-graph.md",
+    "line": 58,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented opt-in; not a quality guarantee",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md#L58"
+  },
+  {
+    "website_section": "Evidence",
+    "claim": "Source identity includes document, revision, chunk and evidence",
+    "repository": "MESA",
+    "source": "docs/concepts-and-ingestion.md",
+    "line": null,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md"
+  },
+  {
+    "website_section": "Evidence",
+    "claim": "Whole-revision, manifest and chunk hashes identify different objects",
+    "repository": "MESA",
+    "source": "docs/api-reference.md",
+    "line": 124,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented distinction",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md#L124"
+  },
+  {
+    "website_section": "Evidence",
+    "claim": "Typed legal identity requires producer-backed source interpretation",
+    "repository": "MESA",
+    "source": "docs/api-reference.md",
+    "line": 159,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented structural checks; producer responsibility",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md#L159"
+  },
+  {
+    "website_section": "API / examples",
+    "claim": "SDK waits may return failed terminal states; inspect COMMITTED",
+    "repository": "MESA",
+    "source": "mesa_client/client.py",
+    "line": 649,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented; shown snippet exercised with fixture HTTP",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_client/client.py#L649"
+  },
+  {
+    "website_section": "API / examples",
+    "claim": "Insert/search/session paths match real request schemas",
+    "repository": "MESA",
+    "source": "mesa_api/v4_router.py",
+    "line": 244,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented; real schema validation executed",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_api/v4_router.py#L244"
+  },
+  {
+    "website_section": "Quickstart",
+    "claim": "Model-disabled V3 neutral example processes and retrieves scoped memory",
+    "repository": "MESA",
+    "source": "examples/v3_quickstart.py",
+    "line": 12,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Executed successfully against disposable release server",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/examples/v3_quickstart.py#L12"
+  },
+  {
+    "website_section": "Embedding",
+    "claim": "Model identity and vector dimensions must be compatible",
+    "repository": "MESA",
+    "source": "docs/configuration.md",
+    "line": 33,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented constraint",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/configuration.md#L33"
+  },
+  {
+    "website_section": "Operations",
+    "claim": "Offline backup, new-empty-target restore and forward-only migration",
+    "repository": "MESA",
+    "source": "docs/RUNBOOK.md",
+    "line": 107,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented documented procedure; destructive procedures not rerun",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/RUNBOOK.md#L107"
+  },
+  {
+    "website_section": "Operations",
+    "claim": "Rebuild is disabled by default and storage-root-wide/offline",
+    "repository": "MESA",
+    "source": "docs/v4-rebuild-runbook.md",
+    "line": 3,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented guarded operator surface",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-rebuild-runbook.md#L3"
+  },
+  {
+    "website_section": "Release",
+    "claim": "Published source does not complete production qualification",
+    "repository": "MESA",
+    "source": "docs/release-notes-v0.8.0.md",
+    "line": 21,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Released source; production blocked",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release-notes-v0.8.0.md#L21"
+  },
+  {
+    "website_section": "Limitations",
+    "claim": "No semantic quality or production throughput claim from mock fixtures",
+    "repository": "MESA",
+    "source": "docs/performance-and-limitations.md",
+    "line": 11,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "No general benchmark guarantee",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/performance-and-limitations.md#L11"
+  },
+  {
+    "website_section": "MCP",
+    "claim": "Legacy stdio and V4 HTTP gateway/bridge have distinct contracts",
+    "repository": "MESA",
+    "source": "README_MCP.md",
+    "line": 4,
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "status": "Implemented surfaces with scoped policy",
+    "url": "https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md#L4"
+  }
+]

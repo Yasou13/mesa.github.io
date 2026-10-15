@@ -1,0 +1,656 @@
+{
+  "baseUrl": "http://127.0.0.1:8765/",
+  "cacheMode": "cold",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.79",
+    "revision": "@a49e2e3d4addfd84e765b52afe230bedb81096db",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.23"
+  },
+  "observations": [
+    {
+      "route": "",
+      "width": 390,
+      "title": "MESA — Evidence-Aware Memory Infrastructure",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 599
+        }
+      ],
+      "height": 7409,
+      "fixtureTop": 1725,
+      "heroHeight": 835,
+      "heroImage": {
+        "src": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+        "naturalWidth": 614,
+        "naturalHeight": 768,
+        "loading": "eager",
+        "priority": "high"
+      },
+      "heroRequests": [
+        "http://127.0.0.1:8765/media/mobile/hero-portrait.webp"
+      ],
+      "heroTransfers": [
+        {
+          "url": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+          "transfer": 27936,
+          "encoded": 27636
+        }
+      ],
+      "layoutShift": 0,
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+          "encoded": 27636,
+          "transfer": 27936
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "problem",
+        "process",
+        "example",
+        "capabilities",
+        "ecosystem",
+        "explore"
+      ],
+      "mediaLayers": [
+        {
+          "id": "event-horizon",
+          "hidden": "true"
+        }
+      ],
+      "heroNetwork": [
+        {
+          "url": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:8765/",
+            "lineNumber": 52,
+            "columnNumber": 663
+          }
+        }
+      ]
+    },
+    {
+      "route": "",
+      "width": 1440,
+      "title": "MESA — Evidence-Aware Memory Infrastructure",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 5470,
+      "fixtureTop": 1587,
+      "heroHeight": 709,
+      "heroImage": {
+        "src": "http://127.0.0.1:8765/media/desktop/hero.webp",
+        "naturalWidth": 1376,
+        "naturalHeight": 768,
+        "loading": "eager",
+        "priority": "high"
+      },
+      "heroRequests": [
+        "http://127.0.0.1:8765/media/desktop/hero.webp"
+      ],
+      "heroTransfers": [
+        {
+          "url": "http://127.0.0.1:8765/media/desktop/hero.webp",
+          "transfer": 30538,
+          "encoded": 30238
+        }
+      ],
+      "layoutShift": 0,
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/desktop/hero.webp",
+          "encoded": 30238,
+          "transfer": 30538
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "problem",
+        "process",
+        "example",
+        "capabilities",
+        "ecosystem",
+        "explore"
+      ],
+      "mediaLayers": [
+        {
+          "id": "event-horizon",
+          "hidden": "true"
+        }
+      ],
+      "heroNetwork": [
+        {
+          "url": "http://127.0.0.1:8765/media/desktop/hero.webp",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:8765/",
+            "lineNumber": 52,
+            "columnNumber": 663
+          }
+        }
+      ]
+    },
+    {
+      "route": "tr/",
+      "width": 390,
+      "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 599
+        }
+      ],
+      "height": 7468,
+      "fixtureTop": 1744,
+      "heroHeight": 835,
+      "heroImage": {
+        "src": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+        "naturalWidth": 614,
+        "naturalHeight": 768,
+        "loading": "eager",
+        "priority": "high"
+      },
+      "heroRequests": [
+        "http://127.0.0.1:8765/media/mobile/hero-portrait.webp"
+      ],
+      "heroTransfers": [
+        {
+          "url": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+          "transfer": 27936,
+          "encoded": 27636
+        }
+      ],
+      "layoutShift": 0,
+      "lcpMs": 44,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+          "encoded": 27636,
+          "transfer": 27936
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "problem",
+        "process",
+        "example",
+        "capabilities",
+        "ecosystem",
+        "explore"
+      ],
+      "mediaLayers": [
+        {
+          "id": "event-horizon",
+          "hidden": "true"
+        }
+      ],
+      "heroNetwork": [
+        {
+          "url": "http://127.0.0.1:8765/media/mobile/hero-portrait.webp",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:8765/tr/",
+            "lineNumber": 52,
+            "columnNumber": 665
+          }
+        }
+      ]
+    },
+    {
+      "route": "tr/",
+      "width": 1440,
+      "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 5443,
+      "fixtureTop": 1587,
+      "heroHeight": 709,
+      "heroImage": {
+        "src": "http://127.0.0.1:8765/media/desktop/hero.webp",
+        "naturalWidth": 1376,
+        "naturalHeight": 768,
+        "loading": "eager",
+        "priority": "high"
+      },
+      "heroRequests": [
+        "http://127.0.0.1:8765/media/desktop/hero.webp"
+      ],
+      "heroTransfers": [
+        {
+          "url": "http://127.0.0.1:8765/media/desktop/hero.webp",
+          "transfer": 30538,
+          "encoded": 30238
+        }
+      ],
+      "layoutShift": 0,
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/desktop/hero.webp",
+          "encoded": 30238,
+          "transfer": 30538
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "problem",
+        "process",
+        "example",
+        "capabilities",
+        "ecosystem",
+        "explore"
+      ],
+      "mediaLayers": [
+        {
+          "id": "event-horizon",
+          "hidden": "true"
+        }
+      ],
+      "heroNetwork": [
+        {
+          "url": "http://127.0.0.1:8765/media/desktop/hero.webp",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:8765/tr/",
+            "lineNumber": 52,
+            "columnNumber": 665
+          }
+        }
+      ]
+    },
+    {
+      "route": "docs/",
+      "width": 390,
+      "title": "MESA Documentation Hub — Start, Understand, Integrate",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 572
+        }
+      ],
+      "height": 6731,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "lcpMs": 40,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-serif-italic.woff2",
+          "encoded": 23348,
+          "transfer": 23648
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "docs/",
+      "width": 1440,
+      "title": "MESA Documentation Hub — Start, Understand, Integrate",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 4229,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "lcpMs": 44,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-serif-italic.woff2",
+          "encoded": 23348,
+          "transfer": 23648
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/docs/",
+      "width": 390,
+      "title": "MESA Dokümantasyon Merkezi — Başlayın, Anlayın, Entegre Edin",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 572
+        }
+      ],
+      "height": 6790,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "lcpMs": 36,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-serif-italic.woff2",
+          "encoded": 23348,
+          "transfer": 23648
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/docs/",
+      "width": 1440,
+      "title": "MESA Dokümantasyon Merkezi — Başlayın, Anlayın, Entegre Edin",
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 4231,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "lcpMs": 56,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=a0ecb33add77",
+          "encoded": 138892,
+          "transfer": 139192
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "encoded": 7040,
+          "transfer": 7340
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=02e6ea041801",
+          "encoded": 12549,
+          "transfer": 12849
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-serif-italic.woff2",
+          "encoded": 23348,
+          "transfer": 23648
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    }
+  ],
+  "fallbackChecks": [],
+  "failures": []
+}

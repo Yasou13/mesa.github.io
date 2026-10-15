@@ -1,0 +1,23 @@
+{
+  "source_commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+  "dependencies": "reused existing Core virtualenv; no install/lock sync claimed",
+  "commands": [
+    {
+      "command": "mesa-v4-admin issue-key + grant-role + grant-agent",
+      "exit": 0
+    },
+    {
+      "command": "GET /health/init",
+      "status": 200
+    },
+    {
+      "command": "GET /health",
+      "status": 200
+    },
+    {
+      "command": "python -m examples.v3_quickstart",
+      "exit": 0,
+      "stdout": "PROCESSED; scoped V3 raw memory found"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Source archive: 07d387f9a4592ea39518fea549e9cf8330051e1f
+Command: /home/yasin/Desktop/MESA/.venv/bin/python -m pytest tests/test_v4_independent_retrieval_audit.py -q
+Working directory: /tmp/mesa-v080-example-source
+Observed result: 12 passed in 7.76s; exit 0.
+Real local SQLite/Kuzu with fixture vectors; no external model qualification.

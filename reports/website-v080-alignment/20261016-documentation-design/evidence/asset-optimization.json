@@ -1,0 +1,20 @@
+{
+  "instrument-sans-variable": {
+    "source_bytes": 194336,
+    "woff2_bytes": 60240,
+    "turkish_glyphs_verified": true
+  },
+  "instrument-serif-italic": {
+    "source_bytes": 71592,
+    "woff2_bytes": 23348,
+    "turkish_glyphs_verified": true
+  },
+  "logo": {
+    "original_bytes": 535223,
+    "mark_bytes": 7040,
+    "dimensions": [
+      128,
+      128
+    ]
+  }
+}
