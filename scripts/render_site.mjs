@@ -1064,18 +1064,14 @@ fs.writeFileSync(
   `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
 );
 
-// Admin CMS page
-const adminHtml = renderAdminPage({ siteUrl, assetBase: basePath, version: project.version });
-const adminDistPath = path.join(outputDirectory, 'admin', 'index.html');
-fs.mkdirSync(path.dirname(adminDistPath), { recursive: true });
-fs.writeFileSync(adminDistPath, adminHtml);
-const distAdminPath = path.join(repositoryRoot, 'dist', 'admin', 'index.html');
-fs.mkdirSync(path.dirname(distAdminPath), { recursive: true });
-fs.writeFileSync(distAdminPath, adminHtml);
-
-// Search Index
+// Admin routes remain reachable but cannot impersonate an authenticated CMS.
+for (const language of ['en', 'tr']) {
+  const adminRoute = language === 'tr' ? 'tr/admin/' : 'admin/';
+  const destination = path.join(outputDirectory, adminRoute, 'index.html');
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language }));
+}
 writeSearchIndex(outputDirectory);
-writeSearchIndex(path.join(repositoryRoot, 'dist'));
 
 base = basePath;
 assetBase = basePath;

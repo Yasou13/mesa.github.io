@@ -253,7 +253,7 @@ def main() -> int:
 
     for page, parsed in parsed_pages.items():
         relative = page.relative_to(root)
-        is_exempt = page.name == "404.html" or str(relative) == "admin/index.html"
+        is_exempt = page.name == "404.html" or str(relative) in {"admin/index.html", "tr/admin/index.html"}
         text = page.read_text(encoding="utf-8")
         if not parsed.title:
             errors.append(f"missing title: {relative}")

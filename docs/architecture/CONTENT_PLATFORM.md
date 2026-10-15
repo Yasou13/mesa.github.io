@@ -1,3 +1,5 @@
+> **Implementation status (independent audit, 2026-10-15):** This document describes the intended architecture, not a verified working CMS. Authentication, server-side editing, immutable publication snapshots, database export, privileged dispatch, deployment callbacks and storage policies are not implemented. `/admin/` is disabled and reports this limitation. Do not enable production publishing from these instructions. See `docs/audits/MESA_CMS_SECURITY_REPORT.md` for tested boundaries.
+
 # MESA Content Platform Architecture
 **Authoritative Architectural Specification for MESA Learn, Native Documentation, and CMS**
 
