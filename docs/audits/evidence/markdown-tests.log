@@ -1,0 +1,11 @@
+✔ hostile content cannot create active HTML or unsafe destinations (2.112467ms)
+✔ code remains literal; duplicate headings receive distinct anchors (1.2486ms)
+✔ checklists, tables, images, captions and literal math render safely (1.061861ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8.762364

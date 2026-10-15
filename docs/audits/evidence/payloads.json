@@ -1,0 +1,42 @@
+{
+  "index.html": {
+    "bytes": 18329,
+    "local_gzip_bytes": 4868
+  },
+  "styles.css": {
+    "bytes": 130981,
+    "local_gzip_bytes": 24518
+  },
+  "app.js": {
+    "bytes": 11634,
+    "local_gzip_bytes": 3524
+  },
+  "assets/mesa-logo.png": {
+    "bytes": 535223,
+    "local_gzip_bytes": 529119
+  },
+  "fonts/instrument-sans-variable.ttf": {
+    "bytes": 194336,
+    "local_gzip_bytes": 112117
+  },
+  "fonts/instrument-serif-italic.ttf": {
+    "bytes": 71592,
+    "local_gzip_bytes": 35954
+  },
+  "fonts/commit-mono-variable.woff2": {
+    "bytes": 86768,
+    "local_gzip_bytes": 86762
+  },
+  "search-index.json": {
+    "bytes": 76320,
+    "local_gzip_bytes": 12945
+  },
+  "docs/core/api-reference/index.html": {
+    "bytes": 53114,
+    "local_gzip_bytes": 14087
+  },
+  "learn/what-is-ai-memory/index.html": {
+    "bytes": 21630,
+    "local_gzip_bytes": 6151
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "baseUrl": "http://127.0.0.1:8767/mesa.github.io/",
+  "cacheMode": "cold",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.79",
+    "revision": "@a49e2e3d4addfd84e765b52afe230bedb81096db",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.23"
+  },
+  "observations": [],
+  "fallbackChecks": [
+    {
+      "type": "search-and-docs",
+      "language": "en",
+      "links": [
+        "http://127.0.0.1:8767/mesa.github.io/learn/semantic-search/",
+        "http://127.0.0.1:8767/mesa.github.io/learn/rag-vs-ai-memory/",
+        "http://127.0.0.1:8767/mesa.github.io/learn/why-vector-search-alone-is-not-enough/",
+        "http://127.0.0.1:8767/mesa.github.io/learn/hybrid-retrieval-explained/",
+        "http://127.0.0.1:8767/mesa.github.io/learn/reciprocal-rank-fusion-explained/",
+        "http://127.0.0.1:8767/mesa.github.io/research/keyword-vs-semantic-search/",
+        "http://127.0.0.1:8767/mesa.github.io/methodology/retrieval-evaluation/",
+        "http://127.0.0.1:8767/mesa.github.io/docs/core/architecture/",
+        "http://127.0.0.1:8767/mesa.github.io/docs/core/retrieval-and-graph/",
+        "http://127.0.0.1:8767/mesa.github.io/docs/e2e/gates-and-verdicts/"
+      ],
+      "turkishCase": true,
+      "trapped": true,
+      "restored": true,
+      "closed": true,
+      "focusOutline": "solid",
+      "docsExpanded": true
+    },
+    {
+      "type": "admin-unavailable",
+      "language": "en",
+      "forms": 0,
+      "controls": 0,
+      "noindex": "noindex, nofollow",
+      "scripts": 0
+    },
+    {
+      "type": "search-and-docs",
+      "language": "tr/",
+      "links": [
+        "http://127.0.0.1:8767/mesa.github.io/tr/learn/semantic-search/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/learn/rag-vs-ai-memory/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/learn/why-vector-search-alone-is-not-enough/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/learn/hybrid-retrieval-explained/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/learn/reciprocal-rank-fusion-explained/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/research/keyword-vs-semantic-search/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/methodology/retrieval-evaluation/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/docs/core/architecture/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/docs/core/retrieval-and-graph/",
+        "http://127.0.0.1:8767/mesa.github.io/tr/docs/e2e/gates-and-verdicts/"
+      ],
+      "turkishCase": true,
+      "trapped": true,
+      "restored": true,
+      "closed": true,
+      "focusOutline": "solid",
+      "docsExpanded": true
+    },
+    {
+      "type": "admin-unavailable",
+      "language": "tr/",
+      "forms": 0,
+      "controls": 0,
+      "noindex": "noindex, nofollow",
+      "scripts": 0
+    },
+    {
+      "type": "no-javascript",
+      "route": "",
+      "body": 3247,
+      "h1": 1,
+      "overflow": 0,
+      "navigation": "flex",
+      "titleY": 639.75,
+      "headerBottom": 447.46875
+    },
+    {
+      "type": "no-javascript",
+      "route": "learn/what-is-ai-memory/",
+      "body": 7046,
+      "h1": 1,
+      "overflow": 0,
+      "navigation": "flex",
+      "titleY": 667.265625,
+      "headerBottom": 447.46875
+    },
+    {
+      "type": "no-javascript",
+      "route": "docs/core/api-reference/",
+      "body": 18845,
+      "h1": 1,
+      "overflow": 0,
+      "navigation": "flex",
+      "titleY": 760.265625,
+      "headerBottom": 447.46875
+    },
+    {
+      "type": "no-javascript",
+      "route": "tr/",
+      "body": 3457,
+      "h1": 1,
+      "overflow": 0,
+      "navigation": "flex",
+      "titleY": 639.75,
+      "headerBottom": 447.46875
+    },
+    {
+      "type": "no-javascript",
+      "route": "tr/learn/what-is-ai-memory/",
+      "body": 7435,
+      "h1": 1,
+      "overflow": 0,
+      "navigation": "flex",
+      "titleY": 667.265625,
+      "headerBottom": 447.46875
+    },
+    {
+      "type": "no-javascript",
+      "route": "tr/docs/core/api-reference/",
+      "body": 18834,
+      "h1": 1,
+      "overflow": 0,
+      "navigation": "flex",
+      "titleY": 780.265625,
+      "headerBottom": 447.46875
+    }
+  ],
+  "failures": []
+}

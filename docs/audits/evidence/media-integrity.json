@@ -1,0 +1,12 @@
+[
+  {
+    "path": "dist/media/desktop/hero.webp",
+    "bytes": 30238,
+    "sha256": "0ae36ca732ce8fd9c5cef24c0b4d1e35d72391f19d671855a8068617e26e33ba"
+  },
+  {
+    "path": "dist/media/mobile/hero-portrait.webp",
+    "bytes": 27636,
+    "sha256": "6d2161d6eec3439b426cee651e5c8cb9b9c0d53b87ce02a42774b9183213360c"
+  }
+]

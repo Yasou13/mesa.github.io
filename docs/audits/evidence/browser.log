@@ -1,0 +1,2 @@
+BROWSER QA PASS: 150 localized routes, 12 homepage widths in EN/TR, navigation, fixture, hero crops (cold cache), reduced motion and image failure; no document overflow or unexpected broken images
+Screenshots and layout observations: /tmp/mesa-audit-final-browser

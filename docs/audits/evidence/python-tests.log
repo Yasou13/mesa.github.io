@@ -1,0 +1,15 @@
+test_artifact_prunes_stale_html_without_mutating_dist (test_build.BuildTests) ... ok
+test_rejects_source_ancestor_and_repository_root (test_build.BuildTests) ... ok
+test_withdrawn_article_is_absent_from_html_search_and_sitemap (test_build.BuildTests) ... ok
+test_recognizes_privileged_material_but_allows_public_key_placeholders (test_secrets.ArtifactTests) ... ok
+test_only_committed_allowlisted_files_imported_and_idempotent (test_sync.SyncTests) ... ok
+test_partial_failure_preserves_cached_repo_exactly (test_sync.SyncTests) ... ok
+test_relative_paths_are_exact_and_code_examples_are_preserved (test_sync.SyncTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.553s
+
+OK
+[OK] test: 8bcdd87bdc8f677365a191730a30fbdd05ae7b64
+[OK] test: 8bcdd87bdc8f677365a191730a30fbdd05ae7b64
+[FAILED] test: OSError: synchronization failed; cache retained

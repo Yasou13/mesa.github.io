@@ -1,0 +1,288 @@
+{
+  "core": {
+    "repository": "https://github.com/Yasou13/MESA",
+    "default_branch": "main",
+    "source_commit": "e3750a7c44c26d7e3555be755e8c07fd5282ca64",
+    "declared_version": "0.8.0",
+    "tag_refs": [
+      "5637025c24def41876e5dfe88ce73c74824cc6e5\trefs/tags/v0.2.0",
+      "d9172a306c8d9a1c0ea7d301b9b9dde4d5221d52\trefs/tags/v0.3.0",
+      "5fc2a8744fa5833f2be8613ab70f088516be33d7\trefs/tags/v0.3.0^{}",
+      "9f4a294672d2d63f07939389e74b898282701ef1\trefs/tags/v0.3.1",
+      "52123c1589793e6f3ccf2a558ecbb8e63142e29f\trefs/tags/v0.3.1^{}",
+      "50f63efd78e80526bd622d597b69fade40ff0cb7\trefs/tags/v0.4.0",
+      "1216f45708c65d5d77e8892b15ba31554efc53b0\trefs/tags/v0.4.0^{}",
+      "e7b53faa1ac20ea209181fef8eca075ade65ce45\trefs/tags/v0.4.1",
+      "8bbdaac9b5dbab330bbcdbf244936edb25c7ee96\trefs/tags/v0.4.1^{}",
+      "4b85b88e890d6266bbe884551a0cb5ccaef4c7da\trefs/tags/v0.4.2",
+      "78712a4da47a35bc0b8f31d18d2e2d0d83d29092\trefs/tags/v0.4.2^{}",
+      "1ac721726abc86083f139582c711d8001eb5c20d\trefs/tags/v0.5.0",
+      "850dc97f350c5829b2202092ef2cc6f641cb1fdd\trefs/tags/v0.5.0^{}",
+      "308bb8324ab9a04b6566397b95621b843f71d9e9\trefs/tags/v0.5.1",
+      "1527cce31fe97ab43fa5659d4c5ee9d9d9918abe\trefs/tags/v0.5.1^{}",
+      "b41a167abe4602556bae9e4d3b71abc4be0a93a7\trefs/tags/v0.5.2",
+      "1527cce31fe97ab43fa5659d4c5ee9d9d9918abe\trefs/tags/v0.5.2^{}",
+      "9c678c6d35b89e32898d4ad6dff56e9acb7620f3\trefs/tags/v0.6.0",
+      "8798abc90979401d4785cc25d4627517860cb959\trefs/tags/v0.6.1",
+      "5467b97b78644b3346dfdff541f601a3d06ce125\trefs/tags/v0.7.0",
+      "e21aeb7fd7750aff2301b9e04e06e4584f065f6a\trefs/tags/v0.7.0^{}",
+      "bf688233ad539b8e131955937f519f4ace2e246f\trefs/tags/v0.7.1",
+      "a3a3cb002799d07653a3717a0bb112387b4837ee\trefs/tags/v0.7.1^{}",
+      "e2c28ea42ab772d62f7e93537902050bfef12837\trefs/tags/v0.8.0",
+      "07d387f9a4592ea39518fea549e9cf8330051e1f\trefs/tags/v0.8.0^{}"
+    ],
+    "releases": [
+      {
+        "tag": "v0.8.0",
+        "url": "https://github.com/Yasou13/MESA/releases/tag/v0.8.0",
+        "published_at": "2026-10-15T18:21:44Z",
+        "prerelease": false,
+        "assets": [
+          {
+            "name": "mesa-runtime.cdx.json",
+            "bytes": 50668,
+            "digest": "sha256:f46fe9cb87967350ebd354f569cf0dbec64cff3fa462122d14a7d15d53688fa4"
+          },
+          {
+            "name": "mesa-runtime.cdx.json.sigstore.json",
+            "bytes": 11357,
+            "digest": "sha256:585f733a72df3758d94a62529a23c06dc820a87948f58f9bf55c8e39b596cee1"
+          },
+          {
+            "name": "mesa_memory-0.8.0-py3-none-any.whl",
+            "bytes": 599040,
+            "digest": "sha256:523fa5c9ae1186fa76e8fcaf5a45381132da400491887f88d14bf9edcb4270de"
+          },
+          {
+            "name": "mesa_memory-0.8.0-py3-none-any.whl.sigstore.json",
+            "bytes": 11357,
+            "digest": "sha256:585f733a72df3758d94a62529a23c06dc820a87948f58f9bf55c8e39b596cee1"
+          },
+          {
+            "name": "SHA256SUMS",
+            "bytes": 189,
+            "digest": "sha256:c4c992b38d0b200de4fe522f726f3155e2ce2d3bc05c0768660d876a26c36c5d"
+          }
+        ]
+      },
+      {
+        "tag": "v0.7.1",
+        "url": "https://github.com/Yasou13/MESA/releases/tag/v0.7.1",
+        "published_at": "2026-07-29T08:36:19Z",
+        "prerelease": false,
+        "assets": []
+      },
+      {
+        "tag": "v0.7.0",
+        "url": "https://github.com/Yasou13/MESA/releases/tag/v0.7.0",
+        "published_at": "2026-07-23T19:47:35Z",
+        "prerelease": false,
+        "assets": []
+      },
+      {
+        "tag": "v0.6.1",
+        "url": "https://github.com/Yasou13/MESA/releases/tag/v0.6.1",
+        "published_at": "2026-07-17T13:11:17Z",
+        "prerelease": false,
+        "assets": []
+      },
+      {
+        "tag": "v0.6.0",
+        "url": "https://github.com/Yasou13/MESA/releases/tag/v0.6.0",
+        "published_at": "2026-07-17T07:19:51Z",
+        "prerelease": false,
+        "assets": []
+      }
+    ],
+    "ci": [
+      {
+        "name": "MESA CI",
+        "commit": "e3750a7c44c26d7e3555be755e8c07fd5282ca64",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA/actions/runs/38788143472"
+      },
+      {
+        "name": "MESA external release gates",
+        "commit": "e3750a7c44c26d7e3555be755e8c07fd5282ca64",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA/actions/runs/38788143382"
+      },
+      {
+        "name": "MESA CI",
+        "commit": "99bde3ce62000c0cd94649ba1bff0d817538f3ff",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA/actions/runs/38786810523"
+      },
+      {
+        "name": "MESA external release gates",
+        "commit": "99bde3ce62000c0cd94649ba1bff0d817538f3ff",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA/actions/runs/38786810332"
+      },
+      {
+        "name": "MESA CI",
+        "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA/actions/runs/38783424143"
+      }
+    ]
+  },
+  "data": {
+    "repository": "https://github.com/Yasou13/MESA_Data",
+    "default_branch": "main",
+    "source_commit": "e1dc229e9de57c48374e38a87ec7786d1c7bd1f9",
+    "declared_version": "0.1.0",
+    "tag_refs": [
+      "68a438f4e81388e5f2571cb340bfa60afb57d61b\trefs/tags/v1.0.0",
+      "1c6082e2241a6addf9efbded920505dd9cf41a0c\trefs/tags/v1.0.0^{}"
+    ],
+    "releases": [],
+    "ci": [
+      {
+        "name": "CI Pipeline",
+        "commit": "e1dc229e9de57c48374e38a87ec7786d1c7bd1f9",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_Data/actions/runs/38142062595"
+      },
+      {
+        "name": "CI Pipeline",
+        "commit": "9f5c9d5ff005d3f9b9e381267188692ba386dd98",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_Data/actions/runs/38141915060"
+      },
+      {
+        "name": "CI Pipeline",
+        "commit": "38c3fa5d3240cc944e8da611926fd220b7df145c",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_Data/actions/runs/37114759883"
+      },
+      {
+        "name": "CI Pipeline",
+        "commit": "4f7227b22822cf70bfb870a40211733ff0929a0e",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_Data/actions/runs/37113732694"
+      },
+      {
+        "name": "CI Pipeline",
+        "commit": "a1fffc1fe1ead2f37aae63292916df36b07c9bc7",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/Yasou13/MESA_Data/actions/runs/37113035223"
+      }
+    ]
+  },
+  "law": {
+    "repository": "https://github.com/Yasou13/MESA_Law",
+    "default_branch": "master",
+    "source_commit": "b791be27a5d9d2e0306057529f6a5dce222673a4",
+    "declared_version": "0.1.0",
+    "tag_refs": [
+      "40230c9587c185b5e3d5e1eb9052a799defd59e0\trefs/tags/v0.1.0-pre-stabilization",
+      "f93c3073442dbe126e04d2d37f70754e4a177af7\trefs/tags/v0.1.0-pre-stabilization^{}"
+    ],
+    "releases": [],
+    "ci": [
+      {
+        "name": "MESA Law CI/CD Quality Gates",
+        "commit": "b791be27a5d9d2e0306057529f6a5dce222673a4",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/Yasou13/MESA_Law/actions/runs/38139876470"
+      },
+      {
+        "name": "MESA Law CI/CD Quality Gates",
+        "commit": "e71f785133e6aaf964a7a2724fef59572b13c84b",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/Yasou13/MESA_Law/actions/runs/36420584287"
+      },
+      {
+        "name": "MESA Law CI/CD Quality Gates",
+        "commit": "9d3bf8090bcf8fcc0330600ca6400946de475efc",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/Yasou13/MESA_Law/actions/runs/30744323221"
+      },
+      {
+        "name": "MESA Law CI/CD Quality Gates",
+        "commit": "be8953f13f7889fc2466e255323031e16926b170",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/Yasou13/MESA_Law/actions/runs/30725294216"
+      },
+      {
+        "name": "MESA Law CI/CD Quality Gates",
+        "commit": "1e2bdf09240f67daadfd207e7ce81e6535f0135c",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/Yasou13/MESA_Law/actions/runs/30725264619"
+      }
+    ]
+  },
+  "qa": {
+    "repository": "https://github.com/Yasou13/MESA_QA",
+    "default_branch": "main",
+    "source_commit": "4f6c7ecc033e2c5b085ac9d220b841b8aab04d1e",
+    "declared_version": "0.1.0",
+    "tag_refs": [],
+    "releases": [],
+    "ci": []
+  },
+  "e2e": {
+    "repository": "https://github.com/Yasou13/MESA_E2E_Certification",
+    "default_branch": "main",
+    "source_commit": "3b7562cb65800cde27877dc3a7cd505a70822bf8",
+    "declared_version": "0.1.0",
+    "tag_refs": [
+      "0fbe647696bf3877719b20e1c7a6dc7251b5e4d7\trefs/tags/v0.1.0",
+      "0e5e1844581716b583cd94604c26ee73b567749d\trefs/tags/v0.1.0^{}"
+    ],
+    "releases": [],
+    "ci": [
+      {
+        "name": "certification-harness-ci",
+        "commit": "3b7562cb65800cde27877dc3a7cd505a70822bf8",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_E2E_Certification/actions/runs/38130338438"
+      },
+      {
+        "name": "certification-harness-ci",
+        "commit": "0522ecf53286270ed28704919d203bb100022827",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_E2E_Certification/actions/runs/38130275925"
+      },
+      {
+        "name": "certification-harness-ci",
+        "commit": "0522ecf53286270ed28704919d203bb100022827",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_E2E_Certification/actions/runs/38129950023"
+      },
+      {
+        "name": "certification-harness-ci",
+        "commit": "0a870e0bd94162d48b2b65102da374d30ee54c57",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_E2E_Certification/actions/runs/37936547194"
+      },
+      {
+        "name": "certification-harness-ci",
+        "commit": "f4e9d9d38539fc088856d2ed6cf29df1cdfacaa1",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/Yasou13/MESA_E2E_Certification/actions/runs/37936465540"
+      }
+    ]
+  }
+}

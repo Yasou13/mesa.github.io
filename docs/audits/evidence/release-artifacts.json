@@ -1,0 +1,32 @@
+[
+  {
+    "name": "mesa-runtime.cdx.json",
+    "bytes": 50668,
+    "sha256": "sha256:f46fe9cb87967350ebd354f569cf0dbec64cff3fa462122d14a7d15d53688fa4",
+    "matches_github_digest": true
+  },
+  {
+    "name": "mesa-runtime.cdx.json.sigstore.json",
+    "bytes": 11357,
+    "sha256": "sha256:585f733a72df3758d94a62529a23c06dc820a87948f58f9bf55c8e39b596cee1",
+    "matches_github_digest": true
+  },
+  {
+    "name": "mesa_memory-0.8.0-py3-none-any.whl",
+    "bytes": 599040,
+    "sha256": "sha256:523fa5c9ae1186fa76e8fcaf5a45381132da400491887f88d14bf9edcb4270de",
+    "matches_github_digest": true
+  },
+  {
+    "name": "mesa_memory-0.8.0-py3-none-any.whl.sigstore.json",
+    "bytes": 11357,
+    "sha256": "sha256:585f733a72df3758d94a62529a23c06dc820a87948f58f9bf55c8e39b596cee1",
+    "matches_github_digest": true
+  },
+  {
+    "name": "SHA256SUMS",
+    "bytes": 189,
+    "sha256": "sha256:c4c992b38d0b200de4fe522f726f3155e2ce2d3bc05c0768660d876a26c36c5d",
+    "matches_github_digest": true
+  }
+]
