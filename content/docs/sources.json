@@ -106,10 +106,54 @@
         "slug": "colab-rehberi",
         "title": "Google Colab Guide",
         "title_tr": "Google Colab Rehberi"
+      },
+      {
+        "src": "docs/README.md",
+        "slug": "documentation-map",
+        "title": "Documentation Map",
+        "title_tr": "Belge Haritası"
+      },
+      {
+        "src": "docs/security-and-privacy.md",
+        "slug": "security",
+        "title": "Security & Scope",
+        "title_tr": "Güvenlik ve Kapsam"
+      },
+      {
+        "src": "docs/RUNBOOK.md",
+        "slug": "operations",
+        "title": "Operations & Recovery",
+        "title_tr": "Operasyon ve Kurtarma"
+      },
+      {
+        "src": "docs/ecosystem.md",
+        "slug": "ecosystem",
+        "title": "Ecosystem Contracts",
+        "title_tr": "Ekosistem Sözleşmeleri"
+      },
+      {
+        "src": "docs/testing.md",
+        "slug": "testing",
+        "title": "Testing & Examples",
+        "title_tr": "Testler ve Örnekler"
+      },
+      {
+        "src": "docs/release.md",
+        "slug": "release-policy",
+        "title": "Release Qualification",
+        "title_tr": "Sürüm Yeterliliği"
+      },
+      {
+        "src": "README_MCP.md",
+        "slug": "mcp",
+        "title": "MCP Reference",
+        "title_tr": "MCP Referansı"
       }
     ],
-    "commit": "e3750a7c44c26d7e3555be755e8c07fd5282ca64",
-    "version_source": "pyproject.toml"
+    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "version_source": "pyproject.toml",
+    "release_tag": "v0.8.0",
+    "release_date": "2026-10-15"
   },
   "data": {
     "repo_url": "https://github.com/Yasou13/MESA_Data.git",

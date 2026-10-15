@@ -296,10 +296,28 @@ document.addEventListener('click', async (e) => {
   window.setTimeout(() => { btn.textContent = labels.copy; }, 4000);
 });
 
+// This is a transparent arithmetic example, never a live retrieval request.
+for (const calculator of document.querySelectorAll('[data-rank-calculator]')) {
+  calculator.querySelector('fieldset').disabled = false;
+  calculator.addEventListener('change', () => {
+    const contributions = calculator.querySelectorAll('input:checked').length;
+    calculator.querySelector('output').value = `${contributions} / 61 = ${(contributions / 61).toFixed(6)}`;
+  });
+}
+// Preserve deep links into original source references even while the appendix is folded.
+function revealSourceAnchor() {
+  if (!location.hash) return;
+  let target;
+  try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+  const appendix = target?.closest('.source-appendix');
+  if (appendix && !appendix.open) { appendix.open = true; target.scrollIntoView(); }
+}
+revealSourceAnchor();
+window.addEventListener('hashchange', revealSourceAnchor);
+
 const docsNavigation = document.querySelector('.docs-navigation');
 if (docsNavigation) {
-  const wideDocs = window.matchMedia('(min-width: 1025px)');
-  const adaptDocsNavigation = () => { docsNavigation.open = wideDocs.matches; };
-  adaptDocsNavigation();
-  wideDocs.addEventListener('change', adaptDocsNavigation);
+  const wideDocs = matchMedia('(min-width:1025px)');
+  const adaptDocs = () => { docsNavigation.open = wideDocs.matches; };
+  adaptDocs(); wideDocs.addEventListener('change', adaptDocs);
 }

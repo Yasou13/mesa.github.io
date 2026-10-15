@@ -5,10 +5,10 @@
     "domain": "https://mesamemory.dev/",
     "version": "0.8.0",
     "runtime": "V4",
-    "maturity": "Release Candidate",
+    "maturity": "Published source release",
     "certification": "In progress",
     "production": "NO-GO",
-    "statusAsOf": "2026-10-15",
+    "statusAsOf": "2026-10-16",
     "maintainer": "Yasou13",
     "license": "MIT"
   },
@@ -96,6 +96,16 @@
       "path": "faq/",
       "title": "MESA FAQ — Architecture, Interfaces, Scope, and Status",
       "description": "Direct answers about MESA, vector search, RAG, provenance, MCP, local operation, MESA Law, QA, certification, and production status."
+    },
+    "architecture": {
+      "path": "architecture/",
+      "title": "MESA Architecture — Canonical State, Projections and Evidence",
+      "description": "Understand MESA Core v0.8.0 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity."
+    },
+    "retrieval": {
+      "path": "retrieval/",
+      "title": "MESA V4 Retrieval — Four Lanes, RRF and Evidence",
+      "description": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0."
     }
   }
 }

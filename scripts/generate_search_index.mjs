@@ -3,6 +3,7 @@
 // Outputs search-index.json for client-side instant search.
 
 import fs from 'node:fs';
+import { getDocsManifest } from './render_docs.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -41,7 +42,7 @@ export function buildSearchIndex() {
   // 2. Documentation pages from content/docs/manifest.json
   const docsPath = path.join(repositoryRoot, 'content', 'docs', 'manifest.json');
   if (fs.existsSync(docsPath)) {
-    const manifest = JSON.parse(fs.readFileSync(docsPath, 'utf8'));
+    const manifest = getDocsManifest();
     for (const [repoKey, repo] of Object.entries(manifest.repositories)) {
       const repoTitleEn = repo.title?.en || repoKey;
       const repoTitleTr = repo.title?.tr || repoTitleEn;
@@ -58,7 +59,7 @@ export function buildSearchIndex() {
             title,
             section: sectionTitle,
             category: repoTitleEn,
-            summary: `${repoTitleEn} ${title} documentation (${repo.version})`,
+            summary: lang === 'tr' ? `${title} · ${repoTitleTr} rehberi (${repo.version})` : `${title} · ${repoTitleEn} guide (${repo.version})`,
             keywords: [repoKey, 'docs', repo.version, ...(page.headings ? page.headings.map(h => h.title) : [])],
             language: lang
           });

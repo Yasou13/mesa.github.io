@@ -1,34 +1,184 @@
 {
   "pages": {
-    "home": {"title": "MESA — Kanıt Odaklı Hafıza Altyapısı", "description": "MESA, yapay zekâ sistemlerinin hatırladıklarıyla birlikte kaynak kanıtını, ilişkileri ve veri kapsamını koruyan açık kaynaklı hafıza altyapısıdır."},
-    "mesa": {"title": "MESA Core — Yapılandırılmış, Kanıt Odaklı Ajan Hafızası", "description": "MESA Core'un kalıcı hafıza yaşam döngüsünü, kapsamlı geri getirmeyi, kaynak izini, depolama projeksiyonlarını, API, SDK ve MCP yüzeylerini inceleyin."},
-    "howItWorks": {"title": "MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama", "description": "Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin."},
-    "ecosystem": {"title": "MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar", "description": "MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın."},
-    "data": {"title": "MESA Data — Denetlenebilir Türkiye Hukuk Verisi", "description": "MESA Data, Türkiye hukuk kaynaklarını denetlenebilir bir işlem hattında korur, kanonikleştirir, inceler ve sürüm olarak yayımlar."},
-    "qa": {"title": "MESA QA — Ayrık Doğruluk ve Dayanıklılık Testleri", "description": "MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar."},
-    "certification": {"title": "MESA E2E Certification — Profile B Kapsamı ve Durumu", "description": "MESA Data'dan MESA'ya uzanan hukuk Profile B sertifikasyon yolunun kanıt sözleşmesini, sınırlarını ve mevcut engelli durumunu inceleyin."},
-    "law": {"title": "MESA Law — Kanıt Odaklı Hukuk İş Akışı", "description": "MESA Law, MESA Core ile sürümlenmiş bir HTTP sınırı üzerinden bütünleşen hukuk dosyası ve belge iş akışıdır."},
-    "useCases": {"title": "MESA Kullanım Alanları — Kanıtın Önemli Olduğu Yapılandırılmış Hafıza", "description": "Ajan hafızası, bilgi yoğun asistanlar ve kaynak izine duyarlı iş akışları dahil MESA için gerçekçi değerlendirme senaryolarını inceleyin."},
-    "evaluation": {"title": "MESA Değerlendirme ve Güven — QA, Kanıt ve Sertifikasyon", "description": "MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın."},
-    "docs": {"title": "MESA Dokümantasyon Merkezi — Başlayın, Anlayın, Entegre Edin", "description": "MESA hızlı başlangıç, mimari, güvenlik, API, MCP, ekosistem ve doğrulama dokümanlarını bulun."},
-    "mcp": {"title": "MESA MCP Entegrasyonu — Doğrudan Sunucu ve V4 Gateway", "description": "MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın."},
-    "status": {"title": "MESA Proje Durumu — Sürüm ve Sertifikasyon", "description": "MESA Core olgunluğu, Profile B sertifikasyon engelleri, tarihsel kanıt durumu ve üretime hazırlık hakkında güncel bilgi."},
-    "about": {"title": "MESA Hakkında — Açık Kaynaklı Kanıt Odaklı Hafıza", "description": "MESA'nın neden var olduğunu, çok depolu açık kaynak projenin nasıl sürdürüldüğünü ve kaynak kodunun nerede inceleneceğini öğrenin."},
-    "faq": {"title": "MESA SSS — Mimari, Arayüzler, Kapsam ve Durum", "description": "MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar."}
+    "home": {
+      "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
+      "description": "MESA, yapay zekâ sistemlerinin hatırladıklarıyla birlikte kaynak kanıtını, ilişkileri ve veri kapsamını koruyan açık kaynaklı hafıza altyapısıdır."
+    },
+    "mesa": {
+      "title": "MESA Core — Yapılandırılmış, Kanıt Odaklı Ajan Hafızası",
+      "description": "MESA Core'un kalıcı hafıza yaşam döngüsünü, kapsamlı geri getirmeyi, kaynak izini, depolama projeksiyonlarını, API, SDK ve MCP yüzeylerini inceleyin."
+    },
+    "howItWorks": {
+      "title": "MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama",
+      "description": "Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin."
+    },
+    "ecosystem": {
+      "title": "MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar",
+      "description": "MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın."
+    },
+    "data": {
+      "title": "MESA Data — Denetlenebilir Türkiye Hukuk Verisi",
+      "description": "MESA Data, Türkiye hukuk kaynaklarını denetlenebilir bir işlem hattında korur, kanonikleştirir, inceler ve sürüm olarak yayımlar."
+    },
+    "qa": {
+      "title": "MESA QA — Ayrık Doğruluk ve Dayanıklılık Testleri",
+      "description": "MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar."
+    },
+    "certification": {
+      "title": "MESA E2E Certification — Profile B Kapsamı ve Durumu",
+      "description": "MESA Data'dan MESA'ya uzanan hukuk Profile B sertifikasyon yolunun kanıt sözleşmesini, sınırlarını ve mevcut engelli durumunu inceleyin."
+    },
+    "law": {
+      "title": "MESA Law — Kanıt Odaklı Hukuk İş Akışı",
+      "description": "MESA Law, MESA Core ile sürümlenmiş bir HTTP sınırı üzerinden bütünleşen hukuk dosyası ve belge iş akışıdır."
+    },
+    "useCases": {
+      "title": "MESA Kullanım Alanları — Kanıtın Önemli Olduğu Yapılandırılmış Hafıza",
+      "description": "Ajan hafızası, bilgi yoğun asistanlar ve kaynak izine duyarlı iş akışları dahil MESA için gerçekçi değerlendirme senaryolarını inceleyin."
+    },
+    "evaluation": {
+      "title": "MESA Değerlendirme ve Güven — QA, Kanıt ve Sertifikasyon",
+      "description": "MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın."
+    },
+    "docs": {
+      "title": "MESA Dokümantasyon Merkezi — Başlayın, Anlayın, Entegre Edin",
+      "description": "MESA hızlı başlangıç, mimari, güvenlik, API, MCP, ekosistem ve doğrulama dokümanlarını bulun."
+    },
+    "mcp": {
+      "title": "MESA MCP Entegrasyonu — Doğrudan Sunucu ve V4 Gateway",
+      "description": "MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın."
+    },
+    "status": {
+      "title": "MESA Proje Durumu — Sürüm ve Sertifikasyon",
+      "description": "MESA Core olgunluğu, Profile B sertifikasyon engelleri, tarihsel kanıt durumu ve üretime hazırlık hakkında güncel bilgi."
+    },
+    "about": {
+      "title": "MESA Hakkında — Açık Kaynaklı Kanıt Odaklı Hafıza",
+      "description": "MESA'nın neden var olduğunu, çok depolu açık kaynak projenin nasıl sürdürüldüğünü ve kaynak kodunun nerede inceleneceğini öğrenin."
+    },
+    "faq": {
+      "title": "MESA SSS — Mimari, Arayüzler, Kapsam ve Durum",
+      "description": "MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar."
+    },
+    "architecture": {
+      "title": "MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt",
+      "description": "MESA Core v0.8.0 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın."
+    },
+    "retrieval": {
+      "title": "MESA V4 Retrieval — Dört Kanal, RRF ve Kanıt",
+      "description": "MESA Core v0.8.0 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin."
+    }
   },
   "intentionalEnglish": [
-    "MESA", "EN", "TR", "· Türkçe", "· İngilizce", "GitHub", "Yasou13",
-    "MESA Core", "MESA Data", "MESA QA", "MESA Law", "E2E Certification",
-    "MESA PROFILE B", "MESA DATA", "MESA Certification", "E2E CERTIFICATION",
-    "MODEL CONTEXT PROTOCOL", "stdio", "HTTP API", "V4", "Python SDK", "MCP",
-    "Resmî Gazete", "Mevzuat Bilgi Sistemi", "Anayasa Mahkemesi", "Yargıtay",
-    "MESA CORE · V0.8.0", "v0.8.0 / V4", "2026-10-15", "MESA CORE · V0.7.1", "v0.7.1 / V4", "NO-GO", "CORE", "PROFILE B", "MESA LAW",
-    "Principal", "Tenant", "Workspace", "Dataset", "Agent", "SEMANTIC", "Vector",
-    "LEXICAL", "BM25", "FUSION", "SQLite", "LanceDB", "Kuzu", "HTTP", "PYTHON",
-    "V4 REST API", "SQL ledger", "REST, sync/async SDK, MCP", "QA / SEQUENCE", "CERT / MANIFEST",
-    "TRACE / 04", "Python · MesaV4Client", "“Alice”", "Alice", "knows", "Aurora",
-    "source-chunk-1", "doc-1 / chunk-1", "subject", "predicate", "object", "document",
-    "doc-1", "chunk", "chunk-1", "span", "“Alice knows Aurora”", "vector", "assertion", "graph path", "⌘K"
+    "MESA",
+    "EN",
+    "TR",
+    "· Türkçe",
+    "· İngilizce",
+    "GitHub",
+    "Yasou13",
+    "MESA Core",
+    "MESA Data",
+    "MESA QA",
+    "MESA Law",
+    "E2E Certification",
+    "MESA PROFILE B",
+    "MESA DATA",
+    "MESA Certification",
+    "E2E CERTIFICATION",
+    "MODEL CONTEXT PROTOCOL",
+    "stdio",
+    "HTTP API",
+    "V4",
+    "Python SDK",
+    "MCP",
+    "Resmî Gazete",
+    "Mevzuat Bilgi Sistemi",
+    "Anayasa Mahkemesi",
+    "Yargıtay",
+    "MESA CORE · V0.8.0",
+    "v0.8.0 / V4",
+    "2026-10-15",
+    "MESA CORE · V0.7.1",
+    "v0.7.1 / V4",
+    "NO-GO",
+    "CORE",
+    "PROFILE B",
+    "MESA LAW",
+    "Principal",
+    "Tenant",
+    "Workspace",
+    "Dataset",
+    "Agent",
+    "SEMANTIC",
+    "Vector",
+    "LEXICAL",
+    "BM25",
+    "FUSION",
+    "SQLite",
+    "LanceDB",
+    "Kuzu",
+    "HTTP",
+    "PYTHON",
+    "V4 REST API",
+    "SQL ledger",
+    "REST, sync/async SDK, MCP",
+    "QA / SEQUENCE",
+    "CERT / MANIFEST",
+    "TRACE / 04",
+    "Python · MesaV4Client",
+    "“Alice”",
+    "Alice",
+    "knows",
+    "Aurora",
+    "source-chunk-1",
+    "doc-1 / chunk-1",
+    "subject",
+    "predicate",
+    "object",
+    "document",
+    "doc-1",
+    "chunk",
+    "chunk-1",
+    "span",
+    "“Alice knows Aurora”",
+    "vector",
+    "assertion",
+    "graph path",
+    "⌘K",
+    "BM25",
+    "Assertion",
+    "docs/architecture-v4.md · 07d387f",
+    "docs/concepts-and-ingestion.md · 07d387f",
+    "mesa_storage/retrieval_scope.py · 07d387f",
+    "docs/retrieval-and-graph.md · 07d387f",
+    "mesa_memory/context_builder.py · 07d387f",
+    "01 · Source",
+    "02 · Ingest",
+    "03 · Persist",
+    "04 · Retrieve",
+    "SQLite",
+    "LanceDB",
+    "Kùzu",
+    "Source",
+    "Admission",
+    "Processing",
+    "Projection",
+    "Scope",
+    "Lanes",
+    "RRF",
+    "Context",
+    "MESA Core v0.8.0 · published source release",
+    "2026-10-16",
+    "MESA V4 · RETRIEVAL",
+    "RECIPROCAL RANK FUSION",
+    "Retrieval",
+    "CORE v0.8.0 · 07d387f",
+    "MESA Core v0.8.0",
+    "MESA Data v0.1.0",
+    "MESA Law v0.1.0",
+    "MESA QA v0.1.0",
+    "E2E Certification v0.1.0"
   ],
   "strings": {
     "Search": "Ara",
@@ -128,7 +278,6 @@
     "Maintainer profile": "Bakımcı profili",
     "© 2026 MESA contributors": "© 2026 MESA katkıcıları",
     "Source-verified documentation gateway": "Kaynakla doğrulanmış dokümantasyon geçidi",
-
     "ABOUT MESA": "MESA HAKKINDA",
     "An open-source exploration of": "Açık kaynaklı bir keşif:",
     "memory with evidence.": "kanıtıyla birlikte hafıza.",
@@ -151,7 +300,6 @@
     "CURRENT STATUS": "GÜNCEL DURUM",
     "Certification is in progress; production remains NO-GO.": "Sertifikasyon sürüyor; üretim durumu NO-GO olarak kalıyor.",
     "Review status and limits": "Durumu ve sınırları inceleyin",
-
     "MESA PROFILE B": "MESA PROFILE B",
     "Evidence before": "Önce kanıt,",
     "certification language.": "sonra sertifikasyon söylemi.",
@@ -179,7 +327,6 @@
     "but not promoted.": "ancak güncel başarı olarak sunulmuyor.",
     "The exposed 2026-09-01 run remains useful qualification/regression evidence. A later independent audit found integrity defects, invalidated its use as a Profile B v2 certification result, hardened the harness to fail closed, and recorded the remaining runtime-producer blockers.": "Yayımlanan 2026-09-01 çalışması, yeterlilik ve regresyon kanıtı olarak yararlıdır. Daha sonraki bağımsız denetim bütünlük kusurları buldu, sonucun Profile B v2 sertifikasyonu olarak kullanılmasını geçersiz kıldı, test düzeneğini hata durumunda kapanacak şekilde sıkılaştırdı ve kalan çalışma zamanı üreticisi engellerini kaydetti.",
     "Read the audit": "Denetimi okuyun",
-
     "MESA DATA": "MESA DATA",
     "Legal data with an": "Denetlenebilir bir sürüm yoluna",
     "auditable release path.": "sahip hukuk verisi.",
@@ -217,7 +364,6 @@
     "Human-started, idempotent MESA delivery": "İnsan tarafından başlatılan idempotent MESA teslimi",
     "Human boundary": "İnsan sınırı",
     "MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.": "MESA teslimi hiçbir zaman otomatik başlamaz. Yerel staging bir geliştirme aracıdır; gerçek MESA yayıncısı değildir.",
-
     "DOCUMENTATION HUB": "DOKÜMANTASYON MERKEZİ",
     "Find the contract.": "Sözleşmeyi bulun.",
     "Then run the code.": "Ardından kodu çalıştırın.",
@@ -270,7 +416,6 @@
     "The standard local development environment installs the locked development extra. Optional model/provider packages are separate.": "Standart yerel geliştirme ortamı kilitlenmiş geliştirme ek paketini kurar. İsteğe bağlı model ve sağlayıcı paketleri ayrıdır.",
     "local install": "yerel kurulum",
     "Copy": "Kopyala",
-
     "MODEL CONTEXT PROTOCOL": "MODEL CONTEXT PROTOCOL",
     "Two integration paths.": "İki entegrasyon yolu.",
     "Different runtime contracts.": "Farklı çalışma zamanı sözleşmeleri.",
@@ -303,7 +448,6 @@
     "credentials live outside project configuration": "kimlik bilgileri proje yapılandırmasının dışında tutulur",
     "missing client/workspace bindings fail closed": "eksik istemci/workspace bağları hata durumunda kapanır",
     "the exact supported host depends on the selected integration path": "desteklenen ana makine seçilen entegrasyon yoluna bağlıdır",
-
     "MESA ECOSYSTEM": "MESA EKOSİSTEMİ",
     "Clear boundaries.": "Açık sınırlar.",
     "Evidence across them.": "Sınırlar boyunca kanıt.",
@@ -372,7 +516,6 @@
     "Ranked context with provenance": "Kaynak iziyle sıralanmış bağlam",
     "Use": "Kullan",
     "Law workflow over the HTTP contract": "HTTP sözleşmesi üzerinden Law iş akışı",
-
     "EVALUATION & TRUST": "DEĞERLENDİRME VE GÜVEN",
     "Two layers.": "İki katman.",
     "Two different questions.": "İki farklı soru.",
@@ -401,7 +544,6 @@
     "BENCHMARK PUBLICATION": "BENCHMARK YAYIMLAMA",
     "No placeholder numbers.": "Yer tutucu sayı yok.",
     "Historical or synthetic diagnostics are not promoted as current production guarantees. Publishable retrieval quality, latency, resource, and endurance results should follow valid certification and clearly identified methodology.": "Tarihsel veya sentetik tanı sonuçları güncel üretim garantileri olarak sunulmaz. Yayımlanabilir geri getirme kalitesi, gecikme, kaynak ve dayanıklılık sonuçları; geçerli sertifikasyonu ve açıkça tanımlanmış yöntemi izlemelidir.",
-
     "FREQUENTLY ASKED QUESTIONS": "SIK SORULAN SORULAR",
     "Short answers.": "Kısa yanıtlar.",
     "Source-linked depth.": "Kaynağa bağlı ayrıntılar.",
@@ -443,7 +585,6 @@
     "Read the docs": "Dokümanları okuyun",
     "Review project status": "Proje durumunu inceleyin",
     "Open GitHub": "GitHub'ı aç",
-
     "HOW MESA WORKS": "MESA NASIL ÇALIŞIR",
     "Keep the memory.": "Hafızayı koruyun.",
     "Keep its basis.": "Dayanağını da koruyun.",
@@ -472,7 +613,6 @@
     "Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.": "Varlık ve assertion kimliği, predicate'ler, literal ya da varlık nesneleri ve sınırlandırılmış destekleyici graph path'ler.",
     "Scope": "Kapsam",
     "Tenant and authorized dataset eligibility resolved before lane ranking and fusion.": "Tenant ve yetkili dataset uygunluğu, kanal sıralaması ve fusion öncesinde belirlenir.",
-    "State": "Durum",
     "Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.": "Mutasyon, işlem hattı, projeksiyon, yeniden deneme, rollback ve commit edilmiş sonuçlar gözlemlenebilir kalır.",
     "VERIFIED REPOSITORY EXAMPLE": "DOĞRULANMIŞ DEPO ÖRNEĞİ",
     "Four origins.": "Dört kaynak.",
@@ -505,7 +645,7 @@
     "Catalog, ownership, assertions, outbox": "Katalog, sahiplik, assertion'lar, outbox",
     "Projections": "Projeksiyonlar",
     "Vector then Graph V2, idempotently": "Idempotent biçimde önce Vector, sonra Graph V2",
-    "Retrieval": "Geri getirme",
+    "Retrieval": "Retrieval",
     "Vector + BM25 + assertion + graph-path RRF": "Vector + BM25 + assertion + graph path RRF",
     "Clients": "İstemciler",
     "REST, sync/async SDK, MCP": "REST, sync/async SDK, MCP",
@@ -517,7 +657,6 @@
     "Evaluates a frozen profile with evidence, authoritative producers, hard gates, and a fail-closed verdict.": "Dondurulmuş bir profili kanıt, yetkili üreticiler, katı kapılar ve hata durumunda kapanan bir hükümle değerlendirir.",
     "Exercises behavior, temporal change, cross-session persistence, restarts, and bounded candidate repair.": "Davranışı, zamansal değişimi, oturumlar arası kalıcılığı, yeniden başlatmaları ve sınırlandırılmış aday onarımını sınar.",
     "Compare evaluation layers →": "Değerlendirme katmanlarını karşılaştırın →",
-
     "EVIDENCE-AWARE MEMORY INFRASTRUCTURE": "KANIT ODAKLI HAFIZA ALTYAPISI",
     "source": "kaynak",
     "memory": "hafıza",
@@ -587,7 +726,6 @@
     "Inspect the implementation.": "Uygulamayı inceleyin.",
     "Move from foundational concepts to source-linked architecture, integration guides, and evaluation methodology.": "Temel kavramlardan kaynak bağlantılı mimariye, entegrasyon rehberlerine ve değerlendirme metodolojisine ilerleyin.",
     "Explore Learn": "Öğrenme merkezini inceleyin",
-    "Read the docs": "Dokümanları okuyun",
     "Review methodology": "Metodolojiyi inceleyin",
     "THE ECOSYSTEM": "EKOSİSTEM",
     "From trusted sources": "Güvenilir kaynaklardan",
@@ -629,7 +767,6 @@
     "DEVELOPMENT STATUS": "GELİŞTİRME DURUMU",
     "Final MVP certification is in progress; production remains NO-GO.": "Nihai MVP sertifikasyonu sürüyor; üretim durumu NO-GO olarak kalıyor.",
     "See current status": "Güncel durumu görün",
-
     "MESA CORE · V0.7.1": "MESA CORE · V0.7.1",
     "A durable memory engine": "Kalıcı hafıza",
     "with": "ve",
@@ -691,7 +828,6 @@
     "MesaV4Client and version-matched operations": "MesaV4Client ve sürümle eşleşen işlemler",
     "PROTOCOL": "PROTOKOL",
     "Legacy direct stdio plus the V4 gateway/bridge path": "Eski doğrudan stdio ile V4 gateway/köprü yolu",
-
     "PRIMARY REFERENCE IMPLEMENTATION": "BİRİNCİL REFERANS UYGULAMA",
     "Evidence-aware memory": "Kanıt odaklı hafıza",
     "in a legal workflow.": "bir hukuk iş akışında.",
@@ -725,7 +861,6 @@
     "Overall integration: NO-GO.": "Genel entegrasyon: NO-GO.",
     "The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.0 integration proof.": "2026-08-01 raporu Core 0.7.1 karşısındaki yalıtılmış Law testlerini kaydediyor. Full-stack ve canlı Core entegrasyonu çalıştırılmadı. Güncel Law HEAD CI sonucu başarısız; bu, güncel Core 0.8.0 entegrasyon kanıtı değildir.",
     "Read verification report": "Doğrulama raporunu okuyun",
-
     "Test the candidate.": "Adayı sınayın.",
     "Protect the baseline.": "Baseline'ı koruyun.",
     "An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.": "MESA'yı kanonik MCP yüzeyi üzerinden uzun süreli davranış kontrollerine tabi tutan haricî ve ayrılabilir test mühendisliği sistemi.",
@@ -746,7 +881,6 @@
     "Pre-fix failure required before patching": "Patch öncesinde düzeltme öncesi hata zorunludur",
     "Policy-limited diff and verification gates": "Politikayla sınırlandırılmış diff ve doğrulama kapıları",
     "No automatic merge or push to main": "main'e otomatik merge veya push yoktur",
-
     "PROJECT STATUS": "PROJE DURUMU",
     "Transparent by default.": "Varsayılan olarak şeffaf.",
     "No borrowed confidence.": "Ödünç güven yok.",
@@ -769,7 +903,6 @@
     "Historical Law pass / overall NO-GO": "Tarihsel Law başarısı / genel durum NO-GO",
     "The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.": "Tarihli Law raporu Core 0.7.1 karşısında başarılıydı; güncel HEAD CI başarısız. Canlı Core 0.8.0 entegrasyonu doğrulanmış değil.",
     "Verification report": "Doğrulama raporu",
-
     "USE CASES": "KULLANIM ALANLARI",
     "Memory for systems where": "Kanıtın ve kapsamın önemli olduğu",
     "evidence and scope matter.": "sistemler için hafıza.",
@@ -796,8 +929,26 @@
     "the legal workflow shape.": "yapısını araştırır.",
     "Its source-aware matter, document, review, and QA surfaces show why provenance matters. Live Core integration remains pending.": "Kaynak odaklı dosya, belge, inceleme ve QA yüzeyleri kaynak izinin neden önemli olduğunu gösterir. Canlı Core entegrasyonu hâlâ beklemededir.",
     "Explore the reference implementation": "Referans uygulamayı inceleyin",
-
     "__END__": "__END__",
-    "The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.": "En son QA durumu, canlı ilk yazmada INVALID_ARGUMENT hatası kaydediyor. Önceki Lite test düzeneği kanıtında aday oturum sonucu FAIL; bu, güncel Core 0.8.0 doğrulaması değildir."
+    "The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.": "En son QA durumu, canlı ilk yazmada INVALID_ARGUMENT hatası kaydediyor. Önceki Lite test düzeneği kanıtında aday oturum sonucu FAIL; bu, güncel Core 0.8.0 doğrulaması değildir.",
+    "Published source release": "Yayımlanmış kaynak sürümü",
+    "published source release": "yayımlanmış kaynak sürümü",
+    "Storage and retrieval views": "Depolama ve retrieval görünümleri",
+    "The storage overview describes SQL, vector and graph projections. Retrieval uses four lanes: vector, BM25, assertion and bounded graph paths, each reconciled to canonical eligibility.": "Depolama görünümü SQL, vektör ve çizge projeksiyonlarını açıklar. Retrieval; her biri kanonik uygunlukla uzlaştırılan vektör, BM25, assertion ve sınırlı çizge yolu olmak üzere dört kanal kullanır.",
+    "MESA is open-source memory infrastructure for AI systems. Its released V4 source combines durable mutation state, structured assertions, scoped retrieval, and source provenance across versioned HTTP, Python SDK, and MCP surfaces.": "MESA, yapay zekâ sistemleri için açık kaynaklı hafıza altyapısıdır. Yayımlanmış V4 kaynağı; versioned HTTP, Python SDK ve MCP yüzeylerinde kalıcı mutasyon durumunu, yapılandırılmış assertion’ları, kapsamlı retrieval ve kaynak izini birleştirir.",
+    "Operations runbook": "Operasyon runbook’u",
+    "Evidence & provenance": "Kanıt ve kaynak izi",
+    "v0.8.0 · V4 published source release ·": "v0.8.0 · V4 yayımlanmış kaynak sürümü ·",
+    "Core v0.8.0 · Published source release": "Core v0.8.0 · Yayımlanmış kaynak sürümü",
+    "V4 published source release": "V4 yayımlanmış kaynak sürümü",
+    "The V4 published source release introduces canonical provenance, selectable validation, dataset isolation, ordered projections, and versioned REST, SDK, and MCP operations.": "Yayımlanmış V4 kaynak sürümü; kanonik kaynak izi, seçilebilir doğrulama, dataset yalıtımı, sıralı projeksiyonlar ve versioned REST, SDK ve MCP işlemleri sunar.",
+    "Status below reflects current repository documentation and the hardened independent certification audit available on 2026-10-16.": "Aşağıdaki durum, 2026-10-16 tarihinde mevcut depo dokümantasyonunu ve sıkılaştırılmış bağımsız sertifikasyon denetimini yansıtır.",
+    "These answers reflect current public repositories and the V4 published source release status as of 2026-10-16.": "Bu yanıtlar, 2026-10-16 itibarıyla herkese açık depoları ve yayımlanmış V4 kaynak sürümünün durumunu yansıtır.",
+    "No. Core is a published source release and production remains NO-GO. Required production-like migration, restore, crash, saturation, concurrency, benchmark, and soak gates are not all complete.": "Hayır. Core yayımlanmış bir kaynak sürümüdür; üretim NO-GO durumundadır. Gerekli üretim benzeri migration, restore, crash, saturation, concurrency, benchmark ve dayanıklılık kapılarının tamamı sonuçlanmamıştır.",
+    "Core test at release commit 07d387f.": "Core testi, yayın commiti 07d387f.",
+    "MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.": "MESA v0.8.0 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.",
+    "Official v0.8.0 release": "Resmî v0.8.0 yayını",
+    "Adds matter/document review, provenance, deadlines and a pinned MESA V4 HTTP contract. Research, drafting and rebuild surfaces remain disabled.": "Matter/belge incelemesi, kaynak izi, süreler ve sabitlenmiş MESA V4 HTTP sözleşmesi ekler. Research, drafting ve rebuild yüzeyleri kapalı kalır.",
+    "Core overview": "Core genel bakış"
   }
 }

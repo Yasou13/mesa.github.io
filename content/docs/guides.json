@@ -1,0 +1,350 @@
+{
+  "baseline": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+  "guides": [
+    {
+      "id": "overview",
+      "route": "docs/core/",
+      "group": "start",
+      "sources": [
+        "README.md",
+        "docs/README.md"
+      ],
+      "title": {
+        "en": "MESA Core overview",
+        "tr": "MESA Core genel bakış"
+      }
+    },
+    {
+      "id": "getting-started",
+      "route": "docs/core/getting-started/",
+      "group": "start",
+      "sources": [
+        "docs/getting-started.md",
+        "examples/v3_quickstart.py"
+      ],
+      "title": {
+        "en": "Local quickstart",
+        "tr": "Yerel hızlı başlangıç"
+      }
+    },
+    {
+      "id": "installation",
+      "route": "docs/core/installation/",
+      "group": "start",
+      "sources": [
+        "docs/installation.md",
+        "pyproject.toml",
+        "docker-compose.yml",
+        "docker-compose.v4.yml"
+      ],
+      "title": {
+        "en": "Installation & deployment",
+        "tr": "Kurulum ve dağıtım"
+      }
+    },
+    {
+      "id": "architecture",
+      "route": "docs/core/architecture/",
+      "group": "concepts",
+      "sources": [
+        "docs/architecture-v4.md",
+        "mesa_storage/dao.py"
+      ],
+      "title": {
+        "en": "Core architecture",
+        "tr": "Core mimarisi"
+      }
+    },
+    {
+      "id": "ingestion",
+      "route": "docs/core/concepts-and-ingestion/",
+      "group": "concepts",
+      "sources": [
+        "docs/concepts-and-ingestion.md",
+        "mesa_api/v4_router.py"
+      ],
+      "title": {
+        "en": "Ingestion & memory lifecycle",
+        "tr": "Veri alımı ve hafıza yaşam döngüsü"
+      }
+    },
+    {
+      "id": "retrieval",
+      "route": "docs/core/retrieval-and-graph/",
+      "group": "retrieval",
+      "sources": [
+        "docs/retrieval-and-graph.md",
+        "mesa_storage/retrieval_scope.py",
+        "mesa_storage/dao.py"
+      ],
+      "title": {
+        "en": "Retrieval & graph",
+        "tr": "Retrieval ve çizge"
+      }
+    },
+    {
+      "id": "configuration",
+      "route": "docs/core/configuration/",
+      "group": "reference",
+      "sources": [
+        "docs/configuration.md",
+        "mesa_memory/config.py"
+      ],
+      "title": {
+        "en": "Configuration",
+        "tr": "Yapılandırma"
+      }
+    },
+    {
+      "id": "security",
+      "route": "docs/core/security/",
+      "group": "operate",
+      "sources": [
+        "docs/security-and-privacy.md",
+        "mesa_api/v4_router.py"
+      ],
+      "title": {
+        "en": "Security & scope",
+        "tr": "Güvenlik ve kapsam"
+      }
+    },
+    {
+      "id": "operations",
+      "route": "docs/core/operations/",
+      "group": "operate",
+      "sources": [
+        "docs/RUNBOOK.md",
+        "docs/v4-rebuild-runbook.md"
+      ],
+      "title": {
+        "en": "Operations & recovery",
+        "tr": "Operasyon ve kurtarma"
+      }
+    },
+    {
+      "id": "embedding-providers",
+      "route": "docs/core/embedding-providers/",
+      "group": "reference",
+      "sources": [
+        "docs/configuration.md",
+        "docs/installation.md"
+      ],
+      "title": {
+        "en": "Embedding & model providers",
+        "tr": "Embedding ve model sağlayıcıları"
+      }
+    },
+    {
+      "id": "evidence",
+      "route": "docs/core/evidence/",
+      "group": "concepts",
+      "sources": [
+        "docs/concepts-and-ingestion.md",
+        "docs/retrieval-and-graph.md",
+        "mesa_memory/context_builder.py"
+      ],
+      "title": {
+        "en": "Evidence & provenance",
+        "tr": "Kanıt ve kaynak izi"
+      }
+    },
+    {
+      "id": "graph",
+      "route": "docs/core/graph/",
+      "group": "retrieval",
+      "sources": [
+        "docs/architecture-v4.md",
+        "docs/retrieval-and-graph.md",
+        "mesa_storage/kuzu_provider.py"
+      ],
+      "title": {
+        "en": "Graph traversal",
+        "tr": "Çizge dolaşımı"
+      }
+    },
+    {
+      "id": "api",
+      "route": "docs/core/api-reference/",
+      "group": "reference",
+      "sources": [
+        "docs/api-reference.md",
+        "mesa_api/v4_router.py",
+        "mesa_client/client.py"
+      ],
+      "title": {
+        "en": "HTTP API & Python SDK",
+        "tr": "HTTP API ve Python SDK"
+      }
+    },
+    {
+      "id": "examples",
+      "route": "docs/core/examples/",
+      "group": "start",
+      "sources": [
+        "docs/api-reference.md",
+        "mesa_client/client.py",
+        "examples/v3_quickstart.py"
+      ],
+      "title": {
+        "en": "Examples & SDK workflow",
+        "tr": "Örnekler ve SDK iş akışı"
+      }
+    },
+    {
+      "id": "cli",
+      "route": "docs/core/cli-reference/",
+      "group": "reference",
+      "sources": [
+        "docs/cli-reference.md"
+      ],
+      "title": {
+        "en": "CLI reference",
+        "tr": "CLI referansı"
+      }
+    },
+    {
+      "id": "migration",
+      "route": "docs/core/migration/",
+      "group": "operate",
+      "sources": [
+        "docs/migration-v0.8.0.md"
+      ],
+      "title": {
+        "en": "Upgrade to v0.8.0",
+        "tr": "v0.8.0 yükseltmesi"
+      }
+    },
+    {
+      "id": "release-notes",
+      "route": "docs/core/release-notes/",
+      "group": "release",
+      "sources": [
+        "docs/release-notes-v0.8.0.md"
+      ],
+      "title": {
+        "en": "v0.8.0 release notes",
+        "tr": "v0.8.0 sürüm notları"
+      }
+    },
+    {
+      "id": "troubleshooting",
+      "route": "docs/core/troubleshooting/",
+      "group": "operate",
+      "sources": [
+        "docs/troubleshooting.md"
+      ],
+      "title": {
+        "en": "Troubleshooting",
+        "tr": "Sorun giderme"
+      }
+    },
+    {
+      "id": "limits",
+      "route": "docs/core/limitations/",
+      "group": "release",
+      "sources": [
+        "docs/performance-and-limitations.md"
+      ],
+      "title": {
+        "en": "Performance & limitations",
+        "tr": "Performans ve sınırlar"
+      }
+    },
+    {
+      "id": "rebuild",
+      "route": "docs/core/rebuild-runbook/",
+      "group": "operate",
+      "sources": [
+        "docs/v4-rebuild-runbook.md"
+      ],
+      "title": {
+        "en": "Projection rebuild",
+        "tr": "Projeksiyon rebuild"
+      }
+    },
+    {
+      "id": "documentation-map",
+      "route": "docs/core/documentation-map/",
+      "group": "start",
+      "sources": [
+        "docs/README.md"
+      ],
+      "title": {
+        "en": "Documentation map",
+        "tr": "Dokümantasyon haritası"
+      }
+    },
+    {
+      "id": "testing",
+      "route": "docs/core/testing/",
+      "group": "release",
+      "sources": [
+        "docs/testing.md"
+      ],
+      "title": {
+        "en": "Testing & evidence",
+        "tr": "Test ve kanıt"
+      }
+    },
+    {
+      "id": "ecosystem",
+      "route": "docs/core/ecosystem/",
+      "group": "concepts",
+      "sources": [
+        "docs/ecosystem.md"
+      ],
+      "title": {
+        "en": "Ecosystem boundaries",
+        "tr": "Ekosistem sınırları"
+      }
+    },
+    {
+      "id": "release-policy",
+      "route": "docs/core/release-policy/",
+      "group": "release",
+      "sources": [
+        "docs/release.md"
+      ],
+      "title": {
+        "en": "Release policy",
+        "tr": "Yayın politikası"
+      }
+    },
+    {
+      "id": "mcp-core",
+      "route": "docs/core/mcp/",
+      "group": "reference",
+      "sources": [
+        "README_MCP.md"
+      ],
+      "title": {
+        "en": "MCP integration",
+        "tr": "MCP entegrasyonu"
+      }
+    },
+    {
+      "id": "colab",
+      "route": "docs/core/colab-rehberi/",
+      "group": "start",
+      "sources": [
+        "docs/colab_kurulum_rehberi.md"
+      ],
+      "title": {
+        "en": "Colab setup",
+        "tr": "Colab kurulumu"
+      }
+    },
+    {
+      "id": "audit",
+      "route": "docs/core/audit/",
+      "group": "release",
+      "sources": [
+        "docs/v4-final-independent-audit.md"
+      ],
+      "title": {
+        "en": "Historical independent audit",
+        "tr": "Tarihsel bağımsız denetim"
+      }
+    }
+  ]
+}

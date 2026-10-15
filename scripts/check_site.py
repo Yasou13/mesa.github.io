@@ -14,6 +14,8 @@ from urllib.parse import urlsplit
 CORE_ROUTES = (
     "",
     "how-it-works/",
+    "architecture/",
+    "retrieval/",
     "ecosystem/",
     "mesa/",
     "data/",
@@ -36,7 +38,7 @@ MEDIA_DATA = json.loads(
 )
 REQUIRED_MEDIA_RECORDS = ("event-horizon",)
 HOME_SCENES = ("event-horizon",)
-HOME_SECTIONS = ("hero", "problem", "example", "process", "ecosystem", "explore")
+HOME_SECTIONS = ("hero", "problem", "process", "example", "capabilities", "ecosystem", "explore")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
     entry["path"]
     for entry in HUB_DATA["entries"]
@@ -59,6 +61,8 @@ if DOCS_MANIFEST_FILE.is_file():
     )
 else:
     DOC_ROUTES = ()
+GUIDE_CATALOG = json.loads((Path(__file__).resolve().parents[1] / "content/docs/guides.json").read_text())
+DOC_ROUTES = tuple(dict.fromkeys((*DOC_ROUTES, *(guide["route"] for guide in GUIDE_CATALOG["guides"]))))
 DOC_ENTRY_ROUTES = set(DOC_ROUTES)
 
 ROUTES = CORE_ROUTES + HUB_ROUTES + DOC_ROUTES
@@ -325,7 +329,7 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "7c03eff"):
+            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "07d387f"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing homepage fixture evidence at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
@@ -442,7 +446,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Yapay zekâ hafızası, dayandığı kanıtlarla birlikte.", "Bu testte vector arama sonuçları taklit edilir.", "GELİŞTİRME DURUMU"),
+        "tr/": ("Kanıtıyla birlikte yapay zekâ hafızası.", "Bu testte vector arama sonuçları taklit edilir.", "YAYIMLANMIŞ KAYNAK · YETERLİLİK SÜRÜYOR"),
         "tr/how-it-works/": ("Altı adım", "Dört kaynak", "KALİTE KATMANLARI"),
         "tr/mesa/": ("Dört sinyal", "Graph path", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),

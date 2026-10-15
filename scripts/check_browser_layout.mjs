@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { getAllDocRoutes } from './render_docs.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -20,7 +21,7 @@ const chrome = process.env.CHROME_BIN || 'google-chrome';
 const port = 9300 + (process.pid % 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mesa-browser-qa-'));
 const requiredScenes = ['event-horizon'];
-const requiredHomeSections = ['hero', 'problem', 'example', 'process', 'ecosystem', 'explore'];
+const requiredHomeSections = ['hero', 'problem', 'process', 'example', 'capabilities', 'ecosystem', 'explore'];
 
 const routes = [
   ...Object.values(siteData.pages).map(({ path: routePath }) => routePath),
@@ -28,7 +29,7 @@ const routes = [
   ...hubData.entries.filter(({ draft, indexable }) => !draft && indexable).map(({ path: routePath }) => routePath),
 ];
 const docsManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/docs/manifest.json'), 'utf8'));
-routes.push(...Object.values(docsManifest.repositories).flatMap(repo => repo.pages.map(page => page.route)));
+routes.push(...getAllDocRoutes().map(item => item.path));
 const localizedRoutes = routes.flatMap((routePath) => [routePath, `tr/${routePath}`]);
 const widths = [320, 390, 768, 799, 800, 801, 1024, 1099, 1100, 1101, 1440, 1920];
 const failures = [];
@@ -197,7 +198,7 @@ async function inspect(routePath, width) {
       if (state.height > heightBudget) failures.push(`${label}: homepage exceeds ${heightBudget}px (${state.height}px)`);
     }
   }
-  const samplePages = ['mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
+  const samplePages = ['architecture/', 'retrieval/', 'docs/core/getting-started/', 'mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
   const unlocalized = routePath.replace(/^tr\//, '');
   if (screenshotsDirectory && (unlocalized === '' || (samplePages.includes(unlocalized) && [390, 1440].includes(width)))) {
     const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}`;
@@ -353,6 +354,53 @@ async function checkContentInteractions() {
 }
 
 
+async function checkReleaseInteractions() {
+  for (const localized of ['', 'tr/']) {
+    for(const routePath of ['', 'retrieval/']) {
+      await connection.send('Emulation.setDeviceMetricsOverride', {width:390,height:844,deviceScaleFactor:1,mobile:false});
+      await navigate(new URL(localized+routePath,baseUrl).href);
+      const initial = await evaluate(`({value:document.querySelector('[data-rank-calculator] output').value, disabled:document.querySelector('[data-rank-calculator] fieldset').disabled})`);
+      await evaluate(`document.querySelector('[data-rank-calculator] input').focus()`);
+      await connection.send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+      await connection.send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+      const changed = await evaluate(`({value:document.querySelector('[data-rank-calculator] output').value, outline:getComputedStyle(document.activeElement.closest('label')).outlineStyle})`);
+      const empty = await evaluate(`(() => {for(const checkbox of document.querySelectorAll('[data-rank-calculator] input:checked')) checkbox.click();return document.querySelector('[data-rank-calculator] output').value;})()`);
+      if(initial.disabled || initial.value!=='4 / 61 = 0.065574' || changed.value!=='3 / 61 = 0.049180' || changed.outline==='none' || empty!=='0 / 61 = 0.000000') failures.push(`${localized}${routePath}: RRF keyboard arithmetic failed`);
+      fallbackChecks.push({type:'rank-calculator',route:localized+routePath,initial,changed,empty});
+    }
+    await navigate(new URL(localized+'docs/core/api-reference/',baseUrl).href);
+    const appendix = await evaluate(`(async () => {const details=document.querySelector('.source-appendix');const target=details.querySelector('[id]');const before=details.open;location.hash=target.id;await new Promise(r=>setTimeout(r,100));return {before,after:details.open,anchor:target.id,exists:!!target};})()`);
+    if(appendix.before || !appendix.after || !appendix.exists) failures.push(`${localized}: source appendix deep link failed`);
+    fallbackChecks.push({type:'source-appendix',language:localized||'en',...appendix});
+  }
+  for(const routePath of ['architecture/','retrieval/','docs/core/getting-started/','docs/core/embedding-providers/','docs/core/evidence/','docs/core/graph/','docs/core/examples/']) {
+    for(const width of [320,390,768,1024,1440,1920]) {
+      await inspect(routePath,width);await inspect('tr/'+routePath,width);
+    }
+  }
+  await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
+  for(const routePath of ['retrieval/','tr/retrieval/']) {
+    await navigate(new URL(routePath,baseUrl).href);
+    const state=await evaluate(`({disabled:document.querySelector('[data-rank-calculator] fieldset').disabled,value:document.querySelector('[data-rank-calculator] output').value})`);
+    if(!state.disabled || state.value!=='4 / 61 = 0.065574') failures.push(`${routePath}: calculator static fallback failed`);
+    fallbackChecks.push({type:'rank-static-fallback',route:routePath,...state});
+  }
+  await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
+}
+async function checkAxe() {
+  const index=process.argv.indexOf('--axe-source');
+  if(index===-1)return;
+  const source=fs.readFileSync(path.resolve(process.argv[index+1]),'utf8');
+  for(const routePath of localizedRoutes) {
+    await connection.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+    await navigate(new URL(routePath,baseUrl).href);
+    await evaluate(source);
+    const state=await evaluate(`(async()=>{const result=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa','wcag22aa','best-practice']}});return {version:axe.version,violations:result.violations.map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:result.incomplete.map(v=>({id:v.id,help:v.help,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passes:result.passes.length};})()`);
+    if(state.violations.length)failures.push(`${routePath}: axe ${state.violations.map(v=>v.id).join(',')}`);
+    fallbackChecks.push({type:'axe',route:routePath,...state});
+  }
+}
+
 try {
   await waitForDebugger();
   const target = await fetchJson(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(baseUrl)}`, { method: 'PUT' });
@@ -371,7 +419,7 @@ try {
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
-  if (!process.argv.includes('--interactions-only')) {
+  if (!process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
@@ -391,14 +439,20 @@ try {
   }
 
   }
-  await checkContentInteractions();
+  if(process.argv.includes('--snapshot-only')) { for(const routePath of ['', 'tr/', 'docs/', 'tr/docs/']) for(const width of [390,1440]) await inspect(routePath,width); }
+  else if(process.argv.includes('--axe-only')) await checkAxe();
+  else if(process.argv.includes('--release-checks-only')) { await checkReleaseInteractions(); await checkAxe(); }
+  else await checkContentInteractions();
 
   if (failures.length) {
     console.error(`BROWSER QA FAIL (${failures.length})`);
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    if (process.argv.includes('--interactions-only')) console.log(`BROWSER INTERACTION QA PASS: EN/TR search paths, keyboard focus, admin isolation and no-JavaScript navigation at ${baseUrl}`);
+    if (process.argv.includes('--snapshot-only')) console.log(`SNAPSHOT QA PASS: home and documentation gateway in EN/TR at 390/1440px`);
+    else if (process.argv.includes('--axe-only')) console.log(`AXE QA PASS: ${localizedRoutes.length} EN/TR public routes at ${baseUrl}`);
+    else if (process.argv.includes('--release-checks-only')) console.log(`RELEASE BROWSER QA PASS: EN/TR arithmetic, native keyboard, source deep links, new-page responsive layouts and optional axe at ${baseUrl}`);
+    else if (process.argv.includes('--interactions-only')) console.log(`BROWSER INTERACTION QA PASS: EN/TR search paths, keyboard focus, admin isolation and no-JavaScript navigation at ${baseUrl}`);
     else console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, navigation, fixture, hero crops (${warmCache ? 'warm' : 'cold'} cache), reduced motion and image failure; no document overflow or unexpected broken images`);
   }
   if (screenshotsDirectory) {

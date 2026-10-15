@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { productHome, architecturePage, retrievalPage, productTranslations, documentationJourney, ecosystemMaturity } from './render_product.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -27,7 +28,7 @@ const assetVersion = (filename) => crypto
 const assetVersions = {
   css: assetVersion('styles.css'),
   js: assetVersion('app.js'),
-  logo: assetVersion('assets/mesa-logo.png')
+  logo: assetVersion('assets/mesa-mark.webp')
 };
 
 const requiredSceneIds = ['event-horizon'];
@@ -68,27 +69,27 @@ function validateMediaData() {
 validateMediaData();
 
 const docs = {
-  readme: `${repos.core}/blob/main/README.md`,
-  gettingStarted: `${repos.core}/blob/main/docs/getting-started.md`,
-  architecture: `${repos.core}/blob/main/docs/architecture-v4.md`,
-  concepts: `${repos.core}/blob/main/docs/concepts-and-ingestion.md`,
-  configuration: `${repos.core}/blob/main/docs/configuration.md`,
-  retrieval: `${repos.core}/blob/main/docs/retrieval-and-graph.md`,
-  api: `${repos.core}/blob/main/docs/api-reference.md`,
-  cli: `${repos.core}/blob/main/docs/cli-reference.md`,
-  mcp: `${repos.core}/blob/main/README_MCP.md`,
-  installation: `${repos.core}/blob/main/docs/installation.md`,
-  migration: `${repos.core}/blob/main/docs/migration-v0.8.0.md`,
-  releaseNotes: `${repos.core}/blob/main/docs/release-notes-v0.8.0.md`,
-  releasePolicy: `${repos.core}/blob/main/docs/release.md`,
-  rebuild: `${repos.core}/blob/main/docs/v4-rebuild-runbook.md`,
-  security: `${repos.core}/blob/main/SECURITY.md`,
-  troubleshooting: `${repos.core}/blob/main/docs/troubleshooting.md`,
-  limitations: `${repos.core}/blob/main/docs/performance-and-limitations.md`,
-  contributing: `${repos.core}/blob/main/CONTRIBUTING.md`,
-  openapi: `${repos.core}/blob/main/docs/reference/openapi.json`,
-  retrievalFixture: `${repos.core}/blob/main/tests/test_v4_independent_retrieval_audit.py`,
-  retrievalAudit: `${repos.core}/blob/main/docs/v4-final-independent-audit.md`,
+  readme: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README.md`,
+  gettingStarted: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/getting-started.md`,
+  architecture: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md`,
+  concepts: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md`,
+  configuration: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/configuration.md`,
+  retrieval: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md`,
+  api: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md`,
+  cli: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/cli-reference.md`,
+  mcp: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md`,
+  installation: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md`,
+  migration: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/migration-v0.8.0.md`,
+  releaseNotes: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release-notes-v0.8.0.md`,
+  releasePolicy: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release.md`,
+  rebuild: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-rebuild-runbook.md`,
+  security: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/SECURITY.md`,
+  troubleshooting: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/troubleshooting.md`,
+  limitations: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/performance-and-limitations.md`,
+  contributing: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/CONTRIBUTING.md`,
+  openapi: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/reference/openapi.json`,
+  retrievalFixture: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/tests/test_v4_independent_retrieval_audit.py`,
+  retrievalAudit: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-final-independent-audit.md`,
   certificationAudit: `${repos.certification}/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md`,
   dataGuide: `${repos.data}/blob/main/docs/KULLANIM_KILAVUZU.md`,
   lawStatus: `${repos.law}/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-final-verification.md`
@@ -118,13 +119,13 @@ const external = (href, label, className = '') =>
 const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}><span>${label}</span>${icon(isExternal ? 'external' : 'arrow', isExternal ? 'icon-external' : 'icon-arrow')}</a>`;
 
-const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-logo.png')}?v=${assetVersions.logo}" alt="" width="1254" height="1254"></span>`;
+const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-mark.webp')}?v=${assetVersions.logo}" alt="" width="128" height="128"></span>`;
 const logo = () => `<a class="logo" href="${route()}" aria-label="${currentLanguage === 'tr' ? 'MESA ana sayfa' : 'MESA home'}">${mark()}<span>MESA</span></a>`;
 
 function languageControl() {
   const enHref = currentLanguage === 'en' ? `${base}${currentPage.path}` : alternateHref;
   const trHref = currentLanguage === 'tr' ? `${base}${currentPage.path}` : alternateHref;
-  return `<div class="language-switch" aria-label="${currentLanguage === 'tr' ? 'Dil seçimi' : 'Language'}">
+  return `<div class="language-switch" role="group" aria-label="${currentLanguage === 'tr' ? 'Dil seçimi' : 'Language'}">
     <a lang="en" hreflang="en"${currentLanguage === 'en' ? ' class="active" aria-current="page"' : ''} href="${enHref}">EN<span class="sr-only"> · ${currentLanguage === 'tr' ? 'İngilizce' : 'English'}</span></a>
     <span aria-hidden="true">/</span>
     <a lang="tr" hreflang="tr"${currentLanguage === 'tr' ? ' class="active" aria-current="page"' : ''} href="${trHref}">TR<span class="sr-only"> · Türkçe</span></a>
@@ -135,7 +136,7 @@ function header(active = '') {
   const nav = [
     ['how', 'How it works', 'how-it-works/'],
     ['ecosystem', 'Ecosystem', 'ecosystem/'],
-    ['use-cases', 'Use cases', 'use-cases/'],
+    ['architecture', 'Architecture', 'architecture/'],
     ['resources', 'Resources', 'resources/'],
     ['docs', 'Docs', 'docs/'],
   ];
@@ -161,7 +162,7 @@ function footer(compact = false) {
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
-        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <p>MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
         <div class="actions">${cta('Read the quickstart', route('docs/'))}${cta('View source', repos.core, 'secondary', true)}</div>
       </div>
     </section>`}
@@ -171,7 +172,7 @@ function footer(compact = false) {
         <div><h3>Explore</h3><a href="${route('how-it-works/')}">How it works</a><a href="${route('use-cases/')}">Use cases</a><a href="${route('evaluation/')}">Evaluation & trust</a><a href="${route('status/')}">Project status</a></div>
         <div><h3>Ecosystem</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
         <div><h3>Resources</h3><a href="${route('learn/')}">Learn</a><a href="${route('research/')}">Research</a><a href="${route('guides/')}">Guides</a><a href="${route('glossary/')}">Glossary</a><a href="${route('methodology/')}">Methodology</a></div>
-        <div><h3>Documentation</h3>${external(docs.readme, 'Quickstart')}${external(docs.architecture, 'Architecture')}${external(docs.security, 'Security')}<a href="${route('docs/mcp/')}">MCP integration</a></div>
+        <div><h3>Documentation</h3><a href="${route('docs/core/getting-started/')}">Quickstart</a><a href="${route('architecture/')}">Architecture</a><a href="${route('retrieval/')}">Retrieval</a><a href="${route('docs/core/security/')}">Security</a><a href="${route('docs/mcp/')}">MCP integration</a></div>
         <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}</div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
@@ -224,10 +225,10 @@ function actionExample(compact = false) {
       <div class="memory-example__knowledge"><span class="text--meta">RETRIEVED KNOWLEDGE</span><p><strong>Alice</strong><span>knows</span><strong>Aurora</strong></p><p class="memory-example__identity">One assertion. Its source still attached.</p></div>
       <div class="memory-example__evidence"><span class="text--meta">EVIDENCE</span><dl><div><dt>source</dt><dd><code>source-chunk-1</code></dd></div><div><dt>document / chunk</dt><dd><code>doc-1 / chunk-1</code></dd></div><div><dt>span</dt><dd>“Alice knows Aurora”</dd></div></dl></div>
     </div>
-    <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre><code>UNTRUSTED_MEMORY_EVIDENCE {
+    <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at commit 7c03eff.</span></p></details>
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit 07d387f.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
   </div>`;
   return `<div class="action-example specimen-plate">
@@ -322,7 +323,7 @@ function ecosystemCards() {
     ['Data', 'data/', 'The source preparation layer', 'Turns reviewed Turkish legal sources into traceable releases that MESA Core can admit.', 'Preserves raw bytes, canonicalizes records, applies quality gates, freezes releases, and uses a human-started publisher.', repos.data],
     ['QA', 'qa/', 'The behavior testing layer', 'Checks whether candidate builds remember, update, forget, and recover as expected over time.', 'Exercises correctness, temporal change, cross-session persistence, restart durability, and bounded candidate repair.', repos.qa],
     ['Certification', 'certification/', 'The evidence and verdict layer', 'Defines what one end-to-end legal profile must prove before a passing result can be claimed.', 'Uses frozen evidence, independent ground truth, hard gates, and fail-closed Profile B verdicts.', repos.certification],
-    ['Law', 'law/', 'The application layer', 'Shows how a legal matter and document workflow can consume MESA through an explicit service boundary.', 'Adds review, provenance, deadlines, drafting controls, and a pinned MESA V4 HTTP contract.', repos.law]
+    ['Law', 'law/', 'The application layer', 'Shows how a legal matter and document workflow can consume MESA through an explicit service boundary.', 'Adds matter/document review, provenance, deadlines and a pinned MESA V4 HTTP contract. Research, drafting and rebuild surfaces remain disabled.', repos.law]
   ];
   return `<div class="ecosystem-grid">${cards.map(([title, path, role, summary, technical, repo], i) => `<article class="ecosystem-card">
       <div class="card-index">0${i + 1}</div><p class="eyebrow">${role}</p><h3>MESA ${title}</h3><p class="card-summary">${summary}</p>
@@ -331,55 +332,13 @@ function ecosystemCards() {
     </article>`).join('')}</div>`;
 }
 
-function home() {
-  return `${header('home')}<main id="main-content" class="home-page">
-    <section class="hero hero--home scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
-      ${sceneLayer('event-horizon')}
-      <div class="hero-copy">
-        <p class="eyebrow">OPEN-SOURCE AI MEMORY INFRASTRUCTURE</p>
-        <h1 id="home-title">AI memory, with its evidence attached.</h1>
-        <p>MESA is open-source memory infrastructure for AI systems. It keeps information connected to its sources, relationships, and authorized data scope.</p>
-        <div class="actions">${cta('Inspect a memory example', '#mesa-in-action')}${cta('Explore the architecture', route('mesa/'), 'secondary')}</div>
-      </div>
-    </section>
-
-    <section class="section home-problem" id="the-problem" data-home-section="problem" aria-labelledby="why-mesa">
-      <div><p class="eyebrow">WHY MESA</p><h2 id="why-mesa">Memory needs more than recall.</h2></div>
-      <div class="home-problem__body"><ul><li><strong>Keep the source.</strong><span>Useful context needs a traceable basis.</span></li><li><strong>Keep the relationships.</strong><span>Relevant text can lose its connections.</span></li><li><strong>Keep the boundary.</strong><span>Memory belongs to an authorized scope.</span></li></ul><p>Core brings evidence, structure, scope, and lifecycle state into one memory contract.</p></div>
-    </section>
-
-    <section class="section home-example" id="mesa-in-action" data-home-section="example" aria-labelledby="example-title">
-      <div class="home-section-heading"><p class="eyebrow copper">MESA MEMORY EXAMPLE · VERIFIED FIXTURE</p><h2 id="example-title">See what a memory carries.</h2><p>A query returns a relationship with its supporting evidence. Inspect the fields from Core’s deterministic four-lane test.</p></div>
-      ${actionExample(true)}
-      <div class="home-proof-links">${external(`${repos.core}/blob/7c03eff/tests/test_v4_independent_retrieval_audit.py`, 'Inspect the exact fixture')}${cta('Read the retrieval contract', route('mesa/#retrieval'), 'text')}</div>
-    </section>
-
-    <section class="section home-process" id="how-it-works" data-home-section="process" aria-labelledby="process-title">
-      <div class="home-section-heading"><p class="eyebrow">HOW MEMORY WORKS</p><h2 id="process-title">From source to usable context.</h2><p>Memory has a lifecycle: information is admitted, retrieved within scope, and returned with its evidence.</p></div>
-      ${publicFlow(true)}
-      <div class="home-process__note"><p>SQLite owns canonical decisions. LanceDB and Kùzu are derived projections.</p>${cta('How MESA works', route('how-it-works/'), 'text')}</div>
-    </section>
-
-    <section class="section home-ecosystem" id="ecosystem" data-home-section="ecosystem" aria-labelledby="ecosystem-title">
-      <div class="home-section-heading"><p class="eyebrow">THE ECOSYSTEM</p><h2 id="ecosystem-title">One memory layer. Distinct roles.</h2><p>Compatible sources and preparation feed Core. Applications consume its versioned interfaces.</p></div>
-      <ol class="home-platform" aria-label="Generic MESA platform model"><li><span>INPUT</span><strong>Sources & preparation</strong></li><li><span>MEMORY</span><a href="${route('mesa/')}">MESA Core</a></li><li><span>OUTPUT</span><strong>Applications</strong></li></ol>
-      <div class="home-legal"><p class="text--meta">CURRENT LEGAL REFERENCE PATH</p><div class="home-legal__path"><a href="${route('data/')}">MESA Data</a><span aria-hidden="true">→</span><a href="${route('mesa/')}">MESA Core</a><span aria-hidden="true">→</span><a href="${route('law/')}">MESA Law</a></div><p>Data prepares reviewed Turkish legal releases. Law uses a V4 HTTP contract; live Core integration remains pending.</p></div>
-      <dl class="home-quality"><div><dt><a href="${route('qa/')}">MESA QA</a></dt><dd>External behavior and restart testing.</dd></div><div><dt><a href="${route('certification/')}">E2E Certification</a></dt><dd>Profile B covers Data → Core. Certification remains blocked.</dd></div></dl>
-      <div class="home-section-actions">${cta('Explore the ecosystem', route('ecosystem/'), 'secondary')}${cta('Evaluation & trust', route('evaluation/'), 'text')}</div>
-    </section>
-
-    <section class="section home-explore" id="continue-exploring" data-home-section="explore" aria-labelledby="explore-title">
-      <div class="home-section-heading"><p class="eyebrow">CONTINUE EXPLORING</p><h2 id="explore-title">Choose your next step.</h2><p>Understand the ideas, inspect the implementation, or explore the legal reference workflow.</p></div>
-      <div class="home-destinations"><a class="link-row" href="${route('learn/')}"><span><strong>Understand the concepts</strong><small>Memory, retrieval, and provenance.</small></span><span class="home-destination-label">Learn ${icon('arrow')}</span></a><a class="link-row" href="${route('docs/')}"><span><strong>Build with MESA</strong><small>Quickstart, architecture, and integration contracts.</small></span><span class="home-destination-label">Docs ${icon('arrow')}</span></a><a class="link-row" href="${route('law/')}"><span><strong>Explore the legal reference</strong><small>Source-aware documents, evidence, and review.</small></span><span class="home-destination-label">MESA Law ${icon('arrow')}</span></a></div>
-      <div class="home-explore__more">${cta('Explore use cases', route('use-cases/'), 'text')}${cta('Review methodology', route('methodology/'), 'text')}</div>
-    </section>
-
-    <aside class="home-status" aria-label="Development status"><div><p class="eyebrow">DEVELOPMENT STATUS</p><p class="home-status__line"><code>MESA Core v${project.version} · ${project.runtime}</code><span>${project.maturity}</span><span>Production: <strong>${project.production}</strong></span></p><p>A safe-core profile is documented. Full V4 certification remains in progress.</p><p class="text--meta">Evidence reviewed: <time datetime="${project.statusAsOf}">${project.statusAsOf}</time></p></div>${cta('See status & limits', route('status/'), 'secondary')}</aside>
-    ${footer(true)}</main>`;
-}
+const productHelpers = () => ({header,footer,route,cta,sceneLayer,actionExample});
+function home() { return productHome(productHelpers()); }
+function architecture() { return architecturePage(productHelpers()); }
+function retrieval() { return retrievalPage(productHelpers()); }
 
 function howItWorksPage() {
-  return `${header('how')}<main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">HOW MESA WORKS</p><h1>Keep the memory.<br><em>Keep its basis.</em></h1><p>MESA turns authorized source material into structured, retrievable memory while keeping scope and provenance in the result contract.</p><div class="actions">${cta('See the fixture', '#verified-example')}${cta('Technical architecture', route('mesa/'), 'secondary')}</div></section>
+  return `${header('how')}<main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">HOW MESA WORKS</p><h1>Keep the memory.<br><em>Keep its basis.</em></h1><p>MESA turns authorized source material into structured, retrievable memory while keeping scope and provenance in the result contract.</p><div class="actions">${cta('See the fixture', '#verified-example')}${cta('Technical architecture', route('architecture/'), 'secondary')}</div></section>
     <section class="section"><div class="section-heading"><div><p class="eyebrow">LEVEL 1 · PUBLIC FLOW</p><h2>Six steps,<br><em>no storage jargon required.</em></h2></div><p>MESA Data is the verified legal-source preparation layer. Core owns the runtime memory lifecycle. Other applications can use the same versioned interfaces.</p></div>${publicFlow()}</section>
     <section class="section reliability-section"><div class="section-heading"><div><p class="eyebrow">WHAT TRAVELS WITH MEMORY</p><h2>More than<br><em>a similarity score.</em></h2></div><p>Current V4 responses can include catalog identity, source evidence, assertion identity, pipeline identity, embedding provenance, and contributing retrieval origins.</p></div><div class="reliability-list"><article><strong>Source</strong><p>Document, revision, chunk, source reference, and bounded evidence span.</p></article><article><strong>Structure</strong><p>Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.</p></article><article><strong>Scope</strong><p>Tenant and authorized dataset eligibility resolved before lane ranking and fusion.</p></article><article><strong>State</strong><p>Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.</p></article></div></section>
     <section class="section action-section" id="verified-example"><div class="section-heading"><div><p class="eyebrow">VERIFIED REPOSITORY EXAMPLE</p><h2>Four origins.<br><em>One evidence identity.</em></h2></div><p>The fixture creates one canonical assertion, makes all four origins rank it first, and checks deterministic replay plus a fused score of 4/61.</p></div>${actionExample()}<div class="proof-links">${external(docs.retrievalFixture, 'Inspect the exact test')}${external(docs.api, 'Read the response contract')}</div></section>
@@ -393,7 +352,7 @@ function mesa() {
     ${statusStrip()}
     <section class="section"><div class="section-heading"><div><p class="eyebrow">MEMORY LIFECYCLE</p><h2>Admission to retrieval,<br><em>without hidden writes.</em></h2></div><p>A rejected mutation creates no active SQL, vector, entity, edge, or assertion artifact. Accepted work follows ordered, idempotent lanes.</p></div>${architectureFlow()}</section>
     <section class="section surface-section" id="security"><div class="surface-copy"><p class="eyebrow">SECURITY BOUNDARY</p><h2>Agents are context.<br><em>Tenants are boundaries.</em></h2><p>V4 authorization follows principal → tenant → workspace → dataset → agent → server-created session. Roles inherit down the catalog. Purge and rollback require explicit dataset permissions.</p>${cta('Read security policy', docs.security, 'text', true)}</div><div class="scope-visual" role="img" aria-label="Nested MESA authorization scopes"><span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Session</strong></span></strong></span></strong></span></div></section>
-    <section class="section retrieval-section grid-bg" id="retrieval"><div class="section-heading"><div><p class="eyebrow">RETRIEVAL V2</p><h2>Four signals.<br><em>One bounded result.</em></h2></div><p>Authorized dataset, temporal, jurisdiction, tenant, and agent eligibility are enforced before lane fusion. Higher fused scores are better.</p></div><div class="lane-grid five"><article><span>SEMANTIC</span><h3>Vector</h3><p>LanceDB assertion projection with embedding provenance.</p></article><article><span>LEXICAL</span><h3>BM25</h3><p>Exact and lexical evidence from the SQL-owned corpus.</p></article><article><span>RELATIONAL</span><h3>Assertions</h3><p>SQLite-authoritative assertion relations and citation-aware scoring.</p></article><article><span>BOUNDED GRAPH</span><h3>Graph paths</h3><p>Kùzu Graph V2 paths reconciled to authorized canonical assertion IDs.</p></article><article class="fusion"><span>FUSION</span><h3>True RRF</h3><p>Each lane votes once per candidate, then a bounded legal reranker may apply.</p></article></div><div class="notice"><strong>Source-of-truth note</strong><p>The current runtime, API reference, capability response, and independent retrieval tests support the graph origin. The shorter architecture overview still groups retrieval as SQL/vector/graph and should be read with the API contract.</p></div></section>
+    <section class="section retrieval-section grid-bg" id="retrieval"><div class="section-heading"><div><p class="eyebrow">RETRIEVAL V2</p><h2>Four signals.<br><em>One bounded result.</em></h2></div><p>Authorized dataset, temporal, jurisdiction, tenant, and agent eligibility are enforced before lane fusion. Higher fused scores are better.</p></div><div class="lane-grid five"><article><span>SEMANTIC</span><h3>Vector</h3><p>LanceDB assertion projection with embedding provenance.</p></article><article><span>LEXICAL</span><h3>BM25</h3><p>Exact and lexical evidence from the SQL-owned corpus.</p></article><article><span>RELATIONAL</span><h3>Assertions</h3><p>SQLite-authoritative assertion relations and citation-aware scoring.</p></article><article><span>BOUNDED GRAPH</span><h3>Graph paths</h3><p>Kùzu Graph V2 paths reconciled to authorized canonical assertion IDs.</p></article><article class="fusion"><span>FUSION</span><h3>True RRF</h3><p>Each lane votes once per candidate, then a bounded legal reranker may apply.</p></article></div><div class="notice"><strong>Storage and retrieval views</strong><p>The storage overview describes SQL, vector and graph projections. Retrieval uses four lanes: vector, BM25, assertion and bounded graph paths, each reconciled to canonical eligibility.</p></div></section>
     <section class="section storage-section"><div><p class="eyebrow">PHYSICAL STORES</p><h2>SQLite decides.<br><em>Projections follow.</em></h2></div><div class="storage-grid"><article><strong>SQLite</strong><p>Catalog, authorization, mutation/pipeline ledger, ownership, assertions, and ordered outbox.</p></article><article><strong>LanceDB</strong><p>Idempotent vector projection with embedding identity.</p></article><article><strong>Kuzu</strong><p>Idempotent Graph V2 projection, not the assertion decision source.</p></article></div></section>
     <section class="section client-section"><div class="section-heading"><div><p class="eyebrow">CLIENT SURFACES</p><h2>Versioned access<br><em>around one lifecycle.</em></h2></div></div><div class="client-grid"><a href="${docs.api}" target="_blank" rel="noopener noreferrer"><span>HTTP</span><strong>V4 REST API</strong><small>Catalog, sessions, memory, mutations, operations</small></a><a href="${docs.readme}" target="_blank" rel="noopener noreferrer"><span>PYTHON</span><strong>Sync & async SDK</strong><small>MesaV4Client and version-matched operations</small></a><a href="${route('docs/mcp/')}"><span>PROTOCOL</span><strong>MCP</strong><small>Legacy direct stdio plus the V4 gateway/bridge path</small></a></div></section>
     ${footer()}</main>`;
@@ -401,15 +360,15 @@ function mesa() {
 
 function ecosystem() {
   return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact page-hero--field"><p class="eyebrow">MESA ECOSYSTEM</p><h1>Clear boundaries.<br><em>Evidence across them.</em></h1><p>Five repositories split preparation, memory, application, behavior testing, and independent evidence. The generic platform model is separate from the current legal reference path.</p></section>
-    <section class="section boundary-section grid-bg"><div class="section-heading"><div><p class="eyebrow">GENERIC PLATFORM MODEL</p><h2>Core sits between<br><em>sources and applications.</em></h2></div><p>Preparation may be performed by MESA Data or by another compatible source pipeline. MESA Law is one application, not a required runtime stage.</p></div><div class="platform-map" aria-label="Generic MESA platform model"><div class="map-runtime"><div><small>INPUT</small><strong>Sources</strong><span>Reviewed material</span></div><b aria-hidden="true">→</b><div><small>PREPARE</small><strong>Ingestion layer</strong><span>MESA Data or compatible producer</span></div><b aria-hidden="true">→</b><div class="core-node"><small>MEMORY</small><strong>MESA Core</strong><span>Admission · retrieval · evidence</span></div><b aria-hidden="true">→</b><div><small>OUTPUT</small><strong>Application</strong><span>Versioned API / SDK / MCP</span></div></div><div class="map-quality"><span>OUT-OF-RUNTIME EVALUATION</span><a href="${route('qa/')}">MESA QA</a><i>behavior over time</i><a href="${route('certification/')}">E2E Certification</a><i>profile evidence & verdict</i></div></div></section>
-    <section class="section legal-reference archive-texture"><div class="section-heading"><div><p class="eyebrow copper">CURRENT LEGAL REFERENCE PATH</p><h2>A concrete path,<br><em>not a universal dependency.</em></h2></div><p>This is the current Profile B and MESA Law shape. It is intentionally labeled as the legal reference implementation.</p></div><div class="ecosystem-flow legal-flow" aria-label="Current legal reference implementation"><div><small>SOURCE</small><strong>Official legal sources</strong></div><b aria-hidden="true">→</b><div><small>PREPARE</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>MEMORY</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>REFERENCE APP</small><strong>MESA Law</strong></div></div></section>
-    <section class="section ecosystem-section"><div class="section-heading"><div><p class="eyebrow">FIVE EXPLICIT ROLES</p><h2>Repository boundaries<br><em>with distinct ownership.</em></h2></div><p>Each component answers what it is, why it exists, and what it technically owns.</p></div>${ecosystemCards()}</section>
+    <section class="section boundary-section grid-bg"><div class="section-heading"><div><p class="eyebrow">GENERIC PLATFORM MODEL</p><h2>Core sits between<br><em>sources and applications.</em></h2></div><p>Preparation may be performed by MESA Data or by another compatible source pipeline. MESA Law is one application, not a required runtime stage.</p></div><div class="platform-map" role="group" aria-label="Generic MESA platform model"><div class="map-runtime"><div><small>INPUT</small><strong>Sources</strong><span>Reviewed material</span></div><b aria-hidden="true">→</b><div><small>PREPARE</small><strong>Ingestion layer</strong><span>MESA Data or compatible producer</span></div><b aria-hidden="true">→</b><div class="core-node"><small>MEMORY</small><strong>MESA Core</strong><span>Admission · retrieval · evidence</span></div><b aria-hidden="true">→</b><div><small>OUTPUT</small><strong>Application</strong><span>Versioned API / SDK / MCP</span></div></div><div class="map-quality"><span>OUT-OF-RUNTIME EVALUATION</span><a href="${route('qa/')}">MESA QA</a><i>behavior over time</i><a href="${route('certification/')}">E2E Certification</a><i>profile evidence & verdict</i></div></div></section>
+    <section class="section legal-reference archive-texture"><div class="section-heading"><div><p class="eyebrow copper">CURRENT LEGAL REFERENCE PATH</p><h2>A concrete path,<br><em>not a universal dependency.</em></h2></div><p>This is the current Profile B and MESA Law shape. It is intentionally labeled as the legal reference implementation.</p></div><div class="ecosystem-flow legal-flow" role="group" aria-label="Current legal reference implementation"><div><small>SOURCE</small><strong>Official legal sources</strong></div><b aria-hidden="true">→</b><div><small>PREPARE</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>MEMORY</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>REFERENCE APP</small><strong>MESA Law</strong></div></div></section>
+    <section class="section ecosystem-section"><div class="section-heading"><div><p class="eyebrow">FIVE EXPLICIT ROLES</p><h2>Repository boundaries<br><em>with distinct ownership.</em></h2></div><p>Each component answers what it is, why it exists, and what it technically owns.</p></div>${ecosystemCards()}</section>${ecosystemMaturity()}
     <section class="section journey-section archive-texture"><div class="section-heading"><div><p class="eyebrow copper">END-TO-END EXAMPLE</p><h2>Legal evidence,<br><em>kept connected.</em></h2></div><p>A reviewed legal source can move through a frozen Data release, authorized Core admission, scoped retrieval, and a Law workflow without presenting local staging or a 202 response as successful publication.</p></div><ol class="journey-flow"><li><span>01</span><strong>Acquire</strong><small>Approved or manual official source</small></li><li><span>02</span><strong>Release</strong><small>Immutable evidence and canonical records</small></li><li><span>03</span><strong>Admit</strong><small>Authorized dataset-scoped mutation</small></li><li><span>04</span><strong>Retrieve</strong><small>Ranked context with provenance</small></li><li><span>05</span><strong>Use</strong><small>Law workflow over the HTTP contract</small></li></ol></section>${footer()}</main>`;
 }
 
 function dataPage() {
   return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact page-hero--archive data-accent"><p class="eyebrow">MESA DATA</p><h1>Legal data with an<br><em>auditable release path.</em></h1><p>MESA Data is specifically a Turkish legal-data platform. It is not presented as a universal ingestion service.</p><div class="actions">${cta('Repository', repos.data, 'primary', true)}${cta('Usage guide', docs.dataGuide, 'secondary', true)}</div></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">CONFIGURED SOURCES</p><h2>Official sources,<br><em>policy-bound access.</em></h2></div><p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p></div><div class="source-table" role="table" aria-label="MESA Data configured sources"><div role="row"><strong role="columnheader">Source</strong><strong role="columnheader">Mode</strong><strong role="columnheader">State</strong><strong role="columnheader">Role</strong></div><div role="row"><span>Resmî Gazete</span><span>Approved web</span><span class="ok">Enabled</span><span>Original publication</span></div><div role="row"><span>Mevzuat Bilgi Sistemi</span><span>Manual</span><span class="ok">Enabled</span><span>Consolidated text</span></div><div role="row"><span>Anayasa Mahkemesi</span><span>Manual</span><span class="ok">Enabled</span><span>Official case law</span></div><div role="row"><span>Yargıtay</span><span>Manual</span><span class="muted">Disabled</span><span>Official case law</span></div></div><figure class="data-figure" aria-hidden="true"><img src="${asset('assets/stratigraphy-layers.svg')}" alt="" loading="lazy" width="600" height="380"></figure></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">CONFIGURED SOURCES</p><h2>Official sources,<br><em>policy-bound access.</em></h2></div><p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p></div><div class="source-table" role="table" aria-label="MESA Data configured sources"><div role="row"><strong role="columnheader">Source</strong><strong role="columnheader">Mode</strong><strong role="columnheader">State</strong><strong role="columnheader">Role</strong></div><div role="row"><span role="cell">Resmî Gazete</span><span role="cell">Approved web</span><span role="cell" class="ok">Enabled</span><span role="cell">Original publication</span></div><div role="row"><span role="cell">Mevzuat Bilgi Sistemi</span><span role="cell">Manual</span><span role="cell" class="ok">Enabled</span><span role="cell">Consolidated text</span></div><div role="row"><span role="cell">Anayasa Mahkemesi</span><span role="cell">Manual</span><span role="cell" class="ok">Enabled</span><span role="cell">Official case law</span></div><div role="row"><span role="cell">Yargıtay</span><span role="cell">Manual</span><span role="cell" class="muted">Disabled</span><span role="cell">Official case law</span></div></div><figure class="data-figure" aria-hidden="true"><img src="${asset('assets/stratigraphy-layers.svg')}" alt="" loading="lazy" width="600" height="380"></figure></section>
     <section class="section pipeline-section grid-bg"><p class="eyebrow">RELEASE PIPELINE</p><h2>Raw bytes remain traceable.</h2><div class="pipeline"><div><span>01</span><strong>Collect</strong><small>Allowlisted HTTPS or manual file</small></div><div><span>02</span><strong>Preserve</strong><small>Immutable raw artifact + SHA-256</small></div><div><span>03</span><strong>Canonicalize</strong><small>Versioned canonical JSONL</small></div><div><span>04</span><strong>Gate</strong><small>Quality, privacy, legal metadata</small></div><div><span>05</span><strong>Review</strong><small>Safe auto-approval or human exception</small></div><div><span>06</span><strong>Release</strong><small>Build, verify, freeze, human approval</small></div><div><span>07</span><strong>Publish</strong><small>Human-started, idempotent MESA delivery</small></div></div><div class="notice"><strong>Human boundary</strong><p>MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.</p></div></section>${footer()}</main>`;
 }
 
@@ -459,7 +418,7 @@ function aboutPage() {
 
 function faqPage() {
   const questions = [
-    ['What is MESA?', 'MESA is open-source memory infrastructure for AI systems. Its V4 release candidate combines durable mutation state, structured assertions, scoped retrieval, and source provenance across versioned HTTP, Python SDK, and MCP surfaces.'],
+    ['What is MESA?', 'MESA is open-source memory infrastructure for AI systems. Its released V4 source combines durable mutation state, structured assertions, scoped retrieval, and source provenance across versioned HTTP, Python SDK, and MCP surfaces.'],
     ['Is MESA a vector database?', 'No. LanceDB is one internal projection. SQLite is the canonical decision source, Kùzu is a Graph V2 projection, and retrieval can combine vector, BM25, assertion, and bounded graph-path origins.'],
     ['Is MESA a RAG framework?', 'Not primarily. It can supply grounded context to an application, but its public contract focuses on durable memory, catalog scope, lifecycle state, evidence, and retrieval rather than owning an entire generation stack.'],
     ['How is MESA different from plain vector search?', 'It keeps canonical source and assertion identity, applies authorization before ranking, combines several retrieval origins, and exposes mutation, projection, rollback, and provenance state.'],
@@ -480,17 +439,17 @@ function faqPage() {
 
 function docsPage() {
   const groups = [
-    ['Start', [['Quickstart', route('docs/core/'), false], ['Getting started', route('docs/core/getting-started/'), false], ['Installation', route('docs/core/installation/'), false], ['Current status', route('status/'), false]]],
-    ['Understand', [['V4 architecture', route('docs/core/architecture/'), false], ['Concepts & ingestion', route('docs/core/concepts-and-ingestion/'), false], ['Retrieval & graph', route('docs/core/retrieval-and-graph/'), false], ['How MESA works', route('how-it-works/'), false]]],
-    ['Build', [['Python SDK', route('docs/core/api-reference/'), false], ['HTTP API', route('docs/core/api-reference/'), false], ['OpenAPI specification', docs.openapi, true], ['MCP integration', route('docs/mcp/'), false]]],
-    ['Operate', [['Configuration & installation', route('docs/core/configuration/'), false], ['CLI reference', route('docs/core/cli-reference/'), false], ['Rebuild & recovery runbook', route('docs/core/rebuild-runbook/'), false], ['Core lifecycle overview', route('mesa/'), false]]],
-    ['Trust', [['Security policy', docs.security, true], ['Performance & limitations', route('docs/core/limitations/'), false], ['Troubleshooting', route('docs/core/troubleshooting/'), false], ['Evaluation & trust', route('evaluation/'), false]]],
-    ['Reference', [['v0.8.0 Release notes', route('docs/core/release-notes/'), false], ['Migration to v0.8.0', route('docs/core/migration/'), false], ['Release policy', docs.releasePolicy, true], ['Ecosystem boundaries', route('ecosystem/'), false]]],
+    ['Start', [['Core overview', route('docs/core/'), false], ['Getting started', route('docs/core/getting-started/'), false], ['Installation', route('docs/core/installation/'), false], ['Current status', route('status/'), false]]],
+    ['Understand', [['V4 architecture', route('architecture/'), false], ['Concepts & ingestion', route('docs/core/concepts-and-ingestion/'), false], ['Retrieval & graph', route('retrieval/'), false], ['Evidence & provenance', route('docs/core/evidence/'), false]]],
+    ['Build', [['Python SDK', route('docs/core/examples/'), false], ['HTTP API', route('docs/core/api-reference/'), false], ['OpenAPI specification', docs.openapi, true], ['MCP integration', route('docs/mcp/'), false]]],
+    ['Operate', [['Configuration & installation', route('docs/core/configuration/'), false], ['CLI reference', route('docs/core/cli-reference/'), false], ['Rebuild & recovery runbook', route('docs/core/rebuild-runbook/'), false], ['Operations runbook', route('docs/core/operations/'), false]]],
+    ['Trust', [['Security policy', route('docs/core/security/'), false], ['Performance & limitations', route('docs/core/limitations/'), false], ['Troubleshooting', route('docs/core/troubleshooting/'), false], ['Evaluation & trust', route('evaluation/'), false]]],
+    ['Reference', [['v0.8.0 Release notes', route('docs/core/release-notes/'), false], ['Migration to v0.8.0', route('docs/core/migration/'), false], ['Release policy', route('docs/core/release-policy/'), false], ['Ecosystem boundaries', route('ecosystem/'), false]]],
     ['Contribute', [['Contributing guide', docs.contributing, true], ['Issue tracker', repos.issues, true], ['MESA QA repository', repos.qa, true]]],
     ['Ecosystem Docs', [['MESA Data Docs', route('docs/data/'), false], ['MESA Law Docs', route('docs/law/'), false], ['MESA QA Docs', route('docs/qa/'), false], ['E2E Certification', route('docs/e2e/'), false]]]
   ];
-  return `${header('docs')}<main id="main-content"><section class="page-hero compact page-hero--functional docs-hero docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Find the contract.<br><em>Then run the code.</em></h1><p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p></section><section class="section docs-grid">${groups.map(([name, links], index) => `<section${index === 0 ? ' class="docs-start"' : ''}><p class="eyebrow">0${index + 1} / ${name}</p>${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}</section>`).join('')}</section>
-    <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre id="install-code"><code>git clone https://github.com/Yasou13/MESA.git
+  return `${header('docs')}<main id="main-content"><section class="page-hero compact page-hero--functional docs-hero docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Find the contract.<br><em>Then run the code.</em></h1><p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p></section>${documentationJourney(route)}<section class="section docs-grid">${groups.map(([name, links], index) => `<section${index === 0 ? ' class="docs-start"' : ''}><p class="eyebrow">0${index + 1} / ${name}</p>${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}</section>`).join('')}</section>
+    <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre tabindex="0" id="install-code"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 uv sync --locked --extra dev</code></pre></div></section>${footer()}</main>`;
 }
@@ -504,7 +463,7 @@ function mcpPage() {
 
 function statusPage() {
   return `${header()}<main id="main-content"><section class="page-hero compact page-hero--operational status-accent"><p class="eyebrow">PROJECT STATUS</p><h1>Transparent by default.<br><em>No borrowed confidence.</em></h1><p>Status below reflects current repository documentation and the hardened independent certification audit available on ${project.statusAsOf}.</p></section>${statusStrip()}
-    <section class="section status-timeline"><article><span>CORE</span><h2>${project.runtime} ${project.maturity.toLowerCase()}</h2><p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}${external(docs.releaseNotes, 'v0.8.0 Release notes')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>Official execution, scoring and metric producers exist. B4/B6/B7/B8 external evidence remains blocked; the historical PROFILE_B_FAIL is unchanged and no fresh official PASS exists.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Historical Law pass / overall ${project.production}</h2><p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
+    <section class="section status-timeline"><article><span>CORE</span><h2>${project.runtime} ${project.maturity.toLowerCase()}</h2><p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}${external(docs.releaseNotes, 'v0.8.0 Release notes')}${external('https://github.com/Yasou13/MESA/releases/tag/v0.8.0', 'Official v0.8.0 release')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>Official execution, scoring and metric producers exist. B4/B6/B7/B8 external evidence remains blocked; the historical PROFILE_B_FAIL is unchanged and no fresh official PASS exists.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Historical Law pass / overall ${project.production}</h2><p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
 }
 
 
@@ -680,9 +639,9 @@ function renderHubBlock(block) {
   if (['warning', 'callout', 'example'].includes(block.kind)) return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${renderFormattedText(block.text)}</p></aside>`;
   if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${renderFormattedText(block.text)}</dd></dl>`;
   if (block.kind === 'quote') return `<blockquote><p>${renderFormattedText(block.text)}</p>${block.cite ? `<cite>${renderFormattedText(block.cite)}</cite>` : ''}</blockquote>`;
-  if (block.kind === 'code') return `<pre class="article-code"><code>${escapeHtml(block.code)}</code></pre>`;
+  if (block.kind === 'code') return `<pre tabindex="0" class="article-code"><code>${escapeHtml(block.code)}</code></pre>`;
   if (block.kind === 'image') return `<figure><img src="${asset(block.src)}" alt="${escapeHtml(block.alt)}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
-  if (block.kind === 'diagram') return `<figure class="article-diagram" role="img" aria-label="${escapeHtml(block.alt)}"><ol>${block.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
+  if (block.kind === 'diagram') return `<figure class="article-diagram" aria-label="${escapeHtml(block.alt)}"><ol tabindex="0">${block.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
   if (block.kind === 'references') return `<ol class="reference-list">${block.items.map((item) => `<li>${item.href ? (item.href.startsWith('http') ? external(item.href, escapeHtml(item.label)) : `<a href="${route(item.href)}">${escapeHtml(item.label)}</a>`) : escapeHtml(item.label)}</li>`).join('')}</ol>`;
   if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${renderFormattedText(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   throw new Error(`Unsupported hub block type: ${block.kind}`);
@@ -730,6 +689,8 @@ function notFound() {
 
 const renderers = {
   home,
+  architecture,
+  retrieval,
   mesa,
   howItWorks: howItWorksPage,
   ecosystem,
@@ -770,7 +731,7 @@ function documentShell({ title, description, canonical, content, assetBase, lang
         alternateName: project.name,
         description,
         codeRepository: repos.core,
-        license: `${repos.core}/blob/main/LICENSE`,
+        license: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE`,
         version: project.version,
         url: siteUrl
       },
@@ -804,8 +765,9 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${socialImage}">
   <script type="application/ld+json">${structuredData}</script>
-  <link rel="icon" href="${assetBase}assets/mesa-logo.png?v=${assetVersions.logo}" type="image/png">
+  <link rel="icon" href="${assetBase}assets/mesa-mark.webp?v=${assetVersions.logo}" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="${assetBase}fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
 </head>
 <body>
@@ -887,7 +849,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const content = language === 'tr' ? localizeHtml(englishContent, trContent.strings) : englishContent;
+    const content = language === 'tr' ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr') assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');
     fs.mkdirSync(path.dirname(destination), { recursive: true });
@@ -1029,8 +991,8 @@ for (const language of ['en', 'tr']) {
         base,
         assetBase,
         siteUrl,
-        headerHtml: header('docs'),
-        footerHtml: footer()
+        headerHtml: hubChrome(header('docs')),
+        footerHtml: hubChrome(footer())
       }),
       language,
       alternateUrls: { en: `${siteUrl}${routePath}`, tr: `${siteUrl}tr/${routePath}` },
@@ -1089,4 +1051,4 @@ fs.writeFileSync(path.join(outputDirectory, '404.html'), documentShell({
   noIndex: true
 }));
 
-console.log(`Rendered ${(allPublicRoutes.length) * 2} localized static routes, admin CMS, and 404.html for ${siteUrl}`);
+console.log(`Rendered ${(allPublicRoutes.length) * 2} localized static routes, unavailable admin pages, and 404.html for ${siteUrl}`);

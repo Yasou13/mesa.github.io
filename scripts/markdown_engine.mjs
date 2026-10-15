@@ -136,7 +136,7 @@ export function renderMarkdown(markdown = '', options = {}) {
         const escapedCode = escapeHtml(codeLines.join('\n'));
         const langClass = codeLang ? ` class="language-${escapeHtml(codeLang)}"` : '';
         htmlParts.push(
-          `<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">${escapeHtml(codeLang || 'text')}</span><button class="copy-button" type="button" data-copy-target="${targetId}">Copy</button></div><pre id="${targetId}"${langClass}><code>${escapedCode}</code></pre></div>`
+          `<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">${escapeHtml(codeLang || 'text')}</span><button class="copy-button" type="button" data-copy-target="${targetId}">${options.language === 'tr' ? 'Kopyala' : 'Copy'}</button></div><pre tabindex="0" id="${targetId}"${langClass}><code>${escapedCode}</code></pre></div>`
         );
         inCodeBlock = false;
         codeLang = '';
@@ -163,7 +163,7 @@ export function renderMarkdown(markdown = '', options = {}) {
       flushTable();
       flushQuote();
       const mathBody = escapeHtml(trimmed.slice(2, -2).trim());
-      htmlParts.push(`<div class="math-block" role="math" aria-label="Equation">${mathBody}</div>`);
+      htmlParts.push(`<div class="math-block" role="math" aria-label="${options.language === 'tr' ? 'Denklem' : 'Equation'}">${mathBody}</div>`);
       continue;
     }
 
@@ -248,7 +248,7 @@ export function renderMarkdown(markdown = '', options = {}) {
 
       // Only levels 2, 3, 4 receive heading anchors
       if (level >= 2 && level <= 4) {
-        const anchor = `<a class="heading-anchor" href="#${id}" aria-label="Link to section: ${escapeHtml(cleanText)}" title="Copy link to this section">#</a>`;
+        const anchor = `<a class="heading-anchor" href="#${id}" aria-label="${options.language === 'tr' ? 'Bölüm bağlantısı' : 'Link to section'}: ${escapeHtml(cleanText)}" title="${options.language === 'tr' ? 'Bu bölümün bağlantısı' : 'Link to this section'}">#</a>`;
         htmlParts.push(`<h${level} id="${id}">${renderInlineMarkdown(rawText, options)}${anchor}</h${level}>`);
       } else {
         htmlParts.push(`<h${level} id="${id}">${renderInlineMarkdown(rawText, options)}</h${level}>`);

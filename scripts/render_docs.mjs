@@ -8,6 +8,8 @@ import { renderMarkdown, generateTableOfContents, escapeHtml } from './markdown_
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
+const guideCatalog = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/docs/guides.json'), 'utf8'));
+const guideByRoute = new Map(guideCatalog.guides.map(guide => [guide.route, guide]));
 const manifestPath = path.join(repositoryRoot, 'content', 'docs', 'manifest.json');
 
 let cachedManifest = null;
@@ -17,6 +19,17 @@ export function getDocsManifest() {
     throw new Error(`Documentation manifest missing at ${manifestPath}. Run scripts/sync_docs.py first.`);
   }
   cachedManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const core = cachedManifest.repositories.core;
+  if (core.commit !== guideCatalog.baseline) throw new Error("Guide baseline differs from imported Core release");
+  for (const guide of guideCatalog.guides) {
+    const existing = core.pages.find(page => page.route === guide.route);
+    if (existing) existing.title = guide.title;
+    else {
+      const source = core.pages.find(page => page.src === guide.sources[0]);
+      if (!source) throw new Error(`Missing guide source: ${guide.id}`);
+      core.pages.push({ ...source, title: guide.title, route: guide.route, slug: guide.route.split('/').filter(Boolean).at(-1), derivedGuide: true });
+    }
+  }
   return cachedManifest;
 }
 
@@ -50,7 +63,7 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
     </div>
     <ul class="sidebar-links">
       <li><a href="${route('docs/')}"${currentRoute === 'docs/' ? ' class="active" aria-current="page"' : ''}>${isTr ? 'Dokümantasyon Merkezi' : 'Documentation Hub'}</a></li>
-      <li><a href="${route('docs/mcp/')}"${currentRoute === 'docs/mcp/' ? ' class="active" aria-current="page"' : ''}>MCP Integration</a></li>
+      <li><a href="${route('docs/mcp/')}"${currentRoute === 'docs/mcp/' ? ' class="active" aria-current="page"' : ''}>${isTr ? 'MCP Entegrasyonu' : 'MCP Integration'}</a></li>
     </ul>
   </div>`;
 
@@ -69,7 +82,15 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
       </div>
       <ul class="sidebar-links">`;
 
-    for (const page of repo.pages) {
+    const groups = {start: ['Start here', 'Başlangıç'], concepts: ['Core concepts', 'Temel kavramlar'], retrieval: ['Retrieval', 'Retrieval'], reference: ['Integration & reference', 'Entegrasyon ve referans'], operate: ['Operate & recover', 'İşletim ve kurtarma'], release: ['Release & evidence', 'Yayın ve kanıt']};
+    const orderedPages = key === 'core' ? Object.keys(groups).flatMap(group => repo.pages.filter(page => guideByRoute.get(page.route)?.group === group)) : repo.pages;
+    let lastGroup = '';
+    for (const page of orderedPages) {
+      const group = guideByRoute.get(page.route)?.group;
+      if (key === 'core' && group !== lastGroup) {
+        sectionsHtml += `<li class="docs-nav-group-label">${groups[group][isTr ? 1 : 0]}</li>`;
+        lastGroup = group;
+      }
       const pageTitle = page.title[language] || page.title.en;
       const isCurrentPage = currentRoute === page.route;
       sectionsHtml += `<li><a href="${route(page.route)}"${isCurrentPage ? ' class="active" aria-current="page"' : ''}>${escapeHtml(pageTitle)}</a></li>`;
@@ -100,16 +121,25 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const repoTitle = repo.title[language] || repo.title.en;
   const route = (p = '') => `${base}${p}`;
 
-  // Render markdown content
-  const rendered = renderMarkdown(page.raw_markdown, {
+  const guide = guideByRoute.get(page.route);
+  const sourceRendered = renderMarkdown(page.raw_markdown, {base, route, skipH1: true, language});
+  const repositoryNotes = {
+    data: ['MESA Data prepares reviewed Turkish legal sources through acquisition, canonicalization, validation and immutable release publication. Staging or HTTP 202 does not prove delivery into Core. Its package version and release tag are separate facts.', 'MESA Data; edinme, kanonikleştirme, doğrulama ve değişmez yayın adımlarıyla gözden geçirilmiş Türk hukuk kaynakları hazırlar. Staging veya HTTP 202, Core teslimatını kanıtlamaz. Paket sürümü ve yayın tag’i ayrı olgulardır.'],
+    law: ['Law consumes the V4 HTTP contract for matters, documents and source-backed workflows. Current live Core integration remains unverified; current HEAD CI is failing. The dated Law-side pass used Core 0.7.1. Research, draft and rebuild surfaces are not completed capabilities.', 'Law; matter, belge ve kaynağa bağlı iş akışları için V4 HTTP sözleşmesini tüketir. Güncel canlı Core entegrasyonu doğrulanmamıştır; güncel HEAD CI başarısızdır. Tarihli Law tarafı geçiş Core 0.7.1 kullanmıştır. Research, draft ve rebuild tamamlanmış yetenekler değildir.'],
+    qa: ['QA exercises behavior, persistence and restarts outside the baseline checkout. A harness PASS does not make the candidate correct. The latest first-write INVALID_ARGUMENT and older candidate FAIL remain dated evidence; no current production approval is implied.', 'QA, baseline checkout dışında davranış, kalıcılık ve yeniden başlatmayı sınar. Harness PASS, adayın doğru olduğu anlamına gelmez. Son ilk-yazma INVALID_ARGUMENT ve eski aday FAIL tarihli kanıttır; güncel üretim onayı anlamına gelmez.'],
+    e2e: ['Profile B evaluates a frozen Data → Core transaction with independent receipts and fail-closed gates. Official execution and metric producers exist. External B4/B6/B7/B8 evidence and a fresh official PASS remain absent; historical results are not current certification.', 'Profile B, bağımsız receipt ve fail-closed kapılarla dondurulmuş Data → Core işlemini değerlendirir. Resmî yürütme ve metrik üreticileri vardır. Dış B4/B6/B7/B8 kanıtı ve yeni resmî PASS halen eksiktir; tarihsel sonuçlar güncel sertifikasyon değildir.']
+  };
+  const note = repositoryNotes[repoKey]?.[isTr ? 1 : 0];
+  const guideMarkdown = guide ? fs.readFileSync(path.join(repositoryRoot, 'content/docs/guides', language, `${guide.id}.md`), 'utf8') : `## ${isTr ? 'Bu belgenin kapsamı' : 'Scope of this document'}\n\n${note}\n\n${isTr ? 'Aşağıdaki özgün kaynak; bu sayfanın tam sözleşmesini, komutlarını veya tarihli kanıtını korur. Kaynak dilinde sunulur. Test sonuçları yalnızca belirtilen tarih ve koşullarda geçerlidir.' : 'The original reference below preserves this page’s complete contract, commands or dated evidence in its source language. Test outcomes apply only within their stated date and conditions.'}`;
+  const rendered = renderMarkdown(guideMarkdown, {
     base,
     route,
-    skipH1: true
+    skipH1: true, language
   });
-  const tocHtml = generateTableOfContents(rendered.headings, {
-    label: isTr ? 'Bu belgede' : 'In this document'
-  });
-
+  // Guide anchors have their own namespace; original source anchors stay stable.
+  rendered.html = rendered.html.replace(/id="([^"]+)"/g, 'id="guide-$1"').replace(/href="#([^"]+)"/g, 'href="#guide-$1"').replace(/data-copy-target="([^"]+)"/g, 'data-copy-target="guide-$1"');
+  for (const heading of rendered.headings) heading.id = `guide-${heading.id}`;
+  const guideTocHtml = generateTableOfContents(rendered.headings, {label: isTr ? 'Bu rehberde' : 'In this guide'});
   // Breadcrumbs
   const homeHref = route();
   const docsHubHref = route('docs/');
@@ -129,7 +159,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const metaBar = `<div class="docs-meta-bar">
     <span class="docs-version-pill">${escapeHtml(repo.version)}</span>
     <span class="docs-commit-pill">commit: <a href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.commit)}</a></span>
-    <span class="docs-source-pill">source: <code>${escapeHtml(page.src)}</code></span>
+    <span class="docs-source-pill">${isTr ? 'kaynak' : 'source'}: <code>${escapeHtml(page.src)}</code></span>
   </div>`;
 
   // Find previous and next pages within this repo
@@ -165,17 +195,19 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
           <h1>${escapeHtml(pageTitle)}</h1>
           ${metaBar}
-          <p class="docs-language-notice">${isTr ? 'Gezinme Türkçedir; belge gövdesi kaynak deponun özgün dilinde korunur. Sürüm etiketi paket sürümüdür; sertifikasyon sonucu değildir.' : 'Navigation is localized; the document body retains its original source language. The version label identifies the package, not a certification result.'}</p>
+          <p class="docs-language-notice">${isTr ? 'Bu rehber Türkçe ve İngilizce eşdeğer açıklamalar sunar. Tam kaynak referansı özgün dilinde aşağıda korunur. Paket sürümü üretim sertifikasyonu değildir.' : 'This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.'}</p>
           ${/audit|verification|closure/i.test(page.src) ? `<p class="docs-language-notice">${isTr ? 'Bu belge tarihli kaynak kanıtıdır. İçindeki test sonuçları bu site denetiminde yeniden çalıştırılmış sayılmaz.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
         </header>
         <div class="docs-body">
           ${rendered.html}
+          <div class="guide-source-list"><strong>${isTr ? 'Doğrulanmış kaynaklar' : 'Verified sources'}</strong><ul>${(guide?.sources || [page.src]).map(src => `<li><a href="${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${src}" target="_blank" rel="noopener noreferrer"><code>${escapeHtml(src)}</code></a></li>`).join('')}</ul></div>
+          <details class="source-appendix" id="source-reference"><summary>${isTr ? 'Tam kaynak referansı · özgün dil' : 'Complete source reference · original language'}</summary><p class="docs-language-notice">${isTr ? 'Bu ek birebir kaynak metnidir; çevrilmiş rehberden ayrı tutulur. Kaynak içi bölüm bağlantıları eki otomatik açar.' : 'This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.'}</p><div class="source-reference-body">${sourceRendered.html}</div></details>
         </div>
         ${pageNavHtml}
       </article>
     </div>
     <aside class="docs-toc-column" aria-label="${isTr ? 'İçindekiler' : 'Table of contents'}">
-      ${tocHtml}
+      ${guideTocHtml}
       <div class="docs-source-link">
         <a href="${sourceUrl}" target="_blank" rel="noopener noreferrer">
           <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
