@@ -12,6 +12,9 @@ const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data
 const hubData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'hub.json'), 'utf8'));
 const baseUrlIndex = process.argv.indexOf('--base-url');
 const baseUrl = (baseUrlIndex === -1 ? 'http://127.0.0.1:8000/' : process.argv[baseUrlIndex + 1]).replace(/\/?$/, '/');
+const screenshotsIndex = process.argv.indexOf('--screenshots');
+const screenshotsDirectory = screenshotsIndex === -1 ? null : path.resolve(process.argv[screenshotsIndex + 1]);
+if (screenshotsDirectory) fs.mkdirSync(screenshotsDirectory, { recursive: true });
 const chrome = process.env.CHROME_BIN || 'google-chrome';
 const port = 9300 + (process.pid % 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mesa-browser-qa-'));
@@ -25,6 +28,7 @@ const routes = [
 const localizedRoutes = routes.flatMap((routePath) => [routePath, `tr/${routePath}`]);
 const widths = [320, 390, 768, 1024, 1440, 1920];
 const failures = [];
+const observations = [];
 let connection;
 
 const browser = spawn(chrome, [
@@ -107,7 +111,7 @@ async function inspect(routePath, width) {
   const url = new URL(routePath, baseUrl).toString();
   await connection.send('Emulation.setDeviceMetricsOverride', {
     width,
-    height: 900,
+    height: width <= 520 ? 844 : 1000,
     deviceScaleFactor: 1,
     mobile: false,
   });
@@ -116,13 +120,19 @@ async function inspect(routePath, width) {
   const { result } = await connection.send('Runtime.evaluate', {
     expression: `(async () => {
       await document.fonts.ready;
+      await Promise.all([...document.images].filter(image => image.complete).map(image => image.decode().catch(() => {})));
       const root = document.documentElement;
+      const hero = document.querySelector('.hero');
+      const fixture = document.querySelector('#mesa-in-action');
       return {
         title: document.title,
         language: root.lang,
         mainCount: document.querySelectorAll('main').length,
         h1Count: document.querySelectorAll('h1').length,
         overflow: root.scrollWidth - root.clientWidth,
+        height: root.scrollHeight,
+        fixtureTop: fixture ? Math.round(fixture.getBoundingClientRect().top + scrollY) : null,
+        heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
         brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).map((image) => image.currentSrc),
         scenes: [...document.querySelectorAll('[data-scene]')].map((node) => node.dataset.scene),
         mediaLayers: [...document.querySelectorAll('[data-scene-media]')].map((node) => ({ id: node.dataset.sceneMedia, hidden: node.getAttribute('aria-hidden') })),
@@ -132,6 +142,7 @@ async function inspect(routePath, width) {
     returnByValue: true,
   });
   const state = result.value;
+  observations.push({ route: routePath, width, ...state });
   const label = `/${routePath} @ ${width}px`;
   if (!state.title) failures.push(`${label}: missing title`);
   if (state.mainCount !== 1) failures.push(`${label}: main count ${state.mainCount}`);
@@ -141,6 +152,20 @@ async function inspect(routePath, width) {
   if (routePath === '' || routePath === 'tr/') {
     if (JSON.stringify(state.scenes) !== JSON.stringify(requiredScenes)) failures.push(`${label}: scene order ${state.scenes.join(', ')}`);
     if (state.mediaLayers.some(({ hidden }) => hidden !== 'true')) failures.push(`${label}: interactive media layer`);
+  }
+  const samplePages = ['mesa/', 'law/', 'docs/', 'learn/what-is-ai-memory/'];
+  const unlocalized = routePath.replace(/^tr\//, '');
+  if (screenshotsDirectory && (unlocalized === '' || (samplePages.includes(unlocalized) && [390, 1440].includes(width)))) {
+    const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}`;
+    const screenshot = await connection.send('Page.captureScreenshot', { format: 'png' });
+    fs.writeFileSync(path.join(screenshotsDirectory, `${stem}.png`), Buffer.from(screenshot.data, 'base64'));
+    if (unlocalized === '' && [390, 1440].includes(width)) {
+      const full = await connection.send('Page.captureScreenshot', {
+        format: 'png', captureBeyondViewport: true,
+        clip: { x: 0, y: 0, width, height: state.height, scale: 1 },
+      });
+      fs.writeFileSync(path.join(screenshotsDirectory, `${stem}-full.png`), Buffer.from(full.data, 'base64'));
+    }
   }
 }
 
@@ -171,9 +196,15 @@ try {
   await connection.send('Page.enable');
   await connection.send('Runtime.enable');
 
-  for (const width of widths) await inspect('', width);
+  for (const routePath of ['', 'tr/']) {
+    for (const width of widths) await inspect(routePath, width);
+  }
   for (const routePath of localizedRoutes) {
     await inspect(routePath, routePath === '' || routePath === 'tr/' ? 390 : 1440);
+  }
+  for (const routePath of ['mesa/', 'law/', 'docs/', 'learn/what-is-ai-memory/']) {
+    await inspect(routePath, 390);
+    await inspect(`tr/${routePath}`, 390);
   }
   await checkMobileMenu();
 
@@ -182,7 +213,11 @@ try {
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths, mobile menu, no document overflow or broken images`);
+    console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, mobile menu, no document overflow or broken images`);
+  }
+  if (screenshotsDirectory) {
+    fs.writeFileSync(path.join(screenshotsDirectory, 'observations.json'), `${JSON.stringify({ baseUrl, observations, failures }, null, 2)}\n`);
+    console.log(`Screenshots and layout observations: ${screenshotsDirectory}`);
   }
 } finally {
   connection?.close();
