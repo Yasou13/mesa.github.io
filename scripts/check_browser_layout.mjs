@@ -27,6 +27,8 @@ const routes = [
   ...hubData.sections.map(({ path: routePath }) => routePath),
   ...hubData.entries.filter(({ draft, indexable }) => !draft && indexable).map(({ path: routePath }) => routePath),
 ];
+const docsManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/docs/manifest.json'), 'utf8'));
+routes.push(...Object.values(docsManifest.repositories).flatMap(repo => repo.pages.map(page => page.route)));
 const localizedRoutes = routes.flatMap((routePath) => [routePath, `tr/${routePath}`]);
 const widths = [320, 390, 768, 799, 800, 801, 1024, 1099, 1100, 1101, 1440, 1920];
 const failures = [];
@@ -143,6 +145,7 @@ async function inspect(routePath, width) {
         mainCount: document.querySelectorAll('main').length,
         h1Count: document.querySelectorAll('h1').length,
         overflow: root.scrollWidth - root.clientWidth,
+        overflowElements: [...document.querySelectorAll('body *')].filter(el => el.getBoundingClientRect().right > root.clientWidth + 1 && getComputedStyle(el).position !== 'fixed').slice(0, 8).map(el => ({ tag: el.tagName, class: el.className, right: Math.round(el.getBoundingClientRect().right) })),
         height: root.scrollHeight,
         fixtureTop: fixture ? Math.round(fixture.getBoundingClientRect().top + scrollY) : null,
         heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
@@ -150,6 +153,8 @@ async function inspect(routePath, width) {
         heroRequests: performance.getEntriesByType('resource').filter(entry => /hero(?:-portrait)?\\.webp/.test(entry.name)).map(entry => entry.name),
         heroTransfers: performance.getEntriesByType('resource').filter(entry => /hero(?:-portrait)?\\.webp/.test(entry.name)).map(entry => ({ url: entry.name, transfer: entry.transferSize, encoded: entry.encodedBodySize })),
         layoutShift: window.__mesaAuditCLS || 0,
+        lcpMs: window.__mesaAuditLCP || null,
+        resources: performance.getEntriesByType('resource').map(entry => ({url: entry.name, encoded: entry.encodedBodySize, transfer: entry.transferSize})),
         brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).map((image) => image.currentSrc),
         scenes: [...document.querySelectorAll('[data-scene]')].map((node) => node.dataset.scene),
         homeSections: [...document.querySelectorAll('[data-home-section]')].map((node) => node.dataset.homeSection),
@@ -189,7 +194,7 @@ async function inspect(routePath, width) {
       if (state.height > heightBudget) failures.push(`${label}: homepage exceeds ${heightBudget}px (${state.height}px)`);
     }
   }
-  const samplePages = ['mesa/', 'law/', 'docs/', 'learn/what-is-ai-memory/'];
+  const samplePages = ['mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
   const unlocalized = routePath.replace(/^tr\//, '');
   if (screenshotsDirectory && (unlocalized === '' || (samplePages.includes(unlocalized) && [390, 1440].includes(width)))) {
     const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}`;
@@ -288,6 +293,58 @@ async function checkHeroFallbacks(routePath) {
   await connection.send('Emulation.setEmulatedMedia', { features: [] });
 }
 
+async function evaluate(expression) {
+  const result = await connection.send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true });
+  if (result.exceptionDetails) throw new Error(result.exceptionDetails.text);
+  return result.result.value;
+}
+
+async function checkContentInteractions() {
+  for (const localized of ['', 'tr/']) {
+    await connection.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: false });
+    await navigate(new URL(`${localized}docs/core/api-reference/`, baseUrl).href);
+    const result = await evaluate(`(async () => {
+      const trigger = document.querySelector('.search-trigger');
+      if (getComputedStyle(document.querySelector('#main-navigation')).display === 'none') document.querySelector('.menu-toggle').click();
+      trigger.focus(); trigger.click();
+      const input = document.querySelector('.search-input');
+      input.value = 'retrieval'; input.dispatchEvent(new Event('input', { bubbles: true }));
+      for(let i=0; i<60 && !document.querySelector('.search-result-item a'); i++) await new Promise(resolve => setTimeout(resolve, 50));
+      const links = [...document.querySelectorAll('.search-result-item a')].map(a => a.href);
+      const dialog = document.querySelector('[role="dialog"]');
+      const controls = [...dialog.querySelectorAll('input,button,a[href]')];
+      controls[controls.length-1].focus();
+      controls[controls.length-1].dispatchEvent(new KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));
+      const trapped = document.activeElement === input;
+      const focusOutline = getComputedStyle(input).outlineStyle;
+      document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+      const restored = document.activeElement === trigger;
+      const closed = !dialog.classList.contains('open');
+      const docsToggle = document.querySelector('.docs-navigation summary');
+      docsToggle.click();
+      return {links, trapped, restored, closed, focusOutline, docsExpanded: docsToggle.parentElement.open};
+    })()`);
+    if (!result.links.length || result.links.some(link => !link.startsWith(new URL(localized, baseUrl).href))) failures.push(`${localized}: search path or language mismatch`);
+    if (!result.trapped || !result.restored || !result.closed || result.focusOutline === 'none' || !result.docsExpanded) failures.push(`${localized}: keyboard focus or documentation disclosure failed`);
+    fallbackChecks.push({ type: 'search-and-docs', language: localized || 'en', ...result });
+    await navigate(new URL(`${localized}admin/`, baseUrl).href);
+    const admin = await evaluate(`({forms: document.forms.length, controls: document.querySelectorAll('input,textarea,button').length, noindex: document.querySelector('meta[name="robots"]').content, scripts: document.scripts.length})`);
+    if (admin.forms || admin.controls || admin.scripts || !admin.noindex.includes('noindex')) failures.push(`${localized}: admin did not fail closed`);
+    fallbackChecks.push({ type: 'admin-unavailable', language: localized || 'en', ...admin });
+  }
+  await connection.send('Emulation.setScriptExecutionDisabled', { value: true });
+  for (const localized of ['', 'tr/']) {
+    for (const route of ['', 'learn/what-is-ai-memory/', 'docs/core/api-reference/']) {
+      await navigate(new URL(localized + route, baseUrl).href);
+      const state = await evaluate(`({body: document.querySelector('main').innerText.length, h1: document.querySelectorAll('h1').length, overflow: document.documentElement.scrollWidth-document.documentElement.clientWidth, navigation: getComputedStyle(document.querySelector('#main-navigation')).display, titleY: document.querySelector('h1').getBoundingClientRect().top, headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom})`);
+      if (state.body < 150 || state.h1 !== 1 || state.overflow > 1 || state.navigation === 'none' || state.titleY < state.headerBottom) failures.push(`${localized}${route}: no-JavaScript reading/navigation failed`);
+      fallbackChecks.push({ type: 'no-javascript', route: localized + route, ...state });
+    }
+  }
+  await connection.send('Emulation.setScriptExecutionDisabled', { value: false });
+}
+
+
 try {
   await waitForDebugger();
   const target = await fetchJson(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(baseUrl)}`, { method: 'PUT' });
@@ -299,20 +356,25 @@ try {
   browserVersion = await connection.send('Browser.getVersion');
   await connection.send('Page.addScriptToEvaluateOnNewDocument', { source: `
     window.__mesaAuditCLS = 0;
+    window.__mesaAuditLCP = 0;
+    new PerformanceObserver(list => { for(const entry of list.getEntries()) window.__mesaAuditLCP=entry.startTime; }).observe({type: 'largest-contentful-paint', buffered: true});
     new PerformanceObserver(list => {
       for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__mesaAuditCLS += entry.value;
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
+  if (!process.argv.includes('--interactions-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
   for (const routePath of localizedRoutes) {
     await inspect(routePath, routePath === '' || routePath === 'tr/' ? 390 : 1440);
   }
-  for (const routePath of ['mesa/', 'law/', 'docs/', 'learn/what-is-ai-memory/']) {
-    await inspect(routePath, 390);
-    await inspect(`tr/${routePath}`, 390);
+  for (const routePath of ['mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/']) {
+    for (const width of [320, 390, 768, 1024, 1440, 1920]) {
+      await inspect(routePath, width);
+      await inspect(`tr/${routePath}`, width);
+    }
   }
   for (const routePath of ['', 'tr/']) {
     await checkMobileMenu(routePath);
@@ -320,12 +382,16 @@ try {
     await checkHeroFallbacks(routePath);
   }
 
+  }
+  await checkContentInteractions();
+
   if (failures.length) {
     console.error(`BROWSER QA FAIL (${failures.length})`);
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, navigation, fixture, hero crops (${warmCache ? 'warm' : 'cold'} cache), reduced motion and image failure; no document overflow or unexpected broken images`);
+    if (process.argv.includes('--interactions-only')) console.log(`BROWSER INTERACTION QA PASS: EN/TR search paths, keyboard focus, admin isolation and no-JavaScript navigation at ${baseUrl}`);
+    else console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, navigation, fixture, hero crops (${warmCache ? 'warm' : 'cold'} cache), reduced motion and image failure; no document overflow or unexpected broken images`);
   }
   if (screenshotsDirectory) {
     fs.writeFileSync(path.join(screenshotsDirectory, 'observations.json'), `${JSON.stringify({ baseUrl, cacheMode: warmCache ? 'warm' : 'cold', browserVersion, observations, fallbackChecks, failures }, null, 2)}\n`);

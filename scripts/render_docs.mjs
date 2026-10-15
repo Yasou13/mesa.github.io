@@ -79,6 +79,8 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
   }
 
   return `<aside class="docs-sidebar" aria-label="${isTr ? 'Dokümantasyon gezintisi' : 'Documentation navigation'}">
+    <details class="docs-navigation">
+      <summary>${isTr ? 'Belge gezintisi' : 'Documentation navigation'}</summary>
     <div class="docs-sidebar-inner">
       <div class="docs-sidebar-header">
         <span class="docs-badge">${isTr ? 'MESA DOKÜMANTASYON' : 'MESA DOCUMENTATION'}</span>
@@ -87,6 +89,7 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
         ${sectionsHtml}
       </nav>
     </div>
+    </details>
   </aside>`;
 }
 
@@ -162,6 +165,8 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
           <h1>${escapeHtml(pageTitle)}</h1>
           ${metaBar}
+          <p class="docs-language-notice">${isTr ? 'Gezinme Türkçedir; belge gövdesi kaynak deponun özgün dilinde korunur. Sürüm etiketi paket sürümüdür; sertifikasyon sonucu değildir.' : 'Navigation is localized; the document body retains its original source language. The version label identifies the package, not a certification result.'}</p>
+          ${/audit|verification|closure/i.test(page.src) ? `<p class="docs-language-notice">${isTr ? 'Bu belge tarihli kaynak kanıtıdır. İçindeki test sonuçları bu site denetiminde yeniden çalıştırılmış sayılmaz.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
         </header>
         <div class="docs-body">
           ${rendered.html}

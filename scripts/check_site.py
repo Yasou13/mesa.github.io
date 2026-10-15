@@ -71,6 +71,8 @@ class PageParser(HTMLParser):
         super().__init__()
         self.refs: list[tuple[str, str, dict[str, str | None]]] = []
         self.ids: set[str] = set()
+        self.duplicate_ids: set[str] = set()
+        self.unsafe_attributes: list[str] = []
         self.title_parts: list[str] = []
         self.text_parts: list[str] = []
         self.description: str | None = None
@@ -97,6 +99,7 @@ class PageParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        self.unsafe_attributes.extend(name for name, _ in attrs if name.lower().startswith("on"))
         if tag == "html":
             self.html_lang = values.get("lang")
         if values.get("data-scene"):
@@ -112,6 +115,8 @@ class PageParser(HTMLParser):
                 )
             )
         if values.get("id"):
+            if str(values["id"]) in self.ids:
+                self.duplicate_ids.add(str(values["id"]))
             self.ids.add(str(values["id"]))
         if tag == "title":
             self._in_title = True
@@ -255,6 +260,12 @@ def main() -> int:
         relative = page.relative_to(root)
         is_exempt = page.name == "404.html" or str(relative) in {"admin/index.html", "tr/admin/index.html"}
         text = page.read_text(encoding="utf-8")
+        if parsed.duplicate_ids:
+            errors.append(f"duplicate element IDs: {relative}: {sorted(parsed.duplicate_ids)}")
+        if parsed.unsafe_attributes:
+            errors.append(f"inline event attributes: {relative}")
+        if str(relative) in {"admin/index.html", "tr/admin/index.html"} and 'content="noindex, nofollow"' not in text:
+            errors.append(f"admin must be noindex: {relative}")
         if not parsed.title:
             errors.append(f"missing title: {relative}")
         elif parsed.title in titles and not is_exempt:
@@ -361,6 +372,9 @@ def main() -> int:
                 errors.append(f"forbidden link pattern {marker}: {relative}")
         for tag, value, attrs in parsed.refs:
             split = urlsplit(value)
+            if split.scheme and split.scheme not in {"http", "https", "mailto", "tel"}:
+                errors.append(f"unsafe URL scheme: {relative}")
+                continue
             if split.scheme in {"http", "https"}:
                 external_refs += 1
                 rel = set((attrs.get("rel") or "").split())
@@ -382,6 +396,24 @@ def main() -> int:
                 target_parser = parsed_pages.get(target) or parse_page(target)
                 if split.fragment not in target_parser.ids:
                     errors.append(f"missing anchor: {relative} -> {value}")
+
+    search_path = root / "search-index.json"
+    if not search_path.is_file():
+        errors.append("missing search index")
+    else:
+        search = json.loads(search_path.read_text(encoding="utf-8"))
+        search_ids = set()
+        for item in search:
+            value = item.get("url", "")
+            if item.get("id") in search_ids:
+                errors.append("duplicate search identity")
+            search_ids.add(item.get("id"))
+            if value.startswith("/") or ".." in value.split("/") or urlsplit(value).scheme or "admin/" in value:
+                errors.append("unsafe/private search URL")
+                continue
+            target = root / value / "index.html"
+            if not target.is_file():
+                errors.append(f"search result has no public route: {value}")
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text

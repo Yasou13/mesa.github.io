@@ -1,3 +1,4 @@
+const publicAssetRoot = new URL('.', document.currentScript.src);
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#main-navigation');
 const isTurkish = document.documentElement.lang === 'tr';
@@ -20,30 +21,11 @@ nav?.querySelectorAll('a').forEach((link) => {
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key !== 'Escape' || !nav?.classList.contains('open')) return;
+  if (event.key !== 'Escape' || !nav?.classList.contains('open') || document.querySelector('.search-modal-backdrop.open')) return;
   nav.classList.remove('open');
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', labels.open);
   toggle.focus();
-});
-
-document.querySelectorAll('.copy-button').forEach((button) => {
-  button.addEventListener('click', async () => {
-    const target = document.getElementById(button.dataset.copyTarget);
-    const text = target?.innerText || '';
-    try {
-      await navigator.clipboard.writeText(text);
-      button.textContent = labels.copied;
-    } catch {
-      const selection = window.getSelection();
-      const range = document.createRange();
-      range.selectNodeContents(target);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      button.textContent = labels.selected;
-    }
-    window.setTimeout(() => { button.textContent = labels.copy; }, 5000);
-  });
 });
 
 document.querySelectorAll('.heading-anchor').forEach((link) => {
@@ -86,6 +68,8 @@ let searchModalBackdrop = null;
 let searchInput = null;
 let searchResultsList = null;
 let selectedResultIndex = -1;
+let searchReturnFocus = null;
+let inertSiblings = [];
 
 function createSearchModal() {
   if (searchModalBackdrop) return;
@@ -94,6 +78,7 @@ function createSearchModal() {
 
   const backdrop = document.createElement('div');
   backdrop.className = 'search-modal-backdrop';
+  backdrop.hidden = true;
   backdrop.setAttribute('role', 'dialog');
   backdrop.setAttribute('aria-modal', 'true');
   backdrop.setAttribute('aria-label', isTurkish ? 'Arama' : 'Search');
@@ -103,7 +88,7 @@ function createSearchModal() {
       <div class="search-input-wrapper">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         <input type="search" class="search-input" placeholder="${placeholder}" aria-label="${placeholder}" autocomplete="off" spellcheck="false">
-        <kbd class="search-shortcut">ESC</kbd>
+    <button type="button" class="search-close">${isTurkish ? 'Kapat' : 'Close'}</button>
       </div>
       <ul class="search-results-list" role="listbox">
         <li class="search-result-empty">${isTurkish ? 'Aramak için yazın...' : 'Type to search...'}</li>
@@ -115,6 +100,14 @@ function createSearchModal() {
   searchModalBackdrop = backdrop;
   searchInput = backdrop.querySelector('.search-input');
   searchResultsList = backdrop.querySelector('.search-results-list');
+  backdrop.querySelector('.search-close').addEventListener('click', closeSearchModal);
+  backdrop.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const controls = [...backdrop.querySelectorAll('input, button, a[href]')];
+    const first = controls[0], last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
 
   // Close when clicking backdrop
   backdrop.addEventListener('click', (e) => {
@@ -167,9 +160,8 @@ async function loadSearchIndex() {
 
   try {
     // Determine relative path to search-index.json from current page location
-    const depth = window.location.pathname.split('/').filter(Boolean).length;
-    const base = depth ? '../'.repeat(depth) : './';
-    const res = await fetch(`${base}search-index.json`);
+    const res = await fetch(new URL('search-index.json', publicAssetRoot));
+    if (!res.ok) throw new Error('Search index unavailable');
     if (res.ok) {
       searchIndexData = await res.json();
     }
@@ -177,22 +169,32 @@ async function loadSearchIndex() {
     console.warn('Could not load search index', err);
   } finally {
     searchIndexLoading = false;
+    if (searchModalBackdrop?.classList.contains('open')) performSearch(searchInput.value.trim());
   }
   return searchIndexData;
 }
 
 function openSearchModal() {
   createSearchModal();
+  searchReturnFocus = document.activeElement;
+  inertSiblings = [...document.body.children].filter(node => node !== searchModalBackdrop).map(node => [node, node.inert]);
+  inertSiblings.forEach(([node]) => { node.inert = true; });
+  searchModalBackdrop.hidden = false;
   searchModalBackdrop.classList.add('open');
   searchInput.value = '';
   selectedResultIndex = -1;
   searchInput.focus();
+  performSearch('');
   loadSearchIndex();
 }
 
 function closeSearchModal() {
   if (!searchModalBackdrop) return;
   searchModalBackdrop.classList.remove('open');
+  searchModalBackdrop.hidden = true;
+  inertSiblings.forEach(([node, wasInert]) => { node.inert = wasInert; });
+  inertSiblings = [];
+  searchReturnFocus?.focus();
 }
 
 function performSearch(query) {
@@ -226,13 +228,12 @@ function performSearch(query) {
   }
 
   // Calculate relative base
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
-  const base = depth ? '../'.repeat(depth) : './';
+
 
   searchResultsList.innerHTML = results.map((item, idx) => {
-    const itemHref = `${base}${item.url}`;
+    const itemHref = new URL(item.url, publicAssetRoot).href;
     return `<li class="search-result-item${idx === 0 ? ' active' : ''}" role="option">
-      <a href="${itemHref}">
+      <a href="${escapeText(itemHref)}">
         <div class="search-result-meta">
           <span class="search-result-section">${escapeText(item.section || 'MESA')}</span>
         </div>
@@ -275,7 +276,8 @@ document.addEventListener('click', async (e) => {
   const targetId = btn.dataset.copyTarget;
   if (!targetId) return;
   const target = document.getElementById(targetId);
-  const text = target?.innerText || '';
+  if (!target) return;
+  const text = target.innerText || '';
   try {
     await navigator.clipboard.writeText(text);
     btn.textContent = labels.copied;
@@ -289,3 +291,11 @@ document.addEventListener('click', async (e) => {
   }
   window.setTimeout(() => { btn.textContent = labels.copy; }, 4000);
 });
+
+const docsNavigation = document.querySelector('.docs-navigation');
+if (docsNavigation) {
+  const wideDocs = window.matchMedia('(min-width: 1025px)');
+  const adaptDocsNavigation = () => { docsNavigation.open = wideDocs.matches; };
+  adaptDocsNavigation();
+  wideDocs.addEventListener('change', adaptDocsNavigation);
+}
