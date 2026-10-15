@@ -34,7 +34,7 @@ HUB_DATA = json.loads(
 MEDIA_DATA = json.loads(
     (Path(__file__).resolve().parents[1] / "content" / "media-scenes.json").read_text(encoding="utf-8")
 )
-REQUIRED_SCENES = ("event-horizon", "flyby", "deep-space", "connections", "structure")
+REQUIRED_MEDIA_RECORDS = ("event-horizon",)
 HOME_SCENES = ("event-horizon",)
 HOME_SECTIONS = ("hero", "problem", "example", "process", "ecosystem", "explore")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
@@ -140,6 +140,9 @@ class PageParser(HTMLParser):
             value = values.get(key)
             if value:
                 self.refs.append((tag, str(value), values))
+        if values.get("srcset"):
+            for candidate in str(values["srcset"]).split(","):
+                self.refs.append((tag, candidate.strip().split()[0], values))
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "title":
@@ -223,12 +226,17 @@ def main() -> int:
 
     manifest_scenes = MEDIA_DATA.get("scenes", [])
     manifest_ids = tuple(scene.get("id") for scene in manifest_scenes)
-    if manifest_ids != REQUIRED_SCENES:
-        errors.append(f"media manifest scene order mismatch: {manifest_ids}")
+    if len(set(manifest_ids)) != len(manifest_ids) or not set(REQUIRED_MEDIA_RECORDS).issubset(manifest_ids):
+        errors.append(f"media manifest has duplicate or missing required records: {manifest_ids}")
     for scene in manifest_scenes:
         for filename in scene.get("assets", {}).values():
             if filename and not (root / MEDIA_DATA["mediaRoot"] / filename).is_file():
                 errors.append(f"configured scene asset is missing: {scene['id']} / {filename}")
+        for key, size_key in (("poster", "posterSize"), ("mobilePoster", "mobilePosterSize")):
+            if scene.get("assets", {}).get(key):
+                size = scene.get(size_key, {})
+                if not all(isinstance(size.get(dim), int) and size[dim] > 0 for dim in ("width", "height")):
+                    errors.append(f"configured poster lacks intrinsic dimensions: {scene['id']} / {key}")
 
     for page, parsed in parsed_pages.items():
         relative = page.relative_to(root)

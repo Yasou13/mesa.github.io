@@ -27,26 +27,37 @@ const assetVersions = {
   logo: assetVersion('assets/mesa-logo.png')
 };
 
-const requiredSceneIds = ['event-horizon', 'flyby', 'deep-space', 'connections', 'structure'];
+const requiredSceneIds = ['event-horizon'];
 const scenes = new Map(mediaData.scenes.map((scene) => [scene.id, scene]));
 
 function validateMediaData() {
-  if (mediaData.schemaVersion !== 1 || !mediaData.mediaRoot || !Array.isArray(mediaData.scenes)) {
+  if (mediaData.schemaVersion !== 1 || !/^[a-zA-Z0-9_/-]+\/$/.test(mediaData.mediaRoot) || mediaData.mediaRoot.startsWith('/') || mediaData.mediaRoot.includes('..') || !Array.isArray(mediaData.scenes)) {
     throw new Error('Invalid media scene manifest');
   }
   if (scenes.size !== mediaData.scenes.length) throw new Error('Duplicate media scene id');
   for (const id of requiredSceneIds) {
-    const scene = scenes.get(id);
-    if (!scene) throw new Error(`Missing required media scene: ${id}`);
+    if (!scenes.has(id)) throw new Error(`Missing required media scene: ${id}`);
+  }
+  // Validate every record, including future bounded Core/Data poster records.
+  for (const scene of mediaData.scenes) {
+    const { id } = scene;
+    if (!/^[a-z0-9-]+$/.test(id)) throw new Error(`Invalid media scene id: ${id}`);
     if (!['cover', 'contain'].includes(scene.fit)) throw new Error(`Invalid media fit for ${id}`);
     if (scene.overlayOpacity < 0 || scene.overlayOpacity > 1) throw new Error(`Invalid overlay opacity for ${id}`);
     if (!scene.focalPoint?.desktop || !scene.focalPoint?.mobile || !scene.assets) throw new Error(`Incomplete media scene: ${id}`);
     for (const value of Object.values(scene.assets)) {
-      if (value !== null && (!value || value.startsWith('/') || value.includes('..'))) {
+      if (value !== null && (typeof value !== 'string' || !/^[a-zA-Z0-9_./-]+$/.test(value) || value.startsWith('/') || value.includes('..'))) {
         throw new Error(`Unsafe media asset path in ${id}`);
       }
       if (value !== null && !fs.existsSync(path.join(repositoryRoot, 'dist', mediaData.mediaRoot, value))) {
         throw new Error(`Configured media asset is missing for ${id}: ${value}`);
+      }
+    }
+    for (const [key, sizeKey] of [['poster', 'posterSize'], ['mobilePoster', 'mobilePosterSize']]) {
+      if (!scene.assets[key]) continue;
+      const size = scene[sizeKey];
+      if (!size || !Number.isInteger(size.width) || !Number.isInteger(size.height) || size.width <= 0 || size.height <= 0) {
+        throw new Error(`Missing intrinsic dimensions for ${id}: ${key}`);
       }
     }
   }
@@ -267,13 +278,22 @@ function evidencePath() {
   </div>`;
 }
 
+function posterPicture(id, { priority = false, className = 'poster-visual' } = {}) {
+  const scene = scenes.get(id);
+  if (!scene) throw new Error(`Unknown poster record: ${id}`);
+  const { poster, mobilePoster } = scene.assets;
+  if (!poster && !mobilePoster) return '';
+  const mediaPath = (filename) => asset(`${mediaData.mediaRoot}${filename}`);
+  const size = poster ? scene.posterSize : scene.mobilePosterSize;
+  const mobileSize = scene.mobilePosterSize;
+  return `<picture class="${className}">${mobilePoster ? `<source media="(max-width: 800px)" srcset="${mediaPath(mobilePoster)}" width="${mobileSize.width}" height="${mobileSize.height}">` : ''}<img src="${mediaPath(poster || mobilePoster)}" alt="" width="${size.width}" height="${size.height}" loading="${priority ? 'eager' : 'lazy'}"${priority ? ' fetchpriority="high"' : ''} decoding="async"></picture>`;
+}
+
 function sceneLayer(id) {
   const scene = scenes.get(id);
   const mediaPath = (filename) => asset(`${mediaData.mediaRoot}${filename}`);
-  const { poster, mobilePoster, webm, mp4 } = scene.assets;
-  const picture = poster || mobilePoster
-    ? `<picture class="scene-media__poster">${mobilePoster ? `<source media="(max-width: 800px)" srcset="${mediaPath(mobilePoster)}">` : ''}<img src="${mediaPath(poster || mobilePoster)}" alt="" loading="${id === 'event-horizon' ? 'eager' : 'lazy'}" decoding="async"></picture>`
-    : '';
+  const { poster, webm, mp4 } = scene.assets;
+  const picture = posterPicture(id, { priority: id === 'event-horizon', className: 'scene-media__poster' });
   const sources = [webm ? `<source src="${mediaPath(webm)}" type="video/webm">` : '', mp4 ? `<source src="${mediaPath(mp4)}" type="video/mp4">` : ''].filter(Boolean).join('');
   const video = sources
     ? `<video class="scene-media__video" muted loop playsinline preload="metadata"${poster ? ` poster="${mediaPath(poster)}"` : ''}>${sources}</video>`

@@ -2,11 +2,7 @@
 
 This document records the provenance, historical origin, licensing status, and site-native integration of all visual and archival assets used on [mesamemory.dev](https://mesamemory.dev/).
 
-In accordance with Section 13–16 of the Art Direction Specification:
-- All external references are strictly public domain / CC0 / Open Access.
-- No copyrighted or stock photography is permitted.
-- All visual assets are rendered as lightweight, scalable, accessible site-native vector plates.
-- Color treatments conform to the Obsidian Archive palette (Obsidian `#0b0c0f`, Mineral `#72b7b2`, Copper `#b97852`, Dusty Violet `#7562a8`, and Graphite `#25242b`).
+Sections 1–9 preserve the earlier archival/vector asset record. The supplied cosmic imagery added in Phase 4 is documented separately below; the historical licensing descriptions do not establish a license for those new files. The active design tokens are defined in `dist/styles.css`.
 
 ---
 
@@ -109,8 +105,16 @@ In accordance with Section 13–16 of the Art Direction Specification:
 
 ---
 
-## Summary of Compliance
-- External Copyrighted Artworks Used: 0
-- Stock Images Used: 0
-- All assets verified Public Domain: Yes
-- Accessible decorative masking (`aria-hidden="true"`, `role="presentation"`): Yes
+## 10. User-supplied cosmic hero — Phase 4
+
+- **Source package:** `MESA-Visual-Assets.zip`, supplied by the user. Its README identifies the originals as Google Flow images, with WebP compression and prepared portrait crops.
+- **Desktop:** `dist/media/desktop/hero.webp`, 1376 × 768, 30,238 bytes; SHA-256 `0ae36ca732ce8fd9c5cef24c0b4d1e35d72391f19d671855a8068617e26e33ba`.
+- **Mobile:** `dist/media/mobile/hero-portrait.webp`, 614 × 768, 27,636 bytes; SHA-256 `6d2161d6eec3439b426cee651e5c8cb9b9c0d53b87ce02a42774b9183213360c`.
+- **Integrity:** both delivery files are byte-for-byte copies from the supplied ZIP. No regeneration, color adjustment, image distortion, or additional compression. Separate CSS scrims protect text and blend the visual into the canvas.
+- **Usage:** homepage only. Desktop uses the supplied landscape composition; mobile ≤800 px uses its prepared portrait crop in a separate field below the copy/actions. The image is static and decorative (`alt=""`, hidden noninteractive wrapper).
+- **Provenance boundary:** user-supplied generated nebula imagery, not verified observatory photography. The package does not provide a separate public-domain/CC0 declaration; no telescope, astronomical object, artist, or license credit is invented.
+- **Other nebula assets:** flow, structure, and horizon remain outside the deployed site. Future Core/Data placement is not implemented in Phases 2–4.
+
+## Accessibility and provenance scope
+
+Decorative integration uses empty alt text and noninteractive hidden media layers. The historical vector-source descriptions above are retained as existing project records; Phase 4 does not independently reverify those historical attributions or assert that every site asset is public domain.

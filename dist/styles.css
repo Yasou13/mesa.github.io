@@ -1500,6 +1500,16 @@ p { color: var(--muted); }
 .home-page .hero-copy > p:not(.eyebrow) { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 20px; line-height: 1.65; }
 .home-page .hero-copy .actions { margin-top: 32px; gap: 12px; }
 .home-page .hero .button { font-size: 15px; }
+.home-page .hero .scene-media { inset: 0 0 0 auto; width: min(100%, 1376px); }
+.home-page .hero .scene-media__poster img { object-fit: contain; object-position: right center; }
+.home-page .hero .scene-media__veil {
+  background: linear-gradient(90deg, var(--black), rgba(5, 5, 8, .82) 34%, rgba(5, 5, 8, .12) 70%, transparent), linear-gradient(0deg, var(--black), transparent 24%);
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .home-page .hero .scene-media__veil {
+    background: linear-gradient(90deg, var(--black), rgba(5, 5, 8, .92) 42%, rgba(5, 5, 8, .68) 76%, rgba(5, 5, 8, .12)), linear-gradient(0deg, var(--black), transparent 24%);
+  }
+}
 .home-page .home-problem { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: 64px; padding-block: 64px; border-block: 1px solid var(--line); }
 .home-problem h2 { max-width: 15ch; margin-bottom: 0; }
 .home-problem__body ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
@@ -1595,6 +1605,10 @@ p { color: var(--muted); }
   .home-page h2 { font-size: clamp(1.75rem, 5vw, 2.25rem); }
   .home-page .hero { padding: 144px 24px 56px; align-items: start; }
   .home-page .hero-copy { width: 100%; max-width: 620px; }
+  .home-page .hero .hero-copy { grid-row: 1; }
+  .home-page .hero .scene-media { position: relative; inset: auto; grid-row: 2; width: min(100%, 614px); height: auto; aspect-ratio: 614 / 768; margin: 32px auto 0; }
+  .home-page .hero .scene-media__poster img { object-position: center; }
+  .home-page .hero .scene-media__veil { background: linear-gradient(180deg, var(--black), transparent 16%, transparent 78%, var(--black)); }
   .home-page .hero h1 { max-width: 16ch; font-size: clamp(2.5rem, 6.7vw, 3.5rem); line-height: 1.07; }
   .home-page .hero-copy > p:not(.eyebrow) { font-size: 18px; }
   .home-page .home-problem { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 48px; }
@@ -2077,6 +2091,8 @@ em { color: #f1f2f5; }
 
 .mesa-mark { background: transparent; }
 
+.poster-visual { display: block; width: 100%; overflow: hidden; }
+.poster-visual img { display: block; width: 100%; height: auto; }
 .scene { position: relative; isolation: isolate; overflow: hidden; }
 .scene > :not(.scene-media):not(.scroll-cue) { position: relative; z-index: 2; }
 .scene > .scroll-cue { position: absolute; z-index: 2; }

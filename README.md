@@ -26,13 +26,21 @@ URL redirects to this configured custom domain.
 No React, Vue, Next.js, CMS, backend, or npm dependencies are used. Node.js is
 needed only to run the dependency-free static renderer during a build.
 
-The homepage uses five semantic scene boundaries and a reusable decorative
-media layer. Until final posters or videos are configured, it emits only static
-dark CSS surfaces and makes no missing asset requests. Future media remains
-separate from readable HTML, cannot intercept input, and falls back to the
-poster or static surface for reduced-motion, Save-Data, playback rejection, or
-media errors. The complete contract is documented in
-`docs/design/03_SCENE_STORYBOARD_AND_ASSET_CONTRACT.md`.
+The homepage uses six semantic sections: introduction, problem, verified memory
+example, lifecycle, ecosystem, and next steps. Its only media is the supplied
+static hero, served through an art-directed desktop/mobile `<picture>`. Mobile
+copy and actions sit above the portrait visual. The image remains decorative,
+cannot intercept input, reserves its layout space, and falls back to a dark
+surface without blocking content. No video or animation dependency is configured.
+
+`posterPicture()` provides reusable base-path-aware markup with intrinsic
+dimensions, optional mobile crops, and explicit loading priority; all configured
+manifest records are validated. The other historical scene records remain
+unconfigured and are not rendered as homepage backgrounds. The approved scope
+and implementation evidence are documented in
+`docs/plans/MESA_COSMIC_MINIMALISM_REDESIGN.md` and
+`docs/design/05_COSMIC_PHASES_2_4_IMPLEMENTATION.md`; the earlier five-scene
+storyboard is retained as historical context.
 
 ## Routes
 
@@ -181,9 +189,22 @@ dependency-free responsive browser check:
 node scripts/check_browser_layout.mjs --base-url http://127.0.0.1:8000/
 ```
 
-It opens every localized route in headless Chrome, checks the homepage at 320,
-390, 768, 1024, 1440, and 1920 px, verifies document overflow and image decode,
-and exercises the mobile menu's open/Escape-close behavior.
+It opens every localized route in headless Chrome, checks both homepages at
+320, 390, 768, 799, 800, 801, 1024, 1099, 1100, 1101, 1440, and 1920 px,
+verifies document overflow and image decode, and exercises both languages'
+mobile menu and fixture disclosure. It also checks responsive hero requests,
+loading priority, load-time layout shift, reduced motion, and image failure.
+The default run disables cache to verify one selected crop per cold navigation.
+`--warm-cache` also allows zero-transfer cached fallback entries emitted by
+Chromium, while rejecting an extra crop that transfers bytes.
+
+To retain screenshots and the structured observations report:
+
+```bash
+node scripts/check_browser_layout.mjs \
+  --base-url http://127.0.0.1:8000/ \
+  --screenshots /tmp/mesa-browser-evidence
+```
 
 The checker requires real page text, one semantic `main` and `h1`, unique page
 metadata, canonical/Open Graph/Twitter fields, valid internal files and
