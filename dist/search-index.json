@@ -442,10 +442,10 @@
   {
     "id": "doc-core-index-en",
     "url": "docs/core/",
-    "title": "Overview",
+    "title": "MESA Core overview",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Overview documentation (v0.8.0)",
+    "summary": "MESA Core overview · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -467,10 +467,10 @@
   {
     "id": "doc-core-index-tr",
     "url": "tr/docs/core/",
-    "title": "Genel Bakış",
+    "title": "MESA Core genel bakış",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Genel Bakış documentation (v0.8.0)",
+    "summary": "MESA Core genel bakış · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -492,10 +492,10 @@
   {
     "id": "doc-core-getting-started-en",
     "url": "docs/core/getting-started/",
-    "title": "Getting Started",
+    "title": "Local quickstart",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Getting Started documentation (v0.8.0)",
+    "summary": "Local quickstart · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -511,10 +511,10 @@
   {
     "id": "doc-core-getting-started-tr",
     "url": "tr/docs/core/getting-started/",
-    "title": "Başlarken",
+    "title": "Yerel hızlı başlangıç",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Başlarken documentation (v0.8.0)",
+    "summary": "Yerel hızlı başlangıç · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -530,10 +530,10 @@
   {
     "id": "doc-core-installation-en",
     "url": "docs/core/installation/",
-    "title": "Installation",
+    "title": "Installation & deployment",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Installation documentation (v0.8.0)",
+    "summary": "Installation & deployment · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -553,10 +553,10 @@
   {
     "id": "doc-core-installation-tr",
     "url": "tr/docs/core/installation/",
-    "title": "Kurulum",
+    "title": "Kurulum ve dağıtım",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Kurulum documentation (v0.8.0)",
+    "summary": "Kurulum ve dağıtım · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -576,10 +576,10 @@
   {
     "id": "doc-core-architecture-en",
     "url": "docs/core/architecture/",
-    "title": "Architecture V4",
+    "title": "Core architecture",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Architecture V4 documentation (v0.8.0)",
+    "summary": "Core architecture · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -601,10 +601,10 @@
   {
     "id": "doc-core-architecture-tr",
     "url": "tr/docs/core/architecture/",
-    "title": "Mimari V4",
+    "title": "Core mimarisi",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Mimari V4 documentation (v0.8.0)",
+    "summary": "Core mimarisi · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -626,10 +626,10 @@
   {
     "id": "doc-core-concepts-and-ingestion-en",
     "url": "docs/core/concepts-and-ingestion/",
-    "title": "Concepts & Ingestion",
+    "title": "Ingestion & memory lifecycle",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Concepts & Ingestion documentation (v0.8.0)",
+    "summary": "Ingestion & memory lifecycle · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -646,10 +646,10 @@
   {
     "id": "doc-core-concepts-and-ingestion-tr",
     "url": "tr/docs/core/concepts-and-ingestion/",
-    "title": "Kavramlar ve Ingestion",
+    "title": "Veri alımı ve hafıza yaşam döngüsü",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Kavramlar ve Ingestion documentation (v0.8.0)",
+    "summary": "Veri alımı ve hafıza yaşam döngüsü · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -669,7 +669,7 @@
     "title": "Configuration",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Configuration documentation (v0.8.0)",
+    "summary": "Configuration · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -685,10 +685,10 @@
   {
     "id": "doc-core-configuration-tr",
     "url": "tr/docs/core/configuration/",
-    "title": "Konfigürasyon",
+    "title": "Yapılandırma",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Konfigürasyon documentation (v0.8.0)",
+    "summary": "Yapılandırma · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -704,10 +704,10 @@
   {
     "id": "doc-core-retrieval-and-graph-en",
     "url": "docs/core/retrieval-and-graph/",
-    "title": "Retrieval & Graph",
+    "title": "Retrieval & graph",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Retrieval & Graph documentation (v0.8.0)",
+    "summary": "Retrieval & graph · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -723,10 +723,10 @@
   {
     "id": "doc-core-retrieval-and-graph-tr",
     "url": "tr/docs/core/retrieval-and-graph/",
-    "title": "Retrieval ve Çizge",
+    "title": "Retrieval ve çizge",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Retrieval ve Çizge documentation (v0.8.0)",
+    "summary": "Retrieval ve çizge · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -742,10 +742,10 @@
   {
     "id": "doc-core-api-reference-en",
     "url": "docs/core/api-reference/",
-    "title": "API Reference",
+    "title": "HTTP API & Python SDK",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core API Reference documentation (v0.8.0)",
+    "summary": "HTTP API & Python SDK · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -768,10 +768,10 @@
   {
     "id": "doc-core-api-reference-tr",
     "url": "tr/docs/core/api-reference/",
-    "title": "API Referansı",
+    "title": "HTTP API ve Python SDK",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core API Referansı documentation (v0.8.0)",
+    "summary": "HTTP API ve Python SDK · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -794,10 +794,10 @@
   {
     "id": "doc-core-cli-reference-en",
     "url": "docs/core/cli-reference/",
-    "title": "CLI Reference",
+    "title": "CLI reference",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core CLI Reference documentation (v0.8.0)",
+    "summary": "CLI reference · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -811,10 +811,10 @@
   {
     "id": "doc-core-cli-reference-tr",
     "url": "tr/docs/core/cli-reference/",
-    "title": "CLI Referansı",
+    "title": "CLI referansı",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core CLI Referansı documentation (v0.8.0)",
+    "summary": "CLI referansı · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -828,10 +828,10 @@
   {
     "id": "doc-core-migration-en",
     "url": "docs/core/migration/",
-    "title": "Migration to v0.8.0",
+    "title": "Upgrade to v0.8.0",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Migration to v0.8.0 documentation (v0.8.0)",
+    "summary": "Upgrade to v0.8.0 · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -845,10 +845,10 @@
   {
     "id": "doc-core-migration-tr",
     "url": "tr/docs/core/migration/",
-    "title": "v0.8.0 Geçişi",
+    "title": "v0.8.0 yükseltmesi",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core v0.8.0 Geçişi documentation (v0.8.0)",
+    "summary": "v0.8.0 yükseltmesi · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -862,10 +862,10 @@
   {
     "id": "doc-core-release-notes-en",
     "url": "docs/core/release-notes/",
-    "title": "Release Notes v0.8.0",
+    "title": "v0.8.0 release notes",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Release Notes v0.8.0 documentation (v0.8.0)",
+    "summary": "v0.8.0 release notes · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -879,10 +879,10 @@
   {
     "id": "doc-core-release-notes-tr",
     "url": "tr/docs/core/release-notes/",
-    "title": "Sürüm Notları v0.8.0",
+    "title": "v0.8.0 sürüm notları",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Sürüm Notları v0.8.0 documentation (v0.8.0)",
+    "summary": "v0.8.0 sürüm notları · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -899,7 +899,7 @@
     "title": "Troubleshooting",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Troubleshooting documentation (v0.8.0)",
+    "summary": "Troubleshooting · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -911,10 +911,10 @@
   {
     "id": "doc-core-troubleshooting-tr",
     "url": "tr/docs/core/troubleshooting/",
-    "title": "Sorun Giderme",
+    "title": "Sorun giderme",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Sorun Giderme documentation (v0.8.0)",
+    "summary": "Sorun giderme · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -926,10 +926,10 @@
   {
     "id": "doc-core-limitations-en",
     "url": "docs/core/limitations/",
-    "title": "Performance & Limitations",
+    "title": "Performance & limitations",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Performance & Limitations documentation (v0.8.0)",
+    "summary": "Performance & limitations · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -943,10 +943,10 @@
   {
     "id": "doc-core-limitations-tr",
     "url": "tr/docs/core/limitations/",
-    "title": "Performans ve Sınırlılıklar",
+    "title": "Performans ve sınırlar",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Performans ve Sınırlılıklar documentation (v0.8.0)",
+    "summary": "Performans ve sınırlar · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -960,10 +960,10 @@
   {
     "id": "doc-core-rebuild-runbook-en",
     "url": "docs/core/rebuild-runbook/",
-    "title": "V4 Rebuild Runbook",
+    "title": "Projection rebuild",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core V4 Rebuild Runbook documentation (v0.8.0)",
+    "summary": "Projection rebuild · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -985,10 +985,10 @@
   {
     "id": "doc-core-rebuild-runbook-tr",
     "url": "tr/docs/core/rebuild-runbook/",
-    "title": "V4 Yeniden Derleme Kılavuzu",
+    "title": "Projeksiyon rebuild",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core V4 Yeniden Derleme Kılavuzu documentation (v0.8.0)",
+    "summary": "Projeksiyon rebuild · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -1010,10 +1010,10 @@
   {
     "id": "doc-core-audit-en",
     "url": "docs/core/audit/",
-    "title": "Independent Audit",
+    "title": "Historical independent audit",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Independent Audit documentation (v0.8.0)",
+    "summary": "Historical independent audit · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -1037,10 +1037,10 @@
   {
     "id": "doc-core-audit-tr",
     "url": "tr/docs/core/audit/",
-    "title": "Bağımsız Denetim",
+    "title": "Tarihsel bağımsız denetim",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Bağımsız Denetim documentation (v0.8.0)",
+    "summary": "Tarihsel bağımsız denetim · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -1064,10 +1064,10 @@
   {
     "id": "doc-core-colab-rehberi-en",
     "url": "docs/core/colab-rehberi/",
-    "title": "Google Colab Guide",
+    "title": "Colab setup",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Google Colab Guide documentation (v0.8.0)",
+    "summary": "Colab setup · MESA Core guide (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -1085,10 +1085,10 @@
   {
     "id": "doc-core-colab-rehberi-tr",
     "url": "tr/docs/core/colab-rehberi/",
-    "title": "Google Colab Rehberi",
+    "title": "Colab kurulumu",
     "section": "Docs · MESA Core",
     "category": "MESA Core",
-    "summary": "MESA Core Google Colab Rehberi documentation (v0.8.0)",
+    "summary": "Colab kurulumu · MESA Core rehberi (v0.8.0)",
     "keywords": [
       "core",
       "docs",
@@ -1104,12 +1104,464 @@
     "language": "tr"
   },
   {
+    "id": "doc-core-documentation-map-en",
+    "url": "docs/core/documentation-map/",
+    "title": "Documentation map",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Documentation map · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core documentation",
+      "Historical records"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-documentation-map-tr",
+    "url": "tr/docs/core/documentation-map/",
+    "title": "Dokümantasyon haritası",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Dokümantasyon haritası · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core documentation",
+      "Historical records"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-security-en",
+    "url": "docs/core/security/",
+    "title": "Security & scope",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Security & scope · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Security and privacy",
+      "Threat model and deployment boundary",
+      "Network and authentication",
+      "Untrusted data and logs",
+      "Responsible reporting and supply chain"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-security-tr",
+    "url": "tr/docs/core/security/",
+    "title": "Güvenlik ve kapsam",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Güvenlik ve kapsam · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Security and privacy",
+      "Threat model and deployment boundary",
+      "Network and authentication",
+      "Untrusted data and logs",
+      "Responsible reporting and supply chain"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-operations-en",
+    "url": "docs/core/operations/",
+    "title": "Operations & recovery",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Operations & recovery · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA operations runbook",
+      "1. Desteklenen v4 topology",
+      "2. İlk credential ve ACL kurulumu",
+      "3. Projection backlog ve DLQ",
+      "4. Rollback ve BLOCKED",
+      "5. Reconciliation",
+      "6. Backup, restore ve v4 rebuild",
+      "Single-writer kapasite sınırı",
+      "7. Model/provider olayı",
+      "8. PageRank",
+      "9. Session finalization",
+      "10. Logging ve olay kanıtı",
+      "11. V3 compatibility",
+      "12. Release durumu"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-operations-tr",
+    "url": "tr/docs/core/operations/",
+    "title": "Operasyon ve kurtarma",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Operasyon ve kurtarma · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA operations runbook",
+      "1. Desteklenen v4 topology",
+      "2. İlk credential ve ACL kurulumu",
+      "3. Projection backlog ve DLQ",
+      "4. Rollback ve BLOCKED",
+      "5. Reconciliation",
+      "6. Backup, restore ve v4 rebuild",
+      "Single-writer kapasite sınırı",
+      "7. Model/provider olayı",
+      "8. PageRank",
+      "9. Session finalization",
+      "10. Logging ve olay kanıtı",
+      "11. V3 compatibility",
+      "12. Release durumu"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-ecosystem-en",
+    "url": "docs/core/ecosystem/",
+    "title": "Ecosystem boundaries",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Ecosystem boundaries · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Ecosystem and ownership boundaries"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-ecosystem-tr",
+    "url": "tr/docs/core/ecosystem/",
+    "title": "Ekosistem sınırları",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Ekosistem sınırları · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Ecosystem and ownership boundaries"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-testing-en",
+    "url": "docs/core/testing/",
+    "title": "Testing & evidence",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Testing & evidence · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Testing and developer workflow"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-testing-tr",
+    "url": "tr/docs/core/testing/",
+    "title": "Test ve kanıt",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Test ve kanıt · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Testing and developer workflow"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-release-policy-en",
+    "url": "docs/core/release-policy/",
+    "title": "Release policy",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Release policy · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Release procedure",
+      "Zorunlu v4 kapıları",
+      "Yerel preflight",
+      "Adapter-inclusive ayrı gate: dev + adapters kurulumu sonrası make test-all",
+      "CI kanıtları",
+      "Sürüm, build ve tag",
+      "Migration ve rollback paketi",
+      "v0.8.0 için açık yayın istisnası"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-release-policy-tr",
+    "url": "tr/docs/core/release-policy/",
+    "title": "Yayın politikası",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Yayın politikası · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Release procedure",
+      "Zorunlu v4 kapıları",
+      "Yerel preflight",
+      "Adapter-inclusive ayrı gate: dev + adapters kurulumu sonrası make test-all",
+      "CI kanıtları",
+      "Sürüm, build ve tag",
+      "Migration ve rollback paketi",
+      "v0.8.0 için açık yayın istisnası"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-mcp-en",
+    "url": "docs/core/mcp/",
+    "title": "MCP integration",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MCP integration · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA MCP",
+      "Prerequisites",
+      "Codex direct HTTP integration",
+      "Operator approval",
+      "Antigravity",
+      "Tools",
+      "Smoke check"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-mcp-tr",
+    "url": "tr/docs/core/mcp/",
+    "title": "MCP entegrasyonu",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MCP entegrasyonu · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA MCP",
+      "Prerequisites",
+      "Codex direct HTTP integration",
+      "Operator approval",
+      "Antigravity",
+      "Tools",
+      "Smoke check"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-embedding-providers-en",
+    "url": "docs/core/embedding-providers/",
+    "title": "Embedding & model providers",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Embedding & model providers · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Configuration reference",
+      "Startup and precedence",
+      "Providers and capacity",
+      "Declared MesaConfig fields",
+      "MCP and operator variables"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-embedding-providers-tr",
+    "url": "tr/docs/core/embedding-providers/",
+    "title": "Embedding ve model sağlayıcıları",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Embedding ve model sağlayıcıları · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Configuration reference",
+      "Startup and precedence",
+      "Providers and capacity",
+      "Declared MesaConfig fields",
+      "MCP and operator variables"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-evidence-en",
+    "url": "docs/core/evidence/",
+    "title": "Evidence & provenance",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Evidence & provenance · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Concepts and ingestion lifecycle",
+      "Identity and scope",
+      "Admission and completion",
+      "Revision finalization and retries",
+      "Correction, purge and rollback",
+      "Producer contract"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-evidence-tr",
+    "url": "tr/docs/core/evidence/",
+    "title": "Kanıt ve kaynak izi",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Kanıt ve kaynak izi · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Concepts and ingestion lifecycle",
+      "Identity and scope",
+      "Admission and completion",
+      "Revision finalization and retries",
+      "Correction, purge and rollback",
+      "Producer contract"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-graph-en",
+    "url": "docs/core/graph/",
+    "title": "Graph traversal",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Graph traversal · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core current V4 architecture",
+      "Runtime boundary",
+      "Security and catalog hierarchy",
+      "Canonical ingestion",
+      "Pipeline and failure model",
+      "Canonical entity and Graph V2",
+      "Artifact ownership and rollback",
+      "Reconciliation and health",
+      "Retrieval",
+      "Bounded adaptive context retrieval",
+      "Migration and release"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-graph-tr",
+    "url": "tr/docs/core/graph/",
+    "title": "Çizge dolaşımı",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Çizge dolaşımı · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core current V4 architecture",
+      "Runtime boundary",
+      "Security and catalog hierarchy",
+      "Canonical ingestion",
+      "Pipeline and failure model",
+      "Canonical entity and Graph V2",
+      "Artifact ownership and rollback",
+      "Reconciliation and health",
+      "Retrieval",
+      "Bounded adaptive context retrieval",
+      "Migration and release"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-examples-en",
+    "url": "docs/core/examples/",
+    "title": "Examples & SDK workflow",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Examples & SDK workflow · MESA Core guide (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "API reference",
+      "V4 capability",
+      "V4 administrative rebuild operations",
+      "V4 catalog",
+      "V4 session ve memory",
+      "V4 Python SDK",
+      "V4 authorization",
+      "MemoryDAO v4 sınırı",
+      "Graph V2",
+      "V3 compatibility API",
+      "Health ve metrics",
+      "İstek/SDK ayrıntıları"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-examples-tr",
+    "url": "tr/docs/core/examples/",
+    "title": "Örnekler ve SDK iş akışı",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "Örnekler ve SDK iş akışı · MESA Core rehberi (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "API reference",
+      "V4 capability",
+      "V4 administrative rebuild operations",
+      "V4 catalog",
+      "V4 session ve memory",
+      "V4 Python SDK",
+      "V4 authorization",
+      "MemoryDAO v4 sınırı",
+      "Graph V2",
+      "V3 compatibility API",
+      "Health ve metrics",
+      "İstek/SDK ayrıntıları"
+    ],
+    "language": "tr"
+  },
+  {
     "id": "doc-data-index-en",
     "url": "docs/data/",
     "title": "Overview",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Overview documentation (v0.1.0)",
+    "summary": "Overview · MESA Data guide (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1149,7 +1601,7 @@
     "title": "Genel Bakış",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Genel Bakış documentation (v0.1.0)",
+    "summary": "Genel Bakış · MESA Data rehberi (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1189,7 +1641,7 @@
     "title": "Quickstart (TR)",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Quickstart (TR) documentation (v0.1.0)",
+    "summary": "Quickstart (TR) · MESA Data guide (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1214,7 +1666,7 @@
     "title": "Hızlı Başlangıç",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Hızlı Başlangıç documentation (v0.1.0)",
+    "summary": "Hızlı Başlangıç · MESA Data rehberi (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1239,7 +1691,7 @@
     "title": "User Guide (TR)",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data User Guide (TR) documentation (v0.1.0)",
+    "summary": "User Guide (TR) · MESA Data guide (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1268,7 +1720,7 @@
     "title": "Kullanım Kılavuzu",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Kullanım Kılavuzu documentation (v0.1.0)",
+    "summary": "Kullanım Kılavuzu · MESA Data rehberi (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1297,7 +1749,7 @@
     "title": "Import Contract",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Import Contract documentation (v0.1.0)",
+    "summary": "Import Contract · MESA Data guide (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1318,7 +1770,7 @@
     "title": "İçe Aktarma Sözleşmesi",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data İçe Aktarma Sözleşmesi documentation (v0.1.0)",
+    "summary": "İçe Aktarma Sözleşmesi · MESA Data rehberi (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1339,7 +1791,7 @@
     "title": "Troubleshooting (TR)",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Troubleshooting (TR) documentation (v0.1.0)",
+    "summary": "Troubleshooting (TR) · MESA Data guide (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1362,7 +1814,7 @@
     "title": "Sorun Giderme",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data Sorun Giderme documentation (v0.1.0)",
+    "summary": "Sorun Giderme · MESA Data rehberi (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1385,7 +1837,7 @@
     "title": "MVP Closure Report",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data MVP Closure Report documentation (v0.1.0)",
+    "summary": "MVP Closure Report · MESA Data guide (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1405,7 +1857,7 @@
     "title": "MVP Kapanış Raporu",
     "section": "Docs · MESA Data",
     "category": "MESA Data",
-    "summary": "MESA Data MVP Kapanış Raporu documentation (v0.1.0)",
+    "summary": "MVP Kapanış Raporu · MESA Data rehberi (v0.1.0)",
     "keywords": [
       "data",
       "docs",
@@ -1425,7 +1877,7 @@
     "title": "Contract Overview",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law Contract Overview documentation (v0.1.0)",
+    "summary": "Contract Overview · MESA Law guide (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1442,7 +1894,7 @@
     "title": "Sözleşme Genel Bakış",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law Sözleşme Genel Bakış documentation (v0.1.0)",
+    "summary": "Sözleşme Genel Bakış · MESA Law rehberi (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1459,7 +1911,7 @@
     "title": "Operations Guide",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law Operations Guide documentation (v0.1.0)",
+    "summary": "Operations Guide · MESA Law guide (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1477,7 +1929,7 @@
     "title": "Operasyon Rehberi",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law Operasyon Rehberi documentation (v0.1.0)",
+    "summary": "Operasyon Rehberi · MESA Law rehberi (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1495,7 +1947,7 @@
     "title": "Final Verification",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law Final Verification documentation (v0.1.0)",
+    "summary": "Final Verification · MESA Law guide (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1515,7 +1967,7 @@
     "title": "Nihai Doğrulama",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law Nihai Doğrulama documentation (v0.1.0)",
+    "summary": "Nihai Doğrulama · MESA Law rehberi (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1535,7 +1987,7 @@
     "title": "MVP Baseline",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law MVP Baseline documentation (v0.1.0)",
+    "summary": "MVP Baseline · MESA Law guide (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1553,7 +2005,7 @@
     "title": "MVP Temel Durumu",
     "section": "Docs · MESA Law",
     "category": "MESA Law",
-    "summary": "MESA Law MVP Temel Durumu documentation (v0.1.0)",
+    "summary": "MVP Temel Durumu · MESA Law rehberi (v0.1.0)",
     "keywords": [
       "law",
       "docs",
@@ -1571,7 +2023,7 @@
     "title": "Overview",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Overview documentation (v0.1.0)",
+    "summary": "Overview · MESA QA guide (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1606,7 +2058,7 @@
     "title": "Genel Bakış",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Genel Bakış documentation (v0.1.0)",
+    "summary": "Genel Bakış · MESA QA rehberi (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1641,7 +2093,7 @@
     "title": "Fresh Independent Audit",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Fresh Independent Audit documentation (v0.1.0)",
+    "summary": "Fresh Independent Audit · MESA QA guide (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1660,7 +2112,7 @@
     "title": "Güncel Bağımsız Denetim",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Güncel Bağımsız Denetim documentation (v0.1.0)",
+    "summary": "Güncel Bağımsız Denetim · MESA QA rehberi (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1679,7 +2131,7 @@
     "title": "Repair Prompt Specification",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Repair Prompt Specification documentation (v0.1.0)",
+    "summary": "Repair Prompt Specification · MESA QA guide (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1693,7 +2145,7 @@
     "title": "Onarım Prompt Spesifikasyonu",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Onarım Prompt Spesifikasyonu documentation (v0.1.0)",
+    "summary": "Onarım Prompt Spesifikasyonu · MESA QA rehberi (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1707,7 +2159,7 @@
     "title": "Reproduce Prompt Specification",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Reproduce Prompt Specification documentation (v0.1.0)",
+    "summary": "Reproduce Prompt Specification · MESA QA guide (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1721,7 +2173,7 @@
     "title": "Yeniden Üretim Promptu",
     "section": "Docs · MESA QA",
     "category": "MESA QA",
-    "summary": "MESA QA Yeniden Üretim Promptu documentation (v0.1.0)",
+    "summary": "Yeniden Üretim Promptu · MESA QA rehberi (v0.1.0)",
     "keywords": [
       "qa",
       "docs",
@@ -1735,7 +2187,7 @@
     "title": "Overview",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Overview documentation (v0.1.0)",
+    "summary": "Overview · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1758,7 +2210,7 @@
     "title": "Genel Bakış",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Genel Bakış documentation (v0.1.0)",
+    "summary": "Genel Bakış · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1781,7 +2233,7 @@
     "title": "Independent Audit Report",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Independent Audit Report documentation (v0.1.0)",
+    "summary": "Independent Audit Report · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1801,7 +2253,7 @@
     "title": "Bağımsız Denetim Raporu",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Bağımsız Denetim Raporu documentation (v0.1.0)",
+    "summary": "Bağımsız Denetim Raporu · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1821,7 +2273,7 @@
     "title": "Agent Pack Start",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Agent Pack Start documentation (v0.1.0)",
+    "summary": "Agent Pack Start · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1849,7 +2301,7 @@
     "title": "Ajan Paketi Başlangıç",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Ajan Paketi Başlangıç documentation (v0.1.0)",
+    "summary": "Ajan Paketi Başlangıç · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1877,7 +2329,7 @@
     "title": "System Model & Non-Negotiables",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification System Model & Non-Negotiables documentation (v0.1.0)",
+    "summary": "System Model & Non-Negotiables · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1897,7 +2349,7 @@
     "title": "Sistem Modeli ve Esnetilemezler",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Sistem Modeli ve Esnetilemezler documentation (v0.1.0)",
+    "summary": "Sistem Modeli ve Esnetilemezler · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1917,7 +2369,7 @@
     "title": "Profile B Objective Gates",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Profile B Objective Gates documentation (v0.1.0)",
+    "summary": "Profile B Objective Gates · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1947,7 +2399,7 @@
     "title": "Profil B Hedef Kapıları",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Profil B Hedef Kapıları documentation (v0.1.0)",
+    "summary": "Profil B Hedef Kapıları · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1977,7 +2429,7 @@
     "title": "Data to Core Contract",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Data to Core Contract documentation (v0.1.0)",
+    "summary": "Data to Core Contract · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -1999,7 +2451,7 @@
     "title": "Data - Core Sözleşmesi",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Data - Core Sözleşmesi documentation (v0.1.0)",
+    "summary": "Data - Core Sözleşmesi · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -2021,7 +2473,7 @@
     "title": "Current Repair and Blockers",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Current Repair and Blockers documentation (v0.1.0)",
+    "summary": "Current Repair and Blockers · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -2051,7 +2503,7 @@
     "title": "Güncel Onarımlar ve Engeller",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Güncel Onarımlar ve Engeller documentation (v0.1.0)",
+    "summary": "Güncel Onarımlar ve Engeller · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -2081,7 +2533,7 @@
     "title": "Repair Verification Summary",
     "section": "Docs · MESA E2E Certification",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Repair Verification Summary documentation (v0.1.0)",
+    "summary": "Repair Verification Summary · MESA E2E Certification guide (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -2102,7 +2554,7 @@
     "title": "Onarım Doğrulama Özeti",
     "section": "Docs · MESA E2E Sertifikasyonu",
     "category": "MESA E2E Certification",
-    "summary": "MESA E2E Certification Onarım Doğrulama Özeti documentation (v0.1.0)",
+    "summary": "Onarım Doğrulama Özeti · MESA E2E Sertifikasyonu rehberi (v0.1.0)",
     "keywords": [
       "e2e",
       "docs",
@@ -2504,6 +2956,62 @@
     "summary": "MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar.",
     "keywords": [
       "faq",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-architecture-en",
+    "url": "architecture/",
+    "title": "MESA Architecture — Canonical State, Projections and Evidence",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Understand MESA Core v0.8.0 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity.",
+    "keywords": [
+      "architecture",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-architecture-tr",
+    "url": "tr/architecture/",
+    "title": "MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Core v0.8.0 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın.",
+    "keywords": [
+      "architecture",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-retrieval-en",
+    "url": "retrieval/",
+    "title": "MESA V4 Retrieval — Four Lanes, RRF and Evidence",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0.",
+    "keywords": [
+      "retrieval",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-retrieval-tr",
+    "url": "tr/retrieval/",
+    "title": "MESA V4 Retrieval — Dört Kanal, RRF ve Kanıt",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Core v0.8.0 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin.",
+    "keywords": [
+      "retrieval",
       "mesa",
       "hafıza"
     ],

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCP integration — MESA MESA Core Documentation</title>
+  <meta name="description" content="MCP integration documentation for MESA Core (v0.8.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/docs/core/mcp/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/mcp/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/mcp/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/mcp/">
+  <meta property="og:title" content="MCP integration — MESA MESA Core Documentation">
+  <meta property="og:description" content="MCP integration documentation for MESA Core (v0.8.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/docs/core/mcp/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MCP integration — MESA MESA Core Documentation">
+  <meta name="twitter:description" content="MCP integration documentation for MESA Core (v0.8.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"MCP integration documentation for MESA Core (v0.8.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MCP integration documentation for MESA Core (v0.8.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://mesamemory.dev/docs/"},{"@type":"ListItem","position":3,"name":"MESA Core","item":"https://mesamemory.dev/docs/core/"},{"@type":"ListItem","position":4,"name":"MCP integration","item":"https://mesamemory.dev/docs/core/mcp/"}]},{"@type":"TechArticle","headline":"MCP integration","description":"MCP integration documentation for MESA Core (v0.8.0).","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/docs/core/mcp/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"core, documentation, v0.8.0"}]}</script>
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=a0ecb33add77">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../architecture/">Architecture</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../../docs/core/mcp/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../../tr/docs/core/mcp/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Documentation navigation">
+    <details class="docs-navigation">
+      <summary>Documentation navigation</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOCUMENTATION</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>OVERVIEW</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Documentation Hub</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li class="docs-nav-group-label">Start here</li><li><a href="../../../docs/core/">MESA Core overview</a></li><li><a href="../../../docs/core/getting-started/">Local quickstart</a></li><li><a href="../../../docs/core/installation/">Installation &amp; deployment</a></li><li><a href="../../../docs/core/colab-rehberi/">Colab setup</a></li><li><a href="../../../docs/core/documentation-map/">Documentation map</a></li><li><a href="../../../docs/core/examples/">Examples &amp; SDK workflow</a></li><li class="docs-nav-group-label">Core concepts</li><li><a href="../../../docs/core/architecture/">Core architecture</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Ingestion &amp; memory lifecycle</a></li><li><a href="../../../docs/core/ecosystem/">Ecosystem boundaries</a></li><li><a href="../../../docs/core/evidence/">Evidence &amp; provenance</a></li><li class="docs-nav-group-label">Retrieval</li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; graph</a></li><li><a href="../../../docs/core/graph/">Graph traversal</a></li><li class="docs-nav-group-label">Integration & reference</li><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/api-reference/">HTTP API &amp; Python SDK</a></li><li><a href="../../../docs/core/cli-reference/">CLI reference</a></li><li><a href="../../../docs/core/mcp/" class="active" aria-current="page">MCP integration</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding &amp; model providers</a></li><li class="docs-nav-group-label">Operate & recover</li><li><a href="../../../docs/core/migration/">Upgrade to v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li><a href="../../../docs/core/rebuild-runbook/">Projection rebuild</a></li><li><a href="../../../docs/core/security/">Security &amp; scope</a></li><li><a href="../../../docs/core/operations/">Operations &amp; recovery</a></li><li class="docs-nav-group-label">Release & evidence</li><li><a href="../../../docs/core/release-notes/">v0.8.0 release notes</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; limitations</a></li><li><a href="../../../docs/core/audit/">Historical independent audit</a></li><li><a href="../../../docs/core/testing/">Testing &amp; evidence</a></li><li><a href="../../../docs/core/release-policy/">Release policy</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Overview</a></li><li><a href="../../../docs/data/quickstart/">Quickstart (TR)</a></li><li><a href="../../../docs/data/user-guide/">User Guide (TR)</a></li><li><a href="../../../docs/data/import-contract/">Import Contract</a></li><li><a href="../../../docs/data/troubleshooting/">Troubleshooting (TR)</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Closure Report</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Contract Overview</a></li><li><a href="../../../docs/law/operations/">Operations Guide</a></li><li><a href="../../../docs/law/verification/">Final Verification</a></li><li><a href="../../../docs/law/baseline/">MVP Baseline</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Overview</a></li><li><a href="../../../docs/qa/audit/">Fresh Independent Audit</a></li><li><a href="../../../docs/qa/repair-prompt/">Repair Prompt Specification</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Reproduce Prompt Specification</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Certification</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Overview</a></li><li><a href="../../../docs/e2e/audit-report/">Independent Audit Report</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Agent Pack Start</a></li><li><a href="../../../docs/e2e/system-model/">System Model &amp; Non-Negotiables</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profile B Objective Gates</a></li><li><a href="../../../docs/e2e/contract/">Data to Core Contract</a></li><li><a href="../../../docs/e2e/current-repair/">Current Repair and Blockers</a></li><li><a href="../../../docs/e2e/repair-verification/">Repair Verification Summary</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Breadcrumbs">
+    <ol>
+      <li><a href="../../../">Home</a></li>
+      <li><a href="../../../docs/">Docs</a></li>
+      <li><a href="../../../docs/core/">MESA Core</a></li>
+      <li aria-current="page">MCP integration</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Core · v0.8.0</p>
+          <h1>MCP integration</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.8.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md" target="_blank" rel="noopener noreferrer">07d387f9a4592ea39518fea549e9cf8330051e1f</a></span>
+    <span class="docs-source-pill">source: <code>README_MCP.md</code></span>
+  </div>
+          <p class="docs-language-notice">This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.</p>
+          
+        </header>
+        <div class="docs-body">
+          <h2 id="guide-purpose-and-boundaries">Purpose and boundaries<a class="heading-anchor" href="#guide-purpose-and-boundaries" aria-label="Link to section: Purpose and boundaries" title="Link to this section">#</a></h2>
+<p>The legacy direct stdio server and V4 HTTP gateway/local bridge have different runtime contracts. A dataset-bound bridge keeps server-authorized scope and does not expose mutating global rebuild. Tool availability is capability-dependent; it does not bypass authentication or make graph traversal operational.</p>
+<h2 id="guide-continue-with-the-maintained-contracts">Continue with the maintained contracts<a class="heading-anchor" href="#guide-continue-with-the-maintained-contracts" aria-label="Link to section: Continue with the maintained contracts" title="Link to this section">#</a></h2>
+<p>Use the pinned source reference below for complete tables and operator details. Related guides: <a href="../../../architecture/">architecture</a>, <a href="../../../docs/core/api-reference/">API</a>, <a href="../../../docs/core/operations/">operations</a> and <a href="../../../docs/core/limitations/">release limits</a>.</p>
+          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md" target="_blank" rel="noopener noreferrer"><code>README_MCP.md</code></a></li></ul></div>
+          <details class="source-appendix" id="source-reference"><summary>Complete source reference · original language</summary><p class="docs-language-notice">This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.</p><div class="source-reference-body"><p>MESA MCP exposes MESA to local MCP clients over stdio. Antigravity uses a</p>
+<p>small stdio bridge which connects to an independently supervised HTTP gateway;</p>
+<p>the bridge never imports or accesses storage backends directly.</p>
+<h2 id="prerequisites">Prerequisites<a class="heading-anchor" href="#prerequisites" aria-label="Link to section: Prerequisites" title="Link to this section">#</a></h2>
+<p>Start the MESA V4 API and then the MCP gateway. The gateway owns credentials,</p>
+<p>policy, approvals, operation state and the connection pool; the bridge owns</p>
+<p>only its local encrypted write spool.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>MESA_RUNTIME_PROFILE=combined MESA_STORAGE_ROOT=/absolute/path/to/mesa-data \
+MESA_API_KEY=your-local-api-key MESA_PRINCIPAL_ID=local-mcp \
+.venv/bin/python -m mesa_memory.runtime_entrypoint
+
+MESA_BASE_URL=http://127.0.0.1:8000 \
+MESA_GATEWAY_ENCRYPTION_KEY=fernet-key \
+MESA_GATEWAY_CONTROL_DB=/absolute/path/to/mesa-data/mesa.db \
+.venv/bin/mesa-mcp-gateway</code></pre></div>
+<h2 id="codex-direct-http-integration">Codex direct HTTP integration<a class="heading-anchor" href="#codex-direct-http-integration" aria-label="Link to section: Codex direct HTTP integration" title="Link to this section">#</a></h2>
+<p>Codex connects directly to the durable gateway at <code class="inline-code">http://127.0.0.1:8765/mcp</code>.</p>
+<p>The local, gitignored <code class="inline-code">.codex/config.toml</code> contains no credential. Create or</p>
+<p>update the trusted project configuration through the local CLI:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>.venv/bin/mesa codex install --workspace /absolute/path/to/project \
+  --control-db /absolute/path/to/mesa.db
+.venv/bin/mesa codex doctor --workspace /absolute/path/to/project
+.venv/bin/mesa codex run --workspace /absolute/path/to/project</code></pre></div>
+<p><code class="inline-code">install</code> creates or updates a workspace-fingerprint binding, merges only the</p>
+<p>MESA-managed config/hook entries and writes a timestamped backup before every</p>
+<p>change. Its token and credential ID live only in</p>
+<p><code class="inline-code">$XDG_CONFIG_HOME/mesa/codex/&lt;fingerprint&gt;.env</code> (directory 0700, file 0600).</p>
+<p><code class="inline-code">run</code> is the supported way to give Codex CLI that environment; it never writes</p>
+<p>the token into the repository or global desktop environment.</p>
+<p>Use <code class="inline-code">mesa codex profile get|set</code> to change the binding’s hook settings and</p>
+<p>context limits. Limits never exceed eight memories and 2,500 tokens. Use</p>
+<p><code class="inline-code">mesa codex rotate-token</code> while the gateway is running: it proves the new</p>
+<p>credential with an MCP initialize call before replacing the local env file and</p>
+<p>revoking the old credential. <code class="inline-code">disable</code> revokes the active credential and</p>
+<p>removes the local secret; <code class="inline-code">uninstall</code> also removes only the MESA-managed</p>
+<p>project config and hook entries.</p>
+<p>Each Codex credential can access only its recorded workspace binding. The</p>
+<p>dashboard shows safe credential summaries and can revoke a credential, but it</p>
+<p>never issues or displays plaintext tokens. Codex hooks load bounded project</p>
+<p>memory on session start and compaction; they never write transcript content to</p>
+<p>memory and do not prevent a session from starting when MESA is unavailable.</p>
+<p>Do not commit credentials. The protected environment file must be mode <code class="inline-code">0600</code>;</p>
+<p>the unit file is nonsecret deployment configuration.</p>
+<p>For systemd, copy <code class="inline-code">deploy/systemd/mcp-gateway.env.example</code> to</p>
+<p><code class="inline-code">/etc/mesa/mcp-gateway.env</code>, set mode <code class="inline-code">0600</code>, and use the supplied</p>
+<p><code class="inline-code">mesa-mcp-gateway.service</code>. The unit intentionally obtains all long-lived</p>
+<p>gateway secrets from <code class="inline-code">EnvironmentFile</code>; neither Codex project config nor the</p>
+<p>dashboard contains them.</p>
+<p>The dashboard may manage the local control plane from a loopback browser</p>
+<p>connection. Remote <code class="inline-code">/control/mcp/*</code> callers require the normal <code class="inline-code">X-API-Key</code>;</p>
+<p>deploy the dashboard behind an authenticated reverse proxy when it is not</p>
+<p>local-only.</p>
+<h2 id="operator-approval">Operator approval<a class="heading-anchor" href="#operator-approval" aria-label="Link to section: Operator approval" title="Link to this section">#</a></h2>
+<p>Approval and rejection are local control-plane operations. Grant the operator</p>
+<p>the existing server-side <code class="inline-code">ADMIN</code> control role, then point the CLI at the same</p>
+<p>gateway and RBAC databases used by the running MESA services:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>export MESA_STORAGE_ROOT=/absolute/path/to/mesa-data
+export MESA_GATEWAY_CONTROL_DB=$MESA_STORAGE_ROOT/mesa.db
+export MESA_PRINCIPAL_ID=memory-operator
+
+mesa-v4-admin --policy-db $MESA_STORAGE_ROOT/rbac_policy.db \
+  grant-control --principal $MESA_PRINCIPAL_ID
+mesa operations approve op_012345 --reason &quot;source reviewed&quot;
+mesa operations reject op_678901 --reason &quot;insufficient provenance&quot;</code></pre></div>
+<p>The commands accept the public <code class="inline-code">operation_id</code>, not the internal approval ID.</p>
+<p>They fail closed unless the operation is still <code class="inline-code">PENDING_APPROVAL</code>, its client</p>
+<p>and project binding remain active, and the named principal has the control</p>
+<p>administrator role. A decision is recorded once with its operator and reason.</p>
+<p>The running gateway then claims approved work through its normal approval loop;</p>
+<p>rejected work becomes terminal <code class="inline-code">REJECTED</code> and is never dispatched.</p>
+<h2 id="antigravity">Antigravity<a class="heading-anchor" href="#antigravity" aria-label="Link to section: Antigravity" title="Link to this section">#</a></h2>
+<p>Install Antigravity from the trusted repository root:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>.venv/bin/mesa antigravity install --workspace /absolute/path/to/project \
+  --control-db /absolute/path/to/mesa.db
+.venv/bin/mesa antigravity doctor --workspace /absolute/path/to/project</code></pre></div>
+<p>The install command writes a MESA-managed entry to the local, gitignored</p>
+<p><code class="inline-code">.agents/mcp_config.json</code> without a token. The bridge reads its binding-scoped</p>
+<p>credential only from the protected XDG config file. This is a breaking migration: legacy shared</p>
+<p><code class="inline-code">MESA_GATEWAY_TOKEN</code> bridge configurations fail closed until installed again.</p>
+<p>Every write tool requires an explicit <code class="inline-code">idempotency_key</code>; stdout remains reserved</p>
+<p>for MCP JSON-RPC and logs go to stderr.</p>
+<p>Use <code class="inline-code">mesa antigravity profile get|set</code> for the binding’s token-bounded context</p>
+<p>profile, and <code class="inline-code">rotate-token</code>, <code class="inline-code">disable</code> or <code class="inline-code">uninstall</code> for its credential</p>
+<p>lifecycle.</p>
+<h2 id="tools">Tools<a class="heading-anchor" href="#tools" aria-label="Link to section: Tools" title="Link to this section">#</a></h2>
+<ul><li><code class="inline-code">mesa_health</code> reports bridge, gateway, MESA and spool state, including</li></ul>
+<p>  <code class="inline-code">DEGRADED</code> operation.</p>
+<ul><li><code class="inline-code">mesa_recall</code> performs scoped V4 search or token-bounded context retrieval.</li><li><code class="inline-code">mesa_remember</code>, <code class="inline-code">mesa_improve</code> and <code class="inline-code">mesa_forget</code> return durable operation</li></ul>
+<p>  IDs; default policy returns <code class="inline-code">PENDING_APPROVAL</code> rather than holding stdio open.</p>
+<ul><li><code class="inline-code">mesa_get_operation_status</code> polls approval and mutation progress.</li></ul>
+<p>The bridge fails closed when the client/workspace binding is absent. A repeated</p>
+<p>write with the same idempotency key returns the original operation. While the</p>
+<p>gateway is briefly unavailable, remember and improve are encrypted and queued</p>
+<p>under <code class="inline-code">$XDG_STATE_HOME/mesa</code>; forget is never queued.</p>
+<h2 id="smoke-check">Smoke check<a class="heading-anchor" href="#smoke-check" aria-label="Link to section: Smoke check" title="Link to this section">#</a></h2>
+<p>With the same protected environment used by Antigravity:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre tabindex="0" id="code-block-5" class="language-bash"><code>.venv/bin/python -m mesa_mcp.antigravity_bridge</code></pre></div>
+<p>Use MCP Inspector or Antigravity to initialize the process and call</p>
+<p><code class="inline-code">mesa_health</code>. Do not run it in a terminal expecting human-readable stdout:</p>
+<p>stdio is a JSON-RPC protocol stream. <code class="inline-code">mesa_mcp.server</code> defaults to V3; an explicit <code class="inline-code">MESA_USE_V4=true</code> selects its</p>
+<p>V4 service adapter. Provide <code class="inline-code">MESA_TENANT_ID</code>, <code class="inline-code">MESA_WORKSPACE_ID</code>,</p>
+<p><code class="inline-code">MESA_DATASET_ID</code>, <code class="inline-code">MESA_WORKSPACE_ROOT</code> and an authorized binding/scope.</p>
+<p>The supervised gateway is the documented Codex/Antigravity path.</p>
+<p>See <a href="../../../docs/core/configuration/">configuration</a>, <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/Mesa_Control_Panel.md" target="_blank" rel="noopener noreferrer">control panel</a> and <a href="../../../docs/core/getting-started/">quickstart</a>. Provision Core credential/ACL before server startup; the placeholder commands above require actual protected values. No automatic transcript saving or certified legal review is promised.</p></div></details>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/release-policy/"><span class="nav-dir">← Previous</span><span class="nav-title">Release policy</span></a><a class="docs-page-next" href="../../../docs/core/embedding-providers/"><span class="nav-dir">Next →</span><span class="nav-title">Embedding &amp; model providers</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="Table of contents">
+      <nav class="article-toc" aria-label="In this guide"><strong>In this guide</strong><ol><li class="toc-item"><a href="#guide-purpose-and-boundaries">Purpose and boundaries</a></li><li class="toc-item"><a href="#guide-continue-with-the-maintained-contracts">Continue with the maintained contracts</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Open source on GitHub</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 published source release · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a href="../../../docs/core/getting-started/">Quickstart</a><a href="../../../architecture/">Architecture</a><a href="../../../retrieval/">Retrieval</a><a href="../../../docs/core/security/">Security</a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../app.js?v=02e6ea041801"></script>
+</body>
+</html>

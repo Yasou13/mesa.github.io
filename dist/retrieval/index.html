@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA V4 Retrieval — Four Lanes, RRF and Evidence</title>
+  <meta name="description" content="Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0.">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/retrieval/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/retrieval/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/retrieval/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/retrieval/">
+  <meta property="og:title" content="MESA V4 Retrieval — Four Lanes, RRF and Evidence">
+  <meta property="og:description" content="Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/retrieval/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA V4 Retrieval — Four Lanes, RRF and Evidence">
+  <meta name="twitter:description" content="Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css?v=a0ecb33add77">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../how-it-works/">How it works</a><a href="../ecosystem/">Ecosystem</a><a class="active" aria-current="page" href="../architecture/">Architecture</a><a href="../resources/">Resources</a><a href="../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../retrieval/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../tr/retrieval/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header><main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">MESA V4 · RETRIEVAL</p><h1>Different signals. One evidence identity.</h1><p>Each lane proposes eligible candidates for a different reason. Fusion combines their ranks; provenance keeps the reasons inspectable.</p></section>
+<section class="section"><h2>Four lanes, four useful questions.</h2><div class="editorial-rows"><article><h3>Vector · semantic similarity</h3><p>Does this assertion mean something close to the query? Compatible query embeddings search the LanceDB assertion projection.</p></article><article><h3>BM25 · passage and citation</h3><p>Does the evidence text contain useful terms or a scoped citation? FTS5 ranks passages; exact citation lookup contributes within the lane.</p></article><article><h3>Assertion · structured relation</h3><p>Do subject, predicate, entity/literal object and evidence match? SQLite-owned relations provide a separate signal.</p></article><article><h3>Graph · supported path</h3><p>Is there a bounded relationship path supported by eligible canonical assertions? Paths retain supporting IDs and direction.</p></article></div></section>
+<section class="section"><p class="eyebrow">RECIPROCAL RANK FUSION</p><h2>Ranks combine; raw scores stay separate.</h2><pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
+k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre><p>A duplicate candidate casts one vote per lane. Ties resolve by candidate identity. A lane may return no eligible hit. This example uses one first-ranked candidate; it does not simulate the complete retrieval engine.</p><form class="rank-calculator" data-rank-calculator><fieldset disabled><legend>Illustrative rank fusion · choose contributing lanes</legend><div class="rank-lanes"><label><input type="checkbox" name="vector" checked><span>Vector</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="bm25" checked><span>BM25</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="assertion" checked><span>Assertion</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="graph" checked><span>Graph</span><code>1 / (60 + 1)</code></label></div></fieldset><div class="rank-result"><span>RRF score</span><output aria-live="polite">4 / 61 = 0.065574</output></div><p>All enabled lanes rank the same candidate first; weights are 1.0 and k=60. This calculator makes no API call and measures neither probability nor retrieval quality.</p><noscript>Static example: four contributions give 4/61.</noscript></form><p>Citation boosts apply inside lanes: BM25 exact +200, same statute +40; assertion exact +150, same statute +40. They affect lane order, not RRF increments. After fusion, a query-dependent legal factor is 1.5 for exact statute/article, 1.25 for the same statute, 0.25 for a competing statute, and 1.0 otherwise.</p><p>Responses expose rrf_score, legal_factor, raw_score and final_score separately. Higher fused relevance is better; none of these fields is a probability of truth.</p></section>
+<section class="section"><h2>Bounds are part of the contract.</h2><div class="editorial-rows"><article><h3>Graph resources</h3><p>At most 20 seeds, 3 hops and 500 requested graph hits; frontier 64, per-node fan-out 32, default request timeout 15 seconds. PageRank is telemetry only. These limits do not guarantee latency or completeness.</p></article><article><h3>Context packing</h3><p>The default 2048-token budget counts formatted model-visible evidence with cl100k_base. If BPE cannot load, a conservative UTF-8 byte upper bound may fit less. Complete graph proof fits atomically.</p></article><article><h3>Adaptive context · opt in</h3><p>Single query is the default. Adaptive mode triggers on empty Q0 or no two-lane support in its top three; at most one planner and two expansions keep the same scope. Outer fusion weights are Q0=1.0 and Q1/Q2=0.5. Failure preserves Q0.</p></article><article><h3>Runtime availability</h3><p>Capability flags describe operational support. An expected failure of a configured vector/graph backend returns explicit 503. Projection-only graph adapters do not advertise neighbor traversal.</p></article></div></section>
+<section class="section source-notes"><h2>Inspect the implementation.</h2><ul><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_memory/context_builder.py">mesa_memory/context_builder.py · 07d387f</a></li></ul><div class="actions"><a class="button primary" href="../docs/core/api-reference/"><span>API response reference</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../docs/core/graph/"><span>Graph and provenance</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section><section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 published source release · <a href="../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../how-it-works/">How it works</a><a href="../use-cases/">Use cases</a><a href="../evaluation/">Evaluation & trust</a><a href="../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../mesa/">MESA Core</a><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../learn/">Learn</a><a href="../research/">Research</a><a href="../guides/">Guides</a><a href="../glossary/">Glossary</a><a href="../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a href="../docs/core/getting-started/">Quickstart</a><a href="../architecture/">Architecture</a><a href="../retrieval/">Retrieval</a><a href="../docs/core/security/">Security</a><a href="../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../about/">About</a><a href="../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer></main>
+  <script src="../app.js?v=02e6ea041801"></script>
+</body>
+</html>

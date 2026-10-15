@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Operasyon ve kurtarma — MESA MESA Core Dokümantasyonu</title>
+  <meta name="description" content="MESA Core için Operasyon ve kurtarma teknik dokümantasyonu (v0.8.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/core/operations/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/operations/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/operations/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/operations/">
+  <meta property="og:title" content="Operasyon ve kurtarma — MESA MESA Core Dokümantasyonu">
+  <meta property="og:description" content="MESA Core için Operasyon ve kurtarma teknik dokümantasyonu (v0.8.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/core/operations/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Operasyon ve kurtarma — MESA MESA Core Dokümantasyonu">
+  <meta name="twitter:description" content="MESA Core için Operasyon ve kurtarma teknik dokümantasyonu (v0.8.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Core için Operasyon ve kurtarma teknik dokümantasyonu (v0.8.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Core için Operasyon ve kurtarma teknik dokümantasyonu (v0.8.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"MESA Core","item":"https://mesamemory.dev/tr/docs/core/"},{"@type":"ListItem","position":4,"name":"Operasyon ve kurtarma","item":"https://mesamemory.dev/tr/docs/core/operations/"}]},{"@type":"TechArticle","headline":"Operasyon ve kurtarma","description":"MESA Core için Operasyon ve kurtarma teknik dokümantasyonu (v0.8.0).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/core/operations/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"core, documentation, v0.8.0"}]}</script>
+  <link rel="icon" href="../../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../../styles.css?v=a0ecb33add77">
+</head>
+<body>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a href="../../../how-it-works/">Nasıl çalışır</a><a href="../../../ecosystem/">Ekosistem</a><a href="../../../architecture/">Mimari</a><a href="../../../resources/">Kaynaklar</a><a class="active" aria-current="page" href="../../../docs/">Dokümanlar</a>
+          <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><span>Ara</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../../docs/core/operations/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../../docs/core/operations/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Dokümantasyon gezintisi">
+    <details class="docs-navigation">
+      <summary>Belge gezintisi</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOKÜMANTASYON</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>GENEL BAKIŞ</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Dokümantasyon Merkezi</a></li>
+      <li><a href="../../../docs/mcp/">MCP Entegrasyonu</a></li>
+    </ul>
+  </div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li class="docs-nav-group-label">Başlangıç</li><li><a href="../../../docs/core/">MESA Core genel bakış</a></li><li><a href="../../../docs/core/getting-started/">Yerel hızlı başlangıç</a></li><li><a href="../../../docs/core/installation/">Kurulum ve dağıtım</a></li><li><a href="../../../docs/core/colab-rehberi/">Colab kurulumu</a></li><li><a href="../../../docs/core/documentation-map/">Dokümantasyon haritası</a></li><li><a href="../../../docs/core/examples/">Örnekler ve SDK iş akışı</a></li><li class="docs-nav-group-label">Temel kavramlar</li><li><a href="../../../docs/core/architecture/">Core mimarisi</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Veri alımı ve hafıza yaşam döngüsü</a></li><li><a href="../../../docs/core/ecosystem/">Ekosistem sınırları</a></li><li><a href="../../../docs/core/evidence/">Kanıt ve kaynak izi</a></li><li class="docs-nav-group-label">Retrieval</li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval ve çizge</a></li><li><a href="../../../docs/core/graph/">Çizge dolaşımı</a></li><li class="docs-nav-group-label">Entegrasyon ve referans</li><li><a href="../../../docs/core/configuration/">Yapılandırma</a></li><li><a href="../../../docs/core/api-reference/">HTTP API ve Python SDK</a></li><li><a href="../../../docs/core/cli-reference/">CLI referansı</a></li><li><a href="../../../docs/core/mcp/">MCP entegrasyonu</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding ve model sağlayıcıları</a></li><li class="docs-nav-group-label">İşletim ve kurtarma</li><li><a href="../../../docs/core/migration/">v0.8.0 yükseltmesi</a></li><li><a href="../../../docs/core/troubleshooting/">Sorun giderme</a></li><li><a href="../../../docs/core/rebuild-runbook/">Projeksiyon rebuild</a></li><li><a href="../../../docs/core/security/">Güvenlik ve kapsam</a></li><li><a href="../../../docs/core/operations/" class="active" aria-current="page">Operasyon ve kurtarma</a></li><li class="docs-nav-group-label">Yayın ve kanıt</li><li><a href="../../../docs/core/release-notes/">v0.8.0 sürüm notları</a></li><li><a href="../../../docs/core/limitations/">Performans ve sınırlar</a></li><li><a href="../../../docs/core/audit/">Tarihsel bağımsız denetim</a></li><li><a href="../../../docs/core/testing/">Test ve kanıt</a></li><li><a href="../../../docs/core/release-policy/">Yayın politikası</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Genel Bakış</a></li><li><a href="../../../docs/data/quickstart/">Hızlı Başlangıç</a></li><li><a href="../../../docs/data/user-guide/">Kullanım Kılavuzu</a></li><li><a href="../../../docs/data/import-contract/">İçe Aktarma Sözleşmesi</a></li><li><a href="../../../docs/data/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Kapanış Raporu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Sözleşme Genel Bakış</a></li><li><a href="../../../docs/law/operations/">Operasyon Rehberi</a></li><li><a href="../../../docs/law/verification/">Nihai Doğrulama</a></li><li><a href="../../../docs/law/baseline/">MVP Temel Durumu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Genel Bakış</a></li><li><a href="../../../docs/qa/audit/">Güncel Bağımsız Denetim</a></li><li><a href="../../../docs/qa/repair-prompt/">Onarım Prompt Spesifikasyonu</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Yeniden Üretim Promptu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Sertifikasyonu</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Genel Bakış</a></li><li><a href="../../../docs/e2e/audit-report/">Bağımsız Denetim Raporu</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Ajan Paketi Başlangıç</a></li><li><a href="../../../docs/e2e/system-model/">Sistem Modeli ve Esnetilemezler</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profil B Hedef Kapıları</a></li><li><a href="../../../docs/e2e/contract/">Data - Core Sözleşmesi</a></li><li><a href="../../../docs/e2e/current-repair/">Güncel Onarımlar ve Engeller</a></li><li><a href="../../../docs/e2e/repair-verification/">Onarım Doğrulama Özeti</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum">
+    <ol>
+      <li><a href="../../../">Ana sayfa</a></li>
+      <li><a href="../../../docs/">Dokümantasyon</a></li>
+      <li><a href="../../../docs/core/">MESA Core</a></li>
+      <li aria-current="page">Operasyon ve kurtarma</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Core · v0.8.0</p>
+          <h1>Operasyon ve kurtarma</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.8.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/RUNBOOK.md" target="_blank" rel="noopener noreferrer">07d387f9a4592ea39518fea549e9cf8330051e1f</a></span>
+    <span class="docs-source-pill">kaynak: <code>docs/RUNBOOK.md</code></span>
+  </div>
+          <p class="docs-language-notice">Bu rehber Türkçe ve İngilizce eşdeğer açıklamalar sunar. Tam kaynak referansı özgün dilinde aşağıda korunur. Paket sürümü üretim sertifikasyonu değildir.</p>
+          
+        </header>
+        <div class="docs-body">
+          <h2 id="guide-tek-yazici-ve-gozlenebilir-is">Tek yazıcı ve gözlenebilir iş<a class="heading-anchor" href="#guide-tek-yazici-ve-gozlenebilir-is" aria-label="Bölüm bağlantısı: Tek yazıcı ve gözlenebilir iş" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Her storage root için tek combined V4 owner çalıştırın. Projection backlog, dead letter, takılmış lease, cleanup backlog/blocked ve orphan registry metriklerini izleyin. Paylaşılan artifact sayısının sıfır olması gerekmez. Artan backlog, depodaki satırları elle düzenleme izni değil operasyonel sinyaldir.</p>
+<h2 id="guide-kurtarma-sahipligi-korur">Kurtarma sahipliği korur<a class="heading-anchor" href="#guide-kurtarma-sahipligi-korur" aria-label="Bölüm bağlantısı: Kurtarma sahipliği korur" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Yetkili replay’den önce asıl depo/sağlayıcı hatasını giderin. Fencing claim’ini kaybeden iş tamamlanamaz. Rollback, kaynak sahipliğini kaldırır ve ikincil temizlikten önce tombstone yazar; başka etkin kaynak sahip olduğu sürece ortak artifact yaşar. BLOCKED cleanup başarı değildir.</p>
+<h2 id="guide-cutover-oncesi-yedek-alin">Cutover öncesi yedek alın<a class="heading-anchor" href="#guide-cutover-oncesi-yedek-alin" aria-label="Bölüm bağlantısı: Cutover öncesi yedek alın" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Writer-lock kontrolleri içeren sabitlenmiş offline backup/restore prosedürünü kullanın. Geri dönüş koruması boyunca özgün root ve yedeği saklayın. Yeni boş hedefe restore edin; mevcut root’u ezmeyin veya genel downgrade çalıştırmayın. <a href="../../../docs/core/rebuild-runbook/">Rebuild</a> offline ve storage-root genelindedir; online veya tenant kapsamlı değildir.</p>
+          <div class="guide-source-list"><strong>Doğrulanmış kaynaklar</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/RUNBOOK.md" target="_blank" rel="noopener noreferrer"><code>docs/RUNBOOK.md</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer"><code>docs/v4-rebuild-runbook.md</code></a></li></ul></div>
+          <details class="source-appendix" id="source-reference"><summary>Tam kaynak referansı · özgün dil</summary><p class="docs-language-notice">Bu ek birebir kaynak metnidir; çevrilmiş rehberden ayrı tutulur. Kaynak içi bölüm bağlantıları eki otomatik açar.</p><div class="source-reference-body"><p>Bu runbook v4 full-cognitive release candidate için kanonik operasyon</p>
+<p>rehberidir. Production kararı Final MVP Certification tamamlanana kadar</p>
+<p><code class="inline-code">NO-GO</code>dur. V3 lexical-core uyumluluk işlemleri ayrıca belirtilir.</p>
+<h2 id="1-desteklenen-v4-topology">1. Desteklenen v4 topology<a class="heading-anchor" href="#1-desteklenen-v4-topology" aria-label="Bölüm bağlantısı: 1. Desteklenen v4 topology" title="Bu bölümün bağlantısı">#</a></h2>
+<p>V4 aynı storage root’a yazan tek bir <code class="inline-code">combined</code> process ile çalışır. API</p>
+<p>admission, durable consumer, validation ve SQLite/LanceDB/Kùzu projection</p>
+<p>işleri bu process’tedir.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Kopyala</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>export MESA_RUNTIME_PROFILE=combined
+export MESA_STORAGE_ROOT=/srv/mesa/v4-data
+export MESA_LOAD_DOTENV=false
+python -m mesa_memory.runtime_entrypoint</code></pre></div>
+<p>Aynı storage root’u ikinci API, worker veya combined process’e yazılabilir</p>
+<p>olarak mount etmeyin. Yatay ölçekleme öncesi storage ownership protokolü</p>
+<p>gerekir. V3 ile v4 farklı fiziksel storage root kullanmalıdır.</p>
+<h2 id="2-ilk-credential-ve-acl-kurulumu">2. İlk credential ve ACL kurulumu<a class="heading-anchor" href="#2-ilk-credential-ve-acl-kurulumu" aria-label="Bölüm bağlantısı: 2. İlk credential ve ACL kurulumu" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Uygulama durdurulmuşken veya policy DB’yi kullanan tek operator olarak:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Kopyala</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
+mesa-v4-admin issue-key --principal service-api
+mesa-v4-admin grant-role --principal service-api \
+  --tenant tenant-a --role OWNER
+mesa-v4-admin grant-agent --principal service-api \
+  --agent agent-a --permission SESSION_CREATE</code></pre></div>
+<p>İlk komut credential’ı yalnız bir kez stdout’a yazar. Secret manager’a aktarın;</p>
+<p>log, shell history veya dokümana koymayın. Rotate edilen eski key aynı işlemde</p>
+<p>revoke edilir:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Kopyala</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>mesa-v4-admin rotate-key --key-id KEY_ID
+mesa-v4-admin revoke-key --key-id KEY_ID</code></pre></div>
+<p>Purge/rollback rol ile örtük gelmez:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Kopyala</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>mesa-v4-admin grant-dataset-permission --principal service-api \
+  --tenant tenant-a --dataset dataset-a --permission ROLLBACK</code></pre></div>
+<h2 id="3-projection-backlog-ve-dlq">3. Projection backlog ve DLQ<a class="heading-anchor" href="#3-projection-backlog-ve-dlq" aria-label="Bölüm bağlantısı: 3. Projection backlog ve DLQ" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Önce <code class="inline-code">/health</code>, <code class="inline-code">/health/init</code> ve <code class="inline-code">/metrics</code> kontrol edilir. İzlenecek temel</p>
+<p>metrikler:</p>
+<ul><li><code class="inline-code">mesa_v4_projection_backlog</code></li><li><code class="inline-code">mesa_v4_projection_dead_letter</code></li><li><code class="inline-code">mesa_v4_projection_stuck_leases</code></li><li><code class="inline-code">mesa_v4_cleanup_backlog</code></li><li><code class="inline-code">mesa_v4_cleanup_blocked</code></li><li><code class="inline-code">mesa_v4_orphan_registry</code></li><li><code class="inline-code">mesa_v4_shared_artifacts</code></li></ul>
+<p>Backlog artıyorsa process loglarında mutation/pipeline run ID, failure class ve</p>
+<p>lane aranır. İçerik, credential veya claim token loglanmamalıdır. Geçici hata</p>
+<p>bounded retry ile ilerler; permanent/poison hata DLQ’ya gider.</p>
+<p>Replay’den önce kök neden giderilir ve mutation’ın aynı tenant/dataset</p>
+<p>kapsamında olduğu doğrulanır. Yetkili API çağrısı:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Kopyala</button></div><pre tabindex="0" id="code-block-5" class="language-bash"><code>curl --fail -X POST \
+  -H &quot;X-API-Key: $MESA_API_KEY&quot; \
+  &quot;http://127.0.0.1:8000/v4/mutations/$MUTATION_ID/replay&quot;</code></pre></div>
+<p>Fenced lease nedeniyle claim token’ı kaybetmiş worker sonucu finalize edemez.</p>
+<p>Lease’e elle müdahale etmek yerine process’i yeniden başlatın ve reconciler’ın</p>
+<p>expired claim’i almasını bekleyin.</p>
+<h2 id="4-rollback-ve-blocked">4. Rollback ve BLOCKED<a class="heading-anchor" href="#4-rollback-ve-blocked" aria-label="Bölüm bağlantısı: 4. Rollback ve BLOCKED" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Commit edilmemiş başarısız run rollback’i önce SQLite retrieval tombstone’u,</p>
+<p>sonra vector/graph cleanup outbox’ı oluşturur. Yalnız ilgili</p>
+<p><code class="inline-code">artifact_sources</code> sahipliği kaldırılır. Başka aktif sahibi olan ortak artifact</p>
+<p>silinmez.</p>
+<p>Cleanup tamamlanamazsa run <code class="inline-code">BLOCKED</code> olur; bunu başarılı saymayın. Store</p>
+<p>erişimini düzeltin, health parity’yi kontrol edin ve idempotent cleanup/replay</p>
+<p>akışını yeniden çalıştırın. Fiziksel store’da manuel silme yapmayın; ledger ile</p>
+<p>store daha fazla ayrışır.</p>
+<h2 id="5-reconciliation">5. Reconciliation<a class="heading-anchor" href="#5-reconciliation" aria-label="Bölüm bağlantısı: 5. Reconciliation" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Reconciliation tenant ve dataset sınırında iki yönlüdür:</p>
+<ul><li>ledger’da olup store’da olmayan artifact yeniden project edilir;</li><li>store’da olup ledger/owner kaydı olmayan artifact karantinaya alınır ve</li></ul>
+<p>  cleanup kuyruğuna taşınır.</p>
+<p>Release veya cutover öncesi projection backlog, blocked cleanup ve ownerless</p>
+<p>orphan sıfır olmalıdır. Shared artifact sayısının sıfır olması gerekmez; ortak</p>
+<p>sahiplik beklenen bir durumdur.</p>
+<h2 id="6-backup-restore-ve-v4-rebuild">6. Backup, restore ve v4 rebuild<a class="heading-anchor" href="#6-backup-restore-ve-v4-rebuild" aria-label="Bölüm bağlantısı: 6. Backup, restore ve v4 rebuild" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Uygulamayı durdurun ve kaynak storage’ı offline hale getirin:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-6">Kopyala</button></div><pre tabindex="0" id="code-block-6" class="language-bash"><code>mesa-recovery --trusted-root /srv/mesa backup \
+  --source-root /srv/mesa/v4-data \
+  --backup-root /srv/mesa/backups/v4-2026-07-23 \
+  --stores-stopped
+mesa-recovery --trusted-root /srv/mesa validate \
+  --backup-root /srv/mesa/backups/v4-2026-07-23
+mesa-recovery --trusted-root /srv/mesa restore \
+  --backup-root /srv/mesa/backups/v4-2026-07-23 \
+  --restore-root /srv/mesa/restore-v4-test</code></pre></div>
+<p><code class="inline-code">--stores-stopped</code> geriye dönük uyumluluk için açık bir operator</p>
+<p>precondition&#39;ıdır; tek başına consistency kanıtı değildir. Backup</p>
+<p>implementation&#39;ı ayrıca storage-root writer lock&#39;ını doğrular/alır, her SQLite</p>
+<p>dosyasını SQLite&#39;ın online backup primitive&#39;iyle ayrı bir tutarlı snapshot</p>
+<p>olarak kopyalar ve ancak staging doğrulamasından sonra atomik publish yapar.</p>
+<p>SQL authoritative/canonical truth&#39;tür. LanceDB vector ve Kùzu graph</p>
+<p>projection&#39;ları rebuildable derived state&#39;tir ve yalnız exclusive writer-lock</p>
+<p>boundary altında kopyalanır.</p>
+<p>Restore mevcut hedefi ezmemelidir. V3 migration yerinde yapılmaz: manifestli</p>
+<p>backup alınır, ayrı v4 root&#39;a offline rebuild yapılır, parity raporu geçerse</p>
+<p>atomik cutover gerçekleştirilir. Backup rollback süresi boyunca korunur.</p>
+<p>V4 <code class="inline-code">0.7.x Closure</code> projection rebuild&#39;inin submit → drain → stop → offline</p>
+<p>run/resume → restart → status → automatic rollback akışı, exit code&#39;ları ve</p>
+<p>retained generation kuralları</p>
+<p><a href="../../../docs/core/rebuild-runbook/">`v4-rebuild-runbook.md`</a> içinde kanonik olarak</p>
+<p>belgelenir. Dataset/tenant-scoped rebuild veya online runner desteklenmez.</p>
+<p>Alembic migration&#39;ları forward-only&#39;dir. Bir migration başarısız olursa</p>
+<p><code class="inline-code">alembic downgrade</code> çalıştırmayın: release&#39;i durdurun, doğrulanmış backup&#39;ı</p>
+<p>yeni boş bir storage root&#39;a restore edin, parity kontrolünü yeniden çalıştırın</p>
+<p>ve ancak ardından cutover yapın.</p>
+<h2 id="single-writer-kapasite-siniri">Single-writer kapasite sınırı<a class="heading-anchor" href="#single-writer-kapasite-siniri" aria-label="Bölüm bağlantısı: Single-writer kapasite sınırı" title="Bu bölümün bağlantısı">#</a></h2>
+<p>V3 split topology’de bir storage root için yalnız bir aktif <code class="inline-code">worker-only</code> process çalıştırın. V4 yalnız bir <code class="inline-code">combined</code> owner kullanır; ayrı worker-only topology desteklenmez.</p>
+<p>Worker başlangıcı aynı hostta advisory lock ile ikinci writer&#39;ı reddeder;</p>
+<p>çoklu host/NFS için bu bir koordinasyon mekanizması değildir. API, valence ve</p>
+<p>MCP process-local cache&#39;leri yalnız performans optimizasyonudur; doğruluk</p>
+<p>durumu SQLite ledger ve fenced lease&#39;lerdedir. Yatay writer ölçekleme ancak</p>
+<p>paylaşımlı lease/koordinasyon servisi tasarlanıp doğrulandıktan sonra açılır.</p>
+<h2 id="7-modelprovider-olayi">7. Model/provider olayı<a class="heading-anchor" href="#7-modelprovider-olayi" aria-label="Bölüm bağlantısı: 7. Model/provider olayı" title="Bu bölümün bağlantısı">#</a></h2>
+<p><code class="inline-code">MESA_MODEL_ENABLED</code> ve <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED</code> açıkça ayarlanır.</p>
+<p>Provider timeout/rate-limit hatası retryable; bozuk şema permanent; sürekli</p>
+<p>aynı toksik payload poison olarak sınıflanır. Seçili validation policy</p>
+<p>tamamlanmadan SQL/vector/graph projection başlamaz. Provider’ı atlamak için mutation’ı doğrudan VALIDATED</p>
+<p>duruma çekmeyin.</p>
+<h2 id="8-pagerank">8. PageRank<a class="heading-anchor" href="#8-pagerank" aria-label="Bölüm bağlantısı: 8. PageRank" title="Bu bölümün bağlantısı">#</a></h2>
+<p>V4 PageRank çıktısı yalnız telemetridir. Düşük merkezilik bir memory,</p>
+<p>assertion, vector veya source’u karantinaya alamaz. PageRank temelli</p>
+<p><code class="inline-code">hallucination</code>/delete davranışı görülürse deploy durdurulmalı; bu v4</p>
+<p>sözleşmesine aykırıdır.</p>
+<h2 id="9-session-finalization">9. Session finalization<a class="heading-anchor" href="#9-session-finalization" aria-label="Bölüm bağlantısı: 9. Session finalization" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Session end durable finalization kaydı oluşturur. Restart sonrası pending işler</p>
+<p>combined consumer tarafından alınır. Uzun süre pending kalırsa session,</p>
+<p>finalization ID, lease ve DLQ durumu kontrol edilir; FastAPI process içi</p>
+<p><code class="inline-code">BackgroundTasks</code> çalışmasına güvenilmez.</p>
+<h2 id="10-logging-ve-olay-kaniti">10. Logging ve olay kanıtı<a class="heading-anchor" href="#10-logging-ve-olay-kaniti" aria-label="Bölüm bağlantısı: 10. Logging ve olay kanıtı" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Production varsayılanı <code class="inline-code">MESA_LOG_LEVEL=INFO</code> ve <code class="inline-code">MESA_LOG_FORMAT=json</code>’dır.</p>
+<p>Loglarda request/operation/mutation/pipeline run kimlikleri bulunabilir;</p>
+<p>query, source content, payload, credential, raw model output ve claim token</p>
+<p>bulunamaz. Docker <code class="inline-code">local</code> driver 10 MB × 5 dosya sınırı kullanır.</p>
+<p>Incident kanıtı olarak maskelenmiş log, mutation status, health/metrics anlık</p>
+<p>görüntüsü, image digest ve storage manifesti saklanır.</p>
+<h2 id="11-v3-compatibility">11. V3 compatibility<a class="heading-anchor" href="#11-v3-compatibility" aria-label="Bölüm bağlantısı: 11. V3 compatibility" title="Bu bölümün bağlantısı">#</a></h2>
+<p><code class="inline-code">docker-compose.yml</code> ayrı API + worker lexical-core topology’sidir. V3’teki</p>
+<p>telafi edici Saga, agent/session RBAC, soft-delete ve maintenance davranışı</p>
+<p>v4’e genellenmez. V3 sorunlarında mevcut <code class="inline-code">mesa-recovery</code>, worker readiness ve</p>
+<p>maintenance prosedürleri uygulanır; aynı storage root v4’e bağlanmaz.</p>
+<h2 id="12-release-durumu">12. Release durumu<a class="heading-anchor" href="#12-release-durumu" aria-label="Bölüm bağlantısı: 12. Release durumu" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Unit/integration/contract testlerinin geçmesi production GO değildir. Gerçek</p>
+<p>provider ve production-benzeri store ile backup→restore→rebuild→cutover,</p>
+<p>queue saturation, worker crash, cross-tenant concurrency ve 24 saat soak</p>
+<p>kanıtları tamamlanana kadar karar <code class="inline-code">NO-GO</code> kalır.</p></div></details>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/security/"><span class="nav-dir">← Önceki</span><span class="nav-title">Güvenlik ve kapsam</span></a><a class="docs-page-next" href="../../../docs/core/ecosystem/"><span class="nav-dir">Sonraki →</span><span class="nav-title">Ekosistem sınırları</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu rehberde"><strong>Bu rehberde</strong><ol><li class="toc-item"><a href="#guide-tek-yazici-ve-gozlenebilir-is">Tek yazıcı ve gözlenebilir iş</a></li><li class="toc-item"><a href="#guide-kurtarma-sahipligi-korur">Kurtarma sahipliği korur</a></li><li class="toc-item"><a href="#guide-cutover-oncesi-yedek-alin">Cutover öncesi yedek alın</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/RUNBOOK.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
+        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
+        <p>MESA v0.8.0 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.8.0 · V4 yayımlanmış kaynak sürümü · <a href="../../../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Keşfet</h3><a href="../../../how-it-works/">Nasıl çalışır</a><a href="../../../use-cases/">Kullanım alanları</a><a href="../../../evaluation/">Değerlendirme ve güven</a><a href="../../../status/">Proje durumu</a></div>
+        <div><h3>Ekosistem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Kaynaklar</h3><a href="../../../learn/">Öğren</a><a href="../../../research/">Araştırma</a><a href="../../../guides/">Rehberler</a><a href="../../../glossary/">Sözlük</a><a href="../../../methodology/">Metodoloji</a></div>
+        <div><h3>Dokümantasyon</h3><a href="../../../docs/core/getting-started/">Hızlı başlangıç</a><a href="../../../architecture/">Mimari</a><a href="../../../retrieval/">Retrieval</a><a href="../../../docs/core/security/">Güvenlik</a><a href="../../../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../../../about/">Hakkında</a><a href="../../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
+    </footer>
+  <script src="../../../../app.js?v=02e6ea041801"></script>
+</body>
+</html>

@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Installation — MESA MESA Core Documentation</title>
-  <meta name="description" content="Installation documentation for MESA Core (v0.8.0).">
+  <title>Installation &amp; deployment — MESA MESA Core Documentation</title>
+  <meta name="description" content="Installation &amp; deployment documentation for MESA Core (v0.8.0).">
   <meta name="theme-color" content="#0b0c0f">
   <link rel="canonical" href="https://mesamemory.dev/docs/core/installation/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/installation/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/installation/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/installation/">
-  <meta property="og:title" content="Installation — MESA MESA Core Documentation">
-  <meta property="og:description" content="Installation documentation for MESA Core (v0.8.0).">
+  <meta property="og:title" content="Installation &amp; deployment — MESA MESA Core Documentation">
+  <meta property="og:description" content="Installation &amp; deployment documentation for MESA Core (v0.8.0).">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/docs/core/installation/">
   <meta property="og:locale" content="en_US">
@@ -21,26 +21,27 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Installation — MESA MESA Core Documentation">
-  <meta name="twitter:description" content="Installation documentation for MESA Core (v0.8.0).">
+  <meta name="twitter:title" content="Installation &amp; deployment — MESA MESA Core Documentation">
+  <meta name="twitter:description" content="Installation &amp; deployment documentation for MESA Core (v0.8.0).">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Installation documentation for MESA Core (v0.8.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Installation documentation for MESA Core (v0.8.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://mesamemory.dev/docs/"},{"@type":"ListItem","position":3,"name":"MESA Core","item":"https://mesamemory.dev/docs/core/"},{"@type":"ListItem","position":4,"name":"Installation","item":"https://mesamemory.dev/docs/core/installation/"}]},{"@type":"TechArticle","headline":"Installation","description":"Installation documentation for MESA Core (v0.8.0).","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/docs/core/installation/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"core, documentation, v0.8.0"}]}</script>
-  <link rel="icon" href="../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Installation & deployment documentation for MESA Core (v0.8.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Installation & deployment documentation for MESA Core (v0.8.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://mesamemory.dev/docs/"},{"@type":"ListItem","position":3,"name":"MESA Core","item":"https://mesamemory.dev/docs/core/"},{"@type":"ListItem","position":4,"name":"Installation & deployment","item":"https://mesamemory.dev/docs/core/installation/"}]},{"@type":"TechArticle","headline":"Installation & deployment","description":"Installation & deployment documentation for MESA Core (v0.8.0).","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/docs/core/installation/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"core, documentation, v0.8.0"}]}</script>
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="../../../styles.css?v=25c65287b8e7">
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=a0ecb33add77">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
-        <a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
           <span></span><span></span><span></span>
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
-          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../architecture/">Architecture</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
           <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
-          <div class="language-switch" aria-label="Language">
+          <div class="language-switch" role="group" aria-label="Language">
     <a lang="en" hreflang="en" class="active" aria-current="page" href="../../../docs/core/installation/">EN<span class="sr-only"> · English</span></a>
     <span aria-hidden="true">/</span>
     <a lang="tr" hreflang="tr" href="../../../tr/docs/core/installation/">TR<span class="sr-only"> · Türkçe</span></a>
@@ -71,7 +72,7 @@
         <span>MESA Core</span>
         <span class="version-tag">v0.8.0</span>
       </div>
-      <ul class="sidebar-links"><li><a href="../../../docs/core/">Overview</a></li><li><a href="../../../docs/core/getting-started/">Getting Started</a></li><li><a href="../../../docs/core/installation/" class="active" aria-current="page">Installation</a></li><li><a href="../../../docs/core/architecture/">Architecture V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Concepts &amp; Ingestion</a></li><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; Graph</a></li><li><a href="../../../docs/core/api-reference/">API Reference</a></li><li><a href="../../../docs/core/cli-reference/">CLI Reference</a></li><li><a href="../../../docs/core/migration/">Migration to v0.8.0</a></li><li><a href="../../../docs/core/release-notes/">Release Notes v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; Limitations</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Rebuild Runbook</a></li><li><a href="../../../docs/core/audit/">Independent Audit</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Guide</a></li></ul></div><div class="sidebar-group">
+      <ul class="sidebar-links"><li class="docs-nav-group-label">Start here</li><li><a href="../../../docs/core/">MESA Core overview</a></li><li><a href="../../../docs/core/getting-started/">Local quickstart</a></li><li><a href="../../../docs/core/installation/" class="active" aria-current="page">Installation &amp; deployment</a></li><li><a href="../../../docs/core/colab-rehberi/">Colab setup</a></li><li><a href="../../../docs/core/documentation-map/">Documentation map</a></li><li><a href="../../../docs/core/examples/">Examples &amp; SDK workflow</a></li><li class="docs-nav-group-label">Core concepts</li><li><a href="../../../docs/core/architecture/">Core architecture</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Ingestion &amp; memory lifecycle</a></li><li><a href="../../../docs/core/ecosystem/">Ecosystem boundaries</a></li><li><a href="../../../docs/core/evidence/">Evidence &amp; provenance</a></li><li class="docs-nav-group-label">Retrieval</li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; graph</a></li><li><a href="../../../docs/core/graph/">Graph traversal</a></li><li class="docs-nav-group-label">Integration & reference</li><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/api-reference/">HTTP API &amp; Python SDK</a></li><li><a href="../../../docs/core/cli-reference/">CLI reference</a></li><li><a href="../../../docs/core/mcp/">MCP integration</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding &amp; model providers</a></li><li class="docs-nav-group-label">Operate & recover</li><li><a href="../../../docs/core/migration/">Upgrade to v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li><a href="../../../docs/core/rebuild-runbook/">Projection rebuild</a></li><li><a href="../../../docs/core/security/">Security &amp; scope</a></li><li><a href="../../../docs/core/operations/">Operations &amp; recovery</a></li><li class="docs-nav-group-label">Release & evidence</li><li><a href="../../../docs/core/release-notes/">v0.8.0 release notes</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; limitations</a></li><li><a href="../../../docs/core/audit/">Historical independent audit</a></li><li><a href="../../../docs/core/testing/">Testing &amp; evidence</a></li><li><a href="../../../docs/core/release-policy/">Release policy</a></li></ul></div><div class="sidebar-group">
       <div class="sidebar-group-header">
         <span>MESA Data</span>
         <span class="version-tag">v0.1.0</span>
@@ -103,30 +104,37 @@
       <li><a href="../../../">Home</a></li>
       <li><a href="../../../docs/">Docs</a></li>
       <li><a href="../../../docs/core/">MESA Core</a></li>
-      <li aria-current="page">Installation</li>
+      <li aria-current="page">Installation &amp; deployment</li>
     </ol>
   </nav>
       <article class="docs-article">
         <header class="docs-article-header">
           <p class="eyebrow">MESA Core · v0.8.0</p>
-          <h1>Installation</h1>
+          <h1>Installation &amp; deployment</h1>
           <div class="docs-meta-bar">
     <span class="docs-version-pill">v0.8.0</span>
-    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/e3750a7c44c26d7e3555be755e8c07fd5282ca64/docs/installation.md" target="_blank" rel="noopener noreferrer">e3750a7c44c26d7e3555be755e8c07fd5282ca64</a></span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md" target="_blank" rel="noopener noreferrer">07d387f9a4592ea39518fea549e9cf8330051e1f</a></span>
     <span class="docs-source-pill">source: <code>docs/installation.md</code></span>
   </div>
-          <p class="docs-language-notice">Navigation is localized; the document body retains its original source language. The version label identifies the package, not a certification result.</p>
+          <p class="docs-language-notice">This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.</p>
           
         </header>
         <div class="docs-body">
-          <p>Bu rehber v3 lexical-core uyumluluk topology’si ile v4 full-cognitive release</p>
+          <h2 id="guide-two-deliberate-runtime-profiles">Two deliberate runtime profiles<a class="heading-anchor" href="#guide-two-deliberate-runtime-profiles" aria-label="Link to section: Two deliberate runtime profiles" title="Link to this section">#</a></h2>
+<p>V3 compatibility is a model-disabled lexical core. Its Compose file separates API and worker roles. V4 canonical processing requires one model-enabled combined storage owner. Do not mount the same physical root into two writers or share it between V3 and V4.</p>
+<h2 id="guide-install-only-the-extras-you-need">Install only the extras you need<a class="heading-anchor" href="#guide-install-only-the-extras-you-need" aria-label="Link to section: Install only the extras you need" title="Link to this section">#</a></h2>
+<p>The locked development extra installs the local testing environment. Add <code class="inline-code">ml</code> for local model execution and <code class="inline-code">adapters</code> when the selected provider needs its SDK. Do not load model packages merely to run the V3 quickstart. <a href="../../../docs/core/embedding-providers/">Configure providers</a> before V4 writes.</p>
+<h2 id="guide-protect-the-deployment-boundary">Protect the deployment boundary<a class="heading-anchor" href="#guide-protect-the-deployment-boundary" aria-label="Link to section: Protect the deployment boundary" title="Link to this section">#</a></h2>
+<p>Provision credentials and ACLs before startup. Set an explicit application-owned storage root and <code class="inline-code">MESA_LOAD_DOTENV=false</code>. The process launcher binds internally to all interfaces; loopback publishing, TLS and an authenticated reverse proxy are deployment responsibilities. Never treat a successful boot as production qualification.</p>
+          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md" target="_blank" rel="noopener noreferrer"><code>docs/installation.md</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/pyproject.toml" target="_blank" rel="noopener noreferrer"><code>pyproject.toml</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docker-compose.yml" target="_blank" rel="noopener noreferrer"><code>docker-compose.yml</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docker-compose.v4.yml" target="_blank" rel="noopener noreferrer"><code>docker-compose.v4.yml</code></a></li></ul></div>
+          <details class="source-appendix" id="source-reference"><summary>Complete source reference · original language</summary><p class="docs-language-notice">This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.</p><div class="source-reference-body"><p>Bu rehber v3 lexical-core uyumluluk topology’si ile v4 full-cognitive release</p>
 <p>candidate topology’sini ayrı tutar. Production kararı Final MVP Certification</p>
 <p>tamamlanana kadar <code class="inline-code">NO-GO</code>dur. Repository <code class="inline-code">.env</code> dosyasını</p>
 <p>kendiliğinden yüklemez. Gerçek secret’ları bir secret manager’da saklayın.</p>
 <p>Doğrudan çalıştırılabilir model-disabled demo için <a href="../../../docs/core/getting-started/">Getting started</a> rehberini kullanın. Aşağıdaki <code class="inline-code">/srv/mesa</code> yolları operator örneğidir, otomatik kurulum değildir. Credential/ACL bootstrap runtime başlamadan önce yapılır.</p>
-<h2 id="gereksinimler">Gereksinimler<a class="heading-anchor" href="#gereksinimler" aria-label="Link to section: Gereksinimler" title="Copy link to this section">#</a></h2>
+<h2 id="gereksinimler">Gereksinimler<a class="heading-anchor" href="#gereksinimler" aria-label="Link to section: Gereksinimler" title="Link to this section">#</a></h2>
 <ul><li>Python 3.10–3.13</li><li>Kilitli kurulum için <code class="inline-code">uv</code></li><li>Compose kullanılıyorsa Docker Engine ve Docker Compose</li></ul>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre id="code-block-1" class="language-bash"><code>git clone https://github.com/Yasou13/MESA.git
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>git clone https://github.com/Yasou13/MESA.git
 cd MESA
 python -m pip install &quot;uv==0.9.6&quot;
 uv sync --locked --extra dev
@@ -134,17 +142,17 @@ uv pip check</code></pre></div>
 <p><code class="inline-code">pyproject.toml</code> desteklenen dependency aralıklarını, <code class="inline-code">uv.lock</code> CI/Docker</p>
 <p>tarafından kullanılan tekrarlanabilir grafiği tanımlar. Model adapter’ları ve</p>
 <p>benchmark bağımlılıkları yalnız gerekli profillerde kurulmalıdır.</p>
-<h2 id="ortak-ortam-ilkeleri">Ortak ortam ilkeleri<a class="heading-anchor" href="#ortak-ortam-ilkeleri" aria-label="Link to section: Ortak ortam ilkeleri" title="Copy link to this section">#</a></h2>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre id="code-block-2" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
+<h2 id="ortak-ortam-ilkeleri">Ortak ortam ilkeleri<a class="heading-anchor" href="#ortak-ortam-ilkeleri" aria-label="Link to section: Ortak ortam ilkeleri" title="Link to this section">#</a></h2>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
 export MESA_LOAD_DOTENV=false
 export MESA_LOG_LEVEL=INFO
 export MESA_LOG_FORMAT=json</code></pre></div>
 <p>Storage root uygulamaya ait, yazılabilir ve açıkça seçilmiş bir dizin olmalıdır.</p>
 <p>Repository, home veya filesystem root kullanmayın. V3 ve v4 için ayrı fiziksel</p>
 <p>root kullanın.</p>
-<h2 id="v4-combined-runtime">V4 combined runtime<a class="heading-anchor" href="#v4-combined-runtime" aria-label="Link to section: V4 combined runtime" title="Copy link to this section">#</a></h2>
+<h2 id="v4-combined-runtime">V4 combined runtime<a class="heading-anchor" href="#v4-combined-runtime" aria-label="Link to section: V4 combined runtime" title="Link to this section">#</a></h2>
 <p>V4’ün desteklenen storage-writing topology’si tek <code class="inline-code">combined</code> process’tir:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre id="code-block-3" class="language-bash"><code>export MESA_RUNTIME_PROFILE=combined
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>export MESA_RUNTIME_PROFILE=combined
 export MESA_MODEL_ENABLED=true
 export MESA_TIER3_MODE=0
 export MESA_EXTERNAL_PROVIDER_ENABLED=true
@@ -158,7 +166,7 @@ python -m mesa_memory.runtime_entrypoint</code></pre></div>
 <p>olmadan sabitlenmez. Model-disabled çalıştırma topology smoke testinde</p>
 <p>kullanılabilir ancak full-cognitive production kanıtı değildir.</p>
 <p>V4 credentials ve ACL:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre id="code-block-4" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
 mesa-v4-admin issue-key --principal service-api
 mesa-v4-admin grant-role --principal service-api \
   --tenant tenant-a --role OWNER
@@ -167,8 +175,8 @@ mesa-v4-admin grant-agent --principal service-api \
 <p>Üretilen <code class="inline-code">key_id.secret</code> credential’ı secret manager’a aktarın ve runtime’a</p>
 <p><code class="inline-code">MESA_API_KEY</code> olarak sağlayın. Plaintext yalnız oluşturma/rotate anında</p>
 <p>gösterilir.</p>
-<h3 id="v4-compose">V4 Compose<a class="heading-anchor" href="#v4-compose" aria-label="Link to section: V4 Compose" title="Copy link to this section">#</a></h3>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre id="code-block-5" class="language-bash"><code>export MESA_API_KEY=&quot;$(secret-manager read mesa-v4-api-key)&quot;
+<h3 id="v4-compose">V4 Compose<a class="heading-anchor" href="#v4-compose" aria-label="Link to section: V4 Compose" title="Link to this section">#</a></h3>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre tabindex="0" id="code-block-5" class="language-bash"><code>export MESA_API_KEY=&quot;$(secret-manager read mesa-v4-api-key)&quot;
 export MESA_PRINCIPAL_ID=service-api
 export MESA_MODEL_ENABLED=true
 export MESA_EXTERNAL_PROVIDER_ENABLED=true
@@ -179,9 +187,9 @@ curl --fail -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   http://127.0.0.1:8000/health</code></pre></div>
 <p><code class="inline-code">docker-compose.v4.yml</code> yalnız <code class="inline-code">mesa-v4</code> service’ini ve tek v4 volume’ünü</p>
 <p>çalıştırır. Aynı volume’ü başka writer’a mount etmeyin.</p>
-<h2 id="ilk-v4-catalog-ve-session">İlk v4 catalog ve session<a class="heading-anchor" href="#ilk-v4-catalog-ve-session" aria-label="Link to section: İlk v4 catalog ve session" title="Copy link to this section">#</a></h2>
+<h2 id="ilk-v4-catalog-ve-session">İlk v4 catalog ve session<a class="heading-anchor" href="#ilk-v4-catalog-ve-session" aria-label="Link to section: İlk v4 catalog ve session" title="Link to this section">#</a></h2>
 <p>ACL verildikten sonra <code class="inline-code">MesaV4Client</code> ile catalog oluşturulur:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-6">Copy</button></div><pre id="code-block-6" class="language-python"><code>from mesa_client import MesaV4Client
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-6">Copy</button></div><pre tabindex="0" id="code-block-6" class="language-python"><code>from mesa_client import MesaV4Client
 
 with MesaV4Client(&quot;http://127.0.0.1:8000&quot;, api_key=credential) as client:
     client.create_workspace(
@@ -203,25 +211,25 @@ with MesaV4Client(&quot;http://127.0.0.1:8000&quot;, api_key=credential) as clie
         agent_id=&quot;agent-a&quot;,
     )</code></pre></div>
 <p>Session ID sunucu tarafından üretilir ve dataset kapsamı sonradan değişmez.</p>
-<h2 id="v3-lexical-core-compatibility">V3 lexical-core compatibility<a class="heading-anchor" href="#v3-lexical-core-compatibility" aria-label="Link to section: V3 lexical-core compatibility" title="Copy link to this section">#</a></h2>
+<h2 id="v3-lexical-core-compatibility">V3 lexical-core compatibility<a class="heading-anchor" href="#v3-lexical-core-compatibility" aria-label="Link to section: V3 lexical-core compatibility" title="Link to this section">#</a></h2>
 <p><code class="inline-code">docker-compose.yml</code>, ayrı <code class="inline-code">api-only</code> + <code class="inline-code">worker-only</code> process’lerle v3</p>
 <p>lexical-core topology’sini korur:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Copy</button></div><pre id="code-block-7" class="language-bash"><code>export MESA_API_KEY=&quot;$(secret-manager read mesa-v3-api-key)&quot;
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Copy</button></div><pre tabindex="0" id="code-block-7" class="language-bash"><code>export MESA_API_KEY=&quot;$(secret-manager read mesa-v3-api-key)&quot;
 export MESA_PRINCIPAL_ID=service-api
 docker compose config --quiet
 docker compose up --build -d</code></pre></div>
 <p>Process’leri elle başlatmak için:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-8">Copy</button></div><pre id="code-block-8" class="language-bash"><code>MESA_RUNTIME_PROFILE=api-only python -m mesa_memory.runtime_entrypoint
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-8">Copy</button></div><pre tabindex="0" id="code-block-8" class="language-bash"><code>MESA_RUNTIME_PROFILE=api-only python -m mesa_memory.runtime_entrypoint
 MESA_RUNTIME_PROFILE=worker-only python -m mesa_memory.runtime_entrypoint</code></pre></div>
 <p>Bu topology v4 Graph V2, dataset ACL veya projection-ledger garantisi sunmaz.</p>
-<h2 id="migration-backup-ve-restore">Migration, backup ve restore<a class="heading-anchor" href="#migration-backup-ve-restore" aria-label="Link to section: Migration, backup ve restore" title="Copy link to this section">#</a></h2>
+<h2 id="migration-backup-ve-restore">Migration, backup ve restore<a class="heading-anchor" href="#migration-backup-ve-restore" aria-label="Link to section: Migration, backup ve restore" title="Link to this section">#</a></h2>
 <p>Migration yalnız uygulama durmuşken ve release runbook onayıyla çalıştırılır:</p>
 <p><code class="inline-code">mesa_storage/alembic.ini</code> içindeki <code class="inline-code">sqlalchemy.url</code> migration hedefidir;</p>
 <p><code class="inline-code">MESA_STORAGE_ROOT</code> tek başına bu URL’yi değiştirmez. Operator-reviewed config</p>
 <p>kopyasında mutlak staging DB URL’si ve mutlak <code class="inline-code">script_location</code> tanımlayın.</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-9">Copy</button></div><pre id="code-block-9" class="language-bash"><code>.venv/bin/alembic -c /srv/mesa/reviewed-staging-alembic.ini upgrade head</code></pre></div>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-9">Copy</button></div><pre tabindex="0" id="code-block-9" class="language-bash"><code>.venv/bin/alembic -c /srv/mesa/reviewed-staging-alembic.ini upgrade head</code></pre></div>
 <p>Offline backup/restore:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-10">Copy</button></div><pre id="code-block-10" class="language-bash"><code>mesa-recovery --trusted-root /srv/mesa backup \
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-10">Copy</button></div><pre tabindex="0" id="code-block-10" class="language-bash"><code>mesa-recovery --trusted-root /srv/mesa backup \
   --source-root /srv/mesa/v4-data \
   --backup-root /srv/mesa/backups/v4-2026-07-23 \
   --stores-stopped
@@ -240,22 +248,22 @@ mesa-recovery --trusted-root /srv/mesa restore \
 <p>backup sonrası ayrı v4 root&#39;ta offline rebuild ve parity kontrolü yapılır.</p>
 <p>Migration&#39;lar forward-only&#39;dir; başarısız release için <code class="inline-code">alembic downgrade</code></p>
 <p>yerine doğrulanmış backup&#39;ı yeni boş bir root&#39;a restore edin.</p>
-<h2 id="yerel-dogrulama">Yerel doğrulama<a class="heading-anchor" href="#yerel-dogrulama" aria-label="Link to section: Yerel doğrulama" title="Copy link to this section">#</a></h2>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-11">Copy</button></div><pre id="code-block-11" class="language-bash"><code>uv run ruff check .
+<h2 id="yerel-dogrulama">Yerel doğrulama<a class="heading-anchor" href="#yerel-dogrulama" aria-label="Link to section: Yerel doğrulama" title="Link to this section">#</a></h2>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-11">Copy</button></div><pre tabindex="0" id="code-block-11" class="language-bash"><code>uv run ruff check .
 uv run mypy mesa_memory mesa_storage mesa_workers mesa_api mesa_client \
   --ignore-missing-imports --explicit-package-bases --follow-imports=skip
 uv run pytest -q</code></pre></div>
 <p>V4 dar sözleşme paketi <code class="inline-code">tests/test_v4_*.py</code>, Graph V2 testleri ve</p>
 <p><code class="inline-code">tests/test_api_key_store.py</code> dosyalarını kapsar. Bu kontroller release kanıtı</p>
-<p>için gereklidir fakat 24 saat soak kapısının yerine geçmez.</p>
+<p>için gereklidir fakat 24 saat soak kapısının yerine geçmez.</p></div></details>
         </div>
-        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/getting-started/"><span class="nav-dir">← Previous</span><span class="nav-title">Getting Started</span></a><a class="docs-page-next" href="../../../docs/core/architecture/"><span class="nav-dir">Next →</span><span class="nav-title">Architecture V4</span></a></div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/getting-started/"><span class="nav-dir">← Previous</span><span class="nav-title">Local quickstart</span></a><a class="docs-page-next" href="../../../docs/core/architecture/"><span class="nav-dir">Next →</span><span class="nav-title">Core architecture</span></a></div>
       </article>
     </div>
     <aside class="docs-toc-column" aria-label="Table of contents">
-      <nav class="article-toc" aria-label="In this document"><strong>In this document</strong><ol><li class="toc-item"><a href="#gereksinimler">Gereksinimler</a></li><li class="toc-item"><a href="#ortak-ortam-ilkeleri">Ortak ortam ilkeleri</a></li><li class="toc-item"><a href="#v4-combined-runtime">V4 combined runtime</a></li><li class="toc-item toc-sub"><a href="#v4-compose">V4 Compose</a></li><li class="toc-item"><a href="#ilk-v4-catalog-ve-session">İlk v4 catalog ve session</a></li><li class="toc-item"><a href="#v3-lexical-core-compatibility">V3 lexical-core compatibility</a></li><li class="toc-item"><a href="#migration-backup-ve-restore">Migration, backup ve restore</a></li><li class="toc-item"><a href="#yerel-dogrulama">Yerel doğrulama</a></li></ol></nav>
+      <nav class="article-toc" aria-label="In this guide"><strong>In this guide</strong><ol><li class="toc-item"><a href="#guide-two-deliberate-runtime-profiles">Two deliberate runtime profiles</a></li><li class="toc-item"><a href="#guide-install-only-the-extras-you-need">Install only the extras you need</a></li><li class="toc-item"><a href="#guide-protect-the-deployment-boundary">Protect the deployment boundary</a></li></ol></nav>
       <div class="docs-source-link">
-        <a href="https://github.com/Yasou13/MESA/blob/e3750a7c44c26d7e3555be755e8c07fd5282ca64/docs/installation.md" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md" target="_blank" rel="noopener noreferrer">
           <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
           <span>Open source on GitHub</span>
         </a>
@@ -267,21 +275,21 @@ uv run pytest -q</code></pre></div>
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
-        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <p>MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
         <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 published source release · <a href="../../../status/">View status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
         <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
         <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
-        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Documentation</h3><a href="../../../docs/core/getting-started/">Quickstart</a><a href="../../../architecture/">Architecture</a><a href="../../../retrieval/">Retrieval</a><a href="../../../docs/core/security/">Security</a><a href="../../../docs/mcp/">MCP integration</a></div>
         <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
     </footer>
-  <script src="../../../app.js?v=733a08af7ad7"></script>
+  <script src="../../../app.js?v=02e6ea041801"></script>
 </body>
 </html>

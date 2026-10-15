@@ -181,6 +181,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/faq/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/architecture/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/architecture/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/architecture/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/architecture/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/architecture/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/architecture/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/architecture/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/architecture/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/retrieval/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/retrieval/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/retrieval/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/retrieval/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/retrieval/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/retrieval/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/retrieval/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/retrieval/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/resources/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/resources/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/resources/" />
@@ -635,6 +659,138 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/colab-rehberi/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/colab-rehberi/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/colab-rehberi/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/documentation-map/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/documentation-map/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/documentation-map/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/documentation-map/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/documentation-map/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/documentation-map/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/documentation-map/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/documentation-map/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/security/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/security/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/security/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/security/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/operations/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/operations/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/operations/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/operations/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/operations/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/operations/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/operations/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/operations/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/ecosystem/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/ecosystem/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/ecosystem/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/ecosystem/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/ecosystem/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/ecosystem/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/ecosystem/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/ecosystem/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/testing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/testing/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/testing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/testing/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/testing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/testing/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/testing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/testing/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/release-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/release-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/release-policy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/release-policy/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/release-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/release-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/release-policy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/release-policy/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/mcp/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/mcp/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/mcp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/mcp/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/mcp/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/mcp/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/mcp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/mcp/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/embedding-providers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/embedding-providers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/embedding-providers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/embedding-providers/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/embedding-providers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/embedding-providers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/embedding-providers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/embedding-providers/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/evidence/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/evidence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/evidence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/evidence/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/evidence/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/evidence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/evidence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/evidence/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/graph/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/graph/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/graph/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/graph/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/graph/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/graph/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/graph/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/graph/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/examples/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/examples/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/examples/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/examples/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/examples/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/examples/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/examples/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/examples/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/docs/data/</loc>
