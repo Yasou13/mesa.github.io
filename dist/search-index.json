@@ -1,0 +1,2410 @@
+[
+  {
+    "id": "semantic-search-en",
+    "url": "learn/semantic-search/",
+    "title": "What is semantic search?",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Semantic search retrieves information by estimated meaning and context, not only by exact word overlap.",
+    "keywords": [
+      "semantic-search",
+      "retrieval"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "semantic-search-tr",
+    "url": "tr/learn/semantic-search/",
+    "title": "Semantic Search Nedir?",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Semantic search, bilgiyi yalnızca aynı kelimelere göre değil, tahmin edilen anlam ve bağlama göre geri getirir.",
+    "keywords": [
+      "semantic-search",
+      "retrieval"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "what-is-ai-memory-en",
+    "url": "learn/what-is-ai-memory/",
+    "title": "What is AI memory?",
+    "section": "Learn",
+    "category": "Foundations",
+    "summary": "AI memory is the persistence layer that allows models and autonomous agents to retain state, recall verified past interactions, and accumulate knowledge across execution boundaries.",
+    "keywords": [
+      "ai-memory",
+      "persistence",
+      "context",
+      "foundations"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "what-is-ai-memory-tr",
+    "url": "tr/learn/what-is-ai-memory/",
+    "title": "AI Memory Nedir?",
+    "section": "Learn",
+    "category": "Foundations",
+    "summary": "AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.",
+    "keywords": [
+      "ai-memory",
+      "persistence",
+      "context",
+      "foundations"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "rag-vs-ai-memory-en",
+    "url": "learn/rag-vs-ai-memory/",
+    "title": "RAG vs AI memory: What is the difference?",
+    "section": "Learn",
+    "category": "Foundations",
+    "summary": "Retrieval-Augmented Generation (RAG) fetches static reference material to ground prompt generation, whereas AI memory manages persistent, evolving agent and user state across time.",
+    "keywords": [
+      "rag",
+      "ai-memory",
+      "retrieval",
+      "foundations"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "rag-vs-ai-memory-tr",
+    "url": "tr/learn/rag-vs-ai-memory/",
+    "title": "RAG ile AI Memory arasındaki fark nedir?",
+    "section": "Learn",
+    "category": "Foundations",
+    "summary": "Retrieval-Augmented Generation (RAG) üretim için statik referans materyali getirirken, AI memory zaman içinde gelişen ajan ve kullanıcı durumunu yönetir.",
+    "keywords": [
+      "rag",
+      "ai-memory",
+      "retrieval",
+      "foundations"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "structured-vs-unstructured-memory-en",
+    "url": "learn/structured-vs-unstructured-memory/",
+    "title": "Structured memory vs unstructured memory",
+    "section": "Learn",
+    "category": "Foundations",
+    "summary": "Unstructured memory stores raw text snippets and embeddings, while structured memory organizes knowledge into typed assertions, entities, relations, and explicit schemas.",
+    "keywords": [
+      "structured-memory",
+      "knowledge-representation",
+      "ai-memory",
+      "foundations"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "structured-vs-unstructured-memory-tr",
+    "url": "tr/learn/structured-vs-unstructured-memory/",
+    "title": "Yapılandırılmış hafıza ile yapılandırılmamış hafıza karşılaştırması",
+    "section": "Learn",
+    "category": "Foundations",
+    "summary": "Yapılandırılmamış hafıza ham metin parçaları ve vektörleri saklarken, yapılandırılmış hafıza bilgiyi tipli assertion'lar, varlıklar, ilişkiler ve açık şemalar halinde düzenler.",
+    "keywords": [
+      "structured-memory",
+      "knowledge-representation",
+      "ai-memory",
+      "foundations"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "vector-search-limits-en",
+    "url": "learn/why-vector-search-alone-is-not-enough/",
+    "title": "Why vector search alone is not enough for agent memory",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Vector search excels at conceptual similarity over unstructured text, but agent memory requires exact identifiers, relational joins, temporal validity, and strict authorization.",
+    "keywords": [
+      "vector-search",
+      "embeddings",
+      "retrieval",
+      "search-limits"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "vector-search-limits-tr",
+    "url": "tr/learn/why-vector-search-alone-is-not-enough/",
+    "title": "Vektör arama neden ajan hafızası için tek başına yetersizdir?",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Vektör arama yapılandırılmamış metin üzerinde anlamsal benzerlikte mükemmeldir; ancak ajan hafızası kesin tanımlayıcılar, ilişkisel join'ler, zamansal geçerlilik ve sıkı yetkilendirme gerektirir.",
+    "keywords": [
+      "vector-search",
+      "embeddings",
+      "retrieval",
+      "search-limits"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "hybrid-retrieval-en",
+    "url": "learn/hybrid-retrieval-explained/",
+    "title": "Hybrid retrieval explained: Vector search, lexical search, and structured signals",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Hybrid retrieval combines dense vector embeddings, sparse lexical inverted indexes (BM25), and structured database filters to prevent single-strategy retrieval failures.",
+    "keywords": [
+      "hybrid-retrieval",
+      "vector-search",
+      "bm25",
+      "search",
+      "retrieval"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "hybrid-retrieval-tr",
+    "url": "tr/learn/hybrid-retrieval-explained/",
+    "title": "Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler.",
+    "keywords": [
+      "hybrid-retrieval",
+      "vector-search",
+      "bm25",
+      "search",
+      "retrieval"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "why-graphs-matter-en",
+    "url": "learn/why-graphs-matter-in-ai-memory/",
+    "title": "Why graphs matter in AI memory",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Knowledge graphs represent entities and their explicit relationships, allowing AI agents to navigate multi-hop connections and topological context that flat chunk search cannot resolve.",
+    "keywords": [
+      "knowledge-graph",
+      "relations",
+      "ai-memory",
+      "graph-theory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "why-graphs-matter-tr",
+    "url": "tr/learn/why-graphs-matter-in-ai-memory/",
+    "title": "AI memory sistemlerinde grafikler (graph) neden önemlidir?",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Bilgi grafikleri varlıkları ve açık ilişkilerini temsil eder; yapay zekâ ajanlarının düz metin aramasının çözemediği çok sekmeli bağlantıları ve topolojik bağlamı gezmesini sağlar.",
+    "keywords": [
+      "knowledge-graph",
+      "relations",
+      "ai-memory",
+      "graph-theory"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "reciprocal-rank-fusion-en",
+    "url": "learn/reciprocal-rank-fusion-explained/",
+    "title": "What is Reciprocal Rank Fusion (RRF)?",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Reciprocal Rank Fusion (RRF) combines ranked lists from multiple search algorithms into a single unified result set without requiring fragile score normalization.",
+    "keywords": [
+      "rrf",
+      "rank-fusion",
+      "retrieval",
+      "algorithms"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "reciprocal-rank-fusion-tr",
+    "url": "tr/learn/reciprocal-rank-fusion-explained/",
+    "title": "Reciprocal Rank Fusion (RRF) nedir?",
+    "section": "Learn",
+    "category": "Memory & Retrieval",
+    "summary": "Reciprocal Rank Fusion (RRF); birden fazla arama algoritmasının sıralı listelerini, hassas skor normalizasyonuna ihtiyaç duymadan tek ve tutarlı bir sonuç kümesinde birleştirir.",
+    "keywords": [
+      "rrf",
+      "rank-fusion",
+      "retrieval",
+      "algorithms"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "evidence-aware-memory-en",
+    "url": "learn/what-is-evidence-aware-memory/",
+    "title": "What is evidence-aware memory?",
+    "section": "Learn",
+    "category": "Evidence & Trust",
+    "summary": "Evidence-aware memory is an architectural paradigm where an AI system cannot store or recall an assertion without binding it to verifiable source identity, evidence spans, and authorization scopes.",
+    "keywords": [
+      "evidence",
+      "provenance",
+      "ai-memory",
+      "auditability"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "evidence-aware-memory-tr",
+    "url": "tr/learn/what-is-evidence-aware-memory/",
+    "title": "Kanıt odaklı hafıza (evidence-aware memory) nedir?",
+    "section": "Learn",
+    "category": "Evidence & Trust",
+    "summary": "Kanıt odaklı hafıza; bir yapay zekâ sisteminin herhangi bir iddiayı doğrulanabilir kaynak kimliği, kanıt aralıkları ve yetkilendirme kapsamı olmaksızın saklayamayacağı veya geri çağıramayacağı bir mimari paradigmadır.",
+    "keywords": [
+      "evidence",
+      "provenance",
+      "ai-memory",
+      "auditability"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "provenance-in-ai-en",
+    "url": "learn/what-is-provenance-in-ai/",
+    "title": "What is provenance in AI systems?",
+    "section": "Learn",
+    "category": "Evidence & Trust",
+    "summary": "Provenance is the complete, recorded history of information: its origin entity, ingestion transformations, supporting evidence spans, and authorization lifecycle.",
+    "keywords": [
+      "provenance",
+      "auditability",
+      "evidence",
+      "trust"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "provenance-in-ai-tr",
+    "url": "tr/learn/what-is-provenance-in-ai/",
+    "title": "Yapay zekâ sistemlerinde provenance nedir?",
+    "section": "Learn",
+    "category": "Evidence & Trust",
+    "summary": "Provenance, bilginin eksiksiz ve kaydedilmiş geçmişidir: köken varlığı, ingestion dönüşümleri, destekleyici kanıt aralıkları ve yetkilendirme yaşam döngüsü.",
+    "keywords": [
+      "provenance",
+      "auditability",
+      "evidence",
+      "trust"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "memory-scope-and-authorization-en",
+    "url": "learn/memory-scope-and-authorization/",
+    "title": "Memory scope and authorization in multi-agent systems",
+    "section": "Learn",
+    "category": "Evidence & Trust",
+    "summary": "Multi-agent systems require rigorous memory scoping across tenants, workspaces, agents, and temporal windows to prevent data leakage and cross-context contamination.",
+    "keywords": [
+      "authorization",
+      "multi-agent",
+      "security",
+      "scope",
+      "tenancy"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "memory-scope-and-authorization-tr",
+    "url": "tr/learn/memory-scope-and-authorization/",
+    "title": "Çok ajanlı sistemlerde hafıza kapsamı ve yetkilendirme",
+    "section": "Learn",
+    "category": "Evidence & Trust",
+    "summary": "Çok ajanlı sistemler; veri sızıntısını ve bağlam kirlenmesini önlemek için kiracılar, çalışma alanları, ajanlar ve zaman pencereleri arasında titiz bir hafıza kapsamı gerektirir.",
+    "keywords": [
+      "authorization",
+      "multi-agent",
+      "security",
+      "scope",
+      "tenancy"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "keyword-semantic-protocol-en",
+    "url": "research/keyword-vs-semantic-search/",
+    "title": "Keyword vs semantic search",
+    "section": "Research",
+    "category": "Retrieval Evaluation",
+    "summary": "This publication defines a proposed comparison. It reports no benchmark result.",
+    "keywords": [
+      "benchmark",
+      "retrieval",
+      "semantic-search"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "keyword-semantic-protocol-tr",
+    "url": "tr/research/keyword-vs-semantic-search/",
+    "title": "Keyword vs Semantic Search",
+    "section": "Research",
+    "category": "Retrieval Evaluation",
+    "summary": "Bu yayın önerilen bir karşılaştırmayı tanımlar. Herhangi bir benchmark sonucu sunmaz.",
+    "keywords": [
+      "benchmark",
+      "retrieval",
+      "semantic-search"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "verify-ai-yargitay-en",
+    "url": "guides/verify-ai-yargitay-decision/",
+    "title": "How do you verify an AI-cited Yargıtay decision?",
+    "section": "Guide",
+    "category": "Legal Research",
+    "summary": "Treat the citation as an unverified lead until the decision identity, authoritative text, quoted passage, and legal fit are checked.",
+    "keywords": [
+      "legal-research",
+      "verification",
+      "provenance"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "verify-ai-yargitay-tr",
+    "url": "tr/guides/verify-ai-yargitay-decision/",
+    "title": "AI'nin Verdiği Yargıtay Kararı Nasıl Doğrulanır?",
+    "section": "Guide",
+    "category": "Legal Research",
+    "summary": "Karar kimliği, güvenilir metin, alıntılanan bölüm ve hukuki uygunluk kontrol edilene kadar atfı doğrulanmamış bir araştırma ipucu sayın.",
+    "keywords": [
+      "legal-research",
+      "verification",
+      "provenance"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "provenance-en",
+    "url": "glossary/provenance/",
+    "title": "Provenance",
+    "section": "Glossary",
+    "category": "Evidence",
+    "summary": "Provenance is the recorded origin and processing history of information.",
+    "keywords": [
+      "provenance",
+      "evidence"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "provenance-tr",
+    "url": "tr/glossary/provenance/",
+    "title": "Provenance",
+    "section": "Glossary",
+    "category": "Evidence",
+    "summary": "Provenance, bilginin kaydedilmiş kökeni ve işlenme geçmişidir.",
+    "keywords": [
+      "provenance",
+      "evidence"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "retrieval-evaluation-en",
+    "url": "methodology/retrieval-evaluation/",
+    "title": "Retrieval evaluation",
+    "section": "Methodology",
+    "category": "Evaluation",
+    "summary": "A minimum methodology for claims about whether a retrieval system finds useful, source-grounded material.",
+    "keywords": [
+      "methodology",
+      "retrieval",
+      "evaluation"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "retrieval-evaluation-tr",
+    "url": "tr/methodology/retrieval-evaluation/",
+    "title": "Retrieval değerlendirmesi",
+    "section": "Methodology",
+    "category": "Evaluation",
+    "summary": "Bir retrieval sisteminin yararlı ve kaynağa dayalı materyali bulup bulmadığına ilişkin iddialar için asgari metodoloji.",
+    "keywords": [
+      "methodology",
+      "retrieval",
+      "evaluation"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-index-en",
+    "url": "docs/core/",
+    "title": "Overview",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Overview documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA — Memory Engine for Structured Agents",
+      "Getting started",
+      "Safe core Compose",
+      "Full cognitive runtime",
+      "Architecture overview",
+      "Legacy/V3 CPU-Only REBEL Extraction",
+      "Documentation",
+      "Limitations",
+      "License",
+      "Development checks",
+      "After installing dev + adapters:"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-index-tr",
+    "url": "tr/docs/core/",
+    "title": "Genel Bakış",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Genel Bakış documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA — Memory Engine for Structured Agents",
+      "Getting started",
+      "Safe core Compose",
+      "Full cognitive runtime",
+      "Architecture overview",
+      "Legacy/V3 CPU-Only REBEL Extraction",
+      "Documentation",
+      "Limitations",
+      "License",
+      "Development checks",
+      "After installing dev + adapters:"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-getting-started-en",
+    "url": "docs/core/getting-started/",
+    "title": "Getting Started",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Getting Started documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Local quickstarts and V4 provider requirements",
+      "Provision before startup",
+      "Insert, poll and search",
+      "V4 canonical example (provider prerequisites)",
+      "Restart and cleanup"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-getting-started-tr",
+    "url": "tr/docs/core/getting-started/",
+    "title": "Başlarken",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Başlarken documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Local quickstarts and V4 provider requirements",
+      "Provision before startup",
+      "Insert, poll and search",
+      "V4 canonical example (provider prerequisites)",
+      "Restart and cleanup"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-installation-en",
+    "url": "docs/core/installation/",
+    "title": "Installation",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Installation documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Installation and deployment",
+      "Gereksinimler",
+      "Ortak ortam ilkeleri",
+      "V4 combined runtime",
+      "V4 Compose",
+      "İlk v4 catalog ve session",
+      "V3 lexical-core compatibility",
+      "Migration, backup ve restore",
+      "Yerel doğrulama"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-installation-tr",
+    "url": "tr/docs/core/installation/",
+    "title": "Kurulum",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Kurulum documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Installation and deployment",
+      "Gereksinimler",
+      "Ortak ortam ilkeleri",
+      "V4 combined runtime",
+      "V4 Compose",
+      "İlk v4 catalog ve session",
+      "V3 lexical-core compatibility",
+      "Migration, backup ve restore",
+      "Yerel doğrulama"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-architecture-en",
+    "url": "docs/core/architecture/",
+    "title": "Architecture V4",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Architecture V4 documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core current V4 architecture",
+      "Runtime boundary",
+      "Security and catalog hierarchy",
+      "Canonical ingestion",
+      "Pipeline and failure model",
+      "Canonical entity and Graph V2",
+      "Artifact ownership and rollback",
+      "Reconciliation and health",
+      "Retrieval",
+      "Bounded adaptive context retrieval",
+      "Migration and release"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-architecture-tr",
+    "url": "tr/docs/core/architecture/",
+    "title": "Mimari V4",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Mimari V4 documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core current V4 architecture",
+      "Runtime boundary",
+      "Security and catalog hierarchy",
+      "Canonical ingestion",
+      "Pipeline and failure model",
+      "Canonical entity and Graph V2",
+      "Artifact ownership and rollback",
+      "Reconciliation and health",
+      "Retrieval",
+      "Bounded adaptive context retrieval",
+      "Migration and release"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-concepts-and-ingestion-en",
+    "url": "docs/core/concepts-and-ingestion/",
+    "title": "Concepts & Ingestion",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Concepts & Ingestion documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Concepts and ingestion lifecycle",
+      "Identity and scope",
+      "Admission and completion",
+      "Revision finalization and retries",
+      "Correction, purge and rollback",
+      "Producer contract"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-concepts-and-ingestion-tr",
+    "url": "tr/docs/core/concepts-and-ingestion/",
+    "title": "Kavramlar ve Ingestion",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Kavramlar ve Ingestion documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Concepts and ingestion lifecycle",
+      "Identity and scope",
+      "Admission and completion",
+      "Revision finalization and retries",
+      "Correction, purge and rollback",
+      "Producer contract"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-configuration-en",
+    "url": "docs/core/configuration/",
+    "title": "Configuration",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Configuration documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Configuration reference",
+      "Startup and precedence",
+      "Providers and capacity",
+      "Declared MesaConfig fields",
+      "MCP and operator variables"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-configuration-tr",
+    "url": "tr/docs/core/configuration/",
+    "title": "Konfigürasyon",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Konfigürasyon documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Configuration reference",
+      "Startup and precedence",
+      "Providers and capacity",
+      "Declared MesaConfig fields",
+      "MCP and operator variables"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-retrieval-and-graph-en",
+    "url": "docs/core/retrieval-and-graph/",
+    "title": "Retrieval & Graph",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Retrieval & Graph documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Retrieval, graph and evidence",
+      "Four lanes and scoring",
+      "Graph bounds and failure behavior",
+      "Context and adaptive search",
+      "Interpreting examples"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-retrieval-and-graph-tr",
+    "url": "tr/docs/core/retrieval-and-graph/",
+    "title": "Retrieval ve Çizge",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Retrieval ve Çizge documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Retrieval, graph and evidence",
+      "Four lanes and scoring",
+      "Graph bounds and failure behavior",
+      "Context and adaptive search",
+      "Interpreting examples"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-api-reference-en",
+    "url": "docs/core/api-reference/",
+    "title": "API Reference",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core API Reference documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "API reference",
+      "V4 capability",
+      "V4 administrative rebuild operations",
+      "V4 catalog",
+      "V4 session ve memory",
+      "V4 Python SDK",
+      "V4 authorization",
+      "MemoryDAO v4 sınırı",
+      "Graph V2",
+      "V3 compatibility API",
+      "Health ve metrics",
+      "İstek/SDK ayrıntıları"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-api-reference-tr",
+    "url": "tr/docs/core/api-reference/",
+    "title": "API Referansı",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core API Referansı documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "API reference",
+      "V4 capability",
+      "V4 administrative rebuild operations",
+      "V4 catalog",
+      "V4 session ve memory",
+      "V4 Python SDK",
+      "V4 authorization",
+      "MemoryDAO v4 sınırı",
+      "Graph V2",
+      "V3 compatibility API",
+      "Health ve metrics",
+      "İstek/SDK ayrıntıları"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-cli-reference-en",
+    "url": "docs/core/cli-reference/",
+    "title": "CLI Reference",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core CLI Reference documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "CLI reference",
+      "Admin bootstrap",
+      "Recovery, rebuild and MCP"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-cli-reference-tr",
+    "url": "tr/docs/core/cli-reference/",
+    "title": "CLI Referansı",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core CLI Referansı documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "CLI reference",
+      "Admin bootstrap",
+      "Recovery, rebuild and MCP"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-migration-en",
+    "url": "docs/core/migration/",
+    "title": "Migration to v0.8.0",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Migration to v0.8.0 documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Upgrading to v0.8.0",
+      "Preconditions and changed contracts",
+      "Upgrade and rollback sequence"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-migration-tr",
+    "url": "tr/docs/core/migration/",
+    "title": "v0.8.0 Geçişi",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core v0.8.0 Geçişi documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Upgrading to v0.8.0",
+      "Preconditions and changed contracts",
+      "Upgrade and rollback sequence"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-release-notes-en",
+    "url": "docs/core/release-notes/",
+    "title": "Release Notes v0.8.0",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Release Notes v0.8.0 documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core v0.8.0 release notes",
+      "Verification and known limitations",
+      "Changes"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-release-notes-tr",
+    "url": "tr/docs/core/release-notes/",
+    "title": "Sürüm Notları v0.8.0",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Sürüm Notları v0.8.0 documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Core v0.8.0 release notes",
+      "Verification and known limitations",
+      "Changes"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-troubleshooting-en",
+    "url": "docs/core/troubleshooting/",
+    "title": "Troubleshooting",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Troubleshooting documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Troubleshooting"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-troubleshooting-tr",
+    "url": "tr/docs/core/troubleshooting/",
+    "title": "Sorun Giderme",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Sorun Giderme documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Troubleshooting"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-limitations-en",
+    "url": "docs/core/limitations/",
+    "title": "Performance & Limitations",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Performance & Limitations documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Performance, capacity and known limitations",
+      "Compatibility evidence",
+      "Unsupported or constrained"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-limitations-tr",
+    "url": "tr/docs/core/limitations/",
+    "title": "Performans ve Sınırlılıklar",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Performans ve Sınırlılıklar documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "Performance, capacity and known limitations",
+      "Compatibility evidence",
+      "Unsupported or constrained"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-rebuild-runbook-en",
+    "url": "docs/core/rebuild-runbook/",
+    "title": "V4 Rebuild Runbook",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core V4 Rebuild Runbook documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "V4 projection rebuild runbook",
+      "Güvenlik sınırları ve ön koşullar",
+      "1. Operator yetkisini ve flag'i hazırla",
+      "2. Durable operation submit et",
+      "3. Backlog'u drain et",
+      "4. Combined runtime'ı durdur ve offline runner'ı çalıştır",
+      "Assertion-vector representation geçişi",
+      "5. Resume, retry ve cancel",
+      "6. Cutover, otomatik rollback ve restart",
+      "7. Gözlemlenebilirlik ve retained artifact'lar",
+      "8. API/SDK sınırı ve production kararı"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-rebuild-runbook-tr",
+    "url": "tr/docs/core/rebuild-runbook/",
+    "title": "V4 Yeniden Derleme Kılavuzu",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core V4 Yeniden Derleme Kılavuzu documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "V4 projection rebuild runbook",
+      "Güvenlik sınırları ve ön koşullar",
+      "1. Operator yetkisini ve flag'i hazırla",
+      "2. Durable operation submit et",
+      "3. Backlog'u drain et",
+      "4. Combined runtime'ı durdur ve offline runner'ı çalıştır",
+      "Assertion-vector representation geçişi",
+      "5. Resume, retry ve cancel",
+      "6. Cutover, otomatik rollback ve restart",
+      "7. Gözlemlenebilirlik ve retained artifact'lar",
+      "8. API/SDK sınırı ve production kararı"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-audit-en",
+    "url": "docs/core/audit/",
+    "title": "Independent Audit",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Independent Audit documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA V4 — Final independent audit",
+      "Verdict",
+      "Previous agent assessment",
+      "Confirmed bugs / Fixes implemented",
+      "Previously unknown blockers discovered",
+      "Tests added",
+      "Verification commands",
+      "Phase 1–10 final status",
+      "Remaining P0/P1",
+      "Readiness",
+      "Verification confidence",
+      "Commits",
+      "Push status"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-audit-tr",
+    "url": "tr/docs/core/audit/",
+    "title": "Bağımsız Denetim",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Bağımsız Denetim documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA V4 — Final independent audit",
+      "Verdict",
+      "Previous agent assessment",
+      "Confirmed bugs / Fixes implemented",
+      "Previously unknown blockers discovered",
+      "Tests added",
+      "Verification commands",
+      "Phase 1–10 final status",
+      "Remaining P0/P1",
+      "Readiness",
+      "Verification confidence",
+      "Commits",
+      "Push status"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-core-colab-rehberi-en",
+    "url": "docs/core/colab-rehberi/",
+    "title": "Google Colab Guide",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Google Colab Guide documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Google Colab geliştirme rehberi",
+      "1. Kurulum",
+      "2. Secret ve runtime ayarları",
+      "3. V4 credential ve ACL",
+      "4. Sunucuyu başlatma",
+      "5. Catalog, session ve mutation",
+      "6. Test"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-colab-rehberi-tr",
+    "url": "tr/docs/core/colab-rehberi/",
+    "title": "Google Colab Rehberi",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "MESA Core Google Colab Rehberi documentation (v0.8.0)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.0",
+      "MESA Google Colab geliştirme rehberi",
+      "1. Kurulum",
+      "2. Secret ve runtime ayarları",
+      "3. V4 credential ve ACL",
+      "4. Sunucuyu başlatma",
+      "5. Catalog, session ve mutation",
+      "6. Test"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-data-index-en",
+    "url": "docs/data/",
+    "title": "Overview",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Overview documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data",
+      "Katmanlı Mimari",
+      "Veri Dizin Yapısı (Workspace)",
+      "Otomatik Veri Toplama (Harvest)",
+      "Harvest Komutları",
+      "Güvenlik & Politika",
+      "Web Yönetim Paneli (FastAPI + HTML/CSS/JS)",
+      "Web Panelini Başlatma",
+      "Güvenlik & Admin Token",
+      "Hızlı Komut Akışı (CLI)",
+      "1. Kurulum ve Başlatma",
+      "Bağımlılıkları yükleyin",
+      "Veri dizinlerini ve veritabanı şemasını hazırlayın",
+      "2. Örnek Kullanım Akışı",
+      "A. Veri Ekleme (Manuel veya URL)",
+      "B. Pipeline Orkestrasyonu",
+      "C. İnceleme ve Onay",
+      "D. Release Derleme ve Yayınlama",
+      "E. Yalnız geliştirme amaçlı yerel staging importu (gerçek MESA değildir)",
+      "F. İzlenebilirlik Sorgusu",
+      "3. Teşhis ve Sağlık Kontrolü",
+      "Sistem teşhisi ve bütünlük denetimi",
+      "Raw artifact SHA-256 bütünlük kontrolü",
+      "Veritabanı yedeği alma",
+      "Dokümantasyon",
+      "Sınırlar ve V2 Kapsamı"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-data-index-tr",
+    "url": "tr/docs/data/",
+    "title": "Genel Bakış",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Genel Bakış documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data",
+      "Katmanlı Mimari",
+      "Veri Dizin Yapısı (Workspace)",
+      "Otomatik Veri Toplama (Harvest)",
+      "Harvest Komutları",
+      "Güvenlik & Politika",
+      "Web Yönetim Paneli (FastAPI + HTML/CSS/JS)",
+      "Web Panelini Başlatma",
+      "Güvenlik & Admin Token",
+      "Hızlı Komut Akışı (CLI)",
+      "1. Kurulum ve Başlatma",
+      "Bağımlılıkları yükleyin",
+      "Veri dizinlerini ve veritabanı şemasını hazırlayın",
+      "2. Örnek Kullanım Akışı",
+      "A. Veri Ekleme (Manuel veya URL)",
+      "B. Pipeline Orkestrasyonu",
+      "C. İnceleme ve Onay",
+      "D. Release Derleme ve Yayınlama",
+      "E. Yalnız geliştirme amaçlı yerel staging importu (gerçek MESA değildir)",
+      "F. İzlenebilirlik Sorgusu",
+      "3. Teşhis ve Sağlık Kontrolü",
+      "Sistem teşhisi ve bütünlük denetimi",
+      "Raw artifact SHA-256 bütünlük kontrolü",
+      "Veritabanı yedeği alma",
+      "Dokümantasyon",
+      "Sınırlar ve V2 Kapsamı"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-data-quickstart-en",
+    "url": "docs/data/quickstart/",
+    "title": "Quickstart (TR)",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Quickstart (TR) documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Data — Hızlı Başlangıç",
+      "1. Tek Komutla Web Arayüzünü Başlatma (Önerilen)",
+      "2. 3 Adımda Normal Kullanıcı Akışı",
+      "Adım 1: Veri Topla",
+      "Adım 2: İncele",
+      "Adım 3: Dışa Aktar",
+      "3. Geliştiriciler İçin Komut Satırı (CLI)",
+      "Otomatik Resmî Gazete taramasını başlatma",
+      "Manuel dosya yükleme ve işleme",
+      "Durum ve teşhis kontrolü",
+      "4. Sistem Gereksinimleri"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-data-quickstart-tr",
+    "url": "tr/docs/data/quickstart/",
+    "title": "Hızlı Başlangıç",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Hızlı Başlangıç documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Data — Hızlı Başlangıç",
+      "1. Tek Komutla Web Arayüzünü Başlatma (Önerilen)",
+      "2. 3 Adımda Normal Kullanıcı Akışı",
+      "Adım 1: Veri Topla",
+      "Adım 2: İncele",
+      "Adım 3: Dışa Aktar",
+      "3. Geliştiriciler İçin Komut Satırı (CLI)",
+      "Otomatik Resmî Gazete taramasını başlatma",
+      "Manuel dosya yükleme ve işleme",
+      "Durum ve teşhis kontrolü",
+      "4. Sistem Gereksinimleri"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-data-user-guide-en",
+    "url": "docs/data/user-guide/",
+    "title": "User Guide (TR)",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data User Guide (TR) documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Data — Kullanım Kılavuzu",
+      "1. MESA Data Nedir?",
+      "2. Hızlı Başlatma",
+      "3. Web Arayüzü ve Ekran Rehberi",
+      "1. Ana Sayfa",
+      "2. Veri Topla",
+      "3. Kütüphane",
+      "4. İnceleme",
+      "5. Dışa Aktar",
+      "6. Gelişmiş (Yönetim Menüsü)",
+      "4. Sıkça Karşılaşılan Durumlar ve Çözümler",
+      "S: \"Disk alanı yetersiz. Veri toplama güvenlik nedeniyle durduruldu.\" uyarısı alıyorum.",
+      "S: \"Toplama zaten devam ediyor\" uyarısı nedir?",
+      "S: Dışa aktarma yaptığımda neden boş veya az kayıt çıkıyor?",
+      "5. Komut Satırı (CLI) Kısayolları"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-data-user-guide-tr",
+    "url": "tr/docs/data/user-guide/",
+    "title": "Kullanım Kılavuzu",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Kullanım Kılavuzu documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Data — Kullanım Kılavuzu",
+      "1. MESA Data Nedir?",
+      "2. Hızlı Başlatma",
+      "3. Web Arayüzü ve Ekran Rehberi",
+      "1. Ana Sayfa",
+      "2. Veri Topla",
+      "3. Kütüphane",
+      "4. İnceleme",
+      "5. Dışa Aktar",
+      "6. Gelişmiş (Yönetim Menüsü)",
+      "4. Sıkça Karşılaşılan Durumlar ve Çözümler",
+      "S: \"Disk alanı yetersiz. Veri toplama güvenlik nedeniyle durduruldu.\" uyarısı alıyorum.",
+      "S: \"Toplama zaten devam ediyor\" uyarısı nedir?",
+      "S: Dışa aktarma yaptığımda neden boş veya az kayıt çıkıyor?",
+      "5. Komut Satırı (CLI) Kısayolları"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-data-import-contract-en",
+    "url": "docs/data/import-contract/",
+    "title": "Import Contract",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Import Contract documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data Import Contract & Specification",
+      "1. Overview",
+      "2. Release Directory Structure",
+      "3. Pre-Import Verification Rules",
+      "4. MESA Staging Database Schema",
+      "5. Idempotent Import Rules",
+      "6. Rollback & Provenance Protocol"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-data-import-contract-tr",
+    "url": "tr/docs/data/import-contract/",
+    "title": "İçe Aktarma Sözleşmesi",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data İçe Aktarma Sözleşmesi documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data Import Contract & Specification",
+      "1. Overview",
+      "2. Release Directory Structure",
+      "3. Pre-Import Verification Rules",
+      "4. MESA Staging Database Schema",
+      "5. Idempotent Import Rules",
+      "6. Rollback & Provenance Protocol"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-data-troubleshooting-en",
+    "url": "docs/data/troubleshooting/",
+    "title": "Troubleshooting (TR)",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Troubleshooting (TR) documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data — Sorun Giderme",
+      "Veri Toplama Hataları",
+      "Pipeline Hataları",
+      "Otomatik Veri Toplama (Harvest) Hataları",
+      "İnceleme Hataları",
+      "Release Hataları",
+      "Kimlik Doğrulama ve Güvenlik",
+      "Sistem Hataları",
+      "Genel ipuçları"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-data-troubleshooting-tr",
+    "url": "tr/docs/data/troubleshooting/",
+    "title": "Sorun Giderme",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data Sorun Giderme documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data — Sorun Giderme",
+      "Veri Toplama Hataları",
+      "Pipeline Hataları",
+      "Otomatik Veri Toplama (Harvest) Hataları",
+      "İnceleme Hataları",
+      "Release Hataları",
+      "Kimlik Doğrulama ve Güvenlik",
+      "Sistem Hataları",
+      "Genel ipuçları"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-data-mvp-closure-en",
+    "url": "docs/data/mvp-closure/",
+    "title": "MVP Closure Report",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data MVP Closure Report documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data — Final MVP Closure Report",
+      "1. Executive Summary",
+      "2. TLS Hygiene & Trust Architecture",
+      "3. Real Resmî Gazete Pilot Evidence",
+      "4. Verification Evidence & CI Performance",
+      "5. Freeze Verdict"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-data-mvp-closure-tr",
+    "url": "tr/docs/data/mvp-closure/",
+    "title": "MVP Kapanış Raporu",
+    "section": "Docs · MESA Data",
+    "category": "MESA Data",
+    "summary": "MESA Data MVP Kapanış Raporu documentation (v0.3.0)",
+    "keywords": [
+      "data",
+      "docs",
+      "v0.3.0",
+      "MESA Legal Data — Final MVP Closure Report",
+      "1. Executive Summary",
+      "2. TLS Hygiene & Trust Architecture",
+      "3. Real Resmî Gazete Pilot Evidence",
+      "4. Verification Evidence & CI Performance",
+      "5. Freeze Verdict"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-law-index-en",
+    "url": "docs/law/",
+    "title": "Contract Overview",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law Contract Overview documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "MESA Core v4 Integration Contract",
+      "Authorization onboarding",
+      "Runtime boundary"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-law-index-tr",
+    "url": "tr/docs/law/",
+    "title": "Sözleşme Genel Bakış",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law Sözleşme Genel Bakış documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "MESA Core v4 Integration Contract",
+      "Authorization onboarding",
+      "Runtime boundary"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-law-operations-en",
+    "url": "docs/law/operations/",
+    "title": "Operations Guide",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law Operations Guide documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "Bounded Operations and Release Gates",
+      "Runtime profiles",
+      "Health and telemetry",
+      "Fail-closed Law-side gate"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-law-operations-tr",
+    "url": "tr/docs/law/operations/",
+    "title": "Operasyon Rehberi",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law Operasyon Rehberi documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "Bounded Operations and Release Gates",
+      "Runtime profiles",
+      "Health and telemetry",
+      "Fail-closed Law-side gate"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-law-verification-en",
+    "url": "docs/law/verification/",
+    "title": "Final Verification",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law Final Verification documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "MESA v4 MVP Final Verification",
+      "Result",
+      "Passed fail-closed gate",
+      "Real PostgreSQL evidence",
+      "Final repair cycle",
+      "Stop boundary"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-law-verification-tr",
+    "url": "tr/docs/law/verification/",
+    "title": "Nihai Doğrulama",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law Nihai Doğrulama documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "MESA v4 MVP Final Verification",
+      "Result",
+      "Passed fail-closed gate",
+      "Real PostgreSQL evidence",
+      "Final repair cycle",
+      "Stop boundary"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-law-baseline-en",
+    "url": "docs/law/baseline/",
+    "title": "MVP Baseline",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law MVP Baseline documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "MESA Law MVP Baseline",
+      "Environment",
+      "Initial gates",
+      "External integration boundary"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-law-baseline-tr",
+    "url": "tr/docs/law/baseline/",
+    "title": "MVP Temel Durumu",
+    "section": "Docs · MESA Law",
+    "category": "MESA Law",
+    "summary": "MESA Law MVP Temel Durumu documentation (v0.1.0-mvp)",
+    "keywords": [
+      "law",
+      "docs",
+      "v0.1.0-mvp",
+      "MESA Law MVP Baseline",
+      "Environment",
+      "Initial gates",
+      "External integration boundary"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-qa-index-en",
+    "url": "docs/qa/",
+    "title": "Overview",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Overview documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0",
+      "MESA-QA — Autonomous Resident Test Engineer",
+      "1. Safety Guarantees",
+      "2. Requirements",
+      "3. Quickstart & Installation",
+      "Clone MESA-QA (independent repository)",
+      "Run prerequisite doctor check",
+      "4. Operational Runbook",
+      "Prerequisites Check",
+      "Initialize Run Workspace",
+      "Run Endurance Test Profiles",
+      "5. Control & Inspection Commands",
+      "Check current active run status",
+      "Pause the active endurance session",
+      "Resume a paused session",
+      "Emergency Stop",
+      "View Final Run Report",
+      "Teardown Candidate Worktree and Temporary Data",
+      "6. Reviewing & Applying Autonomous Repairs",
+      "7. Troubleshooting",
+      "8. Development & Testing",
+      "Run all unit and integration tests"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-qa-index-tr",
+    "url": "tr/docs/qa/",
+    "title": "Genel Bakış",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Genel Bakış documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0",
+      "MESA-QA — Autonomous Resident Test Engineer",
+      "1. Safety Guarantees",
+      "2. Requirements",
+      "3. Quickstart & Installation",
+      "Clone MESA-QA (independent repository)",
+      "Run prerequisite doctor check",
+      "4. Operational Runbook",
+      "Prerequisites Check",
+      "Initialize Run Workspace",
+      "Run Endurance Test Profiles",
+      "5. Control & Inspection Commands",
+      "Check current active run status",
+      "Pause the active endurance session",
+      "Resume a paused session",
+      "Emergency Stop",
+      "View Final Run Report",
+      "Teardown Candidate Worktree and Temporary Data",
+      "6. Reviewing & Applying Autonomous Repairs",
+      "7. Troubleshooting",
+      "8. Development & Testing",
+      "Run all unit and integration tests"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-qa-audit-en",
+    "url": "docs/qa/audit/",
+    "title": "Fresh Independent Audit",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Fresh Independent Audit documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0",
+      "Fresh Independent Audit Report (R023)",
+      "1. Executive Summary",
+      "2. Verification of Critical False-Positive Remediation Areas",
+      "3. Acceptance Gates Matrix (A01–A47)",
+      "4. Final Recommendation"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-qa-audit-tr",
+    "url": "tr/docs/qa/audit/",
+    "title": "Güncel Bağımsız Denetim",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Güncel Bağımsız Denetim documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0",
+      "Fresh Independent Audit Report (R023)",
+      "1. Executive Summary",
+      "2. Verification of Critical False-Positive Remediation Areas",
+      "3. Acceptance Gates Matrix (A01–A47)",
+      "4. Final Recommendation"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-qa-repair-prompt-en",
+    "url": "docs/qa/repair-prompt/",
+    "title": "Repair Prompt Specification",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Repair Prompt Specification documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-qa-repair-prompt-tr",
+    "url": "tr/docs/qa/repair-prompt/",
+    "title": "Onarım Prompt Spesifikasyonu",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Onarım Prompt Spesifikasyonu documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-qa-reproduce-prompt-en",
+    "url": "docs/qa/reproduce-prompt/",
+    "title": "Reproduce Prompt Specification",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Reproduce Prompt Specification documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-qa-reproduce-prompt-tr",
+    "url": "tr/docs/qa/reproduce-prompt/",
+    "title": "Yeniden Üretim Promptu",
+    "section": "Docs · MESA QA",
+    "category": "MESA QA",
+    "summary": "MESA QA Yeniden Üretim Promptu documentation (v0.2.0)",
+    "keywords": [
+      "qa",
+      "docs",
+      "v0.2.0"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-e2e-index-en",
+    "url": "docs/e2e/",
+    "title": "Overview",
+    "section": "Docs · MESA E2E Certification",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Overview documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "MESA Legal E2E Certification",
+      "What Profile B proves",
+      "What Profile B does not prove",
+      "Repository layout",
+      "Agent entry point",
+      "Branch policy",
+      "Truth hierarchy",
+      "Key integrity rule",
+      "Failure is an acceptable result"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-e2e-index-tr",
+    "url": "tr/docs/e2e/",
+    "title": "Genel Bakış",
+    "section": "Docs · MESA E2E Sertifikasyonu",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Genel Bakış documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "MESA Legal E2E Certification",
+      "What Profile B proves",
+      "What Profile B does not prove",
+      "Repository layout",
+      "Agent entry point",
+      "Branch policy",
+      "Truth hierarchy",
+      "Key integrity rule",
+      "Failure is an acceptable result"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-e2e-audit-report-en",
+    "url": "docs/e2e/audit-report/",
+    "title": "Independent Audit Report",
+    "section": "Docs · MESA E2E Certification",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Independent Audit Report documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "MESAE2E INDEPENDENT LAYERED AUDIT + CORRECTION REPORT",
+      "Layer results",
+      "Findings and changes",
+      "Reproduction and verification evidence",
+      "A1–A30",
+      "Final status"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-e2e-audit-report-tr",
+    "url": "tr/docs/e2e/audit-report/",
+    "title": "Bağımsız Denetim Raporu",
+    "section": "Docs · MESA E2E Sertifikasyonu",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Bağımsız Denetim Raporu documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "MESAE2E INDEPENDENT LAYERED AUDIT + CORRECTION REPORT",
+      "Layer results",
+      "Findings and changes",
+      "Reproduction and verification evidence",
+      "A1–A30",
+      "Final status"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-e2e-agent-pack-start-en",
+    "url": "docs/e2e/agent-pack-start/",
+    "title": "Agent Pack Start",
+    "section": "Docs · MESA E2E Certification",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Agent Pack Start documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "00 — START HERE",
+      "Mission in one sentence",
+      "Read order — mandatory",
+      "Working directories",
+      "Dedicated branch",
+      "One human gate, by design",
+      "Non-pass outcomes are legitimate",
+      "Critical rule after any code change",
+      "Fresh-main lock before autonomous work",
+      "Phase -1 workspace hygiene",
+      "VM bootstrap comes first",
+      "Benchmark integrity lock",
+      "Canonical MESA runtime lock",
+      "Initial full read, then phase-scoped reads"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-e2e-agent-pack-start-tr",
+    "url": "tr/docs/e2e/agent-pack-start/",
+    "title": "Ajan Paketi Başlangıç",
+    "section": "Docs · MESA E2E Sertifikasyonu",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Ajan Paketi Başlangıç documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "00 — START HERE",
+      "Mission in one sentence",
+      "Read order — mandatory",
+      "Working directories",
+      "Dedicated branch",
+      "One human gate, by design",
+      "Non-pass outcomes are legitimate",
+      "Critical rule after any code change",
+      "Fresh-main lock before autonomous work",
+      "Phase -1 workspace hygiene",
+      "VM bootstrap comes first",
+      "Benchmark integrity lock",
+      "Canonical MESA runtime lock",
+      "Initial full read, then phase-scoped reads"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-e2e-system-model-en",
+    "url": "docs/e2e/system-model/",
+    "title": "System Model & Non-Negotiables",
+    "section": "Docs · MESA E2E Certification",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification System Model & Non-Negotiables documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "02 — SYSTEM MODEL AND NON-NEGOTIABLES",
+      "Product boundary",
+      "What Profile B is for",
+      "Invariants",
+      "Evidence hierarchy",
+      "Truth over automation"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-e2e-system-model-tr",
+    "url": "tr/docs/e2e/system-model/",
+    "title": "Sistem Modeli ve Esnetilemezler",
+    "section": "Docs · MESA E2E Sertifikasyonu",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Sistem Modeli ve Esnetilemezler documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "02 — SYSTEM MODEL AND NON-NEGOTIABLES",
+      "Product boundary",
+      "What Profile B is for",
+      "Invariants",
+      "Evidence hierarchy",
+      "Truth over automation"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-e2e-gates-and-verdicts-en",
+    "url": "docs/e2e/gates-and-verdicts/",
+    "title": "Profile B Objective Gates",
+    "section": "Docs · MESA E2E Certification",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Profile B Objective Gates documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "06 — PROFILE B OBJECTIVE, HARD GATES AND VERDICTS",
+      "Primary objective",
+      "Hard gates",
+      "Benchmark composition",
+      "Retrieval thresholds",
+      "Answer thresholds",
+      "Graph hard evidence",
+      "Allowed final verdicts",
+      "PROFILEBPASSNATIVE",
+      "PROFILEBFAIL",
+      "PROFILEBBLOCKEDPRECONDITION",
+      "PROFILEBBLOCKEDEXTERNAL",
+      "PROFILEBDIAGNOSTICBRIDGEONLY",
+      "PROFILEBABORTEDHUMANGATE",
+      "Forbidden verdict inflation",
+      "Integrity is a hard prerequisite"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-e2e-gates-and-verdicts-tr",
+    "url": "tr/docs/e2e/gates-and-verdicts/",
+    "title": "Profil B Hedef Kapıları",
+    "section": "Docs · MESA E2E Sertifikasyonu",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Profil B Hedef Kapıları documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "06 — PROFILE B OBJECTIVE, HARD GATES AND VERDICTS",
+      "Primary objective",
+      "Hard gates",
+      "Benchmark composition",
+      "Retrieval thresholds",
+      "Answer thresholds",
+      "Graph hard evidence",
+      "Allowed final verdicts",
+      "PROFILEBPASSNATIVE",
+      "PROFILEBFAIL",
+      "PROFILEBBLOCKEDPRECONDITION",
+      "PROFILEBBLOCKEDEXTERNAL",
+      "PROFILEBDIAGNOSTICBRIDGEONLY",
+      "PROFILEBABORTEDHUMANGATE",
+      "Forbidden verdict inflation",
+      "Integrity is a hard prerequisite"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "doc-e2e-contract-en",
+    "url": "docs/e2e/contract/",
+    "title": "Data to Core Contract",
+    "section": "Docs · MESA E2E Certification",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Data to Core Contract documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "09 — NATIVE MESADATA → MESA CONTRACT",
+      "Definition of native",
+      "Required semantic lifecycle",
+      "Archive mismatch to recheck",
+      "Repair strategy if still mismatched",
+      "Identity mapping rules",
+      "Live compatibility regression",
+      "Full delivery gate"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-e2e-contract-tr",
+    "url": "tr/docs/e2e/contract/",
+    "title": "Data - Core Sözleşmesi",
+    "section": "Docs · MESA E2E Sertifikasyonu",
+    "category": "MESA E2E Certification",
+    "summary": "MESA E2E Certification Data - Core Sözleşmesi documentation (Profile-B-v1.0)",
+    "keywords": [
+      "e2e",
+      "docs",
+      "Profile-B-v1.0",
+      "09 — NATIVE MESADATA → MESA CONTRACT",
+      "Definition of native",
+      "Required semantic lifecycle",
+      "Archive mismatch to recheck",
+      "Repair strategy if still mismatched",
+      "Identity mapping rules",
+      "Live compatibility regression",
+      "Full delivery gate"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-home-en",
+    "url": "",
+    "title": "MESA — Evidence-Aware Memory Infrastructure",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.",
+    "keywords": [
+      "home",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-home-tr",
+    "url": "tr/",
+    "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA, yapay zekâ sistemlerinin hatırladıklarıyla birlikte kaynak kanıtını, ilişkileri ve veri kapsamını koruyan açık kaynaklı hafıza altyapısıdır.",
+    "keywords": [
+      "home",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-mesa-en",
+    "url": "mesa/",
+    "title": "MESA Core — Structured, Evidence-Aware Agent Memory",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces.",
+    "keywords": [
+      "mesa",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-mesa-tr",
+    "url": "tr/mesa/",
+    "title": "MESA Core — Yapılandırılmış, Kanıt Odaklı Ajan Hafızası",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Core'un kalıcı hafıza yaşam döngüsünü, kapsamlı geri getirmeyi, kaynak izini, depolama projeksiyonlarını, API, SDK ve MCP yüzeylerini inceleyin.",
+    "keywords": [
+      "mesa",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-howItWorks-en",
+    "url": "how-it-works/",
+    "title": "How MESA Works — From Source to Evidence-Aware Context",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.",
+    "keywords": [
+      "howItWorks",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-howItWorks-tr",
+    "url": "tr/how-it-works/",
+    "title": "MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin.",
+    "keywords": [
+      "howItWorks",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-ecosystem-en",
+    "url": "ecosystem/",
+    "title": "MESA Ecosystem — Data, Memory, Quality, and Applications",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Understand how MESA Data, Core, QA, E2E Certification, and MESA Law connect through explicit system boundaries.",
+    "keywords": [
+      "ecosystem",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-ecosystem-tr",
+    "url": "tr/ecosystem/",
+    "title": "MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Data, Core, QA, E2E Certification ve MESA Law bileşenlerinin açık sistem sınırları üzerinden nasıl bağlandığını anlayın.",
+    "keywords": [
+      "ecosystem",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-data-en",
+    "url": "data/",
+    "title": "MESA Data — Auditable Turkish Legal Data",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "MESA Data preserves, canonicalizes, reviews, and publishes Turkish legal-source releases through an auditable pipeline.",
+    "keywords": [
+      "data",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-data-tr",
+    "url": "tr/data/",
+    "title": "MESA Data — Denetlenebilir Türkiye Hukuk Verisi",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Data, Türkiye hukuk kaynaklarını denetlenebilir bir işlem hattında korur, kanonikleştirir, inceler ve sürüm olarak yayımlar.",
+    "keywords": [
+      "data",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-qa-en",
+    "url": "qa/",
+    "title": "MESA QA — Detached Correctness and Endurance Testing",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "MESA QA tests memory correctness, temporal behavior, cross-session persistence, and restart durability outside the baseline checkout.",
+    "keywords": [
+      "qa",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-qa-tr",
+    "url": "tr/qa/",
+    "title": "MESA QA — Ayrık Doğruluk ve Dayanıklılık Testleri",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA QA, temel çalışma ağacının dışında hafıza doğruluğunu, zamansal davranışı, oturumlar arası kalıcılığı ve yeniden başlatma dayanıklılığını sınar.",
+    "keywords": [
+      "qa",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-certification-en",
+    "url": "certification/",
+    "title": "MESA E2E Certification — Profile B Scope and Status",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Review the evidence contract, limits, and current blocked status of the MESA Data to MESA legal Profile B certification path.",
+    "keywords": [
+      "certification",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-certification-tr",
+    "url": "tr/certification/",
+    "title": "MESA E2E Certification — Profile B Kapsamı ve Durumu",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Data'dan MESA'ya uzanan hukuk Profile B sertifikasyon yolunun kanıt sözleşmesini, sınırlarını ve mevcut engelli durumunu inceleyin.",
+    "keywords": [
+      "certification",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-law-en",
+    "url": "law/",
+    "title": "MESA Law — Evidence-Aware Legal Workflow",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "MESA Law is a legal matter and document workflow that integrates with MESA Core through a versioned HTTP boundary.",
+    "keywords": [
+      "law",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-law-tr",
+    "url": "tr/law/",
+    "title": "MESA Law — Kanıt Odaklı Hukuk İş Akışı",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Law, MESA Core ile sürümlenmiş bir HTTP sınırı üzerinden bütünleşen hukuk dosyası ve belge iş akışıdır.",
+    "keywords": [
+      "law",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-useCases-en",
+    "url": "use-cases/",
+    "title": "MESA Use Cases — Structured Memory Where Evidence Matters",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Explore realistic evaluation scenarios for MESA, including agent memory, knowledge-heavy assistants, and provenance-sensitive workflows.",
+    "keywords": [
+      "useCases",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-useCases-tr",
+    "url": "tr/use-cases/",
+    "title": "MESA Kullanım Alanları — Kanıtın Önemli Olduğu Yapılandırılmış Hafıza",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "Ajan hafızası, bilgi yoğun asistanlar ve kaynak izine duyarlı iş akışları dahil MESA için gerçekçi değerlendirme senaryolarını inceleyin.",
+    "keywords": [
+      "useCases",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-evaluation-en",
+    "url": "evaluation/",
+    "title": "MESA Evaluation & Trust — QA, Evidence, and Certification",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Understand the distinct roles of MESA QA and E2E Certification, current evidence, blocked gates, and publication limits.",
+    "keywords": [
+      "evaluation",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-evaluation-tr",
+    "url": "tr/evaluation/",
+    "title": "MESA Değerlendirme ve Güven — QA, Kanıt ve Sertifikasyon",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın.",
+    "keywords": [
+      "evaluation",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-mcp-en",
+    "url": "docs/mcp/",
+    "title": "MESA MCP Integration — Direct Server and V4 Gateway",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Compare MESA's legacy direct MCP server with the current V4 gateway and binding-scoped bridge integration path.",
+    "keywords": [
+      "mcp",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-mcp-tr",
+    "url": "tr/docs/mcp/",
+    "title": "MESA MCP Entegrasyonu — Doğrudan Sunucu ve V4 Gateway",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA'nın eski doğrudan MCP sunucusunu güncel V4 gateway ve bağlama kapsamlı köprü entegrasyon yolu ile karşılaştırın.",
+    "keywords": [
+      "mcp",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-status-en",
+    "url": "status/",
+    "title": "MESA Project Status — Release and Certification",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness.",
+    "keywords": [
+      "status",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-status-tr",
+    "url": "tr/status/",
+    "title": "MESA Proje Durumu — Sürüm ve Sertifikasyon",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA Core olgunluğu, Profile B sertifikasyon engelleri, tarihsel kanıt durumu ve üretime hazırlık hakkında güncel bilgi.",
+    "keywords": [
+      "status",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-about-en",
+    "url": "about/",
+    "title": "About MESA — Open-Source Evidence-Aware Memory",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Learn why MESA exists, how the public multi-repository project is maintained, and where to inspect source or open an issue.",
+    "keywords": [
+      "about",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-about-tr",
+    "url": "tr/about/",
+    "title": "MESA Hakkında — Açık Kaynaklı Kanıt Odaklı Hafıza",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA'nın neden var olduğunu, çok depolu açık kaynak projenin nasıl sürdürüldüğünü ve kaynak kodunun nerede inceleneceğini öğrenin.",
+    "keywords": [
+      "about",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-faq-en",
+    "url": "faq/",
+    "title": "MESA FAQ — Architecture, Interfaces, Scope, and Status",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Direct answers about MESA, vector search, RAG, provenance, MCP, local operation, MESA Law, QA, certification, and production status.",
+    "keywords": [
+      "faq",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-faq-tr",
+    "url": "tr/faq/",
+    "title": "MESA SSS — Mimari, Arayüzler, Kapsam ve Durum",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar.",
+    "keywords": [
+      "faq",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  }
+]

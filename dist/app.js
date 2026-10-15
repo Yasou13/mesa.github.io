@@ -75,3 +75,217 @@ document.querySelectorAll('.scene-media__video').forEach((video) => {
   }
   video.play().catch(() => layer?.setAttribute('data-media-state', 'paused'));
 });
+
+/* ====================================================================
+   MESA Static Search Modal & Documentation Sidebar
+   ==================================================================== */
+
+let searchIndexData = null;
+let searchIndexLoading = false;
+let searchModalBackdrop = null;
+let searchInput = null;
+let searchResultsList = null;
+let selectedResultIndex = -1;
+
+function createSearchModal() {
+  if (searchModalBackdrop) return;
+  const placeholder = isTurkish ? 'Makale veya doküman ara...' : 'Search articles and documentation...';
+  const emptyText = isTurkish ? 'Eşleşen sonuç bulunamadı.' : 'No matching results found.';
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'search-modal-backdrop';
+  backdrop.setAttribute('role', 'dialog');
+  backdrop.setAttribute('aria-modal', 'true');
+  backdrop.setAttribute('aria-label', isTurkish ? 'Arama' : 'Search');
+
+  backdrop.innerHTML = `
+    <div class="search-modal-dialog">
+      <div class="search-input-wrapper">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" class="search-input" placeholder="${placeholder}" aria-label="${placeholder}" autocomplete="off" spellcheck="false">
+        <kbd class="search-shortcut">ESC</kbd>
+      </div>
+      <ul class="search-results-list" role="listbox">
+        <li class="search-result-empty">${isTurkish ? 'Aramak için yazın...' : 'Type to search...'}</li>
+      </ul>
+    </div>
+  `;
+
+  document.body.appendChild(backdrop);
+  searchModalBackdrop = backdrop;
+  searchInput = backdrop.querySelector('.search-input');
+  searchResultsList = backdrop.querySelector('.search-results-list');
+
+  // Close when clicking backdrop
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeSearchModal();
+  });
+
+  // Search input typing
+  searchInput.addEventListener('input', () => {
+    performSearch(searchInput.value.trim());
+  });
+
+  // Keyboard navigation inside search
+  searchInput.addEventListener('keydown', (e) => {
+    const items = searchResultsList.querySelectorAll('.search-result-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!items.length) return;
+      selectedResultIndex = (selectedResultIndex + 1) % items.length;
+      updateActiveResult(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!items.length) return;
+      selectedResultIndex = (selectedResultIndex - 1 + items.length) % items.length;
+      updateActiveResult(items);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (selectedResultIndex >= 0 && items[selectedResultIndex]) {
+        const link = items[selectedResultIndex].querySelector('a');
+        if (link) link.click();
+      }
+    } else if (e.key === 'Escape') {
+      closeSearchModal();
+    }
+  });
+}
+
+function updateActiveResult(items) {
+  items.forEach((item, idx) => {
+    item.classList.toggle('active', idx === selectedResultIndex);
+    if (idx === selectedResultIndex) {
+      item.scrollIntoView({ block: 'nearest' });
+    }
+  });
+}
+
+async function loadSearchIndex() {
+  if (searchIndexData) return searchIndexData;
+  if (searchIndexLoading) return;
+  searchIndexLoading = true;
+
+  try {
+    // Determine relative path to search-index.json from current page location
+    const depth = window.location.pathname.split('/').filter(Boolean).length;
+    const base = depth ? '../'.repeat(depth) : './';
+    const res = await fetch(`${base}search-index.json`);
+    if (res.ok) {
+      searchIndexData = await res.json();
+    }
+  } catch (err) {
+    console.warn('Could not load search index', err);
+  } finally {
+    searchIndexLoading = false;
+  }
+  return searchIndexData;
+}
+
+function openSearchModal() {
+  createSearchModal();
+  searchModalBackdrop.classList.add('open');
+  searchInput.value = '';
+  selectedResultIndex = -1;
+  searchInput.focus();
+  loadSearchIndex();
+}
+
+function closeSearchModal() {
+  if (!searchModalBackdrop) return;
+  searchModalBackdrop.classList.remove('open');
+}
+
+function performSearch(query) {
+  if (!query) {
+    searchResultsList.innerHTML = `<li class="search-result-empty">${isTurkish ? 'Aramak için yazın...' : 'Type to search...'}</li>`;
+    selectedResultIndex = -1;
+    return;
+  }
+
+  if (!searchIndexData) {
+    searchResultsList.innerHTML = `<li class="search-result-empty">${isTurkish ? 'Dizin yükleniyor...' : 'Loading index...'}</li>`;
+    return;
+  }
+
+  const lang = isTurkish ? 'tr' : 'en';
+  const q = query.toLowerCase();
+
+  const results = searchIndexData
+    .filter((item) => (item.language === lang || !item.language) && (
+      item.title.toLowerCase().includes(q) ||
+      (item.summary && item.summary.toLowerCase().includes(q)) ||
+      (item.section && item.section.toLowerCase().includes(q)) ||
+      (item.keywords && item.keywords.some((k) => k.toLowerCase().includes(q)))
+    ))
+    .slice(0, 10);
+
+  if (!results.length) {
+    searchResultsList.innerHTML = `<li class="search-result-empty">${isTurkish ? 'Eşleşen sonuç bulunamadı.' : 'No matching results found.'}</li>`;
+    selectedResultIndex = -1;
+    return;
+  }
+
+  // Calculate relative base
+  const depth = window.location.pathname.split('/').filter(Boolean).length;
+  const base = depth ? '../'.repeat(depth) : './';
+
+  searchResultsList.innerHTML = results.map((item, idx) => {
+    const itemHref = `${base}${item.url}`;
+    return `<li class="search-result-item${idx === 0 ? ' active' : ''}" role="option">
+      <a href="${itemHref}">
+        <div class="search-result-meta">
+          <span class="search-result-section">${escapeText(item.section || 'MESA')}</span>
+        </div>
+        <div class="search-result-title">${escapeText(item.title)}</div>
+        ${item.summary ? `<div class="search-result-summary">${escapeText(item.summary)}</div>` : ''}
+      </a>
+    </li>`;
+  }).join('');
+
+  selectedResultIndex = 0;
+}
+
+function escapeText(str) {
+  return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+}
+
+// Global Search Keyboard Shortcuts
+document.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    if (searchModalBackdrop?.classList.contains('open')) {
+      closeSearchModal();
+    } else {
+      openSearchModal();
+    }
+  } else if (e.key === 'Escape' && searchModalBackdrop?.classList.contains('open')) {
+    closeSearchModal();
+  }
+});
+
+// Search Trigger buttons in Header
+document.querySelectorAll('.search-trigger').forEach((btn) => {
+  btn.addEventListener('click', () => openSearchModal());
+});
+
+// Delegate copy button for dynamically rendered code blocks
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.copy-button');
+  if (!btn) return;
+  const targetId = btn.dataset.copyTarget;
+  if (!targetId) return;
+  const target = document.getElementById(targetId);
+  const text = target?.innerText || '';
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = labels.copied;
+  } catch {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(target);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    btn.textContent = labels.selected;
+  }
+  window.setTimeout(() => { btn.textContent = labels.copy; }, 4000);
+});
