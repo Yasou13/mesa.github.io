@@ -33,4 +33,39 @@ git diff --check
 
 Results: static PASS (74 localized routes, 75 HTML files, 3,466 internal / 967 external references). Browser PASS after resolving the two observed overflow causes: all 74 routes, Home in both languages at 320/390/768/1024/1440/1920, representative Core/Law/Docs/article mobile views, image decode, one main/h1, mobile menu open/Escape-close. Visually inspected the shared styles on home, Core, Law, and article screenshots. Screenshot capture and bilingual width coverage were added to the existing dependency-free browser checker. No performance score, screen-reader pass, Safari result, or user-comprehension result is claimed.
 
-Phase 3 and Phase 4 completion details will be recorded as their implementation is validated.
+Phase 2 commit: `192abda`.
+
+## Phase 3 — bilingual homepage composition
+
+Implemented exactly six main sections: explicit AI-memory hero, short problem bridge, compact verified memory example, four-step memory lifecycle, ecosystem overview, and intent-based Learn/Docs/Law destinations. Preserved `#the-problem`, `#why-mesa`, `#mesa-in-action`, `#how-it-works`, and `#ecosystem`. Home uses a compact footer variant; other page footer behavior is unchanged. Readiness is dated from `site-data.json` (2026-10-01); no status claim was refreshed.
+
+The fixture retains Alice/knows/Aurora, source/document/chunk/span, four lane ranks, `4/61`, and the schema-aligned application context. Native details contains the expanded fields; the mocked-vector/non-live-benchmark caveat remains visible when collapsed. The source link pins the reviewed test at `7c03eff`. Generic Core architecture is distinguished from the legal Data → Core → Law example; QA is external and Profile B scope is explicitly Data → Core, with certification blocked and live Law integration pending. No new interactive technical diagrams were implemented.
+
+Added 48 Turkish translations without relaxing the intentional-English allowlist. Updated the static checker to enforce the six-section contract, preserved anchors, evidence fields, and new truthful EN/TR copy. Browser checks now enforce the approved 390 px fixture-position/page-height budgets and exercise fixture disclosure plus mobile navigation in both languages.
+
+### Content preservation map
+
+| Condensed home material | Existing full explanation retained |
+| --- | --- |
+| Source/revision/chunk/evidence/pipeline/embedding identity | `/how-it-works/` “What travels with memory”; `/mesa/` lifecycle/storage sections; full fixture on How it works. |
+| Assertion/graph/SQL ownership and four retrieval origins | `/mesa/#retrieval`, physical stores, and How it works technical flow. |
+| Authorized tenant/workspace/dataset/agent/session binding | `/mesa/#security`; How it works scope explanation. |
+| Accepted/projected/retry/rejection/rollback/outcome state | Existing Core lifecycle/client contracts and How it works state row. |
+| Home evaluation scenarios | Existing `/use-cases/` scenarios and legal-reference section. |
+| Component ownership and validation layers | Existing `/ecosystem/`, `/qa/`, `/certification/`, `/evaluation/`. Home retains concise scope/limits. |
+| Large repeated closing introduction | Home retains safe-core/development caveat and all destination/footer links; full closing remains on other pages. |
+
+No detail-page content was deleted, rewritten, or moved into a new documentation system. Learn articles and `content/hub.json` were not edited.
+
+Validation executed: V1 syntax/whitespace; V5 generated HTML refresh; V2 custom-domain build/check; V3 project/user builds/checks; V4 expanded Chrome checker. All pass. Static result: 74 localized routes, 75 HTML files, 3,474 internal / 961 external references. Visually inspected full desktop home, English/Turkish mobile home, and the compact specimen; manually pressed Enter on the native disclosure in the supported browser and confirmed visible ranks/score with no overflow.
+
+| 390 × 844 local Chrome layout | Captured baseline | Phase 3 |
+| --- | --- | --- |
+| English full page | 13,837 px | 6,558 px |
+| Turkish full page | 13,807 px | 6,617 px |
+| English fixture section begins | 7,085 px | 1,045 px |
+| Turkish fixture section begins | 7,052 px | 1,066 px |
+
+These fresh measurements differ slightly from the earlier planning audit's browser capture; comparisons above use the same checker/environment. Screenshots: `phase3/` in the persistent evidence directory. No five-person comprehension study or native-speaker review has been performed; those remain review tasks, not claimed passes.
+
+Phase 4 completion details will be recorded after asset integration and validation.

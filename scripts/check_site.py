@@ -35,6 +35,8 @@ MEDIA_DATA = json.loads(
     (Path(__file__).resolve().parents[1] / "content" / "media-scenes.json").read_text(encoding="utf-8")
 )
 REQUIRED_SCENES = ("event-horizon", "flyby", "deep-space", "connections", "structure")
+HOME_SCENES = ("event-horizon",)
+HOME_SECTIONS = ("hero", "problem", "example", "process", "ecosystem", "explore")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
     entry["path"]
     for entry in HUB_DATA["entries"]
@@ -75,6 +77,7 @@ class PageParser(HTMLParser):
         self.h1_count = 0
         self.heading_levels: list[int] = []
         self.scene_ids: list[str] = []
+        self.home_sections: list[str] = []
         self.scene_media: list[tuple[str, str | None, str | None]] = []
         self._in_title = False
         self._hidden_depth = 0
@@ -85,6 +88,8 @@ class PageParser(HTMLParser):
             self.html_lang = values.get("lang")
         if values.get("data-scene"):
             self.scene_ids.append(str(values["data-scene"]))
+        if values.get("data-home-section"):
+            self.home_sections.append(str(values["data-home-section"]))
         if values.get("data-scene-media"):
             self.scene_media.append(
                 (
@@ -278,10 +283,18 @@ def main() -> int:
         if page.name != "404.html" and len(parsed.visible_text) < 250:
             errors.append(f"insufficient static HTML content: {relative}")
         if relative in {Path("index.html"), Path("tr/index.html")}:
-            if tuple(parsed.scene_ids) != REQUIRED_SCENES:
+            if tuple(parsed.home_sections) != HOME_SECTIONS:
+                errors.append(f"homepage section order mismatch at {relative}: {parsed.home_sections}")
+            if tuple(parsed.scene_ids) != HOME_SCENES:
                 errors.append(f"homepage scene order mismatch at {relative}: {parsed.scene_ids}")
-            if tuple(item[0] for item in parsed.scene_media) != REQUIRED_SCENES:
+            if tuple(item[0] for item in parsed.scene_media) != HOME_SCENES:
                 errors.append(f"homepage media layer mismatch at {relative}: {parsed.scene_media}")
+            for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
+                if anchor not in parsed.ids:
+                    errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
+            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "7c03eff"):
+                if fixture_field not in parsed.visible_text:
+                    errors.append(f"missing homepage fixture evidence at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
                 if hidden != "true":
                     errors.append(f"scene media must be aria-hidden at {relative}: {scene_id}")
@@ -346,7 +359,7 @@ def main() -> int:
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "Memory with evidence" not in home_text or "MESA helps AI systems" not in home_text:
+    if "AI memory, with its evidence attached." not in home_text or "MESA is open-source memory infrastructure for AI systems." not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
@@ -371,7 +384,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("KANIT ODAKLI HAFIZA", "MESA yaklaşımı", "GELİŞTİRME DURUMU"),
+        "tr/": ("Yapay zekâ hafızası, dayandığı kanıtlarla birlikte.", "Bu testte vector arama sonuçları taklit edilir.", "GELİŞTİRME DURUMU"),
         "tr/how-it-works/": ("Altı adım", "Dört kaynak", "KALİTE KATMANLARI"),
         "tr/mesa/": ("Dört sinyal", "Graph path", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),

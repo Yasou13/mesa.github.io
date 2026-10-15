@@ -18,7 +18,8 @@ if (screenshotsDirectory) fs.mkdirSync(screenshotsDirectory, { recursive: true }
 const chrome = process.env.CHROME_BIN || 'google-chrome';
 const port = 9300 + (process.pid % 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mesa-browser-qa-'));
-const requiredScenes = ['event-horizon', 'flyby', 'deep-space', 'connections', 'structure'];
+const requiredScenes = ['event-horizon'];
+const requiredHomeSections = ['hero', 'problem', 'example', 'process', 'ecosystem', 'explore'];
 
 const routes = [
   ...Object.values(siteData.pages).map(({ path: routePath }) => routePath),
@@ -135,6 +136,7 @@ async function inspect(routePath, width) {
         heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
         brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).map((image) => image.currentSrc),
         scenes: [...document.querySelectorAll('[data-scene]')].map((node) => node.dataset.scene),
+        homeSections: [...document.querySelectorAll('[data-home-section]')].map((node) => node.dataset.homeSection),
         mediaLayers: [...document.querySelectorAll('[data-scene-media]')].map((node) => ({ id: node.dataset.sceneMedia, hidden: node.getAttribute('aria-hidden') })),
       };
     })()`,
@@ -150,8 +152,14 @@ async function inspect(routePath, width) {
   if (state.overflow > 1) failures.push(`${label}: horizontal overflow ${state.overflow}px`);
   if (state.brokenImages.length) failures.push(`${label}: broken images ${state.brokenImages.join(', ')}`);
   if (routePath === '' || routePath === 'tr/') {
+    if (JSON.stringify(state.homeSections) !== JSON.stringify(requiredHomeSections)) failures.push(`${label}: homepage section order ${state.homeSections.join(', ')}`);
     if (JSON.stringify(state.scenes) !== JSON.stringify(requiredScenes)) failures.push(`${label}: scene order ${state.scenes.join(', ')}`);
     if (state.mediaLayers.some(({ hidden }) => hidden !== 'true')) failures.push(`${label}: interactive media layer`);
+    if (width === 390) {
+      if (state.fixtureTop === null || state.fixtureTop > 1800) failures.push(`${label}: fixture starts too late (${state.fixtureTop}px)`);
+      const heightBudget = routePath === 'tr/' ? 10000 : 9000;
+      if (state.height > heightBudget) failures.push(`${label}: homepage exceeds ${heightBudget}px (${state.height}px)`);
+    }
   }
   const samplePages = ['mesa/', 'law/', 'docs/', 'learn/what-is-ai-memory/'];
   const unlocalized = routePath.replace(/^tr\//, '');
@@ -169,8 +177,8 @@ async function inspect(routePath, width) {
   }
 }
 
-async function checkMobileMenu() {
-  const url = new URL('', baseUrl).toString();
+async function checkMobileMenu(routePath = '') {
+  const url = new URL(routePath, baseUrl).toString();
   await connection.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: false });
   await connection.send('Page.navigate', { url });
   await waitForPage(url);
@@ -186,7 +194,29 @@ async function checkMobileMenu() {
     })()`,
     returnByValue: true,
   });
-  if (!result.value?.opened || !result.value?.closed) failures.push('mobile menu did not open and close with Escape');
+  if (!result.value?.opened || !result.value?.closed) failures.push(`/${routePath}: mobile menu did not open and close with Escape`);
+}
+
+async function checkMemoryDisclosure(routePath) {
+  const url = new URL(routePath, baseUrl).toString();
+  await connection.send('Page.navigate', { url });
+  await waitForPage(url);
+  const { result } = await connection.send('Runtime.evaluate', {
+    expression: `(() => {
+      const details = document.querySelector('.memory-example__details');
+      const summary = details.querySelector('summary');
+      summary.click();
+      const opened = details.open && details.querySelector('.memory-example__expanded').getBoundingClientRect().height > 0;
+      const score = details.querySelector('.fixture-score').textContent.includes('4 ÷ 61');
+      const ranks = [...details.querySelectorAll('.signal-list li')].length === 4;
+      const overflow = document.documentElement.scrollWidth - document.documentElement.clientWidth;
+      summary.click();
+      return { opened, closed: !details.open, score, ranks, overflow };
+    })()`, returnByValue: true,
+  });
+  if (!result.value?.opened || !result.value?.closed || !result.value?.score || !result.value?.ranks || result.value.overflow > 1) {
+    failures.push(`/${routePath}: compact fixture disclosure lost evidence or overflowed`);
+  }
 }
 
 try {
@@ -206,7 +236,10 @@ try {
     await inspect(routePath, 390);
     await inspect(`tr/${routePath}`, 390);
   }
-  await checkMobileMenu();
+  for (const routePath of ['', 'tr/']) {
+    await checkMobileMenu(routePath);
+    await checkMemoryDisclosure(routePath);
+  }
 
   if (failures.length) {
     console.error(`BROWSER QA FAIL (${failures.length})`);
