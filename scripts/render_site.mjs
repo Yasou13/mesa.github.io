@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { getAllDocRoutes, renderDocPage } from './render_docs.mjs';
+import { renderAdminPage } from './render_admin.mjs';
+import { writeSearchIndex } from './generate_search_index.mjs';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
@@ -145,6 +148,7 @@ function header(active = '') {
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
           ${nav.map(([key, label, path]) => `<a${active === key ? ' class="active" aria-current="page"' : ''} href="${route(path)}">${label}</a>`).join('')}
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
           ${languageControl()}
           ${external(repos.core, 'GitHub', 'nav-github')}
         </nav>
@@ -476,13 +480,14 @@ function faqPage() {
 
 function docsPage() {
   const groups = [
-    ['Start', [['Quickstart', docs.readme], ['Getting started', docs.gettingStarted], ['Installation', docs.installation], ['Current status', route('status/'), false]]],
-    ['Understand', [['V4 architecture', docs.architecture], ['Concepts & ingestion', docs.concepts], ['Retrieval & graph', docs.retrieval], ['How MESA works', route('how-it-works/'), false]]],
-    ['Build', [['Python SDK', docs.api], ['HTTP API', docs.api], ['OpenAPI specification', docs.openapi], ['MCP integration', route('docs/mcp/'), false]]],
-    ['Operate', [['Configuration & installation', docs.configuration], ['CLI reference', docs.cli], ['Rebuild & recovery runbook', docs.rebuild], ['Core lifecycle overview', route('mesa/'), false]]],
-    ['Trust', [['Security policy', docs.security], ['Performance & limitations', docs.limitations], ['Troubleshooting', docs.troubleshooting], ['Evaluation & trust', route('evaluation/'), false]]],
-    ['Reference', [['v0.8.0 Release notes', docs.releaseNotes], ['Migration to v0.8.0', docs.migration], ['Release policy', docs.releasePolicy], ['Ecosystem boundaries', route('ecosystem/'), false]]],
-    ['Contribute', [['Contributing guide', docs.contributing], ['Issue tracker', repos.issues], ['MESA QA repository', repos.qa]]]
+    ['Start', [['Quickstart', route('docs/core/'), false], ['Getting started', route('docs/core/getting-started/'), false], ['Installation', route('docs/core/installation/'), false], ['Current status', route('status/'), false]]],
+    ['Understand', [['V4 architecture', route('docs/core/architecture/'), false], ['Concepts & ingestion', route('docs/core/concepts-and-ingestion/'), false], ['Retrieval & graph', route('docs/core/retrieval-and-graph/'), false], ['How MESA works', route('how-it-works/'), false]]],
+    ['Build', [['Python SDK', route('docs/core/api-reference/'), false], ['HTTP API', route('docs/core/api-reference/'), false], ['OpenAPI specification', docs.openapi, true], ['MCP integration', route('docs/mcp/'), false]]],
+    ['Operate', [['Configuration & installation', route('docs/core/configuration/'), false], ['CLI reference', route('docs/core/cli-reference/'), false], ['Rebuild & recovery runbook', route('docs/core/rebuild-runbook/'), false], ['Core lifecycle overview', route('mesa/'), false]]],
+    ['Trust', [['Security policy', docs.security, true], ['Performance & limitations', route('docs/core/limitations/'), false], ['Troubleshooting', route('docs/core/troubleshooting/'), false], ['Evaluation & trust', route('evaluation/'), false]]],
+    ['Reference', [['v0.8.0 Release notes', route('docs/core/release-notes/'), false], ['Migration to v0.8.0', route('docs/core/migration/'), false], ['Release policy', docs.releasePolicy, true], ['Ecosystem boundaries', route('ecosystem/'), false]]],
+    ['Contribute', [['Contributing guide', docs.contributing, true], ['Issue tracker', repos.issues, true], ['MESA QA repository', repos.qa, true]]],
+    ['Ecosystem Docs', [['MESA Data Docs', route('docs/data/'), false], ['MESA Law Docs', route('docs/law/'), false], ['MESA QA Docs', route('docs/qa/'), false], ['E2E Certification', route('docs/e2e/'), false]]]
   ];
   return `${header('docs')}<main id="main-content"><section class="page-hero compact page-hero--functional docs-hero docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Find the contract.<br><em>Then run the code.</em></h1><p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p></section><section class="section docs-grid">${groups.map(([name, links], index) => `<section${index === 0 ? ' class="docs-start"' : ''}><p class="eyebrow">0${index + 1} / ${name}</p>${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}</section>`).join('')}</section>
     <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre id="install-code"><code>git clone https://github.com/Yasou13/MESA.git
@@ -964,7 +969,85 @@ for (const language of ['en', 'tr']) {
   }
 }
 
-const sitemapEntries = [...Object.values(siteData.pages), ...hubRoutes.map(({ path: routePath }) => ({ path: routePath }))]
+const docRoutes = getAllDocRoutes();
+
+for (const language of ['en', 'tr']) {
+  for (const item of docRoutes) {
+    const routePath = item.path;
+    const localizedPath = language === 'tr' ? `tr/${routePath}` : routePath;
+    currentLanguage = language;
+    currentPage = { path: routePath };
+    base = relativeBase(routePath);
+    assetBase = relativeBase(localizedPath);
+    alternateHref = language === 'en'
+      ? `${relativeBase(localizedPath)}tr/${routePath}`
+      : `${relativeBase(localizedPath)}${routePath}`;
+    const pageTitle = item.page.title[language] || item.page.title.en;
+    const repoTitle = item.repo.title[language] || item.repo.title.en;
+    const title = language === 'tr'
+      ? `${pageTitle} — MESA ${repoTitle} Dokümantasyonu`
+      : `${pageTitle} — MESA ${repoTitle} Documentation`;
+    const description = language === 'tr'
+      ? `${repoTitle} için ${pageTitle} teknik dokümantasyonu (${item.repo.version}).`
+      : `${pageTitle} documentation for ${repoTitle} (${item.repo.version}).`;
+    const canonical = `${siteUrl}${localizedPath}`;
+    const destination = path.join(outputDirectory, localizedPath, 'index.html');
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+
+    const crumbParent = language === 'tr' ? 'Dokümantasyon' : 'Docs';
+    const crumbParentUrl = `${siteUrl}${language === 'tr' ? 'tr/' : ''}docs/`;
+    const crumbRepo = repoTitle;
+    const crumbRepoUrl = `${siteUrl}${language === 'tr' ? 'tr/' : ''}${item.repo.base_route}`;
+
+    const structuredNodes = [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: language === 'tr' ? 'Ana sayfa' : 'Home', item: language === 'tr' ? `${siteUrl}tr/` : siteUrl },
+          { '@type': 'ListItem', position: 2, name: crumbParent, item: crumbParentUrl },
+          { '@type': 'ListItem', position: 3, name: crumbRepo, item: crumbRepoUrl },
+          { '@type': 'ListItem', position: 4, name: pageTitle, item: canonical }
+        ]
+      },
+      {
+        '@type': 'TechArticle',
+        headline: pageTitle,
+        description,
+        inLanguage: language,
+        mainEntityOfPage: canonical,
+        author: { '@type': 'Organization', name: 'MESA Contributors' },
+        publisher: { '@type': 'Organization', name: 'MESA', url: siteUrl },
+        keywords: `${item.repoKey}, documentation, ${item.repo.version}`
+      }
+    ];
+
+    fs.writeFileSync(destination, documentShell({
+      title,
+      description,
+      canonical,
+      content: renderDocPage(item, language, {
+        base,
+        assetBase,
+        siteUrl,
+        headerHtml: header('docs'),
+        footerHtml: footer()
+      }),
+      language,
+      alternateUrls: { en: `${siteUrl}${routePath}`, tr: `${siteUrl}tr/${routePath}` },
+      assetBase: relativeBase(localizedPath),
+      pageType: 'article',
+      structuredNodes
+    }));
+  }
+}
+
+const allPublicRoutes = [
+  ...Object.values(siteData.pages),
+  ...hubRoutes.map(({ path: routePath }) => ({ path: routePath })),
+  ...docRoutes.map(({ path: routePath }) => ({ path: routePath }))
+];
+
+const sitemapEntries = allPublicRoutes
   .flatMap(({ path: routePath }) => [routePath, `tr/${routePath}`].map((localizedPath) => `  <url>
     <loc>${siteUrl}${localizedPath}</loc>
     <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}${routePath}" />
@@ -980,6 +1063,19 @@ fs.writeFileSync(
   path.join(outputDirectory, 'robots.txt'),
   `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
 );
+
+// Admin CMS page
+const adminHtml = renderAdminPage({ siteUrl, assetBase: basePath, version: project.version });
+const adminDistPath = path.join(outputDirectory, 'admin', 'index.html');
+fs.mkdirSync(path.dirname(adminDistPath), { recursive: true });
+fs.writeFileSync(adminDistPath, adminHtml);
+const distAdminPath = path.join(repositoryRoot, 'dist', 'admin', 'index.html');
+fs.mkdirSync(path.dirname(distAdminPath), { recursive: true });
+fs.writeFileSync(distAdminPath, adminHtml);
+
+// Search Index
+writeSearchIndex(outputDirectory);
+writeSearchIndex(path.join(repositoryRoot, 'dist'));
 
 base = basePath;
 assetBase = basePath;
@@ -997,4 +1093,4 @@ fs.writeFileSync(path.join(outputDirectory, '404.html'), documentShell({
   noIndex: true
 }));
 
-console.log(`Rendered ${(Object.keys(siteData.pages).length + hubRoutes.length) * 2} localized static routes and 404.html for ${siteUrl}`);
+console.log(`Rendered ${(allPublicRoutes.length) * 2} localized static routes, admin CMS, and 404.html for ${siteUrl}`);

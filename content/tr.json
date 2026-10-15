@@ -28,9 +28,11 @@
     "V4 REST API", "SQL ledger", "REST, sync/async SDK, MCP", "QA / SEQUENCE", "CERT / MANIFEST",
     "TRACE / 04", "Python · MesaV4Client", "“Alice”", "Alice", "knows", "Aurora",
     "source-chunk-1", "doc-1 / chunk-1", "subject", "predicate", "object", "document",
-    "doc-1", "chunk", "chunk-1", "span", "“Alice knows Aurora”", "vector", "assertion", "graph path"
+    "doc-1", "chunk", "chunk-1", "span", "“Alice knows Aurora”", "vector", "assertion", "graph path", "⌘K"
   ],
   "strings": {
+    "Search": "Ara",
+    "Search site (Ctrl+K)": "Sitede ara (Ctrl+K)",
     "OPEN-SOURCE AI MEMORY INFRASTRUCTURE": "AÇIK KAYNAKLI YAPAY ZEKÂ HAFIZASI",
     "AI memory, with its evidence attached.": "Yapay zekâ hafızası, dayandığı kanıtlarla birlikte.",
     "MESA is open-source memory infrastructure for AI systems. It keeps information connected to its sources, relationships, and authorized data scope.": "MESA, yapay zekâ sistemleri için açık kaynaklı bir hafıza altyapısıdır. Bilgiyi kaynakları, ilişkileri ve yetkili veri kapsamıyla bağlantılı tutar.",
@@ -239,6 +241,10 @@
     "Ecosystem boundaries": "Ekosistem sınırları",
     "Release status": "Sürüm durumu",
     "07 / Contribute": "07 / KATKI",
+    "08 / Ecosystem Docs": "08 / EKOSİSTEM DOKÜMANLARI",
+    "MESA Data Docs": "MESA Data Dokümantasyonu",
+    "MESA Law Docs": "MESA Law Dokümantasyonu",
+    "MESA QA Docs": "MESA QA Dokümantasyonu",
     "Contributing guide": "Katkı kılavuzu",
     "Issue tracker": "Issue takibi",
     "MESA QA repository": "MESA QA deposu",

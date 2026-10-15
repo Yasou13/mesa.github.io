@@ -48,7 +48,20 @@ HUB_ENTRY_ROUTES = {
     if entry.get("indexable") and not entry.get("draft")
 }
 HUB_SECTION_ROUTES = {section["path"] for section in HUB_DATA["sections"]}
-ROUTES = CORE_ROUTES + HUB_ROUTES
+
+DOCS_MANIFEST_FILE = Path(__file__).resolve().parents[1] / "content" / "docs" / "manifest.json"
+if DOCS_MANIFEST_FILE.is_file():
+    DOCS_MANIFEST = json.loads(DOCS_MANIFEST_FILE.read_text(encoding="utf-8"))
+    DOC_ROUTES = tuple(
+        page["route"]
+        for repo in DOCS_MANIFEST.get("repositories", {}).values()
+        for page in repo.get("pages", [])
+    )
+else:
+    DOC_ROUTES = ()
+DOC_ENTRY_ROUTES = set(DOC_ROUTES)
+
+ROUTES = CORE_ROUTES + HUB_ROUTES + DOC_ROUTES
 LOCALIZED_ROUTES = ROUTES + tuple(f"tr/{route}" for route in ROUTES)
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
@@ -240,24 +253,25 @@ def main() -> int:
 
     for page, parsed in parsed_pages.items():
         relative = page.relative_to(root)
+        is_exempt = page.name == "404.html" or str(relative) == "admin/index.html"
         text = page.read_text(encoding="utf-8")
         if not parsed.title:
             errors.append(f"missing title: {relative}")
-        elif parsed.title in titles and page.name != "404.html":
+        elif parsed.title in titles and not is_exempt:
             errors.append(f"duplicate title: {relative}")
         titles.add(parsed.title)
         if not parsed.description:
             errors.append(f"missing description: {relative}")
-        elif parsed.description in descriptions and page.name != "404.html":
+        elif parsed.description in descriptions and not is_exempt:
             errors.append(f"duplicate description: {relative}")
         descriptions.add(parsed.description or "")
         expected_language = "tr" if str(relative).startswith("tr/") else "en"
-        if page.name != "404.html" and parsed.html_lang != expected_language:
+        if not is_exempt and parsed.html_lang != expected_language:
             errors.append(f"incorrect html lang at {relative}: {parsed.html_lang}")
         expected_locale = "tr_TR" if expected_language == "tr" else "en_US"
-        if page.name != "404.html" and parsed.og_locale != expected_locale:
+        if not is_exempt and parsed.og_locale != expected_locale:
             errors.append(f"incorrect og:locale at {relative}: {parsed.og_locale}")
-        if not all(
+        if not is_exempt and not all(
             (
                 parsed.canonical,
                 parsed.og_title,
@@ -271,15 +285,15 @@ def main() -> int:
             )
         ):
             errors.append(f"incomplete social/canonical metadata: {relative}")
-        if parsed.canonical != parsed.og_url:
+        if not is_exempt and parsed.canonical != parsed.og_url:
             errors.append(f"canonical/og:url mismatch: {relative}")
-        if parsed.og_image != parsed.twitter_image:
+        if not is_exempt and parsed.og_image != parsed.twitter_image:
             errors.append(f"Open Graph/Twitter image mismatch: {relative}")
-        if parsed.main_count != 1:
+        if not is_exempt and parsed.main_count != 1:
             errors.append(f"expected one main element: {relative}")
-        if parsed.h1_count != 1:
+        if not is_exempt and parsed.h1_count != 1:
             errors.append(f"expected one h1: {relative}")
-        if parsed.heading_levels and parsed.heading_levels[0] != 1:
+        if not is_exempt and parsed.heading_levels and parsed.heading_levels[0] != 1:
             errors.append(f"first heading is not h1: {relative}")
         for previous, current in zip(
             parsed.heading_levels, parsed.heading_levels[1:], strict=False
@@ -288,7 +302,7 @@ def main() -> int:
                 errors.append(
                     f"heading level jumps from h{previous} to h{current}: {relative}"
                 )
-        if page.name != "404.html" and len(parsed.visible_text) < 250:
+        if not is_exempt and len(parsed.visible_text) < 250:
             errors.append(f"insufficient static HTML content: {relative}")
         if relative in {Path("index.html"), Path("tr/index.html")}:
             if tuple(parsed.home_sections) != HOME_SECTIONS:
@@ -315,7 +329,9 @@ def main() -> int:
         json_ld_match = re.search(
             r'<script type="application/ld\+json">(.*?)</script>', text, re.DOTALL
         )
-        if not json_ld_match:
+        if is_exempt:
+            pass
+        elif not json_ld_match:
             errors.append(f"missing JSON-LD: {relative}")
         else:
             try:
@@ -330,12 +346,14 @@ def main() -> int:
                 route_name = str(relative).removesuffix("index.html")
                 unlocalized_route = route_name.removeprefix("tr/")
                 if (
-                    unlocalized_route in HUB_SECTION_ROUTES | HUB_ENTRY_ROUTES
+                    unlocalized_route in HUB_SECTION_ROUTES | HUB_ENTRY_ROUTES | DOC_ENTRY_ROUTES
                     and "BreadcrumbList" not in schema_types
                 ):
                     errors.append(f"missing BreadcrumbList JSON-LD: {relative}")
                 if unlocalized_route in HUB_ENTRY_ROUTES and "Article" not in schema_types:
                     errors.append(f"missing Article JSON-LD: {relative}")
+                if unlocalized_route in DOC_ENTRY_ROUTES and not ({"Article", "TechArticle"} & schema_types):
+                    errors.append(f"missing TechArticle JSON-LD: {relative}")
             except (json.JSONDecodeError, AttributeError):
                 errors.append(f"invalid JSON-LD: {relative}")
         for marker in FORBIDDEN:
