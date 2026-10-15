@@ -27,7 +27,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../assets/mesa-logo.png?v=380db352f920" type="image/png">
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="../../styles.css?v=ac65cf4d114b">
+  <link rel="stylesheet" href="../../styles.css?v=25c65287b8e7">
 </head>
 <body>
 <a class="skip-link" href="#main-content">İçeriğe geç</a>
@@ -39,6 +39,7 @@
         </button>
         <nav id="main-navigation" aria-label="Ana menü">
           <a href="../how-it-works/">Nasıl çalışır</a><a href="../ecosystem/">Ekosistem</a><a href="../use-cases/">Kullanım alanları</a><a href="../resources/">Kaynaklar</a><a href="../docs/">Dokümanlar</a>
+          <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><span>Ara</span><kbd class="search-shortcut">⌘K</kbd></button>
           <div class="language-switch" aria-label="Dil seçimi">
     <a lang="en" hreflang="en" href="../../evaluation/">EN<span class="sr-only"> · İngilizce</span></a>
     <span aria-hidden="true">/</span>
@@ -49,7 +50,7 @@
       </div>
     </header><main id="main-content"><section class="page-hero compact page-hero--evidence status-accent"><p class="eyebrow">DEĞERLENDİRME VE GÜVEN</p><h1>İki katman.<br><em>İki farklı soru.</em></h1><p>MESA, sürekli davranış testlerini profile özgü sertifikasyon kanıtından ayırır. İkisi de üretim kanıtının yerine geçiyormuş gibi sunulmaz.</p></section>
     <section class="section evaluation-compare"><article><p class="eyebrow">MESA QA</p><h2>Aday doğru davranmayı sürdürüyor mu?</h2><ul class="check-list"><li>hafıza doğruluğu ve bağımsız ground truth</li><li>zamansal güncellemeler, düzeltme ve unutma</li><li>oturumlar arası kalıcılık ve yeniden başlatma dayanıklılığı</li><li>sürdürülen dayanıklılık profilleri</li><li>otomatik merge veya push olmadan yalıtılmış aday onarımı</li></ul><a href="../qa/">MESA QA'yı inceleyin →</a></article><article><p class="eyebrow">E2E CERTIFICATION</p><h2>Bu tam profil gerekli garantilerini kanıtlayabiliyor mu?</h2><ul class="check-list"><li>dondurulmuş girdiler, kimlik ve kanıt bağları</li><li>yetkili çalışma zamanı, puanlama ve metrik üreticileri</li><li>katı kapılar ve bağımsız sonuçlandırma</li><li>profille sınırlandırılmış kanıt ve hükümler</li><li>eksik veya doğrulanmamış kapılarda hata durumunda kapanma</li></ul><a href="../certification/">Sertifikasyonu inceleyin →</a></article></section>
-    <section class="section trust-state"><div><p class="eyebrow">GÜNCEL KANIT DURUMU</p><h2>Test düzeneğinin bütünlüğü iyileştirildi.<br><em>Sertifikasyon hâlâ engelli.</em></h2></div><div><p>Bağımsız denetim yeniden üretilen bütünlük kusurlarını düzeltti ve hata durumunda kapanma davranışını doğruladı. Meşru ve başarılı bir çalışma zamanı sertifikasyon işlemi yürütmedi.</p><p>Güncel bir PASS için yetkili çalışma zamanı, ground-truth join, puanlama, sağlık ve zorunlu metrik üreticileri hâlâ mevcut değil.</p><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/main/reports/independent-audit/REPORT.md" target="_blank" rel="noopener noreferrer"><span>Bağımsız denetimi okuyun</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></section>
+    <section class="section trust-state"><div><p class="eyebrow">GÜNCEL KANIT DURUMU</p><h2>Test düzeneğinin bütünlüğü iyileştirildi.<br><em>Sertifikasyon hâlâ engelli.</em></h2></div><div><p>Bağımsız denetim yeniden üretilen bütünlük kusurlarını düzeltti ve hata durumunda kapanma davranışını doğruladı. Meşru ve başarılı bir çalışma zamanı sertifikasyon işlemi yürütmedi.</p><p>Güncel test düzeneği resmî yürütme, dondurulmuş ground-truth puanlaması ve metrik türetmeyi uyguluyor. Dış teslim/yeniden başlatma toplayıcıları, sağlayıcı doğrulaması ve yeni resmî çalışma henüz doğrulanmış değil.</p><a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md" target="_blank" rel="noopener noreferrer"><span>Bağımsız denetimi okuyun</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></section>
     <section class="section future-benchmarks"><p class="eyebrow">BENCHMARK YAYIMLAMA</p><h2>Yer tutucu sayı yok.</h2><p>Tarihsel veya sentetik tanı sonuçları güncel üretim garantileri olarak sunulmaz. Yayımlanabilir geri getirme kalitesi, gecikme, kaynak ve dayanıklılık sonuçları; geçerli sertifikasyonu ve açıkça tanımlanmış yöntemi izlemelidir.</p></section><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
@@ -69,6 +70,6 @@
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
     </footer></main>
-  <script src="../../app.js?v=2a0d40090a83"></script>
+  <script src="../../app.js?v=9507d446313d"></script>
 </body>
 </html>

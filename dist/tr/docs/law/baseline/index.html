@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MVP Temel Durumu — MESA MESA Law Dokümantasyonu</title>
+  <meta name="description" content="MESA Law için MVP Temel Durumu teknik dokümantasyonu (v0.1.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/law/baseline/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/law/baseline/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/law/baseline/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/law/baseline/">
+  <meta property="og:title" content="MVP Temel Durumu — MESA MESA Law Dokümantasyonu">
+  <meta property="og:description" content="MESA Law için MVP Temel Durumu teknik dokümantasyonu (v0.1.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/law/baseline/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVP Temel Durumu — MESA MESA Law Dokümantasyonu">
+  <meta name="twitter:description" content="MESA Law için MVP Temel Durumu teknik dokümantasyonu (v0.1.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Law için MVP Temel Durumu teknik dokümantasyonu (v0.1.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Law için MVP Temel Durumu teknik dokümantasyonu (v0.1.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"MESA Law","item":"https://mesamemory.dev/tr/docs/law/"},{"@type":"ListItem","position":4,"name":"MVP Temel Durumu","item":"https://mesamemory.dev/tr/docs/law/baseline/"}]},{"@type":"TechArticle","headline":"MVP Temel Durumu","description":"MESA Law için MVP Temel Durumu teknik dokümantasyonu (v0.1.0).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/law/baseline/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"law, documentation, v0.1.0"}]}</script>
+  <link rel="icon" href="../../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../../styles.css?v=25c65287b8e7">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../../docs/law/baseline/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../../docs/law/baseline/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Dokümantasyon gezintisi">
+    <details class="docs-navigation">
+      <summary>Belge gezintisi</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOKÜMANTASYON</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>GENEL BAKIŞ</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Dokümantasyon Merkezi</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/core/">Genel Bakış</a></li><li><a href="../../../docs/core/getting-started/">Başlarken</a></li><li><a href="../../../docs/core/installation/">Kurulum</a></li><li><a href="../../../docs/core/architecture/">Mimari V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Kavramlar ve Ingestion</a></li><li><a href="../../../docs/core/configuration/">Konfigürasyon</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval ve Çizge</a></li><li><a href="../../../docs/core/api-reference/">API Referansı</a></li><li><a href="../../../docs/core/cli-reference/">CLI Referansı</a></li><li><a href="../../../docs/core/migration/">v0.8.0 Geçişi</a></li><li><a href="../../../docs/core/release-notes/">Sürüm Notları v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/core/limitations/">Performans ve Sınırlılıklar</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Yeniden Derleme Kılavuzu</a></li><li><a href="../../../docs/core/audit/">Bağımsız Denetim</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Rehberi</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Genel Bakış</a></li><li><a href="../../../docs/data/quickstart/">Hızlı Başlangıç</a></li><li><a href="../../../docs/data/user-guide/">Kullanım Kılavuzu</a></li><li><a href="../../../docs/data/import-contract/">İçe Aktarma Sözleşmesi</a></li><li><a href="../../../docs/data/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Kapanış Raporu</a></li></ul></div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Sözleşme Genel Bakış</a></li><li><a href="../../../docs/law/operations/">Operasyon Rehberi</a></li><li><a href="../../../docs/law/verification/">Nihai Doğrulama</a></li><li><a href="../../../docs/law/baseline/" class="active" aria-current="page">MVP Temel Durumu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Genel Bakış</a></li><li><a href="../../../docs/qa/audit/">Güncel Bağımsız Denetim</a></li><li><a href="../../../docs/qa/repair-prompt/">Onarım Prompt Spesifikasyonu</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Yeniden Üretim Promptu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Sertifikasyonu</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Genel Bakış</a></li><li><a href="../../../docs/e2e/audit-report/">Bağımsız Denetim Raporu</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Ajan Paketi Başlangıç</a></li><li><a href="../../../docs/e2e/system-model/">Sistem Modeli ve Esnetilemezler</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profil B Hedef Kapıları</a></li><li><a href="../../../docs/e2e/contract/">Data - Core Sözleşmesi</a></li><li><a href="../../../docs/e2e/current-repair/">Güncel Onarımlar ve Engeller</a></li><li><a href="../../../docs/e2e/repair-verification/">Onarım Doğrulama Özeti</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum">
+    <ol>
+      <li><a href="../../../">Ana sayfa</a></li>
+      <li><a href="../../../docs/">Dokümantasyon</a></li>
+      <li><a href="../../../docs/law/">MESA Law</a></li>
+      <li aria-current="page">MVP Temel Durumu</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Law · v0.1.0</p>
+          <h1>MVP Temel Durumu</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.1.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-baseline.md" target="_blank" rel="noopener noreferrer">b791be27a5d9d2e0306057529f6a5dce222673a4</a></span>
+    <span class="docs-source-pill">source: <code>docs/mvp-baseline.md</code></span>
+  </div>
+          <p class="docs-language-notice">Gezinme Türkçedir; belge gövdesi kaynak deponun özgün dilinde korunur. Sürüm etiketi paket sürümüdür; sertifikasyon sonucu değildir.</p>
+          
+        </header>
+        <div class="docs-body">
+          <p>Recorded on 2026-08-01 before MVP implementation, at commit</p>
+<p><code class="inline-code">f2eb643b7c740eccfd4de5f8edb62b14305e713c</code>.</p>
+<h2 id="environment">Environment<a class="heading-anchor" href="#environment" aria-label="Link to section: Environment" title="Copy link to this section">#</a></h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Tool</th><th scope="col">Version</th></tr></thead><tbody><tr><th scope="row">Project Python</th><td>3.13.12</td></tr><tr><th scope="row">System Python</th><td>3.10.12</td></tr><tr><th scope="row">Node.js</th><td>24.14.0</td></tr><tr><th scope="row">pnpm</th><td>11.17.0</td></tr><tr><th scope="row">Docker</th><td>29.6.2</td></tr><tr><th scope="row">Alembic head</th><td><code class="inline-code">c150029e598e</code> (single head)</td></tr></tbody></table></div>
+<p>The host has 16 GB RAM and no GPU. Local model weights, GPU stacks, large</p>
+<p>datasets, and large new container images are outside the implementation</p>
+<p>budget.</p>
+<h2 id="initial-gates">Initial gates<a class="heading-anchor" href="#initial-gates" aria-label="Link to section: Initial gates" title="Copy link to this section">#</a></h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Gate</th><th scope="col">Result</th><th scope="col">Evidence</th></tr></thead><tbody><tr><th scope="row"><code class="inline-code">python -m compileall -q apps tests evaluation</code></th><td>PASS</td><td>Exit code 0</td></tr><tr><th scope="row"><code class="inline-code">ruff check apps tests</code></th><td>FAIL</td><td>99 violations</td></tr><tr><th scope="row"><code class="inline-code">ruff format --check apps tests</code></th><td>FAIL</td><td>101 files require formatting</td></tr><tr><th scope="row"><code class="inline-code">mypy apps</code></th><td>FAIL</td><td>65 errors in 24 files</td></tr><tr><th scope="row">Pytest</th><td>FAIL / BLOCKED</td><td>180 tests collected; dependency probe returns 401 and an RLS test waits for unavailable PostgreSQL</td></tr><tr><th scope="row">Frontend lint</th><td>PASS WITH WARNING</td><td>One warning</td></tr><tr><th scope="row">Frontend typecheck</th><td>FAIL</td><td><code class="inline-code">sonner</code> is imported but not installed</td></tr><tr><th scope="row">Frontend unit tests</th><td>FAIL</td><td>Timeline test renders no events</td></tr><tr><th scope="row">Frontend build</th><td>FAIL</td><td><code class="inline-code">next/font/google</code> attempts a network font download</td></tr><tr><th scope="row">OpenAPI drift</th><td>FAIL</td><td>Checked-in schema differs from the live FastAPI schema; one duplicate operation ID exists</td></tr><tr><th scope="row">Local test runner</th><td>FAIL-CLOSED VIOLATION</td><td>Ruff, Bandit, and Alembic failures are swallowed before an unconditional success message</td></tr></tbody></table></div>
+<p>These results establish <strong>NO-GO</strong>. A check that is skipped, times out, lacks a</p>
+<p>required service, or exits non-zero is not reported as passed.</p>
+<h2 id="external-integration-boundary">External integration boundary<a class="heading-anchor" href="#external-integration-boundary" aria-label="Link to section: External integration boundary" title="Copy link to this section">#</a></h2>
+<p>MESA Core v4 is referenced read-only from <code class="inline-code">/home/yasin/Desktop/MESA</code>, pinned to</p>
+<p>commit <code class="inline-code">c5901881fc414dfd3475c386d2c59bb461e65cd2</code> (version <code class="inline-code">0.7.1</code>). This project</p>
+<p>will not merge or modify that repository. If the only remaining release gate</p>
+<p>requires starting, building, downloading, or live-testing that external Core,</p>
+<p>the final status is <code class="inline-code">LAW-SIDE READY / OVERALL NO-GO</code>.</p>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/law/verification/"><span class="nav-dir">← Önceki</span><span class="nav-title">Nihai Doğrulama</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu belgede"><strong>Bu belgede</strong><ol><li class="toc-item"><a href="#environment">Environment</a></li><li class="toc-item"><a href="#initial-gates">Initial gates</a></li><li class="toc-item"><a href="#external-integration-boundary">External integration boundary</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-baseline.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../../app.js?v=9507d446313d"></script>
+</body>
+</html>

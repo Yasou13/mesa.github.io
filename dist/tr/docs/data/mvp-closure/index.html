@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MVP Kapanış Raporu — MESA MESA Data Dokümantasyonu</title>
+  <meta name="description" content="MESA Data için MVP Kapanış Raporu teknik dokümantasyonu (v0.1.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/data/mvp-closure/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/data/mvp-closure/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/data/mvp-closure/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/data/mvp-closure/">
+  <meta property="og:title" content="MVP Kapanış Raporu — MESA MESA Data Dokümantasyonu">
+  <meta property="og:description" content="MESA Data için MVP Kapanış Raporu teknik dokümantasyonu (v0.1.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/data/mvp-closure/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVP Kapanış Raporu — MESA MESA Data Dokümantasyonu">
+  <meta name="twitter:description" content="MESA Data için MVP Kapanış Raporu teknik dokümantasyonu (v0.1.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Data için MVP Kapanış Raporu teknik dokümantasyonu (v0.1.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Data için MVP Kapanış Raporu teknik dokümantasyonu (v0.1.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"MESA Data","item":"https://mesamemory.dev/tr/docs/data/"},{"@type":"ListItem","position":4,"name":"MVP Kapanış Raporu","item":"https://mesamemory.dev/tr/docs/data/mvp-closure/"}]},{"@type":"TechArticle","headline":"MVP Kapanış Raporu","description":"MESA Data için MVP Kapanış Raporu teknik dokümantasyonu (v0.1.0).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/data/mvp-closure/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"data, documentation, v0.1.0"}]}</script>
+  <link rel="icon" href="../../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../../styles.css?v=25c65287b8e7">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../../docs/data/mvp-closure/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../../docs/data/mvp-closure/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Dokümantasyon gezintisi">
+    <details class="docs-navigation">
+      <summary>Belge gezintisi</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOKÜMANTASYON</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>GENEL BAKIŞ</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Dokümantasyon Merkezi</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/core/">Genel Bakış</a></li><li><a href="../../../docs/core/getting-started/">Başlarken</a></li><li><a href="../../../docs/core/installation/">Kurulum</a></li><li><a href="../../../docs/core/architecture/">Mimari V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Kavramlar ve Ingestion</a></li><li><a href="../../../docs/core/configuration/">Konfigürasyon</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval ve Çizge</a></li><li><a href="../../../docs/core/api-reference/">API Referansı</a></li><li><a href="../../../docs/core/cli-reference/">CLI Referansı</a></li><li><a href="../../../docs/core/migration/">v0.8.0 Geçişi</a></li><li><a href="../../../docs/core/release-notes/">Sürüm Notları v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/core/limitations/">Performans ve Sınırlılıklar</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Yeniden Derleme Kılavuzu</a></li><li><a href="../../../docs/core/audit/">Bağımsız Denetim</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Rehberi</a></li></ul></div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Genel Bakış</a></li><li><a href="../../../docs/data/quickstart/">Hızlı Başlangıç</a></li><li><a href="../../../docs/data/user-guide/">Kullanım Kılavuzu</a></li><li><a href="../../../docs/data/import-contract/">İçe Aktarma Sözleşmesi</a></li><li><a href="../../../docs/data/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/data/mvp-closure/" class="active" aria-current="page">MVP Kapanış Raporu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Sözleşme Genel Bakış</a></li><li><a href="../../../docs/law/operations/">Operasyon Rehberi</a></li><li><a href="../../../docs/law/verification/">Nihai Doğrulama</a></li><li><a href="../../../docs/law/baseline/">MVP Temel Durumu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Genel Bakış</a></li><li><a href="../../../docs/qa/audit/">Güncel Bağımsız Denetim</a></li><li><a href="../../../docs/qa/repair-prompt/">Onarım Prompt Spesifikasyonu</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Yeniden Üretim Promptu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Sertifikasyonu</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Genel Bakış</a></li><li><a href="../../../docs/e2e/audit-report/">Bağımsız Denetim Raporu</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Ajan Paketi Başlangıç</a></li><li><a href="../../../docs/e2e/system-model/">Sistem Modeli ve Esnetilemezler</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profil B Hedef Kapıları</a></li><li><a href="../../../docs/e2e/contract/">Data - Core Sözleşmesi</a></li><li><a href="../../../docs/e2e/current-repair/">Güncel Onarımlar ve Engeller</a></li><li><a href="../../../docs/e2e/repair-verification/">Onarım Doğrulama Özeti</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum">
+    <ol>
+      <li><a href="../../../">Ana sayfa</a></li>
+      <li><a href="../../../docs/">Dokümantasyon</a></li>
+      <li><a href="../../../docs/data/">MESA Data</a></li>
+      <li aria-current="page">MVP Kapanış Raporu</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Data · v0.1.0</p>
+          <h1>MVP Kapanış Raporu</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.1.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_Data/blob/e1dc229e9de57c48374e38a87ec7786d1c7bd1f9/docs/MVP_CLOSURE_REPORT.md" target="_blank" rel="noopener noreferrer">e1dc229e9de57c48374e38a87ec7786d1c7bd1f9</a></span>
+    <span class="docs-source-pill">source: <code>docs/MVP_CLOSURE_REPORT.md</code></span>
+  </div>
+          <p class="docs-language-notice">Gezinme Türkçedir; belge gövdesi kaynak deponun özgün dilinde korunur. Sürüm etiketi paket sürümüdür; sertifikasyon sonucu değildir.</p>
+          <p class="docs-language-notice">Bu belge tarihli kaynak kanıtıdır. İçindeki test sonuçları bu site denetiminde yeniden çalıştırılmış sayılmaz.</p>
+        </header>
+        <div class="docs-body">
+          <p><strong>Date:</strong> 2026-08-12  </p>
+<p><strong>Git Revision:</strong> <code class="inline-code">9bc7e7edfc2a6ec317d740eb76b71b8e19c9e836</code>  </p>
+<p><strong>Environment:</strong> Ubuntu 22.04.5 LTS (Python 3.13.12, <code class="inline-code">uv</code> managed)  </p>
+<p><strong>Canonical Version:</strong> <code class="inline-code">0.1.0</code>  </p>
+<p><strong>MVP Decision:</strong> <strong>GO</strong>  </p>
+<p><strong>Freeze Ready:</strong> <strong>YES</strong> (<code class="inline-code">pilot_ready: true</code>)  </p>
+<hr class="article-divider">
+<h2 id="1-executive-summary">1. Executive Summary<a class="heading-anchor" href="#1-executive-summary" aria-label="Link to section: 1. Executive Summary" title="Copy link to this section">#</a></h2>
+<p>This report documents the final operational pass before permanent MVP feature freeze of the <strong>MESA Legal Data</strong> repository.</p>
+<p>All static verification (Ruff, Mypy, pip-audit) is 100% green. The full 211-test suite passes with zero failures.</p>
+<p>Key P0 correctness implementations completed:</p>
+<ol><li><strong>Human Review -&gt; Release Eligibility:</strong> Fixed <code class="inline-code">approve_version_streaming</code> so explicitly approving a version with <code class="inline-code">privacy_status=&#39;flagged&#39;</code> updates <code class="inline-code">privacy_status</code> to <code class="inline-code">&#39;approved&#39;</code>, making it eligible for release selection.</li><li><strong>Zero-Record Release Guard:</strong> Hardened <code class="inline-code">build_release()</code> so that building a release with 0 eligible legal records immediately fails with a domain <code class="inline-code">ReleaseBuildError</code>.</li><li><strong>Centralized Safe Publish:</strong> Created <code class="inline-code">publish_release()</code> domain function enforcing verified release state, re-verifying manifest SHA-256 trust anchor, and atomically updating status. Updated CLI, Web API, and real pilot to use this single function.</li><li><strong>Provenance Release Membership:</strong> <code class="inline-code">get_record_provenance()</code> now verifies actual membership in the active release via <code class="inline-code">staging_records</code> rather than falsely attributing global active release ID to arbitrary catalog records.</li><li><strong>Real Rollback State Transition:</strong> The pilot and staging importer now execute real state transitions between baseline and pilot releases.</li><li><strong>Operator Contact Enforcement:</strong> Automated HTTP fetches enforce operator contact configuration.</li></ol>
+<hr class="article-divider">
+<h2 id="2-tls-hygiene-trust-architecture">2. TLS Hygiene &amp; Trust Architecture<a class="heading-anchor" href="#2-tls-hygiene-trust-architecture" aria-label="Link to section: 2. TLS Hygiene &amp; Trust Architecture" title="Copy link to this section">#</a></h2>
+<ul><li><strong>Implementation:</strong> Dependency on <code class="inline-code">/tmp/combined_ca.pem</code> has been completely removed. The intermediate CA certificate (<code class="inline-code">GeoTrust TLS RSA CA G1</code>) is packaged inside <code class="inline-code">src/mesa_legal_data/certs/geotrust_tls_rsa_ca_g1.pem</code> and included in wheel packages via <code class="inline-code">pyproject.toml</code>.</li><li><strong>Fingerprint:</strong> <code class="inline-code">c06e307f7cfc1d32fa72a4c033c87b90019af216f0775d64978a2eca6c8a230e</code></li><li><strong>Trust Preservation:</strong> Default OS system CAs are preserved, and the packaged intermediate CA is loaded additively (<code class="inline-code">ctx.load_verify_locations(cafile=...)</code>).</li><li><strong>HTTPS Smoke Verification:</strong> Real un-mocked HTTPS GET to <code class="inline-code">https://www.resmigazete.gov.tr</code> succeeds with strict certificate and hostname verification.</li></ul>
+<hr class="article-divider">
+<h2 id="3-real-resmi-gazete-pilot-evidence">3. Real Resmî Gazete Pilot Evidence<a class="heading-anchor" href="#3-real-resmi-gazete-pilot-evidence" aria-label="Link to section: 3. Real Resmî Gazete Pilot Evidence" title="Copy link to this section">#</a></h2>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre id="code-block-1" class="language-text"><code>=== Starting Real Bounded Resmî Gazete Pilot in /tmp/tmpnob4ny1p/data ===
+✓ Initialized catalog, harvest, and staging databases with baseline release.
+✓ Attempting real HTTP discovery for date 2026-08-01...
+✓ Discovered 7 real documents.
+✓ Target real document: title=&#39;Resmî Gazete Belgesi&#39;, url=&#39;https://www.resmigazete.gov.tr/eskiler/2026/08/20260801.pdf&#39;
+✓ Enqueued real document item_id=1 (result=inserted).
+✓ Harvest batch completed: {&#39;processed&#39;: 1, &#39;succeeded&#39;: 1, &#39;failed&#39;: 0, &#39;retry_wait&#39;: 0, &#39;duplicate&#39;: 0, &#39;stopped_reason&#39;: None}
+✓ Harvest item status: needs_review, artifact_id: sha256:48db32e97727ba15f543f87d7b1b886f9b918a29a16bec3c05be1c2e0d43e758
+✓ Pipeline status: needs_review
+✓ Canonical records generated in catalog: 6
+✓ Version approval result: {&#39;status&#39;: &#39;approved&#39;, &#39;version_id&#39;: &#39;tr:legislation:unknown:rg-20260801:version:2026-08-11:48db32e9&#39;, &#39;approved_records&#39;: 6, &#39;approval_status&#39;: &#39;approved&#39;}
+✓ Harvest review status reconciled: True, status=completed
+✓ Built release: rel-rg-pilot-001, counts={&#39;legislation_count&#39;: 1, &#39;article_count&#39;: 0, &#39;decision_count&#39;: 0, &#39;citation_count&#39;: 5}, total=6
+✓ Verified release trust anchor: True
+✓ Published release via domain function: status=published, published_at=2026-08-11T00:24:50.800313+00:00
+✓ Active release before import: rel-baseline-000
+✓ Release imported into staging DB: status=imported, counts={&#39;legislation&#39;: 1, &#39;article&#39;: 0, &#39;decision&#39;: 0, &#39;citation&#39;: 5}, total=6
+✓ Active release after import: rel-rg-pilot-001
+✓ Re-imported release (idempotency check): status=already_imported
+✓ Tracked pilot record provenance for &#39;citation:sha256:0082104392646cfcefcc267d342e8a70947f365376fc4feaf574a1cb4389ed72&#39;:
+   - active_release_id: rel-rg-pilot-001
+   - in_active_release: True
+   - version_id: tr:legislation:unknown:rg-20260801:version:2026-08-11:48db32e9
+   - source_id: resmi_gazete
+   - source_url: https://www.resmigazete.gov.tr/eskiler/2026/08/20260801.pdf
+✓ Rollback executed: status=rolled_back
+✓ Active release after rollback: rel-baseline-000
+✓ Provenance post-rollback for &#39;citation:sha256:0082104392646cfcefcc267d342e8a70947f365376fc4feaf574a1cb4389ed72&#39;: active=rel-baseline-000, in_active=False
+
+=== REAL RESMÎ GAZETE PILOT COMPLETED SUCCESSFULLY ===</code></pre></div>
+<hr class="article-divider">
+<h2 id="4-verification-evidence-ci-performance">4. Verification Evidence &amp; CI Performance<a class="heading-anchor" href="#4-verification-evidence-ci-performance" aria-label="Link to section: 4. Verification Evidence &amp; CI Performance" title="Copy link to this section">#</a></h2>
+<ul><li><strong>Ruff Format Check:</strong> <code class="inline-code">uv run ruff format --check .</code> (Passed, 0 errors)</li><li><strong>Ruff Lint Check:</strong> <code class="inline-code">uv run ruff check .</code> (Passed, 0 errors)</li><li><strong>Mypy Type Check:</strong> <code class="inline-code">uv run mypy src</code> (Passed, 0 errors in 65 source files)</li><li><strong>Pytest Test Suite:</strong></li><li><strong>Fast Deterministic Suite:</strong> <code class="inline-code">uv run pytest -m &quot;not scale&quot; -ra --durations=20</code> (Passed, 206 passed in 10.16s)</li><li><strong>Scale &amp; Benchmark Suite:</strong> <code class="inline-code">uv run pytest -m &quot;scale&quot; -ra --durations=20</code> (Passed, 4 passed in 57.06s)</li><li><strong>Total:</strong> 210 passed in 67.73s (1m07s wall clock)</li><li><strong>CI Acceleration &amp; Topology:</strong></li><li>Accidental real-time rate limit waits removed from mocked HTTP tests via <code class="inline-code">request_control</code> testable clock/sleeper abstraction and autouse fixture state resets.</li><li>GitHub Actions topology split into parallel jobs: <code class="inline-code">static-checks</code> (timeout 10 min), <code class="inline-code">test-fast</code> (timeout 10 min), <code class="inline-code">test-scale</code> (timeout 15 min).</li><li>Dependency caching enabled via <code class="inline-code">astral-sh/setup-uv@v2</code> (<code class="inline-code">enable-cache: true</code>).</li><li><strong>Pip Security Audit:</strong> <code class="inline-code">uv run pip-audit</code> (Passed, 0 vulnerabilities)</li></ul>
+<hr class="article-divider">
+<h2 id="5-freeze-verdict">5. Freeze Verdict<a class="heading-anchor" href="#5-freeze-verdict" aria-label="Link to section: 5. Freeze Verdict" title="Copy link to this section">#</a></h2>
+<ul><li><strong>MVP Decision:</strong> <strong>GO</strong></li><li><strong>Freeze Ready:</strong> <strong>YES</strong></li><li><strong>Feature Freeze Status:</strong> Permanently active for v0.1.0 MVP release.</li></ul>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/data/troubleshooting/"><span class="nav-dir">← Önceki</span><span class="nav-title">Sorun Giderme</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu belgede"><strong>Bu belgede</strong><ol><li class="toc-item"><a href="#1-executive-summary">1. Executive Summary</a></li><li class="toc-item"><a href="#2-tls-hygiene-trust-architecture">2. TLS Hygiene &amp; Trust Architecture</a></li><li class="toc-item"><a href="#3-real-resmi-gazete-pilot-evidence">3. Real Resmî Gazete Pilot Evidence</a></li><li class="toc-item"><a href="#4-verification-evidence-ci-performance">4. Verification Evidence &amp; CI Performance</a></li><li class="toc-item"><a href="#5-freeze-verdict">5. Freeze Verdict</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA_Data/blob/e1dc229e9de57c48374e38a87ec7786d1c7bd1f9/docs/MVP_CLOSURE_REPORT.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../../app.js?v=9507d446313d"></script>
+</body>
+</html>

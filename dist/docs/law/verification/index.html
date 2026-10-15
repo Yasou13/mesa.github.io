@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Final Verification — MESA MESA Law Documentation</title>
+  <meta name="description" content="Final Verification documentation for MESA Law (v0.1.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/docs/law/verification/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/law/verification/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/law/verification/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/law/verification/">
+  <meta property="og:title" content="Final Verification — MESA MESA Law Documentation">
+  <meta property="og:description" content="Final Verification documentation for MESA Law (v0.1.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/docs/law/verification/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Final Verification — MESA MESA Law Documentation">
+  <meta name="twitter:description" content="Final Verification documentation for MESA Law (v0.1.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Final Verification documentation for MESA Law (v0.1.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Final Verification documentation for MESA Law (v0.1.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://mesamemory.dev/docs/"},{"@type":"ListItem","position":3,"name":"MESA Law","item":"https://mesamemory.dev/docs/law/"},{"@type":"ListItem","position":4,"name":"Final Verification","item":"https://mesamemory.dev/docs/law/verification/"}]},{"@type":"TechArticle","headline":"Final Verification","description":"Final Verification documentation for MESA Law (v0.1.0).","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/docs/law/verification/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"law, documentation, v0.1.0"}]}</script>
+  <link rel="icon" href="../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../styles.css?v=25c65287b8e7">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../../docs/law/verification/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../../tr/docs/law/verification/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Documentation navigation">
+    <details class="docs-navigation">
+      <summary>Documentation navigation</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOCUMENTATION</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>OVERVIEW</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Documentation Hub</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/core/">Overview</a></li><li><a href="../../../docs/core/getting-started/">Getting Started</a></li><li><a href="../../../docs/core/installation/">Installation</a></li><li><a href="../../../docs/core/architecture/">Architecture V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Concepts &amp; Ingestion</a></li><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; Graph</a></li><li><a href="../../../docs/core/api-reference/">API Reference</a></li><li><a href="../../../docs/core/cli-reference/">CLI Reference</a></li><li><a href="../../../docs/core/migration/">Migration to v0.8.0</a></li><li><a href="../../../docs/core/release-notes/">Release Notes v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; Limitations</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Rebuild Runbook</a></li><li><a href="../../../docs/core/audit/">Independent Audit</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Guide</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Overview</a></li><li><a href="../../../docs/data/quickstart/">Quickstart (TR)</a></li><li><a href="../../../docs/data/user-guide/">User Guide (TR)</a></li><li><a href="../../../docs/data/import-contract/">Import Contract</a></li><li><a href="../../../docs/data/troubleshooting/">Troubleshooting (TR)</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Closure Report</a></li></ul></div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Contract Overview</a></li><li><a href="../../../docs/law/operations/">Operations Guide</a></li><li><a href="../../../docs/law/verification/" class="active" aria-current="page">Final Verification</a></li><li><a href="../../../docs/law/baseline/">MVP Baseline</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Overview</a></li><li><a href="../../../docs/qa/audit/">Fresh Independent Audit</a></li><li><a href="../../../docs/qa/repair-prompt/">Repair Prompt Specification</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Reproduce Prompt Specification</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Certification</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Overview</a></li><li><a href="../../../docs/e2e/audit-report/">Independent Audit Report</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Agent Pack Start</a></li><li><a href="../../../docs/e2e/system-model/">System Model &amp; Non-Negotiables</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profile B Objective Gates</a></li><li><a href="../../../docs/e2e/contract/">Data to Core Contract</a></li><li><a href="../../../docs/e2e/current-repair/">Current Repair and Blockers</a></li><li><a href="../../../docs/e2e/repair-verification/">Repair Verification Summary</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Breadcrumbs">
+    <ol>
+      <li><a href="../../../">Home</a></li>
+      <li><a href="../../../docs/">Docs</a></li>
+      <li><a href="../../../docs/law/">MESA Law</a></li>
+      <li aria-current="page">Final Verification</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Law · v0.1.0</p>
+          <h1>Final Verification</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.1.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-final-verification.md" target="_blank" rel="noopener noreferrer">b791be27a5d9d2e0306057529f6a5dce222673a4</a></span>
+    <span class="docs-source-pill">source: <code>docs/mvp-final-verification.md</code></span>
+  </div>
+          <p class="docs-language-notice">Navigation is localized; the document body retains its original source language. The version label identifies the package, not a certification result.</p>
+          <p class="docs-language-notice">This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.</p>
+        </header>
+        <div class="docs-body">
+          <p>Date: 2026-08-01  </p>
+<p>Branch: <code class="inline-code">codex/mesa-v4-mvp</code>  </p>
+<p>Reviewed Core source: <code class="inline-code">/home/yasin/Desktop/MESA</code> at</p>
+<p><code class="inline-code">c5901881fc414dfd3475c386d2c59bb461e65cd2</code> (<code class="inline-code">0.7.1</code>)</p>
+<h2 id="result">Result<a class="heading-anchor" href="#result" aria-label="Link to section: Result" title="Copy link to this section">#</a></h2>
+<p><strong>LAW-SIDE CODE/CONTRACT GATES PASS / OVERALL NO-GO</strong></p>
+<p>The isolated Law code, contract, database, frontend, and Law-side stub gates</p>
+<p>pass. Overall MVP <code class="inline-code">GO</code> is not claimed because two live integration gates were</p>
+<p>not run:</p>
+<ol><li>The full running Law stack test would require three pinned images that are</li></ol>
+<p>   absent locally: <code class="inline-code">minio/minio:RELEASE.2024-03-30T09-41-56Z</code>,</p>
+<p>   <code class="inline-code">minio/mc:RELEASE.2024-03-30T11-44-32Z</code>, and <code class="inline-code">clamav/clamav:1.3.1</code>.</p>
+<p>   Downloading those new images is prohibited by the task&#39;s resource rules.</p>
+<ol><li>MESA Core was not built, started, merged, or tested live. The external Core</li></ol>
+<p>   integration gate remains pending.</p>
+<p>The repository&#39;s running-stack E2E contract was updated to assert the current</p>
+<p>MVP behavior (sourced QA abstention and disabled research/drafting/rebuild),</p>
+<p>but it is explicitly <strong>NOT RUN</strong>, not passed.</p>
+<h2 id="passed-fail-closed-gate">Passed fail-closed gate<a class="heading-anchor" href="#passed-fail-closed-gate" aria-label="Link to section: Passed fail-closed gate" title="Copy link to this section">#</a></h2>
+<p><code class="inline-code">MESA_LAW_DATABASE_URL=&lt;isolated tmpfs PostgreSQL&gt; ./run_all_tests.sh</code></p>
+<p>completed with exit code 0 and reported:</p>
+<ul><li>Ruff lint: PASS (complete <code class="inline-code">apps</code>, <code class="inline-code">tests</code>, <code class="inline-code">scripts</code>, <code class="inline-code">evaluation</code> scope)</li><li>Ruff format check: PASS (124 files)</li><li>Bandit production scan: PASS; test modules excluded explicitly</li><li>mypy: PASS (96 source files)</li><li>Python compileall: PASS</li><li>pytest: PASS (197/197; no skipped tests in this gate)</li><li>Alembic: PASS (one head, <code class="inline-code">a1d7e3c90b42</code>, complete offline chain)</li><li>OpenAPI unique operation IDs and drift: PASS</li><li>frontend ESLint: PASS</li><li>frontend TypeScript: PASS</li><li>frontend Vitest: PASS (2 files, 5 tests)</li><li>deterministic Orval regeneration: PASS (no generated-client diff)</li><li>offline Next.js production build: PASS</li><li>four Compose configuration renders: PASS; no image pull/start/build</li><li>host resource gate: PASS (5.2 GiB available, pressure avg10 0.00)</li><li>Playwright Law-side contract-faithful stub: PASS (1/1, one worker)</li></ul>
+<p>The only pytest warning is an upstream Starlette/FastAPI <code class="inline-code">TestClient</code></p>
+<p>deprecation warning. It did not skip or suppress a test.</p>
+<h2 id="real-postgresql-evidence">Real PostgreSQL evidence<a class="heading-anchor" href="#real-postgresql-evidence" aria-label="Link to section: Real PostgreSQL evidence" title="Copy link to this section">#</a></h2>
+<p>Using the already-present <code class="inline-code">postgres:15-alpine</code> image, a temporary container</p>
+<p>was started with one CPU, a 1 GiB memory limit, tmpfs storage, and no persistent</p>
+<p>volume. It was removed after verification. No existing container, volume, or</p>
+<p>user data was modified.</p>
+<ul><li>clean database <code class="inline-code">alembic upgrade head</code>: PASS</li><li><code class="inline-code">alembic downgrade -1</code>: PASS</li><li>re-apply <code class="inline-code">alembic upgrade head</code>: PASS</li><li>real PostgreSQL RLS tenant A/tenant B isolation: PASS</li><li>canonical revision, FTS/parser, idempotency, and worker DB tests: PASS as</li></ul>
+<p>  part of the 197-test gate</p>
+<h2 id="final-repair-cycle">Final repair cycle<a class="heading-anchor" href="#final-repair-cycle" aria-label="Link to section: Final repair cycle" title="Copy link to this section">#</a></h2>
+<p>The post-plan <code class="inline-code">NO-GO</code> audit found and repaired internal issues before this</p>
+<p>result was recorded:</p>
+<ul><li>repo-wide Ruff/format violations and an async blocking report write;</li><li>a stale lease transition that was rolled back when no new job was claimed;</li><li>blocking JWKS retrieval, replaced with bounded async HTTP;</li><li>local lexical evidence that used a fabricated page zero and incomplete</li></ul>
+<p>  provenance, replaced with real page/revision/chunk/span/hash metadata;</p>
+<ul><li>stale QA tests that expected test-mode fabricated answers;</li><li>incomplete canonical revision fixtures and a hard-coded PostgreSQL RLS URL;</li><li>obsolete RBAC, research, and AI drafting expectations;</li><li>a release script that could wait indefinitely for an unspecified database.</li></ul>
+<p>The small lockfile-defined Bandit development dependency was the only package</p>
+<p>downloaded in the final repair cycle. No model, dataset, GPU package, browser,</p>
+<p>MESA Core image, or other large artifact was downloaded.</p>
+<h2 id="stop-boundary">Stop boundary<a class="heading-anchor" href="#stop-boundary" aria-label="Link to section: Stop boundary" title="Copy link to this section">#</a></h2>
+<p>No further live integration work is performed because it would require either</p>
+<p>downloading the missing pinned Law dependency images or building/starting and</p>
+<p>combining the external MESA Core service. The Core repository remains</p>
+<p>unchanged and outside this branch.</p>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/law/operations/"><span class="nav-dir">← Previous</span><span class="nav-title">Operations Guide</span></a><a class="docs-page-next" href="../../../docs/law/baseline/"><span class="nav-dir">Next →</span><span class="nav-title">MVP Baseline</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="Table of contents">
+      <nav class="article-toc" aria-label="In this document"><strong>In this document</strong><ol><li class="toc-item"><a href="#result">Result</a></li><li class="toc-item"><a href="#passed-fail-closed-gate">Passed fail-closed gate</a></li><li class="toc-item"><a href="#real-postgresql-evidence">Real PostgreSQL evidence</a></li><li class="toc-item"><a href="#final-repair-cycle">Final repair cycle</a></li><li class="toc-item"><a href="#stop-boundary">Stop boundary</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-final-verification.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Open source on GitHub</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../app.js?v=9507d446313d"></script>
+</body>
+</html>

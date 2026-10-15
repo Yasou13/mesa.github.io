@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System Model &amp; Non-Negotiables — MESA MESA E2E Certification Documentation</title>
+  <meta name="description" content="System Model &amp; Non-Negotiables documentation for MESA E2E Certification (v0.1.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/docs/e2e/system-model/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/e2e/system-model/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/e2e/system-model/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/e2e/system-model/">
+  <meta property="og:title" content="System Model &amp; Non-Negotiables — MESA MESA E2E Certification Documentation">
+  <meta property="og:description" content="System Model &amp; Non-Negotiables documentation for MESA E2E Certification (v0.1.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/docs/e2e/system-model/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="System Model &amp; Non-Negotiables — MESA MESA E2E Certification Documentation">
+  <meta name="twitter:description" content="System Model &amp; Non-Negotiables documentation for MESA E2E Certification (v0.1.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"System Model & Non-Negotiables documentation for MESA E2E Certification (v0.1.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"System Model & Non-Negotiables documentation for MESA E2E Certification (v0.1.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://mesamemory.dev/docs/"},{"@type":"ListItem","position":3,"name":"MESA E2E Certification","item":"https://mesamemory.dev/docs/e2e/"},{"@type":"ListItem","position":4,"name":"System Model & Non-Negotiables","item":"https://mesamemory.dev/docs/e2e/system-model/"}]},{"@type":"TechArticle","headline":"System Model & Non-Negotiables","description":"System Model & Non-Negotiables documentation for MESA E2E Certification (v0.1.0).","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/docs/e2e/system-model/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"e2e, documentation, v0.1.0"}]}</script>
+  <link rel="icon" href="../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../styles.css?v=25c65287b8e7">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../../docs/e2e/system-model/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../../tr/docs/e2e/system-model/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Documentation navigation">
+    <details class="docs-navigation">
+      <summary>Documentation navigation</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOCUMENTATION</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>OVERVIEW</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Documentation Hub</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/core/">Overview</a></li><li><a href="../../../docs/core/getting-started/">Getting Started</a></li><li><a href="../../../docs/core/installation/">Installation</a></li><li><a href="../../../docs/core/architecture/">Architecture V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Concepts &amp; Ingestion</a></li><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; Graph</a></li><li><a href="../../../docs/core/api-reference/">API Reference</a></li><li><a href="../../../docs/core/cli-reference/">CLI Reference</a></li><li><a href="../../../docs/core/migration/">Migration to v0.8.0</a></li><li><a href="../../../docs/core/release-notes/">Release Notes v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; Limitations</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Rebuild Runbook</a></li><li><a href="../../../docs/core/audit/">Independent Audit</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Guide</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Overview</a></li><li><a href="../../../docs/data/quickstart/">Quickstart (TR)</a></li><li><a href="../../../docs/data/user-guide/">User Guide (TR)</a></li><li><a href="../../../docs/data/import-contract/">Import Contract</a></li><li><a href="../../../docs/data/troubleshooting/">Troubleshooting (TR)</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Closure Report</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Contract Overview</a></li><li><a href="../../../docs/law/operations/">Operations Guide</a></li><li><a href="../../../docs/law/verification/">Final Verification</a></li><li><a href="../../../docs/law/baseline/">MVP Baseline</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Overview</a></li><li><a href="../../../docs/qa/audit/">Fresh Independent Audit</a></li><li><a href="../../../docs/qa/repair-prompt/">Repair Prompt Specification</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Reproduce Prompt Specification</a></li></ul></div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Certification</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Overview</a></li><li><a href="../../../docs/e2e/audit-report/">Independent Audit Report</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Agent Pack Start</a></li><li><a href="../../../docs/e2e/system-model/" class="active" aria-current="page">System Model &amp; Non-Negotiables</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profile B Objective Gates</a></li><li><a href="../../../docs/e2e/contract/">Data to Core Contract</a></li><li><a href="../../../docs/e2e/current-repair/">Current Repair and Blockers</a></li><li><a href="../../../docs/e2e/repair-verification/">Repair Verification Summary</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Breadcrumbs">
+    <ol>
+      <li><a href="../../../">Home</a></li>
+      <li><a href="../../../docs/">Docs</a></li>
+      <li><a href="../../../docs/e2e/">MESA E2E Certification</a></li>
+      <li aria-current="page">System Model &amp; Non-Negotiables</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA E2E Certification · v0.1.0</p>
+          <h1>System Model &amp; Non-Negotiables</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.1.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_E2E_Certification/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/agent-pack/02_SYSTEM_MODEL_AND_NON_NEGOTIABLES.md" target="_blank" rel="noopener noreferrer">3b7562cb65800cde27877dc3a7cd505a70822bf8</a></span>
+    <span class="docs-source-pill">source: <code>agent-pack/02_SYSTEM_MODEL_AND_NON_NEGOTIABLES.md</code></span>
+  </div>
+          <p class="docs-language-notice">Navigation is localized; the document body retains its original source language. The version label identifies the package, not a certification result.</p>
+          
+        </header>
+        <div class="docs-body">
+          <blockquote><p><strong>Profile B Autonomous Agent Pack v3.1</strong><br>Scope: MESA + MESA_Data native legal E2E certification on a dedicated certification branch.<br>Authority rule: the live checked-out repositories and runtime behavior outrank this document when code has changed. Never guess an API, CLI, schema, path, or capability: discover and record it first.</p></blockquote>
+<h2 id="product-boundary">Product boundary<a class="heading-anchor" href="#product-boundary" aria-label="Link to section: Product boundary" title="Copy link to this section">#</a></h2>
+<p>Profile B evaluates the integrated chain:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre id="code-block-1" class="language-text"><code>Official Turkish legal source
+  → MESA_Data raw immutable artifact
+  → decode / parse / canonicalize
+  → quality + review
+  → immutable verified release
+  → deterministic SourceChunk plan
+  → native MESA_Data publisher
+  → MESA V4 authenticated/session-scoped ingestion
+  → async mutation COMMITTED
+  → canonical SQL + LanceDB + FTS/assertions + Kùzu projection
+  → public MESA V4 search
+  → retrieval provenance
+  → context-only GPT-OSS answer
+  → deterministic scoring</code></pre></div>
+<p>A pass must prove the chain. Testing components independently is useful for diagnosis but cannot substitute for the chain.</p>
+<h2 id="what-profile-b-is-for">What Profile B is for<a class="heading-anchor" href="#what-profile-b-is-for" aria-label="Link to section: What Profile B is for" title="Copy link to this section">#</a></h2>
+<p>Profile B answers: “Can the current product ingest and retrieve a meaningful, approved real legal corpus with the intended external models and preserve enough provenance/isolation to support grounded answers?”</p>
+<p>It does <strong>not</strong> attempt to certify long-duration memory-leak behavior (Profile A) or exhaustive temporal/contradiction/crash/adversarial semantics (Profile C), although B includes bounded restart, idempotency and graph checks because they are necessary to trust the benchmark.</p>
+<h2 id="invariants">Invariants<a class="heading-anchor" href="#invariants" aria-label="Link to section: Invariants" title="Copy link to this section">#</a></h2>
+<p>The following are non-negotiable:</p>
+<ul><li><strong>Native publisher:</strong> Full PASS requires MESA_Data&#39;s product publisher to interoperate with MESA. Diagnostic harness bridges do not satisfy this.</li><li><strong>Real providers:</strong> Do not replace NVIDIA models with mocks/local substitutes for hard provider gates.</li><li><strong>Asymmetric embedding:</strong> documents use Nemotron <code class="inline-code">input_type=passage</code>; queries use <code class="inline-code">input_type=query</code>.</li><li><strong>Embedding identity:</strong> expected model <code class="inline-code">nvidia/nemotron-3-embed-1b</code>, dimension 2048, configured version <code class="inline-code">nemotron-qpass-v1</code> unless the current product contract deliberately changes and is requalified.</li><li><strong>Extraction:</strong> expected model <code class="inline-code">openai/gpt-oss-20b</code>, Turkish extraction, real <code class="inline-code">FactExtractionService</code>/current production equivalent, with sufficient bounded output budget (archive baseline: 4096).</li><li><strong>Immutable evidence:</strong> failed runs remain available.</li><li><strong>One coherent final run:</strong> do not cherry-pick passing phases from different code SHAs/runs.</li><li><strong>No TEST tuning:</strong> TEST is evaluation, not development.</li><li><strong>No source falsification:</strong> never edit official legal text, canonical expected evidence, or qrels merely to fit MESA output.</li><li><strong>No secret exposure:</strong> redact credentials and bearer headers.</li><li><strong>Authorization:</strong> tenant/dataset/session boundaries are hard gates, not diagnostics.</li><li><strong>Graph proof:</strong> code presence or Kùzu writes alone do not prove graph retrieval usefulness.</li><li><strong>Grounding:</strong> final answer correctness without evidence is a fail for grounded-answer scoring.</li></ul>
+<h2 id="evidence-hierarchy">Evidence hierarchy<a class="heading-anchor" href="#evidence-hierarchy" aria-label="Link to section: Evidence hierarchy" title="Copy link to this section">#</a></h2>
+<p>Strongest to weakest:</p>
+<ol><li>current-run live HTTP/runtime evidence with exact code/config hashes;</li><li>deterministic state inspection and immutable artifacts;</li><li>integration tests against real local services;</li><li>unit/regression tests;</li><li>static source inspection;</li><li>documentation/README assertions.</li></ol>
+<p>Higher evidence should be used where a hard gate permits it.</p>
+<h2 id="truth-over-automation">Truth over automation<a class="heading-anchor" href="#truth-over-automation" aria-label="Link to section: Truth over automation" title="Copy link to this section">#</a></h2>
+<p>The agent may stop with a failure. It must not “help” by silently substituting:</p>
+<ul><li>a different model;</li><li>a different endpoint;</li><li>a fabricated official source;</li><li>a smaller/easier query set after results are seen;</li><li>relaxed thresholds;</li><li>a mock server;</li><li>a manual direct MESA client bridge in place of the native publisher;</li><li>a hidden second attempt whose first failure is deleted.</li></ul>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/e2e/agent-pack-start/"><span class="nav-dir">← Previous</span><span class="nav-title">Agent Pack Start</span></a><a class="docs-page-next" href="../../../docs/e2e/gates-and-verdicts/"><span class="nav-dir">Next →</span><span class="nav-title">Profile B Objective Gates</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="Table of contents">
+      <nav class="article-toc" aria-label="In this document"><strong>In this document</strong><ol><li class="toc-item"><a href="#product-boundary">Product boundary</a></li><li class="toc-item"><a href="#what-profile-b-is-for">What Profile B is for</a></li><li class="toc-item"><a href="#invariants">Invariants</a></li><li class="toc-item"><a href="#evidence-hierarchy">Evidence hierarchy</a></li><li class="toc-item"><a href="#truth-over-automation">Truth over automation</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA_E2E_Certification/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/agent-pack/02_SYSTEM_MODEL_AND_NON_NEGOTIABLES.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Open source on GitHub</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../app.js?v=9507d446313d"></script>
+</body>
+</html>

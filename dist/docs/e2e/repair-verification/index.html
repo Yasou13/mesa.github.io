@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repair Verification Summary — MESA MESA E2E Certification Documentation</title>
+  <meta name="description" content="Repair Verification Summary documentation for MESA E2E Certification (v0.1.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/docs/e2e/repair-verification/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/e2e/repair-verification/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/e2e/repair-verification/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/e2e/repair-verification/">
+  <meta property="og:title" content="Repair Verification Summary — MESA MESA E2E Certification Documentation">
+  <meta property="og:description" content="Repair Verification Summary documentation for MESA E2E Certification (v0.1.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/docs/e2e/repair-verification/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Repair Verification Summary — MESA MESA E2E Certification Documentation">
+  <meta name="twitter:description" content="Repair Verification Summary documentation for MESA E2E Certification (v0.1.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Repair Verification Summary documentation for MESA E2E Certification (v0.1.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Repair Verification Summary documentation for MESA E2E Certification (v0.1.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://mesamemory.dev/docs/"},{"@type":"ListItem","position":3,"name":"MESA E2E Certification","item":"https://mesamemory.dev/docs/e2e/"},{"@type":"ListItem","position":4,"name":"Repair Verification Summary","item":"https://mesamemory.dev/docs/e2e/repair-verification/"}]},{"@type":"TechArticle","headline":"Repair Verification Summary","description":"Repair Verification Summary documentation for MESA E2E Certification (v0.1.0).","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/docs/e2e/repair-verification/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"e2e, documentation, v0.1.0"}]}</script>
+  <link rel="icon" href="../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../styles.css?v=25c65287b8e7">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../../docs/e2e/repair-verification/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../../tr/docs/e2e/repair-verification/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Documentation navigation">
+    <details class="docs-navigation">
+      <summary>Documentation navigation</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOCUMENTATION</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>OVERVIEW</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Documentation Hub</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/core/">Overview</a></li><li><a href="../../../docs/core/getting-started/">Getting Started</a></li><li><a href="../../../docs/core/installation/">Installation</a></li><li><a href="../../../docs/core/architecture/">Architecture V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Concepts &amp; Ingestion</a></li><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; Graph</a></li><li><a href="../../../docs/core/api-reference/">API Reference</a></li><li><a href="../../../docs/core/cli-reference/">CLI Reference</a></li><li><a href="../../../docs/core/migration/">Migration to v0.8.0</a></li><li><a href="../../../docs/core/release-notes/">Release Notes v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; Limitations</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Rebuild Runbook</a></li><li><a href="../../../docs/core/audit/">Independent Audit</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Guide</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Overview</a></li><li><a href="../../../docs/data/quickstart/">Quickstart (TR)</a></li><li><a href="../../../docs/data/user-guide/">User Guide (TR)</a></li><li><a href="../../../docs/data/import-contract/">Import Contract</a></li><li><a href="../../../docs/data/troubleshooting/">Troubleshooting (TR)</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Closure Report</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Contract Overview</a></li><li><a href="../../../docs/law/operations/">Operations Guide</a></li><li><a href="../../../docs/law/verification/">Final Verification</a></li><li><a href="../../../docs/law/baseline/">MVP Baseline</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Overview</a></li><li><a href="../../../docs/qa/audit/">Fresh Independent Audit</a></li><li><a href="../../../docs/qa/repair-prompt/">Repair Prompt Specification</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Reproduce Prompt Specification</a></li></ul></div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Certification</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Overview</a></li><li><a href="../../../docs/e2e/audit-report/">Independent Audit Report</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Agent Pack Start</a></li><li><a href="../../../docs/e2e/system-model/">System Model &amp; Non-Negotiables</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profile B Objective Gates</a></li><li><a href="../../../docs/e2e/contract/">Data to Core Contract</a></li><li><a href="../../../docs/e2e/current-repair/">Current Repair and Blockers</a></li><li><a href="../../../docs/e2e/repair-verification/" class="active" aria-current="page">Repair Verification Summary</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Breadcrumbs">
+    <ol>
+      <li><a href="../../../">Home</a></li>
+      <li><a href="../../../docs/">Docs</a></li>
+      <li><a href="../../../docs/e2e/">MESA E2E Certification</a></li>
+      <li aria-current="page">Repair Verification Summary</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA E2E Certification · v0.1.0</p>
+          <h1>Repair Verification Summary</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.1.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_E2E_Certification/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/VERIFICATION_SUMMARY.md" target="_blank" rel="noopener noreferrer">3b7562cb65800cde27877dc3a7cd505a70822bf8</a></span>
+    <span class="docs-source-pill">source: <code>reports/profile-b-comprehensive-repair/VERIFICATION_SUMMARY.md</code></span>
+  </div>
+          <p class="docs-language-notice">Navigation is localized; the document body retains its original source language. The version label identifies the package, not a certification result.</p>
+          <p class="docs-language-notice">This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.</p>
+        </header>
+        <div class="docs-body">
+          <h2 id="ortam-ve-baseline">Ortam ve baseline<a class="heading-anchor" href="#ortam-ve-baseline" aria-label="Link to section: Ortam ve baseline" title="Copy link to this section">#</a></h2>
+<ul><li>Başlangıç: <code class="inline-code">main</code> = <code class="inline-code">origin/main</code> = <code class="inline-code">0a870e0bd94162d48b2b65102da374d30ee54c57</code>.</li><li>Dal: <code class="inline-code">fix/profile-b-comprehensive-certification-hardening</code>.</li><li>Python: CPython <code class="inline-code">3.13.12</code> (uv managed); host <code class="inline-code">/usr/bin/python3</code> <code class="inline-code">3.10.12</code>.</li><li>uv: <code class="inline-code">0.10.8</code>; Pydantic <code class="inline-code">2.13.5</code>; pytest <code class="inline-code">9.1.1</code>.</li><li>Kilit: <code class="inline-code">uv.lock</code>; <code class="inline-code">uv sync --locked --all-groups</code> başarılı.</li><li>CI workflow: <code class="inline-code">.github/workflows/ci.yml</code>; compile, agent-pack, secret scan, JSON validation, optimized self-test ve pytest.</li></ul>
+<h2 id="red-kayitlari">RED kayıtları<a class="heading-anchor" href="#red-kayitlari" aria-label="Link to section: RED kayıtları" title="Copy link to this section">#</a></h2>
+<p><code class="inline-code">UV_CACHE_DIR=/tmp/mesa-e2e-uv-cache uv run --locked pytest -q tests/test_comprehensive_repair_regressions.py</code></p>
+<p>İlk çalıştırma: <code class="inline-code">10 failed</code>. Hatalar: missing <code class="inline-code">AnswerClaim.fact_ids</code>; fact-ID oracle tokeninin PASS audit alması; üç bool/numeric type-confusion PASS&#39;i; rank-6, rank-swap ve duplicate source capture&#39;ların kabulü; missing provider digest&#39;in kabulü.</p>
+<h2 id="green-kayitlari">GREEN kayıtları<a class="heading-anchor" href="#green-kayitlari" aria-label="Link to section: GREEN kayıtları" title="Copy link to this section">#</a></h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Komut</th><th scope="col">Sonuç</th></tr></thead><tbody><tr><th scope="row">focused comprehensive regressions</th><td><code class="inline-code">11 passed</code> (son ek context-contamination vakası dahil)</td></tr><tr><th scope="row">scorer/adapters/official-scoring/context focused set</th><td><code class="inline-code">49 passed</code></td></tr><tr><th scope="row">non-socket broad suite</th><td><code class="inline-code">552 passed</code></td></tr><tr><th scope="row">tam suite, localhost socket izniyle</th><td>final working tree <code class="inline-code">567 passed in 13.01s</code>; clean export <code class="inline-code">567 passed in 13.77s</code></td></tr><tr><th scope="row"><code class="inline-code">python -m compileall -q harness scripts tests</code></th><td>PASS</td></tr><tr><th scope="row"><code class="inline-code">scripts/verify_agent_pack.py</code></th><td>PASS</td></tr><tr><th scope="row"><code class="inline-code">scripts/check_no_secrets.py</code></th><td>PASS</td></tr><tr><th scope="row"><code class="inline-code">scripts/validate_json_artifacts.py</code></th><td>PASS</td></tr><tr><th scope="row"><code class="inline-code">python -O -m harness.self_test</code></th><td><code class="inline-code">17/17 passed</code></td></tr></tbody></table></div>
+<p>İlk sandbox çalıştırmasında <code class="inline-code">543 passed, 11 errors</code> oluştu; 11 error&#39;ın tamamı <code class="inline-code">test_official_http_happy_path.py</code> fixture&#39;ının localhost socket açmasına verilen <code class="inline-code">PermissionError</code> idi. Yetkili localhost çalıştırmaları tam geçti. Final clean-export sonucu <code class="inline-code">567/567</code>; skip/xfailed yoktur.</p>
+<h2 id="statik-ve-sozlesme-kontrolu">Statik ve sözleşme kontrolü<a class="heading-anchor" href="#statik-ve-sozlesme-kontrolu" aria-label="Link to section: Statik ve sözleşme kontrolü" title="Copy link to this section">#</a></h2>
+<ul><li>B0–B14 registry ve <code class="inline-code">config/profile-b-gates.json</code> diff&#39;i yok.</li><li>qrels, ground-truth, normalization, official runs ve historical verdict dosyalarında diff yok.</li><li><code class="inline-code">uv.lock</code> değişmedi.</li><li>Ruff/mypy repository&#39;de yapılandırılmamış; <code class="inline-code">NOT_CONFIGURED</code>, başarı iddiası yok.</li><li>Official Profile B veya hidden holdout çalıştırılmadı.</li><li>DEV provider/MESA integration çalıştırılmadı; gerçek servisler ve VM collector APIs bu hostta yok.</li></ul>
+<h2 id="bagimsiz-post-repair-dogrulama">Bağımsız post-repair doğrulama<a class="heading-anchor" href="#bagimsiz-post-repair-dogrulama" aria-label="Link to section: Bağımsız post-repair doğrulama" title="Copy link to this section">#</a></h2>
+<p><code class="inline-code">git archive HEAD</code> ile <code class="inline-code">/tmp/mesa-e2e-independent.3nZsey</code> altında temiz export oluşturuldu. Archive <code class="inline-code">.git</code> içermediği için tracked-file scriptleri önce beklenen şekilde <code class="inline-code">git ls-files</code> hatası verdi; yalnız geçici export içinde <code class="inline-code">git init &amp;&amp; git add .</code> ile index oluşturuldu. CPython <code class="inline-code">3.14.3</code> üzerinde locked sync, compile, agent-pack, secret scan, JSON validation, optimized self-test ve full pytest çalıştı. Sonuç: <code class="inline-code">567 passed in 13.77s</code>, self-test <code class="inline-code">17/17</code>, diğer kontroller PASS.</p>
+<h2 id="ci">CI<a class="heading-anchor" href="#ci" aria-label="Link to section: CI" title="Copy link to this section">#</a></h2>
+<p>Push öncesinde remote CI <code class="inline-code">NOT_RUN</code>. Push sonrasında exact final SHA için GitHub Actions sonucu kontrol edilecek; ağ/izin nedeniyle doğrulanamazsa açıkça <code class="inline-code">UNKNOWN</code> raporlanacaktır.</p>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/e2e/current-repair/"><span class="nav-dir">← Previous</span><span class="nav-title">Current Repair and Blockers</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="Table of contents">
+      <nav class="article-toc" aria-label="In this document"><strong>In this document</strong><ol><li class="toc-item"><a href="#ortam-ve-baseline">Ortam ve baseline</a></li><li class="toc-item"><a href="#red-kayitlari">RED kayıtları</a></li><li class="toc-item"><a href="#green-kayitlari">GREEN kayıtları</a></li><li class="toc-item"><a href="#statik-ve-sozlesme-kontrolu">Statik ve sözleşme kontrolü</a></li><li class="toc-item"><a href="#bagimsiz-post-repair-dogrulama">Bağımsız post-repair doğrulama</a></li><li class="toc-item"><a href="#ci">CI</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA_E2E_Certification/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/VERIFICATION_SUMMARY.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Open source on GitHub</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../app.js?v=9507d446313d"></script>
+</body>
+</html>

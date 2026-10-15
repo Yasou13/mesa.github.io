@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mimari V4 — MESA MESA Core Dokümantasyonu</title>
+  <meta name="description" content="MESA Core için Mimari V4 teknik dokümantasyonu (v0.8.0).">
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/core/architecture/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/architecture/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/architecture/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/architecture/">
+  <meta property="og:title" content="Mimari V4 — MESA MESA Core Dokümantasyonu">
+  <meta property="og:description" content="MESA Core için Mimari V4 teknik dokümantasyonu (v0.8.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/core/architecture/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mimari V4 — MESA MESA Core Dokümantasyonu">
+  <meta name="twitter:description" content="MESA Core için Mimari V4 teknik dokümantasyonu (v0.8.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Core için Mimari V4 teknik dokümantasyonu (v0.8.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Core için Mimari V4 teknik dokümantasyonu (v0.8.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/main/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"MESA Core","item":"https://mesamemory.dev/tr/docs/core/"},{"@type":"ListItem","position":4,"name":"Mimari V4","item":"https://mesamemory.dev/tr/docs/core/architecture/"}]},{"@type":"TechArticle","headline":"Mimari V4","description":"MESA Core için Mimari V4 teknik dokümantasyonu (v0.8.0).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/core/architecture/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"core, documentation, v0.8.0"}]}</script>
+  <link rel="icon" href="../../../../assets/mesa-logo.png?v=380db352f920" type="image/png">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="../../../../styles.css?v=25c65287b8e7">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../../how-it-works/">How it works</a><a href="../../../ecosystem/">Ecosystem</a><a href="../../../use-cases/">Use cases</a><a href="../../../resources/">Resources</a><a class="active" aria-current="page" href="../../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../../docs/core/architecture/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../../docs/core/architecture/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Dokümantasyon gezintisi">
+    <details class="docs-navigation">
+      <summary>Belge gezintisi</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOKÜMANTASYON</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>GENEL BAKIŞ</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Dokümantasyon Merkezi</a></li>
+      <li><a href="../../../docs/mcp/">MCP Integration</a></li>
+    </ul>
+  </div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/core/">Genel Bakış</a></li><li><a href="../../../docs/core/getting-started/">Başlarken</a></li><li><a href="../../../docs/core/installation/">Kurulum</a></li><li><a href="../../../docs/core/architecture/" class="active" aria-current="page">Mimari V4</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Kavramlar ve Ingestion</a></li><li><a href="../../../docs/core/configuration/">Konfigürasyon</a></li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval ve Çizge</a></li><li><a href="../../../docs/core/api-reference/">API Referansı</a></li><li><a href="../../../docs/core/cli-reference/">CLI Referansı</a></li><li><a href="../../../docs/core/migration/">v0.8.0 Geçişi</a></li><li><a href="../../../docs/core/release-notes/">Sürüm Notları v0.8.0</a></li><li><a href="../../../docs/core/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/core/limitations/">Performans ve Sınırlılıklar</a></li><li><a href="../../../docs/core/rebuild-runbook/">V4 Yeniden Derleme Kılavuzu</a></li><li><a href="../../../docs/core/audit/">Bağımsız Denetim</a></li><li><a href="../../../docs/core/colab-rehberi/">Google Colab Rehberi</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Genel Bakış</a></li><li><a href="../../../docs/data/quickstart/">Hızlı Başlangıç</a></li><li><a href="../../../docs/data/user-guide/">Kullanım Kılavuzu</a></li><li><a href="../../../docs/data/import-contract/">İçe Aktarma Sözleşmesi</a></li><li><a href="../../../docs/data/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Kapanış Raporu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Sözleşme Genel Bakış</a></li><li><a href="../../../docs/law/operations/">Operasyon Rehberi</a></li><li><a href="../../../docs/law/verification/">Nihai Doğrulama</a></li><li><a href="../../../docs/law/baseline/">MVP Temel Durumu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Genel Bakış</a></li><li><a href="../../../docs/qa/audit/">Güncel Bağımsız Denetim</a></li><li><a href="../../../docs/qa/repair-prompt/">Onarım Prompt Spesifikasyonu</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Yeniden Üretim Promptu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Sertifikasyonu</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Genel Bakış</a></li><li><a href="../../../docs/e2e/audit-report/">Bağımsız Denetim Raporu</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Ajan Paketi Başlangıç</a></li><li><a href="../../../docs/e2e/system-model/">Sistem Modeli ve Esnetilemezler</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profil B Hedef Kapıları</a></li><li><a href="../../../docs/e2e/contract/">Data - Core Sözleşmesi</a></li><li><a href="../../../docs/e2e/current-repair/">Güncel Onarımlar ve Engeller</a></li><li><a href="../../../docs/e2e/repair-verification/">Onarım Doğrulama Özeti</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum">
+    <ol>
+      <li><a href="../../../">Ana sayfa</a></li>
+      <li><a href="../../../docs/">Dokümantasyon</a></li>
+      <li><a href="../../../docs/core/">MESA Core</a></li>
+      <li aria-current="page">Mimari V4</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Core · v0.8.0</p>
+          <h1>Mimari V4</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.8.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/e3750a7c44c26d7e3555be755e8c07fd5282ca64/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">e3750a7c44c26d7e3555be755e8c07fd5282ca64</a></span>
+    <span class="docs-source-pill">source: <code>docs/architecture-v4.md</code></span>
+  </div>
+          <p class="docs-language-notice">Gezinme Türkçedir; belge gövdesi kaynak deponun özgün dilinde korunur. Sürüm etiketi paket sürümüdür; sertifikasyon sonucu değildir.</p>
+          
+        </header>
+        <div class="docs-body">
+          <blockquote><p><strong>Package version:</strong> 0.8.0; owner-approved source release, without production certification.</p></blockquote>
+<p>This document is the canonical architecture for the v4 release candidate.</p>
+<p>Production remains <code class="inline-code">NO-GO</code> pending Final MVP Certification.</p>
+<p><code class="inline-code">ARCHITECTURE.md</code> and v3 ADRs remain historical compatibility records.</p>
+<h2 id="runtime-boundary">Runtime boundary<a class="heading-anchor" href="#runtime-boundary" aria-label="Link to section: Runtime boundary" title="Copy link to this section">#</a></h2>
+<p>V4 has one supported storage-writing topology: one <code class="inline-code">combined</code> process owns</p>
+<p>SQLite, LanceDB and Kùzu. API admission and background consumers run in that</p>
+<p>process. A second writer must never mount the same storage root.</p>
+<p>V3 remains available as the lexical-core compatibility surface and keeps its</p>
+<p>existing API/worker topology. V3 and v4 must not write the same physical</p>
+<p>storage directories concurrently.</p>
+<p>Canonical v4 fact extraction is owned by <code class="inline-code">FactExtractionService</code>. REBEL is not</p>
+<p>part of the canonical v4 extraction path; references to REBEL in historical</p>
+<p>architecture or V3 compatibility material describe legacy behavior only.</p>
+<h2 id="security-and-catalog-hierarchy">Security and catalog hierarchy<a class="heading-anchor" href="#security-and-catalog-hierarchy" aria-label="Link to section: Security and catalog hierarchy" title="Copy link to this section">#</a></h2>
+<p>The v4 security boundary is a tenant, not an agent:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre id="code-block-1" class="language-text"><code>Principal
+  └── Tenant
+      └── Workspace
+          └── Dataset
+              └── Document
+                  └── immutable DocumentRevision
+                      └── SourceChunk</code></pre></div>
+<p>Roles are <code class="inline-code">OWNER</code>, <code class="inline-code">WRITER</code> and <code class="inline-code">READER</code> at tenant, workspace or dataset</p>
+<p>scope. Roles inherit downward. Purge and rollback require explicit dataset</p>
+<p>permissions. Agent IDs represent compute/persona context and do not grant</p>
+<p>tenant access.</p>
+<p>An authenticated session is generated by the server and binds one principal,</p>
+<p>tenant, workspace, agent and immutable set of datasets. Insert, search,</p>
+<p>context, status, replay and rollback derive their scope from this record.</p>
+<p>API credentials use <code class="inline-code">key_id.secret</code>. Only the salted scrypt digest is stored;</p>
+<p>plaintext is returned once by <code class="inline-code">mesa-v4-admin issue-key</code>. Multiple keys may</p>
+<p>belong to one or more principals and can be revoked or rotated independently.</p>
+<h2 id="canonical-ingestion">Canonical ingestion<a class="heading-anchor" href="#canonical-ingestion" aria-label="Link to section: Canonical ingestion" title="Copy link to this section">#</a></h2>
+<p><code class="inline-code">POST /v4/memory/insert</code> durably admits exact source content and creates:</p>
+<ul><li>one <code class="inline-code">MemoryCandidate</code>;</li><li>one <code class="inline-code">memory_mutations</code> ledger row;</li><li>one <code class="inline-code">pipeline_runs</code> row plus append-only events;</li><li>ordered SQL, vector and graph outbox lanes.</li></ul>
+<p>The candidate explicitly carries tenant, workspace, dataset, document,</p>
+<p>revision, chunk, source reference, evidence span, agent/session, pipeline,</p>
+<p>extraction and embedding versions. Authorization fields are never read from</p>
+<p>free-form metadata.</p>
+<p>An authenticated dataset writer may additionally supply the typed</p>
+<p><code class="inline-code">legal_identity</code> object (<code class="inline-code">law_id</code>, <code class="inline-code">statute_code</code>, <code class="inline-code">article_id</code>, and optional</p>
+<p>version/paragraph/clause identifiers). MESA validates it against the bounded</p>
+<p>legal alias ontology, binds it to the immutable mutation provenance and stores</p>
+<p>it on canonical assertions. Reserved <code class="inline-code">_mesa_*</code> keys in caller metadata are</p>
+<p>always discarded, so free-form metadata cannot opt into legal ranking. The</p>
+<p>producer remains responsible for verifying that the declared identity belongs</p>
+<p>to the source; MESA_Data must not populate it from a bare article heading.</p>
+<p>Validation is an explicit policy gate configured via <code class="inline-code">MESA_TIER3_MODE</code> (0 = deterministic-only, 1 = single LLM validator, 2 = dual-LLM consensus). A rejected mutation may keep its raw</p>
+<p>audit source, but it cannot create an active SQL, vector, entity, edge or</p>
+<p>assertion artifact. In Mode 0, deterministic admission checks gate progression with zero LLM validator dependencies.</p>
+<h2 id="pipeline-and-failure-model">Pipeline and failure model<a class="heading-anchor" href="#pipeline-and-failure-model" aria-label="Link to section: Pipeline and failure model" title="Copy link to this section">#</a></h2>
+<p>The legal success path is:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre id="code-block-2" class="language-text"><code>QUEUED → RUNNING → EXTRACTED → VALIDATED → PROJECTING → COMMITTED</code></pre></div>
+<p>Failure/recovery states are <code class="inline-code">RETRY_PENDING</code>, <code class="inline-code">DLQ</code>, <code class="inline-code">ROLLING_BACK</code>,</p>
+<p><code class="inline-code">ROLLED_BACK</code> and <code class="inline-code">BLOCKED</code>. State changes use compare-and-swap and append an</p>
+<p>event. Claims use a random fencing token, bounded lease, heartbeat and bounded</p>
+<p>retry. A worker that loses its token cannot finalize the claim.</p>
+<p>Projection prerequisites are enforced in the database:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre id="code-block-3" class="language-text"><code>SQL → vector → graph</code></pre></div>
+<p>The projector only claims a later lane when its predecessor is complete.</p>
+<p>Every lane is idempotent by mutation and physical artifact identity.</p>
+<p>Legal citation retrieval selects trusted typed identities through the scoped</p>
+<p>compound assertion index before lane ranking. Tenant, dataset, agent,</p>
+<p>jurisdiction, validity and committed-state predicates are applied in that SQL</p>
+<p>selection. Typed identity refines candidate recall and lane order; it does not</p>
+<p>bypass deterministic weighted RRF or replace canonical evidence text.</p>
+<h2 id="canonical-entity-and-graph-v2">Canonical entity and Graph V2<a class="heading-anchor" href="#canonical-entity-and-graph-v2" aria-label="Link to section: Canonical entity and Graph V2" title="Copy link to this section">#</a></h2>
+<p>Entity IDs use a fixed UUID5 namespace:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre id="code-block-4" class="language-text"><code>UUID5(namespace, tenant_id + entity_type + identity_key)</code></pre></div>
+<p><code class="inline-code">identity_key</code> is the normalized ontology URI when supplied; otherwise it is</p>
+<p>the Unicode NFKC, whitespace-normalized and case-folded canonical name.</p>
+<p>Resolution order is ontology/external ID, registered alias, canonical name,</p>
+<p>then create. Collisions produce a deterministic redirect; historical rows are</p>
+<p>retained.</p>
+<p>SQLite is authoritative for <code class="inline-code">v4_entities</code> and immutable <code class="inline-code">v4_assertions</code>.</p>
+<p>Kùzu is an idempotent projection. Assertions include subject, predicate,</p>
+<p>entity or literal object, document/revision/chunk source, evidence span,</p>
+<p>jurisdiction, authority, confidence, validity interval, mutation and pipeline</p>
+<p>run. Assertion identity includes predicate, source and temporal context, so</p>
+<p>different relations between the same entities remain distinct.</p>
+<p><code class="inline-code">CONTRADICTS</code> and <code class="inline-code">SUPERSEDES</code> connect assertions and preserve provenance.</p>
+<p>PageRank only publishes observation telemetry; it cannot quarantine,</p>
+<p>tombstone, delete or otherwise change retrieval eligibility.</p>
+<h2 id="artifact-ownership-and-rollback">Artifact ownership and rollback<a class="heading-anchor" href="#artifact-ownership-and-rollback" aria-label="Link to section: Artifact ownership and rollback" title="Copy link to this section">#</a></h2>
+<p><code class="inline-code">artifact_registry</code> represents physical SQL, vector and graph artifacts.</p>
+<p><code class="inline-code">artifact_sources</code> allows several mutations/source chunks to own the same</p>
+<p>entity or vector.</p>
+<p>Rollback removes only the requesting run&#39;s source ownership. A shared artifact</p>
+<p>remains active while another source owns it. The last-owner path writes the</p>
+<p>SQLite retrieval tombstone first and schedules idempotent vector/graph cleanup.</p>
+<p>An unfinished cleanup leaves the run <code class="inline-code">BLOCKED</code>, never falsely committed.</p>
+<p>A new document revision does not erase history. Prior assertions become</p>
+<p><code class="inline-code">SUPERSEDED</code>. A legal purge retracts the requested source and removes only</p>
+<p>artifacts that have no remaining active owner.</p>
+<h2 id="reconciliation-and-health">Reconciliation and health<a class="heading-anchor" href="#reconciliation-and-health" aria-label="Link to section: Reconciliation and health" title="Copy link to this section">#</a></h2>
+<p>Reconciliation is bidirectional:</p>
+<ul><li>ledger artifact missing from a store: requeue the missing lane;</li><li>physical artifact without registry/ownership: quarantine it in the registry</li></ul>
+<p>  and enqueue cleanup.</p>
+<p><code class="inline-code">/health</code> exposes projection backlog, dead letter, stuck leases, cleanup</p>
+<p>backlog, blocked cleanup, ownerless registry rows and shared-owner counts.</p>
+<p><code class="inline-code">/metrics</code> exports the same content-free aggregate gauges.</p>
+<h2 id="retrieval">Retrieval<a class="heading-anchor" href="#retrieval" aria-label="Link to section: Retrieval" title="Copy link to this section">#</a></h2>
+<p>All SQL, vector and graph lanes receive the authorized dataset filter before</p>
+<p>ranking. V4 combines rank positions using real reciprocal rank fusion. Jurisdiction and validity constrain eligibility before ranking; assertion</p>
+<p>confidence affects assertion-lane ordering. The bounded post-RRF legal factor</p>
+<p>uses query statute/article identity. See <a href="../../../docs/core/retrieval-and-graph/">retrieval</a>. Candidate assertion identity is the deterministic final tie-break.</p>
+<p>Responses include document, revision, chunk, evidence, assertion, pipeline and</p>
+<p>embedding provenance. PageRank is not a retrieval eligibility signal.</p>
+<h3 id="bounded-adaptive-context-retrieval">Bounded adaptive context retrieval<a class="heading-anchor" href="#bounded-adaptive-context-retrieval" aria-label="Link to section: Bounded adaptive context retrieval" title="Copy link to this section">#</a></h3>
+<p>The raw V4 search endpoint remains the deterministic single-query primitive.</p>
+<p>The context endpoint and <code class="inline-code">mesa_get_context</code> default to <code class="inline-code">retrieval_mode=single</code>.</p>
+<p>Callers may explicitly select <code class="inline-code">adaptive</code>, which runs the original query first</p>
+<p>and invokes one semantic reformulation call only when the result is empty or</p>
+<p>none of its top three candidates has support from at least two retrieval lanes.</p>
+<p>The planner receives only the normalized user query and may return at most two</p>
+<p>validated query strings. It cannot change tenant, agent, dataset,</p>
+<p>jurisdiction, temporal or graph scope. New statute/article citations are</p>
+<p>rejected. Every expansion reuses <code class="inline-code">MemoryDAO.search_v4_memory</code>; query rankings</p>
+<p>are fused with deterministic RRF weights Q0=1.0, Q1=0.5 and Q2=0.5, with a</p>
+<p>Q0-preserving tie break. Inner lane scores and provenance remain unchanged,</p>
+<p>and outer <code class="inline-code">query_origins</code> plus <code class="inline-code">query_fusion_score</code> remain separately auditable.</p>
+<p>An adaptive request performs at most one planner call and three total</p>
+<p>retrievals. Planner or optional expansion failures preserve the original</p>
+<p>retrieval. The deduplicated final candidate list enters the existing</p>
+<p><code class="inline-code">ContextBuilder</code> once, so the 2048-token default and atomic proof packing remain</p>
+<p>the sole model-visible budget authority. This feature performs no answer</p>
+<p>generation, recursive planning, decomposition or reranking.</p>
+<h2 id="migration-and-release">Migration and release<a class="heading-anchor" href="#migration-and-release" aria-label="Link to section: Migration and release" title="Copy link to this section">#</a></h2>
+<p>V3 storage is never converted in place. The supported sequence is:</p>
+<ol><li>stop writers and create a manifest/checksummed backup;</li><li>restore or copy into a new empty staging root;</li><li>rebuild v4 SQLite/vector/graph artifacts from raw sources;</li><li>run parity and authorization checks;</li><li>atomically cut over to the staged root;</li><li>retain the previous root for explicit rollback.</li></ol>
+<p>Production remains <code class="inline-code">NO-GO</code> until migration/restore, v4 Compose, crash,</p>
+<p>saturation, cross-tenant concurrency, benchmark and 24-hour soak gates all</p>
+<p>pass with production-like storage and the selected model provider.</p>
+<p>Canonical V4 insertion requires the model-enabled combined processing consumer.</p>
+<p>Model-disabled boot is topology/compatibility smoke and rejects V4 writes with</p>
+<p><code class="inline-code">503 canonical_processing_unavailable</code>; it is not a V4 insert/search demonstration.</p>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/installation/"><span class="nav-dir">← Önceki</span><span class="nav-title">Kurulum</span></a><a class="docs-page-next" href="../../../docs/core/concepts-and-ingestion/"><span class="nav-dir">Sonraki →</span><span class="nav-title">Kavramlar ve Ingestion</span></a></div>
+      </article>
+    </div>
+    <aside class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu belgede"><strong>Bu belgede</strong><ol><li class="toc-item"><a href="#runtime-boundary">Runtime boundary</a></li><li class="toc-item"><a href="#security-and-catalog-hierarchy">Security and catalog hierarchy</a></li><li class="toc-item"><a href="#canonical-ingestion">Canonical ingestion</a></li><li class="toc-item"><a href="#pipeline-and-failure-model">Pipeline and failure model</a></li><li class="toc-item"><a href="#canonical-entity-and-graph-v2">Canonical entity and Graph V2</a></li><li class="toc-item"><a href="#artifact-ownership-and-rollback">Artifact ownership and rollback</a></li><li class="toc-item"><a href="#reconciliation-and-health">Reconciliation and health</a></li><li class="toc-item"><a href="#retrieval">Retrieval</a></li><li class="toc-item toc-sub"><a href="#bounded-adaptive-context-retrieval">Bounded adaptive context retrieval</a></li><li class="toc-item"><a href="#migration-and-release">Migration and release</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA/blob/e3750a7c44c26d7e3555be755e8c07fd5282ca64/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA is under active development. Start with the documented safe-core profile and review the release-candidate limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-logo.png?v=380db352f920" alt="" width="1254" height="1254"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 release candidate · <a href="../../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../../how-it-works/">How it works</a><a href="../../../use-cases/">Use cases</a><a href="../../../evaluation/">Evaluation & trust</a><a href="../../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../../learn/">Learn</a><a href="../../../research/">Research</a><a href="../../../guides/">Guides</a><a href="../../../glossary/">Glossary</a><a href="../../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a class="" href="https://github.com/Yasou13/MESA/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>Quickstart</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Architecture</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Security</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../../about/">About</a><a href="../../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+  <script src="../../../../app.js?v=9507d446313d"></script>
+</body>
+</html>
