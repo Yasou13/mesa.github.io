@@ -2520,7 +2520,7 @@ em { color: #f1f2f5; }
   border-left: 1px solid var(--line);
   padding-left: 20px;
 }
-.docs-breadcrumbs { margin-bottom: 20px; }
+.docs-breadcrumbs { position: static; margin-bottom: 20px; }
 .docs-article-header {
   margin-bottom: 32px;
   padding-bottom: 24px;

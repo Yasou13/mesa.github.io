@@ -42,7 +42,9 @@ jobs:
       - name: Build static artifact
         run: python3 scripts/build_site.py --site-url "${{ steps.pages.outputs.base_url }}"
       - name: Verify routes and links
-        run: python3 scripts/check_site.py _site
+        run: |
+          python3 scripts/check_site.py _site
+          python3 scripts/check_public_artifact.py _site
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

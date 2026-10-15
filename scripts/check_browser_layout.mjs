@@ -141,6 +141,8 @@ async function inspect(routePath, width) {
       const heroImage = hero?.querySelector('picture img');
       return {
         title: document.title,
+        docsBreadcrumbTop: document.querySelector('.docs-breadcrumbs')?.getBoundingClientRect().top ?? null,
+        docsToggleBottom: document.querySelector('.docs-navigation summary')?.getBoundingClientRect().bottom ?? null,
         language: root.lang,
         mainCount: document.querySelectorAll('main').length,
         h1Count: document.querySelectorAll('h1').length,
@@ -172,6 +174,7 @@ async function inspect(routePath, width) {
   if (state.mainCount !== 1) failures.push(`${label}: main count ${state.mainCount}`);
   if (state.h1Count !== 1) failures.push(`${label}: h1 count ${state.h1Count}`);
   if (state.overflow > 1) failures.push(`${label}: horizontal overflow ${state.overflow}px`);
+  if (width <= 1024 && state.docsBreadcrumbTop !== null && state.docsBreadcrumbTop < state.docsToggleBottom) failures.push(`${label}: documentation breadcrumbs overlap navigation`);
   if (state.brokenImages.length) failures.push(`${label}: broken images ${state.brokenImages.join(', ')}`);
   if (routePath === '' || routePath === 'tr/') {
     if (JSON.stringify(state.homeSections) !== JSON.stringify(requiredHomeSections)) failures.push(`${label}: homepage section order ${state.homeSections.join(', ')}`);
