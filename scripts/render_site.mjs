@@ -66,13 +66,24 @@ validateMediaData();
 
 const docs = {
   readme: `${repos.core}/blob/main/README.md`,
+  gettingStarted: `${repos.core}/blob/main/docs/getting-started.md`,
   architecture: `${repos.core}/blob/main/docs/architecture-v4.md`,
-  security: `${repos.core}/blob/main/SECURITY.md`,
-  contributing: `${repos.core}/blob/main/CONTRIBUTING.md`,
-  installation: `${repos.core}/blob/main/docs/installation.md`,
+  concepts: `${repos.core}/blob/main/docs/concepts-and-ingestion.md`,
+  configuration: `${repos.core}/blob/main/docs/configuration.md`,
+  retrieval: `${repos.core}/blob/main/docs/retrieval-and-graph.md`,
   api: `${repos.core}/blob/main/docs/api-reference.md`,
+  cli: `${repos.core}/blob/main/docs/cli-reference.md`,
   mcp: `${repos.core}/blob/main/README_MCP.md`,
+  installation: `${repos.core}/blob/main/docs/installation.md`,
+  migration: `${repos.core}/blob/main/docs/migration-v0.8.0.md`,
+  releaseNotes: `${repos.core}/blob/main/docs/release-notes-v0.8.0.md`,
+  releasePolicy: `${repos.core}/blob/main/docs/release.md`,
   rebuild: `${repos.core}/blob/main/docs/v4-rebuild-runbook.md`,
+  security: `${repos.core}/blob/main/SECURITY.md`,
+  troubleshooting: `${repos.core}/blob/main/docs/troubleshooting.md`,
+  limitations: `${repos.core}/blob/main/docs/performance-and-limitations.md`,
+  contributing: `${repos.core}/blob/main/CONTRIBUTING.md`,
+  openapi: `${repos.core}/blob/main/docs/reference/openapi.json`,
   retrievalFixture: `${repos.core}/blob/main/tests/test_v4_independent_retrieval_audit.py`,
   retrievalAudit: `${repos.core}/blob/main/docs/v4-final-independent-audit.md`,
   certificationAudit: `${repos.certification}/blob/main/reports/independent-audit/REPORT.md`,
@@ -465,12 +476,12 @@ function faqPage() {
 
 function docsPage() {
   const groups = [
-    ['Start', [['Quickstart', docs.readme], ['Installation', docs.installation], ['Current status', route('status/'), false]]],
-    ['Understand', [['V4 architecture', docs.architecture], ['Memory & retrieval contract', docs.api], ['How MESA works', route('how-it-works/'), false]]],
-    ['Build', [['Python SDK', docs.readme], ['HTTP API', docs.api], ['MCP integration', route('docs/mcp/'), false]]],
-    ['Operate', [['Configuration & installation', docs.installation], ['Rebuild & recovery runbook', docs.rebuild], ['Core lifecycle overview', route('mesa/'), false]]],
-    ['Trust', [['Security policy', docs.security], ['Evaluation & trust', route('evaluation/'), false], ['Certification audit', docs.certificationAudit]]],
-    ['Reference', [['API contracts', docs.api], ['Ecosystem boundaries', route('ecosystem/'), false], ['Release status', route('status/'), false]]],
+    ['Start', [['Quickstart', docs.readme], ['Getting started', docs.gettingStarted], ['Installation', docs.installation], ['Current status', route('status/'), false]]],
+    ['Understand', [['V4 architecture', docs.architecture], ['Concepts & ingestion', docs.concepts], ['Retrieval & graph', docs.retrieval], ['How MESA works', route('how-it-works/'), false]]],
+    ['Build', [['Python SDK', docs.api], ['HTTP API', docs.api], ['OpenAPI specification', docs.openapi], ['MCP integration', route('docs/mcp/'), false]]],
+    ['Operate', [['Configuration & installation', docs.configuration], ['CLI reference', docs.cli], ['Rebuild & recovery runbook', docs.rebuild], ['Core lifecycle overview', route('mesa/'), false]]],
+    ['Trust', [['Security policy', docs.security], ['Performance & limitations', docs.limitations], ['Troubleshooting', docs.troubleshooting], ['Evaluation & trust', route('evaluation/'), false]]],
+    ['Reference', [['v0.8.0 Release notes', docs.releaseNotes], ['Migration to v0.8.0', docs.migration], ['Release policy', docs.releasePolicy], ['Ecosystem boundaries', route('ecosystem/'), false]]],
     ['Contribute', [['Contributing guide', docs.contributing], ['Issue tracker', repos.issues], ['MESA QA repository', repos.qa]]]
   ];
   return `${header('docs')}<main id="main-content"><section class="page-hero compact page-hero--functional docs-hero docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Find the contract.<br><em>Then run the code.</em></h1><p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p></section><section class="section docs-grid">${groups.map(([name, links], index) => `<section${index === 0 ? ' class="docs-start"' : ''}><p class="eyebrow">0${index + 1} / ${name}</p>${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}</section>`).join('')}</section>
@@ -488,7 +499,7 @@ function mcpPage() {
 
 function statusPage() {
   return `${header()}<main id="main-content"><section class="page-hero compact page-hero--operational status-accent"><p class="eyebrow">PROJECT STATUS</p><h1>Transparent by default.<br><em>No borrowed confidence.</em></h1><p>Status below reflects current repository documentation and the hardened independent certification audit available on ${project.statusAsOf}.</p></section>${statusStrip()}
-    <section class="section status-timeline"><article><span>CORE</span><h2>${project.runtime} ${project.maturity.toLowerCase()}</h2><p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>The harness now fails closed, but authoritative runtime/scoring/metric producers and a current valid final run remain absent.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Law-side pass / overall ${project.production}</h2><p>Local Law-side gates passed; full-stack and live Core integration gates were not run.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
+    <section class="section status-timeline"><article><span>CORE</span><h2>${project.runtime} ${project.maturity.toLowerCase()}</h2><p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}${external(docs.releaseNotes, 'v0.8.0 Release notes')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>The harness now fails closed, but authoritative runtime/scoring/metric producers and a current valid final run remain absent.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Law-side pass / overall ${project.production}</h2><p>Local Law-side gates passed; full-stack and live Core integration gates were not run.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
 }
 
 
