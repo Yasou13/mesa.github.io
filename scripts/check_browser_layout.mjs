@@ -314,6 +314,11 @@ async function checkContentInteractions() {
       input.value = 'retrieval'; input.dispatchEvent(new Event('input', { bubbles: true }));
       for(let i=0; i<60 && !document.querySelector('.search-result-item a'); i++) await new Promise(resolve => setTimeout(resolve, 50));
       const links = [...document.querySelectorAll('.search-result-item a')].map(a => a.href);
+      let turkishCase = true;
+      if (document.documentElement.lang === 'tr') {
+        input.value = 'içe'; input.dispatchEvent(new Event('input', {bubbles:true}));
+        turkishCase = [...document.querySelectorAll('.search-result-item a')].some(link => link.href.includes('docs/data/import-contract/'));
+      }
       const dialog = document.querySelector('[role="dialog"]');
       const controls = [...dialog.querySelectorAll('input,button,a[href]')];
       controls[controls.length-1].focus();
@@ -325,10 +330,10 @@ async function checkContentInteractions() {
       const closed = !dialog.classList.contains('open');
       const docsToggle = document.querySelector('.docs-navigation summary');
       docsToggle.click();
-      return {links, trapped, restored, closed, focusOutline, docsExpanded: docsToggle.parentElement.open};
+      return {links, turkishCase, trapped, restored, closed, focusOutline, docsExpanded: docsToggle.parentElement.open};
     })()`);
     if (!result.links.length || result.links.some(link => !link.startsWith(new URL(localized, baseUrl).href))) failures.push(`${localized}: search path or language mismatch`);
-    if (!result.trapped || !result.restored || !result.closed || result.focusOutline === 'none' || !result.docsExpanded) failures.push(`${localized}: keyboard focus or documentation disclosure failed`);
+    if (!result.turkishCase || !result.trapped || !result.restored || !result.closed || result.focusOutline === 'none' || !result.docsExpanded) failures.push(`${localized}: keyboard focus or documentation disclosure failed`);
     fallbackChecks.push({ type: 'search-and-docs', language: localized || 'en', ...result });
     await navigate(new URL(`${localized}admin/`, baseUrl).href);
     const admin = await evaluate(`({forms: document.forms.length, controls: document.querySelectorAll('input,textarea,button').length, noindex: document.querySelector('meta[name="robots"]').content, scripts: document.scripts.length})`);
