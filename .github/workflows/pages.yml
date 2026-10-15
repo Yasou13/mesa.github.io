@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   repository_dispatch:
-    types: [publish_article, sync_documentation]
+    types: [sync_documentation]
 
 permissions:
   contents: read
@@ -25,6 +25,18 @@ jobs:
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Run audit regression tests
+        run: |
+          python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
+          for test in scripts/tests/*.test.mjs; do node "$test"; done
       - name: Synchronize documentation
         run: python3 scripts/sync_docs.py
       - name: Build static artifact

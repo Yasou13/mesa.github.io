@@ -160,7 +160,7 @@
     "Current independent audit": "Güncel bağımsız denetim",
     "CURRENT HARDENED PATH": "GÜNCEL SIKILAŞTIRILMIŞ YOL",
     "BLOCKED": "ENGELLİ",
-    "No current passing runtime certification transaction has been executed. Mandatory B0–B14 gates remain unverified until authoritative runtime, scoring, and metric producers are registered and proven.": "Başarılı güncel bir çalışma zamanı sertifikasyon işlemi henüz yürütülmedi. Yetkili çalışma zamanı, puanlama ve metrik üreticileri kaydedilip kanıtlanana kadar zorunlu B0–B14 kapıları doğrulanmamış durumda.",
+    "Official runner, scoring, and metric producers are implemented. A new Profile B run remains blocked by missing runner-owned MESA Data delivery and restart evidence for B4/B6/B7/B8; no new certification PASS is claimed.": "Resmî çalıştırıcı, puanlama ve metrik üreticileri uygulanmış durumda. Yeni Profile B çalışması, B4/B6/B7/B8 için çalıştırıcının ürettiği MESA Data teslim ve yeniden başlatma kanıtları eksik olduğundan engelli; yeni sertifikasyon PASS iddia edilmiyor.",
     "WHAT PROFILE B IS DESIGNED TO PROVE": "PROFILE B'NİN KANITLAMAK ÜZERE TASARLANDIKLARI",
     "Official legal data acquisition and byte preservation": "Resmî hukuk verisinin edinilmesi ve bayt düzeyinde korunması",
     "Canonicalization without silent Turkish text loss": "Türkçe metni sessizce kaybetmeden kanonikleştirme",
@@ -396,7 +396,7 @@
     "Harness integrity improved.": "Test düzeneğinin bütünlüğü iyileştirildi.",
     "Certification remains blocked.": "Sertifikasyon hâlâ engelli.",
     "The independent audit corrected reproduced integrity defects and verified fail-closed behavior. It did not execute a legitimate passing runtime certification transaction.": "Bağımsız denetim yeniden üretilen bütünlük kusurlarını düzeltti ve hata durumunda kapanma davranışını doğruladı. Meşru ve başarılı bir çalışma zamanı sertifikasyon işlemi yürütmedi.",
-    "Authoritative runtime, ground-truth join, scoring, health, and mandatory metric producers remain unavailable for a current PASS.": "Güncel bir PASS için yetkili çalışma zamanı, ground-truth join, puanlama, sağlık ve zorunlu metrik üreticileri hâlâ mevcut değil.",
+    "The current harness implements official execution, frozen ground-truth scoring and metric derivation. External delivery/restart collectors, provider qualification and a fresh official run remain unverified.": "Güncel test düzeneği resmî yürütme, dondurulmuş ground-truth puanlaması ve metrik türetmeyi uyguluyor. Dış teslim/yeniden başlatma toplayıcıları, sağlayıcı doğrulaması ve yeni resmî çalışma henüz doğrulanmış değil.",
     "Read the independent audit": "Bağımsız denetimi okuyun",
     "BENCHMARK PUBLICATION": "BENCHMARK YAYIMLAMA",
     "No placeholder numbers.": "Yer tutucu sayı yok.",
@@ -434,7 +434,7 @@
     "Is MESA production-ready?": "MESA üretime hazır mı?",
     "No. Core is a release candidate and production remains NO-GO. Required production-like migration, restore, crash, saturation, concurrency, benchmark, and soak gates are not all complete.": "Hayır. Core bir sürüm adayıdır ve üretim durumu NO-GO olarak kalır. Gerekli üretim benzeri migration, restore, crash, saturation, concurrency, benchmark ve soak kapılarının tamamı sonuçlanmış değildir.",
     "What is the current certification status?": "Güncel sertifikasyon durumu nedir?",
-    "Blocked. The hardened Profile B path fails closed because authoritative runtime, scoring, ground-truth join, health, and mandatory metric producers are not yet all available for a legitimate PASS.": "Engelli. Sıkılaştırılmış Profile B yolu, meşru bir PASS için yetkili çalışma zamanı, puanlama, ground-truth join, sağlık ve zorunlu metrik üreticilerinin tümü henüz mevcut olmadığından hata durumunda kapanır.",
+    "Blocked. The current harness implements official execution, scoring and metric producers, but B4/B6/B7/B8 require unavailable external delivery/restart evidence and a fresh official run.": "Engelli. Güncel test düzeneği resmî yürütme, puanlama ve metrik üreticilerini uyguluyor; ancak B4/B6/B7/B8 için henüz mevcut olmayan dış teslim/yeniden başlatma kanıtları ve yeni resmî çalışma gerekiyor.",
     "Where should a developer start?": "Bir geliştirici nereden başlamalı?",
     "Read the quickstart, run the locked environment, choose the V3-compatible safe core or the explicit V4 topology deliberately, then inspect the API, SDK, MCP, architecture, and status documents before integration.": "Hızlı başlangıcı okuyun, kilitlenmiş ortamı çalıştırın, V3 uyumlu safe core ya da açık V4 topolojisini bilinçli biçimde seçin; entegrasyondan önce API, SDK, MCP, mimari ve durum belgelerini inceleyin.",
     "GO DEEPER": "DAHA DERİNE İNİN",
@@ -721,9 +721,9 @@
     "Catalog onboarding and V4 mutation state are tracked over HTTP. A 202 admission is not presented as publication; only COMMITTED is success.": "Katalog onboarding ve V4 mutasyon durumu HTTP üzerinden izlenir. 202 kabulü yayımlama olarak sunulmaz; yalnızca COMMITTED başarıdır.",
     "MVP limits": "MVP sınırları",
     "External legal research and AI draft generation are disabled in the documented MVP contract.": "Haricî hukuk araştırması ve yapay zekâ taslak üretimi belgelenmiş MVP sözleşmesinde devre dışıdır.",
-    "Law-side gates pass.": "Law tarafı kapıları geçiyor.",
+    "Historical Law-side gates passed.": "Tarihsel Law tarafı kapıları geçti.",
     "Overall integration: NO-GO.": "Genel entegrasyon: NO-GO.",
-    "The latest repository report says isolated Law code, contract, database, frontend, and stub gates passed. The full running stack and live MESA Core integration were not executed, so overall MVP GO is not claimed.": "Son depo raporuna göre yalıtılmış Law kodu, sözleşme, veritabanı, frontend ve stub kapıları geçti. Çalışan stack'in tamamı ve canlı MESA Core entegrasyonu yürütülmediği için genel MVP GO iddia edilmiyor.",
+    "The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.0 integration proof.": "2026-08-01 raporu Core 0.7.1 karşısındaki yalıtılmış Law testlerini kaydediyor. Full-stack ve canlı Core entegrasyonu çalıştırılmadı. Güncel Law HEAD CI sonucu başarısız; bu, güncel Core 0.8.0 entegrasyon kanıtı değildir.",
     "Read verification report": "Doğrulama raporunu okuyun",
 
     "Test the candidate.": "Adayı sınayın.",
@@ -759,15 +759,15 @@
     "Canonical architecture": "Kanonik mimari",
     "PROFILE B": "PROFILE B",
     "Certification blocked": "Sertifikasyon engelli",
-    "The harness now fails closed, but authoritative runtime/scoring/metric producers and a current valid final run remain absent.": "Test düzeneği artık hata durumunda kapanıyor; ancak yetkili çalışma zamanı/puanlama/metrik üreticileri ve güncel, geçerli bir nihai çalışma hâlâ yok.",
+    "Official execution, scoring and metric producers exist. B4/B6/B7/B8 external evidence remains blocked; the historical PROFILE_B_FAIL is unchanged and no fresh official PASS exists.": "Resmî yürütme, puanlama ve metrik üreticileri mevcut. B4/B6/B7/B8 dış kanıtları engelli; tarihsel PROFILE_B_FAIL değişmedi ve yeni resmî PASS yok.",
     "Independent audit": "Bağımsız denetim",
     "HISTORICAL RUN": "TARİHSEL ÇALIŞMA",
     "Qualification evidence": "Yeterlilik kanıtı",
     "The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.": "Yayımlanan çalışma regresyon ve denetim için korunur. Güncel ve geçerli bir Profile B v2 sertifikasyon sonucu değildir.",
     "Invalidation record": "Geçersiz kılma kaydı",
     "MESA LAW": "MESA LAW",
-    "Law-side pass / overall NO-GO": "Law tarafı başarılı / genel durum NO-GO",
-    "Local Law-side gates passed; full-stack and live Core integration gates were not run.": "Yerel Law tarafı kapıları geçti; full-stack ve canlı Core entegrasyon kapıları çalıştırılmadı.",
+    "Historical Law pass / overall NO-GO": "Tarihsel Law başarısı / genel durum NO-GO",
+    "The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.": "Tarihli Law raporu Core 0.7.1 karşısında başarılıydı; güncel HEAD CI başarısız. Canlı Core 0.8.0 entegrasyonu doğrulanmış değil.",
     "Verification report": "Doğrulama raporu",
 
     "USE CASES": "KULLANIM ALANLARI",
@@ -797,6 +797,7 @@
     "Its source-aware matter, document, review, and QA surfaces show why provenance matters. Live Core integration remains pending.": "Kaynak odaklı dosya, belge, inceleme ve QA yüzeyleri kaynak izinin neden önemli olduğunu gösterir. Canlı Core entegrasyonu hâlâ beklemededir.",
     "Explore the reference implementation": "Referans uygulamayı inceleyin",
 
-    "__END__": "__END__"
+    "__END__": "__END__",
+    "The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.": "En son QA durumu, canlı ilk yazmada INVALID_ARGUMENT hatası kaydediyor. Önceki Lite test düzeneği kanıtında aday oturum sonucu FAIL; bu, güncel Core 0.8.0 doğrulaması değildir."
   }
 }

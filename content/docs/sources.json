@@ -1,0 +1,310 @@
+{
+  "core": {
+    "repo_url": "https://github.com/Yasou13/MESA.git",
+    "title": {
+      "en": "MESA Core",
+      "tr": "MESA Core"
+    },
+    "description": {
+      "en": "Deterministic AI memory infrastructure, SQLite canonical ledger, LanceDB & Kùzu projections, hybrid retrieval.",
+      "tr": "Deterministik yapay zekâ hafıza altyapısı, SQLite kanonik defter, LanceDB ve Kùzu projeksiyonları, hibrit retrieval."
+    },
+    "base_route": "docs/core/",
+    "allowlist": [
+      {
+        "src": "README.md",
+        "slug": "",
+        "title": "Overview",
+        "title_tr": "Genel Bakış"
+      },
+      {
+        "src": "docs/getting-started.md",
+        "slug": "getting-started",
+        "title": "Getting Started",
+        "title_tr": "Başlarken"
+      },
+      {
+        "src": "docs/installation.md",
+        "slug": "installation",
+        "title": "Installation",
+        "title_tr": "Kurulum"
+      },
+      {
+        "src": "docs/architecture-v4.md",
+        "slug": "architecture",
+        "title": "Architecture V4",
+        "title_tr": "Mimari V4"
+      },
+      {
+        "src": "docs/concepts-and-ingestion.md",
+        "slug": "concepts-and-ingestion",
+        "title": "Concepts & Ingestion",
+        "title_tr": "Kavramlar ve Ingestion"
+      },
+      {
+        "src": "docs/configuration.md",
+        "slug": "configuration",
+        "title": "Configuration",
+        "title_tr": "Konfigürasyon"
+      },
+      {
+        "src": "docs/retrieval-and-graph.md",
+        "slug": "retrieval-and-graph",
+        "title": "Retrieval & Graph",
+        "title_tr": "Retrieval ve Çizge"
+      },
+      {
+        "src": "docs/api-reference.md",
+        "slug": "api-reference",
+        "title": "API Reference",
+        "title_tr": "API Referansı"
+      },
+      {
+        "src": "docs/cli-reference.md",
+        "slug": "cli-reference",
+        "title": "CLI Reference",
+        "title_tr": "CLI Referansı"
+      },
+      {
+        "src": "docs/migration-v0.8.0.md",
+        "slug": "migration",
+        "title": "Migration to v0.8.0",
+        "title_tr": "v0.8.0 Geçişi"
+      },
+      {
+        "src": "docs/release-notes-v0.8.0.md",
+        "slug": "release-notes",
+        "title": "Release Notes v0.8.0",
+        "title_tr": "Sürüm Notları v0.8.0"
+      },
+      {
+        "src": "docs/troubleshooting.md",
+        "slug": "troubleshooting",
+        "title": "Troubleshooting",
+        "title_tr": "Sorun Giderme"
+      },
+      {
+        "src": "docs/performance-and-limitations.md",
+        "slug": "limitations",
+        "title": "Performance & Limitations",
+        "title_tr": "Performans ve Sınırlılıklar"
+      },
+      {
+        "src": "docs/v4-rebuild-runbook.md",
+        "slug": "rebuild-runbook",
+        "title": "V4 Rebuild Runbook",
+        "title_tr": "V4 Yeniden Derleme Kılavuzu"
+      },
+      {
+        "src": "docs/v4-final-independent-audit.md",
+        "slug": "audit",
+        "title": "Independent Audit",
+        "title_tr": "Bağımsız Denetim"
+      },
+      {
+        "src": "docs/colab_kurulum_rehberi.md",
+        "slug": "colab-rehberi",
+        "title": "Google Colab Guide",
+        "title_tr": "Google Colab Rehberi"
+      }
+    ],
+    "commit": "e3750a7c44c26d7e3555be755e8c07fd5282ca64",
+    "version_source": "pyproject.toml"
+  },
+  "data": {
+    "repo_url": "https://github.com/Yasou13/MESA_Data.git",
+    "title": {
+      "en": "MESA Data",
+      "tr": "MESA Data"
+    },
+    "description": {
+      "en": "Turkish legal and official gazette data preparation pipeline with deterministic provenance.",
+      "tr": "Deterministik provenance ile Türk hukuku ve Resmî Gazete veri hazırlama hattı."
+    },
+    "base_route": "docs/data/",
+    "allowlist": [
+      {
+        "src": "README.md",
+        "slug": "",
+        "title": "Overview",
+        "title_tr": "Genel Bakış"
+      },
+      {
+        "src": "docs/HIZLI_BASLANGIC.md",
+        "slug": "quickstart",
+        "title": "Quickstart (TR)",
+        "title_tr": "Hızlı Başlangıç"
+      },
+      {
+        "src": "docs/KULLANIM_KILAVUZU.md",
+        "slug": "user-guide",
+        "title": "User Guide (TR)",
+        "title_tr": "Kullanım Kılavuzu"
+      },
+      {
+        "src": "docs/IMPORT_CONTRACT.md",
+        "slug": "import-contract",
+        "title": "Import Contract",
+        "title_tr": "İçe Aktarma Sözleşmesi"
+      },
+      {
+        "src": "docs/SORUN_GIDERME.md",
+        "slug": "troubleshooting",
+        "title": "Troubleshooting (TR)",
+        "title_tr": "Sorun Giderme"
+      },
+      {
+        "src": "docs/MVP_CLOSURE_REPORT.md",
+        "slug": "mvp-closure",
+        "title": "MVP Closure Report",
+        "title_tr": "MVP Kapanış Raporu"
+      }
+    ],
+    "commit": "e1dc229e9de57c48374e38a87ec7786d1c7bd1f9",
+    "version_source": "pyproject.toml"
+  },
+  "law": {
+    "repo_url": "https://github.com/Yasou13/MESA_Law.git",
+    "title": {
+      "en": "MESA Law",
+      "tr": "MESA Law"
+    },
+    "description": {
+      "en": "Source-aware legal workflow system with strict evidence verification.",
+      "tr": "Sıkı kanıt doğrulamalı kaynak odaklı hukuk iş akışı sistemi."
+    },
+    "base_route": "docs/law/",
+    "allowlist": [
+      {
+        "src": "docs/mesa-v4-contract.md",
+        "slug": "",
+        "title": "Contract Overview",
+        "title_tr": "Sözleşme Genel Bakış"
+      },
+      {
+        "src": "docs/operations.md",
+        "slug": "operations",
+        "title": "Operations Guide",
+        "title_tr": "Operasyon Rehberi"
+      },
+      {
+        "src": "docs/mvp-final-verification.md",
+        "slug": "verification",
+        "title": "Final Verification",
+        "title_tr": "Nihai Doğrulama"
+      },
+      {
+        "src": "docs/mvp-baseline.md",
+        "slug": "baseline",
+        "title": "MVP Baseline",
+        "title_tr": "MVP Temel Durumu"
+      }
+    ],
+    "commit": "b791be27a5d9d2e0306057529f6a5dce222673a4",
+    "version_source": "pyproject.toml"
+  },
+  "qa": {
+    "repo_url": "https://github.com/Yasou13/MESA_QA.git",
+    "title": {
+      "en": "MESA QA",
+      "tr": "MESA QA"
+    },
+    "description": {
+      "en": "Independent QA harness, endurance and restart failure injection testing.",
+      "tr": "Bağımsız QA harness, dayanıklılık ve yeniden başlatma hata enjeksiyon testleri."
+    },
+    "base_route": "docs/qa/",
+    "allowlist": [
+      {
+        "src": "README.md",
+        "slug": "",
+        "title": "Overview",
+        "title_tr": "Genel Bakış"
+      },
+      {
+        "src": ".audit/current/FRESH_INDEPENDENT_AUDIT.md",
+        "slug": "audit",
+        "title": "Fresh Independent Audit",
+        "title_tr": "Güncel Bağımsız Denetim"
+      },
+      {
+        "src": "prompts/REPAIR.md",
+        "slug": "repair-prompt",
+        "title": "Repair Prompt Specification",
+        "title_tr": "Onarım Prompt Spesifikasyonu"
+      },
+      {
+        "src": "prompts/REPRODUCE.md",
+        "slug": "reproduce-prompt",
+        "title": "Reproduce Prompt Specification",
+        "title_tr": "Yeniden Üretim Promptu"
+      }
+    ],
+    "commit": "4f6c7ecc033e2c5b085ac9d220b841b8aab04d1e",
+    "version_source": "pyproject.toml"
+  },
+  "e2e": {
+    "repo_url": "https://github.com/Yasou13/MESA_E2E_Certification.git",
+    "title": {
+      "en": "MESA E2E Certification",
+      "tr": "MESA E2E Sertifikasyonu"
+    },
+    "description": {
+      "en": "Multi-tier end-to-end certification harness and ground truth validation for MESA Profile B.",
+      "tr": "MESA Profil B için çok katmanlı uçtan uca sertifikasyon ve ground truth doğrulama."
+    },
+    "base_route": "docs/e2e/",
+    "allowlist": [
+      {
+        "src": "README.md",
+        "slug": "",
+        "title": "Overview",
+        "title_tr": "Genel Bakış"
+      },
+      {
+        "src": "reports/independent-audit/REPORT.md",
+        "slug": "audit-report",
+        "title": "Independent Audit Report",
+        "title_tr": "Bağımsız Denetim Raporu"
+      },
+      {
+        "src": "agent-pack/00_START_HERE.md",
+        "slug": "agent-pack-start",
+        "title": "Agent Pack Start",
+        "title_tr": "Ajan Paketi Başlangıç"
+      },
+      {
+        "src": "agent-pack/02_SYSTEM_MODEL_AND_NON_NEGOTIABLES.md",
+        "slug": "system-model",
+        "title": "System Model & Non-Negotiables",
+        "title_tr": "Sistem Modeli ve Esnetilemezler"
+      },
+      {
+        "src": "agent-pack/06_PROFILE_B_OBJECTIVE_GATES_VERDICTS.md",
+        "slug": "gates-and-verdicts",
+        "title": "Profile B Objective Gates",
+        "title_tr": "Profil B Hedef Kapıları"
+      },
+      {
+        "src": "agent-pack/09_NATIVE_MESA_DATA_TO_MESA_CONTRACT.md",
+        "slug": "contract",
+        "title": "Data to Core Contract",
+        "title_tr": "Data - Core Sözleşmesi"
+      },
+      {
+        "src": "reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md",
+        "slug": "current-repair",
+        "title": "Current Repair and Blockers",
+        "title_tr": "Güncel Onarımlar ve Engeller"
+      },
+      {
+        "src": "reports/profile-b-comprehensive-repair/VERIFICATION_SUMMARY.md",
+        "slug": "repair-verification",
+        "title": "Repair Verification Summary",
+        "title_tr": "Onarım Doğrulama Özeti"
+      }
+    ],
+    "commit": "3b7562cb65800cde27877dc3a7cd505a70822bf8",
+    "version_source": "pyproject.toml"
+  }
+}
