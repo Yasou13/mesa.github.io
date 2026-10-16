@@ -13,3 +13,5 @@
 The shared stylesheet was edited at the existing rules; `cosmic.css` describes the new component, not a duplicate theme override. Functional CSS was retained where usage could not be disproved. This is not a claim that every historical selector has been deleted.
 
 See `docs/tests/MESA_VISUAL_REGRESSION_REPORT.md` for measured screenshots, contrast, accessibility, sizes and remaining limits.
+
+Implementation history: `4e5a75a` baseline audit; `cd9a594` shared engine; `687cf9f` global/mobile integration; `074b350` Auth/CMS and verification repairs. Final metrics and persistent before/after screenshots: [regression report](../tests/MESA_VISUAL_REGRESSION_REPORT.md).

@@ -1,0 +1,59 @@
+{
+  "baseUrl": "http://127.0.0.1:8766/",
+  "cacheMode": "cold",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.79",
+    "revision": "@a49e2e3d4addfd84e765b52afe230bedb81096db",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.23"
+  },
+  "observations": [],
+  "fallbackChecks": [
+    {
+      "type": "performance",
+      "width": 1440,
+      "reducedMotion": false,
+      "intervalMs": 3000,
+      "mainThreadTaskMs": 5.968000000000001,
+      "mainThreadBusyPercent": 0.19893333333333335,
+      "motion": "on",
+      "animations": 1,
+      "cls": 0,
+      "transfer": 301050,
+      "encoded": 298950
+    },
+    {
+      "type": "performance",
+      "width": 1440,
+      "reducedMotion": true,
+      "intervalMs": 3000,
+      "mainThreadTaskMs": 2.819000000000002,
+      "mainThreadBusyPercent": 0.09396666666666674,
+      "motion": "off",
+      "animations": 0,
+      "cls": 0,
+      "transfer": 293710,
+      "encoded": 291910
+    },
+    {
+      "type": "performance",
+      "width": 390,
+      "reducedMotion": false,
+      "intervalMs": 3000,
+      "mainThreadTaskMs": 11.105999999999998,
+      "mainThreadBusyPercent": 0.3701999999999999,
+      "motion": "on",
+      "animations": 0,
+      "cls": 0,
+      "transfer": 293710,
+      "encoded": 291910
+    },
+    {
+      "type": "simulated-visibilitychange",
+      "paused": true,
+      "resumed": true
+    }
+  ],
+  "failures": []
+}

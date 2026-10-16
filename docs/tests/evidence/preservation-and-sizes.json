@@ -1,0 +1,35 @@
+{
+  "baseline": "cae7a09",
+  "routesBefore": 179,
+  "routesAfter": 179,
+  "routesPreserved": true,
+  "publicTextChanges": [],
+  "sourceContentChanged": [],
+  "sizes": {
+    "styles.css": {
+      "bytes": 123453,
+      "gzipBytes": 22893,
+      "baselineBytes": 138892
+    },
+    "cosmic.css": {
+      "bytes": 2012,
+      "gzipBytes": 841,
+      "baselineBytes": 0
+    },
+    "app.js": {
+      "bytes": 12397,
+      "gzipBytes": 3830,
+      "baselineBytes": 12549
+    },
+    "admin.js": {
+      "bytes": 231727,
+      "gzipBytes": 61422,
+      "baselineBytes": 0
+    },
+    "admin.css": {
+      "bytes": 2097,
+      "gzipBytes": 798,
+      "baselineBytes": 0
+    }
+  }
+}

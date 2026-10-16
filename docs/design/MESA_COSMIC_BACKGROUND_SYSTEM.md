@@ -19,3 +19,5 @@ Without JavaScript the complete SVG remains visible and static. Motion is opt-in
 ## Limits
 
 SVG turbulence has an initial rasterization cost; it is not a zero-cost effect. Performance measurements and actual tested viewports are in `docs/tests/MESA_VISUAL_REGRESSION_REPORT.md`. No Safari/iOS or field performance certification is implied.
+
+Implementation history: `4e5a75a` baseline audit; `cd9a594` shared engine; `687cf9f` global/mobile integration; `074b350` Auth/CMS and verification repairs. Final metrics and persistent before/after screenshots: [regression report](../tests/MESA_VISUAL_REGRESSION_REPORT.md).

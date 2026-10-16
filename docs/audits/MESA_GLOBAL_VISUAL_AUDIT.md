@@ -17,3 +17,5 @@ All four actual WebP references extracted from the supplied `~/Downloads/MESA-Vi
 ## Evidence
 
 Fresh before screenshots and full structured observations: [before gallery](../../../review/global-cosmic/before/). Representative files: `home-390.png`, `home-1440.png`, `mesa-1440.png`, `law-390.png`, `docs-1440.png`, `learn-what-is-ai-memory-390.png`. All are local Chrome captures, not historical screenshots. Final implementation and remaining limitations are recorded in the linked design, security and regression reports.
+
+Implementation history: `4e5a75a` baseline audit; `cd9a594` shared engine; `687cf9f` global/mobile integration; `074b350` Auth/CMS and verification repairs. Final metrics and persistent before/after screenshots: [regression report](../tests/MESA_VISUAL_REGRESSION_REPORT.md).

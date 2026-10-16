@@ -47,3 +47,5 @@ Public publication source remains `content/hub.json`. Draft saves never claim to
 Exact setup and staging acceptance steps: [ADMIN_AUTH_SETUP.md](../admin/ADMIN_AUTH_SETUP.md). Owner must apply both migrations, disable signup, provision an ADMIN role through trusted administration, configure exact EN/TR recovery redirects and working SMTP, set the two public build variables, and complete real staging sign-in/recovery/RLS verification.
 
 **Can the owner actually log in using the configured backend? Not verified; this build has no configured backend and deliberately disables sign-in.** The client and existing RLS integration are implemented; production login must not be labelled COMPLETE.
+
+Implementation history: `4e5a75a` baseline audit; `cd9a594` shared engine; `687cf9f` global/mobile integration; `074b350` Auth/CMS and verification repairs. Final metrics and persistent before/after screenshots: [regression report](../tests/MESA_VISUAL_REGRESSION_REPORT.md).

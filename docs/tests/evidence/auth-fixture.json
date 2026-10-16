@@ -1,0 +1,215 @@
+{
+  "baseUrl": "http://127.0.0.1:8765/mesa-admin-fixture/",
+  "cacheMode": "cold",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.79",
+    "revision": "@a49e2e3d4addfd84e765b52afe230bedb81096db",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.23"
+  },
+  "observations": [],
+  "fallbackChecks": [
+    {
+      "type": "isolated-auth-fixture",
+      "name": "invalid password fails closed",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "server role rejection before draft fetch",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "loading state",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "real SDK token user and role sequence",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "draft title remains text",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "draft save waits for backend",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "stale write rejected",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "private media and publication metadata",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "logout clears private fields and session",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "expired access token refresh",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "rejected refresh locks session",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "password recovery sends actual SDK request",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "PKCE recovery validates session and strips code",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "password change and logout",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "revoked role clears loaded private content",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "network failure logout clears local credentials honestly",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "invalid-user denies private access",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "role-error denies private access",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "reset failure has no fake success",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "missing recovery verifier fails closed",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/invalid password fails closed",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/server role rejection before draft fetch",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/loading state",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/real SDK token user and role sequence",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/draft title remains text",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/draft save waits for backend",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/stale write rejected",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/private media and publication metadata",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/logout clears private fields and session",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/expired access token refresh",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/rejected refresh locks session",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/password recovery sends actual SDK request",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/PKCE recovery validates session and strips code",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/password change and logout",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/revoked role clears loaded private content",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/network failure logout clears local credentials honestly",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/invalid-user denies private access",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/role-error denies private access",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/reset failure has no fake success",
+      "status": "PASS"
+    },
+    {
+      "type": "isolated-auth-fixture",
+      "name": "tr/missing recovery verifier fails closed",
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}
