@@ -36,7 +36,7 @@ Bir ajanın 'Ahmet'in Z İştiraki ile potansiyel bir çıkar çatışması var 
 - Graph Gezinimi başarısı: Ajan 'Ahmet' varlık düğümünü sorgular, dışa doğru ilişki kenarlarını takip eder ve onu Z İştirakine bağlayan çok sekmeli yolu 3 deterministik adımda keşfeder.
 
 **Çok Sekmeli Gezinim (Multi-Hop Traversal)**
-: Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 ightarrow E_2 ightarrow \dots ightarrow E_k)$ boyunca sırayla ilerleme süreci.
+: Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 \rightarrow E_2 \rightarrow \dots \rightarrow E_k)$ boyunca sırayla ilerleme süreci.
 
 ## Grafikler ne zaman yardımcı olur — ne zaman gereksiz karmaşıklık getirir?
 

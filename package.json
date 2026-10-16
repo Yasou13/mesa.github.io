@@ -2,7 +2,11 @@
   "name": "mesa-website-tools",
   "private": true,
   "type": "module",
-  "scripts": {"build:admin": "node scripts/bundle_admin.mjs"},
+  "scripts": {
+    "build:admin": "node scripts/bundle_admin.mjs",
+    "verify:admin": "node scripts/bundle_admin.mjs && git diff --exit-code dist/admin.js",
+    "test": "python3 -m unittest discover -s scripts/tests && for t in scripts/tests/*.test.mjs; do node \"$t\"; done"
+  },
   "dependencies": {"@supabase/supabase-js": "2.118.0"},
   "devDependencies": {"esbuild": "0.28.2", "axe-core": "4.11.0"}
 }

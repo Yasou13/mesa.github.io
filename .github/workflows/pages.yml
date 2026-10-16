@@ -29,6 +29,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Verify admin bundle freshness
+        run: npm run verify:admin
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -38,12 +42,12 @@ jobs:
           python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
           for test in scripts/tests/*.test.mjs; do node "$test"; done
       - name: Synchronize documentation
-        run: python3 scripts/sync_docs.py
+        run: python3 scripts/sync_docs.py --fallback-cache
       - name: Build static artifact
         env:
           MESA_SUPABASE_URL: ${{ vars.MESA_SUPABASE_URL }}
           MESA_SUPABASE_PUBLISHABLE_KEY: ${{ vars.MESA_SUPABASE_PUBLISHABLE_KEY }}
-        run: python3 scripts/build_site.py --site-url "${{ steps.pages.outputs.base_url }}"
+        run: python3 scripts/build_site.py --site-url "${{ steps.pages.outputs.base_url }}" --verify-articles
       - name: Verify routes and links
         run: |
           python3 scripts/check_site.py _site

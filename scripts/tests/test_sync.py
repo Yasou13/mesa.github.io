@@ -44,4 +44,38 @@ class SyncTests(unittest.TestCase):
         self.assertIn('/'+'a'*40+'/docs/images/a.png',result)
         self.assertIn('```md\n[x](api.md)\n```',result);self.assertIn('`[y](api.md)`',result)
 
+    def test_fallback_cache_returns_zero_when_cache_exists(self):
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = Path(directory) / 'manifest.json'
+            # Pre-seed manifest with cache for all repositories
+            cached_data = {
+                'schemaVersion': 1,
+                'updatedAt': '2026-10-01T00:00:00Z',
+                'repositories': {k: {'commit': 'c' * 40, 'pages': []} for k in sync_docs.REPO_CONFIGS}
+            }
+            manifest.write_text(json.dumps(cached_data), encoding='utf-8')
+            
+            # Simulate network failure on read_source
+            def failing_read(*args, **kwargs):
+                raise OSError('upstream connection timeout')
+            
+            with patch.object(sync_docs, 'read_source', side_effect=failing_read):
+                with patch('sys.argv', ['sync_docs.py', '--manifest', str(manifest), '--fallback-cache']):
+                    ret = sync_docs.main()
+                    self.assertEqual(ret, 0, "Expected main() to return 0 when fallback cache exists")
+
+    def test_fallback_cache_returns_one_when_cache_is_missing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = Path(directory) / 'manifest.json'
+            # Manifest has no repositories cached
+            manifest.write_text(json.dumps({'schemaVersion': 1, 'repositories': {}}), encoding='utf-8')
+            
+            def failing_read(*args, **kwargs):
+                raise OSError('upstream connection timeout')
+            
+            with patch.object(sync_docs, 'read_source', side_effect=failing_read):
+                with patch('sys.argv', ['sync_docs.py', '--manifest', str(manifest), '--fallback-cache']):
+                    ret = sync_docs.main()
+                    self.assertEqual(ret, 1, "Expected main() to return 1 when cache is missing for failed repo")
+
 if __name__=='__main__':unittest.main()

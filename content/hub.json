@@ -2361,7 +2361,7 @@
                 {
                   "kind": "definition",
                   "term": "Multi-Hop Traversal",
-                  "text": "The sequential navigation across connected graph edges $(E_1 \rightarrow E_2 \rightarrow \\dots \rightarrow E_k)$ to infer indirect relationships that are never explicitly stated in a single text passage."
+                  "text": "The sequential navigation across connected graph edges $(E_1 \\rightarrow E_2 \\rightarrow \\dots \\rightarrow E_k)$ to infer indirect relationships that are never explicitly stated in a single text passage."
                 }
               ]
             },
@@ -2508,7 +2508,7 @@
                 {
                   "kind": "definition",
                   "term": "Çok Sekmeli Gezinim (Multi-Hop Traversal)",
-                  "text": "Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 \rightarrow E_2 \rightarrow \\dots \rightarrow E_k)$ boyunca sırayla ilerleme süreci."
+                  "text": "Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 \\rightarrow E_2 \\rightarrow \\dots \\rightarrow E_k)$ boyunca sırayla ilerleme süreci."
                 }
               ]
             },

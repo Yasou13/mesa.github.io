@@ -9,6 +9,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -178,15 +179,34 @@ def main() -> int:
     parser.add_argument("--manifest", type=Path, default=MANIFEST_FILE)
     parser.add_argument("--source", action="append", default=[], metavar="KEY=GIT_REPOSITORY",
                         help="Read pinned Git objects locally instead of fetching public raw files")
+    parser.add_argument("--fallback-cache", action="store_true",
+                        help="Allow build to succeed using existing cached manifest if network fetch fails")
     args = parser.parse_args()
     sources = {key: Path(value) for key, value in (item.split("=", 1) for item in args.source)}
     unknown = set(sources) - set(REPO_CONFIGS)
     if unknown:
         parser.error(f"unknown source keys: {sorted(unknown)}")
+
+    existing_repos = set()
+    if args.manifest.is_file():
+        try:
+            existing_data = json.loads(args.manifest.read_text(encoding="utf-8"))
+            existing_repos = set(existing_data.get("repositories", {}).keys())
+        except Exception:
+            pass
+
     errors = synchronize(REPO_CONFIGS, args.manifest, sources)
     failure_log = args.manifest.parent / "sync-failures.log"
     if errors:
         failure_log.write_text("\n".join(errors) + "\n")
+        if args.fallback_cache:
+            failed_keys = {err.split(":", 1)[0].strip() for err in errors}
+            missing_cached = failed_keys - existing_repos
+            if not missing_cached:
+                print(f"[WARN] sync_docs encountered network errors, but --fallback-cache is enabled and existing cache is retained for: {sorted(failed_keys)}", file=sys.stderr)
+                return 0
+            else:
+                print(f"[ERROR] sync_docs failed and no cache exists for: {sorted(missing_cached)}", file=sys.stderr)
         return 1
     failure_log.unlink(missing_ok=True)
     return 0

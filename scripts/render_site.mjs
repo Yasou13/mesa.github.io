@@ -273,59 +273,593 @@ function architecture() { return architecturePage(productHelpers()); }
 function retrieval() { return retrievalPage(productHelpers()); }
 
 function howItWorksPage() {
-  return `${header('how')}<main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">HOW MESA WORKS</p><h1>Keep the memory.<br><em>Keep its basis.</em></h1><p>MESA turns authorized source material into structured, retrievable memory while keeping scope and provenance in the result contract.</p><div class="actions">${cta('See the fixture', '#verified-example')}${cta('Technical architecture', route('architecture/'), 'secondary')}</div></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">LEVEL 1 · PUBLIC FLOW</p><h2>Six steps,<br><em>no storage jargon required.</em></h2></div><p>MESA Data is the verified legal-source preparation layer. Core owns the runtime memory lifecycle. Other applications can use the same versioned interfaces.</p></div>${publicFlow()}</section>
-    <section class="section reliability-section"><div class="section-heading"><div><p class="eyebrow">WHAT TRAVELS WITH MEMORY</p><h2>More than<br><em>a similarity score.</em></h2></div><p>Current V4 responses can include catalog identity, source evidence, assertion identity, pipeline identity, embedding provenance, and contributing retrieval origins.</p></div><div class="reliability-list"><article><strong>Source</strong><p>Document, revision, chunk, source reference, and bounded evidence span.</p></article><article><strong>Structure</strong><p>Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.</p></article><article><strong>Scope</strong><p>Tenant and authorized dataset eligibility resolved before lane ranking and fusion.</p></article><article><strong>State</strong><p>Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.</p></article></div></section>
-    <section class="section action-section" id="verified-example"><div class="section-heading"><div><p class="eyebrow">VERIFIED REPOSITORY EXAMPLE</p><h2>Four origins.<br><em>One evidence identity.</em></h2></div><p>The fixture creates one canonical assertion, makes all four origins rank it first, and checks deterministic replay plus a fused score of 4/61.</p></div>${actionExample()}<div class="proof-links">${external(docs.retrievalFixture, 'Inspect the exact test')}${external(docs.api, 'Read the response contract')}</div></section>
-    <section class="section architecture-section"><div class="section-heading"><div><p class="eyebrow">LEVEL 2 · TECHNICAL FLOW</p><h2>Admission, projection,<br><em>retrieval, and recovery.</em></h2></div><p>SQLite owns decisions and canonical assertions. LanceDB and Kùzu are derived projections. The current retrieval contract includes vector, BM25, assertion, and bounded graph-path origins.</p></div>${architectureFlow()}<div class="section-actions">${cta('Explore Core in detail', route('mesa/'))}${cta('Canonical source doc', docs.architecture, 'text', true)}</div></section>
-    <section class="section quality-context"><div><p class="eyebrow">QUALITY LAYERS</p><h2>They surround the flow.<br><em>They do not run inside it.</em></h2></div><div><article><strong>MESA QA</strong><p>Exercises behavior, temporal change, cross-session persistence, restarts, and bounded candidate repair.</p></article><article><strong>E2E Certification</strong><p>Evaluates a frozen profile with evidence, authoritative producers, hard gates, and a fail-closed verdict.</p></article></div><a href="${route('evaluation/')}">Compare evaluation layers →</a></section>${footer()}</main>`;
+  return `
+    ${header('how')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--trajectory">
+        <p class="eyebrow">HOW MESA WORKS</p>
+        <h1>Keep the memory.<br><em>Keep its basis.</em></h1>
+        <p>MESA turns authorized source material into structured, retrievable memory while keeping scope and provenance in the result contract.</p>
+        <div class="actions">
+          ${cta('See the fixture', '#verified-example')}
+          ${cta('Technical architecture', route('architecture/'), 'secondary')}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LEVEL 1 · PUBLIC FLOW</p>
+            <h2>Six steps,<br><em>no storage jargon required.</em></h2>
+          </div>
+          <p>MESA Data is the verified legal-source preparation layer. Core owns the runtime memory lifecycle. Other applications can use the same versioned interfaces.</p>
+        </div>
+        ${publicFlow()}
+      </section>
+
+      <section class="section reliability-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">WHAT TRAVELS WITH MEMORY</p>
+            <h2>More than<br><em>a similarity score.</em></h2>
+          </div>
+          <p>Current V4 responses can include catalog identity, source evidence, assertion identity, pipeline identity, embedding provenance, and contributing retrieval origins.</p>
+        </div>
+        <div class="reliability-list">
+          <article>
+            <strong>Source</strong>
+            <p>Document, revision, chunk, source reference, and bounded evidence span.</p>
+          </article>
+          <article>
+            <strong>Structure</strong>
+            <p>Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.</p>
+          </article>
+          <article>
+            <strong>Scope</strong>
+            <p>Tenant and authorized dataset eligibility resolved before lane ranking and fusion.</p>
+          </article>
+          <article>
+            <strong>State</strong>
+            <p>Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section action-section" id="verified-example">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">VERIFIED REPOSITORY EXAMPLE</p>
+            <h2>Four origins.<br><em>One evidence identity.</em></h2>
+          </div>
+          <p>The fixture creates one canonical assertion, makes all four origins rank it first, and checks deterministic replay plus a fused score of 4/61.</p>
+        </div>
+        ${actionExample()}
+        <div class="proof-links">
+          ${external(docs.retrievalFixture, 'Inspect the exact test')}
+          ${external(docs.api, 'Read the response contract')}
+        </div>
+      </section>
+
+      <section class="section architecture-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LEVEL 2 · TECHNICAL FLOW</p>
+            <h2>Admission, projection,<br><em>retrieval, and recovery.</em></h2>
+          </div>
+          <p>SQLite owns decisions and canonical assertions. LanceDB and Kùzu are derived projections. The current retrieval contract includes vector, BM25, assertion, and bounded graph-path origins.</p>
+        </div>
+        ${architectureFlow()}
+        <div class="section-actions">
+          ${cta('Explore Core in detail', route('mesa/'))}
+          ${cta('Canonical source doc', docs.architecture, 'text', true)}
+        </div>
+      </section>
+
+      <section class="section quality-context">
+        <div>
+          <p class="eyebrow">QUALITY LAYERS</p>
+          <h2>They surround the flow.<br><em>They do not run inside it.</em></h2>
+        </div>
+        <div>
+          <article>
+            <strong>MESA QA</strong>
+            <p>Exercises behavior, temporal change, cross-session persistence, restarts, and bounded candidate repair.</p>
+          </article>
+          <article>
+            <strong>E2E Certification</strong>
+            <p>Evaluates a frozen profile with evidence, authoritative producers, hard gates, and a fail-closed verdict.</p>
+          </article>
+        </div>
+        <a href="${route('evaluation/')}">Compare evaluation layers →</a>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function mesa() {
-  return `${header('mesa')}<main id="main-content">
-    <section class="page-hero page-hero--core"><p class="eyebrow">MESA CORE · V${project.version}</p><h1>A durable memory engine<br>with <em>structured evidence.</em></h1><p>The ${project.runtime} ${project.maturity.toLowerCase()} introduces canonical provenance, selectable validation, dataset isolation, ordered projections, and versioned REST, SDK, and MCP operations.</p><div class="actions">${cta('Source repository', repos.core, 'primary', true)}${cta('Documentation', route('docs/'), 'secondary')}</div></section>
-    ${statusStrip()}
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">MEMORY LIFECYCLE</p><h2>Admission to retrieval,<br><em>without hidden writes.</em></h2></div><p>A rejected mutation creates no active SQL, vector, entity, edge, or assertion artifact. Accepted work follows ordered, idempotent lanes.</p></div>${architectureFlow()}</section>
-    <section class="section surface-section" id="security"><div class="surface-copy"><p class="eyebrow">SECURITY BOUNDARY</p><h2>Agents are context.<br><em>Tenants are boundaries.</em></h2><p>V4 authorization follows principal → tenant → workspace → dataset → agent → server-created session. Roles inherit down the catalog. Purge and rollback require explicit dataset permissions.</p>${cta('Read security policy', docs.security, 'text', true)}</div><div class="scope-visual" role="img" aria-label="Nested MESA authorization scopes"><span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Session</strong></span></strong></span></strong></span></div></section>
-    <section class="section retrieval-section" id="retrieval"><div class="section-heading"><div><p class="eyebrow">RETRIEVAL V2</p><h2>Four signals.<br><em>One bounded result.</em></h2></div><p>Authorized dataset, temporal, jurisdiction, tenant, and agent eligibility are enforced before lane fusion. Higher fused scores are better.</p></div><div class="lane-grid five"><article><span>SEMANTIC</span><h3>Vector</h3><p>LanceDB assertion projection with embedding provenance.</p></article><article><span>LEXICAL</span><h3>BM25</h3><p>Exact and lexical evidence from the SQL-owned corpus.</p></article><article><span>RELATIONAL</span><h3>Assertions</h3><p>SQLite-authoritative assertion relations and citation-aware scoring.</p></article><article><span>BOUNDED GRAPH</span><h3>Graph paths</h3><p>Kùzu Graph V2 paths reconciled to authorized canonical assertion IDs.</p></article><article class="fusion"><span>FUSION</span><h3>True RRF</h3><p>Each lane votes once per candidate, then a bounded legal reranker may apply.</p></article></div><div class="notice"><strong>Storage and retrieval views</strong><p>The storage overview describes SQL, vector and graph projections. Retrieval uses four lanes: vector, BM25, assertion and bounded graph paths, each reconciled to canonical eligibility.</p></div></section>
-    <section class="section storage-section"><div><p class="eyebrow">PHYSICAL STORES</p><h2>SQLite decides.<br><em>Projections follow.</em></h2></div><div class="storage-grid"><article><strong>SQLite</strong><p>Catalog, authorization, mutation/pipeline ledger, ownership, assertions, and ordered outbox.</p></article><article><strong>LanceDB</strong><p>Idempotent vector projection with embedding identity.</p></article><article><strong>Kuzu</strong><p>Idempotent Graph V2 projection, not the assertion decision source.</p></article></div></section>
-    <section class="section client-section"><div class="section-heading"><div><p class="eyebrow">CLIENT SURFACES</p><h2>Versioned access<br><em>around one lifecycle.</em></h2></div></div><div class="client-grid"><a href="${docs.api}" target="_blank" rel="noopener noreferrer"><span>HTTP</span><strong>V4 REST API</strong><small>Catalog, sessions, memory, mutations, operations</small></a><a href="${docs.readme}" target="_blank" rel="noopener noreferrer"><span>PYTHON</span><strong>Sync & async SDK</strong><small>MesaV4Client and version-matched operations</small></a><a href="${route('docs/mcp/')}"><span>PROTOCOL</span><strong>MCP</strong><small>Legacy direct stdio plus the V4 gateway/bridge path</small></a></div></section>
-    ${footer()}</main>`;
+  return `
+    ${header('mesa')}
+    <main id="main-content">
+      <section class="page-hero page-hero--core">
+        <p class="eyebrow">MESA CORE · V${project.version}</p>
+        <h1>A durable memory engine<br>with <em>structured evidence.</em></h1>
+        <p>The ${project.runtime} ${project.maturity.toLowerCase()} introduces canonical provenance, selectable validation, dataset isolation, ordered projections, and versioned REST, SDK, and MCP operations.</p>
+        <div class="actions">
+          ${cta('Source repository', repos.core, 'primary', true)}
+          ${cta('Documentation', route('docs/'), 'secondary')}
+        </div>
+      </section>
+      ${statusStrip()}
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">MEMORY LIFECYCLE</p>
+            <h2>Admission to retrieval,<br><em>without hidden writes.</em></h2>
+          </div>
+          <p>A rejected mutation creates no active SQL, vector, entity, edge, or assertion artifact. Accepted work follows ordered, idempotent lanes.</p>
+        </div>
+        ${architectureFlow()}
+      </section>
+
+      <section class="section surface-section" id="security">
+        <div class="surface-copy">
+          <p class="eyebrow">SECURITY BOUNDARY</p>
+          <h2>Agents are context.<br><em>Tenants are boundaries.</em></h2>
+          <p>V4 authorization follows principal → tenant → workspace → dataset → agent → server-created session. Roles inherit down the catalog. Purge and rollback require explicit dataset permissions.</p>
+          ${cta('Read security policy', docs.security, 'text', true)}
+        </div>
+        <div class="scope-visual" role="img" aria-label="Nested MESA authorization scopes">
+          <span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Session</strong></span></strong></span></strong></span>
+        </div>
+      </section>
+
+      <section class="section retrieval-section" id="retrieval">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RETRIEVAL V2</p>
+            <h2>Four signals.<br><em>One bounded result.</em></h2>
+          </div>
+          <p>Authorized dataset, temporal, jurisdiction, tenant, and agent eligibility are enforced before lane fusion. Higher fused scores are better.</p>
+        </div>
+        <div class="lane-grid five">
+          <article>
+            <span>SEMANTIC</span>
+            <h3>Vector</h3>
+            <p>LanceDB assertion projection with embedding provenance.</p>
+          </article>
+          <article>
+            <span>LEXICAL</span>
+            <h3>BM25</h3>
+            <p>Exact and lexical evidence from the SQL-owned corpus.</p>
+          </article>
+          <article>
+            <span>RELATIONAL</span>
+            <h3>Assertions</h3>
+            <p>SQLite-authoritative assertion relations and citation-aware scoring.</p>
+          </article>
+          <article>
+            <span>BOUNDED GRAPH</span>
+            <h3>Graph paths</h3>
+            <p>Kùzu Graph V2 paths reconciled to authorized canonical assertion IDs.</p>
+          </article>
+          <article class="fusion">
+            <span>FUSION</span>
+            <h3>True RRF</h3>
+            <p>Each lane votes once per candidate, then a bounded legal reranker may apply.</p>
+          </article>
+        </div>
+        <div class="notice">
+          <strong>Storage and retrieval views</strong>
+          <p>The storage overview describes SQL, vector and graph projections. Retrieval uses four lanes: vector, BM25, assertion and bounded graph paths, each reconciled to canonical eligibility.</p>
+        </div>
+      </section>
+
+      <section class="section storage-section">
+        <div>
+          <p class="eyebrow">PHYSICAL STORES</p>
+          <h2>SQLite decides.<br><em>Projections follow.</em></h2>
+        </div>
+        <div class="storage-grid">
+          <article>
+            <strong>SQLite</strong>
+            <p>Catalog, authorization, mutation/pipeline ledger, ownership, assertions, and ordered outbox.</p>
+          </article>
+          <article>
+            <strong>LanceDB</strong>
+            <p>Idempotent vector projection with embedding identity.</p>
+          </article>
+          <article>
+            <strong>Kuzu</strong>
+            <p>Idempotent Graph V2 projection, not the assertion decision source.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section client-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CLIENT SURFACES</p>
+            <h2>Versioned access<br><em>around one lifecycle.</em></h2>
+          </div>
+        </div>
+        <div class="client-grid">
+          <a href="${docs.api}" target="_blank" rel="noopener noreferrer">
+            <span>HTTP</span>
+            <strong>V4 REST API</strong>
+            <small>Catalog, sessions, memory, mutations, operations</small>
+          </a>
+          <a href="${docs.readme}" target="_blank" rel="noopener noreferrer">
+            <span>PYTHON</span>
+            <strong>Sync & async SDK</strong>
+            <small>MesaV4Client and version-matched operations</small>
+          </a>
+          <a href="${route('docs/mcp/')}">
+            <span>PROTOCOL</span>
+            <strong>MCP</strong>
+            <small>Legacy direct stdio plus the V4 gateway/bridge path</small>
+          </a>
+        </div>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function ecosystem() {
-  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact page-hero--field"><p class="eyebrow">MESA ECOSYSTEM</p><h1>Clear boundaries.<br><em>Evidence across them.</em></h1><p>Five repositories split preparation, memory, application, behavior testing, and independent evidence. The generic platform model is separate from the current legal reference path.</p></section>
-    <section class="section boundary-section"><div class="section-heading"><div><p class="eyebrow">GENERIC PLATFORM MODEL</p><h2>Core sits between<br><em>sources and applications.</em></h2></div><p>Preparation may be performed by MESA Data or by another compatible source pipeline. MESA Law is one application, not a required runtime stage.</p></div><div class="platform-map" role="group" aria-label="Generic MESA platform model"><div class="map-runtime"><div><small>INPUT</small><strong>Sources</strong><span>Reviewed material</span></div><b aria-hidden="true">→</b><div><small>PREPARE</small><strong>Ingestion layer</strong><span>MESA Data or compatible producer</span></div><b aria-hidden="true">→</b><div class="core-node"><small>MEMORY</small><strong>MESA Core</strong><span>Admission · retrieval · evidence</span></div><b aria-hidden="true">→</b><div><small>OUTPUT</small><strong>Application</strong><span>Versioned API / SDK / MCP</span></div></div><div class="map-quality"><span>OUT-OF-RUNTIME EVALUATION</span><a href="${route('qa/')}">MESA QA</a><i>behavior over time</i><a href="${route('certification/')}">E2E Certification</a><i>profile evidence & verdict</i></div></div></section>
-    <section class="section legal-reference"><div class="section-heading"><div><p class="eyebrow copper">CURRENT LEGAL REFERENCE PATH</p><h2>A concrete path,<br><em>not a universal dependency.</em></h2></div><p>This is the current Profile B and MESA Law shape. It is intentionally labeled as the legal reference implementation.</p></div><div class="ecosystem-flow legal-flow" role="group" aria-label="Current legal reference implementation"><div><small>SOURCE</small><strong>Official legal sources</strong></div><b aria-hidden="true">→</b><div><small>PREPARE</small><strong>MESA Data</strong></div><b aria-hidden="true">→</b><div><small>MEMORY</small><strong>MESA Core</strong></div><b aria-hidden="true">→</b><div><small>REFERENCE APP</small><strong>MESA Law</strong></div></div></section>
-    <section class="section ecosystem-section"><div class="section-heading"><div><p class="eyebrow">FIVE EXPLICIT ROLES</p><h2>Repository boundaries<br><em>with distinct ownership.</em></h2></div><p>Each component answers what it is, why it exists, and what it technically owns.</p></div>${ecosystemCards()}</section>${ecosystemMaturity()}
-    <section class="section journey-section"><div class="section-heading"><div><p class="eyebrow copper">END-TO-END EXAMPLE</p><h2>Legal evidence,<br><em>kept connected.</em></h2></div><p>A reviewed legal source can move through a frozen Data release, authorized Core admission, scoped retrieval, and a Law workflow without presenting local staging or a 202 response as successful publication.</p></div><ol class="journey-flow"><li><span>01</span><strong>Acquire</strong><small>Approved or manual official source</small></li><li><span>02</span><strong>Release</strong><small>Immutable evidence and canonical records</small></li><li><span>03</span><strong>Admit</strong><small>Authorized dataset-scoped mutation</small></li><li><span>04</span><strong>Retrieve</strong><small>Ranked context with provenance</small></li><li><span>05</span><strong>Use</strong><small>Law workflow over the HTTP contract</small></li></ol></section>${footer()}</main>`;
+  return `
+    ${header('ecosystem')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--field">
+        <p class="eyebrow">MESA ECOSYSTEM</p>
+        <h1>Clear boundaries.<br><em>Evidence across them.</em></h1>
+        <p>Five repositories split preparation, memory, application, behavior testing, and independent evidence. The generic platform model is separate from the current legal reference path.</p>
+      </section>
+
+      <section class="section boundary-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GENERIC PLATFORM MODEL</p>
+            <h2>Core sits between<br><em>sources and applications.</em></h2>
+          </div>
+          <p>Preparation may be performed by MESA Data or by another compatible source pipeline. MESA Law is one application, not a required runtime stage.</p>
+        </div>
+        <div class="platform-map" role="group" aria-label="Generic MESA platform model">
+          <div class="map-runtime">
+            <div><small>INPUT</small><strong>Sources</strong><span>Reviewed material</span></div>
+            <b aria-hidden="true">→</b>
+            <div><small>PREPARE</small><strong>Ingestion layer</strong><span>MESA Data or compatible producer</span></div>
+            <b aria-hidden="true">→</b>
+            <div class="core-node"><small>MEMORY</small><strong>MESA Core</strong><span>Admission · retrieval · evidence</span></div>
+            <b aria-hidden="true">→</b>
+            <div><small>OUTPUT</small><strong>Application</strong><span>Versioned API / SDK / MCP</span></div>
+          </div>
+          <div class="map-quality">
+            <span>OUT-OF-RUNTIME EVALUATION</span>
+            <a href="${route('qa/')}">MESA QA</a><i>behavior over time</i>
+            <a href="${route('certification/')}">E2E Certification</a><i>profile evidence & verdict</i>
+          </div>
+        </div>
+      </section>
+
+      <section class="section legal-reference">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow copper">CURRENT LEGAL REFERENCE PATH</p>
+            <h2>A concrete path,<br><em>not a universal dependency.</em></h2>
+          </div>
+          <p>This is the current Profile B and MESA Law shape. It is intentionally labeled as the legal reference implementation.</p>
+        </div>
+        <div class="ecosystem-flow legal-flow" role="group" aria-label="Current legal reference implementation">
+          <div><small>SOURCE</small><strong>Official legal sources</strong></div>
+          <b aria-hidden="true">→</b>
+          <div><small>PREPARE</small><strong>MESA Data</strong></div>
+          <b aria-hidden="true">→</b>
+          <div><small>MEMORY</small><strong>MESA Core</strong></div>
+          <b aria-hidden="true">→</b>
+          <div><small>REFERENCE APP</small><strong>MESA Law</strong></div>
+        </div>
+      </section>
+
+      <section class="section ecosystem-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FIVE EXPLICIT ROLES</p>
+            <h2>Repository boundaries<br><em>with distinct ownership.</em></h2>
+          </div>
+          <p>Each component answers what it is, why it exists, and what it technically owns.</p>
+        </div>
+        ${ecosystemCards()}
+      </section>
+      ${ecosystemMaturity()}
+
+      <section class="section journey-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow copper">END-TO-END EXAMPLE</p>
+            <h2>Legal evidence,<br><em>kept connected.</em></h2>
+          </div>
+          <p>A reviewed legal source can move through a frozen Data release, authorized Core admission, scoped retrieval, and a Law workflow without presenting local staging or a 202 response as successful publication.</p>
+        </div>
+        <ol class="journey-flow">
+          <li><span>01</span><strong>Acquire</strong><small>Approved or manual official source</small></li>
+          <li><span>02</span><strong>Release</strong><small>Immutable evidence and canonical records</small></li>
+          <li><span>03</span><strong>Admit</strong><small>Authorized dataset-scoped mutation</small></li>
+          <li><span>04</span><strong>Retrieve</strong><small>Ranked context with provenance</small></li>
+          <li><span>05</span><strong>Use</strong><small>Law workflow over the HTTP contract</small></li>
+        </ol>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function dataPage() {
-  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact page-hero--archive data-accent"><p class="eyebrow">MESA DATA</p><h1>Legal data with an<br><em>auditable release path.</em></h1><p>MESA Data is specifically a Turkish legal-data platform. It is not presented as a universal ingestion service.</p><div class="actions">${cta('Repository', repos.data, 'primary', true)}${cta('Usage guide', docs.dataGuide, 'secondary', true)}</div></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">CONFIGURED SOURCES</p><h2>Official sources,<br><em>policy-bound access.</em></h2></div><p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p></div><div class="source-table" role="table" aria-label="MESA Data configured sources"><div role="row"><strong role="columnheader">Source</strong><strong role="columnheader">Mode</strong><strong role="columnheader">State</strong><strong role="columnheader">Role</strong></div><div role="row"><span role="cell">Resmî Gazete</span><span role="cell">Approved web</span><span role="cell" class="ok">Enabled</span><span role="cell">Original publication</span></div><div role="row"><span role="cell">Mevzuat Bilgi Sistemi</span><span role="cell">Manual</span><span role="cell" class="ok">Enabled</span><span role="cell">Consolidated text</span></div><div role="row"><span role="cell">Anayasa Mahkemesi</span><span role="cell">Manual</span><span role="cell" class="ok">Enabled</span><span role="cell">Official case law</span></div><div role="row"><span role="cell">Yargıtay</span><span role="cell">Manual</span><span role="cell" class="muted">Disabled</span><span role="cell">Official case law</span></div></div><figure class="data-figure" aria-hidden="true"><img src="${asset('assets/stratigraphy-layers.svg')}" alt="" loading="lazy" width="600" height="380"></figure></section>
-    <section class="section pipeline-section"><p class="eyebrow">RELEASE PIPELINE</p><h2>Raw bytes remain traceable.</h2><div class="pipeline"><div><span>01</span><strong>Collect</strong><small>Allowlisted HTTPS or manual file</small></div><div><span>02</span><strong>Preserve</strong><small>Immutable raw artifact + SHA-256</small></div><div><span>03</span><strong>Canonicalize</strong><small>Versioned canonical JSONL</small></div><div><span>04</span><strong>Gate</strong><small>Quality, privacy, legal metadata</small></div><div><span>05</span><strong>Review</strong><small>Safe auto-approval or human exception</small></div><div><span>06</span><strong>Release</strong><small>Build, verify, freeze, human approval</small></div><div><span>07</span><strong>Publish</strong><small>Human-started, idempotent MESA delivery</small></div></div><div class="notice"><strong>Human boundary</strong><p>MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.</p></div></section>${footer()}</main>`;
+  return `
+    ${header('ecosystem')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--archive data-accent">
+        <p class="eyebrow">MESA DATA</p>
+        <h1>Legal data with an<br><em>auditable release path.</em></h1>
+        <p>MESA Data is specifically a Turkish legal-data platform. It is not presented as a universal ingestion service.</p>
+        <div class="actions">
+          ${cta('Repository', repos.data, 'primary', true)}
+          ${cta('Usage guide', docs.dataGuide, 'secondary', true)}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONFIGURED SOURCES</p>
+            <h2>Official sources,<br><em>policy-bound access.</em></h2>
+          </div>
+          <p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p>
+        </div>
+        <div class="source-table" role="table" aria-label="MESA Data configured sources">
+          <div role="row">
+            <strong role="columnheader">Source</strong>
+            <strong role="columnheader">Mode</strong>
+            <strong role="columnheader">State</strong>
+            <strong role="columnheader">Role</strong>
+          </div>
+          <div role="row">
+            <span role="cell">Resmî Gazete</span>
+            <span role="cell">Approved web</span>
+            <span role="cell" class="ok">Enabled</span>
+            <span role="cell">Original publication</span>
+          </div>
+          <div role="row">
+            <span role="cell">Mevzuat Bilgi Sistemi</span>
+            <span role="cell">Manual</span>
+            <span role="cell" class="ok">Enabled</span>
+            <span role="cell">Consolidated text</span>
+          </div>
+          <div role="row">
+            <span role="cell">Anayasa Mahkemesi</span>
+            <span role="cell">Manual</span>
+            <span role="cell" class="ok">Enabled</span>
+            <span role="cell">Official case law</span>
+          </div>
+          <div role="row">
+            <span role="cell">Yargıtay</span>
+            <span role="cell">Manual</span>
+            <span role="cell" class="muted">Disabled</span>
+            <span role="cell">Official case law</span>
+          </div>
+        </div>
+        <figure class="data-figure" aria-hidden="true">
+          <img src="${asset('assets/stratigraphy-layers.svg')}" alt="" loading="lazy" width="600" height="380">
+        </figure>
+      </section>
+
+      <section class="section pipeline-section">
+        <p class="eyebrow">RELEASE PIPELINE</p>
+        <h2>Raw bytes remain traceable.</h2>
+        <div class="pipeline">
+          <div><span>01</span><strong>Collect</strong><small>Allowlisted HTTPS or manual file</small></div>
+          <div><span>02</span><strong>Preserve</strong><small>Immutable raw artifact + SHA-256</small></div>
+          <div><span>03</span><strong>Canonicalize</strong><small>Versioned canonical JSONL</small></div>
+          <div><span>04</span><strong>Gate</strong><small>Quality, privacy, legal metadata</small></div>
+          <div><span>05</span><strong>Review</strong><small>Safe auto-approval or human exception</small></div>
+          <div><span>06</span><strong>Release</strong><small>Build, verify, freeze, human approval</small></div>
+          <div><span>07</span><strong>Publish</strong><small>Human-started, idempotent MESA delivery</small></div>
+        </div>
+        <div class="notice">
+          <strong>Human boundary</strong>
+          <p>MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.</p>
+        </div>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function qaPage() {
-  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact page-hero--trace qa-hero"><p class="eyebrow">MESA QA</p><h1>Test the candidate.<br><em>Protect the baseline.</em></h1><p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p><div class="actions">${cta('Repository', repos.qa, 'primary', true)}</div></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">EVALUATION SCOPE</p><h2>Behavior over time,<br><em>not just unit calls.</em></h2></div></div><div class="principle-grid"><article><span>01</span><h3>Correctness</h3><p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p></article><article><span>02</span><h3>Endurance</h3><p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p></article><article><span>03</span><h3>Restart durability</h3><p>Scenarios restart candidate processes and verify that expected memory survives.</p></article></div><figure class="qa-figure" aria-hidden="true"><img src="${asset('assets/chronometer-cycles.svg')}" alt="" loading="lazy" width="600" height="360"></figure></section>
-    <section class="section worktree-section"><div><p class="eyebrow">BOUNDED REPAIR</p><h2>Candidate-only changes.</h2><p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p></div><ol><li><span>1</span>Baseline checkout remains read-only</li><li><span>2</span>Dedicated candidate worktree and isolated storage</li><li><span>3</span>Pre-fix failure required before patching</li><li><span>4</span>Policy-limited diff and verification gates</li><li><span>5</span>No automatic merge or push to main</li></ol><p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.</p></section>${footer()}</main>`;
+  return `
+    ${header('ecosystem')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--trace qa-hero">
+        <p class="eyebrow">MESA QA</p>
+        <h1>Test the candidate.<br><em>Protect the baseline.</em></h1>
+        <p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p>
+        <div class="actions">
+          ${cta('Repository', repos.qa, 'primary', true)}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EVALUATION SCOPE</p>
+            <h2>Behavior over time,<br><em>not just unit calls.</em></h2>
+          </div>
+        </div>
+        <div class="principle-grid">
+          <article>
+            <span>01</span>
+            <h3>Correctness</h3>
+            <p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Endurance</h3>
+            <p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Restart durability</h3>
+            <p>Scenarios restart candidate processes and verify that expected memory survives.</p>
+          </article>
+        </div>
+        <figure class="qa-figure" aria-hidden="true">
+          <img src="${asset('assets/chronometer-cycles.svg')}" alt="" loading="lazy" width="600" height="360">
+        </figure>
+      </section>
+
+      <section class="section worktree-section">
+        <div>
+          <p class="eyebrow">BOUNDED REPAIR</p>
+          <h2>Candidate-only changes.</h2>
+          <p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p>
+        </div>
+        <ol>
+          <li><span>1</span>Baseline checkout remains read-only</li>
+          <li><span>2</span>Dedicated candidate worktree and isolated storage</li>
+          <li><span>3</span>Pre-fix failure required before patching</li>
+          <li><span>4</span>Policy-limited diff and verification gates</li>
+          <li><span>5</span>No automatic merge or push to main</li>
+        </ol>
+        <p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.</p>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function certification() {
-  return `${header('certification')}<main id="main-content"><section class="page-hero compact page-hero--dossier certification-accent"><p class="eyebrow">MESA PROFILE B</p><h1>Evidence before<br><em>certification language.</em></h1><p>The legal E2E repository defines the independent harness and evidence contract for MESA Data → MESA. Profile B is one profile, not full MESA MVP certification.</p><div class="actions">${cta('Certification repository', repos.certification, 'primary', true)}${cta('Current independent audit', docs.certificationAudit, 'secondary', true)}</div></section>
-    <section class="cert-status"><div><small>CURRENT HARDENED PATH</small><strong>BLOCKED</strong></div><p>Official runner, scoring, and metric producers are implemented. A new Profile B run remains blocked by missing runner-owned MESA Data delivery and restart evidence for B4/B6/B7/B8; no new certification PASS is claimed.</p></section>
-    <section class="section compare-section"><div><p class="eyebrow">WHAT PROFILE B IS DESIGNED TO PROVE</p><ul class="check-list"><li>Official legal data acquisition and byte preservation</li><li>Canonicalization without silent Turkish text loss</li><li>Native MESA Data → MESA V4 delivery</li><li>Scoped ingestion, provenance, idempotency, and restart persistence</li><li>Frozen retrieval and grounded-answer gates</li><li>Observable graph participation on designated relational queries</li></ul></div><div><p class="eyebrow">WHAT IT DOES NOT PROVE</p><ul class="cross-list"><li>Full MESA MVP certification</li><li>General production readiness</li><li>Every workload, provider, or deployment shape</li><li>Universal latency, uptime, or retrieval guarantees</li><li>That a historical qualification run remains a valid current verdict</li></ul></div></section>
-    <figure class="cert-figure" aria-hidden="true"><img src="${asset('assets/certification-seal-plate.svg')}" alt="" loading="lazy" width="600" height="360"></figure>
-    <section class="section historical-note"><p class="eyebrow">STATUS TRANSPARENCY</p><h2>The historical result is preserved,<br><em>but not promoted.</em></h2><p>The exposed 2026-09-01 run remains useful qualification/regression evidence. A later independent audit found integrity defects, invalidated its use as a Profile B v2 certification result, hardened the harness to fail closed, and recorded the remaining runtime-producer blockers.</p>${cta('Read the audit', docs.certificationAudit, 'text', true)}</section>${footer()}</main>`;
+  return `
+    ${header('certification')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--dossier certification-accent">
+        <p class="eyebrow">MESA PROFILE B</p>
+        <h1>Evidence before<br><em>certification language.</em></h1>
+        <p>The legal E2E repository defines the independent harness and evidence contract for MESA Data → MESA. Profile B is one profile, not full MESA MVP certification.</p>
+        <div class="actions">
+          ${cta('Certification repository', repos.certification, 'primary', true)}
+          ${cta('Current independent audit', docs.certificationAudit, 'secondary', true)}
+        </div>
+      </section>
+
+      <section class="cert-status">
+        <div><small>CURRENT HARDENED PATH</small><strong>BLOCKED</strong></div>
+        <p>Official runner, scoring, and metric producers are implemented. A new Profile B run remains blocked by missing runner-owned MESA Data delivery and restart evidence for B4/B6/B7/B8; no new certification PASS is claimed.</p>
+      </section>
+
+      <section class="section compare-section">
+        <div>
+          <p class="eyebrow">WHAT PROFILE B IS DESIGNED TO PROVE</p>
+          <ul class="check-list">
+            <li>Official legal data acquisition and byte preservation</li>
+            <li>Canonicalization without silent Turkish text loss</li>
+            <li>Native MESA Data → MESA V4 delivery</li>
+            <li>Scoped ingestion, provenance, idempotency, and restart persistence</li>
+            <li>Frozen retrieval and grounded-answer gates</li>
+            <li>Observable graph participation on designated relational queries</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow">WHAT IT DOES NOT PROVE</p>
+          <ul class="cross-list">
+            <li>Full MESA MVP certification</li>
+            <li>General production readiness</li>
+            <li>Every workload, provider, or deployment shape</li>
+            <li>Universal latency, uptime, or retrieval guarantees</li>
+            <li>That a historical qualification run remains a valid current verdict</li>
+          </ul>
+        </div>
+      </section>
+
+      <figure class="cert-figure" aria-hidden="true">
+        <img src="${asset('assets/certification-seal-plate.svg')}" alt="" loading="lazy" width="600" height="360">
+      </figure>
+
+      <section class="section historical-note">
+        <p class="eyebrow">STATUS TRANSPARENCY</p>
+        <h2>The historical result is preserved,<br><em>but not promoted.</em></h2>
+        <p>The exposed 2026-09-01 run remains useful qualification/regression evidence. A later independent audit found integrity defects, invalidated its use as a Profile B v2 certification result, hardened the harness to fail closed, and recorded the remaining runtime-producer blockers.</p>
+        ${cta('Read the audit', docs.certificationAudit, 'text', true)}
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function lawPage() {
-  return `${header('ecosystem')}<main id="main-content"><section class="page-hero compact page-hero--law law-hero"><p class="eyebrow copper">PRIMARY REFERENCE IMPLEMENTATION</p><h1>Evidence-aware memory<br><em>in a legal workflow.</em></h1><p>MESA Law demonstrates how matters, documents, review, and sourced question answering can meet MESA through a versioned HTTP contract. It is a reference implementation, not a customer deployment.</p><div class="actions">${cta('Explore repository', repos.law, 'primary', true)}${cta('Law-side status', docs.lawStatus, 'secondary', true)}</div></section>
-    <section class="section reference-flow"><div class="section-heading"><div><p class="eyebrow">THE USER PROBLEM</p><h2>Legal context needs<br><em>its source and review state.</em></h2></div><p>A legal workflow cannot safely treat an answer as detached text. The repository models source-aware document workspaces, evidence and citation cards, review state, and sourced QA that can abstain.</p></div><ol class="journey-flow"><li><span>01</span><strong>Official legal source</strong><small>Reviewed or configured acquisition</small></li><li><span>02</span><strong>MESA Data</strong><small>Traceable legal release</small></li><li><span>03</span><strong>MESA Core</strong><small>Authorized memory and evidence</small></li><li><span>04</span><strong>Versioned HTTP</strong><small>Explicit integration boundary</small></li><li><span>05</span><strong>MESA Law</strong><small>Matter, document, review, sourced QA</small></li></ol><figure class="law-figure" aria-hidden="true"><img src="${asset('assets/legal-gazette-engraving.svg')}" alt="" loading="lazy" width="640" height="360"></figure></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">VERIFIED REPOSITORY SCOPE</p><h2>Cases, documents,<br><em>review, and evidence.</em></h2></div><p>Current code includes a Next.js web app, FastAPI and Java API work, workers, PostgreSQL migrations, document parsing, matter-level access controls, deadlines, review state, drafting controls, and provenance-aware QA.</p></div><div class="law-grid"><article><h3>Matter workspace</h3><p>Tenant-scoped matters, parties, members, timelines, claims, evidence, and document revisions.</p></article><article><h3>Human review</h3><p>Review queues, immutable audit records, citation verification, and approval gates before external draft use.</p></article><article><h3>MESA binding</h3><p>Catalog onboarding and V4 mutation state are tracked over HTTP. A 202 admission is not presented as publication; only COMMITTED is success.</p></article><article><h3>MVP limits</h3><p>External legal research and AI draft generation are disabled in the documented MVP contract.</p></article></div></section>
-    <section class="section law-status"><p class="eyebrow">CURRENT STATUS</p><h2>Historical Law-side gates passed.<br><em>Overall integration: NO-GO.</em></h2><p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.0 integration proof.</p>${cta('Read verification report', docs.lawStatus, 'text', true)}</section>${footer()}</main>`;
+  return `
+    ${header('ecosystem')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--law law-hero">
+        <p class="eyebrow copper">PRIMARY REFERENCE IMPLEMENTATION</p>
+        <h1>Evidence-aware memory<br><em>in a legal workflow.</em></h1>
+        <p>MESA Law demonstrates how matters, documents, review, and sourced question answering can meet MESA through a versioned HTTP contract. It is a reference implementation, not a customer deployment.</p>
+        <div class="actions">
+          ${cta('Explore repository', repos.law, 'primary', true)}
+          ${cta('Law-side status', docs.lawStatus, 'secondary', true)}
+        </div>
+      </section>
+
+      <section class="section reference-flow">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE USER PROBLEM</p>
+            <h2>Legal context needs<br><em>its source and review state.</em></h2>
+          </div>
+          <p>A legal workflow cannot safely treat an answer as detached text. The repository models source-aware document workspaces, evidence and citation cards, review state, and sourced QA that can abstain.</p>
+        </div>
+        <ol class="journey-flow">
+          <li><span>01</span><strong>Official legal source</strong><small>Reviewed or configured acquisition</small></li>
+          <li><span>02</span><strong>MESA Data</strong><small>Traceable legal release</small></li>
+          <li><span>03</span><strong>MESA Core</strong><small>Authorized memory and evidence</small></li>
+          <li><span>04</span><strong>Versioned HTTP</strong><small>Explicit integration boundary</small></li>
+          <li><span>05</span><strong>MESA Law</strong><small>Matter, document, review, sourced QA</small></li>
+        </ol>
+        <figure class="law-figure" aria-hidden="true">
+          <img src="${asset('assets/legal-gazette-engraving.svg')}" alt="" loading="lazy" width="640" height="360">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">VERIFIED REPOSITORY SCOPE</p>
+            <h2>Cases, documents,<br><em>review, and evidence.</em></h2>
+          </div>
+          <p>Current code includes a Next.js web app, FastAPI and Java API work, workers, PostgreSQL migrations, document parsing, matter-level access controls, deadlines, review state, drafting controls, and provenance-aware QA.</p>
+        </div>
+        <div class="law-grid">
+          <article>
+            <h3>Matter workspace</h3>
+            <p>Tenant-scoped matters, parties, members, timelines, claims, evidence, and document revisions.</p>
+          </article>
+          <article>
+            <h3>Human review</h3>
+            <p>Review queues, immutable audit records, citation verification, and approval gates before external draft use.</p>
+          </article>
+          <article>
+            <h3>MESA binding</h3>
+            <p>Catalog onboarding and V4 mutation state are tracked over HTTP. A 202 admission is not presented as publication; only COMMITTED is success.</p>
+          </article>
+          <article>
+            <h3>MVP limits</h3>
+            <p>External legal research and AI draft generation are disabled in the documented MVP contract.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section law-status">
+        <p class="eyebrow">CURRENT STATUS</p>
+        <h2>Historical Law-side gates passed.<br><em>Overall integration: NO-GO.</em></h2>
+        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.0 integration proof.</p>
+        ${cta('Read verification report', docs.lawStatus, 'text', true)}
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function useCasesPage() {
@@ -335,20 +869,148 @@ function useCasesPage() {
     ['Provenance-sensitive AI', 'Returned context may be useful but impossible to trace back to a document revision, chunk, or span.', 'Source and pipeline provenance remain part of the V4 assertion and retrieval contracts.', 'Applications can surface the basis and limitations of retrieved context.'],
     ['Long-lived structured memory', 'Facts change, sources are revised, and shared artifacts may have more than one owner.', 'V4 models immutable revisions, supersession, source-owned rollback, purge, replay, and reconciliation.', 'Memory can evolve through explicit lifecycle rules instead of silent replacement.']
   ];
-  return `${header('use-cases')}<main id="main-content"><section class="page-hero compact page-hero--scope"><p class="eyebrow">USE CASES</p><h1>Memory for systems where<br><em>evidence and scope matter.</em></h1><p>These are realistic evaluation targets derived from the current architecture. They are not customer, compliance, or production-deployment claims.</p></section><section class="section case-list">${cases.map(([name, problem, role, benefit], index) => `<article><span>0${index + 1}</span><h2>${name}</h2><dl><div><dt>Problem</dt><dd>${problem}</dd></div><div><dt>MESA role</dt><dd>${role}</dd></div><div><dt>Expected benefit</dt><dd>${benefit}</dd></div></dl></article>`).join('')}</section><section class="section reference-callout"><div><p class="eyebrow">CURRENT VERTICAL EXAMPLE</p><h2>MESA Law explores<br><em>the legal workflow shape.</em></h2><p>Its source-aware matter, document, review, and QA surfaces show why provenance matters. Live Core integration remains pending.</p></div>${cta('Explore the reference implementation', route('law/'))}</section>${footer()}</main>`;
+
+  return `
+    ${header('use-cases')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--scope">
+        <p class="eyebrow">USE CASES</p>
+        <h1>Memory for systems where<br><em>evidence and scope matter.</em></h1>
+        <p>These are realistic evaluation targets derived from the current architecture. They are not customer, compliance, or production-deployment claims.</p>
+      </section>
+
+      <section class="section case-list">
+        ${cases.map(([name, problem, role, benefit], index) => `
+        <article>
+          <span>0${index + 1}</span>
+          <h2>${name}</h2>
+          <dl>
+            <div><dt>Problem</dt><dd>${problem}</dd></div>
+            <div><dt>MESA role</dt><dd>${role}</dd></div>
+            <div><dt>Expected benefit</dt><dd>${benefit}</dd></div>
+          </dl>
+        </article>`).join('')}
+      </section>
+
+      <section class="section reference-callout">
+        <div>
+          <p class="eyebrow">CURRENT VERTICAL EXAMPLE</p>
+          <h2>MESA Law explores<br><em>the legal workflow shape.</em></h2>
+          <p>Its source-aware matter, document, review, and QA surfaces show why provenance matters. Live Core integration remains pending.</p>
+        </div>
+        ${cta('Explore the reference implementation', route('law/'))}
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function evaluationPage() {
-  return `${header()}<main id="main-content"><section class="page-hero compact page-hero--evidence status-accent"><p class="eyebrow">EVALUATION & TRUST</p><h1>Two layers.<br><em>Two different questions.</em></h1><p>MESA separates ongoing behavioral testing from profile-specific certification evidence. Neither is presented as a substitute for production proof.</p></section>
-    <section class="section evaluation-compare"><article><p class="eyebrow">MESA QA</p><h2>Does the candidate keep behaving correctly?</h2><ul class="check-list"><li>memory correctness and independent ground truth</li><li>temporal updates, correction, and forgetting</li><li>cross-session persistence and restart durability</li><li>sustained endurance profiles</li><li>isolated candidate repair with no automatic merge or push</li></ul><a href="${route('qa/')}">Explore MESA QA →</a></article><article><p class="eyebrow">E2E CERTIFICATION</p><h2>Can this exact profile prove its required guarantees?</h2><ul class="check-list"><li>frozen inputs, identity, and evidence bindings</li><li>authoritative runtime, scoring, and metric producers</li><li>hard gates and independent finalization</li><li>profile-bounded evidence and verdicts</li><li>fail-closed handling of missing or unverified gates</li></ul><a href="${route('certification/')}">Explore certification →</a></article></section>
-    <section class="section trust-state"><div><p class="eyebrow">CURRENT EVIDENCE STATE</p><h2>Harness integrity improved.<br><em>Certification remains blocked.</em></h2></div><div><p>The independent audit corrected reproduced integrity defects and verified fail-closed behavior. It did not execute a legitimate passing runtime certification transaction.</p><p>The current harness implements official execution, frozen ground-truth scoring and metric derivation. External delivery/restart collectors, provider qualification and a fresh official run remain unverified.</p>${external(docs.certificationAudit, 'Read the independent audit')}</div></section>
-    <section class="section future-benchmarks"><p class="eyebrow">BENCHMARK PUBLICATION</p><h2>No placeholder numbers.</h2><p>Historical or synthetic diagnostics are not promoted as current production guarantees. Publishable retrieval quality, latency, resource, and endurance results should follow valid certification and clearly identified methodology.</p></section>${footer()}</main>`;
+  return `
+    ${header()}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--evidence status-accent">
+        <p class="eyebrow">EVALUATION & TRUST</p>
+        <h1>Two layers.<br><em>Two different questions.</em></h1>
+        <p>MESA separates ongoing behavioral testing from profile-specific certification evidence. Neither is presented as a substitute for production proof.</p>
+      </section>
+
+      <section class="section evaluation-compare">
+        <article>
+          <p class="eyebrow">MESA QA</p>
+          <h2>Does the candidate keep behaving correctly?</h2>
+          <ul class="check-list">
+            <li>memory correctness and independent ground truth</li>
+            <li>temporal updates, correction, and forgetting</li>
+            <li>cross-session persistence and restart durability</li>
+            <li>sustained endurance profiles</li>
+            <li>isolated candidate repair with no automatic merge or push</li>
+          </ul>
+          <a href="${route('qa/')}">Explore MESA QA →</a>
+        </article>
+
+        <article>
+          <p class="eyebrow">E2E CERTIFICATION</p>
+          <h2>Can this exact profile prove its required guarantees?</h2>
+          <ul class="check-list">
+            <li>frozen inputs, identity, and evidence bindings</li>
+            <li>authoritative runtime, scoring, and metric producers</li>
+            <li>hard gates and independent finalization</li>
+            <li>profile-bounded evidence and verdicts</li>
+            <li>fail-closed handling of missing or unverified gates</li>
+          </ul>
+          <a href="${route('certification/')}">Explore certification →</a>
+        </article>
+      </section>
+
+      <section class="section trust-state">
+        <div>
+          <p class="eyebrow">CURRENT EVIDENCE STATE</p>
+          <h2>Harness integrity improved.<br><em>Certification remains blocked.</em></h2>
+        </div>
+        <div>
+          <p>The independent audit corrected reproduced integrity defects and verified fail-closed behavior. It did not execute a legitimate passing runtime certification transaction.</p>
+          <p>The current harness implements official execution, frozen ground-truth scoring and metric derivation. External delivery/restart collectors, provider qualification and a fresh official run remain unverified.</p>
+          ${external(docs.certificationAudit, 'Read the independent audit')}
+        </div>
+      </section>
+
+      <section class="section future-benchmarks">
+        <p class="eyebrow">BENCHMARK PUBLICATION</p>
+        <h2>No placeholder numbers.</h2>
+        <p>Historical or synthetic diagnostics are not promoted as current production guarantees. Publishable retrieval quality, latency, resource, and endurance results should follow valid certification and clearly identified methodology.</p>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function aboutPage() {
-  return `${header()}<main id="main-content"><section class="page-hero compact page-hero--editorial"><p class="eyebrow">ABOUT MESA</p><h1>An open-source exploration of<br><em>memory with evidence.</em></h1><p>MESA exists to explore durable AI memory that keeps provenance, structure, scope, and lifecycle state visible instead of reducing memory to an opaque similarity lookup.</p></section>
-    <section class="section about-grid"><article><p class="eyebrow">WHAT IT IS</p><h2>A multi-repository system.</h2><p>Core owns the memory lifecycle. Data prepares Turkish legal sources. QA tests behavior. E2E Certification defines a fail-closed evidence path. Law is the primary reference implementation.</p></article><article><p class="eyebrow">WHY IT EXISTS</p><h2>Useful context needs a basis.</h2><p>The project examines how agents can retain information while preserving where it came from, how it is related, which scope can retrieve it, and how it changes over time.</p></article><article><p class="eyebrow">WHO MAINTAINS IT</p><h2>Publicly maintained on GitHub.</h2><p>The public maintainer identity exposed by the repositories is the <strong>${project.maintainer}</strong> GitHub account. This site does not infer a company, team, office, investor, or customer structure that the source does not establish.</p>${external(repos.profile, 'View maintainer profile')}</article><article><p class="eyebrow">HOW TO CONTACT</p><h2>Use the public project channel.</h2><p>Open an issue for reproducible bugs, architecture questions, documentation gaps, or evaluation discussion. No sales or enterprise support channel is claimed.</p>${external(repos.issues, 'Open a GitHub issue')}</article></section>
-    <div class="development-note"><div><p class="eyebrow">CURRENT STATUS</p><strong>Core v${project.version} · ${project.maturity}</strong><p>Certification is ${project.certification.toLowerCase()}; production remains ${project.production}.</p></div>${cta('Review status and limits', route('status/'), 'secondary')}</div>${footer()}</main>`;
+  return `
+    ${header()}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--editorial">
+        <p class="eyebrow">ABOUT MESA</p>
+        <h1>An open-source exploration of<br><em>memory with evidence.</em></h1>
+        <p>MESA exists to explore durable AI memory that keeps provenance, structure, scope, and lifecycle state visible instead of reducing memory to an opaque similarity lookup.</p>
+      </section>
+
+      <section class="section about-grid">
+        <article>
+          <p class="eyebrow">WHAT IT IS</p>
+          <h2>A multi-repository system.</h2>
+          <p>Core owns the memory lifecycle. Data prepares Turkish legal sources. QA tests behavior. E2E Certification defines a fail-closed evidence path. Law is the primary reference implementation.</p>
+        </article>
+
+        <article>
+          <p class="eyebrow">WHY IT EXISTS</p>
+          <h2>Useful context needs a basis.</h2>
+          <p>The project examines how agents can retain information while preserving where it came from, how it is related, which scope can retrieve it, and how it changes over time.</p>
+        </article>
+
+        <article>
+          <p class="eyebrow">WHO MAINTAINS IT</p>
+          <h2>Publicly maintained on GitHub.</h2>
+          <p>The public maintainer identity exposed by the repositories is the <strong>${project.maintainer}</strong> GitHub account. This site does not infer a company, team, office, investor, or customer structure that the source does not establish.</p>
+          ${external(repos.profile, 'View maintainer profile')}
+        </article>
+
+        <article>
+          <p class="eyebrow">HOW TO CONTACT</p>
+          <h2>Use the public project channel.</h2>
+          <p>Open an issue for reproducible bugs, architecture questions, documentation gaps, or evaluation discussion. No sales or enterprise support channel is claimed.</p>
+          ${external(repos.issues, 'Open a GitHub issue')}
+        </article>
+      </section>
+
+      <div class="development-note">
+        <div>
+          <p class="eyebrow">CURRENT STATUS</p>
+          <strong>Core v${project.version} · ${project.maturity}</strong>
+          <p>Certification is ${project.certification.toLowerCase()}; production remains ${project.production}.</p>
+        </div>
+        ${cta('Review status and limits', route('status/'), 'secondary')}
+      </div>
+      ${footer()}
+    </main>`;
 }
 
 function faqPage() {
@@ -369,7 +1031,37 @@ function faqPage() {
     ['What is the current certification status?', 'Blocked. The current harness implements official execution, scoring and metric producers, but B4/B6/B7/B8 require unavailable external delivery/restart evidence and a fresh official run.'],
     ['Where should a developer start?', 'Read the quickstart, run the locked environment, choose the V3-compatible safe core or the explicit V4 topology deliberately, then inspect the API, SDK, MCP, architecture, and status documents before integration.']
   ];
-  return `${header()}<main id="main-content"><section class="page-hero compact page-hero--functional faq-hero docs-accent"><p class="eyebrow">FREQUENTLY ASKED QUESTIONS</p><h1>Short answers.<br><em>Source-linked depth.</em></h1><p>These answers reflect current public repositories and the ${project.runtime} ${project.maturity.toLowerCase()} status as of ${project.statusAsOf}.</p></section><section class="section faq-list">${questions.map(([question, answer], index) => `<details${index === 0 ? ' open' : ''}><summary>${question}</summary><p>${answer}</p></details>`).join('')}</section><section class="section faq-next"><div><p class="eyebrow">GO DEEPER</p><h2>Architecture, interfaces,<br><em>status, and source.</em></h2></div><div class="actions">${cta('Read the docs', route('docs/'))}${cta('Review project status', route('status/'), 'secondary')}${cta('Open GitHub', repos.core, 'text', true)}</div></section>${footer()}</main>`;
+
+  return `
+    ${header()}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--functional faq-hero docs-accent">
+        <p class="eyebrow">FREQUENTLY ASKED QUESTIONS</p>
+        <h1>Short answers.<br><em>Source-linked depth.</em></h1>
+        <p>These answers reflect current public repositories and the ${project.runtime} ${project.maturity.toLowerCase()} status as of ${project.statusAsOf}.</p>
+      </section>
+
+      <section class="section faq-list">
+        ${questions.map(([question, answer], index) => `
+        <details${index === 0 ? ' open' : ''}>
+          <summary>${question}</summary>
+          <p>${answer}</p>
+        </details>`).join('')}
+      </section>
+
+      <section class="section faq-next">
+        <div>
+          <p class="eyebrow">GO DEEPER</p>
+          <h2>Architecture, interfaces,<br><em>status, and source.</em></h2>
+        </div>
+        <div class="actions">
+          ${cta('Read the docs', route('docs/'))}
+          ${cta('Review project status', route('status/'), 'secondary')}
+          ${cta('Open GitHub', repos.core, 'text', true)}
+        </div>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function docsPage() {
@@ -383,23 +1075,150 @@ function docsPage() {
     ['Contribute', [['Contributing guide', docs.contributing, true], ['Issue tracker', repos.issues, true], ['MESA QA repository', repos.qa, true]]],
     ['Ecosystem Docs', [['MESA Data Docs', route('docs/data/'), false], ['MESA Law Docs', route('docs/law/'), false], ['MESA QA Docs', route('docs/qa/'), false], ['E2E Certification', route('docs/e2e/'), false]]]
   ];
-  return `${header('docs')}<main id="main-content"><section class="page-hero compact page-hero--functional docs-hero docs-accent"><p class="eyebrow">DOCUMENTATION HUB</p><h1>Find the contract.<br><em>Then run the code.</em></h1><p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p></section>${documentationJourney(route)}<section class="section docs-grid">${groups.map(([name, links], index) => `<section${index === 0 ? ' class="docs-start"' : ''}><p class="eyebrow">0${index + 1} / ${name}</p>${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}</section>`).join('')}</section>
-    <section class="section quickstart-doc"><div><p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p><h2>Use the checked-in lock.</h2><p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p></div><div class="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><strong>local install</strong><button class="copy-button" type="button" data-copy-target="install-code">Copy</button></div><pre tabindex="0" id="install-code"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
+
+  return `
+    ${header('docs')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--functional docs-hero docs-accent">
+        <p class="eyebrow">DOCUMENTATION HUB</p>
+        <h1>Find the contract.<br><em>Then run the code.</em></h1>
+        <p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p>
+      </section>
+      ${documentationJourney(route)}
+
+      <section class="section docs-grid">
+        ${groups.map(([name, links], index) => `
+        <section${index === 0 ? ' class="docs-start"' : ''}>
+          <p class="eyebrow">0${index + 1} / ${name}</p>
+          ${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}
+        </section>`).join('')}
+      </section>
+
+      <section class="section quickstart-doc">
+        <div>
+          <p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p>
+          <h2>Use the checked-in lock.</h2>
+          <p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p>
+        </div>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span><i></i><i></i><i></i></span>
+            <strong>local install</strong>
+            <button class="copy-button" type="button" data-copy-target="install-code">Copy</button>
+          </div>
+          <pre tabindex="0" id="install-code"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
-uv sync --locked --extra dev</code></pre></div></section>${footer()}</main>`;
+uv sync --locked --extra dev</code></pre>
+        </div>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function mcpPage() {
-  return `${header('docs')}<main id="main-content"><section class="page-hero compact page-hero--functional"><p class="eyebrow">MODEL CONTEXT PROTOCOL</p><h1>Two integration paths.<br><em>Different runtime contracts.</em></h1><p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p><div class="actions">${cta('Source guide', docs.mcp, 'primary', true)}${cta('Core repository', repos.core, 'secondary', true)}</div></section>
-    <section class="section mcp-paths"><article><p class="eyebrow">LEGACY V3-COMPATIBLE</p><h2>Direct stdio server</h2><p><code>mesa_mcp.server</code> runs an MCP JSON-RPC stdio stream and calls the public MESA HTTP API; it does not open storage databases directly. The root README documents five project-memory tools.</p><div class="tag-row"><span>stdio</span><span>HTTP API</span><span>project scope</span></div></article><article class="highlight"><p class="eyebrow">CURRENT V4 PATH</p><h2>Gateway + local bridge</h2><p>A separately supervised HTTP gateway owns credentials, policy, approvals, operation state, and connections. Codex can connect directly to its <code>/mcp</code> endpoint; Antigravity uses a binding-scoped stdio bridge.</p><div class="tag-row"><span>V4</span><span>approvals</span><span>binding-scoped</span></div></article></section>
-    <section class="section tool-section"><div class="section-heading"><div><p class="eyebrow">V4 BRIDGE TOOLS</p><h2>Operations expose<br><em>their real state.</em></h2></div><p>Writes return durable operation IDs. Default policy may return PENDING_APPROVAL rather than holding stdio open.</p></div><div class="tool-list"><div><code>mesa_health</code><span>Bridge, gateway, MESA, and spool health</span></div><div><code>mesa_recall</code><span>Scoped V4 search or token-bounded context</span></div><div><code>mesa_remember</code><span>Durable write operation</span></div><div><code>mesa_improve</code><span>Revision operation with idempotency key</span></div><div><code>mesa_forget</code><span>Purge operation; never queued offline</span></div><div><code>mesa_get_operation_status</code><span>Approval and mutation progress</span></div></div></section>
-    <section class="section mcp-guard"><p class="eyebrow">BOUNDARY NOTES</p><ul class="check-list"><li>stdout is reserved for MCP JSON-RPC; logs go to stderr</li><li>bridges do not import or access storage backends</li><li>credentials live outside project configuration</li><li>missing client/workspace bindings fail closed</li><li>the exact supported host depends on the selected integration path</li></ul></section>${footer()}</main>`;
+  return `
+    ${header('docs')}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--functional">
+        <p class="eyebrow">MODEL CONTEXT PROTOCOL</p>
+        <h1>Two integration paths.<br><em>Different runtime contracts.</em></h1>
+        <p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p>
+        <div class="actions">
+          ${cta('Source guide', docs.mcp, 'primary', true)}
+          ${cta('Core repository', repos.core, 'secondary', true)}
+        </div>
+      </section>
+
+      <section class="section mcp-paths">
+        <article>
+          <p class="eyebrow">LEGACY V3-COMPATIBLE</p>
+          <h2>Direct stdio server</h2>
+          <p><code>mesa_mcp.server</code> runs an MCP JSON-RPC stdio stream and calls the public MESA HTTP API; it does not open storage databases directly. The root README documents five project-memory tools.</p>
+          <div class="tag-row"><span>stdio</span><span>HTTP API</span><span>project scope</span></div>
+        </article>
+        <article class="highlight">
+          <p class="eyebrow">CURRENT V4 PATH</p>
+          <h2>Gateway + local bridge</h2>
+          <p>A separately supervised HTTP gateway owns credentials, policy, approvals, operation state, and connections. Codex can connect directly to its <code>/mcp</code> endpoint; Antigravity uses a binding-scoped stdio bridge.</p>
+          <div class="tag-row"><span>V4</span><span>approvals</span><span>binding-scoped</span></div>
+        </article>
+      </section>
+
+      <section class="section tool-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">V4 BRIDGE TOOLS</p>
+            <h2>Operations expose<br><em>their real state.</em></h2>
+          </div>
+          <p>Writes return durable operation IDs. Default policy may return PENDING_APPROVAL rather than holding stdio open.</p>
+        </div>
+        <div class="tool-list">
+          <div><code>mesa_health</code><span>Bridge, gateway, MESA, and spool health</span></div>
+          <div><code>mesa_recall</code><span>Scoped V4 search or token-bounded context</span></div>
+          <div><code>mesa_remember</code><span>Durable write operation</span></div>
+          <div><code>mesa_improve</code><span>Revision operation with idempotency key</span></div>
+          <div><code>mesa_forget</code><span>Purge operation; never queued offline</span></div>
+          <div><code>mesa_get_operation_status</code><span>Approval and mutation progress</span></div>
+        </div>
+      </section>
+
+      <section class="section mcp-guard">
+        <p class="eyebrow">BOUNDARY NOTES</p>
+        <ul class="check-list">
+          <li>stdout is reserved for MCP JSON-RPC; logs go to stderr</li>
+          <li>bridges do not import or access storage backends</li>
+          <li>credentials live outside project configuration</li>
+          <li>missing client/workspace bindings fail closed</li>
+          <li>the exact supported host depends on the selected integration path</li>
+        </ul>
+      </section>
+      ${footer()}
+    </main>`;
 }
 
 function statusPage() {
-  return `${header()}<main id="main-content"><section class="page-hero compact page-hero--operational status-accent"><p class="eyebrow">PROJECT STATUS</p><h1>Transparent by default.<br><em>No borrowed confidence.</em></h1><p>Status below reflects current repository documentation and the hardened independent certification audit available on ${project.statusAsOf}.</p></section>${statusStrip()}
-    <section class="section status-timeline"><article><span>CORE</span><h2>${project.runtime} ${project.maturity.toLowerCase()}</h2><p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>${external(docs.architecture, 'Canonical architecture')}${external(docs.releaseNotes, 'v0.8.0 Release notes')}${external('https://github.com/Yasou13/MESA/releases/tag/v0.8.0', 'Official v0.8.0 release')}</article><article><span>PROFILE B</span><h2>Certification blocked</h2><p>Official execution, scoring and metric producers exist. B4/B6/B7/B8 external evidence remains blocked; the historical PROFILE_B_FAIL is unchanged and no fresh official PASS exists.</p>${external(docs.certificationAudit, 'Independent audit')}</article><article><span>HISTORICAL RUN</span><h2>Qualification evidence</h2><p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}</article><article><span>MESA LAW</span><h2>Historical Law pass / overall ${project.production}</h2><p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.</p>${external(docs.lawStatus, 'Verification report')}</article></section>${footer()}</main>`;
+  return `
+    ${header()}
+    <main id="main-content">
+      <section class="page-hero compact page-hero--operational status-accent">
+        <p class="eyebrow">PROJECT STATUS</p>
+        <h1>Transparent by default.<br><em>No borrowed confidence.</em></h1>
+        <p>Status below reflects current repository documentation and the hardened independent certification audit available on ${project.statusAsOf}.</p>
+      </section>
+      ${statusStrip()}
+
+      <section class="section status-timeline">
+        <article>
+          <span>CORE</span>
+          <h2>${project.runtime} ${project.maturity.toLowerCase()}</h2>
+          <p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>
+          ${external(docs.architecture, 'Canonical architecture')}
+          ${external(docs.releaseNotes, 'v0.8.0 Release notes')}
+          ${external('https://github.com/Yasou13/MESA/releases/tag/v0.8.0', 'Official v0.8.0 release')}
+        </article>
+        <article>
+          <span>PROFILE B</span>
+          <h2>Certification blocked</h2>
+          <p>Official execution, scoring and metric producers exist. B4/B6/B7/B8 external evidence remains blocked; the historical PROFILE_B_FAIL is unchanged and no fresh official PASS exists.</p>
+          ${external(docs.certificationAudit, 'Independent audit')}
+        </article>
+        <article>
+          <span>HISTORICAL RUN</span>
+          <h2>Qualification evidence</h2>
+          <p>The exposed run is preserved for regression and audit. It is not a valid current Profile B v2 certification result.</p>
+          ${external(`${repos.certification}/blob/main/reports/legacy-audits/RUN-20260901T005200Z-p8b03/audit.md`, 'Invalidation record')}
+        </article>
+        <article>
+          <span>MESA LAW</span>
+          <h2>Historical Law pass / overall ${project.production}</h2>
+          <p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.</p>
+          ${external(docs.lawStatus, 'Verification report')}
+        </article>
+      </section>
+      ${footer()}
+    </main>`;
 }
+
 
 
 
@@ -482,10 +1301,32 @@ function renderLearnHubIndex() {
   const featuredIds = ['what-is-ai-memory', 'rag-vs-ai-memory', 'evidence-aware-memory'];
   const featuredEntries = featuredIds.map((id) => hubEntries.get(id)).filter(Boolean);
 
-  const featuredHtml = `<section class="section start-here-section" aria-labelledby="start-here-title"><div class="section-heading"><div><p class="eyebrow">${hubText('START HERE', 'BURADAN BAŞLAYIN')}</p><h2 id="start-here-title">${hubText('Three foundational cornerstones.', 'Üç temel köşe taşı.')}</h2></div><p>${hubText('If you are new to AI memory systems, start with these core conceptual guides.', 'AI memory sistemlerine yeniyseniz, bu üç temel kavramsal rehberle başlayın.')}</p></div><div class="featured-grid">${featuredEntries.map((entry, index) => {
-    const copy = entry.locales[currentLanguage];
-    return `<article class="featured-card${index === 0 ? ' featured-card--lead' : ''}">${icon(['memory', 'evidence', 'retrieval'][index] || 'memory', 'featured-icon')}<span class="featured-badge">${escapeHtml(entry.category)}</span><h3><a href="${route(entry.path)}">${escapeHtml(copy.title)}</a></h3><p>${escapeHtml(copy.summary)}</p><div class="featured-footer"><span>${entry.readingMinutes} ${hubText('min read', 'dk okuma')}</span><a href="${route(entry.path)}">${hubText('Read guide', 'Rehberi oku')}<span aria-hidden="true"> →</span></a></div></article>`;
-  }).join('')}</div></section>`;
+  const featuredHtml = `
+    <section class="section start-here-section" aria-labelledby="start-here-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">${hubText('START HERE', 'BURADAN BAŞLAYIN')}</p>
+          <h2 id="start-here-title">${hubText('Three foundational cornerstones.', 'Üç temel köşe taşı.')}</h2>
+        </div>
+        <p>${hubText('If you are new to AI memory systems, start with these core conceptual guides.', 'AI memory sistemlerine yeniyseniz, bu üç temel kavramsal rehberle başlayın.')}</p>
+      </div>
+      <div class="featured-grid">
+        ${featuredEntries.map((entry, index) => {
+          const copy = entry.locales[currentLanguage];
+          return `
+          <article class="featured-card${index === 0 ? ' featured-card--lead' : ''}">
+            ${icon(['memory', 'evidence', 'retrieval'][index] || 'memory', 'featured-icon')}
+            <span class="featured-badge">${escapeHtml(entry.category)}</span>
+            <h3><a href="${route(entry.path)}">${escapeHtml(copy.title)}</a></h3>
+            <p>${escapeHtml(copy.summary)}</p>
+            <div class="featured-footer">
+              <span>${entry.readingMinutes} ${hubText('min read', 'dk okuma')}</span>
+              <a href="${route(entry.path)}">${hubText('Read guide', 'Rehberi oku')}<span aria-hidden="true"> →</span></a>
+            </div>
+          </article>`;
+        }).join('')}
+      </div>
+    </section>`;
 
   const learningPathSteps = [
     { num: '01', id: 'what-is-ai-memory', titleEn: 'What Is AI Memory?', titleTr: 'AI Memory Nedir?', descEn: 'Short vs long-term memory, persistence, and context limits.', descTr: 'Kısa ve uzun süreli hafıza, kalıcılık ve bağlam sınırları.' },
@@ -494,13 +1335,42 @@ function renderLearnHubIndex() {
     { num: '04', id: 'evidence-aware-memory', titleEn: 'Evidence-Aware Memory', titleTr: 'Kanıt Odaklı Hafıza', descEn: 'Attaching source identity, evidence spans, and scopes.', descTr: 'Kaynak kimliğini, kanıt aralığını ve kapsamı bağlama.' }
   ];
 
-  const pathHtml = `<section class="section learning-path-section" aria-labelledby="learning-path-title"><div class="section-heading"><div><p class="eyebrow">${hubText('NEW TO AI MEMORY?', 'AI MEMORY ALANINA YENİ MİSİNİZ?')}</p><h2 id="learning-path-title">${hubText('A sequenced learning curriculum.', 'Sıralı bir öğrenme müfredatı.')}</h2></div><p>${hubText('Follow this path to build an accurate mental model from first principles before inspecting architecture.', 'Mimariyi incelemeden önce ilk ilkelerden doğru bir zihinsel model kurmak için bu sırayı izleyin.')}</p></div><div class="learning-path-grid">${learningPathSteps.map((step) => {
-    const entry = hubEntries.get(step.id);
-    const title = isTr ? step.titleTr : step.titleEn;
-    const desc = isTr ? step.descTr : step.descEn;
-    const link = entry ? route(entry.path) : route('learn/');
-    return `<div class="learning-step-card"><span class="step-num">${hubText('Step', 'Adım')} ${step.num}</span><h3><a href="${link}">${escapeHtml(title)}</a></h3><p>${escapeHtml(desc)}</p></div>`;
-  }).join('')}</div><div class="learning-bridge"><div><strong>${hubText('Ready to see how these ideas become architecture?', 'Bu fikirlerin mimariye nasıl dönüştüğünü görmeye hazır mısınız?')}</strong><p>${hubText('Move from conceptual principles to MESA\'s verifiable four-lane implementation.', 'Kavramsal ilkelerden MESA\'nın doğrulanabilir dört hatlı uygulamasına geçin.')}</p></div><div class="learning-bridge-links"><a href="${route('how-it-works/')}">${hubText('How MESA Works', 'MESA Nasıl Çalışır')} →</a><a href="${route('mesa/')}">${hubText('MESA Architecture', 'MESA Mimarisi')} →</a><a href="${route('docs/')}">${hubText('Quickstart', 'Hızlı Başlangıç')} →</a></div></div></section>`;
+  const pathHtml = `
+    <section class="section learning-path-section" aria-labelledby="learning-path-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">${hubText('NEW TO AI MEMORY?', 'AI MEMORY ALANINA YENİ MİSİNİZ?')}</p>
+          <h2 id="learning-path-title">${hubText('A sequenced learning curriculum.', 'Sıralı bir öğrenme müfredatı.')}</h2>
+        </div>
+        <p>${hubText('Follow this path to build an accurate mental model from first principles before inspecting architecture.', 'Mimariyi incelemeden önce ilk ilkelerden doğru bir zihinsel model kurmak için bu sırayı izleyin.')}</p>
+      </div>
+      <div class="learning-path-grid">
+        ${learningPathSteps.map((step) => {
+          const entry = hubEntries.get(step.id);
+          const title = isTr ? step.titleTr : step.titleEn;
+          const desc = isTr ? step.descTr : step.descEn;
+          const link = entry ? route(entry.path) : route('learn/');
+          return `
+          <div class="learning-step-card">
+            <span class="step-num">${hubText('Step', 'Adım')} ${step.num}</span>
+            <h3><a href="${link}">${escapeHtml(title)}</a></h3>
+            <p>${escapeHtml(desc)}</p>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="learning-bridge">
+        <div>
+          <strong>${hubText('Ready to see how these ideas become architecture?', 'Bu fikirlerin mimariye nasıl dönüştüğünü görmeye hazır mısınız?')}</strong>
+          <p>${hubText('Move from conceptual principles to MESA\'s verifiable four-lane implementation.', 'Kavramsal ilkelerden MESA\'nın doğrulanabilir dört hatlı uygulamasına geçin.')}</p>
+        </div>
+        <div class="learning-bridge-links">
+          <a href="${route('how-it-works/')}">${hubText('How MESA Works', 'MESA Nasıl Çalışır')} →</a>
+          <a href="${route('mesa/')}">${hubText('MESA Architecture', 'MESA Mimarisi')} →</a>
+          <a href="${route('docs/')}">${hubText('Quickstart', 'Hızlı Başlangıç')} →</a>
+        </div>
+      </div>
+    </section>`;
+
 
   const learnEntries = publishedEntries().filter(({ type }) => type === 'learn');
   const categories = [
@@ -527,18 +1397,90 @@ function renderLearnHubIndex() {
     }
   ];
 
-  const categoriesHtml = `<section class="section categories-section" aria-labelledby="categories-title"><div class="section-heading"><div><p class="eyebrow">${hubText('EXPLORE BY TOPIC', 'KONULARA GÖRE KEŞFEDİN')}</p><h2 id="categories-title">${hubText('All educational articles.', 'Tüm eğitici makaleler.')}</h2></div><p>${hubText('Grounded technical pieces without marketing fluff or invented claims.', 'Pazarlama abartısı veya uydurma iddialar içermeyen teknik metinler.')}</p></div>${categories.map((cat) => {
-    const catEntries = learnEntries.filter(cat.filter);
-    if (!catEntries.length) return '';
-    return `<div class="category-cluster"><div class="category-cluster-header"><h3>${escapeHtml(isTr ? cat.titleTr : cat.titleEn)}</h3><p>${escapeHtml(isTr ? cat.descTr : cat.descEn)}</p></div><div class="publication-grid">${catEntries.map(hubCard).join('')}</div></div>`;
+  const categoriesHtml = `
+    <section class="section categories-section" aria-labelledby="categories-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">${hubText('EXPLORE BY TOPIC', 'KONULARA GÖRE KEŞFEDİN')}</p>
+          <h2 id="categories-title">${hubText('All educational articles.', 'Tüm eğitici makaleler.')}</h2>
+        </div>
+        <p>${hubText('Grounded technical pieces without marketing fluff or invented claims.', 'Pazarlama abartısı veya uydurma iddialar içermeyen teknik metinler.')}</p>
+      </div>
+      ${categories.map((cat) => {
+        const catEntries = learnEntries.filter(cat.filter);
+        if (!catEntries.length) return '';
+        return `
+      <div class="category-cluster">
+        <div class="category-cluster-header">
+          <h3>${escapeHtml(isTr ? cat.titleTr : cat.titleEn)}</h3>
+          <p>${escapeHtml(isTr ? cat.descTr : cat.descEn)}</p>
+        </div>
+        <div class="publication-grid">
+          ${catEntries.map(hubCard).join('')}
+        </div>
+      </div>`;
   }).join('')}</section>`;
 
-  const topicsHtml = `<section class="section topic-section" aria-labelledby="topics-title"><div class="section-heading"><div><p class="eyebrow">${hubText('TOPIC CLUSTERS', 'KONU KÜMELERİ')}</p><h2 id="topics-title">${hubText('Connected knowledge taxonomy.', 'Bağlantılı bilgi sınıflandırması.')}</h2></div><p>${hubText('Connect concepts to practical guides, research protocols, and formal definitions.', 'Kavramları pratik rehberlere, araştırma protokollerine ve resmî tanımlara bağlayın.')}</p></div><div class="topic-grid">${hubData.topics.map((topic) => {
-    const related = topic.related.map((id) => hubEntries.get(id)).filter((entry) => entry && !entry.draft);
-    return `<article><h3>${escapeHtml(topic.labels[currentLanguage])}</h3><p>${escapeHtml(topic.descriptions[currentLanguage])}</p>${related.length ? `<ul>${related.map((entry) => `<li><a href="${route(entry.path)}">${escapeHtml(entry.locales[currentLanguage].title)}</a></li>`).join('')}</ul>` : `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</article>`;
-  }).join('')}</div></section>`;
+  const topicsHtml = `
+    <section class="section topic-section" aria-labelledby="topics-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">${hubText('TOPIC CLUSTERS', 'KONU KÜMELERİ')}</p>
+          <h2 id="topics-title">${hubText('Connected knowledge taxonomy.', 'Bağlantılı bilgi sınıflandırması.')}</h2>
+        </div>
+        <p>${hubText('Connect concepts to practical guides, research protocols, and formal definitions.', 'Kavramları pratik rehberlere, araştırma protokollerine ve resmî tanımlara bağlayın.')}</p>
+      </div>
+      <div class="topic-grid">
+        ${hubData.topics.map((topic) => {
+          const related = topic.related.map((id) => hubEntries.get(id)).filter((entry) => entry && !entry.draft);
+          return `
+          <article>
+            <h3>${escapeHtml(topic.labels[currentLanguage])}</h3>
+            <p>${escapeHtml(topic.descriptions[currentLanguage])}</p>
+            ${related.length
+              ? `<ul>${related.map((entry) => `<li><a href="${route(entry.path)}">${escapeHtml(entry.locales[currentLanguage].title)}</a></li>`).join('')}</ul>`
+              : `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}
+          </article>`;
+        }).join('')}
+      </div>
+    </section>`;
 
-  const canonicalHtml = `<section class="section canonical-section" aria-labelledby="canonical-title"><div class="section-heading"><div><p class="eyebrow">${hubText('CANONICAL REFERENCES', 'RESMÎ REFERANSLAR')}</p><h2 id="canonical-title">${hubText('Explore MESA system specifications.', 'MESA sistem spesifikasyonlarını inceleyin.')}</h2></div><p>${hubText('Educational articles explain general concepts. Canonical pages document the concrete implementation.', 'Eğitici makaleler genel kavramları açıklar. Resmî sayfalar ise somut uygulamayı belgeler.')}</p></div><div class="canonical-resources-grid"><div class="canonical-resource-item"><span>${hubText('Architecture', 'Mimari')}</span><strong>MESA Core</strong><p>${hubText('Canonical SQLite store, LanceDB vector, and Kùzu graph projections.', 'Kanonik SQLite deposu, LanceDB vektör ve Kùzu graph projeksiyonları.')}</p><a href="${route('mesa/')}">${hubText('Inspect Core', 'Core\'u İncele')} →</a></div><div class="canonical-resource-item"><span>${hubText('Data Flow', 'Veri Akışı')}</span><strong>${hubText('How It Works', 'Nasıl Çalışır')}</strong><p>${hubText('End-to-end evidence admission, four-lane retrieval, and verification fixture.', 'Uçtan uca kanıt kabulü, dört hatlı retrieval ve doğrulama fixture\'ı.')}</p><a href="${route('how-it-works/')}">${hubText('Follow the flow', 'Akışı takip et')} →</a></div><div class="canonical-resource-item"><span>${hubText('Documentation', 'Belgeler')}</span><strong>${hubText('Documentation Hub', 'Belge Merkezi')}</strong><p>${hubText('Integration guides, API reference, MCP bridge, and setup instructions.', 'Entegrasyon rehberleri, API referansı, MCP köprüsü ve kurulum bilgileri.')}</p><a href="${route('docs/')}">${hubText('Open docs', 'Belgeleri aç')} →</a></div><div class="canonical-resource-item"><span>${hubText('Open Source', 'Açık Kaynak')}</span><strong>${hubText('GitHub Repository', 'GitHub Deposu')}</strong><p>${hubText('Inspect the MIT-licensed source code, test suites, and issue tracker.', 'MIT lisanslı kaynak kodu, test suitlerini ve issue takipçisini inceleyin.')}</p>${external(repos.core, hubText('View on GitHub', 'GitHub\'da gör'))}</div></div></section>`;
+  const canonicalHtml = `
+    <section class="section canonical-section" aria-labelledby="canonical-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">${hubText('CANONICAL REFERENCES', 'RESMÎ REFERANSLAR')}</p>
+          <h2 id="canonical-title">${hubText('Explore MESA system specifications.', 'MESA sistem spesifikasyonlarını inceleyin.')}</h2>
+        </div>
+        <p>${hubText('Educational articles explain general concepts. Canonical pages document the concrete implementation.', 'Eğitici makaleler genel kavramları açıklar. Resmî sayfalar ise somut uygulamayı belgeler.')}</p>
+      </div>
+      <div class="canonical-resources-grid">
+        <div class="canonical-resource-item">
+          <span>${hubText('Architecture', 'Mimari')}</span>
+          <strong>MESA Core</strong>
+          <p>${hubText('Canonical SQLite store, LanceDB vector, and Kùzu graph projections.', 'Kanonik SQLite deposu, LanceDB vektör ve Kùzu graph projeksiyonları.')}</p>
+          <a href="${route('mesa/')}">${hubText('Inspect Core', 'Core\'u İncele')} →</a>
+        </div>
+        <div class="canonical-resource-item">
+          <span>${hubText('Data Flow', 'Veri Akışı')}</span>
+          <strong>${hubText('How It Works', 'Nasıl Çalışır')}</strong>
+          <p>${hubText('End-to-end evidence admission, four-lane retrieval, and verification fixture.', 'Uçtan uca kanıt kabulü, dört hatlı retrieval ve doğrulama fixture\'ı.')}</p>
+          <a href="${route('how-it-works/')}">${hubText('Follow the flow', 'Akışı takip et')} →</a>
+        </div>
+        <div class="canonical-resource-item">
+          <span>${hubText('Documentation', 'Belgeler')}</span>
+          <strong>${hubText('Documentation Hub', 'Belge Merkezi')}</strong>
+          <p>${hubText('Integration guides, API reference, MCP bridge, and setup instructions.', 'Entegrasyon rehberleri, API referansı, MCP köprüsü ve kurulum bilgileri.')}</p>
+          <a href="${route('docs/')}">${hubText('Open docs', 'Belgeleri aç')} →</a>
+        </div>
+        <div class="canonical-resource-item">
+          <span>${hubText('Open Source', 'Açık Kaynak')}</span>
+          <strong>${hubText('GitHub Repository', 'GitHub Deposu')}</strong>
+          <p>${hubText('Inspect the MIT-licensed source code, test suites, and issue tracker.', 'MIT lisanslı kaynak kodu, test suitlerini ve issue takipçisini inceleyin.')}</p>
+          ${external(repos.core, hubText('View on GitHub', 'GitHub\'da gör'))}
+        </div>
+      </div>
+    </section>`;
 
   return `${featuredHtml}${pathHtml}${categoriesHtml}${topicsHtml}${canonicalHtml}`;
 }
@@ -552,16 +1494,74 @@ function renderHubIndex(section) {
   ]);
   let body = '';
   if (section.id === 'resources') {
-    body = `<section class="section resource-map" aria-labelledby="resource-map-title"><div class="section-heading"><div><p class="eyebrow">${hubText('CONNECTED PUBLISHING', 'BAĞLANTILI YAYIN')}</p><h2 id="resource-map-title">${hubText('Six surfaces. One knowledge graph.', 'Altı alan. Tek bilgi ağı.')}</h2></div><p>${hubText('Move from a concept to a practical workflow, research evidence, and the method behind it without losing context.', 'Bir kavramdan pratik iş akışına, araştırma kanıtına ve arkasındaki yönteme bağlamı kaybetmeden ilerleyin.')}</p></div><div class="resource-section-grid">${hubData.sections.filter(({ id }) => id !== 'resources').map((item) => { const copy = item.locales[currentLanguage]; return `<a href="${route(item.path)}"><span>${escapeHtml(copy.eyebrow)}</span><strong>${escapeHtml(copy.heading)}</strong><p>${escapeHtml(copy.intro)}</p><i aria-hidden="true">→</i></a>`; }).join('')}</div></section>`;
+    body = `
+      <section class="section resource-map" aria-labelledby="resource-map-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">${hubText('CONNECTED PUBLISHING', 'BAĞLANTILI YAYIN')}</p>
+            <h2 id="resource-map-title">${hubText('Six surfaces. One knowledge graph.', 'Altı alan. Tek bilgi ağı.')}</h2>
+          </div>
+          <p>${hubText('Move from a concept to a practical workflow, research evidence, and the method behind it without losing context.', 'Bir kavramdan pratik iş akışına, araştırma kanıtına ve arkasındaki yönteme bağlamı kaybetmeden ilerleyin.')}</p>
+        </div>
+        <div class="resource-section-grid">
+          ${hubData.sections.filter(({ id }) => id !== 'resources').map((item) => {
+            const copy = item.locales[currentLanguage];
+            return `
+            <a href="${route(item.path)}">
+              <span>${escapeHtml(copy.eyebrow)}</span>
+              <strong>${escapeHtml(copy.heading)}</strong>
+              <p>${escapeHtml(copy.intro)}</p>
+              <i aria-hidden="true">→</i>
+            </a>`;
+          }).join('')}
+        </div>
+      </section>`;
   } else if (section.id === 'learn') {
     body = renderLearnHubIndex();
   } else if (section.id === 'tools') {
-    body = `<section class="section"><div class="tool-card-grid">${hubData.tools.map((tool) => { const copy = tool.locales[currentLanguage]; const available = tool.status === 'available' && tool.route; return `<article class="tool-card">${tool.icon ? `<span class="tool-icon" aria-hidden="true">${escapeHtml(tool.icon)}</span>` : ''}<span>${escapeHtml(tool.category)}</span><h2>${escapeHtml(copy.title)}</h2><p>${escapeHtml(copy.description)}</p>${available ? `<a href="${route(tool.route)}">${hubText('Open tool', 'Aracı aç')}<span aria-hidden="true"> →</span></a>` : `<strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong>`}</article>`; }).join('')}</div></section>`;
+    body = `
+      <section class="section">
+        <div class="tool-card-grid">
+          ${hubData.tools.map((tool) => {
+            const copy = tool.locales[currentLanguage];
+            const available = tool.status === 'available' && tool.route;
+            return `
+            <article class="tool-card">
+              ${tool.icon ? `<span class="tool-icon" aria-hidden="true">${escapeHtml(tool.icon)}</span>` : ''}
+              <span>${escapeHtml(tool.category)}</span>
+              <h2>${escapeHtml(copy.title)}</h2>
+              <p>${escapeHtml(copy.description)}</p>
+              ${available
+                ? `<a href="${route(tool.route)}">${hubText('Open tool', 'Aracı aç')}<span aria-hidden="true"> →</span></a>`
+                : `<strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong>`}
+            </article>`;
+          }).join('')}
+        </div>
+      </section>`;
   } else {
     const contentType = section.id === 'guides' ? 'guide' : section.id === 'glossary' ? 'glossary' : section.id;
     const entries = publishedEntries().filter(({ type }) => type === contentType);
-    const future = section.id === 'methodology' ? `<div class="methodology-scope"><p class="eyebrow">${hubText('SUPPORTED NEXT', 'SONRAKİ DESTEKLENEN ALANLAR')}</p><ul><li>${hubText('Dataset selection', 'Veri seti seçimi')}</li><li>${hubText('Relevance judgment', 'Relevance judgment')}</li><li>${hubText('Dataset versioning', 'Veri seti sürümleme')}</li><li>${hubText('Corrections policy', 'Düzeltme politikası')}</li></ul><p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu alanlar içerik modeli tarafından desteklenir; yayımlanmamış sayfalar route olarak gösterilmez.')}</p></div>` : '';
-    body = `<section class="section publication-index"><div><h2 class="sr-only">${hubText('Published resources', 'Yayımlanmış kaynaklar')}</h2><div class="publication-grid">${entries.map(hubCard).join('') || `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</div></div>${future}</section>`;
+    const future = section.id === 'methodology' ? `
+      <div class="methodology-scope">
+        <p class="eyebrow">${hubText('SUPPORTED NEXT', 'SONRAKİ DESTEKLENEN ALANLAR')}</p>
+        <ul>
+          <li>${hubText('Dataset selection', 'Veri seti seçimi')}</li>
+          <li>${hubText('Relevance judgment', 'Relevance judgment')}</li>
+          <li>${hubText('Dataset versioning', 'Veri seti sürümleme')}</li>
+          <li>${hubText('Corrections policy', 'Düzeltme politikası')}</li>
+        </ul>
+        <p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu alanlar içerik modeli tarafından desteklenir; yayımlanmamış sayfalar route olarak gösterilmez.')}</p>
+      </div>` : '';
+    body = `
+      <section class="section publication-index">
+        <div>
+          <h2 class="sr-only">${hubText('Published resources', 'Yayımlanmış kaynaklar')}</h2>
+          <div class="publication-grid">
+            ${entries.map(hubCard).join('') || `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}
+          </div>
+        </div>
+        ${future}
+      </section>`;
   }
   return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<section class="page-hero compact page-hero--editorial knowledge-hero"><p class="eyebrow">${escapeHtml(localized.eyebrow)}</p><h1>${escapeHtml(localized.heading)}</h1><p>${escapeHtml(localized.intro)}</p></section>${body}${hubChrome(footer())}</main>`;
 }
@@ -596,7 +1596,45 @@ function renderResearchMetadata(entry) {
     entry.datasetUrl ? external(entry.datasetUrl, hubText('Dataset record', 'Veri seti kaydı')) : '',
     ...(entry.methodology || []).map((id) => { const method = hubEntries.get(id); return method ? `<a href="${route(method.path)}">${escapeHtml(method.locales[currentLanguage].title)}<span aria-hidden="true"> →</span></a>` : ''; })
   ].filter(Boolean);
-  return `<section class="research-record" aria-labelledby="research-record-title"><h2 id="research-record-title">${hubText('Research record', 'Araştırma kaydı')}</h2><dl><div><dt>${hubText('Status', 'Durum')}</dt><dd>${hubText('Planned protocol · no results', 'Planlanan protokol · sonuç yok')}</dd></div><div><dt>${hubText('MESA version', 'MESA sürümü')}</dt><dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd></div><div><dt>${hubText('Dataset', 'Veri seti')}</dt><dd>${hubText('Not selected; criteria must be frozen first', 'Seçilmedi; önce seçim ölçütleri dondurulmalı')}</dd></div><div><dt>${hubText('Models', 'Modeller')}</dt><dd>${hubText('To be declared and version-pinned', 'Beyan edilip sürümü sabitlenecek')}</dd></div><div><dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt><dd>${entry.metrics.map(escapeHtml).join(' · ')}</dd></div>${reviewers.map(([label, name]) => `<div><dt>${label}</dt><dd>${escapeHtml(name)}</dd></div>`).join('')}</dl>${evidenceLinks.length ? `<div class="research-links">${evidenceLinks.join('')}</div>` : ''}<div class="limitations"><h3>${hubText('Known limitations', 'Bilinen sınırlılıklar')}</h3><ul>${limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div></section>`;
+
+  return `
+    <section class="research-record" aria-labelledby="research-record-title">
+      <h2 id="research-record-title">${hubText('Research record', 'Araştırma kaydı')}</h2>
+      <dl>
+        <div>
+          <dt>${hubText('Status', 'Durum')}</dt>
+          <dd>${hubText('Planned protocol · no results', 'Planlanan protokol · sonuç yok')}</dd>
+        </div>
+        <div>
+          <dt>${hubText('MESA version', 'MESA sürümü')}</dt>
+          <dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd>
+        </div>
+        <div>
+          <dt>${hubText('Dataset', 'Veri seti')}</dt>
+          <dd>${hubText('Not selected; criteria must be frozen first', 'Seçilmedi; önce seçim ölçütleri dondurulmalı')}</dd>
+        </div>
+        <div>
+          <dt>${hubText('Models', 'Modeller')}</dt>
+          <dd>${hubText('To be declared and version-pinned', 'Beyan edilip sürümü sabitlenecek')}</dd>
+        </div>
+        <div>
+          <dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt>
+          <dd>${entry.metrics.map(escapeHtml).join(' · ')}</dd>
+        </div>
+        ${reviewers.map(([label, name]) => `
+        <div>
+          <dt>${label}</dt>
+          <dd>${escapeHtml(name)}</dd>
+        </div>`).join('')}
+      </dl>
+      ${evidenceLinks.length ? `<div class="research-links">${evidenceLinks.join('')}</div>` : ''}
+      <div class="limitations">
+        <h3>${hubText('Known limitations', 'Bilinen sınırlılıklar')}</h3>
+        <ul>
+          ${limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+        </ul>
+      </div>
+    </section>`;
 }
 
 function renderHubEntry(entry) {
@@ -606,20 +1644,113 @@ function renderHubEntry(entry) {
   const typeLabel = hubTypeLabels[currentLanguage][entry.type];
   const date = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.publishedAt}T00:00:00Z`));
   const related = entry.related.map((id) => hubEntries.get(id)).filter((item) => item && !item.draft && item.indexable);
-  const breadcrumbs = hubBreadcrumb([{ label: hubText('Home', 'Ana sayfa'), path: '' }, { label: hubText('Resources', 'Kaynaklar'), path: 'resources/' }, { label: section.locales[currentLanguage].eyebrow, path: section.path }, { label: localized.title }]);
-  const toc = `<nav class="article-toc" aria-label="${hubText('On this page', 'Bu sayfada')}"><strong>${hubText('On this page', 'Bu sayfada')}</strong><ol>${localized.sections.map((sectionItem) => `<li><a href="#${escapeHtml(sectionItem.id)}">${escapeHtml(sectionItem.title)}</a></li>`).join('')}</ol></nav>`;
-  const sections = localized.sections.map((sectionItem) => `<section id="${escapeHtml(sectionItem.id)}" class="article-section"><h2>${escapeHtml(sectionItem.title)}<a class="heading-anchor" href="#${escapeHtml(sectionItem.id)}" aria-label="${hubText('Link to this section', 'Bu bölüme bağlantı')}" title="${hubText('Copy section link', 'Bölüm bağlantısını kopyala')}">#</a></h2>${sectionItem.blocks.map(renderHubBlock).join('')}</section>`).join('');
-  const relatedHtml = `<section class="related-content" aria-labelledby="related-title"><p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p><h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2><div class="publication-grid">${related.map(hubCard).join('')}</div></section>`;
+  const breadcrumbs = hubBreadcrumb([
+    { label: hubText('Home', 'Ana sayfa'), path: '' },
+    { label: hubText('Resources', 'Kaynaklar'), path: 'resources/' },
+    { label: section.locales[currentLanguage].eyebrow, path: section.path },
+    { label: localized.title }
+  ]);
+  const toc = `
+    <nav class="article-toc" aria-label="${hubText('On this page', 'Bu sayfada')}">
+      <strong>${hubText('On this page', 'Bu sayfada')}</strong>
+      <ol>
+        ${localized.sections.map((sectionItem) => `<li><a href="#${escapeHtml(sectionItem.id)}">${escapeHtml(sectionItem.title)}</a></li>`).join('')}
+      </ol>
+    </nav>`;
+  const sections = localized.sections.map((sectionItem) => `
+    <section id="${escapeHtml(sectionItem.id)}" class="article-section">
+      <h2>${escapeHtml(sectionItem.title)}<a class="heading-anchor" href="#${escapeHtml(sectionItem.id)}" aria-label="${hubText('Link to this section', 'Bu bölüme bağlantı')}" title="${hubText('Copy section link', 'Bölüm bağlantısını kopyala')}">#</a></h2>
+      ${sectionItem.blocks.map(renderHubBlock).join('')}
+    </section>`).join('');
+  const relatedHtml = `
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p>
+      <h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2>
+      <div class="publication-grid">
+        ${related.map(hubCard).join('')}
+      </div>
+    </section>`;
   const customCta = entry.productCta?.locales?.[currentLanguage];
   const productCta = customCta
-    ? `<div class="contextual-cta"><div><p class="eyebrow">${escapeHtml(customCta.eyebrow)}</p><h2>${escapeHtml(customCta.heading)}</h2><p>${escapeHtml(customCta.description)}</p></div><a class="button secondary" href="${route(entry.productCta.href)}">${escapeHtml(customCta.button)}</a></div>`
-    : `<div class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></div>`;
+    ? `
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">${escapeHtml(customCta.eyebrow)}</p>
+          <h2>${escapeHtml(customCta.heading)}</h2>
+          <p>${escapeHtml(customCta.description)}</p>
+        </div>
+        <a class="button secondary" href="${route(entry.productCta.href)}">${escapeHtml(customCta.button)}</a>
+      </div>`
+    : `
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p>
+          <h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2>
+          <p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p>
+        </div>
+        <a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a>
+      </div>`;
   const updated = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.updatedAt}T00:00:00Z`));
-  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Updated', 'Güncelleme')}</dt><dd><time datetime="${entry.updatedAt}">${updated}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<div class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></div>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
+  return `
+    ${hubChrome(header('resources'))}
+    <main id="main-content">
+      ${breadcrumbs}
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p>
+          <h1>${escapeHtml(localized.title)}</h1>
+          ${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}
+          <p class="article-summary">${escapeHtml(localized.summary)}</p>
+          <dl class="article-byline">
+            <div>
+              <dt>${hubText('Published', 'Yayın')}</dt>
+              <dd><time datetime="${entry.publishedAt}">${date}</time></dd>
+            </div>
+            <div>
+              <dt>${hubText('Updated', 'Güncelleme')}</dt>
+              <dd><time datetime="${entry.updatedAt}">${updated}</time></dd>
+            </div>
+            <div>
+              <dt>${hubText('Author', 'Yazar')}</dt>
+              <dd>${escapeHtml(entry.author)}</dd>
+            </div>
+            <div>
+              <dt>${hubText('Reading time', 'Okuma süresi')}</dt>
+              <dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          ${toc}
+          <div class="article-body">
+            ${localized.shortAnswer ? `<div class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></div>` : ''}
+            ${renderResearchMetadata(entry)}
+            ${sections}
+          </div>
+        </div>
+        ${relatedHtml}
+        ${productCta}
+      </article>
+      ${hubChrome(footer())}
+    </main>`;
 }
 
 function notFound() {
-  return `${header()}<main id="main-content" class="not-found"><div><p class="eyebrow">404 · ROUTE NOT FOUND / SAYFA BULUNAMADI</p><h1>This memory does not exist.<br><em>Bu hafıza mevcut değil.</em></h1><p>The page may have moved. Sayfa taşınmış olabilir.</p><div class="actions">${cta('English home', route())}${cta('Türkçe ana sayfa', `${route()}tr/`, 'secondary')}${cta('Open docs', route('docs/'), 'secondary')}${cta('GitHub', repos.core, 'text', true)}</div></div></main>`;
+  return `
+    ${header()}
+    <main id="main-content" class="not-found">
+      <div>
+        <p class="eyebrow">404 · ROUTE NOT FOUND / SAYFA BULUNAMADI</p>
+        <h1>This memory does not exist.<br><em>Bu hafıza mevcut değil.</em></h1>
+        <p>The page may have moved. Sayfa taşınmış olabilir.</p>
+        <div class="actions">
+          ${cta('English home', route())}
+          ${cta('Türkçe ana sayfa', `${route()}tr/`, 'secondary')}
+          ${cta('Open docs', route('docs/'), 'secondary')}
+          ${cta('GitHub', repos.core, 'text', true)}
+        </div>
+      </div>
+    </main>`;
 }
 
 const renderers = {

@@ -44,10 +44,10 @@ validates identity and existing PostgreSQL RLS validates data access. Production
 login has **not been verified**. See [owner setup](docs/admin/ADMIN_AUTH_SETUP.md)
 and [verification](docs/security/MESA_ADMIN_LOGIN_VERIFICATION.md).
 
-Authenticated ADMIN users can read real records and edit existing draft/ready
-articles. Uploading, creating a complete article, revision restoration and
-publication/export/dispatch remain unavailable. A database draft save does not
-update the static website.
+Authenticated users with `ADMIN` or `EDITOR` role can read real records and edit existing draft/ready
+articles. Role management and administrative inspection require the `ADMIN` role. Uploading, creating a
+complete article, revision restoration and publication/export/dispatch remain unavailable from client-side RLS.
+A database draft save does not update the static website.
 
 ## Routes
 

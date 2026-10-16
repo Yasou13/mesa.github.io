@@ -31,7 +31,14 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=Path("_site"))
     parser.add_argument("--repository", default=os.getenv("GITHUB_REPOSITORY"))
     parser.add_argument("--site-url")
+    parser.add_argument("--verify-articles", action="store_true", default=bool(os.getenv("VERIFY_ARTICLE_SYNC")), help="Verify article tri-source synchronization before building")
     args = parser.parse_args()
+
+    if args.verify_articles:
+        from sync_articles import check_sync
+        errors = check_sync()
+        if errors:
+            raise SystemExit("Article tri-source synchronization failure:\n  " + "\n  ".join(errors) + "\nRun: python3 scripts/sync_articles.py --from-markdown OR --from-hub")
 
     source = args.source.resolve()
     output = args.output.resolve()

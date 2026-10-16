@@ -36,7 +36,7 @@ Consider an agent asked to answer: 'Does Alice have a potential conflict of inte
 - Graph Traversal success: The agent queries the entity node for 'Alice', expands outward through outward relationship edges, and discovers the multi-hop path connecting her to Subsidiary Z in 3 deterministic hops.
 
 **Multi-Hop Traversal**
-: The sequential navigation across connected graph edges $(E_1 ightarrow E_2 ightarrow \dots ightarrow E_k)$ to infer indirect relationships that are never explicitly stated in a single text passage.
+: The sequential navigation across connected graph edges $(E_1 \rightarrow E_2 \rightarrow \dots \rightarrow E_k)$ to infer indirect relationships that are never explicitly stated in a single text passage.
 
 ## When graphs help — and when they add needless complexity
 

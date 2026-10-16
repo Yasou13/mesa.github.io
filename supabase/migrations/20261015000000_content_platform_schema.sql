@@ -170,7 +170,7 @@ BEGIN
         WHERE user_id = auth.uid()
     );
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = '';
 
 CREATE OR REPLACE FUNCTION public.is_admin()
 RETURNS BOOLEAN AS $$
@@ -180,35 +180,46 @@ BEGIN
         WHERE user_id = auth.uid() AND role = 'ADMIN'
     );
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = '';
+
+REVOKE EXECUTE ON FUNCTION public.is_editor() FROM PUBLIC, anon;
+REVOKE EXECUTE ON FUNCTION public.is_admin() FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.is_editor() TO authenticated;
+GRANT EXECUTE ON FUNCTION public.is_admin() TO authenticated;
 
 -- Policies for editor_roles
+DROP POLICY IF EXISTS "Users can view their own role" ON public.editor_roles;
 CREATE POLICY "Users can view their own role"
     ON public.editor_roles FOR SELECT
     TO authenticated
     USING (user_id = auth.uid() OR public.is_admin());
 
+DROP POLICY IF EXISTS "Only admins can modify roles" ON public.editor_roles;
 CREATE POLICY "Only admins can modify roles"
     ON public.editor_roles FOR ALL
     TO authenticated
     USING (public.is_admin());
 
 -- Policies for categories and tags
+DROP POLICY IF EXISTS "Public read categories" ON public.categories;
 CREATE POLICY "Public read categories"
     ON public.categories FOR SELECT
     TO public
     USING (true);
 
+DROP POLICY IF EXISTS "Editors manage categories" ON public.categories;
 CREATE POLICY "Editors manage categories"
     ON public.categories FOR ALL
     TO authenticated
     USING (public.is_editor());
 
+DROP POLICY IF EXISTS "Public read tags" ON public.tags;
 CREATE POLICY "Public read tags"
     ON public.tags FOR SELECT
     TO public
     USING (true);
 
+DROP POLICY IF EXISTS "Editors manage tags" ON public.tags;
 CREATE POLICY "Editors manage tags"
     ON public.tags FOR ALL
     TO authenticated
@@ -216,23 +227,27 @@ CREATE POLICY "Editors manage tags"
 
 -- Policies for articles
 -- 1. Anonymous / Public can ONLY view published, indexable articles
+DROP POLICY IF EXISTS "Public read published articles" ON public.articles;
 CREATE POLICY "Public read published articles"
     ON public.articles FOR SELECT
     TO public
     USING (status = 'published' AND indexable = true);
 
 -- 2. Authenticated Editors can view all articles (including drafts)
+DROP POLICY IF EXISTS "Editors read all articles" ON public.articles;
 CREATE POLICY "Editors read all articles"
     ON public.articles FOR SELECT
     TO authenticated
     USING (public.is_editor());
 
 -- 3. Editors can insert and update articles
+DROP POLICY IF EXISTS "Editors insert articles" ON public.articles;
 CREATE POLICY "Editors insert articles"
     ON public.articles FOR INSERT
     TO authenticated
     WITH CHECK (public.is_editor());
 
+DROP POLICY IF EXISTS "Editors update articles" ON public.articles;
 CREATE POLICY "Editors update articles"
     ON public.articles FOR UPDATE
     TO authenticated
@@ -240,6 +255,7 @@ CREATE POLICY "Editors update articles"
     WITH CHECK (public.is_editor());
 
 -- 4. Only admins can delete articles
+DROP POLICY IF EXISTS "Admins delete articles" ON public.articles;
 CREATE POLICY "Admins delete articles"
     ON public.articles FOR DELETE
     TO authenticated
@@ -247,49 +263,58 @@ CREATE POLICY "Admins delete articles"
 
 -- Policies for article_revisions
 -- Private: Only authenticated editors and admins can view or create revisions
+DROP POLICY IF EXISTS "Editors view revisions" ON public.article_revisions;
 CREATE POLICY "Editors view revisions"
     ON public.article_revisions FOR SELECT
     TO authenticated
     USING (public.is_editor());
 
+DROP POLICY IF EXISTS "Editors insert revisions" ON public.article_revisions;
 CREATE POLICY "Editors insert revisions"
     ON public.article_revisions FOR INSERT
     TO authenticated
     WITH CHECK (public.is_editor());
 
 -- Policies for media_assets
+DROP POLICY IF EXISTS "Public view media assets" ON public.media_assets;
 CREATE POLICY "Public view media assets"
     ON public.media_assets FOR SELECT
     TO public
     USING (true);
 
+DROP POLICY IF EXISTS "Editors upload media assets" ON public.media_assets;
 CREATE POLICY "Editors upload media assets"
     ON public.media_assets FOR INSERT
     TO authenticated
     WITH CHECK (public.is_editor());
 
+DROP POLICY IF EXISTS "Admins delete media assets" ON public.media_assets;
 CREATE POLICY "Admins delete media assets"
     ON public.media_assets FOR DELETE
     TO authenticated
     USING (public.is_admin());
 
 -- Policies for publication_jobs
+DROP POLICY IF EXISTS "Editors view publication jobs" ON public.publication_jobs;
 CREATE POLICY "Editors view publication jobs"
     ON public.publication_jobs FOR SELECT
     TO authenticated
     USING (public.is_editor());
 
+DROP POLICY IF EXISTS "Admins create publication jobs" ON public.publication_jobs;
 CREATE POLICY "Admins create publication jobs"
     ON public.publication_jobs FOR INSERT
     TO authenticated
     WITH CHECK (public.is_admin());
 
 -- Policies for audit_events
+DROP POLICY IF EXISTS "Admins view audit events" ON public.audit_events;
 CREATE POLICY "Admins view audit events"
     ON public.audit_events FOR SELECT
     TO authenticated
     USING (public.is_admin());
 
+DROP POLICY IF EXISTS "Authenticated users log audit events" ON public.audit_events;
 CREATE POLICY "Authenticated users log audit events"
     ON public.audit_events FOR INSERT
     TO authenticated

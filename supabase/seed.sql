@@ -657,7 +657,7 @@ Consider an agent asked to answer: ''Does Alice have a potential conflict of int
 - Graph Traversal success: The agent queries the entity node for ''Alice'', expands outward through outward relationship edges, and discovers the multi-hop path connecting her to Subsidiary Z in 3 deterministic hops.
 
 **Multi-Hop Traversal**
-: The sequential navigation across connected graph edges $(E_1 ightarrow E_2 ightarrow \dots ightarrow E_k)$ to infer indirect relationships that are never explicitly stated in a single text passage.
+: The sequential navigation across connected graph edges $(E_1 \rightarrow E_2 \rightarrow \dots \rightarrow E_k)$ to infer indirect relationships that are never explicitly stated in a single text passage.
 
 ## When graphs help — and when they add needless complexity
 
@@ -709,7 +709,7 @@ Bir ajanın ''Ahmet''in Z İştiraki ile potansiyel bir çıkar çatışması va
 - Graph Gezinimi başarısı: Ajan ''Ahmet'' varlık düğümünü sorgular, dışa doğru ilişki kenarlarını takip eder ve onu Z İştirakine bağlayan çok sekmeli yolu 3 deterministik adımda keşfeder.
 
 **Çok Sekmeli Gezinim (Multi-Hop Traversal)**
-: Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 ightarrow E_2 ightarrow \dots ightarrow E_k)$ boyunca sırayla ilerleme süreci.
+: Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 \rightarrow E_2 \rightarrow \dots \rightarrow E_k)$ boyunca sırayla ilerleme süreci.
 
 ## Grafikler ne zaman yardımcı olur — ne zaman gereksiz karmaşıklık getirir?
 

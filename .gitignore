@@ -5,3 +5,10 @@ __pycache__/
 
 node_modules/
 .env*
+*.tmp
+sync-failures.log
+
+# Local test screenshots and temporary audit artifacts
+docs/tests/screenshots/run-*/
+docs/tests/screenshots/temp/
+
