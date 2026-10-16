@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { checkAdminAuth } from './tests/admin_browser.mjs';
 import { getAllDocRoutes } from './render_docs.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -110,7 +111,7 @@ async function waitForPage(url, previousOrigin) {
       expression: `({ href: location.href, ready: document.readyState, origin: performance.timeOrigin })`,
       returnByValue: true,
     });
-    if (result.value?.href === url && result.value?.ready === 'complete' && result.value.origin !== previousOrigin) return;
+    if ((result.value?.href === url || (new URL(url).searchParams.has('code') && result.value?.href === url.split('?')[0])) && result.value?.ready === 'complete' && result.value.origin !== previousOrigin) return;
     await wait(50);
   }
   throw new Error(`Page did not finish loading: ${url}`);
@@ -142,6 +143,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
       const heroImage = hero?.querySelector('picture img');
       return {
         title: document.title,
+        heroBackground: document.querySelector('.page-hero') ? getComputedStyle(document.querySelector('.page-hero')).backgroundColor : null,
         cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('svg'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
         docsBreadcrumbTop: document.querySelector('.docs-breadcrumbs')?.getBoundingClientRect().top ?? null,
         docsToggleBottom: document.querySelector('.docs-navigation summary')?.getBoundingClientRect().bottom ?? null,
@@ -173,6 +175,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
   observations.push({ route: routePath, width, ...state });
   const label = `/${routePath} @ ${width}px`;
   if (state.cosmic.count !== 1 || state.cosmic.pointer !== 'none' || !(Number(state.cosmic.opacity) > 0) || !(state.cosmic.height > 0)) failures.push(`${label}: shared atmosphere missing or interfering`);
+  if (state.heroBackground && state.heroBackground !== 'rgba(0, 0, 0, 0)') failures.push(`${label}: hero masks the shared environment`);
   if (!state.title) failures.push(`${label}: missing title`);
   if (state.mainCount !== 1) failures.push(`${label}: main count ${state.mainCount}`);
   if (state.h1Count !== 1) failures.push(`${label}: h1 count ${state.h1Count}`);
@@ -296,8 +299,8 @@ async function checkContentInteractions() {
     if (!result.turkishCase || !result.trapped || !result.restored || !result.closed || result.focusOutline === 'none' || !result.docsExpanded) failures.push(`${localized}: keyboard focus or documentation disclosure failed`);
     fallbackChecks.push({ type: 'search-and-docs', language: localized || 'en', ...result });
     await navigate(new URL(`${localized}admin/`, baseUrl).href);
-    const admin = await evaluate(`({forms: document.forms.length, controls: document.querySelectorAll('input,textarea,button').length, noindex: document.querySelector('meta[name="robots"]').content, scripts: document.scripts.length})`);
-    if (admin.forms || admin.controls || admin.scripts || !admin.noindex.includes('noindex')) failures.push(`${localized}: admin did not fail closed`);
+    const admin = await evaluate(`({closed:document.querySelector('#login-form fieldset').disabled,workspaceHidden:document.querySelector('#workspace').hidden,config:JSON.parse(document.querySelector('#admin-config').textContent),noindex:document.querySelector('meta[name="robots"]').content})`);
+    if (!admin.closed || !admin.workspaceHidden || admin.config !== null || !admin.noindex.includes('noindex')) failures.push(`${localized}: admin did not fail closed`);
     fallbackChecks.push({ type: 'admin-unavailable', language: localized || 'en', ...admin });
   }
   await connection.send('Emulation.setScriptExecutionDisabled', { value: true });
@@ -346,17 +349,43 @@ async function checkReleaseInteractions() {
   }
   await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
 }
+async function checkPerformance() {
+ await connection.send('Performance.enable');
+ for(const [width,reduce] of [[1440,false],[1440,true],[390,false]]) {
+  await connection.send('Emulation.setDeviceMetricsOverride',{width,height:width===390?844:1000,deviceScaleFactor:1,mobile:false});
+  await connection.send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:reduce?'reduce':'no-preference'}]});
+  await navigate(baseUrl);
+  await evaluate('document.fonts.ready');
+  const read=async()=>Object.fromEntries((await connection.send('Performance.getMetrics')).metrics.map(m=>[m.name,m.value]));
+  const before=await read(); await wait(3000);const after=await read();
+  const state=await evaluate(`({motion:document.documentElement.dataset.cosmicMotion,animations:document.getAnimations().filter(a=>a.playState==='running').length,cls:window.__mesaAuditCLS,transfer:performance.getEntriesByType('resource').reduce((s,r)=>s+r.transferSize,0),encoded:performance.getEntriesByType('resource').reduce((s,r)=>s+r.encodedBodySize,0)})`);
+  const milliseconds=(after.TaskDuration-before.TaskDuration)*1000;
+  fallbackChecks.push({type:'performance',width,reducedMotion:reduce,intervalMs:3000,mainThreadTaskMs:milliseconds,mainThreadBusyPercent:milliseconds/30,...state});
+  if((reduce||width===390)&&state.animations)failures.push(`unexpected background motion at ${width}`);
+ }
+ await connection.send('Emulation.setEmulatedMedia',{features:[]});
+ await connection.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await navigate(baseUrl);
+ const lifecycle=await evaluate(`(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));const paused=document.documentElement.dataset.cosmicMotion==='off'&&document.getAnimations().length===0;delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));return{paused,resumed:document.documentElement.dataset.cosmicMotion==='on'};})()`);
+ fallbackChecks.push({type:'simulated-visibilitychange',...lifecycle});
+ if(!lifecycle.paused||!lifecycle.resumed)failures.push('visibility lifecycle failed');
+}
+
 async function checkAxe() {
   const index=process.argv.indexOf('--axe-source');
   if(index===-1)return;
   const source=fs.readFileSync(path.resolve(process.argv[index+1]),'utf8');
-  for(const routePath of localizedRoutes) {
+  const axeRoutes=[...localizedRoutes,'admin/','tr/admin/','404.html'];
+  const axeStart=Number(process.argv[process.argv.indexOf('--axe-start')+1])||0;
+  const axeCount=process.argv.includes('--axe-count')?Number(process.argv[process.argv.indexOf('--axe-count')+1]):axeRoutes.length;
+  for(const routePath of axeRoutes.slice(axeStart,axeStart+axeCount)) {
     await connection.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
     await navigate(new URL(routePath,baseUrl).href);
     await evaluate(source);
     const state=await evaluate(`(async()=>{const result=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa','wcag22aa','best-practice']}});return {version:axe.version,violations:result.violations.map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:result.incomplete.map(v=>({id:v.id,help:v.help,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passes:result.passes.length};})()`);
     if(state.violations.length)failures.push(`${routePath}: axe ${state.violations.map(v=>v.id).join(',')}`);
     fallbackChecks.push({type:'axe',route:routePath,...state});
+    if(fallbackChecks.length%20===0)console.log(`AXE progress: ${fallbackChecks.length} pages checked`);
   }
 }
 
@@ -378,7 +407,7 @@ try {
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
-  if (!process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only')) {
+  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
@@ -399,7 +428,9 @@ try {
   }
 
   }
-  if(process.argv.includes('--snapshot-only')) { for(const routePath of ['', 'tr/', 'docs/', 'tr/docs/']) for(const width of [390,1440]) await inspect(routePath,width); }
+  if(process.argv.includes('--performance-only')) await checkPerformance();
+  else if(process.argv.includes('--admin-auth-only')) await checkAdminAuth({connection,evaluate,navigate,baseUrl,failures,fallbackChecks,screenshotsDirectory,fs,path});
+  else if(process.argv.includes('--snapshot-only')) { for(const routePath of ['', 'tr/', 'docs/', 'tr/docs/']) for(const width of [390,1440]) await inspect(routePath,width); }
   else if(process.argv.includes('--axe-only')) await checkAxe();
   else if(process.argv.includes('--release-checks-only')) { await checkReleaseInteractions(); await checkAxe(); }
   else await checkContentInteractions();
@@ -409,8 +440,10 @@ try {
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    if (process.argv.includes('--snapshot-only')) console.log(`SNAPSHOT QA PASS: home and documentation gateway in EN/TR at 390/1440px`);
-    else if (process.argv.includes('--axe-only')) console.log(`AXE QA PASS: ${localizedRoutes.length} EN/TR public routes at ${baseUrl}`);
+    if (process.argv.includes('--performance-only')) console.log('PERFORMANCE OBSERVATION PASS (local main-thread metrics, not field/GPU certification)');
+    else if (process.argv.includes('--admin-auth-only')) console.log(`ISOLATED AUTH FIXTURE PASS: ${fallbackChecks.length} browser checks; production Auth UNVERIFIED`);
+    else if (process.argv.includes('--snapshot-only')) console.log(`SNAPSHOT QA PASS: home and documentation gateway in EN/TR at 390/1440px`);
+    else if (process.argv.includes('--axe-only')) console.log(`AXE QA PASS: ${fallbackChecks.filter(item=>item.type==='axe').length} tested routes at ${baseUrl}`);
     else if (process.argv.includes('--release-checks-only')) console.log(`RELEASE BROWSER QA PASS: EN/TR arithmetic, native keyboard, source deep links, new-page responsive layouts and optional axe at ${baseUrl}`);
     else if (process.argv.includes('--interactions-only')) console.log(`BROWSER INTERACTION QA PASS: EN/TR search paths, keyboard focus, admin isolation and no-JavaScript navigation at ${baseUrl}`);
     else console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, navigation, fixture, shared cosmic environment, landscape and reduced motion; no document overflow or unexpected broken images`);

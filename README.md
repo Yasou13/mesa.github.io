@@ -2,7 +2,7 @@
 
 The official static introduction, ecosystem map, documentation gateway, and
 status surface for MESA. The site is dependency-free at runtime and uses real
-semantic HTML; JavaScript only enhances the mobile menu and copy buttons.
+semantic HTML; JavaScript enhances navigation, search, examples and optional atmospheric motion.
 
 Current deployment target: `https://mesamemory.dev/`. The GitHub Pages project
 URL redirects to this configured custom domain.
@@ -23,24 +23,31 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 
-No React, Vue, Next.js, CMS, backend, or npm dependencies are used. Node.js is
-needed only to run the dependency-free static renderer during a build.
+Public pages and the static renderer have no framework/runtime dependency. The
+admin-only client uses Supabase Auth/PostgREST. Node.js runs the renderer; npm
+is needed only to rebuild the committed admin bundle (`npm ci --ignore-scripts`
+then `npm run build:admin`).
 
-The homepage uses six semantic sections: introduction, problem, verified memory
-example, lifecycle, ecosystem, and next steps. Its only media is the supplied
-static hero, served through an art-directed desktop/mobile `<picture>`. Mobile
-copy and actions sit above the portrait visual. The image remains decorative,
-cannot intercept input, reserves its layout space, and falls back to a dark
-surface without blocking content. No video or animation dependency is configured.
+## Global cosmic design and administrator access
 
-`posterPicture()` provides reusable base-path-aware markup with intrinsic
-dimensions, optional mobile crops, and explicit loading priority; all configured
-manifest records are validated. The other historical scene records remain
-unconfigured and are not rendered as homepage backgrounds. The approved scope
-and implementation evidence are documented in
-`docs/plans/MESA_COSMIC_MINIMALISM_REDESIGN.md` and
-`docs/design/05_COSMIC_PHASES_2_4_IMPLEMENTATION.md`; the earlier five-scene
-storyboard is retained as historical context.
+All public and admin routes use one code-generated SVG environment from
+`scripts/cosmic.mjs` and `dist/cosmic.css`. Seeded dust/stars, restrained page
+variants and a separate mobile composition replace the homepage-only bitmap
+strategy. Existing nebula assets remain as references and are not requested by
+public pages. Reading surfaces are opaque; motion is limited to a small desktop
+light layer and pauses for reduced motion or hidden documents.
+
+The `/admin/` and `/tr/admin/` routes use the official Supabase SDK, bundled in
+`dist/admin.js` and loaded only by administration pages. Without both public
+build variables the form stays disabled. With a configured backend, Auth
+validates identity and existing PostgreSQL RLS validates data access. Production
+login has **not been verified**. See [owner setup](docs/admin/ADMIN_AUTH_SETUP.md)
+and [verification](docs/security/MESA_ADMIN_LOGIN_VERIFICATION.md).
+
+Authenticated ADMIN users can read real records and edit existing draft/ready
+articles. Uploading, creating a complete article, revision restoration and
+publication/export/dispatch remain unavailable. A database draft save does not
+update the static website.
 
 ## Routes
 
@@ -189,14 +196,13 @@ dependency-free responsive browser check:
 node scripts/check_browser_layout.mjs --base-url http://127.0.0.1:8000/
 ```
 
-It opens every localized route in headless Chrome, checks both homepages at
-320, 390, 768, 799, 800, 801, 1024, 1099, 1100, 1101, 1440, and 1920 px,
-verifies document overflow and image decode, and exercises both languages'
-mobile menu and fixture disclosure. It also checks responsive hero requests,
-loading priority, load-time layout shift, reduced motion, and image failure.
-The default run disables cache to verify one selected crop per cold navigation.
-`--warm-cache` also allows zero-transfer cached fallback entries emitted by
-Chromium, while rejecting an extra crop that transfers bytes.
+It opens every localized public route in headless Chrome and tests EN/TR major
+page families at 320, 360, 390, 430, 768, 799, 800, 801, 1024, 1099, 1100, 1101,
+1440 and 1920 px, plus landscape samples. It checks document overflow, the
+shared atmosphere, opaque hero regressions, layout shift, navigation, search,
+reduced motion, no-JavaScript reading and disabled unconfigured admin controls.
+`--performance-only` measures local main-thread idle cost; `--axe-only` with
+`--axe-source node_modules/axe-core/axe.min.js` runs automated accessibility checks.
 
 To retain screenshots and the structured observations report:
 

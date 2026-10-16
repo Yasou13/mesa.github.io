@@ -40,6 +40,9 @@ jobs:
       - name: Synchronize documentation
         run: python3 scripts/sync_docs.py
       - name: Build static artifact
+        env:
+          MESA_SUPABASE_URL: ${{ vars.MESA_SUPABASE_URL }}
+          MESA_SUPABASE_PUBLISHABLE_KEY: ${{ vars.MESA_SUPABASE_PUBLISHABLE_KEY }}
         run: python3 scripts/build_site.py --site-url "${{ steps.pages.outputs.base_url }}"
       - name: Verify routes and links
         run: |

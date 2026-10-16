@@ -1,0 +1,24 @@
+.admin-header { display:flex; justify-content:space-between; align-items:center; width:min(1180px,calc(100% - 40px)); margin:24px auto; }
+.admin-header .logo { gap:12px; }
+.admin-header > a:last-child { padding:12px; color:var(--muted); }
+.admin-shell { width:min(880px,calc(100% - 40px)); margin:clamp(40px,9vh,100px) auto 80px; }
+.admin-shell h1 { font-size:var(--type-title); letter-spacing:-.04em; line-height:1.1; font-weight:500; }
+.admin-shell h2 { font-size:1.4rem; font-weight:500; }
+.admin-panel { padding:clamp(20px,4vw,36px); border:1px solid var(--line-strong); border-radius:var(--radius-panel); background:var(--surface); }
+#login-panel,#recovery-panel { max-width:520px; }
+.admin-shell fieldset { border:0; padding:0; margin:0; min-width:0; display:grid; gap:12px; }
+.admin-shell label { color:var(--ink); font-size:.9375rem; }
+.admin-shell input,.admin-shell textarea { width:100%; min-width:0; padding:12px; color:var(--ink); background:var(--black); border:1px solid var(--control-line); border-radius:var(--radius-control); font:inherit; }
+.admin-shell textarea { resize:vertical; font-size:.9375rem; }
+.admin-shell button { cursor:pointer; min-height:44px; white-space:normal; }
+.admin-shell button:disabled,.admin-shell fieldset:disabled { opacity:.55; cursor:not-allowed; }
+.admin-shell form button { margin-block:12px; }
+#reset-request { margin-top:12px; width:100%; }
+.admin-note { font-size:.875rem; margin:20px 0 0; }
+.admin-return { display:inline-block; margin-top:32px; color:var(--orientation); }
+#admin-status { min-height:3.3em; max-width:65ch; }
+#admin-status[data-error="true"] { color:var(--red); }
+.admin-toolbar { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-block:24px; }
+.admin-records { margin-block:24px; }
+.admin-records > button,.admin-records > p { display:block; width:100%; text-align:left; padding:16px; border:1px solid var(--line); background:var(--surface); color:var(--ink); margin:0 0 8px; overflow-wrap:anywhere; border-radius:var(--radius-panel); }
+.admin-shell [hidden] { display:none; }

@@ -1,0 +1,32 @@
+# Optional isolated local Supabase environment. No production project binding.
+project_id = "mesa-website-local"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[auth]
+enabled = true
+site_url = "http://localhost:8000"
+additional_redirect_urls = ["http://localhost:8000/admin/?recovery=1", "http://localhost:8000/tr/admin/?recovery=1"]
+jwt_expiry = 900
+enable_signup = false
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+double_confirm_changes = true
+secure_password_change = true
+
+[storage]
+enabled = true
+# No bucket or upload policy is enabled by this change.

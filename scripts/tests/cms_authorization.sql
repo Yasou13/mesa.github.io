@@ -69,4 +69,27 @@ DO $$ BEGIN
   END IF;
 END $$;
 RESET ROLE;
+-- Private metadata is protected even when it exists (not just an empty-table check).
+INSERT INTO public.media_assets(filename,storage_path,mime_type,file_size_bytes)
+VALUES('private-draft.png','private/draft.png','image/png',123);
+SET ROLE anon;
+DO $$ BEGIN
+ IF (SELECT count(*) FROM public.media_assets) <> 0 THEN RAISE EXCEPTION 'anonymous media metadata leak'; END IF;
+ IF (SELECT count(*) FROM public.article_revisions) <> 0 THEN RAISE EXCEPTION 'anonymous revision leak'; END IF;
+END $$;
+RESET ROLE;
+SET ROLE authenticated;
+SELECT set_config('request.jwt.claim.sub','33333333-3333-3333-3333-333333333333',false);
+DO $$ BEGIN
+ IF (SELECT count(*) FROM public.media_assets) <> 0 THEN RAISE EXCEPTION 'unassigned media metadata leak'; END IF;
+END $$;
+RESET ROLE;
+DELETE FROM public.editor_roles WHERE user_id='11111111-1111-1111-1111-111111111111';
+SET ROLE authenticated;
+SELECT set_config('request.jwt.claim.sub','11111111-1111-1111-1111-111111111111',false);
+DO $$ BEGIN
+ IF public.is_admin() THEN RAISE EXCEPTION 'revoked administrator still authorized'; END IF;
+ IF (SELECT count(*) FROM public.articles WHERE status='draft') <> 0 THEN RAISE EXCEPTION 'revoked administrator read draft'; END IF;
+END $$;
+RESET ROLE;
 SELECT 'CMS AUTHORIZATION PASS' AS result;

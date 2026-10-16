@@ -99,7 +99,7 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
     sectionsHtml += `</ul></div>`;
   }
 
-  return `<aside class="docs-sidebar" aria-label="${isTr ? 'Dokümantasyon gezintisi' : 'Documentation navigation'}">
+  return `<div class="docs-sidebar" aria-label="${isTr ? 'Dokümantasyon gezintisi' : 'Documentation navigation'}">
     <details class="docs-navigation">
       <summary>${isTr ? 'Belge gezintisi' : 'Documentation navigation'}</summary>
     <div class="docs-sidebar-inner">
@@ -111,7 +111,7 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
       </nav>
     </div>
     </details>
-  </aside>`;
+  </div>`;
 }
 
 export function renderDocPage(item, language = 'en', { base = './', assetBase = './', siteUrl, headerHtml, footerHtml }) {
@@ -206,7 +206,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
         ${pageNavHtml}
       </article>
     </div>
-    <aside class="docs-toc-column" aria-label="${isTr ? 'İçindekiler' : 'Table of contents'}">
+    <div class="docs-toc-column" aria-label="${isTr ? 'İçindekiler' : 'Table of contents'}">
       ${guideTocHtml}
       <div class="docs-source-link">
         <a href="${sourceUrl}" target="_blank" rel="noopener noreferrer">
@@ -214,7 +214,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
           <span>${isTr ? 'GitHub üzerinde kaynağı aç' : 'Open source on GitHub'}</span>
         </a>
       </div>
-    </aside>
+    </div>
   </div>
 </main>
 ${footerHtml}`;

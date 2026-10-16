@@ -1,0 +1,8 @@
+{
+  "name": "mesa-website-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {"build:admin": "node scripts/bundle_admin.mjs"},
+  "dependencies": {"@supabase/supabase-js": "2.118.0"},
+  "devDependencies": {"esbuild": "0.28.2", "axe-core": "4.11.0"}
+}

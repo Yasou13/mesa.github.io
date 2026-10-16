@@ -6,6 +6,8 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { getAllDocRoutes, renderDocPage } from './render_docs.mjs';
 import { renderAdminPage } from './render_admin.mjs';
+import { adminConfig } from './admin/config.mjs';
+const publicAdminConfig = adminConfig(process.env);
 import { writeSearchIndex } from './generate_search_index.mjs';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -249,53 +251,6 @@ function actionExample(compact = false) {
   </div>`;
 }
 
-function evidencePath() {
-  return `<div class="evidence-path" aria-hidden="true">
-    <svg viewBox="0 0 760 560" role="presentation">
-      <g class="graph-dormant-mesh">
-        <path d="M120 140 C190 90 230 150 290 180"/>
-        <path d="M290 180 C260 250 240 290 230 330"/>
-        <path d="M290 180 C340 190 370 230 410 270"/>
-        <path d="M410 270 C460 230 490 210 530 210"/>
-        <path d="M410 270 C460 310 500 350 560 380"/>
-        <path d="M290 180 C360 120 420 110 480 100"/>
-        <path d="M480 100 C560 110 610 130 670 160"/>
-        <path d="M530 210 C590 170 630 160 670 160"/>
-        <path d="M230 330 C240 390 250 430 270 460"/>
-        <path d="M270 460 C380 500 480 470 560 380"/>
-        <path d="M560 380 C610 400 640 420 680 450"/>
-        <path d="M670 160 C690 280 680 370 680 450"/>
-      </g>
-      <g class="graph-dormant-nodes">
-        <circle cx="480" cy="100" r="4"/>
-        <circle cx="670" cy="160" r="5"/>
-        <circle cx="530" cy="210" r="5"/>
-        <circle cx="230" cy="330" r="5"/>
-        <circle cx="270" cy="460" r="5"/>
-        <circle cx="680" cy="450" r="6"/>
-      </g>
-      <g class="graph-active-traversal">
-        <path class="traversal-seg seg-1" pathLength="100" d="M120 140 C190 110 240 150 290 180"/>
-        <path class="branch-probe" pathLength="100" d="M290 180 C260 240 240 280 230 330"/>
-        <path class="traversal-seg seg-2" pathLength="100" d="M290 180 C340 200 370 230 410 270"/>
-        <path class="traversal-seg seg-3" pathLength="100" d="M410 270 C460 310 500 340 560 380"/>
-      </g>
-      <g class="graph-active-nodes">
-        <circle class="active-node node-source" cx="120" cy="140" r="7"/>
-        <circle class="active-node node-memory" cx="290" cy="180" r="8"/>
-        <circle class="active-node node-ledger" cx="410" cy="270" r="8"/>
-        <circle class="active-node node-evidence" cx="560" cy="380" r="10"/>
-      </g>
-      <g class="graph-labels">
-        <text x="96" y="118">source</text>
-        <text x="272" y="156">memory</text>
-        <text x="424" y="268">retrieve</text>
-        <text class="copper-label" x="584" y="386">evidence</text>
-      </g>
-    </svg>
-  </div>`;
-}
-
 function ecosystemCards() {
   const cards = [
     ['Core', 'mesa/', 'The memory layer', 'Accepts authorized information and makes it retrievable without dropping its evidence or data scope.', 'Owns the V4 catalog, authorization, mutation lifecycle, projections, retrieval, API, SDK, and MCP surfaces.', repos.core],
@@ -392,7 +347,7 @@ function evaluationPage() {
 function aboutPage() {
   return `${header()}<main id="main-content"><section class="page-hero compact page-hero--editorial"><p class="eyebrow">ABOUT MESA</p><h1>An open-source exploration of<br><em>memory with evidence.</em></h1><p>MESA exists to explore durable AI memory that keeps provenance, structure, scope, and lifecycle state visible instead of reducing memory to an opaque similarity lookup.</p></section>
     <section class="section about-grid"><article><p class="eyebrow">WHAT IT IS</p><h2>A multi-repository system.</h2><p>Core owns the memory lifecycle. Data prepares Turkish legal sources. QA tests behavior. E2E Certification defines a fail-closed evidence path. Law is the primary reference implementation.</p></article><article><p class="eyebrow">WHY IT EXISTS</p><h2>Useful context needs a basis.</h2><p>The project examines how agents can retain information while preserving where it came from, how it is related, which scope can retrieve it, and how it changes over time.</p></article><article><p class="eyebrow">WHO MAINTAINS IT</p><h2>Publicly maintained on GitHub.</h2><p>The public maintainer identity exposed by the repositories is the <strong>${project.maintainer}</strong> GitHub account. This site does not infer a company, team, office, investor, or customer structure that the source does not establish.</p>${external(repos.profile, 'View maintainer profile')}</article><article><p class="eyebrow">HOW TO CONTACT</p><h2>Use the public project channel.</h2><p>Open an issue for reproducible bugs, architecture questions, documentation gaps, or evaluation discussion. No sales or enterprise support channel is claimed.</p>${external(repos.issues, 'Open a GitHub issue')}</article></section>
-    <aside class="development-note"><div><p class="eyebrow">CURRENT STATUS</p><strong>Core v${project.version} · ${project.maturity}</strong><p>Certification is ${project.certification.toLowerCase()}; production remains ${project.production}.</p></div>${cta('Review status and limits', route('status/'), 'secondary')}</aside>${footer()}</main>`;
+    <div class="development-note"><div><p class="eyebrow">CURRENT STATUS</p><strong>Core v${project.version} · ${project.maturity}</strong><p>Certification is ${project.certification.toLowerCase()}; production remains ${project.production}.</p></div>${cta('Review status and limits', route('status/'), 'secondary')}</div>${footer()}</main>`;
 }
 
 function faqPage() {
@@ -604,7 +559,7 @@ function renderHubIndex(section) {
   } else {
     const contentType = section.id === 'guides' ? 'guide' : section.id === 'glossary' ? 'glossary' : section.id;
     const entries = publishedEntries().filter(({ type }) => type === contentType);
-    const future = section.id === 'methodology' ? `<aside class="methodology-scope"><p class="eyebrow">${hubText('SUPPORTED NEXT', 'SONRAKİ DESTEKLENEN ALANLAR')}</p><ul><li>${hubText('Dataset selection', 'Veri seti seçimi')}</li><li>${hubText('Relevance judgment', 'Relevance judgment')}</li><li>${hubText('Dataset versioning', 'Veri seti sürümleme')}</li><li>${hubText('Corrections policy', 'Düzeltme politikası')}</li></ul><p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu alanlar içerik modeli tarafından desteklenir; yayımlanmamış sayfalar route olarak gösterilmez.')}</p></aside>` : '';
+    const future = section.id === 'methodology' ? `<div class="methodology-scope"><p class="eyebrow">${hubText('SUPPORTED NEXT', 'SONRAKİ DESTEKLENEN ALANLAR')}</p><ul><li>${hubText('Dataset selection', 'Veri seti seçimi')}</li><li>${hubText('Relevance judgment', 'Relevance judgment')}</li><li>${hubText('Dataset versioning', 'Veri seti sürümleme')}</li><li>${hubText('Corrections policy', 'Düzeltme politikası')}</li></ul><p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu alanlar içerik modeli tarafından desteklenir; yayımlanmamış sayfalar route olarak gösterilmez.')}</p></div>` : '';
     body = `<section class="section publication-index"><div><h2 class="sr-only">${hubText('Published resources', 'Yayımlanmış kaynaklar')}</h2><div class="publication-grid">${entries.map(hubCard).join('') || `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}</div></div>${future}</section>`;
   }
   return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<section class="page-hero compact page-hero--editorial knowledge-hero"><p class="eyebrow">${escapeHtml(localized.eyebrow)}</p><h1>${escapeHtml(localized.heading)}</h1><p>${escapeHtml(localized.intro)}</p></section>${body}${hubChrome(footer())}</main>`;
@@ -615,7 +570,7 @@ function renderHubBlock(block) {
   if (block.kind === 'list') return `<ul>${block.items.map((item) => `<li>${renderFormattedText(item)}</li>`).join('')}</ul>`;
   if (block.kind === 'numbered-list') return `<ol>${block.items.map((item) => `<li>${renderFormattedText(item)}</li>`).join('')}</ol>`;
   if (block.kind === 'checklist') return `<ul class="article-checklist">${block.items.map((item) => `<li>${renderFormattedText(item)}</li>`).join('')}</ul>`;
-  if (['warning', 'callout', 'example'].includes(block.kind)) return `<aside class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${renderFormattedText(block.text)}</p></aside>`;
+  if (['warning', 'callout', 'example'].includes(block.kind)) return `<div class="article-callout ${block.kind}"><strong>${escapeHtml(block.title)}</strong><p>${renderFormattedText(block.text)}</p></div>`;
   if (block.kind === 'definition') return `<dl class="definition"><dt>${escapeHtml(block.term)}</dt><dd>${renderFormattedText(block.text)}</dd></dl>`;
   if (block.kind === 'quote') return `<blockquote><p>${renderFormattedText(block.text)}</p>${block.cite ? `<cite>${renderFormattedText(block.cite)}</cite>` : ''}</blockquote>`;
   if (block.kind === 'code') return `<pre tabindex="0" class="article-code"><code>${escapeHtml(block.code)}</code></pre>`;
@@ -656,10 +611,10 @@ function renderHubEntry(entry) {
   const relatedHtml = `<section class="related-content" aria-labelledby="related-title"><p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p><h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2><div class="publication-grid">${related.map(hubCard).join('')}</div></section>`;
   const customCta = entry.productCta?.locales?.[currentLanguage];
   const productCta = customCta
-    ? `<aside class="contextual-cta"><div><p class="eyebrow">${escapeHtml(customCta.eyebrow)}</p><h2>${escapeHtml(customCta.heading)}</h2><p>${escapeHtml(customCta.description)}</p></div><a class="button secondary" href="${route(entry.productCta.href)}">${escapeHtml(customCta.button)}</a></aside>`
-    : `<aside class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></aside>`;
+    ? `<div class="contextual-cta"><div><p class="eyebrow">${escapeHtml(customCta.eyebrow)}</p><h2>${escapeHtml(customCta.heading)}</h2><p>${escapeHtml(customCta.description)}</p></div><a class="button secondary" href="${route(entry.productCta.href)}">${escapeHtml(customCta.button)}</a></div>`
+    : `<div class="contextual-cta"><div><p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p><h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2><p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p></div><a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a></div>`;
   const updated = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.updatedAt}T00:00:00Z`));
-  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Updated', 'Güncelleme')}</dt><dd><time datetime="${entry.updatedAt}">${updated}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<aside class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></aside>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
+  return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<article class="knowledge-article"><header class="article-header"><p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p><h1>${escapeHtml(localized.title)}</h1>${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}<p class="article-summary">${escapeHtml(localized.summary)}</p><dl class="article-byline"><div><dt>${hubText('Published', 'Yayın')}</dt><dd><time datetime="${entry.publishedAt}">${date}</time></dd></div><div><dt>${hubText('Updated', 'Güncelleme')}</dt><dd><time datetime="${entry.updatedAt}">${updated}</time></dd></div><div><dt>${hubText('Author', 'Yazar')}</dt><dd>${escapeHtml(entry.author)}</dd></div><div><dt>${hubText('Reading time', 'Okuma süresi')}</dt><dd>${entry.readingMinutes} ${hubText('minutes', 'dakika')}</dd></div></dl></header><div class="article-layout">${toc}<div class="article-body">${localized.shortAnswer ? `<div class="short-answer"><strong>${hubText('Short answer', 'Kısa yanıt')}</strong><p>${escapeHtml(localized.shortAnswer)}</p></div>` : ''}${renderResearchMetadata(entry)}${sections}</div></div>${relatedHtml}${productCta}</article>${hubChrome(footer())}</main>`;
 }
 
 function notFound() {
@@ -1012,7 +967,7 @@ for (const language of ['en', 'tr']) {
   const adminRoute = language === 'tr' ? 'tr/admin/' : 'admin/';
   const destination = path.join(outputDirectory, adminRoute, 'index.html');
   fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language }));
+  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language, config: publicAdminConfig }));
 }
 writeSearchIndex(outputDirectory);
 

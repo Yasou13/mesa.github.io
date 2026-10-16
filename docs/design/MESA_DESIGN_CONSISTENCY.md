@@ -4,6 +4,7 @@
 
 - Shared neutral palette: black #050508, midnight #0B101B, technical #11131B, text #E8EAF0, muted #A5A9B5; violet #9B8ACB, blue #8B9CCB, cyan #8EA5AE, evidence amber #D5AE82.
 - Replaced late editorial, rank calculator, ecosystem, documentation and footer hardcoded purple shades with existing semantic tokens. Consolidated those component radii to panel/control tokens. Preserved red warning and amber evidence semantics.
+- Traced the unused `evidencePath()` helper: no call sites and no rendered graph-pulse classes across 179 HTML files. Removed its decorative SVG code, graph-only CSS and nine unused pulse/traversal keyframes. Existing technical diagrams remain.
 - Removed the purely decorative hero pseudo-elements (ledger sheets, crosshatch, dossier, rings/trajectory lines), repeated grid background rules and retired bitmap scene styling. These decorations held no text, source records or diagrams. Real diagrams and technical examples remain.
 - Removed obsolete page-hero background declarations that painted over the shared environment. The first screenshot review caught one surviving `#07080c` override despite passing DOM tests; it was removed before final verification.
 - Existing article and docs content columns now own opaque reading surfaces. Card and table structure stays intact. Mobile typography, navigation and scrollable code are preserved.
