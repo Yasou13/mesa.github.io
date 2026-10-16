@@ -1,0 +1,467 @@
+{
+  "results": [
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 1920,
+      "height": 1000,
+      "overflow": 0,
+      "grid": "40px 224px 1016px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1000,
+        "top": 0,
+        "right": 1920,
+        "bottom": 1000,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 1024,
+      "height": 900,
+      "overflow": 0,
+      "grid": "40px 224px 644.812px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 900,
+        "top": 0,
+        "right": 1024,
+        "bottom": 900,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 801,
+      "height": 900,
+      "overflow": 0,
+      "grid": "40px 224px 432.969px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 801,
+        "height": 900,
+        "top": 0,
+        "right": 801,
+        "bottom": 900,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 800,
+      "height": 900,
+      "overflow": 0,
+      "grid": "32px 672px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 900,
+        "top": 0,
+        "right": 800,
+        "bottom": 900,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 320,
+      "height": 844,
+      "overflow": 0,
+      "grid": "32px 192px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 844,
+        "top": 0,
+        "right": 320,
+        "bottom": 844,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 844,
+      "height": 430,
+      "overflow": 0,
+      "grid": "40px 224px 473.812px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 430,
+        "top": 0,
+        "right": 844,
+        "bottom": 430,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "how-it-works/",
+      "width": 1440,
+      "height": 1000,
+      "overflow": 0,
+      "grid": "40px 224px 1024px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1000,
+        "top": 0,
+        "right": 1440,
+        "bottom": 1000,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 1920,
+      "height": 1000,
+      "overflow": 0,
+      "grid": "40px 224px 1016px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1000,
+        "top": 0,
+        "right": 1920,
+        "bottom": 1000,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 1024,
+      "height": 900,
+      "overflow": 0,
+      "grid": "40px 224px 644.812px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 900,
+        "top": 0,
+        "right": 1024,
+        "bottom": 900,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 801,
+      "height": 900,
+      "overflow": 0,
+      "grid": "40px 224px 432.969px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 801,
+        "height": 900,
+        "top": 0,
+        "right": 801,
+        "bottom": 900,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 800,
+      "height": 900,
+      "overflow": 0,
+      "grid": "32px 672px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 900,
+        "top": 0,
+        "right": 800,
+        "bottom": 900,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 320,
+      "height": 844,
+      "overflow": 0,
+      "grid": "32px 192px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 844,
+        "top": 0,
+        "right": 320,
+        "bottom": 844,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 844,
+      "height": 430,
+      "overflow": 0,
+      "grid": "40px 224px 473.812px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 430,
+        "top": 0,
+        "right": 844,
+        "bottom": 430,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "live-resize",
+      "route": "tr/how-it-works/",
+      "width": 1440,
+      "height": 1000,
+      "overflow": 0,
+      "grid": "40px 224px 1024px",
+      "cosmic": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1000,
+        "top": 0,
+        "right": 1440,
+        "bottom": 1000,
+        "left": 0
+      },
+      "cls": 0
+    },
+    {
+      "type": "contrast-regions",
+      "width": 1440,
+      "rects": [
+        {
+          "rect": {
+            "x": 40,
+            "y": 107.5,
+            "width": 772.796875,
+            "height": 19.796875,
+            "top": 107.5,
+            "right": 812.796875,
+            "bottom": 127.296875,
+            "left": 40
+          },
+          "color": "rgb(139, 156, 203)"
+        },
+        {
+          "rect": {
+            "x": 884.796875,
+            "y": 161.734375,
+            "width": 515.203125,
+            "height": 89.0625,
+            "top": 161.734375,
+            "right": 1400,
+            "bottom": 250.796875,
+            "left": 884.796875
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 376,
+            "y": 333.796875,
+            "width": 780,
+            "height": 28.046875,
+            "top": 333.796875,
+            "right": 1156,
+            "bottom": 361.84375,
+            "left": 376
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 376,
+            "y": 425.59375,
+            "width": 780,
+            "height": 56.09375,
+            "top": 425.59375,
+            "right": 1156,
+            "bottom": 481.6875,
+            "left": 376
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 376,
+            "y": 542.6875,
+            "width": 780,
+            "height": 28.046875,
+            "top": 542.6875,
+            "right": 1156,
+            "bottom": 570.734375,
+            "left": 376
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 376,
+            "y": 634.484375,
+            "width": 780,
+            "height": 28.046875,
+            "top": 634.484375,
+            "right": 1156,
+            "bottom": 662.53125,
+            "left": 376
+          },
+          "color": "rgb(165, 169, 181)"
+        }
+      ]
+    },
+    {
+      "type": "no-js",
+      "width": 1440,
+      "background": "url(\"http://127.0.0.1:8766/media/cosmic/cosmic-flow.webp\")",
+      "moving": 0,
+      "overflow": 0
+    },
+    {
+      "type": "contrast-regions",
+      "width": 390,
+      "rects": [
+        {
+          "rect": {
+            "x": 40,
+            "y": -277.859375,
+            "width": 310,
+            "height": 19.796875,
+            "top": -277.859375,
+            "right": 350,
+            "bottom": -258.0625,
+            "left": 40
+          },
+          "color": "rgb(139, 156, 203)"
+        },
+        {
+          "rect": {
+            "x": 40,
+            "y": -131.40625,
+            "width": 310,
+            "height": 131.953125,
+            "top": -131.40625,
+            "right": 350,
+            "bottom": 0.546875,
+            "left": 40
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 88,
+            "y": 118.34375,
+            "width": 262,
+            "height": 79.171875,
+            "top": 118.34375,
+            "right": 350,
+            "bottom": 197.515625,
+            "left": 88
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 88,
+            "y": 299.3125,
+            "width": 262,
+            "height": 105.5625,
+            "top": 299.3125,
+            "right": 350,
+            "bottom": 404.875,
+            "left": 88
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 88,
+            "y": 506.671875,
+            "width": 262,
+            "height": 79.171875,
+            "top": 506.671875,
+            "right": 350,
+            "bottom": 585.84375,
+            "left": 88
+          },
+          "color": "rgb(165, 169, 181)"
+        },
+        {
+          "rect": {
+            "x": 88,
+            "y": 687.640625,
+            "width": 262,
+            "height": 79.171875,
+            "top": 687.640625,
+            "right": 350,
+            "bottom": 766.8125,
+            "left": 88
+          },
+          "color": "rgb(165, 169, 181)"
+        }
+      ]
+    },
+    {
+      "type": "no-js",
+      "width": 390,
+      "background": "url(\"http://127.0.0.1:8766/media/cosmic/cosmic-flow.webp\")",
+      "moving": 0,
+      "overflow": 0
+    },
+    {
+      "type": "admin-motion",
+      "state": "on",
+      "animations": [
+        "running"
+      ]
+    },
+    {
+      "type": "data-saver",
+      "state": "off",
+      "animations": [
+        "paused"
+      ]
+    }
+  ],
+  "errors": []
+}

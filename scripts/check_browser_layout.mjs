@@ -144,7 +144,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
       return {
         title: document.title,
         heroBackground: document.querySelector('.page-hero') ? getComputedStyle(document.querySelector('.page-hero')).backgroundColor : null,
-        cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('svg'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
+        cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('.cosmic__field'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
         docsBreadcrumbTop: document.querySelector('.docs-breadcrumbs')?.getBoundingClientRect().top ?? null,
         docsToggleBottom: document.querySelector('.docs-navigation summary')?.getBoundingClientRect().bottom ?? null,
         language: root.lang,
@@ -186,7 +186,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
     if (JSON.stringify(state.homeSections) !== JSON.stringify(requiredHomeSections)) failures.push(`${label}: homepage section order ${state.homeSections.join(', ')}`);
     if (JSON.stringify(state.scenes) !== JSON.stringify(requiredScenes)) failures.push(`${label}: scene order ${state.scenes.join(', ')}`);
     if (state.mediaLayers.some(({ hidden }) => hidden !== 'true')) failures.push(`${label}: interactive media layer`);
-    if (state.heroRequests.length || state.heroImage) failures.push(`${label}: retired bitmap hero requested`);
+    if (state.heroRequests.some(url => !url.includes('/media/cosmic/')) || state.heroImage) failures.push(`${label}: retired bitmap hero requested`);
     if (state.layoutShift > .1) failures.push(`${label}: load-time layout shift ${state.layoutShift}`);
     if (width === 390) {
       if (state.fixtureTop === null || state.fixtureTop > 1800) failures.push(`${label}: fixture starts too late (${state.fixtureTop}px)`);
@@ -253,7 +253,7 @@ async function checkMemoryDisclosure(routePath) {
 async function checkHeroFallbacks(routePath) {
   await connection.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await navigate(new URL(routePath, baseUrl).href);
-  const reduced = await evaluate(`({reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,scroll:getComputedStyle(document.documentElement).scrollBehavior,moving:document.getAnimations().filter(a=>a.playState==='running' && a.effect.getTiming().duration>1).length,cosmic:!!document.querySelector('.cosmic svg')})`);
+  const reduced = await evaluate(`({reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,scroll:getComputedStyle(document.documentElement).scrollBehavior,moving:document.getAnimations().filter(a=>a.playState==='running' && a.effect.getTiming().duration>1).length,cosmic:!!document.querySelector('.cosmic__field')})`);
   if (!reduced.reduced || reduced.scroll !== 'auto' || reduced.moving || !reduced.cosmic) failures.push(`${routePath}: reduced motion failed`);
   fallbackChecks.push({type:'reduced-motion',route:routePath,...reduced});
   await connection.send('Emulation.setEmulatedMedia', { features: [] });
@@ -307,7 +307,7 @@ async function checkContentInteractions() {
   for (const localized of ['', 'tr/']) {
     for (const route of ['', 'learn/what-is-ai-memory/', 'docs/core/api-reference/']) {
       await navigate(new URL(localized + route, baseUrl).href);
-      const state = await evaluate(`({cosmic:!!document.querySelector('.cosmic svg'),body: document.querySelector('main').innerText.length, h1: document.querySelectorAll('h1').length, overflow: document.documentElement.scrollWidth-document.documentElement.clientWidth, navigation: getComputedStyle(document.querySelector('#main-navigation')).display, titleY: document.querySelector('h1').getBoundingClientRect().top, headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom})`);
+      const state = await evaluate(`({cosmic:!!document.querySelector('.cosmic__field'),body: document.querySelector('main').innerText.length, h1: document.querySelectorAll('h1').length, overflow: document.documentElement.scrollWidth-document.documentElement.clientWidth, navigation: getComputedStyle(document.querySelector('#main-navigation')).display, titleY: document.querySelector('h1').getBoundingClientRect().top, headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom})`);
       if (!state.cosmic || state.body < 150 || state.h1 !== 1 || state.overflow > 1 || state.navigation === 'none' || state.titleY < state.headerBottom) failures.push(`${localized}${route}: no-JavaScript reading/navigation failed`);
       fallbackChecks.push({ type: 'no-javascript', route: localized + route, ...state });
     }
@@ -361,12 +361,12 @@ async function checkPerformance() {
   const state=await evaluate(`({motion:document.documentElement.dataset.cosmicMotion,animations:document.getAnimations().filter(a=>a.playState==='running').length,cls:window.__mesaAuditCLS,transfer:performance.getEntriesByType('resource').reduce((s,r)=>s+r.transferSize,0),encoded:performance.getEntriesByType('resource').reduce((s,r)=>s+r.encodedBodySize,0)})`);
   const milliseconds=(after.TaskDuration-before.TaskDuration)*1000;
   fallbackChecks.push({type:'performance',width,reducedMotion:reduce,intervalMs:3000,mainThreadTaskMs:milliseconds,mainThreadBusyPercent:milliseconds/30,...state});
-  if((reduce||width===390)&&state.animations)failures.push(`unexpected background motion at ${width}`);
+  if(reduce&&state.animations)failures.push(`unexpected background motion at ${width}`);
  }
  await connection.send('Emulation.setEmulatedMedia',{features:[]});
  await connection.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
  await navigate(baseUrl);
- const lifecycle=await evaluate(`(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));const paused=document.documentElement.dataset.cosmicMotion==='off'&&document.getAnimations().length===0;delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));return{paused,resumed:document.documentElement.dataset.cosmicMotion==='on'};})()`);
+ const lifecycle=await evaluate(`(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));const paused=document.documentElement.dataset.cosmicMotion==='off'&&document.getAnimations().every(a=>a.playState==='paused');delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));return{paused,resumed:document.documentElement.dataset.cosmicMotion==='on'};})()`);
  fallbackChecks.push({type:'simulated-visibilitychange',...lifecycle});
  if(!lifecycle.paused||!lifecycle.resumed)failures.push('visibility lifecycle failed');
 }

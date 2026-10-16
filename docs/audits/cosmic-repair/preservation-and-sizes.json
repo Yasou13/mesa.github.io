@@ -1,0 +1,40 @@
+{
+  "baseline": "97429a3",
+  "routesBefore": 179,
+  "routesAfter": 179,
+  "routesPreserved": true,
+  "publicTextChanges": [],
+  "sourceContentChanged": [],
+  "sizes": {
+    "styles.css": {
+      "bytes": 121928,
+      "gzipBytes": 22603,
+      "baselineBytes": 123453
+    },
+    "cosmic.css": {
+      "bytes": 2903,
+      "gzipBytes": 1144,
+      "baselineBytes": 2012
+    },
+    "cosmic-motion.js": {
+      "bytes": 556,
+      "gzipBytes": 304,
+      "baselineBytes": 0
+    },
+    "app.js": {
+      "bytes": 12003,
+      "gzipBytes": 3736,
+      "baselineBytes": 12397
+    },
+    "admin.js": {
+      "bytes": 231727,
+      "gzipBytes": 61422,
+      "baselineBytes": 231727
+    },
+    "admin.css": {
+      "bytes": 2097,
+      "gzipBytes": 798,
+      "baselineBytes": 2097
+    }
+  }
+}

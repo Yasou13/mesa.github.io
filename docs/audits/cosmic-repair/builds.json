@@ -1,0 +1,36 @@
+{
+  "commit": "2960046",
+  "distMatchesCustomBuild": false,
+  "differences": [
+    "tr/learn/why-graphs-matter-in-ai-memory/index.html",
+    "learn/why-graphs-matter-in-ai-memory/index.html"
+  ],
+  "builds": [
+    {
+      "url": "https://mesamemory.dev/",
+      "htmlFiles": 179,
+      "localizedRoutes": 176,
+      "internalReferences": 15005,
+      "externalMarkupReferences": 1939,
+      "status": "PASS"
+    },
+    {
+      "url": "https://yasou13.github.io/mesa.github.io/",
+      "htmlFiles": 179,
+      "localizedRoutes": 176,
+      "internalReferences": 15005,
+      "externalMarkupReferences": 1939,
+      "status": "PASS"
+    },
+    {
+      "url": "https://yasou13.github.io/",
+      "htmlFiles": 179,
+      "localizedRoutes": 176,
+      "internalReferences": 15005,
+      "externalMarkupReferences": 1939,
+      "status": "PASS"
+    }
+  ],
+  "distMatchesCustomBuildIgnoringLineEndings": true,
+  "differencesExplanation": "Two graph article files contain CRLF inside rendered code samples; build_site.py normalizes text line endings. All file text matches after newline normalization; assets match byte-for-byte."
+}

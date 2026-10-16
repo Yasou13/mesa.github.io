@@ -1,0 +1,22 @@
+[
+  {
+    "issue": "Four tracks for number+heading+description; heading occupied former 30px icon track",
+    "resolution": "Three explicit desktop tracks, two mobile tracks; obsolete icon rules removed"
+  },
+  {
+    "issue": "Reciprocal Rank Fusion article EN/TR overflow 201px at390",
+    "resolution": "Shared icon link max-width100%, child min-width0 and overflow-wrap:anywhere"
+  },
+  {
+    "issue": "Initial peak background contrast sample below4.5",
+    "resolution": "Shared67% scrim; final conservative region minimum4.8157"
+  },
+  {
+    "issue": "Initial text detector counted clipped/closed details and same-heading ascent boxes",
+    "resolution": "Exclude invisible/closed/sr-only text; compare independent text blocks; old overlap still detected"
+  },
+  {
+    "issue": "Initial reduced-motion T0 captured a stale content visibility transition",
+    "resolution": "Wait300ms after hiding other UI; capture only settled background frames"
+  }
+]

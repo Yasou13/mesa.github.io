@@ -1,0 +1,362 @@
+{
+  "browser": {
+    "Browser": "Chrome/155.0.8059.79",
+    "Protocol-Version": "1.3",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "V8-Version": "15.5.35.23",
+    "WebKit-Version": "537.36 (@a49e2e3d4addfd84e765b52afe230bedb81096db)",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:39811/devtools/browser/2496e0eb-91fe-4417-8ff3-7f3547ecbd23"
+  },
+  "results": [
+    {
+      "version": "before",
+      "width": 1440,
+      "reduce": false,
+      "intervalMs": 5000,
+      "mainThreadMs": 5.496,
+      "layoutCount": 0,
+      "heapBefore": 833784,
+      "heapAfter": 834344,
+      "cls": 0,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/instrument-sans-variable.woff2",
+          "transfer": 60540,
+          "encoded": 60240
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/cosmic.css?v=0c78a794ae21",
+          "transfer": 2312,
+          "encoded": 2012
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/styles.css?v=75ea305b1570",
+          "transfer": 123753,
+          "encoded": 123453
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/app.js?v=35ed98422e3a",
+          "transfer": 12697,
+          "encoded": 12397
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/commit-mono-variable.woff2",
+          "transfer": 87068,
+          "encoded": 86768
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/instrument-serif-italic.woff2",
+          "transfer": 23648,
+          "encoded": 23348
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        }
+      ],
+      "animations": [
+        {
+          "name": "cosmic-light",
+          "state": "running"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "width": 390,
+      "reduce": false,
+      "intervalMs": 5000,
+      "mainThreadMs": 0.49799999999999844,
+      "layoutCount": 0,
+      "heapBefore": 589164,
+      "heapAfter": 589164,
+      "cls": 0,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/instrument-sans-variable.woff2",
+          "transfer": 60540,
+          "encoded": 60240
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/cosmic.css?v=0c78a794ae21",
+          "transfer": 2312,
+          "encoded": 2012
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/styles.css?v=75ea305b1570",
+          "transfer": 123753,
+          "encoded": 123453
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/app.js?v=35ed98422e3a",
+          "transfer": 12697,
+          "encoded": 12397
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/commit-mono-variable.woff2",
+          "transfer": 87068,
+          "encoded": 86768
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/instrument-serif-italic.woff2",
+          "transfer": 23648,
+          "encoded": 23348
+        }
+      ],
+      "animations": []
+    },
+    {
+      "version": "before",
+      "width": 1440,
+      "reduce": true,
+      "intervalMs": 5000,
+      "mainThreadMs": 0.4790000000000072,
+      "layoutCount": 0,
+      "heapBefore": 865580,
+      "heapAfter": 865580,
+      "cls": 0,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/instrument-sans-variable.woff2",
+          "transfer": 60540,
+          "encoded": 60240
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/styles.css?v=75ea305b1570",
+          "transfer": 123753,
+          "encoded": 123453
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/cosmic.css?v=0c78a794ae21",
+          "transfer": 2312,
+          "encoded": 2012
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/app.js?v=35ed98422e3a",
+          "transfer": 12697,
+          "encoded": 12397
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/commit-mono-variable.woff2",
+          "transfer": 87068,
+          "encoded": 86768
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-before/fonts/instrument-serif-italic.woff2",
+          "transfer": 23648,
+          "encoded": 23348
+        }
+      ],
+      "animations": []
+    },
+    {
+      "version": "after",
+      "width": 1440,
+      "reduce": false,
+      "intervalMs": 5000,
+      "mainThreadMs": 4.147999999999999,
+      "layoutCount": 0,
+      "heapBefore": 824660,
+      "heapAfter": 824660,
+      "cls": 0,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/instrument-sans-variable.woff2",
+          "transfer": 60540,
+          "encoded": 60240
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/styles.css?v=97baa5b93d52",
+          "transfer": 122228,
+          "encoded": 121928
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/cosmic.css?v=336ad18742b2",
+          "transfer": 3203,
+          "encoded": 2903
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/cosmic-motion.js?v=7eb2c06f4e3c",
+          "transfer": 856,
+          "encoded": 556
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/app.js?v=7ab053b9ea58",
+          "transfer": 12303,
+          "encoded": 12003
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp",
+          "transfer": 52258,
+          "encoded": 51958
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/commit-mono-variable.woff2",
+          "transfer": 87068,
+          "encoded": 86768
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/instrument-serif-italic.woff2",
+          "transfer": 23648,
+          "encoded": 23348
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        }
+      ],
+      "animations": [
+        {
+          "name": "cosmic-illumination",
+          "state": "running"
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "width": 390,
+      "reduce": false,
+      "intervalMs": 5000,
+      "mainThreadMs": 15.915,
+      "layoutCount": 0,
+      "heapBefore": 1106944,
+      "heapAfter": 823432,
+      "cls": 0,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/instrument-sans-variable.woff2",
+          "transfer": 60540,
+          "encoded": 60240
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/cosmic.css?v=336ad18742b2",
+          "transfer": 3203,
+          "encoded": 2903
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/styles.css?v=97baa5b93d52",
+          "transfer": 122228,
+          "encoded": 121928
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/cosmic-motion.js?v=7eb2c06f4e3c",
+          "transfer": 856,
+          "encoded": 556
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/app.js?v=7ab053b9ea58",
+          "transfer": 12303,
+          "encoded": 12003
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp",
+          "transfer": 52258,
+          "encoded": 51958
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/commit-mono-variable.woff2",
+          "transfer": 87068,
+          "encoded": 86768
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/instrument-serif-italic.woff2",
+          "transfer": 23648,
+          "encoded": 23348
+        }
+      ],
+      "animations": [
+        {
+          "name": "cosmic-illumination",
+          "state": "running"
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "width": 1440,
+      "reduce": true,
+      "intervalMs": 5000,
+      "mainThreadMs": 0.44299999999999895,
+      "layoutCount": 0,
+      "heapBefore": 1107352,
+      "heapAfter": 1107352,
+      "cls": 0,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/instrument-sans-variable.woff2",
+          "transfer": 60540,
+          "encoded": 60240
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/cosmic.css?v=336ad18742b2",
+          "transfer": 3203,
+          "encoded": 2903
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/styles.css?v=97baa5b93d52",
+          "transfer": 122228,
+          "encoded": 121928
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/assets/mesa-mark.webp?v=83a56e3fb8b5",
+          "transfer": 7340,
+          "encoded": 7040
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/cosmic-motion.js?v=7eb2c06f4e3c",
+          "transfer": 856,
+          "encoded": 556
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/app.js?v=7ab053b9ea58",
+          "transfer": 12303,
+          "encoded": 12003
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp",
+          "transfer": 52258,
+          "encoded": 51958
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/commit-mono-variable.woff2",
+          "transfer": 87068,
+          "encoded": 86768
+        },
+        {
+          "name": "http://127.0.0.1:8765/mesa-repair-after/fonts/instrument-serif-italic.woff2",
+          "transfer": 23648,
+          "encoded": 23348
+        }
+      ],
+      "animations": []
+    }
+  ],
+  "errors": []
+}

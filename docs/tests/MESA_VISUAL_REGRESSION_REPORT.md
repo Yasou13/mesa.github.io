@@ -1,5 +1,7 @@
 # MESA visual regression report
 
+> Historical first-pass report. The subsequent visual repair supersedes its procedural background and acceptance findings: [MESA_COSMIC_VISUAL_REPAIR](../audits/MESA_COSMIC_VISUAL_REPAIR.md), implementation `2960046`. The later audit reproduced text collisions that the earlier overflow-only checks missed.
+
 16 October 2026 · implementation `074b350` · baseline `cae7a09` · Chrome 155.0.8059.79, Linux, headless software rendering. No deployment performed.
 
 ## Final acceptance

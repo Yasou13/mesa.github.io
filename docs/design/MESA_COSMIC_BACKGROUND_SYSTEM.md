@@ -1,5 +1,7 @@
 # Shared cosmic environment
 
+> Historical first-pass report. The subsequent visual repair supersedes its procedural background and acceptance findings: [MESA_COSMIC_VISUAL_REPAIR](../audits/MESA_COSMIC_VISUAL_REPAIR.md), implementation `2960046`. The later audit reproduced text collisions that the earlier overflow-only checks missed.
+
 16 October 2026. Source: `scripts/cosmic.mjs`, `dist/cosmic.css`; integration: `documentShell()` and `renderAdminPage()`.
 
 ## Composition and prototype

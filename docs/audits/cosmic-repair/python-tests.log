@@ -1,0 +1,7 @@
+----------------------------------------------------------------------
+Ran 7 tests in 0.710s
+
+OK
+[OK] test: a047533e14866b6042396cf450bdd33f5da4f2ee
+[OK] test: a047533e14866b6042396cf450bdd33f5da4f2ee
+[FAILED] test: OSError: synchronization failed; cache retained

@@ -1,0 +1,642 @@
+{
+  "version": {
+    "Browser": "Chrome/155.0.8059.79",
+    "Protocol-Version": "1.3",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "V8-Version": "15.5.35.23",
+    "WebKit-Version": "537.36 (@a49e2e3d4addfd84e765b52afe230bedb81096db)",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:44037/devtools/browser/88963bb0-e326-4b22-a0d7-daadd551fb81"
+  },
+  "observations": [
+    {
+      "width": 1440,
+      "rows": [
+        {
+          "grid": "42px 30px 220px 1008px",
+          "heading": {
+            "x": 102,
+            "y": 197.796875,
+            "width": 30,
+            "height": 36.296875,
+            "top": 197.796875,
+            "right": 132,
+            "bottom": 234.09375,
+            "left": 102
+          },
+          "description": {
+            "x": 152,
+            "y": 197.796875,
+            "width": 220,
+            "height": 84.140625,
+            "top": 197.796875,
+            "right": 372,
+            "bottom": 281.9375,
+            "left": 152
+          },
+          "text": "Source\n\nDocument, revision, chunk, source reference, and bounded evidence span."
+        },
+        {
+          "grid": "42px 30px 220px 1008px",
+          "heading": {
+            "x": 102,
+            "y": 342.9375,
+            "width": 30,
+            "height": 36.296875,
+            "top": 342.9375,
+            "right": 132,
+            "bottom": 379.234375,
+            "left": 102
+          },
+          "description": {
+            "x": 152,
+            "y": 342.9375,
+            "width": 220,
+            "height": 112.1875,
+            "top": 342.9375,
+            "right": 372,
+            "bottom": 455.125,
+            "left": 152
+          },
+          "text": "Structure\n\nEntity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths."
+        },
+        {
+          "grid": "42px 30px 220px 1008px",
+          "heading": {
+            "x": 102,
+            "y": 516.125,
+            "width": 30,
+            "height": 36.296875,
+            "top": 516.125,
+            "right": 132,
+            "bottom": 552.421875,
+            "left": 102
+          },
+          "description": {
+            "x": 152,
+            "y": 516.125,
+            "width": 220,
+            "height": 112.1875,
+            "top": 516.125,
+            "right": 372,
+            "bottom": 628.3125,
+            "left": 152
+          },
+          "text": "Scope\n\nTenant and authorized dataset eligibility resolved before lane ranking and fusion."
+        },
+        {
+          "grid": "42px 30px 220px 1008px",
+          "heading": {
+            "x": 102,
+            "y": 689.3125,
+            "width": 30,
+            "height": 36.296875,
+            "top": 689.3125,
+            "right": 132,
+            "bottom": 725.609375,
+            "left": 102
+          },
+          "description": {
+            "x": 152,
+            "y": 689.3125,
+            "width": 220,
+            "height": 112.1875,
+            "top": 689.3125,
+            "right": 372,
+            "bottom": 801.5,
+            "left": 152
+          },
+          "text": "State\n\nMutation, pipeline, projection, retry, rollback, and committed outcomes remain observable."
+        }
+      ],
+      "surfaces": [
+        {
+          "class": "page-hero compact page-hero--trajectory",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": -1643,
+            "width": 1440,
+            "height": 674.8125,
+            "top": -1643,
+            "right": 1440,
+            "bottom": -968.1875,
+            "left": 0
+          }
+        },
+        {
+          "class": "section",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 40,
+            "y": -968.1875,
+            "width": 1360,
+            "height": 838.890625,
+            "top": -968.1875,
+            "right": 1400,
+            "bottom": -129.296875,
+            "left": 40
+          }
+        },
+        {
+          "class": "section reliability-section",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": -129.296875,
+            "width": 1440,
+            "height": 1062.59375,
+            "top": -129.296875,
+            "right": 1440,
+            "bottom": 933.296875,
+            "left": 0
+          }
+        },
+        {
+          "class": "section action-section",
+          "background": "rgb(8, 9, 13) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 933.296875,
+            "width": 1440,
+            "height": 1256.046875,
+            "top": 933.296875,
+            "right": 1440,
+            "bottom": 2189.34375,
+            "left": 0
+          }
+        },
+        {
+          "class": "section architecture-section",
+          "background": "rgb(16, 17, 21) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 2189.34375,
+            "width": 1440,
+            "height": 762.125,
+            "top": 2189.34375,
+            "right": 1440,
+            "bottom": 2951.46875,
+            "left": 0
+          }
+        },
+        {
+          "class": "section quality-context",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 40,
+            "y": 2951.46875,
+            "width": 1360,
+            "height": 629.109375,
+            "top": 2951.46875,
+            "right": 1400,
+            "bottom": 3580.578125,
+            "left": 40
+          }
+        },
+        {
+          "class": "closing-cta",
+          "background": "rgb(8, 9, 13) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 3580.578125,
+            "width": 1440,
+            "height": 574.96875,
+            "top": 3580.578125,
+            "right": 1440,
+            "bottom": 4155.546875,
+            "left": 0
+          }
+        }
+      ],
+      "motion": {
+        "state": "on",
+        "animations": [
+          {
+            "name": "cosmic-light",
+            "state": "running",
+            "time": 1216.596000001171
+          }
+        ],
+        "light": ""
+      }
+    },
+    {
+      "width": 390,
+      "rows": [
+        {
+          "grid": "28px 24px 230px",
+          "heading": {
+            "x": 82,
+            "y": 158.546875,
+            "width": 24,
+            "height": 36.296875,
+            "top": 158.546875,
+            "right": 106,
+            "bottom": 194.84375,
+            "left": 82
+          },
+          "description": {
+            "x": 120,
+            "y": 158.546875,
+            "width": 230,
+            "height": 79.171875,
+            "top": 158.546875,
+            "right": 350,
+            "bottom": 237.71875,
+            "left": 120
+          },
+          "text": "Source\n\nDocument, revision, chunk, source reference, and bounded evidence span."
+        },
+        {
+          "grid": "28px 24px 230px",
+          "heading": {
+            "x": 82,
+            "y": 298.71875,
+            "width": 24,
+            "height": 36.296875,
+            "top": 298.71875,
+            "right": 106,
+            "bottom": 335.015625,
+            "left": 82
+          },
+          "description": {
+            "x": 120,
+            "y": 298.71875,
+            "width": 230,
+            "height": 105.5625,
+            "top": 298.71875,
+            "right": 350,
+            "bottom": 404.28125,
+            "left": 120
+          },
+          "text": "Structure\n\nEntity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths."
+        },
+        {
+          "grid": "28px 24px 230px",
+          "heading": {
+            "x": 82,
+            "y": 465.28125,
+            "width": 24,
+            "height": 36.296875,
+            "top": 465.28125,
+            "right": 106,
+            "bottom": 501.578125,
+            "left": 82
+          },
+          "description": {
+            "x": 120,
+            "y": 465.28125,
+            "width": 230,
+            "height": 79.171875,
+            "top": 465.28125,
+            "right": 350,
+            "bottom": 544.453125,
+            "left": 120
+          },
+          "text": "Scope\n\nTenant and authorized dataset eligibility resolved before lane ranking and fusion."
+        },
+        {
+          "grid": "28px 24px 230px",
+          "heading": {
+            "x": 82,
+            "y": 605.453125,
+            "width": 24,
+            "height": 36.296875,
+            "top": 605.453125,
+            "right": 106,
+            "bottom": 641.75,
+            "left": 82
+          },
+          "description": {
+            "x": 120,
+            "y": 605.453125,
+            "width": 230,
+            "height": 79.171875,
+            "top": 605.453125,
+            "right": 350,
+            "bottom": 684.625,
+            "left": 120
+          },
+          "text": "State\n\nMutation, pipeline, projection, retry, rollback, and committed outcomes remain observable."
+        }
+      ],
+      "surfaces": [
+        {
+          "class": "page-hero compact page-hero--trajectory",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": -2674,
+            "width": 390,
+            "height": 653.296875,
+            "top": -2674,
+            "right": 390,
+            "bottom": -2020.703125,
+            "left": 0
+          }
+        },
+        {
+          "class": "section",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 20,
+            "y": -2020.703125,
+            "width": 350,
+            "height": 1767.84375,
+            "top": -2020.703125,
+            "right": 370,
+            "bottom": -252.859375,
+            "left": 20
+          }
+        },
+        {
+          "class": "section reliability-section",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 20,
+            "y": -252.859375,
+            "width": 350,
+            "height": 1024.484375,
+            "top": -252.859375,
+            "right": 370,
+            "bottom": 771.625,
+            "left": 20
+          }
+        },
+        {
+          "class": "section action-section",
+          "background": "rgb(8, 9, 13) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 20,
+            "y": 771.625,
+            "width": 350,
+            "height": 2367.46875,
+            "top": 771.625,
+            "right": 370,
+            "bottom": 3139.09375,
+            "left": 20
+          }
+        },
+        {
+          "class": "section architecture-section",
+          "background": "rgb(16, 17, 21) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 20,
+            "y": 3139.09375,
+            "width": 350,
+            "height": 801.25,
+            "top": 3139.09375,
+            "right": 370,
+            "bottom": 3940.34375,
+            "left": 20
+          }
+        },
+        {
+          "class": "section quality-context",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 20,
+            "y": 3940.34375,
+            "width": 350,
+            "height": 827.5,
+            "top": 3940.34375,
+            "right": 370,
+            "bottom": 4767.84375,
+            "left": 20
+          }
+        },
+        {
+          "class": "closing-cta",
+          "background": "rgb(8, 9, 13) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 4767.84375,
+            "width": 390,
+            "height": 711.015625,
+            "top": 4767.84375,
+            "right": 390,
+            "bottom": 5478.859375,
+            "left": 0
+          }
+        }
+      ],
+      "motion": {
+        "state": "on",
+        "animations": [],
+        "light": ""
+      }
+    },
+    {
+      "width": 801,
+      "rows": [
+        {
+          "grid": "42px 30px 220px 385px",
+          "heading": {
+            "x": 94,
+            "y": 198.5625,
+            "width": 30,
+            "height": 36.296875,
+            "top": 198.5625,
+            "right": 124,
+            "bottom": 234.859375,
+            "left": 94
+          },
+          "description": {
+            "x": 144,
+            "y": 198.5625,
+            "width": 220,
+            "height": 84.140625,
+            "top": 198.5625,
+            "right": 364,
+            "bottom": 282.703125,
+            "left": 144
+          },
+          "text": "Source\n\nDocument, revision, chunk, source reference, and bounded evidence span."
+        },
+        {
+          "grid": "42px 30px 220px 385px",
+          "heading": {
+            "x": 94,
+            "y": 343.703125,
+            "width": 30,
+            "height": 36.296875,
+            "top": 343.703125,
+            "right": 124,
+            "bottom": 380,
+            "left": 94
+          },
+          "description": {
+            "x": 144,
+            "y": 343.703125,
+            "width": 220,
+            "height": 112.1875,
+            "top": 343.703125,
+            "right": 364,
+            "bottom": 455.890625,
+            "left": 144
+          },
+          "text": "Structure\n\nEntity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths."
+        },
+        {
+          "grid": "42px 30px 220px 385px",
+          "heading": {
+            "x": 94,
+            "y": 516.890625,
+            "width": 30,
+            "height": 36.296875,
+            "top": 516.890625,
+            "right": 124,
+            "bottom": 553.1875,
+            "left": 94
+          },
+          "description": {
+            "x": 144,
+            "y": 516.890625,
+            "width": 220,
+            "height": 112.1875,
+            "top": 516.890625,
+            "right": 364,
+            "bottom": 629.078125,
+            "left": 144
+          },
+          "text": "Scope\n\nTenant and authorized dataset eligibility resolved before lane ranking and fusion."
+        },
+        {
+          "grid": "42px 30px 220px 385px",
+          "heading": {
+            "x": 94,
+            "y": 690.078125,
+            "width": 30,
+            "height": 36.296875,
+            "top": 690.078125,
+            "right": 124,
+            "bottom": 726.375,
+            "left": 94
+          },
+          "description": {
+            "x": 144,
+            "y": 690.078125,
+            "width": 220,
+            "height": 112.1875,
+            "top": 690.078125,
+            "right": 364,
+            "bottom": 802.265625,
+            "left": 144
+          },
+          "text": "State\n\nMutation, pipeline, projection, retry, rollback, and committed outcomes remain observable."
+        }
+      ],
+      "surfaces": [
+        {
+          "class": "page-hero compact page-hero--trajectory",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": -1619,
+            "width": 801,
+            "height": 650,
+            "top": -1619,
+            "right": 801,
+            "bottom": -969,
+            "left": 0
+          }
+        },
+        {
+          "class": "section",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 32,
+            "y": -969,
+            "width": 737,
+            "height": 848.125,
+            "top": -969,
+            "right": 769,
+            "bottom": -120.875,
+            "left": 32
+          }
+        },
+        {
+          "class": "section reliability-section",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": -120.875,
+            "width": 801,
+            "height": 1042.140625,
+            "top": -120.875,
+            "right": 801,
+            "bottom": 921.265625,
+            "left": 0
+          }
+        },
+        {
+          "class": "section action-section",
+          "background": "rgb(8, 9, 13) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 921.265625,
+            "width": 801,
+            "height": 1825.015625,
+            "top": 921.265625,
+            "right": 801,
+            "bottom": 2746.28125,
+            "left": 0
+          }
+        },
+        {
+          "class": "section architecture-section",
+          "background": "rgb(16, 17, 21) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 2746.28125,
+            "width": 801,
+            "height": 817.5,
+            "top": 2746.28125,
+            "right": 801,
+            "bottom": 3563.78125,
+            "left": 0
+          }
+        },
+        {
+          "class": "section quality-context",
+          "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 32,
+            "y": 3563.78125,
+            "width": 737,
+            "height": 598.109375,
+            "top": 3563.78125,
+            "right": 769,
+            "bottom": 4161.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "closing-cta",
+          "background": "rgb(8, 9, 13) none repeat scroll 0% 0% / auto padding-box border-box",
+          "rect": {
+            "x": 0,
+            "y": 4161.890625,
+            "width": 801,
+            "height": 520,
+            "top": 4161.890625,
+            "right": 801,
+            "bottom": 4681.890625,
+            "left": 0
+          }
+        }
+      ],
+      "motion": {
+        "state": "on",
+        "animations": [
+          {
+            "name": "cosmic-light",
+            "state": "running",
+            "time": 533.3010000005639
+          }
+        ],
+        "light": ""
+      }
+    }
+  ]
+}

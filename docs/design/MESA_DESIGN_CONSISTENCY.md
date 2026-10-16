@@ -1,5 +1,7 @@
 # MESA design consistency
 
+> Historical first-pass report. The subsequent visual repair supersedes its procedural background and acceptance findings: [MESA_COSMIC_VISUAL_REPAIR](../audits/MESA_COSMIC_VISUAL_REPAIR.md), implementation `2960046`. The later audit reproduced text collisions that the earlier overflow-only checks missed.
+
 16 October 2026. `dist/styles.css :root` remains the authoritative token source.
 
 - Shared neutral palette: black #050508, midnight #0B101B, technical #11131B, text #E8EAF0, muted #A5A9B5; violet #9B8ACB, blue #8B9CCB, cyan #8EA5AE, evidence amber #D5AE82.

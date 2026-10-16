@@ -1,0 +1,475 @@
+{
+  "base": "http://127.0.0.1:8765/mesa-repair-after/",
+  "version": {
+    "Browser": "Chrome/155.0.8059.79",
+    "Protocol-Version": "1.3",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "V8-Version": "15.5.35.23",
+    "WebKit-Version": "537.36 (@a49e2e3d4addfd84e765b52afe230bedb81096db)",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:43299/devtools/browser/06972b41-1d35-42a0-8cfb-d3080165b03e"
+  },
+  "results": [
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 320,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 348,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 360,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 309,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 290,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 430,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 268,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 768,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 195,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 800,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 195,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 801,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 256,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 1024,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 207,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 1440,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 213,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "learn/reciprocal-rank-fusion-explained/",
+      "width": 1920,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 214,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 320,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 338,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 360,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 308,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 287,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 430,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 265,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 768,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 193,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 800,
+      "height": 844,
+      "overflow": 0,
+      "textCount": 190,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-flow.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 801,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 249,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 1024,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 207,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 1440,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 208,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    },
+    {
+      "route": "tr/learn/reciprocal-rank-fusion-explained/",
+      "width": 1920,
+      "height": 1000,
+      "overflow": 0,
+      "textCount": 208,
+      "collisions": [],
+      "rows": [],
+      "cosmic": {
+        "count": 1,
+        "position": "fixed",
+        "pointer": "none",
+        "texture": "url(\"http://127.0.0.1:8765/mesa-repair-after/media/cosmic/cosmic-horizon.webp\")",
+        "motion": "on"
+      },
+      "surfaces": [
+        {
+          "class": "closing-cta",
+          "background": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "broken": []
+    }
+  ],
+  "failures": [],
+  "errors": []
+}

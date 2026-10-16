@@ -1,0 +1,34 @@
+{
+  "backendNodeId": 17,
+  "style": {
+    "style": "14s ease-in-out infinite alternate cosmic-illumination",
+    "filter": "brightness(1.8) saturate(1.12)",
+    "opacity": "0.0800922",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000,
+      "top": 0,
+      "right": 1440,
+      "bottom": 1000,
+      "left": 0
+    },
+    "animations": [
+      {
+        "state": "running",
+        "timing": {
+          "delay": 0,
+          "direction": "alternate",
+          "duration": 14000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      }
+    ]
+  },
+  "note": "Only opacity is animated. Filter and mask remain constant. GPU is disabled in this QA environment; compositor/GPU raster cost is not certified."
+}

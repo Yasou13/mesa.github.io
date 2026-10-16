@@ -1,0 +1,469 @@
+{
+  "base": "http://127.0.0.1:8765/mesa-repair-after/",
+  "version": {
+    "Browser": "Chrome/155.0.8059.79",
+    "Protocol-Version": "1.3",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "V8-Version": "15.5.35.23",
+    "WebKit-Version": "537.36 (@a49e2e3d4addfd84e765b52afe230bedb81096db)",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:41373/devtools/browser/7b6ce7a6-0b03-4968-9bca-e3c182431a96"
+  },
+  "results": [
+    {
+      "width": 1440,
+      "reduce": false,
+      "frames": [
+        {
+          "time": 0,
+          "actualMs": 2,
+          "opacity": "0.08",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 0
+            }
+          ]
+        },
+        {
+          "time": 5,
+          "actualMs": 5002,
+          "opacity": "0.266148",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 4999.900000000001
+            }
+          ]
+        },
+        {
+          "time": 10,
+          "actualMs": 10003,
+          "opacity": "0.661191",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 9999.7
+            }
+          ]
+        },
+        {
+          "time": 20,
+          "actualMs": 20005,
+          "opacity": "0.515156",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 19999.3
+            }
+          ]
+        }
+      ],
+      "performance": {
+        "frames": 1230,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000291,
+        "above34ms": 0,
+        "heap": 1554830
+      },
+      "metrics": {
+        "taskMs": 343.436,
+        "layoutCount": 0,
+        "heapBefore": 857428,
+        "heapAfter": 923604
+      }
+    },
+    {
+      "width": 390,
+      "reduce": false,
+      "frames": [
+        {
+          "time": 0,
+          "actualMs": 2,
+          "opacity": "0.08",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 0
+            }
+          ]
+        },
+        {
+          "time": 5,
+          "actualMs": 5003,
+          "opacity": "0.26614",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 4999.8
+            }
+          ]
+        },
+        {
+          "time": 10,
+          "actualMs": 10005,
+          "opacity": "0.661185",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 9999.6
+            }
+          ]
+        },
+        {
+          "time": 20,
+          "actualMs": 20002,
+          "opacity": "0.515156",
+          "name": "cosmic-illumination",
+          "duration": "14s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": [
+            {
+              "name": "cosmic-illumination",
+              "state": "running",
+              "currentTime": 19999.300000000003
+            }
+          ]
+        }
+      ],
+      "performance": {
+        "frames": 1224,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000291,
+        "above34ms": 0,
+        "heap": 738065
+      },
+      "metrics": {
+        "taskMs": 277.278,
+        "layoutCount": 0,
+        "heapBefore": 1297296,
+        "heapAfter": 628892
+      }
+    },
+    {
+      "width": 1440,
+      "reduce": true,
+      "frames": [
+        {
+          "time": 0,
+          "actualMs": 2,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": []
+        },
+        {
+          "time": 5,
+          "actualMs": 5005,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": []
+        },
+        {
+          "time": 10,
+          "actualMs": 10003,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": []
+        },
+        {
+          "time": 20,
+          "actualMs": 20006,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 1000,
+            "top": 0,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 0
+          },
+          "animations": []
+        }
+      ],
+      "performance": {
+        "frames": 1227,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000291,
+        "above34ms": 0,
+        "heap": 767141
+      },
+      "metrics": {
+        "taskMs": 162.59799999999998,
+        "layoutCount": 0,
+        "heapBefore": 1008216,
+        "heapAfter": 648536
+      }
+    },
+    {
+      "width": 390,
+      "reduce": true,
+      "frames": [
+        {
+          "time": 0,
+          "actualMs": 1,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": []
+        },
+        {
+          "time": 5,
+          "actualMs": 5003,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": []
+        },
+        {
+          "time": 10,
+          "actualMs": 9999,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": []
+        },
+        {
+          "time": 20,
+          "actualMs": 20002,
+          "opacity": "0.35",
+          "name": "none",
+          "duration": "1e-05s",
+          "playState": "running",
+          "rect": {
+            "x": -206.07305908203125,
+            "y": -107.77619171142578,
+            "width": 973.7398681640625,
+            "height": 1110.1773681640625,
+            "top": -107.77619171142578,
+            "right": 767.6668090820312,
+            "bottom": 1002.4011764526367,
+            "left": -206.07305908203125
+          },
+          "animations": []
+        }
+      ],
+      "performance": {
+        "frames": 1224,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000291,
+        "above34ms": 0,
+        "heap": 755269
+      },
+      "metrics": {
+        "taskMs": 179.987,
+        "layoutCount": 0,
+        "heapBefore": 1035072,
+        "heapAfter": 629596
+      }
+    },
+    {
+      "visibilitySimulation": {
+        "hidden": [
+          {
+            "state": "paused",
+            "time": 166.62199999973643
+          }
+        ],
+        "paused": [
+          {
+            "state": "paused",
+            "time": 183.39199999973644
+          }
+        ],
+        "resumed": [
+          {
+            "state": "running",
+            "time": 483.3859999999748
+          }
+        ]
+      }
+    }
+  ],
+  "failures": [],
+  "errors": []
+}

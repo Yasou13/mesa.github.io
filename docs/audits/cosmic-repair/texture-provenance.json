@@ -1,0 +1,29 @@
+{
+  "source": "Owner-supplied MESA-Visual-Assets.zip, extracted reference files; no generated or edited images",
+  "files": [
+    {
+      "name": "cosmic-flow.webp",
+      "bytes": 51958,
+      "sha256": "eb057559b8ef035c612da9836fb34bd60c4f9c2bf85859a41f0c008bb98490df",
+      "identical_to_supplied_reference": true
+    },
+    {
+      "name": "cosmic-horizon.webp",
+      "bytes": 25776,
+      "sha256": "c1a94a79461b72d1da94bde8fba6f1f564540ac2b697be09eb7524d88bc40b03",
+      "identical_to_supplied_reference": true
+    },
+    {
+      "name": "hero.webp",
+      "bytes": 30238,
+      "sha256": "0ae36ca732ce8fd9c5cef24c0b4d1e35d72391f19d671855a8068617e26e33ba",
+      "identical_to_supplied_reference": true
+    },
+    {
+      "name": "cosmic-structure.webp",
+      "bytes": 52932,
+      "sha256": "d1e0171c8220600810b2be093f67fe6743812b69d14e43153f04992945d1a8b9",
+      "identical_to_supplied_reference": true
+    }
+  ]
+}
