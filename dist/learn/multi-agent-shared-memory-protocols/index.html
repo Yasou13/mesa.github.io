@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shared memory protocols and scope isolation for multi-agent fleets — MESA Learn</title>
+  <meta name="description" content="When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypothe">
+  <meta name="theme-color" content="#050508">
+  <link rel="canonical" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/multi-agent-shared-memory-protocols/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/">
+  <meta property="og:title" content="Shared memory protocols and scope isolation for multi-agent fleets — MESA Learn">
+  <meta property="og:description" content="When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypothe">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shared memory protocols and scope isolation for multi-agent fleets — MESA Learn">
+  <meta name="twitter:description" content="When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypothe">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypothe"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypothe","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://mesamemory.dev/resources/"},{"@type":"ListItem","position":3,"name":"LEARN","item":"https://mesamemory.dev/learn/"},{"@type":"ListItem","position":4,"name":"Shared memory protocols and scope isolation for multi-agent fleets","item":"https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/"}]},{"@type":"Article","headline":"Shared memory protocols and scope isolation for multi-agent fleets","description":"When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypothe","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"multi-agent, shared-memory, scope-isolation, concurrency"}]}</script>
+  <link rel="icon" href="../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../styles.css?v=97baa5b93d52">
+  <link rel="stylesheet" href="../../cosmic.css?v=336ad18742b2">
+  <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a href="../../how-it-works/">How it works</a><a href="../../ecosystem/">Ecosystem</a><a href="../../architecture/">Architecture</a><a class="active" aria-current="page" href="../../resources/">Resources</a><a href="../../docs/">Docs</a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../learn/multi-agent-shared-memory-protocols/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../tr/learn/multi-agent-shared-memory-protocols/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><span aria-current="page">Home</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Resources</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">LEARN</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Shared memory protocols and scope isolation for multi-agent fleets</span></li></ol></nav>
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">Learn · Foundations</p>
+          <h1>Shared memory protocols and scope isolation for multi-agent fleets</h1>
+          <p class="article-subtitle">Coordinating concurrent agent writes, working scratchpads, and workspace perimeters</p>
+          <p class="article-summary">When fleets of specialized agents collaborate, they require structured protocols to share authoritative discoveries while isolating private working hypotheses.</p>
+          <dl class="article-byline">
+            <div>
+              <dt>Published</dt>
+              <dd><time datetime="2026-10-17">17 Oct 2026</time></dd>
+            </div>
+            <div>
+              <dt>Updated</dt>
+              <dd><time datetime="2026-10-17">17 Oct 2026</time></dd>
+            </div>
+            <div>
+              <dt>Author</dt>
+              <dd>MESA contributors</dd>
+            </div>
+            <div>
+              <dt>Reading time</dt>
+              <dd>8 minutes</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          
+    <nav class="article-toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ol>
+        <li><a href="#architectural-dilemma">The shared scratchpad dilemma</a></li><li><a href="#engineering-trade-offs">Engineering trade-offs side-by-side</a></li><li><a href="#core-mechanisms">Atomic state promotion and scope metadata</a></li><li><a href="#mesa-implementation">Multi-agent isolation in MESA</a></li><li><a href="#references">References</a></li>
+      </ol>
+    </nav>
+          <div class="article-body">
+            <div class="short-answer"><strong>Short answer</strong><p>Multi-agent memory enforces layered scopes (agent-private, workspace-collaborative, tenant-wide) to avoid race conditions and cross-context pollution.</p></div>
+            
+            
+    <section id="architectural-dilemma" class="article-section">
+      <h2>The shared scratchpad dilemma<a class="heading-anchor" href="#architectural-dilemma" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>If multiple autonomous agents write unverified intermediate thoughts to a shared database, the memory pool quickly degrades into mutual confusion. One agent's speculative hypothesis becomes another agent's confirmed premise.</p><div class="article-callout warning"><strong>Concurrency and Race Hazards</strong><p>Two agents simultaneously reading memory, computing conflicting actions, and writing assertions can cause race conditions that corrupt long-term entity states without transactional isolation.</p></div>
+    </section>
+    <section id="engineering-trade-offs" class="article-section">
+      <h2>Engineering trade-offs side-by-side<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <div class="table-scroll"><table><thead><tr><th scope="col">Scope Layer</th><th scope="col">Access Rule</th><th scope="col">Lifecycle Duration</th><th scope="col">Intended Use Case</th></tr></thead><tbody><tr><th scope="row">Agent Scratchpad</th><td>Private to single agent instance</td><td>Ephemeral (session/task)</td><td>Drafting intermediate chain-of-thought and scratch work</td></tr><tr><th scope="row">Workspace Perimeter</th><td>Shared across project agent fleet</td><td>Project/Matter duration</td><td>Verified factual findings relevant to a specific team task</td></tr><tr><th scope="row">Tenant Durable Store</th><td>Read-only for tasks; authorized write</td><td>Permanent organizational life</td><td>Corporate policies, approved taxonomies, canonical truth</td></tr><tr><th scope="row">Global Knowledge Base</th><td>Read-only across all tenants</td><td>Immutable</td><td>Official legislation, public documentation, foundational dictionaries</td></tr></tbody></table></div>
+    </section>
+    <section id="core-mechanisms" class="article-section">
+      <h2>Atomic state promotion and scope metadata<a class="heading-anchor" href="#core-mechanisms" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>Knowledge promotion follows a staged lifecycle: an assertion begins in <code>scope:agent_private</code>. Once validated by an evaluator agent or human review, it is promoted to <code>scope:workspace_shared</code> via an atomic transaction with full lineage intact.</p><pre tabindex="0" class="article-code"><code>// Scoped insertion with tenant and workspace isolation
+INSERT INTO assertions (id, subject, predicate, object, tenant_id, workspace_id, agent_id, visibility)
+VALUES ('asrt_55c', 'Matter402', 'discovery_deadline', '2026-11-15', 'corp_alpha', 'ws_litigation', 'agent_researcher', 'WORKSPACE_SHARED');</code></pre>
+    </section>
+    <section id="mesa-implementation" class="article-section">
+      <h2>Multi-agent isolation in MESA<a class="heading-anchor" href="#mesa-implementation" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>MESA Core architecture enforces rigid four-level scope metadata on every memory query. Retrieval routers filter by <code>(tenant_id, workspace_id, agent_id)</code> at the database engine level before any vector or graph computation takes place.</p><ul class="article-checklist"><li>Every retrieval query enforces tenant and workspace isolation in SQL.</li><li>Agents cannot read outside their authorized workspace perimeter.</li><li>Promotion from scratchpad to shared memory requires assertion validation.</li><li>Full actor attribution records which agent produced each factual claim.</li></ul>
+    </section>
+    <section id="references" class="article-section">
+      <h2>References<a class="heading-anchor" href="#references" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <ol class="reference-list"><li><a class="" href="https://www.wiley.com/en-us/An+Introduction+to+MultiAgent+Systems%2C+2nd+Edition-p-9780470519462" target="_blank" rel="noopener noreferrer"><span>Wooldridge (2009) — An Introduction to MultiAgent Systems (John Wiley &amp; Sons)</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://mesamemory.dev/evaluation/" target="_blank" rel="noopener noreferrer"><span>MESA Evaluation &amp; Security Gates</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
+    </section>
+          </div>
+        </div>
+        
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">CONNECTED KNOWLEDGE</p>
+      <h2 id="related-title">Continue through the evidence graph.</h2>
+      <div class="publication-grid">
+        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">What is AI memory?</a></h3><p>AI memory is the persistence layer that allows models and autonomous agents to retain state, recall verified past interactions, and accumulate knowledge across execution boundaries.</p><div><span>7 min read</span><a href="../../learn/what-is-ai-memory/">Read<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval explained: Vector search, lexical search, and structured signals</a></h3><p>Hybrid retrieval combines dense vector embeddings, sparse lexical inverted indexes (BM25), and structured database filters to prevent single-strategy retrieval failures.</p><div><span>9 min read</span><a href="../../learn/hybrid-retrieval-explained/">Read<span aria-hidden="true"> →</span></a></div></article>
+      </div>
+    </section>
+        
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">PRODUCT CONTEXT</p>
+          <h2>See how provenance appears in MESA Law.</h2>
+          <p>A restrained product link for readers who want the application context.</p>
+        </div>
+        <a class="button secondary" href="../../law/">Explore MESA Law</a>
+      </div>
+      </article>
+      <section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">OPEN SOURCE · MIT</p>
+        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
+        <p>MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
+        <div class="actions"><a class="button primary" href="../../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 published source release · <a href="../../status/">View status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Explore</h3><a href="../../how-it-works/">How it works</a><a href="../../use-cases/">Use cases</a><a href="../../evaluation/">Evaluation & trust</a><a href="../../status/">Project status</a></div>
+        <div><h3>Ecosystem</h3><a href="../../mesa/">MESA Core</a><a href="../../data/">MESA Data</a><a href="../../qa/">MESA QA</a><a href="../../certification/">E2E Certification</a><a href="../../law/">MESA Law</a></div>
+        <div><h3>Resources</h3><a href="../../learn/">Learn</a><a href="../../research/">Research</a><a href="../../guides/">Guides</a><a href="../../glossary/">Glossary</a><a href="../../methodology/">Methodology</a></div>
+        <div><h3>Documentation</h3><a href="../../docs/core/getting-started/">Quickstart</a><a href="../../architecture/">Architecture</a><a href="../../retrieval/">Retrieval</a><a href="../../docs/core/security/">Security</a><a href="../../docs/mcp/">MCP integration</a></div>
+        <div><h3>Project</h3><a href="../../about/">About</a><a href="../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+    </footer>
+    </main>
+  <script src="../../app.js?v=7ab053b9ea58"></script>
+</body>
+</html>

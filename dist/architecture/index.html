@@ -34,6 +34,7 @@
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
 <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -52,11 +53,112 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">MESA CORE v0.8.0 · ARCHITECTURE</p><h1>One canonical record. Several ways to find it.</h1><p>MESA separates source ownership, background processing and retrieval projections. Read the system through four small views.</p></section>
-<section class="section"><p class="eyebrow">01 · LOGICAL FLOW</p><h2>Accept work durably, then process it.</h2><ol class="system-flow"><li><span class="flow-number">01</span><strong>Source</strong><span>Exact text, document, revision, chunk</span></li><li><span class="flow-number">02</span><strong>Admission</strong><span>Authenticated session; durable mutation</span></li><li><span class="flow-number">03</span><strong>Processing</strong><span>Extraction and selected validation</span></li><li><span class="flow-number">04</span><strong>Projection</strong><span>SQL → vector → graph → COMMITTED</span></li></ol><p>202 confirms admission. Stores do not share one ACID transaction. Fenced leases, ownership, idempotent receipts and reconciliation support recovery. Mode 0 uses deterministic validation, mode 1 one validator, mode 2 distinct A/B provider-model consensus.</p></section>
-<section class="section"><p class="eyebrow">02 · PHYSICAL STORAGE</p><h2>SQLite decides. Projections follow.</h2><div class="storage-grid"><article><h3>SQLite</h3><p>Canonical catalog, authorization, immutable revisions, assertions, mutation ledger and artifact ownership. FTS5 supplies passage/evidence lexical search.</p></article><article><h3>LanceDB</h3><p>Derived assertion vectors with embedding identity. Query and stored representation must match model and dimension; provider availability is a runtime fact.</p></article><article><h3>Kùzu</h3><p>Derived Graph V2 entities and assertion edges. Bounded paths must reconcile to authorized canonical facts; a projection-only adapter cannot traverse.</p></article></div><p>V4 requires one combined storage owner per root. V3 API/worker roles and V4 must use separate roots. Offline backup and forward-only migration protect the operator boundary.</p></section>
-<section class="section"><p class="eyebrow">03 · RETRIEVAL EXECUTION</p><h2>Authorize, retrieve, fuse, pack.</h2><ol class="system-flow"><li><span class="flow-number">01</span><strong>Scope</strong><span>Session-bound authorized datasets</span></li><li><span class="flow-number">02</span><strong>Lanes</strong><span>Vector · BM25 · assertion · graph</span></li><li><span class="flow-number">03</span><strong>RRF</strong><span>Rank contributions, then legal reranking</span></li><li><span class="flow-number">04</span><strong>Context</strong><span>Complete evidence within a token budget</span></li></ol><p>Eligibility is resolved before rank contribution. Source evidence and graph proof remain attached to candidate identity. Context defaults to 2048 formatted-evidence tokens; empty retrieval is not proof that a proposition is false.</p><a class="button text" href="../retrieval/"><span>Inspect ranking and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></section>
-<section class="section"><p class="eyebrow">04 · EVIDENCE REPRESENTATION</p><h2>A relationship with a traceable basis.</h2><div class="evidence-contract"><code>subject → predicate → entity / literal</code><span aria-hidden="true">↓</span><code>document → revision → chunk → evidence</code><span aria-hidden="true">↓</span><code>mutation_id · pipeline_run_id · retrieval_provenance</code></div><p>A whole-revision declared hash, frozen manifest hash and chunk content hash identify different objects. A legal identity must come from a verified source catalog. Tenant is an authorization boundary; agent IDs are context rather than credentials.</p><div class="actions"><a class="button primary" href="../docs/core/evidence/"><span>Evidence and provenance</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../docs/core/security/"><span>Security and scope</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section><section class="section source-notes"><h2>Read the versioned contracts.</h2><ul><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md">docs/architecture-v4.md · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li></ul></section><section class="closing-cta" aria-labelledby="closing-title">
+    </header>
+<main id="main-content">
+  <section class="page-hero compact page-hero--trajectory">
+    <p class="eyebrow">MESA CORE v0.8.0 · ARCHITECTURE</p>
+    <h1>One canonical record. Several ways to find it.</h1>
+    <p>MESA separates source ownership, background processing and retrieval projections. Read the system through four small views.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">01 · LOGICAL FLOW</p>
+    <h2>Accept work durably, then process it.</h2>
+    
+<ol class="system-flow">
+  
+  <li>
+    <span class="flow-number">01</span>
+    <strong>Source</strong>
+    <span>Exact text, document, revision, chunk</span>
+  </li>
+  <li>
+    <span class="flow-number">02</span>
+    <strong>Admission</strong>
+    <span>Authenticated session; durable mutation</span>
+  </li>
+  <li>
+    <span class="flow-number">03</span>
+    <strong>Processing</strong>
+    <span>Extraction and selected validation</span>
+  </li>
+  <li>
+    <span class="flow-number">04</span>
+    <strong>Projection</strong>
+    <span>SQL → vector → graph → COMMITTED</span>
+  </li>
+</ol>
+    <p>202 confirms admission. Stores do not share one ACID transaction. Fenced leases, ownership, idempotent receipts and reconciliation support recovery. Mode 0 uses deterministic validation, mode 1 one validator, mode 2 distinct A/B provider-model consensus.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">02 · PHYSICAL STORAGE</p>
+    <h2>SQLite decides. Projections follow.</h2>
+    <div class="storage-grid">
+      <article><h3>SQLite</h3><p>Canonical catalog, authorization, immutable revisions, assertions, mutation ledger and artifact ownership. FTS5 supplies passage/evidence lexical search.</p></article>
+      <article><h3>LanceDB</h3><p>Derived assertion vectors with embedding identity. Query and stored representation must match model and dimension; provider availability is a runtime fact.</p></article>
+      <article><h3>Kùzu</h3><p>Derived Graph V2 entities and assertion edges. Bounded paths must reconcile to authorized canonical facts; a projection-only adapter cannot traverse.</p></article>
+    </div>
+    <p>V4 requires one combined storage owner per root. V3 API/worker roles and V4 must use separate roots. Offline backup and forward-only migration protect the operator boundary.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">03 · RETRIEVAL EXECUTION</p>
+    <h2>Authorize, retrieve, fuse, pack.</h2>
+    
+<ol class="system-flow">
+  
+  <li>
+    <span class="flow-number">01</span>
+    <strong>Scope</strong>
+    <span>Session-bound authorized datasets</span>
+  </li>
+  <li>
+    <span class="flow-number">02</span>
+    <strong>Lanes</strong>
+    <span>Vector · BM25 · assertion · graph</span>
+  </li>
+  <li>
+    <span class="flow-number">03</span>
+    <strong>RRF</strong>
+    <span>Rank contributions, then legal reranking</span>
+  </li>
+  <li>
+    <span class="flow-number">04</span>
+    <strong>Context</strong>
+    <span>Complete evidence within a token budget</span>
+  </li>
+</ol>
+    <p>Eligibility is resolved before rank contribution. Source evidence and graph proof remain attached to candidate identity. Context defaults to 2048 formatted-evidence tokens; empty retrieval is not proof that a proposition is false.</p>
+    <a class="button text" href="../retrieval/"><span>Inspect ranking and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">04 · EVIDENCE REPRESENTATION</p>
+    <h2>A relationship with a traceable basis.</h2>
+    <div class="evidence-contract">
+      <code>subject → predicate → entity / literal</code>
+      <span aria-hidden="true">↓</span>
+      <code>document → revision → chunk → evidence</code>
+      <span aria-hidden="true">↓</span>
+      <code>mutation_id · pipeline_run_id · retrieval_provenance</code>
+    </div>
+    <p>A whole-revision declared hash, frozen manifest hash and chunk content hash identify different objects. A legal identity must come from a verified source catalog. Tenant is an authorization boundary; agent IDs are context rather than credentials.</p>
+    <div class="actions">
+      <a class="button primary" href="../docs/core/evidence/"><span>Evidence and provenance</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+      <a class="button secondary" href="../docs/core/security/"><span>Security and scope</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section source-notes">
+    <h2>Read the versioned contracts.</h2>
+    <ul>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md">docs/architecture-v4.md · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li>
+    </ul>
+  </section>
+  <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
@@ -74,7 +176,8 @@
         <div><h3>Project</h3><a href="../about/">About</a><a href="../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer></main>
+    </footer>
+</main>
   <script src="../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

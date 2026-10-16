@@ -12,3 +12,6 @@ sync-failures.log
 docs/tests/screenshots/run-*/
 docs/tests/screenshots/temp/
 
+.agents/
+skills-lock.json
+

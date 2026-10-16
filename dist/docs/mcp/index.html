@@ -34,7 +34,8 @@
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-<a class="skip-link" href="#main-content">Skip to content</a>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -52,10 +53,62 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact page-hero--functional"><p class="eyebrow">MODEL CONTEXT PROTOCOL</p><h1>Two integration paths.<br><em>Different runtime contracts.</em></h1><p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md" target="_blank" rel="noopener noreferrer"><span>Source guide</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Core repository</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></section>
-    <section class="section mcp-paths"><article><p class="eyebrow">LEGACY V3-COMPATIBLE</p><h2>Direct stdio server</h2><p><code>mesa_mcp.server</code> runs an MCP JSON-RPC stdio stream and calls the public MESA HTTP API; it does not open storage databases directly. The root README documents five project-memory tools.</p><div class="tag-row"><span>stdio</span><span>HTTP API</span><span>project scope</span></div></article><article class="highlight"><p class="eyebrow">CURRENT V4 PATH</p><h2>Gateway + local bridge</h2><p>A separately supervised HTTP gateway owns credentials, policy, approvals, operation state, and connections. Codex can connect directly to its <code>/mcp</code> endpoint; Antigravity uses a binding-scoped stdio bridge.</p><div class="tag-row"><span>V4</span><span>approvals</span><span>binding-scoped</span></div></article></section>
-    <section class="section tool-section"><div class="section-heading"><div><p class="eyebrow">V4 BRIDGE TOOLS</p><h2>Operations expose<br><em>their real state.</em></h2></div><p>Writes return durable operation IDs. Default policy may return PENDING_APPROVAL rather than holding stdio open.</p></div><div class="tool-list"><div><code>mesa_health</code><span>Bridge, gateway, MESA, and spool health</span></div><div><code>mesa_recall</code><span>Scoped V4 search or token-bounded context</span></div><div><code>mesa_remember</code><span>Durable write operation</span></div><div><code>mesa_improve</code><span>Revision operation with idempotency key</span></div><div><code>mesa_forget</code><span>Purge operation; never queued offline</span></div><div><code>mesa_get_operation_status</code><span>Approval and mutation progress</span></div></div></section>
-    <section class="section mcp-guard"><p class="eyebrow">BOUNDARY NOTES</p><ul class="check-list"><li>stdout is reserved for MCP JSON-RPC; logs go to stderr</li><li>bridges do not import or access storage backends</li><li>credentials live outside project configuration</li><li>missing client/workspace bindings fail closed</li><li>the exact supported host depends on the selected integration path</li></ul></section><section class="closing-cta" aria-labelledby="closing-title">
+    </header>
+    <main id="main-content">
+      <section class="page-hero compact page-hero--functional">
+        <p class="eyebrow">MODEL CONTEXT PROTOCOL</p>
+        <h1>Two integration paths.<br><em>Different runtime contracts.</em></h1>
+        <p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md" target="_blank" rel="noopener noreferrer"><span>Source guide</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+          <a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Core repository</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </div>
+      </section>
+
+      <section class="section mcp-paths">
+        <article>
+          <p class="eyebrow">LEGACY V3-COMPATIBLE</p>
+          <h2>Direct stdio server</h2>
+          <p><code>mesa_mcp.server</code> runs an MCP JSON-RPC stdio stream and calls the public MESA HTTP API; it does not open storage databases directly. The root README documents five project-memory tools.</p>
+          <div class="tag-row"><span>stdio</span><span>HTTP API</span><span>project scope</span></div>
+        </article>
+        <article class="highlight">
+          <p class="eyebrow">CURRENT V4 PATH</p>
+          <h2>Gateway + local bridge</h2>
+          <p>A separately supervised HTTP gateway owns credentials, policy, approvals, operation state, and connections. Codex can connect directly to its <code>/mcp</code> endpoint; Antigravity uses a binding-scoped stdio bridge.</p>
+          <div class="tag-row"><span>V4</span><span>approvals</span><span>binding-scoped</span></div>
+        </article>
+      </section>
+
+      <section class="section tool-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">V4 BRIDGE TOOLS</p>
+            <h2>Operations expose<br><em>their real state.</em></h2>
+          </div>
+          <p>Writes return durable operation IDs. Default policy may return PENDING_APPROVAL rather than holding stdio open.</p>
+        </div>
+        <div class="tool-list">
+          <div><code>mesa_health</code><span>Bridge, gateway, MESA, and spool health</span></div>
+          <div><code>mesa_recall</code><span>Scoped V4 search or token-bounded context</span></div>
+          <div><code>mesa_remember</code><span>Durable write operation</span></div>
+          <div><code>mesa_improve</code><span>Revision operation with idempotency key</span></div>
+          <div><code>mesa_forget</code><span>Purge operation; never queued offline</span></div>
+          <div><code>mesa_get_operation_status</code><span>Approval and mutation progress</span></div>
+        </div>
+      </section>
+
+      <section class="section mcp-guard">
+        <p class="eyebrow">BOUNDARY NOTES</p>
+        <ul class="check-list">
+          <li>stdout is reserved for MCP JSON-RPC; logs go to stderr</li>
+          <li>bridges do not import or access storage backends</li>
+          <li>credentials live outside project configuration</li>
+          <li>missing client/workspace bindings fail closed</li>
+          <li>the exact supported host depends on the selected integration path</li>
+        </ul>
+      </section>
+      <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
@@ -73,7 +126,8 @@
         <div><h3>Project</h3><a href="../../about/">About</a><a href="../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer></main>
+    </footer>
+    </main>
   <script src="../../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

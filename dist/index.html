@@ -34,6 +34,7 @@
 </head>
 <body>
 <div class="cosmic cosmic--home" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
 <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -52,11 +53,69 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content" class="home-page">
- <section class="hero hero--home scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title"><div class="hero-copy"><p class="eyebrow">OPEN-SOURCE AI MEMORY INFRASTRUCTURE</p><h1 id="home-title">AI memory, with its evidence attached.</h1><p>MESA is open-source memory infrastructure for AI systems. It keeps information connected to its sources, relationships, and authorized data scope.</p><div class="actions"><a class="button primary" href="./docs/"><span>Explore documentation</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View on GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></div></section>
- <section class="section home-problem" id="the-problem" data-home-section="problem"><div><p class="eyebrow">THE PROBLEM</p><span id="why-mesa"></span><h2>A relevant passage is only the beginning.</h2></div><div class="home-problem__body"><p>An assistant finds an opening time in an old document. Which revision supports it? Does the current session have access? Has the replacement revision finished processing?</p><p>MESA puts source identity, authorized scope and processing state in the memory contract, so applications can inspect the basis of a result.</p></div></section>
- <section class="section home-process" id="how-it-works" data-home-section="process"><p class="eyebrow">HOW MESA WORKS</p><h2>From exact source to bounded context.</h2><ol class="system-flow"><li><span class="flow-number">01</span><strong>01 · Source</strong><span>Exact text and source identity</span></li><li><span class="flow-number">02</span><strong>02 · Ingest</strong><span>Durable admission, extraction and validation</span></li><li><span class="flow-number">03</span><strong>03 · Persist</strong><span>SQLite authority; vector and graph projections</span></li><li><span class="flow-number">04</span><strong>04 · Retrieve</strong><span>Scoped lanes, fusion and evidence selection</span></li></ol><div class="home-section-actions"><a class="button text" href="./architecture/"><span>Understand the architecture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <section class="section home-example" id="mesa-in-action" data-home-section="example"><p class="eyebrow">MESA IN ACTION · DETERMINISTIC FIXTURE</p><h2>One fact. Four retrieval signals. A visible source.</h2><p>Core’s repository fixture gives one canonical assertion rank one in all four lanes. It uses real SQLite and Kùzu with mock vectors; it is a contract test, not a semantic benchmark.</p><div class="memory-example panel--evidence">
+    </header>
+<main id="main-content" class="home-page">
+  <section class="hero hero--home scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
+    <div class="hero-copy">
+      <p class="eyebrow">OPEN-SOURCE AI MEMORY INFRASTRUCTURE</p>
+      <h1 id="home-title">AI memory, with its evidence attached.</h1>
+      <p>MESA is open-source memory infrastructure for AI systems. It keeps information connected to its sources, relationships, and authorized data scope.</p>
+      <div class="actions">
+        <a class="button primary" href="./docs/"><span>Explore documentation</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        <a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View on GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-problem" id="the-problem" data-home-section="problem">
+    <div>
+      <p class="eyebrow">THE PROBLEM</p>
+      <span id="why-mesa"></span>
+      <h2>A relevant passage is only the beginning.</h2>
+    </div>
+    <div class="home-problem__body">
+      <p>An assistant finds an opening time in an old document. Which revision supports it? Does the current session have access? Has the replacement revision finished processing?</p>
+      <p>MESA puts source identity, authorized scope and processing state in the memory contract, so applications can inspect the basis of a result.</p>
+    </div>
+  </section>
+
+  <section class="section home-process" id="how-it-works" data-home-section="process">
+    <p class="eyebrow">HOW MESA WORKS</p>
+    <h2>From exact source to bounded context.</h2>
+    
+<ol class="system-flow">
+  
+  <li>
+    <span class="flow-number">01</span>
+    <strong>01 · Source</strong>
+    <span>Exact text and source identity</span>
+  </li>
+  <li>
+    <span class="flow-number">02</span>
+    <strong>02 · Ingest</strong>
+    <span>Durable admission, extraction and validation</span>
+  </li>
+  <li>
+    <span class="flow-number">03</span>
+    <strong>03 · Persist</strong>
+    <span>SQLite authority; vector and graph projections</span>
+  </li>
+  <li>
+    <span class="flow-number">04</span>
+    <strong>04 · Retrieve</strong>
+    <span>Scoped lanes, fusion and evidence selection</span>
+  </li>
+</ol>
+    <div class="home-section-actions">
+      <a class="button text" href="./architecture/"><span>Understand the architecture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section home-example" id="mesa-in-action" data-home-section="example">
+    <p class="eyebrow">MESA IN ACTION · DETERMINISTIC FIXTURE</p>
+    <h2>One fact. Four retrieval signals. A visible source.</h2>
+    <p>Core’s repository fixture gives one canonical assertion rank one in all four lanes. It uses real SQLite and Kùzu with mock vectors; it is a contract test, not a semantic benchmark.</p>
+    <div class="memory-example panel--evidence">
     <div class="memory-example__query"><span class="text--meta">QUERY</span><code>“Alice”</code><span class="text--meta">Deterministic test fixture</span></div>
     <div class="memory-example__body">
       <div class="memory-example__knowledge"><span class="text--meta">RETRIEVED KNOWLEDGE</span><p><strong>Alice</strong><span>knows</span><strong>Aurora</strong></p><p class="memory-example__identity">One assertion. Its source still attached.</p></div>
@@ -67,13 +126,113 @@
   object: "Aurora", source: "source-chunk-1"
 }</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit 07d387f.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
-  </div><form class="rank-calculator" data-rank-calculator><fieldset disabled><legend>Illustrative rank fusion · choose contributing lanes</legend><div class="rank-lanes"><label><input type="checkbox" name="vector" checked><span>Vector</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="bm25" checked><span>BM25</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="assertion" checked><span>Assertion</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="graph" checked><span>Graph</span><code>1 / (60 + 1)</code></label></div></fieldset><div class="rank-result"><span>RRF score</span><output aria-live="polite">4 / 61 = 0.065574</output></div><p>All enabled lanes rank the same candidate first; weights are 1.0 and k=60. This calculator makes no API call and measures neither probability nor retrieval quality.</p><noscript>Static example: four contributions give 4/61.</noscript></form><div class="home-section-actions"><a class="button text" href="./retrieval/"><span>Read the retrieval contract</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <section class="section home-capabilities" data-home-section="capabilities"><p class="eyebrow">CORE CAPABILITIES</p><h2>Memory you can inspect and operate.</h2><div class="editorial-rows"><article><h3>Source provenance</h3><p>Trace a returned assertion through its document, immutable revision, chunk and supporting evidence.</p></article><article><h3>Scope before ranking</h3><p>Server-created sessions freeze authorized datasets. Tenant eligibility is resolved before a lane contributes.</p></article><article><h3>Observable lifecycle</h3><p>Follow admission, projection and terminal mutation state. A 202 response means work was admitted.</p></article></div></section>
- <section class="section home-ecosystem" id="ecosystem" data-home-section="ecosystem"><p class="eyebrow">THE MESA ECOSYSTEM</p><h2>Preparation, memory and application.</h2><div class="ecosystem-spine"><a href="./data/"><strong>MESA Data</strong><span>Reviewed Turkish legal releases</span></a><span aria-hidden="true">→</span><a href="./mesa/"><strong>MESA Core</strong><span>Released v0.8.0 · production NO-GO</span></a><span aria-hidden="true">→</span><a href="./law/"><strong>MESA Law</strong><span>Reference app · live integration unverified</span></a></div><div class="quality-rail"><a href="./qa/"><strong>MESA QA</strong><span>Behavior, persistence and restart testing</span></a><a href="./certification/"><strong>E2E Certification</strong><span>Data → Core Profile B · certification blocked</span></a></div><p>This is the legal reference path. Other source pipelines and applications can use Core’s versioned interfaces. Quality tools evaluate the system outside its runtime.</p><div class="home-section-actions"><a class="button text" href="./ecosystem/"><span>Explore repository boundaries</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <section class="section home-explore" id="continue-exploring" data-home-section="explore"><p class="eyebrow">GET STARTED · v0.8.0</p><h2>Start locally. Keep the version explicit.</h2><pre tabindex="0"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
+  </div>
+    
+<form class="rank-calculator" data-rank-calculator>
+  <fieldset disabled>
+    <legend>Illustrative rank fusion · choose contributing lanes</legend>
+    <div class="rank-lanes">
+      
+      <label>
+        <input type="checkbox" name="vector" checked>
+        <span>Vector</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="bm25" checked>
+        <span>BM25</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="assertion" checked>
+        <span>Assertion</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="graph" checked>
+        <span>Graph</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+    </div>
+  </fieldset>
+  <div class="rank-result">
+    <span>RRF score</span>
+    <output aria-live="polite">4 / 61 = 0.065574</output>
+  </div>
+  <p>All enabled lanes rank the same candidate first; weights are 1.0 and k=60. This calculator makes no API call and measures neither probability nor retrieval quality.</p>
+  <noscript>Static example: four contributions give 4/61.</noscript>
+</form>
+    <div class="home-section-actions">
+      <a class="button text" href="./retrieval/"><span>Read the retrieval contract</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section home-capabilities" data-home-section="capabilities">
+    <p class="eyebrow">CORE CAPABILITIES</p>
+    <h2>Memory you can inspect and operate.</h2>
+    <div class="editorial-rows">
+      <article><h3>Source provenance</h3><p>Trace a returned assertion through its document, immutable revision, chunk and supporting evidence.</p></article>
+      <article><h3>Scope before ranking</h3><p>Server-created sessions freeze authorized datasets. Tenant eligibility is resolved before a lane contributes.</p></article>
+      <article><h3>Observable lifecycle</h3><p>Follow admission, projection and terminal mutation state. A 202 response means work was admitted.</p></article>
+    </div>
+  </section>
+
+  <section class="section home-ecosystem" id="ecosystem" data-home-section="ecosystem">
+    <p class="eyebrow">THE MESA ECOSYSTEM</p>
+    <h2>Preparation, memory and application.</h2>
+    <div class="ecosystem-spine">
+      <a href="./data/">
+        <strong>MESA Data</strong>
+        <span>Reviewed Turkish legal releases</span>
+      </a>
+      <span aria-hidden="true">→</span>
+      <a href="./mesa/">
+        <strong>MESA Core</strong>
+        <span>Released v0.8.0 · production NO-GO</span>
+      </a>
+      <span aria-hidden="true">→</span>
+      <a href="./law/">
+        <strong>MESA Law</strong>
+        <span>Reference app · live integration unverified</span>
+      </a>
+    </div>
+    <div class="quality-rail">
+      <a href="./qa/">
+        <strong>MESA QA</strong>
+        <span>Behavior, persistence and restart testing</span>
+      </a>
+      <a href="./certification/">
+        <strong>E2E Certification</strong>
+        <span>Data → Core Profile B · certification blocked</span>
+      </a>
+    </div>
+    <p>This is the legal reference path. Other source pipelines and applications can use Core’s versioned interfaces. Quality tools evaluate the system outside its runtime.</p>
+    <div class="home-section-actions">
+      <a class="button text" href="./ecosystem/"><span>Explore repository boundaries</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section home-explore" id="continue-exploring" data-home-section="explore">
+    <p class="eyebrow">GET STARTED · v0.8.0</p>
+    <h2>Start locally. Keep the version explicit.</h2>
+    <pre tabindex="0"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
-uv sync --locked --extra dev</code></pre><p>Continue with the model-disabled V3 quickstart for a local first run. Canonical V4 writes require provisioned extraction and embedding providers.</p><div class="actions"><a class="button primary" href="./docs/core/getting-started/"><span>Run the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="./docs/core/examples/"><span>V4 SDK examples</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <aside class="home-status" aria-label="Release and qualification"><div><p class="eyebrow">RELEASED SOURCE · QUALIFICATION IN PROGRESS</p><p>v0.8.0 was published on 15 October 2026. Real-provider rehearsal, a production-like 24-hour soak and new official certification remain incomplete.</p></div><a class="button secondary" href="./status/"><span>Status and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></aside><footer class="site-footer">
+uv sync --locked --extra dev</code></pre>
+    <p>Continue with the model-disabled V3 quickstart for a local first run. Canonical V4 writes require provisioned extraction and embedding providers.</p>
+    <div class="actions">
+      <a class="button primary" href="./docs/core/getting-started/"><span>Run the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+      <a class="button secondary" href="./docs/core/examples/"><span>V4 SDK examples</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <aside class="home-status" aria-label="Release and qualification">
+    <div>
+      <p class="eyebrow">RELEASED SOURCE · QUALIFICATION IN PROGRESS</p>
+      <p>v0.8.0 was published on 15 October 2026. Real-provider rehearsal, a production-like 24-hour soak and new official certification remain incomplete.</p>
+    </div>
+    <a class="button secondary" href="./status/"><span>Status and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+  </aside>
+  <footer class="site-footer">
       <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="./assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 published source release · <a href="./status/">View status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="./how-it-works/">How it works</a><a href="./use-cases/">Use cases</a><a href="./evaluation/">Evaluation & trust</a><a href="./status/">Project status</a></div>
@@ -83,7 +242,8 @@ uv sync --locked --extra dev</code></pre><p>Continue with the model-disabled V3 
         <div><h3>Project</h3><a href="./about/">About</a><a href="./faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer></main>
+    </footer>
+</main>
   <script src="./app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

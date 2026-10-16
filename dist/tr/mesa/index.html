@@ -34,7 +34,8 @@
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-<a class="skip-link" href="#main-content">İçeriğe geç</a>
+
+    <a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -52,20 +53,135 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content">
-    <section class="page-hero page-hero--core"><p class="eyebrow">MESA CORE · V0.8.0</p><h1>Kalıcı hafıza<br>ve <em>yapılandırılmış kanıt.</em></h1><p>Yayımlanmış V4 kaynak sürümü; kanonik kaynak izi, seçilebilir doğrulama, dataset yalıtımı, sıralı projeksiyonlar ve versioned REST, SDK ve MCP işlemleri sunar.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kod deposu</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="button secondary" href="../docs/"><span>Dokümantasyon</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
-    <section class="status-strip" aria-label="Güncel proje durumu">
+    </header>
+    <main id="main-content">
+      <section class="page-hero page-hero--core">
+        <p class="eyebrow">MESA CORE · V0.8.0</p>
+        <h1>Kalıcı hafıza<br>ve <em>yapılandırılmış kanıt.</em></h1>
+        <p>Yayımlanmış V4 kaynak sürümü; kanonik kaynak izi, seçilebilir doğrulama, dataset yalıtımı, sıralı projeksiyonlar ve versioned REST, SDK ve MCP işlemleri sunar.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kod deposu</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+          <a class="button secondary" href="../docs/"><span>Dokümantasyon</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        </div>
+      </section>
+      <section class="status-strip" aria-label="Güncel proje durumu">
       <div><small>CORE HATTI</small><strong>v0.8.0 / V4</strong></div>
       <div><small>OLGUNLUK</small><strong>Yayımlanmış kaynak sürümü</strong></div>
       <div><small>NİHAİ MVP SERTİFİKASYONU</small><strong>Sürüyor</strong></div>
       <div><small>ÜRETİM</small><strong class="status-no-go">NO-GO</strong></div>
     </section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">HAFIZA YAŞAM DÖNGÜSÜ</p><h2>Kabulden geri getirmeye;<br><em>gizli yazma olmadan.</em></h2></div><p>Reddedilen bir mutasyon etkin SQL, vector, entity, edge veya assertion çıktısı oluşturmaz. Kabul edilen iş, sıralı ve idempotent kanalları izler.</p></div><div class="architecture-flow"><div class="flow-step"><span>01</span><strong>Kaynaklar</strong><small>Tam kaynak metni ve sürüm kimliği</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>02</span><strong>Kabul</strong><small>Yetkili, dataset kapsamlı mutasyon</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>03</span><strong>Doğrulama</strong><small>Deterministik, tekli veya ikili politika</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>04</span><strong>SQL ledger</strong><small>Katalog, sahiplik, assertion'lar, outbox</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>05</span><strong>Projeksiyonlar</strong><small>Idempotent biçimde önce Vector, sonra Graph V2</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>06</span><strong>Retrieval</strong><small>Vector + BM25 + assertion + graph path RRF</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>07</span><strong>İstemciler</strong><small>REST, sync/async SDK, MCP</small></div></div></section>
-    <section class="section surface-section" id="security"><div class="surface-copy"><p class="eyebrow">GÜVENLİK SINIRI</p><h2>Ajanlar bağlamdır.<br><em>Tenant'lar sınırdır.</em></h2><p>V4 yetkilendirmesi principal → tenant → workspace → dataset → agent → sunucu tarafından oluşturulan oturum sırasını izler. Roller katalog boyunca aşağıya devrolur. Purge ve rollback açık dataset izinleri gerektirir.</p><a class="button text" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Güvenlik politikasını okuyun</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div><div class="scope-visual" role="img" aria-label="İç içe MESA yetkilendirme kapsamları"><span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Oturum</strong></span></strong></span></strong></span></div></section>
-    <section class="section retrieval-section" id="retrieval"><div class="section-heading"><div><p class="eyebrow">GERİ GETİRME V2</p><h2>Dört sinyal.<br><em>Tek sınırlandırılmış sonuç.</em></h2></div><p>Yetkili dataset, zaman, yargı alanı, tenant ve agent uygunluğu kanallar birleştirilmeden önce uygulanır. Daha yüksek birleşik puan daha iyidir.</p></div><div class="lane-grid five"><article><span>SEMANTIC</span><h3>Vektör</h3><p>Embedding kaynak izine sahip LanceDB assertion projeksiyonu.</p></article><article><span>LEXICAL</span><h3>BM25</h3><p>SQL tarafından yönetilen korpustan tam ve lexical kanıt.</p></article><article><span>İLİŞKİSEL</span><h3>Assertion'lar</h3><p>SQLite yetkili assertion ilişkileri ve atıf odaklı puanlama.</p></article><article><span>SINIRLANDIRILMIŞ GRAPH</span><h3>Graph path'ler</h3><p>Yetkili kanonik assertion kimlikleriyle uzlaştırılmış Kùzu Graph V2 path'leri.</p></article><article class="fusion"><span>FUSION</span><h3>Gerçek RRF</h3><p>Her kanal aday başına bir kez oy verir; ardından sınırlandırılmış hukuk reranker'ı uygulanabilir.</p></article></div><div class="notice"><strong>Depolama ve retrieval görünümleri</strong><p>Depolama görünümü SQL, vektör ve çizge projeksiyonlarını açıklar. Retrieval; her biri kanonik uygunlukla uzlaştırılan vektör, BM25, assertion ve sınırlı çizge yolu olmak üzere dört kanal kullanır.</p></div></section>
-    <section class="section storage-section"><div><p class="eyebrow">FİZİKSEL DEPOLAR</p><h2>SQLite karar verir.<br><em>Projeksiyonlar izler.</em></h2></div><div class="storage-grid"><article><strong>SQLite</strong><p>Katalog, yetkilendirme, mutasyon/işlem hattı ledger'ı, sahiplik, assertion'lar ve sıralı outbox.</p></article><article><strong>LanceDB</strong><p>Embedding kimliğine sahip idempotent vector projeksiyonu.</p></article><article><strong>Kuzu</strong><p>Idempotent Graph V2 projeksiyonu; assertion karar kaynağı değildir.</p></article></div></section>
-    <section class="section client-section"><div class="section-heading"><div><p class="eyebrow">İSTEMCİ YÜZEYLERİ</p><h2>Tek yaşam döngüsüne<br><em>sürümlenmiş erişim.</em></h2></div></div><div class="client-grid"><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md" target="_blank" rel="noopener noreferrer"><span>HTTP</span><strong>V4 REST API</strong><small>Katalog, oturumlar, hafıza, mutasyonlar, işlemler</small></a><a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README.md" target="_blank" rel="noopener noreferrer"><span>PYTHON</span><strong>Sync ve async SDK</strong><small>MesaV4Client ve sürümle eşleşen işlemler</small></a><a href="../docs/mcp/"><span>PROTOKOL</span><strong>MCP</strong><small>Eski doğrudan stdio ile V4 gateway/köprü yolu</small></a></div></section>
-    <section class="closing-cta" aria-labelledby="closing-title">
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">HAFIZA YAŞAM DÖNGÜSÜ</p>
+            <h2>Kabulden geri getirmeye;<br><em>gizli yazma olmadan.</em></h2>
+          </div>
+          <p>Reddedilen bir mutasyon etkin SQL, vector, entity, edge veya assertion çıktısı oluşturmaz. Kabul edilen iş, sıralı ve idempotent kanalları izler.</p>
+        </div>
+        <div class="architecture-flow"><div class="flow-step"><span>01</span><strong>Kaynaklar</strong><small>Tam kaynak metni ve sürüm kimliği</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>02</span><strong>Kabul</strong><small>Yetkili, dataset kapsamlı mutasyon</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>03</span><strong>Doğrulama</strong><small>Deterministik, tekli veya ikili politika</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>04</span><strong>SQL ledger</strong><small>Katalog, sahiplik, assertion'lar, outbox</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>05</span><strong>Projeksiyonlar</strong><small>Idempotent biçimde önce Vector, sonra Graph V2</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>06</span><strong>Retrieval</strong><small>Vector + BM25 + assertion + graph path RRF</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>07</span><strong>İstemciler</strong><small>REST, sync/async SDK, MCP</small></div></div>
+      </section>
+
+      <section class="section surface-section" id="security">
+        <div class="surface-copy">
+          <p class="eyebrow">GÜVENLİK SINIRI</p>
+          <h2>Ajanlar bağlamdır.<br><em>Tenant'lar sınırdır.</em></h2>
+          <p>V4 yetkilendirmesi principal → tenant → workspace → dataset → agent → sunucu tarafından oluşturulan oturum sırasını izler. Roller katalog boyunca aşağıya devrolur. Purge ve rollback açık dataset izinleri gerektirir.</p>
+          <a class="button text" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Güvenlik politikasını okuyun</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </div>
+        <div class="scope-visual" role="img" aria-label="İç içe MESA yetkilendirme kapsamları">
+          <span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Oturum</strong></span></strong></span></strong></span>
+        </div>
+      </section>
+
+      <section class="section retrieval-section" id="retrieval">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GERİ GETİRME V2</p>
+            <h2>Dört sinyal.<br><em>Tek sınırlandırılmış sonuç.</em></h2>
+          </div>
+          <p>Yetkili dataset, zaman, yargı alanı, tenant ve agent uygunluğu kanallar birleştirilmeden önce uygulanır. Daha yüksek birleşik puan daha iyidir.</p>
+        </div>
+        <div class="lane-grid five">
+          <article>
+            <span>SEMANTIC</span>
+            <h3>Vektör</h3>
+            <p>Embedding kaynak izine sahip LanceDB assertion projeksiyonu.</p>
+          </article>
+          <article>
+            <span>LEXICAL</span>
+            <h3>BM25</h3>
+            <p>SQL tarafından yönetilen korpustan tam ve lexical kanıt.</p>
+          </article>
+          <article>
+            <span>İLİŞKİSEL</span>
+            <h3>Assertion'lar</h3>
+            <p>SQLite yetkili assertion ilişkileri ve atıf odaklı puanlama.</p>
+          </article>
+          <article>
+            <span>SINIRLANDIRILMIŞ GRAPH</span>
+            <h3>Graph path'ler</h3>
+            <p>Yetkili kanonik assertion kimlikleriyle uzlaştırılmış Kùzu Graph V2 path'leri.</p>
+          </article>
+          <article class="fusion">
+            <span>FUSION</span>
+            <h3>Gerçek RRF</h3>
+            <p>Her kanal aday başına bir kez oy verir; ardından sınırlandırılmış hukuk reranker'ı uygulanabilir.</p>
+          </article>
+        </div>
+        <div class="notice">
+          <strong>Depolama ve retrieval görünümleri</strong>
+          <p>Depolama görünümü SQL, vektör ve çizge projeksiyonlarını açıklar. Retrieval; her biri kanonik uygunlukla uzlaştırılan vektör, BM25, assertion ve sınırlı çizge yolu olmak üzere dört kanal kullanır.</p>
+        </div>
+      </section>
+
+      <section class="section storage-section">
+        <div>
+          <p class="eyebrow">FİZİKSEL DEPOLAR</p>
+          <h2>SQLite karar verir.<br><em>Projeksiyonlar izler.</em></h2>
+        </div>
+        <div class="storage-grid">
+          <article>
+            <strong>SQLite</strong>
+            <p>Katalog, yetkilendirme, mutasyon/işlem hattı ledger'ı, sahiplik, assertion'lar ve sıralı outbox.</p>
+          </article>
+          <article>
+            <strong>LanceDB</strong>
+            <p>Embedding kimliğine sahip idempotent vector projeksiyonu.</p>
+          </article>
+          <article>
+            <strong>Kuzu</strong>
+            <p>Idempotent Graph V2 projeksiyonu; assertion karar kaynağı değildir.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section client-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">İSTEMCİ YÜZEYLERİ</p>
+            <h2>Tek yaşam döngüsüne<br><em>sürümlenmiş erişim.</em></h2>
+          </div>
+        </div>
+        <div class="client-grid">
+          <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md" target="_blank" rel="noopener noreferrer">
+            <span>HTTP</span>
+            <strong>V4 REST API</strong>
+            <small>Katalog, oturumlar, hafıza, mutasyonlar, işlemler</small>
+          </a>
+          <a href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README.md" target="_blank" rel="noopener noreferrer">
+            <span>PYTHON</span>
+            <strong>Sync ve async SDK</strong>
+            <small>MesaV4Client ve sürümle eşleşen işlemler</small>
+          </a>
+          <a href="../docs/mcp/">
+            <span>PROTOKOL</span>
+            <strong>MCP</strong>
+            <small>Eski doğrudan stdio ile V4 gateway/köprü yolu</small>
+          </a>
+        </div>
+      </section>
+      <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -83,7 +199,8 @@
         <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer></main>
+    </footer>
+    </main>
   <script src="../../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

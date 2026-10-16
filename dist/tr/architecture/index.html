@@ -34,6 +34,7 @@
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
 <a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -52,11 +53,112 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">MESA CORE v0.8.0 · MİMARİ</p><h1>Tek kanonik kayıt. Onu bulmanın farklı yolları.</h1><p>MESA; kaynak sahipliğini, arka plan işlemeyi ve retrieval projeksiyonlarını ayırır. Sistemi dört küçük görünümle okuyun.</p></section>
-<section class="section"><p class="eyebrow">01 · MANTIKSAL AKIŞ</p><h2>İşi kalıcı kabul edin; sonra işleyin.</h2><ol class="system-flow"><li><span class="flow-number">01</span><strong>Kaynak</strong><span>Tam metin, belge, revizyon, parça</span></li><li><span class="flow-number">02</span><strong>Kabul</strong><span>Kimliği doğrulanmış oturum; kalıcı mutasyon</span></li><li><span class="flow-number">03</span><strong>İşleme</strong><span>Çıkarım ve seçili doğrulama</span></li><li><span class="flow-number">04</span><strong>Projeksiyon</strong><span>SQL → vektör → çizge → COMMITTED</span></li></ol><p>202, kabulü doğrular. Depolar tek ACID transaction paylaşmaz. Fencing token’lı lease, sahiplik, idempotent receipt ve reconciliation kurtarmayı destekler. Mod 0 deterministik doğrulama, mod 1 tek validator, mod 2 farklı A/B sağlayıcı-model uzlaşısı kullanır.</p></section>
-<section class="section"><p class="eyebrow">02 · FİZİKSEL DEPOLAMA</p><h2>SQLite karar verir. Projeksiyonlar izler.</h2><div class="storage-grid"><article><h3>SQLite</h3><p>Kanonik katalog, yetkilendirme, değişmez revizyonlar, assertion’lar, mutasyon kaydı ve artifact sahipliği. FTS5 pasaj/kanıt üzerinde sözcüksel arama sağlar.</p></article><article><h3>LanceDB</h3><p>Embedding kimliği taşıyan türetilmiş assertion vektörleri. Sorgu ve depolanan temsilin model/boyutu eşleşmelidir; sağlayıcı kullanılabilirliği çalışma anında belirlenir.</p></article><article><h3>Kùzu</h3><p>Türetilmiş Graph V2 düğümleri ve assertion kenarları. Sınırlı yollar yetkili kanonik bilgilerle uzlaşmalıdır; yalnız projeksiyon yazan adapter dolaşım yapamaz.</p></article></div><p>V4, root başına tek combined storage owner ister. V3 API/worker rolleri ile V4 ayrı root kullanmalıdır. Offline yedekleme ve yalnız ileri migration, operatör sınırını korur.</p></section>
-<section class="section"><p class="eyebrow">03 · RETRIEVAL YÜRÜTMESİ</p><h2>Yetkilendir, getir, birleştir, paketle.</h2><ol class="system-flow"><li><span class="flow-number">01</span><strong>Kapsam</strong><span>Oturuma bağlı yetkili dataset’ler</span></li><li><span class="flow-number">02</span><strong>Kanallar</strong><span>Vektör · BM25 · assertion · çizge</span></li><li><span class="flow-number">03</span><strong>RRF</strong><span>Sıra katkıları; ardından hukuk yeniden sıralaması</span></li><li><span class="flow-number">04</span><strong>Bağlam</strong><span>Token bütçesi içinde tam kanıt</span></li></ol><p>Uygunluk, sıra katkısından önce çözülür. Kaynak kanıtı ve çizge ispatı aday kimliğine bağlı kalır. Bağlam varsayılan olarak 2048 biçimlendirilmiş kanıt token’ıdır; boş retrieval bir önermenin yanlışlığını kanıtlamaz.</p><a class="button text" href="../retrieval/"><span>Sıralama ve sınırları inceleyin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></section>
-<section class="section"><p class="eyebrow">04 · KANIT TEMSİLİ</p><h2>İzlenebilir dayanağı olan ilişki.</h2><div class="evidence-contract"><code>subject → predicate → entity / literal</code><span aria-hidden="true">↓</span><code>document → revision → chunk → evidence</code><span aria-hidden="true">↓</span><code>mutation_id · pipeline_run_id · retrieval_provenance</code></div><p>Bütün-revizyon beyan hash’i, dondurulmuş manifest hash’i ve parça içerik hash’i farklı nesneleri tanımlar. Hukuk kimliği doğrulanmış kaynak kataloğundan gelmelidir. Tenant yetkilendirme sınırıdır; agent kimliği credential yerine bağlamdır.</p><div class="actions"><a class="button primary" href="../docs/core/evidence/"><span>Kanıt ve kaynak izi</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../docs/core/security/"><span>Güvenlik ve kapsam</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section><section class="section source-notes"><h2>Sabitlenmiş sözleşmeleri okuyun.</h2><ul><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md">docs/architecture-v4.md · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li></ul></section><section class="closing-cta" aria-labelledby="closing-title">
+    </header>
+<main id="main-content">
+  <section class="page-hero compact page-hero--trajectory">
+    <p class="eyebrow">MESA CORE v0.8.0 · MİMARİ</p>
+    <h1>Tek kanonik kayıt. Onu bulmanın farklı yolları.</h1>
+    <p>MESA; kaynak sahipliğini, arka plan işlemeyi ve retrieval projeksiyonlarını ayırır. Sistemi dört küçük görünümle okuyun.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">01 · MANTIKSAL AKIŞ</p>
+    <h2>İşi kalıcı kabul edin; sonra işleyin.</h2>
+    
+<ol class="system-flow">
+  
+  <li>
+    <span class="flow-number">01</span>
+    <strong>Kaynak</strong>
+    <span>Tam metin, belge, revizyon, parça</span>
+  </li>
+  <li>
+    <span class="flow-number">02</span>
+    <strong>Kabul</strong>
+    <span>Kimliği doğrulanmış oturum; kalıcı mutasyon</span>
+  </li>
+  <li>
+    <span class="flow-number">03</span>
+    <strong>İşleme</strong>
+    <span>Çıkarım ve seçili doğrulama</span>
+  </li>
+  <li>
+    <span class="flow-number">04</span>
+    <strong>Projeksiyon</strong>
+    <span>SQL → vektör → çizge → COMMITTED</span>
+  </li>
+</ol>
+    <p>202, kabulü doğrular. Depolar tek ACID transaction paylaşmaz. Fencing token’lı lease, sahiplik, idempotent receipt ve reconciliation kurtarmayı destekler. Mod 0 deterministik doğrulama, mod 1 tek validator, mod 2 farklı A/B sağlayıcı-model uzlaşısı kullanır.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">02 · FİZİKSEL DEPOLAMA</p>
+    <h2>SQLite karar verir. Projeksiyonlar izler.</h2>
+    <div class="storage-grid">
+      <article><h3>SQLite</h3><p>Kanonik katalog, yetkilendirme, değişmez revizyonlar, assertion’lar, mutasyon kaydı ve artifact sahipliği. FTS5 pasaj/kanıt üzerinde sözcüksel arama sağlar.</p></article>
+      <article><h3>LanceDB</h3><p>Embedding kimliği taşıyan türetilmiş assertion vektörleri. Sorgu ve depolanan temsilin model/boyutu eşleşmelidir; sağlayıcı kullanılabilirliği çalışma anında belirlenir.</p></article>
+      <article><h3>Kùzu</h3><p>Türetilmiş Graph V2 düğümleri ve assertion kenarları. Sınırlı yollar yetkili kanonik bilgilerle uzlaşmalıdır; yalnız projeksiyon yazan adapter dolaşım yapamaz.</p></article>
+    </div>
+    <p>V4, root başına tek combined storage owner ister. V3 API/worker rolleri ile V4 ayrı root kullanmalıdır. Offline yedekleme ve yalnız ileri migration, operatör sınırını korur.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">03 · RETRIEVAL YÜRÜTMESİ</p>
+    <h2>Yetkilendir, getir, birleştir, paketle.</h2>
+    
+<ol class="system-flow">
+  
+  <li>
+    <span class="flow-number">01</span>
+    <strong>Kapsam</strong>
+    <span>Oturuma bağlı yetkili dataset’ler</span>
+  </li>
+  <li>
+    <span class="flow-number">02</span>
+    <strong>Kanallar</strong>
+    <span>Vektör · BM25 · assertion · çizge</span>
+  </li>
+  <li>
+    <span class="flow-number">03</span>
+    <strong>RRF</strong>
+    <span>Sıra katkıları; ardından hukuk yeniden sıralaması</span>
+  </li>
+  <li>
+    <span class="flow-number">04</span>
+    <strong>Bağlam</strong>
+    <span>Token bütçesi içinde tam kanıt</span>
+  </li>
+</ol>
+    <p>Uygunluk, sıra katkısından önce çözülür. Kaynak kanıtı ve çizge ispatı aday kimliğine bağlı kalır. Bağlam varsayılan olarak 2048 biçimlendirilmiş kanıt token’ıdır; boş retrieval bir önermenin yanlışlığını kanıtlamaz.</p>
+    <a class="button text" href="../retrieval/"><span>Sıralama ve sınırları inceleyin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">04 · KANIT TEMSİLİ</p>
+    <h2>İzlenebilir dayanağı olan ilişki.</h2>
+    <div class="evidence-contract">
+      <code>subject → predicate → entity / literal</code>
+      <span aria-hidden="true">↓</span>
+      <code>document → revision → chunk → evidence</code>
+      <span aria-hidden="true">↓</span>
+      <code>mutation_id · pipeline_run_id · retrieval_provenance</code>
+    </div>
+    <p>Bütün-revizyon beyan hash’i, dondurulmuş manifest hash’i ve parça içerik hash’i farklı nesneleri tanımlar. Hukuk kimliği doğrulanmış kaynak kataloğundan gelmelidir. Tenant yetkilendirme sınırıdır; agent kimliği credential yerine bağlamdır.</p>
+    <div class="actions">
+      <a class="button primary" href="../docs/core/evidence/"><span>Kanıt ve kaynak izi</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+      <a class="button secondary" href="../docs/core/security/"><span>Güvenlik ve kapsam</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section source-notes">
+    <h2>Sabitlenmiş sözleşmeleri okuyun.</h2>
+    <ul>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md">docs/architecture-v4.md · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li>
+    </ul>
+  </section>
+  <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -74,7 +176,8 @@
         <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer></main>
+    </footer>
+</main>
   <script src="../../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

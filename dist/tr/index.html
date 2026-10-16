@@ -34,6 +34,7 @@
 </head>
 <body>
 <div class="cosmic cosmic--home" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
 <a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -52,11 +53,69 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content" class="home-page">
- <section class="hero hero--home scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title"><div class="hero-copy"><p class="eyebrow">AÇIK KAYNAKLI YAPAY ZEKÂ HAFIZA ALTYAPISI</p><h1 id="home-title">Kanıtıyla birlikte yapay zekâ hafızası.</h1><p>MESA, yapay zekâ sistemleri için açık kaynaklı hafıza altyapısıdır. Bilgiyi kaynaklarına, ilişkilerine ve yetkili veri kapsamına bağlı tutar.</p><div class="actions"><a class="button primary" href="./docs/"><span>Dokümantasyonu keşfedin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub’da inceleyin</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></div></section>
- <section class="section home-problem" id="the-problem" data-home-section="problem"><div><p class="eyebrow">SORUN</p><span id="why-mesa"></span><h2>İlgili pasaj, yalnızca başlangıçtır.</h2></div><div class="home-problem__body"><p>Bir asistan eski belgede açılış saati bulur. Hangi revizyon bunu destekliyor? Güncel oturum erişim yetkisine sahip mi? Yeni revizyonun işlenmesi tamamlandı mı?</p><p>MESA; kaynak kimliğini, yetkili kapsamı ve işleme durumunu hafıza sözleşmesine taşır. Böylece uygulamalar sonucun dayanağını inceleyebilir.</p></div></section>
- <section class="section home-process" id="how-it-works" data-home-section="process"><p class="eyebrow">MESA NASIL ÇALIŞIR</p><h2>Tam kaynaktan sınırlı bağlama.</h2><ol class="system-flow"><li><span class="flow-number">01</span><strong>01 · Kaynak</strong><span>Tam metin ve kaynak kimliği</span></li><li><span class="flow-number">02</span><strong>02 · Veri alımı</strong><span>Kalıcı kabul, çıkarım ve doğrulama</span></li><li><span class="flow-number">03</span><strong>03 · Kalıcılık</strong><span>SQLite otoritesi; vektör ve çizge projeksiyonları</span></li><li><span class="flow-number">04</span><strong>04 · Retrieval</strong><span>Kapsamlı kanallar, birleştirme ve kanıt seçimi</span></li></ol><div class="home-section-actions"><a class="button text" href="./architecture/"><span>Mimariyi anlayın</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <section class="section home-example" id="mesa-in-action" data-home-section="example"><p class="eyebrow">MESA İŞ BAŞINDA · DETERMINİSTİK FIXTURE</p><h2>Tek bilgi. Dört retrieval sinyali. Görünür kaynak.</h2><p>Core deposundaki fixture, tek kanonik assertion’ı dört kanalda da ilk sıraya koyar. Gerçek SQLite ve Kùzu ile mock vektörler kullanır; anlamsal benchmark değil, sözleşme testidir.</p><div class="memory-example panel--evidence">
+    </header>
+<main id="main-content" class="home-page">
+  <section class="hero hero--home scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
+    <div class="hero-copy">
+      <p class="eyebrow">AÇIK KAYNAKLI YAPAY ZEKÂ HAFIZA ALTYAPISI</p>
+      <h1 id="home-title">Kanıtıyla birlikte yapay zekâ hafızası.</h1>
+      <p>MESA, yapay zekâ sistemleri için açık kaynaklı hafıza altyapısıdır. Bilgiyi kaynaklarına, ilişkilerine ve yetkili veri kapsamına bağlı tutar.</p>
+      <div class="actions">
+        <a class="button primary" href="./docs/"><span>Dokümantasyonu keşfedin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        <a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub’da inceleyin</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-problem" id="the-problem" data-home-section="problem">
+    <div>
+      <p class="eyebrow">SORUN</p>
+      <span id="why-mesa"></span>
+      <h2>İlgili pasaj, yalnızca başlangıçtır.</h2>
+    </div>
+    <div class="home-problem__body">
+      <p>Bir asistan eski belgede açılış saati bulur. Hangi revizyon bunu destekliyor? Güncel oturum erişim yetkisine sahip mi? Yeni revizyonun işlenmesi tamamlandı mı?</p>
+      <p>MESA; kaynak kimliğini, yetkili kapsamı ve işleme durumunu hafıza sözleşmesine taşır. Böylece uygulamalar sonucun dayanağını inceleyebilir.</p>
+    </div>
+  </section>
+
+  <section class="section home-process" id="how-it-works" data-home-section="process">
+    <p class="eyebrow">MESA NASIL ÇALIŞIR</p>
+    <h2>Tam kaynaktan sınırlı bağlama.</h2>
+    
+<ol class="system-flow">
+  
+  <li>
+    <span class="flow-number">01</span>
+    <strong>01 · Kaynak</strong>
+    <span>Tam metin ve kaynak kimliği</span>
+  </li>
+  <li>
+    <span class="flow-number">02</span>
+    <strong>02 · Veri alımı</strong>
+    <span>Kalıcı kabul, çıkarım ve doğrulama</span>
+  </li>
+  <li>
+    <span class="flow-number">03</span>
+    <strong>03 · Kalıcılık</strong>
+    <span>SQLite otoritesi; vektör ve çizge projeksiyonları</span>
+  </li>
+  <li>
+    <span class="flow-number">04</span>
+    <strong>04 · Retrieval</strong>
+    <span>Kapsamlı kanallar, birleştirme ve kanıt seçimi</span>
+  </li>
+</ol>
+    <div class="home-section-actions">
+      <a class="button text" href="./architecture/"><span>Mimariyi anlayın</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section home-example" id="mesa-in-action" data-home-section="example">
+    <p class="eyebrow">MESA İŞ BAŞINDA · DETERMINİSTİK FIXTURE</p>
+    <h2>Tek bilgi. Dört retrieval sinyali. Görünür kaynak.</h2>
+    <p>Core deposundaki fixture, tek kanonik assertion’ı dört kanalda da ilk sıraya koyar. Gerçek SQLite ve Kùzu ile mock vektörler kullanır; anlamsal benchmark değil, sözleşme testidir.</p>
+    <div class="memory-example panel--evidence">
     <div class="memory-example__query"><span class="text--meta">SORGU</span><code>“Alice”</code><span class="text--meta">Deterministik test fixture’ı</span></div>
     <div class="memory-example__body">
       <div class="memory-example__knowledge"><span class="text--meta">GERİ GETİRİLEN BİLGİ</span><p><strong>Alice</strong><span>knows</span><strong>Aurora</strong></p><p class="memory-example__identity">Bir assertion, bağlı kaldığı kaynakla birlikte.</p></div>
@@ -67,13 +126,113 @@
   object: "Aurora", source: "source-chunk-1"
 }</code></pre><p class="text--meta">Fixture alanlarının şemayla uyumlu site gösterimi; üretim bağlamı token sınırlandırılmış JSON kanıtıdır.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core testi, yayın commiti 07d387f.</span></p></details>
     <p class="memory-example__caption text--meta">Bu testte vector arama sonuçları taklit edilir. Bu, statik bir örnektir; canlı benchmark değildir.</p>
-  </div><form class="rank-calculator" data-rank-calculator><fieldset disabled><legend>Örnek sıra birleştirme · katkı veren kanalları seçin</legend><div class="rank-lanes"><label><input type="checkbox" name="vector" checked><span>Vektör</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="bm25" checked><span>BM25</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="assertion" checked><span>Assertion</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="graph" checked><span>Çizge</span><code>1 / (60 + 1)</code></label></div></fieldset><div class="rank-result"><span>RRF skoru</span><output aria-live="polite">4 / 61 = 0.065574</output></div><p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya retrieval kalitesi ölçmez.</p><noscript>Statik örnek: dört katkı 4/61 verir.</noscript></form><div class="home-section-actions"><a class="button text" href="./retrieval/"><span>Retrieval sözleşmesini okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <section class="section home-capabilities" data-home-section="capabilities"><p class="eyebrow">TEMEL YETENEKLER</p><h2>İncelenebilir ve işletilebilir hafıza.</h2><div class="editorial-rows"><article><h3>Kaynak izi</h3><p>Dönen assertion’ı belge, değişmez revizyon, parça ve destekleyen kanıt üzerinden izleyin.</p></article><article><h3>Sıralamadan önce kapsam</h3><p>Sunucunun oluşturduğu oturumlar yetkili dataset’leri sabitler. Bir kanal katkı vermeden önce tenant uygunluğu çözülür.</p></article><article><h3>Gözlemlenebilir yaşam döngüsü</h3><p>Kabul, projeksiyon ve terminal mutasyon durumunu izleyin. 202 yanıtı işin kabul edildiğini gösterir.</p></article></div></section>
- <section class="section home-ecosystem" id="ecosystem" data-home-section="ecosystem"><p class="eyebrow">MESA EKOSİSTEMİ</p><h2>Hazırlık, hafıza ve uygulama.</h2><div class="ecosystem-spine"><a href="./data/"><strong>MESA Data</strong><span>Gözden geçirilmiş Türk hukuk verisi yayınları</span></a><span aria-hidden="true">→</span><a href="./mesa/"><strong>MESA Core</strong><span>Yayımlanmış v0.8.0 · üretim NO-GO</span></a><span aria-hidden="true">→</span><a href="./law/"><strong>MESA Law</strong><span>Referans uygulama · canlı entegrasyon doğrulanmadı</span></a></div><div class="quality-rail"><a href="./qa/"><strong>MESA QA</strong><span>Davranış, kalıcılık ve yeniden başlatma testleri</span></a><a href="./certification/"><strong>E2E Certification</strong><span>Data → Core Profile B · sertifikasyon engelli</span></a></div><p>Bu, hukuk referans yoludur. Diğer kaynak hatları ve uygulamalar Core’un versioned arayüzlerini kullanabilir. Kalite araçları sistemi çalışma zamanı dışında değerlendirir.</p><div class="home-section-actions"><a class="button text" href="./ecosystem/"><span>Depo sınırlarını keşfedin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <section class="section home-explore" id="continue-exploring" data-home-section="explore"><p class="eyebrow">BAŞLAYIN · v0.8.0</p><h2>Yerelde başlayın. Sürümü açık tutun.</h2><pre tabindex="0"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
+  </div>
+    
+<form class="rank-calculator" data-rank-calculator>
+  <fieldset disabled>
+    <legend>Örnek sıra birleştirme · katkı veren kanalları seçin</legend>
+    <div class="rank-lanes">
+      
+      <label>
+        <input type="checkbox" name="vector" checked>
+        <span>Vektör</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="bm25" checked>
+        <span>BM25</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="assertion" checked>
+        <span>Assertion</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="graph" checked>
+        <span>Çizge</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+    </div>
+  </fieldset>
+  <div class="rank-result">
+    <span>RRF skoru</span>
+    <output aria-live="polite">4 / 61 = 0.065574</output>
+  </div>
+  <p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya retrieval kalitesi ölçmez.</p>
+  <noscript>Statik örnek: dört katkı 4/61 verir.</noscript>
+</form>
+    <div class="home-section-actions">
+      <a class="button text" href="./retrieval/"><span>Retrieval sözleşmesini okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section home-capabilities" data-home-section="capabilities">
+    <p class="eyebrow">TEMEL YETENEKLER</p>
+    <h2>İncelenebilir ve işletilebilir hafıza.</h2>
+    <div class="editorial-rows">
+      <article><h3>Kaynak izi</h3><p>Dönen assertion’ı belge, değişmez revizyon, parça ve destekleyen kanıt üzerinden izleyin.</p></article>
+      <article><h3>Sıralamadan önce kapsam</h3><p>Sunucunun oluşturduğu oturumlar yetkili dataset’leri sabitler. Bir kanal katkı vermeden önce tenant uygunluğu çözülür.</p></article>
+      <article><h3>Gözlemlenebilir yaşam döngüsü</h3><p>Kabul, projeksiyon ve terminal mutasyon durumunu izleyin. 202 yanıtı işin kabul edildiğini gösterir.</p></article>
+    </div>
+  </section>
+
+  <section class="section home-ecosystem" id="ecosystem" data-home-section="ecosystem">
+    <p class="eyebrow">MESA EKOSİSTEMİ</p>
+    <h2>Hazırlık, hafıza ve uygulama.</h2>
+    <div class="ecosystem-spine">
+      <a href="./data/">
+        <strong>MESA Data</strong>
+        <span>Gözden geçirilmiş Türk hukuk verisi yayınları</span>
+      </a>
+      <span aria-hidden="true">→</span>
+      <a href="./mesa/">
+        <strong>MESA Core</strong>
+        <span>Yayımlanmış v0.8.0 · üretim NO-GO</span>
+      </a>
+      <span aria-hidden="true">→</span>
+      <a href="./law/">
+        <strong>MESA Law</strong>
+        <span>Referans uygulama · canlı entegrasyon doğrulanmadı</span>
+      </a>
+    </div>
+    <div class="quality-rail">
+      <a href="./qa/">
+        <strong>MESA QA</strong>
+        <span>Davranış, kalıcılık ve yeniden başlatma testleri</span>
+      </a>
+      <a href="./certification/">
+        <strong>E2E Certification</strong>
+        <span>Data → Core Profile B · sertifikasyon engelli</span>
+      </a>
+    </div>
+    <p>Bu, hukuk referans yoludur. Diğer kaynak hatları ve uygulamalar Core’un versioned arayüzlerini kullanabilir. Kalite araçları sistemi çalışma zamanı dışında değerlendirir.</p>
+    <div class="home-section-actions">
+      <a class="button text" href="./ecosystem/"><span>Depo sınırlarını keşfedin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="section home-explore" id="continue-exploring" data-home-section="explore">
+    <p class="eyebrow">BAŞLAYIN · v0.8.0</p>
+    <h2>Yerelde başlayın. Sürümü açık tutun.</h2>
+    <pre tabindex="0"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
-uv sync --locked --extra dev</code></pre><p>İlk yerel çalıştırma için model kapalı V3 hızlı başlangıçla devam edin. Kanonik V4 yazmaları hazırlanmış çıkarım ve embedding sağlayıcıları gerektirir.</p><div class="actions"><a class="button primary" href="./docs/core/getting-started/"><span>Hızlı başlangıcı çalıştırın</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="./docs/core/examples/"><span>V4 SDK örnekleri</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
- <aside class="home-status" aria-label="Yayın ve yeterlilik"><div><p class="eyebrow">YAYIMLANMIŞ KAYNAK · YETERLİLİK SÜRÜYOR</p><p>v0.8.0, 15 Ekim 2026’da yayımlandı. Gerçek sağlayıcı provası, üretim benzeri 24 saatlik dayanıklılık çalışması ve yeni resmî sertifikasyon tamamlanmadı.</p></div><a class="button secondary" href="./status/"><span>Durum ve sınırlar</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></aside><footer class="site-footer">
+uv sync --locked --extra dev</code></pre>
+    <p>İlk yerel çalıştırma için model kapalı V3 hızlı başlangıçla devam edin. Kanonik V4 yazmaları hazırlanmış çıkarım ve embedding sağlayıcıları gerektirir.</p>
+    <div class="actions">
+      <a class="button primary" href="./docs/core/getting-started/"><span>Hızlı başlangıcı çalıştırın</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+      <a class="button secondary" href="./docs/core/examples/"><span>V4 SDK örnekleri</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <aside class="home-status" aria-label="Yayın ve yeterlilik">
+    <div>
+      <p class="eyebrow">YAYIMLANMIŞ KAYNAK · YETERLİLİK SÜRÜYOR</p>
+      <p>v0.8.0, 15 Ekim 2026’da yayımlandı. Gerçek sağlayıcı provası, üretim benzeri 24 saatlik dayanıklılık çalışması ve yeni resmî sertifikasyon tamamlanmadı.</p>
+    </div>
+    <a class="button secondary" href="./status/"><span>Durum ve sınırlar</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+  </aside>
+  <footer class="site-footer">
       <div class="footer-brand"><a class="logo" href="./" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.8.0 · V4 yayımlanmış kaynak sürümü · <a href="./status/">Durumu görüntüle →</a></p></div>
       <div class="footer-groups">
         <div><h3>Keşfet</h3><a href="./how-it-works/">Nasıl çalışır</a><a href="./use-cases/">Kullanım alanları</a><a href="./evaluation/">Değerlendirme ve güven</a><a href="./status/">Proje durumu</a></div>
@@ -83,7 +242,8 @@ uv sync --locked --extra dev</code></pre><p>İlk yerel çalıştırma için mode
         <div><h3>Proje</h3><a href="./about/">Hakkında</a><a href="./faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer></main>
+    </footer>
+</main>
   <script src="../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

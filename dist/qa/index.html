@@ -34,7 +34,8 @@
 </head>
 <body>
 <div class="cosmic cosmic--quiet" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-<a class="skip-link" href="#main-content">Skip to content</a>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -52,9 +53,62 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact page-hero--trace qa-hero"><p class="eyebrow">MESA QA</p><h1>Test the candidate.<br><em>Protect the baseline.</em></h1><p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer"><span>Repository</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">EVALUATION SCOPE</p><h2>Behavior over time,<br><em>not just unit calls.</em></h2></div></div><div class="principle-grid"><article><span>01</span><h3>Correctness</h3><p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p></article><article><span>02</span><h3>Endurance</h3><p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p></article><article><span>03</span><h3>Restart durability</h3><p>Scenarios restart candidate processes and verify that expected memory survives.</p></article></div><figure class="qa-figure" aria-hidden="true"><img src="../assets/chronometer-cycles.svg" alt="" loading="lazy" width="600" height="360"></figure></section>
-    <section class="section worktree-section"><div><p class="eyebrow">BOUNDED REPAIR</p><h2>Candidate-only changes.</h2><p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p></div><ol><li><span>1</span>Baseline checkout remains read-only</li><li><span>2</span>Dedicated candidate worktree and isolated storage</li><li><span>3</span>Pre-fix failure required before patching</li><li><span>4</span>Policy-limited diff and verification gates</li><li><span>5</span>No automatic merge or push to main</li></ol><p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.</p></section><section class="closing-cta" aria-labelledby="closing-title">
+    </header>
+    <main id="main-content">
+      <section class="page-hero compact page-hero--trace qa-hero">
+        <p class="eyebrow">MESA QA</p>
+        <h1>Test the candidate.<br><em>Protect the baseline.</em></h1>
+        <p>An external, detachable test-engineer system for long-running behavioral checks against MESA through its canonical MCP surface.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/Yasou13/MESA_QA" target="_blank" rel="noopener noreferrer"><span>Repository</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EVALUATION SCOPE</p>
+            <h2>Behavior over time,<br><em>not just unit calls.</em></h2>
+          </div>
+        </div>
+        <div class="principle-grid">
+          <article>
+            <span>01</span>
+            <h3>Correctness</h3>
+            <p>Independent SQLite ground truth judges memory results instead of asking an LLM to grade itself.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Endurance</h3>
+            <p>Profiles cover sustained remember/recall cycles, temporal updates, corrections, forgetting, and session rotation.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Restart durability</h3>
+            <p>Scenarios restart candidate processes and verify that expected memory survives.</p>
+          </article>
+        </div>
+        <figure class="qa-figure" aria-hidden="true">
+          <img src="../assets/chronometer-cycles.svg" alt="" loading="lazy" width="600" height="360">
+        </figure>
+      </section>
+
+      <section class="section worktree-section">
+        <div>
+          <p class="eyebrow">BOUNDED REPAIR</p>
+          <h2>Candidate-only changes.</h2>
+          <p>When a reproducible defect is found, QA can write a failing regression, apply a minimal repair, restart the candidate, and verify the result.</p>
+        </div>
+        <ol>
+          <li><span>1</span>Baseline checkout remains read-only</li>
+          <li><span>2</span>Dedicated candidate worktree and isolated storage</li>
+          <li><span>3</span>Pre-fix failure required before patching</li>
+          <li><span>4</span>Policy-limited diff and verification gates</li>
+          <li><span>5</span>No automatic merge or push to main</li>
+        </ol>
+        <p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.</p>
+      </section>
+      <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
@@ -72,7 +126,8 @@
         <div><h3>Project</h3><a href="../about/">About</a><a href="../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer></main>
+    </footer>
+    </main>
   <script src="../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

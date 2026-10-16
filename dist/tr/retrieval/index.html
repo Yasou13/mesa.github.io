@@ -34,6 +34,7 @@
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
 <a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -52,12 +53,92 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact page-hero--trajectory"><p class="eyebrow">MESA V4 · RETRIEVAL</p><h1>Farklı sinyaller. Tek kanıt kimliği.</h1><p>Her kanal uygun adayları farklı gerekçeyle önerir. Birleştirme sıralarını toplar; kaynak izi gerekçeleri incelenebilir tutar.</p></section>
-<section class="section"><h2>Dört kanal, dört yararlı soru.</h2><div class="editorial-rows"><article><h3>Vektör · anlamsal benzerlik</h3><p>Bu assertion sorguya yakın bir anlam taşıyor mu? Uyumlu sorgu embedding’i LanceDB assertion projeksiyonunu arar.</p></article><article><h3>BM25 · pasaj ve atıf</h3><p>Kanıt metni yararlı terimler veya kapsamlı atıf içeriyor mu? FTS5 pasajları sıralar; tam atıf araması kanal içinde katkı verir.</p></article><article><h3>Assertion · yapılandırılmış ilişki</h3><p>Subject, predicate, entity/literal object ve kanıt eşleşiyor mu? SQLite’ın sahip olduğu ilişkiler ayrı sinyal sağlar.</p></article><article><h3>Çizge · desteklenen yol</h3><p>Uygun kanonik assertion’larla desteklenen sınırlı ilişki yolu var mı? Yollar destekleyen kimlikleri ve yönü korur.</p></article></div></section>
-<section class="section"><p class="eyebrow">RECIPROCAL RANK FUSION</p><h2>Sıralar birleşir; ham skorlar ayrı kalır.</h2><pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
-k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre><p>Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; retrieval motorunun tamamını simüle etmez.</p><form class="rank-calculator" data-rank-calculator><fieldset disabled><legend>Örnek sıra birleştirme · katkı veren kanalları seçin</legend><div class="rank-lanes"><label><input type="checkbox" name="vector" checked><span>Vektör</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="bm25" checked><span>BM25</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="assertion" checked><span>Assertion</span><code>1 / (60 + 1)</code></label><label><input type="checkbox" name="graph" checked><span>Çizge</span><code>1 / (60 + 1)</code></label></div></fieldset><div class="rank-result"><span>RRF skoru</span><output aria-live="polite">4 / 61 = 0.065574</output></div><p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya retrieval kalitesi ölçmez.</p><noscript>Statik örnek: dört katkı 4/61 verir.</noscript></form><p>Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; assertion tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.</p><p>Yanıtlar rrf_score, legal_factor, raw_score ve final_score alanlarını ayrı sunar. Daha yüksek birleştirilmiş uygunluk daha iyidir; bu alanların hiçbiri doğruluk olasılığı değildir.</p></section>
-<section class="section"><h2>Sınırlar sözleşmenin parçasıdır.</h2><div class="editorial-rows"><article><h3>Çizge kaynakları</h3><p>En fazla 20 başlangıç, 3 hop ve 500 istenen graph hit; frontier 64, düğüm başına fan-out 32, varsayılan istek zaman aşımı 15 saniye. PageRank yalnız telemetridir. Bu sınırlar gecikme veya tamlık garantilemez.</p></article><article><h3>Bağlam paketleme</h3><p>Varsayılan 2048 token bütçesi, modelin göreceği biçimlendirilmiş kanıtı cl100k_base ile sayar. BPE yüklenemezse muhafazakâr UTF-8 bayt üst sınırı daha az kanıt sığdırabilir. Tam çizge ispatı atomik sığmalıdır.</p></article><article><h3>Adaptive bağlam · isteğe bağlı</h3><p>Varsayılan tek sorgudur. Adaptive mod, Q0 boşsa veya ilk üçte iki-kanal desteği yoksa tetiklenir; en fazla bir planlayıcı ve iki genişletme aynı kapsamı korur. Dış birleştirme ağırlıkları Q0=1.0 ve Q1/Q2=0.5’tir. Hata Q0’ı korur.</p></article><article><h3>Çalışma anında kullanılabilirlik</h3><p>Capability bayrakları çalışır desteği tanımlar. Yapılandırılmış vektör/çizge backend’inin beklenen hatası açık 503 döndürür. Yalnız projeksiyon yazan çizge adapter’ları komşu dolaşımı bildirmez.</p></article></div></section>
-<section class="section source-notes"><h2>Uygulamayı inceleyin.</h2><ul><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 07d387f</a></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_memory/context_builder.py">mesa_memory/context_builder.py · 07d387f</a></li></ul><div class="actions"><a class="button primary" href="../docs/core/api-reference/"><span>API yanıt referansı</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../docs/core/graph/"><span>Çizge ve kaynak izi</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section><section class="closing-cta" aria-labelledby="closing-title">
+    </header>
+<main id="main-content">
+  <section class="page-hero compact page-hero--trajectory">
+    <p class="eyebrow">MESA V4 · RETRIEVAL</p>
+    <h1>Farklı sinyaller. Tek kanıt kimliği.</h1>
+    <p>Her kanal uygun adayları farklı gerekçeyle önerir. Birleştirme sıralarını toplar; kaynak izi gerekçeleri incelenebilir tutar.</p>
+  </section>
+
+  <section class="section">
+    <h2>Dört kanal, dört yararlı soru.</h2>
+    <div class="editorial-rows">
+      <article><h3>Vektör · anlamsal benzerlik</h3><p>Bu assertion sorguya yakın bir anlam taşıyor mu? Uyumlu sorgu embedding’i LanceDB assertion projeksiyonunu arar.</p></article>
+      <article><h3>BM25 · pasaj ve atıf</h3><p>Kanıt metni yararlı terimler veya kapsamlı atıf içeriyor mu? FTS5 pasajları sıralar; tam atıf araması kanal içinde katkı verir.</p></article>
+      <article><h3>Assertion · yapılandırılmış ilişki</h3><p>Subject, predicate, entity/literal object ve kanıt eşleşiyor mu? SQLite’ın sahip olduğu ilişkiler ayrı sinyal sağlar.</p></article>
+      <article><h3>Çizge · desteklenen yol</h3><p>Uygun kanonik assertion’larla desteklenen sınırlı ilişki yolu var mı? Yollar destekleyen kimlikleri ve yönü korur.</p></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">RECIPROCAL RANK FUSION</p>
+    <h2>Sıralar birleşir; ham skorlar ayrı kalır.</h2>
+    <pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
+k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
+    <p>Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; retrieval motorunun tamamını simüle etmez.</p>
+    
+<form class="rank-calculator" data-rank-calculator>
+  <fieldset disabled>
+    <legend>Örnek sıra birleştirme · katkı veren kanalları seçin</legend>
+    <div class="rank-lanes">
+      
+      <label>
+        <input type="checkbox" name="vector" checked>
+        <span>Vektör</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="bm25" checked>
+        <span>BM25</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="assertion" checked>
+        <span>Assertion</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+      <label>
+        <input type="checkbox" name="graph" checked>
+        <span>Çizge</span>
+        <code>1 / (60 + 1)</code>
+      </label>
+    </div>
+  </fieldset>
+  <div class="rank-result">
+    <span>RRF skoru</span>
+    <output aria-live="polite">4 / 61 = 0.065574</output>
+  </div>
+  <p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya retrieval kalitesi ölçmez.</p>
+  <noscript>Statik örnek: dört katkı 4/61 verir.</noscript>
+</form>
+    <p>Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; assertion tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.</p>
+    <p>Yanıtlar rrf_score, legal_factor, raw_score ve final_score alanlarını ayrı sunar. Daha yüksek birleştirilmiş uygunluk daha iyidir; bu alanların hiçbiri doğruluk olasılığı değildir.</p>
+  </section>
+
+  <section class="section">
+    <h2>Sınırlar sözleşmenin parçasıdır.</h2>
+    <div class="editorial-rows">
+      <article><h3>Çizge kaynakları</h3><p>En fazla 20 başlangıç, 3 hop ve 500 istenen graph hit; frontier 64, düğüm başına fan-out 32, varsayılan istek zaman aşımı 15 saniye. PageRank yalnız telemetridir. Bu sınırlar gecikme veya tamlık garantilemez.</p></article>
+      <article><h3>Bağlam paketleme</h3><p>Varsayılan 2048 token bütçesi, modelin göreceği biçimlendirilmiş kanıtı cl100k_base ile sayar. BPE yüklenemezse muhafazakâr UTF-8 bayt üst sınırı daha az kanıt sığdırabilir. Tam çizge ispatı atomik sığmalıdır.</p></article>
+      <article><h3>Adaptive bağlam · isteğe bağlı</h3><p>Varsayılan tek sorgudur. Adaptive mod, Q0 boşsa veya ilk üçte iki-kanal desteği yoksa tetiklenir; en fazla bir planlayıcı ve iki genişletme aynı kapsamı korur. Dış birleştirme ağırlıkları Q0=1.0 ve Q1/Q2=0.5’tir. Hata Q0’ı korur.</p></article>
+      <article><h3>Çalışma anında kullanılabilirlik</h3><p>Capability bayrakları çalışır desteği tanımlar. Yapılandırılmış vektör/çizge backend’inin beklenen hatası açık 503 döndürür. Yalnız projeksiyon yazan çizge adapter’ları komşu dolaşımı bildirmez.</p></article>
+    </div>
+  </section>
+
+  <section class="section source-notes">
+    <h2>Uygulamayı inceleyin.</h2>
+    <ul>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/mesa_memory/context_builder.py">mesa_memory/context_builder.py · 07d387f</a></li>
+    </ul>
+    <div class="actions">
+      <a class="button primary" href="../docs/core/api-reference/"><span>API yanıt referansı</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+      <a class="button secondary" href="../docs/core/graph/"><span>Çizge ve kaynak izi</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+  <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -75,7 +156,8 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre><p>Tekrarlanan aday 
         <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer></main>
+    </footer>
+</main>
   <script src="../../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

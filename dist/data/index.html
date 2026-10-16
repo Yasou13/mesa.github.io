@@ -34,7 +34,8 @@
 </head>
 <body>
 <div class="cosmic cosmic--data" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-<a class="skip-link" href="#main-content">Skip to content</a>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -52,9 +53,81 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header><main id="main-content"><section class="page-hero compact page-hero--archive data-accent"><p class="eyebrow">MESA DATA</p><h1>Legal data with an<br><em>auditable release path.</em></h1><p>MESA Data is specifically a Turkish legal-data platform. It is not presented as a universal ingestion service.</p><div class="actions"><a class="button primary" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer"><span>Repository</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA_Data/blob/main/docs/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener noreferrer"><span>Usage guide</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div></section>
-    <section class="section"><div class="section-heading"><div><p class="eyebrow">CONFIGURED SOURCES</p><h2>Official sources,<br><em>policy-bound access.</em></h2></div><p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p></div><div class="source-table" role="table" aria-label="MESA Data configured sources"><div role="row"><strong role="columnheader">Source</strong><strong role="columnheader">Mode</strong><strong role="columnheader">State</strong><strong role="columnheader">Role</strong></div><div role="row"><span role="cell">Resmî Gazete</span><span role="cell">Approved web</span><span role="cell" class="ok">Enabled</span><span role="cell">Original publication</span></div><div role="row"><span role="cell">Mevzuat Bilgi Sistemi</span><span role="cell">Manual</span><span role="cell" class="ok">Enabled</span><span role="cell">Consolidated text</span></div><div role="row"><span role="cell">Anayasa Mahkemesi</span><span role="cell">Manual</span><span role="cell" class="ok">Enabled</span><span role="cell">Official case law</span></div><div role="row"><span role="cell">Yargıtay</span><span role="cell">Manual</span><span role="cell" class="muted">Disabled</span><span role="cell">Official case law</span></div></div><figure class="data-figure" aria-hidden="true"><img src="../assets/stratigraphy-layers.svg" alt="" loading="lazy" width="600" height="380"></figure></section>
-    <section class="section pipeline-section"><p class="eyebrow">RELEASE PIPELINE</p><h2>Raw bytes remain traceable.</h2><div class="pipeline"><div><span>01</span><strong>Collect</strong><small>Allowlisted HTTPS or manual file</small></div><div><span>02</span><strong>Preserve</strong><small>Immutable raw artifact + SHA-256</small></div><div><span>03</span><strong>Canonicalize</strong><small>Versioned canonical JSONL</small></div><div><span>04</span><strong>Gate</strong><small>Quality, privacy, legal metadata</small></div><div><span>05</span><strong>Review</strong><small>Safe auto-approval or human exception</small></div><div><span>06</span><strong>Release</strong><small>Build, verify, freeze, human approval</small></div><div><span>07</span><strong>Publish</strong><small>Human-started, idempotent MESA delivery</small></div></div><div class="notice"><strong>Human boundary</strong><p>MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.</p></div></section><section class="closing-cta" aria-labelledby="closing-title">
+    </header>
+    <main id="main-content">
+      <section class="page-hero compact page-hero--archive data-accent">
+        <p class="eyebrow">MESA DATA</p>
+        <h1>Legal data with an<br><em>auditable release path.</em></h1>
+        <p>MESA Data is specifically a Turkish legal-data platform. It is not presented as a universal ingestion service.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer"><span>Repository</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+          <a class="button secondary" href="https://github.com/Yasou13/MESA_Data/blob/main/docs/KULLANIM_KILAVUZU.md" target="_blank" rel="noopener noreferrer"><span>Usage guide</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONFIGURED SOURCES</p>
+            <h2>Official sources,<br><em>policy-bound access.</em></h2>
+          </div>
+          <p>The current configuration enables Resmî Gazete discovery and manual collection from Mevzuat and the Constitutional Court. Yargıtay is configured but disabled.</p>
+        </div>
+        <div class="source-table" role="table" aria-label="MESA Data configured sources">
+          <div role="row">
+            <strong role="columnheader">Source</strong>
+            <strong role="columnheader">Mode</strong>
+            <strong role="columnheader">State</strong>
+            <strong role="columnheader">Role</strong>
+          </div>
+          <div role="row">
+            <span role="cell">Resmî Gazete</span>
+            <span role="cell">Approved web</span>
+            <span role="cell" class="ok">Enabled</span>
+            <span role="cell">Original publication</span>
+          </div>
+          <div role="row">
+            <span role="cell">Mevzuat Bilgi Sistemi</span>
+            <span role="cell">Manual</span>
+            <span role="cell" class="ok">Enabled</span>
+            <span role="cell">Consolidated text</span>
+          </div>
+          <div role="row">
+            <span role="cell">Anayasa Mahkemesi</span>
+            <span role="cell">Manual</span>
+            <span role="cell" class="ok">Enabled</span>
+            <span role="cell">Official case law</span>
+          </div>
+          <div role="row">
+            <span role="cell">Yargıtay</span>
+            <span role="cell">Manual</span>
+            <span role="cell" class="muted">Disabled</span>
+            <span role="cell">Official case law</span>
+          </div>
+        </div>
+        <figure class="data-figure" aria-hidden="true">
+          <img src="../assets/stratigraphy-layers.svg" alt="" loading="lazy" width="600" height="380">
+        </figure>
+      </section>
+
+      <section class="section pipeline-section">
+        <p class="eyebrow">RELEASE PIPELINE</p>
+        <h2>Raw bytes remain traceable.</h2>
+        <div class="pipeline">
+          <div><span>01</span><strong>Collect</strong><small>Allowlisted HTTPS or manual file</small></div>
+          <div><span>02</span><strong>Preserve</strong><small>Immutable raw artifact + SHA-256</small></div>
+          <div><span>03</span><strong>Canonicalize</strong><small>Versioned canonical JSONL</small></div>
+          <div><span>04</span><strong>Gate</strong><small>Quality, privacy, legal metadata</small></div>
+          <div><span>05</span><strong>Review</strong><small>Safe auto-approval or human exception</small></div>
+          <div><span>06</span><strong>Release</strong><small>Build, verify, freeze, human approval</small></div>
+          <div><span>07</span><strong>Publish</strong><small>Human-started, idempotent MESA delivery</small></div>
+        </div>
+        <div class="notice">
+          <strong>Human boundary</strong>
+          <p>MESA delivery never starts automatically. Local staging is a development tool and is not the real MESA publisher.</p>
+        </div>
+      </section>
+      <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
@@ -72,7 +145,8 @@
         <div><h3>Project</h3><a href="../about/">About</a><a href="../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer></main>
+    </footer>
+    </main>
   <script src="../app.js?v=7ab053b9ea58"></script>
 </body>
 </html>

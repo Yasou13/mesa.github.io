@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme — MESA Learn</title>
+  <meta name="description" content="Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık sorul">
+  <meta name="theme-color" content="#050508">
+  <link rel="canonical" href="https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/">
+  <meta property="og:title" content="Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme — MESA Learn">
+  <meta property="og:description" content="Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık sorul">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme — MESA Learn">
+  <meta name="twitter:description" content="Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık sorul">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık sorul"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık sorul","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"LEARN","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme","item":"https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/"}]},{"@type":"Article","headline":"Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme","description":"Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık sorul","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"multi-hop, reasoning, knowledge-graph, traversal"}]}</script>
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=97baa5b93d52">
+  <link rel="stylesheet" href="../../../cosmic.css?v=336ad18742b2">
+  <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+
+    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a href="../../how-it-works/">Nasıl çalışır</a><a href="../../ecosystem/">Ekosistem</a><a href="../../architecture/">Mimari</a><a class="active" aria-current="page" href="../../resources/">Kaynaklar</a><a href="../../docs/">Dokümanlar</a>
+          <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><span>Ara</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../learn/multi-hop-reasoning-over-knowledge-graphs/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../learn/multi-hop-reasoning-over-knowledge-graphs/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content">
+      <nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">LEARN</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme</span></li></ol></nav>
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">Learn · Memory &amp; Retrieval</p>
+          <h1>Yapılandırılmış bilgi grafikleri üzerinde deterministik çok sekmeli muhakeme</h1>
+          <p class="article-subtitle">Kurumsal verilerde örtük olgu zincirlerini ortaya çıkarmak için ilişki yollarının gezilmesi</p>
+          <p class="article-summary">Çok sekmeli (multi-hop) muhakeme, birden fazla varlık arasındaki bağlantılı graph kenarlarını gezerek düz metin parçalarının yanıtlayamadığı karmaşık soruları çözer.</p>
+          <dl class="article-byline">
+            <div>
+              <dt>Yayın</dt>
+              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
+            </div>
+            <div>
+              <dt>Güncelleme</dt>
+              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
+            </div>
+            <div>
+              <dt>Yazar</dt>
+              <dd>MESA contributors</dd>
+            </div>
+            <div>
+              <dt>Okuma süresi</dt>
+              <dd>8 dakika</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          
+    <nav class="article-toc" aria-label="Bu sayfada">
+      <strong>Bu sayfada</strong>
+      <ol>
+        <li><a href="#architectural-dilemma">Tek parça sınırının yetersizliği</a></li><li><a href="#engineering-trade-offs">Mühendislik ödünleşimlerinin karşılaştırması</a></li><li><a href="#core-mechanisms">Cypher'da değişken uzunluklu yol ifadeleri</a></li><li><a href="#mesa-implementation">MESA Core'da çok sekmeli gezinim</a></li><li><a href="#references">Kaynaklar</a></li>
+      </ol>
+    </nav>
+          <div class="article-body">
+            <div class="short-answer"><strong>Kısa yanıt</strong><p>Çok sekmeli muhakeme, varlıklar arasındaki açık graph yollarını izleyerek olasılıksal tahminler yerine doğrulanabilir ilişkisel gezinim sağlar.</p></div>
+            
+            
+    <section id="architectural-dilemma" class="article-section">
+      <h2>Tek parça sınırının yetersizliği<a class="heading-anchor" href="#architectural-dilemma" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Standart RAG belgeleri bağımsız parçalara (örn. 500 token) böler. Bir cevap Belge A'daki 1. Olgu ile Belge B'deki 2. Olgunun ve Belge C'deki 3. Olgunun birleşimini gerektirdiğinde, hiçbir tek parça sorguyu karşılayamaz ve vektör arama yetersiz kalır.</p><div class="article-callout warning"><strong>Çağrışımsal Körlük Riski</strong><p>Vektör benzerliği geçişli mantığı doğrulayamaz: A'nın B ile, B'nin de C ile ilgili olduğunu bilmek, A ile C arasında belirli bir sözleşmesel bağ bulunduğunu kanıtlamaz.</p></div>
+    </section>
+    <section id="engineering-trade-offs" class="article-section">
+      <h2>Mühendislik ödünleşimlerinin karşılaştırması<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <div class="table-scroll"><table><thead><tr><th scope="col">Boyut</th><th scope="col">Düz Vektör RAG</th><th scope="col">Çok Sekmeli Bilgi Grafiği</th></tr></thead><tbody><tr><th scope="row">Yol Keşfi</th><td>İmkânsız: metin parçaları birbirinden kopuktur</td><td>Deterministik: Cypher/SPARQL yol genişletmesi</td></tr><tr><th scope="row">Geçişli Mantık Zinciri</th><td>Modelin metinler arasında tahmin yürütmesine dayanır</td><td>Kesin: <code>(A)-[:ORTAK]-&gt;(B)-[:SAHIP]-&gt;(C)</code> doğrulaması</td></tr><tr><th scope="row">Ara Adım Doğrulaması</th><td>Yok: model ara kontrol yapmadan sentezler</td><td>Her sekmede varlık kimliği ve kenar doğrulanır</td></tr><tr><th scope="row">Sekme Sınır Denetimi</th><td>Sınırsız / kontrolsüz</td><td>Yapılandırılabilir gezinim çapı (örn. max_depth=3)</td></tr><tr><th scope="row">Denetim İzi</th><td>Belirsiz metin benzerliği skoru</td><td>Adım adım yol denetim raporu</td></tr></tbody></table></div>
+    </section>
+    <section id="core-mechanisms" class="article-section">
+      <h2>Cypher'da değişken uzunluklu yol ifadeleri<a class="heading-anchor" href="#core-mechanisms" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Graph sorgu dilleri sınırlı yol kalıpları tanımlar: <code>MATCH p = (baslangic:Varlik {id: $id})-[:BAG*1..3]-&gt;(hedef:Varlik)</code>. Gezinim, her adımın yetkilendirme ve durum kısıtlarını sağladığını kontrol eder.</p><pre tabindex="0" class="article-code"><code>// Cypher içinde sınırlı çok sekmeli gezinim
+MATCH yol = (calisan:Kisi {id: 'calisan_98'})-[:RAPOR_VERIR*1..3]-&gt;(yonetici:Kisi)
+WHERE yonetici.unvan = 'YONETIM_KURULU_UYESI'
+RETURN [dugum in nodes(yol) | dugum.ad] AS hiyerarsi_zinciri;</code></pre>
+    </section>
+    <section id="mesa-implementation" class="article-section">
+      <h2>MESA Core'da çok sekmeli gezinim<a class="heading-anchor" href="#mesa-implementation" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>MESA Core kanonik SQLite assertion'larını Kùzu özellik grafiklerine projekte eder. Çok sekmeli ilişkisel keşif gerektiğinde MESA süreç içi Cypher sorgularını çalıştırır ve destekleyici metin aralıklarıyla doğrulanmış varlık yollarını döndürür.</p><ul class="article-checklist"><li>Varlıklar ve tipli ilişkiler kanonik assertion üçlüleri olarak saklanır.</li><li>Süreç içi Kùzu motoru çok sekmeli Cypher sorgularını mikrosaniyelerde yürütür.</li><li>Gezinimler üssel genişlemeyi önlemek için maksimum derinlik sınırı uygular.</li><li>Dönen yollar her ara varlığı eksiksiz provenance bilgisiyle listeler.</li></ul>
+    </section>
+    <section id="references" class="article-section">
+      <h2>Kaynaklar<a class="heading-anchor" href="#references" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ol class="reference-list"><li><a class="" href="https://dl.acm.org/doi/10.1145/3104031" target="_blank" rel="noopener noreferrer"><span>Angles vd. (2017) — Foundations of Modern Query Languages for Graph Databases (ACM Computing Surveys)</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://mesamemory.dev/how-it-works/" target="_blank" rel="noopener noreferrer"><span>MESA Bağımsız Retrieval Denetimi ve Test Senaryoları</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
+    </section>
+          </div>
+        </div>
+        
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
+      <h2 id="related-title">Kanıt ağı içinde ilerleyin.</h2>
+      <div class="publication-grid">
+        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">AI Memory Nedir?</a></h3><p>AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller</a></h3><p>Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler.</p><div><span>9 dk okuma</span><a href="../../learn/hybrid-retrieval-explained/">Oku<span aria-hidden="true"> →</span></a></div></article>
+      </div>
+    </section>
+        
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
+          <h2>Provenance yaklaşımının MESA Law örneğini görün.</h2>
+          <p>Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.</p>
+        </div>
+        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
+      </div>
+      </article>
+      <section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
+        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
+        <p>MESA v0.8.0 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
+        <div class="actions"><a class="button primary" href="../../docs/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.8.0 · V4 yayımlanmış kaynak sürümü · <a href="../../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Keşfet</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../use-cases/">Kullanım alanları</a><a href="../../evaluation/">Değerlendirme ve güven</a><a href="../../status/">Proje durumu</a></div>
+        <div><h3>Ekosistem</h3><a href="../../mesa/">MESA Core</a><a href="../../data/">MESA Data</a><a href="../../qa/">MESA QA</a><a href="../../certification/">E2E Certification</a><a href="../../law/">MESA Law</a></div>
+        <div><h3>Kaynaklar</h3><a href="../../learn/">Öğren</a><a href="../../research/">Araştırma</a><a href="../../guides/">Rehberler</a><a href="../../glossary/">Sözlük</a><a href="../../methodology/">Metodoloji</a></div>
+        <div><h3>Dokümantasyon</h3><a href="../../docs/core/getting-started/">Hızlı başlangıç</a><a href="../../architecture/">Mimari</a><a href="../../retrieval/">Retrieval</a><a href="../../docs/core/security/">Güvenlik</a><a href="../../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
+    </footer>
+    </main>
+  <script src="../../../app.js?v=7ab053b9ea58"></script>
+</body>
+</html>
