@@ -1,0 +1,28 @@
+/* Shared atmosphere. Geometry stays static; only a small light layer may breathe. */
+body { isolation: isolate; }
+.cosmic { --cosmic-strength: .7; position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: linear-gradient(145deg, #050508 18%, #080d17 66%, #050508); }
+.cosmic__field { display: block; width: 100%; height: 100%; opacity: var(--cosmic-strength); }
+.cosmic--home { --cosmic-strength: 1; }
+.cosmic--data { --cosmic-strength: .8; }
+.cosmic--data .cosmic__field { transform: scaleX(-1); }
+.cosmic--ecosystem { --cosmic-strength: .65; }
+.cosmic--law, .cosmic--admin { --cosmic-strength: .5; }
+.cosmic--quiet { --cosmic-strength: .3; }
+.cosmic--reading { --cosmic-strength: .26; }
+.cosmic__breath { position: absolute; right: 6%; top: 25%; width: 240px; height: 180px; background: radial-gradient(ellipse, #8ea5ae0d, transparent 70%); opacity: .35; }
+@media (min-width: 801px) and (prefers-reduced-motion: no-preference) {
+  html[data-cosmic-motion="on"] .cosmic--home .cosmic__breath,
+  html[data-cosmic-motion="on"] .cosmic--core .cosmic__breath,
+  html[data-cosmic-motion="on"] .cosmic--data .cosmic__breath { animation: cosmic-light 32s ease-in-out infinite alternate; }
+}
+@keyframes cosmic-light { to { opacity: .7; } }
+@media (max-width: 800px) {
+  .cosmic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #050508b8, #05050880 60%, #0505081a); }
+  /* Recompose the full field for a tall viewport, rather than cropping landscape. */
+  .cosmic__field { width: 170%; height: 72%; margin-left: -36%; margin-top: 23vh; opacity: calc(var(--cosmic-strength) * .7); }
+  .cosmic__field > g { transform: translate(-200px, 60px) rotate(-18deg); transform-origin: 75% 50%; }
+  .cosmic__stars circle:nth-child(2n), .cosmic__breath { display: none; }
+  .cosmic__field g[filter] { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .cosmic__breath { display: none; } }
+@media print { .cosmic { display: none; } }
