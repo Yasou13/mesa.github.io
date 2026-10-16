@@ -46,17 +46,13 @@ document.querySelectorAll('.heading-anchor').forEach((link) => {
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saveData = navigator.connection?.saveData === true;
 
-document.querySelectorAll('.scene-media__video').forEach((video) => {
-  const layer = video.closest('.scene-media');
-  video.addEventListener('error', () => layer?.setAttribute('data-media-state', 'error'));
-  video.addEventListener('canplay', () => layer?.setAttribute('data-media-state', 'ready'));
-  if (reduceMotion || saveData) {
-    video.pause();
-    layer?.setAttribute('data-media-state', reduceMotion ? 'reduced-motion' : 'save-data');
-    return;
-  }
-  video.play().catch(() => layer?.setAttribute('data-media-state', 'paused'));
-});
+const cosmicPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+function updateCosmicMotion() {
+  document.documentElement.dataset.cosmicMotion = !document.hidden && !cosmicPreference.matches && !saveData ? 'on' : 'off';
+}
+document.addEventListener('visibilitychange', updateCosmicMotion);
+cosmicPreference.addEventListener('change', updateCosmicMotion);
+updateCosmicMotion();
 
 /* ====================================================================
    MESA Static Search Modal & Documentation Sidebar

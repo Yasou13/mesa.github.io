@@ -1,4 +1,5 @@
 // Fail closed until the authenticated CMS and publication backend exist.
+import { cosmicEnvironment } from './cosmic.mjs';
 import { escapeHtml } from './markdown_engine.mjs';
 
 export function renderAdminPage({ assetBase = '../', language = 'en' } = {}) {
@@ -14,8 +15,10 @@ export function renderAdminPage({ assetBase = '../', language = 'en' } = {}) {
   <title>${title}</title>
   <link rel="icon" href="${escapeHtml(assetBase)}assets/mesa-logo.png" type="image/png">
   <link rel="stylesheet" href="${escapeHtml(assetBase)}styles.css">
+  <link rel="stylesheet" href="${escapeHtml(assetBase)}cosmic.css">
 </head>
 <body>
+${cosmicEnvironment('admin')}
 <main id="main-content" class="knowledge-article">
   <header class="article-header">
     <p class="eyebrow">MESA · ${tr ? 'YÖNETİM DURUMU' : 'ADMIN STATUS'}</p>

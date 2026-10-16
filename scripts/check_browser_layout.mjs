@@ -31,7 +31,7 @@ const routes = [
 const docsManifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/docs/manifest.json'), 'utf8'));
 routes.push(...getAllDocRoutes().map(item => item.path));
 const localizedRoutes = routes.flatMap((routePath) => [routePath, `tr/${routePath}`]);
-const widths = [320, 390, 768, 799, 800, 801, 1024, 1099, 1100, 1101, 1440, 1920];
+const widths = [320, 360, 390, 430, 768, 799, 800, 801, 1024, 1099, 1100, 1101, 1440, 1920];
 const failures = [];
 const observations = [];
 const fallbackChecks = [];
@@ -123,11 +123,11 @@ async function navigate(url) {
   await waitForPage(url, previous.result.value);
 }
 
-async function inspect(routePath, width) {
+async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
   const url = new URL(routePath, baseUrl).toString();
   await connection.send('Emulation.setDeviceMetricsOverride', {
     width,
-    height: width <= 520 ? 844 : 1000,
+    height,
     deviceScaleFactor: 1,
     mobile: false,
   });
@@ -142,6 +142,7 @@ async function inspect(routePath, width) {
       const heroImage = hero?.querySelector('picture img');
       return {
         title: document.title,
+        cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('svg'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
         docsBreadcrumbTop: document.querySelector('.docs-breadcrumbs')?.getBoundingClientRect().top ?? null,
         docsToggleBottom: document.querySelector('.docs-navigation summary')?.getBoundingClientRect().bottom ?? null,
         language: root.lang,
@@ -171,6 +172,7 @@ async function inspect(routePath, width) {
   state.heroNetwork = connection.requests.filter(entry => entry.loaderId === connection.loaderId && /hero(?:-portrait)?\.webp/.test(entry.request.url)).map(entry => ({ url: entry.request.url, initiator: entry.initiator }));
   observations.push({ route: routePath, width, ...state });
   const label = `/${routePath} @ ${width}px`;
+  if (state.cosmic.count !== 1 || state.cosmic.pointer !== 'none' || !(Number(state.cosmic.opacity) > 0) || !(state.cosmic.height > 0)) failures.push(`${label}: shared atmosphere missing or interfering`);
   if (!state.title) failures.push(`${label}: missing title`);
   if (state.mainCount !== 1) failures.push(`${label}: main count ${state.mainCount}`);
   if (state.h1Count !== 1) failures.push(`${label}: h1 count ${state.h1Count}`);
@@ -181,16 +183,7 @@ async function inspect(routePath, width) {
     if (JSON.stringify(state.homeSections) !== JSON.stringify(requiredHomeSections)) failures.push(`${label}: homepage section order ${state.homeSections.join(', ')}`);
     if (JSON.stringify(state.scenes) !== JSON.stringify(requiredScenes)) failures.push(`${label}: scene order ${state.scenes.join(', ')}`);
     if (state.mediaLayers.some(({ hidden }) => hidden !== 'true')) failures.push(`${label}: interactive media layer`);
-    const heroSuffix = width <= 800 ? '/media/mobile/hero-portrait.webp' : '/media/desktop/hero.webp';
-    if (!state.heroImage?.src.endsWith(heroSuffix) || state.heroImage.loading !== 'eager' || state.heroImage.priority !== 'high') {
-      failures.push(`${label}: incorrect responsive hero source or loading priority`);
-    }
-    const selectedRequest = state.heroRequests.some(url => url.endsWith(heroSuffix));
-    const extraTransfer = state.heroTransfers.some(entry => !entry.url.endsWith(heroSuffix) && entry.transfer > 0);
-    if (!selectedRequest || extraTransfer || (!warmCache && state.heroRequests.length !== 1)) {
-      failures.push(`${label}: duplicate or incorrect hero requests`);
-      console.error(JSON.stringify({ label, requests: state.heroNetwork }));
-    }
+    if (state.heroRequests.length || state.heroImage) failures.push(`${label}: retired bitmap hero requested`);
     if (state.layoutShift > .1) failures.push(`${label}: load-time layout shift ${state.layoutShift}`);
     if (width === 390) {
       if (state.fixtureTop === null || state.fixtureTop > 1800) failures.push(`${label}: fixture starts too late (${state.fixtureTop}px)`);
@@ -198,10 +191,10 @@ async function inspect(routePath, width) {
       if (state.height > heightBudget) failures.push(`${label}: homepage exceeds ${heightBudget}px (${state.height}px)`);
     }
   }
-  const samplePages = ['architecture/', 'retrieval/', 'docs/core/getting-started/', 'mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
+  const samplePages = ['data/', 'ecosystem/', 'qa/', 'certification/', 'admin/', 'learn/', 'architecture/', 'retrieval/', 'docs/core/getting-started/', 'mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
   const unlocalized = routePath.replace(/^tr\//, '');
   if (screenshotsDirectory && (unlocalized === '' || (samplePages.includes(unlocalized) && [390, 1440].includes(width)))) {
-    const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}`;
+    const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}${height === 430 ? '-landscape' : ''}`;
     const screenshot = await connection.send('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.join(screenshotsDirectory, `${stem}.png`), Buffer.from(screenshot.data, 'base64'));
     if (unlocalized === '' && [390, 1440].includes(width)) {
@@ -255,45 +248,11 @@ async function checkMemoryDisclosure(routePath) {
 }
 
 async function checkHeroFallbacks(routePath) {
-  const url = new URL(routePath, baseUrl).toString();
-  await connection.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: false });
-  await connection.send('Network.setBlockedURLs', { urls: ['*media/desktop/hero.webp', '*media/mobile/hero-portrait.webp'] });
-  await navigate(url);
-  const failed = await connection.send('Runtime.evaluate', {
-    expression: `(() => {
-      const hero = document.querySelector('.hero');
-      const copy = hero.querySelector('.hero-copy');
-      const image = hero.querySelector('picture img');
-      return {
-        imageFailed: image.complete && image.naturalWidth === 0,
-        copyVisible: copy.getBoundingClientRect().width > 0 && getComputedStyle(copy).visibility === 'visible',
-        actions: [...copy.querySelectorAll('.button')].every(link => link.getBoundingClientRect().height >= 44 && link.href),
-        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-      };
-    })()`, returnByValue: true,
-  });
-  if (!failed.result.value?.imageFailed || !failed.result.value?.copyVisible || !failed.result.value?.actions || failed.result.value.overflow > 1) {
-    failures.push(`/${routePath}: failed hero image blocked content or actions`);
-  }
-  if (screenshotsDirectory) {
-    const shot = await connection.send('Page.captureScreenshot', { format: 'png' });
-    fs.writeFileSync(path.join(screenshotsDirectory, `${routePath ? 'tr' : 'home'}-390-image-failure.png`), Buffer.from(shot.data, 'base64'));
-  }
-  await connection.send('Network.setBlockedURLs', { urls: [] });
   await connection.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
-  await navigate(url);
-  const reduced = await connection.send('Runtime.evaluate', {
-    expression: `({
-      reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
-      scroll: getComputedStyle(document.documentElement).scrollBehavior,
-      moving: document.getAnimations().filter(animation => animation.playState === 'running' && animation.effect.getTiming().duration > 1).length,
-      heroDecoded: document.querySelector('.hero picture img').naturalWidth > 0,
-    })`, returnByValue: true,
-  });
-  if (!reduced.result.value?.reduced || reduced.result.value.scroll !== 'auto' || reduced.result.value.moving || !reduced.result.value.heroDecoded) {
-    failures.push(`/${routePath}: reduced-motion hero did not remain static and readable`);
-  }
-  fallbackChecks.push({ route: routePath, failedImage: failed.result.value, reducedMotion: reduced.result.value });
+  await navigate(new URL(routePath, baseUrl).href);
+  const reduced = await evaluate(`({reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,scroll:getComputedStyle(document.documentElement).scrollBehavior,moving:document.getAnimations().filter(a=>a.playState==='running' && a.effect.getTiming().duration>1).length,cosmic:!!document.querySelector('.cosmic svg')})`);
+  if (!reduced.reduced || reduced.scroll !== 'auto' || reduced.moving || !reduced.cosmic) failures.push(`${routePath}: reduced motion failed`);
+  fallbackChecks.push({type:'reduced-motion',route:routePath,...reduced});
   await connection.send('Emulation.setEmulatedMedia', { features: [] });
 }
 
@@ -345,8 +304,8 @@ async function checkContentInteractions() {
   for (const localized of ['', 'tr/']) {
     for (const route of ['', 'learn/what-is-ai-memory/', 'docs/core/api-reference/']) {
       await navigate(new URL(localized + route, baseUrl).href);
-      const state = await evaluate(`({body: document.querySelector('main').innerText.length, h1: document.querySelectorAll('h1').length, overflow: document.documentElement.scrollWidth-document.documentElement.clientWidth, navigation: getComputedStyle(document.querySelector('#main-navigation')).display, titleY: document.querySelector('h1').getBoundingClientRect().top, headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom})`);
-      if (state.body < 150 || state.h1 !== 1 || state.overflow > 1 || state.navigation === 'none' || state.titleY < state.headerBottom) failures.push(`${localized}${route}: no-JavaScript reading/navigation failed`);
+      const state = await evaluate(`({cosmic:!!document.querySelector('.cosmic svg'),body: document.querySelector('main').innerText.length, h1: document.querySelectorAll('h1').length, overflow: document.documentElement.scrollWidth-document.documentElement.clientWidth, navigation: getComputedStyle(document.querySelector('#main-navigation')).display, titleY: document.querySelector('h1').getBoundingClientRect().top, headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom})`);
+      if (!state.cosmic || state.body < 150 || state.h1 !== 1 || state.overflow > 1 || state.navigation === 'none' || state.titleY < state.headerBottom) failures.push(`${localized}${route}: no-JavaScript reading/navigation failed`);
       fallbackChecks.push({ type: 'no-javascript', route: localized + route, ...state });
     }
   }
@@ -426,12 +385,13 @@ try {
   for (const routePath of localizedRoutes) {
     await inspect(routePath, routePath === '' || routePath === 'tr/' ? 390 : 1440);
   }
-  for (const routePath of ['mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/']) {
-    for (const width of [320, 390, 768, 1024, 1440, 1920]) {
+  for (const routePath of ['mesa/', 'data/', 'law/', 'ecosystem/', 'qa/', 'certification/', 'learn/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/', 'admin/']) {
+    for (const width of widths) {
       await inspect(routePath, width);
       await inspect(`tr/${routePath}`, width);
     }
   }
+  for (const routePath of ['', 'tr/', 'mesa/', 'data/', 'law/', 'ecosystem/', 'docs/', 'learn/', 'admin/']) await inspect(routePath, 844, 430);
   for (const routePath of ['', 'tr/']) {
     await checkMobileMenu(routePath);
     await checkMemoryDisclosure(routePath);
@@ -453,7 +413,7 @@ try {
     else if (process.argv.includes('--axe-only')) console.log(`AXE QA PASS: ${localizedRoutes.length} EN/TR public routes at ${baseUrl}`);
     else if (process.argv.includes('--release-checks-only')) console.log(`RELEASE BROWSER QA PASS: EN/TR arithmetic, native keyboard, source deep links, new-page responsive layouts and optional axe at ${baseUrl}`);
     else if (process.argv.includes('--interactions-only')) console.log(`BROWSER INTERACTION QA PASS: EN/TR search paths, keyboard focus, admin isolation and no-JavaScript navigation at ${baseUrl}`);
-    else console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, navigation, fixture, hero crops (${warmCache ? 'warm' : 'cold'} cache), reduced motion and image failure; no document overflow or unexpected broken images`);
+    else console.log(`BROWSER QA PASS: ${localizedRoutes.length} localized routes, ${widths.length} homepage widths in EN/TR, navigation, fixture, shared cosmic environment, landscape and reduced motion; no document overflow or unexpected broken images`);
   }
   if (screenshotsDirectory) {
     fs.writeFileSync(path.join(screenshotsDirectory, 'observations.json'), `${JSON.stringify({ baseUrl, cacheMode: warmCache ? 'warm' : 'cold', browserVersion, observations, fallbackChecks, failures }, null, 2)}\n`);

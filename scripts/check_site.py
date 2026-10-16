@@ -324,8 +324,8 @@ def main() -> int:
                 errors.append(f"homepage section order mismatch at {relative}: {parsed.home_sections}")
             if tuple(parsed.scene_ids) != HOME_SCENES:
                 errors.append(f"homepage scene order mismatch at {relative}: {parsed.scene_ids}")
-            if tuple(item[0] for item in parsed.scene_media) != HOME_SCENES:
-                errors.append(f"homepage media layer mismatch at {relative}: {parsed.scene_media}")
+            if parsed.scene_media:
+                errors.append(f"retired homepage bitmap media at {relative}")
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
@@ -337,6 +337,8 @@ def main() -> int:
                     errors.append(f"scene media must be aria-hidden at {relative}: {scene_id}")
                 if state not in {"fallback", "configured"}:
                     errors.append(f"invalid initial media state at {relative}: {scene_id} / {state}")
+        if text.count('class="cosmic cosmic--') != 1:
+            errors.append(f"expected one shared cosmic environment: {relative}")
         if 'id="app"' in text or "requires JavaScript to render" in text:
             errors.append(f"JavaScript-only shell found: {relative}")
         if "{{" in text or "}}" in text:
