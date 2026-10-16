@@ -46,14 +46,6 @@ document.querySelectorAll('.heading-anchor').forEach((link) => {
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saveData = navigator.connection?.saveData === true;
 
-const cosmicPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-function updateCosmicMotion() {
-  document.documentElement.dataset.cosmicMotion = !document.hidden && !cosmicPreference.matches && !saveData ? 'on' : 'off';
-}
-document.addEventListener('visibilitychange', updateCosmicMotion);
-cosmicPreference.addEventListener('change', updateCosmicMotion);
-updateCosmicMotion();
-
 /* ====================================================================
    MESA Static Search Modal & Documentation Sidebar
    ==================================================================== */

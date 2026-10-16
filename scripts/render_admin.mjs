@@ -32,5 +32,5 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
 <p class="admin-note">${t('Published articles are read-only. Saving a draft does not publish it to the website.','Yayımlanmış makaleler salt okunurdur. Taslak kaydetmek makaleyi web sitesinde yayımlamaz.')}</p></section>
 <a class="admin-return" href="${base}${tr ? 'tr/' : ''}learn/">${t('Return to articles','Makalelere dön')} →</a>
 </main><script id="admin-config" type="application/json">${JSON.stringify(config).replaceAll('<','\\u003c')}</script>
-<script src="${base}admin.js" defer></script></body></html>`;
+<script src="${base}cosmic-motion.js" defer></script><script src="${base}admin.js" defer></script></body></html>`;
 }
