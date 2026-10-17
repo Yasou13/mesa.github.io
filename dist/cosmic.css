@@ -2,9 +2,9 @@
    CSS-relative URLs also work below a GitHub project path and in admin shells. */
 body { isolation: isolate; }
 .cosmic { --cosmic-strength: .72; --cosmic-texture: url("media/cosmic/cosmic-flow.webp"); position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: #050508; }
-.cosmic__field { position: absolute; inset: 0; background: var(--cosmic-texture) 62% 50% / cover no-repeat; opacity: var(--cosmic-strength); mask-image: linear-gradient(90deg, transparent, #0009 36%, #000 72%), linear-gradient(transparent, #000 14%, #000 86%, transparent); mask-composite: intersect; }
-.cosmic::after { content: ""; position: absolute; inset: 0; background: #050508ab; }
-.cosmic--home { --cosmic-texture: url("media/cosmic/hero.webp"); --cosmic-strength: .85; }
+.cosmic__field { position: absolute; inset: 0; background: var(--cosmic-texture) center center / cover no-repeat; opacity: var(--cosmic-strength); mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent); }
+.cosmic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #050508bf 0%, #05050873 45%, #0505084d 100%); }
+.cosmic--home { --cosmic-texture: url("media/cosmic/hero.webp"); --cosmic-strength: .9; }
 .cosmic--data .cosmic__field { transform: scaleX(-1); }
 .cosmic--ecosystem { --cosmic-texture: url("media/cosmic/cosmic-structure.webp"); --cosmic-strength: .56; }
 .cosmic--law, .cosmic--quiet, .cosmic--reading, .cosmic--admin { --cosmic-texture: url("media/cosmic/cosmic-horizon.webp"); }
