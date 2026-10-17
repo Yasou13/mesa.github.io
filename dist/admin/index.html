@@ -2,27 +2,329 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
-<title>MESA Admin — Sign in</title>
+<title>MESA Admin — Workspace</title>
 <meta name="description" content="Private MESA administration. Authentication is required; publishing is blocked.">
 <link rel="icon" href="../assets/mesa-mark.webp" type="image/webp">
 <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../cosmic.css"><link rel="stylesheet" href="../admin.css">
 </head><body><div class="cosmic cosmic--admin" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-<header class="admin-header"><a class="logo" href="../"><img src="../assets/mesa-mark.webp" alt="" width="40" height="40">MESA</a><a href="../tr/admin/" lang="tr">Türkçe</a></header>
+<header class="admin-header">
+  <div class="admin-header__brand">
+    <a class="logo" href="../" aria-label="MESA home">
+      <img src="../assets/mesa-mark.webp" alt="" width="36" height="36">
+      <span>MESA</span>
+    </a>
+    <span class="admin-tag">CMS Workspace</span>
+  </div>
+  <div class="admin-header__nav">
+    <a href="../resources/" class="nav-link">Resources</a>
+    <a href="../docs/" class="nav-link">Docs</a>
+    <div class="language-switch">
+      <a href="../tr/admin/" lang="tr">TR</a>
+    </div>
+  </div>
+</header>
+
 <main id="main-content" class="admin-shell">
-<p class="eyebrow">MESA · ADMINISTRATION</p><h1>A private workspace.</h1>
-<p id="admin-status" role="status" aria-live="polite">Authentication is not configured. Sign-in is unavailable.</p>
-<noscript><p>JavaScript is required for secure sign-in. Public documentation remains available.</p></noscript>
-<section id="login-panel" class="admin-panel" aria-labelledby="login-title"><h2 id="login-title">Administrator sign-in</h2>
-<form id="login-form"><fieldset disabled><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="username" required><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required><button class="button primary" type="submit">Sign in</button></fieldset></form>
-<button id="reset-request" class="button secondary" type="button" disabled>Send password reset email</button>
-<p class="admin-note">Access is restricted to administrators invited by the website owner.</p></section>
-<section id="recovery-panel" class="admin-panel" hidden><h2>Choose a new password</h2><form id="recovery-form"><fieldset disabled><label for="new-password">New password (at least 12 characters)</label><input id="new-password" name="new-password" type="password" autocomplete="new-password" required><label for="confirm-password">Confirm password</label><input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required><button class="button primary" type="submit">Update password</button></fieldset></form></section>
-<section id="workspace" hidden aria-labelledby="workspace-title"><div class="admin-toolbar"><h2 id="workspace-title">Content workspace</h2><button id="logout" type="button" class="button secondary">Sign out</button></div>
-<p>Draft editing is connected to the database. Publishing and media uploads are unavailable.</p>
-<div class="admin-toolbar"><button data-records="articles" type="button" class="button secondary">Articles & drafts</button><button data-records="media_assets" type="button" class="button secondary">Media records</button><button data-records="publication_jobs" type="button" class="button secondary">Publication records</button></div>
-<div id="records" class="admin-records"></div>
-<form id="editor" class="admin-panel" hidden><fieldset><legend>Edit existing draft</legend><label for="article-title">Title</label><input id="article-title" name="article-title" type="text" required><label for="article-summary">Summary</label><textarea id="article-summary" required rows="3"></textarea><label for="article-body">Markdown</label><textarea id="article-body" required rows="18" spellcheck="false"></textarea><button class="button primary" type="submit">Save draft</button></fieldset></form>
-<p class="admin-note">Published articles are read-only. Saving a draft does not publish it to the website.</p></section>
-<a class="admin-return" href="../learn/">Return to articles →</a>
-</main><script id="admin-config" type="application/json">null</script>
-<script src="../cosmic-motion.js" defer></script><script src="../admin.js" defer></script></body></html>
+  <div class="admin-hero">
+    <p class="eyebrow">MESA · ADMINISTRATION</p>
+    <h1>Content Workspace</h1>
+    <p id="admin-status" role="status" aria-live="polite">Authentication is not configured. Sign-in is unavailable.</p>
+  </div>
+
+  <noscript><p class="admin-alert error">JavaScript is required for secure sign-in. Public documentation remains available.</p></noscript>
+
+  <section id="login-panel" class="admin-panel auth-panel" aria-labelledby="login-title">
+    <h2 id="login-title">Administrator sign-in</h2>
+    <p class="admin-panel__intro">Sign in with your verified administrator credentials to access drafts and content.</p>
+    <form id="login-form">
+      <fieldset disabled>
+        <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="username" required></div>
+        <div class="form-group"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
+        <button class="button primary" type="submit">Sign in</button>
+      </fieldset>
+    </form>
+    <button id="reset-request" class="button secondary" type="button" disabled>Send password reset email</button>
+    <p class="admin-note">Access is restricted to administrators invited by the website owner.</p>
+  </section>
+
+  <section id="recovery-panel" class="admin-panel auth-panel" hidden aria-labelledby="recovery-title">
+    <h2 id="recovery-title">Choose a new password</h2>
+    <form id="recovery-form">
+      <fieldset disabled>
+        <div class="form-group"><label for="new-password">New password (at least 12 characters)</label><input id="new-password" name="new-password" type="password" autocomplete="new-password" required></div>
+        <div class="form-group"><label for="confirm-password">Confirm password</label><input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required></div>
+        <button class="button primary" type="submit">Update password</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <section id="workspace" hidden aria-labelledby="workspace-title">
+    <div class="workspace-topbar">
+      <div>
+        <h2 id="workspace-title">Editorial Dashboard</h2>
+        <p class="user-info">Signed in as <strong id="current-user-email"></strong> <span id="current-user-role" class="user-role-chip"></span></p>
+      </div>
+      <div class="topbar-actions">
+        <a class="button secondary" href="../learn/" target="_blank">View Live Site ↗</a>
+        <button id="logout" type="button" class="button secondary">Sign out</button>
+      </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="admin-tabs" aria-label="Workspace views">
+      <button class="admin-tab active" data-tab="articles" type="button">Articles & Drafts</button>
+      <button class="admin-tab" data-tab="create" type="button">+ New Article</button>
+      <button class="admin-tab" data-tab="taxonomy" type="button">Taxonomy</button>
+      <button class="admin-tab" data-records="media_assets" type="button">Media Records</button>
+      <button class="admin-tab" data-records="publication_jobs" type="button">Publication Jobs</button>
+      <button class="admin-tab" data-tab="audit" type="button">Audit & Roles</button>
+    </nav>
+
+    <!-- TAB 1: Articles View -->
+    <div id="tab-content-articles" class="tab-pane active">
+      <!-- Quick Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><small>Total Articles</small><strong id="stat-total">0</strong></div>
+        <div class="stat-card"><small>Drafts</small><strong id="stat-drafts" class="text-amber">0</strong></div>
+        <div class="stat-card"><small>Ready to Publish</small><strong id="stat-ready" class="text-blue">0</strong></div>
+        <div class="stat-card"><small>Published</small><strong id="stat-published" class="text-green">0</strong></div>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="table-toolbar">
+        <div class="search-box">
+          <input id="article-search" type="search" placeholder="Search articles by title, slug or summary…">
+        </div>
+        <div class="filter-group">
+          <select id="filter-lang" aria-label="Language filter">
+            <option value="all">All Languages</option>
+            <option value="en">English (EN)</option>
+            <option value="tr">Türkçe (TR)</option>
+          </select>
+          <select id="filter-status" aria-label="Status filter">
+            <option value="all">All Statuses</option>
+            <option value="draft">Draft</option>
+            <option value="ready">Ready to publish</option>
+            <option value="published">Published</option>
+          </select>
+          <button id="btn-refresh-articles" class="button secondary" type="button">Refresh</button>
+        </div>
+      </div>
+
+      <!-- Articles List Container (Required for automated tests & UI) -->
+      <div id="records" class="admin-records" role="region" aria-label="Records list"></div>
+    </div>
+
+    <!-- TAB 2: Full Article Editor Form -->
+    <form id="editor" class="admin-panel editor-panel" hidden>
+      <fieldset>
+        <div class="editor-header">
+          <div>
+            <button id="btn-close-editor" type="button" class="button secondary btn-sm">← Back to list</button>
+            <legend id="editor-heading">Edit Article</legend>
+          </div>
+          <div class="editor-header-actions">
+            <span id="editor-status-chip" class="status-chip">draft</span>
+            <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">Mark Ready</button>
+            <button class="button primary" type="submit">Save draft <kbd class="kbd-hint">Ctrl+S</kbd></button>
+          </div>
+        </div>
+
+        <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
+        <div class="editor-subtabs">
+          <button type="button" class="subtab active" data-subtab="content">Content & Markdown</button>
+          <button type="button" class="subtab" data-subtab="meta">SEO & Metadata</button>
+          <button type="button" class="subtab" data-subtab="revisions">Revision History</button>
+        </div>
+
+        <!-- Subtab 1: Content & Live Preview -->
+        <div id="subtab-content" class="subtab-pane active">
+          <div class="form-grid">
+            <div class="form-group col-span-2">
+              <label for="article-title">Title</label>
+              <input id="article-title" name="article-title" type="text" required>
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-subtitle">Subtitle</label>
+              <input id="article-subtitle" name="article-subtitle" type="text" placeholder="Optional subtitle…">
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-summary">Summary</label>
+              <textarea id="article-summary" name="article-summary" required rows="3" placeholder="Concise 1-2 sentence article summary…"></textarea>
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-short-answer">Short Answer / Key Takeaway</label>
+              <textarea id="article-short-answer" name="article-short-answer" rows="2" placeholder="Key takeaway shown in highlighted callout box…"></textarea>
+            </div>
+          </div>
+
+          <!-- Markdown Writing & Preview Split -->
+          <div class="markdown-workspace">
+            <div class="markdown-editor-pane">
+              <div class="pane-header">
+                <label for="article-body"><strong>Markdown Source</strong></label>
+                <span class="char-count" id="body-char-count">0 chars</span>
+              </div>
+              <textarea id="article-body" name="article-body" required rows="22" spellcheck="false" placeholder="# Heading&#10;&#10;Write markdown content here..."></textarea>
+            </div>
+            <div class="markdown-preview-pane">
+              <div class="pane-header">
+                <strong>Live Preview</strong>
+                <span class="preview-badge">Real-time</span>
+              </div>
+              <div id="markdown-preview" class="preview-content knowledge-article" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtab 2: Metadata & Taxonomy -->
+        <div id="subtab-meta" class="subtab-pane">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="article-slug">Slug</label>
+              <input id="article-slug" name="article-slug" type="text" required>
+            </div>
+            <div class="form-group">
+              <label for="article-category">Category</label>
+              <select id="article-category" name="article-category"></select>
+            </div>
+            <div class="form-group">
+              <label for="article-tags">Tags (comma separated)</label>
+              <input id="article-tags" name="article-tags" type="text" placeholder="memory, retrieval, graph">
+            </div>
+            <div class="form-group">
+              <label for="article-reading-minutes">Reading Time (minutes)</label>
+              <input id="article-reading-minutes" name="article-reading-minutes" type="number" min="1" max="60" value="5">
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-seo-title">SEO Title</label>
+              <input id="article-seo-title" name="article-seo-title" type="text" maxlength="70">
+              <small class="meta-hint" id="seo-title-count">0 / 70</small>
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-seo-description">SEO Description</label>
+              <textarea id="article-seo-description" name="article-seo-description" rows="2" maxlength="160"></textarea>
+              <small class="meta-hint" id="seo-desc-count">0 / 160</small>
+            </div>
+            <div class="form-group col-span-2 form-checkbox">
+              <input id="article-indexable" name="article-indexable" type="checkbox" checked>
+              <label for="article-indexable">Indexable by search engines and sitemap</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtab 3: Revisions History -->
+        <div id="subtab-revisions" class="subtab-pane">
+          <p class="admin-panel__intro">Every draft save records an immutable revision snapshot. Click any revision to restore its content.</p>
+          <div id="revisions-list" class="revisions-timeline"></div>
+        </div>
+      </fieldset>
+      <p class="admin-note">Published articles are read-only. Saving a draft updates the database; public site publication requires triggering the deployment pipeline.</p>
+    </form>
+
+    <!-- TAB 3: New Article Creator -->
+    <section id="create-panel" class="admin-panel" hidden>
+      <h2>Create New Article</h2>
+      <p class="admin-panel__intro">Draft a new article. Once created, you can write the markdown content and link paired translations.</p>
+      <form id="create-article-form">
+        <div class="form-grid">
+          <div class="form-group col-span-2">
+            <label for="new-article-title">Article Title</label>
+            <input id="new-article-title" type="text" required placeholder="e.g. Graph Storage Foundations">
+          </div>
+          <div class="form-group">
+            <label for="new-article-type">Content Type</label>
+            <select id="new-article-type">
+              <option value="learn">Learn</option>
+              <option value="guide">Guide</option>
+              <option value="research">Research</option>
+              <option value="glossary">Glossary</option>
+              <option value="methodology">Methodology</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="new-article-lang">Language</label>
+            <select id="new-article-lang">
+              <option value="en">English (EN)</option>
+              <option value="tr">Türkçe (TR)</option>
+            </select>
+          </div>
+          <div class="form-group col-span-2">
+            <label for="new-article-slug">Slug</label>
+            <input id="new-article-slug" type="text" placeholder="auto-generated-from-title">
+          </div>
+          <div class="form-group col-span-2">
+            <label for="new-article-summary">Summary</label>
+            <textarea id="new-article-summary" rows="3" required placeholder="A concise overview of what this article covers…"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="button primary">Create Draft Article</button>
+          <button type="button" id="btn-cancel-create" class="button secondary">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB 4: Taxonomy Panel (Categories & Tags) -->
+    <section id="taxonomy-panel" class="admin-panel" hidden>
+      <h2>Categories & Tags Management</h2>
+      <div class="taxonomy-layout">
+        <div class="taxonomy-column">
+          <h3>Categories</h3>
+          <div id="categories-list" class="taxonomy-list"></div>
+          <form id="add-category-form" class="inline-subform">
+            <h4>Add Category</h4>
+            <input id="cat-id" type="text" placeholder="ID (slug)" required>
+            <input id="cat-title-en" type="text" placeholder="Title (EN)" required>
+            <input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
+            <button type="submit" class="button secondary btn-sm">Save Category</button>
+          </form>
+        </div>
+        <div class="taxonomy-column">
+          <h3>Tags</h3>
+          <div id="tags-list" class="taxonomy-list"></div>
+          <form id="add-tag-form" class="inline-subform">
+            <h4>Add Tag</h4>
+            <input id="tag-slug" type="text" placeholder="Slug" required>
+            <input id="tag-name-en" type="text" placeholder="Name (EN)" required>
+            <input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
+            <button type="submit" class="button secondary btn-sm">Save Tag</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: Audit & Roles Panel -->
+    <section id="audit-panel" class="admin-panel" hidden>
+      <h2>Audit Events & Editor Roles</h2>
+      <div class="audit-layout">
+        <div class="audit-column">
+          <h3>Recent Audit Events</h3>
+          <div id="audit-events-list" class="audit-log-list"></div>
+        </div>
+        <div class="audit-column">
+          <h3>Editor Accounts</h3>
+          <div id="editor-roles-list" class="roles-list"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <a class="admin-return" href="../learn/">← Return to public articles</a>
+</main>
+
+<footer class="site-footer admin-footer">
+  <div class="footer-bottom">
+    <span>© 2026 MESA contributors · Administrative Workspace</span>
+    <span>
+      <a href="../">Home</a> ·
+      <a href="../docs/">Docs</a> ·
+      <a href="../resources/">Resources</a>
+    </span>
+  </div>
+</footer>
+
+<script id="admin-config" type="application/json">null</script>
+<script src="../cosmic-motion.js" defer></script>
+<script src="../admin.js" defer></script>
+</body></html>

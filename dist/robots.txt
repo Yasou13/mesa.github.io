@@ -1,4 +1,6 @@
 User-agent: *
+Disallow: /admin/
+Disallow: /tr/admin/
 Allow: /
 
-Sitemap: https://mesamemory.dev/sitemap.xml
+Sitemap: https://yasou13.github.io/mesa.github.io/sitemap.xml

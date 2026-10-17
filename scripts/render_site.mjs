@@ -178,7 +178,7 @@ function footer(compact = false) {
         <div><h3>Ecosystem</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
         <div><h3>Resources</h3><a href="${route('learn/')}">Learn</a><a href="${route('research/')}">Research</a><a href="${route('guides/')}">Guides</a><a href="${route('glossary/')}">Glossary</a><a href="${route('methodology/')}">Methodology</a></div>
         <div><h3>Documentation</h3><a href="${route('docs/core/getting-started/')}">Quickstart</a><a href="${route('architecture/')}">Architecture</a><a href="${route('retrieval/')}">Retrieval</a><a href="${route('docs/core/security/')}">Security</a><a href="${route('docs/mcp/')}">MCP integration</a></div>
-        <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}</div>
+        <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}<a href="${route('admin/')}">Admin</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
     </footer>`.trim();
@@ -1647,7 +1647,7 @@ function renderHubEntry(entry) {
   const breadcrumbs = hubBreadcrumb([
     { label: hubText('Home', 'Ana sayfa'), path: '' },
     { label: hubText('Resources', 'Kaynaklar'), path: 'resources/' },
-    { label: section.locales[currentLanguage].eyebrow, path: section.path },
+    { label: hubTypeLabels[currentLanguage][entry.type] || section.locales[currentLanguage].eyebrow, path: section.path },
     { label: localized.title }
   ]);
   const toc = `
@@ -1948,7 +1948,7 @@ function hubStructuredNodes(item, language, canonical) {
   const crumbs = [
     [language === 'tr' ? 'Ana sayfa' : 'Home', language === 'tr' ? `${siteUrl}tr/` : siteUrl],
     ...(data.id === 'resources' ? [] : [[language === 'tr' ? 'Kaynaklar' : 'Resources', `${siteUrl}${language === 'tr' ? 'tr/' : ''}resources/`]]),
-    ...(isEntry ? [[section.locales[language].eyebrow, `${siteUrl}${language === 'tr' ? 'tr/' : ''}${section.path}`]] : []),
+    ...(isEntry ? [[hubTypeLabels[language][data.type] || section.locales[language].eyebrow, `${siteUrl}${language === 'tr' ? 'tr/' : ''}${section.path}`]] : []),
     [isEntry ? localized.title : localized.eyebrow, canonical]
   ];
   const nodes = [{
@@ -2092,7 +2092,7 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   path.join(outputDirectory, 'robots.txt'),
-  `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
+  `User-agent: *\nDisallow: /admin/\nDisallow: /tr/admin/\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
 );
 
 // Admin routes remain reachable but cannot impersonate an authenticated CMS.

@@ -2,27 +2,329 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
-<title>MESA Yönetim — Giriş</title>
+<title>MESA Yönetim — Çalışma Alanı</title>
 <meta name="description" content="Özel MESA yönetimi. Kimlik doğrulama gerekir; yayınlama kapalıdır.">
 <link rel="icon" href="../../assets/mesa-mark.webp" type="image/webp">
 <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../../cosmic.css"><link rel="stylesheet" href="../../admin.css">
 </head><body><div class="cosmic cosmic--admin" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-<header class="admin-header"><a class="logo" href="../../tr/"><img src="../../assets/mesa-mark.webp" alt="" width="40" height="40">MESA</a><a href="../../admin/" lang="en">English</a></header>
+<header class="admin-header">
+  <div class="admin-header__brand">
+    <a class="logo" href="../../tr/" aria-label="MESA ana sayfa">
+      <img src="../../assets/mesa-mark.webp" alt="" width="36" height="36">
+      <span>MESA</span>
+    </a>
+    <span class="admin-tag">İçerik Yönetimi</span>
+  </div>
+  <div class="admin-header__nav">
+    <a href="../../tr/resources/" class="nav-link">Kaynaklar</a>
+    <a href="../../tr/docs/" class="nav-link">Dokümanlar</a>
+    <div class="language-switch">
+      <a href="../../admin/" lang="en">EN</a>
+    </div>
+  </div>
+</header>
+
 <main id="main-content" class="admin-shell">
-<p class="eyebrow">MESA · YÖNETİM</p><h1>Özel çalışma alanı.</h1>
-<p id="admin-status" role="status" aria-live="polite">Kimlik doğrulama yapılandırılmamış. Giriş kullanılamıyor.</p>
-<noscript><p>Güvenli giriş için JavaScript gerekir. Genel dokümantasyon kullanılabilir.</p></noscript>
-<section id="login-panel" class="admin-panel" aria-labelledby="login-title"><h2 id="login-title">Yönetici girişi</h2>
-<form id="login-form"><fieldset disabled><label for="email">E-posta</label><input id="email" name="email" type="email" autocomplete="username" required><label for="password">Parola</label><input id="password" name="password" type="password" autocomplete="current-password" required><button class="button primary" type="submit">Giriş yap</button></fieldset></form>
-<button id="reset-request" class="button secondary" type="button" disabled>Parola sıfırlama e-postası gönder</button>
-<p class="admin-note">Erişim, site sahibinin davet ettiği yöneticilerle sınırlıdır.</p></section>
-<section id="recovery-panel" class="admin-panel" hidden><h2>Yeni parola belirleyin</h2><form id="recovery-form"><fieldset disabled><label for="new-password">Yeni parola (en az 12 karakter)</label><input id="new-password" name="new-password" type="password" autocomplete="new-password" required><label for="confirm-password">Parolayı doğrulayın</label><input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required><button class="button primary" type="submit">Parolayı güncelle</button></fieldset></form></section>
-<section id="workspace" hidden aria-labelledby="workspace-title"><div class="admin-toolbar"><h2 id="workspace-title">İçerik çalışma alanı</h2><button id="logout" type="button" class="button secondary">Çıkış yap</button></div>
-<p>Taslak düzenleme veritabanına bağlıdır. Yayınlama ve medya yükleme kullanılamıyor.</p>
-<div class="admin-toolbar"><button data-records="articles" type="button" class="button secondary">Makaleler ve taslaklar</button><button data-records="media_assets" type="button" class="button secondary">Medya kayıtları</button><button data-records="publication_jobs" type="button" class="button secondary">Yayın kayıtları</button></div>
-<div id="records" class="admin-records"></div>
-<form id="editor" class="admin-panel" hidden><fieldset><legend>Mevcut taslağı düzenle</legend><label for="article-title">Başlık</label><input id="article-title" name="article-title" type="text" required><label for="article-summary">Özet</label><textarea id="article-summary" required rows="3"></textarea><label for="article-body">Markdown</label><textarea id="article-body" required rows="18" spellcheck="false"></textarea><button class="button primary" type="submit">Taslağı kaydet</button></fieldset></form>
-<p class="admin-note">Yayımlanmış makaleler salt okunurdur. Taslak kaydetmek makaleyi web sitesinde yayımlamaz.</p></section>
-<a class="admin-return" href="../../tr/learn/">Makalelere dön →</a>
-</main><script id="admin-config" type="application/json">null</script>
-<script src="../../cosmic-motion.js" defer></script><script src="../../admin.js" defer></script></body></html>
+  <div class="admin-hero">
+    <p class="eyebrow">MESA · YÖNETİM</p>
+    <h1>İçerik Çalışma Alanı</h1>
+    <p id="admin-status" role="status" aria-live="polite">Kimlik doğrulama yapılandırılmamış. Giriş kullanılamıyor.</p>
+  </div>
+
+  <noscript><p class="admin-alert error">Güvenli giriş için JavaScript gerekir. Genel dokümantasyon kullanılabilir.</p></noscript>
+
+  <section id="login-panel" class="admin-panel auth-panel" aria-labelledby="login-title">
+    <h2 id="login-title">Yönetici girişi</h2>
+    <p class="admin-panel__intro">Taslaklara ve içeriklere erişmek için onaylı yönetici bilgilerinizle giriş yapın.</p>
+    <form id="login-form">
+      <fieldset disabled>
+        <div class="form-group"><label for="email">E-posta</label><input id="email" name="email" type="email" autocomplete="username" required></div>
+        <div class="form-group"><label for="password">Parola</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
+        <button class="button primary" type="submit">Giriş yap</button>
+      </fieldset>
+    </form>
+    <button id="reset-request" class="button secondary" type="button" disabled>Parola sıfırlama e-postası gönder</button>
+    <p class="admin-note">Erişim, site sahibinin davet ettiği yöneticilerle sınırlıdır.</p>
+  </section>
+
+  <section id="recovery-panel" class="admin-panel auth-panel" hidden aria-labelledby="recovery-title">
+    <h2 id="recovery-title">Yeni parola belirleyin</h2>
+    <form id="recovery-form">
+      <fieldset disabled>
+        <div class="form-group"><label for="new-password">Yeni parola (en az 12 karakter)</label><input id="new-password" name="new-password" type="password" autocomplete="new-password" required></div>
+        <div class="form-group"><label for="confirm-password">Parolayı doğrulayın</label><input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required></div>
+        <button class="button primary" type="submit">Parolayı güncelle</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <section id="workspace" hidden aria-labelledby="workspace-title">
+    <div class="workspace-topbar">
+      <div>
+        <h2 id="workspace-title">Editöryal Panel</h2>
+        <p class="user-info">Oturum: <strong id="current-user-email"></strong> <span id="current-user-role" class="user-role-chip"></span></p>
+      </div>
+      <div class="topbar-actions">
+        <a class="button secondary" href="../../tr/learn/" target="_blank">Canlı Siteyi Gör ↗</a>
+        <button id="logout" type="button" class="button secondary">Çıkış yap</button>
+      </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="admin-tabs" aria-label="Çalışma alanı sekmeleri">
+      <button class="admin-tab active" data-tab="articles" type="button">Makaleler ve Taslaklar</button>
+      <button class="admin-tab" data-tab="create" type="button">+ Yeni Makale</button>
+      <button class="admin-tab" data-tab="taxonomy" type="button">Kategoriler & Etiketler</button>
+      <button class="admin-tab" data-records="media_assets" type="button">Medya Kayıtları</button>
+      <button class="admin-tab" data-records="publication_jobs" type="button">Yayın Kayıtları</button>
+      <button class="admin-tab" data-tab="audit" type="button">Denetim ve Roller</button>
+    </nav>
+
+    <!-- TAB 1: Articles View -->
+    <div id="tab-content-articles" class="tab-pane active">
+      <!-- Quick Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><small>Toplam Makale</small><strong id="stat-total">0</strong></div>
+        <div class="stat-card"><small>Taslaklar</small><strong id="stat-drafts" class="text-amber">0</strong></div>
+        <div class="stat-card"><small>Yayına Hazır</small><strong id="stat-ready" class="text-blue">0</strong></div>
+        <div class="stat-card"><small>Yayımlanan</small><strong id="stat-published" class="text-green">0</strong></div>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="table-toolbar">
+        <div class="search-box">
+          <input id="article-search" type="search" placeholder="Başlık, slug veya özete göre ara…">
+        </div>
+        <div class="filter-group">
+          <select id="filter-lang" aria-label="Dil filtresi">
+            <option value="all">Tüm Diller</option>
+            <option value="en">English (EN)</option>
+            <option value="tr">Türkçe (TR)</option>
+          </select>
+          <select id="filter-status" aria-label="Durum filtresi">
+            <option value="all">Tüm Durumlar</option>
+            <option value="draft">Taslak</option>
+            <option value="ready">Yayına hazır</option>
+            <option value="published">Yayımlanmış</option>
+          </select>
+          <button id="btn-refresh-articles" class="button secondary" type="button">Yenile</button>
+        </div>
+      </div>
+
+      <!-- Articles List Container (Required for automated tests & UI) -->
+      <div id="records" class="admin-records" role="region" aria-label="Kayıt listesi"></div>
+    </div>
+
+    <!-- TAB 2: Full Article Editor Form -->
+    <form id="editor" class="admin-panel editor-panel" hidden>
+      <fieldset>
+        <div class="editor-header">
+          <div>
+            <button id="btn-close-editor" type="button" class="button secondary btn-sm">← Listeye dön</button>
+            <legend id="editor-heading">Makale Düzenle</legend>
+          </div>
+          <div class="editor-header-actions">
+            <span id="editor-status-chip" class="status-chip">draft</span>
+            <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">Hazır Olarak İşaretle</button>
+            <button class="button primary" type="submit">Taslağı kaydet <kbd class="kbd-hint">Ctrl+S</kbd></button>
+          </div>
+        </div>
+
+        <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
+        <div class="editor-subtabs">
+          <button type="button" class="subtab active" data-subtab="content">İçerik ve Markdown</button>
+          <button type="button" class="subtab" data-subtab="meta">SEO ve Meta Veriler</button>
+          <button type="button" class="subtab" data-subtab="revisions">Sürüm Geçmişi</button>
+        </div>
+
+        <!-- Subtab 1: Content & Live Preview -->
+        <div id="subtab-content" class="subtab-pane active">
+          <div class="form-grid">
+            <div class="form-group col-span-2">
+              <label for="article-title">Başlık</label>
+              <input id="article-title" name="article-title" type="text" required>
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-subtitle">Alt Başlık</label>
+              <input id="article-subtitle" name="article-subtitle" type="text" placeholder="İsteğe bağlı alt başlık…">
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-summary">Özet</label>
+              <textarea id="article-summary" name="article-summary" required rows="3" placeholder="1-2 cümlelik kısa makale özeti…"></textarea>
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-short-answer">Kısa Cevap / Temel Çıkarım</label>
+              <textarea id="article-short-answer" name="article-short-answer" rows="2" placeholder="Vurgulanan kutuda gösterilen temel çıkarım…"></textarea>
+            </div>
+          </div>
+
+          <!-- Markdown Writing & Preview Split -->
+          <div class="markdown-workspace">
+            <div class="markdown-editor-pane">
+              <div class="pane-header">
+                <label for="article-body"><strong>Markdown Kaynağı</strong></label>
+                <span class="char-count" id="body-char-count">0 chars</span>
+              </div>
+              <textarea id="article-body" name="article-body" required rows="22" spellcheck="false" placeholder="# Heading&#10;&#10;Write markdown content here..."></textarea>
+            </div>
+            <div class="markdown-preview-pane">
+              <div class="pane-header">
+                <strong>Canlı Önizleme</strong>
+                <span class="preview-badge">Anlık</span>
+              </div>
+              <div id="markdown-preview" class="preview-content knowledge-article" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtab 2: Metadata & Taxonomy -->
+        <div id="subtab-meta" class="subtab-pane">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="article-slug">Slug</label>
+              <input id="article-slug" name="article-slug" type="text" required>
+            </div>
+            <div class="form-group">
+              <label for="article-category">Kategori</label>
+              <select id="article-category" name="article-category"></select>
+            </div>
+            <div class="form-group">
+              <label for="article-tags">Etiketler (virgülle ayırın)</label>
+              <input id="article-tags" name="article-tags" type="text" placeholder="memory, retrieval, graph">
+            </div>
+            <div class="form-group">
+              <label for="article-reading-minutes">Okuma Süresi (dakika)</label>
+              <input id="article-reading-minutes" name="article-reading-minutes" type="number" min="1" max="60" value="5">
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-seo-title">SEO Başlığı</label>
+              <input id="article-seo-title" name="article-seo-title" type="text" maxlength="70">
+              <small class="meta-hint" id="seo-title-count">0 / 70</small>
+            </div>
+            <div class="form-group col-span-2">
+              <label for="article-seo-description">SEO Açıklaması</label>
+              <textarea id="article-seo-description" name="article-seo-description" rows="2" maxlength="160"></textarea>
+              <small class="meta-hint" id="seo-desc-count">0 / 160</small>
+            </div>
+            <div class="form-group col-span-2 form-checkbox">
+              <input id="article-indexable" name="article-indexable" type="checkbox" checked>
+              <label for="article-indexable">Arama motorları ve site haritası tarafından indekslensin</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtab 3: Revisions History -->
+        <div id="subtab-revisions" class="subtab-pane">
+          <p class="admin-panel__intro">Her taslak kaydında değişmez bir sürüm anlık görüntüsü kaydedilir. İçeriğini geri yüklemek için herhangi bir sürüme tıklayın.</p>
+          <div id="revisions-list" class="revisions-timeline"></div>
+        </div>
+      </fieldset>
+      <p class="admin-note">Yayımlanmış makaleler salt okunurdur. Taslak kaydetmek veritabanını günceller; genel sitede yayınlama dağıtım hattının tetiklenmesini gerektirir.</p>
+    </form>
+
+    <!-- TAB 3: New Article Creator -->
+    <section id="create-panel" class="admin-panel" hidden>
+      <h2>Yeni Makale Oluştur</h2>
+      <p class="admin-panel__intro">Yeni bir taslak makale oluşturun. Oluşturulduktan sonra markdown içeriğini yazabilir ve çeviri eşleşmesini bağlayabilirsiniz.</p>
+      <form id="create-article-form">
+        <div class="form-grid">
+          <div class="form-group col-span-2">
+            <label for="new-article-title">Makale Başlığı</label>
+            <input id="new-article-title" type="text" required placeholder="Örn: Vektör İndeksleme Prensipleri">
+          </div>
+          <div class="form-group">
+            <label for="new-article-type">İçerik Türü</label>
+            <select id="new-article-type">
+              <option value="learn">Learn</option>
+              <option value="guide">Guide</option>
+              <option value="research">Research</option>
+              <option value="glossary">Glossary</option>
+              <option value="methodology">Methodology</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="new-article-lang">Dil</label>
+            <select id="new-article-lang">
+              <option value="en">English (EN)</option>
+              <option value="tr">Türkçe (TR)</option>
+            </select>
+          </div>
+          <div class="form-group col-span-2">
+            <label for="new-article-slug">Slug</label>
+            <input id="new-article-slug" type="text" placeholder="basliktan-otomatik-olusturulur">
+          </div>
+          <div class="form-group col-span-2">
+            <label for="new-article-summary">Özet</label>
+            <textarea id="new-article-summary" rows="3" required placeholder="Bu makalenin neyi ele aldığına dair kısa bir genel bakış…"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="button primary">Taslak Makaleyi Oluştur</button>
+          <button type="button" id="btn-cancel-create" class="button secondary">İptal</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB 4: Taxonomy Panel (Categories & Tags) -->
+    <section id="taxonomy-panel" class="admin-panel" hidden>
+      <h2>Kategoriler ve Etiketler</h2>
+      <div class="taxonomy-layout">
+        <div class="taxonomy-column">
+          <h3>Kategoriler</h3>
+          <div id="categories-list" class="taxonomy-list"></div>
+          <form id="add-category-form" class="inline-subform">
+            <h4>Yeni Kategori</h4>
+            <input id="cat-id" type="text" placeholder="ID (slug)" required>
+            <input id="cat-title-en" type="text" placeholder="Title (EN)" required>
+            <input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
+            <button type="submit" class="button secondary btn-sm">Kategori Ekle</button>
+          </form>
+        </div>
+        <div class="taxonomy-column">
+          <h3>Etiketler</h3>
+          <div id="tags-list" class="taxonomy-list"></div>
+          <form id="add-tag-form" class="inline-subform">
+            <h4>Yeni Etiket</h4>
+            <input id="tag-slug" type="text" placeholder="Slug" required>
+            <input id="tag-name-en" type="text" placeholder="Name (EN)" required>
+            <input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
+            <button type="submit" class="button secondary btn-sm">Etiket Ekle</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: Audit & Roles Panel -->
+    <section id="audit-panel" class="admin-panel" hidden>
+      <h2>Denetim Günlüğü ve Editör Rolleri</h2>
+      <div class="audit-layout">
+        <div class="audit-column">
+          <h3>Son Denetim Olayları</h3>
+          <div id="audit-events-list" class="audit-log-list"></div>
+        </div>
+        <div class="audit-column">
+          <h3>Yetkili Hesaplar</h3>
+          <div id="editor-roles-list" class="roles-list"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <a class="admin-return" href="../../tr/learn/">← Genel makalelere dön</a>
+</main>
+
+<footer class="site-footer admin-footer">
+  <div class="footer-bottom">
+    <span>© 2026 MESA contributors · Yönetim Alanı</span>
+    <span>
+      <a href="../../tr/">Ana Sayfa</a> ·
+      <a href="../../tr/docs/">Dokümanlar</a> ·
+      <a href="../../tr/resources/">Kaynaklar</a>
+    </span>
+  </div>
+</footer>
+
+<script id="admin-config" type="application/json">null</script>
+<script src="../../cosmic-motion.js" defer></script>
+<script src="../../admin.js" defer></script>
+</body></html>
