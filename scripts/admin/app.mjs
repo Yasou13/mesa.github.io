@@ -233,9 +233,17 @@ if (config) {
       // Load Revisions
       loadRevisions(article.id);
 
+      // Hide articles list so editor is placed cleanly at top of screen
+      if ($('tab-content-articles')) $('tab-content-articles').hidden = true;
       $('editor').hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
       const isEditable = ['draft', 'ready'].includes(article.status);
       $('editor').querySelector('fieldset').disabled = !isEditable;
+
+      if ($('editor-notice-banner')) {
+        $('editor-notice-banner').hidden = isEditable;
+      }
 
       status(t('Article loaded from the database.', 'Makale veritabanından yüklendi.'));
       $('article-title').focus();
@@ -354,6 +362,7 @@ if (config) {
       if (active !== generation) return;
 
       if ($('editor')) $('editor').hidden = true;
+      if ($('tab-content-articles')) $('tab-content-articles').hidden = false;
       article = null;
 
       if (table === 'articles') {
@@ -535,7 +544,37 @@ if (config) {
     // Editor close
     $('btn-close-editor')?.addEventListener('click', () => {
       $('editor').hidden = true;
+      if ($('tab-content-articles')) $('tab-content-articles').hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Duplicate published article as editable draft
+    $('btn-duplicate-draft')?.addEventListener('click', () => action($('btn-duplicate-draft'), async () => {
+      if (!article) return;
+      const baseSlug = (article.slug || 'article').replace(/-draft.*$/, '');
+      const uniqueSuffix = Math.random().toString(36).substring(2, 6);
+      const newDraftData = {
+        title: `${article.title} (Draft)`,
+        type: article.type || 'learn',
+        language: article.language || 'en',
+        slug: `${baseSlug}-draft-${uniqueSuffix}`,
+        summary: article.summary || '',
+        body_markdown: article.body_markdown || '',
+        subtitle: article.subtitle || null,
+        short_answer: article.short_answer || null,
+        category_id: article.category_id || null,
+        tags: Array.isArray(article.tags) ? article.tags : [],
+        reading_minutes: Number(article.reading_minutes) || 5,
+        seo_title: article.seo_title || article.title,
+        seo_description: article.seo_description || article.summary,
+        indexable: false
+      };
+      const created = await service.createArticle(newDraftData);
+      allArticles = await service.listArticles();
+      updateStats(allArticles);
+      openEditor(created);
+      status(t('Created editable draft from published article.', 'Yayındaki makaleden düzenlenebilir taslak kopya oluşturuldu.'));
+    }));
 
     // Toggle Ready status
     $('btn-toggle-ready')?.addEventListener('click', () => action($('btn-toggle-ready'), async () => {

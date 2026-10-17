@@ -199,6 +199,43 @@
 .editor-header-actions { display: flex; align-items: center; gap: 12px; }
 .kbd-hint { font: 10px "Commit Mono", monospace; opacity: .75; padding: 2px 4px; border-radius: 3px; background: rgba(0,0,0,.2); margin-left: 6px; }
 
+/* Editor Notice Banner for Published Articles */
+.editor-notice-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: rgba(119, 185, 142, .08);
+  border: 1px solid rgba(119, 185, 142, .25);
+  border-radius: var(--radius-control);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+.editor-notice-banner .notice-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 260px;
+}
+.editor-notice-banner .notice-badge {
+  font: 10px "Commit Mono", monospace;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 3px 8px;
+  border-radius: var(--radius-technical);
+  background: rgba(119, 185, 142, .2);
+  color: var(--green);
+  white-space: nowrap;
+}
+.editor-notice-banner p {
+  margin: 0;
+  font-size: .875rem;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
 /* Editor Subtabs */
 .editor-subtabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
 .subtab { padding: 8px 16px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--muted); font: inherit; font-size: .9375rem; font-weight: 500; cursor: pointer; }

@@ -140,6 +140,14 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           </div>
         </div>
 
+        <div id="editor-notice-banner" class="editor-notice-banner" hidden>
+          <div class="notice-info">
+            <span class="notice-badge">${t('LIVE PUBLISHED','YAYINDAKİ MAKALE')}</span>
+            <p>${t('This article is currently published on the live site. To edit safely without altering the production page directly, duplicate it as an editable draft.','Bu makale şu anda sitede yayındadır. Canlı sayfayı doğrudan bozmamak için içeriği düzenlenebilir taslak olarak kopyalayabilirsiniz.')}</p>
+          </div>
+          <button id="btn-duplicate-draft" type="button" class="button secondary btn-sm">${t('Duplicate as Editable Draft','Taslak Olarak Kopyala ve Düzenle')}</button>
+        </div>
+
         <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
         <div class="editor-subtabs">
           <button type="button" class="subtab active" data-subtab="content">${t('Content & Markdown','İçerik ve Markdown')}</button>
