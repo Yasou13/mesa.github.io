@@ -1268,8 +1268,6 @@ p { color: var(--muted); }
 .home-page .hero-copy .actions { margin-top: 32px; gap: 12px; }
 .home-page .hero .button { font-size: 15px; }
 
-.scene--event-horizon { position: relative; }
-.scene--event-horizon::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to bottom, transparent, var(--black)); pointer-events: none; z-index: 1; }
 .home-page .home-problem { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: 64px; padding-block: clamp(56px, 6.5vw, 80px); border-block: 1px solid var(--line); }
 .home-problem h2 { max-width: 15ch; margin-bottom: 0; }
 .home-problem__body ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
