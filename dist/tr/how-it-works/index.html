@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama</title>
-  <meta name="description" content="Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin.">
+  <title>Mesa Nasıl Çalışır? — Basit Örnekler ve Şemalar</title>
+  <meta name="description" content="Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/how-it-works/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/how-it-works/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/how-it-works/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/how-it-works/">
-  <meta property="og:title" content="MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama">
-  <meta property="og:description" content="Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin.">
+  <meta property="og:title" content="Mesa Nasıl Çalışır? — Basit Örnekler ve Şemalar">
+  <meta property="og:description" content="Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/tr/how-it-works/">
   <meta property="og:locale" content="tr_TR">
@@ -21,22 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama">
-  <meta name="twitter:description" content="Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin.">
+  <meta name="twitter:title" content="Mesa Nasıl Çalışır? — Basit Örnekler ve Şemalar">
+  <meta name="twitter:description" content="Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../styles.css?v=6e69ac822270">
+  <link rel="stylesheet" href="../../styles.css?v=6821a82454e5">
   <link rel="stylesheet" href="../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../learn.css?v=ef08fd97f3dc">
   <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -54,118 +53,46 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <section class="page-hero compact page-hero--trajectory">
-        <p class="eyebrow">MESA NASIL ÇALIŞIR</p>
-        <h1>Hafızayı koruyun.<br><em>Dayanağını da koruyun.</em></h1>
-        <p>MESA, yetkilendirilmiş kaynak materyalini yapılandırılmış ve geri getirilebilir hafızaya dönüştürürken kapsamı ve kaynak izini sonuç sözleşmesinde korur.</p>
-        <div class="actions">
-          <a class="button primary" href="#verified-example"><span>Fixture'ı görüntüle</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-          <a class="button secondary" href="../architecture/"><span>Teknik mimari</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">SEVİYE 1 · GENEL AKIŞ</p>
-            <h2>Altı adım;<br><em>depolama jargonu gerektirmez.</em></h2>
-          </div>
-          <p>MESA Data doğrulanmış hukuk kaynağı hazırlama katmanıdır. Core çalışma zamanı hafıza yaşam döngüsünü yönetir. Diğer uygulamalar da aynı sürümlenmiş arayüzleri kullanabilir.</p>
-        </div>
-        <ol class="public-flow" aria-label="Basit MESA akışı"><li><span>01</span><strong>Kaynak</strong><small>Kaynak materyalin tam metni ve kimliği</small></li><li><span>02</span><strong>Hazırla</strong><small>MESA Data hukuk girdilerini korur ve inceler</small></li><li><span>03</span><strong>Hatırla</strong><small>Core kapsamlı hafızayı kabul eder ve kanıtı korur</small></li><li><span>04</span><strong>Geri getir</strong><small>Dört yetkili sinyal rank fusion ile birleştirilir</small></li><li><span>05</span><strong>Doğrula</strong><small>Kaynak izi ve kapsam sonuçla birlikte ilerler</small></li><li><span>06</span><strong>Kullan</strong><small>Uygulamalar sınırlandırılmış bağlamı kullanır</small></li></ol>
-      </section>
-
-      <section class="section reliability-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">HAFIZAYLA BİRLİKTE GELENLER</p>
-            <h2>Bir benzerlik puanından<br><em>çok daha fazlası.</em></h2>
-          </div>
-          <p>Güncel V4 yanıtları katalog kimliği, kaynak kanıtı, assertion kimliği, işlem hattı kimliği, embedding kaynak izi ve katkıda bulunan geri getirme kaynaklarını içerebilir.</p>
-        </div>
-        <div class="reliability-list">
-          <article>
-            <strong>Kaynak</strong>
-            <p>Belge, revizyon, chunk, kaynak referansı ve sınırlandırılmış kanıt aralığı.</p>
-          </article>
-          <article>
-            <strong>Yapı</strong>
-            <p>Varlık ve assertion kimliği, predicate'ler, literal ya da varlık nesneleri ve sınırlandırılmış destekleyici graph path'ler.</p>
-          </article>
-          <article>
-            <strong>Kapsam</strong>
-            <p>Tenant ve yetkili dataset uygunluğu, kanal sıralaması ve fusion öncesinde belirlenir.</p>
-          </article>
-          <article>
-            <strong>Durum</strong>
-            <p>Mutasyon, işlem hattı, projeksiyon, yeniden deneme, rollback ve commit edilmiş sonuçlar gözlemlenebilir kalır.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section action-section" id="verified-example">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">DOĞRULANMIŞ DEPO ÖRNEĞİ</p>
-            <h2>Dört kaynak.<br><em>Tek kanıt kimliği.</em></h2>
-          </div>
-          <p>Fixture tek bir kanonik assertion oluşturur, dört kaynağın da onu ilk sıraya koymasını sağlar ve deterministik replay ile 4/61 birleşik puanı denetler.</p>
-        </div>
-        <div class="action-example specimen-plate">
-    <div class="specimen-frame">
-      <div class="action-query"><span>SORGU</span><strong>“Alice”</strong><small>Tam deterministik fixture sorgusu · canlı benchmark değildir</small></div>
-      <div class="fixture-trace" role="img" aria-label="Alice, Aurora'yı tanıyor; belge 1 içindeki kaynak chunk 1 ile destekleniyor">
-        <div class="trace-node"><small>VARLIK</small><strong>Alice</strong></div><span class="trace-edge"><i></i><b>knows</b></span><div class="trace-node"><small>VARLIK</small><strong>Aurora</strong></div><span class="trace-evidence"><i></i><b>kanıt</b></span><div class="trace-node evidence"><small>KAYNAK</small><strong>source-chunk-1</strong><em>doc-1 / chunk-1</em></div>
-      </div>
-      <div class="action-output">
-        <section><span>GERİ GETİRİLEN BİLGİ</span><dl><div><dt>subject</dt><dd>Alice</dd></div><div><dt>predicate</dt><dd>knows</dd></div><div><dt>object</dt><dd>Aurora</dd></div></dl></section>
-        <section><span>KANIT</span><dl><div><dt>kaynak</dt><dd>source-chunk-1</dd></div><div><dt>document</dt><dd>doc-1</dd></div><div><dt>chunk</dt><dd>chunk-1</dd></div><div><dt>span</dt><dd>“Alice knows Aurora”</dd></div></dl></section>
-        <section><span>GERİ GETİRME SİNYALLERİ</span><ul class="signal-list"><li>vector <b>sıra 1</b></li><li>BM25 <b>sıra 1</b></li><li>assertion <b>sıra 1</b></li><li>graph path <b>sıra 1</b></li></ul><p class="fixture-score">Beklenen RRF: 4 ÷ 61</p></section>
-      </div>
-      <div class="context-output"><span>UYGULAMA BAĞLAMI</span><div><code>UNTRUSTED_MEMORY_EVIDENCE { subject: "Alice", relation: "knows", object: "Aurora", source: "source-chunk-1" }</code><small>Fixture alanlarının şemayla uyumlu site gösterimi; üretim bağlamı token sınırlandırılmış JSON kanıtıdır.</small></div></div>
+    </header><main id="main-content" class="intro-page intro-how">
+    <section class="page-hero compact page-hero--trajectory"><p class="eyebrow">MESA NASIL ÇALIŞIR? · SIFIRDAN BAŞLAYIN</p><h1>Bir belgeden yanıtın kaynağına.</h1><p>Mesa’yı, yapay zekâ uygulamasının kaynaklarıyla bağlantılı hafızası olarak düşünün. Bilgiyi verirsiniz; Mesa düzenleyip saklar. Uygulama bir soru sorduğunda ilgili bilgiyi bulur ve nereden geldiğiyle birlikte döndürür.</p><div class="actions"><a class="button primary" href="#memory-walkthrough"><span>Bir notun yolculuğunu izleyin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="#inside-core"><span>Çekirdeğin içine bakın</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <nav class="intro-page-nav" aria-label="Bu sayfada"><a href="#memory-walkthrough">01 · Örnek</a><a href="#inside-core">02 · Mimari</a><a href="#finding-evidence">03 · Arama</a><a href="#source-trail">04 · Kaynak izi</a></nav>
+    <section class="section" id="memory-walkthrough"><p class="eyebrow">01 · SOMUT BİR ÖRNEK</p><h2>Bir not eklediğinizde ne olur?</h2><div class="intro-story" data-memory-story data-step="0">
+    <div class="intro-story__toolbar"><span>Bir notun hafızadaki yolculuğu</span><button type="button" class="intro-play" data-story-play hidden>Akışı oynat</button></div>
+    <ol class="intro-step-nav"><li><button type="button" data-story-step="0" aria-controls="story-panel-0" aria-pressed="true"><span>01</span>Kaynak ekle</button></li><li><button type="button" data-story-step="1" aria-controls="story-panel-1" aria-pressed="false"><span>02</span>Düzenle ve sakla</button></li><li><button type="button" data-story-step="2" aria-controls="story-panel-2" aria-pressed="false"><span>03</span>Soru sor</button></li><li><button type="button" data-story-step="3" aria-controls="story-panel-3" aria-pressed="false"><span>04</span>Kanıtı getir</button></li></ol>
+    <div class="intro-story__panels"><article class="intro-story-panel" id="story-panel-0" data-story-panel="0"><div><span class="intro-index">01 / 04</span><h3>Basit bir notla başlayın.</h3><p>Uygulamanız bu metni kaynak bilgisiyle Mesa’ya gönderir. Kabul edilen kayıt arka planda işlenmeye başlar; kabul, işlemin tamamlandığı anlamına gelmez.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Kaynak · Atlas ziyaretçi rehberi / sürüm 1</span><blockquote>“Atlas arşivi hafta içi saat 09.00’da açılır.”</blockquote><span class="intro-source-thread">Bilgi + kaynak kimliği</span></div></article><article class="intro-story-panel" id="story-panel-1" data-story-panel="1"><div><span class="intro-index">02 / 04</span><h3>Bilgi, notla bağlantısını korur.</h3><p>Mesa metinden düzenli bilgi kayıtları çıkarır, seçilen doğrulama kurallarını uygular ve ana kaydı yazar. Arama için kullanılan temsiller sırayla hazırlanır. Başarılı yazma COMMITTED durumunda tamamlanır.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Düzenli bilgi kaydı → özgün pasaj</span><blockquote>Atlas arşivi → hafta içi açılış saati → 09.00</blockquote><span class="intro-source-thread">Bilgi + kaynak kimliği</span></div></article><article class="intro-story-panel" id="story-panel-2" data-story-panel="2"><div><span class="intro-index">03 / 04</span><h3>Anlam, sözcük ve bağlantılarla arayın.</h3><p>Uygulama soruyu iletir. Mesa erişime uygun kayıtlarda anlam, anahtar sözcük, düzenli bilgi ve sınırlandırılmış ilişkiler üzerinden arar; bulunan sonuçların sıralamalarını birleştirir.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Uygulamanızdan gelen soru</span><blockquote>“Pazartesi Atlas arşivini saat kaçta ziyaret edebilirim?”</blockquote><span class="intro-source-thread">Bilgi + kaynak kimliği</span></div></article><article class="intro-story-panel" id="story-panel-3" data-story-panel="3"><div><span class="intro-index">04 / 04</span><h3>Uygulama, yanıtın dayanağını alır.</h3><p>Mesa ilgili bilgiyi belgesi, sürümü ve dayanak pasajıyla döndürür. Uygulamanızdaki dil modeli bu bağlamı kullanarak yanıt yazabilir.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Mesa’nın döndürdüğü kanıt</span><blockquote>09.00 · Atlas ziyaretçi rehberi · sürüm 1 · dayanak pasaj</blockquote><span class="intro-source-thread">Bilgi + kaynak kimliği</span></div></article></div>
+    <p class="intro-caption">Canlı sorgu veya ölçüm sonucu değil, açıklayıcı bir örnektir. Atlas notu kurgusaldır.</p>
+  </div><figure class="intro-journey"><figcaption>Mesa nerede devreye girer?</figcaption><div class="intro-journey__nodes"><div class="intro-node "><span class="intro-index">01</span><strong>Sizin bilgileriniz</strong><small>Belgeler, notlar, kaynak metin</small></div><span class="intro-arrow" aria-hidden="true">→</span><div class="intro-node intro-node--core"><span class="intro-index">02</span><strong>MESA Core</strong><small>Saklar · ilişkilendirir · bulur</small></div><span class="intro-arrow" aria-hidden="true">→</span><div class="intro-node "><span class="intro-index">03</span><strong>Yapay zekâ uygulamanız</strong><small>Gelen kanıtı kullanarak yanıtlar</small></div></div><p class="intro-caption">Uygulama soruları Mesa’ya gönderir; Mesa ilgili bilgiyi kaynağıyla birlikte geri verir.</p></figure></section>
+    <section class="section intro-architecture-section" id="inside-core"><div><p class="eyebrow">02 · BASİTÇE MİMARİ</p><h2>Bir ana kayıt. İki arama görünümü.</h2><p>Mesa, asıl kaydı aramada kullanılan yapılardan ayrı tutar. Bir kütüphane gibi düşünün: ana kayıt kitaptır; arama görünümleri ise onu anlamına veya bağlantılarına göre bulmanıza yardımcı olur.</p><dl class="intro-terms"><div><dt>Düzenli bilgi kaydı (assertion)</dt><dd>“Atlas arşivi → açılış saati → 09.00” gibi, dayanak metnine bağlı bir ifade.</dd></div><div><dt>Arama görünümü (projeksiyon)</dt><dd>Belirli bir arama türü için ana kayıttan türetilmiş temsil.</dd></div></dl></div><figure class="intro-storage"><figcaption>Mesa Core’un içinde · basitleştirilmiş mimari</figcaption>
+    <div class="intro-storage__entry"><strong>Uygulamanız</strong><small>HTTP API · Python SDK · V4 MCP geçidi</small></div>
+    <div class="intro-storage__connector" aria-hidden="true">↓</div>
+    <div class="intro-storage__boundary"><span class="intro-boundary-label">MESA Core</span>
+      <div class="intro-storage__gate"><strong>Erişim kontrolü + arka planda işleme</strong><small>Kim hangi veriye erişebilir? İşleme tamamlandı mı?</small></div>
+      <div class="intro-storage__connector" aria-hidden="true">↓</div>
+      <div class="intro-store intro-store--main"><span class="intro-index">ANA KAYIT</span><h3>SQLite</h3><p>Asıl kayıtların tutulduğu yer: belgeler, sürümler, bilgiler, izinler ve işleme durumu.</p></div>
+      <div class="intro-storage__fork"><span>Ana kayıttan türetilir</span></div>
+      <div class="intro-storage__projections"><div class="intro-store"><h3>LanceDB</h3><p>Anlamca yakın bilgileri bulmak için kullanılan sayısal temsiller.</p><small>Anlama göre arama</small></div><div class="intro-store"><h3>Kùzu</h3><p>Varlıklar ve aralarındaki ilişkilerden oluşan, sınırları belirli bağlantı haritası.</p><small>İlişkilere göre arama</small></div></div>
+    </div><p class="intro-caption">LanceDB ve Kùzu, arama için türetilmiş görünümlerdir. Asıl kayıt SQLite’tadır. Yazma sırası: SQL → vektör → çizge.</p></figure></section>
+    <section class="section" id="finding-evidence"><p class="eyebrow">03 · BİLGİYİ NASIL BULUR?</p><h2>Bir soru, aynı bilgiye farklı yollardan ulaşabilir.</h2><p>Mesa önce yetkili veri kapsamına ve geçerli uygunluk kurallarına göre adayları sınırlar. Ardından dört arama kanalı sıralamaya katkıda bulunur. Bir kanal ancak uygun bir sonuç bulduğunda katkı verir.</p><figure class="intro-retrieval"><figcaption>Bir soru, dayanak bilgiyi bulmak için dört yol</figcaption>
+    <div class="intro-query">Soru → yalnızca erişime uygun kayıtlar</div>
+    <div class="intro-lanes"><div class="intro-lane"><span class="intro-index">01</span><h3>Anlam</h3><small>Vektör</small><p>Farklı sözcüklerle yazılsa da yakın anlamı bulur.</p></div><div class="intro-lane"><span class="intro-index">02</span><h3>Sözcükler</h3><small>BM25</small><p>Pasaj ve kanıtlardaki sözcükleri eşleştirir.</p></div><div class="intro-lane"><span class="intro-index">03</span><h3>Düzenli bilgiler</h3><small>Assertion</small><p>Kim, ne ve aralarında belirtilen ilişkiyi kullanır.</p></div><div class="intro-lane"><span class="intro-index">04</span><h3>Bağlantılar</h3><small>Çizge</small><p>İlişkili varlıklar arasında sınırlı yolları izler.</p></div></div>
+    <div class="intro-fusion"><strong>Sıralamaları birleştir</strong><span>RRF, sıra konumlarını birleştirir; doğruluk olasılığı değildir.</span></div>
+    <div class="intro-evidence-result"><span aria-hidden="true">↳</span><div><strong>İlgili bilgiler + dayanak pasajlar + kaynak kimliği</strong><p>Uygulamanız için boyutu sınırlandırılmış bir bağlama yerleştirilir. Yanıtı, bağlı dil modeli yazar.</p></div></div>
+  </figure><div class="home-section-actions"><a class="button text" href="../retrieval/"><span>Aramanın teknik ayrıntıları</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <section class="section" id="source-trail"><p class="eyebrow">04 · GERİYE NE DÖNER?</p><h2>Bilgi ve kaynağına geri dönmenin yolu.</h2><p>Bir sonuç; belgeyi, belgenin değişmez sürümünü, ilgili metin parçasını ve dayanak kanıtı taşıyabilir. Uygulamanız bu alanları kullanarak yanıtın yanında kaynağı gösterebilir.</p><ol class="intro-source-chain"><li><span class="intro-index">01</span><strong>Belge</strong></li><li><span class="intro-index">02</span><strong>Sürüm</strong></li><li><span class="intro-index">03</span><strong>Metin parçası</strong></li><li><span class="intro-index">04</span><strong>Dayanak pasaj</strong></li></ol><div class="intro-callout"><strong>Kanıtın bulunması, iddianın doğru olduğunu tek başına kanıtlamaz.</strong><p>Mesa izlenebilirliği korur. Kaynağın doğruluğu ve nihai yanıt ayrıca değerlendirilmelidir. Boş sonuç, eşleşen kanıt dönmediği anlamına gelir; bir iddianın yanlış olduğunu göstermez.</p></div></section>
+    <section class="section"><p class="eyebrow">NERELERDE KULLANABİLİRSİNİZ?</p><h2>Aynı hafıza katmanı, farklı uygulamalar.</h2><div class="intro-use-grid"><article><span class="intro-index">01</span><h3>Belgelerinizi tanıyan asistan</h3><p>Not veya belge koleksiyonunda ilgili pasajları bulun; bilginin hangi kaynağa dayandığını gösterin.</p></article><article><span class="intro-index">02</span><h3>Oturumlar arasında hafıza</h3><p>Bir ajanın daha önce kaydettiği bilgileri sonraki oturumlarda, erişim yetkisi kapsamında bulmasını sağlayın.</p></article><article><span class="intro-index">03</span><h3>Kaynağın izlenmesi gereken işler</h3><p>Bir bilginin belirli bir belge sürümüne ve pasaja kadar izlenmesi gereken inceleme akışları kurun.</p></article></div></section>
+    <section class="section" id="verified-example"><details class="intro-technical"><summary>Geliştiriciler için · gerçek depo testi ve kaynaklar</summary><div><p>Yukarıdaki Atlas anlatımı açıklayıcıdır. Bundan ayrı olarak Core’da deterministik bir sözleşme testi bulunur: “Alice knows Aurora” kaydı dört kanalda da ilk sıradadır ve RRF = 4/61 olur. Gerçek SQLite ve Kùzu ile mock vektörler kullanılır; kalite karşılaştırması değildir.</p><div class="memory-example panel--evidence">
+    <div class="memory-example__query"><span class="text--meta">SORGU</span><code>“Alice”</code><span class="text--meta">Deterministik test fixture’ı</span></div>
+    <div class="memory-example__body">
+      <div class="memory-example__knowledge"><span class="text--meta">GERİ GETİRİLEN BİLGİ</span><p><strong>Alice</strong><span>knows</span><strong>Aurora</strong></p><p class="memory-example__identity">Bir assertion, bağlı kaldığı kaynakla birlikte.</p></div>
+      <div class="memory-example__evidence"><span class="text--meta">KANIT</span><dl><div><dt>kaynak</dt><dd><code>source-chunk-1</code></dd></div><div><dt>belge / chunk</dt><dd><code>doc-1 / chunk-1</code></dd></div><div><dt>span</dt><dd>“Alice knows Aurora”</dd></div></dl></div>
     </div>
-  </div>
-        <div class="proof-links">
-          <a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer"><span>Tam testi inceleyin</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
-          <a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md" target="_blank" rel="noopener noreferrer"><span>Yanıt sözleşmesini okuyun</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
-        </div>
-      </section>
-
-      <section class="section architecture-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">SEVİYE 2 · TEKNİK AKIŞ</p>
-            <h2>Kabul, projeksiyon,<br><em>geri getirme ve kurtarma.</em></h2>
-          </div>
-          <p>Kararları ve kanonik assertion'ları SQLite yönetir. LanceDB ve Kùzu türetilmiş projeksiyonlardır. Güncel geri getirme sözleşmesi vector, BM25, assertion ve sınırlandırılmış graph path kaynaklarını içerir.</p>
-        </div>
-        <div class="architecture-flow"><div class="flow-step"><span>01</span><strong>Kaynaklar</strong><small>Tam kaynak metni ve sürüm kimliği</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>02</span><strong>Kabul</strong><small>Yetkili, dataset kapsamlı mutasyon</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>03</span><strong>Doğrulama</strong><small>Deterministik, tekli veya ikili politika</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>04</span><strong>SQL ledger</strong><small>Katalog, sahiplik, assertion'lar, outbox</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>05</span><strong>Projeksiyonlar</strong><small>Idempotent biçimde önce Vector, sonra Graph V2</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>06</span><strong>Retrieval</strong><small>Vector + BM25 + assertion + graph path RRF</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>07</span><strong>İstemciler</strong><small>REST, sync/async SDK, MCP</small></div></div>
-        <div class="section-actions">
-          <a class="button primary" href="../mesa/"><span>Core'u ayrıntılı inceleyin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-          <a class="button text" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Kanonik kaynak belgesi</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
-        </div>
-      </section>
-
-      <section class="section quality-context">
-        <div>
-          <p class="eyebrow">KALİTE KATMANLARI</p>
-          <h2>Akışı çevrelerler.<br><em>Akışın içinde çalışmazlar.</em></h2>
-        </div>
-        <div>
-          <article>
-            <strong>MESA QA</strong>
-            <p>Davranışı, zamansal değişimi, oturumlar arası kalıcılığı, yeniden başlatmaları ve sınırlandırılmış aday onarımını sınar.</p>
-          </article>
-          <article>
-            <strong>E2E Certification</strong>
-            <p>Dondurulmuş bir profili kanıt, yetkili üreticiler, katı kapılar ve hata durumunda kapanan bir hükümle değerlendirir.</p>
-          </article>
-        </div>
-        <a href="../evaluation/">Değerlendirme katmanlarını karşılaştırın →</a>
-      </section>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    <details class="memory-example__details"><summary>Geri getirme sinyalleri ve uygulama bağlamı</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>sıra 1</b></li><li>BM25 <b>sıra 1</b></li><li>assertion <b>sıra 1</b></li><li>graph path <b>sıra 1</b></li></ul><p class="fixture-score">Beklenen RRF: 4 ÷ 61</p></div><div><span class="text--meta">UYGULAMA BAĞLAMI</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
+  subject: "Alice", relation: "knows",
+  object: "Aurora", source: "source-chunk-1"
+}</code></pre><p class="text--meta">Fixture alanlarının şemayla uyumlu site gösterimi; üretim bağlamı token sınırlandırılmış JSON kanıtıdır.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core testi, yayın commiti d394784.</span></p></details>
+    <p class="memory-example__caption text--meta">Bu testte vector arama sonuçları taklit edilir. Bu, statik bir örnektir; canlı benchmark değildir.</p>
+  </div><div class="intro-proof-links"><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Core mimarisi ↗</a><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/retrieval-and-graph.md" target="_blank" rel="noopener noreferrer">Arama sözleşmesi ↗</a><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer">Gerçek fixture testi ↗</a></div><p class="intro-caption">Kaynak temeli: Core v0.8.1 · commit d394784.</p></div></details></section>
+    <section class="section"><h2>Daha yakından bakmaya hazır mısınız?</h2><div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Kurulum ve hızlı başlangıç</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../architecture/"><span>Ayrıntılı teknik mimari</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section><aside class="home-status"><div><p class="eyebrow">AÇIK KAYNAK · v0.8.1</p><p>Mesa’nın kaynak kodu incelenebilir ve yerelde değerlendirme yapılabilir. Üretim yeterlilik süreci tamamlanmadı; üretim durumu NO-GO olarak sürüyor.</p></div><a class="button secondary" href="../status/"><span>Güncel durum ve sınırlar</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></aside><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -183,8 +110,7 @@
         <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../admin/">Yönetim</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer>
-    </main>
-  <script src="../../app.js?v=6dbcc516edfb"></script>
+    </footer></main>
+  <script src="../../app.js?v=191109320dfa"></script>
 </body>
 </html>

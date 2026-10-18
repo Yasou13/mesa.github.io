@@ -48,3 +48,24 @@ wording as exact.
   evidence;
 - no claim that MESA Law has completed live Core/full-stack integration;
 - no claim that MESA Data is a general-purpose web ingestion platform.
+
+## Beginner introduction revision — 2026-10-18
+
+The home and how-it-works explanations were checked directly against the local
+Core checkout at `d3947846615e63b48dc7a5df9f1051b29f734263` (v0.8.1).
+
+| Explanation / diagram | Core evidence |
+|---|---|
+| Application → Core → source-linked evidence; application model writes the answer | `docs/architecture-v4.md` (runtime, retrieval, limitations), `docs/retrieval-and-graph.md` (context); Core retrieval does not generate answers |
+| Source admission is separate from completed processing | `docs/architecture-v4.md` (canonical ingestion, pipeline and failure model) |
+| SQLite authority; derived LanceDB/Kùzu views; SQL → vector → graph writes | `docs/architecture-v4.md` (pipeline, canonical entities), `README.md` |
+| Four lanes and eligibility before rank contribution | `mesa_storage/dao.py::MemoryDAO.search_v4_memory`, `docs/retrieval-and-graph.md` |
+| RRF combines ranks rather than truth probabilities | `mesa_storage/retrieval_scope.py::compute_rrf_lane_score`, `rrf_fuse_lanes` |
+| Document/revision/chunk/evidence source chain | `docs/architecture-v4.md` (canonical ingestion, retrieval) |
+| Real fixture: four rank-one lanes, deterministic replay, 4/61 | `tests/test_v4_independent_retrieval_audit.py::test_real_four_lanes_fuse_once_and_repeat_deterministically` |
+
+The Atlas archive note is explicitly fictional and illustrative. The browser
+walkthrough performs no Core query or model call. Its four stages explain the
+lifecycle, rather than reproduce runtime timing or imply measured quality.
+The repository fixture is separately disclosed as a contract test using mock
+vectors, not a semantic benchmark. No new readiness or customer claims are made.

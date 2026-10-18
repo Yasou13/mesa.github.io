@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>How MESA Works — From Source to Evidence-Aware Context</title>
-  <meta name="description" content="Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.">
+  <meta name="description" content="New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/how-it-works/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/how-it-works/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/how-it-works/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/how-it-works/">
   <meta property="og:title" content="How MESA Works — From Source to Evidence-Aware Context">
-  <meta property="og:description" content="Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.">
+  <meta property="og:description" content="New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/how-it-works/">
   <meta property="og:locale" content="en_US">
@@ -22,21 +22,20 @@
   <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="How MESA Works — From Source to Evidence-Aware Context">
-  <meta name="twitter:description" content="Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.">
+  <meta name="twitter:description" content="New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles.css?v=6e69ac822270">
+  <link rel="stylesheet" href="../styles.css?v=6821a82454e5">
   <link rel="stylesheet" href="../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../learn.css?v=ef08fd97f3dc">
   <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">Skip to content</a>
+<a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -54,118 +53,46 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <section class="page-hero compact page-hero--trajectory">
-        <p class="eyebrow">HOW MESA WORKS</p>
-        <h1>Keep the memory.<br><em>Keep its basis.</em></h1>
-        <p>MESA turns authorized source material into structured, retrievable memory while keeping scope and provenance in the result contract.</p>
-        <div class="actions">
-          <a class="button primary" href="#verified-example"><span>See the fixture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-          <a class="button secondary" href="../architecture/"><span>Technical architecture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">LEVEL 1 · PUBLIC FLOW</p>
-            <h2>Six steps,<br><em>no storage jargon required.</em></h2>
-          </div>
-          <p>MESA Data is the verified legal-source preparation layer. Core owns the runtime memory lifecycle. Other applications can use the same versioned interfaces.</p>
-        </div>
-        <ol class="public-flow" aria-label="Simple MESA flow"><li><span>01</span><strong>Source</strong><small>Exact source material and identity</small></li><li><span>02</span><strong>Prepare</strong><small>MESA Data preserves and reviews legal inputs</small></li><li><span>03</span><strong>Remember</strong><small>Core admits scoped memory and keeps evidence</small></li><li><span>04</span><strong>Retrieve</strong><small>Four authorized signals are rank-fused</small></li><li><span>05</span><strong>Verify</strong><small>Provenance and scope travel with the result</small></li><li><span>06</span><strong>Use</strong><small>Applications consume bounded context</small></li></ol>
-      </section>
-
-      <section class="section reliability-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">WHAT TRAVELS WITH MEMORY</p>
-            <h2>More than<br><em>a similarity score.</em></h2>
-          </div>
-          <p>Current V4 responses can include catalog identity, source evidence, assertion identity, pipeline identity, embedding provenance, and contributing retrieval origins.</p>
-        </div>
-        <div class="reliability-list">
-          <article>
-            <strong>Source</strong>
-            <p>Document, revision, chunk, source reference, and bounded evidence span.</p>
-          </article>
-          <article>
-            <strong>Structure</strong>
-            <p>Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.</p>
-          </article>
-          <article>
-            <strong>Scope</strong>
-            <p>Tenant and authorized dataset eligibility resolved before lane ranking and fusion.</p>
-          </article>
-          <article>
-            <strong>State</strong>
-            <p>Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section action-section" id="verified-example">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">VERIFIED REPOSITORY EXAMPLE</p>
-            <h2>Four origins.<br><em>One evidence identity.</em></h2>
-          </div>
-          <p>The fixture creates one canonical assertion, makes all four origins rank it first, and checks deterministic replay plus a fused score of 4/61.</p>
-        </div>
-        <div class="action-example specimen-plate">
-    <div class="specimen-frame">
-      <div class="action-query"><span>QUERY</span><strong>“Alice”</strong><small>Exact deterministic fixture query · not a live benchmark</small></div>
-      <div class="fixture-trace" role="img" aria-label="Alice knows Aurora, supported by source chunk 1 in document 1">
-        <div class="trace-node"><small>ENTITY</small><strong>Alice</strong></div><span class="trace-edge"><i></i><b>knows</b></span><div class="trace-node"><small>ENTITY</small><strong>Aurora</strong></div><span class="trace-evidence"><i></i><b>evidence</b></span><div class="trace-node evidence"><small>SOURCE</small><strong>source-chunk-1</strong><em>doc-1 / chunk-1</em></div>
-      </div>
-      <div class="action-output">
-        <section><span>RETRIEVED KNOWLEDGE</span><dl><div><dt>subject</dt><dd>Alice</dd></div><div><dt>predicate</dt><dd>knows</dd></div><div><dt>object</dt><dd>Aurora</dd></div></dl></section>
-        <section><span>EVIDENCE</span><dl><div><dt>source</dt><dd>source-chunk-1</dd></div><div><dt>document</dt><dd>doc-1</dd></div><div><dt>chunk</dt><dd>chunk-1</dd></div><div><dt>span</dt><dd>“Alice knows Aurora”</dd></div></dl></section>
-        <section><span>RETRIEVAL SIGNALS</span><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></section>
-      </div>
-      <div class="context-output"><span>APPLICATION CONTEXT</span><div><code>UNTRUSTED_MEMORY_EVIDENCE { subject: "Alice", relation: "knows", object: "Aurora", source: "source-chunk-1" }</code><small>Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</small></div></div>
+    </header><main id="main-content" class="intro-page intro-how">
+    <section class="page-hero compact page-hero--trajectory"><p class="eyebrow">HOW MESA WORKS · START FROM ZERO</p><h1>From a document to an answer’s source.</h1><p>Think of MESA as a source-linked memory for an AI application. You give it information; it organizes and stores it. When the application asks a question, MESA finds supporting information and returns where it came from.</p><div class="actions"><a class="button primary" href="#memory-walkthrough"><span>Follow a note</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="#inside-core"><span>See inside the core</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <nav class="intro-page-nav" aria-label="On this page"><a href="#memory-walkthrough">01 · Example</a><a href="#inside-core">02 · Architecture</a><a href="#finding-evidence">03 · Search</a><a href="#source-trail">04 · Source trail</a></nav>
+    <section class="section" id="memory-walkthrough"><p class="eyebrow">01 · A CONCRETE EXAMPLE</p><h2>What happens when you add a note?</h2><div class="intro-story" data-memory-story data-step="0">
+    <div class="intro-story__toolbar"><span>A note’s journey through memory</span><button type="button" class="intro-play" data-story-play hidden>Play the flow</button></div>
+    <ol class="intro-step-nav"><li><button type="button" data-story-step="0" aria-controls="story-panel-0" aria-pressed="true"><span>01</span>Add a source</button></li><li><button type="button" data-story-step="1" aria-controls="story-panel-1" aria-pressed="false"><span>02</span>Organize and store</button></li><li><button type="button" data-story-step="2" aria-controls="story-panel-2" aria-pressed="false"><span>03</span>Ask a question</button></li><li><button type="button" data-story-step="3" aria-controls="story-panel-3" aria-pressed="false"><span>04</span>Return the evidence</button></li></ol>
+    <div class="intro-story__panels"><article class="intro-story-panel" id="story-panel-0" data-story-panel="0"><div><span class="intro-index">01 / 04</span><h3>Start with a simple note.</h3><p>Your application sends this text and its source identity to MESA. Acceptance starts background processing; it does not mean processing is complete.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Source · Atlas visitor guide / revision 1</span><blockquote>“The Atlas archive opens at 09:00 on weekdays.”</blockquote><span class="intro-source-thread">Information + source identity</span></div></article><article class="intro-story-panel" id="story-panel-1" data-story-panel="1"><div><span class="intro-index">02 / 04</span><h3>The fact stays connected to the note.</h3><p>MESA extracts structured facts, applies the configured validation and writes the main record. Search representations follow in order. A successful write ends at COMMITTED.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Structured fact → original passage</span><blockquote>Atlas archive → weekday opening time → 09:00</blockquote><span class="intro-source-thread">Information + source identity</span></div></article><article class="intro-story-panel" id="story-panel-2" data-story-panel="2"><div><span class="intro-index">03 / 04</span><h3>Look for meaning, words and connections.</h3><p>The application asks a question. MESA searches eligible records using meaning, keywords, structured facts and bounded relationships, then combines their rankings.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Question from your application</span><blockquote>“When can I visit the Atlas archive on Monday?”</blockquote><span class="intro-source-thread">Information + source identity</span></div></article><article class="intro-story-panel" id="story-panel-3" data-story-panel="3"><div><span class="intro-index">04 / 04</span><h3>The application receives the basis of an answer.</h3><p>MESA returns relevant information with its document, revision and supporting passage. Your application’s language model can use this context to write an answer.</p></div><div class="intro-specimen"><span class="intro-specimen__label">Evidence returned by MESA</span><blockquote>09:00 · Atlas visitor guide · revision 1 · supporting passage</blockquote><span class="intro-source-thread">Information + source identity</span></div></article></div>
+    <p class="intro-caption">Illustrative walkthrough, not a live query or measured result. The Atlas note is fictional.</p>
+  </div><figure class="intro-journey"><figcaption>Where MESA fits</figcaption><div class="intro-journey__nodes"><div class="intro-node "><span class="intro-index">01</span><strong>Your information</strong><small>Documents, notes, source text</small></div><span class="intro-arrow" aria-hidden="true">→</span><div class="intro-node intro-node--core"><span class="intro-index">02</span><strong>MESA Core</strong><small>Stores · connects · finds</small></div><span class="intro-arrow" aria-hidden="true">→</span><div class="intro-node "><span class="intro-index">03</span><strong>Your AI application</strong><small>Uses the returned evidence to answer</small></div></div><p class="intro-caption">The application sends questions to MESA; MESA returns relevant information with its source.</p></figure></section>
+    <section class="section intro-architecture-section" id="inside-core"><div><p class="eyebrow">02 · THE ARCHITECTURE, SIMPLY</p><h2>One main record. Two search views.</h2><p>MESA keeps the original record separate from the structures used to search it. Think of a library: the record is the book, while search views help you find it by meaning or relationships.</p><dl class="intro-terms"><div><dt>Structured fact (assertion)</dt><dd>A statement such as “Atlas archive → opens at → 09:00”, linked to its supporting text.</dd></div><div><dt>Search view (projection)</dt><dd>A representation derived from the main record for a particular kind of search.</dd></div></dl></div><figure class="intro-storage"><figcaption>Inside MESA Core · a simplified architecture</figcaption>
+    <div class="intro-storage__entry"><strong>Your application</strong><small>HTTP API · Python SDK · V4 MCP gateway</small></div>
+    <div class="intro-storage__connector" aria-hidden="true">↓</div>
+    <div class="intro-storage__boundary"><span class="intro-boundary-label">MESA Core</span>
+      <div class="intro-storage__gate"><strong>Access check + background processing</strong><small>Who can use which data? Has processing completed?</small></div>
+      <div class="intro-storage__connector" aria-hidden="true">↓</div>
+      <div class="intro-store intro-store--main"><span class="intro-index">MAIN RECORD</span><h3>SQLite</h3><p>The source of truth: documents, revisions, facts, permissions and processing state.</p></div>
+      <div class="intro-storage__fork"><span>Derived from the main record</span></div>
+      <div class="intro-storage__projections"><div class="intro-store"><h3>LanceDB</h3><p>A numerical representation of meaning, used to find semantically related facts.</p><small>Meaning search</small></div><div class="intro-store"><h3>Kùzu</h3><p>A map of entities and their relationships, used to explore bounded connections.</p><small>Relationship search</small></div></div>
+    </div><p class="intro-caption">LanceDB and Kùzu are derived search views. SQLite remains authoritative. Writes progress in order: SQL → vector → graph.</p></figure></section>
+    <section class="section" id="finding-evidence"><p class="eyebrow">03 · HOW DOES IT FIND THE INFORMATION?</p><h2>A question can lead to the same fact in different ways.</h2><p>MESA first limits candidates by authorized data scope and applicable eligibility rules. The four retrieval lanes then contribute rankings. A lane only contributes when it has an eligible result.</p><figure class="intro-retrieval"><figcaption>One question, four ways to find supporting information</figcaption>
+    <div class="intro-query">Question → eligible records only</div>
+    <div class="intro-lanes"><div class="intro-lane"><span class="intro-index">01</span><h3>Meaning</h3><small>Vector</small><p>Finds similar meaning, even with different words.</p></div><div class="intro-lane"><span class="intro-index">02</span><h3>Words</h3><small>BM25</small><p>Matches words in passages and evidence.</p></div><div class="intro-lane"><span class="intro-index">03</span><h3>Structured facts</h3><small>Assertion</small><p>Uses who, what and their stated relationship.</p></div><div class="intro-lane"><span class="intro-index">04</span><h3>Connections</h3><small>Graph</small><p>Follows bounded paths between related entities.</p></div></div>
+    <div class="intro-fusion"><strong>Combine the rankings</strong><span>RRF merges rank positions; it is not a truth probability.</span></div>
+    <div class="intro-evidence-result"><span aria-hidden="true">↳</span><div><strong>Relevant facts + supporting passages + source identity</strong><p>Packed into a bounded context for your application. The connected language model writes the answer.</p></div></div>
+  </figure><div class="home-section-actions"><a class="button text" href="../retrieval/"><span>Read the retrieval details</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section>
+    <section class="section" id="source-trail"><p class="eyebrow">04 · WHAT COMES BACK?</p><h2>The information and a path back to its source.</h2><p>A result can carry the document, its immutable revision, the exact chunk and supporting evidence. Your application can use those fields to show the source next to an answer.</p><ol class="intro-source-chain"><li><span class="intro-index">01</span><strong>Document</strong></li><li><span class="intro-index">02</span><strong>Revision</strong></li><li><span class="intro-index">03</span><strong>Text chunk</strong></li><li><span class="intro-index">04</span><strong>Supporting passage</strong></li></ol><div class="intro-callout"><strong>Finding evidence does not prove a claim true.</strong><p>MESA preserves traceability. Source accuracy and the final answer still need evaluation. An empty result means no matching evidence was returned; it does not establish that a claim is false.</p></div></section>
+    <section class="section"><p class="eyebrow">WHERE YOU CAN USE IT</p><h2>The same memory layer, different applications.</h2><div class="intro-use-grid"><article><span class="intro-index">01</span><h3>An assistant for your documents</h3><p>Find relevant passages in a collection of notes or documents, and show which source supports the information.</p></article><article><span class="intro-index">02</span><h3>Memory across sessions</h3><p>Let an agent retrieve previously saved information in later sessions, within its authorized data scope.</p></article><article><span class="intro-index">03</span><h3>Work that needs source tracing</h3><p>Build review workflows where a fact must be traced to a specific document revision and passage.</p></article></div></section>
+    <section class="section" id="verified-example"><details class="intro-technical"><summary>For developers · the real repository test and source references</summary><div><p>The Atlas walkthrough above is illustrative. Separately, Core has a deterministic contract fixture: one “Alice knows Aurora” assertion ranks first in all four lanes, with RRF = 4/61. It uses real SQLite and Kùzu with mock vectors; it is not a quality benchmark.</p><div class="memory-example panel--evidence">
+    <div class="memory-example__query"><span class="text--meta">QUERY</span><code>“Alice”</code><span class="text--meta">Deterministic test fixture</span></div>
+    <div class="memory-example__body">
+      <div class="memory-example__knowledge"><span class="text--meta">RETRIEVED KNOWLEDGE</span><p><strong>Alice</strong><span>knows</span><strong>Aurora</strong></p><p class="memory-example__identity">One assertion. Its source still attached.</p></div>
+      <div class="memory-example__evidence"><span class="text--meta">EVIDENCE</span><dl><div><dt>source</dt><dd><code>source-chunk-1</code></dd></div><div><dt>document / chunk</dt><dd><code>doc-1 / chunk-1</code></dd></div><div><dt>span</dt><dd>“Alice knows Aurora”</dd></div></dl></div>
     </div>
-  </div>
-        <div class="proof-links">
-          <a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer"><span>Inspect the exact test</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
-          <a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md" target="_blank" rel="noopener noreferrer"><span>Read the response contract</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
-        </div>
-      </section>
-
-      <section class="section architecture-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">LEVEL 2 · TECHNICAL FLOW</p>
-            <h2>Admission, projection,<br><em>retrieval, and recovery.</em></h2>
-          </div>
-          <p>SQLite owns decisions and canonical assertions. LanceDB and Kùzu are derived projections. The current retrieval contract includes vector, BM25, assertion, and bounded graph-path origins.</p>
-        </div>
-        <div class="architecture-flow"><div class="flow-step"><span>01</span><strong>Sources</strong><small>Exact source text and version identity</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>02</span><strong>Admission</strong><small>Authorized, dataset-scoped mutation</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>03</span><strong>Validation</strong><small>Deterministic, single, or dual policy</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>04</span><strong>SQL ledger</strong><small>Catalog, ownership, assertions, outbox</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>05</span><strong>Projections</strong><small>Vector then Graph V2, idempotently</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>06</span><strong>Retrieval</strong><small>Vector + BM25 + assertion + graph-path RRF</small></div><b aria-hidden="true">→</b><div class="flow-step"><span>07</span><strong>Clients</strong><small>REST, sync/async SDK, MCP</small></div></div>
-        <div class="section-actions">
-          <a class="button primary" href="../mesa/"><span>Explore Core in detail</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-          <a class="button text" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>Canonical source doc</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
-        </div>
-      </section>
-
-      <section class="section quality-context">
-        <div>
-          <p class="eyebrow">QUALITY LAYERS</p>
-          <h2>They surround the flow.<br><em>They do not run inside it.</em></h2>
-        </div>
-        <div>
-          <article>
-            <strong>MESA QA</strong>
-            <p>Exercises behavior, temporal change, cross-session persistence, restarts, and bounded candidate repair.</p>
-          </article>
-          <article>
-            <strong>E2E Certification</strong>
-            <p>Evaluates a frozen profile with evidence, authoritative producers, hard gates, and a fail-closed verdict.</p>
-          </article>
-        </div>
-        <a href="../evaluation/">Compare evaluation layers →</a>
-      </section>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
+  subject: "Alice", relation: "knows",
+  object: "Aurora", source: "source-chunk-1"
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit d394784.</span></p></details>
+    <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
+  </div><div class="intro-proof-links"><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Core architecture ↗</a><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/retrieval-and-graph.md" target="_blank" rel="noopener noreferrer">Retrieval contract ↗</a><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer">Exact fixture test ↗</a></div><p class="intro-caption">Source baseline: Core v0.8.1 · commit d394784.</p></div></details></section>
+    <section class="section"><h2>Ready to look closer?</h2><div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Installation and quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../architecture/"><span>Full technical architecture</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div></section><aside class="home-status"><div><p class="eyebrow">OPEN SOURCE · v0.8.1</p><p>MESA can be inspected and evaluated locally. Production qualification is incomplete; production status remains NO-GO.</p></div><a class="button secondary" href="../status/"><span>Current status and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></aside><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
@@ -183,8 +110,7 @@
         <div><h3>Project</h3><a href="../about/">About</a><a href="../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../admin/">Admin</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer>
-    </main>
-  <script src="../app.js?v=6dbcc516edfb"></script>
+    </footer></main>
+  <script src="../app.js?v=191109320dfa"></script>
 </body>
 </html>

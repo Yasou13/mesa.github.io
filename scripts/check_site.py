@@ -329,14 +329,18 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "d394784"):
+            for fixture_field in ("Atlas", "MESA Core", "09:00" if relative == Path("index.html") else "09.00"):
                 if fixture_field not in parsed.visible_text:
-                    errors.append(f"missing homepage fixture evidence at {relative}: {fixture_field}")
+                    errors.append(f"missing homepage walkthrough evidence at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
                 if hidden != "true":
                     errors.append(f"scene media must be aria-hidden at {relative}: {scene_id}")
                 if state not in {"fallback", "configured"}:
                     errors.append(f"invalid initial media state at {relative}: {scene_id} / {state}")
+        if relative in {Path("how-it-works/index.html"), Path("tr/how-it-works/index.html")}:
+            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "d394784"):
+                if fixture_field not in parsed.visible_text:
+                    errors.append(f"missing technical fixture evidence at {relative}: {fixture_field}")
         if text.count('class="cosmic cosmic--') != 1:
             errors.append(f"expected one shared cosmic environment: {relative}")
         if 'id="app"' in text or "requires JavaScript to render" in text:
@@ -423,13 +427,13 @@ def main() -> int:
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "AI memory, with its evidence attached." not in home_text or "MESA is open-source memory infrastructure for AI systems." not in home_text:
+    if "Give your AI a memory it can trace." not in home_text or "MESA is open-source memory infrastructure for AI systems." not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
 
     static_markers = {
-        "how-it-works/": ("Six steps", "Four origins", "MESA QA"),
+        "how-it-works/": ("What happens when you add a note?", "One main record. Two search views.", "Combine the rankings"),
         "mesa/": ("Four signals", "Graph paths", "True RRF"),
         "law/": ("PRIMARY REFERENCE IMPLEMENTATION", "Official legal source"),
         "use-cases/": ("Agent memory", "Expected benefit"),
@@ -448,8 +452,8 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Kanıtıyla birlikte yapay zekâ hafızası.", "Bu testte vector arama sonuçları taklit edilir.", "YAYIMLANMIŞ KAYNAK · YETERLİLİK SÜRÜYOR"),
-        "tr/how-it-works/": ("Altı adım", "Dört kaynak", "KALİTE KATMANLARI"),
+        "tr/": ("Yapay zekânız bilgiyi kaynağıyla hatırlasın.", "Bir notun hafızadaki yolculuğu", "AÇIK KAYNAK · v0.8.1"),
+        "tr/how-it-works/": ("Bir not eklediğinizde ne olur?", "Bir ana kayıt. İki arama görünümü.", "Sıralamaları birleştir"),
         "tr/mesa/": ("Dört sinyal", "Graph path", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
         "tr/use-cases/": ("Ajan hafızası", "Beklenen yarar"),

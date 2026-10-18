@@ -114,7 +114,8 @@ async function waitForPage(url, previousOrigin) {
     if ((result.value?.href === url || (new URL(url).searchParams.has('code') && result.value?.href === url.split('?')[0])) && result.value?.ready === 'complete' && result.value.origin !== previousOrigin) return;
     await wait(50);
   }
-  throw new Error(`Page did not finish loading: ${url}`);
+  const lastState = await connection.send('Runtime.evaluate', {expression:'({href:location.href,ready:document.readyState,origin:performance.timeOrigin,title:document.title,body:document.body.innerText.slice(0,700)})',returnByValue:true});
+  throw new Error(`Page did not finish loading: ${url}; previous=${previousOrigin}; state=${JSON.stringify(lastState.result.value)}`);
 }
 
 async function navigate(url) {
@@ -194,13 +195,13 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
       if (state.height > heightBudget) failures.push(`${label}: homepage exceeds ${heightBudget}px (${state.height}px)`);
     }
   }
-  const samplePages = ['data/', 'ecosystem/', 'qa/', 'certification/', 'admin/', 'learn/', 'architecture/', 'retrieval/', 'docs/core/getting-started/', 'mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
+  const samplePages = ['how-it-works/', 'data/', 'ecosystem/', 'qa/', 'certification/', 'admin/', 'learn/', 'architecture/', 'retrieval/', 'docs/core/getting-started/', 'mesa/', 'law/', 'docs/', 'docs/core/api-reference/', 'learn/what-is-ai-memory/'];
   const unlocalized = routePath.replace(/^tr\//, '');
   if (screenshotsDirectory && (unlocalized === '' || (samplePages.includes(unlocalized) && [390, 1440].includes(width)))) {
     const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}${height === 430 ? '-landscape' : ''}`;
     const screenshot = await connection.send('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.join(screenshotsDirectory, `${stem}.png`), Buffer.from(screenshot.data, 'base64'));
-    if (unlocalized === '' && [390, 1440].includes(width)) {
+    if (['', 'how-it-works/'].includes(unlocalized) && [390, 1440].includes(width)) {
       const full = await connection.send('Page.captureScreenshot', {
         format: 'png', captureBeyondViewport: true,
         clip: { x: 0, y: 0, width, height: state.height, scale: 1 },
@@ -234,6 +235,7 @@ async function checkMemoryDisclosure(routePath) {
   await navigate(url);
   const { result } = await connection.send('Runtime.evaluate', {
     expression: `(() => {
+      const outer = document.querySelector('.intro-technical'); if (outer) outer.open = true;
       const details = document.querySelector('.memory-example__details');
       const summary = details.querySelector('summary');
       summary.click();
@@ -318,7 +320,7 @@ async function checkContentInteractions() {
 
 async function checkReleaseInteractions() {
   for (const localized of ['', 'tr/']) {
-    for(const routePath of ['', 'retrieval/']) {
+    for(const routePath of ['retrieval/']) {
       await connection.send('Emulation.setDeviceMetricsOverride', {width:390,height:844,deviceScaleFactor:1,mobile:false});
       await navigate(new URL(localized+routePath,baseUrl).href);
       const initial = await evaluate(`({value:document.querySelector('[data-rank-calculator] output').value, disabled:document.querySelector('[data-rank-calculator] fieldset').disabled})`);
@@ -348,6 +350,50 @@ async function checkReleaseInteractions() {
     fallbackChecks.push({type:'rank-static-fallback',route:routePath,...state});
   }
   await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
+}
+async function checkIntroPages() {
+  const axe = fs.readFileSync(path.join(repositoryRoot, 'node_modules/axe-core/axe.min.js'), 'utf8');
+  for (const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/']) {
+    for (const width of [320, 390, 768, 1024, 1440]) await inspect(routePath, width);
+    await navigate(new URL(routePath, baseUrl).href);
+    await evaluate(axe);
+    const violations = await evaluate(`(async () => (await axe.run(document, {runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
+    if (violations.length) failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
+    const controls = await evaluate(`(() => {
+      const story=document.querySelector('[data-memory-story]');
+      const buttons=[...story.querySelectorAll('[data-story-step]')];
+      const panels=[...story.querySelectorAll('[data-story-panel]')];
+      const initial=panels.filter(p=>!p.hidden).length===1;
+      buttons[2].click();
+      const chosen=panels.every((p,i)=>p.hidden===(i!==2)) && buttons[2].getAttribute('aria-pressed')==='true';
+      const play=story.querySelector('[data-story-play]');play.click();
+      const running=story.classList.contains('is-playing') && story.dataset.step==='0';
+      play.click();const paused=!story.classList.contains('is-playing');
+      buttons[3].focus();return {initial,chosen,running,paused,focus:getComputedStyle(buttons[3]).outlineStyle};
+    })()`);
+    if (!controls.initial || !controls.chosen || !controls.running || !controls.paused || controls.focus==='none') failures.push(`${routePath}: walkthrough control failure ${JSON.stringify(controls)}`);
+    await connection.send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    await connection.send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+    if (await evaluate(`document.querySelector('[data-memory-story]').dataset.step`) !== '3') failures.push(`${routePath}: keyboard step failed: ${await evaluate(`JSON.stringify({step:document.querySelector('[data-memory-story]').dataset.step,focus:document.activeElement.outerHTML})`)}`);
+    await connection.send('Emulation.setEmulatedMedia', {features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+    const motion = await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');s.querySelector('[data-story-play]').click();const p=s.querySelector('.intro-specimen');return getComputedStyle(p).animationName;})()`);
+    if(motion!=='none') failures.push(`${routePath}: reduced motion failed`);
+    await connection.send('Emulation.setEmulatedMedia', {features:[]});
+    await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
+    await navigate(new URL(routePath,baseUrl).href);
+    const fallback = await evaluate(`({panels:[...document.querySelectorAll('[data-story-panel]')].filter(p=>getComputedStyle(p).display!=='none').length,playHidden:document.querySelector('[data-story-play]').hidden})`);
+    if(fallback.panels!==4 || !fallback.playHidden) failures.push(`${routePath}: static fallback failed`);
+    await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
+    fallbackChecks.push({type:'intro',routePath,controls,motion,fallback,violations});
+  }
+  await navigate(new URL('tr/how-it-works/',baseUrl).href);
+  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
+  await wait(200);
+  await evaluate(`document.querySelector('[data-story-play]').click()`);
+  await wait(6700);
+  if(await evaluate(`document.querySelector('[data-memory-story]').dataset.step`)!=='1') failures.push('Timed walkthrough did not advance');
+  await checkMemoryDisclosure('tr/how-it-works/');
+  await checkMemoryDisclosure('how-it-works/');
 }
 async function checkPerformance() {
  await connection.send('Performance.enable');
@@ -407,7 +453,7 @@ try {
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
-  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only')) {
+  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
@@ -423,14 +469,15 @@ try {
   for (const routePath of ['', 'tr/', 'mesa/', 'data/', 'law/', 'ecosystem/', 'docs/', 'learn/', 'admin/']) await inspect(routePath, 844, 430);
   for (const routePath of ['', 'tr/']) {
     await checkMobileMenu(routePath);
-    await checkMemoryDisclosure(routePath);
+    await checkMemoryDisclosure(routePath+'how-it-works/');
     await checkHeroFallbacks(routePath);
   }
 
   }
-  if(process.argv.includes('--performance-only')) await checkPerformance();
+  if(process.argv.includes('--intro-only')) await checkIntroPages();
+  else if(process.argv.includes('--performance-only')) await checkPerformance();
   else if(process.argv.includes('--admin-auth-only')) await checkAdminAuth({connection,evaluate,navigate,baseUrl,failures,fallbackChecks,screenshotsDirectory,fs,path});
-  else if(process.argv.includes('--snapshot-only')) { for(const routePath of ['', 'tr/', 'docs/', 'tr/docs/']) for(const width of [390,1440]) await inspect(routePath,width); }
+  else if(process.argv.includes('--snapshot-only')) { for(const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/', 'docs/', 'tr/docs/']) for(const width of [390,1440]) await inspect(routePath,width); }
   else if(process.argv.includes('--axe-only')) await checkAxe();
   else if(process.argv.includes('--release-checks-only')) { await checkReleaseInteractions(); await checkAxe(); }
   else await checkContentInteractions();
@@ -440,9 +487,10 @@ try {
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    if (process.argv.includes('--performance-only')) console.log('PERFORMANCE OBSERVATION PASS (local main-thread metrics, not field/GPU certification)');
+    if (process.argv.includes('--intro-only')) console.log('INTRO QA PASS: EN/TR home and how-it-works, 5 widths, keyboard, timed playback, reduced motion, no-JS and WCAG checks');
+    else if (process.argv.includes('--performance-only')) console.log('PERFORMANCE OBSERVATION PASS (local main-thread metrics, not field/GPU certification)');
     else if (process.argv.includes('--admin-auth-only')) console.log(`ISOLATED AUTH FIXTURE PASS: ${fallbackChecks.length} browser checks; production Auth UNVERIFIED`);
-    else if (process.argv.includes('--snapshot-only')) console.log(`SNAPSHOT QA PASS: home and documentation gateway in EN/TR at 390/1440px`);
+    else if (process.argv.includes('--snapshot-only')) console.log(`SNAPSHOT QA PASS: home, how-it-works and documentation gateway in EN/TR at 390/1440px`);
     else if (process.argv.includes('--axe-only')) console.log(`AXE QA PASS: ${fallbackChecks.filter(item=>item.type==='axe').length} tested routes at ${baseUrl}`);
     else if (process.argv.includes('--release-checks-only')) console.log(`RELEASE BROWSER QA PASS: EN/TR arithmetic, native keyboard, source deep links, new-page responsive layouts and optional axe at ${baseUrl}`);
     else if (process.argv.includes('--interactions-only')) console.log(`BROWSER INTERACTION QA PASS: EN/TR search paths, keyboard focus, admin isolation and no-JavaScript navigation at ${baseUrl}`);

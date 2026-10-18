@@ -4205,7 +4205,7 @@
     "title": "MESA — Evidence-Aware Memory Infrastructure",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.",
+    "summary": "MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.",
     "keywords": [
       "home",
       "mesa",
@@ -4219,7 +4219,7 @@
     "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "MESA, yapay zekâ sistemlerinin hatırladıklarıyla birlikte kaynak kanıtını, ilişkileri ve veri kapsamını koruyan açık kaynaklı hafıza altyapısıdır.",
+    "summary": "Mesa, yapay zekâ uygulamanızın hafızasıdır. Belge ve notlarınızdaki bilgileri saklar, soruya uygun olanları bulur ve kaynağıyla birlikte iletir.",
     "keywords": [
       "home",
       "mesa",
@@ -4261,7 +4261,7 @@
     "title": "How MESA Works — From Source to Evidence-Aware Context",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture.",
+    "summary": "New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence.",
     "keywords": [
       "howItWorks",
       "mesa",
@@ -4272,10 +4272,10 @@
   {
     "id": "core-howItWorks-tr",
     "url": "tr/how-it-works/",
-    "title": "MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama",
+    "title": "Mesa Nasıl Çalışır? — Basit Örnekler ve Şemalar",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin.",
+    "summary": "Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu.",
     "keywords": [
       "howItWorks",
       "mesa",

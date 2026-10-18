@@ -25,7 +25,7 @@
     "home": {
       "path": "",
       "title": "MESA — Evidence-Aware Memory Infrastructure",
-      "description": "MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember."
+      "description": "MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."
     },
     "mesa": {
       "path": "mesa/",
@@ -35,7 +35,7 @@
     "howItWorks": {
       "path": "how-it-works/",
       "title": "How MESA Works — From Source to Evidence-Aware Context",
-      "description": "Follow MESA's source, admission, structured memory, four-lane retrieval, provenance, and application flow before exploring the full architecture."
+      "description": "New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence."
     },
     "ecosystem": {
       "path": "ecosystem/",

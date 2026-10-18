@@ -2,15 +2,15 @@
   "pages": {
     "home": {
       "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
-      "description": "MESA, yapay zekâ sistemlerinin hatırladıklarıyla birlikte kaynak kanıtını, ilişkileri ve veri kapsamını koruyan açık kaynaklı hafıza altyapısıdır."
+      "description": "Mesa, yapay zekâ uygulamanızın hafızasıdır. Belge ve notlarınızdaki bilgileri saklar, soruya uygun olanları bulur ve kaynağıyla birlikte iletir."
     },
     "mesa": {
       "title": "MESA Core — Yapılandırılmış, Kanıt Odaklı Ajan Hafızası",
       "description": "MESA Core'un kalıcı hafıza yaşam döngüsünü, kapsamlı geri getirmeyi, kaynak izini, depolama projeksiyonlarını, API, SDK ve MCP yüzeylerini inceleyin."
     },
     "howItWorks": {
-      "title": "MESA Nasıl Çalışır — Kaynaktan Kanıt Odaklı Bağlama",
-      "description": "Tam mimariyi incelemeden önce MESA'nın kaynak, kabul, yapılandırılmış hafıza, dört kanallı geri getirme, kaynak izi ve uygulama akışını izleyin."
+      "title": "Mesa Nasıl Çalışır? — Basit Örnekler ve Şemalar",
+      "description": "Mesa’yı ilk kez tanıyın: animasyonlu bir not örneği, basit çekirdek mimarisi ve sorudan kaynak kanıtına uzanan dört arama yolu."
     },
     "ecosystem": {
       "title": "MESA Ekosistemi — Veri, Hafıza, Kalite ve Uygulamalar",
@@ -178,7 +178,8 @@
     "MESA Data v0.1.0",
     "MESA Law v0.1.0",
     "MESA QA v0.1.0",
-    "E2E Certification v0.1.0"
+    "E2E Certification v0.1.0",
+    "MESA Data → MESA Core → MESA Law"
   ],
   "strings": {
     "Search": "Ara",

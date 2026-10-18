@@ -1,4 +1,5 @@
 import { learningIndex, renderLesson, validateCurriculum } from './render_learn.mjs';
+import { beginnerHow } from './render_intro.mjs';
 import fs from 'node:fs';
 import { cosmicEnvironment, cosmicVariant } from './cosmic.mjs';
 import { productHome, architecturePage, retrievalPage, productTranslations, documentationJourney, ecosystemMaturity, coreRelease } from './render_product.mjs';
@@ -275,109 +276,7 @@ function home() { return productHome(productHelpers()); }
 function architecture() { return architecturePage(productHelpers()); }
 function retrieval() { return retrievalPage(productHelpers()); }
 
-function howItWorksPage() {
-  return `
-    ${header('how')}
-    <main id="main-content">
-      <section class="page-hero compact page-hero--trajectory">
-        <p class="eyebrow">HOW MESA WORKS</p>
-        <h1>Keep the memory.<br><em>Keep its basis.</em></h1>
-        <p>MESA turns authorized source material into structured, retrievable memory while keeping scope and provenance in the result contract.</p>
-        <div class="actions">
-          ${cta('See the fixture', '#verified-example')}
-          ${cta('Technical architecture', route('architecture/'), 'secondary')}
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">LEVEL 1 · PUBLIC FLOW</p>
-            <h2>Six steps,<br><em>no storage jargon required.</em></h2>
-          </div>
-          <p>MESA Data is the verified legal-source preparation layer. Core owns the runtime memory lifecycle. Other applications can use the same versioned interfaces.</p>
-        </div>
-        ${publicFlow()}
-      </section>
-
-      <section class="section reliability-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">WHAT TRAVELS WITH MEMORY</p>
-            <h2>More than<br><em>a similarity score.</em></h2>
-          </div>
-          <p>Current V4 responses can include catalog identity, source evidence, assertion identity, pipeline identity, embedding provenance, and contributing retrieval origins.</p>
-        </div>
-        <div class="reliability-list">
-          <article>
-            <strong>Source</strong>
-            <p>Document, revision, chunk, source reference, and bounded evidence span.</p>
-          </article>
-          <article>
-            <strong>Structure</strong>
-            <p>Entity and assertion identity, predicates, literal or entity objects, and bounded supporting graph paths.</p>
-          </article>
-          <article>
-            <strong>Scope</strong>
-            <p>Tenant and authorized dataset eligibility resolved before lane ranking and fusion.</p>
-          </article>
-          <article>
-            <strong>State</strong>
-            <p>Mutation, pipeline, projection, retry, rollback, and committed outcomes remain observable.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section action-section" id="verified-example">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">VERIFIED REPOSITORY EXAMPLE</p>
-            <h2>Four origins.<br><em>One evidence identity.</em></h2>
-          </div>
-          <p>The fixture creates one canonical assertion, makes all four origins rank it first, and checks deterministic replay plus a fused score of 4/61.</p>
-        </div>
-        ${actionExample()}
-        <div class="proof-links">
-          ${external(docs.retrievalFixture, 'Inspect the exact test')}
-          ${external(docs.api, 'Read the response contract')}
-        </div>
-      </section>
-
-      <section class="section architecture-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">LEVEL 2 · TECHNICAL FLOW</p>
-            <h2>Admission, projection,<br><em>retrieval, and recovery.</em></h2>
-          </div>
-          <p>SQLite owns decisions and canonical assertions. LanceDB and Kùzu are derived projections. The current retrieval contract includes vector, BM25, assertion, and bounded graph-path origins.</p>
-        </div>
-        ${architectureFlow()}
-        <div class="section-actions">
-          ${cta('Explore Core in detail', route('mesa/'))}
-          ${cta('Canonical source doc', docs.architecture, 'text', true)}
-        </div>
-      </section>
-
-      <section class="section quality-context">
-        <div>
-          <p class="eyebrow">QUALITY LAYERS</p>
-          <h2>They surround the flow.<br><em>They do not run inside it.</em></h2>
-        </div>
-        <div>
-          <article>
-            <strong>MESA QA</strong>
-            <p>Exercises behavior, temporal change, cross-session persistence, restarts, and bounded candidate repair.</p>
-          </article>
-          <article>
-            <strong>E2E Certification</strong>
-            <p>Evaluates a frozen profile with evidence, authoritative producers, hard gates, and a fail-closed verdict.</p>
-          </article>
-        </div>
-        <a href="${route('evaluation/')}">Compare evaluation layers →</a>
-      </section>
-      ${footer()}
-    </main>`;
-}
+function howItWorksPage() { return beginnerHow(productHelpers()); }
 
 function mesa() {
   return `

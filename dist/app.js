@@ -319,6 +319,61 @@ if (docsNavigation) {
   adaptDocs(); wideDocs.addEventListener('change', adaptDocs);
 }
 
+// An illustrative, local-only walkthrough. All panels remain readable without JS.
+for (const story of document.querySelectorAll('[data-memory-story]')) {
+  const controls = [...story.querySelectorAll('[data-story-step]')];
+  const panels = [...story.querySelectorAll('[data-story-panel]')];
+  const play = story.querySelector('[data-story-play]');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let current = 0;
+  let timer;
+  let playing = false;
+  const playText = isTurkish ? 'Akışı oynat' : 'Play the flow';
+  const stopText = isTurkish ? 'Duraklat' : 'Pause';
+  const stop = () => {
+    clearTimeout(timer);
+    playing = false;
+    story.classList.remove('is-playing');
+    play.textContent = playText;
+    play.setAttribute('aria-pressed', 'false');
+  };
+  const show = (index) => {
+    current = index;
+    story.dataset.step = String(index);
+    controls.forEach((control, i) => control.setAttribute('aria-pressed', String(i === index)));
+    panels.forEach((panel, i) => {
+      panel.hidden = i !== index;
+      panel.classList.toggle('intro-enter', i === index);
+    });
+  };
+  const advance = () => {
+    timer = setTimeout(() => {
+      if (current === panels.length - 1) { stop(); return; }
+      show(current + 1);
+      advance();
+    }, 6500);
+  };
+  controls.forEach((control, index) => control.addEventListener('click', () => { stop(); show(index); }));
+  play.addEventListener('click', () => {
+    if (playing) { stop(); return; }
+    show(0);
+    playing = true;
+    play.textContent = stopText;
+    play.setAttribute('aria-pressed', 'true');
+    story.classList.add('is-playing');
+    advance();
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  reduced.addEventListener('change', stop);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) stop(); }).observe(story);
+  }
+  story.classList.add('is-enhanced');
+  play.hidden = false;
+  show(0);
+  stop();
+}
+
 // Course search is a progressive enhancement; all lessons remain static links.
 const learningCatalog = document.querySelector('[data-learning-catalog]');
 const learningArticle = document.querySelector('[data-learn-article]');
