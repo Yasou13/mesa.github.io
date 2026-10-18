@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Üretim bağımlılıkları — MESA MESA Core Dokümantasyonu</title>
+  <meta name="description" content="MESA Core için Üretim bağımlılıkları teknik dokümantasyonu (v0.8.1).">
+  <meta name="theme-color" content="#050508">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/core/adr-0013/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/adr-0013/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/adr-0013/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/adr-0013/">
+  <meta property="og:title" content="Üretim bağımlılıkları — MESA MESA Core Dokümantasyonu">
+  <meta property="og:description" content="MESA Core için Üretim bağımlılıkları teknik dokümantasyonu (v0.8.1).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/core/adr-0013/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Üretim bağımlılıkları — MESA MESA Core Dokümantasyonu">
+  <meta name="twitter:description" content="MESA Core için Üretim bağımlılıkları teknik dokümantasyonu (v0.8.1).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Core için Üretim bağımlılıkları teknik dokümantasyonu (v0.8.1)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Core için Üretim bağımlılıkları teknik dokümantasyonu (v0.8.1).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"MESA Core","item":"https://mesamemory.dev/tr/docs/core/"},{"@type":"ListItem","position":4,"name":"Üretim bağımlılıkları","item":"https://mesamemory.dev/tr/docs/core/adr-0013/"}]},{"@type":"TechArticle","headline":"Üretim bağımlılıkları","description":"MESA Core için Üretim bağımlılıkları teknik dokümantasyonu (v0.8.1).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/core/adr-0013/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"core, documentation, v0.8.1"}]}</script>
+  <link rel="icon" href="../../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../../styles.css?v=6e69ac822270">
+  <link rel="stylesheet" href="../../../../cosmic.css?v=2615e7f7970e">
+  <script src="../../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a href="../../../how-it-works/">Nasıl çalışır</a><a href="../../../ecosystem/">Ekosistem</a><a href="../../../architecture/">Mimari</a><a href="../../../resources/">Kaynaklar</a><a class="active" aria-current="page" href="../../../docs/">Dokümanlar</a>
+          <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><span>Ara</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../../docs/core/adr-0013/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../../docs/core/adr-0013/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+  <div class="docs-sidebar" aria-label="Dokümantasyon gezintisi">
+    <details class="docs-navigation">
+      <summary>Belge gezintisi</summary>
+    <div class="docs-sidebar-inner">
+      <div class="docs-sidebar-header">
+        <span class="docs-badge">MESA DOKÜMANTASYON</span>
+      </div>
+      <nav class="docs-nav">
+        <div class="sidebar-group">
+    <div class="sidebar-group-header">
+      <span>GENEL BAKIŞ</span>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="../../../docs/">Dokümantasyon Merkezi</a></li>
+      <li><a href="../../../docs/mcp/">MCP Entegrasyonu</a></li>
+    </ul>
+  </div><div class="sidebar-group open">
+      <div class="sidebar-group-header">
+        <span>MESA Core</span>
+        <span class="version-tag">v0.8.1</span>
+      </div>
+      <ul class="sidebar-links"><li class="docs-nav-group-label">Başlangıç</li><li><a href="../../../docs/core/">MESA Core genel bakış</a></li><li><a href="../../../docs/core/getting-started/">Yerel hızlı başlangıç</a></li><li><a href="../../../docs/core/documentation-map/">Dokümantasyon haritası</a></li><li><a href="../../../docs/core/installation/">Kurulum ve dağıtım</a></li><li><a href="../../../docs/core/examples/">Örnekler ve SDK iş akışı</a></li><li><a href="../../../docs/core/colab-rehberi/">Emekli Colab rehberi</a></li><li class="docs-nav-group-label">Temel kavramlar</li><li><a href="../../../docs/core/architecture/">Core mimarisi</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Veri alımı ve hafıza yaşam döngüsü</a></li><li><a href="../../../docs/core/decisions/">Mimari kararlar</a></li><li><a href="../../../docs/core/adr-0009/">Defter ve tek depolama sahibi</a></li><li><a href="../../../docs/core/adr-0010/">RRF ve PageRank</a></li><li><a href="../../../docs/core/adr-0011/">Tenant/dataset yetkilendirmesi</a></li><li><a href="../../../docs/core/adr-0012/">DAO repository sınırları</a></li><li><a href="../../../docs/core/adr-0013/" class="active" aria-current="page">Üretim bağımlılıkları</a></li><li><a href="../../../docs/core/adr-0014/">Rebuild kapanışı</a></li><li><a href="../../../docs/core/adr-0015/">Uyarlanabilir sorgu planlama</a></li><li><a href="../../../docs/core/evidence/">Kanıt ve kaynak izi</a></li><li><a href="../../../docs/core/ecosystem/">Ekosistem sınırları</a></li><li class="docs-nav-group-label">Retrieval</li><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval ve çizge</a></li><li><a href="../../../docs/core/graph/">Çizge dolaşımı</a></li><li class="docs-nav-group-label">Entegrasyon ve referans</li><li><a href="../../../docs/core/configuration/">Yapılandırma</a></li><li><a href="../../../docs/core/api-reference/">HTTP API ve Python SDK</a></li><li><a href="../../../docs/core/mcp/">MCP entegrasyonu</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding ve model sağlayıcıları</a></li><li><a href="../../../docs/core/cli-reference/">CLI referansı</a></li><li class="docs-nav-group-label">İşletim ve kurtarma</li><li><a href="../../../docs/core/rebuild-runbook/">Projeksiyon rebuild</a></li><li><a href="../../../docs/core/security/">Güvenlik ve kapsam</a></li><li><a href="../../../docs/core/operations/">Operasyon ve kurtarma</a></li><li><a href="../../../docs/core/migration/">v0.8.1 yükseltmesi</a></li><li><a href="../../../docs/core/troubleshooting/">Sorun giderme</a></li><li class="docs-nav-group-label">Yayın ve kanıt</li><li><a href="../../../docs/core/release-notes/">v0.8.1 sürüm notları</a></li><li><a href="../../../docs/core/testing/">Test ve kanıt</a></li><li><a href="../../../docs/core/release-policy/">Yayın politikası</a></li><li><a href="../../../docs/core/limitations/">Performans ve sınırlar</a></li><li><a href="../../../docs/core/audit/">Denetim geçmişi ve güncel testler</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Data</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/data/">Genel Bakış</a></li><li><a href="../../../docs/data/quickstart/">Hızlı Başlangıç</a></li><li><a href="../../../docs/data/user-guide/">Kullanım Kılavuzu</a></li><li><a href="../../../docs/data/import-contract/">İçe Aktarma Sözleşmesi</a></li><li><a href="../../../docs/data/troubleshooting/">Sorun Giderme</a></li><li><a href="../../../docs/data/mvp-closure/">MVP Kapanış Raporu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA Law</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/law/">Sözleşme Genel Bakış</a></li><li><a href="../../../docs/law/operations/">Operasyon Rehberi</a></li><li><a href="../../../docs/law/verification/">Nihai Doğrulama</a></li><li><a href="../../../docs/law/baseline/">MVP Temel Durumu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA QA</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/qa/">Genel Bakış</a></li><li><a href="../../../docs/qa/audit/">Güncel Bağımsız Denetim</a></li><li><a href="../../../docs/qa/repair-prompt/">Onarım Prompt Spesifikasyonu</a></li><li><a href="../../../docs/qa/reproduce-prompt/">Yeniden Üretim Promptu</a></li></ul></div><div class="sidebar-group">
+      <div class="sidebar-group-header">
+        <span>MESA E2E Sertifikasyonu</span>
+        <span class="version-tag">v0.1.0</span>
+      </div>
+      <ul class="sidebar-links"><li><a href="../../../docs/e2e/">Genel Bakış</a></li><li><a href="../../../docs/e2e/audit-report/">Bağımsız Denetim Raporu</a></li><li><a href="../../../docs/e2e/agent-pack-start/">Ajan Paketi Başlangıç</a></li><li><a href="../../../docs/e2e/system-model/">Sistem Modeli ve Esnetilemezler</a></li><li><a href="../../../docs/e2e/gates-and-verdicts/">Profil B Hedef Kapıları</a></li><li><a href="../../../docs/e2e/contract/">Data - Core Sözleşmesi</a></li><li><a href="../../../docs/e2e/current-repair/">Güncel Onarımlar ve Engeller</a></li><li><a href="../../../docs/e2e/repair-verification/">Onarım Doğrulama Özeti</a></li></ul></div>
+      </nav>
+    </div>
+    </details>
+  </div>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum">
+    <ol>
+      <li><a href="../../../">Ana sayfa</a></li>
+      <li><a href="../../../docs/">Dokümantasyon</a></li>
+      <li><a href="../../../docs/core/">MESA Core</a></li>
+      <li aria-current="page">Üretim bağımlılıkları</li>
+    </ol>
+  </nav>
+      <article class="docs-article">
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Core · v0.8.1</p>
+          <h1>Üretim bağımlılıkları</h1>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.8.1</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/adr/0013-one-way-production-layer-dependencies.md" target="_blank" rel="noopener noreferrer">d3947846615e63b48dc7a5df9f1051b29f734263</a></span>
+    <span class="docs-source-pill">kaynak: <code>docs/adr/0013-one-way-production-layer-dependencies.md</code></span>
+  </div>
+          <p class="docs-language-notice">Bu rehber Türkçe ve İngilizce eşdeğer açıklamalar sunar. Tam kaynak referansı özgün dilinde aşağıda korunur. Paket sürümü üretim sertifikasyonu değildir.</p>
+          
+        </header>
+        <div class="docs-body">
+          <h2 id="guide-uretim-bagimliliklari">Üretim bağımlılıkları<a class="heading-anchor" href="#guide-uretim-bagimliliklari" aria-label="Bölüm bağlantısı: Üretim bağımlılıkları" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Bu güncel karar v0.8.1 tasarım gerekçesini kaydeder. Uygulanmış davranışı güncel mimari ve çalışma zamanı sözleşmeleri belirler; emekli kararlar tarihsel bağlamdır.</p>
+<h2 id="guide-guncel-referansi-okuyun">Güncel referansı okuyun<a class="heading-anchor" href="#guide-guncel-referansi-okuyun" aria-label="Bölüm bağlantısı: Güncel referansı okuyun" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Aşağıdaki kaynak durum, gerekçe ve sonuçları içerir. <a href="../../../docs/core/decisions/">Karar dizini</a> ve <a href="../../../docs/core/architecture/">mimari</a> ile başlayın.</p>
+          <div class="guide-source-list"><strong>Doğrulanmış kaynaklar</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/adr/0013-one-way-production-layer-dependencies.md" target="_blank" rel="noopener noreferrer"><code>docs/adr/0013-one-way-production-layer-dependencies.md</code></a></li></ul></div>
+          <details class="source-appendix" id="source-reference"><summary>Tam kaynak referansı · özgün dil</summary><p class="docs-language-notice">Bu ek birebir kaynak metnidir; çevrilmiş rehberden ayrı tutulur. Kaynak içi bölüm bağlantıları eki otomatik açar.</p><div class="source-reference-body"><ul><li>Status: Accepted</li></ul>
+<p>Layers ordered from lowest to highest are <code class="inline-code">mesa_storage</code>, <code class="inline-code">mesa_memory</code>,</p>
+<p><code class="inline-code">mesa_workers</code>, then <code class="inline-code">mesa_api</code>/<code class="inline-code">mesa_mcp</code>. Imports may point down this list:</p>
+<p>API/MCP → workers → memory → storage. Lower layers cannot import a higher</p>
+<p>layer. The API and worker startup modules are explicit composition roots and</p>
+<p>may assemble the complete runtime; they are the only documented exception.</p>
+<p><code class="inline-code">scripts/check_layer_imports.py</code> is a CI ratchet with a negative contract</p>
+<p>test. New composition roots require an ADR update and an explicit entry in the</p>
+<p>guard, rather than an unreviewed reverse import.</p></div></details>
+        </div>
+        <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/adr-0012/"><span class="nav-dir">← Önceki</span><span class="nav-title">DAO repository sınırları</span></a><a class="docs-page-next" href="../../../docs/core/adr-0014/"><span class="nav-dir">Sonraki →</span><span class="nav-title">Rebuild kapanışı</span></a></div>
+      </article>
+    </div>
+    <div class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu rehberde"><strong>Bu rehberde</strong><ol><li class="toc-item"><a href="#guide-uretim-bagimliliklari">Üretim bağımlılıkları</a></li><li class="toc-item"><a href="#guide-guncel-referansi-okuyun">Güncel referansı okuyun</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/adr/0013-one-way-production-layer-dependencies.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+<section class="closing-cta" aria-labelledby="closing-title">
+      <div>
+        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
+        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
+        <p>MESA v0.8.1 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
+        <div class="actions"><a class="button primary" href="../../../docs/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.8.1 · V4 yayımlanmış kaynak sürümü · <a href="../../../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Keşfet</h3><a href="../../../how-it-works/">Nasıl çalışır</a><a href="../../../use-cases/">Kullanım alanları</a><a href="../../../evaluation/">Değerlendirme ve güven</a><a href="../../../status/">Proje durumu</a></div>
+        <div><h3>Ekosistem</h3><a href="../../../mesa/">MESA Core</a><a href="../../../data/">MESA Data</a><a href="../../../qa/">MESA QA</a><a href="../../../certification/">E2E Certification</a><a href="../../../law/">MESA Law</a></div>
+        <div><h3>Kaynaklar</h3><a href="../../../learn/">Öğren</a><a href="../../../research/">Araştırma</a><a href="../../../guides/">Rehberler</a><a href="../../../glossary/">Sözlük</a><a href="../../../methodology/">Metodoloji</a></div>
+        <div><h3>Dokümantasyon</h3><a href="../../../docs/core/getting-started/">Hızlı başlangıç</a><a href="../../../architecture/">Mimari</a><a href="../../../retrieval/">Retrieval</a><a href="../../../docs/core/security/">Güvenlik</a><a href="../../../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../../../about/">Hakkında</a><a href="../../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../../admin/">Yönetim</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
+    </footer>
+  <script src="../../../../app.js?v=7ab053b9ea58"></script>
+</body>
+</html>

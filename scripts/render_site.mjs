@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { cosmicEnvironment, cosmicVariant } from './cosmic.mjs';
-import { productHome, architecturePage, retrievalPage, productTranslations, documentationJourney, ecosystemMaturity } from './render_product.mjs';
+import { productHome, architecturePage, retrievalPage, productTranslations, documentationJourney, ecosystemMaturity, coreRelease } from './render_product.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -74,27 +74,27 @@ function validateMediaData() {
 validateMediaData();
 
 const docs = {
-  readme: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README.md`,
-  gettingStarted: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/getting-started.md`,
-  architecture: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/architecture-v4.md`,
-  concepts: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/concepts-and-ingestion.md`,
-  configuration: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/configuration.md`,
-  retrieval: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/retrieval-and-graph.md`,
-  api: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/api-reference.md`,
-  cli: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/cli-reference.md`,
-  mcp: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/README_MCP.md`,
-  installation: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/installation.md`,
-  migration: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/migration-v0.8.0.md`,
-  releaseNotes: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release-notes-v0.8.0.md`,
-  releasePolicy: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/release.md`,
-  rebuild: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-rebuild-runbook.md`,
-  security: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/SECURITY.md`,
-  troubleshooting: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/troubleshooting.md`,
-  limitations: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/performance-and-limitations.md`,
-  contributing: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/CONTRIBUTING.md`,
-  openapi: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/reference/openapi.json`,
-  retrievalFixture: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/tests/test_v4_independent_retrieval_audit.py`,
-  retrievalAudit: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/docs/v4-final-independent-audit.md`,
+  readme: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/README.md`,
+  gettingStarted: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/getting-started.md`,
+  architecture: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md`,
+  concepts: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md`,
+  configuration: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/configuration.md`,
+  retrieval: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/retrieval-and-graph.md`,
+  api: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md`,
+  cli: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md#cli`,
+  mcp: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/README_MCP.md`,
+  installation: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/getting-started.md#installation`,
+  migration: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md#upgrade-v080`,
+  releaseNotes: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/CHANGELOG.md#v081-publication`,
+  releasePolicy: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/release.md`,
+  rebuild: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md`,
+  security: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/SECURITY.md`,
+  troubleshooting: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md#troubleshooting`,
+  limitations: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md#limitations`,
+  contributing: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/CONTRIBUTING.md`,
+  openapi: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json`,
+  retrievalFixture: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/tests/test_v4_independent_retrieval_audit.py`,
+  retrievalAudit: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/testing.md`,
   certificationAudit: `${repos.certification}/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md`,
   dataGuide: `${repos.data}/blob/main/docs/KULLANIM_KILAVUZU.md`,
   lawStatus: `${repos.law}/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-final-verification.md`
@@ -167,7 +167,7 @@ function footer(compact = false) {
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
-        <p>MESA v0.8.0 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
+        <p>MESA v0.8.1 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
         <div class="actions">${cta('Read the quickstart', route('docs/'))}${cta('View source', repos.core, 'secondary', true)}</div>
       </div>
     </section>`}
@@ -233,7 +233,7 @@ function actionExample(compact = false) {
     <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit 07d387f.</span></p></details>
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit d394784.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
   </div>`;
   return `<div class="action-example specimen-plate">
@@ -390,6 +390,7 @@ function mesa() {
         </div>
       </section>
       ${statusStrip()}
+      ${coreRelease(route)}
 
       <section class="section">
         <div class="section-heading">
@@ -727,7 +728,7 @@ function qaPage() {
           <li><span>4</span>Policy-limited diff and verification gates</li>
           <li><span>5</span>No automatic merge or push to main</li>
         </ol>
-        <p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.0.</p>
+        <p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.1.</p>
       </section>
       ${footer()}
     </main>`;
@@ -855,7 +856,7 @@ function lawPage() {
       <section class="section law-status">
         <p class="eyebrow">CURRENT STATUS</p>
         <h2>Historical Law-side gates passed.<br><em>Overall integration: NO-GO.</em></h2>
-        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.0 integration proof.</p>
+        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.1 integration proof.</p>
         ${cta('Read verification report', docs.lawStatus, 'text', true)}
       </section>
       ${footer()}
@@ -1071,8 +1072,8 @@ function docsPage() {
     ['Build', [['Python SDK', route('docs/core/examples/'), false], ['HTTP API', route('docs/core/api-reference/'), false], ['OpenAPI specification', docs.openapi, true], ['MCP integration', route('docs/mcp/'), false]]],
     ['Operate', [['Configuration & installation', route('docs/core/configuration/'), false], ['CLI reference', route('docs/core/cli-reference/'), false], ['Rebuild & recovery runbook', route('docs/core/rebuild-runbook/'), false], ['Operations runbook', route('docs/core/operations/'), false]]],
     ['Trust', [['Security policy', route('docs/core/security/'), false], ['Performance & limitations', route('docs/core/limitations/'), false], ['Troubleshooting', route('docs/core/troubleshooting/'), false], ['Evaluation & trust', route('evaluation/'), false]]],
-    ['Reference', [['v0.8.0 Release notes', route('docs/core/release-notes/'), false], ['Migration to v0.8.0', route('docs/core/migration/'), false], ['Release policy', route('docs/core/release-policy/'), false], ['Ecosystem boundaries', route('ecosystem/'), false]]],
-    ['Contribute', [['Contributing guide', docs.contributing, true], ['Issue tracker', repos.issues, true], ['MESA QA repository', repos.qa, true]]],
+    ['Reference', [['v0.8.1 Release notes', route('docs/core/release-notes/'), false], ['Migration to v0.8.1', route('docs/core/migration/'), false], ['Release policy', route('docs/core/release-policy/'), false], ['Ecosystem boundaries', route('ecosystem/'), false]]],
+    ['Contribute', [['Architecture decisions', route('docs/core/decisions/'), false], ['Contributing guide', docs.contributing, true], ['Issue tracker', repos.issues, true], ['MESA QA repository', repos.qa, true]]],
     ['Ecosystem Docs', [['MESA Data Docs', route('docs/data/'), false], ['MESA Law Docs', route('docs/law/'), false], ['MESA QA Docs', route('docs/qa/'), false], ['E2E Certification', route('docs/e2e/'), false]]]
   ];
 
@@ -1098,7 +1099,7 @@ function docsPage() {
         <div>
           <p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p>
           <h2>Use the checked-in lock.</h2>
-          <p>The standard local development environment installs the locked development extra. Optional model/provider packages are separate.</p>
+          <p>The base install includes native storage and HTTP/SDK support. Python 3.10–3.13 are CI-tested; development and model/provider extras are optional.</p>
         </div>
         <div class="terminal">
           <div class="terminal-bar">
@@ -1106,9 +1107,10 @@ function docsPage() {
             <strong>local install</strong>
             <button class="copy-button" type="button" data-copy-target="install-code">Copy</button>
           </div>
-          <pre tabindex="0" id="install-code"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
+          <pre tabindex="0" id="install-code"><code>git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
-uv sync --locked --extra dev</code></pre>
+uv sync --locked --python 3.10
+uv pip check</code></pre>
         </div>
       </section>
       ${footer()}
@@ -1193,8 +1195,8 @@ function statusPage() {
           <h2>${project.runtime} ${project.maturity.toLowerCase()}</h2>
           <p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>
           ${external(docs.architecture, 'Canonical architecture')}
-          ${external(docs.releaseNotes, 'v0.8.0 Release notes')}
-          ${external('https://github.com/Yasou13/MESA/releases/tag/v0.8.0', 'Official v0.8.0 release')}
+          ${external(docs.releaseNotes, 'v0.8.1 Release notes')}
+          ${external('https://github.com/Yasou13/MESA/releases/tag/v0.8.1', 'Official v0.8.1 release')}
         </article>
         <article>
           <span>PROFILE B</span>
@@ -1211,7 +1213,7 @@ function statusPage() {
         <article>
           <span>MESA LAW</span>
           <h2>Historical Law pass / overall ${project.production}</h2>
-          <p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.0 integration remains unverified.</p>
+          <p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.1 integration remains unverified.</p>
           ${external(docs.lawStatus, 'Verification report')}
         </article>
       </section>
@@ -1797,7 +1799,7 @@ function documentShell({ title, description, canonical, content, assetBase, lang
         alternateName: project.name,
         description,
         codeRepository: repos.core,
-        license: `${repos.core}/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE`,
+        license: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`,
         version: project.version,
         url: siteUrl
       },

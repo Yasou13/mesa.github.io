@@ -8,7 +8,7 @@ const paragraph = (en, tr) => `<p>${t(en, tr)}</p>`;
 const title = (en, tr) => `<h2>${t(en, tr)}</h2>`;
 const eyebrow = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const row = (name, en, tr) => `<article><h3>${name}</h3>${paragraph(en, tr)}</article>`;
-const source = 'https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/';
+const source = 'https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/';
 
 export function rankCalculator() {
   const lanes = [
@@ -168,7 +168,7 @@ ${header('home')}
       <span aria-hidden="true">→</span>
       <a href="${route('mesa/')}">
         <strong>MESA Core</strong>
-        <span>${t('Released v0.8.0 · production NO-GO', 'Yayımlanmış v0.8.0 · üretim NO-GO')}</span>
+        <span>${t('Released v0.8.1 · production NO-GO', 'Yayımlanmış v0.8.1 · üretim NO-GO')}</span>
       </a>
       <span aria-hidden="true">→</span>
       <a href="${route('law/')}">
@@ -196,14 +196,15 @@ ${header('home')}
   </section>
 
   <section class="section home-explore" id="continue-exploring" data-home-section="explore">
-    ${eyebrow('GET STARTED · v0.8.0', 'BAŞLAYIN · v0.8.0')}
+    ${eyebrow('GET STARTED · v0.8.1', 'BAŞLAYIN · v0.8.1')}
     ${title('Start locally. Keep the version explicit.', 'Yerelde başlayın. Sürümü açık tutun.')}
-    <pre tabindex="0"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
+    <pre tabindex="0"><code>git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
-uv sync --locked --extra dev</code></pre>
+uv sync --locked --python 3.10
+uv pip check</code></pre>
     ${paragraph(
-      'Continue with the model-disabled V3 quickstart for a local first run. Canonical V4 writes require provisioned extraction and embedding providers.',
-      'İlk yerel çalıştırma için model kapalı V3 hızlı başlangıçla devam edin. Kanonik V4 yazmaları hazırlanmış çıkarım ve embedding sağlayıcıları gerektirir.'
+      'Use the model-disabled quickstart to check installation and health. V3 ingestion and canonical V4 writes require operational embeddings; V4 also needs canonical extraction.',
+      'Kurulum ve sağlık kontrolü için model kapalı hızlı başlangıcı kullanın. V3 veri alımı ve kanonik V4 yazmaları çalışır embedding; V4 ayrıca kanonik çıkarım gerektirir.'
     )}
     <div class="actions">
       ${cta(t('Run the quickstart', 'Hızlı başlangıcı çalıştırın'), route('docs/core/getting-started/'))}
@@ -215,8 +216,8 @@ uv sync --locked --extra dev</code></pre>
     <div>
       ${eyebrow('RELEASED SOURCE · QUALIFICATION IN PROGRESS', 'YAYIMLANMIŞ KAYNAK · YETERLİLİK SÜRÜYOR')}
       ${paragraph(
-        'v0.8.0 was published on 15 October 2026. Real-provider rehearsal, a production-like 24-hour soak and new official certification remain incomplete.',
-        'v0.8.0, 15 Ekim 2026’da yayımlandı. Gerçek sağlayıcı provası, üretim benzeri 24 saatlik dayanıklılık çalışması ve yeni resmî sertifikasyon tamamlanmadı.'
+        'v0.8.1 was published on 18 October 2026. Real-provider rehearsal, a production-like 24-hour soak and new official certification remain incomplete.',
+        'v0.8.1, 18 Ekim 2026’da yayımlandı. Gerçek sağlayıcı provası, üretim benzeri 24 saatlik dayanıklılık çalışması ve yeni resmî sertifikasyon tamamlanmadı.'
       )}
     </div>
     ${cta(t('Status and limits', 'Durum ve sınırlar'), route('status/'), 'secondary')}
@@ -230,7 +231,7 @@ export function architecturePage({ header, footer, route, cta }) {
 ${header('architecture')}
 <main id="main-content">
   <section class="page-hero compact page-hero--trajectory">
-    ${eyebrow('MESA CORE v0.8.0 · ARCHITECTURE', 'MESA CORE v0.8.0 · MİMARİ')}
+    ${eyebrow('MESA CORE v0.8.1 · ARCHITECTURE', 'MESA CORE v0.8.1 · MİMARİ')}
     <h1>${t('One canonical record. Several ways to find it.', 'Tek kanonik kayıt. Onu bulmanın farklı yolları.')}</h1>
     ${paragraph(
       'MESA separates source ownership, background processing and retrieval projections. Read the system through four small views.',
@@ -318,9 +319,9 @@ ${header('architecture')}
   <section class="section source-notes">
     ${title('Read the versioned contracts.', 'Sabitlenmiş sözleşmeleri okuyun.')}
     <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/architecture-v4.md">docs/architecture-v4.md · 07d387f</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · 07d387f</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/architecture-v4.md">docs/architecture-v4.md · d394784</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · d394784</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · d394784</a></li>
     </ul>
   </section>
   ${footer()}
@@ -415,9 +416,9 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
   <section class="section source-notes">
     ${title('Inspect the implementation.', 'Uygulamayı inceleyin.')}
     <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 07d387f</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 07d387f</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · 07d387f</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · d394784</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · d394784</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · d394784</a></li>
     </ul>
     <div class="actions">
       ${cta(t('API response reference', 'API yanıt referansı'), route('docs/core/api-reference/'))}
@@ -430,7 +431,7 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
 
 export function documentationJourney(route) {
   const journeyItems = [
-    ['docs/core/getting-started/', 'Run locally', 'Yerelde çalıştırın', 'Model-disabled V3 first run', 'Model kapalı ilk V3 çalıştırma'],
+    ['docs/core/getting-started/', 'Run locally', 'Yerelde çalıştırın', 'Model-disabled startup health check', 'Model kapalı başlangıç sağlık kontrolü'],
     ['architecture/', 'Understand the system', 'Sistemi anlayın', 'Canonical ownership and projections', 'Kanonik sahiplik ve projeksiyonlar'],
     ['retrieval/', 'Follow the evidence', 'Kanıtı izleyin', 'Four lanes, fusion and bounded context', 'Dört kanal, birleştirme ve sınırlı bağlam'],
     ['docs/core/examples/', 'Integrate V4', 'V4 entegre edin', 'SDK workflow and terminal state', 'SDK iş akışı ve terminal durum'],
@@ -439,7 +440,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.8.0 · 07d387f</p>
+  <p class="eyebrow">CORE v0.8.1 · d394784</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `
@@ -451,17 +452,17 @@ export function documentationJourney(route) {
     </li>`).join('')}
   </ol>
   ${paragraph(
-    'Published source release · 15 October 2026. Production qualification remains NO-GO.',
-    'Yayımlanmış kaynak sürümü · 15 Ekim 2026. Üretim yeterliliği NO-GO durumundadır.'
+    'Published source release · 18 October 2026. Production qualification remains NO-GO.',
+    'Yayımlanmış kaynak sürümü · 18 Ekim 2026. Üretim yeterliliği NO-GO durumundadır.'
   )}
 </section>`;
 }
 
 export function ecosystemMaturity() {
   const components = [
-    ['MESA Core v0.8.0', 'Implemented · published source', 'Uygulanmış · yayımlanmış kaynak', 'Production qualification NO-GO; real-provider rehearsal and soak incomplete.', 'Üretim yeterliliği NO-GO; gerçek sağlayıcı provası ve dayanıklılık çalışması eksik.'],
+    ['MESA Core v0.8.1', 'Implemented · published source', 'Uygulanmış · yayımlanmış kaynak', 'Production qualification NO-GO; real-provider rehearsal and soak incomplete.', 'Üretim yeterliliği NO-GO; gerçek sağlayıcı provası ve dayanıklılık çalışması eksik.'],
     ['MESA Data v0.1.0', 'Implemented release pipeline', 'Uygulanmış yayın hattı', 'Reviewed Turkish legal sources; package version differs from its v1.0 release tag.', 'Gözden geçirilmiş Türk hukuk kaynakları; paket sürümü v1.0 yayın tag’inden farklıdır.'],
-    ['MESA Law v0.1.0', 'In development · reference app', 'Geliştirme aşamasında · referans uygulama', 'Current CI failing; live Core v0.8.0 integration unverified. Research/draft/rebuild disabled.', 'Güncel CI başarısız; canlı Core v0.8.0 entegrasyonu doğrulanmadı. Research/draft/rebuild kapalı.'],
+    ['MESA Law v0.1.0', 'In development · reference app', 'Geliştirme aşamasında · referans uygulama', 'Current CI failing; live Core v0.8.1 integration unverified. Research/draft/rebuild disabled.', 'Güncel CI başarısız; canlı Core v0.8.1 entegrasyonu doğrulanmadı. Research/draft/rebuild kapalı.'],
     ['MESA QA v0.1.0', 'Experimental evaluation tooling', 'Deneysel değerlendirme araçları', 'Latest first-write failure and historical candidate FAIL are not current qualification.', 'Son ilk-yazma hatası ve tarihsel aday FAIL güncel yeterlilik değildir.'],
     ['E2E Certification v0.1.0', 'Implemented harness · blocked profile', 'Uygulanmış harness · engelli profil', 'B4/B6/B7/B8 external receipts and a fresh official PASS remain absent.', 'B4/B6/B7/B8 dış receipt’leri ve yeni resmî PASS halen eksiktir.']
   ];
@@ -490,4 +491,18 @@ export function ecosystemMaturity() {
     </table>
   </div>
 </section>`;
+}
+
+export function coreRelease(route) {
+  return `<section class="section" id="release-081">
+    ${eyebrow('WHAT CHANGED · v0.8.1', 'NELER DEĞİŞTİ · v0.8.1')}
+    ${title('Stronger boundaries. Clearer operations.', 'Daha güçlü sınırlar. Daha açık operasyonlar.')}
+    <div class="storage-grid">
+      ${row(t('Scoped retrieval', 'Kapsamlı retrieval'), 'BM25 statistics and audit queries use authorized tenant/dataset scope. RRF rejects non-finite weights.', 'BM25 istatistikleri ve denetim sorguları yetkili tenant/dataset kapsamını kullanır. RRF sonlu olmayan ağırlıkları reddeder.')}
+      ${row(t('Storage ownership', 'Depolama sahipliği'), 'Fenced projection completion, safer dataset repair and consistent Kùzu rollback caches protect canonical ownership.', 'Fencing kontrollü projeksiyon tamamlanması, güvenli dataset onarımı ve tutarlı Kùzu rollback önbellekleri kanonik sahipliği korur.')}
+      ${row(t('SDK and operations', 'SDK ve operasyon'), 'Sync/async insertion accepts legal_identity. Mutation polling defaults to two seconds; make health checks the running API.', 'Senkron/asenkron ekleme legal_identity kabul eder. Mutasyon sorgulama varsayılanı iki saniyedir; make health çalışan API’yi kontrol eder.')}
+    </div>
+    ${paragraph('The unused Core dashboard/showcase was removed. MCP control APIs and operator approval CLI remain. Consolidated guides replace duplicated installation, CLI, troubleshooting and upgrade documents.', 'Kullanılmayan Core dashboard/showcase kaldırıldı. MCP control API ve operatör onay CLI’ı korunur. Birleştirilmiş rehberler yinelenen kurulum, CLI, sorun giderme ve yükseltme belgelerinin yerini alır.')}
+    <a href="${route('docs/core/release-notes/')}">${t('Read v0.8.1 release notes →', 'v0.8.1 sürüm notlarını okuyun →')}</a>
+  </section>`;
 }

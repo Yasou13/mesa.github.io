@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Tarihsel denetim belgesi emekli edildi
 
-Bu, özgün kaynak eki olarak korunan tarihli sürüm kanıtıdır. İçinde raporlanan testlerin tümü bu web sitesi revizyonunda yeniden çalıştırılmamıştır. Güncel sözleşmeler için sürdürülen rehberleri ve yayın tag’ini kullanın; her denetim sonucunu yalnızca belgelenmiş ortam ve kapsamıyla okuyun.
+Bağımsız denetim belgesi ve eski benchmark raporları v0.8.1’de güncel ağaçtan kaldırıldı. Önceki kayıtlar Git geçmişindedir; bu sayfa artık tam metinlerini güncel sürüm kanıtı olarak sunmaz.
 
-## Sürdürülen sözleşmelerle devam edin
+## Güncel test ve yayın kanıtlarını kullanın
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Sürdürülen test rehberi aşağıdadır. Kanıt kapsamı ve açık kapılar için [v0.8.1 sürüm notları](docs/core/release-notes/) ve [yayın yeterliliğine](docs/core/release-policy/) bakın.

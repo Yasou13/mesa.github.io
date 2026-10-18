@@ -1,7 +1,7 @@
-## Purpose and boundaries
+## Colab guidance retired
 
-Use the pinned notebook setup reference for its hosted environment, storage and model constraints. The local quickstart is the smaller first test. Colab availability and hardware are external conditions; a successful notebook is not production deployment or provider qualification.
+The standalone Colab document was removed in v0.8.1. This retained URL now points to maintained installation and local startup instructions, rather than an outdated notebook procedure.
 
-## Continue with the maintained contracts
+## Start with the supported guide
 
-Use the pinned source reference below for complete tables and operator details. Related guides: [architecture](architecture/), [API](docs/core/api-reference/), [operations](docs/core/operations/) and [release limits](docs/core/limitations/).
+Follow [local startup](docs/core/getting-started/) for health checks, then provision providers for V4 ingestion. The current installation reference is included below.

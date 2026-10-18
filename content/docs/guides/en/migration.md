@@ -5,3 +5,5 @@ Back up offline before a forward migration. V4 requires an explicit combined own
 ## Continue with the maintained contracts
 
 Use the pinned source reference below for complete tables and operator details. Related guides: [architecture](architecture/), [API](docs/core/api-reference/), [operations](docs/core/operations/) and [release limits](docs/core/limitations/).
+
+v0.8.1 keeps the v0.8.0 schema head; no new schema migration is introduced. Installation and recovery guidance now lives in the operations runbook.

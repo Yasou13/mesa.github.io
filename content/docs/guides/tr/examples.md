@@ -1,6 +1,6 @@
-## Model kapalı çalıştırılabilir giriş
+## Başlangıcı kontrol edin, ardından modelleri hazırlayın
 
-Depodaki V3 örneği için [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. Yetkili oturum oluşturur; processed ham hafıza kaydını ve kapsamlı sözcüksel sonucu doğrular. V4 çıkarımını veya dış sağlayıcıları çalıştırmaz.
+Model kapalı başlangıç ve sağlık kontrolleri için [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. İlk V4 veri alımı hazırlanmış çıkarım ve embedding sağlayıcıları gerektirir; V3 ham hafıza işleme de embedding ister. Tam `examples/v4_quickstart.py` örneği kataloğunu hazırlar, kaynak referanslarını yazdırır ve oturumu bitirir.
 
 ## V4 ekle, bekle, ara
 
@@ -30,4 +30,4 @@ with MesaV4Client("http://127.0.0.1:18080", api_key=os.environ["MESA_API_KEY"]) 
 
 ## Kaynak sözleşmesini koruyun
 
-İstemci metadata’sından kapsam çıkarmayın. Tam content ve source_ref’i koruyun; tekrarlarda sabit idempotency key kullanın. Bu sürümde SDK insert metodu tipli legal_identity alanını açmaz; doğrulanmış hukuk kataloğu bu alanı sağlamalıysa gözden geçirilmiş HTTP sözleşmesini kullanın. Çok parçalı finalization için [veri alımını](docs/core/concepts-and-ingestion/), grant’ler için [güvenliği](docs/core/security/) izleyin.
+İstemci metadata’sından kapsam çıkarmayın. Tam content ve source_ref’i koruyun; tekrarlarda sabit idempotency key kullanın. v0.8.1’de senkron ve asenkron V4 insert metodları isteğe bağlı `legal_identity` kabul eder. Varsayılan mutasyon sorgulama aralığı iki saniyedir. Sunucu oturumunu HTTP istemcisini kapatmaktan ayrı sonlandırın; timeout sonrasında tekrardan önce mutasyon durumunu inceleyin. Çok parçalı finalization için [veri alımını](docs/core/concepts-and-ingestion/), grant’ler için [güvenliği](docs/core/security/) izleyin.

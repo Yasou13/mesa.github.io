@@ -3,12 +3,12 @@
     "name": "MESA",
     "fullName": "Memory Engine for Structured Agents",
     "domain": "https://mesamemory.dev/",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "runtime": "V4",
     "maturity": "Published source release",
     "certification": "In progress",
     "production": "NO-GO",
-    "statusAsOf": "2026-10-16",
+    "statusAsOf": "2026-10-18",
     "maintainer": "Yasou13",
     "license": "MIT"
   },
@@ -100,12 +100,12 @@
     "architecture": {
       "path": "architecture/",
       "title": "MESA Architecture — Canonical State, Projections and Evidence",
-      "description": "Understand MESA Core v0.8.0 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity."
+      "description": "Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity."
     },
     "retrieval": {
       "path": "retrieval/",
       "title": "MESA V4 Retrieval — Four Lanes, RRF and Evidence",
-      "description": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.0."
+      "description": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.8.1."
     }
   }
 }

@@ -24,12 +24,6 @@
         "title_tr": "Başlarken"
       },
       {
-        "src": "docs/installation.md",
-        "slug": "installation",
-        "title": "Installation",
-        "title_tr": "Kurulum"
-      },
-      {
         "src": "docs/architecture-v4.md",
         "slug": "architecture",
         "title": "Architecture V4",
@@ -60,52 +54,16 @@
         "title_tr": "API Referansı"
       },
       {
-        "src": "docs/cli-reference.md",
-        "slug": "cli-reference",
-        "title": "CLI Reference",
-        "title_tr": "CLI Referansı"
-      },
-      {
-        "src": "docs/migration-v0.8.0.md",
-        "slug": "migration",
-        "title": "Migration to v0.8.0",
-        "title_tr": "v0.8.0 Geçişi"
-      },
-      {
-        "src": "docs/release-notes-v0.8.0.md",
-        "slug": "release-notes",
-        "title": "Release Notes v0.8.0",
-        "title_tr": "Sürüm Notları v0.8.0"
-      },
-      {
-        "src": "docs/troubleshooting.md",
-        "slug": "troubleshooting",
-        "title": "Troubleshooting",
-        "title_tr": "Sorun Giderme"
-      },
-      {
-        "src": "docs/performance-and-limitations.md",
-        "slug": "limitations",
-        "title": "Performance & Limitations",
-        "title_tr": "Performans ve Sınırlılıklar"
-      },
-      {
         "src": "docs/v4-rebuild-runbook.md",
         "slug": "rebuild-runbook",
         "title": "V4 Rebuild Runbook",
         "title_tr": "V4 Yeniden Derleme Kılavuzu"
       },
       {
-        "src": "docs/v4-final-independent-audit.md",
-        "slug": "audit",
-        "title": "Independent Audit",
-        "title_tr": "Bağımsız Denetim"
-      },
-      {
-        "src": "docs/colab_kurulum_rehberi.md",
-        "slug": "colab-rehberi",
-        "title": "Google Colab Guide",
-        "title_tr": "Google Colab Rehberi"
+        "src": "CHANGELOG.md",
+        "slug": "release-notes",
+        "title": "Release Notes v0.8.1",
+        "title_tr": "Sürüm Notları v0.8.1"
       },
       {
         "src": "docs/README.md",
@@ -126,12 +84,6 @@
         "title_tr": "Operasyon ve Kurtarma"
       },
       {
-        "src": "docs/ecosystem.md",
-        "slug": "ecosystem",
-        "title": "Ecosystem Contracts",
-        "title_tr": "Ekosistem Sözleşmeleri"
-      },
-      {
         "src": "docs/testing.md",
         "slug": "testing",
         "title": "Testing & Examples",
@@ -148,12 +100,60 @@
         "slug": "mcp",
         "title": "MCP Reference",
         "title_tr": "MCP Referansı"
+      },
+      {
+        "src": "docs/adr/README.md",
+        "slug": "decisions",
+        "title": "Architecture decisions",
+        "title_tr": "Mimari kararlar"
+      },
+      {
+        "src": "docs/adr/0009-v4-ledger-and-single-storage-owner.md",
+        "slug": "adr-0009",
+        "title": "Ledger and single owner",
+        "title_tr": "Defter ve tek depolama sahibi"
+      },
+      {
+        "src": "docs/adr/0010-v4-rrf-and-pagerank-observation.md",
+        "slug": "adr-0010",
+        "title": "RRF and PageRank",
+        "title_tr": "RRF ve PageRank"
+      },
+      {
+        "src": "docs/adr/0011-v4-tenant-dataset-authorization.md",
+        "slug": "adr-0011",
+        "title": "Tenant/dataset authorization",
+        "title_tr": "Tenant/dataset yetkilendirmesi"
+      },
+      {
+        "src": "docs/adr/0012-memory-dao-repository-boundaries.md",
+        "slug": "adr-0012",
+        "title": "DAO repository boundaries",
+        "title_tr": "DAO repository sınırları"
+      },
+      {
+        "src": "docs/adr/0013-one-way-production-layer-dependencies.md",
+        "slug": "adr-0013",
+        "title": "Production dependencies",
+        "title_tr": "Üretim bağımlılıkları"
+      },
+      {
+        "src": "docs/adr/0014-v4-closure-and-staged-evolution.md",
+        "slug": "adr-0014",
+        "title": "Rebuild closure",
+        "title_tr": "Rebuild kapanışı"
+      },
+      {
+        "src": "docs/adr/0015-bounded-adaptive-query-planning.md",
+        "slug": "adr-0015",
+        "title": "Adaptive query planning",
+        "title_tr": "Uyarlanabilir sorgu planlama"
       }
     ],
-    "commit": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+    "commit": "d3947846615e63b48dc7a5df9f1051b29f734263",
     "version_source": "pyproject.toml",
-    "release_tag": "v0.8.0",
-    "release_date": "2026-10-15"
+    "release_tag": "v0.8.1",
+    "release_date": "2026-10-18"
   },
   "data": {
     "repo_url": "https://github.com/Yasou13/MESA_Data.git",

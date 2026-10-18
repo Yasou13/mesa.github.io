@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Colab rehberi emekli edildi
 
-Barındırılan ortam, depolama ve model kısıtları için sabitlenmiş notebook kurulum referansını kullanın. Yerel hızlı başlangıç daha küçük ilk testtir. Colab kullanılabilirliği ve donanımı dış koşullardır; başarılı notebook üretim dağıtımı veya sağlayıcı yeterliliği değildir.
+Bağımsız Colab belgesi v0.8.1’de kaldırıldı. Korunan bu adres artık eski notebook adımları yerine güncel kurulum ve yerel başlangıç talimatlarını sunar.
 
-## Sürdürülen sözleşmelerle devam edin
+## Güncel rehberle başlayın
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Sağlık kontrolleri için [yerel başlangıcı](docs/core/getting-started/) izleyin, ardından V4 veri alımı için sağlayıcıları hazırlayın. Güncel kurulum referansı aşağıdadır.

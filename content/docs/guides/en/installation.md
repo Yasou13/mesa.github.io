@@ -1,11 +1,11 @@
-## Two deliberate runtime profiles
+## Choose a supported runtime
 
-V3 compatibility is a model-disabled lexical core. Its Compose file separates API and worker roles. V4 canonical processing requires one model-enabled combined storage owner. Do not mount the same physical root into two writers or share it between V3 and V4.
+V4 runs one model-enabled combined owner per storage root. V3 compatibility uses separate API/worker roles and still needs operational embeddings for ingestion. Keep V3 and V4 roots separate.
 
-## Install only the extras you need
+## Install the base environment
 
-The locked development extra installs the local testing environment. Add `ml` for local model execution and `adapters` when the selected provider needs its SDK. Do not load model packages merely to run the V3 quickstart. [Configure providers](docs/core/embedding-providers/) before V4 writes.
+Use `uv sync --locked --python 3.10` and `uv pip check`; Python 3.10–3.13 are CI-tested. Native storage and HTTP/SDK support are included. Add `dev` for tests, `ml` for local models and `adapters` for provider SDKs as needed. Models-disabled startup needs no ML extra or database server. See [providers](docs/core/embedding-providers/).
 
-## Protect the deployment boundary
+## Provision before deployment
 
-Provision credentials and ACLs before startup. Set an explicit application-owned storage root and `MESA_LOAD_DOTENV=false`. The process launcher binds internally to all interfaces; loopback publishing, TLS and an authenticated reverse proxy are deployment responsibilities. Never treat a successful boot as production qualification.
+Prepare credentials, ACLs, an explicit storage root and reviewed provider settings. Use the current installation section in the source below for native and Docker deployment. Readiness alone does not qualify production.

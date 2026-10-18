@@ -8,4 +8,4 @@ Set `MESA_STORAGE_ROOT`, `MESA_RUNTIME_PROFILE=combined` for V4, `MESA_LOAD_DOTE
 
 ## Use the full pinned setting reference
 
-The source appendix below preserves the full v0.8.0 settings table, including admission quotas, readiness thresholds, provider models and operator variables. Defaults describe configuration, not proof that a provider is installed or operational. Credentials belong in a reviewed secret environment.
+The source appendix below preserves the full v0.8.1 settings table, including admission quotas, readiness thresholds, provider models and operator variables. Defaults describe configuration, not proof that a provider is installed or operational. Credentials belong in a reviewed secret environment.

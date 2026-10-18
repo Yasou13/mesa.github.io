@@ -1,11 +1,11 @@
-## Bilinçli seçilen iki çalışma profili
+## Desteklenen çalışma profilini seçin
 
-V3 uyumluluk profili, model kapalı sözcüksel çekirdektir; Compose dosyası API ve worker rollerini ayırır. V4 kanonik işleme, modeli etkin tek combined storage owner gerektirir. Aynı fiziksel root’u iki yazıcıya bağlamayın veya V3 ile V4 arasında paylaşmayın.
+V4, storage root başına modeli etkin tek combined owner çalıştırır. V3 uyumluluğu ayrı API/worker rolleri kullanır ve veri alımı için çalışır embedding gerektirir. V3 ve V4 root’larını ayırın.
 
-## Yalnızca gereken ek paketleri kurun
+## Temel ortamı kurun
 
-Kilitli development extra yerel test ortamını kurar. Yerel model çalıştırmak için `ml`, seçilen sağlayıcının SDK’sı gerekiyorsa `adapters` ekleyin. V3 hızlı başlangıcı çalıştırmak için model paketlerini yüklemeyin. V4 yazmalarından önce [sağlayıcıları yapılandırın](docs/core/embedding-providers/).
+`uv sync --locked --python 3.10` ve `uv pip check` kullanın; CI matrisinde Python 3.10–3.13 test edilir. Yerel depolama ve HTTP/SDK desteği dahildir. Testler için `dev`, yerel modeller için `ml`, sağlayıcı SDK’ları için `adapters` ekleyin. Model kapalı başlangıç ML extra veya veritabanı sunucusu gerektirmez. [Sağlayıcılara](docs/core/embedding-providers/) bakın.
 
-## Dağıtım sınırını koruyun
+## Dağıtımdan önce hazırlayın
 
-Başlatmadan önce credential ve ACL’leri hazırlayın. Uygulamaya ait açık bir storage root ve `MESA_LOAD_DOTENV=false` ayarlayın. Süreç başlatıcısı içeride tüm arayüzleri dinler; loopback yayınlama, TLS ve kimlik doğrulamalı ters proxy dağıtımın sorumluluğudur. Başarılı boot, üretim yeterliliği sayılmaz.
+Credential, ACL, açık storage root ve gözden geçirilmiş sağlayıcı ayarlarını hazırlayın. Native ve Docker dağıtımı için aşağıdaki kaynağın güncel kurulum bölümünü izleyin. Readiness tek başına üretim yeterliliği değildir.

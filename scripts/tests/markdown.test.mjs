@@ -19,3 +19,12 @@ test('checklists, tables, images, captions and literal math render safely', () =
   assert.match(html, /<input type="checkbox" disabled checked>/);
   assert.match(html, /<table>/);assert.match(html, /src="..\/..\/media\/p.png"/);assert.match(html, /<figcaption>Caption/);assert.match(html, /role="math"/);
 });
+
+test('source section anchors survive safely and never duplicate heading IDs', () => {
+  const html = renderMarkdown('<a id="installation"></a>\n## Installation\n<a id="installation"></a>\n<a id="unsafe" onclick="alert(1)"></a>\n```html\n<a id="literal"></a>\n```').html;
+  assert.match(html, /<span id="installation"><\/span>/);
+  assert.match(html, /<h2 id="installation-1">/);
+  assert.equal((html.match(/\bid="installation"/g) || []).length, 1);
+  assert.doesNotMatch(html, /<a id="unsafe"|<span id="literal"/);
+  assert.match(html, /&lt;a id=&quot;literal&quot;&gt;/);
+});

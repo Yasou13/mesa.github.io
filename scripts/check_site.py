@@ -329,7 +329,7 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "07d387f"):
+            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "d394784"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing homepage fixture evidence at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:

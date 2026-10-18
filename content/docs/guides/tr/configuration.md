@@ -8,4 +8,4 @@
 
 ## Tam sabitlenmiş ayar referansını kullanın
 
-Aşağıdaki kaynak eki; admission kotaları, readiness eşikleri, sağlayıcı modelleri ve operatör değişkenleri dahil tam v0.8.0 ayar tablosunu korur. Varsayılanlar yapılandırmayı tanımlar; sağlayıcının kurulu veya çalışır olduğunun kanıtı değildir. Credential’ları gözden geçirilmiş bir secret ortamında saklayın.
+Aşağıdaki kaynak eki; admission kotaları, readiness eşikleri, sağlayıcı modelleri ve operatör değişkenleri dahil tam v0.8.1 ayar tablosunu korur. Varsayılanlar yapılandırmayı tanımlar; sağlayıcının kurulu veya çalışır olduğunun kanıtı değildir. Credential’ları gözden geçirilmiş bir secret ortamında saklayın.

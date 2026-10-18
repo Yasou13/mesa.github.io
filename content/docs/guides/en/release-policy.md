@@ -1,6 +1,6 @@
 ## Purpose and boundaries
 
-Source publication requires the reviewed release process and explicit owner authorization. Package version, signed-off evidence scope and production certification are separate facts. This website pins v0.8.0 and does not create tags, publish Core packages or complete outstanding production gates.
+Source publication requires the reviewed release process and explicit owner authorization. Package version, signed-off evidence scope and production certification are separate facts. This website pins v0.8.1 and does not create tags, publish Core packages or complete outstanding production gates.
 
 ## Continue with the maintained contracts
 

@@ -1,5 +1,5 @@
 {
-  "baseline": "07d387f9a4592ea39518fea549e9cf8330051e1f",
+  "baseline": "d3947846615e63b48dc7a5df9f1051b29f734263",
   "guides": [
     {
       "id": "overview",
@@ -20,7 +20,7 @@
       "group": "start",
       "sources": [
         "docs/getting-started.md",
-        "examples/v3_quickstart.py"
+        "examples/v4_quickstart.py"
       ],
       "title": {
         "en": "Local quickstart",
@@ -32,7 +32,7 @@
       "route": "docs/core/installation/",
       "group": "start",
       "sources": [
-        "docs/installation.md",
+        "docs/getting-started.md",
         "pyproject.toml",
         "docker-compose.yml",
         "docker-compose.v4.yml"
@@ -127,7 +127,7 @@
       "group": "reference",
       "sources": [
         "docs/configuration.md",
-        "docs/installation.md"
+        "docs/getting-started.md"
       ],
       "title": {
         "en": "Embedding & model providers",
@@ -183,7 +183,7 @@
       "sources": [
         "docs/api-reference.md",
         "mesa_client/client.py",
-        "examples/v3_quickstart.py"
+        "examples/v4_quickstart.py"
       ],
       "title": {
         "en": "Examples & SDK workflow",
@@ -195,7 +195,7 @@
       "route": "docs/core/cli-reference/",
       "group": "reference",
       "sources": [
-        "docs/cli-reference.md"
+        "docs/api-reference.md"
       ],
       "title": {
         "en": "CLI reference",
@@ -207,11 +207,11 @@
       "route": "docs/core/migration/",
       "group": "operate",
       "sources": [
-        "docs/migration-v0.8.0.md"
+        "docs/RUNBOOK.md"
       ],
       "title": {
-        "en": "Upgrade to v0.8.0",
-        "tr": "v0.8.0 yükseltmesi"
+        "en": "Upgrade to v0.8.1",
+        "tr": "v0.8.1 yükseltmesi"
       }
     },
     {
@@ -219,11 +219,11 @@
       "route": "docs/core/release-notes/",
       "group": "release",
       "sources": [
-        "docs/release-notes-v0.8.0.md"
+        "CHANGELOG.md"
       ],
       "title": {
-        "en": "v0.8.0 release notes",
-        "tr": "v0.8.0 sürüm notları"
+        "en": "v0.8.1 release notes",
+        "tr": "v0.8.1 sürüm notları"
       }
     },
     {
@@ -231,7 +231,7 @@
       "route": "docs/core/troubleshooting/",
       "group": "operate",
       "sources": [
-        "docs/troubleshooting.md"
+        "docs/RUNBOOK.md"
       ],
       "title": {
         "en": "Troubleshooting",
@@ -243,7 +243,7 @@
       "route": "docs/core/limitations/",
       "group": "release",
       "sources": [
-        "docs/performance-and-limitations.md"
+        "docs/architecture-v4.md"
       ],
       "title": {
         "en": "Performance & limitations",
@@ -291,7 +291,7 @@
       "route": "docs/core/ecosystem/",
       "group": "concepts",
       "sources": [
-        "docs/ecosystem.md"
+        "docs/architecture-v4.md"
       ],
       "title": {
         "en": "Ecosystem boundaries",
@@ -327,11 +327,11 @@
       "route": "docs/core/colab-rehberi/",
       "group": "start",
       "sources": [
-        "docs/colab_kurulum_rehberi.md"
+        "docs/getting-started.md"
       ],
       "title": {
-        "en": "Colab setup",
-        "tr": "Colab kurulumu"
+        "en": "Retired Colab guide",
+        "tr": "Emekli Colab rehberi"
       }
     },
     {
@@ -339,11 +339,107 @@
       "route": "docs/core/audit/",
       "group": "release",
       "sources": [
-        "docs/v4-final-independent-audit.md"
+        "docs/testing.md"
       ],
       "title": {
-        "en": "Historical independent audit",
-        "tr": "Tarihsel bağımsız denetim"
+        "en": "Audit history & current tests",
+        "tr": "Denetim geçmişi ve güncel testler"
+      }
+    },
+    {
+      "id": "decisions",
+      "route": "docs/core/decisions/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/README.md"
+      ],
+      "title": {
+        "en": "Architecture decisions",
+        "tr": "Mimari kararlar"
+      }
+    },
+    {
+      "id": "adr-0009",
+      "route": "docs/core/adr-0009/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0009-v4-ledger-and-single-storage-owner.md"
+      ],
+      "title": {
+        "en": "Ledger and single owner",
+        "tr": "Defter ve tek depolama sahibi"
+      }
+    },
+    {
+      "id": "adr-0010",
+      "route": "docs/core/adr-0010/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0010-v4-rrf-and-pagerank-observation.md"
+      ],
+      "title": {
+        "en": "RRF and PageRank",
+        "tr": "RRF ve PageRank"
+      }
+    },
+    {
+      "id": "adr-0011",
+      "route": "docs/core/adr-0011/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0011-v4-tenant-dataset-authorization.md"
+      ],
+      "title": {
+        "en": "Tenant/dataset authorization",
+        "tr": "Tenant/dataset yetkilendirmesi"
+      }
+    },
+    {
+      "id": "adr-0012",
+      "route": "docs/core/adr-0012/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0012-memory-dao-repository-boundaries.md"
+      ],
+      "title": {
+        "en": "DAO repository boundaries",
+        "tr": "DAO repository sınırları"
+      }
+    },
+    {
+      "id": "adr-0013",
+      "route": "docs/core/adr-0013/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0013-one-way-production-layer-dependencies.md"
+      ],
+      "title": {
+        "en": "Production dependencies",
+        "tr": "Üretim bağımlılıkları"
+      }
+    },
+    {
+      "id": "adr-0014",
+      "route": "docs/core/adr-0014/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0014-v4-closure-and-staged-evolution.md"
+      ],
+      "title": {
+        "en": "Rebuild closure",
+        "tr": "Rebuild kapanışı"
+      }
+    },
+    {
+      "id": "adr-0015",
+      "route": "docs/core/adr-0015/",
+      "group": "concepts",
+      "sources": [
+        "docs/adr/0015-bounded-adaptive-query-planning.md"
+      ],
+      "title": {
+        "en": "Adaptive query planning",
+        "tr": "Uyarlanabilir sorgu planlama"
       }
     }
   ]

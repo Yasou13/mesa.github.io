@@ -6,25 +6,25 @@
   <title>MESA — Evidence-Aware Memory Infrastructure</title>
   <meta name="description" content="MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.">
   <meta name="theme-color" content="#050508">
-  <link rel="canonical" href="https://yasou13.github.io/mesa.github.io/">
-  <link rel="alternate" hreflang="en" href="https://yasou13.github.io/mesa.github.io/">
-  <link rel="alternate" hreflang="tr" href="https://yasou13.github.io/mesa.github.io/tr/">
-  <link rel="alternate" hreflang="x-default" href="https://yasou13.github.io/mesa.github.io/">
+  <link rel="canonical" href="https://mesamemory.dev/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/">
   <meta property="og:title" content="MESA — Evidence-Aware Memory Infrastructure">
   <meta property="og:description" content="MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yasou13.github.io/mesa.github.io/">
+  <meta property="og:url" content="https://mesamemory.dev/">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="tr_TR">
-  <meta property="og:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MESA — Evidence-Aware Memory Infrastructure">
   <meta name="twitter:description" content="MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.">
-  <meta name="twitter:image" content="https://yasou13.github.io/mesa.github.io/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://yasou13.github.io/mesa.github.io/","inLanguage":"en","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/07d387f9a4592ea39518fea549e9cf8330051e1f/LICENSE","version":"0.8.0","url":"https://yasou13.github.io/mesa.github.io/"}]}</script>
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA is open-source memory infrastructure for AI systems that keeps source evidence, relationships, and data scope attached to what agents remember.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="./assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="./fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -124,7 +124,7 @@
     <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit 07d387f.</span></p></details>
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit d394784.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
   </div>
     
@@ -188,7 +188,7 @@
       <span aria-hidden="true">→</span>
       <a href="./mesa/">
         <strong>MESA Core</strong>
-        <span>Released v0.8.0 · production NO-GO</span>
+        <span>Released v0.8.1 · production NO-GO</span>
       </a>
       <span aria-hidden="true">→</span>
       <a href="./law/">
@@ -213,12 +213,13 @@
   </section>
 
   <section class="section home-explore" id="continue-exploring" data-home-section="explore">
-    <p class="eyebrow">GET STARTED · v0.8.0</p>
+    <p class="eyebrow">GET STARTED · v0.8.1</p>
     <h2>Start locally. Keep the version explicit.</h2>
-    <pre tabindex="0"><code>git clone --branch v0.8.0 --depth 1 https://github.com/Yasou13/MESA.git
+    <pre tabindex="0"><code>git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
-uv sync --locked --extra dev</code></pre>
-    <p>Continue with the model-disabled V3 quickstart for a local first run. Canonical V4 writes require provisioned extraction and embedding providers.</p>
+uv sync --locked --python 3.10
+uv pip check</code></pre>
+    <p>Use the model-disabled quickstart to check installation and health. V3 ingestion and canonical V4 writes require operational embeddings; V4 also needs canonical extraction.</p>
     <div class="actions">
       <a class="button primary" href="./docs/core/getting-started/"><span>Run the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
       <a class="button secondary" href="./docs/core/examples/"><span>V4 SDK examples</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
@@ -228,12 +229,12 @@ uv sync --locked --extra dev</code></pre>
   <aside class="home-status" aria-label="Release and qualification">
     <div>
       <p class="eyebrow">RELEASED SOURCE · QUALIFICATION IN PROGRESS</p>
-      <p>v0.8.0 was published on 15 October 2026. Real-provider rehearsal, a production-like 24-hour soak and new official certification remain incomplete.</p>
+      <p>v0.8.1 was published on 18 October 2026. Real-provider rehearsal, a production-like 24-hour soak and new official certification remain incomplete.</p>
     </div>
     <a class="button secondary" href="./status/"><span>Status and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
   </aside>
   <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="./assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.0 · V4 published source release · <a href="./status/">View status →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="./" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="./assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.1 · V4 published source release · <a href="./status/">View status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="./how-it-works/">How it works</a><a href="./use-cases/">Use cases</a><a href="./evaluation/">Evaluation & trust</a><a href="./status/">Project status</a></div>
         <div><h3>Ecosystem</h3><a href="./mesa/">MESA Core</a><a href="./data/">MESA Data</a><a href="./qa/">MESA QA</a><a href="./certification/">E2E Certification</a><a href="./law/">MESA Law</a></div>

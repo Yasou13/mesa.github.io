@@ -1,6 +1,6 @@
 ## Amaç ve sınırlar
 
-Kaynak yayını, gözden geçirilmiş yayın sürecini ve açık sahip onayını gerektirir. Paket sürümü, onaylanan kanıt kapsamı ve üretim sertifikasyonu ayrı olgulardır. Bu site v0.8.0’a sabitlenmiştir; tag oluşturmaz, Core paketi yayımlamaz veya açık üretim kapılarını tamamlamaz.
+Kaynak yayını, gözden geçirilmiş yayın sürecini ve açık sahip onayını gerektirir. Paket sürümü, onaylanan kanıt kapsamı ve üretim sertifikasyonu ayrı olgulardır. Bu site v0.8.1’a sabitlenmiştir; tag oluşturmaz, Core paketi yayımlamaz veya açık üretim kapılarını tamamlamaz.
 
 ## Sürdürülen sözleşmelerle devam edin
 

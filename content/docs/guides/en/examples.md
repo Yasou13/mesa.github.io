@@ -1,6 +1,6 @@
-## A runnable model-disabled introduction
+## Check startup, then provision models
 
-Follow [local quickstart](docs/core/getting-started/) for the checked-in V3 example. It provisions an authorized session and verifies a processed raw-memory record and scoped lexical result. It does not exercise V4 extraction or external providers.
+Follow [local quickstart](docs/core/getting-started/) for model-disabled startup and health checks. First V4 ingestion requires configured extraction and embedding providers; V3 raw-memory processing also requires embeddings. The complete `examples/v4_quickstart.py` provisions its catalog, prints source references and ends the session.
 
 ## V4 insert, wait, search
 
@@ -30,4 +30,4 @@ with MesaV4Client("http://127.0.0.1:18080", api_key=os.environ["MESA_API_KEY"]) 
 
 ## Preserve the source contract
 
-Never infer scope from caller metadata. Keep exact content and source_ref; use stable idempotency keys for retries. The SDK insert method does not expose typed legal_identity in this version; use the reviewed HTTP contract when a verified legal catalog must supply that field. Follow [ingestion](docs/core/concepts-and-ingestion/) for multi-chunk finalization and [security](docs/core/security/) for grants.
+Never infer scope from caller metadata. Keep exact content and source_ref; use stable idempotency keys for retries. Both synchronous and asynchronous V4 insert methods accept optional `legal_identity` in v0.8.1. Default mutation polling is two seconds. End the server session separately from closing the HTTP client; on timeout inspect mutation status before retrying. Follow [ingestion](docs/core/concepts-and-ingestion/) for multi-chunk finalization and [security](docs/core/security/) for grants.

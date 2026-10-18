@@ -1,7 +1,16 @@
-## Amaç ve sınırlar
+## v0.8.1 · 18 Ekim 2026
 
-Resmî kaynak sürümü 15 Ekim 2026’da yayımlandı. Kanonik sahiplik, kapsamlı retrieval, graph proof, kurtarılabilir mutasyonlar ve SDK/MCP sözleşmeleri bu sürümdedir. Üretim yeterliliği NO-GO durumundadır: gerçek sağlayıcı provası, üretim benzeri 24 saatlik dayanıklılık çalışması ve yeni resmî sertifikasyon kanıtları tamamlanmamıştır. Kaynak yayını ile üretim onayı ayrı kararlardır.
+Yayımlanmış kaynak sürümü kapsamlı retrieval, depolama sahipliği ve hata yönetimini güçlendirir. Üretim yeterliliği NO-GO; gerçek sağlayıcı entegrasyonu, üretim boyutunda kapasite ve 24 saatlik dayanıklılık sertifikalı değildir. Açıklamalı tag imzasızdır.
 
-## Sürdürülen sözleşmelerle devam edin
+## Neler değişti
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+- BM25 corpus istatistikleri ve sıralama öncesi denetim sorguları yetkili tenant/dataset kapsamını kullanır.
+- Projeksiyon tamamlanması sahiplik/fencing kontrolü yapar; onarım diğer dataset artefaktlarını silmez. Kùzu silme ve rollback önbellekleri tutarlı tutulur.
+- Vektör ve embedding hataları açıktır; ayrılmış `_mesa_` metadata ve sonlu olmayan RRF ağırlıkları reddedilir.
+- Senkron ve asenkron V4 SDK ekleme isteğe bağlı `legal_identity` kabul eder; varsayılan durum sorgulama iki saniyedir. `make health` çalışan API’yi kontrol eder.
+- Dashboard/showcase ve eski script’ler kaldırıldı. MCP control API ve onay CLI’ı korunur.
+- Kurulum, CLI, sorun giderme, yükseltme, ekosistem ve sınırlar güncel ana rehberlerde birleştirildi. Şema head’i v0.8.0 ile aynıdır.
+
+## Güncel kaynakları okuyun
+
+Aşağıdaki değişiklik günlüğü sürüm geçmişini korur. [Kurulum](docs/core/installation/), [API ve CLI](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [mimari kararlar](docs/core/decisions/) yeni kaynak ağacını yansıtır.

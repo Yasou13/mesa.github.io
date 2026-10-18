@@ -228,6 +228,20 @@ export function renderMarkdown(markdown = '', options = {}) {
       continue;
     }
 
+    // Preserve source-declared section anchors without allowing arbitrary HTML.
+    const explicitAnchor = trimmed.match(/^<a id="([A-Za-z][A-Za-z0-9_-]*)"><\/a>$/);
+    if (explicitAnchor) {
+      flushList();
+      flushTable();
+      flushQuote();
+      const id = explicitAnchor[1];
+      if (!headingIds.has(id)) {
+        headingIds.set(id, 1);
+        htmlParts.push(`<span id="${id}"></span>`);
+      }
+      continue;
+    }
+
     // 5. Headings (# H1, ## H2, ### H3, #### H4)
     const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
     if (headingMatch) {

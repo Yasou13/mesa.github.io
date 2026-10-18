@@ -5,3 +5,5 @@
 ## Sürdürülen sözleşmelerle devam edin
 
 Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+
+v0.8.1, v0.8.0 şema head’ini korur; yeni şema migration’ı getirmez. Kurulum ve kurtarma rehberi artık operasyon runbook içindedir.

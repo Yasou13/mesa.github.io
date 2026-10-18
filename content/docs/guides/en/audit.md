@@ -1,7 +1,7 @@
-## Purpose and boundaries
+## Historical audit retired
 
-This is dated release evidence, preserved as an original source appendix. Its reported tests have not all been rerun by this website revision. Use maintained guides and the release tag for current contracts, and read each audit result only within its documented environment and scope.
+The standalone independent audit and obsolete benchmark reports were removed from the current tree in v0.8.1. Earlier records remain in Git history; this page no longer presents their full text as current release evidence.
 
-## Continue with the maintained contracts
+## Use current testing and release evidence
 
-Use the pinned source reference below for complete tables and operator details. Related guides: [architecture](architecture/), [API](docs/core/api-reference/), [operations](docs/core/operations/) and [release limits](docs/core/limitations/).
+The maintained testing guide is included below. See [v0.8.1 release notes](docs/core/release-notes/) and [release qualification](docs/core/release-policy/) for evidence scope and outstanding gates.

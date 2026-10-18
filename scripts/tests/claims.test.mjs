@@ -10,8 +10,13 @@ test('current claims retain external certification blockers and dated Law eviden
 });
 test('package versions and source commits are backed by immutable imports', () => {
   const manifest=JSON.parse(fs.readFileSync(new URL('content/docs/manifest.json',root),'utf8'));
+  const sources=JSON.parse(fs.readFileSync(new URL('content/docs/sources.json',root),'utf8'));
+  const site=JSON.parse(fs.readFileSync(new URL('site-data.json',root),'utf8'));
+  assert.equal(sources.core.release_tag,`v${site.project.version}`);
+  assert.equal(manifest.repositories.core.commit,sources.core.commit);
+  assert.deepEqual(manifest.repositories.core.pages.map(page=>page.src),sources.core.allowlist.map(page=>page.src));
   for(const [key,repo] of Object.entries(manifest.repositories)) {
     assert.match(repo.commit,/^[a-f0-9]{40}$/);
-    assert.equal(repo.version,key==='core'?'v0.8.0':'v0.1.0');
+    assert.equal(repo.version,key==='core'?'v0.8.1':'v0.1.0');
   }
 });
