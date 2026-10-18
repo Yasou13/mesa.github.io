@@ -2,6 +2,7 @@
 // Renders hierarchical multi-repository documentation for Core, Data, Law, QA, E2E, and MCP.
 
 import fs from 'node:fs';
+import { docsSidebar as sharedSidebar, docsTabs, docsCopyButton, docsFooter, docsFrame, hubContent } from './docs_ui.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderMarkdown, generateTableOfContents, escapeHtml } from './markdown_engine.mjs';
@@ -50,68 +51,7 @@ export function getAllDocRoutes() {
 }
 
 function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
-  const manifest = getDocsManifest();
-  const route = (p = '') => `${base}${p}`;
-  const isTr = language === 'tr';
-
-  let sectionsHtml = '';
-
-  // 1. Docs Hub & Overview
-  sectionsHtml += `<div class="sidebar-group">
-    <div class="sidebar-group-header">
-      <span>${isTr ? 'GENEL BAKIŞ' : 'OVERVIEW'}</span>
-    </div>
-    <ul class="sidebar-links">
-      <li><a href="${route('docs/')}"${currentRoute === 'docs/' ? ' class="active" aria-current="page"' : ''}>${isTr ? 'Dokümantasyon Merkezi' : 'Documentation Hub'}</a></li>
-      <li><a href="${route('docs/mcp/')}"${currentRoute === 'docs/mcp/' ? ' class="active" aria-current="page"' : ''}>${isTr ? 'MCP Entegrasyonu' : 'MCP Integration'}</a></li>
-    </ul>
-  </div>`;
-
-  // 2. Each repository group
-  const repoOrder = ['core', 'data', 'law', 'qa', 'e2e'];
-  for (const key of repoOrder) {
-    const repo = manifest.repositories[key];
-    if (!repo) continue;
-    const repoTitle = repo.title[language] || repo.title.en;
-    const isCurrentRepo = currentRoute.startsWith(repo.base_route);
-
-    sectionsHtml += `<div class="sidebar-group${isCurrentRepo ? ' open' : ''}">
-      <div class="sidebar-group-header">
-        <span>${escapeHtml(repoTitle)}</span>
-        <span class="version-tag">${escapeHtml(repo.version)}</span>
-      </div>
-      <ul class="sidebar-links">`;
-
-    const groups = {start: ['Start here', 'Başlangıç'], concepts: ['Core concepts', 'Temel kavramlar'], retrieval: ['Retrieval', 'Retrieval'], reference: ['Integration & reference', 'Entegrasyon ve referans'], operate: ['Operate & recover', 'İşletim ve kurtarma'], release: ['Release & evidence', 'Yayın ve kanıt']};
-    const orderedPages = key === 'core' ? Object.keys(groups).flatMap(group => repo.pages.filter(page => guideByRoute.get(page.route)?.group === group)) : repo.pages;
-    let lastGroup = '';
-    for (const page of orderedPages) {
-      const group = guideByRoute.get(page.route)?.group;
-      if (key === 'core' && group !== lastGroup) {
-        sectionsHtml += `<li class="docs-nav-group-label">${groups[group][isTr ? 1 : 0]}</li>`;
-        lastGroup = group;
-      }
-      const pageTitle = page.title[language] || page.title.en;
-      const isCurrentPage = currentRoute === page.route;
-      sectionsHtml += `<li><a href="${route(page.route)}"${isCurrentPage ? ' class="active" aria-current="page"' : ''}>${escapeHtml(pageTitle)}</a></li>`;
-    }
-
-    sectionsHtml += `</ul></div>`;
-  }
-
-  return `<div class="docs-sidebar" aria-label="${isTr ? 'Dokümantasyon gezintisi' : 'Documentation navigation'}">
-    <details class="docs-navigation">
-      <summary>${isTr ? 'Belge gezintisi' : 'Documentation navigation'}</summary>
-    <div class="docs-sidebar-inner">
-      <div class="docs-sidebar-header">
-        <span class="docs-badge">${isTr ? 'MESA DOKÜMANTASYON' : 'MESA DOCUMENTATION'}</span>
-      </div>
-      <nav class="docs-nav">
-        ${sectionsHtml}
-      </nav>
-    </div>
-    </details>
-  </div>`;
+  return sharedSidebar(getDocsManifest(), currentRoute, language, {base, guides: guideByRoute});
 }
 
 export function renderDocPage(item, language = 'en', { base = './', assetBase = './', siteUrl, headerHtml, footerHtml }) {
@@ -158,7 +98,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const sourceUrl = `${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${page.src}`;
   const metaBar = `<div class="docs-meta-bar">
     <span class="docs-version-pill">${escapeHtml(repo.version)}</span>
-    <span class="docs-commit-pill">commit: <a href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.commit)}</a></span>
+    <span class="docs-commit-pill">commit: <a href="${sourceUrl}" title="${escapeHtml(repo.commit)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.commit.slice(0, 7))}</a></span>
     <span class="docs-source-pill">${isTr ? 'kaynak' : 'source'}: <code>${escapeHtml(page.src)}</code></span>
   </div>`;
 
@@ -186,14 +126,15 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
 
   return `${headerHtml}
 <main id="main-content" class="docs-layout">
+  ${docsTabs(page.route, language, base)}
   ${sidebarHtml}
   <div class="docs-main-container">
     <div class="docs-content-column">
       ${breadcrumbs}
-      <article class="docs-article">
+      <article class="docs-article" data-doc-copy-content>
         <header class="docs-article-header">
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
-          <h1>${escapeHtml(pageTitle)}</h1>
+          <div class="docs-title-row"><h1>${escapeHtml(pageTitle)}</h1>${docsCopyButton(isTr)}</div>
           ${metaBar}
           <p class="docs-language-notice">${isTr ? 'Bu rehber Türkçe ve İngilizce eşdeğer açıklamalar sunar. Tam kaynak referansı özgün dilinde aşağıda korunur. Paket sürümü üretim sertifikasyonu değildir.' : 'This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.'}</p>
           ${/audit|verification|closure/i.test(page.src) ? `<p class="docs-language-notice">${isTr ? 'Bu belge tarihli kaynak kanıtıdır. İçindeki test sonuçları bu site denetiminde yeniden çalıştırılmış sayılmaz.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
@@ -217,67 +158,22 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
     </div>
   </div>
 </main>
-${footerHtml}`;
+<script type="application/json" data-doc-copy>${JSON.stringify(`# ${pageTitle}\n\n${guideMarkdown}\n\n${sourceUrl}`).replaceAll('<', '\\u003c')}</script>
+${docsFooter(isTr, base)}`;
 }
 
-export function renderDocsHub(language = 'en', { base = './', assetBase = './', siteUrl, headerHtml, footerHtml }) {
-  const isTr = language === 'tr';
+export function renderDocsHub(language = 'en', {base = './', headerHtml}) {
   const manifest = getDocsManifest();
-  const route = (p = '') => `${base}${p}`;
+  return docsFrame({manifest, currentRoute: 'docs/', language, base, guides: guideByRoute, headerHtml, ...hubContent(manifest, language, base)});
+}
 
-  const repoCards = Object.entries(manifest.repositories).map(([key, repo]) => {
-    const title = repo.title[language] || repo.title.en;
-    const desc = repo.description[language] || repo.description.en;
-    const rootRoute = repo.base_route;
-    const pageCount = repo.pages.length;
-
-    return `<article class="docs-hub-card">
-      <div class="docs-hub-card-header">
-        <span class="docs-hub-version">${escapeHtml(repo.version)}</span>
-        <span class="docs-hub-count">${pageCount} ${isTr ? 'belge' : 'documents'}</span>
-      </div>
-      <h2>${escapeHtml(title)}</h2>
-      <p>${escapeHtml(desc)}</p>
-      <div class="docs-hub-links">
-        ${repo.pages.slice(0, 4).map((p) => {
-          const pTitle = p.title[language] || p.title.en;
-          const pHref = route(p.route);
-          return `<a href="${pHref}">${escapeHtml(pTitle)} →</a>`;
-        }).join('')}
-      </div>
-      <div class="docs-hub-card-footer">
-        <a class="button secondary" href="${route(rootRoute)}">${isTr ? 'Tüm belgeleri gör' : 'Explore all docs'}</a>
-      </div>
-    </article>`;
-  }).join('');
-
-  const sidebarHtml = docsSidebar('docs/', language, { base });
-
-  return `${headerHtml}
-<main id="main-content" class="docs-layout">
-  ${sidebarHtml}
-  <div class="docs-main-container">
-    <div class="docs-content-column docs-hub-content">
-      <section class="page-hero compact page-hero--functional docs-hero">
-        <p class="eyebrow">${isTr ? 'DOKÜMANTASYON MERKEZİ' : 'DOCUMENTATION HUB'}</p>
-        <h1>${isTr ? 'Kodu ve sözleşmeleri keşfedin.' : 'Find the contract.<br><em>Then run the code.</em>'}</h1>
-        <p>${isTr ? 'MESA ekosistemindeki Core, Data, Law, QA ve E2E Certification bileşenlerinin resmî ve yerel dokümantasyonu.' : 'Authoritative in-website technical documentation across all five MESA repositories: Core, Data, Law, QA, and E2E Certification.'}</p>
-      </section>
-
-      <section class="section docs-hub-grid">
-        ${repoCards}
-      </section>
-
-      <section class="section mcp-promo">
-        <div class="mcp-promo-card">
-          <p class="eyebrow">MODEL CONTEXT PROTOCOL</p>
-          <h2>${isTr ? 'Model Context Protocol Entegrasyonu' : 'Model Context Protocol Integration'}</h2>
-          <p>${isTr ? 'V3 uyumlu stdio sunucusu ve V4 gateway/köprü yollarının mimari detayları.' : 'Explore the legacy stdio server and current V4 HTTP gateway + local bridge specifications.'}</p>
-          <a class="button primary" href="${route('docs/mcp/')}">${isTr ? 'MCP Kılavuzunu Aç' : 'Open MCP Guide'}</a>
-        </div>
-      </section>
-    </div>
-  </div>
-</main>
-${footerHtml}`;
+export function renderMcpGuide(language = 'en', {base = './', headerHtml, body}) {
+  const isTr = language === 'tr';
+  const headings = [
+    {id: 'integration-paths', title: isTr ? 'Entegrasyon yolları' : 'Integration paths', level: 2},
+    {id: 'bridge-tools', title: isTr ? 'V4 köprü araçları' : 'V4 bridge tools', level: 2},
+    {id: 'boundary-notes', title: isTr ? 'Sınırlar ve güvenlik' : 'Boundaries & security', level: 2}
+  ];
+  const content = `<article class="docs-article docs-mcp-content" data-doc-copy-content>${body.replace(/<h1>([\s\S]*?)<\/h1>/, (_, title) => `<div class="docs-title-row"><h1>${title}</h1>${docsCopyButton(isTr)}</div>`)}</article>`;
+  return docsFrame({manifest: getDocsManifest(), currentRoute: 'docs/mcp/', language, base, guides: guideByRoute, headerHtml, content, toc: generateTableOfContents(headings, {label: isTr ? 'Bu sayfada' : 'On this page'})});
 }

@@ -3,11 +3,11 @@ import { learningIndex, renderLesson, validateCurriculum } from './render_learn.
 import { beginnerHow } from './render_intro.mjs';
 import fs from 'node:fs';
 import { cosmicEnvironment, cosmicVariant } from './cosmic.mjs';
-import { productHome, architecturePage, retrievalPage, productTranslations, documentationJourney, ecosystemMaturity, coreRelease } from './render_product.mjs';
+import { productHome, architecturePage, retrievalPage, productTranslations, ecosystemMaturity, coreRelease } from './render_product.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { getAllDocRoutes, renderDocPage } from './render_docs.mjs';
+import { getAllDocRoutes, renderDocPage, renderDocsHub, renderMcpGuide } from './render_docs.mjs';
 import { renderAdminPage } from './render_admin.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
@@ -38,6 +38,8 @@ const assetVersions = {
   cosmic: assetVersion('cosmic.css'),
   cosmicMotion: assetVersion('cosmic-motion.js'),
   js: assetVersion('app.js'),
+  docs: assetVersion('docs.css'),
+  docsJs: assetVersion('docs.js'),
   logo: assetVersion('assets/mesa-mark.webp'),
   faviconSvg: assetVersion('favicon.svg'),
   faviconIco: assetVersion('favicon.ico')
@@ -971,62 +973,13 @@ function faqPage() {
 }
 
 function docsPage() {
-  const groups = [
-    ['Start', [['Core overview', route('docs/core/'), false], ['Getting started', route('docs/core/getting-started/'), false], ['Installation', route('docs/core/installation/'), false], ['Current status', route('status/'), false]]],
-    ['Understand', [['V4 architecture', route('architecture/'), false], ['Concepts & ingestion', route('docs/core/concepts-and-ingestion/'), false], ['Retrieval & graph', route('retrieval/'), false], ['Evidence & provenance', route('docs/core/evidence/'), false]]],
-    ['Build', [['Python SDK', route('docs/core/examples/'), false], ['HTTP API', route('docs/core/api-reference/'), false], ['OpenAPI specification', docs.openapi, true], ['MCP integration', route('docs/mcp/'), false]]],
-    ['Operate', [['Configuration & installation', route('docs/core/configuration/'), false], ['CLI reference', route('docs/core/cli-reference/'), false], ['Rebuild & recovery runbook', route('docs/core/rebuild-runbook/'), false], ['Operations runbook', route('docs/core/operations/'), false]]],
-    ['Trust', [['Security policy', route('docs/core/security/'), false], ['Performance & limitations', route('docs/core/limitations/'), false], ['Troubleshooting', route('docs/core/troubleshooting/'), false], ['Evaluation & trust', route('evaluation/'), false]]],
-    ['Reference', [['v0.8.1 Release notes', route('docs/core/release-notes/'), false], ['Migration to v0.8.1', route('docs/core/migration/'), false], ['Release policy', route('docs/core/release-policy/'), false], ['Ecosystem boundaries', route('ecosystem/'), false]]],
-    ['Contribute', [['Architecture decisions', route('docs/core/decisions/'), false], ['Contributing guide', docs.contributing, true], ['Issue tracker', repos.issues, true], ['MESA QA repository', repos.qa, true]]],
-    ['Ecosystem Docs', [['MESA Data Docs', route('docs/data/'), false], ['MESA Law Docs', route('docs/law/'), false], ['MESA QA Docs', route('docs/qa/'), false], ['E2E Certification', route('docs/e2e/'), false]]]
-  ];
-
-  return `
-    ${header('docs')}
-    <main id="main-content">
-      <section class="page-hero compact page-hero--functional docs-hero docs-accent">
-        <p class="eyebrow">DOCUMENTATION HUB</p>
-        <h1>Find the contract.<br><em>Then run the code.</em></h1>
-        <p>A functional gateway to current source documents, public explanations, integration surfaces, operations, and verification evidence.</p>
-      </section>
-      ${documentationJourney(route)}
-
-      <section class="section docs-grid">
-        ${groups.map(([name, links], index) => `
-        <section${index === 0 ? ' class="docs-start"' : ''}>
-          <p class="eyebrow">0${index + 1} / ${name}</p>
-          ${links.map(([label, href, ext = true]) => ext ? external(href, label) : `<a href="${href}">${label}<span aria-hidden="true"> →</span></a>`).join('')}
-        </section>`).join('')}
-      </section>
-
-      <section class="section quickstart-doc">
-        <div>
-          <p class="eyebrow">REPRODUCIBLE LOCAL SETUP</p>
-          <h2>Use the checked-in lock.</h2>
-          <p>The base install includes native storage and HTTP/SDK support. Python 3.10–3.13 are CI-tested; development and model/provider extras are optional.</p>
-        </div>
-        <div class="terminal">
-          <div class="terminal-bar">
-            <span><i></i><i></i><i></i></span>
-            <strong>local install</strong>
-            <button class="copy-button" type="button" data-copy-target="install-code">Copy</button>
-          </div>
-          <pre tabindex="0" id="install-code"><code>git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
-cd MESA
-uv sync --locked --python 3.10
-uv pip check</code></pre>
-        </div>
-      </section>
-      ${footer()}
-    </main>`;
+  return renderDocsHub(currentLanguage, {base, headerHtml: hubChrome(header('docs'))});
 }
 
 function mcpPage() {
-  return `
-    ${header('docs')}
-    <main id="main-content">
-      <section class="page-hero compact page-hero--functional">
+  const body = `
+
+      <header class="docs-article-header">
         <p class="eyebrow">MODEL CONTEXT PROTOCOL</p>
         <h1>Two integration paths.<br><em>Different runtime contracts.</em></h1>
         <p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p>
@@ -1034,9 +987,9 @@ function mcpPage() {
           ${cta('Source guide', docs.mcp, 'primary', true)}
           ${cta('Core repository', repos.core, 'secondary', true)}
         </div>
-      </section>
+      </header>
 
-      <section class="section mcp-paths">
+      <section id="integration-paths" class="mcp-paths">
         <article>
           <p class="eyebrow">LEGACY V3-COMPATIBLE</p>
           <h2>Direct stdio server</h2>
@@ -1051,7 +1004,7 @@ function mcpPage() {
         </article>
       </section>
 
-      <section class="section tool-section">
+      <section id="bridge-tools" class="tool-section">
         <div class="section-heading">
           <div>
             <p class="eyebrow">V4 BRIDGE TOOLS</p>
@@ -1069,7 +1022,7 @@ function mcpPage() {
         </div>
       </section>
 
-      <section class="section mcp-guard">
+      <section id="boundary-notes" class="mcp-guard">
         <p class="eyebrow">BOUNDARY NOTES</p>
         <ul class="check-list">
           <li>stdout is reserved for MCP JSON-RPC; logs go to stderr</li>
@@ -1079,8 +1032,8 @@ function mcpPage() {
           <li>the exact supported host depends on the selected integration path</li>
         </ul>
       </section>
-      ${footer()}
-    </main>`;
+`;
+  return renderMcpGuide(currentLanguage, {base, headerHtml: hubChrome(header('docs')), body: hubChrome(body)});
 }
 
 function statusPage() {
@@ -1568,13 +1521,13 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
-  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
+${content.includes('class="docs-layout"') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
 ${content}
   <script src="${assetBase}app.js?v=${assetVersions.js}"></script>
-</body>
+${content.includes('class="docs-layout"') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
 </html>
 `;
 }
@@ -1650,8 +1603,9 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const content = language === 'tr' ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
-    if (language === 'tr') assertCompleteLocalization(key, englishContent, content);
+    const nativeDocs = key === 'docs' || key === 'mcp';
+    const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
+    if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.writeFileSync(destination, documentShell({

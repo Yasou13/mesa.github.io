@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { getAllDocRoutes, renderDocPage } from '../render_docs.mjs';
+import { getAllDocRoutes, renderDocPage, renderDocsHub } from '../render_docs.mjs';
 const root = new URL('../../', import.meta.url);
 const catalog = JSON.parse(fs.readFileSync(new URL('content/docs/guides.json',root),'utf8'));
 
@@ -31,5 +31,32 @@ test('localized docs keep source anchors and copy targets without duplicate IDs'
       assert.doesNotMatch(html,/>Copy<|aria-label="Link to section|>MCP Integration</);
     }
     assert.match(html,/id="source-reference"/);
+  }
+});
+
+
+test('docs hub has localized entry points and resolvable section links in both deployment modes', () => {
+  for (const language of ['en', 'tr']) for (const base of ['../', '/mesa.github.io/']) {
+    const html = renderDocsHub(language, {base, headerHtml: ''});
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(ids).size, ids.length);
+    for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), match[1]);
+    for (const repo of ['core', 'data', 'law', 'qa', 'e2e']) assert.ok(html.includes(`href="${base}docs/${repo}/"`));
+    assert.match(html, /<details class="docs-navigation" open>/); // Navigation survives without JavaScript.
+    assert.equal(html.match(/<h[1-6]\b/)[0], '<h1');
+    assert.ok(html.includes(language === 'tr' ? 'Ajanlarınıza hafıza kazandırın.' : 'Give your agents memory.'));
+    assert.ok(html.includes(language === 'tr' ? 'Sayfayı kopyala' : 'Copy page'));
+  }
+});
+
+test('page copy contains localized Markdown and its immutable source', () => {
+  const item = getAllDocRoutes().find(item => item.path === 'docs/core/getting-started/');
+  for (const language of ['en', 'tr']) {
+    const html = renderDocPage(item, language, {base:'../../../', headerHtml:''});
+    const copy = JSON.parse(html.match(/<script type="application\/json" data-doc-copy>([\s\S]*?)<\/script>/)[1]);
+    const guide = fs.readFileSync(new URL(`content/docs/guides/${language}/getting-started.md`, root),'utf8');
+    assert.ok(copy.includes(guide));
+    assert.ok(copy.includes(`/blob/${catalog.baseline}/`));
+    assert.ok(copy.includes('uv sync --locked --python 3.10'));
   }
 });
