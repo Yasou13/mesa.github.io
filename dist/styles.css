@@ -2735,3 +2735,25 @@ main > .closing-cta { min-height: 0; padding-block: 48px; }
  main > .closing-cta { padding-block: 32px; }
  .site-footer { padding-top: 32px; gap: 28px; }
 }
+
+/* Navigation is an opaque layer above page breadcrumbs and reading surfaces. */
+.site-header { z-index: 50; isolation: isolate; }
+.site-header nav { gap: 14px; }
+.site-header .nav-item { gap: 8px; }
+.nav-symbol { display: inline-flex; align-items: center; justify-content: center; color: var(--orientation); flex: 0 0 auto; }
+.nav-symbol .mesa-icon { width: 17px; height: 17px; }
+.site-header .nav-item.active .nav-symbol { color: var(--ink); }
+.site-header .nav-github { gap: 8px; }
+.site-header .icon-github { fill: currentColor; stroke: none; width: 18px; height: 18px; }
+.site-header .search-trigger { display: inline-flex; align-items: center; gap: 8px; }
+.site-header .nav-search-icon { width: 16px; height: 16px; }
+@media (max-width: 1100px) {
+ .js .site-header nav { z-index: 1; background: #0b101b; opacity: 1; max-height: calc(100dvh - 108px); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 18px 48px #0009; }
+ .site-header nav { gap: 6px; }
+ .site-header .nav-item { gap: 12px; min-height: 50px; padding: 8px 12px; border-radius: 6px; }
+ .site-header .nav-item:hover, .site-header .nav-item.active { background: #1b2538; }
+ .nav-symbol { width: 30px; height: 30px; border: 1px solid #7384a64d; border-radius: 7px; background: #141d2c; }
+ .nav-symbol .mesa-icon { width: 18px; height: 18px; }
+ .site-header .search-trigger { min-height: 44px; margin-top: 6px; }
+ .site-header .nav-github { min-height: 44px; }
+}

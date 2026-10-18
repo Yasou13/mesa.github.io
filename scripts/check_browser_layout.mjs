@@ -430,6 +430,51 @@ async function checkArchitectureReview() {
     await inspect(routePath,390);await inspect(routePath,900);
   }
 }
+async function checkNavigationReview() {
+  const axe=fs.readFileSync(path.join(repositoryRoot,'node_modules/axe-core/axe.min.js'),'utf8');
+  for(const routePath of ['resources/','tr/resources/','architecture/','tr/architecture/','docs/core/api-reference/','tr/docs/core/api-reference/']) {
+    for(const width of [320,390,732,900,1100,1101,1440]) {
+      await inspect(routePath,width);
+      if(width<=1100) {
+        const state=await evaluate(`(() => {
+          const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#main-navigation');toggle.click();
+          const r=nav.getBoundingClientRect();const css=getComputedStyle(nav);
+          const samples=[];
+          for(let y=r.top+8;y<Math.min(r.bottom,innerHeight)-8;y+=24)for(let x=r.left+8;x<r.right-8;x+=60){const hit=document.elementFromPoint(x,y);samples.push(nav===hit||nav.contains(hit));}
+          return {open:toggle.getAttribute('aria-expanded')==='true',visible:css.display!=='none',background:css.backgroundColor,opacity:css.opacity,covered:samples.every(Boolean),icons:nav.querySelectorAll('.nav-item .nav-symbol svg').length,bottom:r.bottom,viewport:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth};
+        })()`);
+        if(!state.open||!state.visible||state.background!=='rgb(11, 16, 27)'||state.opacity!=='1'||!state.covered||state.icons!==5||state.bottom>state.viewport||state.overflow>1)failures.push(`${routePath}@${width}: menu overlay ${JSON.stringify(state)}`);
+        if(screenshotsDirectory&&routePath.includes('resources/')&&[390,732,900].includes(width)) {
+          const shot=await connection.send('Page.captureScreenshot',{format:'png'});
+          fs.writeFileSync(path.join(screenshotsDirectory,`${routePath.replaceAll('/','-')}${width}-menu-open.png`),Buffer.from(shot.data,'base64'));
+        }
+        await connection.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+        const closed=await evaluate(`!document.querySelector('#main-navigation').classList.contains('open')&&document.activeElement===document.querySelector('.menu-toggle')`);
+        if(!closed)failures.push(`${routePath}@${width}: Escape did not close and restore focus`);
+        fallbackChecks.push({type:'navigation-overlay',routePath,width,state,closed});
+      } else {
+        const desktop=await evaluate(`({icons:document.querySelectorAll('.nav-item .nav-symbol svg').length,visible:getComputedStyle(document.querySelector('#main-navigation')).display,overflow:document.documentElement.scrollWidth-innerWidth})`);
+        if(desktop.icons!==5||desktop.visible==='none'||desktop.overflow>1)failures.push(`${routePath}@${width}: desktop nav ${JSON.stringify(desktop)}`);
+      }
+    }
+  }
+  for(const routePath of ['resources/','tr/resources/']) {
+    await connection.send('Emulation.setDeviceMetricsOverride',{width:390,height:430,deviceScaleFactor:1,mobile:false});
+    await navigate(new URL(routePath,baseUrl).href);
+    await evaluate(`document.querySelector('.menu-toggle').click()`);
+    const landscape=await evaluate(`(() => {const n=document.querySelector('#main-navigation'),r=n.getBoundingClientRect();return {bottom:r.bottom,viewport:innerHeight,scrollable:n.scrollHeight>n.clientHeight};})()`);
+    if(landscape.bottom>landscape.viewport||!landscape.scrollable)failures.push(`${routePath}: landscape menu clipped`);
+    await evaluate(axe);
+    const violations=await evaluate(`(async ()=>(await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
+    if(violations.length)failures.push(`${routePath}: open navigation accessibility ${JSON.stringify(violations)}`);
+    fallbackChecks.push({type:'navigation-landscape',routePath,landscape,violations});
+    await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
+    await navigate(new URL(routePath,baseUrl).href);
+    const staticNav=await evaluate(`({visible:getComputedStyle(document.querySelector('#main-navigation')).display,icons:document.querySelectorAll('.nav-item .nav-symbol svg').length,overflow:document.documentElement.scrollWidth-innerWidth})`);
+    if(staticNav.visible==='none'||staticNav.icons!==5||staticNav.overflow>1)failures.push(`${routePath}: no-JS navigation failed`);
+    await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
+  }
+}
 async function checkPerformance() {
  await connection.send('Performance.enable');
  for(const [width,reduce] of [[1440,false],[1440,true],[390,false]]) {
@@ -488,7 +533,7 @@ try {
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
-  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only') && !process.argv.includes('--architecture-review-only')) {
+  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only') && !process.argv.includes('--architecture-review-only') && !process.argv.includes('--navigation-review-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
@@ -509,7 +554,8 @@ try {
   }
 
   }
-  if(process.argv.includes('--architecture-review-only')) await checkArchitectureReview();
+  if(process.argv.includes('--navigation-review-only')) await checkNavigationReview();
+  else if(process.argv.includes('--architecture-review-only')) await checkArchitectureReview();
   else if(process.argv.includes('--intro-only')) await checkIntroPages();
   else if(process.argv.includes('--performance-only')) await checkPerformance();
   else if(process.argv.includes('--admin-auth-only')) await checkAdminAuth({connection,evaluate,navigate,baseUrl,failures,fallbackChecks,screenshotsDirectory,fs,path});
@@ -523,7 +569,8 @@ try {
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    if (process.argv.includes('--architecture-review-only')) console.log('ARCHITECTURE REVIEW PASS: 42 responsive layouts, section gaps, diagrams, EN/TR, no-JS and WCAG checks');
+    if (process.argv.includes('--navigation-review-only')) console.log('NAVIGATION REVIEW PASS: 42 layouts, opaque hit-tested menus, icons, Escape focus, landscape scrolling, no-JS and WCAG checks');
+    else if (process.argv.includes('--architecture-review-only')) console.log('ARCHITECTURE REVIEW PASS: 42 responsive layouts, section gaps, diagrams, EN/TR, no-JS and WCAG checks');
     else if (process.argv.includes('--intro-only')) console.log('INTRO QA PASS: EN/TR home and how-it-works, 5 widths, keyboard, timed playback, reduced motion, no-JS and WCAG checks');
     else if (process.argv.includes('--performance-only')) console.log('PERFORMANCE OBSERVATION PASS (local main-thread metrics, not field/GPU certification)');
     else if (process.argv.includes('--admin-auth-only')) console.log(`ISOLATED AUTH FIXTURE PASS: ${fallbackChecks.length} browser checks; production Auth UNVERIFIED`);
