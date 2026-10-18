@@ -14,7 +14,11 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'${config ? ' '+escapeHtml(config.url) : ''}; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>${t('MESA Admin — Workspace','MESA Yönetim — Çalışma Alanı')}</title>
 <meta name="description" content="${t('Private MESA administration. Authentication is required; publishing is blocked.','Özel MESA yönetimi. Kimlik doğrulama gerekir; yayınlama kapalıdır.')}">
+<link rel="icon" href="${base}favicon.ico" sizes="32x32">
+<link rel="icon" href="${base}favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="48x48" href="${base}favicon-48x48.png">
 <link rel="icon" href="${base}assets/mesa-mark.webp" type="image/webp">
+<link rel="apple-touch-icon" href="${base}apple-touch-icon.png">
 <link rel="stylesheet" href="${base}styles.css"><link rel="stylesheet" href="${base}cosmic.css"><link rel="stylesheet" href="${base}admin.css">
 </head><body>${cosmicEnvironment('admin')}
 <header class="admin-header">

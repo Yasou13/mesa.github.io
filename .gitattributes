@@ -1,7 +1,8 @@
-# Git LFS tracking for binary and media assets
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.webp filter=lfs diff=lfs merge=lfs -text
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-*.pdf filter=lfs diff=lfs merge=lfs -text
+# Binary and media assets tracking
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.mp4 binary
+*.pdf binary
+*.ico binary

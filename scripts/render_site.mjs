@@ -38,7 +38,9 @@ const assetVersions = {
   cosmic: assetVersion('cosmic.css'),
   cosmicMotion: assetVersion('cosmic-motion.js'),
   js: assetVersion('app.js'),
-  logo: assetVersion('assets/mesa-mark.webp')
+  logo: assetVersion('assets/mesa-mark.webp'),
+  faviconSvg: assetVersion('favicon.svg'),
+  faviconIco: assetVersion('favicon.ico')
 };
 
 const requiredSceneIds = ['event-horizon'];
@@ -1556,7 +1558,11 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${socialImage}">
   <script type="application/ld+json">${structuredData}</script>
+  <link rel="icon" href="${assetBase}favicon.ico?v=${assetVersions.faviconIco}" sizes="32x32">
+  <link rel="icon" href="${assetBase}favicon.svg?v=${assetVersions.faviconSvg}" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="${assetBase}favicon-48x48.png">
   <link rel="icon" href="${assetBase}assets/mesa-mark.webp?v=${assetVersions.logo}" type="image/webp">
+  <link rel="apple-touch-icon" href="${assetBase}apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="${assetBase}fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
