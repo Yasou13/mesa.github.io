@@ -1,3 +1,4 @@
+import { navigationIcon } from './navigation_icons.mjs';
 import { learningIndex, renderLesson, validateCurriculum } from './render_learn.mjs';
 import { beginnerHow } from './render_intro.mjs';
 import fs from 'node:fs';
@@ -107,9 +108,6 @@ const docs = {
 const route = (path = '') => `${base}${path}`;
 const asset = (path = '') => `${assetBase}${path}`;
 const iconPaths = {
-  navigation: '<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>',
-  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4.5 4.5"/>',
-  github: '<path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/>',
   arrow: '<path d="M5 12h13M14 7l5 5-5 5"/>',
   external: '<path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/>',
   memory: '<path d="M7 5.5h7.5A2.5 2.5 0 0 1 17 8v8.5H9.5A2.5 2.5 0 0 1 7 14V5.5Z"/><path d="M7 8H5.5A2.5 2.5 0 0 0 3 10.5V18h9.5A2.5 2.5 0 0 0 15 15.5"/>',
@@ -146,11 +144,11 @@ function languageControl() {
 
 function header(active = '') {
   const nav = [
-    ['how', 'How it works', 'how-it-works/', 'lifecycle'],
-    ['ecosystem', 'Ecosystem', 'ecosystem/', 'graph'],
-    ['architecture', 'Architecture', 'architecture/', 'dataset'],
-    ['resources', 'Resources', 'resources/', 'navigation'],
-    ['docs', 'Docs', 'docs/', 'source'],
+    ['how', 'How it works', 'how-it-works/', 'workflow'],
+    ['ecosystem', 'Ecosystem', 'ecosystem/', 'network'],
+    ['architecture', 'Architecture', 'architecture/', 'layers'],
+    ['resources', 'Resources', 'resources/', 'library'],
+    ['docs', 'Docs', 'docs/', 'book-open'],
   ];
   return `<a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
@@ -160,10 +158,10 @@ function header(active = '') {
           <span></span><span></span><span></span>
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
-          ${nav.map(([key, label, path, glyph]) => `<a class="nav-item${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}"><span class="nav-symbol" aria-hidden="true">${icon(glyph)}</span><span>${label}</span></a>`).join('')}
-          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${icon('search', 'nav-search-icon')}<span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          ${nav.map(([key, label, path, glyph]) => `<a class="nav-item${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}"><span class="nav-symbol" aria-hidden="true">${navigationIcon(glyph)}</span><span>${label}</span></a>`).join('')}
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
           ${languageControl()}
-          <a class="nav-github" href="${repos.core}" target="_blank" rel="noopener noreferrer">${icon('github', 'icon-github')}<span>GitHub</span>${icon('external', 'icon-external')}</a>
+          <a class="nav-github" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span>${icon('external', 'icon-external')}</a>
         </nav>
       </div>
     </header>`;
