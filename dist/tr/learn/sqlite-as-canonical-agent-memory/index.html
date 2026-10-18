@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SQLite neden yapay zekâ hafızası için en uygun kanonik depodur? — MESA Learn</title>
-  <meta name="description" content="Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u">
+  <title>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn</title>
+  <meta name="description" content="Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/">
-  <meta property="og:title" content="SQLite neden yapay zekâ hafızası için en uygun kanonik depodur? — MESA Learn">
-  <meta property="og:description" content="Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u">
+  <meta property="og:title" content="Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn">
+  <meta property="og:description" content="Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/">
   <meta property="og:locale" content="tr_TR">
@@ -21,21 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SQLite neden yapay zekâ hafızası için en uygun kanonik depodur? — MESA Learn">
-  <meta name="twitter:description" content="Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u">
+  <meta name="twitter:title" content="Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn">
+  <meta name="twitter:description" content="Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"SQLite neden yapay zekâ hafızası için en uygun kanonik depodur?","item":"https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/"}]},{"@type":"Article","headline":"SQLite neden yapay zekâ hafızası için en uygun kanonik depodur?","description":"Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"sqlite, architecture, canonical-store, durability"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak","item":"https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/"}]},{"@type":"Article","headline":"Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak","description":"Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.","datePublished":"2026-10-17","dateModified":"2026-10-18","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"SQLite, outbox, idempotency, projection, LanceDB, Kuzu, projeksiyon, kalıcılık"}]}</script>
   <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../../styles.css?v=6e69ac822270">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -53,93 +53,16 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">SQLite neden yapay zekâ hafızası için en uygun kanonik depodur?</span></li></ol></nav>
-      <article class="knowledge-article">
-        <header class="article-header">
-          <p class="eyebrow">Learn · Foundations</p>
-          <h1>SQLite neden yapay zekâ hafızası için en uygun kanonik depodur?</h1>
-          <p class="article-subtitle">Çok kipli türetilmiş projeksiyonların temeli olarak gömülü işlemsel güvenilirlik</p>
-          <p class="article-summary">Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID uyumlu bir temel sağlar.</p>
-          <dl class="article-byline">
-            <div>
-              <dt>Yayın</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Güncelleme</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Yazar</dt>
-              <dd>MESA contributors</dd>
-            </div>
-            <div>
-              <dt>Okuma süresi</dt>
-              <dd>8 dakika</dd>
-            </div>
-          </dl>
-        </header>
-        <div class="article-layout">
-          
-    <nav class="article-toc" aria-label="Bu sayfada">
-      <strong>Bu sayfada</strong>
-      <ol>
-        <li><a href="#architectural-dilemma">Çoklu veritabanı karmaşasının kırılganlığı</a></li><li><a href="#engineering-trade-offs">Mühendislik ödünleşimlerinin karşılaştırması</a></li><li><a href="#core-mechanisms">İşlemsel assertion'lar ve türetilmiş projeksiyonlar</a></li><li><a href="#mesa-implementation">MESA'nın tek bilgi kaynağı ilkesi</a></li><li><a href="#references">Kaynaklar</a></li>
-      </ol>
-    </nav>
-          <div class="article-body">
-            <div class="short-answer"><strong>Kısa yanıt</strong><p>SQLite hafıza durum geçişlerinin atomik ve dayanıklı olmasını garanti eder; türetilmiş vektör ve graph depoları bozulsa bile deterministik olarak yeniden üretilebilir.</p></div>
-            
-            
-    <section id="architectural-dilemma" class="article-section">
-      <h2>Çoklu veritabanı karmaşasının kırılganlığı<a class="heading-anchor" href="#architectural-dilemma" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Birçok modern ajan kütüphanesi harici bir vektör veritabanını, bağımsız bir graph veritabanını ve bir anahtar-değer önbelleğini aynı anda bağlamaya çalışır. Bir yazma işlemi sırasında ajan çökerse veritabanları uyumsuz hale gelir, yetim kenarlar ve hayalet kayıtlar kalır.</p><div class="article-callout warning"><strong>Dağıtık İşlem Tehlikesi</strong><p>Ajan çalışma zamanlarında heterojen vektör ve graph servisleri arasında iki aşamalı commit (2PC) yürütmek son derece kırılgandır. Ağ hatası silinmiş graph düğümlerini işaret eden yetim vektörler bırakabilir.</p></div>
-    </section>
-    <section id="engineering-trade-offs" class="article-section">
-      <h2>Mühendislik ödünleşimlerinin karşılaştırması<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <div class="table-scroll"><table><thead><tr><th scope="col">Boyut</th><th scope="col">Çoklu Veritabanı Karmaşası</th><th scope="col">SQLite Kanonik Mimarisi</th></tr></thead><tbody><tr><th scope="row">ACID Garantisi</th><td>Harici servisler arasında yok</td><td>Tam işlemsel atomiklik ve WAL dayanıklılığı</td></tr><tr><th scope="row">Dağıtım Karmaşıklığı</th><td>Birden fazla arka plan sunucusu, ağ ayarları, token'lar</td><td>Tek dosya, süreç içi gömülü, sıfır ağ gecikmesi</td></tr><tr><th scope="row">Bozulma Onarımı</th><td>Manuel veritabanı mutabakatı gerektirir</td><td>Projeksiyonlar SQLite'tan deterministik olarak üretilir</td></tr><tr><th scope="row">Lexical Arama</th><td>Ayrı Elasticsearch / OpenSearch kümesi gerektirir</td><td>BM25 sıralamalı yerleşik SQLite FTS5 eklentisi</td></tr><tr><th scope="row">Taşınabilirlik</th><td>Belirli bulut servis sağlayıcılarına kilitlenir</td><td>İşletim sistemleri ve işlemciler arasında taşınabilir tek dosya</td></tr></tbody></table></div>
-    </section>
-    <section id="core-mechanisms" class="article-section">
-      <h2>İşlemsel assertion'lar ve türetilmiş projeksiyonlar<a class="heading-anchor" href="#core-mechanisms" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Kanonik mimaride tüm yazma işlemleri atomik bir işlem içinde doğrudan SQLite'a yapılır. Arka plan dinleyicileri veya senkronizasyon kancaları ardından türetilmiş arama projeksiyonlarını (LanceDB vektör tabloları ve Kùzu graph tabloları gibi) günceller.</p><pre tabindex="0" class="article-code"><code>// SQLite içinde atomik assertion kabulü
-BEGIN TRANSACTION;
-INSERT INTO assertions (id, subject, predicate, object, source_id, status)
-VALUES ('asrt_102', 'Model', 'kullandigi_kuantalama', 'INT8', 'doc_sys_v1', 'COMMITTED');
-INSERT INTO evidence_spans (assertion_id, start_char, end_char)
-VALUES ('asrt_102', 1240, 1310);
-COMMIT;</code></pre>
-    </section>
-    <section id="mesa-implementation" class="article-section">
-      <h2>MESA'nın tek bilgi kaynağı ilkesi<a class="heading-anchor" href="#mesa-implementation" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>MESA Core, SQLite'ı değiştirilemez işlem motoru olarak kurar. LanceDB ve Kùzu tamamen türetilmiş projeksiyonlar olarak çalışır: biri silinse veya bozulsa bile MESA ikisini de kanonik SQLite veritabanından sıfır kayıpla yeniden inşa eder.</p><ul class="article-checklist"><li>Tüm hafıza değişiklikleri SQLite WAL kipinde kaydedilir.</li><li>FTS5 süreç içi ve milisaniyenin altında BM25 eşleşmesi sağlar.</li><li>Projeksiyonlar geçicidir ve kesin biçimde yeniden üretilebilir.</li><li>Yerel hafıza okuma ve yazmalarında sıfır ağ soket gecikmesi vardır.</li></ul>
-    </section>
-    <section id="references" class="article-section">
-      <h2>Kaynaklar<a class="heading-anchor" href="#references" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <ol class="reference-list"><li><a class="" href="https://www.sqlite.org/arch.html" target="_blank" rel="noopener noreferrer"><span>Hipp (2020) — SQLite Architecture and Design</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>MESA Core Depolama Projeksiyonları Spesifikasyonu</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
-    </section>
-          </div>
-        </div>
-        
-    <section class="related-content" aria-labelledby="related-title">
-      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
-      <h2 id="related-title">Kanıt ağı içinde ilerleyin.</h2>
-      <div class="publication-grid">
-        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">AI Memory Nedir?</a></h3><p>AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller</a></h3><p>Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler.</p><div><span>9 dk okuma</span><a href="../../learn/hybrid-retrieval-explained/">Oku<span aria-hidden="true"> →</span></a></div></article>
-      </div>
-    </section>
-        
-      <div class="contextual-cta">
-        <div>
-          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
-          <h2>Provenance yaklaşımının MESA Law örneğini görün.</h2>
-          <p>Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.</p>
-        </div>
-        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
-      </div>
-      </article>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    </header><main id="main-content" class="learn-reading" data-learn-article="sqlite-as-canonical-agent-memory"><nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</span></li></ol></nav>
+ <div class="learn-reader-grid"><details class="learn-course-nav" open><summary>Öğrenme yolu <span>14 ders</span></summary><nav aria-label="Dersler"><div class="learn-nav-stage"><strong>01 / Sıfırdan başlayın</strong><ol><li><a href="../../learn/what-is-ai-memory/" data-nav-lesson="what-is-ai-memory"><span>01</span>Yapay zekâ hafızası: konuşmadan sonra ne kalır?</a></li><li><a href="../../learn/rag-vs-ai-memory/" data-nav-lesson="rag-vs-ai-memory"><span>02</span>RAG ve hafıza: isteği adım adım kurmak</a></li><li><a href="../../learn/structured-vs-unstructured-memory/" data-nav-lesson="structured-vs-unstructured-memory"><span>03</span>Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a></li></ol></div><div class="learn-nav-stage"><strong>02 / Aramayı öğrenin</strong><ol><li><a href="../../learn/semantic-search/" data-nav-lesson="semantic-search"><span>04</span>Embedding ve anlamsal arama: sayılarla açıklama</a></li><li><a href="../../learn/bm25-tuning-for-domain-documents/" data-nav-lesson="bm25-tuning-for-domain-documents"><span>05</span>BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</a></li><li><a href="../../learn/hybrid-retrieval-explained/" data-nav-lesson="hybrid-retrieval"><span>06</span>Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama</a></li><li><a href="../../learn/reciprocal-rank-fusion-explained/" data-nav-lesson="reciprocal-rank-fusion"><span>07</span>Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek</a></li><li><a href="../../learn/why-graphs-matter-in-ai-memory/" data-nav-lesson="why-graphs-matter"><span>08</span>Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek</a></li></ol></div><div class="learn-nav-stage"><strong>03 / Güvenilir sistem kurun</strong><ol><li><a href="../../learn/what-is-evidence-aware-memory/" data-nav-lesson="evidence-aware-memory"><span>09</span>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a></li><li><a href="../../learn/memory-scope-and-authorization/" data-nav-lesson="memory-scope-and-authorization"><span>10</span>Ortak hafıza: kim neyi geri getirebilir?</a></li><li><a href="../../learn/sqlite-as-canonical-agent-memory/" data-nav-lesson="sqlite-as-canonical-agent-memory" aria-current="page"><span>11</span>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</a></li><li><a href="../../learn/temporal-decay-in-ai-memory/" data-nav-lesson="temporal-decay-in-ai-memory"><span>12</span>Değişen bilgi: geçerlilik, çelişki ve unutma</a></li></ol></div><div class="learn-nav-stage"><strong>04 / Ölçün ve uygulayın</strong><ol><li><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/" data-nav-lesson="evaluating-ndcg-and-mrr-in-memory"><span>13</span>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</a></li><li><a href="../../learn/build-a-small-search-lab/" data-nav-lesson="build-a-small-search-lab"><span>14</span>LLM kullanmadan küçük bir arama laboratuvarı kurun</a></li></ol></div></nav></details><article class="learn-article">
+ <header class="learn-article-header"><p class="eyebrow">DERS 11 / 14 · Güvenilir sistem kurun</p><h1>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</h1><p class="learn-article-lede">Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.</p><div class="learn-reading-meta"><span>5 dk okuma</span><span><time datetime="2026-10-18">Güncelleme: 18 Eki 2026</time></span><a href="../../learn/sqlite-as-canonical-agent-memory/article.md" download>Markdown indir ↓</a></div>
+ <div class="learn-objectives"><strong>BİTİRDİĞİNİZDE</strong><ul><li>Kanonik ve türetilmiş durumu ayırmak</li><li>Depolar arasındaki çökmeden kurtulmak</li><li>Idempotent yazma ve gözlenebilir durum tasarlamak</li></ul></div>
+ <p class="learn-prerequisites">Bu dersten önce: <a href="../../learn/structured-vs-unstructured-memory/">Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a> · <a href="../../learn/what-is-evidence-aware-memory/">Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a></p></header>
+ <div class="learn-article-body"><section class="article-section" id="authority"><h2>Kimlik ve yaşam döngüsü için otorite belirleyin<a class="heading-anchor" href="#authority" aria-label="Bölüm bağlantısı">#</a></h2><p>Hafıza uygulaması kaynak kayıtları için SQL, benzerlik için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa iddianın var ve etkin olduğuna hangisi karar verir? Kanonik depo bu kararın sahibidir. Projeksiyon, kanonik veri ve beyan edilmiş dönüşümden yeniden kurulabilen türetilmiş temsildir. “Türetilmiş” önem veya arama kalitesini değil otoriteyi anlatır.</p><p>Örnek tasarımda SQL kaynak revizyonunu, iddia kimliğini, durumu ve mutasyon defterini sahiplenir. Vektör ve çizge satırı bu kimliklere bağlanır. Arama isabeti ancak kanonik uygunluk kontrolünden sonra kanıt olur. Eski indeks satırı, vektörü sorguya yakın diye silinmiş iddiayı diriltmemelidir.</p></section><section class="article-section" id="crash"><h2>Depolar arasındaki çökmeyi izleyin<a class="heading-anchor" href="#crash" aria-label="Bölüm bağlantısı">#</a></h2><figure class="article-diagram" aria-label="SQL mutasyonu ve outbox işini kabul eder; ardından vektör/çizge projeksiyonları çalışır ve görünürlük tamamlanır."><ol tabindex="0"><li>SQL işlemi · kaynak + outbox</li><li>Worker · bekleyen işi al</li><li>Vektör · sabit kimlikle uygula</li><li>Çizge · sabit kimlikle uygula</li><li>Tamamla · projeksiyonları doğrula</li></ol><figcaption>SQL commit, bağımsız bütün arka uçları kapsayan tek atomik işlem oluşturmaz.</figcaption></figure><p>SQL commit olsun, vektör ekleme başarılı olsun; süreç çizge eklemeden çöksün. Kalıcı bekleyen iş yoksa çizge yazması tamamen kaybolabilir. Kanonik mutasyonla aynı SQL işleminde kaydedilmiş outbox varsa yeniden başlayan worker eksik işi bulup tekrarlar. Teslim birden fazla kez gerçekleşebilir; etkiyi tekrarlamak bu yüzden güvenli olmalıdır.</p></section><section class="article-section" id="idempotency"><h2>Kimlik ve fencing ile güvenli tekrar<a class="heading-anchor" href="#idempotency" aria-label="Bölüm bağlantısı">#</a></h2><p>Idempotency aynı mantıksal işlemi yeniden uygulamanın farklı son etki oluşturmamasıdır. Sabit işlem kimliği ve tanımlı payload kimliği kullanın. Aynı anahtarı başka içerikle kullanmak reddedilmeli veya açık sözleşmeyle yönetilmelidir. Her tekrarda rastgele kimlik üretmek idempotency değil kopya üretir. Timeout, çağıranın tamamlanmayı gözlemediğini söyler; yazma olmadığını kanıtlamaz.</p><p>Lease, worker’ın işi geçici sahiplenmesini sağlar. Fencing token veya eşdeğer sahiplik kontrolü başka sahip devraldıktan sonra eski worker’ın işi tamamlamasını önler. Sahipliği yalnızca başlangıçta değil gerçek durum değişikliğinde kontrol edin. A worker’ını durdurup iznini düşürün, B’ye devrettikten sonra A’yı sürdürerek yarışı test edin.</p></section><section class="article-section" id="sqlite"><h2>SQLite neyi garanti eder?<a class="heading-anchor" href="#sqlite" aria-label="Bölüm bağlantısı">#</a></h2><p>SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. <a class="" href="https://www.sqlite.org/atomiccommit.html" target="_blank" rel="noopener noreferrer"><span>Atomik commit</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>, <a class="" href="https://www.sqlite.org/wal.html" target="_blank" rel="noopener noreferrer"><span>WAL</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>.</p><p>MESA Core v0.8.1 root başına tek combined owner kullanır; LanceDB/Kùzu projeksiyondur. Rebuild çevrimdışı ve tüm root kapsamındadır; çevrimiçi tenant başına onarım değildir. Bunlar ürüne özgü sınırlardır; başka sistem başka depolama seçebilir. Doğru rebuild, kanonik kanıtı ve temsil kimliğini korumayı; geçişten önce yeni projeksiyonu doğrulamayı gerektirir. <a href="../../docs/core/architecture/">Core sözleşmesi</a>.</p></section><section class="article-section" id="practice"><h2>Timeout’u yorumlayın<a class="heading-anchor" href="#practice" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-exercise"><strong>Kendinizi sınayın</strong><p>İstemci vektör yazmasından sonra timeout alıyor. Hemen yeni kimlikle yeni mutasyon oluşturmalı mı?</p><details><summary>Açıklamayı göster</summary><p>Önce özgün mutasyon durumunu inceleyin. Uygunsa tanımlı idempotency sözleşmesiyle tekrarlayın. Yeni kimlik zaten kabul edilmiş işlemi çoğaltabilir; timeout gözlem hatasıdır, rollback kanıtı değildir.</p></details></div></section><section class="article-section" id="references"><h2>Kaynaklar ve ileri okuma<a class="heading-anchor" href="#references" aria-label="Bölüm bağlantısı">#</a></h2><ol class="reference-list"><li><a class="" href="https://www.sqlite.org/atomiccommit.html" target="_blank" rel="noopener noreferrer"><span>SQLite · Atomic Commit</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://www.sqlite.org/wal.html" target="_blank" rel="noopener noreferrer"><span>SQLite · Write-Ahead Logging</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>MESA Core v0.8.1 · Architecture and limitations</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol></section></div>
+ <div class="learn-lesson-finish"><div><strong>Sonraki fikre hazır mısınız?</strong><p>Devam etmeden soruyu deneyin. Depolama kullanılabiliyorsa ilerlemeniz bu tarayıcıda saklanır.</p></div><button type="button" class="button" data-mark-lesson="sqlite-as-canonical-agent-memory" hidden>Okundu işaretle ✓</button><p data-lesson-status aria-live="polite"></p></div>
+ <nav class="learn-adjacent" aria-label="Önceki ve sonraki ders"><a href="../../learn/memory-scope-and-authorization/"><span>← ÖNCEKİ DERS</span><strong>Ortak hafıza: kim neyi geri getirebilir?</strong></a><a href="../../learn/temporal-decay-in-ai-memory/"><span>SONRAKİ DERS →</span><strong>Değişen bilgi: geçerlilik, çelişki ve unutma</strong></a></nav>
+ <a class="learn-back-map" href="../../learn/">← Öğrenme haritasına dönün</a>
+ </article><details class="learn-toc" open><summary>Bu derste</summary><nav aria-label="Ders bölümleri"><ol><li><a href="#authority">Kimlik ve yaşam döngüsü için otorite belirleyin</a></li><li><a href="#crash">Depolar arasındaki çökmeyi izleyin</a></li><li><a href="#idempotency">Kimlik ve fencing ile güvenli tekrar</a></li><li><a href="#sqlite">SQLite neyi garanti eder?</a></li><li><a href="#practice">Timeout’u yorumlayın</a></li><li><a href="#references">Kaynaklar ve ileri okuma</a></li></ol></nav></details></div><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -157,8 +80,7 @@ COMMIT;</code></pre>
         <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../admin/">Yönetim</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer>
-    </main>
-  <script src="../../../app.js?v=7ab053b9ea58"></script>
+    </footer></main>
+  <script src="../../../app.js?v=6dbcc516edfb"></script>
 </body>
 </html>

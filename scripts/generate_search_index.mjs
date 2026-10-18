@@ -4,6 +4,7 @@
 
 import fs from 'node:fs';
 import { getDocsManifest } from './render_docs.mjs';
+import { lessonSearchRecord } from './render_learn.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -33,7 +34,11 @@ export function buildSearchIndex() {
           category: entry.category || 'General',
           summary: loc.summary || loc.shortAnswer || seo?.description || '',
           keywords: entry.tags || [],
-          language: lang
+          language: lang,
+          ...(entry.type === 'learn' ? {
+            content: lessonSearchRecord(entry,lang).sections.map(s=>`${s.title} ${s.text}`).join(' '),
+            sections: lessonSearchRecord(entry,lang).sections,
+          } : {})
         });
       }
     }

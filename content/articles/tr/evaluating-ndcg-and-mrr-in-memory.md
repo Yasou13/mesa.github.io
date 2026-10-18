@@ -3,62 +3,77 @@ id: "evaluating-ndcg-and-mrr-in-memory"
 slug: "evaluating-ndcg-and-mrr-in-memory"
 type: "learn"
 language: "tr"
-title: "Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi"
-subtitle: "Çok hatlı hibrit arama kesinliğini ölçmek için matematiksel sıralama metrikleri"
-summary: "Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunluk kalitesini ölçer."
-shortAnswer: "Recall@k bilginin bulunup bulunmadığını, MRR ilk isabetin sırasını, nDCG@k ise listenin genel sıralama kalitesini ölçer."
-category: "Evaluation"
-tags: ["evaluation", "ndcg", "mrr", "recall-at-k", "benchmarks"]
+title: "Retrieval değerlendirme: recall, MRR, nDCG ve gecikme"
+subtitle: ""
+summary: "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
+shortAnswer: "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
+category: "Practice"
+tags: ["evaluation", "MRR", "nDCG", "recall", "precision", "benchmark", "latency", "değerlendirme", "gecikme"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-17"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi — MESA Learn"
-seoDescription: "Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu"
+seoTitle: "Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn"
+seoDescription: "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
+lessonOrder: 13
+learningStage: "practice"
+prerequisites: ["reciprocal-rank-fusion", "memory-scope-and-authorization"]
+learningObjectives: ["Recall@k, MRR ve nDCG hesaplamak", "İlgililik etiketi ve ayrılmış test kümesi kurmak", "Gecikme, hata ve kanıt sınırını birlikte raporlamak"]
 ---
 
-## Tek metrik yanılsaması
+## Soru ve ilgililik etiketiyle başlayın
 
-Ajan hafızası geliştiren ekipler genellikle 'Recall@10 = %92' gibi tek bir metrik raporlar. Ancak aranan doğru assertion 1. sıra yerine sürekli 9. sırada geliyorsa, dil modeli ciddi bağlam dağınıklığı ve token israfı yaşar.
+Neyin bulunması gerektiğini tanımlayana kadar arama sonucu makul görünür. Kaynak destekli etiketlerle küçük soru kümesi kurun. Tam kimlik, farklı ifade, tarihe duyarlı soru, cevapsız durum ve yasak kaynak ekleyin. Retrieval birimini kaydedin: ilgili belge çok sayıda ilgisiz parça içerebilir. İnceleyici her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışmaları uzlaştırma için tutun.
 
-> [!WARNING]
-> **İkili Alaka Hatası**
-> Tüm belgeleri yalnızca 1 (ilgili) veya 0 (ilgisiz) olarak ele almak, bir belgenin esas hükmü içerdiği, diğer ikisinin ise yalnızca yan usul bilgilerini verdiği senaryolarda başarısız olur.
+Parça boyutu, birleştirme ağırlığı veya eşik ayarlamadan geliştirme sorusunu son testten ayırın. Sentetik soru kapsamı genişletebilir; fakat LLM sorusu ve LLM etiketi aynı hatayı veya yapay ifadeyi paylaşabilir. Örnekleri inceleyin, uygunsa gerçek kullanıcı sorusunu tutun ve kümeler arasındaki benzer soruları ayıklayın. Cevap metnini sorgu temsiline sızdırmayın.
 
-## Mühendislik ödünleşimlerinin karşılaştırması
+## Tek sıralı liste, farklı ölçüm soruları
 
-| Metrik | Tanım | İdeal Değer | Temel Duyarlılık |
-| --- | --- | --- | --- |
-| Recall@k | İlk k sonuç içinde bulunan ilgili belgelerin oranı | 1.0 (%100) | İlk k içindeki sıralama düzenine duyarsızdır |
-| MRR (Mean Reciprocal Rank) | İlk ilgili belgenin sıra numarasının tersinin ortalaması | 1.0 (daima 1. sıra) | Yalnızca ilk isabeti değerlendirir, sonrakileri göz ardı eder |
-| nDCG@k (Normalized DCG) | Dereceli kazançlarla hesaplanan DCG'nin ideal DCG'ye oranı | 1.0 (kusursuz sıra) | En ilgili belgelerin listenin en başında yer almasını ödüllendirir |
-| MAP (Mean Average Precision) | Her ilgili belgedeki hassasiyet puanlarının ortalaması | 1.0 | Birden fazla ilgili belge içeren sorgularda dengeyi kurar |
+| Sıra | Pasaj | İlgililik derecesi |
+| --- | --- | --- |
+| 1 | A · ilgisiz salon | 0 |
+| 2 | B · tam cuma saati | 2 |
+| 3 | C · yararlı destek bağlamı | 1 |
 
-## nDCG logaritmik indirim formülü
-
-Discounted Cumulative Gain (DCG), alaka kazancını sıra numarasına göre logaritmik olarak indirger: `DCG@k = Σ (2^{rel_i} - 1) / log_2(i + 1)`. İdeal Sıralama (IDCG@k) değerine bölünerek [0.0, 1.0] aralığında liste uzunluğundan bağımsız bir skor elde edilir.
+Bu küçük etiketli kümede ilgili birimler yalnızca B ve C olsun. Precision@3, bulunanların ilgili oranı olan 2/3’tür. Recall@3, bütün ilgili birimlerin bulunan oranı olan 2/2 = 1’dir. İlk ilgili sonuç ikinci olduğundan reciprocal rank 1/2’dir. MRR sorguların reciprocal rank ortalamasıdır; belirtilen kesimde ilgili sonuç yoksa sıfır verilir.
 
 ```text
-// nDCG@k hesaplama Python fonksiyonu
-def ndcg_at_k(relevance_scores, k):
-    dcg = sum((2**rel - 1) / math.log2(idx + 2) for idx, rel in enumerate(relevance_scores[:k]))
-    idcg = sum((2**rel - 1) / math.log2(idx + 2) for idx, rel in enumerate(sorted(relevance_scores, reverse=True)[:k]))
-    return dcg / idcg if idcg > 0 else 0.0
+gain(rel) = 2**rel - 1
+DCG@3 = sum(gain(rel_i) / log2(i+1), i=1..3)
+Observed [0,2,1]: 0 + 3/log2(3) + 1/log2(4) = 2.3928
+Ideal    [2,1,0]: 3 + 1/log2(3) + 0           = 3.6309
+nDCG@3 = 2.3928 / 3.6309 = 0.6590
 ```
 
-## MESA'da değerlendirme disiplini
+Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek başına bunu gizler; nDCG dereceli ilgililik ve konumla cezalandırır. Kazanç, indirim, kesim ve ilgili etiketi olmayan sorgu politikasını belirtin. Farklı tanımlar farklı değer üretebilir. Etiketlenmemiş materyal kendiliğinden ilgisiz kanıtlanmış değildir.
 
-MESA'nın bağımsız retrieval denetim paketi, dört farklı arama hattını sentetik ve hukuki altın veri kümeleri üzerinde test eder. Her sürümde Recall@5, MRR ve nDCG@10 deterministik olarak ölçülür.
+## Tek etkeni değiştirin, hataları inceleyin
 
-- [ ] Altın veri kümeleri dereceli alaka etiketleri (0 = ilgisiz, 3 = esas otorite) uygular.
-- [ ] Sorgular ve değerlendirme kararları dondurulmuş JSONL dosyalarında sürümle tutulur.
-- [ ] Sıfır sonuçlu sorgular ve başarısızlık vakaları şeffaf biçimde takip edilir.
-- [ ] Değerlendirme kapıları CI ortamında kalite kayıplarını engeller.
+<!-- diagram: Soruyu ve veriyi sabitleyin; tabanı tek değişiklikle karşılaştırıp eşlenmiş metrik ve hataları inceleyin. -->
+1. Sabitle · veri + etiket
+2. Taban · yalnız sözcüksel
+3. Değişken · yoğun kanal ekle
+4. Karşılaştır · aynı sorular
+5. İncele · kayıp ve kazanım
 
-## Kaynaklar
+*Daha yüksek ortalama kimlik, dil veya yetkilendirme gerilemesini gizleyebilir.*
 
-1. [Järvelin & Kekäläinen (2002) — Cumulated Gain-Based Evaluation of IR Techniques (ACM TOIS)](https://dl.acm.org/doi/10.1145/582415.582418)
-2. [MESA Bağımsız Retrieval Denetimi ve Test Paketi](https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py)
+Sorgu başına değişimi ve yararlı alt grupları kıyaslayın: kimlik/farklı ifade, kısa/uzun kaynak, dil ve kaynak yaşı. Örnek boyutu uygunsa belirsizlik raporlayın ve ham sorgu sonuçlarını koruyun. BEIR heterojen görevlerde değerlendirme örneğidir; skorunu kendinizin saymak yerine disiplinini kullanın. [BEIR](https://arxiv.org/abs/2104.08663), [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html).
+
+## Hataları gizlemeden hızı ölçün
+
+Uçtan uca retrieval ile aşama sürelerini ayrı ölçün. Donanım, veri boyutu, eşzamanlılık, önbellek, ısınma, istek sayısı ve timeout’u belirtin. Ortanca ve kuyruk gecikmesini hata ve boş yanıtlarla raporlayın. Timeout’ları tablodan çıkarmak bozuk sistemi hızlı gösterebilir. Yerel deterministik örnek sözleşme testidir; gerçek embedding sağlayıcısı kalitesini veya üretim kapasitesini ölçmez.
+
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> X değişkeni Recall@20’yi artırıp nDCG@5’i düşürüyor. X doğrudan daha iyi mi?
+>
+> **Answer:** Zorunlu değil. Daha fazla ilgili aday bulup üst sıralara daha kötü yerleştiriyor. Sonraki görev, yeniden sıralama bütçesi, hata alt grupları ve gecikmeyle karar verin; hangi sorunun iyileşip gerilediğini inceleyin.
+
+## Kaynaklar ve ileri okuma
+
+1. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
+2. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 

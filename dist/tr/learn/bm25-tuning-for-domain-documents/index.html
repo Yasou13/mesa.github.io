@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu — MESA Learn</title>
-  <meta name="description" content="Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre">
+  <title>BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn</title>
+  <meta name="description" content="Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/">
-  <meta property="og:title" content="Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu — MESA Learn">
-  <meta property="og:description" content="Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre">
+  <meta property="og:title" content="BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn">
+  <meta property="og:description" content="Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/">
   <meta property="og:locale" content="tr_TR">
@@ -21,21 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu — MESA Learn">
-  <meta name="twitter:description" content="Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre">
+  <meta name="twitter:title" content="BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn">
+  <meta name="twitter:description" content="Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu","item":"https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/"}]},{"@type":"Article","headline":"Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu","description":"Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"bm25, lexical-search, tuning, domain-documents"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"BM25: nadir kelime neden tekrarlanan kelimeyi geçer?","item":"https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/"}]},{"@type":"Article","headline":"BM25: nadir kelime neden tekrarlanan kelimeyi geçer?","description":"Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.","datePublished":"2026-10-17","dateModified":"2026-10-18","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"BM25, IDF, tokenization, FTS5, lexical, sözcüksel, Türkçe, tokenizasyon"}]}</script>
   <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../../styles.css?v=6e69ac822270">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -53,91 +53,23 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu</span></li></ol></nav>
-      <article class="knowledge-article">
-        <header class="article-header">
-          <p class="eyebrow">Learn · Memory &amp; Retrieval</p>
-          <h1>Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu</h1>
-          <p class="article-subtitle">Terim frekansı doygunluğu (k1) ve belge uzunluğu normalizasyonunun (b) ayarlanması</p>
-          <p class="article-summary">Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametreler gerektirir.</p>
-          <dl class="article-byline">
-            <div>
-              <dt>Yayın</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Güncelleme</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Yazar</dt>
-              <dd>MESA contributors</dd>
-            </div>
-            <div>
-              <dt>Okuma süresi</dt>
-              <dd>7 dakika</dd>
-            </div>
-          </dl>
-        </header>
-        <div class="article-layout">
-          
-    <nav class="article-toc" aria-label="Bu sayfada">
-      <strong>Bu sayfada</strong>
-      <ol>
-        <li><a href="#architectural-dilemma">Tek tip varsayılan parametre tuzağı</a></li><li><a href="#engineering-trade-offs">Mühendislik ödünleşimlerinin karşılaştırması</a></li><li><a href="#core-mechanisms">BM25 doygunluk eğrisi mekaniği</a></li><li><a href="#mesa-implementation">MESA Core'da BM25 optimizasyonu</a></li><li><a href="#references">Kaynaklar</a></li>
-      </ol>
-    </nav>
-          <div class="article-body">
-            <div class="short-answer"><strong>Kısa yanıt</strong><p>k1 parametresi terim tekrarının alaka puanını ne hızla doyurduğunu kontrol eder; b parametresi ise uzun belgelerin ne kadar cezalandırılacağını belirler.</p></div>
-            
-            
-    <section id="architectural-dilemma" class="article-section">
-      <h2>Tek tip varsayılan parametre tuzağı<a class="heading-anchor" href="#architectural-dilemma" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Arama kütüphaneleri genellikle 1990'ların gazete arşivleri üzerinde belirlenmiş BM25 varsayılanlarıyla gelir. Hukuk, mevzuat ve tıp gibi alanlarda belge uzunluklarındaki büyük farklar ve tekrar eden terimler bu varsayılanların arama kalitesini düşürmesine yol açar.</p><div class="article-callout warning"><strong>Uzun Belge Cezası Hatası</strong><p>Hukuk araştırmalarında b parametresini çok yüksek tutmak (örn. 0.85), kapsamlı kanun metinlerini veya Yargıtay ilamlarını aşırı cezalandırır ve kısa usul yazılarını yapay biçimde öne çıkarır.</p></div>
-    </section>
-    <section id="engineering-trade-offs" class="article-section">
-      <h2>Mühendislik ödünleşimlerinin karşılaştırması<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <div class="table-scroll"><table><thead><tr><th scope="col">Parametre</th><th scope="col">Formüldeki Rolü</th><th scope="col">Varsayılan</th><th scope="col">Alana Özgü Ayar Tavsiyesi</th></tr></thead><tbody><tr><th scope="row">k1</th><td>Terim frekansı doygunluk katsayısı</td><td>1.2 - 1.5</td><td>Sözleşmeler gibi terim tekrarının önemi gösterdiği metinlerde 1.8 - 2.0'ye yükseltin</td></tr><tr><th scope="row">b</th><td>Belge uzunluğu normalizasyon oranı</td><td>0.75</td><td>Uzun metinlerin doğal olarak birden fazla alt başlık işlediği kanunlarda 0.3 - 0.5'e düşürün</td></tr><tr><th scope="row">avgdl</th><td>Koleksiyondaki ortalama belge uzunluğu</td><td>Dinamik hesaplanır</td><td>Bölümler arasında puan kaymasını önlemek için benchmark sırasında dondurulmalıdır</td></tr><tr><th scope="row">Tokenizer / Stemmer</th><td>Morfolojik kök ve gövdeleme</td><td>Standart Porter</td><td>Türkçe için noktalı/noktasız I kurallarını bilen morfolojik analizciler kullanın</td></tr></tbody></table></div>
-    </section>
-    <section id="core-mechanisms" class="article-section">
-      <h2>BM25 doygunluk eğrisi mekaniği<a class="heading-anchor" href="#core-mechanisms" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Bir kelimenin belgedeki sayısı arttıkça BM25 puanı asimptotik olarak (k1 + 1) değerine yaklaşır. Daha yüksek k1 değerleri eğriyi dikleştirerek sorgu ifadesini sık tekrarlayan belgeleri ödüllendirir.</p><pre tabindex="0" class="article-code"><code>// SQLite FTS5 özel BM25 sütun ağırlıkları
-SELECT rowid, bm25(articles_fts, 10.0, 5.0, 1.0) AS rank
-FROM articles_fts
-WHERE articles_fts MATCH 'tahkim sarti'
-ORDER BY rank;</code></pre>
-    </section>
-    <section id="mesa-implementation" class="article-section">
-      <h2>MESA Core'da BM25 optimizasyonu<a class="heading-anchor" href="#mesa-implementation" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>MESA Core, özelleştirilmiş sütun ağırlıkları ve kalibre edilmiş doygunluk parametreleriyle SQLite FTS5 motorunu çalıştırır. Kanun maddeleri ve esas numaraları lexical aday üretiminde öncelikli sütun çarpanları alır.</p><ul class="article-checklist"><li>k1 ve b parametreleri veri kümesi bölümlerine göre yapılandırılabilir.</li><li>Sütun ağırlıkları başlık ve fıkra numarası eşleşmelerini öne çıkarır.</li><li>Türkçe aramada noktalı ve noktasız I harflerini çözen özel tokenizer kullanılır.</li><li>Reciprocal Rank Fusion öncesinde lexical Recall@k değeri sürekli test edilir.</li></ul>
-    </section>
-    <section id="references" class="article-section">
-      <h2>Kaynaklar<a class="heading-anchor" href="#references" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <ol class="reference-list"><li><a class="" href="https://trec.nist.gov/pubs/trec3/papers/city.ps.gz" target="_blank" rel="noopener noreferrer"><span>Robertson vd. (1994) — Okapi at TREC-3</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://dl.acm.org/doi/10.1145/2682862.2682863" target="_blank" rel="noopener noreferrer"><span>Trotman vd. (2014) — Improvements to BM25 and Language Models Examined (ADCS '14)</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
-    </section>
-          </div>
-        </div>
-        
-    <section class="related-content" aria-labelledby="related-title">
-      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
-      <h2 id="related-title">Kanıt ağı içinde ilerleyin.</h2>
-      <div class="publication-grid">
-        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">AI Memory Nedir?</a></h3><p>AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller</a></h3><p>Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler.</p><div><span>9 dk okuma</span><a href="../../learn/hybrid-retrieval-explained/">Oku<span aria-hidden="true"> →</span></a></div></article>
-      </div>
-    </section>
-        
-      <div class="contextual-cta">
-        <div>
-          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
-          <h2>Provenance yaklaşımının MESA Law örneğini görün.</h2>
-          <p>Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.</p>
-        </div>
-        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
-      </div>
-      </article>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    </header><main id="main-content" class="learn-reading" data-learn-article="bm25-tuning-for-domain-documents"><nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</span></li></ol></nav>
+ <div class="learn-reader-grid"><details class="learn-course-nav" open><summary>Öğrenme yolu <span>14 ders</span></summary><nav aria-label="Dersler"><div class="learn-nav-stage"><strong>01 / Sıfırdan başlayın</strong><ol><li><a href="../../learn/what-is-ai-memory/" data-nav-lesson="what-is-ai-memory"><span>01</span>Yapay zekâ hafızası: konuşmadan sonra ne kalır?</a></li><li><a href="../../learn/rag-vs-ai-memory/" data-nav-lesson="rag-vs-ai-memory"><span>02</span>RAG ve hafıza: isteği adım adım kurmak</a></li><li><a href="../../learn/structured-vs-unstructured-memory/" data-nav-lesson="structured-vs-unstructured-memory"><span>03</span>Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a></li></ol></div><div class="learn-nav-stage"><strong>02 / Aramayı öğrenin</strong><ol><li><a href="../../learn/semantic-search/" data-nav-lesson="semantic-search"><span>04</span>Embedding ve anlamsal arama: sayılarla açıklama</a></li><li><a href="../../learn/bm25-tuning-for-domain-documents/" data-nav-lesson="bm25-tuning-for-domain-documents" aria-current="page"><span>05</span>BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</a></li><li><a href="../../learn/hybrid-retrieval-explained/" data-nav-lesson="hybrid-retrieval"><span>06</span>Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama</a></li><li><a href="../../learn/reciprocal-rank-fusion-explained/" data-nav-lesson="reciprocal-rank-fusion"><span>07</span>Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek</a></li><li><a href="../../learn/why-graphs-matter-in-ai-memory/" data-nav-lesson="why-graphs-matter"><span>08</span>Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek</a></li></ol></div><div class="learn-nav-stage"><strong>03 / Güvenilir sistem kurun</strong><ol><li><a href="../../learn/what-is-evidence-aware-memory/" data-nav-lesson="evidence-aware-memory"><span>09</span>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a></li><li><a href="../../learn/memory-scope-and-authorization/" data-nav-lesson="memory-scope-and-authorization"><span>10</span>Ortak hafıza: kim neyi geri getirebilir?</a></li><li><a href="../../learn/sqlite-as-canonical-agent-memory/" data-nav-lesson="sqlite-as-canonical-agent-memory"><span>11</span>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</a></li><li><a href="../../learn/temporal-decay-in-ai-memory/" data-nav-lesson="temporal-decay-in-ai-memory"><span>12</span>Değişen bilgi: geçerlilik, çelişki ve unutma</a></li></ol></div><div class="learn-nav-stage"><strong>04 / Ölçün ve uygulayın</strong><ol><li><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/" data-nav-lesson="evaluating-ndcg-and-mrr-in-memory"><span>13</span>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</a></li><li><a href="../../learn/build-a-small-search-lab/" data-nav-lesson="build-a-small-search-lab"><span>14</span>LLM kullanmadan küçük bir arama laboratuvarı kurun</a></li></ol></div></nav></details><article class="learn-article">
+ <header class="learn-article-header"><p class="eyebrow">DERS 05 / 14 · Aramayı öğrenin</p><h1>BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</h1><p class="learn-article-lede">Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.</p><div class="learn-reading-meta"><span>5 dk okuma</span><span><time datetime="2026-10-18">Güncelleme: 18 Eki 2026</time></span><a href="../../learn/bm25-tuning-for-domain-documents/article.md" download>Markdown indir ↓</a></div>
+ <div class="learn-objectives"><strong>BİTİRDİĞİNİZDE</strong><ul><li>BM25 formülünü okumak</li><li>Belge uzunluğu etkisini hesaplamak</li><li>Tam kimlik ve Türkçe tokenizasyon testi tasarlamak</li></ul></div>
+ <p class="learn-prerequisites">Bu dersten önce: <a href="../../learn/semantic-search/">Embedding ve anlamsal arama: sayılarla açıklama</a></p></header>
+ <div class="learn-article-body"><section class="article-section" id="intuition"><h2>Sözcüksel sıralamanın arkasındaki üç soru<a class="heading-anchor" href="#intuition" aria-label="Bölüm bağlantısı">#</a></h2><p>“Atlas cuma saatleri” için sözcüksel retriever sorgu terimlerini içeren pasajları bulur. Hangi eşleşmenin önemli olduğuna karar vermelidir. BM25 terim nadirliğini, belge içi sıklığı ve belge uzunluğu düzeltmesini birleştirir. “Saat” kelimesini elli kez tekrarlamak uzun ilgisiz belgeyi yenilmez yapmamalıdır; nadir kimlik daha ayırt edici ipucu olabilir.</p><p>Ters indeks terimi onu içeren belgelere eşler. Terimleri sıralamadan önce tokenizasyon belirler. “A-17”, “a” ve “17” olarak bölünürse skor ayarı hiç indekslenmemiş kimlik sınırını geri getiremez. Önce token’ları ve sorgu ayrıştırmasını inceleyin. Tam kimlik ayrı normalize alan veya eşitlik filtresi gerektirebilir.</p></section><section class="article-section" id="formula"><h2>Formülü çarpanlarına ayırın<a class="heading-anchor" href="#formula" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-code"><div><span>Çözümlü örnek</span><button class="copy-button" type="button" data-copy-target="lesson-code-16">Kopyala</button></div><pre tabindex="0" class="article-code" id="lesson-code-16"><code>score(d,q) = sum over query terms t:
+ IDF(t) * f(t,d)*(k1+1) /
+ [f(t,d) + k1*(1-b + b*len(d)/avgdl)]
+
+One common non-negative IDF variant:
+IDF(t) = ln(1 + (N - df(t) + 0.5)/(df(t) + 0.5))
+N: corpus documents   df: documents containing t
+f: term frequency    avgdl: average document length</code></pre></div><p>IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan bir tekrara çıkmak, ondan on bire çıkmaktan daha önemlidir. <code>k1</code> doygunluğu, <code>b</code> uzunluk normalizasyonunu kontrol eder. <code>b=0</code> iken uzunluk etkisizdir; <code>b=1</code> iken tam uzunluk oranı girer. BM25 sürümleri IDF ayrıntısında farklılaşır; parametre adlarıyla birlikte uygulamayı da kaydedin.</p></section><section class="article-section" id="worked-example"><h2>Uzunluk etkisini hesaplayın<a class="heading-anchor" href="#worked-example" aria-label="Bölüm bağlantısı">#</a></h2><div class="table-scroll"><table><thead><tr><th scope="col">Nicelik</th><th scope="col">Kısa pasaj A</th><th scope="col">Uzun pasaj B</th></tr></thead><tbody><tr><th scope="row">Terim sıklığı</th><td>2</td><td>2</td></tr><tr><th scope="row">Uzunluk / ortalama uzunluk</th><td>0.5</td><td>2</td></tr><tr><th scope="row">k1=1.2, b=0.75: payda</th><td>2.75</td><td>4.10</td></tr><tr><th scope="row">Pay: 2 × 2.2</th><td>4.4</td><td>4.4</td></tr><tr><th scope="row">Sıklık çarpanı</th><td>1.60</td><td>1.073</td></tr></tbody></table></div><p>Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa parçaların her zaman iyi olduğunu kanıtlamaz. Belgeleri bölmek terim istatistiğini, bağlam tamlığını ve ilgili sayılan birimi değiştirir. Sıralama değişikliğini test ederken parçalamayı sabit tutun; sonra parçalamayı ayrı deneyde değerlendirin.</p></section><section class="article-section" id="tuning"><h2>Hata örneklerine göre ayarlayın<a class="heading-anchor" href="#tuning" aria-label="Bölüm bağlantısı">#</a></h2><figure class="article-diagram" aria-label="Token’ları inceleyin, sözcüksel taban kurun, sonuçları etiketleyin, tek ayarı değiştirip tekrarlayın."><ol tabindex="0"><li>İncele · A-17 / I / İ</li><li>Taban · sabit parçalar</li><li>Etiketle · tam ve dolaylı</li><li>Değiştir · tek alan ağırlığı</li><li>Karşılaştır · ayrılmış sorgular</li></ol><figcaption>Son skoru vereceğiniz örneklerle ayar yapmayın.</figcaption></figure><p>Türkçe için gerçek sorgu/belge çiftlerinde noktalı/noktasız I, ekler ve aksanları inceleyin. Küçük harfe çevirme ve işaret kaldırma bazı eşleşmelere yardımcı olurken anlamlı ayrımları silebilir. Özgün metni koruyup hem kimlik kesinliğini hem doğal dil recall’unu test edin. Arama sözdizimi ve tokenizer davranışı, arayüzün metin normalizasyonundan ayrıdır.</p><p>SQLite FTS5 sabit <code>k1=1.2</code> ve <code>b=0.75</code> kullanır; <code>bm25(table, ...)</code> argümanları bu parametreler değil sütun ağırlıklarıdır. Daha iyi eşleşmeye daha küçük değer döndürdüğü için artan sıralama bilinçlidir. Başka motordan azalan-skor kuralı kopyalamayın. Hesap örneğimiz belirli bir IDF çeşidi kullanır; FTS5’in tam tanımı kendi referansındadır. <a class="" href="https://www.sqlite.org/fts5.html" target="_blank" rel="noopener noreferrer"><span>FTS5</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>.</p></section><section class="article-section" id="practice"><h2>İlk teşhis adımını seçin<a class="heading-anchor" href="#practice" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-exercise"><strong>Kendinizi sınayın</strong><p>A-17 politikası araması her defasında A-71’i öne getiriyor. Hemen sıralama ağırlığını mı artırmalısınız?</p><details><summary>Açıklamayı göster</summary><p>İndekslenen token ve sorgu sözdizimini inceleyin; sonra tam kimlik alanını test edin. İndeks kimlikleri ayırmıyorsa ağırlık bunu güvenilir biçimde onaramaz. Temsil doğru olduktan sonra skor ayarlayın.</p></details></div></section><section class="article-section" id="references"><h2>Kaynaklar ve ileri okuma<a class="heading-anchor" href="#references" aria-label="Bölüm bağlantısı">#</a></h2><ol class="reference-list"><li><a class="" href="https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html" target="_blank" rel="noopener noreferrer"><span>Manning, Raghavan &amp; Schütze · Okapi BM25</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://www.sqlite.org/fts5.html" target="_blank" rel="noopener noreferrer"><span>SQLite · FTS5 reference</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol></section></div>
+ <div class="learn-lesson-finish"><div><strong>Sonraki fikre hazır mısınız?</strong><p>Devam etmeden soruyu deneyin. Depolama kullanılabiliyorsa ilerlemeniz bu tarayıcıda saklanır.</p></div><button type="button" class="button" data-mark-lesson="bm25-tuning-for-domain-documents" hidden>Okundu işaretle ✓</button><p data-lesson-status aria-live="polite"></p></div>
+ <nav class="learn-adjacent" aria-label="Önceki ve sonraki ders"><a href="../../learn/semantic-search/"><span>← ÖNCEKİ DERS</span><strong>Embedding ve anlamsal arama: sayılarla açıklama</strong></a><a href="../../learn/hybrid-retrieval-explained/"><span>SONRAKİ DERS →</span><strong>Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama</strong></a></nav>
+ <a class="learn-back-map" href="../../learn/">← Öğrenme haritasına dönün</a>
+ </article><details class="learn-toc" open><summary>Bu derste</summary><nav aria-label="Ders bölümleri"><ol><li><a href="#intuition">Sözcüksel sıralamanın arkasındaki üç soru</a></li><li><a href="#formula">Formülü çarpanlarına ayırın</a></li><li><a href="#worked-example">Uzunluk etkisini hesaplayın</a></li><li><a href="#tuning">Hata örneklerine göre ayarlayın</a></li><li><a href="#practice">İlk teşhis adımını seçin</a></li><li><a href="#references">Kaynaklar ve ileri okuma</a></li></ol></nav></details></div><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -155,8 +87,7 @@ ORDER BY rank;</code></pre>
         <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../admin/">Yönetim</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer>
-    </main>
-  <script src="../../../app.js?v=7ab053b9ea58"></script>
+    </footer></main>
+  <script src="../../../app.js?v=6dbcc516edfb"></script>
 </body>
 </html>

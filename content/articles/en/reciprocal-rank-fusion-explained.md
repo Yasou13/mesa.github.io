@@ -3,78 +3,78 @@ id: "reciprocal-rank-fusion"
 slug: "reciprocal-rank-fusion-explained"
 type: "learn"
 language: "en"
-title: "What is Reciprocal Rank Fusion (RRF)?"
-subtitle: "A mathematical explanation of rank-based combination in multi-lane retrieval"
-summary: "Reciprocal Rank Fusion (RRF) combines ranked lists from multiple search algorithms into a single unified result set without requiring fragile score normalization."
-shortAnswer: "RRF calculates a document's score as the sum of reciprocals of its ranks across different retrieval lanes: RRF(d) = sum(1 / (k + r(d))). Documents that appear consistently near the top in multiple lanes receive the highest combined score."
+title: "Reciprocal Rank Fusion: calculate and inspect every vote"
+subtitle: ""
+summary: "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence."
+shortAnswer: "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence."
 category: "Memory & Retrieval"
-tags: ["rrf", "rank-fusion", "retrieval", "algorithms"]
+tags: ["RRF", "rank fusion", "weighted", "k=60", "sıra birleştirme", "ağırlık"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 7
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "What Is Reciprocal Rank Fusion (RRF)? — MESA Learn"
-seoDescription: "Understand the mathematics, step-by-step numerical example, and multi-lane retrieval advantages of Reciprocal Rank Fusion (RRF)."
+seoTitle: "Reciprocal Rank Fusion: calculate and inspect every vote — MESA Learn"
+seoDescription: "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence."
+lessonOrder: 7
+learningStage: "retrieval"
+prerequisites: ["hybrid-retrieval"]
+learningObjectives: ["Compute RRF for three candidates", "Understand the smoothing constant and lane weights", "Specify deduplication, missing ranks and tie policy"]
 ---
 
-## Why score normalization is hard
+## Combine agreement without comparing raw scores
 
-When building hybrid search, combining scores from different algorithms is surprisingly treacherous. Dense vector models output cosine similarities tightly bounded between 0.0 and 1.0. BM25 lexical search outputs unbounded positive scores (often ranging from 2.0 to 35.0+) that vary wildly based on term rarity and document length.
+Two retrievers disagree about the Atlas archive. Lexical ranks A, B, C; dense ranks B, C, D. You want a method that uses each list’s order without pretending their raw scores share units. Reciprocal Rank Fusion assigns a decreasing contribution to each rank and sums the contributions for the same candidate. It is a simple baseline with explicit assumptions.
 
-Min-max normalization or z-score standardization attempts to bridge this gap, but both are fragile. An extreme outlier in lexical search skews the entire distribution, causing one modality to arbitrarily dominate or erase the other.
+Cormack, Clarke and Büttcher evaluated this method on specific retrieval experiments. Their results motivate testing RRF; they do not guarantee an improvement for your task. The original method uses unweighted votes. Weighted RRF is an extension in which each lane’s contribution is multiplied by a declared weight. [Original paper](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf).
 
-**Score Calibration Drift**
-: The distortion that occurs when attempting to mathematically combine raw scores from different statistical distributions without invariant reference points.
-
-## The RRF formula explained
-
-In 2009, Cormack, Clarke, and Buettcher introduced Reciprocal Rank Fusion (RRF). Instead of looking at raw scores, RRF evaluates solely the ordinal rank of each document across each retrieval list:
+## Use one-based ranks
 
 ```text
-RRF_score(d) = Σ [ 1 / (k + r_m(d)) ]  for each modality m
+RRF(d) = sum over lanes containing d: w_lane / (k + rank_lane(d))
+rank starts at 1; missing candidate contributes 0.
+Example below: k = 60, every weight = 1.
 ```
 
-- d: The candidate document or memory assertion being evaluated.
-- m: A specific retrieval modality (e.g. vector, BM25, graph).
-- r_m(d): The rank position of document d in modality m (1 for 1st place, 2 for 2nd place, etc.).
-- k: A smoothing constant, conventionally set to 60. It ensures that the difference between rank 1 and rank 2 does not excessively overshadow consistent appearances across multiple lists.
+| Candidate | Lexical rank | Dense rank | RRF contribution sum |
+| --- | --- | --- | --- |
+| A | 1 | absent / yok | 1/61 = 0.016393 |
+| B | 2 | 1 | 1/62 + 1/61 = 0.032522 |
+| C | 3 | 2 | 1/63 + 1/62 = 0.032002 |
+| D | absent / yok | 3 | 1/63 = 0.015873 |
 
-## A step-by-step numerical example
+The fused order is B, C, A, D. Agreement across the lists lifts B and C above A, despite A’s first position in one lane. A candidate missing from a truncated list receives zero from that lane, not a vote for rank infinity or rank zero. Keep candidate cutoffs in your experiment record because truncation changes the votes.
 
-Let us compare three documents retrieved across two search lanes (Vector and BM25) using standard k = 60:
+## What changes when k changes?
 
-| Document | Vector Rank | BM25 Rank | Calculation (k=60) | Final RRF Score |
-| --- | --- | --- | --- | --- |
-| Document A | Rank 1 | Rank 10 | 1/(60+1) + 1/(60+10) = 0.01639 + 0.01429 | 0.03068 |
-| Document B | Rank 2 | Rank 2 | 1/(60+2) + 1/(60+2) = 0.01613 + 0.01613 | 0.03226 (Winner) |
-| Document C | Rank 25 | Rank 1 | 1/(60+25) + 1/(60+1) = 0.01176 + 0.01639 | 0.02815 |
+With `k=60`, first place contributes 1/61 and second place 1/62, a small difference. With `k=1`, they contribute 1/2 and 1/3, a much larger difference. Smaller k emphasizes top positions; larger k flattens contributions across the retrieved ranks. This k is a smoothing constant, not the number of results returned. Choose it with held-out evidence, not because 60 is universal.
 
-> [!NOTE]
-> **Why Document B wins**
-> Document B was not the #1 result in either lane, but because it ranked consistently high (#2 in both), its reciprocal sum surpassed Document A (which was #1 in vector but slipped to #10 in BM25). RRF rewards multi-lane consensus.
+<!-- diagram: Rank lists yield per-lane votes that merge by candidate ID and sort deterministically. -->
+1. Lexical · A,B,C
+2. Dense · B,C,D
+3. Votes · 1/(k+rank)
+4. Sum by ID · one per lane
+5. Sort · B,C,A,D
 
-## Why RRF is ideal for AI agent memory
+*The result is a rank signal, not a calibrated probability.*
 
-- [ ] Zero tuning required: Unlike weighted linear combination, RRF with k=60 performs near-optimally across widely different domains without parameter tuning.
-- [ ] Modality agnostic: Can fuse 2, 3, 4, or more lanes (vector, keyword, graph, temporal decay) without modification.
-- [ ] Missing lane resilience: If an assertion is not retrieved by one lane, it simply contributes 0 from that lane without penalizing its positive ranks in others.
+## Specify the edge cases before deployment
 
-## True RRF in the MESA architecture
+Deduplicate a candidate within each lane before assigning its vote. Otherwise a backend returning the same ID twice changes the method. Decide what the ID represents and keep it consistent across lanes. If one lane returns document IDs and another assertion IDs, reconcile them into the same unit before fusion; matching strings alone is not a sound identity contract.
 
-In [MESA Core](mesa/), the V4 router computes true reciprocal rank fusion across up to four result origins: `vector`, `bm25`, `assertion`, and `graph`.
+For exactly tied fused scores, use a documented stable rule such as canonical ID ordering. For weighted fusion, reject non-finite weights and decide whether zero disables a lane. Giving two copies of the same retriever separate full weights can double-count correlated evidence. More votes do not make an incorrect or unauthorized source acceptable.
 
-In the verified retrieval fixture `Alice knows Aurora`, the target memory assertion achieves rank 1 across all four lanes simultaneously. The resulting score is exactly:
+## Recalculate after a weight change
 
-```text
-RRF_score = 1/(60+1) + 1/(60+1) + 1/(60+1) + 1/(60+1) = 4 / 61 ≈ 0.06557
-```
+> [!EXERCISE]
+> **Check your understanding**
+> Set the dense lane weight to zero in the table. What order remains, and what happens to D?
+>
+> **Answer:** A, B, C keep the lexical order. D has zero contribution; whether zero-score candidates are excluded is an explicit output policy. Do not interpret the zero as proof that D is false or irrelevant.
 
-You can inspect this exact deterministic calculation in [How MESA Works](how-it-works/) and verify it in the public repository test suite.
+## Sources and further reading
 
-## References
-
-1. [Cormack, Clarke, and Buettcher (2009) — Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods (SIGIR '09)](https://dl.acm.org/doi/10.1145/1571941.1572114)
-2. [MESA Retrieval Fixture Test: test_real_four_lanes_fuse_once_and_repeat_deterministically](https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py)
+1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

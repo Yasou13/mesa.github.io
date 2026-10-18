@@ -457,7 +457,7 @@ def main() -> int:
         "tr/about/": ("KİM SÜRDÜRÜYOR", "GitHub issue aç"),
         "tr/faq/": ("MESA bir vektör veritabanı mı?", "MESA üretime hazır mı?"),
         "tr/resources/": ("Altı alan. Tek bilgi ağı.", "METODOLOJİ"),
-        "tr/learn/semantic-search/": ("Semantic Search Nedir?", "Retrieval hukuki otorite değildir"),
+        "tr/learn/semantic-search/": ("Embedding ve anlamsal arama", "İki boyutlu benzerlik hesabı"),
         "tr/research/keyword-vs-semantic-search/": ("Henüz sonuç yok", "Planlanan protokol · sonuç yok"),
         "tr/guides/verify-ai-yargitay-decision/": ("İddiayı aynen kaydedin", "Var olmak, ilgili olmak değildir"),
         "tr/glossary/provenance/": ("Provenance", "Hukuki örnek"),

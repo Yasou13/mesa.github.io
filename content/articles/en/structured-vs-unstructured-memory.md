@@ -3,69 +3,85 @@ id: "structured-vs-unstructured-memory"
 slug: "structured-vs-unstructured-memory"
 type: "learn"
 language: "en"
-title: "Structured memory vs unstructured memory"
-subtitle: "Evaluating freeform text chunks against typed assertions, schemas, and relational entities"
-summary: "Unstructured memory stores raw text snippets and embeddings, while structured memory organizes knowledge into typed assertions, entities, relations, and explicit schemas."
-shortAnswer: "Unstructured memory is flexible and easy to write; structured memory enables deterministic filtering, relational queries, contradiction resolution, and reliable state updates."
+title: "From documents to claims: preserve what extraction loses"
+subtitle: ""
+summary: "Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record."
+shortAnswer: "Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record."
 category: "Foundations"
-tags: ["structured-memory", "knowledge-representation", "ai-memory", "foundations"]
+tags: ["assertion", "entity", "schema", "chunk", "iddia", "varlık", "şema", "kanıt aralığı"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Structured Memory vs Unstructured Memory — MESA Learn"
-seoDescription: "Examine the technical differences, query determinism, update mechanics, and trade-offs between freeform text chunks and typed assertions in agent memory."
+seoTitle: "From documents to claims: preserve what extraction loses — MESA Learn"
+seoDescription: "Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record."
+lessonOrder: 3
+learningStage: "foundation"
+prerequisites: ["what-is-ai-memory", "rag-vs-ai-memory"]
+learningObjectives: ["Distinguish chunks, entities and assertions", "Keep qualifiers and evidence offsets", "Correct an extraction without rewriting history"]
 ---
 
-## Two paradigms for representing agent knowledge
+## Three representations of the same source
 
-When an AI agent remembers information, it must store it in a specific representation. The primary architectural divide lies between unstructured text chunks and typed structured assertions.
+The Atlas handbook says “Starting 1 November, the reading room opens at 10:00 on Fridays; other weekdays remain 09:00.” Raw text preserves wording. A chunk makes part of it retrievable. An assertion makes one interpretation explicit: subject, predicate, value and qualifiers. A graph makes relationships traversable. None of these representations automatically proves that the source is correct.
 
-![Archival engraving plate illustrating diffuse unstructured text streams contrasted against a structured taxonomic assertion tree](assets/taxonomic-classification-plate.svg)
-*Unstructured memory treats text as fluid semantic chunks; structured memory extracts typed entities, explicit predicates, and discrete constraints.*
-
-Unstructured memory stores raw conversation turns, markdown notes, or document passages. To find information, it relies on embedding algorithms to estimate semantic similarity. Structured memory extracts discrete entities, attributes, relations, and truth conditions into formal schema tables.
-
-## The contradiction and state mutation problem
-
-The fundamental flaw of purely unstructured memory emerges when an agent must update a fact that changes over time:
-
-> [!WARNING]
-> **The vector contradiction dilemma**
-> If an agent stores 'User prefers Python' on Monday, and 'User migrated to Rust' on Friday, both text snippets are embedded into vector space. A query for 'What programming language does the user prefer?' retrieves both chunks with high semantic similarity. The model must guess which one is current.
-
-In structured memory, state changes are handled deterministically through database keys, timestamps, and revision lifecycles. The system updates the entity attribute `prefers_language` or marks the older assertion record as superseded.
-
-## Engineering trade-offs side-by-side
-
-| Dimension | Unstructured Memory (Text + Vectors) | Structured Memory (Assertions + Schemas) |
+| Representation | Good at | Can lose |
 | --- | --- | --- |
-| Ingestion Complexity | Low: split text and calculate embeddings | High: requires parsing, entity extraction, and schema validation |
-| Query Expressiveness | Fuzzy semantic exploration, paraphrases | Precise boolean filters, numerical comparisons, joins |
-| Contradiction Handling | Poor: conflicting chunks accumulate | Strong: primary keys, versioning, explicit updates |
-| Relational Multi-Hop | Weak: cannot traverse explicit entity edges | Strong: graph traversals and relational SQL joins |
-| Token Efficiency | Low: injects verbose multi-sentence chunks | High: injects compact, precise factual triples |
-| Schema Evolution | Trivial: schema-free text storage | Requires migration runbooks and typed schema changes |
+| Exact source | Audit and re-interpretation | Convenient query structure |
+| Text chunk | Passage retrieval | Document-wide qualification |
+| Assertion | Filtering and joins | Nuance or extraction uncertainty |
+| Graph edge | Relationship traversal | Evidence unless explicitly linked |
 
-## The modern synthesis: Structured facts backed by raw evidence
+Choose representations according to the question. “What does paragraph four say?” needs exact text. “Which rooms open after nine on Friday?” benefits from typed time/day fields. Keeping a source-linked assertion alongside the text serves both. Treat the structured row as a derived interpretation that can be re-extracted when the parser or model changes.
 
-High-assurance agent architectures do not force an artificial choice between structured and unstructured data. Instead, they link both representations in a dual-layer model:
+## Build a claim that retains its conditions
 
-- [ ] The structured assertion acts as the indexable, filterable identity (Subject, Predicate, Object, Timestamp, Scope).
-- [ ] The raw unstructured passage acts as the verifiable evidence span, ensuring the original textual context is preserved.
-- [ ] Queries use structured filters to guarantee tenant and scope isolation, then use vector similarity to evaluate semantic relevance within that safe boundary.
+```text
+assertion_id: a-42
+subject_id: room-atlas-reading
+predicate: opening_time
+value: "10:00"
+day_of_week: Friday
+valid_from: 2026-11-01
+source_revision: handbook-r3
+evidence_text: "opens at 10:00 on Fridays"
+extractor_version: example-parser-2
+```
 
-## MESA's canonical assertion architecture
+Dropping “Friday” changes the claim. Dropping “starting 1 November” makes a future change look current. Treat units, negation, jurisdiction, time and exceptions as part of the assertion when they affect its meaning. If the extraction cannot represent a condition, keep the source and flag the interpretation as incomplete rather than silently discarding it.
 
-In [MESA Core](mesa/), memory is not an opaque vector blob. The canonical source of truth is a relational SQLite database holding structured assertions with explicit schemas, lifecycle states, and evidence spans.
+Use stable IDs to distinguish the room from its label. “Atlas”, “Atlas Reading Room” and “Room A” might refer to one entity, or to different entities. Entity resolution is a separate decision requiring evidence. A string match can propose a candidate; it should not automatically merge records across organizations or access scopes.
 
-LanceDB and Kùzu exist strictly as derived projections. If a projection becomes corrupt or unsynchronized, it can be recomputed deterministically from canonical SQLite assertions. Explore this dual architecture in the [MESA Core Documentation](mesa/).
+## Keep the derivation visible
 
-## Further reading
+<!-- diagram: A source revision produces a chunk, an extraction run and a qualified assertion. -->
+1. Revision r3 · original text
+2. Chunk c4 · exact range
+3. Extraction e2 · model/parser
+4. Assertion a42 · qualifiers
 
-1. [Sowa (2000) — Knowledge Representation: Logical, Philosophical, and Computational Foundations](https://www.jfsowa.com/krbook/)
-2. [Baader et al. (2003) — The Description Logic Handbook](https://www.cambridge.org/core/books/description-logic-handbook/368B04527F3841C313C5EB8A7AEF9B37)
-3. [MESA V4 Architecture Specification](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
+*A correction replaces the derived claim; the original revision remains identifiable.*
+
+W3C PROV distinguishes entities, activities and agents in provenance descriptions. Applied here, the source and claim are entities, extraction is an activity, and a software service is an agent. This vocabulary helps ask who produced a claim and from what. It does not prescribe your database schema or certify the truth of the extraction. [PROV overview](https://www.w3.org/TR/prov-overview/).
+
+## Validate structure and meaning separately
+
+Schema validation can reject a missing source ID, invalid time or absent subject. Semantic checks ask whether the source actually supports the claim and whether conditions were preserved. Passing JSON validation proves only structural conformance. Two models agreeing can still share the same misunderstanding; agreement is a signal, not an independent source.
+
+For corrections, distinguish a changed source from a changed interpretation. If the source is unchanged but “Friday” was misread as “every day”, create a new extraction or assertion version and retract the faulty one. If the handbook itself changes, create a new source revision. This separation lets you audit whether a later answer changed because reality, the document or the extraction pipeline changed.
+
+## Repair the extraction
+
+> [!EXERCISE]
+> **Check your understanding**
+> An extractor turns “closed on public holidays” into `is_open=true`. The JSON schema is valid. What should your review record?
+>
+> **Answer:** A semantic contradiction with the exact supporting span, the extractor version and the affected assertion ID. Retract or replace the derived claim; preserve the source revision and do not call this a source update.
+
+## Sources and further reading
+
+1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
+2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

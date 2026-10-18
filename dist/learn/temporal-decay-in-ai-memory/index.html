@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Temporal decay and knowledge freshness in agent memory — MESA Learn</title>
-  <meta name="description" content="Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been sup">
+  <title>Changing facts: validity, contradiction and forgetting — MESA Learn</title>
+  <meta name="description" content="Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/">
-  <meta property="og:title" content="Temporal decay and knowledge freshness in agent memory — MESA Learn">
-  <meta property="og:description" content="Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been sup">
+  <meta property="og:title" content="Changing facts: validity, contradiction and forgetting — MESA Learn">
+  <meta property="og:description" content="Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/">
   <meta property="og:locale" content="en_US">
@@ -21,21 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Temporal decay and knowledge freshness in agent memory — MESA Learn">
-  <meta name="twitter:description" content="Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been sup">
+  <meta name="twitter:title" content="Changing facts: validity, contradiction and forgetting — MESA Learn">
+  <meta name="twitter:description" content="Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been sup"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been sup","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://mesamemory.dev/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/learn/"},{"@type":"ListItem","position":4,"name":"Temporal decay and knowledge freshness in agent memory","item":"https://mesamemory.dev/learn/temporal-decay-in-ai-memory/"}]},{"@type":"Article","headline":"Temporal decay and knowledge freshness in agent memory","description":"Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been sup","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/learn/temporal-decay-in-ai-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"temporal-decay, memory-freshness, state-mutation, ai-memory"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://mesamemory.dev/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/learn/"},{"@type":"ListItem","position":4,"name":"Changing facts: validity, contradiction and forgetting","item":"https://mesamemory.dev/learn/temporal-decay-in-ai-memory/"}]},{"@type":"Article","headline":"Changing facts: validity, contradiction and forgetting","description":"Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.","datePublished":"2026-10-17","dateModified":"2026-10-18","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/learn/temporal-decay-in-ai-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"temporal, validity, decay, contradiction, version, zaman, geçerlilik, çelişki, unutma"}]}</script>
   <link rel="icon" href="../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../styles.css?v=6e69ac822270">
   <link rel="stylesheet" href="../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../learn.css?v=ef08fd97f3dc">
   <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">Skip to content</a>
+<a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -53,91 +53,20 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><span aria-current="page">Home</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Resources</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Temporal decay and knowledge freshness in agent memory</span></li></ol></nav>
-      <article class="knowledge-article">
-        <header class="article-header">
-          <p class="eyebrow">Learn · Foundations</p>
-          <h1>Temporal decay and knowledge freshness in agent memory</h1>
-          <p class="article-subtitle">Balancing durable historical facts against mutating real-time beliefs</p>
-          <p class="article-summary">Knowledge in agent memory changes over time. Temporal decay models determine whether an assertion remains active, requires re-verification, or has been superseded.</p>
-          <dl class="article-byline">
-            <div>
-              <dt>Published</dt>
-              <dd><time datetime="2026-10-17">17 Oct 2026</time></dd>
-            </div>
-            <div>
-              <dt>Updated</dt>
-              <dd><time datetime="2026-10-17">17 Oct 2026</time></dd>
-            </div>
-            <div>
-              <dt>Author</dt>
-              <dd>MESA contributors</dd>
-            </div>
-            <div>
-              <dt>Reading time</dt>
-              <dd>7 minutes</dd>
-            </div>
-          </dl>
-        </header>
-        <div class="article-layout">
-          
-    <nav class="article-toc" aria-label="On this page">
-      <strong>On this page</strong>
-      <ol>
-        <li><a href="#architectural-dilemma">The permanence trap of vector embeddings</a></li><li><a href="#engineering-trade-offs">Engineering trade-offs side-by-side</a></li><li><a href="#core-mechanisms">Bitemporal intervals and decay equations</a></li><li><a href="#mesa-implementation">Temporal scoping in MESA</a></li><li><a href="#references">References</a></li>
-      </ol>
-    </nav>
-          <div class="article-body">
-            <div class="short-answer"><strong>Short answer</strong><p>Temporal memory uses validity intervals and decay algorithms so agents do not treat stale or superseded observations as currently active truths.</p></div>
-            
-            
-    <section id="architectural-dilemma" class="article-section">
-      <h2>The permanence trap of vector embeddings<a class="heading-anchor" href="#architectural-dilemma" aria-label="Link to this section" title="Copy section link">#</a></h2>
-      <p>Vector databases treat points in latent space as timeless. An embedding computed three years ago remains indefinitely close to queries matching its keywords, creating a dangerous failure mode where agents cite obsolete state.</p><div class="article-callout warning"><strong>The Stale State Vulnerability</strong><p>If an agent stores 'Server configuration points to Cluster A', and the cluster is migrated to Cluster B, vector distance alone cannot determine that Cluster A is an outdated historical fact rather than current state.</p></div>
-    </section>
-    <section id="engineering-trade-offs" class="article-section">
-      <h2>Engineering trade-offs side-by-side<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Link to this section" title="Copy section link">#</a></h2>
-      <div class="table-scroll"><table><thead><tr><th scope="col">Strategy</th><th scope="col">Mechanism</th><th scope="col">Best For</th><th scope="col">Failure Risk</th></tr></thead><tbody><tr><th scope="row">Exponential Decay</th><td>Score multiplied by exp(-lambda * delta_t)</td><td>Chat recency, casual interactions</td><td>Erases foundational facts that are permanently true</td></tr><tr><th scope="row">Explicit Intervals</th><td>valid_from and valid_until timestamps</td><td>Contracts, statutes, configuration state</td><td>Requires explicit invalidation triggers</td></tr><tr><th scope="row">Bitemporal Modeling</th><td>Valid Time vs Transaction Time</td><td>Financial audits, legal compliance</td><td>Higher storage and query complexity</td></tr><tr><th scope="row">Superseding Chains</th><td>Explicit revision pointers (superseded_by)</td><td>Entity attribute updates</td><td>Dangling references if chains break</td></tr></tbody></table></div>
-    </section>
-    <section id="core-mechanisms" class="article-section">
-      <h2>Bitemporal intervals and decay equations<a class="heading-anchor" href="#core-mechanisms" aria-label="Link to this section" title="Copy section link">#</a></h2>
-      <p>High-assurance memory engines implement bitemporal indexing: recording both when an event occurred in the real world (valid time) and when the memory system learned about it (transaction time). Decay is applied strictly to relevance scores, never to destructive record deletion.</p><pre tabindex="0" class="article-code"><code>// Bitemporal memory filter in SQL
-SELECT * FROM assertions
-WHERE valid_from &lt;= CURRENT_TIMESTAMP
-  AND (valid_until IS NULL OR valid_until &gt; CURRENT_TIMESTAMP)
-  AND transaction_status = 'COMMITTED';</code></pre>
-    </section>
-    <section id="mesa-implementation" class="article-section">
-      <h2>Temporal scoping in MESA<a class="heading-anchor" href="#mesa-implementation" aria-label="Link to this section" title="Copy section link">#</a></h2>
-      <p>MESA Core mandates temporal boundary fields on every memory record. Retrieval filters reject superseded records before vector or lexical ranking occurs, ensuring historical logs remain intact without contaminating live agent reasoning.</p><ul class="article-checklist"><li>Every assertion schema includes valid_from and valid_until boundaries.</li><li>State updates create immutable revision records rather than in-place overwrites.</li><li>Audit queries can time-travel to inspect the exact memory state at any historical point in time.</li><li>Decay algorithms do not destroy underlying evidence spans.</li></ul>
-    </section>
-    <section id="references" class="article-section">
-      <h2>References<a class="heading-anchor" href="#references" aria-label="Link to this section" title="Copy section link">#</a></h2>
-      <ol class="reference-list"><li><a class="" href="https://www.cs.arizona.edu/people/rts/tdbbook.pdf" target="_blank" rel="noopener noreferrer"><span>Snodgrass &amp; Jensen (1999) — Developing Time-Oriented Database Applications in SQL</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://psychclassics.yorku.ca/Ebbinghaus/" target="_blank" rel="noopener noreferrer"><span>Ebbinghaus (1885) — Memory: A Contribution to Experimental Psychology</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
-    </section>
-          </div>
-        </div>
-        
-    <section class="related-content" aria-labelledby="related-title">
-      <p class="eyebrow">CONNECTED KNOWLEDGE</p>
-      <h2 id="related-title">Continue through the evidence graph.</h2>
-      <div class="publication-grid">
-        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">What is AI memory?</a></h3><p>AI memory is the persistence layer that allows models and autonomous agents to retain state, recall verified past interactions, and accumulate knowledge across execution boundaries.</p><div><span>7 min read</span><a href="../../learn/what-is-ai-memory/">Read<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval explained: Vector search, lexical search, and structured signals</a></h3><p>Hybrid retrieval combines dense vector embeddings, sparse lexical inverted indexes (BM25), and structured database filters to prevent single-strategy retrieval failures.</p><div><span>9 min read</span><a href="../../learn/hybrid-retrieval-explained/">Read<span aria-hidden="true"> →</span></a></div></article>
-      </div>
-    </section>
-        
-      <div class="contextual-cta">
-        <div>
-          <p class="eyebrow">PRODUCT CONTEXT</p>
-          <h2>See how provenance appears in MESA Law.</h2>
-          <p>A restrained product link for readers who want the application context.</p>
-        </div>
-        <a class="button secondary" href="../../law/">Explore MESA Law</a>
-      </div>
-      </article>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    </header><main id="main-content" class="learn-reading" data-learn-article="temporal-decay-in-ai-memory"><nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><span aria-current="page">Home</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Resources</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Changing facts: validity, contradiction and forgetting</span></li></ol></nav>
+ <div class="learn-reader-grid"><details class="learn-course-nav" open><summary>Course map <span>14 lessons</span></summary><nav aria-label="Course lessons"><div class="learn-nav-stage"><strong>01 / Start from zero</strong><ol><li><a href="../../learn/what-is-ai-memory/" data-nav-lesson="what-is-ai-memory"><span>01</span>AI memory: what survives after a conversation?</a></li><li><a href="../../learn/rag-vs-ai-memory/" data-nav-lesson="rag-vs-ai-memory"><span>02</span>RAG and memory: build the request step by step</a></li><li><a href="../../learn/structured-vs-unstructured-memory/" data-nav-lesson="structured-vs-unstructured-memory"><span>03</span>From documents to claims: preserve what extraction loses</a></li></ol></div><div class="learn-nav-stage"><strong>02 / Learn to retrieve</strong><ol><li><a href="../../learn/semantic-search/" data-nav-lesson="semantic-search"><span>04</span>Embeddings and semantic search, with numbers</a></li><li><a href="../../learn/bm25-tuning-for-domain-documents/" data-nav-lesson="bm25-tuning-for-domain-documents"><span>05</span>BM25: why a rare word can beat repeated words</a></li><li><a href="../../learn/hybrid-retrieval-explained/" data-nav-lesson="hybrid-retrieval"><span>06</span>Hybrid retrieval: candidates, fusion and reranking</a></li><li><a href="../../learn/reciprocal-rank-fusion-explained/" data-nav-lesson="reciprocal-rank-fusion"><span>07</span>Reciprocal Rank Fusion: calculate and inspect every vote</a></li><li><a href="../../learn/why-graphs-matter-in-ai-memory/" data-nav-lesson="why-graphs-matter"><span>08</span>Knowledge graphs: follow relations without inventing proof</a></li></ol></div><div class="learn-nav-stage"><strong>03 / Build trustworthy systems</strong><ol><li><a href="../../learn/what-is-evidence-aware-memory/" data-nav-lesson="evidence-aware-memory"><span>09</span>Evidence and provenance: what a citation actually proves</a></li><li><a href="../../learn/memory-scope-and-authorization/" data-nav-lesson="memory-scope-and-authorization"><span>10</span>Shared memory: who may retrieve what?</a></li><li><a href="../../learn/sqlite-as-canonical-agent-memory/" data-nav-lesson="sqlite-as-canonical-agent-memory"><span>11</span>Canonical storage and projections: survive a partial write</a></li><li><a href="../../learn/temporal-decay-in-ai-memory/" data-nav-lesson="temporal-decay-in-ai-memory" aria-current="page"><span>12</span>Changing facts: validity, contradiction and forgetting</a></li></ol></div><div class="learn-nav-stage"><strong>04 / Measure and build</strong><ol><li><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/" data-nav-lesson="evaluating-ndcg-and-mrr-in-memory"><span>13</span>Evaluate retrieval: recall, MRR, nDCG and latency</a></li><li><a href="../../learn/build-a-small-search-lab/" data-nav-lesson="build-a-small-search-lab"><span>14</span>Build a small search lab, without an LLM</a></li></ol></div></nav></details><article class="learn-article">
+ <header class="learn-article-header"><p class="eyebrow">LESSON 12 / 14 · Build trustworthy systems</p><h1>Changing facts: validity, contradiction and forgetting</h1><p class="learn-article-lede">Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.</p><div class="learn-reading-meta"><span>5 min read</span><span><time datetime="2026-10-18">Updated 18 Oct 2026</time></span><a href="../../learn/temporal-decay-in-ai-memory/article.md" download>Download Markdown ↓</a></div>
+ <div class="learn-objectives"><strong>BY THE END, YOU CAN</strong><ul><li>Distinguish valid time and recorded time</li><li>Recognize apparent versus real contradiction</li><li>Explain decay as ranking policy rather than truth</li></ul></div>
+ <p class="learn-prerequisites">Before this lesson: <a href="../../learn/what-is-evidence-aware-memory/">Evidence and provenance: what a citation actually proves</a> · <a href="../../learn/sqlite-as-canonical-agent-memory/">Canonical storage and projections: survive a partial write</a></p></header>
+ <div class="learn-article-body"><section class="article-section" id="two-clocks"><h2>Two clocks answer different questions<a class="heading-anchor" href="#two-clocks" aria-label="Link to section">#</a></h2><p>The archive announces a new Friday opening time on 18 October, effective 1 November. The system learns the announcement on 20 October. “What is the opening time today?” and “What had our system recorded by 19 October?” are different questions. A single <code>updated_at</code> field cannot represent both meanings reliably.</p><div class="table-scroll"><table><thead><tr><th scope="col">Field</th><th scope="col">Example</th><th scope="col">Meaning</th></tr></thead><tbody><tr><th scope="row">valid_from</th><td>1 November</td><td>When the claim starts applying</td></tr><tr><th scope="row">valid_to</th><td>open-ended</td><td>When applicability ends</td></tr><tr><th scope="row">recorded_at</th><td>20 October</td><td>When this system stored it</td></tr><tr><th scope="row">source_revision</th><td>handbook-r3</td><td>Which document states it</td></tr></tbody></table></div><p>These are conceptual fields for the lesson. Supporting both valid-time and transaction-time historical queries requires an explicit bitemporal model and query semantics. Do not infer that capability merely because a product stores timestamps. MESA’s architecture documents its own temporal filters and limitations; the example here is not a claim of full bitemporal support.</p></section><section class="article-section" id="intervals"><h2>Represent the change as intervals<a class="heading-anchor" href="#intervals" aria-label="Link to section">#</a></h2><figure class="article-diagram" aria-label="Revision 2 applies before November; revision 3 applies from November; recording happens on a separate timeline."><ol tabindex="0"><li>Old claim · Friday 09:00</li><li>End · before Nov 1</li><li>New claim · Friday 10:00</li><li>Start · Nov 1 inclusive</li><li>Recorded · Oct 20 separately</li></ol><figcaption>Declare interval endpoints and timezone; do not silently overwrite the old value.</figcaption></figure><p>A half-open interval <code>[start, end)</code> includes the start and excludes the end. Adjacent intervals then meet without overlapping: old until 1 November, new from 1 November. Define timezone and date granularity; “midnight” is incomplete without a timezone. Keep the source’s precision rather than inventing a time of day for a date-only announcement.</p></section><section class="article-section" id="contradiction"><h2>Compare like with like before calling it a conflict<a class="heading-anchor" href="#contradiction" aria-label="Link to section">#</a></h2><p>“Opens at nine” and “opens at ten” appear contradictory. They may describe different rooms, days, dates or source authorities. First align entity identity, predicate, units, scope and validity intervals. Only then ask whether two incompatible values compete under the same conditions. Negation and modality matter: “may open” is not “will open”.</p><p>If two current sources genuinely disagree, preserve both and expose the conflict with their provenance. A resolution policy might prefer an official revision, require review or decline to choose. “Newest wins” is not universally safe: a recent low-quality copy can contradict an older authoritative source. Record the resolution reason and retain the information needed to undo it.</p></section><section class="article-section" id="decay"><h2>Age can change priority without changing truth<a class="heading-anchor" href="#decay" aria-label="Link to section">#</a></h2><div class="learn-code"><div><span>Worked example</span><button class="copy-button" type="button" data-copy-target="lesson-code-9">Copy</button></div><pre tabindex="0" class="article-code" id="lesson-code-9"><code>illustrative recency weight = exp(-lambda * age)
+half-life H =&gt; lambda = ln(2) / H
+age = H  =&gt; weight = 0.5
+age = 2H =&gt; weight = 0.25
+Apply only after eligibility; this is a ranking policy.</code></pre></div><p>A recent task note may deserve more attention than an old one. A historical contract can remain the correct source for a past date regardless of age. Decay is a chosen ranking heuristic; expiration is a validity rule; deletion is a retention action. Keep them separate. Test questions about both “now” and historical dates before enabling recency weighting.</p></section><section class="article-section" id="practice"><h2>Classify the apparent conflict<a class="heading-anchor" href="#practice" aria-label="Link to section">#</a></h2><div class="learn-exercise"><strong>Check your understanding</strong><p>Revision 2 says Friday 09:00 until November; revision 3 says Friday 10:00 from November. Must one be labeled false?</p><details><summary>Reveal the explanation</summary><p>No. They apply to different intervals. Preserve both and filter by the question’s date. A contradiction would require incompatible values under the same entity, scope and overlapping validity conditions.</p></details></div></section><section class="article-section" id="references"><h2>Sources and further reading<a class="heading-anchor" href="#references" aria-label="Link to section">#</a></h2><ol class="reference-list"><li><a class="" href="https://www.w3.org/TR/prov-overview/" target="_blank" rel="noopener noreferrer"><span>W3C · PROV Overview</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>MESA Core v0.8.1 · Architecture and limitations</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol></section></div>
+ <div class="learn-lesson-finish"><div><strong>Ready for the next idea?</strong><p>Try the question before continuing. Your progress is saved in this browser when storage is available.</p></div><button type="button" class="button" data-mark-lesson="temporal-decay-in-ai-memory" hidden>Mark as read ✓</button><p data-lesson-status aria-live="polite"></p></div>
+ <nav class="learn-adjacent" aria-label="Previous and next lesson"><a href="../../learn/sqlite-as-canonical-agent-memory/"><span>← PREVIOUS LESSON</span><strong>Canonical storage and projections: survive a partial write</strong></a><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/"><span>NEXT LESSON →</span><strong>Evaluate retrieval: recall, MRR, nDCG and latency</strong></a></nav>
+ <a class="learn-back-map" href="../../learn/">← Back to the learning map</a>
+ </article><details class="learn-toc" open><summary>In this lesson</summary><nav aria-label="Lesson sections"><ol><li><a href="#two-clocks">Two clocks answer different questions</a></li><li><a href="#intervals">Represent the change as intervals</a></li><li><a href="#contradiction">Compare like with like before calling it a conflict</a></li><li><a href="#decay">Age can change priority without changing truth</a></li><li><a href="#practice">Classify the apparent conflict</a></li><li><a href="#references">Sources and further reading</a></li></ol></nav></details></div><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
@@ -155,8 +84,7 @@ WHERE valid_from &lt;= CURRENT_TIMESTAMP
         <div><h3>Project</h3><a href="../../about/">About</a><a href="../../faq/">FAQ</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Maintainer profile</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../admin/">Admin</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
-    </footer>
-    </main>
-  <script src="../../app.js?v=7ab053b9ea58"></script>
+    </footer></main>
+  <script src="../../app.js?v=6dbcc516edfb"></script>
 </body>
 </html>

@@ -60,18 +60,16 @@ class TestArticlesConsistency(unittest.TestCase):
         entries = {e["id"]: e for e in hub_data.get("entries", [])}
 
         expected_mappings = {
-            "vector-search-limits": "why-vector-search-alone-is-not-enough",
             "hybrid-retrieval": "hybrid-retrieval-explained",
             "why-graphs-matter": "why-graphs-matter-in-ai-memory",
             "reciprocal-rank-fusion": "reciprocal-rank-fusion-explained",
             "evidence-aware-memory": "what-is-evidence-aware-memory",
-            "provenance-in-ai": "what-is-provenance-in-ai",
             "keyword-semantic-protocol": "keyword-vs-semantic-search",
             "verify-ai-yargitay": "verify-ai-yargitay-decision",
         }
 
         for eid, expected_slug in expected_mappings.items():
-            self.assertIn(eid, entries, f"Missing entry for id={eid}")
+            self.assertTrue(eid in entries, f"Missing entry for id={eid}")
             self.assertEqual(entries[eid].get("slug"), expected_slug)
             self.assertTrue((ARTICLES_DIR / "en" / f"{expected_slug}.md").is_file())
             self.assertTrue((ARTICLES_DIR / "tr" / f"{expected_slug}.md").is_file())

@@ -3,99 +3,80 @@ id: "evidence-aware-memory"
 slug: "what-is-evidence-aware-memory"
 type: "learn"
 language: "en"
-title: "What is evidence-aware memory?"
-subtitle: "The conceptual foundation of attaching source identity, exact spans, and scope to agent knowledge"
-summary: "Evidence-aware memory is an architectural paradigm where an AI system cannot store or recall an assertion without binding it to verifiable source identity, evidence spans, and authorization scopes."
-shortAnswer: "Traditional agent memory records what happened; evidence-aware memory records what happened, who said it, which source document proves it, what exact character span supports it, and what scope permits reading it."
+title: "Evidence and provenance: what a citation actually proves"
+subtitle: ""
+summary: "Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth."
+shortAnswer: "Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth."
 category: "Evidence & Trust"
-tags: ["evidence", "provenance", "ai-memory", "auditability"]
+tags: ["provenance", "citation", "hash", "SHA256", "evidence", "kaynak izi", "atıf", "kanıt", "halüsinasyon"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "What Is Evidence-Aware Memory? — MESA Learn"
-seoDescription: "Understand evidence-aware memory: attaching source identity, exact evidence character spans, and authorization scopes to every agent assertion."
+seoTitle: "Evidence and provenance: what a citation actually proves — MESA Learn"
+seoDescription: "Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth."
+lessonOrder: 9
+learningStage: "systems"
+prerequisites: ["structured-vs-unstructured-memory"]
+learningObjectives: ["Verify an evidence span against a frozen source", "Distinguish hashes from source authenticity", "Design audit records and unsupported-answer behavior"]
 ---
 
-## The grounding crisis in autonomous agent memory
+## Four checks, four different conclusions
 
-Most conversational and agent frameworks treat memory as an unverified string store. An LLM observes a conversation, extracts a summary such as 'Customer has approved the revised contract terms', and persists that sentence in a database.
+An assistant answers “The room opens at ten on Fridays” and displays a link. A real link is only the first step. You must ask whether the source exists, whether the cited passage says what the answer claims, whether that source applies to this time and scope, and whether the source itself is trustworthy. Passing one check does not imply the others.
 
-> [!WARNING]
-> **The untraceable claim dilemma**
-> Two weeks later, the agent takes irreversible actions based on that memory. When audited, neither human reviewers nor the system can determine whether that assertion was an authorized statement, a misinterpreted draft, an out-of-date assumption, or a model hallucination. The memory exists, but its grounding does not.
+| Check | What success establishes | What it does not establish |
+| --- | --- | --- |
+| Integrity | These bytes match the recorded digest | Who wrote them or whether true |
+| Provenance | A recorded derivation/ownership path | Correct extraction or honest origin |
+| Support | This passage supports this claim | Source truth or current applicability |
+| Applicability | Scope/time match the question | Universal correctness |
 
-![Archival plate illustrating source documents with highlighted evidence spans connecting through derivation pipelines into tamper-evident canonical assertions](assets/provenance-lineage-plate.svg)
-*Evidence-aware memory: A claim derives legitimacy strictly from its lineage, source identity, and exact textual evidence span.*
-
-**Evidence-Aware Memory**
-: A memory architecture in which knowledge claims cannot exist as detached propositions; every admitted record is cryptographically or structurally bound to its origin source, exact supporting span, and scope boundaries.
-
-## The five structural elements of evidence-aware memory
-
-To be truly evidence-aware, every recalled memory must resolve five distinct questions:
-
-- [ ] 1. Statement (Proposition): The factual claim or relation (e.g. `(Matter 402, status, FILED)`).
-- [ ] 2. Source Identity: The immutable identifier, cryptographic hash, or official URI of the originating document or transaction.
-- [ ] 3. Evidence Span: The precise character offset or byte span `[c_start..c_end]` within the source document that contains the supporting text.
-- [ ] 4. Scope Bounds: The security perimeter defining which tenant, workspace, agent, and temporal window may access this assertion.
-- [ ] 5. Lifecycle State: The auditable status of the record (`COMMITTED`, `PENDING_REVIEW`, `SUPERSEDED`, or `RETRACTED`).
-
-## Casual memory vs evidence-aware memory
-
-The difference between casual string memory and evidence-aware memory is evident in how data is structured for execution:
+## A tiny reproducible span check
 
 ```text
-// Casual string memory (untraceable)
-{
-  "memory": "Client requested arbitration in Zurich under ICC rules."
-}
-
-// Evidence-aware memory assertion (MESA paradigm)
-{
-  "assertion_id": "asrt_88b14a2",
-  "statement": {
-    "subject": "Contract_2024_09",
-    "predicate": "arbitration_clause",
-    "object": "ICC_Zurich"
-  },
-  "source": {
-    "source_id": "doc_contract_v2.pdf",
-    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "evidence_span": [4120, 4285],
-    "quoted_text": "All disputes arising out of the present contract shall be finally settled under the Rules of Arbitration of the International Chamber of Commerce by one or more arbitrators in Zurich."
-  },
-  "scope": {
-    "tenant_id": "tenant_legal_corp",
-    "workspace_id": "matter_402",
-    "valid_from": "2024-09-01T00:00:00Z"
-  },
-  "status": "COMMITTED"
-}
+text = "Atlas opens at 09:00."
+start, end = 15, 20  # Unicode code points; [start, end)
+assert text[start:end] == "09:00"
+# A different encoding/offset convention must be declared explicitly.
 ```
 
-## Why evidence awareness is mandatory in high-stakes domains
+Offsets are meaningful only against the exact source representation used when extracting them. Declare whether positions count bytes, Unicode code points or another unit, and whether the end is exclusive. Unicode normalization, PDF extraction or newline conversion can change offsets. Keep an immutable source revision and enough information to reproduce the text, then validate that the extracted span matches it.
 
-In legal, medical, regulatory, and financial operations, autonomous agents cannot ask users to 'trust' an answer. Every assertion must be auditable:
+A digest such as SHA-256 detects a mismatch relative to a trusted expected digest. An attacker can hash fabricated text just as easily as genuine text. If both text and expected digest come from the same untrusted party, equality is not proof of authenticity. Source acquisition, authenticated publisher identity and chain-of-custody records solve different parts of the problem.
 
-| Domain | Failure Mode of Casual Memory | Evidence-Aware Safeguard |
-| --- | --- | --- |
-| Legal AI | Citing non-existent precedents or superseded statutory articles | Attaches official gazette edition, article number, and verification trace (see [MESA Law](law/)) |
-| Medical Decisions | Relying on outdated patient dosage instructions | Enforces temporal scope and links claim to exact clinician note timestamp |
-| Financial Audits | Conflating preliminary budget estimates with approved figures | Requires signed transaction hashes and authorization scope verification |
-| Multi-Tenant SaaS | Leaking private company strategy across workspace boundaries | Applies strict pre-retrieval tenant filtering to prevent cross-contamination |
+## Keep the chain from answer to source
 
-## General concept vs MESA's implementation
+<!-- diagram: Answer claim links to assertion, exact span, source revision and acquisition record. -->
+1. Answer · Friday at ten
+2. Assertion · a42 + qualifiers
+3. Span · exact supporting text
+4. Revision · handbook-r3
+5. Origin · acquisition record
 
-The general concept of evidence-aware memory can be implemented across various software stacks. What matters is the architectural commitment to grounding claims in verifiable sources before recall.
+*A citation should let a reviewer inspect the evidence without reconstructing the pipeline.*
 
-In [MESA Core](mesa/), this commitment is enforced at the database level: SQLite acts as the canonical store for assertions, evidence spans, and scopes. Search projections ([LanceDB](mesa/) for vectors, [Kùzu](mesa/) for graphs) derive their entries strictly from these canonical assertions. Learn how evidence flows through the system in [How MESA Works](how-it-works/).
+Keep the source quote narrow enough to inspect, but include the qualifying sentence when necessary. “Open at ten” without “Fridays after 1 November” is insufficient support for a question about October. Mark unsupported parts of a multi-claim answer instead of attaching one citation to the entire paragraph and assuming it covers every sentence.
 
-## References
+## Log decisions without duplicating private data
 
-1. [W3C PROV-DM: The PROV Data Model (W3C Recommendation 2013)](https://www.w3.org/TR/prov-dm/)
-2. [MESA Core Architecture Specification](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
-3. [What Is Provenance in AI Systems? — MESA Learn](learn/what-is-provenance-in-ai/)
+For a retrieval decision, record request/run ID, caller scope identifier, source generation, candidate IDs, filtering reasons and final evidence IDs. Prefer references over copying entire private documents into logs. Keep sensitive values out of exception messages. An audit record must itself have access control, retention and deletion rules; “log everything” creates another uncontrolled memory store.
+
+If no eligible source supports the answer, return a clear evidence gap or ask a narrower question. Citation formatting and retrieval grounding can reduce some unsupported outputs, but cannot eliminate hallucinations. W3C PROV supplies a vocabulary for derivation; OWASP explains why retrieved material must remain untrusted as instructions. These are complementary concerns. [PROV](https://www.w3.org/TR/prov-overview/), [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html).
+
+## Test the claim, not the link
+
+> [!EXERCISE]
+> **Check your understanding**
+> A document and SHA-256 digest match, but the document was uploaded by an unknown user. What can you conclude?
+>
+> **Answer:** Only that the supplied bytes match that digest under the declared procedure. You still need origin/authenticity assessment and a separate check that the passage supports the answer. A checksum does not certify source truth.
+
+## Sources and further reading
+
+1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
+2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
+3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

@@ -9,3 +9,11 @@ test('search handles dotted and dotless Turkish I',()=>{
   assert.equal(context.searchText('İÇE AKTARMA'),context.searchText('içe aktarma'));
   assert.equal(context.searchText('IŞIK'),context.searchText('ışık'));
 });
+
+const termHelper=source.match(/function searchTerms\(value\) \{[\s\S]*?\n\}/)[0];
+test('beginner questions retain topic words and tolerate unaccented Turkish',()=>{
+  const context=vm.createContext({isTurkish:true});vm.runInContext(helper+'\n'+termHelper,context);
+  assert.deepEqual(Array.from(context.searchTerms('BM25 nasıl hesaplanır?')),['bm25']);
+  assert.deepEqual(Array.from(context.searchTerms('embedding nedir?')),['embedding']);
+  assert.equal(context.searchText('kosinüs'),context.searchText('kosinus'));
+});

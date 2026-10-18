@@ -3,62 +3,77 @@ id: "evaluating-ndcg-and-mrr-in-memory"
 slug: "evaluating-ndcg-and-mrr-in-memory"
 type: "learn"
 language: "en"
-title: "Evaluating nDCG, MRR, and Recall@k for agent memory retrieval"
-subtitle: "Rigorous ranking metrics for measuring multi-lane hybrid retrieval precision"
-summary: "Evaluating agent memory retrieval requires mathematically grounded metrics: Recall@k measures completeness, MRR measures first-hit speed, and nDCG accounts for graded relevance."
-shortAnswer: "Recall@k measures whether the truth was retrieved; MRR measures how early the first hit appeared; nDCG@k measures the quality of the entire top-k ranking."
-category: "Evaluation"
-tags: ["evaluation", "ndcg", "mrr", "recall-at-k", "benchmarks"]
+title: "Evaluate retrieval: recall, MRR, nDCG and latency"
+subtitle: ""
+summary: "Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples."
+shortAnswer: "Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples."
+category: "Practice"
+tags: ["evaluation", "MRR", "nDCG", "recall", "precision", "benchmark", "latency", "değerlendirme", "gecikme"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-17"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Evaluating nDCG, MRR, and Recall@k for agent memory retrieval — MESA Learn"
-seoDescription: "Evaluating agent memory retrieval requires mathematically grounded metrics: Recall@k measures completeness, MRR measures first-hit speed, and nDCG accounts"
+seoTitle: "Evaluate retrieval: recall, MRR, nDCG and latency — MESA Learn"
+seoDescription: "Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples."
+lessonOrder: 13
+learningStage: "practice"
+prerequisites: ["reciprocal-rank-fusion", "memory-scope-and-authorization"]
+learningObjectives: ["Calculate Recall@k, MRR and nDCG", "Build relevance judgments and a held-out test set", "Report latency, failures and evidence limits together"]
 ---
 
-## The single-metric illusion
+## Start with questions and relevance judgments
 
-Teams building agent memory often report a single metric such as 'Recall@10 = 92%'. However, if the correct assertion is consistently ranked at position #9 rather than #1, the downstream generator experiences significant context distraction and token bloat.
+A search result looks plausible until you define what should have been found. Build a small question set with source-backed judgments. Include exact identifiers, paraphrases, date-sensitive questions, missing-answer cases and forbidden sources. Record the retrieval unit: a relevant document may contain many irrelevant chunks. Have a reviewer judge whether each unit supports the question and retain disagreements for adjudication.
 
-> [!WARNING]
-> **Binary Relevance Flaw**
-> Treating all retrieved documents as either 1 (relevant) or 0 (irrelevant) fails in agent workflows where one document contains the primary ruling while two others provide peripheral procedural history.
+Split development questions from the final test before tuning chunk size, fusion weights or thresholds. Synthetic questions can expand coverage, but an LLM-generated question and LLM-generated label may share mistakes or unnatural wording. Review samples, keep real-user questions where appropriate and deduplicate near-identical questions across splits. Never let answer text leak into the query representation.
 
-## Engineering trade-offs side-by-side
+## One ranked list, several different questions
 
-| Metric | Definition | Optimal Value | Key Sensitivity |
-| --- | --- | --- | --- |
-| Recall@k | Proportion of all relevant items found in top k | 1.0 (100%) | Insensitive to ranking order within the top k |
-| MRR (Mean Reciprocal Rank) | Average of (1 / rank of first relevant item) | 1.0 (always #1) | Only evaluates the very first relevant hit, ignoring subsequent items |
-| nDCG@k (Normalized DCG) | Ratio of DCG to Ideal DCG using graded gains | 1.0 (perfect order) | Rewards placing highly relevant items at the very top of the list |
-| MAP (Mean Average Precision) | Mean of precision scores at each relevant retrieval | 1.0 | Balances precision and recall across multiple relevant items |
+| Rank | Passage | Relevance grade |
+| --- | --- | --- |
+| 1 | A · unrelated room | 0 |
+| 2 | B · exact Friday hours | 2 |
+| 3 | C · useful supporting context | 1 |
 
-## The nDCG discounted cumulative gain equation
-
-Discounted Cumulative Gain (DCG) discounts relevance gains logarithmically based on rank position: `DCG@k = Σ (2^{rel_i} - 1) / log_2(i + 1)`. Normalizing by the Ideal DCG (IDCG@k) produces a score in [0.0, 1.0] invariant to list length.
+Assume B and C are the only two relevant units in this tiny judged corpus. Precision@3 is 2/3: the fraction retrieved that is relevant. Recall@3 is 2/2 = 1: the fraction of all relevant units retrieved. Reciprocal rank is 1/2 because the first relevant result is second. MRR averages reciprocal rank across queries, assigning zero when no relevant result appears within the declared cutoff.
 
 ```text
-// Python implementation of nDCG@k calculation
-def ndcg_at_k(relevance_scores, k):
-    dcg = sum((2**rel - 1) / math.log2(idx + 2) for idx, rel in enumerate(relevance_scores[:k]))
-    idcg = sum((2**rel - 1) / math.log2(idx + 2) for idx, rel in enumerate(sorted(relevance_scores, reverse=True)[:k]))
-    return dcg / idcg if idcg > 0 else 0.0
+gain(rel) = 2**rel - 1
+DCG@3 = sum(gain(rel_i) / log2(i+1), i=1..3)
+Observed [0,2,1]: 0 + 3/log2(3) + 1/log2(4) = 2.3928
+Ideal    [2,1,0]: 3 + 1/log2(3) + 0           = 3.6309
+nDCG@3 = 2.3928 / 3.6309 = 0.6590
 ```
 
-## Evaluation rigor in MESA
+The system retrieved every relevant item but ranked an irrelevant one first. Recall alone hides that problem; nDCG penalizes it using graded relevance and position. State the gain function, discount, cutoff and policy for queries with no relevant judgments. Different conventions can produce different values. Unjudged material is not automatically proven irrelevant.
 
-MESA's independent retrieval audit suite tests four distinct retrieval lanes across synthetic and legal golden datasets. The pipeline measures Recall@5, MRR, and nDCG@10 deterministically on every release baseline.
+## Change one factor, inspect the failures
 
-- [ ] Ground truth datasets enforce graded relevance labels (0 = irrelevant, 3 = primary authority).
-- [ ] Queries and judgments are versioned in frozen JSONL artifacts.
-- [ ] Zero-result queries and failure cases are explicitly tracked.
-- [ ] Evaluation gates block release regressions in CI before deployment.
+<!-- diagram: Freeze questions and data, compare a baseline with one change, compute paired metrics and inspect failures. -->
+1. Freeze · corpus + judgments
+2. Baseline · lexical only
+3. Variant · add dense lane
+4. Compare · same queries
+5. Inspect · losses and gains
 
-## References
+*A higher average can conceal regressions in identifiers, language or authorization.*
 
-1. [Järvelin & Kekäläinen (2002) — Cumulated Gain-Based Evaluation of IR Techniques (ACM TOIS)](https://dl.acm.org/doi/10.1145/582415.582418)
-2. [MESA Independent Retrieval Audit and Test Suite](https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py)
+Compare per-query changes and useful slices: identifier versus paraphrase, short versus long source, language and source age. Report uncertainty when sample size permits, and retain the raw query-level results. BEIR demonstrates evaluation across heterogeneous retrieval tasks; reuse its discipline, not its scores as your own. [BEIR](https://arxiv.org/abs/2104.08663), [IR evaluation](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html).
+
+## Measure speed without hiding failures
+
+Measure end-to-end retrieval and stage timings separately. Declare hardware, corpus size, concurrency, cache state, warm-up, request count and timeout. Report median and tail latency with errors and empty responses. Dropping timed-out requests from the latency table can make a failing system look fast. A local deterministic fixture tests a contract; it does not measure real embedding-provider quality or production capacity.
+
+> [!EXERCISE]
+> **Check your understanding**
+> Variant X raises Recall@20 but reduces nDCG@5. Is X simply better?
+>
+> **Answer:** Not necessarily. It finds more relevant candidates but places them less effectively near the top. Decide based on the downstream task, reranking budget, failure slices and latency; inspect which queries improved and regressed.
+
+## Sources and further reading
+
+1. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
+2. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 

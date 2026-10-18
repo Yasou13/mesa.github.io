@@ -3,70 +3,74 @@ id: "why-graphs-matter"
 slug: "why-graphs-matter-in-ai-memory"
 type: "learn"
 language: "tr"
-title: "AI memory sistemlerinde grafikler (graph) neden önemlidir?"
-subtitle: "Ajan bilgisinde varlıklar, çok sekmeli gezinimler ve ilişkisel bağlam"
-summary: "Bilgi grafikleri varlıkları ve açık ilişkilerini temsil eder; yapay zekâ ajanlarının düz metin aramasının çözemediği çok sekmeli bağlantıları ve topolojik bağlamı gezmesini sağlar."
-shortAnswer: "Grafikler olguları açık tipli kenarlarla birbirine bağlar; ajanların anlamsal benzerlikle tahmin yürütmek yerine ilişkisel yolları gezerek karmaşık soruları yanıtlamasına imkân tanır."
+title: "Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek"
+subtitle: ""
+summary: "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
+shortAnswer: "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
 category: "Memory & Retrieval"
-tags: ["knowledge-graph", "relations", "ai-memory", "graph-theory"]
+tags: ["graph", "GraphRAG", "multi hop", "Kuzu", "knowledge graph", "çizge", "ilişki"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "AI Memory Sistemlerinde Grafikler (Graph) Neden Önemlidir? — MESA Learn"
-seoDescription: "Ajan hafızasında bilgi grafiklerini keşfedin: varlıklar, tipli ilişkiler, çok sekmeli gezinimler ve grafik derinliği ile yazma karmaşıklığı arasındaki ödünleşimler."
+seoTitle: "Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek — MESA Learn"
+seoDescription: "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
+lessonOrder: 8
+learningStage: "retrieval"
+prerequisites: ["structured-vs-unstructured-memory", "hybrid-retrieval"]
+learningObjectives: ["Varlık ve koşullu ilişki modellemek", "Sınırlı iki adımlı sorguyu izlemek", "Çizge yolunun yanıtı desteklemediğini görmek"]
 ---
 
-## Yalıtılmış olgulardan bağlantılı ağlara
+## İlişki kimlik ve kanıt gerektirir
 
-Yapılandırılmamış hafıza olguları birbirinden kopuk metin parçaları olarak saklar: 'Ahmet X Hukuk Bürosunda ortaktır', 'X Hukuk Bürosu Y Şirketini temsil eder', 'Y Şirketi Z İştirakini satın almıştır'. Yalnızca düz vektör aramasına dayanan bir ajan, her cümleyi uzayda izole bir nokta olarak görür.
+Metin araması pasaj bulur. Çizge sorgusu açıkça temsil edilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe düğümleri; “parçası” ve “bulunduğu yer” kenarları kurun. Sabit düğüm kimliği kullanıp her iddia kenarını destekleyen kaynak revizyonuna bağlayın. “Merkez” gibi etiket kimliği çözmeye yetmez.
 
-![Birbirine bağlı graph düğümlerini, 2 sekmeli gezinimleri ve kapsam sınırlarını gösteren tarihi gravür plakası](assets/topological-network-plate.svg)
-*Topolojik graph gezinimi, varlıklar arasındaki tipli ilişki yollarını takip ederek bağlamı birden fazla sekmede çözümler.*
+```text
+room-7 --part_of [evidence: handbook-r3/c4]--> archive-2
+archive-2 --located_in [evidence: directory-r1/c2]--> district-5
+room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
+```
 
-Bir bilgi grafiği bu olguları açık ve gezilebilir bir topolojiye bağlar: `(Ahmet)-[:ORTAK]->(X Bürosu)-[:TEMSİL_EDER]->(Y Şirketi)-[:SATIN_ALDI]->(Z İştiraki)`. İlişkilerin kendisi birinci sınıf, sorgulanabilir veri varlıkları haline gelir.
+İlişkiler yön ve tür taşır. “A, B’yi yönetir”, “B, A’yı yönetir” değildir; “atıf yapar”, “katılır” değildir. Zaman, kapsam ve belirsizlik ilişkiyi değiştiriyorsa koruyun. Kaynağın aynı paragrafta iki isim anması aralarında anlamlı kenar kurmaz. Birlikte görünme keşif sinyali olabilir; doğrulanmış ilişki değildir.
 
-## Çok sekmeli gezinim (multi-hop traversal) nasıl çalışır?
+## İki adımlı soruyu çözün
 
-Bir ajanın 'Ahmet'in Z İştiraki ile potansiyel bir çıkar çatışması var mı?' sorusunu yanıtlaması gerektiğini düşünün:
+“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” diye sorun. Salon 7’yi çözün, `part_of` ile arşiv 2’ye, `located_in` ile ilçe 5’e gidin. İki kenar kimliğini ve kaynaklarını döndürün. Her adımın anlamı belli olduğundan kanıt zinciri incelenebilir. Kaynaklardan biri erişilemez, eski veya belirsizse tam yanıt o çağıran için desteklenmez.
 
-- Vektör Arama başarısızlığı: Hiçbir tek metin parçası hem 'Ahmet' hem de 'Z İştiraki' ifadelerini birlikte içermez. Sorgu ile izole metin parçaları arasındaki benzerlik düşüktür.
-- Graph Gezinimi başarısı: Ajan 'Ahmet' varlık düğümünü sorgular, dışa doğru ilişki kenarlarını takip eder ve onu Z İştirakine bağlayan çok sekmeli yolu 3 deterministik adımda keşfeder.
+<!-- diagram: Okuma salonu arşive, ardından ilçeye bağlanır; her adım kaynak kimliğini korur. -->
+1. Çöz · room-7
+2. Adım 1 · part_of
+3. Arşiv · archive-2
+4. Adım 2 · located_in
+5. Yanıt · district-5 + 2 kaynak
 
-**Çok Sekmeli Gezinim (Multi-Hop Traversal)**
-: Tek bir metin parçasında açıkça belirtilmeyen dolaylı ilişkileri çıkarmak için bağlantılı kenarlar $(E_1 \rightarrow E_2 \rightarrow \dots \rightarrow E_k)$ boyunca sırayla ilerleme süreci.
+*İki kenar ancak ilişkiler ve kapsamlar geçerliyse desteklenen zincir olur.*
 
-## Grafikler ne zaman yardımcı olur — ne zaman gereksiz karmaşıklık getirir?
+## Yol kendiliğinden çıkarım kuralı değildir
 
-Grafikler tüm yapay zekâ uygulamaları için zorunlu değildir. Basit problemlere graph altyapısı eklemek ciddi bir mühendislik yükü yaratır:
+A, B’ye; B de C’ye atıf yapıyor olsun. A’dan C’ye iki kenarlı atıf yolu olduğunu söyleyebilirsiniz. A’nın C’ye katıldığını, C’nin doğru olduğunu veya A’nın doğrudan C’ye atıf yaptığını çıkaramazsınız. Geçerli çıkarım, anlamı bileşime izin veren kural gerektirir. Bulunan yol ile yolun gerçekten desteklediği önermeyi ayırın.
 
-| Boyut | Düz Vektör / Lexical Hafıza | Graph Destekli Hafıza |
-| --- | --- | --- |
-| Kabul / Yazma Maliyeti | Düşük: metin parçalarını doğrudan vektörleştir | Yüksek: LLM ile varlık, tip ve ilişki çıkarımı gerektirir |
-| Çıkarım Güvenilirliği | Deterministik metin bölme | Olasılıksal: LLM var olmayan ilişkiler halüsinasyon edebilir |
-| İlişkisel Çok Sekmeli Muhakeme | Çok zayıf: akıl yürütme zincirlerini izleyemez | Çok güçlü: yol sorguları (Cypher, SPARQL) kesindir |
-| Sorgu Gecikmesi | Milisaniyenin altında vektör taraması | Değişken: graph çapına ve bağlantı yoğunluğuna bağlıdır |
-| İdeal Kullanım Alanları | Belge arama, SSS, anlamsal keşif | Şirket yapıları, hukuki çatışmalar, bağımlılık ağları |
+Benzer biçimde merkezilik, seçilmiş tanım altında bağlantısallığı ölçer. Popüler düğüme sık atıf yapılıp düğüm yanlış olabilir. PageRank’i doğruluk skoru yapmayın veya açık politika olmadan hoşunuza gitmeyen kaynağı bastırmasına izin vermeyin. Kaynak niteliği, ilgililik ve çizge görünürlüğü ayrı soruları yanıtlar.
 
-## Çıkarım ve senkronizasyon zorluğu
+## Maliyeti sınırlayın, eksikliği tanıyın
 
-Üretim ortamlarında bağımsız bir graph veritabanını tek bilgi kaynağı (source of truth) yapmak senkronizasyon krizlerine yol açar. Bir varlık güncellendiğinde veya silindiğinde, graph düğümlerinin yetim kalmaması için atomik olarak güncellenmesi gerekir.
+Ortalama dallanma 10 ise üç adım, tekrar ayıklamadan önce yaklaşık 10 + 100 + 1.000 komşu inceleyebilir. Merkez düğüm bunu büyütebilir. Başlangıç sayısı, adım derinliği, düğüm başına yayılım, toplam kenar bütçesi ve timeout belirleyin. Sınırlı arama geçerli yolu kaçırabilir; “ilişki yok” demek yerine kesilmeyi belirtin. Önbellek anahtarı erişim kapsamını ve kaynak neslini içermelidir.
 
-> [!WARNING]
-> **Graph veritabanlarını birincil veri kaynağı yapmayın**
-> Büyük dil modelleriyle graph ilişkileri çıkarmak doğası gereği gürültülüdür. Graph veritabanı tek kayıt yeri olursa, hataları düzeltmek zorlu ameliyatlar gerektirir. Sağlam mimariler kanonik bir ilişkisel depo tutar ve graph projeksiyonlarını aşağı akışta türetir.
+GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. Edge ve arkadaşları veri kümesi genelindeki sorular için çizgeden türetilmiş topluluk özetleri açıklar. Bu, yerel soruda ham yol döndürmekten farklıdır. Özet üretimi, kaynak kapsamı ve güncelleme politikası değerlendirilecek yeni türetilmiş artefakt ekler. Kenarları çizge veritabanına yazmak tek başına o araştırma yöntemini uygulamaz. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130).
 
-## MESA graph hafızasını nasıl uygular?
+## Bağlantı ile desteği ayırın
 
-[MESA Core](mesa/) içinde graph, dışarıdan bağımlı kapalı bir veritabanı değildir. Kanonik hafıza, SQLite içinde yapılandırılmış assertion'lar olarak kaydedilir. MESA ardından ilişkisel üçlüleri analitik graph sorguları için optimize edilmiş süreç içi [Kùzu](mesa/) veritabanına projekte eder.
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> A, B’ye atıf yapıyor; B, C’yi eleştiriyor. Çizge yolu var diye asistan “A, C’yi destekliyor” diyebilir mi?
+>
+> **Answer:** Hayır. İlgiliyse türleri belirtilmiş yolu döndürüp kaynak pasajlarını inceleyin. Bu ilişki türleri destek sonucuna birleşmez. Çizge incelenecek zinciri açar; mantıksal anlamını icat etmez.
 
-Bu projeksiyon yaklaşımı işlemsel dayanıklılık sağlar: graph projeksiyonu bozulursa veya senkronizasyonunu kaybederse, kanonik SQLite deposundan deterministik olarak yeniden üretilebilir. Veri projeksiyonlarını [MESA Core](mesa/) sayfasında inceleyin.
+## Kaynaklar ve ileri okuma
 
-## Kaynaklar
-
-1. [Hogan vd. (2021) — Knowledge Graphs (ACM Computing Surveys)](https://dl.acm.org/doi/10.1145/3447772)
-2. [Angles & Gutierrez (2008) — Survey of Graph Database Models](https://dl.acm.org/doi/10.1145/1322432.1322433)
-3. [MESA Core Depolama Projeksiyonları Spesifikasyonu](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
+1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
+2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
+3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

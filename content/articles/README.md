@@ -52,29 +52,31 @@ If any file is edited without recompilation, the check will fail with exact file
 
 ---
 
-## Slug vs ID Mapping
+## Learning course and consolidation
 
-Each article has both a **canonical ID** (internal database identifier used for cross-references and relationships) and a **URL slug** (used for clean web URLs and file naming).
+The published Learn course is defined in `content/learn-curriculum.json`. Its
+14 lessons follow four stages: foundations, retrieval, trustworthy systems and
+practice. Prerequisites must refer to earlier published lessons. Course order,
+learning objectives and prerequisites live in the hub/curriculum model; Markdown
+frontmatter exports a snapshot for readers and downstream tools.
 
-The Markdown filename always corresponds to `{slug}.md`. The YAML frontmatter contains both `id` and `slug`.
+All Learn articles require substantive explanation, a worked example or concrete
+case, an accessible diagram, an exercise with an explanation, and at least two
+relevant primary references. A list of links alone is not source-backed teaching.
+Explain which source supports the concept; label original illustrative examples.
+Verify executable code and arithmetic and keep general concepts distinct from
+MESA's implemented contracts.
 
-| Internal ID | URL Slug / Filename (`.md`) | Canonical Route |
-| :--- | :--- | :--- |
-| `semantic-search` | `semantic-search.md` | `/learn/semantic-search/` |
-| `what-is-ai-memory` | `what-is-ai-memory.md` | `/learn/what-is-ai-memory/` |
-| `rag-vs-ai-memory` | `rag-vs-ai-memory.md` | `/learn/rag-vs-ai-memory/` |
-| `structured-vs-unstructured-memory` | `structured-vs-unstructured-memory.md` | `/learn/structured-vs-unstructured-memory/` |
-| `vector-search-limits` | `why-vector-search-alone-is-not-enough.md` | `/learn/why-vector-search-alone-is-not-enough/` |
-| `hybrid-retrieval` | `hybrid-retrieval-explained.md` | `/learn/hybrid-retrieval-explained/` |
-| `why-graphs-matter` | `why-graphs-matter-in-ai-memory.md` | `/learn/why-graphs-matter-in-ai-memory/` |
-| `reciprocal-rank-fusion` | `reciprocal-rank-fusion-explained.md` | `/learn/reciprocal-rank-fusion-explained/` |
-| `evidence-aware-memory` | `what-is-evidence-aware-memory.md` | `/learn/what-is-evidence-aware-memory/` |
-| `provenance-in-ai` | `what-is-provenance-in-ai.md` | `/learn/what-is-provenance-in-ai/` |
-| `memory-scope-and-authorization` | `memory-scope-and-authorization.md` | `/learn/memory-scope-and-authorization/` |
-| `keyword-semantic-protocol` | `keyword-vs-semantic-search.md` | `/research/keyword-vs-semantic-search/` |
-| `verify-ai-yargitay` | `verify-ai-yargitay-decision.md` | `/guides/verify-ai-yargitay-decision/` |
-| `provenance` | `provenance.md` | `/glossary/provenance/` |
-| `retrieval-evaluation` | `retrieval-evaluation.md` | `/methodology/retrieval-evaluation/` |
+Before adding an article, check whether it belongs in an existing lesson. The
+`redirects` array records 18 merged routes and their maintained lesson IDs. These
+routes render noindex redirects with the new canonical target; they are excluded
+from search and the sitemap. Remove the retired Markdown files and repair related
+IDs instead of leaving duplicate publications.
+
+Each published lesson exports `article.md` next to its HTML route. `/learn/index.md`
+and `/tr/learn/index.md` list these readable Markdown sources. Search indexes the
+actual lesson sections and links directly to matching anchors. Core documentation,
+Research, Guides, Glossary and Methodology retain their own publication models.
 
 ---
 

@@ -28,6 +28,9 @@ SEED_SQL_FILE = ROOT / "supabase" / "seed.sql"
 
 def block_to_markdown(block: dict) -> str:
     kind = block.get("kind")
+    if kind == "exercise":
+        return (f"> [!EXERCISE]\n> **{block['title']}**\n> {block['text']}\n>\n"
+                f"> **Answer:** {block['answer']}\n\n")
     if kind == "paragraph":
         return block.get("text", "") + "\n\n"
     elif kind == "list":
@@ -115,6 +118,13 @@ def parse_markdown_blocks(content: str, sec_title: str = "") -> list[dict]:
                 rows.append([c.strip() for c in line.strip("|").split("|")])
             blocks.append({"kind": "table", "headers": headers, "rows": rows})
             continue
+
+        if chunk.startswith("> [!EXERCISE]"):
+            match = re.fullmatch(r"> \[!EXERCISE\]\n> \*\*(.*?)\*\*\n> (.*?)\n>\n> \*\*Answer:\*\* (.*)", chunk, re.DOTALL)
+            if match:
+                title, question, answer = match.groups()
+                blocks.append({"kind": "exercise", "title": title, "text": question, "answer": answer})
+                continue
 
         # Callouts / Alerts (> [!NOTE], > [!WARNING], > [!TIP])
         if chunk.startswith("> [!"):
@@ -335,6 +345,11 @@ def generate_article_markdown(entry: dict, lang: str) -> str:
         "seoTitle": loc_seo.get("title", title),
         "seoDescription": loc_seo.get("description", summary),
     }
+    if etype == "learn" and entry.get("learning"):
+        learning = entry["learning"]
+        frontmatter.update(lessonOrder=learning["order"], learningStage=learning["stage"],
+                           prerequisites=learning["prerequisites"],
+                           learningObjectives=learning["objectives"][lang])
 
     md_content = "---\n"
     for k, v in frontmatter.items():

@@ -3,99 +3,80 @@ id: "evidence-aware-memory"
 slug: "what-is-evidence-aware-memory"
 type: "learn"
 language: "tr"
-title: "Kanıt odaklı hafıza (evidence-aware memory) nedir?"
-subtitle: "Ajan bilgisine kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamını bağlamanın kavramsal temeli"
-summary: "Kanıt odaklı hafıza; bir yapay zekâ sisteminin herhangi bir iddiayı doğrulanabilir kaynak kimliği, kanıt aralıkları ve yetkilendirme kapsamı olmaksızın saklayamayacağı veya geri çağıramayacağı bir mimari paradigmadır."
-shortAnswer: "Geleneksel ajan hafızası ne olduğunu kaydeder; kanıt odaklı hafıza ise ne olduğunu, kimin söylediğini, hangi kaynak belgenin kanıtladığını, hangi karakter aralığının desteklediğini ve hangi kapsamın okumaya izin verdiğini kaydeder."
+title: "Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?"
+subtitle: ""
+summary: "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
+shortAnswer: "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
 category: "Evidence & Trust"
-tags: ["evidence", "provenance", "ai-memory", "auditability"]
+tags: ["provenance", "citation", "hash", "SHA256", "evidence", "kaynak izi", "atıf", "kanıt", "halüsinasyon"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Kanıt Odaklı Hafıza (Evidence-Aware Memory) Nedir? — MESA Learn"
-seoDescription: "Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama."
+seoTitle: "Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn"
+seoDescription: "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
+lessonOrder: 9
+learningStage: "systems"
+prerequisites: ["structured-vs-unstructured-memory"]
+learningObjectives: ["Kanıt aralığını sabit kaynakta doğrulamak", "Hash ile kaynak özgünlüğünü ayırmak", "Denetim kaydı ve desteksiz yanıt davranışı tasarlamak"]
 ---
 
-## Otonom ajan hafızasında temellendirme krizi
+## Dört kontrol, dört ayrı sonuç
 
-Çoğu konuşma ve ajan kütüphanesi hafızayı doğrulanmamış bir metin deposu olarak ele alır. LLM konuşmayı gözlemler, 'Müvekkil revize sözleşme şartlarını onayladı' gibi bir özet çıkarır ve bu cümleyi veritabanına kaydeder.
+Asistan “Salon cumaları onda açılır” diyor ve bağlantı gösteriyor. Gerçek bağlantı yalnızca ilk adımdır. Kaynak var mı, atıf pasajı yanıtın dediğini söylüyor mu, kaynak bu zaman ve kapsama uygulanıyor mu, kaynak güvenilir mi? Bunları ayrı sorun. Bir kontrolü geçmek diğerlerini sağlamaz.
 
-> [!WARNING]
-> **İzlenemeyen iddia açmazı**
-> İki hafta sonra ajan bu hafızaya dayanarak geri dönüşü olmayan işlemler yapar. Denetim yapıldığında ne insan inceleyiciler ne de sistem bu iddianın yetkili bir beyan mı, yanlış anlaşılmış bir taslak mı yoksa bir model halüsinasyonu mu olduğunu anlayabilir. Hafıza vardır ama kanıtı yoktur.
+| Kontrol | Başarının gösterdiği | Göstermediği |
+| --- | --- | --- |
+| Bütünlük | Baytlar kayıtlı özete uyuyor | Kimin yazdığı veya doğruluk |
+| Kaynak izi | Kayıtlı türetim/sahiplik yolu | Doğru çıkarım veya dürüst köken |
+| Destek | Bu pasaj bu iddiayı destekliyor | Kaynağın doğruluğu veya güncellik |
+| Uygulanabilirlik | Kapsam/zaman soruya uyuyor | Evrensel doğruluk |
 
-![Kaynak belgelerdeki kanıt aralıklarının türetim boru hatlarından geçerek kanonik assertion'lara bağlandığını gösteren tarihi gravür plakası](assets/provenance-lineage-plate.svg)
-*Kanıt odaklı hafıza: Bir iddia meşruiyetini yalnızca kaynak kimliğinden, kesin metin aralığından ve türetim izinden alır.*
-
-**Kanıt Odaklı Hafıza (Evidence-Aware Memory)**
-: Bilgi iddialarının bağlamsız cümleler olarak var olamayacağı; kabul edilen her kaydın köken kaynağına, kesin kanıt aralığına ve yetki sınırlarına yapısal olarak bağlandığı hafıza mimarisi.
-
-## Kanıt odaklı hafızanın beş temel unsuru
-
-Gerçek anlamda kanıt odaklı olabilmesi için geri çağrılan her hafıza kaydı beş soruyu yanıtlamalıdır:
-
-- [ ] 1. İddia (Proposition): Olgusal iddia veya bağıntı (örneğin `(Dosya 402, durum, AÇILDI)`).
-- [ ] 2. Kaynak Kimliği (Source Identity): Belgenin veya işlemin değiştirilemez URI'si, kriptografik özeti (hash) veya resmî sicil kimliği.
-- [ ] 3. Kanıt Aralığı (Evidence Span): Kaynak belge içinde destekleyici metni barındıran kesin karakter veya bayt aralığı `[c_başlangıç..c_bitiş]`.
-- [ ] 4. Kapsam Sınırları (Scope Bounds): Bu iddiaya hangi tenant, workspace, ajan ve zaman penceresinin erişebileceğini tanımlayan güvenlik sınırı.
-- [ ] 5. Yaşam Döngüsü Durumu (Lifecycle State): Kaydın denetlenebilir durumu (`COMMITTED`, `PENDING_REVIEW`, `SUPERSEDED` veya `RETRACTED`).
-
-## Gelişigüzel hafıza ile kanıt odaklı hafıza karşılaştırması
-
-Gelişigüzel metin hafızası ile kanıt odaklı hafıza arasındaki fark, verinin yürütüm için nasıl modellendiğinde açıkça görülür:
+## Küçük, tekrar üretilebilir aralık kontrolü
 
 ```text
-// Gelişigüzel metin hafızası (kaynağı izlenemez)
-{
-  "memory": "Müvekkil uyuşmazlığın Zürih'te ICC kurallarına göre çözülmesini istedi."
-}
-
-// Kanıt odaklı hafıza assertion'ı (MESA paradigması)
-{
-  "assertion_id": "asrt_88b14a2",
-  "statement": {
-    "subject": "Sozlesme_2024_09",
-    "predicate": "tahkim_sarti",
-    "object": "ICC_Zurih"
-  },
-  "source": {
-    "source_id": "sozlesme_v2.pdf",
-    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "evidence_span": [4120, 4285],
-    "quoted_text": "İşbu sözleşmeden doğan tüm uyuşmazlıklar Milletlerarası Ticaret Odası Tahkim Kuralları uyarınca Zürih'te nihai olarak çözümlenecektir."
-  },
-  "scope": {
-    "tenant_id": "tenant_hukuk",
-    "workspace_id": "dosya_402",
-    "valid_from": "2024-09-01T00:00:00Z"
-  },
-  "status": "COMMITTED"
-}
+text = "Atlas opens at 09:00."
+start, end = 15, 20  # Unicode code points; [start, end)
+assert text[start:end] == "09:00"
+# A different encoding/offset convention must be declared explicitly.
 ```
 
-## Kanıt odaklılık kritik alanlarda neden zorunludur?
+Konumlar ancak çıkarımda kullanılan tam kaynak temsiline göre anlamlıdır. Bayt, Unicode kod noktası veya başka birim mi sayıldığını ve bitişin dışarıda olup olmadığını belirtin. Unicode normalizasyonu, PDF çıkarımı veya satır sonu dönüşümü konumları değiştirebilir. Değişmez kaynak revizyonunu ve metni yeniden üretmeye yetecek bilgiyi tutup çıkarılan aralığın eşleşmesini doğrulayın.
 
-Hukuk, tıp, regülasyon ve finans alanlarında otonom ajanlar kullanıcılardan 'kendilerine güvenmelerini' isteyemez. Her iddia denetlenebilir olmalıdır:
+SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. Saldırgan uydurma metni de gerçek metin kadar kolay hash’leyebilir. Metin ve beklenen hash aynı güvenilmeyen taraftan geliyorsa eşitlik özgünlük kanıtı değildir. Kaynak edinimi, doğrulanmış yayıncı kimliği ve teslim zinciri kayıtları problemin başka parçalarını çözer.
 
-| Alan | Gelişigüzel Hafızanın Hata Modu | Kanıt Odaklı Güvenlik Ağı |
-| --- | --- | --- |
-| Hukuk Yapay Zekâsı | Var olmayan emsal kararlar veya mülga kanun maddeleri atfetme | Resmî gazete sayısını, madde numarasını ve doğrulama izini bağlar (bkz. [MESA Law](law/)) |
-| Tıbbi Kararlar | Eski hasta dozaj talimatlarına güvenme | Zamansal kapsamı zorunlu kılar ve iddiayı hekim notunun tam zaman damgasına bağlar |
-| Finansal Denetim | Taslak bütçe tahminlerini onaylanmış rakamlarla karıştırma | İmzalı işlem özetleri ve yetkilendirme kapsam doğrulaması gerektirir |
-| Çoklu Şirket (SaaS) | Şirket stratejisini workspace sınırlarının dışına sızdırma | Çapraz veri sızıntısını önlemek için geri getirme öncesi sıkı tenant filtrelemesi uygular |
+## Yanıttan kaynağa zinciri koruyun
 
-## Genel kavram ile MESA'nın uygulaması
+<!-- diagram: Yanıt iddiası iddiaya, tam aralığa, kaynak revizyonuna ve edinim kaydına bağlanır. -->
+1. Yanıt · cuma onda
+2. İddia · a42 + koşullar
+3. Aralık · tam destek metni
+4. Revizyon · handbook-r3
+5. Köken · edinim kaydı
 
-Kanıt odaklı hafıza genel bir kavram olarak farklı yazılım mimarilerinde uygulanabilir. Önemli olan, iddiaları geri çağırmadan önce doğrulanabilir kaynaklara bağlama ilkesidir.
+*Atıf inceleyenin hattı yeniden kurmadan kanıtı kontrol etmesini sağlamalıdır.*
 
-[MESA Core](mesa/) içinde bu ilke veritabanı seviyesinde uygulanır: SQLite; assertion'ların, kanıt aralıklarının ve kapsamların kanonik deposudur. Arama projeksiyonları (vektörler için [LanceDB](mesa/), grafikler için [Kùzu](mesa/)) verilerini doğrudan bu kanonik kayıtlardan türetir. Kanıtın sistemde nasıl aktığını [MESA Nasıl Çalışır](how-it-works/) sayfasında görebilirsiniz.
+Alıntıyı incelenebilir ölçüde dar tutun; gerektiğinde niteleyici cümleyi ekleyin. “1 Kasım sonrası cumaları” olmadan “onda açılır” ifadesi ekim sorusunu desteklemez. Tek atfı paragrafa iliştirip her cümleyi kapsadığını varsaymak yerine çok iddialı yanıtta desteklenmeyen parçaları işaretleyin.
 
-## Kaynaklar
+## Özel veriyi çoğaltmadan kararları kaydedin
 
-1. [W3C PROV-DM: The PROV Data Model (W3C Tavsiyesi 2013)](https://www.w3.org/TR/prov-dm/)
-2. [MESA Core Mimari Spesifikasyonu](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
-3. [Yapay Zekâ Sistemlerinde Provenance Nedir? — MESA Learn](learn/what-is-provenance-in-ai/)
+Retrieval kararında istek/çalışma kimliği, çağıran kapsam kimliği, kaynak nesli, aday kimlikleri, filtre gerekçeleri ve son kanıt kimliklerini kaydedin. Özel belgeleri bütünüyle log’a kopyalamak yerine referans tercih edin. Hassas değerleri hata mesajlarından çıkarın. Denetim kaydı da erişim, saklama ve silme kuralı ister; “her şeyi log’la” denetimsiz başka hafıza deposu yaratır.
+
+Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün veya daha dar soru isteyin. Atıf biçimi ve retrieval ile kaynaklandırma bazı desteksiz çıktıları azaltabilir; halüsinasyonu ortadan kaldırmaz. W3C PROV türetim sözlüğü sunar; OWASP getirilen materyalin talimat olarak neden güvenilmez kalacağını açıklar. Bunlar tamamlayıcı konulardır. [PROV](https://www.w3.org/TR/prov-overview/), [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html).
+
+## Bağlantıyı değil iddiayı test edin
+
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> Belge SHA-256 özetiyle eşleşiyor; fakat belgeyi bilinmeyen kullanıcı yüklemiş. Ne sonuç çıkarabilirsiniz?
+>
+> **Answer:** Yalnızca verilen baytların belirtilen yöntemle o özete uyduğunu söyleyebilirsiniz. Köken/özgünlük değerlendirmesi ve pasajın cevabı desteklediğine ayrı kontrol gerekir. Sağlama toplamı kaynak doğruluğunu sertifikalandırmaz.
+
+## Kaynaklar ve ileri okuma
+
+1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
+2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
+3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

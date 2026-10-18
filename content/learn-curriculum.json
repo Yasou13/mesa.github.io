@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-18",
+  "stages": [
+    {
+      "id": "foundation",
+      "number": "01",
+      "title": {
+        "en": "Start from zero",
+        "tr": "Sıfırdan başlayın"
+      },
+      "description": {
+        "en": "Context, RAG and source-linked records",
+        "tr": "Bağlam, RAG ve kaynağa bağlı kayıtlar"
+      }
+    },
+    {
+      "id": "retrieval",
+      "number": "02",
+      "title": {
+        "en": "Learn to retrieve",
+        "tr": "Aramayı öğrenin"
+      },
+      "description": {
+        "en": "Represent, rank, fuse and follow relations",
+        "tr": "Temsil, sıralama, birleştirme ve ilişkiler"
+      }
+    },
+    {
+      "id": "systems",
+      "number": "03",
+      "title": {
+        "en": "Build trustworthy systems",
+        "tr": "Güvenilir sistem kurun"
+      },
+      "description": {
+        "en": "Evidence, permissions, durability and change",
+        "tr": "Kanıt, izin, kalıcılık ve değişim"
+      }
+    },
+    {
+      "id": "practice",
+      "number": "04",
+      "title": {
+        "en": "Measure and build",
+        "tr": "Ölçün ve uygulayın"
+      },
+      "description": {
+        "en": "Judge retrieval and run your first lab",
+        "tr": "Retrieval’ı değerlendirin, ilk laboratuvarı çalıştırın"
+      }
+    }
+  ],
+  "lessons": [
+    "what-is-ai-memory",
+    "rag-vs-ai-memory",
+    "structured-vs-unstructured-memory",
+    "semantic-search",
+    "bm25-tuning-for-domain-documents",
+    "hybrid-retrieval",
+    "reciprocal-rank-fusion",
+    "why-graphs-matter",
+    "evidence-aware-memory",
+    "memory-scope-and-authorization",
+    "sqlite-as-canonical-agent-memory",
+    "temporal-decay-in-ai-memory",
+    "evaluating-ndcg-and-mrr-in-memory",
+    "build-a-small-search-lab"
+  ],
+  "redirects": [
+    {
+      "fromPath": "learn/session-state-vs-durable-memory/",
+      "toId": "what-is-ai-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/why-vector-search-alone-is-not-enough/",
+      "toId": "semantic-search",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/dense-vs-sparse-embeddings/",
+      "toId": "semantic-search",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/lancedb-vector-indexing-patterns/",
+      "toId": "sqlite-as-canonical-agent-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/graph-rag-vs-pure-graphs/",
+      "toId": "why-graphs-matter",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/multi-hop-reasoning-over-knowledge-graphs/",
+      "toId": "why-graphs-matter",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/kuzu-graph-storage-projections/",
+      "toId": "why-graphs-matter",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/what-is-provenance-in-ai/",
+      "toId": "evidence-aware-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/cryptographic-evidence-spans/",
+      "toId": "evidence-aware-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/hallucination-mitigation-via-evidence/",
+      "toId": "evidence-aware-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/audit-logging-in-production-ai/",
+      "toId": "evidence-aware-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/role-based-access-control-in-memory/",
+      "toId": "memory-scope-and-authorization",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/multi-agent-shared-memory-protocols/",
+      "toId": "memory-scope-and-authorization",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/contradiction-detection-in-memory/",
+      "toId": "temporal-decay-in-ai-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/legal-statute-invalidation-pipelines/",
+      "toId": "temporal-decay-in-ai-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/reranking-strategies-for-agent-memory/",
+      "toId": "hybrid-retrieval",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/benchmarking-retrieval-latency/",
+      "toId": "evaluating-ndcg-and-mrr-in-memory",
+      "reason": "merged"
+    },
+    {
+      "fromPath": "learn/synthetic-query-generation-for-benchmarks/",
+      "toId": "evaluating-ndcg-and-mrr-in-memory",
+      "reason": "merged"
+    }
+  ]
+}

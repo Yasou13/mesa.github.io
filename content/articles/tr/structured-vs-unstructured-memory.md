@@ -3,69 +3,85 @@ id: "structured-vs-unstructured-memory"
 slug: "structured-vs-unstructured-memory"
 type: "learn"
 language: "tr"
-title: "Yapılandırılmış hafıza ile yapılandırılmamış hafıza karşılaştırması"
-subtitle: "Serbest metin parçaları ile tipli assertion'ların, şemaların ve ilişkisel varlıkların değerlendirilmesi"
-summary: "Yapılandırılmamış hafıza ham metin parçaları ve vektörleri saklarken, yapılandırılmış hafıza bilgiyi tipli assertion'lar, varlıklar, ilişkiler ve açık şemalar halinde düzenler."
-shortAnswer: "Yapılandırılmamış hafıza esnektir ve kolay yazılır; yapılandırılmış hafıza ise deterministik filtreleme, ilişkisel sorgular, çelişki yönetimi ve güvenilir durum güncellemeleri sağlar."
+title: "Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak"
+subtitle: ""
+summary: "Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun."
+shortAnswer: "Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun."
 category: "Foundations"
-tags: ["structured-memory", "knowledge-representation", "ai-memory", "foundations"]
+tags: ["assertion", "entity", "schema", "chunk", "iddia", "varlık", "şema", "kanıt aralığı"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Yapılandırılmış Hafıza ile Yapılandırılmamış Hafıza Karşılaştırması — MESA Learn"
-seoDescription: "Serbest metin parçaları ile tipli assertion'lar arasındaki teknik farkları, sorgu determinizmini, güncelleme mekaniğini ve mühendislik ödünleşimlerini inceleyin."
+seoTitle: "Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak — MESA Learn"
+seoDescription: "Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun."
+lessonOrder: 3
+learningStage: "foundation"
+prerequisites: ["what-is-ai-memory", "rag-vs-ai-memory"]
+learningObjectives: ["Parça, varlık ve iddiayı ayırmak", "Niteleyicileri ve kanıt konumunu korumak", "Geçmişi değiştirmeden çıkarımı düzeltmek"]
 ---
 
-## Ajan bilgisini temsil etmenin iki paradigması
+## Aynı kaynağın üç temsili
 
-Bir yapay zekâ ajanı bilgiyi hatırladığında, onu belirli bir veri temsilinde saklamak zorundadır. Temel mimari ayrım, yapılandırılmamış metin parçaları ile tipli yapılandırılmış assertion'lar arasında yaşanır.
+Atlas kılavuzu “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00’da açılır; diğer hafta içi günler 09.00 olarak kalır” diyor. Ham metin ifadeyi korur. Parça, bölümünü getirilebilir yapar. İddia bir yorumu açıklaştırır: özne, yüklem, değer ve niteleyiciler. Çizge ilişkileri gezilebilir yapar. Bu temsillerin hiçbiri kaynağın doğruluğunu kendiliğinden kanıtlamaz.
 
-![Akışkan yapılandırılmamış metin akışları ile yapılandırılmış taksonomik assertion ağacını karşılaştıran tarihi gravür plakası](assets/taxonomic-classification-plate.svg)
-*Yapılandırılmamış hafıza metni akışkan anlamsal parçalar olarak ele alır; yapılandırılmış hafıza tipli varlıkları, açık bağıntıları ve somut kısıtları çıkarır.*
-
-Yapılandırılmamış hafıza ham konuşma turlarını, markdown notlarını veya belge bölümlerini saklar. Bilgiyi bulmak için anlamsal benzerliği tahmin eden embedding algoritmalarına güvenir. Yapılandırılmış hafıza ise ayrık varlıkları, nitelikleri, ilişkileri ve doğruluk koşullarını biçimsel şema tablolarına çıkarır.
-
-## Çelişki ve durum mutasyonu sorunu
-
-Tamamen yapılandırılmamış hafızanın temel kusuru, ajanın zamanla değişen bir olguyu güncellemesi gerektiğinde ortaya çıkar:
-
-> [!WARNING]
-> **Vektör çelişki açmazı**
-> Bir ajan pazartesi günü 'Kullanıcı Python tercih ediyor' kaydını, cuma günü ise 'Kullanıcı Rust'a geçti' kaydını saklarsa iki metin de vektör uzayına gömülür. 'Kullanıcı hangi dili tercih ediyor?' sorgusu her iki parçayı da yüksek benzerlikle geri getirir. Model hangisinin güncel olduğunu tahmin etmek zorunda kalır.
-
-Yapılandırılmış hafızada ise durum değişiklikleri veritabanı anahtarları, zaman damgaları ve revizyon yaşam döngüleri üzerinden deterministik biçimde yönetilir. Sistem `prefers_language` varlık niteliğini günceller veya eski assertion kaydını geçersiz olarak işaretler.
-
-## Mühendislik ödünleşimlerinin karşılaştırması
-
-| Boyut | Yapılandırılmamış Hafıza (Metin + Vektör) | Yapılandırılmış Hafıza (Assertion + Şema) |
+| Temsil | Güçlü yönü | Kaybedebileceği bilgi |
 | --- | --- | --- |
-| Kabul / Yazma Karmaşıklığı | Düşük: metni böl ve embedding hesapla | Yüksek: ayrıştırma, varlık çıkarma ve şema doğrulaması gerektirir |
-| Sorgu İfade Gücü | Yaklaşık anlamsal keşif, eş anlamlılar | Kesin mantıksal filtreler, sayısal karşılaştırmalar, join'ler |
-| Çelişki Yönetimi | Zayıf: çelişkili metin parçaları birikir | Güçlü: birincil anahtarlar, sürümleme, açık güncellemeler |
-| İlişkisel Çok Sekmeli Gezinim | Zayıf: açık varlık kenarlarını gezemez | Güçlü: graph gezinimleri ve ilişkisel SQL sorguları |
-| Token Verimliliği | Düşük: uzun çok cümleli metin parçaları ekler | Yüksek: kompakt, kesin olgusal üçlüler (triple) ekler |
-| Şema Evrimi | Önemsiz: şemasız metin depolama | Veritabanı geçişleri (migration) ve tipli şema güncellemeleri gerektirir |
+| Tam kaynak | Denetim ve yeniden yorumlama | Kolay sorgu yapısı |
+| Metin parçası | Pasaj retrieval’ı | Belge genelindeki niteleyici |
+| İddia | Filtreleme ve join | Nüans veya çıkarım belirsizliği |
+| Çizge kenarı | İlişki gezintisi | Açıkça bağlanmazsa kanıt |
 
-## Modern sentez: Ham kanıtla desteklenen yapılandırılmış olgular
+Temsili soruya göre seçin. “Dördüncü paragraf ne diyor?” tam metin gerektirir. “Cuma dokuzdan sonra hangi salonlar açılıyor?” tipli saat/gün alanlarından yararlanır. Metin yanında kaynağa bağlı iddia tutmak ikisine de hizmet eder. Yapılı satırı parser veya model değişince yeniden çıkarılabilir türetilmiş yorum olarak ele alın.
 
-Yüksek güvenilirlikli ajan mimarileri, yapılandırılmış ile yapılandırılmamış veri arasında yapay bir tercih yapmaya zorlamaz. Bunun yerine iki temsili çift katmanlı bir modelde birbirine bağlar:
+## Koşullarını koruyan bir iddia kurun
 
-- [ ] Yapılandırılmış assertion; indekslenebilir, filtrelenebilir kimliği oluşturur (Özne, Yüklem, Nesne, Zaman, Kapsam).
-- [ ] Ham yapılandırılmamış metin parçası; doğrulanabilir kanıt aralığını oluşturarak orijinal bağlamın korunmasını sağlar.
-- [ ] Sorgular; önce tenant ve kapsam izolasyonunu garanti etmek için yapılandırılmış filtreleri çalıştırır, ardından bu güvenli sınır içinde anlamsal benzerliği ölçer.
+```text
+assertion_id: a-42
+subject_id: room-atlas-reading
+predicate: opening_time
+value: "10:00"
+day_of_week: Friday
+valid_from: 2026-11-01
+source_revision: handbook-r3
+evidence_text: "opens at 10:00 on Fridays"
+extractor_version: example-parser-2
+```
 
-## MESA'nın kanonik assertion mimarisi
+“Cuma”yı düşürmek iddiayı değiştirir. “1 Kasım’dan itibaren” kısmını düşürmek gelecekteki değişikliği güncel gösterir. Birim, olumsuzluk, yetki alanı, zaman ve istisna anlamı etkiliyorsa iddianın parçasıdır. Çıkarım koşulu temsil edemiyorsa kaynağı koruyup yorumu eksik olarak işaretleyin; sessizce atmayın.
 
-[MESA Core](mesa/) içinde hafıza, kapalı bir vektör yığınından ibaret değildir. Kanonik bilgi kaynağı; açık şemaları, yaşam döngüsü durumlarını ve kanıt aralıklarını barındıran ilişkisel SQLite veritabanıdır.
+Salonu etiketinden ayırmak için sabit kimlik kullanın. “Atlas”, “Atlas Okuma Salonu” ve “A Salonu” aynı varlık da olabilir, farklı varlıklar da. Varlık çözümleme kanıt gerektiren ayrı karardır. Metin eşleşmesi aday önerebilir; kurumlar veya erişim kapsamları arasında kayıtları otomatik birleştirmemelidir.
 
-LanceDB ve Kùzu yalnızca türetilmiş projeksiyonlar olarak çalışır. Bir projeksiyon bozulursa veya senkronizasyonunu yitirirse, kanonik SQLite assertion'larından deterministik olarak yeniden üretilebilir. Bu çift katmanlı mimariyi [MESA Core Dokümantasyonu](mesa/) sayfasında inceleyin.
+## Türetimi görünür tutun
 
-## İleri okuma
+<!-- diagram: Kaynak revizyonu parça, çıkarım çalışması ve koşullu iddia üretir. -->
+1. Revizyon r3 · özgün metin
+2. Parça c4 · tam aralık
+3. Çıkarım e2 · model/parser
+4. İddia a42 · niteleyiciler
 
-1. [Sowa (2000) — Knowledge Representation: Logical, Philosophical, and Computational Foundations](https://www.jfsowa.com/krbook/)
-2. [Baader vd. (2003) — The Description Logic Handbook](https://www.cambridge.org/core/books/description-logic-handbook/368B04527F3841C313C5EB8A7AEF9B37)
-3. [MESA V4 Mimari Spesifikasyonu](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
+*Düzeltme türetilmiş iddiayı değiştirir; özgün revizyon tanımlanabilir kalır.*
+
+W3C PROV kaynak izi anlatımında varlık, faaliyet ve aktörü ayırır. Bu örnekte kaynak ve iddia varlık; çıkarım faaliyet; yazılım servisi aktördür. Bu sözlük, iddiayı kimin neyden ürettiğini sormayı kolaylaştırır. Veritabanı şemanızı zorunlu kılmaz veya çıkarımın doğruluğunu sertifikalandırmaz. [PROV genel bakış](https://www.w3.org/TR/prov-overview/).
+
+## Yapıyı ve anlamı ayrı doğrulayın
+
+Şema doğrulama eksik kaynak kimliğini, hatalı saati veya eksik özneyi reddedebilir. Anlamsal kontrol, kaynağın iddiayı gerçekten destekleyip desteklemediğini ve koşulların korunup korunmadığını sorar. JSON doğrulamasını geçmek yalnızca yapısal uyumu gösterir. İki model aynı yanlış anlamayı paylaşabilir; uzlaşma sinyaldir, bağımsız kaynak değildir.
+
+Düzeltmede değişen kaynakla değişen yorumu ayırın. Kaynak aynıysa ama “cuma” yanlışlıkla “her gün” okunduysa yeni çıkarım veya iddia sürümü oluşturup hatalıyı geri çekin. Kılavuz değiştiyse yeni kaynak revizyonu oluşturun. Bu ayrım sonraki yanıtın gerçek, belge veya çıkarım hattı değiştiği için mi değiştiğini denetletir.
+
+## Çıkarımı onarın
+
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> Çıkarım “resmî tatillerde kapalı” ifadesini `is_open=true` yapıyor. JSON şeması geçerli. İnceleme neyi kaydetmeli?
+>
+> **Answer:** Tam destek aralığı, çıkarım sürümü ve etkilenen iddia kimliğiyle anlamsal çelişkiyi kaydetmeli. Türetilmiş iddiayı geri çekin veya değiştirin; kaynak revizyonunu koruyun ve buna kaynak güncellemesi demeyin.
+
+## Kaynaklar ve ileri okuma
+
+1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
+2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

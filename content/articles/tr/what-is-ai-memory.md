@@ -3,87 +3,86 @@ id: "what-is-ai-memory"
 slug: "what-is-ai-memory"
 type: "learn"
 language: "tr"
-title: "AI Memory Nedir?"
-subtitle: "Ajan mimarilerinde durum kalıcılığı, bağlam sınırları ve hafıza yaşam döngüsü"
-summary: "AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır."
-shortAnswer: "AI memory, sohbet geçmişi veya bağlam penceresinden ibaret değildir: ajanlara kalıcı süreklilik sağlayan depolama, kapsamlı geri getirme, mutasyon ve doğrulama yaşam döngüsüdür."
+title: "Yapay zekâ hafızası: konuşmadan sonra ne kalır?"
+subtitle: ""
+summary: "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
+shortAnswer: "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
 category: "Foundations"
-tags: ["ai-memory", "persistence", "context", "foundations"]
+tags: ["memory", "context window", "session", "kalıcı hafıza", "bağlam", "oturum"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 7
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "AI Memory Nedir? — MESA Learn"
-seoDescription: "Yapay zekâ ajan hafızasının nasıl çalıştığını, kısa ve uzun vadeli kalıcılığı, bağlam penceresi sınırlarını ve hafıza yaşam döngüsünü anlayın."
+seoTitle: "Yapay zekâ hafızası: konuşmadan sonra ne kalır? — MESA Learn"
+seoDescription: "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
+lessonOrder: 1
+learningStage: "foundation"
+prerequisites: []
+learningObjectives: ["Bağlamı kalıcı depodan ayırmak", "Neyi saklayıp ne zaman sileceğini belirlemek", "Bir bilgiyi gözlemden sonraki kullanıma izlemek"]
 ---
 
-## Hafıza neden sohbet geçmişinden daha geniştir?
+## “Hatırlamanın” üç ayrı anlamı
 
-İlk konuşma tabanlı prototiplerde 'hafıza', geçmiş kullanıcı ve asistan mesajlarını bir sonraki prompt'un sonuna eklemekten ibaretti. Bu yöntem kısa vadede bir süreklilik hissi yaratsa da etkileşimler uzadıkça yetersiz kalır.
+Kurgusal Atlas arşivi için çalışan bir asistan düşünün. Pazartesi okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni konuşmada açılış saatini soruyorsunuz. Uygulama kullanılabilir bir kayıt sağlamazsa model ancak parametrelerindeki bilgiye dayanabilir. Kendinden emin yanıt hangi yolun kullanıldığını göstermez.
 
-- Bağlam penceresi tükenmesi: Modellerin token sınırları vardır; prompt alanı hızla dolar.
-- Karesel maliyet artışı: Eklenen her tur çıkarım gecikmesini ve işlem maliyetini katlayarak artırır.
-- Dikkat seyrelmesi: Alakasız geçmiş turlar prompt'u doldurduğunda modeller 'lost-in-the-middle' etkisi yaşar ve kritik talimatları gözden kaçırır.
-- Durum mutasyonu eksikliği: Yalnızca konuşma kaydı tutmak; güncellenen olguları, geri çekilen varsayımları veya tamamlanan görevleri temsil edemez.
+Büyük dil modeli (LLM), aldığı girdiden sonraki token’ları tahmin ederek metin üretir. Token kodlanmış metin birimidir; her zaman tam kelime değildir. Bağlam penceresi modelin arayüzü altında çalışabildiği sınırlı girdi/çıktı token dizisidir. Kalıcı depolama bu tahmin sürecinin dışında, uygulamaya ait mekanizmadır. Burada hafıza bir mühendislik terimidir; insan gibi hatırlama iddiası değildir.
 
-**AI Memory**
-: Farklı model çağrıları boyunca doğrulanmış olguları ve sistem durumunu seçici biçimde kabul eden, saklayan, indeksleyen, güncelleyen ve geri çağıran yapılandırılmış kalıcılık alt sistemi.
+| Katman | İçerik | Değişim yolu |
+| --- | --- | --- |
+| Model parametreleri | Eğitimde öğrenilen örüntüler | Eğitim veya ince ayar |
+| Bağlam penceresi | Bu isteğe verilen token’lar | Yeni istek oluşturma |
+| Kalıcı hafıza | Model dışındaki kayıtlar | Yetkili yazma/güncelleme/silme |
 
-## Ajan hafızasının taksonomisi
+Veritabanına satır yazmak modeli yeniden eğitmez. O satırı getirmek, seçim ve bağlam sınırları içinde yalnızca bir istekte kullanılabilir kılar. Konuşma geçmişinde duran bir cümlenin budamadan sonra veya başka oturumda bulunacağı da garanti değildir. Bunlar farklı hata biçimleri olan ayrı mekanizmalardır.
 
-Yapay zekâ ajanları için bilişsel mimariler, hafızayı yaşam süresi, temsil biçimi ve değiştirilebilirlik açısından farklı işlevsel katmanlara ayırır:
+## Kullanışlı kayıt bir cümleden fazlasıdır
 
-| Hafıza Türü | Yaşam Süresi | Temsil Biçimi | Birincil İşlev |
-| --- | --- | --- | --- |
-| Çalışma Hafızası (Working) | Tek görev yürütümü | Prompt içi token'lar, scratchpad | Muhakeme döngüsündeki ara adımları takip etme |
-| Episodik Hafıza (Episodic) | Çoklu oturum | Zaman damgalı olay kayıtları, dökümler | Belirli geçmiş deneyimleri ve yürütüm sonuçlarını hatırlama |
-| Bildirimsel Hafıza (Declarative) | Kalıcı / Uzun vadeli | Tipli olgular, assertion'lar, bilgi grafikleri | Dünya bilgisini, alan kurallarını ve kullanıcı tercihlerini koruma |
-| Prosedürel Hafıza (Procedural) | Kalıcı / Statik | Sistem prompt'ları, araç şemaları, kod akışları | Eylemlerin ve araçların nasıl yürütüleceğini belirleme |
+“Dokuzda açılır” bilgisini saklamadan önce sorun: hangi salon, hangi günler, kime göre ve hangi okuyucular için? Kullanışlı kayıt özgün gözlemi, kaynağı, erişim kapsamını ve zamanı korur. Çıkarılmış olgu bu gözlemin yorumudur. İkisini saklamak, özgün kaynak değişmiş gibi davranmadan çıkarımı düzeltmenizi sağlar.
 
-> [!NOTE]
-> **Hafıza tek bir veritabanından ibaret değildir**
-> Dayanıklı bir otonom ajan nadiren tek bir depolama mekanizmasına güvenir. Çalışma hafızası prompt token'larında yaşar; episodik hafıza vektör ve lexical loglardan beslenir; bildirimsel hafıza ilişkisel tutarlılık gerektirir.
+```text
+record_id: hours-17
+subject: Atlas reading room
+claim: opens at 09:00 on weekdays
+source: handbook / revision 2 / paragraph 4
+observed_at: 2026-10-18
+scope: archive-team
+status: active
+```
 
-## Hafıza yaşam döngüsünün dört aşaması
+“Kısa yanıt ver” tercihi, açılış saati gibi bir referans bilgisinden farklıdır. Geçici talimat tek görevde geçerli olabilir; kullanıcı tercihi geri alınana kadar sürebilir. Getirilen belgedeki talimatı sessizce kalıcı kullanıcı tercihine dönüştürmeyin. Her kayıt türünü kimin yazabileceğini tanımlayın.
 
-Üretim sınıfı ajan mimarileri, hafızayı yalnızca sonuna ekleme yapılan bir log gibi görmek yerine açık bir yaşam döngüsü yürütür:
+## Konuşma dökümünü değil yaşam döngüsünü izleyin
 
-<!-- diagram: AI hafıza yaşam döngüsünün dört aşamasını gösteren şema: Kabul, Depolama, Kapsamlı Geri Getirme ve Mutasyon -->
-1. Kabul: Yeni gözlemi filtrele ve doğrula
-2. Depolama: Kanonik kayıt + arama projeksiyonları
-3. Geri Getirme: Prompt için kapsamlı geri çağırma
-4. Mutasyon: Geçerliliğini yitiren olguları geçersiz kıl
+<!-- diagram: Gözlem kabul edilir, saklanır, geri getirilir ve sonraki bağlamda kullanılır. -->
+1. Gözlem · tam kaynak
+2. Kabul · doğrula ve yetkilendir
+3. Sakla · kaynak + kayıt
+4. Getir · ilgili ve izinli
+5. Kullan · atıf yap veya çekimser kal
 
-*Ajan hafızası yaşam döngüsü, depolamadan önce doğrulamayı ve durum değiştiğinde geçersiz kılmayı zorunlu tutar.*
+*Her ok başarısız olabilir. Kaydedilmiş mesaj, kullanılabilir hafızanın tamamlandığını kanıtlamaz.*
 
-1. Kabul Kapısı (Admission Gate): Sistem, yeni bir gözlemin kalıcı depolamaya kaydedilmeden önce yeni, ilgili ve kanıtla desteklenmiş olup olmadığını belirler.
-2. Depolama ve İndeksleme: Kabul edilen assertion kanonik bir depoda saklanır ve türetilmiş arama projeksiyonlarında (vektörler, kelimeler, grafikler) indekslenir.
-3. Kapsamlı Geri Getirme (Scoped Retrieval): Yeni bir kullanıcı isteği için retriever, yalnızca yetkilendirilmiş kapsam ve workspace sınırları içindeki hafızaları sorgular.
-4. Mutasyon ve Geçersiz Kılma (Mutation & Invalidation): Yeni olgular eski iddialarla çeliştiğinde sistem, çelişkili verilerin birikmesine izin vermek yerine eski kayıtları geçersiz olarak işaretler.
+Yazma politikasını açık seçin. Her mesajı saklamak özel veriyi, tekrarları ve eski talimatları biriktirir. Yalnızca LLM özeti saklamak istisnaları veya kanıtı kaybettirebilir. Başlangıç için tam kaynak kayıtlarını koruyup görevle ilgili az sayıda iddia çıkarmak ve her iddiayı kaynağına bağlamak uygundur. Bu bir tasarım örüntüsüdür; evrensel gereklilik değildir.
 
-## Temel mimari ödünleşimler
+## Silme ve düzeltme de hafızanın parçasıdır
 
-Ajan hafızası tasarlamak, sistemin güvenilirliğini ve işletim maliyetini belirleyen temel mühendislik ödünleşimlerini içerir:
+Çarşamba salonun saati değişiyor. Yeni cümle eklemek, revizyon veya geçerlilik izlenmiyorsa yarışan iki yanıt bırakır. Politikanızın izin verdiği denetim izini korurken önceki iddiayı geçersizleşmiş olarak işaretleyin. Kaynak silindiğinde türetilmiş özet, embedding ve önbellekler hakkında da karar gerekir; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir.
 
-> [!WARNING]
-> **Bağlam kirlenmesi riski**
-> Her ham düşünceyi veya doğrulanmamış halüsinasyonu saklamak, ajanın gelecekteki bağlamını zehirler. Aşırı veri saklama, bilgiyi tamamen unutmak kadar güvenilirliğe zarar verir.
+Test, gözlenebilir devamlılıktır: oturumu kapatın, başka yetkili oturum açın, soruyu sorun; sonra erişimi kaldırıp veya kaynağı değiştirip tekrarlayın. Yanıtla birlikte dönen kaynak kimliğini kontrol edin. Uzun bağlam bu testin yerini tutmaz. Liu ve arkadaşları belirli uzun bağlam görevlerinde konum etkisini inceler; bulgu her model için zamansız sınır değil, kendi modelinizi değerlendirme nedenidir. [Araştırma](https://arxiv.org/abs/2307.03172).
 
-- [ ] Yazma gecikmesi ile Okuma gecikmesi: Erken olgu çıkarma yazma yükü yaratır ancak temiz geri getirme sağlar; tembel depolama yazmayı hızlandırır ancak geri çağırmada pahalı sentez gerektirir.
-- [ ] Şema esnekliği ile Sorgu determinizmi: Serbest metin vektörleri çok yönlüdür ancak kesin mantıksal kurallarla filtrelenmesi zordur.
-- [ ] Kalıcılık ile Gizlilik: Kullanıcı tercihlerini uzun vadeli saklamak, açık saklama politikaları ve veri sınırları gerektirir.
+## İlk hafıza politikanızı tasarlayın
 
-## MESA bu yapıda nerede durur?
-
-[MESA Core](mesa/) mimarisinde hafıza, dayanıklılık ve doğrulama odaklı inşa edilmiştir. Biçimsiz metin yığınları saklamak yerine MESA; açık kaynak kimliği, karakter düzeyinde kanıt aralığı ve tenant kapsamlarıyla desteklenen kanonik assertion'ları SQLite içinde saklar.
-
-İşlemsel bütünlüğü bozmadan farklı geri getirme ihtiyaçlarını karşılamak için MESA, bu kanonik kayıtları özel arama projeksiyonlarına aktarır: Vektör arama için [LanceDB](mesa/) ve varlık grafiği gezinimi için [Kùzu](mesa/). Bu veri akışını [MESA Nasıl Çalışır](how-it-works/) sayfasında ayrıntılarıyla görebilirsiniz.
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Retrieval satırı her seferinde bulsa bile hangi iki sorun sürer?
+>
+> **Answer:** Kaynağa bağlı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Retrieval başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
 
 ## Kaynaklar ve ileri okuma
 
-1. [Park vd. (2023) — Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
-2. [Sumers vd. (2023) — Cognitive Architectures for Language Agents (CoALA)](https://arxiv.org/abs/2309.02427)
-3. [MESA Core Mimari Spesifikasyonu](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
+1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
+2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
+3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

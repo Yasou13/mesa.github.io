@@ -3,78 +3,78 @@ id: "reciprocal-rank-fusion"
 slug: "reciprocal-rank-fusion-explained"
 type: "learn"
 language: "tr"
-title: "Reciprocal Rank Fusion (RRF) nedir?"
-subtitle: "Çok hatlı arama birleştirmesinde sıralama tabanlı yöntemin matematiksel açıklaması"
-summary: "Reciprocal Rank Fusion (RRF); birden fazla arama algoritmasının sıralı listelerini, hassas skor normalizasyonuna ihtiyaç duymadan tek ve tutarlı bir sonuç kümesinde birleştirir."
-shortAnswer: "RRF bir belgenin puanını, farklı hatlardaki sıralama derecelerinin terslerinin toplamı olarak hesaplar: RRF(d) = sum(1 / (k + r(d))). Birden fazla hatta istikrarlı şekilde üst sıralarda yer alan belgeler en yüksek toplam skoru alır."
+title: "Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek"
+subtitle: ""
+summary: "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
+shortAnswer: "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
 category: "Memory & Retrieval"
-tags: ["rrf", "rank-fusion", "retrieval", "algorithms"]
+tags: ["RRF", "rank fusion", "weighted", "k=60", "sıra birleştirme", "ağırlık"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 7
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Reciprocal Rank Fusion (RRF) Nedir? — MESA Learn"
-seoDescription: "Reciprocal Rank Fusion (RRF) algoritmasının matematiğini, adım adım sayısal örneğini ve çok hatlı aramadaki avantajlarını anlayın."
+seoTitle: "Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek — MESA Learn"
+seoDescription: "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
+lessonOrder: 7
+learningStage: "retrieval"
+prerequisites: ["hybrid-retrieval"]
+learningObjectives: ["Üç aday için RRF hesaplamak", "Yumuşatma sabiti ve kanal ağırlığını anlamak", "Tekrar, eksik sıra ve eşitlik politikasını tanımlamak"]
 ---
 
-## Skor normalizasyonu neden zordur?
+## Ham skorları kıyaslamadan uzlaşmayı birleştirin
 
-Hybrid arama geliştirirken farklı algoritmaların skorlarını birleştirmek şaşırtıcı derecede zordur. Dense vektör modelleri 0.0 ile 1.0 arasında sıkışmış kosinüs benzerliği üretir. BM25 lexical arama ise terim nadirliğine ve belge uzunluğuna bağlı olarak 2.0'dan 35.0+'e kadar sınırsız pozitif skorlar verir.
+Atlas arşivinde iki retriever farklı sıralıyor. Sözcüksel liste A, B, C; yoğun liste B, C, D. Ham skorların birimi aynıymış gibi davranmadan liste sırasını kullanmak istiyorsunuz. Reciprocal Rank Fusion her sıraya azalan katkı atar ve aynı adayın katkılarını toplar. Varsayımları açık, basit bir başlangıç yöntemidir.
 
-Min-max normalizasyonu veya z-score standardizasyonu bu uçurumu kapatmaya çalışır ancak ikisi de kırılgandır. Lexical aramada tek bir uç değer tüm dağılımı saptırabilir ve bir arama kipinin diğerini yapay biçimde ezmesine yol açabilir.
+Cormack, Clarke ve Büttcher yöntemi belirli retrieval deneylerinde değerlendirdi. Sonuçları RRF’yi denemeyi gerekçelendirir; görevinizde iyileşmeyi garanti etmez. Özgün yöntem ağırlıksız oy kullanır. Ağırlıklı RRF, her kanal katkısını açık ağırlıkla çarpan bir genişletmedir. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf).
 
-**Skor Kalibrasyon Kayması**
-: Farklı istatistiksel dağılımlardan gelen ham skorları ortak bir referans noktası olmadan birleştirmeye çalışırken ortaya çıkan matematiksel bozulma.
-
-## RRF formülünün açıklaması
-
-2009 yılında Cormack, Clarke ve Buettcher Reciprocal Rank Fusion (RRF) yöntemini geliştirdi. RRF ham skorlar yerine yalnızca her belgenin ilgili arama listesindeki sıra numarasını (rank) değerlendirir:
+## Sıralamayı birden başlatın
 
 ```text
-RRF_skoru(d) = Σ [ 1 / (k + r_m(d)) ]  (her m kipi için)
+RRF(d) = sum over lanes containing d: w_lane / (k + rank_lane(d))
+rank starts at 1; missing candidate contributes 0.
+Example below: k = 60, every weight = 1.
 ```
 
-- d: Değerlendirilen aday belge veya hafıza assertion'ı.
-- m: Belirli bir arama kipi (örneğin vektör, BM25, graph).
-- r_m(d): d belgesinin m kipindeki sıra numarası (1. sıra için 1, 2. sıra için 2 vb.).
-- k: Yumuşatma sabiti, geleneksel olarak 60 alınır. 1. sıra ile 2. sıra arasındaki farkın, birden fazla listede istikrarlı görünmenin önüne geçmesini engeller.
+| Aday | Sözcüksel sıra | Yoğun sıra | RRF katkı toplamı |
+| --- | --- | --- | --- |
+| A | 1 | yok | 1/61 = 0.016393 |
+| B | 2 | 1 | 1/62 + 1/61 = 0.032522 |
+| C | 3 | 2 | 1/63 + 1/62 = 0.032002 |
+| D | yok | 3 | 1/63 = 0.015873 |
 
-## Adım adım sayısal bir örnek
+Birleşik sıra B, C, A, D’dir. Listeler arası uzlaşma, tek kanalda birinci olan A’ya rağmen B ve C’yi yükseltir. Kesilmiş listede olmayan aday o kanaldan sıfır alır; sonsuz veya sıfırıncı sıra oyu almaz. Kesim oyları değiştirdiği için aday kesimlerini deney kaydına yazın.
 
-İki arama hattında (Vektör ve BM25) k = 60 sabitiyle geri getirilen üç belgeyi karşılaştıralım:
+## k değişince ne olur?
 
-| Belge | Vektör Sırası | BM25 Sırası | Hesaplama (k=60) | Nihai RRF Skoru |
-| --- | --- | --- | --- | --- |
-| Belge A | 1. Sıra | 10. Sıra | 1/(60+1) + 1/(60+10) = 0.01639 + 0.01429 | 0.03068 |
-| Belge B | 2. Sıra | 2. Sıra | 1/(60+2) + 1/(60+2) = 0.01613 + 0.01613 | 0.03226 (Kazanan) |
-| Belge C | 25. Sıra | 1. Sıra | 1/(60+25) + 1/(60+1) = 0.01176 + 0.01639 | 0.02815 |
+`k=60` iken birinci 1/61, ikinci 1/62 katkı yapar; fark küçüktür. `k=1` iken 1/2 ve 1/3 ile fark büyür. Küçük k üst sıraları vurgular; büyük k getirilen sıralar arasında katkıyı düzleştirir. Bu k yumuşatma sabitidir; döndürülen sonuç sayısı değildir. 60’ı evrensel saymak yerine ayrılmış değerlendirmeyle seçin.
 
-> [!NOTE]
-> **Belge B neden kazandı?**
-> Belge B hiçbir hatta birinci olamadı; ancak iki hatta da istikrarlı biçimde üst sırada (2. sıra) yer aldığı için toplam puanı, vektörde 1. olup BM25'te 10. sıraya düşen Belge A'yı geçti. RRF çok hatlı uzlaşmayı ödüllendirir.
+<!-- diagram: Sıra listeleri kanal oyu üretir; oylar aday kimliğinde birleşip belirli sırayla sıralanır. -->
+1. Sözcüksel · A,B,C
+2. Yoğun · B,C,D
+3. Oy · 1/(k+sıra)
+4. Kimlikte topla · tek kanal oyu
+5. Sırala · B,C,A,D
 
-## RRF neden yapay zekâ hafızası için idealdir?
+*Sonuç bir sıra sinyalidir; kalibre edilmiş olasılık değildir.*
 
-- [ ] Ayar (tuning) gerektirmez: Ağırlıklı doğrusal birleştirmelerin aksine, k=60 ile RRF farklı alanlarda parametre ayarı gerektirmeden en iyi performansı gösterir.
-- [ ] Kip bağımsızdır: Değişiklik gerekmeden 2, 3, 4 veya daha fazla hattı (vektör, anahtar kelime, graph, zaman sönümlenmesi) birleştirebilir.
-- [ ] Eksik hat toleransı: Bir assertion bir hattan sonuç alamazsa, o hattan 0 katkı alır; diğer hatlardaki olumlu derecesi cezalandırılmaz.
+## Uç durumları dağıtımdan önce belirleyin
 
-## MESA mimarisinde gerçek RRF
+Oy vermeden önce kanal içindeki aday tekrarını ayıklayın. Aksi halde arka ucun aynı kimliği iki kez döndürmesi yöntemi değiştirir. Kimliğin temsil ettiği birimi belirleyip kanallar arasında koruyun. Bir kanal belge, diğeri iddia kimliği döndürüyorsa birleştirmeden önce ortak birime uzlaştırın; yalnızca aynı metin sağlam kimlik sözleşmesi değildir.
 
-[MESA Core](mesa/) içinde V4 router'ı, dört farklı sonuç kaynağı arasında gerçek RRF hesaplar: `vector`, `bm25`, `assertion` ve `graph`.
+Tam eşit birleşik skorda kanonik kimlik sırası gibi belgeli sabit kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlığı reddedin; sıfırın kanalı kapatıp kapatmadığını belirleyin. Aynı retriever’ın iki kopyasına tam ağırlık vermek ilişkili kanıtı iki kez sayabilir. Fazla oy yanlış veya yetkisiz kaynağı kabul edilebilir yapmaz.
 
-Doğrulanmış test fixture'ı `Alice knows Aurora` senaryosunda, hedef hafıza assertion'ı dört hatta da aynı anda 1. sırayı alır. Ortaya çıkan skor tam olarak şöyledir:
+## Ağırlık değişince yeniden hesaplayın
 
-```text
-RRF_skoru = 1/(60+1) + 1/(60+1) + 1/(60+1) + 1/(60+1) = 4 / 61 ≈ 0.06557
-```
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> Tabloda yoğun kanalın ağırlığını sıfırlayın. Hangi sıra kalır; D’ye ne olur?
+>
+> **Answer:** A, B, C sözcüksel sırada kalır. D sıfır katkı alır; sıfır skorlu adayın çıkarılması açık çıktı politikasıdır. Sıfır, D’nin yanlış veya ilgisiz olduğunu kanıtlamaz.
 
-Bu deterministik hesaplamayı [MESA Nasıl Çalışır](how-it-works/) sayfasında görebilir ve açık kaynak test paketinde doğrulayabilirsiniz.
+## Kaynaklar ve ileri okuma
 
-## Kaynaklar
-
-1. [Cormack, Clarke ve Buettcher (2009) — Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods (SIGIR '09)](https://dl.acm.org/doi/10.1145/1571941.1572114)
-2. [MESA Retrieval Fixture Testi: test_real_four_lanes_fuse_once_and_repeat_deterministically](https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py)
+1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

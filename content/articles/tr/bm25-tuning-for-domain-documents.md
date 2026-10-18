@@ -3,62 +3,84 @@ id: "bm25-tuning-for-domain-documents"
 slug: "bm25-tuning-for-domain-documents"
 type: "learn"
 language: "tr"
-title: "Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu"
-subtitle: "Terim frekansı doygunluğu (k1) ve belge uzunluğu normalizasyonunun (b) ayarlanması"
-summary: "Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametreler gerektirir."
-shortAnswer: "k1 parametresi terim tekrarının alaka puanını ne hızla doyurduğunu kontrol eder; b parametresi ise uzun belgelerin ne kadar cezalandırılacağını belirler."
+title: "BM25: nadir kelime neden tekrarlanan kelimeyi geçer?"
+subtitle: ""
+summary: "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
+shortAnswer: "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
 category: "Memory & Retrieval"
-tags: ["bm25", "lexical-search", "tuning", "domain-documents"]
+tags: ["BM25", "IDF", "tokenization", "FTS5", "lexical", "sözcüksel", "Türkçe", "tokenizasyon"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-17"
-readingMinutes: 7
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Hukuki ve teknik metinler için pratik BM25 parametre optimizasyonu — MESA Learn"
-seoDescription: "Standart BM25 varsayılanları (k1=1.2, b=0.75) genel web belgeleri için kalibre edilmiştir. Yapılandırılmış kanun metinleri ve teknik depolar özel parametre"
+seoTitle: "BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn"
+seoDescription: "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
+lessonOrder: 5
+learningStage: "retrieval"
+prerequisites: ["semantic-search"]
+learningObjectives: ["BM25 formülünü okumak", "Belge uzunluğu etkisini hesaplamak", "Tam kimlik ve Türkçe tokenizasyon testi tasarlamak"]
 ---
 
-## Tek tip varsayılan parametre tuzağı
+## Sözcüksel sıralamanın arkasındaki üç soru
 
-Arama kütüphaneleri genellikle 1990'ların gazete arşivleri üzerinde belirlenmiş BM25 varsayılanlarıyla gelir. Hukuk, mevzuat ve tıp gibi alanlarda belge uzunluklarındaki büyük farklar ve tekrar eden terimler bu varsayılanların arama kalitesini düşürmesine yol açar.
+“Atlas cuma saatleri” için sözcüksel retriever sorgu terimlerini içeren pasajları bulur. Hangi eşleşmenin önemli olduğuna karar vermelidir. BM25 terim nadirliğini, belge içi sıklığı ve belge uzunluğu düzeltmesini birleştirir. “Saat” kelimesini elli kez tekrarlamak uzun ilgisiz belgeyi yenilmez yapmamalıdır; nadir kimlik daha ayırt edici ipucu olabilir.
 
-> [!WARNING]
-> **Uzun Belge Cezası Hatası**
-> Hukuk araştırmalarında b parametresini çok yüksek tutmak (örn. 0.85), kapsamlı kanun metinlerini veya Yargıtay ilamlarını aşırı cezalandırır ve kısa usul yazılarını yapay biçimde öne çıkarır.
+Ters indeks terimi onu içeren belgelere eşler. Terimleri sıralamadan önce tokenizasyon belirler. “A-17”, “a” ve “17” olarak bölünürse skor ayarı hiç indekslenmemiş kimlik sınırını geri getiremez. Önce token’ları ve sorgu ayrıştırmasını inceleyin. Tam kimlik ayrı normalize alan veya eşitlik filtresi gerektirebilir.
 
-## Mühendislik ödünleşimlerinin karşılaştırması
-
-| Parametre | Formüldeki Rolü | Varsayılan | Alana Özgü Ayar Tavsiyesi |
-| --- | --- | --- | --- |
-| k1 | Terim frekansı doygunluk katsayısı | 1.2 - 1.5 | Sözleşmeler gibi terim tekrarının önemi gösterdiği metinlerde 1.8 - 2.0'ye yükseltin |
-| b | Belge uzunluğu normalizasyon oranı | 0.75 | Uzun metinlerin doğal olarak birden fazla alt başlık işlediği kanunlarda 0.3 - 0.5'e düşürün |
-| avgdl | Koleksiyondaki ortalama belge uzunluğu | Dinamik hesaplanır | Bölümler arasında puan kaymasını önlemek için benchmark sırasında dondurulmalıdır |
-| Tokenizer / Stemmer | Morfolojik kök ve gövdeleme | Standart Porter | Türkçe için noktalı/noktasız I kurallarını bilen morfolojik analizciler kullanın |
-
-## BM25 doygunluk eğrisi mekaniği
-
-Bir kelimenin belgedeki sayısı arttıkça BM25 puanı asimptotik olarak (k1 + 1) değerine yaklaşır. Daha yüksek k1 değerleri eğriyi dikleştirerek sorgu ifadesini sık tekrarlayan belgeleri ödüllendirir.
+## Formülü çarpanlarına ayırın
 
 ```text
-// SQLite FTS5 özel BM25 sütun ağırlıkları
-SELECT rowid, bm25(articles_fts, 10.0, 5.0, 1.0) AS rank
-FROM articles_fts
-WHERE articles_fts MATCH 'tahkim sarti'
-ORDER BY rank;
+score(d,q) = sum over query terms t:
+ IDF(t) * f(t,d)*(k1+1) /
+ [f(t,d) + k1*(1-b + b*len(d)/avgdl)]
+
+One common non-negative IDF variant:
+IDF(t) = ln(1 + (N - df(t) + 0.5)/(df(t) + 0.5))
+N: corpus documents   df: documents containing t
+f: term frequency    avgdl: average document length
 ```
 
-## MESA Core'da BM25 optimizasyonu
+IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan bir tekrara çıkmak, ondan on bire çıkmaktan daha önemlidir. `k1` doygunluğu, `b` uzunluk normalizasyonunu kontrol eder. `b=0` iken uzunluk etkisizdir; `b=1` iken tam uzunluk oranı girer. BM25 sürümleri IDF ayrıntısında farklılaşır; parametre adlarıyla birlikte uygulamayı da kaydedin.
 
-MESA Core, özelleştirilmiş sütun ağırlıkları ve kalibre edilmiş doygunluk parametreleriyle SQLite FTS5 motorunu çalıştırır. Kanun maddeleri ve esas numaraları lexical aday üretiminde öncelikli sütun çarpanları alır.
+## Uzunluk etkisini hesaplayın
 
-- [ ] k1 ve b parametreleri veri kümesi bölümlerine göre yapılandırılabilir.
-- [ ] Sütun ağırlıkları başlık ve fıkra numarası eşleşmelerini öne çıkarır.
-- [ ] Türkçe aramada noktalı ve noktasız I harflerini çözen özel tokenizer kullanılır.
-- [ ] Reciprocal Rank Fusion öncesinde lexical Recall@k değeri sürekli test edilir.
+| Nicelik | Kısa pasaj A | Uzun pasaj B |
+| --- | --- | --- |
+| Terim sıklığı | 2 | 2 |
+| Uzunluk / ortalama uzunluk | 0.5 | 2 |
+| k1=1.2, b=0.75: payda | 2.75 | 4.10 |
+| Pay: 2 × 2.2 | 4.4 | 4.4 |
+| Sıklık çarpanı | 1.60 | 1.073 |
 
-## Kaynaklar
+Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa parçaların her zaman iyi olduğunu kanıtlamaz. Belgeleri bölmek terim istatistiğini, bağlam tamlığını ve ilgili sayılan birimi değiştirir. Sıralama değişikliğini test ederken parçalamayı sabit tutun; sonra parçalamayı ayrı deneyde değerlendirin.
 
-1. [Robertson vd. (1994) — Okapi at TREC-3](https://trec.nist.gov/pubs/trec3/papers/city.ps.gz)
-2. [Trotman vd. (2014) — Improvements to BM25 and Language Models Examined (ADCS '14)](https://dl.acm.org/doi/10.1145/2682862.2682863)
+## Hata örneklerine göre ayarlayın
+
+<!-- diagram: Token’ları inceleyin, sözcüksel taban kurun, sonuçları etiketleyin, tek ayarı değiştirip tekrarlayın. -->
+1. İncele · A-17 / I / İ
+2. Taban · sabit parçalar
+3. Etiketle · tam ve dolaylı
+4. Değiştir · tek alan ağırlığı
+5. Karşılaştır · ayrılmış sorgular
+
+*Son skoru vereceğiniz örneklerle ayar yapmayın.*
+
+Türkçe için gerçek sorgu/belge çiftlerinde noktalı/noktasız I, ekler ve aksanları inceleyin. Küçük harfe çevirme ve işaret kaldırma bazı eşleşmelere yardımcı olurken anlamlı ayrımları silebilir. Özgün metni koruyup hem kimlik kesinliğini hem doğal dil recall’unu test edin. Arama sözdizimi ve tokenizer davranışı, arayüzün metin normalizasyonundan ayrıdır.
+
+SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanları bu parametreler değil sütun ağırlıklarıdır. Daha iyi eşleşmeye daha küçük değer döndürdüğü için artan sıralama bilinçlidir. Başka motordan azalan-skor kuralı kopyalamayın. Hesap örneğimiz belirli bir IDF çeşidi kullanır; FTS5’in tam tanımı kendi referansındadır. [FTS5](https://www.sqlite.org/fts5.html).
+
+## İlk teşhis adımını seçin
+
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> A-17 politikası araması her defasında A-71’i öne getiriyor. Hemen sıralama ağırlığını mı artırmalısınız?
+>
+> **Answer:** İndekslenen token ve sorgu sözdizimini inceleyin; sonra tam kimlik alanını test edin. İndeks kimlikleri ayırmıyorsa ağırlık bunu güvenilir biçimde onaramaz. Temsil doğru olduktan sonra skor ayarlayın.
+
+## Kaynaklar ve ileri okuma
+
+1. [Manning, Raghavan & Schütze · Okapi BM25](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
+2. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 

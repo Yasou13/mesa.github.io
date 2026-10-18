@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kanıt Odaklı Hafıza (Evidence-Aware Memory) Nedir? — MESA Learn</title>
-  <meta name="description" content="Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama.">
+  <title>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn</title>
+  <meta name="description" content="Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/what-is-evidence-aware-memory/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/what-is-evidence-aware-memory/">
-  <meta property="og:title" content="Kanıt Odaklı Hafıza (Evidence-Aware Memory) Nedir? — MESA Learn">
-  <meta property="og:description" content="Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama.">
+  <meta property="og:title" content="Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn">
+  <meta property="og:description" content="Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/">
   <meta property="og:locale" content="tr_TR">
@@ -21,21 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kanıt Odaklı Hafıza (Evidence-Aware Memory) Nedir? — MESA Learn">
-  <meta name="twitter:description" content="Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama.">
+  <meta name="twitter:title" content="Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn">
+  <meta name="twitter:description" content="Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Kanıt odaklı hafıza (evidence-aware memory) nedir?","item":"https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/"}]},{"@type":"Article","headline":"Kanıt odaklı hafıza (evidence-aware memory) nedir?","description":"Kanıt odaklı hafızayı anlayın: her ajan iddiasına doğrulanabilir kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamlarını bağlama.","datePublished":"2026-10-01","dateModified":"2026-10-01","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"evidence, provenance, ai-memory, auditability"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?","item":"https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/"}]},{"@type":"Article","headline":"Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?","description":"Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.","datePublished":"2026-10-01","dateModified":"2026-10-18","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"provenance, citation, hash, SHA256, evidence, kaynak izi, atıf, kanıt, halüsinasyon"}]}</script>
   <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../../styles.css?v=6e69ac822270">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -53,116 +53,19 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Kanıt odaklı hafıza (evidence-aware memory) nedir?</span></li></ol></nav>
-      <article class="knowledge-article">
-        <header class="article-header">
-          <p class="eyebrow">Learn · Evidence &amp; Trust</p>
-          <h1>Kanıt odaklı hafıza (evidence-aware memory) nedir?</h1>
-          <p class="article-subtitle">Ajan bilgisine kaynak kimliğini, kesin kanıt aralıklarını ve yetki kapsamını bağlamanın kavramsal temeli</p>
-          <p class="article-summary">Kanıt odaklı hafıza; bir yapay zekâ sisteminin herhangi bir iddiayı doğrulanabilir kaynak kimliği, kanıt aralıkları ve yetkilendirme kapsamı olmaksızın saklayamayacağı veya geri çağıramayacağı bir mimari paradigmadır.</p>
-          <dl class="article-byline">
-            <div>
-              <dt>Yayın</dt>
-              <dd><time datetime="2026-10-01">1 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Güncelleme</dt>
-              <dd><time datetime="2026-10-01">1 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Yazar</dt>
-              <dd>MESA contributors</dd>
-            </div>
-            <div>
-              <dt>Okuma süresi</dt>
-              <dd>8 dakika</dd>
-            </div>
-          </dl>
-        </header>
-        <div class="article-layout">
-          
-    <nav class="article-toc" aria-label="Bu sayfada">
-      <strong>Bu sayfada</strong>
-      <ol>
-        <li><a href="#grounding-crisis">Otonom ajan hafızasında temellendirme krizi</a></li><li><a href="#five-elements">Kanıt odaklı hafızanın beş temel unsuru</a></li><li><a href="#comparison-example">Gelişigüzel hafıza ile kanıt odaklı hafıza karşılaştırması</a></li><li><a href="#high-stakes-compliance">Kanıt odaklılık kritik alanlarda neden zorunludur?</a></li><li><a href="#concept-vs-mesa">Genel kavram ile MESA'nın uygulaması</a></li><li><a href="#references">Kaynaklar</a></li>
-      </ol>
-    </nav>
-          <div class="article-body">
-            <div class="short-answer"><strong>Kısa yanıt</strong><p>Geleneksel ajan hafızası ne olduğunu kaydeder; kanıt odaklı hafıza ise ne olduğunu, kimin söylediğini, hangi kaynak belgenin kanıtladığını, hangi karakter aralığının desteklediğini ve hangi kapsamın okumaya izin verdiğini kaydeder.</p></div>
-            
-            
-    <section id="grounding-crisis" class="article-section">
-      <h2>Otonom ajan hafızasında temellendirme krizi<a class="heading-anchor" href="#grounding-crisis" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Çoğu konuşma ve ajan kütüphanesi hafızayı doğrulanmamış bir metin deposu olarak ele alır. LLM konuşmayı gözlemler, 'Müvekkil revize sözleşme şartlarını onayladı' gibi bir özet çıkarır ve bu cümleyi veritabanına kaydeder.</p><div class="article-callout warning"><strong>İzlenemeyen iddia açmazı</strong><p>İki hafta sonra ajan bu hafızaya dayanarak geri dönüşü olmayan işlemler yapar. Denetim yapıldığında ne insan inceleyiciler ne de sistem bu iddianın yetkili bir beyan mı, yanlış anlaşılmış bir taslak mı yoksa bir model halüsinasyonu mu olduğunu anlayabilir. Hafıza vardır ama kanıtı yoktur.</p></div><figure><img src="../../../assets/provenance-lineage-plate.svg" alt="Kaynak belgelerdeki kanıt aralıklarının türetim boru hatlarından geçerek kanonik assertion'lara bağlandığını gösteren tarihi gravür plakası" loading="lazy"><figcaption>Kanıt odaklı hafıza: Bir iddia meşruiyetini yalnızca kaynak kimliğinden, kesin metin aralığından ve türetim izinden alır.</figcaption></figure><dl class="definition"><dt>Kanıt Odaklı Hafıza (Evidence-Aware Memory)</dt><dd>Bilgi iddialarının bağlamsız cümleler olarak var olamayacağı; kabul edilen her kaydın köken kaynağına, kesin kanıt aralığına ve yetki sınırlarına yapısal olarak bağlandığı hafıza mimarisi.</dd></dl>
-    </section>
-    <section id="five-elements" class="article-section">
-      <h2>Kanıt odaklı hafızanın beş temel unsuru<a class="heading-anchor" href="#five-elements" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Gerçek anlamda kanıt odaklı olabilmesi için geri çağrılan her hafıza kaydı beş soruyu yanıtlamalıdır:</p><ul class="article-checklist"><li>1. İddia (Proposition): Olgusal iddia veya bağıntı (örneğin <code>(Dosya 402, durum, AÇILDI)</code>).</li><li>2. Kaynak Kimliği (Source Identity): Belgenin veya işlemin değiştirilemez URI'si, kriptografik özeti (hash) veya resmî sicil kimliği.</li><li>3. Kanıt Aralığı (Evidence Span): Kaynak belge içinde destekleyici metni barındıran kesin karakter veya bayt aralığı <code>[c_başlangıç..c_bitiş]</code>.</li><li>4. Kapsam Sınırları (Scope Bounds): Bu iddiaya hangi tenant, workspace, ajan ve zaman penceresinin erişebileceğini tanımlayan güvenlik sınırı.</li><li>5. Yaşam Döngüsü Durumu (Lifecycle State): Kaydın denetlenebilir durumu (<code>COMMITTED</code>, <code>PENDING_REVIEW</code>, <code>SUPERSEDED</code> veya <code>RETRACTED</code>).</li></ul>
-    </section>
-    <section id="comparison-example" class="article-section">
-      <h2>Gelişigüzel hafıza ile kanıt odaklı hafıza karşılaştırması<a class="heading-anchor" href="#comparison-example" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Gelişigüzel metin hafızası ile kanıt odaklı hafıza arasındaki fark, verinin yürütüm için nasıl modellendiğinde açıkça görülür:</p><pre tabindex="0" class="article-code"><code>// Gelişigüzel metin hafızası (kaynağı izlenemez)
-{
-  &quot;memory&quot;: &quot;Müvekkil uyuşmazlığın Zürih'te ICC kurallarına göre çözülmesini istedi.&quot;
-}
-
-// Kanıt odaklı hafıza assertion'ı (MESA paradigması)
-{
-  &quot;assertion_id&quot;: &quot;asrt_88b14a2&quot;,
-  &quot;statement&quot;: {
-    &quot;subject&quot;: &quot;Sozlesme_2024_09&quot;,
-    &quot;predicate&quot;: &quot;tahkim_sarti&quot;,
-    &quot;object&quot;: &quot;ICC_Zurih&quot;
-  },
-  &quot;source&quot;: {
-    &quot;source_id&quot;: &quot;sozlesme_v2.pdf&quot;,
-    &quot;sha256&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
-    &quot;evidence_span&quot;: [4120, 4285],
-    &quot;quoted_text&quot;: &quot;İşbu sözleşmeden doğan tüm uyuşmazlıklar Milletlerarası Ticaret Odası Tahkim Kuralları uyarınca Zürih'te nihai olarak çözümlenecektir.&quot;
-  },
-  &quot;scope&quot;: {
-    &quot;tenant_id&quot;: &quot;tenant_hukuk&quot;,
-    &quot;workspace_id&quot;: &quot;dosya_402&quot;,
-    &quot;valid_from&quot;: &quot;2024-09-01T00:00:00Z&quot;
-  },
-  &quot;status&quot;: &quot;COMMITTED&quot;
-}</code></pre>
-    </section>
-    <section id="high-stakes-compliance" class="article-section">
-      <h2>Kanıt odaklılık kritik alanlarda neden zorunludur?<a class="heading-anchor" href="#high-stakes-compliance" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Hukuk, tıp, regülasyon ve finans alanlarında otonom ajanlar kullanıcılardan 'kendilerine güvenmelerini' isteyemez. Her iddia denetlenebilir olmalıdır:</p><div class="table-scroll"><table><thead><tr><th scope="col">Alan</th><th scope="col">Gelişigüzel Hafızanın Hata Modu</th><th scope="col">Kanıt Odaklı Güvenlik Ağı</th></tr></thead><tbody><tr><th scope="row">Hukuk Yapay Zekâsı</th><td>Var olmayan emsal kararlar veya mülga kanun maddeleri atfetme</td><td>Resmî gazete sayısını, madde numarasını ve doğrulama izini bağlar (bkz. <a href="../../law/">MESA Law</a>)</td></tr><tr><th scope="row">Tıbbi Kararlar</th><td>Eski hasta dozaj talimatlarına güvenme</td><td>Zamansal kapsamı zorunlu kılar ve iddiayı hekim notunun tam zaman damgasına bağlar</td></tr><tr><th scope="row">Finansal Denetim</th><td>Taslak bütçe tahminlerini onaylanmış rakamlarla karıştırma</td><td>İmzalı işlem özetleri ve yetkilendirme kapsam doğrulaması gerektirir</td></tr><tr><th scope="row">Çoklu Şirket (SaaS)</th><td>Şirket stratejisini workspace sınırlarının dışına sızdırma</td><td>Çapraz veri sızıntısını önlemek için geri getirme öncesi sıkı tenant filtrelemesi uygular</td></tr></tbody></table></div>
-    </section>
-    <section id="concept-vs-mesa" class="article-section">
-      <h2>Genel kavram ile MESA'nın uygulaması<a class="heading-anchor" href="#concept-vs-mesa" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Kanıt odaklı hafıza genel bir kavram olarak farklı yazılım mimarilerinde uygulanabilir. Önemli olan, iddiaları geri çağırmadan önce doğrulanabilir kaynaklara bağlama ilkesidir.</p><p><a href="../../mesa/">MESA Core</a> içinde bu ilke veritabanı seviyesinde uygulanır: SQLite; assertion'ların, kanıt aralıklarının ve kapsamların kanonik deposudur. Arama projeksiyonları (vektörler için <a href="../../mesa/">LanceDB</a>, grafikler için <a href="../../mesa/">Kùzu</a>) verilerini doğrudan bu kanonik kayıtlardan türetir. Kanıtın sistemde nasıl aktığını <a href="../../how-it-works/">MESA Nasıl Çalışır</a> sayfasında görebilirsiniz.</p>
-    </section>
-    <section id="references" class="article-section">
-      <h2>Kaynaklar<a class="heading-anchor" href="#references" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <ol class="reference-list"><li><a class="" href="https://www.w3.org/TR/prov-dm/" target="_blank" rel="noopener noreferrer"><span>W3C PROV-DM: The PROV Data Model (W3C Tavsiyesi 2013)</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>MESA Core Mimari Spesifikasyonu</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a href="../../learn/what-is-provenance-in-ai/">Yapay Zekâ Sistemlerinde Provenance Nedir? — MESA Learn</a></li></ol>
-    </section>
-          </div>
-        </div>
-        
-    <section class="related-content" aria-labelledby="related-title">
-      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
-      <h2 id="related-title">Kanıt ağı içinde ilerleyin.</h2>
-      <div class="publication-grid">
-        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-provenance-in-ai/">Yapay zekâ sistemlerinde provenance nedir?</a></h3><p>Provenance, bilginin eksiksiz ve kaydedilmiş geçmişidir: köken varlığı, ingestion dönüşümleri, destekleyici kanıt aralıkları ve yetkilendirme yaşam döngüsü.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-provenance-in-ai/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">AI Memory Nedir?</a></h3><p>AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/memory-scope-and-authorization/">Çok ajanlı sistemlerde hafıza kapsamı ve yetkilendirme</a></h3><p>Çok ajanlı sistemler; veri sızıntısını ve bağlam kirlenmesini önlemek için kiracılar, çalışma alanları, ajanlar ve zaman pencereleri arasında titiz bir hafıza kapsamı gerektirir.</p><div><span>8 dk okuma</span><a href="../../learn/memory-scope-and-authorization/">Oku<span aria-hidden="true"> →</span></a></div></article>
-      </div>
-    </section>
-        
-      <div class="contextual-cta">
-        <div>
-          <p class="eyebrow">UYGULAMADA KANIT</p>
-          <h2>MESA'nın kanıt sözleşmelerini nasıl uyguladığını okuyun.</h2>
-          <p>Kaynak aralıkları ve tenant kapsamlarıyla hafıza oluşturmak için geliştirici dokümantasyonunu inceleyin.</p>
-        </div>
-        <a class="button secondary" href="../../docs/">Belgeleri Aç</a>
-      </div>
-      </article>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    </header><main id="main-content" class="learn-reading" data-learn-article="evidence-aware-memory"><nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</span></li></ol></nav>
+ <div class="learn-reader-grid"><details class="learn-course-nav" open><summary>Öğrenme yolu <span>14 ders</span></summary><nav aria-label="Dersler"><div class="learn-nav-stage"><strong>01 / Sıfırdan başlayın</strong><ol><li><a href="../../learn/what-is-ai-memory/" data-nav-lesson="what-is-ai-memory"><span>01</span>Yapay zekâ hafızası: konuşmadan sonra ne kalır?</a></li><li><a href="../../learn/rag-vs-ai-memory/" data-nav-lesson="rag-vs-ai-memory"><span>02</span>RAG ve hafıza: isteği adım adım kurmak</a></li><li><a href="../../learn/structured-vs-unstructured-memory/" data-nav-lesson="structured-vs-unstructured-memory"><span>03</span>Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a></li></ol></div><div class="learn-nav-stage"><strong>02 / Aramayı öğrenin</strong><ol><li><a href="../../learn/semantic-search/" data-nav-lesson="semantic-search"><span>04</span>Embedding ve anlamsal arama: sayılarla açıklama</a></li><li><a href="../../learn/bm25-tuning-for-domain-documents/" data-nav-lesson="bm25-tuning-for-domain-documents"><span>05</span>BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</a></li><li><a href="../../learn/hybrid-retrieval-explained/" data-nav-lesson="hybrid-retrieval"><span>06</span>Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama</a></li><li><a href="../../learn/reciprocal-rank-fusion-explained/" data-nav-lesson="reciprocal-rank-fusion"><span>07</span>Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek</a></li><li><a href="../../learn/why-graphs-matter-in-ai-memory/" data-nav-lesson="why-graphs-matter"><span>08</span>Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek</a></li></ol></div><div class="learn-nav-stage"><strong>03 / Güvenilir sistem kurun</strong><ol><li><a href="../../learn/what-is-evidence-aware-memory/" data-nav-lesson="evidence-aware-memory" aria-current="page"><span>09</span>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a></li><li><a href="../../learn/memory-scope-and-authorization/" data-nav-lesson="memory-scope-and-authorization"><span>10</span>Ortak hafıza: kim neyi geri getirebilir?</a></li><li><a href="../../learn/sqlite-as-canonical-agent-memory/" data-nav-lesson="sqlite-as-canonical-agent-memory"><span>11</span>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</a></li><li><a href="../../learn/temporal-decay-in-ai-memory/" data-nav-lesson="temporal-decay-in-ai-memory"><span>12</span>Değişen bilgi: geçerlilik, çelişki ve unutma</a></li></ol></div><div class="learn-nav-stage"><strong>04 / Ölçün ve uygulayın</strong><ol><li><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/" data-nav-lesson="evaluating-ndcg-and-mrr-in-memory"><span>13</span>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</a></li><li><a href="../../learn/build-a-small-search-lab/" data-nav-lesson="build-a-small-search-lab"><span>14</span>LLM kullanmadan küçük bir arama laboratuvarı kurun</a></li></ol></div></nav></details><article class="learn-article">
+ <header class="learn-article-header"><p class="eyebrow">DERS 09 / 14 · Güvenilir sistem kurun</p><h1>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</h1><p class="learn-article-lede">Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.</p><div class="learn-reading-meta"><span>5 dk okuma</span><span><time datetime="2026-10-18">Güncelleme: 18 Eki 2026</time></span><a href="../../learn/what-is-evidence-aware-memory/article.md" download>Markdown indir ↓</a></div>
+ <div class="learn-objectives"><strong>BİTİRDİĞİNİZDE</strong><ul><li>Kanıt aralığını sabit kaynakta doğrulamak</li><li>Hash ile kaynak özgünlüğünü ayırmak</li><li>Denetim kaydı ve desteksiz yanıt davranışı tasarlamak</li></ul></div>
+ <p class="learn-prerequisites">Bu dersten önce: <a href="../../learn/structured-vs-unstructured-memory/">Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a></p></header>
+ <div class="learn-article-body"><section class="article-section" id="four-tests"><h2>Dört kontrol, dört ayrı sonuç<a class="heading-anchor" href="#four-tests" aria-label="Bölüm bağlantısı">#</a></h2><p>Asistan “Salon cumaları onda açılır” diyor ve bağlantı gösteriyor. Gerçek bağlantı yalnızca ilk adımdır. Kaynak var mı, atıf pasajı yanıtın dediğini söylüyor mu, kaynak bu zaman ve kapsama uygulanıyor mu, kaynak güvenilir mi? Bunları ayrı sorun. Bir kontrolü geçmek diğerlerini sağlamaz.</p><div class="table-scroll"><table><thead><tr><th scope="col">Kontrol</th><th scope="col">Başarının gösterdiği</th><th scope="col">Göstermediği</th></tr></thead><tbody><tr><th scope="row">Bütünlük</th><td>Baytlar kayıtlı özete uyuyor</td><td>Kimin yazdığı veya doğruluk</td></tr><tr><th scope="row">Kaynak izi</th><td>Kayıtlı türetim/sahiplik yolu</td><td>Doğru çıkarım veya dürüst köken</td></tr><tr><th scope="row">Destek</th><td>Bu pasaj bu iddiayı destekliyor</td><td>Kaynağın doğruluğu veya güncellik</td></tr><tr><th scope="row">Uygulanabilirlik</th><td>Kapsam/zaman soruya uyuyor</td><td>Evrensel doğruluk</td></tr></tbody></table></div></section><section class="article-section" id="span"><h2>Küçük, tekrar üretilebilir aralık kontrolü<a class="heading-anchor" href="#span" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-code"><div><span>Çözümlü örnek</span><button class="copy-button" type="button" data-copy-target="lesson-code-19">Kopyala</button></div><pre tabindex="0" class="article-code" id="lesson-code-19"><code>text = &quot;Atlas opens at 09:00.&quot;
+start, end = 15, 20  # Unicode code points; [start, end)
+assert text[start:end] == &quot;09:00&quot;
+# A different encoding/offset convention must be declared explicitly.</code></pre></div><p>Konumlar ancak çıkarımda kullanılan tam kaynak temsiline göre anlamlıdır. Bayt, Unicode kod noktası veya başka birim mi sayıldığını ve bitişin dışarıda olup olmadığını belirtin. Unicode normalizasyonu, PDF çıkarımı veya satır sonu dönüşümü konumları değiştirebilir. Değişmez kaynak revizyonunu ve metni yeniden üretmeye yetecek bilgiyi tutup çıkarılan aralığın eşleşmesini doğrulayın.</p><p>SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. Saldırgan uydurma metni de gerçek metin kadar kolay hash’leyebilir. Metin ve beklenen hash aynı güvenilmeyen taraftan geliyorsa eşitlik özgünlük kanıtı değildir. Kaynak edinimi, doğrulanmış yayıncı kimliği ve teslim zinciri kayıtları problemin başka parçalarını çözer.</p></section><section class="article-section" id="chain"><h2>Yanıttan kaynağa zinciri koruyun<a class="heading-anchor" href="#chain" aria-label="Bölüm bağlantısı">#</a></h2><figure class="article-diagram" aria-label="Yanıt iddiası iddiaya, tam aralığa, kaynak revizyonuna ve edinim kaydına bağlanır."><ol tabindex="0"><li>Yanıt · cuma onda</li><li>İddia · a42 + koşullar</li><li>Aralık · tam destek metni</li><li>Revizyon · handbook-r3</li><li>Köken · edinim kaydı</li></ol><figcaption>Atıf inceleyenin hattı yeniden kurmadan kanıtı kontrol etmesini sağlamalıdır.</figcaption></figure><p>Alıntıyı incelenebilir ölçüde dar tutun; gerektiğinde niteleyici cümleyi ekleyin. “1 Kasım sonrası cumaları” olmadan “onda açılır” ifadesi ekim sorusunu desteklemez. Tek atfı paragrafa iliştirip her cümleyi kapsadığını varsaymak yerine çok iddialı yanıtta desteklenmeyen parçaları işaretleyin.</p></section><section class="article-section" id="audit"><h2>Özel veriyi çoğaltmadan kararları kaydedin<a class="heading-anchor" href="#audit" aria-label="Bölüm bağlantısı">#</a></h2><p>Retrieval kararında istek/çalışma kimliği, çağıran kapsam kimliği, kaynak nesli, aday kimlikleri, filtre gerekçeleri ve son kanıt kimliklerini kaydedin. Özel belgeleri bütünüyle log’a kopyalamak yerine referans tercih edin. Hassas değerleri hata mesajlarından çıkarın. Denetim kaydı da erişim, saklama ve silme kuralı ister; “her şeyi log’la” denetimsiz başka hafıza deposu yaratır.</p><p>Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün veya daha dar soru isteyin. Atıf biçimi ve retrieval ile kaynaklandırma bazı desteksiz çıktıları azaltabilir; halüsinasyonu ortadan kaldırmaz. W3C PROV türetim sözlüğü sunar; OWASP getirilen materyalin talimat olarak neden güvenilmez kalacağını açıklar. Bunlar tamamlayıcı konulardır. <a class="" href="https://www.w3.org/TR/prov-overview/" target="_blank" rel="noopener noreferrer"><span>PROV</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>, <a class="" href="https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer"><span>OWASP</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>.</p></section><section class="article-section" id="practice"><h2>Bağlantıyı değil iddiayı test edin<a class="heading-anchor" href="#practice" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-exercise"><strong>Kendinizi sınayın</strong><p>Belge SHA-256 özetiyle eşleşiyor; fakat belgeyi bilinmeyen kullanıcı yüklemiş. Ne sonuç çıkarabilirsiniz?</p><details><summary>Açıklamayı göster</summary><p>Yalnızca verilen baytların belirtilen yöntemle o özete uyduğunu söyleyebilirsiniz. Köken/özgünlük değerlendirmesi ve pasajın cevabı desteklediğine ayrı kontrol gerekir. Sağlama toplamı kaynak doğruluğunu sertifikalandırmaz.</p></details></div></section><section class="article-section" id="references"><h2>Kaynaklar ve ileri okuma<a class="heading-anchor" href="#references" aria-label="Bölüm bağlantısı">#</a></h2><ol class="reference-list"><li><a class="" href="https://www.w3.org/TR/prov-overview/" target="_blank" rel="noopener noreferrer"><span>W3C · PROV Overview</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer"><span>OWASP · LLM Prompt Injection Prevention</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>MESA Core v0.8.1 · Architecture and limitations</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol></section></div>
+ <div class="learn-lesson-finish"><div><strong>Sonraki fikre hazır mısınız?</strong><p>Devam etmeden soruyu deneyin. Depolama kullanılabiliyorsa ilerlemeniz bu tarayıcıda saklanır.</p></div><button type="button" class="button" data-mark-lesson="evidence-aware-memory" hidden>Okundu işaretle ✓</button><p data-lesson-status aria-live="polite"></p></div>
+ <nav class="learn-adjacent" aria-label="Önceki ve sonraki ders"><a href="../../learn/why-graphs-matter-in-ai-memory/"><span>← ÖNCEKİ DERS</span><strong>Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek</strong></a><a href="../../learn/memory-scope-and-authorization/"><span>SONRAKİ DERS →</span><strong>Ortak hafıza: kim neyi geri getirebilir?</strong></a></nav>
+ <a class="learn-back-map" href="../../learn/">← Öğrenme haritasına dönün</a>
+ </article><details class="learn-toc" open><summary>Bu derste</summary><nav aria-label="Ders bölümleri"><ol><li><a href="#four-tests">Dört kontrol, dört ayrı sonuç</a></li><li><a href="#span">Küçük, tekrar üretilebilir aralık kontrolü</a></li><li><a href="#chain">Yanıttan kaynağa zinciri koruyun</a></li><li><a href="#audit">Özel veriyi çoğaltmadan kararları kaydedin</a></li><li><a href="#practice">Bağlantıyı değil iddiayı test edin</a></li><li><a href="#references">Kaynaklar ve ileri okuma</a></li></ol></nav></details></div><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -180,8 +83,7 @@
         <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../admin/">Yönetim</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer>
-    </main>
-  <script src="../../../app.js?v=7ab053b9ea58"></script>
+    </footer></main>
+  <script src="../../../app.js?v=6dbcc516edfb"></script>
 </body>
 </html>

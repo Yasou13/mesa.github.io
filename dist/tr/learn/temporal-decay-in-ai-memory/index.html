@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği — MESA Learn</title>
-  <meta name="description" content="Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerlil">
+  <title>Değişen bilgi: geçerlilik, çelişki ve unutma — MESA Learn</title>
+  <meta name="description" content="Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/">
-  <meta property="og:title" content="Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği — MESA Learn">
-  <meta property="og:description" content="Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerlil">
+  <meta property="og:title" content="Değişen bilgi: geçerlilik, çelişki ve unutma — MESA Learn">
+  <meta property="og:description" content="Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/">
   <meta property="og:locale" content="tr_TR">
@@ -21,21 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği — MESA Learn">
-  <meta name="twitter:description" content="Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerlil">
+  <meta name="twitter:title" content="Değişen bilgi: geçerlilik, çelişki ve unutma — MESA Learn">
+  <meta name="twitter:description" content="Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerlil"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerlil","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği","item":"https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/"}]},{"@type":"Article","headline":"Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği","description":"Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerlil","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"temporal-decay, memory-freshness, state-mutation, ai-memory"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Değişen bilgi: geçerlilik, çelişki ve unutma","item":"https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/"}]},{"@type":"Article","headline":"Değişen bilgi: geçerlilik, çelişki ve unutma","description":"Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.","datePublished":"2026-10-17","dateModified":"2026-10-18","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"temporal, validity, decay, contradiction, version, zaman, geçerlilik, çelişki, unutma"}]}</script>
   <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../../styles.css?v=6e69ac822270">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -53,91 +53,20 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği</span></li></ol></nav>
-      <article class="knowledge-article">
-        <header class="article-header">
-          <p class="eyebrow">Learn · Foundations</p>
-          <h1>Ajan hafızasında zamansal sönümlenme ve bilgi güncelliği</h1>
-          <p class="article-subtitle">Kalıcı tarihsel olgular ile değişen anlık inançlar arasındaki dengenin kurulması</p>
-          <p class="article-summary">Ajan hafızasındaki bilgi zamanla değişir. Zamansal sönümlenme modelleri bir iddianın aktif mi kaldığını, yeniden doğrulama mı gerektirdiğini yoksa geçerliliğini yitirdiğini mi belirler.</p>
-          <dl class="article-byline">
-            <div>
-              <dt>Yayın</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Güncelleme</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Yazar</dt>
-              <dd>MESA contributors</dd>
-            </div>
-            <div>
-              <dt>Okuma süresi</dt>
-              <dd>7 dakika</dd>
-            </div>
-          </dl>
-        </header>
-        <div class="article-layout">
-          
-    <nav class="article-toc" aria-label="Bu sayfada">
-      <strong>Bu sayfada</strong>
-      <ol>
-        <li><a href="#architectural-dilemma">Vektör embedding'lerinin zamansızlık tuzağı</a></li><li><a href="#engineering-trade-offs">Mühendislik ödünleşimlerinin karşılaştırması</a></li><li><a href="#core-mechanisms">Bitemporal aralıklar ve sönümlenme denklemleri</a></li><li><a href="#mesa-implementation">MESA'da zamansal kapsam denetimi</a></li><li><a href="#references">Kaynaklar</a></li>
-      </ol>
-    </nav>
-          <div class="article-body">
-            <div class="short-answer"><strong>Kısa yanıt</strong><p>Zamansal hafıza geçerlilik aralıkları ve sönümlenme algoritmaları kullanarak ajanların eski veya yürürlükten kalkmış gözlemleri güncel gerçek sanmasını engeller.</p></div>
-            
-            
-    <section id="architectural-dilemma" class="article-section">
-      <h2>Vektör embedding'lerinin zamansızlık tuzağı<a class="heading-anchor" href="#architectural-dilemma" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Vektör veritabanları uzaydaki noktaları zamansız kabul eder. Üç yıl önce hesaplanmış bir embedding, ilgili kelimelerle arandığında süresiz yakın kalır; bu da ajanın eski durumu güncel sanmasına yol açar.</p><div class="article-callout warning"><strong>Eski Durum Açığı</strong><p>Bir ajan 'Sunucu yapılandırması Küme A'ya bakar' bilgisini kaydeder ve küme Küme B'ye taşınırsa, salt vektör mesafesi Küme A bilgisinin artık yürürlükte olmadığını anlayamaz.</p></div>
-    </section>
-    <section id="engineering-trade-offs" class="article-section">
-      <h2>Mühendislik ödünleşimlerinin karşılaştırması<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <div class="table-scroll"><table><thead><tr><th scope="col">Strateji</th><th scope="col">Mekanizma</th><th scope="col">En Uygun Alan</th><th scope="col">Hata Riski</th></tr></thead><tbody><tr><th scope="row">Üssel Sönümlenme</th><td>Puan exp(-lambda * delta_t) ile çarpılır</td><td>Sohbet güncelliği, gündelik etkileşim</td><td>Kalıcı doğru olan temel olguları silebilir</td></tr><tr><th scope="row">Açık Zaman Aralıkları</th><td>valid_from ve valid_until damgaları</td><td>Sözleşmeler, mevzuat, sistem ayarları</td><td>Açık geçersiz kılma tetikleyicisi gerektirir</td></tr><tr><th scope="row">Bitemporal Modelleme</th><td>Geçerlilik Zamanı ile İşlem Zamanı</td><td>Finansal denetim, hukuki uyumluluk</td><td>Daha yüksek depolama ve sorgu karmaşıklığı</td></tr><tr><th scope="row">Hükümsüzlük Zincirleri</th><td>Açık revizyon işaretçileri (superseded_by)</td><td>Varlık nitelik güncellemeleri</td><td>Zincir koparsa yetim kayıtlar oluşabilir</td></tr></tbody></table></div>
-    </section>
-    <section id="core-mechanisms" class="article-section">
-      <h2>Bitemporal aralıklar ve sönümlenme denklemleri<a class="heading-anchor" href="#core-mechanisms" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Yüksek güvenilirlikli hafıza motorları bitemporal indeksleme uygular: hem olayın gerçek dünyada gerçekleştiği zamanı (geçerlilik zamanı) hem de hafıza sistemine kaydedildiği zamanı (işlem zamanı) saklar. Sönümlenme relevance puanına uygulanır, kayıtları fiziksel olarak silmez.</p><pre tabindex="0" class="article-code"><code>// SQL içinde bitemporal hafıza filtresi
-SELECT * FROM assertions
-WHERE valid_from &lt;= CURRENT_TIMESTAMP
-  AND (valid_until IS NULL OR valid_until &gt; CURRENT_TIMESTAMP)
-  AND transaction_status = 'COMMITTED';</code></pre>
-    </section>
-    <section id="mesa-implementation" class="article-section">
-      <h2>MESA'da zamansal kapsam denetimi<a class="heading-anchor" href="#mesa-implementation" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>MESA Core her hafıza kaydında zamansal sınır alanlarını zorunlu kılar. Retrieval router'ları, vektör veya lexical sıralama başlamadan önce süresi dolmuş kayıtları eler; böylece tarihsel denetim izi korunurken canlı akıl yürütme temiz tutulur.</p><ul class="article-checklist"><li>Her assertion şeması valid_from ve valid_until sınırları içerir.</li><li>Durum güncellemeleri yerinde üzerine yazmak yerine değiştirilemez revizyon kaydı üretir.</li><li>Denetim sorguları tarihteki herhangi bir ana dönerek tam hafıza durumunu inceleyebilir.</li><li>Sönümlenme algoritmaları temel kanıt aralıklarını asla yok etmez.</li></ul>
-    </section>
-    <section id="references" class="article-section">
-      <h2>Kaynaklar<a class="heading-anchor" href="#references" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <ol class="reference-list"><li><a class="" href="https://www.cs.arizona.edu/people/rts/tdbbook.pdf" target="_blank" rel="noopener noreferrer"><span>Snodgrass &amp; Jensen (1999) — Developing Time-Oriented Database Applications in SQL</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://psychclassics.yorku.ca/Ebbinghaus/" target="_blank" rel="noopener noreferrer"><span>Ebbinghaus (1885) — Memory: A Contribution to Experimental Psychology</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
-    </section>
-          </div>
-        </div>
-        
-    <section class="related-content" aria-labelledby="related-title">
-      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
-      <h2 id="related-title">Kanıt ağı içinde ilerleyin.</h2>
-      <div class="publication-grid">
-        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">AI Memory Nedir?</a></h3><p>AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller</a></h3><p>Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler.</p><div><span>9 dk okuma</span><a href="../../learn/hybrid-retrieval-explained/">Oku<span aria-hidden="true"> →</span></a></div></article>
-      </div>
-    </section>
-        
-      <div class="contextual-cta">
-        <div>
-          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
-          <h2>Provenance yaklaşımının MESA Law örneğini görün.</h2>
-          <p>Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.</p>
-        </div>
-        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
-      </div>
-      </article>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    </header><main id="main-content" class="learn-reading" data-learn-article="temporal-decay-in-ai-memory"><nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Değişen bilgi: geçerlilik, çelişki ve unutma</span></li></ol></nav>
+ <div class="learn-reader-grid"><details class="learn-course-nav" open><summary>Öğrenme yolu <span>14 ders</span></summary><nav aria-label="Dersler"><div class="learn-nav-stage"><strong>01 / Sıfırdan başlayın</strong><ol><li><a href="../../learn/what-is-ai-memory/" data-nav-lesson="what-is-ai-memory"><span>01</span>Yapay zekâ hafızası: konuşmadan sonra ne kalır?</a></li><li><a href="../../learn/rag-vs-ai-memory/" data-nav-lesson="rag-vs-ai-memory"><span>02</span>RAG ve hafıza: isteği adım adım kurmak</a></li><li><a href="../../learn/structured-vs-unstructured-memory/" data-nav-lesson="structured-vs-unstructured-memory"><span>03</span>Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a></li></ol></div><div class="learn-nav-stage"><strong>02 / Aramayı öğrenin</strong><ol><li><a href="../../learn/semantic-search/" data-nav-lesson="semantic-search"><span>04</span>Embedding ve anlamsal arama: sayılarla açıklama</a></li><li><a href="../../learn/bm25-tuning-for-domain-documents/" data-nav-lesson="bm25-tuning-for-domain-documents"><span>05</span>BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</a></li><li><a href="../../learn/hybrid-retrieval-explained/" data-nav-lesson="hybrid-retrieval"><span>06</span>Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama</a></li><li><a href="../../learn/reciprocal-rank-fusion-explained/" data-nav-lesson="reciprocal-rank-fusion"><span>07</span>Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek</a></li><li><a href="../../learn/why-graphs-matter-in-ai-memory/" data-nav-lesson="why-graphs-matter"><span>08</span>Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek</a></li></ol></div><div class="learn-nav-stage"><strong>03 / Güvenilir sistem kurun</strong><ol><li><a href="../../learn/what-is-evidence-aware-memory/" data-nav-lesson="evidence-aware-memory"><span>09</span>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a></li><li><a href="../../learn/memory-scope-and-authorization/" data-nav-lesson="memory-scope-and-authorization"><span>10</span>Ortak hafıza: kim neyi geri getirebilir?</a></li><li><a href="../../learn/sqlite-as-canonical-agent-memory/" data-nav-lesson="sqlite-as-canonical-agent-memory"><span>11</span>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</a></li><li><a href="../../learn/temporal-decay-in-ai-memory/" data-nav-lesson="temporal-decay-in-ai-memory" aria-current="page"><span>12</span>Değişen bilgi: geçerlilik, çelişki ve unutma</a></li></ol></div><div class="learn-nav-stage"><strong>04 / Ölçün ve uygulayın</strong><ol><li><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/" data-nav-lesson="evaluating-ndcg-and-mrr-in-memory"><span>13</span>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</a></li><li><a href="../../learn/build-a-small-search-lab/" data-nav-lesson="build-a-small-search-lab"><span>14</span>LLM kullanmadan küçük bir arama laboratuvarı kurun</a></li></ol></div></nav></details><article class="learn-article">
+ <header class="learn-article-header"><p class="eyebrow">DERS 12 / 14 · Güvenilir sistem kurun</p><h1>Değişen bilgi: geçerlilik, çelişki ve unutma</h1><p class="learn-article-lede">Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.</p><div class="learn-reading-meta"><span>5 dk okuma</span><span><time datetime="2026-10-18">Güncelleme: 18 Eki 2026</time></span><a href="../../learn/temporal-decay-in-ai-memory/article.md" download>Markdown indir ↓</a></div>
+ <div class="learn-objectives"><strong>BİTİRDİĞİNİZDE</strong><ul><li>Geçerlilik zamanı ile kayıt zamanını ayırmak</li><li>Görünür ve gerçek çelişkiyi tanımak</li><li>Azalmayı doğruluk değil sıralama politikası olarak açıklamak</li></ul></div>
+ <p class="learn-prerequisites">Bu dersten önce: <a href="../../learn/what-is-evidence-aware-memory/">Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a> · <a href="../../learn/sqlite-as-canonical-agent-memory/">Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</a></p></header>
+ <div class="learn-article-body"><section class="article-section" id="two-clocks"><h2>İki saat farklı soruları yanıtlar<a class="heading-anchor" href="#two-clocks" aria-label="Bölüm bağlantısı">#</a></h2><p>Arşiv 18 Ekim’de yeni cuma açılış saatini duyuruyor; değişiklik 1 Kasım’da geçerli. Sistem duyuruyu 20 Ekim’de öğreniyor. “Bugün açılış saati ne?” ve “Sistemimiz 19 Ekim’e kadar ne kaydetmişti?” farklı sorulardır. Tek <code>updated_at</code> alanı iki anlamı güvenilir temsil edemez.</p><div class="table-scroll"><table><thead><tr><th scope="col">Alan</th><th scope="col">Örnek</th><th scope="col">Anlam</th></tr></thead><tbody><tr><th scope="row">valid_from</th><td>1 Kasım</td><td>İddianın uygulanmaya başladığı zaman</td></tr><tr><th scope="row">valid_to</th><td>açık uçlu</td><td>Uygulanabilirliğin bittiği zaman</td></tr><tr><th scope="row">recorded_at</th><td>20 Ekim</td><td>Bu sistemin kaydettiği zaman</td></tr><tr><th scope="row">source_revision</th><td>handbook-r3</td><td>Bunu söyleyen belge</td></tr></tbody></table></div><p>Bunlar dersin kavramsal alanlarıdır. Geçerlilik ve işlem zamanı geçmiş sorgularını birlikte desteklemek açık bitemporal model ve sorgu semantiği ister. Ürün zaman damgası saklıyor diye bu yeteneği çıkarmayın. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir.</p></section><section class="article-section" id="intervals"><h2>Değişimi aralıkla temsil edin<a class="heading-anchor" href="#intervals" aria-label="Bölüm bağlantısı">#</a></h2><figure class="article-diagram" aria-label="Revizyon 2 kasımdan önce, revizyon 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir."><ol tabindex="0"><li>Eski iddia · cuma 09.00</li><li>Bitiş · 1 Kasım’dan önce</li><li>Yeni iddia · cuma 10.00</li><li>Başlangıç · 1 Kasım dahil</li><li>Kayıt · ayrıca 20 Ekim</li></ol><figcaption>Aralık sınırını ve saat dilimini belirtin; eski değeri sessizce ezmeyin.</figcaption></figure><p>Yarı açık <code>[başlangıç, bitiş)</code> başlangıcı içerip bitişi dışlar. Böylece bitişik aralıklar örtüşmez: eski 1 Kasım’a kadar, yeni 1 Kasım’dan itibaren. Saat dilimini ve tarih hassasiyetini tanımlayın; “gece yarısı” saat dilimi olmadan eksiktir. Yalnızca gün belirten duyuruya saat uydurmak yerine kaynak hassasiyetini koruyun.</p></section><section class="article-section" id="contradiction"><h2>Çelişki demeden aynı şeyi karşılaştırın<a class="heading-anchor" href="#contradiction" aria-label="Bölüm bağlantısı">#</a></h2><p>“Dokuzda açılır” ve “onda açılır” çelişkili görünür. Farklı salon, gün, tarih veya kaynak otoritesini anlatabilirler. Önce varlık kimliğini, yüklemi, birimi, kapsamı ve geçerlilik aralığını hizalayın. Sonra aynı koşulda uyumsuz iki değerin yarışıp yarışmadığını sorun. Olumsuzluk ve kip önemlidir: “açılabilir”, “açılacak” değildir.</p><p>Güncel iki kaynak gerçekten ayrışıyorsa ikisini koruyup çatışmayı kaynaklarıyla gösterin. Çözüm politikası resmî revizyonu tercih edebilir, inceleme isteyebilir veya seçimden kaçınabilir. “En yeni kazanır” evrensel olarak güvenli değildir; yeni düşük kaliteli kopya eski yetkili kaynağa karşı çıkabilir. Çözüm gerekçesini ve geri almak için gereken bilgiyi kaydedin.</p></section><section class="article-section" id="decay"><h2>Yaş önceliği değiştirebilir, doğruluğu değil<a class="heading-anchor" href="#decay" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-code"><div><span>Çözümlü örnek</span><button class="copy-button" type="button" data-copy-target="lesson-code-20">Kopyala</button></div><pre tabindex="0" class="article-code" id="lesson-code-20"><code>illustrative recency weight = exp(-lambda * age)
+half-life H =&gt; lambda = ln(2) / H
+age = H  =&gt; weight = 0.5
+age = 2H =&gt; weight = 0.25
+Apply only after eligibility; this is a ranking policy.</code></pre></div><p>Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Tarihsel sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin.</p></section><section class="article-section" id="practice"><h2>Görünür çatışmayı sınıflandırın<a class="heading-anchor" href="#practice" aria-label="Bölüm bağlantısı">#</a></h2><div class="learn-exercise"><strong>Kendinizi sınayın</strong><p>Revizyon 2 kasıma kadar cuma 09.00, revizyon 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?</p><details><summary>Açıklamayı göster</summary><p>Hayır. Farklı aralıklara uygulanıyorlar. İkisini koruyup sorunun tarihiyle filtreleyin. Çelişki için aynı varlık, kapsam ve örtüşen geçerlilik koşullarında uyumsuz değer gerekir.</p></details></div></section><section class="article-section" id="references"><h2>Kaynaklar ve ileri okuma<a class="heading-anchor" href="#references" aria-label="Bölüm bağlantısı">#</a></h2><ol class="reference-list"><li><a class="" href="https://www.w3.org/TR/prov-overview/" target="_blank" rel="noopener noreferrer"><span>W3C · PROV Overview</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer"><span>MESA Core v0.8.1 · Architecture and limitations</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol></section></div>
+ <div class="learn-lesson-finish"><div><strong>Sonraki fikre hazır mısınız?</strong><p>Devam etmeden soruyu deneyin. Depolama kullanılabiliyorsa ilerlemeniz bu tarayıcıda saklanır.</p></div><button type="button" class="button" data-mark-lesson="temporal-decay-in-ai-memory" hidden>Okundu işaretle ✓</button><p data-lesson-status aria-live="polite"></p></div>
+ <nav class="learn-adjacent" aria-label="Önceki ve sonraki ders"><a href="../../learn/sqlite-as-canonical-agent-memory/"><span>← ÖNCEKİ DERS</span><strong>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</strong></a><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/"><span>SONRAKİ DERS →</span><strong>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</strong></a></nav>
+ <a class="learn-back-map" href="../../learn/">← Öğrenme haritasına dönün</a>
+ </article><details class="learn-toc" open><summary>Bu derste</summary><nav aria-label="Ders bölümleri"><ol><li><a href="#two-clocks">İki saat farklı soruları yanıtlar</a></li><li><a href="#intervals">Değişimi aralıkla temsil edin</a></li><li><a href="#contradiction">Çelişki demeden aynı şeyi karşılaştırın</a></li><li><a href="#decay">Yaş önceliği değiştirebilir, doğruluğu değil</a></li><li><a href="#practice">Görünür çatışmayı sınıflandırın</a></li><li><a href="#references">Kaynaklar ve ileri okuma</a></li></ol></nav></details></div><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -155,8 +84,7 @@ WHERE valid_from &lt;= CURRENT_TIMESTAMP
         <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../admin/">Yönetim</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer>
-    </main>
-  <script src="../../../app.js?v=7ab053b9ea58"></script>
+    </footer></main>
+  <script src="../../../app.js?v=6dbcc516edfb"></script>
 </body>
 </html>

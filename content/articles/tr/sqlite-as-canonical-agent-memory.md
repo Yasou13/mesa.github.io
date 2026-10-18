@@ -3,65 +3,68 @@ id: "sqlite-as-canonical-agent-memory"
 slug: "sqlite-as-canonical-agent-memory"
 type: "learn"
 language: "tr"
-title: "SQLite neden yapay zekâ hafızası için en uygun kanonik depodur?"
-subtitle: "Çok kipli türetilmiş projeksiyonların temeli olarak gömülü işlemsel güvenilirlik"
-summary: "Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID uyumlu bir temel sağlar."
-shortAnswer: "SQLite hafıza durum geçişlerinin atomik ve dayanıklı olmasını garanti eder; türetilmiş vektör ve graph depoları bozulsa bile deterministik olarak yeniden üretilebilir."
-category: "Foundations"
-tags: ["sqlite", "architecture", "canonical-store", "durability"]
+title: "Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak"
+subtitle: ""
+summary: "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
+shortAnswer: "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
+category: "Evidence & Trust"
+tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-17"
-readingMinutes: 8
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "SQLite neden yapay zekâ hafızası için en uygun kanonik depodur? — MESA Learn"
-seoDescription: "Yapay zekâ hafızası işlemsel dayanıklılık, katı şema doğrulaması ve sıfır ağ yükü gerektirir. SQLite, vektör ve graph indekslerinin türetilebileceği ACID u"
+seoTitle: "Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn"
+seoDescription: "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
+lessonOrder: 11
+learningStage: "systems"
+prerequisites: ["structured-vs-unstructured-memory", "evidence-aware-memory"]
+learningObjectives: ["Kanonik ve türetilmiş durumu ayırmak", "Depolar arasındaki çökmeden kurtulmak", "Idempotent yazma ve gözlenebilir durum tasarlamak"]
 ---
 
-## Çoklu veritabanı karmaşasının kırılganlığı
+## Kimlik ve yaşam döngüsü için otorite belirleyin
 
-Birçok modern ajan kütüphanesi harici bir vektör veritabanını, bağımsız bir graph veritabanını ve bir anahtar-değer önbelleğini aynı anda bağlamaya çalışır. Bir yazma işlemi sırasında ajan çökerse veritabanları uyumsuz hale gelir, yetim kenarlar ve hayalet kayıtlar kalır.
+Hafıza uygulaması kaynak kayıtları için SQL, benzerlik için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa iddianın var ve etkin olduğuna hangisi karar verir? Kanonik depo bu kararın sahibidir. Projeksiyon, kanonik veri ve beyan edilmiş dönüşümden yeniden kurulabilen türetilmiş temsildir. “Türetilmiş” önem veya arama kalitesini değil otoriteyi anlatır.
 
-> [!WARNING]
-> **Dağıtık İşlem Tehlikesi**
-> Ajan çalışma zamanlarında heterojen vektör ve graph servisleri arasında iki aşamalı commit (2PC) yürütmek son derece kırılgandır. Ağ hatası silinmiş graph düğümlerini işaret eden yetim vektörler bırakabilir.
+Örnek tasarımda SQL kaynak revizyonunu, iddia kimliğini, durumu ve mutasyon defterini sahiplenir. Vektör ve çizge satırı bu kimliklere bağlanır. Arama isabeti ancak kanonik uygunluk kontrolünden sonra kanıt olur. Eski indeks satırı, vektörü sorguya yakın diye silinmiş iddiayı diriltmemelidir.
 
-## Mühendislik ödünleşimlerinin karşılaştırması
+## Depolar arasındaki çökmeyi izleyin
 
-| Boyut | Çoklu Veritabanı Karmaşası | SQLite Kanonik Mimarisi |
-| --- | --- | --- |
-| ACID Garantisi | Harici servisler arasında yok | Tam işlemsel atomiklik ve WAL dayanıklılığı |
-| Dağıtım Karmaşıklığı | Birden fazla arka plan sunucusu, ağ ayarları, token'lar | Tek dosya, süreç içi gömülü, sıfır ağ gecikmesi |
-| Bozulma Onarımı | Manuel veritabanı mutabakatı gerektirir | Projeksiyonlar SQLite'tan deterministik olarak üretilir |
-| Lexical Arama | Ayrı Elasticsearch / OpenSearch kümesi gerektirir | BM25 sıralamalı yerleşik SQLite FTS5 eklentisi |
-| Taşınabilirlik | Belirli bulut servis sağlayıcılarına kilitlenir | İşletim sistemleri ve işlemciler arasında taşınabilir tek dosya |
+<!-- diagram: SQL mutasyonu ve outbox işini kabul eder; ardından vektör/çizge projeksiyonları çalışır ve görünürlük tamamlanır. -->
+1. SQL işlemi · kaynak + outbox
+2. Worker · bekleyen işi al
+3. Vektör · sabit kimlikle uygula
+4. Çizge · sabit kimlikle uygula
+5. Tamamla · projeksiyonları doğrula
 
-## İşlemsel assertion'lar ve türetilmiş projeksiyonlar
+*SQL commit, bağımsız bütün arka uçları kapsayan tek atomik işlem oluşturmaz.*
 
-Kanonik mimaride tüm yazma işlemleri atomik bir işlem içinde doğrudan SQLite'a yapılır. Arka plan dinleyicileri veya senkronizasyon kancaları ardından türetilmiş arama projeksiyonlarını (LanceDB vektör tabloları ve Kùzu graph tabloları gibi) günceller.
+SQL commit olsun, vektör ekleme başarılı olsun; süreç çizge eklemeden çöksün. Kalıcı bekleyen iş yoksa çizge yazması tamamen kaybolabilir. Kanonik mutasyonla aynı SQL işleminde kaydedilmiş outbox varsa yeniden başlayan worker eksik işi bulup tekrarlar. Teslim birden fazla kez gerçekleşebilir; etkiyi tekrarlamak bu yüzden güvenli olmalıdır.
 
-```text
-// SQLite içinde atomik assertion kabulü
-BEGIN TRANSACTION;
-INSERT INTO assertions (id, subject, predicate, object, source_id, status)
-VALUES ('asrt_102', 'Model', 'kullandigi_kuantalama', 'INT8', 'doc_sys_v1', 'COMMITTED');
-INSERT INTO evidence_spans (assertion_id, start_char, end_char)
-VALUES ('asrt_102', 1240, 1310);
-COMMIT;
-```
+## Kimlik ve fencing ile güvenli tekrar
 
-## MESA'nın tek bilgi kaynağı ilkesi
+Idempotency aynı mantıksal işlemi yeniden uygulamanın farklı son etki oluşturmamasıdır. Sabit işlem kimliği ve tanımlı payload kimliği kullanın. Aynı anahtarı başka içerikle kullanmak reddedilmeli veya açık sözleşmeyle yönetilmelidir. Her tekrarda rastgele kimlik üretmek idempotency değil kopya üretir. Timeout, çağıranın tamamlanmayı gözlemediğini söyler; yazma olmadığını kanıtlamaz.
 
-MESA Core, SQLite'ı değiştirilemez işlem motoru olarak kurar. LanceDB ve Kùzu tamamen türetilmiş projeksiyonlar olarak çalışır: biri silinse veya bozulsa bile MESA ikisini de kanonik SQLite veritabanından sıfır kayıpla yeniden inşa eder.
+Lease, worker’ın işi geçici sahiplenmesini sağlar. Fencing token veya eşdeğer sahiplik kontrolü başka sahip devraldıktan sonra eski worker’ın işi tamamlamasını önler. Sahipliği yalnızca başlangıçta değil gerçek durum değişikliğinde kontrol edin. A worker’ını durdurup iznini düşürün, B’ye devrettikten sonra A’yı sürdürerek yarışı test edin.
 
-- [ ] Tüm hafıza değişiklikleri SQLite WAL kipinde kaydedilir.
-- [ ] FTS5 süreç içi ve milisaniyenin altında BM25 eşleşmesi sağlar.
-- [ ] Projeksiyonlar geçicidir ve kesin biçimde yeniden üretilebilir.
-- [ ] Yerel hafıza okuma ve yazmalarında sıfır ağ soket gecikmesi vardır.
+## SQLite neyi garanti eder?
 
-## Kaynaklar
+SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-1. [Hipp (2020) — SQLite Architecture and Design](https://www.sqlite.org/arch.html)
-2. [MESA Core Depolama Projeksiyonları Spesifikasyonu](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
+MESA Core v0.8.1 root başına tek combined owner kullanır; LanceDB/Kùzu projeksiyondur. Rebuild çevrimdışı ve tüm root kapsamındadır; çevrimiçi tenant başına onarım değildir. Bunlar ürüne özgü sınırlardır; başka sistem başka depolama seçebilir. Doğru rebuild, kanonik kanıtı ve temsil kimliğini korumayı; geçişten önce yeni projeksiyonu doğrulamayı gerektirir. [Core sözleşmesi](docs/core/architecture/).
+
+## Timeout’u yorumlayın
+
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> İstemci vektör yazmasından sonra timeout alıyor. Hemen yeni kimlikle yeni mutasyon oluşturmalı mı?
+>
+> **Answer:** Önce özgün mutasyon durumunu inceleyin. Uygunsa tanımlı idempotency sözleşmesiyle tekrarlayın. Yeni kimlik zaten kabul edilmiş işlemi çoğaltabilir; timeout gözlem hatasıdır, rollback kanıtı değildir.
+
+## Kaynaklar ve ileri okuma
+
+1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
+2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
+3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 

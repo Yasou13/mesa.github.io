@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi — MESA Learn</title>
-  <meta name="description" content="Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu">
+  <title>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn</title>
+  <meta name="description" content="Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/">
-  <meta property="og:title" content="Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi — MESA Learn">
-  <meta property="og:description" content="Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu">
+  <meta property="og:title" content="Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn">
+  <meta property="og:description" content="Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/">
   <meta property="og:locale" content="tr_TR">
@@ -21,21 +21,21 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi — MESA Learn">
-  <meta name="twitter:description" content="Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu">
+  <meta name="twitter:title" content="Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn">
+  <meta name="twitter:description" content="Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu"},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi","item":"https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/"}]},{"@type":"Article","headline":"Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi","description":"Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunlu","datePublished":"2026-10-17","dateModified":"2026-10-17","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"evaluation, ndcg, mrr, recall-at-k, benchmarks"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Learn","item":"https://mesamemory.dev/tr/learn/"},{"@type":"ListItem","position":4,"name":"Retrieval değerlendirme: recall, MRR, nDCG ve gecikme","item":"https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/"}]},{"@type":"Article","headline":"Retrieval değerlendirme: recall, MRR, nDCG ve gecikme","description":"Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.","datePublished":"2026-10-17","dateModified":"2026-10-18","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Learn","keywords":"evaluation, MRR, nDCG, recall, precision, benchmark, latency, değerlendirme, gecikme"}]}</script>
   <link rel="icon" href="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../../styles.css?v=6e69ac822270">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
-    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a>
@@ -53,91 +53,20 @@
           <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </nav>
       </div>
-    </header>
-    <main id="main-content">
-      <nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi</span></li></ol></nav>
-      <article class="knowledge-article">
-        <header class="article-header">
-          <p class="eyebrow">Learn · Evaluation</p>
-          <h1>Ajan hafıza retrieval'ında nDCG, MRR ve Recall@k değerlendirmesi</h1>
-          <p class="article-subtitle">Çok hatlı hibrit arama kesinliğini ölçmek için matematiksel sıralama metrikleri</p>
-          <p class="article-summary">Ajan hafızasını değerlendirmek matematiksel temellere dayanan metrikler gerektirir: Recall@k eksiksizliği, MRR ilk isabet hızını, nDCG ise dereceli uygunluk kalitesini ölçer.</p>
-          <dl class="article-byline">
-            <div>
-              <dt>Yayın</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Güncelleme</dt>
-              <dd><time datetime="2026-10-17">17 Eki 2026</time></dd>
-            </div>
-            <div>
-              <dt>Yazar</dt>
-              <dd>MESA contributors</dd>
-            </div>
-            <div>
-              <dt>Okuma süresi</dt>
-              <dd>8 dakika</dd>
-            </div>
-          </dl>
-        </header>
-        <div class="article-layout">
-          
-    <nav class="article-toc" aria-label="Bu sayfada">
-      <strong>Bu sayfada</strong>
-      <ol>
-        <li><a href="#architectural-dilemma">Tek metrik yanılsaması</a></li><li><a href="#engineering-trade-offs">Mühendislik ödünleşimlerinin karşılaştırması</a></li><li><a href="#core-mechanisms">nDCG logaritmik indirim formülü</a></li><li><a href="#mesa-implementation">MESA'da değerlendirme disiplini</a></li><li><a href="#references">Kaynaklar</a></li>
-      </ol>
-    </nav>
-          <div class="article-body">
-            <div class="short-answer"><strong>Kısa yanıt</strong><p>Recall@k bilginin bulunup bulunmadığını, MRR ilk isabetin sırasını, nDCG@k ise listenin genel sıralama kalitesini ölçer.</p></div>
-            
-            
-    <section id="architectural-dilemma" class="article-section">
-      <h2>Tek metrik yanılsaması<a class="heading-anchor" href="#architectural-dilemma" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Ajan hafızası geliştiren ekipler genellikle 'Recall@10 = %92' gibi tek bir metrik raporlar. Ancak aranan doğru assertion 1. sıra yerine sürekli 9. sırada geliyorsa, dil modeli ciddi bağlam dağınıklığı ve token israfı yaşar.</p><div class="article-callout warning"><strong>İkili Alaka Hatası</strong><p>Tüm belgeleri yalnızca 1 (ilgili) veya 0 (ilgisiz) olarak ele almak, bir belgenin esas hükmü içerdiği, diğer ikisinin ise yalnızca yan usul bilgilerini verdiği senaryolarda başarısız olur.</p></div>
-    </section>
-    <section id="engineering-trade-offs" class="article-section">
-      <h2>Mühendislik ödünleşimlerinin karşılaştırması<a class="heading-anchor" href="#engineering-trade-offs" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <div class="table-scroll"><table><thead><tr><th scope="col">Metrik</th><th scope="col">Tanım</th><th scope="col">İdeal Değer</th><th scope="col">Temel Duyarlılık</th></tr></thead><tbody><tr><th scope="row">Recall@k</th><td>İlk k sonuç içinde bulunan ilgili belgelerin oranı</td><td>1.0 (%100)</td><td>İlk k içindeki sıralama düzenine duyarsızdır</td></tr><tr><th scope="row">MRR (Mean Reciprocal Rank)</th><td>İlk ilgili belgenin sıra numarasının tersinin ortalaması</td><td>1.0 (daima 1. sıra)</td><td>Yalnızca ilk isabeti değerlendirir, sonrakileri göz ardı eder</td></tr><tr><th scope="row">nDCG@k (Normalized DCG)</th><td>Dereceli kazançlarla hesaplanan DCG'nin ideal DCG'ye oranı</td><td>1.0 (kusursuz sıra)</td><td>En ilgili belgelerin listenin en başında yer almasını ödüllendirir</td></tr><tr><th scope="row">MAP (Mean Average Precision)</th><td>Her ilgili belgedeki hassasiyet puanlarının ortalaması</td><td>1.0</td><td>Birden fazla ilgili belge içeren sorgularda dengeyi kurar</td></tr></tbody></table></div>
-    </section>
-    <section id="core-mechanisms" class="article-section">
-      <h2>nDCG logaritmik indirim formülü<a class="heading-anchor" href="#core-mechanisms" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>Discounted Cumulative Gain (DCG), alaka kazancını sıra numarasına göre logaritmik olarak indirger: <code>DCG@k = Σ (2^{rel_i} - 1) / log_2(i + 1)</code>. İdeal Sıralama (IDCG@k) değerine bölünerek [0.0, 1.0] aralığında liste uzunluğundan bağımsız bir skor elde edilir.</p><pre tabindex="0" class="article-code"><code>// nDCG@k hesaplama Python fonksiyonu
-def ndcg_at_k(relevance_scores, k):
-    dcg = sum((2**rel - 1) / math.log2(idx + 2) for idx, rel in enumerate(relevance_scores[:k]))
-    idcg = sum((2**rel - 1) / math.log2(idx + 2) for idx, rel in enumerate(sorted(relevance_scores, reverse=True)[:k]))
-    return dcg / idcg if idcg &gt; 0 else 0.0</code></pre>
-    </section>
-    <section id="mesa-implementation" class="article-section">
-      <h2>MESA'da değerlendirme disiplini<a class="heading-anchor" href="#mesa-implementation" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <p>MESA'nın bağımsız retrieval denetim paketi, dört farklı arama hattını sentetik ve hukuki altın veri kümeleri üzerinde test eder. Her sürümde Recall@5, MRR ve nDCG@10 deterministik olarak ölçülür.</p><ul class="article-checklist"><li>Altın veri kümeleri dereceli alaka etiketleri (0 = ilgisiz, 3 = esas otorite) uygular.</li><li>Sorgular ve değerlendirme kararları dondurulmuş JSONL dosyalarında sürümle tutulur.</li><li>Sıfır sonuçlu sorgular ve başarısızlık vakaları şeffaf biçimde takip edilir.</li><li>Değerlendirme kapıları CI ortamında kalite kayıplarını engeller.</li></ul>
-    </section>
-    <section id="references" class="article-section">
-      <h2>Kaynaklar<a class="heading-anchor" href="#references" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
-      <ol class="reference-list"><li><a class="" href="https://dl.acm.org/doi/10.1145/582415.582418" target="_blank" rel="noopener noreferrer"><span>Järvelin &amp; Kekäläinen (2002) — Cumulated Gain-Based Evaluation of IR Techniques (ACM TOIS)</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer"><span>MESA Bağımsız Retrieval Denetimi ve Test Paketi</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
-    </section>
-          </div>
-        </div>
-        
-    <section class="related-content" aria-labelledby="related-title">
-      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
-      <h2 id="related-title">Kanıt ağı içinde ilerleyin.</h2>
-      <div class="publication-grid">
-        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/what-is-ai-memory/">AI Memory Nedir?</a></h3><p>AI memory, modellerin ve otonom ajanların durumu korumasını, doğrulanmış geçmiş etkileşimleri geri çağırmasını ve çalıştırma sınırlarının ötesinde bilgi biriktirmesini sağlayan kalıcılık katmanıdır.</p><div><span>7 dk okuma</span><a href="../../learn/what-is-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller</a></h3><p>Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler.</p><div><span>9 dk okuma</span><a href="../../learn/hybrid-retrieval-explained/">Oku<span aria-hidden="true"> →</span></a></div></article>
-      </div>
-    </section>
-        
-      <div class="contextual-cta">
-        <div>
-          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
-          <h2>Provenance yaklaşımının MESA Law örneğini görün.</h2>
-          <p>Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.</p>
-        </div>
-        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
-      </div>
-      </article>
-      <section class="closing-cta" aria-labelledby="closing-title">
+    </header><main id="main-content" class="learn-reading" data-learn-article="evaluating-ndcg-and-mrr-in-memory"><nav class="breadcrumbs" aria-label="İçerik yolu"><ol><li><span aria-current="page">Ana sayfa</span><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../learn/">Learn</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</span></li></ol></nav>
+ <div class="learn-reader-grid"><details class="learn-course-nav" open><summary>Öğrenme yolu <span>14 ders</span></summary><nav aria-label="Dersler"><div class="learn-nav-stage"><strong>01 / Sıfırdan başlayın</strong><ol><li><a href="../../learn/what-is-ai-memory/" data-nav-lesson="what-is-ai-memory"><span>01</span>Yapay zekâ hafızası: konuşmadan sonra ne kalır?</a></li><li><a href="../../learn/rag-vs-ai-memory/" data-nav-lesson="rag-vs-ai-memory"><span>02</span>RAG ve hafıza: isteği adım adım kurmak</a></li><li><a href="../../learn/structured-vs-unstructured-memory/" data-nav-lesson="structured-vs-unstructured-memory"><span>03</span>Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak</a></li></ol></div><div class="learn-nav-stage"><strong>02 / Aramayı öğrenin</strong><ol><li><a href="../../learn/semantic-search/" data-nav-lesson="semantic-search"><span>04</span>Embedding ve anlamsal arama: sayılarla açıklama</a></li><li><a href="../../learn/bm25-tuning-for-domain-documents/" data-nav-lesson="bm25-tuning-for-domain-documents"><span>05</span>BM25: nadir kelime neden tekrarlanan kelimeyi geçer?</a></li><li><a href="../../learn/hybrid-retrieval-explained/" data-nav-lesson="hybrid-retrieval"><span>06</span>Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama</a></li><li><a href="../../learn/reciprocal-rank-fusion-explained/" data-nav-lesson="reciprocal-rank-fusion"><span>07</span>Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek</a></li><li><a href="../../learn/why-graphs-matter-in-ai-memory/" data-nav-lesson="why-graphs-matter"><span>08</span>Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek</a></li></ol></div><div class="learn-nav-stage"><strong>03 / Güvenilir sistem kurun</strong><ol><li><a href="../../learn/what-is-evidence-aware-memory/" data-nav-lesson="evidence-aware-memory"><span>09</span>Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?</a></li><li><a href="../../learn/memory-scope-and-authorization/" data-nav-lesson="memory-scope-and-authorization"><span>10</span>Ortak hafıza: kim neyi geri getirebilir?</a></li><li><a href="../../learn/sqlite-as-canonical-agent-memory/" data-nav-lesson="sqlite-as-canonical-agent-memory"><span>11</span>Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak</a></li><li><a href="../../learn/temporal-decay-in-ai-memory/" data-nav-lesson="temporal-decay-in-ai-memory"><span>12</span>Değişen bilgi: geçerlilik, çelişki ve unutma</a></li></ol></div><div class="learn-nav-stage"><strong>04 / Ölçün ve uygulayın</strong><ol><li><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/" data-nav-lesson="evaluating-ndcg-and-mrr-in-memory" aria-current="page"><span>13</span>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</a></li><li><a href="../../learn/build-a-small-search-lab/" data-nav-lesson="build-a-small-search-lab"><span>14</span>LLM kullanmadan küçük bir arama laboratuvarı kurun</a></li></ol></div></nav></details><article class="learn-article">
+ <header class="learn-article-header"><p class="eyebrow">DERS 13 / 14 · Ölçün ve uygulayın</p><h1>Retrieval değerlendirme: recall, MRR, nDCG ve gecikme</h1><p class="learn-article-lede">Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.</p><div class="learn-reading-meta"><span>5 dk okuma</span><span><time datetime="2026-10-18">Güncelleme: 18 Eki 2026</time></span><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/article.md" download>Markdown indir ↓</a></div>
+ <div class="learn-objectives"><strong>BİTİRDİĞİNİZDE</strong><ul><li>Recall@k, MRR ve nDCG hesaplamak</li><li>İlgililik etiketi ve ayrılmış test kümesi kurmak</li><li>Gecikme, hata ve kanıt sınırını birlikte raporlamak</li></ul></div>
+ <p class="learn-prerequisites">Bu dersten önce: <a href="../../learn/reciprocal-rank-fusion-explained/">Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek</a> · <a href="../../learn/memory-scope-and-authorization/">Ortak hafıza: kim neyi geri getirebilir?</a></p></header>
+ <div class="learn-article-body"><section class="article-section" id="judgments"><h2>Soru ve ilgililik etiketiyle başlayın<a class="heading-anchor" href="#judgments" aria-label="Bölüm bağlantısı">#</a></h2><p>Neyin bulunması gerektiğini tanımlayana kadar arama sonucu makul görünür. Kaynak destekli etiketlerle küçük soru kümesi kurun. Tam kimlik, farklı ifade, tarihe duyarlı soru, cevapsız durum ve yasak kaynak ekleyin. Retrieval birimini kaydedin: ilgili belge çok sayıda ilgisiz parça içerebilir. İnceleyici her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışmaları uzlaştırma için tutun.</p><p>Parça boyutu, birleştirme ağırlığı veya eşik ayarlamadan geliştirme sorusunu son testten ayırın. Sentetik soru kapsamı genişletebilir; fakat LLM sorusu ve LLM etiketi aynı hatayı veya yapay ifadeyi paylaşabilir. Örnekleri inceleyin, uygunsa gerçek kullanıcı sorusunu tutun ve kümeler arasındaki benzer soruları ayıklayın. Cevap metnini sorgu temsiline sızdırmayın.</p></section><section class="article-section" id="example"><h2>Tek sıralı liste, farklı ölçüm soruları<a class="heading-anchor" href="#example" aria-label="Bölüm bağlantısı">#</a></h2><div class="table-scroll"><table><thead><tr><th scope="col">Sıra</th><th scope="col">Pasaj</th><th scope="col">İlgililik derecesi</th></tr></thead><tbody><tr><th scope="row">1</th><td>A · ilgisiz salon</td><td>0</td></tr><tr><th scope="row">2</th><td>B · tam cuma saati</td><td>2</td></tr><tr><th scope="row">3</th><td>C · yararlı destek bağlamı</td><td>1</td></tr></tbody></table></div><p>Bu küçük etiketli kümede ilgili birimler yalnızca B ve C olsun. Precision@3, bulunanların ilgili oranı olan 2/3’tür. Recall@3, bütün ilgili birimlerin bulunan oranı olan 2/2 = 1’dir. İlk ilgili sonuç ikinci olduğundan reciprocal rank 1/2’dir. MRR sorguların reciprocal rank ortalamasıdır; belirtilen kesimde ilgili sonuç yoksa sıfır verilir.</p><div class="learn-code"><div><span>Çözümlü örnek</span><button class="copy-button" type="button" data-copy-target="lesson-code-21">Kopyala</button></div><pre tabindex="0" class="article-code" id="lesson-code-21"><code>gain(rel) = 2**rel - 1
+DCG@3 = sum(gain(rel_i) / log2(i+1), i=1..3)
+Observed [0,2,1]: 0 + 3/log2(3) + 1/log2(4) = 2.3928
+Ideal    [2,1,0]: 3 + 1/log2(3) + 0           = 3.6309
+nDCG@3 = 2.3928 / 3.6309 = 0.6590</code></pre></div><p>Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek başına bunu gizler; nDCG dereceli ilgililik ve konumla cezalandırır. Kazanç, indirim, kesim ve ilgili etiketi olmayan sorgu politikasını belirtin. Farklı tanımlar farklı değer üretebilir. Etiketlenmemiş materyal kendiliğinden ilgisiz kanıtlanmış değildir.</p></section><section class="article-section" id="experiment"><h2>Tek etkeni değiştirin, hataları inceleyin<a class="heading-anchor" href="#experiment" aria-label="Bölüm bağlantısı">#</a></h2><figure class="article-diagram" aria-label="Soruyu ve veriyi sabitleyin; tabanı tek değişiklikle karşılaştırıp eşlenmiş metrik ve hataları inceleyin."><ol tabindex="0"><li>Sabitle · veri + etiket</li><li>Taban · yalnız sözcüksel</li><li>Değişken · yoğun kanal ekle</li><li>Karşılaştır · aynı sorular</li><li>İncele · kayıp ve kazanım</li></ol><figcaption>Daha yüksek ortalama kimlik, dil veya yetkilendirme gerilemesini gizleyebilir.</figcaption></figure><p>Sorgu başına değişimi ve yararlı alt grupları kıyaslayın: kimlik/farklı ifade, kısa/uzun kaynak, dil ve kaynak yaşı. Örnek boyutu uygunsa belirsizlik raporlayın ve ham sorgu sonuçlarını koruyun. BEIR heterojen görevlerde değerlendirme örneğidir; skorunu kendinizin saymak yerine disiplinini kullanın. <a class="" href="https://arxiv.org/abs/2104.08663" target="_blank" rel="noopener noreferrer"><span>BEIR</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>, <a class="" href="https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html" target="_blank" rel="noopener noreferrer"><span>IR değerlendirme</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>.</p></section><section class="article-section" id="latency"><h2>Hataları gizlemeden hızı ölçün<a class="heading-anchor" href="#latency" aria-label="Bölüm bağlantısı">#</a></h2><p>Uçtan uca retrieval ile aşama sürelerini ayrı ölçün. Donanım, veri boyutu, eşzamanlılık, önbellek, ısınma, istek sayısı ve timeout’u belirtin. Ortanca ve kuyruk gecikmesini hata ve boş yanıtlarla raporlayın. Timeout’ları tablodan çıkarmak bozuk sistemi hızlı gösterebilir. Yerel deterministik örnek sözleşme testidir; gerçek embedding sağlayıcısı kalitesini veya üretim kapasitesini ölçmez.</p><div class="learn-exercise"><strong>Kendinizi sınayın</strong><p>X değişkeni Recall@20’yi artırıp nDCG@5’i düşürüyor. X doğrudan daha iyi mi?</p><details><summary>Açıklamayı göster</summary><p>Zorunlu değil. Daha fazla ilgili aday bulup üst sıralara daha kötü yerleştiriyor. Sonraki görev, yeniden sıralama bütçesi, hata alt grupları ve gecikmeyle karar verin; hangi sorunun iyileşip gerilediğini inceleyin.</p></details></div></section><section class="article-section" id="references"><h2>Kaynaklar ve ileri okuma<a class="heading-anchor" href="#references" aria-label="Bölüm bağlantısı">#</a></h2><ol class="reference-list"><li><a class="" href="https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html" target="_blank" rel="noopener noreferrer"><span>Manning, Raghavan &amp; Schütze · Evaluation of ranked retrieval</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://arxiv.org/abs/2104.08663" target="_blank" rel="noopener noreferrer"><span>Thakur et al. (2021) · BEIR</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol></section></div>
+ <div class="learn-lesson-finish"><div><strong>Sonraki fikre hazır mısınız?</strong><p>Devam etmeden soruyu deneyin. Depolama kullanılabiliyorsa ilerlemeniz bu tarayıcıda saklanır.</p></div><button type="button" class="button" data-mark-lesson="evaluating-ndcg-and-mrr-in-memory" hidden>Okundu işaretle ✓</button><p data-lesson-status aria-live="polite"></p></div>
+ <nav class="learn-adjacent" aria-label="Önceki ve sonraki ders"><a href="../../learn/temporal-decay-in-ai-memory/"><span>← ÖNCEKİ DERS</span><strong>Değişen bilgi: geçerlilik, çelişki ve unutma</strong></a><a href="../../learn/build-a-small-search-lab/"><span>SONRAKİ DERS →</span><strong>LLM kullanmadan küçük bir arama laboratuvarı kurun</strong></a></nav>
+ <a class="learn-back-map" href="../../learn/">← Öğrenme haritasına dönün</a>
+ </article><details class="learn-toc" open><summary>Bu derste</summary><nav aria-label="Ders bölümleri"><ol><li><a href="#judgments">Soru ve ilgililik etiketiyle başlayın</a></li><li><a href="#example">Tek sıralı liste, farklı ölçüm soruları</a></li><li><a href="#experiment">Tek etkeni değiştirin, hataları inceleyin</a></li><li><a href="#latency">Hataları gizlemeden hızı ölçün</a></li><li><a href="#references">Kaynaklar ve ileri okuma</a></li></ol></nav></details></div><section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
@@ -155,8 +84,7 @@ def ndcg_at_k(relevance_scores, k):
         <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a href="../../admin/">Yönetim</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Kaynakla doğrulanmış dokümantasyon geçidi</span></div>
-    </footer>
-    </main>
-  <script src="../../../app.js?v=7ab053b9ea58"></script>
+    </footer></main>
+  <script src="../../../app.js?v=6dbcc516edfb"></script>
 </body>
 </html>

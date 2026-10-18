@@ -3,75 +3,73 @@ id: "hybrid-retrieval"
 slug: "hybrid-retrieval-explained"
 type: "learn"
 language: "tr"
-title: "Hybrid retrieval açıklaması: Vektör arama, lexical arama ve yapılandırılmış sinyaller"
-subtitle: "Çok hatlı geri getirme sistemlerinin sağlam erişim için tamamlayıcı arama kiplerini nasıl birleştirdiği"
-summary: "Hybrid retrieval; dense vektör embedding'leri, sparse lexical ters indeksleri (BM25) ve yapılandırılmış veritabanı filtrelerini birleştirerek tek stratejili arama hatalarını önler."
-shortAnswer: "Dense vektörler anlamı yakalar, lexical arama kesin terimleri yakalar ve yapılandırılmış sorgular katı kısıtları uygular; bunları birleştirmek dayanıklı bir retrieval hattı oluşturur."
+title: "Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama"
+subtitle: ""
+summary: "Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın."
+shortAnswer: "Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın."
 category: "Memory & Retrieval"
-tags: ["hybrid-retrieval", "vector-search", "bm25", "search", "retrieval"]
+tags: ["hybrid", "reranking", "candidate recall", "cross encoder", "hibrit", "yeniden sıralama", "aday"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 9
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Hybrid Retrieval Açıklaması: Vektör, BM25 ve Yapı — MESA Learn"
-seoDescription: "Hybrid retrieval'ın dense vektör arama, sparse BM25 sözcük sinyalleri ve yapılandırılmış kısıtları Reciprocal Rank Fusion ile nasıl birleştirdiğini anlayın."
+seoTitle: "Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama — MESA Learn"
+seoDescription: "Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın."
+lessonOrder: 6
+learningStage: "retrieval"
+prerequisites: ["semantic-search", "bm25-tuning-for-domain-documents"]
+learningObjectives: ["Aday üretimini yeniden sıralamadan ayırmak", "Her kanalın özgün katkısını ölçmek", "Birleştirmede kapsam ve kimliği korumak"]
 ---
 
-## Tek kipli geri getirme neden başarısız olur?
+## Aynı cevabı kaçırmanın iki yolu
 
-Her bağımsız geri getirme paradigmasının iyi belgelenmiş bir hata modu vardır. Yalnızca tek bir mekanizmaya güvenmek, otonom bir ajanı sistematik kör noktalara açık bırakır:
+Okur “son iş gününde ne zaman gelebilirim?” diye soruyor. Kılavuz “Cuma açılışı: 10.00” diyor. Yoğun retrieval ifade farkını köprüleyebilir; sözcüksel retrieval tam salon adı ve politika kimliğini koruyabilir. Hibrit retrieval tamamlayıcı aday kümelerini birleştirir. Ek kanal, tabanın kaçırdığı ilgili öğeyi buluyor veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır.
 
-| Retrieval Kipi | Birincil İndeks | Belirgin Güçlü Yön | Temel Hata Modu |
-| --- | --- | --- | --- |
-| Dense Vektör Arama | HNSW / IVF embedding'leri | Anlamsal eş anlamlılık ve kavramsal eşleşme | Nadir token'larda, sayılarda ve kesin kodlarda yanılır |
-| Sparse Lexical Arama | BM25 / Ters indeks | Kesin anahtar kelime ve nadir tanımlayıcı eşleşmesi | Eş anlamlılık ve sözcük uyumsuzluğunda sonuç bulamaz |
-| Yapılandırılmış Assertion Arama | B-tree / İlişkisel SQL | Deterministik mantıksal ve sayısal filtreler | Şemaya uymayan serbest dilli sorgularda sonuç vermez |
-| Graph Yol Gezinimi | Adjacency indeksi / Graph DB | Varlıklar arasındaki çok sekmeli ilişkisel yollar | Açık kenar çıkarımı yapılmamış izole olgularda yetersiz kalır |
+Çizge veya başka embedding modeli eklemek otomatik iyileşme değildir. Neredeyse aynı kanallar aynı yanlışı güçlendirebilir. Açıklanabilir sözcüksel taban ve bir uyumlu yoğun modelle başlayın; örtüşme, özgün ilgili isabet, boş sonuç ve gecikmeyi ölçün. Belgelenmiş hata gerektiriyorsa karmaşıklık ekleyin. BEIR yöntemlerin veri kümelerinde değiştiğini gösterir; benchmark sonucu sizin arşivinizin skoru değildir. [BEIR](https://arxiv.org/abs/2104.08663).
 
-## Çok hatlı arama pratikte nasıl çalışır?
+## Aşamaları ayrı tutun
 
-Hybrid retrieval mimarisinde bir kullanıcı sorgusu, aynı veri tabanı üzerinde eşzamanlı olarak birden fazla hatta iletilir:
+<!-- diagram: Yetkili sözcüksel ve vektör adayları kimlikle uzlaştırılır, birleştirilir, gerekirse yeniden sıralanır ve paketlenir. -->
+1. Yetkilendir · sabit kapsam
+2. Getir · sözcüksel + yoğun
+3. Uzlaştır · kanonik kimlikler
+4. Birleştir · sıralamalar
+5. Sırala / paketle · son kanıt
 
-<!-- diagram: Sorgunun Vektör, BM25, Assertion ve Graph hatlarına dağıtılıp Reciprocal Rank Fusion ile birleştirilmesini gösteren şema -->
-1. Sorgu Kabulü ve Kapsam Doğrulaması
-2. Paralel Dağıtım: Vektör + BM25 + Assertion + Graph
-3. Hat Puanlaması ve Aday Üretimi
-4. Reciprocal Rank Fusion (RRF) Birleşimi
-5. Birleştirilmiş ve Sıralanmış Sonuçlar
+*Aday üretimi kapsamayı hedefler; yeniden sıralama az öğeye daha fazla iş harcar.*
 
-*Çok hatlı geri getirme, nihai aday listesini sentezlemeden önce birden fazla tamamlayıcı bakış açısını değerlendirir.*
+Her kanal 20 aday döndürsün ve 8 kimlik örtüşsün. Birleşimde 40 değil 32 benzersiz aday vardır. Gerçek retrieval birimiyle tekrar ayıklayın: belge, pasaj veya iddia. Aynı belgeden iki parça ayrı kanıt olabilir; aynı parçanın kopyası arka uç satırı tekrarladı diye ek oy almamalıdır.
 
-Adayları birden fazla hat üzerinden değerlendirerek, vektör aramasında orta sırada kalan ancak BM25'te tam bir karar numarasını yakalayan bir belge öne çıkarılır ve hatalı dışlamalar önlenir.
+## İlişkisiz ham skorları toplamayın
 
-## Birleştirme stratejileri: Skor normalizasyonu ile rank fusion
+0,72 kosinüs skoru ile 12 sözcüksel skor ortak ölçekte değildir. Toplamak sonucu keyfî aralığa bağımlı yapar. Sıra birleştirme konum kullanır; skor birleştirme açık normalizasyon veya öğrenilmiş kalibrasyon ister. Adayın neden taşındığını açıklamak için kanal skorunu ve sırasını iz kaydında koruyun. Sonraki derste tam RRF hesabı var.
 
-Ayrı hatlar aday sonuçlar ürettiğinde, bu skorlar nasıl birleştirilmelidir? İki temel strateji vardır:
+| Aşama | Soru | Yararlı ölçü |
+| --- | --- | --- |
+| Aday retrieval | İlgili kanıt birleşime girdi mi? | Aday kesiminde Recall |
+| Birleştirme | Tamamlayıcı kanıt yükseldi mi? | Sabit kesimde nDCG / MRR |
+| Yeniden sıralama | Ek skor sıralamayı iyileştirdi mi? | Gecikme/maliyete göre kazanım |
+| Paketleme | Tam kanıt modele ulaştı mı? | Destek ve bütçe uyumu |
 
-> [!WARNING]
-> **Skor normalizasyonu tehlikesi**
-> Dense vektör kosinüs benzerliği $[0, 1]$ aralığında skorlar üretirken, BM25 belge uzunluğuna ve terim nadirliğine bağlı olarak $[0, \infty)$ aralığında sınırsız skorlar üretir. Bu skorları doğrudan veya min-max ölçeklemesiyle birleştirmek kırılgandır: BM25'teki tek bir uç değer vektör uygunluğunu tamamen bastırabilir.
+## Reranker neyi düzeltebilir?
 
-Sıralama tabanlı birleştirme, özellikle [Reciprocal Rank Fusion (RRF)](learn/reciprocal-rank-fusion-explained/), ham skorları tamamen göz ardı edip belgenin listelerdeki sırasını değerlendirerek bu sorunu çözer: $RRF(d) = \sum rac{1}{k + r(d)}$. Kalibrasyon gerektirmez ve matematiksel olarak kararlıdır.
+Cross-encoder sorgu ve adayı birlikte skorlayarak token’ları doğrudan etkileştirir. Önceden hesaplanmış belge vektörlerini karşılaştırmaktan genellikle daha pahalıdır; bu nedenle kısa listeye uygulanır. Nogueira ve Cho BERT ile pasaj yeniden sıralamayı inceler; bu tasarım her reranker’ın sizin alanınızı iyileştireceğini göstermez. [Makale](https://arxiv.org/abs/1901.04085).
 
-## Birleşim öncesi kapsam denetiminin önemi
+Reranker girdisinde olmayan ilgili kaydı geri getiremez. Birleşimde ilgili aday sıfırsa reranker değiştirmek recall’u çözmez. Erişim kontrolünü geçersiz kılmamalı veya eski kaynağı diriltmemelidir. Hat boyunca uygunluğu uygulayıp son kanıtın kimliğini doğrulayın; “çok ilgili ama yasak” hâlâ yasaktır.
 
-Ajanlar için hybrid retrieval tasarımında kritik bir gereksinim yetkilendirmenin nerede yapıldığıdır:
+## Hatayı konumlandırın
 
-- [ ] Ön Filtreleme (Doğru): Tenant, workspace, ajan ve zamansal filtreleri vektör taramasından veya BM25 sorgusundan önce uygulayın.
-- [ ] Sonradan Filtreleme (Hatalı): Adayları genel indeksten çekip yetkisizleri sonradan ayıklamak, sonuç listesinin boş kalmasına veya kesilmesine yol açar.
-- [ ] Kapsam Korunumu: Birleştirilmiş sonuçların ilgili hatların güvenlik sınırlarını miras aldığından emin olun.
+> [!EXERCISE]
+> **Kendinizi sınayın**
+> Doğru pasaj yoğun kanalda 45. sırada, sözcüksel ilk 20’de yok; yalnızca ilk-20 birleşimini yeniden sıralıyorsunuz. Daha iyi reranker onu bulabilir mi?
+>
+> **Answer:** Hayır. Reranker’a ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın.
 
-## MESA'nın dört hatlı retrieval motoru
+## Kaynaklar ve ileri okuma
 
-[MESA Core](mesa/) içinde V4 retrieval router'ı dört belirgin hat yürütür: `vector` (LanceDB ile), `bm25` (SQLite FTS5 ile), `assertion` (kanonik SQLite tabloları ile) ve `graph` (Kùzu ile).
-
-MESA; dataset, tenant, ajan, zaman ve yargı yetkisi kısıtlarını hatların çalıştırılmasından *önce* uygular. Kamuya açık test fixture'ı `Alice knows Aurora`, bir assertion dört hatta da 1. sırada yer aldığında RRF skorunun deterministik olarak $4/61$ hesaplandığını doğrular. Uygulama ayrıntılarını [MESA Nasıl Çalışır](how-it-works/) sayfasında bulabilirsiniz.
-
-## Kaynaklar
-
-1. [Cormack vd. (2009) — Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods](https://dl.acm.org/doi/10.1145/1571941.1572114)
-2. [MESA Bağımsız Retrieval Denetimi ve Test Paketi](https://github.com/Yasou13/MESA/blob/main/tests/test_v4_independent_retrieval_audit.py)
-3. [Reciprocal Rank Fusion Nedir? — MESA Learn](learn/reciprocal-rank-fusion-explained/)
+1. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
+2. [Nogueira & Cho (2019) · Passage Re-ranking with BERT](https://arxiv.org/abs/1901.04085)
+3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 

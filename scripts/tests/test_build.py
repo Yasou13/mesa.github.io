@@ -33,7 +33,7 @@ class BuildTests(unittest.TestCase):
                 shutil.copytree(ROOT/folder, checkout/folder)
             shutil.copy2(ROOT/'site-data.json',checkout/'site-data.json')
             hub_path=checkout/'content/hub.json';hub=json.loads(hub_path.read_text())
-            entry=hub['entries'][0];entry['draft']=True
+            entry=next(e for e in hub['entries'] if e['type'] != 'learn');entry['draft']=True
             removed_path=entry['path'];removed_id=entry['id']
             hub_path.write_text(json.dumps(hub))
             subprocess.run(['python3','scripts/build_site.py'],cwd=checkout,check=True,capture_output=True)

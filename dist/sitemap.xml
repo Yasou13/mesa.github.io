@@ -289,18 +289,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/methodology/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/learn/semantic-search/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/semantic-search/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/semantic-search/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/semantic-search/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/semantic-search/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/semantic-search/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/semantic-search/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/semantic-search/" />
-  </url>
-  <url>
     <loc>https://mesamemory.dev/learn/what-is-ai-memory/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/what-is-ai-memory/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/what-is-ai-memory/" />
@@ -337,16 +325,28 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/structured-vs-unstructured-memory/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/why-vector-search-alone-is-not-enough/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/" />
+    <loc>https://mesamemory.dev/learn/semantic-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/semantic-search/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/tr/learn/why-vector-search-alone-is-not-enough/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/why-vector-search-alone-is-not-enough/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/" />
+    <loc>https://mesamemory.dev/tr/learn/semantic-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/semantic-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/semantic-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/learn/hybrid-retrieval-explained/</loc>
@@ -361,18 +361,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/hybrid-retrieval-explained/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
-  </url>
-  <url>
     <loc>https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/" />
@@ -383,6 +371,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/learn/what-is-evidence-aware-memory/</loc>
@@ -397,18 +397,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/what-is-evidence-aware-memory/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/learn/what-is-provenance-in-ai/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/what-is-provenance-in-ai/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/what-is-provenance-in-ai/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/what-is-provenance-in-ai/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/what-is-provenance-in-ai/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/what-is-provenance-in-ai/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/what-is-provenance-in-ai/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/what-is-provenance-in-ai/" />
-  </url>
-  <url>
     <loc>https://mesamemory.dev/learn/memory-scope-and-authorization/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/memory-scope-and-authorization/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/memory-scope-and-authorization/" />
@@ -419,6 +407,54 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/memory-scope-and-authorization/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/memory-scope-and-authorization/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/memory-scope-and-authorization/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/temporal-decay-in-ai-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/learn/build-a-small-search-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/build-a-small-search-lab/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/build-a-small-search-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/build-a-small-search-lab/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/learn/build-a-small-search-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/build-a-small-search-lab/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/build-a-small-search-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/build-a-small-search-lab/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/research/keyword-vs-semantic-search/</loc>
@@ -467,246 +503,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/methodology/retrieval-evaluation/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/methodology/retrieval-evaluation/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/methodology/retrieval-evaluation/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/graph-rag-vs-pure-graphs/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/graph-rag-vs-pure-graphs/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/graph-rag-vs-pure-graphs/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/graph-rag-vs-pure-graphs/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/graph-rag-vs-pure-graphs/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/graph-rag-vs-pure-graphs/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/graph-rag-vs-pure-graphs/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/graph-rag-vs-pure-graphs/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/temporal-decay-in-ai-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/temporal-decay-in-ai-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/contradiction-detection-in-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/contradiction-detection-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/contradiction-detection-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/contradiction-detection-in-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/contradiction-detection-in-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/contradiction-detection-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/contradiction-detection-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/contradiction-detection-in-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/multi-agent-shared-memory-protocols/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/multi-agent-shared-memory-protocols/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/multi-agent-shared-memory-protocols/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/multi-agent-shared-memory-protocols/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/dense-vs-sparse-embeddings/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/dense-vs-sparse-embeddings/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/dense-vs-sparse-embeddings/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/dense-vs-sparse-embeddings/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/dense-vs-sparse-embeddings/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/dense-vs-sparse-embeddings/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/dense-vs-sparse-embeddings/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/dense-vs-sparse-embeddings/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/reranking-strategies-for-agent-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/reranking-strategies-for-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/reranking-strategies-for-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/reranking-strategies-for-agent-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/reranking-strategies-for-agent-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/reranking-strategies-for-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/reranking-strategies-for-agent-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/reranking-strategies-for-agent-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/audit-logging-in-production-ai/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/audit-logging-in-production-ai/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/audit-logging-in-production-ai/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/audit-logging-in-production-ai/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/audit-logging-in-production-ai/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/audit-logging-in-production-ai/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/audit-logging-in-production-ai/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/audit-logging-in-production-ai/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/cryptographic-evidence-spans/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/cryptographic-evidence-spans/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/cryptographic-evidence-spans/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/cryptographic-evidence-spans/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/cryptographic-evidence-spans/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/cryptographic-evidence-spans/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/cryptographic-evidence-spans/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/cryptographic-evidence-spans/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/hallucination-mitigation-via-evidence/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/hallucination-mitigation-via-evidence/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/hallucination-mitigation-via-evidence/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/hallucination-mitigation-via-evidence/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/hallucination-mitigation-via-evidence/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/hallucination-mitigation-via-evidence/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/hallucination-mitigation-via-evidence/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/hallucination-mitigation-via-evidence/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/kuzu-graph-storage-projections/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/kuzu-graph-storage-projections/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/kuzu-graph-storage-projections/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/kuzu-graph-storage-projections/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/kuzu-graph-storage-projections/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/kuzu-graph-storage-projections/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/kuzu-graph-storage-projections/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/kuzu-graph-storage-projections/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/lancedb-vector-indexing-patterns/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/lancedb-vector-indexing-patterns/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/lancedb-vector-indexing-patterns/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/lancedb-vector-indexing-patterns/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/lancedb-vector-indexing-patterns/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/lancedb-vector-indexing-patterns/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/lancedb-vector-indexing-patterns/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/lancedb-vector-indexing-patterns/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/role-based-access-control-in-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/role-based-access-control-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/role-based-access-control-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/role-based-access-control-in-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/role-based-access-control-in-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/role-based-access-control-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/role-based-access-control-in-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/role-based-access-control-in-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/session-state-vs-durable-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/session-state-vs-durable-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/session-state-vs-durable-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/session-state-vs-durable-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/session-state-vs-durable-memory/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/session-state-vs-durable-memory/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/session-state-vs-durable-memory/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/session-state-vs-durable-memory/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/benchmarking-retrieval-latency/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/benchmarking-retrieval-latency/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/benchmarking-retrieval-latency/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/benchmarking-retrieval-latency/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/benchmarking-retrieval-latency/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/benchmarking-retrieval-latency/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/benchmarking-retrieval-latency/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/benchmarking-retrieval-latency/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/legal-statute-invalidation-pipelines/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/legal-statute-invalidation-pipelines/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/legal-statute-invalidation-pipelines/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/legal-statute-invalidation-pipelines/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/legal-statute-invalidation-pipelines/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/legal-statute-invalidation-pipelines/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/legal-statute-invalidation-pipelines/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/legal-statute-invalidation-pipelines/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/multi-hop-reasoning-over-knowledge-graphs/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/multi-hop-reasoning-over-knowledge-graphs/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/learn/synthetic-query-generation-for-benchmarks/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/synthetic-query-generation-for-benchmarks/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/synthetic-query-generation-for-benchmarks/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/synthetic-query-generation-for-benchmarks/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/learn/synthetic-query-generation-for-benchmarks/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/learn/synthetic-query-generation-for-benchmarks/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/learn/synthetic-query-generation-for-benchmarks/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/learn/synthetic-query-generation-for-benchmarks/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/docs/core/</loc>

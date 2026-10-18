@@ -3,87 +3,86 @@ id: "what-is-ai-memory"
 slug: "what-is-ai-memory"
 type: "learn"
 language: "en"
-title: "What is AI memory?"
-subtitle: "State persistence, context limits, and the memory lifecycle in agent architectures"
-summary: "AI memory is the persistence layer that allows models and autonomous agents to retain state, recall verified past interactions, and accumulate knowledge across execution boundaries."
-shortAnswer: "AI memory is more than chat history or context windows: it is a structured lifecycle of admission, storage, scoped retrieval, mutation, and verification that gives agents durable continuity."
+title: "AI memory: what survives after a conversation?"
+subtitle: ""
+summary: "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database."
+shortAnswer: "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database."
 category: "Foundations"
-tags: ["ai-memory", "persistence", "context", "foundations"]
+tags: ["memory", "context window", "session", "kalıcı hafıza", "bağlam", "oturum"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-01"
-readingMinutes: 7
+updatedAt: "2026-10-18"
+readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "What Is AI Memory? — MESA Learn"
-seoDescription: "Understand how AI agent memory works, short-term vs long-term persistence, context window limits, and the complete memory lifecycle."
+seoTitle: "AI memory: what survives after a conversation? — MESA Learn"
+seoDescription: "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database."
+lessonOrder: 1
+learningStage: "foundation"
+prerequisites: []
+learningObjectives: ["Separate context from persistent storage", "Choose what to retain and when to delete it", "Trace one fact from observation to later use"]
 ---
 
-## Why memory is broader than chat history
+## Three different meanings of “remember”
 
-In early conversational prototypes, 'memory' simply meant appending past user and assistant messages into the next prompt. While this creates an illusion of continuity, it collapses as interactions grow.
+Imagine an assistant helping with a fictional Atlas archive. On Monday you say that the reading room opens at nine. On Tuesday you open a new conversation and ask for its opening time. The model can answer only if the application supplies a usable record, or if the information happens to be in its parameters. A confident answer does not tell you which happened.
 
-- Context window exhaustion: Models have finite token limits; prompt space quickly runs out.
-- Quadratic cost scaling: Every additional turn increases inference latency and processing cost.
-- Attention dilution: When irrelevant historical turns crowd the prompt, models suffer from the 'lost-in-the-middle' phenomenon and misplace critical instructions.
-- Lack of state mutation: Simply keeping a transcript cannot represent updated facts, retracted assumptions, or resolved tasks.
+A large language model (LLM) generates text by predicting tokens from the input it receives. A token is a unit of encoded text, not necessarily a whole word. The context window is the bounded sequence of input and output tokens the model can work with under its interface. Persistent storage is an application mechanism outside that prediction process; the word memory here is an engineering term, not a claim of human-like recollection.
 
-**AI Memory**
-: A structured persistence subsystem that selectively admits, stores, indexes, updates, and retrieves verified facts and state across independent model invocations.
+| Layer | What it contains | How it changes |
+| --- | --- | --- |
+| Model parameters | Patterns learned during training | Training or fine-tuning |
+| Context window | Tokens supplied for this request | Build a new request |
+| Persistent memory | Records outside the model | Authorized write/update/delete |
 
-## The taxonomy of agent memory
+Writing a row to a database does not retrain a model. Retrieving that row makes it available in one request, subject to selection and context limits. Conversely, leaving a statement in conversation history does not guarantee that it will be present after truncation or in another session. These are separate mechanisms with separate failure modes.
 
-Cognitive architectures for AI agents categorize memory into distinct functional layers according to lifespan, representation, and mutability:
+## A useful record is more than a sentence
 
-| Memory Type | Lifespan | Representation | Primary Function |
-| --- | --- | --- | --- |
-| Working Memory | Single task execution | In-context tokens, scratchpads | Tracking intermediate steps in a reasoning loop |
-| Episodic Memory | Multi-session | Timestamped event logs, transcripts | Recalling specific past experiences and execution outcomes |
-| Declarative Memory | Durable / Long-term | Typed facts, assertions, knowledge graphs | Retaining world knowledge, domain rules, and user preferences |
-| Procedural Memory | Durable / Static | System prompts, tool schemas, code workflows | Guiding how actions and tools should be executed |
+Before storing “opens at nine”, ask: which room, on which days, according to whom, and for which readers? A useful record preserves the original observation, its source, scope and time. An extracted fact is an interpretation of that observation. Keeping both lets you correct an extraction without pretending the original source changed.
 
-> [!NOTE]
-> **Memory is not one single database**
-> A robust autonomous agent rarely relies on a single storage mechanism. Working memory lives in prompt tokens; episodic memory benefits from vector and lexical logs; declarative memory requires relational consistency.
+```text
+record_id: hours-17
+subject: Atlas reading room
+claim: opens at 09:00 on weekdays
+source: handbook / revision 2 / paragraph 4
+observed_at: 2026-10-18
+scope: archive-team
+status: active
+```
 
-## The four phases of the memory lifecycle
+A preference such as “use concise replies” is different from a reference fact such as opening hours. A temporary instruction may apply to one task; a user preference may persist until revoked. Do not silently promote an instruction from a retrieved document into a durable user preference. Define who may write each kind of record.
 
-Rather than treating memory as an append-only log, production agent architectures enforce an explicit lifecycle:
+## Follow the lifecycle, not the chat transcript
 
-<!-- diagram: Diagram showing the four phases of the AI memory lifecycle: Admission, Storage, Scoped Retrieval, and Mutation -->
-1. Admission: Filter & validate new observation
-2. Storage: Canonical record + index projections
-3. Retrieval: Scoped recall for prompt
-4. Mutation: Invalidate superseded facts
+<!-- diagram: An observation is admitted, stored, retrieved and used in a later context. -->
+1. Observe · exact source
+2. Admit · validate and authorize
+3. Store · source + record
+4. Retrieve · relevant and allowed
+5. Use · cite or abstain
 
-*The agent memory lifecycle enforces validation before storage and invalidation upon state change.*
+*Each arrow can fail. A saved message is not proof that a usable memory was committed.*
 
-1. Admission Gate: The system determines whether an observation is novel, relevant, and supported by evidence before committing it to durable storage.
-2. Storage and Indexing: The admitted assertion is persisted in a canonical store and indexed across derived search projections (vectors, keywords, graphs).
-3. Scoped Retrieval: For any new user request, the retriever queries eligible memories within strict authorization and workspace bounds.
-4. Mutation and Invalidation: When new facts contradict older claims, the system marks outdated records as superseded rather than letting contradictory data accumulate.
+Choose a write policy explicitly. Store every message and you accumulate private data, duplicates and stale instructions. Store only an LLM summary and you may lose exceptions or evidence. A practical starting point is to retain exact source records, extract a small set of task-relevant claims and keep a link from each claim to its source. This is a design pattern, not a universal requirement.
 
-## Core architectural trade-offs
+## Deletion and correction are part of memory
 
-Designing agent memory involves fundamental engineering trade-offs that determine reliability and operational cost:
+On Wednesday the room changes its hours. Appending a new sentence leaves two competing answers unless you track revisions or validity. Mark the previous claim as superseded while retaining the audit trail your policy permits. Deleting the source also requires a decision about derived summaries, embeddings and caches; removing only the visible chat message is incomplete.
 
-> [!WARNING]
-> **The risk of catastrophic context pollution**
-> Storing every raw thought or unverified hallucination poisons the agent's future context. Over-retention is as damaging to reliability as catastrophic forgetting.
+The test is observable continuity: close the session, start another authorized session, ask the question, then revoke access or supersede the source and repeat. Check the returned source identity as well as the answer. Long context is not a substitute for this test. Liu et al. study position effects in particular long-context tasks; their finding is a reason to evaluate your model, not a timeless limit for every model. [Read the study](https://arxiv.org/abs/2307.03172).
 
-- [ ] Write latency vs Read latency: Eager fact extraction creates write overhead but clean retrieval; lazy storage saves ingestion time but demands expensive synthesis during recall.
-- [ ] Schema flexibility vs Query determinism: Free-form text embeddings are versatile but difficult to filter with exact boolean rules.
-- [ ] Persistence vs Privacy: Storing user preferences long-term requires explicit retention policies, forget mechanisms, and data boundaries.
+## Design your first memory policy
 
-## Where MESA fits
+> [!EXERCISE]
+> **Check your understanding**
+> The assistant saves “the room opens at nine” but cannot identify its source or who may see it. Which two problems remain even if retrieval always returns the row?
+>
+> **Answer:** You cannot verify or revise the source-backed claim reliably, and you cannot enforce its access boundary. Retrieval success alone solves neither provenance nor authorization. Add source/revision and scope fields before measuring search quality.
 
-In the [MESA Core](mesa/) architecture, memory is engineered around durability and verification. Rather than storing amorphous text blobs, MESA maintains canonical assertions in SQLite, backed by explicit source identity, character-level evidence spans, and tenant scopes.
+## Sources and further reading
 
-To serve diverse retrieval needs without compromising transactional integrity, MESA projects these canonical records into specialized search projections: [LanceDB](mesa/) for dense semantic vector search, and [Kùzu](mesa/) for entity graph traversal. Learn more about this data flow in [How MESA Works](how-it-works/).
-
-## Further reading and research
-
-1. [Park et al. (2023) — Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
-2. [Sumers et al. (2023) — Cognitive Architectures for Language Agents (CoALA)](https://arxiv.org/abs/2309.02427)
-3. [MESA Core Architecture Specification](https://github.com/Yasou13/MESA/blob/main/docs/architecture-v4.md)
+1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
+2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
+3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
