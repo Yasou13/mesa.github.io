@@ -201,7 +201,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
     const stem = `${routePath.replaceAll('/', '-') || 'home-'}${width}${height === 430 ? '-landscape' : ''}`;
     const screenshot = await connection.send('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.join(screenshotsDirectory, `${stem}.png`), Buffer.from(screenshot.data, 'base64'));
-    if (['', 'how-it-works/'].includes(unlocalized) && [390, 1440].includes(width)) {
+    if (['', 'how-it-works/', 'architecture/'].includes(unlocalized) && [390, 1440].includes(width)) {
       const full = await connection.send('Page.captureScreenshot', {
         format: 'png', captureBeyondViewport: true,
         clip: { x: 0, y: 0, width, height: state.height, scale: 1 },
@@ -395,6 +395,41 @@ async function checkIntroPages() {
   await checkMemoryDisclosure('tr/how-it-works/');
   await checkMemoryDisclosure('how-it-works/');
 }
+async function checkArchitectureReview() {
+  const axe = fs.readFileSync(path.join(repositoryRoot,'node_modules/axe-core/axe.min.js'),'utf8');
+  for(const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/', 'architecture/', 'tr/architecture/']) {
+    for(const width of [320,390,768,900,1440]) {
+      await inspect(routePath,width);
+      const gaps = await evaluate(`(() => {
+        const sections=[...document.querySelectorAll('main > .section')];
+        const meaningful=el=>[...el.children].filter(c=>c.getBoundingClientRect().height>0);
+        return sections.flatMap(section=>{
+          const previous=section.previousElementSibling;
+          if(!previous||!previous.matches('.section,.page-hero,.intro-page-nav'))return [];
+          const first=meaningful(section)[0], last=meaningful(previous).at(-1);
+          return first&&last?[{section:section.id||first.innerText.slice(0,35),gap:Math.round(first.getBoundingClientRect().top-last.getBoundingClientRect().bottom)}]:[];
+        });
+      })()`);
+      if(gaps.some(g=>g.gap>112)) failures.push(`${routePath}@${width}: excessive section spacing ${JSON.stringify(gaps)}`);
+      fallbackChecks.push({type:'section-spacing',routePath,width,gaps});
+    }
+    await evaluate(axe);
+    const violations=await evaluate(`(async ()=>(await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
+    if(violations.length) failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
+    if(routePath.includes('architecture/')) {
+      const structure=await evaluate(`({steps:document.querySelectorAll('.arch-write-flow > li').length,modules:document.querySelectorAll('.arch-modules article').length,diagrams:document.querySelectorAll('figure').length,heroMinHeight:getComputedStyle(document.querySelector('.page-hero')).minHeight})`);
+      if(structure.steps!==6||structure.modules!==5||structure.diagrams!==3||structure.heroMinHeight!=='0px')failures.push(`${routePath}: architecture structure ${JSON.stringify(structure)}`);
+      await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
+      await navigate(new URL(routePath,baseUrl).href);
+      const staticFlow=await evaluate(`document.querySelector('.arch-write-flow').innerText.includes('COMMITTED') && document.querySelectorAll('.intro-lane').length===4`);
+      if(!staticFlow) failures.push(`${routePath}: architecture diagrams require JS`);
+      await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
+    }
+  }
+  for(const routePath of ['mesa/','data/','ecosystem/','faq/','docs/','tr/learn/']) {
+    await inspect(routePath,390);await inspect(routePath,900);
+  }
+}
 async function checkPerformance() {
  await connection.send('Performance.enable');
  for(const [width,reduce] of [[1440,false],[1440,true],[390,false]]) {
@@ -453,7 +488,7 @@ try {
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
-  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only')) {
+  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only') && !process.argv.includes('--architecture-review-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
@@ -474,7 +509,8 @@ try {
   }
 
   }
-  if(process.argv.includes('--intro-only')) await checkIntroPages();
+  if(process.argv.includes('--architecture-review-only')) await checkArchitectureReview();
+  else if(process.argv.includes('--intro-only')) await checkIntroPages();
   else if(process.argv.includes('--performance-only')) await checkPerformance();
   else if(process.argv.includes('--admin-auth-only')) await checkAdminAuth({connection,evaluate,navigate,baseUrl,failures,fallbackChecks,screenshotsDirectory,fs,path});
   else if(process.argv.includes('--snapshot-only')) { for(const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/', 'docs/', 'tr/docs/']) for(const width of [390,1440]) await inspect(routePath,width); }
@@ -487,7 +523,8 @@ try {
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    if (process.argv.includes('--intro-only')) console.log('INTRO QA PASS: EN/TR home and how-it-works, 5 widths, keyboard, timed playback, reduced motion, no-JS and WCAG checks');
+    if (process.argv.includes('--architecture-review-only')) console.log('ARCHITECTURE REVIEW PASS: 42 responsive layouts, section gaps, diagrams, EN/TR, no-JS and WCAG checks');
+    else if (process.argv.includes('--intro-only')) console.log('INTRO QA PASS: EN/TR home and how-it-works, 5 widths, keyboard, timed playback, reduced motion, no-JS and WCAG checks');
     else if (process.argv.includes('--performance-only')) console.log('PERFORMANCE OBSERVATION PASS (local main-thread metrics, not field/GPU certification)');
     else if (process.argv.includes('--admin-auth-only')) console.log(`ISOLATED AUTH FIXTURE PASS: ${fallbackChecks.length} browser checks; production Auth UNVERIFIED`);
     else if (process.argv.includes('--snapshot-only')) console.log(`SNAPSHOT QA PASS: home, how-it-works and documentation gateway in EN/TR at 390/1440px`);

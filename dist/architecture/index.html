@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA Architecture — Canonical State, Projections and Evidence</title>
-  <meta name="description" content="Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity.">
+  <title>MESA Architecture — Write, Store and Retrieve</title>
+  <meta name="description" content="Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/architecture/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/architecture/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/architecture/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/architecture/">
-  <meta property="og:title" content="MESA Architecture — Canonical State, Projections and Evidence">
-  <meta property="og:description" content="Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity.">
+  <meta property="og:title" content="MESA Architecture — Write, Store and Retrieve">
+  <meta property="og:description" content="Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/architecture/">
   <meta property="og:locale" content="en_US">
@@ -21,21 +21,20 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA Architecture — Canonical State, Projections and Evidence">
-  <meta name="twitter:description" content="Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity.">
+  <meta name="twitter:title" content="MESA Architecture — Write, Store and Retrieve">
+  <meta name="twitter:description" content="Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"en","description":"Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles.css?v=6821a82454e5">
+  <link rel="stylesheet" href="../styles.css?v=d2256845e384">
   <link rel="stylesheet" href="../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../learn.css?v=ef08fd97f3dc">
   <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
 <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -55,119 +54,91 @@
         </nav>
       </div>
     </header>
-<main id="main-content">
+<main id="main-content" class="intro-page architecture-page">
   <section class="page-hero compact page-hero--trajectory">
-    <p class="eyebrow">MESA CORE v0.8.1 · ARCHITECTURE</p>
-    <h1>One canonical record. Several ways to find it.</h1>
-    <p>MESA separates source ownership, background processing and retrieval projections. Read the system through four small views.</p>
+    <p class="eyebrow">MESA CORE v0.8.1 · INSIDE THE ENGINE</p>
+    <h1>How information moves through MESA.</h1>
+    <p>The architecture has two main paths: turning a source into stored memory, and finding evidence when an application asks a question. Follow both paths below, from entry to output.</p>
+    <div class="arch-path-links"><a href="#writing-memory">01 · Write information ↓</a><a href="#reading-memory">02 · Find information ↓</a><a href="#building-blocks">03 · See the building blocks ↓</a></div>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">01 · LOGICAL FLOW</p>
-    <h2>Accept work durably, then process it.</h2>
-    
-<ol class="system-flow">
-  
-  <li>
-    <span class="flow-number">01</span>
-    <strong>Source</strong>
-    <span>Exact text, document, revision, chunk</span>
-  </li>
-  <li>
-    <span class="flow-number">02</span>
-    <strong>Admission</strong>
-    <span>Authenticated session; durable mutation</span>
-  </li>
-  <li>
-    <span class="flow-number">03</span>
-    <strong>Processing</strong>
-    <span>Extraction and selected validation</span>
-  </li>
-  <li>
-    <span class="flow-number">04</span>
-    <strong>Projection</strong>
-    <span>SQL → vector → graph → COMMITTED</span>
-  </li>
-</ol>
-    <p>202 confirms admission. Stores do not share one ACID transaction. Fenced leases, ownership, idempotent receipts and reconciliation support recovery. Mode 0 uses deterministic validation, mode 1 one validator, mode 2 distinct A/B provider-model consensus.</p>
+  <section class="section" id="runtime-map">
+    <p class="eyebrow">THE WHOLE SYSTEM AT A GLANCE</p>
+    <h2>One application outside. One storage owner inside.</h2>
+    <p>In the supported V4 topology, one combined process owns the API admission path, background consumers and all three stores. The boxes below are responsibilities inside that process, not separate servers.</p>
+    <figure class="arch-runtime"><figcaption>Runtime boundary and the two data paths</figcaption>
+      <div class="arch-outside"><strong>Your application</strong><span>Source text in · source-linked evidence out</span></div><span class="arch-down" aria-hidden="true">↓</span>
+      <div class="arch-combined"><span class="arch-boundary">MESA CORE · ONE COMBINED PROCESS</span>
+        <div class="arch-gate"><strong>HTTP API / V4 MCP gateway</strong><p>Authenticate → resolve session → use its authorized datasets</p></div><span class="arch-down" aria-hidden="true">↓</span>
+        <div class="arch-two-paths"><div><span class="intro-index">WRITE PATH</span><strong>Durable admission → extraction → validation</strong><p>Background processing prepares the canonical facts and their search views.</p></div><div><span class="intro-index">READ PATH</span><strong>Eligibility → four search lanes → rank fusion</strong><p>Search uses eligible records and returns their supporting evidence.</p></div></div>
+        <div class="arch-store-strip"><strong>SQLite</strong><span>Main record</span><strong>LanceDB</strong><span>Meaning</span><strong>Kùzu</strong><span>Connections</span></div>
+      </div><span class="arch-down" aria-hidden="true">↓</span><div class="arch-outside"><strong>Evidence context → your application’s model → answer</strong><span>MESA retrieval supplies context; answer generation belongs to the application.</span></div>
+    </figure>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">02 · PHYSICAL STORAGE</p>
-    <h2>SQLite decides. Projections follow.</h2>
-    <div class="storage-grid">
-      <article><h3>SQLite</h3><p>Canonical catalog, authorization, immutable revisions, assertions, mutation ledger and artifact ownership. FTS5 supplies passage/evidence lexical search.</p></article>
-      <article><h3>LanceDB</h3><p>Derived assertion vectors with embedding identity. Query and stored representation must match model and dimension; provider availability is a runtime fact.</p></article>
-      <article><h3>Kùzu</h3><p>Derived Graph V2 entities and assertion edges. Bounded paths must reconcile to authorized canonical facts; a projection-only adapter cannot traverse.</p></article>
-    </div>
-    <p>V4 requires one combined storage owner per root. V3 API/worker roles and V4 must use separate roots. Offline backup and forward-only migration protect the operator boundary.</p>
+  <section class="section" id="writing-memory">
+    <p class="eyebrow">01 · THE WRITE PATH</p>
+    <h2>From exact source text to usable memory.</h2>
+    <p>Your application provides exact text and its document, revision and chunk identity. Core consumes that source; source acquisition and chunk preparation belong to the producer.</p>
+    <ol class="arch-write-flow">
+      <li><span class="intro-index">01</span><div><h3>Check the session and source</h3><p>The server derives access scope from the authenticated session. The request identifies a dataset, document, revision and exact source chunk.</p><code>POST /v4/memory/insert</code></div></li>
+      <li><span class="intro-index">02</span><div><h3>Accept the work durably</h3><p>A candidate, mutation ledger record and pipeline run are created. HTTP 202 confirms admission; it does not confirm completed processing.</p><code>MemoryCandidate · memory_mutations · pipeline_runs</code></div></li>
+      <li><span class="intro-index">03</span><div><h3>Extract structured facts</h3><p>FactExtractionService uses a model to extract zero or more subject–relation–object facts, keeping the link to the supporting text.</p><code>FactExtractionService → 0..N FactCandidate</code></div></li>
+      <li><span class="intro-index">04</span><div><h3>Apply the selected validation</h3><p>Mode 0 uses deterministic checks; mode 1 adds one model validator; mode 2 requires two distinct provider/model pairs to agree. These checks gate admission to active memory.</p><code>MESA_TIER3_MODE = 0 / 1 / 2</code></div></li>
+      <li><span class="intro-index">05</span><div><h3>Write the stores in order</h3><p>Canonical facts are written to SQLite, then vector representations to LanceDB, then relationships to Kùzu. Each stage waits for its predecessor.</p><code>SQL → vector → graph</code></div></li>
+      <li><span class="intro-index">06</span><div><h3>Confirm completion</h3><p>The client checks the durable mutation status. COMMITTED is the successful terminal state; an accepted request alone is not enough.</p><code>COMMITTED</code></div></li>
+    </ol>
+    <div class="arch-state-band"><span>Pipeline states</span><code>QUEUED → RUNNING → EXTRACTED → VALIDATED → PROJECTING → COMMITTED</code></div>
+    <p class="intro-caption">The pipeline summarizes progress; the mutation ledger tracks the SQL_APPLIED, VECTOR_APPLIED and GRAPH_APPLIED write stages separately.</p>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">03 · RETRIEVAL EXECUTION</p>
-    <h2>Authorize, retrieve, fuse, pack.</h2>
-    
-<ol class="system-flow">
-  
-  <li>
-    <span class="flow-number">01</span>
-    <strong>Scope</strong>
-    <span>Session-bound authorized datasets</span>
-  </li>
-  <li>
-    <span class="flow-number">02</span>
-    <strong>Lanes</strong>
-    <span>Vector · BM25 · assertion · graph</span>
-  </li>
-  <li>
-    <span class="flow-number">03</span>
-    <strong>RRF</strong>
-    <span>Rank contributions, then legal reranking</span>
-  </li>
-  <li>
-    <span class="flow-number">04</span>
-    <strong>Context</strong>
-    <span>Complete evidence within a token budget</span>
-  </li>
-</ol>
-    <p>Eligibility is resolved before rank contribution. Source evidence and graph proof remain attached to candidate identity. Context defaults to 2048 formatted-evidence tokens; empty retrieval is not proof that a proposition is false.</p>
-    <a class="button text" href="../retrieval/"><span>Inspect ranking and limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+  <section class="section arch-storage-layout" id="storage-model">
+    <div><p class="eyebrow">WHERE DOES EACH PIECE LIVE?</p><h2>The record is authoritative. Search views follow it.</h2>
+      <p>SQLite owns documents, immutable revisions, entities, assertions, permissions and processing state. FTS5 also supplies keyword search over passages and evidence.</p>
+      <dl class="intro-terms"><div><dt>LanceDB: find similar meaning</dt><dd>Stores derived assertion vectors. The query representation must use the compatible embedding model and dimensions.</dd></div><div><dt>Kùzu: follow relationships</dt><dd>Stores derived entities and assertion edges. A graph path must reconcile to eligible canonical assertions.</dd></div></dl>
+      <div class="arch-example"><span class="intro-index">ILLUSTRATIVE FACT + SOURCE</span><p>Atlas archive → weekday opening time → 09:00</p><small>Visitor guide → revision 1 → chunk 1 → supporting passage</small></div>
+    </div><figure class="intro-storage"><figcaption>Inside MESA Core · a simplified architecture</figcaption>
+    <div class="intro-storage__entry"><strong>Your application</strong><small>HTTP API · Python SDK · V4 MCP gateway</small></div>
+    <div class="intro-storage__connector" aria-hidden="true">↓</div>
+    <div class="intro-storage__boundary"><span class="intro-boundary-label">MESA Core</span>
+      <div class="intro-storage__gate"><strong>Access check + background processing</strong><small>Who can use which data? Has processing completed?</small></div>
+      <div class="intro-storage__connector" aria-hidden="true">↓</div>
+      <div class="intro-store intro-store--main"><span class="intro-index">MAIN RECORD</span><h3>SQLite</h3><p>The source of truth: documents, revisions, facts, permissions and processing state.</p></div>
+      <div class="intro-storage__fork"><span>Derived from the main record</span></div>
+      <div class="intro-storage__projections"><div class="intro-store"><h3>LanceDB</h3><p>A numerical representation of meaning, used to find semantically related facts.</p><small>Meaning search</small></div><div class="intro-store"><h3>Kùzu</h3><p>A map of entities and their relationships, used to explore bounded connections.</p><small>Relationship search</small></div></div>
+    </div><p class="intro-caption">LanceDB and Kùzu are derived search views. SQLite remains authoritative. Writes progress in order: SQL → vector → graph.</p></figure>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">04 · EVIDENCE REPRESENTATION</p>
-    <h2>A relationship with a traceable basis.</h2>
-    <div class="evidence-contract">
-      <code>subject → predicate → entity / literal</code>
-      <span aria-hidden="true">↓</span>
-      <code>document → revision → chunk → evidence</code>
-      <span aria-hidden="true">↓</span>
-      <code>mutation_id · pipeline_run_id · retrieval_provenance</code>
-    </div>
-    <p>A whole-revision declared hash, frozen manifest hash and chunk content hash identify different objects. A legal identity must come from a verified source catalog. Tenant is an authorization boundary; agent IDs are context rather than credentials.</p>
-    <div class="actions">
-      <a class="button primary" href="../docs/core/evidence/"><span>Evidence and provenance</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-      <a class="button secondary" href="../docs/core/security/"><span>Security and scope</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-    </div>
+  <section class="section" id="reading-memory">
+    <p class="eyebrow">02 · THE READ PATH</p>
+    <h2>From a question to source-linked evidence.</h2>
+    <p>The session fixes the authorized datasets. Tenant, dataset, agent, committed-state and applicable time/jurisdiction rules constrain candidates before rank contribution. MemoryDAO.search_v4_memory coordinates the search.</p>
+    <figure class="intro-retrieval"><figcaption>One question, four ways to find supporting information</figcaption>
+    <div class="intro-query">Question → eligible records only</div>
+    <div class="intro-lanes"><div class="intro-lane"><span class="intro-index">01</span><h3>Meaning</h3><small>Vector</small><p>Finds similar meaning, even with different words.</p></div><div class="intro-lane"><span class="intro-index">02</span><h3>Words</h3><small>BM25</small><p>Matches words in passages and evidence.</p></div><div class="intro-lane"><span class="intro-index">03</span><h3>Structured facts</h3><small>Assertion</small><p>Uses who, what and their stated relationship.</p></div><div class="intro-lane"><span class="intro-index">04</span><h3>Connections</h3><small>Graph</small><p>Follows bounded paths between related entities.</p></div></div>
+    <div class="intro-fusion"><strong>Combine the rankings</strong><span>RRF merges rank positions; it is not a truth probability.</span></div>
+    <div class="intro-evidence-result"><span aria-hidden="true">↳</span><div><strong>Relevant facts + supporting passages + source identity</strong><p>Packed into a bounded context for your application. The connected language model writes the answer.</p></div></div>
+  </figure>
+    <div class="arch-read-notes"><article><h3>Search returns evidence</h3><p>Hits retain assertion, document, revision, chunk and retrieval-origin identity. A bounded graph path retains its supporting assertions and directions.</p></article><article><h3>ContextBuilder fits the model’s input</h3><p>The context endpoint packs evidence once into a token budget, defaulting to 2048 formatted-evidence tokens. Complete graph proof must fit together; the application model then writes the answer.</p></article></div>
+    <details class="arch-detail"><summary>Optional adaptive search: when is the question reformulated?</summary><p>Search and context default to a single query. When adaptive context is explicitly requested, an empty result or insufficient multi-lane support can trigger one planner call and up to two reformulations. Every search keeps the original scope; this does not generate an answer.</p></details>
+    <a class="button text" href="../retrieval/"><span>Ranking formula and search limits</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
   </section>
 
-  <section class="section source-notes">
-    <h2>Read the versioned contracts.</h2>
-    <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md">docs/architecture-v4.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · d394784</a></li>
-    </ul>
+  <section class="section" id="failure-recovery">
+    <p class="eyebrow">WHAT IF A STEP FAILS?</p><h2>Progress is recorded. Recovery follows ownership.</h2>
+    <p>The three stores do not share a single database transaction. Durable work records, expiring ownership leases and idempotent receipts let the system retry or reconcile unfinished work without treating it as success.</p>
+    <div class="arch-recovery-grid"><article><span class="intro-index">VALIDATION REJECTION</span><code>REJECTED</code><p>Audit source may remain, but no active retrieval artifact is created.</p></article><article><span class="intro-index">TRANSIENT FAILURE</span><code>RETRY_PENDING → DLQ</code><p>Retries are bounded. Exhausted work can enter a dead-letter state rather than loop forever.</p></article><article><span class="intro-index">ROLLBACK / CLEANUP</span><code>ROLLED_BACK / BLOCKED</code><p>Rollback removes that source’s ownership. Shared artifacts survive while another active owner exists; unfinished cleanup stays blocked.</p></article></div>
   </section>
-  <section class="closing-cta" aria-labelledby="closing-title">
-      <div>
-        <p class="eyebrow">OPEN SOURCE · MIT</p>
-        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
-        <p>MESA v0.8.1 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
-        <div class="actions"><a class="button primary" href="../docs/"><span>Read the quickstart</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>View source</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
-      </div>
-    </section>
-    <footer class="site-footer">
+
+  <section class="section" id="building-blocks">
+    <p class="eyebrow">03 · HOW THE CODE IS ASSEMBLED</p><h2>Separate modules, explicit responsibilities.</h2>
+    <div class="arch-modules"><article><code>mesa_api / mesa_mcp</code><div><h3>Entry points</h3><p>Receive HTTP or MCP requests and bind them to an authenticated session.</p></div></article><article><code>mesa_workers</code><div><h3>Background work</h3><p>Consume durable ingestion, projection and maintenance work.</p></div></article><article><code>mesa_memory</code><div><h3>Information processing</h3><p>Own extraction, validation, embeddings and context building.</p></div></article><article><code>mesa_storage</code><div><h3>Records and search</h3><p>Own canonical SQLite state, source ownership, projections and retrieval through MemoryDAO.</p></div></article><article><code>mesa_client</code><div><h3>Application connection</h3><p>Provides synchronous and asynchronous Python clients for the HTTP boundary.</p></div></article></div>
+    <div class="arch-state-band"><span>General dependency direction</span><code>API / MCP → workers → memory → storage</code></div>
+    <p>Runtime composition roots are explicit exceptions to that layering. MemoryDAO is the compatibility façade; mesa_evals supplies diagnostics and retrieval contract tooling outside the request path.</p>
+    <details class="arch-detail"><summary>Read the exact Core sources behind these diagrams</summary><ul><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md">Architecture and process boundary<span aria-hidden="true"> ↗</span></a><code>docs/architecture-v4.md</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md">Ingestion and state transitions<span aria-hidden="true"> ↗</span></a><code>docs/concepts-and-ingestion.md</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_memory/extraction/service.py">Canonical fact extraction<span aria-hidden="true"> ↗</span></a><code>mesa_memory/extraction/service.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_workers/projection_worker.py">Ordered projection writes<span aria-hidden="true"> ↗</span></a><code>mesa_workers/projection_worker.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_storage/dao.py">Canonical storage and search coordination<span aria-hidden="true"> ↗</span></a><code>mesa_storage/dao.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_storage/retrieval_scope.py">Eligibility and RRF<span aria-hidden="true"> ↗</span></a><code>mesa_storage/retrieval_scope.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_memory/context_builder.py">Evidence context packing<span aria-hidden="true"> ↗</span></a><code>mesa_memory/context_builder.py</code></li></ul><p class="intro-caption">Verified source baseline: Core v0.8.1 · d394784. Schematics simplify the runtime; they do not claim production certification.</p></details>
+    <div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Installation and configuration</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../docs/core/evidence/"><span>Evidence and security</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div>
+  </section>
+  <footer class="site-footer">
       <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Memory Engine for Structured Agents.</p><p class="footer-note">v0.8.1 · V4 published source release · <a href="../status/">View status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="../how-it-works/">How it works</a><a href="../use-cases/">Use cases</a><a href="../evaluation/">Evaluation & trust</a><a href="../status/">Project status</a></div>

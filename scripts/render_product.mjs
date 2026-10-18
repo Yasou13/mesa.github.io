@@ -1,3 +1,4 @@
+import { detailedArchitecture } from './render_architecture.mjs';
 // Editorial product views share one paired vocabulary with the static localization gate.
 import { introTranslations, beginnerHome } from './render_intro.mjs';
 export const productTranslations = introTranslations;
@@ -73,107 +74,7 @@ function flow(items) {
 
 export function productHome(helpers) { return beginnerHome(helpers); }
 
-export function architecturePage({ header, footer, route, cta }) {
-  return `
-${header('architecture')}
-<main id="main-content">
-  <section class="page-hero compact page-hero--trajectory">
-    ${eyebrow('MESA CORE v0.8.1 · ARCHITECTURE', 'MESA CORE v0.8.1 · MİMARİ')}
-    <h1>${t('One canonical record. Several ways to find it.', 'Tek kanonik kayıt. Onu bulmanın farklı yolları.')}</h1>
-    ${paragraph(
-      'MESA separates source ownership, background processing and retrieval projections. Read the system through four small views.',
-      'MESA; kaynak sahipliğini, arka plan işlemeyi ve retrieval projeksiyonlarını ayırır. Sistemi dört küçük görünümle okuyun.'
-    )}
-  </section>
-
-  <section class="section">
-    ${eyebrow('01 · LOGICAL FLOW', '01 · MANTIKSAL AKIŞ')}
-    ${title('Accept work durably, then process it.', 'İşi kalıcı kabul edin; sonra işleyin.')}
-    ${flow([
-      ['Source', '', 'Exact text, document, revision, chunk', 'Tam metin, belge, revizyon, parça'],
-      ['Admission', '', 'Authenticated session; durable mutation', 'Kimliği doğrulanmış oturum; kalıcı mutasyon'],
-      ['Processing', '', 'Extraction and selected validation', 'Çıkarım ve seçili doğrulama'],
-      ['Projection', '', 'SQL → vector → graph → COMMITTED', 'SQL → vektör → çizge → COMMITTED']
-    ])}
-    ${paragraph(
-      '202 confirms admission. Stores do not share one ACID transaction. Fenced leases, ownership, idempotent receipts and reconciliation support recovery. Mode 0 uses deterministic validation, mode 1 one validator, mode 2 distinct A/B provider-model consensus.',
-      '202, kabulü doğrular. Depolar tek ACID transaction paylaşmaz. Fencing token’lı lease, sahiplik, idempotent receipt ve reconciliation kurtarmayı destekler. Mod 0 deterministik doğrulama, mod 1 tek validator, mod 2 farklı A/B sağlayıcı-model uzlaşısı kullanır.'
-    )}
-  </section>
-
-  <section class="section">
-    ${eyebrow('02 · PHYSICAL STORAGE', '02 · FİZİKSEL DEPOLAMA')}
-    ${title('SQLite decides. Projections follow.', 'SQLite karar verir. Projeksiyonlar izler.')}
-    <div class="storage-grid">
-      ${row(
-        'SQLite',
-        'Canonical catalog, authorization, immutable revisions, assertions, mutation ledger and artifact ownership. FTS5 supplies passage/evidence lexical search.',
-        'Kanonik katalog, yetkilendirme, değişmez revizyonlar, assertion’lar, mutasyon kaydı ve artifact sahipliği. FTS5 pasaj/kanıt üzerinde sözcüksel arama sağlar.'
-      )}
-      ${row(
-        'LanceDB',
-        'Derived assertion vectors with embedding identity. Query and stored representation must match model and dimension; provider availability is a runtime fact.',
-        'Embedding kimliği taşıyan türetilmiş assertion vektörleri. Sorgu ve depolanan temsilin model/boyutu eşleşmelidir; sağlayıcı kullanılabilirliği çalışma anında belirlenir.'
-      )}
-      ${row(
-        'Kùzu',
-        'Derived Graph V2 entities and assertion edges. Bounded paths must reconcile to authorized canonical facts; a projection-only adapter cannot traverse.',
-        'Türetilmiş Graph V2 düğümleri ve assertion kenarları. Sınırlı yollar yetkili kanonik bilgilerle uzlaşmalıdır; yalnız projeksiyon yazan adapter dolaşım yapamaz.'
-      )}
-    </div>
-    ${paragraph(
-      'V4 requires one combined storage owner per root. V3 API/worker roles and V4 must use separate roots. Offline backup and forward-only migration protect the operator boundary.',
-      'V4, root başına tek combined storage owner ister. V3 API/worker rolleri ile V4 ayrı root kullanmalıdır. Offline yedekleme ve yalnız ileri migration, operatör sınırını korur.'
-    )}
-  </section>
-
-  <section class="section">
-    ${eyebrow('03 · RETRIEVAL EXECUTION', '03 · RETRIEVAL YÜRÜTMESİ')}
-    ${title('Authorize, retrieve, fuse, pack.', 'Yetkilendir, getir, birleştir, paketle.')}
-    ${flow([
-      ['Scope', '', 'Session-bound authorized datasets', 'Oturuma bağlı yetkili dataset’ler'],
-      ['Lanes', '', 'Vector · BM25 · assertion · graph', 'Vektör · BM25 · assertion · çizge'],
-      ['RRF', '', 'Rank contributions, then legal reranking', 'Sıra katkıları; ardından hukuk yeniden sıralaması'],
-      ['Context', '', 'Complete evidence within a token budget', 'Token bütçesi içinde tam kanıt']
-    ])}
-    ${paragraph(
-      'Eligibility is resolved before rank contribution. Source evidence and graph proof remain attached to candidate identity. Context defaults to 2048 formatted-evidence tokens; empty retrieval is not proof that a proposition is false.',
-      'Uygunluk, sıra katkısından önce çözülür. Kaynak kanıtı ve çizge ispatı aday kimliğine bağlı kalır. Bağlam varsayılan olarak 2048 biçimlendirilmiş kanıt token’ıdır; boş retrieval bir önermenin yanlışlığını kanıtlamaz.'
-    )}
-    ${cta(t('Inspect ranking and limits', 'Sıralama ve sınırları inceleyin'), route('retrieval/'), 'text')}
-  </section>
-
-  <section class="section">
-    ${eyebrow('04 · EVIDENCE REPRESENTATION', '04 · KANIT TEMSİLİ')}
-    ${title('A relationship with a traceable basis.', 'İzlenebilir dayanağı olan ilişki.')}
-    <div class="evidence-contract">
-      <code>subject → predicate → entity / literal</code>
-      <span aria-hidden="true">↓</span>
-      <code>document → revision → chunk → evidence</code>
-      <span aria-hidden="true">↓</span>
-      <code>mutation_id · pipeline_run_id · retrieval_provenance</code>
-    </div>
-    ${paragraph(
-      'A whole-revision declared hash, frozen manifest hash and chunk content hash identify different objects. A legal identity must come from a verified source catalog. Tenant is an authorization boundary; agent IDs are context rather than credentials.',
-      'Bütün-revizyon beyan hash’i, dondurulmuş manifest hash’i ve parça içerik hash’i farklı nesneleri tanımlar. Hukuk kimliği doğrulanmış kaynak kataloğundan gelmelidir. Tenant yetkilendirme sınırıdır; agent kimliği credential yerine bağlamdır.'
-    )}
-    <div class="actions">
-      ${cta(t('Evidence and provenance', 'Kanıt ve kaynak izi'), route('docs/core/evidence/'))}
-      ${cta(t('Security and scope', 'Güvenlik ve kapsam'), route('docs/core/security/'), 'secondary')}
-    </div>
-  </section>
-
-  <section class="section source-notes">
-    ${title('Read the versioned contracts.', 'Sabitlenmiş sözleşmeleri okuyun.')}
-    <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/architecture-v4.md">docs/architecture-v4.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · d394784</a></li>
-    </ul>
-  </section>
-  ${footer()}
-</main>`;
-}
+export function architecturePage(helpers) { return detailedArchitecture({...helpers, t}); }
 
 export function retrievalPage({ header, footer, route, cta }) {
   return `

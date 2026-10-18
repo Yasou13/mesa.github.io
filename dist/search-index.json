@@ -4594,10 +4594,10 @@
   {
     "id": "core-architecture-en",
     "url": "architecture/",
-    "title": "MESA Architecture — Canonical State, Projections and Evidence",
+    "title": "MESA Architecture — Write, Store and Retrieve",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity.",
+    "summary": "Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries.",
     "keywords": [
       "architecture",
       "mesa",
@@ -4608,10 +4608,10 @@
   {
     "id": "core-architecture-tr",
     "url": "tr/architecture/",
-    "title": "MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt",
+    "title": "Mesa Mimarisi — Gerçek Veri Akışı ve Çekirdeğin Yapısı",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın.",
+    "summary": "Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller.",
     "keywords": [
       "architecture",
       "mesa",

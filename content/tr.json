@@ -61,8 +61,8 @@
       "description": "MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar."
     },
     "architecture": {
-      "title": "MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt",
-      "description": "MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın."
+      "title": "Mesa Mimarisi — Gerçek Veri Akışı ve Çekirdeğin Yapısı",
+      "description": "Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller."
     },
     "retrieval": {
       "title": "MESA V4 Retrieval — Dört Kanal, RRF ve Kanıt",

@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt</title>
-  <meta name="description" content="MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın.">
+  <title>Mesa Mimarisi — Gerçek Veri Akışı ve Çekirdeğin Yapısı</title>
+  <meta name="description" content="Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/architecture/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/architecture/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/architecture/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/architecture/">
-  <meta property="og:title" content="MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt">
-  <meta property="og:description" content="MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın.">
+  <meta property="og:title" content="Mesa Mimarisi — Gerçek Veri Akışı ve Çekirdeğin Yapısı">
+  <meta property="og:description" content="Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/tr/architecture/">
   <meta property="og:locale" content="tr_TR">
@@ -21,21 +21,20 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA Mimarisi — Kanonik Durum, Projeksiyonlar ve Kanıt">
-  <meta name="twitter:description" content="MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın.">
+  <meta name="twitter:title" content="Mesa Mimarisi — Gerçek Veri Akışı ve Çekirdeğin Yapısı">
+  <meta name="twitter:description" content="Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Core v0.8.1 mimarisini veri alımı, SQLite otoritesi, LanceDB ve Kùzu projeksiyonları, kapsamlı retrieval ve kanıt kimliğiyle anlayın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Mesa Core’un gerçek yazma ve okuma yollarını inceleyin: kalıcı kabul, bilgi çıkarımı, sıralı depolama, yetkili arama, kanıt bağlamı, kurtarma ve modüller.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../assets/mesa-mark.webp?v=83a56e3fb8b5" type="image/webp">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../styles.css?v=6821a82454e5">
+  <link rel="stylesheet" href="../../styles.css?v=d2256845e384">
   <link rel="stylesheet" href="../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../learn.css?v=ef08fd97f3dc">
   <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
 <div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
-
 <a class="skip-link" href="#main-content">İçeriğe geç</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -55,119 +54,91 @@
         </nav>
       </div>
     </header>
-<main id="main-content">
+<main id="main-content" class="intro-page architecture-page">
   <section class="page-hero compact page-hero--trajectory">
-    <p class="eyebrow">MESA CORE v0.8.1 · MİMARİ</p>
-    <h1>Tek kanonik kayıt. Onu bulmanın farklı yolları.</h1>
-    <p>MESA; kaynak sahipliğini, arka plan işlemeyi ve retrieval projeksiyonlarını ayırır. Sistemi dört küçük görünümle okuyun.</p>
+    <p class="eyebrow">MESA CORE v0.8.1 · ÇEKİRDEĞİN İÇİNDE</p>
+    <h1>Bilgi, Mesa’nın içinde nasıl ilerler?</h1>
+    <p>Mimaride iki ana yol var: bir kaynağı hafızaya yazmak ve uygulama soru sorduğunda dayanak bilgiyi bulmak. Aşağıda iki yolu da girişten çıktıya kadar izleyebilirsiniz.</p>
+    <div class="arch-path-links"><a href="#writing-memory">01 · Bilgiyi yaz ↓</a><a href="#reading-memory">02 · Bilgiyi bul ↓</a><a href="#building-blocks">03 · Yapı taşlarını gör ↓</a></div>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">01 · MANTIKSAL AKIŞ</p>
-    <h2>İşi kalıcı kabul edin; sonra işleyin.</h2>
-    
-<ol class="system-flow">
-  
-  <li>
-    <span class="flow-number">01</span>
-    <strong>Kaynak</strong>
-    <span>Tam metin, belge, revizyon, parça</span>
-  </li>
-  <li>
-    <span class="flow-number">02</span>
-    <strong>Kabul</strong>
-    <span>Kimliği doğrulanmış oturum; kalıcı mutasyon</span>
-  </li>
-  <li>
-    <span class="flow-number">03</span>
-    <strong>İşleme</strong>
-    <span>Çıkarım ve seçili doğrulama</span>
-  </li>
-  <li>
-    <span class="flow-number">04</span>
-    <strong>Projeksiyon</strong>
-    <span>SQL → vektör → çizge → COMMITTED</span>
-  </li>
-</ol>
-    <p>202, kabulü doğrular. Depolar tek ACID transaction paylaşmaz. Fencing token’lı lease, sahiplik, idempotent receipt ve reconciliation kurtarmayı destekler. Mod 0 deterministik doğrulama, mod 1 tek validator, mod 2 farklı A/B sağlayıcı-model uzlaşısı kullanır.</p>
+  <section class="section" id="runtime-map">
+    <p class="eyebrow">BÜTÜN SİSTEME TEK BAKIŞ</p>
+    <h2>Dışarıda uygulama. İçeride tek depolama sahibi.</h2>
+    <p>Desteklenen V4 kurulumunda tek bir combined süreç; API kabul yolunu, arka plan çalışanlarını ve üç depoyu birlikte yönetir. Aşağıdaki kutular ayrı sunucular değil, bu sürecin içindeki görevlerdir.</p>
+    <figure class="arch-runtime"><figcaption>Çalışma zamanı sınırı ve iki veri yolu</figcaption>
+      <div class="arch-outside"><strong>Uygulamanız</strong><span>Kaynak metin girer · kaynaklı kanıt çıkar</span></div><span class="arch-down" aria-hidden="true">↓</span>
+      <div class="arch-combined"><span class="arch-boundary">MESA CORE · TEK COMBINED SÜREÇ</span>
+        <div class="arch-gate"><strong>HTTP API / V4 MCP geçidi</strong><p>Kimliği doğrula → oturumu çöz → oturumun yetkili veri kümelerini kullan</p></div><span class="arch-down" aria-hidden="true">↓</span>
+        <div class="arch-two-paths"><div><span class="intro-index">YAZMA YOLU</span><strong>Kalıcı kabul → bilgi çıkarımı → doğrulama</strong><p>Arka plan işlemleri asıl bilgi kayıtlarını ve arama görünümlerini hazırlar.</p></div><div><span class="intro-index">OKUMA YOLU</span><strong>Uygunluk → dört arama kanalı → sıralama birleştirme</strong><p>Arama, uygun kayıtları kullanır ve dayanak kanıtlarını döndürür.</p></div></div>
+        <div class="arch-store-strip"><strong>SQLite</strong><span>Ana kayıt</span><strong>LanceDB</strong><span>Anlam</span><strong>Kùzu</strong><span>Bağlantılar</span></div>
+      </div><span class="arch-down" aria-hidden="true">↓</span><div class="arch-outside"><strong>Kanıt bağlamı → uygulamanızın modeli → yanıt</strong><span>Mesa araması bağlamı sağlar; yanıt üretimini uygulama yapar.</span></div>
+    </figure>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">02 · FİZİKSEL DEPOLAMA</p>
-    <h2>SQLite karar verir. Projeksiyonlar izler.</h2>
-    <div class="storage-grid">
-      <article><h3>SQLite</h3><p>Kanonik katalog, yetkilendirme, değişmez revizyonlar, assertion’lar, mutasyon kaydı ve artifact sahipliği. FTS5 pasaj/kanıt üzerinde sözcüksel arama sağlar.</p></article>
-      <article><h3>LanceDB</h3><p>Embedding kimliği taşıyan türetilmiş assertion vektörleri. Sorgu ve depolanan temsilin model/boyutu eşleşmelidir; sağlayıcı kullanılabilirliği çalışma anında belirlenir.</p></article>
-      <article><h3>Kùzu</h3><p>Türetilmiş Graph V2 düğümleri ve assertion kenarları. Sınırlı yollar yetkili kanonik bilgilerle uzlaşmalıdır; yalnız projeksiyon yazan adapter dolaşım yapamaz.</p></article>
-    </div>
-    <p>V4, root başına tek combined storage owner ister. V3 API/worker rolleri ile V4 ayrı root kullanmalıdır. Offline yedekleme ve yalnız ileri migration, operatör sınırını korur.</p>
+  <section class="section" id="writing-memory">
+    <p class="eyebrow">01 · YAZMA YOLU</p>
+    <h2>Özgün kaynak metinden kullanılabilir hafızaya.</h2>
+    <p>Uygulamanız özgün metni; belge, sürüm ve parça kimliğiyle gönderir. Core bu kaynağı işler; kaynağın toplanması ve parçalara hazırlanması veriyi gönderen sistemin sorumluluğundadır.</p>
+    <ol class="arch-write-flow">
+      <li><span class="intro-index">01</span><div><h3>Oturumu ve kaynağı kontrol et</h3><p>Sunucu erişim kapsamını kimliği doğrulanmış oturumdan alır. İstek; veri kümesini, belgeyi, sürümü ve özgün metin parçasını belirtir.</p><code>POST /v4/memory/insert</code></div></li>
+      <li><span class="intro-index">02</span><div><h3>İşi kalıcı olarak kabul et</h3><p>Bir aday kayıt, değişiklik günlüğü ve işlem hattı çalışması oluşturulur. HTTP 202, kabulü bildirir; işlemenin tamamlandığını bildirmez.</p><code>MemoryCandidate · memory_mutations · pipeline_runs</code></div></li>
+      <li><span class="intro-index">03</span><div><h3>Düzenli bilgi kayıtları çıkar</h3><p>FactExtractionService bir model kullanarak sıfır veya daha fazla özne–ilişki–nesne kaydı çıkarır; dayanak metinle bağlantıyı korur.</p><code>FactExtractionService → 0..N FactCandidate</code></div></li>
+      <li><span class="intro-index">04</span><div><h3>Seçilen doğrulamayı uygula</h3><p>Mod 0 kurala dayalı kontrolleri kullanır; mod 1 bir model doğrulayıcı ekler; mod 2 farklı iki sağlayıcı/model çiftinin uzlaşmasını ister. Aktif hafızaya geçiş bu kontrollerle sınırlandırılır.</p><code>MESA_TIER3_MODE = 0 / 1 / 2</code></div></li>
+      <li><span class="intro-index">05</span><div><h3>Depolara sırayla yaz</h3><p>Asıl bilgi kayıtları SQLite’a, ardından vektör temsilleri LanceDB’ye, son olarak ilişkiler Kùzu’ya yazılır. Her adım bir öncekinin tamamlanmasını bekler.</p><code>SQL → vector → graph</code></div></li>
+      <li><span class="intro-index">06</span><div><h3>Tamamlanmayı doğrula</h3><p>İstemci, kalıcı değişiklik kaydının durumunu sorgular. Başarılı son durum COMMITTED’dır; isteğin kabul edilmiş olması tek başına yeterli değildir.</p><code>COMMITTED</code></div></li>
+    </ol>
+    <div class="arch-state-band"><span>İşlem hattı durumları</span><code>QUEUED → RUNNING → EXTRACTED → VALIDATED → PROJECTING → COMMITTED</code></div>
+    <p class="intro-caption">İşlem hattı ilerlemeyi özetler; değişiklik günlüğü SQL_APPLIED, VECTOR_APPLIED ve GRAPH_APPLIED yazma adımlarını ayrıca izler.</p>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">03 · RETRIEVAL YÜRÜTMESİ</p>
-    <h2>Yetkilendir, getir, birleştir, paketle.</h2>
-    
-<ol class="system-flow">
-  
-  <li>
-    <span class="flow-number">01</span>
-    <strong>Kapsam</strong>
-    <span>Oturuma bağlı yetkili dataset’ler</span>
-  </li>
-  <li>
-    <span class="flow-number">02</span>
-    <strong>Kanallar</strong>
-    <span>Vektör · BM25 · assertion · çizge</span>
-  </li>
-  <li>
-    <span class="flow-number">03</span>
-    <strong>RRF</strong>
-    <span>Sıra katkıları; ardından hukuk yeniden sıralaması</span>
-  </li>
-  <li>
-    <span class="flow-number">04</span>
-    <strong>Bağlam</strong>
-    <span>Token bütçesi içinde tam kanıt</span>
-  </li>
-</ol>
-    <p>Uygunluk, sıra katkısından önce çözülür. Kaynak kanıtı ve çizge ispatı aday kimliğine bağlı kalır. Bağlam varsayılan olarak 2048 biçimlendirilmiş kanıt token’ıdır; boş retrieval bir önermenin yanlışlığını kanıtlamaz.</p>
-    <a class="button text" href="../retrieval/"><span>Sıralama ve sınırları inceleyin</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+  <section class="section arch-storage-layout" id="storage-model">
+    <div><p class="eyebrow">HANGİ PARÇA NEREDE TUTULUR?</p><h2>Asıl kayıt belirleyicidir. Arama görünümleri onu izler.</h2>
+      <p>SQLite; belgeleri, değişmez sürümleri, varlıkları, bilgi kayıtlarını, izinleri ve işleme durumunu tutar. FTS5 ile pasajlar ve kanıtlar üzerinde sözcük araması da sağlar.</p>
+      <dl class="intro-terms"><div><dt>LanceDB: yakın anlamı bul</dt><dd>Bilgi kayıtlarından türetilmiş vektörleri tutar. Sorgunun sayısal temsili uyumlu model ve boyutları kullanmalıdır.</dd></div><div><dt>Kùzu: ilişkileri izle</dt><dd>Türetilmiş varlıkları ve bilgi bağlantılarını tutar. Çizgedeki yol, erişime uygun asıl bilgi kayıtlarıyla uyuşmalıdır.</dd></div></dl>
+      <div class="arch-example"><span class="intro-index">ÖRNEK BİLGİ + KAYNAK</span><p>Atlas arşivi → hafta içi açılış saati → 09.00</p><small>Ziyaretçi rehberi → sürüm 1 → parça 1 → dayanak pasaj</small></div>
+    </div><figure class="intro-storage"><figcaption>Mesa Core’un içinde · basitleştirilmiş mimari</figcaption>
+    <div class="intro-storage__entry"><strong>Uygulamanız</strong><small>HTTP API · Python SDK · V4 MCP geçidi</small></div>
+    <div class="intro-storage__connector" aria-hidden="true">↓</div>
+    <div class="intro-storage__boundary"><span class="intro-boundary-label">MESA Core</span>
+      <div class="intro-storage__gate"><strong>Erişim kontrolü + arka planda işleme</strong><small>Kim hangi veriye erişebilir? İşleme tamamlandı mı?</small></div>
+      <div class="intro-storage__connector" aria-hidden="true">↓</div>
+      <div class="intro-store intro-store--main"><span class="intro-index">ANA KAYIT</span><h3>SQLite</h3><p>Asıl kayıtların tutulduğu yer: belgeler, sürümler, bilgiler, izinler ve işleme durumu.</p></div>
+      <div class="intro-storage__fork"><span>Ana kayıttan türetilir</span></div>
+      <div class="intro-storage__projections"><div class="intro-store"><h3>LanceDB</h3><p>Anlamca yakın bilgileri bulmak için kullanılan sayısal temsiller.</p><small>Anlama göre arama</small></div><div class="intro-store"><h3>Kùzu</h3><p>Varlıklar ve aralarındaki ilişkilerden oluşan, sınırları belirli bağlantı haritası.</p><small>İlişkilere göre arama</small></div></div>
+    </div><p class="intro-caption">LanceDB ve Kùzu, arama için türetilmiş görünümlerdir. Asıl kayıt SQLite’tadır. Yazma sırası: SQL → vektör → çizge.</p></figure>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">04 · KANIT TEMSİLİ</p>
-    <h2>İzlenebilir dayanağı olan ilişki.</h2>
-    <div class="evidence-contract">
-      <code>subject → predicate → entity / literal</code>
-      <span aria-hidden="true">↓</span>
-      <code>document → revision → chunk → evidence</code>
-      <span aria-hidden="true">↓</span>
-      <code>mutation_id · pipeline_run_id · retrieval_provenance</code>
-    </div>
-    <p>Bütün-revizyon beyan hash’i, dondurulmuş manifest hash’i ve parça içerik hash’i farklı nesneleri tanımlar. Hukuk kimliği doğrulanmış kaynak kataloğundan gelmelidir. Tenant yetkilendirme sınırıdır; agent kimliği credential yerine bağlamdır.</p>
-    <div class="actions">
-      <a class="button primary" href="../docs/core/evidence/"><span>Kanıt ve kaynak izi</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-      <a class="button secondary" href="../docs/core/security/"><span>Güvenlik ve kapsam</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-    </div>
+  <section class="section" id="reading-memory">
+    <p class="eyebrow">02 · OKUMA YOLU</p>
+    <h2>Bir sorudan kaynağına bağlı kanıta.</h2>
+    <p>Oturum, erişime izin verilen veri kümelerini sabitler. Kurum, veri kümesi, ajan, tamamlanma durumu ve geçerli zaman/yargı alanı kuralları sıralamaya katkıdan önce adayları sınırlar. Aramayı MemoryDAO.search_v4_memory koordine eder.</p>
+    <figure class="intro-retrieval"><figcaption>Bir soru, dayanak bilgiyi bulmak için dört yol</figcaption>
+    <div class="intro-query">Soru → yalnızca erişime uygun kayıtlar</div>
+    <div class="intro-lanes"><div class="intro-lane"><span class="intro-index">01</span><h3>Anlam</h3><small>Vektör</small><p>Farklı sözcüklerle yazılsa da yakın anlamı bulur.</p></div><div class="intro-lane"><span class="intro-index">02</span><h3>Sözcükler</h3><small>BM25</small><p>Pasaj ve kanıtlardaki sözcükleri eşleştirir.</p></div><div class="intro-lane"><span class="intro-index">03</span><h3>Düzenli bilgiler</h3><small>Assertion</small><p>Kim, ne ve aralarında belirtilen ilişkiyi kullanır.</p></div><div class="intro-lane"><span class="intro-index">04</span><h3>Bağlantılar</h3><small>Çizge</small><p>İlişkili varlıklar arasında sınırlı yolları izler.</p></div></div>
+    <div class="intro-fusion"><strong>Sıralamaları birleştir</strong><span>RRF, sıra konumlarını birleştirir; doğruluk olasılığı değildir.</span></div>
+    <div class="intro-evidence-result"><span aria-hidden="true">↳</span><div><strong>İlgili bilgiler + dayanak pasajlar + kaynak kimliği</strong><p>Uygulamanız için boyutu sınırlandırılmış bir bağlama yerleştirilir. Yanıtı, bağlı dil modeli yazar.</p></div></div>
+  </figure>
+    <div class="arch-read-notes"><article><h3>Arama kanıt döndürür</h3><p>Sonuçlar bilgi kaydı, belge, sürüm, parça ve arama kanalı kimliğini korur. Sınırlı çizge yolları dayanak kayıtları ve yönleriyle birlikte taşınır.</p></article><article><h3>ContextBuilder, modelin girdisini hazırlar</h3><p>Bağlam uç noktası kanıtı bir kez token bütçesine yerleştirir; varsayılan bütçe biçimlendirilmiş kanıt için 2048 token’dır. Çizge ispatı bütün olarak sığmalıdır; ardından uygulamanın modeli yanıtı yazar.</p></article></div>
+    <details class="arch-detail"><summary>İsteğe bağlı uyarlanabilir arama: soru ne zaman yeniden yazılır?</summary><p>Arama ve bağlam varsayılan olarak tek sorgu kullanır. Uyarlanabilir bağlam açıkça istendiğinde, boş sonuç veya yetersiz çok kanallı destek bir planlayıcı çağrısını ve en fazla iki yeniden yazımı tetikleyebilir. Her arama özgün kapsamı korur; bu adım yanıt üretmez.</p></details>
+    <a class="button text" href="../retrieval/"><span>Sıralama formülü ve arama sınırları</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
   </section>
 
-  <section class="section source-notes">
-    <h2>Sabitlenmiş sözleşmeleri okuyun.</h2>
-    <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md">docs/architecture-v4.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md">docs/concepts-and-ingestion.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · d394784</a></li>
-    </ul>
+  <section class="section" id="failure-recovery">
+    <p class="eyebrow">BİR ADIM BAŞARISIZ OLURSA?</p><h2>İlerleme kaydedilir. Kurtarma, sahipliği izler.</h2>
+    <p>Üç depo tek bir veritabanı işlemini paylaşmaz. Kalıcı iş kayıtları, süreli iş sahipliği ve aynı işi tekrar uygulamayı güvenli kılan alındılar; yarım kalan işin yeniden denenmesini veya uzlaştırılmasını sağlar.</p>
+    <div class="arch-recovery-grid"><article><span class="intro-index">DOĞRULAMADA RET</span><code>REJECTED</code><p>Denetim için ham kaynak kalabilir; aktif arama kaydı oluşturulmaz.</p></article><article><span class="intro-index">GEÇİCİ HATA</span><code>RETRY_PENDING → DLQ</code><p>Yeniden denemeler sınırlıdır. Sonuçlanmayan iş sonsuz döngü yerine hata kuyruğuna alınabilir.</p></article><article><span class="intro-index">GERİ ALMA / TEMİZLİK</span><code>ROLLED_BACK / BLOCKED</code><p>Geri alma, ilgili kaynağın sahipliğini kaldırır. Başka aktif sahip varsa ortak kayıt korunur; bitmeyen temizlik engelli durumda kalır.</p></article></div>
   </section>
-  <section class="closing-cta" aria-labelledby="closing-title">
-      <div>
-        <p class="eyebrow">AÇIK KAYNAK · MIT</p>
-        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
-        <p>MESA v0.8.1 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
-        <div class="actions"><a class="button primary" href="../docs/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
-      </div>
-    </section>
-    <footer class="site-footer">
+
+  <section class="section" id="building-blocks">
+    <p class="eyebrow">03 · KOD NASIL BİR ARAYA GELİR?</p><h2>Ayrı modüller, açık sorumluluklar.</h2>
+    <div class="arch-modules"><article><code>mesa_api / mesa_mcp</code><div><h3>Giriş kapıları</h3><p>HTTP veya MCP isteklerini alır, kimliği doğrulanmış oturuma bağlar.</p></div></article><article><code>mesa_workers</code><div><h3>Arka plan işleri</h3><p>Kalıcı veri alımı, depolama görünümü ve bakım işlerini yürütür.</p></div></article><article><code>mesa_memory</code><div><h3>Bilgiyi işleme</h3><p>Bilgi çıkarımını, doğrulamayı, sayısal temsilleri ve bağlam hazırlamayı yönetir.</p></div></article><article><code>mesa_storage</code><div><h3>Kayıtlar ve arama</h3><p>MemoryDAO üzerinden asıl SQLite kayıtlarını, kaynak sahipliğini, arama görünümlerini ve aramayı yönetir.</p></div></article><article><code>mesa_client</code><div><h3>Uygulama bağlantısı</h3><p>HTTP sınırına bağlanan senkron ve asenkron Python istemcilerini sağlar.</p></div></article></div>
+    <div class="arch-state-band"><span>Genel bağımlılık yönü</span><code>API / MCP → workers → memory → storage</code></div>
+    <p>Çalışma zamanını birleştiren başlangıç noktaları bu katmanlaşmanın açık istisnalarıdır. MemoryDAO ortak erişim cephesidir; mesa_evals istek yolunun dışında tanılama ve arama sözleşmesi araçlarını sağlar.</p>
+    <details class="arch-detail"><summary>Bu şemaların dayandığı gerçek Core kaynakları</summary><ul><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md">Mimari ve süreç sınırı<span aria-hidden="true"> ↗</span></a><code>docs/architecture-v4.md</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md">Veri alımı ve durum geçişleri<span aria-hidden="true"> ↗</span></a><code>docs/concepts-and-ingestion.md</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_memory/extraction/service.py">Kanonik bilgi çıkarımı<span aria-hidden="true"> ↗</span></a><code>mesa_memory/extraction/service.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_workers/projection_worker.py">Sıralı depolama yazmaları<span aria-hidden="true"> ↗</span></a><code>mesa_workers/projection_worker.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_storage/dao.py">Asıl depolama ve arama koordinasyonu<span aria-hidden="true"> ↗</span></a><code>mesa_storage/dao.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_storage/retrieval_scope.py">Uygunluk ve RRF<span aria-hidden="true"> ↗</span></a><code>mesa_storage/retrieval_scope.py</code></li><li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/mesa_memory/context_builder.py">Kanıt bağlamının hazırlanması<span aria-hidden="true"> ↗</span></a><code>mesa_memory/context_builder.py</code></li></ul><p class="intro-caption">Doğrulanan kaynak temeli: Core v0.8.1 · d394784. Şemalar çalışma zamanını sadeleştirir; üretim sertifikasyonu iddiası taşımaz.</p></details>
+    <div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Kurulum ve yapılandırma</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="../docs/core/evidence/"><span>Kanıt ve güvenlik</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a></div>
+  </section>
+  <footer class="site-footer">
       <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapılandırılmış Ajanlar için Hafıza Motoru.</p><p class="footer-note">v0.8.1 · V4 yayımlanmış kaynak sürümü · <a href="../status/">Durumu görüntüle →</a></p></div>
       <div class="footer-groups">
         <div><h3>Keşfet</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../use-cases/">Kullanım alanları</a><a href="../evaluation/">Değerlendirme ve güven</a><a href="../status/">Proje durumu</a></div>

@@ -69,3 +69,18 @@ walkthrough performs no Core query or model call. Its four stages explain the
 lifecycle, rather than reproduce runtime timing or imply measured quality.
 The repository fixture is separately disclosed as a contract test using mock
 vectors, not a semantic benchmark. No new readiness or customer claims are made.
+
+## Architecture diagrams and spacing revision — 2026-10-18
+
+The detailed architecture page follows the same Core v0.8.1 `d394784` baseline.
+Runtime and module boundaries, the canonical/derived-store split and ownership
+recovery follow `docs/architecture-v4.md`. The write path separates HTTP 202
+admission from terminal completion, and pipeline aggregate states from mutation
+write states, following `docs/concepts-and-ingestion.md`. Model extraction of
+0..N facts was checked in `mesa_memory/extraction/service.py`; ordered write
+handling was checked in `mesa_workers/projection_worker.py`. Read-side scope,
+four lanes, default single query, optional adaptive context and 2048-token
+context defaults follow `docs/retrieval-and-graph.md` and the prior source map.
+Diagrams represent responsibilities inside the supported combined process,
+not independent storage-writing services. The simplified Atlas example remains
+illustrative. No runtime capability or certification claim was added.

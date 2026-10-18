@@ -39,7 +39,7 @@ function uses() {
   ].map(([name, text], i) => `<article><span class="intro-index">0${i+1}</span><h3>${name}</h3><p>${text}</p></article>`).join('')}</div>`;
 }
 
-function storage() {
+export function storage() {
   return `<figure class="intro-storage"><figcaption>${t('Inside MESA Core · a simplified architecture', 'Mesa Core’un içinde · basitleştirilmiş mimari')}</figcaption>
     <div class="intro-storage__entry"><strong>${t('Your application', 'Uygulamanız')}</strong><small>${t('HTTP API · Python SDK · V4 MCP gateway', 'HTTP API · Python SDK · V4 MCP geçidi')}</small></div>
     <div class="intro-storage__connector" aria-hidden="true">↓</div>
@@ -52,7 +52,7 @@ function storage() {
     </div><p class="intro-caption">${t('LanceDB and Kùzu are derived search views. SQLite remains authoritative. Writes progress in order: SQL → vector → graph.', 'LanceDB ve Kùzu, arama için türetilmiş görünümlerdir. Asıl kayıt SQLite’tadır. Yazma sırası: SQL → vektör → çizge.')}</p></figure>`;
 }
 
-function retrieval() {
+export function retrieval() {
   return `<figure class="intro-retrieval"><figcaption>${t('One question, four ways to find supporting information', 'Bir soru, dayanak bilgiyi bulmak için dört yol')}</figcaption>
     <div class="intro-query">${t('Question → eligible records only', 'Soru → yalnızca erişime uygun kayıtlar')}</div>
     <div class="intro-lanes">${[

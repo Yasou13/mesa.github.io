@@ -99,8 +99,8 @@
     },
     "architecture": {
       "path": "architecture/",
-      "title": "MESA Architecture — Canonical State, Projections and Evidence",
-      "description": "Understand MESA Core v0.8.1 through ingestion, SQLite authority, LanceDB and Kùzu projections, scoped retrieval and evidence identity."
+      "title": "MESA Architecture — Write, Store and Retrieve",
+      "description": "Follow MESA Core’s real write and read paths: durable admission, fact extraction, ordered storage, scoped search, evidence context, recovery and module boundaries."
     },
     "retrieval": {
       "path": "retrieval/",
