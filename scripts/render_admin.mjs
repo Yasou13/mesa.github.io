@@ -41,7 +41,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
 <main id="main-content" class="admin-shell">
   <div class="admin-hero">
     <p class="eyebrow">MESA · ${t('ADMINISTRATION','YÖNETİM')}</p>
-    <h1>${t('Content Workspace','İçerik Çalışma Alanı')}</h1>
+    <h1>${t('Content Workspace','İçerik yönetimi')}</h1>
     <p id="admin-status" role="status" aria-live="polite">${config ? t('Checking your session…','Oturumunuz denetleniyor…') : t('Authentication is not configured. Sign-in is unavailable.','Kimlik doğrulama yapılandırılmamış. Giriş kullanılamıyor.')}</p>
   </div>
 
@@ -79,13 +79,13 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
         <p class="user-info">${t('Signed in as','Oturum:')} <strong id="current-user-email"></strong> <span id="current-user-role" class="user-role-chip"></span></p>
       </div>
       <div class="topbar-actions">
-        <a class="button secondary" href="${base}${tr ? 'tr/' : ''}learn/" target="_blank">${t('View Live Site ↗','Canlı Siteyi Gör ↗')}</a>
+        <a class="button secondary" href="${base}${tr ? 'tr/' : ''}learn/" target="_blank">${t('View Live Site ↗','Siteyi aç ↗')}</a>
         <button id="logout" type="button" class="button secondary">${t('Sign out','Çıkış yap')}</button>
       </div>
     </div>
 
     <!-- Main Navigation Tabs -->
-    <nav class="admin-tabs" aria-label="${t('Workspace views','Çalışma alanı sekmeleri')}">
+    <nav class="admin-tabs" aria-label="${t('Çalışma alanı views','Yönetim bölümleri')}">
       <button class="admin-tab active" data-tab="articles" type="button">${t('Articles & Drafts','Makaleler ve Taslaklar')}</button>
       <button class="admin-tab" data-tab="create" type="button">${t('+ New Article','+ Yeni Makale')}</button>
       <button class="admin-tab" data-tab="taxonomy" type="button">${t('Taxonomy','Kategoriler & Etiketler')}</button>
@@ -108,7 +108,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
       <div class="workspace-guide"><strong>${t('Draft → Review → Ready → Site deployment','Taslak → İnceleme → Hazır → Siteye aktarım')}</strong><p>${t('Write and save here. “Ready” marks an editorial handoff; it does not publish to the website.','İçeriği burada yazıp kaydedin. “Hazır”, editöryal onay durumudur; siteye otomatik yayın yapmaz.')}</p></div>
       <div class="table-toolbar">
         <div class="search-box">
-          <input aria-label="${t('Search articles','Makalelerde ara')}" id="article-search" type="search" placeholder="${t('Search articles by title, slug or summary…','Başlık, slug veya özete göre ara…')}">
+          <input aria-label="${t('Search articles','Makalelerde ara')}" id="article-search" type="search" placeholder="${t('Search articles by title, slug or summary…','Başlık, adres veya özette ara…')}">
         </div>
         <div class="filter-group">
           <select id="filter-lang" aria-label="${t('Language filter','Dil filtresi')}">
@@ -145,25 +145,25 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           </div>
           <div class="editor-header-actions">
             <span id="save-state" role="status"></span><span id="editor-status-chip" class="status-chip">draft</span>
-            <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">${t('Mark Ready','Hazır Olarak İşaretle')}</button>
+            <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">${t('Mark Ready','İncelemeye hazır')}</button>
             <button class="button primary" type="submit">${t('Save draft','Taslağı kaydet')} <kbd class="kbd-hint">Ctrl+S</kbd></button>
           </div>
         </div>
 
         <div id="editor-notice-banner" class="editor-notice-banner" hidden>
           <div class="notice-info">
-            <span class="notice-badge">${t('LIVE PUBLISHED','YAYINDAKİ MAKALE')}</span>
+            <span class="notice-badge">${t('LIVE PUBLISHED','YAYINDA')}</span>
             <p>${t('This article is currently published on the live site. To edit safely without altering the production page directly, duplicate it as an editable draft.','Bu makale şu anda sitede yayındadır. Canlı sayfayı doğrudan bozmamak için içeriği düzenlenebilir taslak olarak kopyalayabilirsiniz.')}</p>
           </div>
-          <button id="btn-duplicate-draft" type="button" class="button secondary btn-sm">${t('Duplicate as Editable Draft','Taslak Olarak Kopyala ve Düzenle')}</button>
+          <button id="btn-duplicate-draft" type="button" class="button secondary btn-sm">${t('Duplicate as Editable Draft','Taslak kopyası oluştur')}</button>
         </div>
 
         <div class="editor-context"><span id="editor-path"></span><span id="editor-updated"></span></div>
         <p id="editor-feedback" class="editor-feedback" role="status" aria-live="polite"></p>
         <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
         <div class="editor-subtabs">
-          <button type="button" class="subtab active" data-subtab="content">${t('Content & Markdown','İçerik ve Markdown')}</button>
-          <button type="button" class="subtab" data-subtab="meta">${t('SEO & Metadata','SEO ve Meta Veriler')}</button>
+          <button type="button" class="subtab active" data-subtab="content">${t('Content & Markdown','Yazı ve önizleme')}</button>
+          <button type="button" class="subtab" data-subtab="meta">${t('SEO & Metadata','Arama motoru ayarları')}</button>
           <button type="button" class="subtab" data-subtab="revisions">${t('Revision History','Sürüm Geçmişi')}</button>
         </div>
 
@@ -183,7 +183,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
               <textarea id="article-summary" name="article-summary" required rows="3" placeholder="${t('Concise 1-2 sentence article summary…','1-2 cümlelik kısa makale özeti…')}"></textarea>
             </div>
             <div class="form-group col-span-2">
-              <label for="article-short-answer">${t('Short Answer / Key Takeaway','Kısa Cevap / Temel Çıkarım')}</label>
+              <label for="article-short-answer">${t('Short Answer / Key Takeaway','Öne çıkan bilgi')}</label>
               <textarea id="article-short-answer" name="article-short-answer" rows="2" placeholder="${t('Key takeaway shown in highlighted callout box…','Vurgulanan kutuda gösterilen temel çıkarım…')}"></textarea>
             </div>
           </div>
@@ -212,7 +212,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
         <div id="subtab-meta" class="subtab-pane">
           <div class="form-grid">
             <div class="form-group">
-              <label for="article-slug">Slug</label>
+              <label for="article-slug">${t('Slug','URL kısa adı')}</label>
               <input id="article-slug" name="article-slug" type="text" required pattern="[a-z0-9]+(-[a-z0-9]+)*" aria-describedby="slug-help"><small id="slug-help">${t('URL: lowercase letters, numbers and hyphens.','URL: küçük Latin harfleri, rakamlar ve tire kullanın.')}</small>
             </div>
             <div class="form-group">
@@ -252,7 +252,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
         </div>
         <div class="editor-utilities"><button id="btn-export-draft" class="button secondary" type="button">${t('Download Markdown','Markdown indir')}</button><button id="btn-delete-draft" class="button secondary danger" type="button">${t('Delete draft','Taslağı sil')}</button></div>
       </div>
-      <p class="admin-note">${t('Published articles are read-only. Saving a draft updates the database; public site publication requires triggering the deployment pipeline.','Yayımlanmış makaleler salt okunurdur. Taslak kaydetmek veritabanını günceller; genel sitede yayınlama dağıtım hattının tetiklenmesini gerektirir.')}</p>
+      <p class="admin-note">${t('Published articles are read-only. Saving a draft updates the database; public site publication requires triggering the deployment pipeline.','Yayındaki makaleler burada yalnızca görüntülenir. Kaydedilen taslaklar doğrudan siteye yansımaz; yayın için ayrıca siteye aktarılmaları gerekir.')}</p>
     </form>
 
     <!-- TAB 3: New Article Creator -->
@@ -263,7 +263,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
         <div class="form-grid">
           <div class="form-group col-span-2">
             <label for="new-article-title">${t('Article Title','Makale Başlığı')}</label>
-            <input id="new-article-title" type="text" required placeholder="${t('e.g. Graph Storage Foundations','Örn: Vektör İndeksleme Prensipleri')}">
+            <input id="new-article-title" type="text" required placeholder="${t('e.g. Çizge Storage Foundations','Örn: Vektör İndeksleme Prensipleri')}">
           </div>
           <div class="form-group">
             <label for="new-article-type">${t('Content Type','İçerik Türü')}</label>
@@ -271,8 +271,8 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
               <option value="learn">${t('Lesson','Ders')}</option>
               <option value="guide">${t('Guide','Rehber')}</option>
               <option value="research">${t('Research','Araştırma')}</option>
-              <option value="glossary">Glossary</option>
-              <option value="methodology">Methodology</option>
+              <option value="glossary">${t('Glossary','Sözlük')}</option>
+              <option value="methodology">${t('Methodology','Yöntem')}</option>
             </select>
           </div>
           <div class="form-group">
@@ -283,7 +283,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
             </select>
           </div>
           <div class="form-group col-span-2">
-            <label for="new-article-slug">Slug</label>
+            <label for="new-article-slug">${t('Slug','URL kısa adı')}</label>
             <input id="new-article-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="${t('auto-generated-from-title','basliktan-otomatik-olusturulur')}">
           </div>
           <div class="form-group col-span-2">
@@ -292,7 +292,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           </div>
         </div>
         <div class="form-actions">
-          <button type="submit" class="button primary">${t('Create Draft Article','Taslak Makaleyi Oluştur')}</button>
+          <button type="submit" class="button primary">${t('Create Draft Article','Taslak oluştur')}</button>
           <button type="button" id="btn-cancel-create" class="button secondary">${t('Cancel','İptal')}</button>
         </div>
       </form>

@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Yayın ile doğrulama farklıdır
 
-Kaynak yayını, gözden geçirilmiş yayın sürecini ve açık sahip onayını gerektirir. Paket sürümü, onaylanan kanıt kapsamı ve üretim sertifikasyonu ayrı olgulardır. Bu site v0.8.1’a sabitlenmiştir; tag oluşturmaz, Core paketi yayımlamaz veya açık üretim kapılarını tamamlamaz.
+Kaynak kodunu yayımlamak için gözden geçirilmiş yayın süreci ve proje sahibinin açık onayı gerekir. Paket sürümü, doğrulanan özellikler ve canlı kullanım onayı ayrı ayrı değerlendirilir. Bu site v0.8.1’i anlatır; sürüm etiketi oluşturmaz, Core paketini yayımlamaz veya bekleyen testleri tamamlamaz.
 
-## Sürdürülen sözleşmelerle devam edin
+## Yayın koşullarını inceleyin
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Tam süreç aşağıdaki özgün kaynakta yer alır. Ayrıca [mimari](architecture/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/) belgelerine bakın.

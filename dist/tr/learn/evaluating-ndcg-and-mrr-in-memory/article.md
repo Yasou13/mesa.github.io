@@ -3,10 +3,10 @@ id: "evaluating-ndcg-and-mrr-in-memory"
 slug: "evaluating-ndcg-and-mrr-in-memory"
 type: "learn"
 language: "tr"
-title: "Retrieval değerlendirme: recall, MRR, nDCG ve gecikme"
+title: "Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız"
 subtitle: ""
-summary: "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
-shortAnswer: "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
+summary: "Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın."
+shortAnswer: "Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın."
 category: "Practice"
 tags: ["evaluation", "MRR", "nDCG", "recall", "precision", "benchmark", "latency", "değerlendirme", "gecikme"]
 author: "MESA contributors"
@@ -15,8 +15,8 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn"
-seoDescription: "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
+seoTitle: "Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız — MESA"
+seoDescription: "Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın."
 lessonOrder: 13
 learningStage: "practice"
 prerequisites: ["reciprocal-rank-fusion", "memory-scope-and-authorization"]
@@ -25,9 +25,9 @@ learningObjectives: ["Recall@k, MRR ve nDCG hesaplamak", "İlgililik etiketi ve 
 
 ## Soru ve ilgililik etiketiyle başlayın
 
-Neyin bulunması gerektiğini tanımlayana kadar arama sonucu makul görünür. Kaynak destekli etiketlerle küçük soru kümesi kurun. Tam kimlik, farklı ifade, tarihe duyarlı soru, cevapsız durum ve yasak kaynak ekleyin. Retrieval birimini kaydedin: ilgili belge çok sayıda ilgisiz parça içerebilir. İnceleyici her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışmaları uzlaştırma için tutun.
+Ne bulunması gerektiğini tanımlamadığınızda birçok sonuç makul görünebilir. Kaynaklarla desteklenmiş etiketler kullanarak küçük bir soru kümesi oluşturun. Tam kimlik araması, farklı ifadeler, tarih duyarlılığı, yanıtı bulunmayan sorular ve kapalı kaynaklar da yer alsın. Ölçtüğünüz birimi belirtin: İlgili bir belgenin her parçası ilgili olmayabilir. İnceleyen kişiler her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışan kararları ayrıca gözden geçirin.
 
-Parça boyutu, birleştirme ağırlığı veya eşik ayarlamadan geliştirme sorusunu son testten ayırın. Sentetik soru kapsamı genişletebilir; fakat LLM sorusu ve LLM etiketi aynı hatayı veya yapay ifadeyi paylaşabilir. Örnekleri inceleyin, uygunsa gerçek kullanıcı sorusunu tutun ve kümeler arasındaki benzer soruları ayıklayın. Cevap metnini sorgu temsiline sızdırmayın.
+Parça boyutunu, birleştirme ağırlığını veya eşikleri ayarlamadan önce geliştirme sorularını son test sorularından ayırın. Yapay sorular kapsamı genişletebilir, ancak soruyu ve etiketi aynı model üretirse ikisinde de aynı hata veya yapay anlatım bulunabilir. Örnekleri inceleyin; uygunsa gerçek kullanıcı sorularını kullanın ve kümeler arasındaki çok benzer soruları ayıklayın. Yanıt metnini sorgu temsiline sızdırmayın.
 
 ## Tek sıralı liste, farklı ölçüm soruları
 
@@ -47,7 +47,7 @@ Ideal    [2,1,0]: 3 + 1/log2(3) + 0           = 3.6309
 nDCG@3 = 2.3928 / 3.6309 = 0.6590
 ```
 
-Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek başına bunu gizler; nDCG dereceli ilgililik ve konumla cezalandırır. Kazanç, indirim, kesim ve ilgili etiketi olmayan sorgu politikasını belirtin. Farklı tanımlar farklı değer üretebilir. Etiketlenmemiş materyal kendiliğinden ilgisiz kanıtlanmış değildir.
+Sistem bütün ilgili öğeleri bulmuş, ancak ilgisiz bir öğeyi ilk sıraya koymuş olabilir. Recall tek başına bu sorunu göstermez; nDCG hem ilgililik derecesini hem konumu hesaba katar. Kazanç, konuma bağlı indirim ve liste sınırı tanımlarını; ilgili etiketi bulunmayan sorgulara nasıl davranıldığını belirtin. Farklı tanımlar farklı puanlar verir. Etiketlenmemiş bir içeriğin ilgisiz olduğu da kendiliğinden kabul edilemez.
 
 ## Tek etkeni değiştirin, hataları inceleyin
 
@@ -60,17 +60,17 @@ Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek
 
 *Daha yüksek ortalama kimlik, dil veya yetkilendirme gerilemesini gizleyebilir.*
 
-Sorgu başına değişimi ve yararlı alt grupları kıyaslayın: kimlik/farklı ifade, kısa/uzun kaynak, dil ve kaynak yaşı. Örnek boyutu uygunsa belirsizlik raporlayın ve ham sorgu sonuçlarını koruyun. BEIR heterojen görevlerde değerlendirme örneğidir; skorunu kendinizin saymak yerine disiplinini kullanın. [BEIR](https://arxiv.org/abs/2104.08663), [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html).
+Değişimi sorgu başına ve anlamlı alt gruplarda inceleyin: kimlik araması veya farklı ifade, kısa veya uzun kaynak, dil ve kaynak yaşı. Örneklem uygunsa belirsizliği raporlayın ve ham sonuçları koruyun. BEIR, farklı görevleri birlikte değerlendirmeye örnektir. O çalışmanın puanını kendi başarınız gibi kullanmak yerine değerlendirme yaklaşımından yararlanın. [BEIR](https://arxiv.org/abs/2104.08663) [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 
 ## Hataları gizlemeden hızı ölçün
 
-Uçtan uca retrieval ile aşama sürelerini ayrı ölçün. Donanım, veri boyutu, eşzamanlılık, önbellek, ısınma, istek sayısı ve timeout’u belirtin. Ortanca ve kuyruk gecikmesini hata ve boş yanıtlarla raporlayın. Timeout’ları tablodan çıkarmak bozuk sistemi hızlı gösterebilir. Yerel deterministik örnek sözleşme testidir; gerçek embedding sağlayıcısı kalitesini veya üretim kapasitesini ölçmez.
+Aramanın toplam süresini ve her aşamasını ayrı ölçün. Donanımı, veri büyüklüğünü, eşzamanlı istek sayısını, önbelleği, ısınmayı ve zaman aşımını belirtin. Ortanca süreyi ve yüksek gecikme yüzdeliklerini; hatalar ve boş sonuçlarla birlikte raporlayın. Zaman aşımına uğrayan istekleri dışarıda bırakmak, sorunlu bir sistemi hızlı gösterebilir. Sabit girdilerle yapılan yerel örnek, davranış testidir; gerçek modelin kalitesini veya canlı kullanım kapasitesini ölçmez.
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
 > X değişkeni Recall@20’yi artırıp nDCG@5’i düşürüyor. X doğrudan daha iyi mi?
 >
-> **Answer:** Zorunlu değil. Daha fazla ilgili aday bulup üst sıralara daha kötü yerleştiriyor. Sonraki görev, yeniden sıralama bütçesi, hata alt grupları ve gecikmeyle karar verin; hangi sorunun iyileşip gerilediğini inceleyin.
+> **Açıklama:** Zorunlu değil. Daha fazla ilgili aday bulup üst sıralara daha kötü yerleştiriyor. Sonraki görev, yeniden sıralama bütçesi, hata alt grupları ve gecikmeyle karar verin; hangi sorunun iyileşip gerilediğini inceleyin.
 
 ## Kaynaklar ve ileri okuma
 

@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA SSS — Mimari, Arayüzler, Kapsam ve Durum</title>
-  <meta name="description" content="MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar.">
+  <title>MESA Hakkında Sık Sorulan Sorular</title>
+  <meta name="description" content="MESA’nın ne olduğu, vektör aramadan farkı, RAG ve MCP ile ilişkisi, yerel kurulum ve mevcut sınırları hakkında yanıtlar.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/faq/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/faq/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/faq/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/faq/">
-  <meta property="og:title" content="MESA SSS — Mimari, Arayüzler, Kapsam ve Durum">
-  <meta property="og:description" content="MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar.">
+  <meta property="og:title" content="MESA Hakkında Sık Sorulan Sorular">
+  <meta property="og:description" content="MESA’nın ne olduğu, vektör aramadan farkı, RAG ve MCP ile ilişkisi, yerel kurulum ve mevcut sınırları hakkında yanıtlar.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/tr/faq/">
   <meta property="og:locale" content="tr_TR">
@@ -21,10 +21,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA SSS — Mimari, Arayüzler, Kapsam ve Durum">
-  <meta name="twitter:description" content="MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar.">
+  <meta name="twitter:title" content="MESA Hakkında Sık Sorulan Sorular">
+  <meta name="twitter:description" content="MESA’nın ne olduğu, vektör aramadan farkı, RAG ve MCP ile ilişkisi, yerel kurulum ve mevcut sınırları hakkında yanıtlar.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA, vektör arama, RAG, kaynak izi, MCP, yerel çalışma, MESA Law, QA, sertifikasyon ve üretim durumu hakkında doğrudan yanıtlar.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA’nın ne olduğu, vektör aramadan farkı, RAG ve MCP ile ilişkisi, yerel kurulum ve mevcut sınırları hakkında yanıtlar."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA’nın ne olduğu, vektör aramadan farkı, RAG ve MCP ile ilişkisi, yerel kurulum ve mevcut sınırları hakkında yanıtlar.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../favicon.ico?v=396056f03e59" sizes="32x32">
   <link rel="icon" href="../../favicon.svg?v=dd68b71b87a3" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png">
@@ -62,71 +62,71 @@
     <main id="main-content">
       <section class="page-hero compact page-hero--functional faq-hero docs-accent">
         <p class="eyebrow">SIK SORULAN SORULAR</p>
-        <h1>Kısa yanıtlar.<br><em>Kaynağa bağlı ayrıntılar.</em></h1>
-        <p>Bu yanıtlar, 2026-10-18 itibarıyla herkese açık depoları ve yayımlanmış V4 kaynak sürümünün durumunu yansıtır.</p>
+        <h1>Kısa yanıtlar.<br><em>Ayrıntıların kaynağı belli.</em></h1>
+        <p>Yanıtlar, 18 Ekim 2026 itibarıyla herkese açık proje belgelerine ve yayımlanan V4 sürümüne göre hazırlanmıştır.</p>
       </section>
 
       <section class="section faq-list">
         
         <details open>
           <summary>MESA nedir?</summary>
-          <p>MESA, yapay zekâ sistemleri için açık kaynaklı hafıza altyapısıdır. Yayımlanmış V4 kaynağı; versioned HTTP, Python SDK ve MCP yüzeylerinde kalıcı mutasyon durumunu, yapılandırılmış assertion’ları, kapsamlı retrieval ve kaynak izini birleştirir.</p>
+          <p>MESA, yapay zekâ sistemleri için açık kaynaklı bir hafıza altyapısıdır. V4; bilginin saklanmasını, değişikliklerin izlenmesini, erişim izinlerine göre aranmasını ve kaynaklarıyla birlikte sunulmasını sağlar. HTTP, Python SDK ve MCP üzerinden kullanılabilir.</p>
         </details>
         <details>
           <summary>MESA bir vektör veritabanı mı?</summary>
-          <p>Hayır. LanceDB yalnızca bir iç projeksiyondur. SQLite kanonik karar kaynağı, Kùzu ise Graph V2 projeksiyonudur; geri getirme vector, BM25, assertion ve sınırlandırılmış graph path kaynaklarını birleştirebilir.</p>
+          <p>Hayır. LanceDB yalnızca arama için kullanılan görünümlerden biridir. Asıl kayıtlar SQLite’ta tutulur; Kùzu ilişkileri aramayı sağlar. Arama sonuçları vektör, BM25, bilgi kaydı ve sınırlı çizge gezintisi kanallarından birleştirilebilir.</p>
         </details>
         <details>
-          <summary>MESA bir RAG framework'ü mü?</summary>
-          <p>Öncelikli amacı bu değildir. Bir uygulamaya dayanaklı bağlam sağlayabilir; ancak herkese açık sözleşmesi tüm üretim stack'ini yönetmek yerine kalıcı hafızaya, katalog kapsamına, yaşam döngüsü durumuna, kanıta ve geri getirmeye odaklanır.</p>
+          <summary>MESA bir RAG geliştirme çatısı mı?</summary>
+          <p>Temel amacı bu değil. Bir uygulamaya kaynağı belli bağlam sağlayabilir; ancak yanıt üretim sürecinin tamamını yönetmez. Bilginin kalıcı saklanmasına, erişim izinlerine, değişiklik geçmişine ve kaynaklarıyla birlikte bulunmasına odaklanır.</p>
         </details>
         <details>
           <summary>MESA sıradan vektör aramadan nasıl ayrılır?</summary>
-          <p>Kanonik kaynak ve assertion kimliğini korur, sıralamadan önce yetkilendirme uygular, birden çok geri getirme kaynağını birleştirir ve mutasyon, projeksiyon, rollback ile kaynak izi durumunu görünür kılar.</p>
+          <p>Bilginin ve kaynağının kimliğini korur, sıralamadan önce erişim izinlerini denetler ve farklı arama kanallarını birleştirir. Değişikliklerin, arama görünümlerinin ve geri alma işlemlerinin durumu da izlenebilir.</p>
         </details>
         <details>
           <summary>Neden SQLite, LanceDB ve Kùzu?</summary>
-          <p>SQLite katalog, yetkilendirme, ledger, sahiplik, assertion ve outbox durumunu yönetir. LanceDB vektör projeksiyonunu saklar. Kùzu Graph V2 projeksiyonunu saklar ve SQLite assertion kimlikleriyle uzlaştırılmış sınırlandırılmış graph path geri getirmeyi destekler.</p>
+          <p>SQLite; katalog, yetkilendirme, işlem günlüğü, sahiplik ve bilgi kayıtlarını yönetir. LanceDB vektör temsillerini saklar. Kùzu ise SQLite’taki bilgi kayıtlarıyla eşleştirilen ilişkiler üzerinde sınırlı çizge araması yapar.</p>
         </details>
         <details>
           <summary>Kanıt odaklı hafıza ne demek?</summary>
-          <p>Geri getirilen bilgi, yalnızca bağından kopmuş metin dönmek yerine belge, revizyon, chunk, kanıt aralığı, assertion, işlem hattı ve embedding kimliğiyle bağlı kalabilir.</p>
+          <p>Aramada bulunan bilgi; belgesi, belge sürümü, metin parçası, dayanak pasajı ve onu üreten işlem ile model bilgileriyle birlikte dönebilir. Böylece sonuç, kaynağından kopmuş bir metin parçasına dönüşmez.</p>
         </details>
         <details>
           <summary>Kaynak izi (provenance) nedir?</summary>
-          <p>Kaynak izi, bir hafızanın nereden geldiğini ve nasıl işlendiğini gösterir: kaynak referansı, katalog kimliği, kanıt aralığı, işlem hattı ve model sürümleri ile mevcut olduğunda katkıda bulunan geri getirme kaynakları.</p>
+          <p>Kaynak izi, bilginin nereden geldiğini ve hangi işlemlerden geçtiğini gösterir. Kaynak belgenin kimliği, dayanak pasajı, kullanılan işlem ve model sürümleri bu izin parçalarıdır. Varsa sonuca katkı veren arama kanalları da belirtilir.</p>
         </details>
         <details>
           <summary>MESA Data nedir?</summary>
-          <p>Türkiye hukuk verisi hazırlama platformudur. Ham çıktıları korur, kayıtları kanonikleştirir, kapılar ve inceleme uygular, sürümleri dondurur ve insan tarafından başlatılan bir teslim yolu kullanır. Evrensel bir web veri alım hizmeti olarak sunulmaz.</p>
+          <p>Türk hukukuna ait kaynakları hazırlayan projedir. Ham dosyaları korur, ortak bir biçime dönüştürür, kontrollerden geçirir ve incelenen sürümleri insan onayıyla aktarır. Genel amaçlı bir web veri toplama hizmeti değildir.</p>
         </details>
         <details>
           <summary>MESA Law nedir?</summary>
-          <p>Birincil referans uygulamadır: kaynak odaklı inceleme ve sürümlenmiş MESA V4 HTTP sözleşmesi içeren hukuk dosyası ve belge iş akışı. Canlı Core/full-stack entegrasyonu hâlâ beklemededir.</p>
+          <p>MESA’yı kullanan temel örnek uygulamadır. Hukuk dosyaları ve belgeler üzerinde kaynaklarıyla birlikte inceleme yapmayı amaçlar ve V4 HTTP arayüzünü kullanır. Tüm bileşenleriyle çalışan Core bağlantısı henüz doğrulanmamıştır.</p>
         </details>
         <details>
           <summary>MESA QA ile E2E Certification arasındaki fark nedir?</summary>
-          <p>QA, aday davranışının zaman, oturumlar ve yeniden başlatmalar boyunca doğru kalıp kalmadığını sorar. E2E Certification, dondurulmuş bir sistem profilinin gerekli yetkili kanıtı üretip tüm katı kapıları geçip geçemediğini sorar.</p>
+          <p>QA, sistemin farklı zamanlarda, oturumlarda ve yeniden başlatmalardan sonra doğru davranıp davranmadığını test eder. E2E Certification ise belirli bir kurulumun gerekli kanıtları üretip bütün zorunlu doğrulamalardan geçip geçmediğini değerlendirir.</p>
         </details>
         <details>
           <summary>MESA MCP destekliyor mu?</summary>
-          <p>Evet. Depo, V3 uyumlu yol için eski doğrudan stdio sunucusunu ve bağlama kapsamlı işlemler ile onaylar sunan daha yeni V4 gateway/köprü yolunu belgeler.</p>
+          <p>Evet. V3 uyumlu eski stdio sunucusu ile V4 geçidi ve yerel köprü seçenekleri belgelenmiştir. V4 yolu, tanımlı bağlantı için yetkilendirilmiş işlemleri ve gerekli onayları yönetir.</p>
         </details>
         <details>
           <summary>MESA yerel olarak çalıştırılabilir mi?</summary>
-          <p>Evet. Depo, kilitlenmiş yerel kurulumu ve Docker profillerini belgeler. Basit safe-core profili model ve haricî sağlayıcı erişimini kapatır; V4 full-cognitive profili açık yapılandırma ve tek depolama sahibi gerektirir.</p>
+          <p>Evet. Yerel kurulum ve Docker profilleri dokümantasyonda açıklanıyor. Basit safe-core profili model ve dış sağlayıcı erişimini kapatır. Tam V4 kurulumu ise ek ayarlar ve depolamayı yöneten tek bir süreç gerektirir.</p>
         </details>
         <details>
-          <summary>MESA üretime hazır mı?</summary>
-          <p>Hayır. Core yayımlanmış bir kaynak sürümüdür; üretim NO-GO durumundadır. Gerekli üretim benzeri migration, restore, crash, saturation, concurrency, benchmark ve dayanıklılık kapılarının tamamı sonuçlanmamıştır.</p>
+          <summary>MESA canlı kullanıma hazır mı?</summary>
+          <p>Hayır. Core’un kaynak kodu yayımlandı, ancak canlı kullanım için gereken testler tamamlanmadı. Sürüm geçişi, yedekten dönme, çökme, aşırı yük, eşzamanlı kullanım, performans ve uzun süreli dayanıklılık kontrollerindeki eksikler nedeniyle durum NO-GO.</p>
         </details>
         <details>
           <summary>Güncel sertifikasyon durumu nedir?</summary>
-          <p>Engelli. Güncel test düzeneği resmî yürütme, puanlama ve metrik üreticilerini uyguluyor; ancak B4/B6/B7/B8 için henüz mevcut olmayan dış teslim/yeniden başlatma kanıtları ve yeni resmî çalışma gerekiyor.</p>
+          <p>Eksikler nedeniyle tamamlanamıyor. Resmî test, puanlama ve ölçüm bileşenleri hazır; ancak B4/B6/B7/B8 için dış sistemlerden aktarım ve yeniden başlatma kanıtları toplanmalı, ardından yeni bir resmî test yapılmalı.</p>
         </details>
         <details>
           <summary>Bir geliştirici nereden başlamalı?</summary>
-          <p>Hızlı başlangıcı okuyun, kilitlenmiş ortamı çalıştırın, V3 uyumlu safe core ya da açık V4 topolojisini bilinçli biçimde seçin; entegrasyondan önce API, SDK, MCP, mimari ve durum belgelerini inceleyin.</p>
+          <p>Hızlı başlangıç rehberiyle başlayın ve kilit dosyasındaki paket sürümlerini kurun. V3 uyumlu safe-core ile tam V4 kurulumu arasından ihtiyacınıza uygun olanı seçin. Entegrasyondan önce API, SDK, MCP, mimari ve güncel durum belgelerini okuyun.</p>
         </details>
       </section>
 
@@ -145,22 +145,22 @@
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
-        <p>MESA v0.8.1 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
+        <p>MESA v0.8.1’in kaynak kodu yayımlandı. Önce model kullanmayan hızlı başlangıç kurulumunu deneyin. Tam V4 sistemini değerlendirmeden önce canlı kullanıma ilişkin sınırları okuyun.</p>
         <div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapay zekâ için kaynağıyla hafıza.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Kaynağını koruyan yapay zekâ hafızası.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../status/">Durumu görüntüle →</a></p></div>
       <div class="footer-groups">
         <div><h3>Keşfet</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../use-cases/">Kullanım alanları</a><a href="../evaluation/">Değerlendirme ve güven</a><a href="../status/">Proje durumu</a></div>
         <div><h3>Ekosistem</h3><a href="../mesa/">Core hafıza motoru</a><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
-        <div><h3>Kaynaklar</h3><a href="../learn/">Öğren</a><a href="../research/">Araştırma</a><a href="../guides/">Rehberler</a><a href="../glossary/">Sözlük</a><a href="../methodology/">Metodoloji</a></div>
-        <div><h3>Dokümantasyon</h3><a href="../docs/core/getting-started/">Hızlı başlangıç</a><a href="../docs/core/architecture/">Core mimari dokümanları</a><a href="../retrieval/">Retrieval</a><a href="../docs/core/security/">Güvenlik</a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
-        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Kaynaklar</h3><a href="../learn/">Dersler</a><a href="../research/">Araştırma</a><a href="../guides/">Rehberler</a><a href="../glossary/">Sözlük</a><a href="../methodology/">Yöntemler</a></div>
+        <div><h3>Dokümanlar</h3><a href="../docs/core/getting-started/">Hızlı başlangıç</a><a href="../docs/core/architecture/">Core mimari dokümanları</a><a href="../retrieval/">Arama</a><a href="../docs/core/security/">Güvenlik</a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Hata veya öneri bildir</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Geliştiricinin profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Yayımlanan kaynak koduyla karşılaştırılmış dokümanlar</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Yayımlanan kaynak koduna göre hazırlanmıştır</span></div>
     </footer>
     </main>
-  <script src="../../app.js?v=43752e3c2ede"></script>
+  <script src="../../app.js?v=d389e70c5cac"></script>
 </body>
 </html>

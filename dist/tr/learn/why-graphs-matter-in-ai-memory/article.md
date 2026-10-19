@@ -3,10 +3,10 @@ id: "why-graphs-matter"
 slug: "why-graphs-matter-in-ai-memory"
 type: "learn"
 language: "tr"
-title: "Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek"
+title: "Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek"
 subtitle: ""
-summary: "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
-shortAnswer: "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
+summary: "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün."
+shortAnswer: "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün."
 category: "Memory & Retrieval"
 tags: ["graph", "GraphRAG", "multi hop", "Kuzu", "knowledge graph", "çizge", "ilişki"]
 author: "MESA contributors"
@@ -15,17 +15,17 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek — MESA Learn"
-seoDescription: "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
+seoTitle: "Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek — MESA"
+seoDescription: "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün."
 lessonOrder: 8
 learningStage: "retrieval"
 prerequisites: ["structured-vs-unstructured-memory", "hybrid-retrieval"]
 learningObjectives: ["Varlık ve koşullu ilişki modellemek", "Sınırlı iki adımlı sorguyu izlemek", "Çizge yolunun yanıtı desteklemediğini görmek"]
 ---
 
-## İlişki kimlik ve kanıt gerektirir
+## İlişkinin kimliğini ve dayanağını koruyun
 
-Metin araması pasaj bulur. Çizge sorgusu açıkça temsil edilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe düğümleri; “parçası” ve “bulunduğu yer” kenarları kurun. Sabit düğüm kimliği kullanıp her iddia kenarını destekleyen kaynak revizyonuna bağlayın. “Merkez” gibi etiket kimliği çözmeye yetmez.
+Metin araması ilgili pasajları bulur; çizge araması ise açıkça kaydedilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe için düğümler; “parçasıdır” ve “bulunur” ilişkileri için bağlantılar kurun. Her düğüme sabit kimlik verin ve her ilişkiyi destekleyen kaynak sürümüne bağlayın. “Merkez” gibi bir ad, hangi varlıktan söz edildiğini tek başına belirlemez.
 
 ```text
 room-7 --part_of [evidence: handbook-r3/c4]--> archive-2
@@ -33,11 +33,11 @@ archive-2 --located_in [evidence: directory-r1/c2]--> district-5
 room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
 ```
 
-İlişkiler yön ve tür taşır. “A, B’yi yönetir”, “B, A’yı yönetir” değildir; “atıf yapar”, “katılır” değildir. Zaman, kapsam ve belirsizlik ilişkiyi değiştiriyorsa koruyun. Kaynağın aynı paragrafta iki isim anması aralarında anlamlı kenar kurmaz. Birlikte görünme keşif sinyali olabilir; doğrulanmış ilişki değildir.
+İlişkinin yönü ve türü önemlidir. “A, B’yi yönetir” ile “B, A’yı yönetir” aynı değildir; “atıf yapar” da “katılır” anlamına gelmez. Anlamı etkileyen zaman, kapsam ve belirsizlik bilgisini koruyun. İki adın aynı paragrafta geçmesi, aralarında doğrulanmış bir ilişki kurmaz; yalnızca incelenebilecek bir ipucu olabilir.
 
 ## İki adımlı soruyu çözün
 
-“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” diye sorun. Salon 7’yi çözün, `part_of` ile arşiv 2’ye, `located_in` ile ilçe 5’e gidin. İki kenar kimliğini ve kaynaklarını döndürün. Her adımın anlamı belli olduğundan kanıt zinciri incelenebilir. Kaynaklardan biri erişilemez, eski veya belirsizse tam yanıt o çağıran için desteklenmez.
+“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” sorusunu ele alın. Önce Salon 7’yi bulun; `part_of` bağlantısıyla Arşiv 2’ye, `located_in` bağlantısıyla İlçe 5’e gidin. İki ilişkinin kimliğini ve dayanak kaynaklarını da döndürün. Böylece yanıtın nasıl bulunduğu incelenebilir. Kaynaklardan biri eski, belirsiz veya isteği yapan kişiye kapalıysa tam yanıt o kullanıcı için desteklenmiş sayılmaz.
 
 <!-- diagram: Okuma salonu arşive, ardından ilçeye bağlanır; her adım kaynak kimliğini korur. -->
 1. Çöz · room-7
@@ -52,13 +52,13 @@ room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
 
 A, B’ye; B de C’ye atıf yapıyor olsun. A’dan C’ye iki kenarlı atıf yolu olduğunu söyleyebilirsiniz. A’nın C’ye katıldığını, C’nin doğru olduğunu veya A’nın doğrudan C’ye atıf yaptığını çıkaramazsınız. Geçerli çıkarım, anlamı bileşime izin veren kural gerektirir. Bulunan yol ile yolun gerçekten desteklediği önermeyi ayırın.
 
-Benzer biçimde merkezilik, seçilmiş tanım altında bağlantısallığı ölçer. Popüler düğüme sık atıf yapılıp düğüm yanlış olabilir. PageRank’i doğruluk skoru yapmayın veya açık politika olmadan hoşunuza gitmeyen kaynağı bastırmasına izin vermeyin. Kaynak niteliği, ilgililik ve çizge görünürlüğü ayrı soruları yanıtlar.
+Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. PageRank’i doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir.
 
 ## Maliyeti sınırlayın, eksikliği tanıyın
 
-Ortalama dallanma 10 ise üç adım, tekrar ayıklamadan önce yaklaşık 10 + 100 + 1.000 komşu inceleyebilir. Merkez düğüm bunu büyütebilir. Başlangıç sayısı, adım derinliği, düğüm başına yayılım, toplam kenar bütçesi ve timeout belirleyin. Sınırlı arama geçerli yolu kaçırabilir; “ilişki yok” demek yerine kesilmeyi belirtin. Önbellek anahtarı erişim kapsamını ve kaynak neslini içermelidir.
+Her düğümden ortalama on bağlantı çıkıyorsa üç adımda, tekrarlar ayıklanmadan önce yaklaşık 10 + 100 + 1.000 komşu incelenebilir. Çok bağlantılı bir düğüm işi büyütür. Başlangıç sayısını, adım derinliğini, düğüm başına bağlantıyı, toplam bağlantı bütçesini ve zaman aşımını sınırlandırın. Bu sınırlar geçerli bir yolu da dışarıda bırakabilir. Böyle bir durumda “ilişki yok” demek yerine aramanın sınırda durduğunu belirtin. Önbellek anahtarı erişim kapsamını ve kaynakların hangi güncellemesine ait olduğunu içermelidir.
 
-GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. Edge ve arkadaşları veri kümesi genelindeki sorular için çizgeden türetilmiş topluluk özetleri açıklar. Bu, yerel soruda ham yol döndürmekten farklıdır. Özet üretimi, kaynak kapsamı ve güncelleme politikası değerlendirilecek yeni türetilmiş artefakt ekler. Kenarları çizge veritabanına yazmak tek başına o araştırma yöntemini uygulamaz. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130).
+GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların genel adıdır. Edge ve arkadaşları, bütün veri kümesini ilgilendiren sorular için bağlantı gruplarından üretilmiş özetler kullanır. Bu, tek bir soruya ham bağlantı yolu döndürmekten farklıdır. Üretilen her özet için kaynak kapsamını ve güncelleme yöntemini ayrıca değerlendirmek gerekir. İlişkileri bir çizge veritabanına yazmak, tek başına makaledeki yöntemi uygulamak anlamına gelmez. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130)
 
 ## Bağlantı ile desteği ayırın
 
@@ -66,7 +66,7 @@ GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. E
 > **Kendinizi sınayın**
 > A, B’ye atıf yapıyor; B, C’yi eleştiriyor. Çizge yolu var diye asistan “A, C’yi destekliyor” diyebilir mi?
 >
-> **Answer:** Hayır. İlgiliyse türleri belirtilmiş yolu döndürüp kaynak pasajlarını inceleyin. Bu ilişki türleri destek sonucuna birleşmez. Çizge incelenecek zinciri açar; mantıksal anlamını icat etmez.
+> **Açıklama:** Hayır. İlgiliyse türleri belirtilmiş yolu döndürüp kaynak pasajlarını inceleyin. Bu ilişki türleri destek sonucuna birleşmez. Çizge incelenecek zinciri açar; mantıksal anlamını icat etmez.
 
 ## Kaynaklar ve ileri okuma
 

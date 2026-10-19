@@ -1,7 +1,7 @@
-## Colab rehberi emekli edildi
+## Colab rehberi artık güncellenmiyor
 
-Bağımsız Colab belgesi v0.8.1’de kaldırıldı. Korunan bu adres artık eski notebook adımları yerine güncel kurulum ve yerel başlangıç talimatlarını sunar.
+Bağımsız Colab belgesi v0.8.1’de kaldırıldı. Bu adres, eski not defteri adımları yerine güncel kurulum ve yerel başlangıç belgelerine yönlendiriyor.
 
-## Güncel rehberle başlayın
+## Yerel kurulumla başlayın
 
-Sağlık kontrolleri için [yerel başlangıcı](docs/core/getting-started/) izleyin, ardından V4 veri alımı için sağlayıcıları hazırlayın. Güncel kurulum referansı aşağıdadır.
+Sistemi başlatıp durumunu kontrol etmek için [hızlı başlangıç rehberini](docs/core/getting-started/) izleyin. V4 ile veri eklemeden önce model ve sayısal temsil sağlayıcılarını da hazırlamanız gerekir. Güncel kurulumun özgün belgesi aşağıdadır.

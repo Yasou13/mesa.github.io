@@ -3,10 +3,10 @@ id: "build-a-small-search-lab"
 slug: "build-a-small-search-lab"
 type: "learn"
 language: "tr"
-title: "LLM kullanmadan küçük bir arama laboratuvarı kurun"
+title: "Dil modeli olmadan küçük bir arama sistemi kurun"
 subtitle: ""
-summary: "Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın."
-shortAnswer: "Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın."
+summary: "Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin."
+shortAnswer: "Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin."
 category: "Practice"
 tags: ["Python", "SQLite", "FTS5", "lab", "tutorial", "uygulama", "laboratuvar", "kod"]
 author: "MESA contributors"
@@ -15,19 +15,19 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "LLM kullanmadan küçük bir arama laboratuvarı kurun — MESA Learn"
-seoDescription: "Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın."
+seoTitle: "Dil modeli olmadan küçük bir arama sistemi kurun — MESA"
+seoDescription: "Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin."
 lessonOrder: 14
 learningStage: "practice"
 prerequisites: ["evaluating-ndcg-and-mrr-in-memory"]
-learningObjectives: ["Bellek içi küçük sözcüksel retriever çalıştırmak", "Kapsamı serbest metin sorgusundan ayırmak", "Etiketli test ve sabit kaynak kimliği eklemek"]
+learningObjectives: ["Bellek içi küçük sözcüksel arama bileşeni çalıştırmak", "Kapsamı serbest metin sorgusundan ayırmak", "Etiketli test ve sabit kaynak kimliği eklemek"]
 ---
 
 ## Ne kuracaksınız?
 
-Bu laboratuvar küçük arşivden bir kaynak pasajı getirir. Python’ın standart `sqlite3` modülü ve FTS5 etkin SQLite gerekir. Model, ağ çağrısı, embedding indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` olarak kaydedip `python3 search_lab.py` çalıştırın. FTS5 yoksa SQLite “no such module: fts5” der; bunu içeren Python/SQLite dağıtımı kullanın.
+Bu alıştırmada küçük bir arşivden ilgili kaynak pasajını bulan program kuracaksınız. Python’ın standart `sqlite3` modülü ve FTS5 desteği açık bir SQLite yeterlidir. Model, ağ çağrısı, temsil modeli indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` adıyla kaydedip `python3 search_lab.py` komutuyla çalıştırın. “no such module: fts5” hatası alırsanız FTS5 içeren bir Python/SQLite kurulumu kullanın.
 
-Örnek her izinli gösterim veri kümesi için ayrı FTS tablosu açar. Bu küçük alıştırmada aday istatistiğini yerel tutar. Üretim tenant stratejisi değildir; doğrulanmış kapsam çözümü, şema yönetimi, kaynak sınırı ve yaşam döngüsü ayrı tasarım ister. Sabit `allowed_archive` eşlemesi güvenilir sunucu kararını temsil eder; prompt’tan alınan değer değildir.
+Örnek, izin verilen her deneme veri kümesi için ayrı FTS tablosu açar. Böylece bu küçük alıştırmada arama istatistikleri de ayrı tutulur. Bu, canlı bir sistemin erişim alanlarını yönetmek için hazır bir çözüm değildir. Kimlik doğrulama, kapsam belirleme, şema, kaynak sınırları ve kayıtların yaşam döngüsü ayrıca tasarlanmalıdır. Koddaki sabit `allowed_archive` eşlemesi, kullanıcının isteminden gelen bir değer değil, güvenilir sunucu kararını temsil eder.
 
 ## Tam örneği çalıştırın
 
@@ -62,27 +62,27 @@ with sqlite3.connect(":memory:") as db:
 <!-- diagram: Güvenilir arşiv seçimi sözcüksel adayları sınırlar; sonuç inceleme için kaynak kimliğini korur. -->
 1. Güvenilir eşleme · atlas
 2. Parametreli MATCH · sorgu
-3. BM25 sırası · yerel corpus
+3. BM25 sırası · yalnızca bu veri kümesi
 4. Sınır · üç aday
 5. İncele · kaynak kimliği + metin
 
-*Bu yalnızca retrieval’dır. Örnekte gizli yanıt üretimi veya iddia çıkarımı yoktur.*
+*Bu örnek yalnızca arama yapar; arka planda yanıt üretmez veya bilgi çıkarmaz.*
 
-SQL parametresi sorgu değerinin SQL sözdizimine dönüşmesini önler; FTS sorgu dilini kapatmaz. `OR`, tırnak veya bozuk sözdizimi içeren kullanıcı girdisi hâlâ açık arama politikası ve hata yönetimi ister. Tablo kimliği `?` ile bağlanamaz; örnek yalnızca kodda sabit güvenilir eşlemeyi yerleştirir. Bu eşlemeyi keyfî kullanıcı girdisiyle değiştirmeyin.
+SQL parametreleri sorgu değerinin SQL komutuna dönüşmesini önler; ancak FTS’nin kendi sorgu dilini kapatmaz. Kullanıcı girdisindeki `OR`, tırnaklar veya bozuk sözdizimi için hâlâ açık arama kuralları ve hata yönetimi gerekir. Tablo adı `?` parametresiyle verilemez. Örnek bu yüzden yalnızca kodda belirlenmiş güvenilir eşlemeyi kullanır; bunu keyfî kullanıcı girdisiyle değiştirmeyin.
 
 ## Tek değişiklik yapıp sonucu öngörün
 
-Friday yerine Monday yazıp beklenen kimliği c2 yapın. Salonun bakım için kapalı olduğunu söyleyen ikinci cuma pasajı ekleyin. Artık ikisi de kelimelere uyar: retrieval çatışmayı gösterdi, çözmedi. Güncel cevabı seçmeden kaynak revizyonu ve geçerlilik ekleyin. Son olarak “last working day” deneyin; bu sözcüksel taban onun Friday anlamında kullanıldığını bilmez.
+Friday yerine Monday yazıp beklenen kimliği c2 yapın. Sonra salonun bakım nedeniyle kapalı olduğunu belirten ikinci bir cuma pasajı ekleyin. Artık iki metin de aynı sözcüklere uyar: Arama çelişkiyi bulmuştur, çözmemiştir. Güncel yanıtı seçmeden önce kaynak sürümü ve geçerlilik bilgisi ekleyin. Son olarak “last working day” ifadesini deneyin. Bu sözcük tabanlı yöntem, ifadenin Friday anlamında kullanıldığını kendi başına bilemez.
 
-Etiketli sorgu ve beklenen kaynak kimliği dosyası oluşturup önceki dersten Recall@k ve MRR hesaplayın. Dokunulmamış test kümesi tutun. Sözcüksel hatayı anladıktan sonra yoğun retrieval veya reranker ekleyin. Gerçek MESA entegrasyonu için credential ve sağlayıcı içeren sürüme sabit hızlı başlangıca geçin; bu laboratuvar bağımsız eğitim kodudur.
+Etiketli sorguları ve beklenen kaynak kimliklerini bir dosyada tutun; önceki dersteki Recall@k ile MRR ölçümlerini hesaplayın. Ayar yaparken hiç kullanmadığınız bir test kümesi ayırın. Sözcük tabanlı aramanın hatalarını anladıktan sonra anlamsal arama veya yeniden sıralama ekleyin. Gerçek MESA bağlantısı için erişim bilgileri ve sağlayıcı gereksinimleri bulunan hızlı başlangıca geçin. Bu alıştırma bağımsız bir eğitim örneğidir.
 
 ## Gösterimin sınırını bulun
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Kod beklenen kaynağı döndürüyor. Bu, kılavuzun güncel, yanıtın doğru ve tenant yalıtımının üretime hazır olduğunu kanıtlar mı?
+> Kod beklenen kaynağı döndürüyor. Bu, kılavuzun güncel, yanıtın doğru ve üst erişim alanı yalıtımının canlı kullanıma hazır olduğunu kanıtlar mı?
 >
-> **Answer:** Hayır. Assert kontrollü veride tek retrieval davranışını doğrular. Geçerlilik, kaynak güveni, kimlik doğrulama, eşzamanlılık, silme ve üretim kapasitesi ayrı test ve uygulama ister.
+> **Açıklama:** Hayır. Assert kontrollü veride tek arama davranışını doğrular. Geçerlilik, kaynak güveni, kimlik doğrulama, eşzamanlılık, silme ve üretim kapasitesi ayrı test ve uygulama ister.
 
 ## Kaynaklar ve ileri okuma
 

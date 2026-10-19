@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Test sonucu neyi doğrular?
 
-Sürüm; unit, entegrasyon ve denetim odaklı test yüzeylerini tanımlar. Deterministik testin geçmesi gerçek model sağlayıcısını yeterli kılmaz veya dış sertifikasyon receipt’lerinin yerini almaz. Tam sabitlenmiş komutu ve ortamı yeniden üretin; güncel çalıştırmayı tarihli rapordan ayırın. Web sitesi kendi kontrollerini ayrıca raporlar.
+Sürümde birim, entegrasyon ve denetim odaklı testler bulunur. Önceden belirlenmiş girdilerle yapılan bir testin geçmesi, gerçek model sağlayıcısının yeterli olduğunu göstermez veya dış sertifikasyon kanıtlarının yerini tutmaz. Aynı sonucu sınamak için belirtilen komutu ve ortamı yeniden kurun. Yeni yaptığınız testleri eski raporlardan ayrı değerlendirin; bu web sitesinin kontrolleri de ayrıca raporlanır.
 
-## Sürdürülen sözleşmelerle devam edin
+## Tam test rehberi
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Komutlar ve koşullar aşağıdaki özgün kaynakta bulunur. [Mimari](architecture/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/) belgeleri de testleri yorumlamanıza yardımcı olur.

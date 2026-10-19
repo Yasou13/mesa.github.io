@@ -1,11 +1,11 @@
-## Yetkilendirme sınırı tenant’tır
+## Erişim sınırını üst alan belirler
 
-Kimliği doğrulanmış anahtar principal’a bağlanır; tenant/workspace/dataset OWNER, WRITER ve READER rolleri aşağı miras kalır. Agent kimliği credential değil, bağlamdır. Oturum dataset üyeliğini sabitler. Purge ve rollback, rollere ek olarak açık dataset izinleri ister. Kapsam, retrieval sıralamasından önce kontrol edilir.
+Kimliği doğrulanan anahtar, bir erişim kimliğine bağlanır. Üst erişim alanı (tenant), çalışma alanı ve veri kümesi için OWNER, WRITER ve READER rolleri tanımlanır; bu roller alt alanlara geçer. Ajan kimliği bir erişim anahtarı değildir, isteğin bağlamını belirtir. Oturumun veri kümesi listesi sabittir. Kalıcı silme ve geri alma için role ek olarak açık veri kümesi izni gerekir. Erişim kapsamı arama sıralamasından önce denetlenir.
 
-## Dağıtım sorumlulukları devam eder
+## Kurulumun güvenliği de sizin sorumluluğunuzdadır
 
-Core, SQLite/LanceDB/Kùzu verisini disk üzerinde şifrelemez. Volume’ları, işletim sistemi izinlerini, yedekleri ve ağı koruyun. Sürümlü memory, health ve metrics çağrıları API key ister; readiness, OpenAPI, Swagger ve Redoc yüzeyleri public sınır taşır. Dağıtım kenarında TLS ve erişim politikası sağlayın.
+Core; SQLite, LanceDB ve Kùzu verilerini diskte kendisi şifrelemez. Diskleri, işletim sistemi izinlerini, yedekleri ve ağı ayrıca koruyun. Sürümlü hafıza, sağlık ve ölçüm çağrıları API anahtarı ister. Hazır olma, OpenAPI, Swagger ve ReDoc arayüzleri dışarıya açık olabilir; kurulum sınırında TLS ve erişim kuralları uygulayın.
 
-## Kanıt, güvenilmeyen girdidir
+## Kanıt metnini güvenilir talimat saymayın
 
-Kaynağa bağlı bağlam bağımsız doğrulanmış gerçek değildir. `UNTRUSTED_MEMORY_EVIDENCE`, sonraki prompt ve araçlarda veri olarak kalmalıdır. İçerik, credential, model çıktısı veya claim token loglamayın. Model uzlaşısı hukuki doğruluğu garanti etmez veya halüsinasyonları ortadan kaldırmaz.
+Kaynağı belli bir kayıt, bağımsız olarak doğrulanmış gerçek anlamına gelmez. `UNTRUSTED_MEMORY_EVIDENCE`, modele ve araçlara aktarılırken veri olarak kalmalı; talimat yetkisi kazanmamalıdır. İçeriği, erişim bilgilerini, model çıktısını veya iş sahipliği anahtarlarını günlüklere yazmayın. İki modelin aynı fikirde olması hukuki doğruluğu garanti etmez veya hatalı yanıtları tamamen önlemez.

@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sözleşme Genel Bakış — MESA MESA Law Dokümantasyonu</title>
+  <title>Sözleşme Genel Bakış — MESA Law Belgeleri</title>
   <meta name="description" content="MESA Law için Sözleşme Genel Bakış teknik dokümantasyonu (v0.1.0).">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/docs/law/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/law/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/law/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/law/">
-  <meta property="og:title" content="Sözleşme Genel Bakış — MESA MESA Law Dokümantasyonu">
+  <meta property="og:title" content="Sözleşme Genel Bakış — MESA Law Belgeleri">
   <meta property="og:description" content="MESA Law için Sözleşme Genel Bakış teknik dokümantasyonu (v0.1.0).">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mesamemory.dev/tr/docs/law/">
@@ -21,7 +21,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sözleşme Genel Bakış — MESA MESA Law Dokümantasyonu">
+  <meta name="twitter:title" content="Sözleşme Genel Bakış — MESA Law Belgeleri">
   <meta name="twitter:description" content="MESA Law için Sözleşme Genel Bakış teknik dokümantasyonu (v0.1.0).">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Law için Sözleşme Genel Bakış teknik dokümantasyonu (v0.1.0)."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Law için Sözleşme Genel Bakış teknik dokümantasyonu (v0.1.0).","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"MESA Law","item":"https://mesamemory.dev/tr/docs/law/"},{"@type":"ListItem","position":4,"name":"Sözleşme Genel Bakış","item":"https://mesamemory.dev/tr/docs/law/"}]},{"@type":"TechArticle","headline":"Sözleşme Genel Bakış","description":"MESA Law için Sözleşme Genel Bakış teknik dokümantasyonu (v0.1.0).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/law/","author":{"@type":"Organization","name":"MESA Contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"law, documentation, v0.1.0"}]}</script>
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
-  <link rel="stylesheet" href="../../../docs.css?v=91f92e24d3b4">
+  <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
@@ -87,15 +87,15 @@
     <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mesa-v4-contract.md" title="b791be27a5d9d2e0306057529f6a5dce222673a4" target="_blank" rel="noopener noreferrer">b791be2</a></span>
     <span class="docs-source-pill">kaynak: <code>docs/mesa-v4-contract.md</code></span>
   </div>
-          <p class="docs-language-notice">Bu rehber Türkçe ve İngilizce eşdeğer açıklamalar sunar. Tam kaynak referansı özgün dilinde aşağıda korunur. Paket sürümü üretim sertifikasyonu değildir.</p>
+          <p class="docs-language-notice">Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Özgün belgeyi aşağıdaki kaynak bölümünde kendi dilinde okuyabilirsiniz. Paketin yayımlanması, canlı kullanım için onaylandığı anlamına gelmez.</p>
           
         </header>
         <div class="docs-body">
           <h2 id="guide-bu-belgenin-kapsami">Bu belgenin kapsamı<a class="heading-anchor" href="#guide-bu-belgenin-kapsami" aria-label="Bölüm bağlantısı: Bu belgenin kapsamı" title="Bu bölümün bağlantısı">#</a></h2>
-<p>Law; matter, belge ve kaynağa bağlı iş akışları için V4 HTTP sözleşmesini tüketir. Güncel canlı Core entegrasyonu doğrulanmamıştır; güncel HEAD CI başarısızdır. Tarihli Law tarafı geçiş Core 0.7.1 kullanmıştır. Research, draft ve rebuild tamamlanmış yetenekler değildir.</p>
-<p>Aşağıdaki özgün kaynak; bu sayfanın tam sözleşmesini, komutlarını veya tarihli kanıtını korur. Kaynak dilinde sunulur. Test sonuçları yalnızca belirtilen tarih ve koşullarda geçerlidir.</p>
-          <div class="guide-source-list"><strong>Doğrulanmış kaynaklar</strong><ul><li><a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mesa-v4-contract.md" target="_blank" rel="noopener noreferrer"><code>docs/mesa-v4-contract.md</code></a></li></ul></div>
-          <details class="source-appendix" id="source-reference"><summary>Tam kaynak referansı · özgün dil</summary><p class="docs-language-notice">Bu ek birebir kaynak metnidir; çevrilmiş rehberden ayrı tutulur. Kaynak içi bölüm bağlantıları eki otomatik açar.</p><div class="source-reference-body"><p>MESA Law is pinned to the read-only Core source at commit</p>
+<p>Law, hukuk dosyaları ve belgeler için V4 HTTP arayüzünü kullanır. Güncel canlı Core bağlantısı doğrulanmadı; en son kodun CI kontrolleri başarısız. Önceki başarılı Law testleri Core 0.7.1 ile yapıldı. Araştırma, taslak üretimi ve yeniden oluşturma özellikleri henüz tamamlanmış değildir.</p>
+<p>Aşağıda özgün belgeyi, komutları ve varsa test kayıtlarını kendi dilinde okuyabilirsiniz. Sonuçlar yalnızca belgede belirtilen tarih ve koşullar için geçerlidir.</p>
+          <div class="guide-source-list"><strong>Dayanak kaynaklar</strong><ul><li><a href="https://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mesa-v4-contract.md" target="_blank" rel="noopener noreferrer"><code>docs/mesa-v4-contract.md</code></a></li></ul></div>
+          <details class="source-appendix" id="source-reference"><summary>Özgün belgenin tamamı</summary><p class="docs-language-notice">Bu bölüm, kaynak belgenin değiştirilmemiş metnini içerir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.</p><div class="source-reference-body"><p>MESA Law is pinned to the read-only Core source at commit</p>
 <p><code class="inline-code">c5901881fc414dfd3475c386d2c59bb461e65cd2</code>, package version <code class="inline-code">0.7.1</code>.</p>
 <p>The HTTP boundary uses <code class="inline-code">X-API-Key</code> and only the <code class="inline-code">/v4/catalog/*</code>,</p>
 <p><code class="inline-code">/v4/sessions/*</code>, <code class="inline-code">/v4/memory/*</code>, <code class="inline-code">/v4/mutations/*</code>, and <code class="inline-code">/v4/capability</code></p>
@@ -130,9 +130,9 @@
     </div>
   </div>
 </main>
-<script type="application/json" data-doc-copy>"# Sözleşme Genel Bakış\n\n## Bu belgenin kapsamı\n\nLaw; matter, belge ve kaynağa bağlı iş akışları için V4 HTTP sözleşmesini tüketir. Güncel canlı Core entegrasyonu doğrulanmamıştır; güncel HEAD CI başarısızdır. Tarihli Law tarafı geçiş Core 0.7.1 kullanmıştır. Research, draft ve rebuild tamamlanmış yetenekler değildir.\n\nAşağıdaki özgün kaynak; bu sayfanın tam sözleşmesini, komutlarını veya tarihli kanıtını korur. Kaynak dilinde sunulur. Test sonuçları yalnızca belirtilen tarih ve koşullarda geçerlidir.\n\nhttps://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mesa-v4-contract.md"</script>
-<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../docs/core/release-notes/">v0.8.1</a><a href="../../docs/core/security/">Güvenlik</a><span>MIT · Open source</span></footer>
-  <script src="../../../app.js?v=43752e3c2ede"></script>
+<script type="application/json" data-doc-copy>"# Sözleşme Genel Bakış\n\n## Bu belgenin kapsamı\n\nLaw, hukuk dosyaları ve belgeler için V4 HTTP arayüzünü kullanır. Güncel canlı Core bağlantısı doğrulanmadı; en son kodun CI kontrolleri başarısız. Önceki başarılı Law testleri Core 0.7.1 ile yapıldı. Araştırma, taslak üretimi ve yeniden oluşturma özellikleri henüz tamamlanmış değildir.\n\nAşağıda özgün belgeyi, komutları ve varsa test kayıtlarını kendi dilinde okuyabilirsiniz. Sonuçlar yalnızca belgede belirtilen tarih ve koşullar için geçerlidir.\n\nhttps://github.com/Yasou13/MESA_Law/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mesa-v4-contract.md"</script>
+<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../docs/core/release-notes/">v0.8.1</a><a href="../../docs/core/security/">Güvenlik</a><span>MIT · Açık kaynak</span></footer>
+  <script src="../../../app.js?v=d389e70c5cac"></script>
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

@@ -455,20 +455,20 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Yapay zekâ için kaynağıyla hafıza.", "Bir notun hafızadaki yolculuğu", "Üretim: NO-GO"),
+        "tr/": ("Kaynağını koruyan yapay zekâ hafızası.", "Bir notun hafızadaki yolculuğu", "Canlı kullanım: NO-GO"),
         "tr/how-it-works/": ("Bir not eklediğinizde ne olur?", "Bir ana kayıt. İki arama görünümü.", "Sıralamaları birleştir"),
-        "tr/mesa/": ("Dört sinyal", "Graph path", "Gerçek RRF"),
+        "tr/mesa/": ("Dört sinyal", "Çizge yolu", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
         "tr/use-cases/": ("Ajan hafızası", "Beklenen yarar"),
-        "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon hâlâ engelli"),
-        "tr/about/": ("KİM SÜRDÜRÜYOR", "GitHub issue aç"),
-        "tr/faq/": ("MESA bir vektör veritabanı mı?", "MESA üretime hazır mı?"),
-        "tr/resources/": ("Altı alan. Tek bilgi ağı.", "METODOLOJİ"),
-        "tr/learn/semantic-search/": ("Embedding ve anlamsal arama", "İki boyutlu benzerlik hesabı"),
-        "tr/research/keyword-vs-semantic-search/": ("Henüz sonuç yok", "Planlanan protokol · sonuç yok"),
+        "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),
+        "tr/about/": ("KİM GELİŞTİRİYOR", "GitHub üzerinden bildirin"),
+        "tr/faq/": ("MESA bir vektör veritabanı mı?", "MESA canlı kullanıma hazır mı?"),
+        "tr/resources/": ("Altı alan. Tek bilgi ağı.", "YÖNTEMLER"),
+        "tr/learn/semantic-search/": ("Anlamsal arama: vektörler neyi anlatır?", "İki boyutlu benzerlik hesabı"),
+        "tr/research/keyword-vs-semantic-search/": ("Henüz sonuç yok", "Araştırma planı · henüz sonuç yok"),
         "tr/guides/verify-ai-yargitay-decision/": ("İddiayı aynen kaydedin", "Var olmak, ilgili olmak değildir"),
-        "tr/glossary/provenance/": ("Provenance", "Hukuki örnek"),
-        "tr/methodology/retrieval-evaluation/": ("Relevance judgment", "Raporlama ve düzeltmeler"),
+        "tr/glossary/provenance/": ("Kaynak izi", "Hukuki örnek"),
+        "tr/methodology/retrieval-evaluation/": ("İlgililik değerlendirmesi", "Raporlama ve düzeltmeler"),
     }
     for route, markers in turkish_markers.items():
         page = root / route / "index.html"

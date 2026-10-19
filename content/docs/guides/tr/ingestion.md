@@ -1,11 +1,11 @@
-## Kaynak hiyerarşisi
+## Kaynaklar ve erişim alanları nasıl düzenlenir?
 
-Tenant; workspace ve dataset’leri içerir. Dataset; belgeleri, değişmez revizyonları ve tam kaynak parçalarını sahiplenir. Sunucunun oluşturduğu oturum; principal, tenant, workspace, agent ve değişmez yetkili dataset kümesini bağlar. İstemci metadata’sı kapsam yetkisi vermez.
+Üst erişim alanı (tenant), çalışma alanlarını ve veri kümelerini içerir. Her veri kümesinin belgeleri, değiştirilemeyen sürümleri ve kaynak metin parçaları vardır. Sunucunun açtığı oturum; erişim kimliğini, üst alanı, çalışma alanını, ajanı ve izin verilen sabit veri kümesi listesini bir araya getirir. İstemcinin gönderdiği ek bilgiler kendi başına erişim yetkisi vermez.
 
-## Kabul, tamamlanma değildir
+## Kabul edilmesi, tamamlandığı anlamına gelmez
 
-`POST /v4/memory/insert`; oturum ve kaynak kimlikleri, title, source_ref ve tam content ister. 202 yanıtı mutation, candidate, pipeline ve raw-log kimlikleri döndürür. Mutasyon durumunu izleyin; `wait_until_committed` başarısız bir terminal durumla da dönebilir. Reddedilen iş etkin retrieval artifact’ı oluşturmamalıdır.
+`POST /v4/memory/insert` için oturum ve kaynak kimlikleriyle birlikte `title`, `source_ref` ve tam `content` gerekir. HTTP 202 yanıtında değişiklik işleminin, aday kaydın, işleme hattının ve ham günlüğün kimlikleri döner. Sonrasında işlemin durumunu izleyin: `wait_until_committed` başarısız bir son durumla da dönebilir. Reddedilen iş, etkin arama kayıtları oluşturmamalıdır.
 
-## Revizyon sınırları ve tekrarlar
+## Çok parçalı sürümler ve tekrar denemeler
 
-Çok parçalı revizyonda farklı kimlik/ordinal kullanın ve son insert’e kadar `finalize_revision=false` gönderin. Son insert üyeliği dondurur; etkinleştirme gereken tüm alt işlerin başarısını bekler. Tekrarda aynı body idempotency key ve birebir aynı payload kullanılır. Çelişen tekrar reddedilir. Düzeltme yeni revizyon oluşturur; purge ve rollback açık yetkilerle kaynak sahipliğini kaldırır.
+Bir sürüm birden fazla parçadan oluşuyorsa her parçaya ayrı kimlik ve sıra numarası verin. Son eklemeye kadar `finalize_revision=false` gönderin. Son ekleme parça listesini sabitler; sürümün etkinleşmesi gereken tüm alt işlerin başarısını bekler. Tekrar denemede aynı yineleme anahtarını ve birebir aynı içeriği kullanın. Çelişen tekrar reddedilir. Düzeltme için yeni sürüm oluşturulur; kalıcı silme ve geri alma ise açık izinlerle kaynağın sahiplik bağını kaldırır.

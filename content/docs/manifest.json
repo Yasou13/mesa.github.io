@@ -11,7 +11,7 @@
       },
       "description": {
         "en": "Deterministic AI memory infrastructure, SQLite canonical ledger, LanceDB & Kùzu projections, hybrid retrieval.",
-        "tr": "Deterministik yapay zekâ hafıza altyapısı, SQLite kanonik defter, LanceDB ve Kùzu projeksiyonları, hibrit retrieval."
+        "tr": "Bilgiyi kaynaklarıyla saklayan hafıza altyapısı; asıl kayıtlar, arama görünümleri ve hibrit arama."
       },
       "base_route": "docs/core/",
       "pages": [
@@ -238,7 +238,7 @@
           "route": "docs/core/concepts-and-ingestion/",
           "title": {
             "en": "Concepts & Ingestion",
-            "tr": "Kavramlar ve Ingestion"
+            "tr": "Kavramlar ve veri alımı"
           },
           "headings": [
             {
@@ -282,7 +282,7 @@
           "route": "docs/core/configuration/",
           "title": {
             "en": "Configuration",
-            "tr": "Konfigürasyon"
+            "tr": "Yapılandırma"
           },
           "headings": [
             {
@@ -331,7 +331,7 @@
           "route": "docs/core/retrieval-and-graph/",
           "title": {
             "en": "Retrieval & Graph",
-            "tr": "Retrieval ve Çizge"
+            "tr": "Arama ve çizge"
           },
           "headings": [
             {
@@ -479,7 +479,7 @@
           "route": "docs/core/rebuild-runbook/",
           "title": {
             "en": "V4 Rebuild Runbook",
-            "tr": "V4 Yeniden Derleme Kılavuzu"
+            "tr": "V4 arama görünümlerini yeniden oluşturma"
           },
           "headings": [
             {
@@ -935,7 +935,7 @@
           "route": "docs/core/operations/",
           "title": {
             "en": "Operations & Recovery",
-            "tr": "Operasyon ve Kurtarma"
+            "tr": "İşletim ve kurtarma"
           },
           "headings": [
             {
@@ -1338,7 +1338,7 @@
           "route": "docs/core/adr-0011/",
           "title": {
             "en": "Tenant/dataset authorization",
-            "tr": "Tenant/dataset yetkilendirmesi"
+            "tr": "Erişim alanları ve veri kümesi izinleri"
           },
           "headings": [
             {
@@ -1415,7 +1415,7 @@
           "route": "docs/core/adr-0014/",
           "title": {
             "en": "Rebuild closure",
-            "tr": "Rebuild kapanışı"
+            "tr": "Yeniden oluşturmanın tamamlanması"
           },
           "headings": [
             {
@@ -1510,7 +1510,7 @@
       },
       "description": {
         "en": "Turkish legal and official gazette data preparation pipeline with deterministic provenance.",
-        "tr": "Deterministik provenance ile Türk hukuku ve Resmî Gazete veri hazırlama hattı."
+        "tr": "Türk hukuk kaynaklarının toplanması, korunması, denetlenmesi ve yayına hazırlanması."
       },
       "base_route": "docs/data/",
       "pages": [
@@ -1981,7 +1981,7 @@
       },
       "description": {
         "en": "Source-aware legal workflow system with strict evidence verification.",
-        "tr": "Sıkı kanıt doğrulamalı kaynak odaklı hukuk iş akışı sistemi."
+        "tr": "MESA hafızasını kullanan hukuk dosyası, belge ve inceleme uygulaması."
       },
       "base_route": "docs/law/",
       "pages": [
@@ -2139,7 +2139,7 @@
       },
       "description": {
         "en": "Independent QA harness, endurance and restart failure injection testing.",
-        "tr": "Bağımsız QA harness, dayanıklılık ve yeniden başlatma hata enjeksiyon testleri."
+        "tr": "Asıl sistemden ayrı yürütülen doğruluk, kalıcılık ve dayanıklılık testleri."
       },
       "base_route": "docs/qa/",
       "pages": [
@@ -2307,7 +2307,7 @@
           "route": "docs/qa/repair-prompt/",
           "title": {
             "en": "Repair Prompt Specification",
-            "tr": "Onarım Prompt Spesifikasyonu"
+            "tr": "Hata düzeltme isteminin kuralları"
           },
           "headings": [],
           "raw_markdown": "You are repairing a confirmed MESA QA defect in an isolated QA candidate worktree.\n\nBug Evidence:\n{evidence_summary}\n\nHard Rules:\n1. Work ONLY in the current Git worktree directory.\n2. NEVER checkout, merge, reset, push, or modify main.\n3. NEVER modify forbidden paths (.github/, deploy/, uv.lock, pyproject.toml).\n4. Do not change dependencies or database migration strategies automatically.\n5. Reproduce the bug on the current candidate commit before patching.\n6. Add a minimal regression test file in tests/ and prove it FAILS (PRE-FIX FAIL) before making any fix.\n7. Identify the root cause and implement the smallest safe patch.\n8. Run the new regression test and confirm it PASSES (POST-FIX PASS).\n9. Run targeted tests for directly affected modules.\n10. Do not change unrelated code or styling.\n",
@@ -2340,7 +2340,7 @@
       },
       "description": {
         "en": "Multi-tier end-to-end certification harness and ground truth validation for MESA Profile B.",
-        "tr": "MESA Profil B için çok katmanlı uçtan uca sertifikasyon ve ground truth doğrulama."
+        "tr": "Data → Core akışı için bağımsız uçtan uca doğrulama ve sertifikasyon koşulları."
       },
       "base_route": "docs/e2e/",
       "pages": [

@@ -1086,7 +1086,7 @@ const hubSections = new Map(hubData.sections.map((section) => [section.id, secti
 const hubEntries = new Map(hubData.entries.map((entry) => [entry.id, entry]));
 const hubTypeLabels = {
   en: { learn: 'Learn', research: 'Research', guide: 'Guide', glossary: 'Glossary', methodology: 'Methodology' },
-  tr: { learn: 'Learn', research: 'Research', guide: 'Rehber', glossary: 'Sözlük', methodology: 'Metodoloji' }
+  tr: { learn: 'Ders', research: 'Araştırma', guide: 'Rehber', glossary: 'Sözlük', methodology: 'Yöntem' }
 };
 
 function validateHubData() {
@@ -1148,7 +1148,7 @@ function renderFormattedText(text) {
 }
 
 function hubBreadcrumb(items) {
-  return `<nav class="breadcrumbs" aria-label="${hubText('Breadcrumb', 'İçerik yolu')}"><ol>${items.map((item, index) => `<li>${item.path ? `<a href="${route(item.path)}">${escapeHtml(item.label)}</a>` : `<span aria-current="page">${escapeHtml(item.label)}</span>`}${index < items.length - 1 ? '<span aria-hidden="true">/</span>' : ''}</li>`).join('')}</ol></nav>`;
+  return `<nav class="breadcrumbs" aria-label="${hubText('Breadcrumb', 'Sayfa yolu')}"><ol>${items.map((item, index) => `<li>${item.path ? `<a href="${route(item.path)}">${escapeHtml(item.label)}</a>` : `<span aria-current="page">${escapeHtml(item.label)}</span>`}${index < items.length - 1 ? '<span aria-hidden="true">/</span>' : ''}</li>`).join('')}</ol></nav>`;
 }
 
 function hubCard(entry) {
@@ -1205,12 +1205,12 @@ function renderHubIndex(section) {
             return `
             <article class="tool-card">
               ${tool.icon ? `<span class="tool-icon" aria-hidden="true">${escapeHtml(tool.icon)}</span>` : ''}
-              <span>${escapeHtml(tool.category)}</span>
+              <span>${escapeHtml(hubText(tool.category, ({research:'Araştırma',verification:'Doğrulama',evaluation:'Değerlendirme'})[tool.category] || tool.category))}</span>
               <h2>${escapeHtml(copy.title)}</h2>
               <p>${escapeHtml(copy.description)}</p>
               ${available
                 ? `<a href="${route(tool.route)}">${hubText('Open tool', 'Aracı aç')}<span aria-hidden="true"> →</span></a>`
-                : `<strong>${hubText('Planned · not yet interactive', 'Planlandı · henüz interaktif değil')}</strong>`}
+                : `<strong>${hubText('Planned · not yet interactive', 'Planlanıyor · henüz kullanıma açık değil')}</strong>`}
             </article>`;
           }).join('')}
         </div>
@@ -1220,14 +1220,14 @@ function renderHubIndex(section) {
     const entries = publishedEntries().filter(({ type }) => type === contentType);
     const future = section.id === 'methodology' ? `
       <div class="methodology-scope">
-        <p class="eyebrow">${hubText('SUPPORTED NEXT', 'SONRAKİ DESTEKLENEN ALANLAR')}</p>
+        <p class="eyebrow">${hubText('SUPPORTED NEXT', 'ELE ALINACAK KONULAR')}</p>
         <ul>
-          <li>${hubText('Dataset selection', 'Veri seti seçimi')}</li>
-          <li>${hubText('Relevance judgment', 'Relevance judgment')}</li>
-          <li>${hubText('Dataset versioning', 'Veri seti sürümleme')}</li>
+          <li>${hubText('Dataset selection', 'Veri kümesi seçimi')}</li>
+          <li>${hubText('Relevance judgment', 'İlgililik değerlendirmesi')}</li>
+          <li>${hubText('Dataset versioning', 'Veri kümesi sürümleme')}</li>
           <li>${hubText('Corrections policy', 'Düzeltme politikası')}</li>
         </ul>
-        <p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu alanlar içerik modeli tarafından desteklenir; yayımlanmamış sayfalar route olarak gösterilmez.')}</p>
+        <p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu konular için ayrıntılı rehberler hazırlanabilir. Henüz yayımlanmamış sayfalar listelenmez.')}</p>
       </div>` : '';
     body = `
       <section class="section publication-index">
@@ -1264,15 +1264,15 @@ function renderHubBlock(block) {
 function renderResearchMetadata(entry) {
   if (entry.type !== 'research') return '';
   const limitations = currentLanguage === 'tr'
-    ? ['Henüz deney yürütülmedi.', 'Veri seti büyüklüğü, skor veya performans iddiası sunulmuyor.', 'Protokol ön kayıttan önce değişebilir.']
+    ? ['Henüz deney yürütülmedi.', 'Veri seti büyüklüğü, skor veya performans iddiası sunulmuyor.', 'Araştırma planı, ön kayıt yapılana kadar değişebilir.']
     : entry.limitations;
   const reviewers = [
-    ...(entry.reviewers?.technical || []).map((name) => [hubText('Technical reviewer', 'Teknik reviewer'), name]),
-    ...(entry.reviewers?.legal || []).map((name) => [hubText('Legal reviewer', 'Hukuk reviewer'), name])
+    ...(entry.reviewers?.technical || []).map((name) => [hubText('Technical reviewer', 'Teknik incelemeyi yapan'), name]),
+    ...(entry.reviewers?.legal || []).map((name) => [hubText('Legal reviewer', 'Hukuki incelemeyi yapan'), name])
   ];
   const evidenceLinks = [
-    entry.repository ? external(entry.repository, hubText('Code repository', 'Kod repository’si')) : '',
-    entry.datasetUrl ? external(entry.datasetUrl, hubText('Dataset record', 'Veri seti kaydı')) : '',
+    entry.repository ? external(entry.repository, hubText('Code repository', 'Kod deposu')) : '',
+    entry.datasetUrl ? external(entry.datasetUrl, hubText('Dataset record', 'Veri kümesi kaydı')) : '',
     ...(entry.methodology || []).map((id) => { const method = hubEntries.get(id); return method ? `<a href="${route(method.path)}">${escapeHtml(method.locales[currentLanguage].title)}<span aria-hidden="true"> →</span></a>` : ''; })
   ].filter(Boolean);
 
@@ -1282,19 +1282,19 @@ function renderResearchMetadata(entry) {
       <dl>
         <div>
           <dt>${hubText('Status', 'Durum')}</dt>
-          <dd>${hubText('Planned protocol · no results', 'Planlanan protokol · sonuç yok')}</dd>
+          <dd>${hubText('Planned protocol · no results', 'Araştırma planı · henüz sonuç yok')}</dd>
         </div>
         <div>
           <dt>${hubText('MESA version', 'MESA sürümü')}</dt>
           <dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd>
         </div>
         <div>
-          <dt>${hubText('Dataset', 'Veri seti')}</dt>
-          <dd>${hubText('Not selected; criteria must be frozen first', 'Seçilmedi; önce seçim ölçütleri dondurulmalı')}</dd>
+          <dt>${hubText('Dataset', 'Veri kümesi')}</dt>
+          <dd>${hubText('Not selected; criteria must be frozen first', 'Henüz seçilmedi; önce seçim ölçütleri kesinleştirilecek')}</dd>
         </div>
         <div>
           <dt>${hubText('Models', 'Modeller')}</dt>
-          <dd>${hubText('To be declared and version-pinned', 'Beyan edilip sürümü sabitlenecek')}</dd>
+          <dd>${hubText('To be declared and version-pinned', 'Modeller ve kullanılacak sürümleri açıklanacak')}</dd>
         </div>
         <div>
           <dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt>
@@ -1345,7 +1345,7 @@ function renderHubEntry(entry) {
   const relatedHtml = `
     <section class="related-content" aria-labelledby="related-title">
       <p class="eyebrow">${hubText('CONNECTED KNOWLEDGE', 'BAĞLANTILI BİLGİ')}</p>
-      <h2 id="related-title">${hubText('Continue through the evidence graph.', 'Kanıt ağı içinde ilerleyin.')}</h2>
+      <h2 id="related-title">${hubText('Continue through the evidence graph.', 'İlgili konularla devam edin.')}</h2>
       <div class="publication-grid">
         ${related.map(hubCard).join('')}
       </div>
@@ -1365,8 +1365,8 @@ function renderHubEntry(entry) {
       <div class="contextual-cta">
         <div>
           <p class="eyebrow">${hubText('PRODUCT CONTEXT', 'ÜRÜN BAĞLAMI')}</p>
-          <h2>${hubText('See how provenance appears in MESA Law.', 'Provenance yaklaşımının MESA Law örneğini görün.')}</h2>
-          <p>${hubText('A restrained product link for readers who want the application context.', 'Uygulama bağlamını görmek isteyen okurlar için ölçülü bir ürün bağlantısı.')}</p>
+          <h2>${hubText('See how provenance appears in MESA Law.', 'Kaynak izinin MESA Law’da nasıl kullanıldığına bakın.')}</h2>
+          <p>${hubText('A restrained product link for readers who want the application context.', 'Hukuk alanındaki örnek uygulamada dosyaların, belgelerin ve kaynakların nasıl birlikte ele alındığını inceleyin.')}</p>
         </div>
         <a class="button secondary" href="${route('law/')}">${hubText('Explore MESA Law', 'MESA Law’u incele')}</a>
       </div>`;
@@ -1377,7 +1377,7 @@ function renderHubEntry(entry) {
       ${breadcrumbs}
       <article class="knowledge-article">
         <header class="article-header">
-          <p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(entry.category)}</p>
+          <p class="eyebrow">${escapeHtml(typeLabel)} · ${escapeHtml(localized.category || entry.category)}</p>
           <h1>${escapeHtml(localized.title)}</h1>
           ${localized.subtitle ? `<p class="article-subtitle">${escapeHtml(localized.subtitle)}</p>` : ''}
           <p class="article-summary">${escapeHtml(localized.summary)}</p>
@@ -1392,7 +1392,7 @@ function renderHubEntry(entry) {
             </div>
             <div>
               <dt>${hubText('Author', 'Yazar')}</dt>
-              <dd>${escapeHtml(entry.author)}</dd>
+              <dd>${escapeHtml(hubText(entry.author, entry.author === 'MESA contributors' ? 'MESA’ya katkıda bulunanlar' : entry.author))}</dd>
             </div>
             <div>
               <dt>${hubText('Reading time', 'Okuma süresi')}</dt>
@@ -1701,7 +1701,7 @@ for (const language of ['en','tr']) {
     const oldPath = prefix+redirect.fromPath;
     const targetPath = prefix+entry.path;
     const link = relativeBase(oldPath)+targetPath;
-    const title = language === 'tr' ? 'Bu konu güncel bir derste birleştirildi' : 'This topic is now part of a revised lesson';
+    const title = language === 'tr' ? 'Bu konu artık daha kapsamlı bir derste' : 'This topic is now part of a revised lesson';
     const description = `${title}: ${entry.locales[language].title}. (${redirect.fromPath})`;
     const destination = path.join(outputDirectory,oldPath,'index.html');
     fs.mkdirSync(path.dirname(destination),{recursive:true});
@@ -1727,7 +1727,7 @@ for (const language of ['en', 'tr']) {
     const pageTitle = item.page.title[language] || item.page.title.en;
     const repoTitle = item.repo.title[language] || item.repo.title.en;
     const title = language === 'tr'
-      ? `${pageTitle} — MESA ${repoTitle} Dokümantasyonu`
+      ? `${pageTitle} — ${repoTitle} Belgeleri`
       : `${pageTitle} — MESA ${repoTitle} Documentation`;
     const description = language === 'tr'
       ? `${repoTitle} için ${pageTitle} teknik dokümantasyonu (${item.repo.version}).`

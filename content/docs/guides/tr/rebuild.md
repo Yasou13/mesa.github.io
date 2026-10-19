@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Yeniden oluşturmanın kapsamını bilin
 
-Rebuild varsayılan kapalı, yalnız ADMIN yetkili, tüm storage root’u kapsayan control-plane işlemidir. Kabul, checkpoint’li offline replay, doğrulama ve cutover ayrı aşamalardır. Bayrak kapalı gönderim 501; desteklenmeyen kapsamlı istek 409 döndürür. Kanonik sahipliği ve yedeği koruyun; bunu online tenant başına onarım olarak anlatmayın.
+Bu işlem varsayılan olarak kapalıdır ve yalnızca ADMIN yetkisiyle kullanılabilir. Veri dizininin tamamını kapsar. İsteğin kabul edilmesi, kontrol noktalarıyla çevrimdışı yeniden yürütme, doğrulama ve yeni düzene geçiş ayrı aşamalardır. Özellik kapalıysa 501, desteklenmeyen kapsam istenirse 409 döner. Asıl kayıtların sahipliğini ve yedeği koruyun. Bu işlemi tek bir üst erişim alanını çevrimiçi onarma yöntemi olarak kullanmayın.
 
-## Sürdürülen sözleşmelerle devam edin
+## İşlem adımlarını özgün kaynaktan izleyin
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Bütün seçenekler ve yönetim koşulları aşağıdaki kaynakta yer alır. Öncesinde [mimari](architecture/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/) belgelerini okuyun.

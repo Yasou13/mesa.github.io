@@ -247,3 +247,7 @@ body:has(.docs-layout) .site-header { background: #0b0b10f5; border-bottom: 1px 
 .docs-mcp-content .mcp-guard { padding: 22px; margin-top: 36px; border: 1px solid var(--docs-border); border-radius: 7px; background: #ffffff02; scroll-margin-top: 190px; }
 .docs-mcp-content .check-list li { font-size: 13px; }
 @media (max-width: 600px) { .docs-mcp-content .mcp-paths article { min-height: 0; padding: 20px; } .docs-mcp-content .tool-list span { margin-left: 0; width: 100%; } }
+
+/* Keep small navigation labels and source links readable in the docs theme. */
+.docs-repo-number { color: #9b8eae; }
+.docs-rail-note > a { text-decoration: underline; text-underline-offset: 3px; }

@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Belgeleri hangi sırayla okumalı?
 
-Kurulum ve model kapalı hızlı başlangıçla başlayın; sonra kaynak kimliği, veri alımı, mimari ve retrieval konularını öğrenin. Versioned API/SDK veya MCP üzerinden entegre olun. Operatörler güvenlik, yapılandırma, runbook, rebuild, migration ve sınırları birlikte okumalıdır. Tarihsel denetimler ve ADR’ler tarihli bağlamdır; güncel ürün sözleşmesi değildir.
+Önce kurulum ve model kullanmayan hızlı başlangıçla sistemi deneyin. Ardından kaynak kimliği, veri alımı, mimari ve arama konularını okuyun. Uygulamanızı sürümlenmiş API, SDK veya MCP üzerinden bağlayabilirsiniz. Sistemi işletecekseniz güvenlik, yapılandırma, kurtarma, yeniden oluşturma ve sürüm geçişi rehberlerini birlikte değerlendirin. Eski denetimler ve mimari kararlar geçmişi açıklar; güncel davranış için tek başına dayanak değildir.
 
-## Sürdürülen sözleşmelerle devam edin
+## Konuya göre devam edin
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+[Mimari](architecture/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/) sayfaları temel başvuru noktalarıdır. Tam belge listesi aşağıdaki özgün kaynakta yer alır.

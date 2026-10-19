@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA Değerlendirme ve Güven — QA, Kanıt ve Sertifikasyon</title>
-  <meta name="description" content="MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın.">
+  <title>MESA Nasıl Değerlendiriliyor? — Testler ve Kanıtlar</title>
+  <meta name="description" content="QA testleri ile uçtan uca sertifikasyon arasındaki farkı, mevcut sonuçları ve eksik doğrulamaları öğrenin.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/evaluation/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/evaluation/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/evaluation/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/evaluation/">
-  <meta property="og:title" content="MESA Değerlendirme ve Güven — QA, Kanıt ve Sertifikasyon">
-  <meta property="og:description" content="MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın.">
+  <meta property="og:title" content="MESA Nasıl Değerlendiriliyor? — Testler ve Kanıtlar">
+  <meta property="og:description" content="QA testleri ile uçtan uca sertifikasyon arasındaki farkı, mevcut sonuçları ve eksik doğrulamaları öğrenin.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/tr/evaluation/">
   <meta property="og:locale" content="tr_TR">
@@ -21,10 +21,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA Değerlendirme ve Güven — QA, Kanıt ve Sertifikasyon">
-  <meta name="twitter:description" content="MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın.">
+  <meta name="twitter:title" content="MESA Nasıl Değerlendiriliyor? — Testler ve Kanıtlar">
+  <meta name="twitter:description" content="QA testleri ile uçtan uca sertifikasyon arasındaki farkı, mevcut sonuçları ve eksik doğrulamaları öğrenin.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA QA ile E2E Certification'ın ayrı rollerini, mevcut kanıtları, engellenen kapıları ve yayımlama sınırlarını anlayın.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"QA testleri ile uçtan uca sertifikasyon arasındaki farkı, mevcut sonuçları ve eksik doğrulamaları öğrenin."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"QA testleri ile uçtan uca sertifikasyon arasındaki farkı, mevcut sonuçları ve eksik doğrulamaları öğrenin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../favicon.ico?v=396056f03e59" sizes="32x32">
   <link rel="icon" href="../../favicon.svg?v=dd68b71b87a3" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png">
@@ -63,7 +63,7 @@
       <section class="page-hero compact page-hero--evidence status-accent">
         <p class="eyebrow">DEĞERLENDİRME VE GÜVEN</p>
         <h1>İki katman.<br><em>İki farklı soru.</em></h1>
-        <p>MESA, sürekli davranış testlerini profile özgü sertifikasyon kanıtından ayırır. İkisi de üretim kanıtının yerine geçiyormuş gibi sunulmaz.</p>
+        <p>QA sistemin davranışını düzenli olarak test eder. E2E Certification ise belirli bir kurulumun sertifikasyon koşullarını değerlendirir. Bu iki çalışma, tek başına canlı kullanım onayı sayılmaz.</p>
       </section>
 
       <section class="section evaluation-compare">
@@ -71,24 +71,24 @@
           <p class="eyebrow">MESA QA</p>
           <h2>Aday doğru davranmayı sürdürüyor mu?</h2>
           <ul class="check-list">
-            <li>hafıza doğruluğu ve bağımsız ground truth</li>
+            <li>hafıza sonuçlarını bağımsız doğrulama verileriyle karşılaştırma</li>
             <li>zamansal güncellemeler, düzeltme ve unutma</li>
             <li>oturumlar arası kalıcılık ve yeniden başlatma dayanıklılığı</li>
-            <li>sürdürülen dayanıklılık profilleri</li>
-            <li>otomatik merge veya push olmadan yalıtılmış aday onarımı</li>
+            <li>uzun süreli yük ve dayanıklılık testleri</li>
+            <li>ana dala otomatik birleştirme veya gönderim yapmadan ayrı bir kopyada hata düzeltme</li>
           </ul>
           <a href="../qa/">MESA QA'yı inceleyin →</a>
         </article>
 
         <article>
           <p class="eyebrow">E2E CERTIFICATION</p>
-          <h2>Bu tam profil gerekli garantilerini kanıtlayabiliyor mu?</h2>
+          <h2>Bu kurulum, gerekli koşulların tümünü kanıtlayabiliyor mu?</h2>
           <ul class="check-list">
-            <li>dondurulmuş girdiler, kimlik ve kanıt bağları</li>
-            <li>yetkili çalışma zamanı, puanlama ve metrik üreticileri</li>
-            <li>katı kapılar ve bağımsız sonuçlandırma</li>
-            <li>profille sınırlandırılmış kanıt ve hükümler</li>
-            <li>eksik veya doğrulanmamış kapılarda hata durumunda kapanma</li>
+            <li>değiştirilmeyecek girdiler, kimlik ve kanıt bağları</li>
+            <li>resmî testleri çalıştıran, puanlayan ve ölçümleri üreten bileşenler</li>
+            <li>zorunlu kontroller ve bağımsız sonuç değerlendirmesi</li>
+            <li>yalnızca incelenen profil için geçerli kanıt ve sonuçlar</li>
+            <li>eksik veya doğrulanamayan bir koşulda işlemi durdurma</li>
           </ul>
           <a href="../certification/">Sertifikasyonu inceleyin →</a>
         </article>
@@ -97,40 +97,40 @@
       <section class="section trust-state">
         <div>
           <p class="eyebrow">GÜNCEL KANIT DURUMU</p>
-          <h2>Test düzeneğinin bütünlüğü iyileştirildi.<br><em>Sertifikasyon hâlâ engelli.</em></h2>
+          <h2>Test düzeneğinin bütünlüğü iyileştirildi.<br><em>Sertifikasyon için eksikler sürüyor.</em></h2>
         </div>
         <div>
-          <p>Bağımsız denetim yeniden üretilen bütünlük kusurlarını düzeltti ve hata durumunda kapanma davranışını doğruladı. Meşru ve başarılı bir çalışma zamanı sertifikasyon işlemi yürütmedi.</p>
-          <p>Güncel test düzeneği resmî yürütme, dondurulmuş ground-truth puanlaması ve metrik türetmeyi uyguluyor. Dış teslim/yeniden başlatma toplayıcıları, sağlayıcı doğrulaması ve yeni resmî çalışma henüz doğrulanmış değil.</p>
+          <p>Bağımsız denetim, tekrarlanabilen bütünlük hatalarını düzeltti ve doğrulama başarısız olduğunda işlemin durduğunu gösterdi. Ancak gerçek sistemi başarıyla sertifikalandıran bir çalışma yürütülmedi.</p>
+          <p>Test düzeneği resmî çalıştırma, sabitlenmiş doğrulama verileriyle puanlama ve ölçüm üretimini destekliyor. Dış sistemlerden aktarım ve yeniden başlatma kanıtlarının toplanması, sağlayıcı doğrulaması ve yeni resmî test henüz tamamlanmadı.</p>
           <a class="" href="https://github.com/Yasou13/MESA_E2E_Certification/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md" target="_blank" rel="noopener noreferrer"><span>Bağımsız denetimi okuyun</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </div>
       </section>
 
       <section class="section future-benchmarks">
-        <p class="eyebrow">BENCHMARK YAYIMLAMA</p>
+        <p class="eyebrow">PERFORMANS SONUÇLARININ YAYIMLANMASI</p>
         <h2>Yer tutucu sayı yok.</h2>
-        <p>Tarihsel veya sentetik tanı sonuçları güncel üretim garantileri olarak sunulmaz. Yayımlanabilir geri getirme kalitesi, gecikme, kaynak ve dayanıklılık sonuçları; geçerli sertifikasyonu ve açıkça tanımlanmış yöntemi izlemelidir.</p>
+        <p>Eski veya yapay verilerle elde edilen sonuçlar, güncel canlı kullanım garantisi olarak sunulmaz. Arama kalitesi, gecikme, kaynak tüketimi ve dayanıklılık sonuçları ancak yöntem açıkça tanımlanıp gerekli doğrulamalar tamamlandıktan sonra yayımlanır.</p>
       </section>
       <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
-        <p>MESA v0.8.1 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
+        <p>MESA v0.8.1’in kaynak kodu yayımlandı. Önce model kullanmayan hızlı başlangıç kurulumunu deneyin. Tam V4 sistemini değerlendirmeden önce canlı kullanıma ilişkin sınırları okuyun.</p>
         <div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapay zekâ için kaynağıyla hafıza.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Kaynağını koruyan yapay zekâ hafızası.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../status/">Durumu görüntüle →</a></p></div>
       <div class="footer-groups">
         <div><h3>Keşfet</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../use-cases/">Kullanım alanları</a><a href="../evaluation/">Değerlendirme ve güven</a><a href="../status/">Proje durumu</a></div>
         <div><h3>Ekosistem</h3><a href="../mesa/">Core hafıza motoru</a><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
-        <div><h3>Kaynaklar</h3><a href="../learn/">Öğren</a><a href="../research/">Araştırma</a><a href="../guides/">Rehberler</a><a href="../glossary/">Sözlük</a><a href="../methodology/">Metodoloji</a></div>
-        <div><h3>Dokümantasyon</h3><a href="../docs/core/getting-started/">Hızlı başlangıç</a><a href="../docs/core/architecture/">Core mimari dokümanları</a><a href="../retrieval/">Retrieval</a><a href="../docs/core/security/">Güvenlik</a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
-        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Kaynaklar</h3><a href="../learn/">Dersler</a><a href="../research/">Araştırma</a><a href="../guides/">Rehberler</a><a href="../glossary/">Sözlük</a><a href="../methodology/">Yöntemler</a></div>
+        <div><h3>Dokümanlar</h3><a href="../docs/core/getting-started/">Hızlı başlangıç</a><a href="../docs/core/architecture/">Core mimari dokümanları</a><a href="../retrieval/">Arama</a><a href="../docs/core/security/">Güvenlik</a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Hata veya öneri bildir</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Geliştiricinin profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Yayımlanan kaynak koduyla karşılaştırılmış dokümanlar</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Yayımlanan kaynak koduna göre hazırlanmıştır</span></div>
     </footer>
     </main>
-  <script src="../../app.js?v=43752e3c2ede"></script>
+  <script src="../../app.js?v=d389e70c5cac"></script>
 </body>
 </html>

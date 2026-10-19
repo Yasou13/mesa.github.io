@@ -13,11 +13,11 @@
           "intro": "A durable publishing layer for practical guidance, technical concepts, research protocols, and transparent methods."
         },
         "tr": {
-          "title": "MESA Kaynakları — Öğrenme, Araştırma, Rehberler ve Yöntemler",
-          "description": "MESA'nın bağlantılı öğrenme, araştırma, rehber, sözlük, araç ve metodoloji kaynaklarını keşfedin.",
-          "eyebrow": "BİLGİ & ARAŞTIRMA",
-          "heading": "Kanıt odaklı, bağlantılı bilgi.",
-          "intro": "Pratik rehberler, teknik kavramlar, araştırma protokolleri ve şeffaf yöntemler için kalıcı bir yayın katmanı."
+          "title": "MESA Kaynakları — Dersler, Rehberler ve Araştırmalar",
+          "description": "MESA’yı öğrenmek ve yapay zekâ uygulamaları geliştirmek için dersler, rehberler, araştırma planları ve teknik kavramlar.",
+          "eyebrow": "BİLGİ VE ARAŞTIRMA",
+          "heading": "Öğrenin, deneyin, kaynakları inceleyin.",
+          "intro": "Temel kavramları öğrenmek, uygulama geliştirmek veya bir yöntemin dayanaklarına bakmak için buradan başlayabilirsiniz."
         }
       }
     },
@@ -33,11 +33,11 @@
           "intro": "Start with no background. Follow one connected course from context windows to retrieval, evidence and a working search lab."
         },
         "tr": {
-          "title": "MESA Learn — İlk ilkelerden çalışan arama sistemine",
-          "description": "Yapay zekâ hafızası ve retrieval için 14 kapsamlı ders: hesaplı örnekler, şemalar, kaynaklar ve çalıştırılabilir arama laboratuvarı.",
-          "eyebrow": "LEARN",
-          "heading": "Hafızayı anlayın.\nKanıtla inşa edin.",
-          "intro": "Ön bilgi gerekmez. Bağlam penceresinden retrieval, kanıt ve çalışan arama laboratuvarına uzanan bağlantılı bir öğrenme yolu."
+          "title": "MESA Dersleri — Temelden Çalışan Bir Arama Sistemine",
+          "description": "Yapay zekâ hafızası ve arama üzerine 14 ders; adım adım örnekler, şemalar ve çalıştırabileceğiniz küçük bir arama sistemi.",
+          "eyebrow": "DERSLER",
+          "heading": "Hafızayı anlayın.\nBir arama sistemi kurun.",
+          "intro": "Ön bilgi gerekmiyor. Bağlam penceresinden başlayıp arama, kaynak izi ve çalışan bir uygulamaya uzanan dersleri sırayla izleyin."
         }
       }
     },
@@ -53,11 +53,11 @@
           "intro": "Research publications separate planned work, executed experiments, results, limitations, and reproducibility evidence."
         },
         "tr": {
-          "title": "MESA Research — Protokoller, Benchmark'lar ve Bulgular",
-          "description": "Uydurma sonuçlar olmadan şeffaf MESA araştırma protokollerini, yöntemleri, sınırlılıkları ve yeniden üretilebilirlik notlarını okuyun.",
-          "eyebrow": "RESEARCH",
-          "heading": "Metriklerden önce yöntem.",
-          "intro": "Araştırma yayınları planlanan çalışmayı, yürütülen deneyleri, sonuçları, sınırlılıkları ve yeniden üretilebilirlik kanıtını birbirinden ayırır."
+          "title": "MESA Araştırmaları — Yöntemler ve Bulgular",
+          "description": "MESA araştırmalarının sorularını, yöntemlerini, sınırlarını ve tekrarlanabilmesi için gereken kayıtları inceleyin.",
+          "eyebrow": "ARAŞTIRMA",
+          "heading": "Önce yöntemi açıklayın.",
+          "intro": "Her yayında planlanan çalışma, yapılan deney ve elde edilen sonuç ayrı belirtilir. Henüz yapılmayan testler için sonuç sunulmaz."
         }
       }
     },
@@ -73,11 +73,11 @@
           "intro": "Step-by-step guidance with warnings, checklists, examples, related concepts, and restrained product context."
         },
         "tr": {
-          "title": "MESA Rehberleri — Pratik, Kanıt Odaklı İş Akışları",
-          "description": "Hukuki araştırma, doğrulama, retrieval ve kanıt odaklı yapay zekâ iş akışları için pratik rehberleri izleyin.",
+          "title": "MESA Rehberleri — Adım Adım Uygulama",
+          "description": "Hukuki araştırma, kaynak doğrulama ve yapay zekâ uygulamaları için adım adım rehberler.",
           "eyebrow": "REHBERLER",
-          "heading": "Sorundan başlayın. Kanıtı koruyun.",
-          "intro": "Uyarılar, kontrol listeleri, örnekler, ilgili kavramlar ve ölçülü ürün bağlamı içeren adım adım rehberler."
+          "heading": "Bir işi adım adım yapın.",
+          "intro": "Somut bir sorundan başlayın; örnekleri, uyarıları ve kontrol listelerini izleyerek ilerleyin."
         }
       }
     },
@@ -93,11 +93,11 @@
           "intro": "Only concepts used by MESA topic clusters are included; each term points back to practical and research context."
         },
         "tr": {
-          "title": "MESA Sözlüğü — Legal AI ve Retrieval Kavramları",
-          "description": "MESA kaynaklarında kullanılan legal AI, retrieval, provenance ve memory kavramlarını anlayın.",
+          "title": "MESA Sözlüğü — Hafıza, Arama ve Kaynak İzi",
+          "description": "MESA belgelerinde geçen yapay zekâ, arama, kaynak izi ve hafıza kavramlarının açıklamaları.",
           "eyebrow": "SÖZLÜK",
-          "heading": "Bağlantılı bilgi ağı için ortak kavramlar.",
-          "intro": "Yalnızca MESA konu kümelerinde kullanılan kavramlar yer alır; her terim pratik ve araştırma bağlamına geri bağlanır."
+          "heading": "Terimleri birlikte anlayalım.",
+          "intro": "Her kavram kısa bir açıklamayla birlikte, kullanıldığı rehber ve araştırmalara bağlanır."
         }
       }
     },
@@ -113,11 +113,11 @@
           "intro": "This index exposes planned utility categories without pretending unfinished tools already work."
         },
         "tr": {
-          "title": "MESA Araçları — Pratik Araştırma Yardımcıları",
-          "description": "MESA'nın hukuki araştırma ve yapay zekâ değerlendirme iş akışları için planlanan odaklı araçlarını görün.",
+          "title": "MESA Araçları — Planlanan Yardımcılar",
+          "description": "Hukuki araştırma ve yapay zekâ değerlendirmesi için planlanan yardımcı araçları inceleyin.",
           "eyebrow": "ARAÇLAR",
-          "heading": "Hazır olduklarında gerçekten yararlı araçlar.",
-          "intro": "Bu dizin, tamamlanmamış araçlar çalışıyormuş gibi davranmadan planlanan yardımcı kategorilerini gösterir."
+          "heading": "Hangi araçlar hazırlanıyor?",
+          "intro": "Burada geliştirilmesi planlanan araçlar listelenir. Henüz tamamlanmamış bir araç, kullanıma hazır gibi sunulmaz."
         }
       }
     },
@@ -133,11 +133,11 @@
           "intro": "Methodology pages define how evidence should be selected, judged, measured, versioned, reproduced, limited, and corrected."
         },
         "tr": {
-          "title": "MESA Araştırma Metodolojisi — Değerlendirme ve Yeniden Üretilebilirlik",
-          "description": "MESA'nın veri seti seçimi, relevance judgement, retrieval metrikleri, sürümleme, sınırlılıklar ve düzeltmeler temelini inceleyin.",
-          "eyebrow": "METODOLOJİ",
-          "heading": "Güven, görünür yöntemlerle başlar.",
-          "intro": "Metodoloji sayfaları kanıtın nasıl seçileceğini, değerlendirileceğini, ölçüleceğini, sürümleneceğini, yeniden üretileceğini, sınırlandırılacağını ve düzeltileceğini tanımlar."
+          "title": "MESA’nın Değerlendirme Yöntemleri",
+          "description": "Veri ve soru seçimi, ilgililik değerlendirmesi, arama ölçümleri, sürümleme ve düzeltme yöntemleri.",
+          "eyebrow": "YÖNTEMLER",
+          "heading": "Sonuca nasıl ulaşıldığı belli olsun.",
+          "intro": "Verinin nasıl seçileceği, sonuçların nasıl değerlendirileceği ve aynı deneyin nasıl tekrarlanacağı burada açıklanır."
         }
       }
     }
@@ -151,7 +151,7 @@
       },
       "descriptions": {
         "en": "Finding, evaluating, and verifying legal authority.",
-        "tr": "Hukuki otoriteyi bulma, değerlendirme ve doğrulama."
+        "tr": "Hukuki kaynakları ve içtihadı bulma, değerlendirme ve doğrulama."
       },
       "related": [
         "verify-ai-yargitay",
@@ -162,11 +162,11 @@
       "id": "legal-ai",
       "labels": {
         "en": "Legal AI",
-        "tr": "Legal AI"
+        "tr": "Hukukta yapay zekâ"
       },
       "descriptions": {
         "en": "Responsible AI-assisted legal workflows.",
-        "tr": "Sorumlu, yapay zekâ destekli hukuk iş akışları."
+        "tr": "Yapay zekâ yardımıyla hukuk çalışırken kaynakları ve inceleme adımlarını koruma."
       },
       "related": [
         "verify-ai-yargitay",
@@ -195,7 +195,7 @@
       },
       "descriptions": {
         "en": "Durable, scoped, and reviewable organizational knowledge.",
-        "tr": "Kalıcı, kapsamlı ve incelenebilir kurumsal bilgi."
+        "tr": "Erişim izinleri ve kaynakları korunarak saklanan kurumsal bilgi."
       },
       "related": [
         "structured-vs-unstructured-memory",
@@ -207,11 +207,11 @@
       "id": "search-retrieval",
       "labels": {
         "en": "Search & Retrieval",
-        "tr": "Search & Retrieval"
+        "tr": "Arama ve bilgiye erişim"
       },
       "descriptions": {
         "en": "Lexical, semantic, hybrid, and structured retrieval.",
-        "tr": "Lexical, semantic, hybrid ve yapılandırılmış retrieval."
+        "tr": "Sözcük tabanlı, anlamsal, hibrit ve yapılandırılmış arama."
       },
       "related": [
         "hybrid-retrieval",
@@ -223,11 +223,11 @@
       "id": "semantic-search-topic",
       "labels": {
         "en": "Semantic Search",
-        "tr": "Semantic Search"
+        "tr": "Anlamsal arama"
       },
       "descriptions": {
         "en": "Retrieval by meaning and context rather than exact terms alone.",
-        "tr": "Yalnızca aynı kelimelerle değil, anlam ve bağlamla retrieval."
+        "tr": "Yalnızca aynı kelimelerle değil, anlam ve bağlamla arama."
       },
       "related": [
         "semantic-search",
@@ -242,7 +242,7 @@
       },
       "descriptions": {
         "en": "Grounding generation in retrieved source material.",
-        "tr": "Üretimi geri getirilen kaynak materyale dayandırma."
+        "tr": "Yanıtı, aramada bulunan kaynak metinlere dayandırma."
       },
       "related": [
         "rag-vs-ai-memory",
@@ -254,11 +254,11 @@
       "id": "knowledge-graph",
       "labels": {
         "en": "Knowledge Graph",
-        "tr": "Knowledge Graph"
+        "tr": "Bilgi çizgesi"
       },
       "descriptions": {
         "en": "Explicit entities, assertions, and relationships.",
-        "tr": "Açık varlıklar, iddialar ve ilişkiler."
+        "tr": "Varlıklar, bilgi kayıtları ve aralarındaki açık ilişkiler."
       },
       "related": [
         "why-graphs-matter",
@@ -269,11 +269,11 @@
       "id": "ai-memory",
       "labels": {
         "en": "AI Memory",
-        "tr": "AI Memory"
+        "tr": "Yapay zekâ hafızası"
       },
       "descriptions": {
         "en": "Evidence-aware information retained across agent activity.",
-        "tr": "Ajan etkinliği boyunca korunan kanıt odaklı bilgi."
+        "tr": "Ajanın çalışmalar arasında sakladığı, kaynakları belli olan bilgiler."
       },
       "related": [
         "what-is-ai-memory",
@@ -294,8 +294,8 @@
           "description": "Structure a research question into concepts, authorities, exclusions, and verification steps."
         },
         "tr": {
-          "title": "Hukuki Araştırma Sorgu Oluşturucu",
-          "description": "Bir araştırma sorusunu kavramlara, otoritelere, hariç tutmalara ve doğrulama adımlarına ayırın."
+          "title": "Hukuki araştırma sorgusu hazırlama",
+          "description": "Araştırma sorunuzu kavramlara ayırın; aranacak hukuki kaynakları, kapsam dışı kalacak noktaları ve doğrulama adımlarını belirleyin."
         }
       }
     },
@@ -309,8 +309,8 @@
           "description": "Turn a cited decision into a repeatable source and relevance review."
         },
         "tr": {
-          "title": "Emsal Karar Doğrulama Kontrol Listesi",
-          "description": "Atıf verilen bir kararı tekrarlanabilir kaynak ve uygunluk incelemesine dönüştürün."
+          "title": "Yargı kararı doğrulama listesi",
+          "description": "Atıf yapılan kararın kaynağını, metnini ve somut olayla ilişkisini adım adım kontrol edin."
         }
       }
     },
@@ -324,8 +324,8 @@
           "description": "Document retrieval signals, scope boundaries, provenance, and evaluation gaps."
         },
         "tr": {
-          "title": "Retrieval Mimarisi Denetleyicisi",
-          "description": "Retrieval sinyallerini, kapsam sınırlarını, provenance'ı ve değerlendirme boşluklarını belgeleyin."
+          "title": "Arama mimarisini değerlendirme",
+          "description": "Arama yöntemlerini, erişim sınırlarını, kaynak izini ve eksik değerlendirmeleri kayıt altına alın."
         }
       }
     }
@@ -357,8 +357,8 @@
           "description": "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database."
         },
         "tr": {
-          "title": "Yapay zekâ hafızası: konuşmadan sonra ne kalır? — MESA Learn",
-          "description": "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
+          "title": "Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA",
+          "description": "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
         }
       },
       "locales": {
@@ -502,9 +502,9 @@
           ]
         },
         "tr": {
-          "title": "Yapay zekâ hafızası: konuşmadan sonra ne kalır?",
-          "summary": "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın.",
-          "shortAnswer": "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın.",
+          "title": "Yapay zekâ hafızası: sohbet bitince ne kalır?",
+          "summary": "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.",
+          "shortAnswer": "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.",
           "sections": [
             {
               "id": "three-layers",
@@ -512,11 +512,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Kurgusal Atlas arşivi için çalışan bir asistan düşünün. Pazartesi okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni konuşmada açılış saatini soruyorsunuz. Uygulama kullanılabilir bir kayıt sağlamazsa model ancak parametrelerindeki bilgiye dayanabilir. Kendinden emin yanıt hangi yolun kullanıldığını göstermez."
+                  "text": "Atlas arşivi için çalışan kurgusal bir asistan düşünün. Pazartesi, okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni bir sohbette açılış saatini soruyorsunuz. Uygulama önceki kaydı modele sunmazsa model yalnızca eğitimde öğrendiklerine dayanabilir. Kendinden emin bir yanıt vermesi, bilgiyi gerçekten hatırladığını göstermez."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Büyük dil modeli (LLM), aldığı girdiden sonraki token’ları tahmin ederek metin üretir. Token kodlanmış metin birimidir; her zaman tam kelime değildir. Bağlam penceresi modelin arayüzü altında çalışabildiği sınırlı girdi/çıktı token dizisidir. Kalıcı depolama bu tahmin sürecinin dışında, uygulamaya ait mekanizmadır. Burada hafıza bir mühendislik terimidir; insan gibi hatırlama iddiası değildir."
+                  "text": "Büyük dil modeli (LLM), girdiden sonra hangi token’ların geleceğini tahmin ederek metin üretir. Token, her zaman tam bir sözcüğe karşılık gelmeyen kodlanmış metin birimidir. Bağlam penceresi, modelin tek istekte işleyebildiği sınırlı girdi ve çıktı alanıdır. Kalıcı depolama ise bu tahmin sürecinin dışında, uygulama tarafından yönetilir. Burada “hafıza” bir mühendislik kavramıdır; modelin insan gibi hatırladığı söylenmiyor."
                 },
                 {
                   "kind": "table",
@@ -545,7 +545,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Veritabanına satır yazmak modeli yeniden eğitmez. O satırı getirmek, seçim ve bağlam sınırları içinde yalnızca bir istekte kullanılabilir kılar. Konuşma geçmişinde duran bir cümlenin budamadan sonra veya başka oturumda bulunacağı da garanti değildir. Bunlar farklı hata biçimleri olan ayrı mekanizmalardır."
+                  "text": "Veritabanına bir satır eklemek modeli yeniden eğitmez. Uygulama o satırı bulup bağlama eklerse model, yalnızca ilgili istekte bu bilgiden yararlanabilir. Konuşma geçmişinde duran bir cümlenin de geçmiş kısaltıldığında veya yeni oturum açıldığında erişilebilir kalacağı garanti değildir. Bunlar, farklı biçimlerde hata verebilen ayrı mekanizmalardır."
                 }
               ]
             },
@@ -555,7 +555,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "“Dokuzda açılır” bilgisini saklamadan önce sorun: hangi salon, hangi günler, kime göre ve hangi okuyucular için? Kullanışlı kayıt özgün gözlemi, kaynağı, erişim kapsamını ve zamanı korur. Çıkarılmış olgu bu gözlemin yorumudur. İkisini saklamak, özgün kaynak değişmiş gibi davranmadan çıkarımı düzeltmenizi sağlar."
+                  "text": "“Dokuzda açılır” bilgisini saklamadan önce şu soruları sorun: Hangi salon? Hangi günler? Hangi kaynağa göre? Kimler görebilir? İyi bir kayıt, özgün ifadeyi, kaynağını, erişim izinlerini ve zamanını korur. Bu ifadeden çıkarılan bilgi ise bir yorumdur. İkisini ayrı saklamak, kaynağı değiştirmeden hatalı yorumu düzeltmenizi sağlar."
                 },
                 {
                   "kind": "code",
@@ -585,7 +585,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Yazma politikasını açık seçin. Her mesajı saklamak özel veriyi, tekrarları ve eski talimatları biriktirir. Yalnızca LLM özeti saklamak istisnaları veya kanıtı kaybettirebilir. Başlangıç için tam kaynak kayıtlarını koruyup görevle ilgili az sayıda iddia çıkarmak ve her iddiayı kaynağına bağlamak uygundur. Bu bir tasarım örüntüsüdür; evrensel gereklilik değildir."
+                  "text": "Neyin saklanacağına açıkça karar verin. Her mesajı kaydetmek; özel bilgileri, tekrarları ve geçerliliğini yitirmiş talimatları biriktirir. Yalnızca model özeti saklamak da istisnaları veya dayanakları kaybettirebilir. Başlangıç için kaynak metni koruyup görevle ilgili az sayıda bilgi kaydı çıkarabilir ve her birini kaynağına bağlayabilirsiniz. Bu, her sistemde zorunlu olan tek çözüm değil, bir tasarım seçeneğidir."
                 }
               ]
             },
@@ -595,11 +595,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Çarşamba salonun saati değişiyor. Yeni cümle eklemek, revizyon veya geçerlilik izlenmiyorsa yarışan iki yanıt bırakır. Politikanızın izin verdiği denetim izini korurken önceki iddiayı geçersizleşmiş olarak işaretleyin. Kaynak silindiğinde türetilmiş özet, embedding ve önbellekler hakkında da karar gerekir; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir."
+                  "text": "Çarşamba salonun açılış saati değişsin. Sürüm ve geçerlilik bilgisi tutmadan yalnızca yeni bir cümle eklerseniz, arama birbiriyle yarışan iki yanıt bulabilir. Saklama kurallarınıza uygun geçmişi koruyun ve eski kaydın geçerliliğini yitirdiğini belirtin. Kaynak silindiğinde ona bağlı özetleri, sayısal temsilleri ve önbellekleri de değerlendirin; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Test, gözlenebilir devamlılıktır: oturumu kapatın, başka yetkili oturum açın, soruyu sorun; sonra erişimi kaldırıp veya kaynağı değiştirip tekrarlayın. Yanıtla birlikte dönen kaynak kimliğini kontrol edin. Uzun bağlam bu testin yerini tutmaz. Liu ve arkadaşları belirli uzun bağlam görevlerinde konum etkisini inceler; bulgu her model için zamansız sınır değil, kendi modelinizi değerlendirme nedenidir. [Araştırma](https://arxiv.org/abs/2307.03172)."
+                  "text": "Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka bir yetkili oturum açın ve aynı soruyu sorun. Ardından erişimi kaldırıp veya kaynağı değiştirip testi tekrarlayın. Yanıtla birlikte kaynak kimliğini de kontrol edin. Uzun bir bağlam penceresi bu testin yerini tutmaz. Liu ve arkadaşlarının belirli uzun bağlam görevlerinde bulduğu konum etkisi, her model için değişmez bir sınır değil; kendi sisteminizi ölçmeniz için bir gerekçedir. [Araştırma](https://arxiv.org/abs/2307.03172)"
                 }
               ]
             },
@@ -610,8 +610,8 @@
                 {
                   "kind": "exercise",
                   "title": "Kendinizi sınayın",
-                  "text": "Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Retrieval satırı her seferinde bulsa bile hangi iki sorun sürer?",
-                  "answer": "Kaynağa bağlı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Retrieval başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin."
+                  "text": "Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Arama satırı her seferinde bulsa bile hangi iki sorun sürer?",
+                  "answer": "Kaynağıyla bağlantılı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Arama başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin."
                 }
               ]
             },
@@ -638,7 +638,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -688,8 +689,8 @@
           "description": "Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail."
         },
         "tr": {
-          "title": "RAG ve hafıza: isteği adım adım kurmak — MESA Learn",
-          "description": "Kaynağı retrieval’dan yanıta kadar izleyin. RAG ile hafızanın örtüşmesini, bağlam bütçesini ve kaynaklandırmanın nerede bozulduğunu öğrenin."
+          "title": "RAG ve hafıza: kaynaktan yanıta — MESA",
+          "description": "Bilginin aramada bulunmasından yanıta dönüşmesine kadar geçen adımları izleyin. RAG ile hafızanın ilişkisini ve bağlam bütçesini örneklerle öğrenin."
         }
       },
       "locales": {
@@ -835,21 +836,21 @@
           ]
         },
         "tr": {
-          "title": "RAG ve hafıza: isteği adım adım kurmak",
-          "summary": "Kaynağı retrieval’dan yanıta kadar izleyin. RAG ile hafızanın örtüşmesini, bağlam bütçesini ve kaynaklandırmanın nerede bozulduğunu öğrenin.",
-          "shortAnswer": "Kaynağı retrieval’dan yanıta kadar izleyin. RAG ile hafızanın örtüşmesini, bağlam bütçesini ve kaynaklandırmanın nerede bozulduğunu öğrenin.",
+          "title": "RAG ve hafıza: kaynaktan yanıta",
+          "summary": "Bilginin aramada bulunmasından yanıta dönüşmesine kadar geçen adımları izleyin. RAG ile hafızanın ilişkisini ve bağlam bütçesini örneklerle öğrenin.",
+          "shortAnswer": "Bilginin aramada bulunmasından yanıta dönüşmesine kadar geçen adımları izleyin. RAG ile hafızanın ilişkisini ve bağlam bütçesini örneklerle öğrenin.",
           "sections": [
             {
               "id": "pattern",
-              "title": "RAG bir örüntü, hafıza bir yaşam döngüsü konusudur",
+              "title": "RAG ne yapar, hafıza neyi yönetir?",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Retrieval-augmented generation, dış bilgiyi getirip üretilen yanıtı bu bilgiyle koşullandırmaktır. Uygulama bir kılavuz, kullanıcı tercihi veya önceki görev kaydı getirebilir. “Hafıza”, uygulamanın neyi koruduğunu ve zaman içinde nasıl yönettiğini anlatır. Hafıza sistemi RAG hattını besleyebilir; RAG veri kümesi sürekli güncellenebilir. Tanımlayıcı ayrım statik/dinamik olması değildir."
+                  "text": "RAG, dışarıdan bulunan bilgiyi dil modeline sunarak yanıtı bu bilgiye dayandırma yöntemidir. Getirilen içerik bir kılavuz, kullanıcı tercihi veya önceki görev kaydı olabilir. “Hafıza” ise uygulamanın neyi sakladığını ve bunu zaman içinde nasıl yönettiğini anlatır. Bir hafıza sistemi RAG akışına veri sağlayabilir; RAG’in kullandığı belgeler de sürekli güncellenebilir. Ayrım, birinin sabit diğerinin değişken olması değildir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Lewis ve arkadaşları parametrik bilgiyle getirilen bilgiyi birleştiren belirli bir eğitilebilir RAG mimarisi sundu. Güncel uygulamalarda terim, retriever ve generator birlikte eğitilmeden, istek anındaki retrieval için de kullanılır. Hangi anlamı kullandığınızı belirtin. Bu ders uygulama örüntüsünü açıklar; her kaynaklı prompt’un özgün eğitim yöntemini uyguladığını iddia etmez. [Özgün makale](https://arxiv.org/abs/2005.11401)."
+                  "text": "Lewis ve arkadaşları, modelin öğrendiği bilgiyle aramada bulunan bilgiyi birleştiren belirli bir eğitilebilir RAG mimarisi sundu. Bugün RAG adı, arama bileşeniyle yanıt üreten model birlikte eğitilmeden yapılan uygulamalar için de kullanılıyor. Hangi kullanımdan söz ettiğinizi belirtin. Bu ders uygulama akışını açıklar; kaynağa dayanan her istemin özgün makaledeki eğitim yöntemini kullandığını söylemez. [Özgün makale](https://arxiv.org/abs/2005.11401)"
                 }
               ]
             },
@@ -859,11 +860,11 @@
               "blocks": [
                 {
                   "kind": "diagram",
-                  "alt": "Soru üretimden önce yetkilendirme, retrieval, seçim ve bağlam kurulumundan geçer.",
+                  "alt": "Soru üretimden önce yetkilendirme, arama, seçim ve bağlam kurulumundan geçer.",
                   "steps": [
                     "Soru · hafta içi saat?",
                     "Kapsam · archive-team",
-                    "Adaylar · revizyon 1 ve 2",
+                    "Adaylar · sürüm 1 ve 2",
                     "Seçim · etkin kaynak 2",
                     "Üretim · yanıt + kaynak"
                   ],
@@ -871,7 +872,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Önce çağıranın izinli kaynaklarını çözün. Sonra adayları getirin; uygun olmayan veya eski sürümle değiştirilmiş kayıtları çıkarın. Kalan adayları sıralayıp sınırlı kanıt bağlamına yerleştirin. Son olarak generator’dan bu bağlama dayanarak cevap ve destekleyen kaynak isteyin. Aşamaları ayrı kaydedin: makul son yanıt bozuk retriever’ı veya model parametrelerinden gelen tesadüfi cevabı gizleyebilir."
+                  "text": "Önce isteği yapan kişinin hangi kaynaklara erişebildiğini belirleyin. Sonra adayları bulun; uygun olmayan veya yerini daha yeni sürüme bırakmış kayıtları çıkarın. Kalan sonuçları sıralayıp sınırlı kanıt bağlamına yerleştirin. Son olarak modelden bu bağlama dayalı bir yanıt ve onu destekleyen kaynakları isteyin. Her aşamayı ayrı izleyin: Makul görünen son yanıt, aramadaki bir hatayı veya modelin eğitimden tesadüfen bildiği bir cevabı gizleyebilir."
                 }
               ]
             },
@@ -881,11 +882,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Kaynak “Salon hafta içi 09.00’da açılır; resmî tatiller hariç” diyor. Parçalama istisnayı başka kayda ayırır ve retrieval yalnızca ilkini getirirse sistem gerçek cümleye atıf yaparken yanıltıcı cevap verebilir. Belge yapısıyla başlayın: başlık, paragraf, tablo ve ek sınırları. Kaynak konumlarını koruyup soruların komşu parçalara ihtiyaç duyup duymadığını test edin."
+                  "text": "Kaynakta “Salon hafta içi 09.00’da açılır; resmî tatiller hariç” yazsın. Metni bölerken istisna ayrı parçaya düşer ve arama yalnızca ilk parçayı getirirse sistem gerçek bir cümleye atıf yaparak yanlış yönlendirebilir. Başlık, paragraf, tablo ve ek sınırlarını gözetin. Kaynak içindeki konumları koruyun; soruların komşu parçalara ihtiyaç duyup duymadığını test edin."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Örtüşme yerel bağlamı korumaya yardımcıdır; aynı zamanda birbirine çok benzeyen adaylar üretir. Bağlamı doldurmadan önce kaynak/revizyon/aralıkla tekrarları ayıklayın. Evrensel parça boyutu yoktur: kısa SSS ve uzun tanımlı tablo farklı işlem ister. Token sayısını kural yapmak yerine başlangıç ayarı seçin, hataları inceleyin ve ayrılmış test sorularında karşılaştırın."
+                  "text": "Parçaları bir miktar örtüştürmek yakın bağlamı koruyabilir, ancak çok benzer sonuçları da çoğaltır. Modelin bağlamını doldurmadan önce belge, sürüm ve metin aralığına göre tekrarları ayıklayın. Her belgeye uygun tek bir parça boyutu yoktur. Kısa bir SSS ile uzun bir tablo aynı biçimde bölünmez. Başlangıç ayarını seçin, hataları inceleyin ve daha önce ayarlarda kullanmadığınız test sorularıyla karşılaştırın."
                 }
               ]
             },
@@ -899,13 +900,13 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Her kanıt 500 token ve kimlik/biçim için 50 token gerektiriyorsa on öğe 5.500 token tüketir. On bir öğe 6.050 ile bu örnek bütçeyi aşar. Sığdırmak için parçayı olumsuzluk veya istisna ortasında kesmeyin. Öğeyi çıkarın ya da değiştirin; kaynak kimliğini koruyun ve mümkünse modelin gerçek tokenizer’ıyla sayın. Sayılar model özelliği değil alıştırmadır."
+                  "text": "Her kanıt 500 token, kimlik ve biçim bilgileri de 50 token gerektiriyorsa on öğe 5.500 token tutar. On bir öğe 6.050 token ile bu örnekteki bütçeyi aşar. Sığdırmak için metni olumsuzluk veya istisna cümlesinin ortasından kesmeyin. Öğeyi çıkarın ya da daha uygun bir bütünle değiştirin. Kaynak kimliğini koruyun; mümkünse modelin gerçek token sayacını kullanın. Bu sayılar bir modelin kapasitesini değil, hesap örneğini gösterir."
                 }
               ]
             },
             {
               "id": "failures",
-              "title": "Retrieval ile üretimi ayrı teşhis edin",
+              "title": "Aramayla yanıt üretimini ayrı değerlendirin",
               "blocks": [
                 {
                   "kind": "table",
@@ -923,7 +924,7 @@
                       "Sıralama, tekrar ayıklama ve paketleme"
                     ],
                     [
-                      "Kaynak prompt’ta, cevap yanlış",
+                      "Kaynak bağlamda var, yanıt yine de yanlış",
                       "Talimat, model davranışı ve belirsizlik"
                     ],
                     [
@@ -934,7 +935,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Getirilen metin “önceki talimatları yok say” dese bile veridir. Güvenilir talimattan ayrı tutun; belge istedi diye araç eylemine yetki vermeyin. Kaynağın bulunması doğruluğu veya araç çağrısının güvenliğini sağlamaz. OWASP dolaylı prompt injection riskini ve katmanlı önlemleri açıklar; tek ayraç sorunu ortadan kaldırmaz. [Güvenlik kaynağı](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)."
+                  "text": "Aramada bulunan metin “önceki talimatları yok say” dese bile veri olarak kalmalıdır. Onu güvenilir talimatlardan ayırın; bir belge istedi diye araçlara işlem yetkisi vermeyin. Kaynağın bulunması, içeriğin doğru olduğunu veya araç çağrısının güvenliğini göstermez. OWASP, dolaylı istem enjeksiyonu riskini ve birden fazla katmanda alınabilecek önlemleri açıklar. Tek bir ayraç kullanmak sorunu çözmez. [Güvenlik kaynağı](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)"
                 }
               ]
             },
@@ -973,7 +974,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -994,7 +996,7 @@
           ],
           "tr": [
             "Kaynakla desteklenen istek kurmak",
-            "Retrieval ve yanıt hatasını ayırmak",
+            "Arama ve yanıt hatasını ayırmak",
             "İstisnaları kaybetmeden kanıt bütçelemek"
           ]
         }
@@ -1028,8 +1030,8 @@
           "description": "Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record."
         },
         "tr": {
-          "title": "Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak — MESA Learn",
-          "description": "Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun."
+          "title": "Metinden bilgi kaydına: kaynakta neyi korumalı? — MESA",
+          "description": "Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin."
         }
       },
       "locales": {
@@ -1169,9 +1171,9 @@
           ]
         },
         "tr": {
-          "title": "Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak",
-          "summary": "Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun.",
-          "shortAnswer": "Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun.",
+          "title": "Metinden bilgi kaydına: kaynakta neyi korumalı?",
+          "summary": "Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.",
+          "shortAnswer": "Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.",
           "sections": [
             {
               "id": "representations",
@@ -1179,7 +1181,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Atlas kılavuzu “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00’da açılır; diğer hafta içi günler 09.00 olarak kalır” diyor. Ham metin ifadeyi korur. Parça, bölümünü getirilebilir yapar. İddia bir yorumu açıklaştırır: özne, yüklem, değer ve niteleyiciler. Çizge ilişkileri gezilebilir yapar. Bu temsillerin hiçbiri kaynağın doğruluğunu kendiliğinden kanıtlamaz."
+                  "text": "Atlas kılavuzunda “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00’da açılır; diğer hafta içi günlerde saat 09.00 olarak kalır” yazsın. Ham metin özgün ifadeyi korur. Metin parçası, ilgili bölümü aramada bulmayı sağlar. Yapılandırılmış kayıt; özneyi, ilişkiyi, değeri ve koşulları ayrı alanlara ayırır. Çizge de ilişkilerin izlenmesini kolaylaştırır. Bu temsillerin hiçbiri kaynağın doğruluğunu kendiliğinden kanıtlamaz."
                 },
                 {
                   "kind": "table",
@@ -1196,7 +1198,7 @@
                     ],
                     [
                       "Metin parçası",
-                      "Pasaj retrieval’ı",
+                      "Pasaj aramayı",
                       "Belge genelindeki niteleyici"
                     ],
                     [
@@ -1213,7 +1215,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Temsili soruya göre seçin. “Dördüncü paragraf ne diyor?” tam metin gerektirir. “Cuma dokuzdan sonra hangi salonlar açılıyor?” tipli saat/gün alanlarından yararlanır. Metin yanında kaynağa bağlı iddia tutmak ikisine de hizmet eder. Yapılı satırı parser veya model değişince yeniden çıkarılabilir türetilmiş yorum olarak ele alın."
+                  "text": "Temsili, soracağınız soruya göre seçin. “Dördüncü paragraf ne diyor?” için tam metin gerekir. “Cuma günü dokuzdan sonra hangi salonlar açılıyor?” sorusu ise saat ve gün alanlarından yararlanır. Kaynak metni ve ona bağlı yapılandırılmış kaydı birlikte tutmak iki ihtiyacı da karşılar. Yapılandırılmış kaydı, ayrıştırıcı veya model değiştiğinde kaynaktan yeniden üretilebilen bir yorum olarak ele alın."
                 }
               ]
             },
@@ -1227,7 +1229,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "“Cuma”yı düşürmek iddiayı değiştirir. “1 Kasım’dan itibaren” kısmını düşürmek gelecekteki değişikliği güncel gösterir. Birim, olumsuzluk, yetki alanı, zaman ve istisna anlamı etkiliyorsa iddianın parçasıdır. Çıkarım koşulu temsil edemiyorsa kaynağı koruyup yorumu eksik olarak işaretleyin; sessizce atmayın."
+                  "text": "“Cuma” koşulunu kaldırmak kaydın anlamını değiştirir. “1 Kasım’dan itibaren” kısmını atmak da gelecekte başlayacak uygulamayı bugün geçerliymiş gibi gösterir. Birim, olumsuzluk, yetki alanı, zaman ve istisnalar anlamı etkiliyorsa kayıtta korunmalıdır. Çıkarım yöntemi bunları gösteremiyorsa kaynağı saklayın ve yorumu eksik olarak işaretleyin; koşulları sessizce atmayın."
                 },
                 {
                   "kind": "paragraph",
@@ -1243,16 +1245,16 @@
                   "kind": "diagram",
                   "alt": "Kaynak revizyonu parça, çıkarım çalışması ve koşullu iddia üretir.",
                   "steps": [
-                    "Revizyon r3 · özgün metin",
+                    "Sürüm r3 · özgün metin",
                     "Parça c4 · tam aralık",
                     "Çıkarım e2 · model/parser",
                     "İddia a42 · niteleyiciler"
                   ],
-                  "caption": "Düzeltme türetilmiş iddiayı değiştirir; özgün revizyon tanımlanabilir kalır."
+                  "caption": "Düzeltme türetilmiş iddiayı değiştirir; özgün sürüm tanımlanabilir kalır."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "W3C PROV kaynak izi anlatımında varlık, faaliyet ve aktörü ayırır. Bu örnekte kaynak ve iddia varlık; çıkarım faaliyet; yazılım servisi aktördür. Bu sözlük, iddiayı kimin neyden ürettiğini sormayı kolaylaştırır. Veritabanı şemanızı zorunlu kılmaz veya çıkarımın doğruluğunu sertifikalandırmaz. [PROV genel bakış](https://www.w3.org/TR/prov-overview/)."
+                  "text": "W3C PROV, kaynak izini anlatırken varlık, faaliyet ve aktör ayrımı yapar. Bu örnekte kaynak belge ve çıkarılan kayıt birer varlık; çıkarım işlemi faaliyet; yazılım hizmeti ise aktördür. Bu kavramlar, kaydın kim tarafından ve hangi kaynaktan üretildiğini sormayı kolaylaştırır. Belirli bir veritabanı şemasını zorunlu kılmaz veya çıkarımın doğru olduğunu belgelemez. [PROV genel bakış](https://www.w3.org/TR/prov-overview/)"
                 }
               ]
             },
@@ -1266,7 +1268,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Düzeltmede değişen kaynakla değişen yorumu ayırın. Kaynak aynıysa ama “cuma” yanlışlıkla “her gün” okunduysa yeni çıkarım veya iddia sürümü oluşturup hatalıyı geri çekin. Kılavuz değiştiyse yeni kaynak revizyonu oluşturun. Bu ayrım sonraki yanıtın gerçek, belge veya çıkarım hattı değiştiği için mi değiştiğini denetletir."
+                  "text": "Düzeltme yaparken kaynağın mı, yorumun mu değiştiğini ayırın. Kaynak aynı kaldığı hâlde “cuma” yanlışlıkla “her gün” okunmuşsa yeni bir çıkarım sürümü oluşturup hatalı kaydı geri çekin. Kılavuz gerçekten değiştiyse yeni belge sürümü oluşturun. Böylece bir yanıtın gerçek dünya, kaynak belge veya işleme yöntemi değiştiği için mi farklılaştığını inceleyebilirsiniz."
                 }
               ]
             },
@@ -1301,7 +1303,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -1358,8 +1361,8 @@
           "description": "Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions."
         },
         "tr": {
-          "title": "Embedding ve anlamsal arama: sayılarla açıklama — MESA Learn",
-          "description": "Benzerliği hesaplayın, yoğun ve seyrek temsili ayırın; en yakın komşunun neden gerçeklik veya erişim kararı olmadığını anlayın."
+          "title": "Anlamsal arama: vektörler neyi anlatır? — MESA",
+          "description": "Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin."
         }
       },
       "locales": {
@@ -1474,9 +1477,9 @@
           ]
         },
         "tr": {
-          "title": "Embedding ve anlamsal arama: sayılarla açıklama",
-          "summary": "Benzerliği hesaplayın, yoğun ve seyrek temsili ayırın; en yakın komşunun neden gerçeklik veya erişim kararı olmadığını anlayın.",
-          "shortAnswer": "Benzerliği hesaplayın, yoğun ve seyrek temsili ayırın; en yakın komşunun neden gerçeklik veya erişim kararı olmadığını anlayın.",
+          "title": "Anlamsal arama: vektörler neyi anlatır?",
+          "summary": "Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.",
+          "shortAnswer": "Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.",
           "sections": [
             {
               "id": "vectors",
@@ -1484,11 +1487,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Embedding modeli girdiyi vektör halinde düzenlenmiş sayılara dönüştürür. Eğitim, bazı ilişkilerin geometrik yakınlıkta görünmesini teşvik eder. “Açılış saatleri” belgesi ortak kelime olmadan “ne zaman girebilirim?” sorusuna yakın olabilir. Aday retrieval için yararlıdır. Koordinatlar öğrenilmiş özelliklerdir; “doğruluk”, “izin” veya “güncellik” gibi etiketli sütunlar değildir."
+                  "text": "Bir sayısal temsil (embedding) modeli, girdiyi vektör hâlinde düzenlenmiş sayılara dönüştürür. Eğitim sırasında bazı anlam ilişkileri bu uzaydaki yakınlığa yansır. Örneğin “Açılış saatleri” başlıklı belge, ortak sözcük bulunmasa da “Ne zaman girebilirim?” sorusuna yakın çıkabilir. Bu yöntem aday bulmaya yardımcı olur. Ancak vektörün boyutları “doğruluk”, “erişim izni” veya “güncellik” gibi açıkça adlandırılmış alanlar değildir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Yoğun temsil genellikle çok sayıda sıfır olmayan değer içeren sabit uzunluklu dizidir. Seyrek temsil çok daha büyük uzaydan az sayıda ağırlıklı boyut tutar. Klasik sözcüksel boyutlar terimlere karşılık gelir; öğrenilmiş seyrek modeller bunları genişletebilir veya yeniden ağırlıklandırabilir. Seyrek “öğrenmesiz”, yoğun ise “alanda daha iyi retrieval” demek değildir. Seçim kendi sorularınızda ölçüm gerektirir."
+                  "text": "Yoğun temsil, genellikle çok sayıda sıfır olmayan değer içeren sabit uzunlukta bir dizidir. Seyrek temsil ise çok daha büyük bir uzaydan az sayıda boyut ve ağırlık tutar. Klasik sözcük tabanlı temsillerde boyutlar terimlere karşılık gelir; öğrenilmiş seyrek modeller bu terimleri genişletebilir veya ağırlıklarını değiştirebilir. Seyrek olması modelin öğrenmediği, yoğun olması da her alanda daha iyi aradığı anlamına gelmez. Seçimi kendi sorularınızla ölçerek yapın."
                 }
               ]
             },
@@ -1506,7 +1509,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "0,8 benzerlik, yüzde 80 ilgililik olasılığı değildir. Anlamı embedding modeline, skor dağılımına ve göreve bağlıdır. Bir veri kümesinde çalışan eşik; dil, parçalama veya model değişince bozulabilir. Eşiği etiketlenmiş sorgularla ayarlayın ve precision/recall dengesini izleyin."
+                  "text": "0,8 benzerlik puanı, sonucun yüzde 80 olasılıkla ilgili olduğunu söylemez. Puanın anlamı modele, puan dağılımına ve göreve bağlıdır. Bir veri kümesinde işe yarayan eşik, dil, parçalama veya model değiştiğinde uygun olmayabilir. Eşiği etiketli sorgularla belirleyin; bulunan sonuçların isabetiyle ilgili sonuçları yakalama oranını birlikte izleyin."
                 }
               ]
             },
@@ -1518,7 +1521,7 @@
                   "kind": "diagram",
                   "alt": "Belge ve sorgu kodlayıcıları vektör karşılaştırmasını besler; uygunluk bağımsız uygulanır.",
                   "steps": [
-                    "Kaynak · parça + revizyon",
+                    "Kaynak · parça + sürüm",
                     "Kodla · sabit model kimliği",
                     "İndeks · tam veya yaklaşık",
                     "Sorgu · uyumlu kodlayıcı",
@@ -1528,7 +1531,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Tam arama uygun her vektörü skorlar. Yaklaşık en yakın komşu araması daha düşük maliyet karşılığında bazı komşuları kaçırabilir. Aynı uzaklık ve kapsamla yönetilebilir örnekte tam aramaya kıyasla yaklaşım kaybını ölçün. Anlamsal ilgililiği insan etiketleriyle ayrıca ölçün; indeks en yakın vektörleri kusursuz bulurken bu vektörler kötü yanıtlar olabilir."
+                  "text": "Tam arama, uygun olan bütün vektörleri puanlar. Yaklaşık en yakın komşu araması ise daha düşük maliyet karşılığında bazı komşuları kaçırabilir. Yönetilebilir büyüklükte bir örnekte, aynı uzaklık ölçüsü ve erişim kapsamıyla tam aramaya göre ne kaybettiğini ölçün. Anlamsal ilgililiği ayrıca insan değerlendirmesiyle sınayın. İndeks en yakın vektörleri doğru bulsa bile bu vektörlerin metinleri soruya iyi yanıt vermeyebilir."
                 }
               ]
             },
@@ -1538,17 +1541,17 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Sağlayıcı, model, revizyon, boyut, normalizasyon ve kodlama talimatını kaydedin. İki model de 768 sayı döndürüp uyumsuz uzay kullanabilir. Bazı retrieval modelleri farklı sorgu/belge kodlayıcısı veya öneki ister; uyumluluk mutlaka aynı metin değil, modelin öngördüğü eşleşmedir. Temsili değiştirmek çoğunlukla belgeleri yeniden kodlayıp türetilmiş indeksi kurmayı gerektirir."
+                  "text": "Sağlayıcıyı, modeli, model sürümünü, boyut sayısını, normalizasyonu ve kodlama talimatını kaydedin. İki model de 768 sayı üretebilir, ancak bu sayılar farklı anlam uzaylarına ait olabilir. Bazı modeller sorgu ve belge için ayrı kodlayıcılar veya ön ekler kullanır. Önemli olan girdilerin aynı olması değil, modelin öngördüğü biçimde eşleşmesidir. Temsil değiştiğinde belgeleri yeniden kodlamak ve arama indeksini yeniden kurmak genellikle gerekir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Kimlikler, olumsuzluk ve benzer revizyonlar sınırları ortaya çıkarır. “A-17 kuralı uygulanır” ve “A-17 kuralı uygulanmaz” anlamsal olarak yakın olabilir. Tam semboller için sözcüksel retrieval, geçerlilik için yapılı filtre kullanın. DPR ve Sentence-BERT öğrenilmiş yoğun retrieval ve cümle temsili örnekleridir; her çok dilli arşiv için garanti değildir. [DPR](https://arxiv.org/abs/2004.04906), [Sentence-BERT](https://arxiv.org/abs/1908.10084)."
+                  "text": "Kimlik numaraları, olumsuzluklar ve birbirine benzeyen belge sürümleri anlamsal aramanın sınırlarını gösterir. “A-17 kuralı uygulanır” ile “A-17 kuralı uygulanmaz” yakın vektörler üretebilir. Tam kodlar için sözcük tabanlı aramadan, geçerlilik için yapılandırılmış filtrelerden yararlanın. DPR ve Sentence-BERT, öğrenilmiş yoğun arama ve cümle temsili örnekleridir; her çok dilli arşivde aynı başarıyı garanti etmez. [DPR](https://arxiv.org/abs/2004.04906) [Sentence-BERT](https://arxiv.org/abs/1908.10084)"
                 }
               ]
             },
             {
               "id": "practice",
-              "title": "Şüpheli iyileşmeyi açıklayın",
+              "title": "Model değişikliğini değerlendirin",
               "blocks": [
                 {
                   "kind": "exercise",
@@ -1581,7 +1584,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -1640,8 +1644,8 @@
           "description": "Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model."
         },
         "tr": {
-          "title": "BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn",
-          "description": "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
+          "title": "BM25: bir sözcük ne zaman daha önemli olur? — MESA",
+          "description": "Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin."
         }
       },
       "locales": {
@@ -1783,9 +1787,9 @@
           ]
         },
         "tr": {
-          "title": "BM25: nadir kelime neden tekrarlanan kelimeyi geçer?",
-          "summary": "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.",
-          "shortAnswer": "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.",
+          "title": "BM25: bir sözcük ne zaman daha önemli olur?",
+          "summary": "Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.",
+          "shortAnswer": "Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.",
           "sections": [
             {
               "id": "intuition",
@@ -1793,11 +1797,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "“Atlas cuma saatleri” için sözcüksel retriever sorgu terimlerini içeren pasajları bulur. Hangi eşleşmenin önemli olduğuna karar vermelidir. BM25 terim nadirliğini, belge içi sıklığı ve belge uzunluğu düzeltmesini birleştirir. “Saat” kelimesini elli kez tekrarlamak uzun ilgisiz belgeyi yenilmez yapmamalıdır; nadir kimlik daha ayırt edici ipucu olabilir."
+                  "text": "“Atlas cuma saatleri” sorgusunda sözcük tabanlı arama, bu terimleri içeren pasajları bulur. BM25 hangi eşleşmenin daha önemli olduğuna karar verirken sözcüğün nadirliğini, belge içindeki sıklığını ve belge uzunluğunu birlikte kullanır. “Saat” sözcüğünü elli kez yineleyen ilgisiz bir belge sırf bu yüzden öne çıkmamalıdır. Nadir bir kimlik kodu çok daha ayırt edici olabilir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Ters indeks terimi onu içeren belgelere eşler. Terimleri sıralamadan önce tokenizasyon belirler. “A-17”, “a” ve “17” olarak bölünürse skor ayarı hiç indekslenmemiş kimlik sınırını geri getiremez. Önce token’ları ve sorgu ayrıştırmasını inceleyin. Tam kimlik ayrı normalize alan veya eşitlik filtresi gerektirebilir."
+                  "text": "Ters indeks, her terimi geçtiği belgelerle eşleştirir. Ancak hangi terimlerin oluşacağını metnin parçalanma yöntemi belirler. “A-17” kodu “a” ve “17” diye ayrılırsa sonradan puan ayarlamak kaybolan kimliği geri getirmez. Önce üretilen token’ları ve sorgunun nasıl çözümlendiğini inceleyin. Tam kimlik araması için ayrı bir alan veya eşitlik filtresi gerekebilir."
                 }
               ]
             },
@@ -1811,7 +1815,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan bir tekrara çıkmak, ondan on bire çıkmaktan daha önemlidir. `k1` doygunluğu, `b` uzunluk normalizasyonunu kontrol eder. `b=0` iken uzunluk etkisizdir; `b=1` iken tam uzunluk oranı girer. BM25 sürümleri IDF ayrıntısında farklılaşır; parametre adlarıyla birlikte uygulamayı da kaydedin."
+                  "text": "IDF, nadir geçen terimlere daha çok ağırlık verir. Sözcük sıklığının katkısı ise giderek azalır: İlk eşleşme, onuncudan on birinci tekrara geçişten daha önemlidir. `k1` bu doygunluğu, `b` belge uzunluğuna göre düzeltmeyi belirler. `b=0` uzunluk etkisini kaldırır; `b=1` tam uzunluk oranını kullanır. BM25 uygulamalarında IDF hesabı değişebilir; yalnızca parametreleri değil, kullanılan uygulamayı da kaydedin."
                 }
               ]
             },
@@ -1856,7 +1860,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa parçaların her zaman iyi olduğunu kanıtlamaz. Belgeleri bölmek terim istatistiğini, bağlam tamlığını ve ilgili sayılan birimi değiştirir. Sıralama değişikliğini test ederken parçalamayı sabit tutun; sonra parçalamayı ayrı deneyde değerlendirin."
+                  "text": "IDF ve sözcük sıklığı aynıysa kısa pasaj daha yüksek katkı alır. Bu hesap, kısa parçaların her durumda daha iyi olduğunu göstermez. Metni bölmek sözcük istatistiklerini, bağlam bütünlüğünü ve ilgili sayılan birimi değiştirir. Sıralama ayarını sınarken parçalamayı sabit tutun; parçalama değişikliğini ayrı bir deneyde değerlendirin."
                 }
               ]
             },
@@ -1878,7 +1882,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Türkçe için gerçek sorgu/belge çiftlerinde noktalı/noktasız I, ekler ve aksanları inceleyin. Küçük harfe çevirme ve işaret kaldırma bazı eşleşmelere yardımcı olurken anlamlı ayrımları silebilir. Özgün metni koruyup hem kimlik kesinliğini hem doğal dil recall’unu test edin. Arama sözdizimi ve tokenizer davranışı, arayüzün metin normalizasyonundan ayrıdır."
+                  "text": "Türkçe sorgu ve belgelerde noktalı/noktasız I, ekler ve düzeltme işaretleriyle oluşan farkları inceleyin. Küçük harfe dönüştürmek veya işaretleri kaldırmak bazı eşleşmeleri kolaylaştırırken anlamlı ayrımları da silebilir. Özgün metni koruyun; hem kimlik kodlarının tam eşleşmesini hem doğal dilde ilgili sonuçları bulma oranını test edin. Arama motorunun sorgu dili ve token üretimi, arayüzdeki metin normalizasyonundan ayrıdır."
                 },
                 {
                   "kind": "paragraph",
@@ -1917,7 +1921,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "learning": {
@@ -1967,8 +1972,8 @@
           "description": "Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing."
         },
         "tr": {
-          "title": "Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama — MESA Learn",
-          "description": "Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın."
+          "title": "Hibrit arama: farklı sonuçları birleştirmek — MESA",
+          "description": "Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin."
         }
       },
       "locales": {
@@ -2105,9 +2110,9 @@
           ]
         },
         "tr": {
-          "title": "Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama",
-          "summary": "Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın.",
-          "shortAnswer": "Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın.",
+          "title": "Hibrit arama: farklı sonuçları birleştirmek",
+          "summary": "Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.",
+          "shortAnswer": "Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.",
           "sections": [
             {
               "id": "why-two",
@@ -2115,11 +2120,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Okur “son iş gününde ne zaman gelebilirim?” diye soruyor. Kılavuz “Cuma açılışı: 10.00” diyor. Yoğun retrieval ifade farkını köprüleyebilir; sözcüksel retrieval tam salon adı ve politika kimliğini koruyabilir. Hibrit retrieval tamamlayıcı aday kümelerini birleştirir. Ek kanal, tabanın kaçırdığı ilgili öğeyi buluyor veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır."
+                  "text": "Kullanıcı “Son iş gününde ne zaman gelebilirim?” diye sorsun; kılavuzda ise “Cuma açılışı: 10.00” yazsın. Anlamsal arama bu ifade farkını aşabilir. Sözcük tabanlı arama da salon adını veya kural kodunu tam eşleştirebilir. Hibrit arama, farklı yöntemlerin bulduğu adayları birleştirir. Yeni bir kanal, diğerinin kaçırdığı ilgili sonucu buluyorsa veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Çizge veya başka embedding modeli eklemek otomatik iyileşme değildir. Neredeyse aynı kanallar aynı yanlışı güçlendirebilir. Açıklanabilir sözcüksel taban ve bir uyumlu yoğun modelle başlayın; örtüşme, özgün ilgili isabet, boş sonuç ve gecikmeyi ölçün. Belgelenmiş hata gerektiriyorsa karmaşıklık ekleyin. BEIR yöntemlerin veri kümelerinde değiştiğini gösterir; benchmark sonucu sizin arşivinizin skoru değildir. [BEIR](https://arxiv.org/abs/2104.08663)."
+                  "text": "Çizge veya başka bir model eklemek, aramayı kendiliğinden iyileştirmez. Birbirine çok benzeyen kanallar aynı hatayı güçlendirebilir. Önce anlaşılır bir sözcük tabanlı yöntem ve uyumlu bir anlamsal model kurun. Ortak ve yalnızca tek kanalda bulunan ilgili sonuçları, boş yanıtları ve gecikmeyi ölçün. Karmaşıklığı, gördüğünüz bir hatayı çözmek için artırın. BEIR, yöntemlerin başarısının veri kümesine göre değiştiğini gösterir; o çalışmanın puanı sizin arşivinizin puanı değildir. [BEIR](https://arxiv.org/abs/2104.08663)"
                 }
               ]
             },
@@ -2141,7 +2146,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Her kanal 20 aday döndürsün ve 8 kimlik örtüşsün. Birleşimde 40 değil 32 benzersiz aday vardır. Gerçek retrieval birimiyle tekrar ayıklayın: belge, pasaj veya iddia. Aynı belgeden iki parça ayrı kanıt olabilir; aynı parçanın kopyası arka uç satırı tekrarladı diye ek oy almamalıdır."
+                  "text": "İki kanal da 20 aday döndürsün ve sekiz kimlik ortak olsun. Birleşimde 40 değil, 32 ayrı aday bulunur. Tekrarları, gerçekten aradığınız birime göre ayıklayın: belge, pasaj veya bilgi kaydı. Aynı belgedeki iki parça ayrı dayanak olabilir; aynı parçanın kopyası ise arka uç iki satır döndürdü diye fazladan katkı almamalıdır."
                 }
               ]
             },
@@ -2151,7 +2156,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "0,72 kosinüs skoru ile 12 sözcüksel skor ortak ölçekte değildir. Toplamak sonucu keyfî aralığa bağımlı yapar. Sıra birleştirme konum kullanır; skor birleştirme açık normalizasyon veya öğrenilmiş kalibrasyon ister. Adayın neden taşındığını açıklamak için kanal skorunu ve sırasını iz kaydında koruyun. Sonraki derste tam RRF hesabı var."
+                  "text": "0,72 kosinüs puanı ile sözcük tabanlı aramadan gelen 12 puan aynı ölçekte değildir. Bunları doğrudan toplamak, sonucu keyfî puan aralıklarına bağımlı kılar. Sıralama birleştirme, listedeki konumları kullanır. Ham puanları birleştirmek için ise açık bir normalizasyon veya öğrenilmiş eşleme gerekir. Sonucun neden yükseldiğini açıklayabilmek için her kanalın puanını ve sırasını koruyun. Sonraki derste RRF hesabını yapacağız."
                 },
                 {
                   "kind": "table",
@@ -2162,7 +2167,7 @@
                   ],
                   "rows": [
                     [
-                      "Aday retrieval",
+                      "Aday arama",
                       "İlgili kanıt birleşime girdi mi?",
                       "Aday kesiminde Recall"
                     ],
@@ -2187,15 +2192,15 @@
             },
             {
               "id": "rerank",
-              "title": "Reranker neyi düzeltebilir?",
+              "title": "Yeniden sıralama neyi düzeltebilir?",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Cross-encoder sorgu ve adayı birlikte skorlayarak token’ları doğrudan etkileştirir. Önceden hesaplanmış belge vektörlerini karşılaştırmaktan genellikle daha pahalıdır; bu nedenle kısa listeye uygulanır. Nogueira ve Cho BERT ile pasaj yeniden sıralamayı inceler; bu tasarım her reranker’ın sizin alanınızı iyileştireceğini göstermez. [Makale](https://arxiv.org/abs/1901.04085)."
+                  "text": "Cross-encoder, sorguyla adayı birlikte değerlendirir; iki metindeki token’lar hesap sırasında doğrudan etkileşir. Bu işlem, hazır belge vektörlerini karşılaştırmaktan genellikle daha pahalıdır; bu yüzden kısa bir aday listesine uygulanır. Nogueira ve Cho, BERT ile pasajları yeniden sıralamayı inceler. Çalışma, her yeniden sıralayıcının sizin alanınızda iyileşme sağlayacağını göstermez. [Makale](https://arxiv.org/abs/1901.04085)"
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Reranker girdisinde olmayan ilgili kaydı geri getiremez. Birleşimde ilgili aday sıfırsa reranker değiştirmek recall’u çözmez. Erişim kontrolünü geçersiz kılmamalı veya eski kaynağı diriltmemelidir. Hat boyunca uygunluğu uygulayıp son kanıtın kimliğini doğrulayın; “çok ilgili ama yasak” hâlâ yasaktır."
+                  "text": "Yeniden sıralayıcı, kendisine ulaşmayan ilgili bir kaydı bulamaz. Birleşen adaylar arasında doğru pasaj yoksa yalnızca bu bileşeni değiştirmek eksik sonucu çözmez. Yeniden sıralama erişim izinlerini de aşmamalı veya geçersiz kaynağı geri getirmemelidir. Uygunluk denetimini akış boyunca koruyun ve son dayanağın kimliğini doğrulayın. Çok ilgili olması, erişimi yasak bir kaydı kullanılabilir yapmaz."
                 }
               ]
             },
@@ -2206,8 +2211,8 @@
                 {
                   "kind": "exercise",
                   "title": "Kendinizi sınayın",
-                  "text": "Doğru pasaj yoğun kanalda 45. sırada, sözcüksel ilk 20’de yok; yalnızca ilk-20 birleşimini yeniden sıralıyorsunuz. Daha iyi reranker onu bulabilir mi?",
-                  "answer": "Hayır. Reranker’a ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın."
+                  "text": "Doğru pasaj yoğun kanalda 45. sırada, sözcüksel ilk 20’de yok; yalnızca ilk-20 birleşimini yeniden sıralıyorsunuz. Daha iyi yeniden sıralayıcı onu bulabilir mi?",
+                  "answer": "Hayır. Bu pasaj yeniden sıralayıcıya hiç ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın."
                 }
               ]
             },
@@ -2234,7 +2239,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -2289,8 +2295,8 @@
           "description": "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence."
         },
         "tr": {
-          "title": "Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek — MESA Learn",
-          "description": "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
+          "title": "RRF: iki sıralama nasıl birleştirilir? — MESA",
+          "description": "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin."
         }
       },
       "locales": {
@@ -2432,21 +2438,21 @@
           ]
         },
         "tr": {
-          "title": "Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek",
-          "summary": "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın.",
-          "shortAnswer": "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın.",
+          "title": "RRF: iki sıralama nasıl birleştirilir?",
+          "summary": "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.",
+          "shortAnswer": "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.",
           "sections": [
             {
               "id": "problem",
-              "title": "Ham skorları kıyaslamadan uzlaşmayı birleştirin",
+              "title": "Farklı listelerdeki sıraları kullanın",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Atlas arşivinde iki retriever farklı sıralıyor. Sözcüksel liste A, B, C; yoğun liste B, C, D. Ham skorların birimi aynıymış gibi davranmadan liste sırasını kullanmak istiyorsunuz. Reciprocal Rank Fusion her sıraya azalan katkı atar ve aynı adayın katkılarını toplar. Varsayımları açık, basit bir başlangıç yöntemidir."
+                  "text": "Atlas arşivinde iki arama yöntemi farklı listeler üretsin: Sözcük tabanlı liste A, B, C; anlamsal liste B, C, D olsun. Ham puanları aynı ölçekteymiş gibi toplamadan bu listeleri birleştirmek istiyorsunuz. Reciprocal Rank Fusion (RRF), her konuma giderek azalan bir katkı verir ve aynı adayın farklı listelerdeki katkılarını toplar. Hesabı açık, basit bir başlangıç yöntemidir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Cormack, Clarke ve Büttcher yöntemi belirli retrieval deneylerinde değerlendirdi. Sonuçları RRF’yi denemeyi gerekçelendirir; görevinizde iyileşmeyi garanti etmez. Özgün yöntem ağırlıksız oy kullanır. Ağırlıklı RRF, her kanal katkısını açık ağırlıkla çarpan bir genişletmedir. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)."
+                  "text": "Cormack, Clarke ve Büttcher, yöntemi belirli arama deneylerinde değerlendirdi. Sonuçları RRF’yi denemek için gerekçe sunar; her görevde iyileşme garantisi vermez. Özgün yöntemde katkılar eşit ağırlıktadır. Ağırlıklı RRF ise her kanalın katkısını ayrıca belirlenen bir ağırlıkla çarpar. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)"
                 }
               ]
             },
@@ -2495,7 +2501,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Birleşik sıra B, C, A, D’dir. Listeler arası uzlaşma, tek kanalda birinci olan A’ya rağmen B ve C’yi yükseltir. Kesilmiş listede olmayan aday o kanaldan sıfır alır; sonsuz veya sıfırıncı sıra oyu almaz. Kesim oyları değiştirdiği için aday kesimlerini deney kaydına yazın."
+                  "text": "Birleşen liste B, C, A, D olur. A tek kanalda birinci olsa da iki listede birden öne çıkan B ve C daha yüksek toplam katkı alır. Bir kanalın kısaltılmış listesinde bulunmayan aday, o kanaldan sıfır katkı alır; ona sıfırıncı veya sonsuzuncu sıra verilmez. Listenin nereden kesildiği sonucu etkilediği için bu sınırları deney kaydında belirtin."
                 }
               ]
             },
@@ -2527,11 +2533,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Oy vermeden önce kanal içindeki aday tekrarını ayıklayın. Aksi halde arka ucun aynı kimliği iki kez döndürmesi yöntemi değiştirir. Kimliğin temsil ettiği birimi belirleyip kanallar arasında koruyun. Bir kanal belge, diğeri iddia kimliği döndürüyorsa birleştirmeden önce ortak birime uzlaştırın; yalnızca aynı metin sağlam kimlik sözleşmesi değildir."
+                  "text": "Katkıları toplamadan önce her kanalın kendi içindeki tekrarları ayıklayın. Aynı kimliğin iki kez dönmesi iki katkı sayılırsa yöntem değişir. Kimliğin belgeyi mi, pasajı mı, bilgi kaydını mı gösterdiğini belirleyin. Kanallar farklı birimler döndürüyorsa önce ortak birimde eşleştirin. Metnin aynı olması tek başına güvenilir kimlik eşleştirmesi değildir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Tam eşit birleşik skorda kanonik kimlik sırası gibi belgeli sabit kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlığı reddedin; sıfırın kanalı kapatıp kapatmadığını belirleyin. Aynı retriever’ın iki kopyasına tam ağırlık vermek ilişkili kanıtı iki kez sayabilir. Fazla oy yanlış veya yetkisiz kaynağı kabul edilebilir yapmaz."
+                  "text": "Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve belgelenmiş bir kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlıkları reddedin; sıfır ağırlığın kanalı kapatıp kapatmadığını açıkça belirleyin. Aynı arama yönteminin iki kopyasına tam ağırlık vermek aynı dayanağı iki kez sayabilir. Çok katkı alması, yanlış veya yetkisiz bir kaynağı kabul edilebilir yapmaz."
                 }
               ]
             },
@@ -2566,7 +2572,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -2620,8 +2627,8 @@
           "description": "Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference."
         },
         "tr": {
-          "title": "Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek — MESA Learn",
-          "description": "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın."
+          "title": "Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek — MESA",
+          "description": "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün."
         }
       },
       "locales": {
@@ -2736,17 +2743,17 @@
           ]
         },
         "tr": {
-          "title": "Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek",
-          "summary": "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın.",
-          "shortAnswer": "Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın.",
+          "title": "Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek",
+          "summary": "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.",
+          "shortAnswer": "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.",
           "sections": [
             {
               "id": "edges",
-              "title": "İlişki kimlik ve kanıt gerektirir",
+              "title": "İlişkinin kimliğini ve dayanağını koruyun",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Metin araması pasaj bulur. Çizge sorgusu açıkça temsil edilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe düğümleri; “parçası” ve “bulunduğu yer” kenarları kurun. Sabit düğüm kimliği kullanıp her iddia kenarını destekleyen kaynak revizyonuna bağlayın. “Merkez” gibi etiket kimliği çözmeye yetmez."
+                  "text": "Metin araması ilgili pasajları bulur; çizge araması ise açıkça kaydedilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe için düğümler; “parçasıdır” ve “bulunur” ilişkileri için bağlantılar kurun. Her düğüme sabit kimlik verin ve her ilişkiyi destekleyen kaynak sürümüne bağlayın. “Merkez” gibi bir ad, hangi varlıktan söz edildiğini tek başına belirlemez."
                 },
                 {
                   "kind": "code",
@@ -2754,7 +2761,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "İlişkiler yön ve tür taşır. “A, B’yi yönetir”, “B, A’yı yönetir” değildir; “atıf yapar”, “katılır” değildir. Zaman, kapsam ve belirsizlik ilişkiyi değiştiriyorsa koruyun. Kaynağın aynı paragrafta iki isim anması aralarında anlamlı kenar kurmaz. Birlikte görünme keşif sinyali olabilir; doğrulanmış ilişki değildir."
+                  "text": "İlişkinin yönü ve türü önemlidir. “A, B’yi yönetir” ile “B, A’yı yönetir” aynı değildir; “atıf yapar” da “katılır” anlamına gelmez. Anlamı etkileyen zaman, kapsam ve belirsizlik bilgisini koruyun. İki adın aynı paragrafta geçmesi, aralarında doğrulanmış bir ilişki kurmaz; yalnızca incelenebilecek bir ipucu olabilir."
                 }
               ]
             },
@@ -2764,7 +2771,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” diye sorun. Salon 7’yi çözün, `part_of` ile arşiv 2’ye, `located_in` ile ilçe 5’e gidin. İki kenar kimliğini ve kaynaklarını döndürün. Her adımın anlamı belli olduğundan kanıt zinciri incelenebilir. Kaynaklardan biri erişilemez, eski veya belirsizse tam yanıt o çağıran için desteklenmez."
+                  "text": "“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” sorusunu ele alın. Önce Salon 7’yi bulun; `part_of` bağlantısıyla Arşiv 2’ye, `located_in` bağlantısıyla İlçe 5’e gidin. İki ilişkinin kimliğini ve dayanak kaynaklarını da döndürün. Böylece yanıtın nasıl bulunduğu incelenebilir. Kaynaklardan biri eski, belirsiz veya isteği yapan kişiye kapalıysa tam yanıt o kullanıcı için desteklenmiş sayılmaz."
                 },
                 {
                   "kind": "diagram",
@@ -2790,7 +2797,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Benzer biçimde merkezilik, seçilmiş tanım altında bağlantısallığı ölçer. Popüler düğüme sık atıf yapılıp düğüm yanlış olabilir. PageRank’i doğruluk skoru yapmayın veya açık politika olmadan hoşunuza gitmeyen kaynağı bastırmasına izin vermeyin. Kaynak niteliği, ilgililik ve çizge görünürlüğü ayrı soruları yanıtlar."
+                  "text": "Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. PageRank’i doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir."
                 }
               ]
             },
@@ -2800,11 +2807,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Ortalama dallanma 10 ise üç adım, tekrar ayıklamadan önce yaklaşık 10 + 100 + 1.000 komşu inceleyebilir. Merkez düğüm bunu büyütebilir. Başlangıç sayısı, adım derinliği, düğüm başına yayılım, toplam kenar bütçesi ve timeout belirleyin. Sınırlı arama geçerli yolu kaçırabilir; “ilişki yok” demek yerine kesilmeyi belirtin. Önbellek anahtarı erişim kapsamını ve kaynak neslini içermelidir."
+                  "text": "Her düğümden ortalama on bağlantı çıkıyorsa üç adımda, tekrarlar ayıklanmadan önce yaklaşık 10 + 100 + 1.000 komşu incelenebilir. Çok bağlantılı bir düğüm işi büyütür. Başlangıç sayısını, adım derinliğini, düğüm başına bağlantıyı, toplam bağlantı bütçesini ve zaman aşımını sınırlandırın. Bu sınırlar geçerli bir yolu da dışarıda bırakabilir. Böyle bir durumda “ilişki yok” demek yerine aramanın sınırda durduğunu belirtin. Önbellek anahtarı erişim kapsamını ve kaynakların hangi güncellemesine ait olduğunu içermelidir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. Edge ve arkadaşları veri kümesi genelindeki sorular için çizgeden türetilmiş topluluk özetleri açıklar. Bu, yerel soruda ham yol döndürmekten farklıdır. Özet üretimi, kaynak kapsamı ve güncelleme politikası değerlendirilecek yeni türetilmiş artefakt ekler. Kenarları çizge veritabanına yazmak tek başına o araştırma yöntemini uygulamaz. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130)."
+                  "text": "GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların genel adıdır. Edge ve arkadaşları, bütün veri kümesini ilgilendiren sorular için bağlantı gruplarından üretilmiş özetler kullanır. Bu, tek bir soruya ham bağlantı yolu döndürmekten farklıdır. Üretilen her özet için kaynak kapsamını ve güncelleme yöntemini ayrıca değerlendirmek gerekir. İlişkileri bir çizge veritabanına yazmak, tek başına makaledeki yöntemi uygulamak anlamına gelmez. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130)"
                 }
               ]
             },
@@ -2843,7 +2850,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -2901,8 +2909,8 @@
           "description": "Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth."
         },
         "tr": {
-          "title": "Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn",
-          "description": "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
+          "title": "Kaynak izi: bir atıf neyi kanıtlar? — MESA",
+          "description": "Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin."
         }
       },
       "locales": {
@@ -3043,9 +3051,9 @@
           ]
         },
         "tr": {
-          "title": "Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?",
-          "summary": "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.",
-          "shortAnswer": "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.",
+          "title": "Kaynak izi: bir atıf neyi kanıtlar?",
+          "summary": "Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.",
+          "shortAnswer": "Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.",
           "sections": [
             {
               "id": "four-tests",
@@ -3053,7 +3061,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Asistan “Salon cumaları onda açılır” diyor ve bağlantı gösteriyor. Gerçek bağlantı yalnızca ilk adımdır. Kaynak var mı, atıf pasajı yanıtın dediğini söylüyor mu, kaynak bu zaman ve kapsama uygulanıyor mu, kaynak güvenilir mi? Bunları ayrı sorun. Bir kontrolü geçmek diğerlerini sağlamaz."
+                  "text": "Asistan “Salon cumaları onda açılır” deyip bir bağlantı göstersin. Bağlantının gerçekten var olması yalnızca ilk kontroldür. Kaynak erişilebilir mi? Alıntılanan pasaj bu yanıtı destekliyor mu? Bilgi sorulan tarih ve kapsam için geçerli mi? Kaynak güvenilir mi? Bu soruları ayrı değerlendirin; birini doğrulamak diğerlerini otomatik olarak doğrulamaz."
                 },
                 {
                   "kind": "table",
@@ -3097,11 +3105,11 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Konumlar ancak çıkarımda kullanılan tam kaynak temsiline göre anlamlıdır. Bayt, Unicode kod noktası veya başka birim mi sayıldığını ve bitişin dışarıda olup olmadığını belirtin. Unicode normalizasyonu, PDF çıkarımı veya satır sonu dönüşümü konumları değiştirebilir. Değişmez kaynak revizyonunu ve metni yeniden üretmeye yetecek bilgiyi tutup çıkarılan aralığın eşleşmesini doğrulayın."
+                  "text": "Metindeki başlangıç ve bitiş konumları, yalnızca bilgi çıkarılırken kullanılan tam metin üzerinde anlamlıdır. Konumların bayt, Unicode kod noktası veya başka bir birimle sayıldığını belirtin. Bitiş konumunun aralığa dâhil olup olmadığını da tanımlayın. Unicode normalizasyonu, PDF’den metin çıkarma veya satır sonu dönüşümü konumları değiştirebilir. Kaynak sürümünü ve aynı metni yeniden elde etmek için gereken bilgileri koruyun; seçilen aralığın gerçekten eşleştiğini kontrol edin."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. Saldırgan uydurma metni de gerçek metin kadar kolay hash’leyebilir. Metin ve beklenen hash aynı güvenilmeyen taraftan geliyorsa eşitlik özgünlük kanıtı değildir. Kaynak edinimi, doğrulanmış yayıncı kimliği ve teslim zinciri kayıtları problemin başka parçalarını çözer."
+                  "text": "SHA-256 gibi bir özet, elinizdeki içeriğin güvenilir bir beklenen özetle uyuşup uyuşmadığını gösterir. Ancak uydurma bir metnin özeti de kolayca hesaplanabilir. Metin ve beklenen özet aynı güvenilmeyen kişiden geliyorsa eşleşme özgünlüğü kanıtlamaz. Kaynağın nasıl edinildiği, yayıncının kimliğinin doğrulanması ve aktarım kayıtları farklı soruları yanıtlar."
                 }
               ]
             },
@@ -3116,14 +3124,14 @@
                     "Yanıt · cuma onda",
                     "İddia · a42 + koşullar",
                     "Aralık · tam destek metni",
-                    "Revizyon · handbook-r3",
+                    "Sürüm · handbook-r3",
                     "Köken · edinim kaydı"
                   ],
                   "caption": "Atıf inceleyenin hattı yeniden kurmadan kanıtı kontrol etmesini sağlamalıdır."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Alıntıyı incelenebilir ölçüde dar tutun; gerektiğinde niteleyici cümleyi ekleyin. “1 Kasım sonrası cumaları” olmadan “onda açılır” ifadesi ekim sorusunu desteklemez. Tek atfı paragrafa iliştirip her cümleyi kapsadığını varsaymak yerine çok iddialı yanıtta desteklenmeyen parçaları işaretleyin."
+                  "text": "Alıntıyı kolay incelenecek kadar kısa tutun; anlamı sınırlayan cümleleri de ekleyin. “1 Kasım sonrası cumaları” koşulu olmadan “onda açılır” ifadesi ekim ayına ilişkin soruyu desteklemez. Bir paragrafın sonundaki tek atfın bütün cümlelere dayanak olduğunu varsaymayın. Birden çok iddia içeren yanıtta desteklenmeyen kısımları ayrıca belirtin."
                 }
               ]
             },
@@ -3133,11 +3141,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Retrieval kararında istek/çalışma kimliği, çağıran kapsam kimliği, kaynak nesli, aday kimlikleri, filtre gerekçeleri ve son kanıt kimliklerini kaydedin. Özel belgeleri bütünüyle log’a kopyalamak yerine referans tercih edin. Hassas değerleri hata mesajlarından çıkarın. Denetim kaydı da erişim, saklama ve silme kuralı ister; “her şeyi log’la” denetimsiz başka hafıza deposu yaratır."
+                  "text": "Arama kararlarını izlemek için istek kimliğini, erişim kapsamını, kaynakların güncelleme bilgisini, adayları, elenme gerekçelerini ve kullanılan son kanıtları kaydedin. Özel belgeleri bütünüyle günlüklere kopyalamak yerine kimlik veya referans kullanın. Hassas değerleri hata mesajlarından çıkarın. Denetim kayıtları için de erişim, saklama ve silme kuralları gerekir. Her şeyi kaydetmek, denetimsiz ikinci bir hafıza deposu oluşturabilir."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün veya daha dar soru isteyin. Atıf biçimi ve retrieval ile kaynaklandırma bazı desteksiz çıktıları azaltabilir; halüsinasyonu ortadan kaldırmaz. W3C PROV türetim sözlüğü sunar; OWASP getirilen materyalin talimat olarak neden güvenilmez kalacağını açıklar. Bunlar tamamlayıcı konulardır. [PROV](https://www.w3.org/TR/prov-overview/), [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)."
+                  "text": "Uygun kaynaklar yanıtı desteklemiyorsa kanıtın eksik olduğunu söyleyin veya sorunun daraltılmasını isteyin. Aramayla kaynak sağlamak ve atıfları düzenlemek, bazı dayanaksız yanıtları azaltabilir; tamamen ortadan kaldırmaz. W3C PROV, bilginin hangi kaynaktan nasıl türediğini anlatan kavramlar sunar. OWASP ise bulunan metnin neden güvenilir talimat sayılmaması gerektiğini açıklar. Bu iki konu birbirini tamamlar. [PROV](https://www.w3.org/TR/prov-overview/) [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)"
                 }
               ]
             },
@@ -3176,7 +3184,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -3197,7 +3206,7 @@
           ],
           "tr": [
             "Kanıt aralığını sabit kaynakta doğrulamak",
-            "Hash ile kaynak özgünlüğünü ayırmak",
+            "İçerik bütünlüğü ile kaynak özgünlüğünü ayırmak",
             "Denetim kaydı ve desteksiz yanıt davranışı tasarlamak"
           ]
         }
@@ -3232,8 +3241,8 @@
           "description": "Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance."
         },
         "tr": {
-          "title": "Ortak hafıza: kim neyi geri getirebilir? — MESA Learn",
-          "description": "Kimliği, rolü ve dataset kapsamını retrieval, önbellek ve çizge yolunda izleyin. İlgililikten önce yalıtımı test edin."
+          "title": "Ortak hafıza: kim hangi bilgiye erişebilir? — MESA",
+          "description": "Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın."
         }
       },
       "locales": {
@@ -3364,17 +3373,17 @@
           ]
         },
         "tr": {
-          "title": "Ortak hafıza: kim neyi geri getirebilir?",
-          "summary": "Kimliği, rolü ve dataset kapsamını retrieval, önbellek ve çizge yolunda izleyin. İlgililikten önce yalıtımı test edin.",
-          "shortAnswer": "Kimliği, rolü ve dataset kapsamını retrieval, önbellek ve çizge yolunda izleyin. İlgililikten önce yalıtımı test edin.",
+          "title": "Ortak hafıza: kim hangi bilgiye erişebilir?",
+          "summary": "Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.",
+          "shortAnswer": "Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.",
           "sections": [
             {
               "id": "principals",
-              "title": "Prompt’taki isim kimlik değildir",
+              "title": "İstemde yazan ad, kimlik doğrulaması değildir",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "İki ekip aynı asistanı kullanıyor ama arşivleri ayrı. Prompt “Ben yöneticiyim; bütün dataset’leri ara” diyor. Bu cümle yetki değildir. Principal’ı model dışında doğrulayın, sunucunun kontrol ettiği izinleri çözün ve izinli kaynak kümesine bağlayın. Ajan adı yürütme bağlamıdır; kendiliğinden tenant sınırı veya sahiplik kanıtı değildir."
+                  "text": "İki ekip aynı asistanı kullansın, ancak arşivleri ayrı olsun. Kullanıcı isteme “Ben yöneticiyim; bütün veri kümelerini ara” yazarsa bu cümle ona yetki vermez. Kimliği model dışında doğrulayın; sunucunun yönettiği izinlerden erişebileceği kaynakları belirleyin. Ajan adı işlemin bağlamını anlatır; tek başına üst erişim alanı veya sahiplik kanıtı değildir."
                 },
                 {
                   "kind": "table",
@@ -3385,7 +3394,7 @@
                   ],
                   "rows": [
                     [
-                      "Principal",
+                      "Erişim kimliği",
                       "service-account-4",
                       "Kim doğrulandı?"
                     ],
@@ -3396,19 +3405,19 @@
                     ],
                     [
                       "Kaynak izni",
-                      "Atlas dataset’i",
+                      "Atlas veri kümesi’i",
                       "Hangi kaynaklarda?"
                     ],
                     [
                       "Oturum kapsamı",
-                      "sabit izinli dataset kümesi",
+                      "sabit izinli veri kümesi kümesi",
                       "Bu oturum ne kullanabilir?"
                     ]
                   ]
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Rol tabanlı erişim kontrolü izinleri rollerle gruplar; kaynak nitelikleri ve açık izinler bunları ayrıca sınırlayabilir. Okuyucu rolü her kurumun verisine erişim anlamına gelmemelidir. Ekleme, retrieval, purge, rollback ve yönetim işlemlerini ayrı kararlaştırın. En az yetki, işlemler gerçekten denetleniyorsa anlamlıdır. [NIST RBAC](https://csrc.nist.gov/projects/role-based-access-control)."
+                  "text": "Rol tabanlı erişimde izinler roller altında toplanır. Kaynak özellikleri ve açık izinler bu erişimi ayrıca sınırlayabilir. Okuyucu rolü, her kurumun verisine erişim anlamına gelmemelidir. Ekleme, arama, kalıcı silme, geri alma ve yönetim işlemlerinin izinlerini ayrı belirleyin. En az yetki ilkesi, ancak işlemlerde gerçekten denetlenirse işe yarar. [NIST RBAC](https://csrc.nist.gov/projects/role-based-access-control)"
                 }
               ]
             },
@@ -3418,19 +3427,19 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Küresel ilk-10’un tamamı yasak kayıt olsun. Onları silmek boş cevap verir; oysa izinli en iyi kayıt on birincidir. Bu, kapsamın geç uygulanmasından doğan recall hatasıdır. Daha önemlisi yasak metin generator’a, iz kaydına veya çağırana görünen açıklamaya ulaşmamalıdır. Yetkili aday üretimini tercih edin ve son çıktı öncesi uygunluğu ayrıca doğrulayın."
+                  "text": "Bütün verilerdeki ilk on sonucun kullanıcıya kapalı olduğunu düşünün. Bunları sonradan çıkarmak boş yanıt verir; oysa kullanıcının görebileceği en iyi kayıt on birinci sıradadır. Erişim kapsamını geç uygulamak, ilgili sonucu kaçırmanıza neden olur. Daha önemlisi, kapalı metin yanıt üreten modele, kullanıcıya açık açıklamalara veya iz kayıtlarına ulaşmamalıdır. Adayları izin verilen kaynaklardan üretin ve çıkışta uygunluğu yeniden denetleyin."
                 },
                 {
                   "kind": "diagram",
-                  "alt": "Doğrulanmış kimlik izinli kapsam üretir; kapsam her retrieval kanalını ve son kanıtı sınırlar.",
+                  "alt": "Doğrulanmış kimlik izinli kapsam üretir; kapsam her arama kanalını ve son kanıtı sınırlar.",
                   "steps": [
-                    "Doğrula · principal",
+                    "Doğrula · erişim kimliği",
                     "Çöz · güncel izinler",
-                    "Bağla · dataset kapsamı",
+                    "Bağla · veri kümesi kapsamı",
                     "Getir · her kanal kapsamlı",
                     "Kontrol · çıktı ve atıflar"
                   ],
-                  "caption": "Kapsam sunucu kararıdır; skor bonusu veya prompt talimatı değildir."
+                  "caption": "Erişim kapsamını sunucu belirler; puan artırımı veya istemdeki talimatlar bu izni değiştirmez."
                 }
               ]
             },
@@ -3440,11 +3449,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Dönen satırları filtrelemek yalıtımın tamamı değildir. Başka tenant belge ekleyince küresel corpus istatistiği sözcüksel sıralamayı değiştirebilir. Önbellek daha geniş kapsamın kanıtını yeniden sunabilir. Çizge izinli başlangıçtan yasak komşuya geçebilir. Yalıtım sözleşmesini belirtin: metin ifşasını önlemek ile kapsam dışı sıralama etkisini önlemek ilişkili fakat ayrı özelliklerdir."
+                  "text": "Yalnızca dönen satırları filtrelemek tam yalıtım sağlamaz. Başka bir erişim alanına belge eklenmesi, bütün veriler üzerinden hesaplanan sözcük istatistiklerini ve sıralamayı değiştirebilir. Önbellek daha geniş bir kapsamdan bilgi döndürebilir. Çizge, izinli bir düğümden kapalı bir komşuya geçebilir. İçeriğin dışarı sızmasını önlemekle, kapsam dışındaki verilerin sıralamayı etkilemesini önlemek ayrı güvencelerdir; hangisini sağladığınızı açıkça belirtin."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Önbellek anahtarı çağıran/kaynak kapsamını, sorgu parametrelerini, kaynak neslini ve temsil ayarlarını ayırmalıdır. İzin değişince önbellek kanıtını kullanmadan geçersizleştirme veya tekrar doğrulama gerekir. Çok ajanlı paylaşım istisna değildir: özetleyen ajan özel kanıtı diğer ajanların görebildiği ortak nota kopyalamamalıdır. Türetilmiş artefaktlar özgün ifade değişse bile hassas bilgi taşıyabilir."
+                  "text": "Önbellek anahtarı; kullanıcının ve kaynakların erişim kapsamını, sorgu ayarlarını, kaynak güncellemesini ve temsil ayarlarını ayırt etmelidir. İzinler değiştiğinde eski sonucu yeniden kullanmadan önce geçersizleştirme veya tekrar doğrulama gerekir. Birden fazla ajanın çalışması bu kuralı değiştirmez: Özetleyen ajan özel bilgiyi herkese açık ortak nota taşımamalıdır. Sözcükler değişse bile türetilen özet hassas bilgiyi koruyabilir."
                 }
               ]
             },
@@ -3454,13 +3463,13 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "A ve B tenant’larını ayırt edici işaretlerle oluşturun. A’nın kendi kanıtını getirdiğini doğrulayın; sonra A’ya B’nin işaretini sorup metin, kimlik veya sayının bunu açığa çıkarmadığını kontrol edin. Sözcüksel, vektör, çizge ve bağlam endpoint’lerinde; restart ve önbellek ısınması sonrasında tekrarlayın. İzni kaldırıp mevcut oturumu ürünün beyan ettiği iptal politikasına göre test edin. İzinli olumlu kontrol olmadan sıfır sonuç testi bozuk sistemi gizleyebilir."
+                  "text": "A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici işaretler ekleyin. A’nın kendi kaynağını bulduğunu doğrulayın; sonra B’nin işaretini sorup metin, kimlik veya sayılar üzerinden bilgi sızmadığını kontrol edin. Sözcük, vektör, çizge ve bağlam arayüzlerinde; yeniden başlatmadan ve önbellek dolduktan sonra testi tekrarlayın. İzni kaldırıp mevcut oturumun bildirilen iptal kuralına uyduğunu da sınayın. İzinli bir sonucun bulunabildiğini kontrol etmeden yalnızca boş yanıt beklemek, çalışmayan bir sistemi güvenliymiş gibi gösterebilir."
                 },
                 {
                   "kind": "exercise",
                   "title": "Kendinizi sınayın",
-                  "text": "Yasak belge sonuçta hiç görünmüyor ama eklenmesi A tenant’ının sıralamasını değiştiriyor. Tam kapsam yalıtımı gösterildi mi?",
-                  "answer": "Hayır. İçerik ifşası engellenmiş olabilir; sıralama kapsam dışı duruma bağımlıdır. Corpus istatistiğini, ortak önbelleği ve aday üretimini yalıtım sözleşmesine göre kontrol edin."
+                  "text": "Yasak belge sonuçta hiç görünmüyor ama eklenmesi A’nın sıralamasını değiştiriyor. Tam kapsam yalıtımı gösterildi mi?",
+                  "answer": "Hayır. İçerik ifşası engellenmiş olabilir; sıralama kapsam dışı duruma bağımlıdır. Belge istatistiklerini, ortak önbelleği ve aday üretimini yalıtım sözleşmesine göre kontrol edin."
                 }
               ]
             },
@@ -3487,7 +3496,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "related": [
@@ -3511,7 +3521,7 @@
           "tr": [
             "Kimlik, rol ve kaynak kapsamını ayırmak",
             "Ön/son filtreleme hatasını açıklamak",
-            "İki tenant için yalıtım testi tasarlamak"
+            "İki üst erişim alanı için yalıtım testi tasarlamak"
           ]
         }
       }
@@ -3549,8 +3559,8 @@
           "description": "Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds."
         },
         "tr": {
-          "title": "Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn",
-          "description": "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
+          "title": "Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA",
+          "description": "Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin."
         }
       },
       "locales": {
@@ -3661,21 +3671,21 @@
           ]
         },
         "tr": {
-          "title": "Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak",
-          "summary": "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.",
-          "shortAnswer": "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.",
+          "title": "Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak",
+          "summary": "Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.",
+          "shortAnswer": "Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.",
           "sections": [
             {
               "id": "authority",
-              "title": "Kimlik ve yaşam döngüsü için otorite belirleyin",
+              "title": "Hangi deponun asıl kayıt olacağını belirleyin",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Hafıza uygulaması kaynak kayıtları için SQL, benzerlik için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa iddianın var ve etkin olduğuna hangisi karar verir? Kanonik depo bu kararın sahibidir. Projeksiyon, kanonik veri ve beyan edilmiş dönüşümden yeniden kurulabilen türetilmiş temsildir. “Türetilmiş” önem veya arama kalitesini değil otoriteyi anlatır."
+                  "text": "Bir hafıza uygulaması asıl kayıtlar için SQL, benzerlik araması için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa bir kaydın hâlâ var ve etkin olduğuna hangisi karar verecek? Ana kayıt deposu bu kararın dayanağıdır. Diğer arama görünümleri, asıl veriden tanımlı bir dönüşümle yeniden üretilebilir. “Türetilmiş” olmaları önemsiz olduklarını değil, asıl kayıt yerine geçmediklerini anlatır."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Örnek tasarımda SQL kaynak revizyonunu, iddia kimliğini, durumu ve mutasyon defterini sahiplenir. Vektör ve çizge satırı bu kimliklere bağlanır. Arama isabeti ancak kanonik uygunluk kontrolünden sonra kanıt olur. Eski indeks satırı, vektörü sorguya yakın diye silinmiş iddiayı diriltmemelidir."
+                  "text": "Bu örnekte SQL; kaynak sürümünü, bilgi kaydının kimliğini, durumunu ve değişiklik günlüğünü tutar. Vektör ve çizge satırları bu kimliklere bağlanır. Aramada bulunan bir sonuç ancak asıl kaydın uygunluğu denetlendikten sonra dayanak olarak kullanılabilir. Eski indekste kalan bir vektör, soruya yakın diye silinmiş bir kaydı yeniden geçerli hâle getirmemelidir."
                 }
               ]
             },
@@ -3685,33 +3695,33 @@
               "blocks": [
                 {
                   "kind": "diagram",
-                  "alt": "SQL mutasyonu ve outbox işini kabul eder; ardından vektör/çizge projeksiyonları çalışır ve görünürlük tamamlanır.",
+                  "alt": "SQL mutasyonu ve gönderim kuyruğu işini kabul eder; ardından vektör/çizge arama görünümlerini çalışır ve görünürlük tamamlanır.",
                   "steps": [
-                    "SQL işlemi · kaynak + outbox",
+                    "SQL işlemi · kaynak + gönderim kuyruğu",
                     "Worker · bekleyen işi al",
                     "Vektör · sabit kimlikle uygula",
                     "Çizge · sabit kimlikle uygula",
-                    "Tamamla · projeksiyonları doğrula"
+                    "Tamamla · arama görünümlerini doğrula"
                   ],
                   "caption": "SQL commit, bağımsız bütün arka uçları kapsayan tek atomik işlem oluşturmaz."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "SQL commit olsun, vektör ekleme başarılı olsun; süreç çizge eklemeden çöksün. Kalıcı bekleyen iş yoksa çizge yazması tamamen kaybolabilir. Kanonik mutasyonla aynı SQL işleminde kaydedilmiş outbox varsa yeniden başlayan worker eksik işi bulup tekrarlar. Teslim birden fazla kez gerçekleşebilir; etkiyi tekrarlamak bu yüzden güvenli olmalıdır."
+                  "text": "SQL işlemi tamamlansın ve vektör yazılsın; süreç çizgeye yazmadan çöksün. Bekleyen iş kalıcı olarak tutulmuyorsa eksik adım kaybolabilir. Değişiklikle aynı SQL işleminde bir gönderim kuyruğu kaydı oluşturulmuşsa, yeniden başlayan çalışan işi bulup tekrar deneyebilir. Aktarım birden fazla kez yapılabileceği için aynı işlemi tekrarlamanın sonucu bozmaması gerekir."
                 }
               ]
             },
             {
               "id": "idempotency",
-              "title": "Kimlik ve fencing ile güvenli tekrar",
+              "title": "Tekrar denemede iş sahipliğini koruyun",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Idempotency aynı mantıksal işlemi yeniden uygulamanın farklı son etki oluşturmamasıdır. Sabit işlem kimliği ve tanımlı payload kimliği kullanın. Aynı anahtarı başka içerikle kullanmak reddedilmeli veya açık sözleşmeyle yönetilmelidir. Her tekrarda rastgele kimlik üretmek idempotency değil kopya üretir. Timeout, çağıranın tamamlanmayı gözlemediğini söyler; yazma olmadığını kanıtlamaz."
+                  "text": "Güvenli tekrar (idempotency), aynı mantıksal işlemi yeniden yapmanın son durumu değiştirmemesidir. Sabit işlem kimliği ve içeriği tanımlayan bir kimlik kullanın. Aynı anahtarın farklı içerikle kullanılmasını reddedin veya bu durumu açıkça belirlenmiş kurallarla yönetin. Her denemeye yeni rastgele kimlik vermek güvenli tekrar değil, kopya kayıt üretir. Zaman aşımı yalnızca istemcinin sonucu göremediğini söyler; yazmanın yapılmadığını kanıtlamaz."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Lease, worker’ın işi geçici sahiplenmesini sağlar. Fencing token veya eşdeğer sahiplik kontrolü başka sahip devraldıktan sonra eski worker’ın işi tamamlamasını önler. Sahipliği yalnızca başlangıçta değil gerçek durum değişikliğinde kontrol edin. A worker’ını durdurup iznini düşürün, B’ye devrettikten sonra A’yı sürdürerek yarışı test edin."
+                  "text": "Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmesini sağlar. Sahiplik anahtarı (fencing token) ise iş başka çalışana geçtiğinde eski çalışanın işlemi tamamlamasını önler. Yetkiyi yalnızca başlangıçta değil, kayıt durumu değişirken de kontrol edin. Yarışı sınamak için A çalışanını durdurun, işini B’ye devredin ve ardından A’yı sürdürün."
                 }
               ]
             },
@@ -3725,19 +3735,19 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core v0.8.1 root başına tek combined owner kullanır; LanceDB/Kùzu projeksiyondur. Rebuild çevrimdışı ve tüm root kapsamındadır; çevrimiçi tenant başına onarım değildir. Bunlar ürüne özgü sınırlardır; başka sistem başka depolama seçebilir. Doğru rebuild, kanonik kanıtı ve temsil kimliğini korumayı; geçişten önce yeni projeksiyonu doğrulamayı gerektirir. [Core sözleşmesi](docs/core/architecture/)."
+                  "text": "MESA Core v0.8.1’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)"
                 }
               ]
             },
             {
               "id": "practice",
-              "title": "Timeout’u yorumlayın",
+              "title": "Zaman aşımını yorumlayın",
               "blocks": [
                 {
                   "kind": "exercise",
                   "title": "Kendinizi sınayın",
-                  "text": "İstemci vektör yazmasından sonra timeout alıyor. Hemen yeni kimlikle yeni mutasyon oluşturmalı mı?",
-                  "answer": "Önce özgün mutasyon durumunu inceleyin. Uygunsa tanımlı idempotency sözleşmesiyle tekrarlayın. Yeni kimlik zaten kabul edilmiş işlemi çoğaltabilir; timeout gözlem hatasıdır, rollback kanıtı değildir."
+                  "text": "İstemci, vektör yazıldıktan sonra zaman aşımına uğruyor. Hemen yeni kimlikle bir yazma işlemi başlatmalı mı?",
+                  "answer": "Önce ilk işlemin durumunu kontrol edin. Yeniden deneme uygunsa aynı işlem kimliği ve güvenli tekrar kurallarıyla ilerleyin. Yeni kimlik, zaten kabul edilmiş işlemi çoğaltabilir. Zaman aşımı, istemcinin sonucu göremediğini gösterir; işlemin geri alındığını göstermez."
                 }
               ]
             },
@@ -3764,7 +3774,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "learning": {
@@ -3822,8 +3833,8 @@
           "description": "Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity."
         },
         "tr": {
-          "title": "Değişen bilgi: geçerlilik, çelişki ve unutma — MESA Learn",
-          "description": "Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin."
+          "title": "Bilgi değiştiğinde: güncelleme, çelişki ve unutma — MESA",
+          "description": "Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin."
         }
       },
       "locales": {
@@ -3960,13 +3971,13 @@
           ]
         },
         "tr": {
-          "title": "Değişen bilgi: geçerlilik, çelişki ve unutma",
-          "summary": "Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.",
-          "shortAnswer": "Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.",
+          "title": "Bilgi değiştiğinde: güncelleme, çelişki ve unutma",
+          "summary": "Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.",
+          "shortAnswer": "Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.",
           "sections": [
             {
               "id": "two-clocks",
-              "title": "İki saat farklı soruları yanıtlar",
+              "title": "Geçerlilik zamanı ve kayıt zamanı farklıdır",
               "blocks": [
                 {
                   "kind": "paragraph",
@@ -4004,7 +4015,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Bunlar dersin kavramsal alanlarıdır. Geçerlilik ve işlem zamanı geçmiş sorgularını birlikte desteklemek açık bitemporal model ve sorgu semantiği ister. Ürün zaman damgası saklıyor diye bu yeteneği çıkarmayın. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir."
+                  "text": "Bunlar dersin kavramsal alanlarıdır. Hem bilginin geçerlilik tarihine hem sistemin onu kaydettiği tarihe göre geçmiş sorgusu yapabilmek için iki zaman boyutunu açıkça tanımlayan bir model gerekir. Sistemin zaman damgası tutması, bu sorguları desteklediği anlamına gelmez. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir."
                 }
               ]
             },
@@ -4014,7 +4025,7 @@
               "blocks": [
                 {
                   "kind": "diagram",
-                  "alt": "Revizyon 2 kasımdan önce, revizyon 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir.",
+                  "alt": "Sürüm 2 kasımdan önce, sürüm 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir.",
                   "steps": [
                     "Eski iddia · cuma 09.00",
                     "Bitiş · 1 Kasım’dan önce",
@@ -4054,7 +4065,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Tarihsel sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin."
+                  "text": "Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Geçmiş sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin."
                 }
               ]
             },
@@ -4065,7 +4076,7 @@
                 {
                   "kind": "exercise",
                   "title": "Kendinizi sınayın",
-                  "text": "Revizyon 2 kasıma kadar cuma 09.00, revizyon 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?",
+                  "text": "Sürüm 2 kasıma kadar cuma 09.00, sürüm 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?",
                   "answer": "Hayır. Farklı aralıklara uygulanıyorlar. İkisini koruyup sorunun tarihiyle filtreleyin. Çelişki için aynı varlık, kapsam ve örtüşen geçerlilik koşullarında uyumsuz değer gerekir."
                 }
               ]
@@ -4089,7 +4100,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "learning": {
@@ -4147,8 +4159,8 @@
           "description": "Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples."
         },
         "tr": {
-          "title": "Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn",
-          "description": "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın."
+          "title": "Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız — MESA",
+          "description": "Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın."
         }
       },
       "locales": {
@@ -4274,9 +4286,9 @@
           ]
         },
         "tr": {
-          "title": "Retrieval değerlendirme: recall, MRR, nDCG ve gecikme",
-          "summary": "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.",
-          "shortAnswer": "Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.",
+          "title": "Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız",
+          "summary": "Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın.",
+          "shortAnswer": "Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın.",
           "sections": [
             {
               "id": "judgments",
@@ -4284,11 +4296,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Neyin bulunması gerektiğini tanımlayana kadar arama sonucu makul görünür. Kaynak destekli etiketlerle küçük soru kümesi kurun. Tam kimlik, farklı ifade, tarihe duyarlı soru, cevapsız durum ve yasak kaynak ekleyin. Retrieval birimini kaydedin: ilgili belge çok sayıda ilgisiz parça içerebilir. İnceleyici her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışmaları uzlaştırma için tutun."
+                  "text": "Ne bulunması gerektiğini tanımlamadığınızda birçok sonuç makul görünebilir. Kaynaklarla desteklenmiş etiketler kullanarak küçük bir soru kümesi oluşturun. Tam kimlik araması, farklı ifadeler, tarih duyarlılığı, yanıtı bulunmayan sorular ve kapalı kaynaklar da yer alsın. Ölçtüğünüz birimi belirtin: İlgili bir belgenin her parçası ilgili olmayabilir. İnceleyen kişiler her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışan kararları ayrıca gözden geçirin."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Parça boyutu, birleştirme ağırlığı veya eşik ayarlamadan geliştirme sorusunu son testten ayırın. Sentetik soru kapsamı genişletebilir; fakat LLM sorusu ve LLM etiketi aynı hatayı veya yapay ifadeyi paylaşabilir. Örnekleri inceleyin, uygunsa gerçek kullanıcı sorusunu tutun ve kümeler arasındaki benzer soruları ayıklayın. Cevap metnini sorgu temsiline sızdırmayın."
+                  "text": "Parça boyutunu, birleştirme ağırlığını veya eşikleri ayarlamadan önce geliştirme sorularını son test sorularından ayırın. Yapay sorular kapsamı genişletebilir, ancak soruyu ve etiketi aynı model üretirse ikisinde de aynı hata veya yapay anlatım bulunabilir. Örnekleri inceleyin; uygunsa gerçek kullanıcı sorularını kullanın ve kümeler arasındaki çok benzer soruları ayıklayın. Yanıt metnini sorgu temsiline sızdırmayın."
                 }
               ]
             },
@@ -4331,7 +4343,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek başına bunu gizler; nDCG dereceli ilgililik ve konumla cezalandırır. Kazanç, indirim, kesim ve ilgili etiketi olmayan sorgu politikasını belirtin. Farklı tanımlar farklı değer üretebilir. Etiketlenmemiş materyal kendiliğinden ilgisiz kanıtlanmış değildir."
+                  "text": "Sistem bütün ilgili öğeleri bulmuş, ancak ilgisiz bir öğeyi ilk sıraya koymuş olabilir. Recall tek başına bu sorunu göstermez; nDCG hem ilgililik derecesini hem konumu hesaba katar. Kazanç, konuma bağlı indirim ve liste sınırı tanımlarını; ilgili etiketi bulunmayan sorgulara nasıl davranıldığını belirtin. Farklı tanımlar farklı puanlar verir. Etiketlenmemiş bir içeriğin ilgisiz olduğu da kendiliğinden kabul edilemez."
                 }
               ]
             },
@@ -4353,7 +4365,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Sorgu başına değişimi ve yararlı alt grupları kıyaslayın: kimlik/farklı ifade, kısa/uzun kaynak, dil ve kaynak yaşı. Örnek boyutu uygunsa belirsizlik raporlayın ve ham sorgu sonuçlarını koruyun. BEIR heterojen görevlerde değerlendirme örneğidir; skorunu kendinizin saymak yerine disiplinini kullanın. [BEIR](https://arxiv.org/abs/2104.08663), [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)."
+                  "text": "Değişimi sorgu başına ve anlamlı alt gruplarda inceleyin: kimlik araması veya farklı ifade, kısa veya uzun kaynak, dil ve kaynak yaşı. Örneklem uygunsa belirsizliği raporlayın ve ham sonuçları koruyun. BEIR, farklı görevleri birlikte değerlendirmeye örnektir. O çalışmanın puanını kendi başarınız gibi kullanmak yerine değerlendirme yaklaşımından yararlanın. [BEIR](https://arxiv.org/abs/2104.08663) [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)"
                 }
               ]
             },
@@ -4363,7 +4375,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Uçtan uca retrieval ile aşama sürelerini ayrı ölçün. Donanım, veri boyutu, eşzamanlılık, önbellek, ısınma, istek sayısı ve timeout’u belirtin. Ortanca ve kuyruk gecikmesini hata ve boş yanıtlarla raporlayın. Timeout’ları tablodan çıkarmak bozuk sistemi hızlı gösterebilir. Yerel deterministik örnek sözleşme testidir; gerçek embedding sağlayıcısı kalitesini veya üretim kapasitesini ölçmez."
+                  "text": "Aramanın toplam süresini ve her aşamasını ayrı ölçün. Donanımı, veri büyüklüğünü, eşzamanlı istek sayısını, önbelleği, ısınmayı ve zaman aşımını belirtin. Ortanca süreyi ve yüksek gecikme yüzdeliklerini; hatalar ve boş sonuçlarla birlikte raporlayın. Zaman aşımına uğrayan istekleri dışarıda bırakmak, sorunlu bir sistemi hızlı gösterebilir. Sabit girdilerle yapılan yerel örnek, davranış testidir; gerçek modelin kalitesini veya canlı kullanım kapasitesini ölçmez."
                 },
                 {
                   "kind": "exercise",
@@ -4392,7 +4404,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "learning": {
@@ -4454,7 +4467,7 @@
             "Extend the lab with judged tests and stable source IDs"
           ],
           "tr": [
-            "Bellek içi küçük sözcüksel retriever çalıştırmak",
+            "Bellek içi küçük sözcüksel arama bileşeni çalıştırmak",
             "Kapsamı serbest metin sorgusundan ayırmak",
             "Etiketli test ve sabit kaynak kimliği eklemek"
           ]
@@ -4568,9 +4581,9 @@
           ]
         },
         "tr": {
-          "title": "LLM kullanmadan küçük bir arama laboratuvarı kurun",
-          "summary": "Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın.",
-          "shortAnswer": "Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın.",
+          "title": "Dil modeli olmadan küçük bir arama sistemi kurun",
+          "summary": "Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.",
+          "shortAnswer": "Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.",
           "sections": [
             {
               "id": "setup",
@@ -4578,11 +4591,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Bu laboratuvar küçük arşivden bir kaynak pasajı getirir. Python’ın standart `sqlite3` modülü ve FTS5 etkin SQLite gerekir. Model, ağ çağrısı, embedding indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` olarak kaydedip `python3 search_lab.py` çalıştırın. FTS5 yoksa SQLite “no such module: fts5” der; bunu içeren Python/SQLite dağıtımı kullanın."
+                  "text": "Bu alıştırmada küçük bir arşivden ilgili kaynak pasajını bulan program kuracaksınız. Python’ın standart `sqlite3` modülü ve FTS5 desteği açık bir SQLite yeterlidir. Model, ağ çağrısı, temsil modeli indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` adıyla kaydedip `python3 search_lab.py` komutuyla çalıştırın. “no such module: fts5” hatası alırsanız FTS5 içeren bir Python/SQLite kurulumu kullanın."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Örnek her izinli gösterim veri kümesi için ayrı FTS tablosu açar. Bu küçük alıştırmada aday istatistiğini yerel tutar. Üretim tenant stratejisi değildir; doğrulanmış kapsam çözümü, şema yönetimi, kaynak sınırı ve yaşam döngüsü ayrı tasarım ister. Sabit `allowed_archive` eşlemesi güvenilir sunucu kararını temsil eder; prompt’tan alınan değer değildir."
+                  "text": "Örnek, izin verilen her deneme veri kümesi için ayrı FTS tablosu açar. Böylece bu küçük alıştırmada arama istatistikleri de ayrı tutulur. Bu, canlı bir sistemin erişim alanlarını yönetmek için hazır bir çözüm değildir. Kimlik doğrulama, kapsam belirleme, şema, kaynak sınırları ve kayıtların yaşam döngüsü ayrıca tasarlanmalıdır. Koddaki sabit `allowed_archive` eşlemesi, kullanıcının isteminden gelen bir değer değil, güvenilir sunucu kararını temsil eder."
                 }
               ]
             },
@@ -4610,15 +4623,15 @@
                   "steps": [
                     "Güvenilir eşleme · atlas",
                     "Parametreli MATCH · sorgu",
-                    "BM25 sırası · yerel corpus",
+                    "BM25 sırası · yalnızca bu veri kümesi",
                     "Sınır · üç aday",
                     "İncele · kaynak kimliği + metin"
                   ],
-                  "caption": "Bu yalnızca retrieval’dır. Örnekte gizli yanıt üretimi veya iddia çıkarımı yoktur."
+                  "caption": "Bu örnek yalnızca arama yapar; arka planda yanıt üretmez veya bilgi çıkarmaz."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "SQL parametresi sorgu değerinin SQL sözdizimine dönüşmesini önler; FTS sorgu dilini kapatmaz. `OR`, tırnak veya bozuk sözdizimi içeren kullanıcı girdisi hâlâ açık arama politikası ve hata yönetimi ister. Tablo kimliği `?` ile bağlanamaz; örnek yalnızca kodda sabit güvenilir eşlemeyi yerleştirir. Bu eşlemeyi keyfî kullanıcı girdisiyle değiştirmeyin."
+                  "text": "SQL parametreleri sorgu değerinin SQL komutuna dönüşmesini önler; ancak FTS’nin kendi sorgu dilini kapatmaz. Kullanıcı girdisindeki `OR`, tırnaklar veya bozuk sözdizimi için hâlâ açık arama kuralları ve hata yönetimi gerekir. Tablo adı `?` parametresiyle verilemez. Örnek bu yüzden yalnızca kodda belirlenmiş güvenilir eşlemeyi kullanır; bunu keyfî kullanıcı girdisiyle değiştirmeyin."
                 }
               ]
             },
@@ -4628,11 +4641,11 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Friday yerine Monday yazıp beklenen kimliği c2 yapın. Salonun bakım için kapalı olduğunu söyleyen ikinci cuma pasajı ekleyin. Artık ikisi de kelimelere uyar: retrieval çatışmayı gösterdi, çözmedi. Güncel cevabı seçmeden kaynak revizyonu ve geçerlilik ekleyin. Son olarak “last working day” deneyin; bu sözcüksel taban onun Friday anlamında kullanıldığını bilmez."
+                  "text": "Friday yerine Monday yazıp beklenen kimliği c2 yapın. Sonra salonun bakım nedeniyle kapalı olduğunu belirten ikinci bir cuma pasajı ekleyin. Artık iki metin de aynı sözcüklere uyar: Arama çelişkiyi bulmuştur, çözmemiştir. Güncel yanıtı seçmeden önce kaynak sürümü ve geçerlilik bilgisi ekleyin. Son olarak “last working day” ifadesini deneyin. Bu sözcük tabanlı yöntem, ifadenin Friday anlamında kullanıldığını kendi başına bilemez."
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Etiketli sorgu ve beklenen kaynak kimliği dosyası oluşturup önceki dersten Recall@k ve MRR hesaplayın. Dokunulmamış test kümesi tutun. Sözcüksel hatayı anladıktan sonra yoğun retrieval veya reranker ekleyin. Gerçek MESA entegrasyonu için credential ve sağlayıcı içeren sürüme sabit hızlı başlangıca geçin; bu laboratuvar bağımsız eğitim kodudur."
+                  "text": "Etiketli sorguları ve beklenen kaynak kimliklerini bir dosyada tutun; önceki dersteki Recall@k ile MRR ölçümlerini hesaplayın. Ayar yaparken hiç kullanmadığınız bir test kümesi ayırın. Sözcük tabanlı aramanın hatalarını anladıktan sonra anlamsal arama veya yeniden sıralama ekleyin. Gerçek MESA bağlantısı için erişim bilgileri ve sağlayıcı gereksinimleri bulunan hızlı başlangıca geçin. Bu alıştırma bağımsız bir eğitim örneğidir."
                 }
               ]
             },
@@ -4643,8 +4656,8 @@
                 {
                   "kind": "exercise",
                   "title": "Kendinizi sınayın",
-                  "text": "Kod beklenen kaynağı döndürüyor. Bu, kılavuzun güncel, yanıtın doğru ve tenant yalıtımının üretime hazır olduğunu kanıtlar mı?",
-                  "answer": "Hayır. Assert kontrollü veride tek retrieval davranışını doğrular. Geçerlilik, kaynak güveni, kimlik doğrulama, eşzamanlılık, silme ve üretim kapasitesi ayrı test ve uygulama ister."
+                  "text": "Kod beklenen kaynağı döndürüyor. Bu, kılavuzun güncel, yanıtın doğru ve üst erişim alanı yalıtımının canlı kullanıma hazır olduğunu kanıtlar mı?",
+                  "answer": "Hayır. Assert kontrollü veride tek arama davranışını doğrular. Geçerlilik, kaynak güveni, kimlik doğrulama, eşzamanlılık, silme ve üretim kapasitesi ayrı test ve uygulama ister."
                 }
               ]
             },
@@ -4671,7 +4684,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hafıza ve arama"
         }
       },
       "seo": {
@@ -4680,8 +4694,8 @@
           "description": "Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program."
         },
         "tr": {
-          "title": "LLM kullanmadan küçük bir arama laboratuvarı kurun — MESA Learn",
-          "description": "Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın."
+          "title": "Dil modeli olmadan küçük bir arama sistemi kurun — MESA",
+          "description": "Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin."
         }
       },
       "readingMinutes": 5
@@ -4727,8 +4741,8 @@
           "description": "Review MESA's planned, result-free protocol for comparing keyword, semantic, and hybrid legal retrieval."
         },
         "tr": {
-          "title": "Keyword vs Semantic Search — Planlanan Araştırma Protokolü",
-          "description": "Keyword, semantic ve hybrid hukuki retrieval karşılaştırması için MESA'nın sonuç içermeyen planlı protokolünü inceleyin."
+          "title": "Sözcük ve anlam temelli arama nasıl karşılaştırılacak? — MESA",
+          "description": "Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı."
         }
       },
       "locales": {
@@ -4807,9 +4821,9 @@
           ]
         },
         "tr": {
-          "title": "Keyword vs Semantic Search",
-          "subtitle": "Planlanan retrieval benchmark protokolü",
-          "summary": "Bu yayın önerilen bir karşılaştırmayı tanımlar. Herhangi bir benchmark sonucu sunmaz.",
+          "title": "Sözcük ve anlam temelli arama nasıl karşılaştırılacak?",
+          "subtitle": "Planlanan arama karşılaştırmalı test protokolü",
+          "summary": "Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı.",
           "sections": [
             {
               "id": "arastirma-sorusu",
@@ -4817,7 +4831,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Dondurulmuş bir hukuk retrieval veri kümesi ve bağımsız değerlendirilen sorgu seti altında lexical, semantic ve hybrid retrieval relevance ve operasyonel maliyet bakımından nasıl farklılaşır?"
+                  "text": "Aynı hukuk belgeleri, sabit sorgular ve bağımsız ilgililik değerlendirmeleri kullanıldığında sözcük tabanlı, anlamsal ve hibrit arama; ilgili sonuçları bulma ve işletim maliyeti bakımından nasıl farklılaşır?"
                 }
               ]
             },
@@ -4827,13 +4841,13 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Arama yaklaşımları çoğu zaman veri kümesi, sorgu, relevance ve yapılandırma seçimlerini gizleyen geniş iddialarla karşılaştırılır. Yararlı bir karşılaştırma bu seçimleri incelenebilir kılmalıdır."
+                  "text": "Arama yöntemleri bazen kullanılan belgeler, sorular, etiketler ve ayarlar açıklanmadan karşılaştırılıyor. Yararlı bir karşılaştırma, bu seçimlerin nasıl yapıldığını da göstermelidir."
                 }
               ]
             },
             {
               "id": "veri-seti",
-              "title": "Veri seti",
+              "title": "Veri kümesi",
               "blocks": [
                 {
                   "kind": "callout",
@@ -4850,8 +4864,8 @@
                   "kind": "list",
                   "items": [
                     "Veri kümesini, sorgu setini, değerlendirmeleri ve sistem yapılandırmalarını dondur.",
-                    "Lexical, semantic ve hybrid koşulları aynı uygun belgeler üzerinde çalıştır.",
-                    "Sorgu üretimini relevance değerlendirmesinden ayır.",
+                    "Sözcük tabanlı, anlamsal ve hibrit koşulları aynı uygun belgeler üzerinde çalıştır.",
+                    "Sorgu üretimini ilgililik değerlendirmesinden ayır.",
                     "Yalnızca olumlu örnekleri değil, hataları ve sıfır sonuçlu sorguları da kaydet."
                   ]
                 }
@@ -4864,21 +4878,22 @@
                 {
                   "kind": "warning",
                   "title": "Henüz sonuç yok",
-                  "text": "Benchmark çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir."
+                  "text": "Karşılaştırmalı test çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir."
                 }
               ]
             },
             {
               "id": "yeniden-uretilebilirlik",
-              "title": "Yeniden üretilebilirlik",
+              "title": "Tekrarlanabilirlik",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Yayımlanabilir bir çalışma; veri seti kimliğini, sorgu ve değerlendirme sürümlerini, model kimliklerini, yapılandırmayı, kod revizyonunu, uygun olduğunda seed değerlerini, ortamı, ham çıktıları ve analiz adımlarını kaydetmelidir."
+                  "text": "Yayımlanacak bir deneyde veri kümesi, sorgu ve değerlendirme sürümleri; model kimlikleri, ayarlar, kod sürümü, gerekiyorsa rastgelelik başlangıç değerleri, çalışma ortamı, ham çıktılar ve analiz adımları kaydedilmelidir."
                 }
               ]
             }
-          ]
+          ],
+          "category": "Arama değerlendirmesi"
         }
       },
       "related": [
@@ -4910,8 +4925,8 @@
           "description": "Use a cautious, repeatable workflow to verify the identity, source, text, and relevance of an AI-cited Yargıtay decision."
         },
         "tr": {
-          "title": "AI'nin Verdiği Yargıtay Kararı Nasıl Doğrulanır? — MESA Rehberi",
-          "description": "Yapay zekânın atıf verdiği Yargıtay kararının kimliğini, kaynağını, metnini ve relevance'ını dikkatli bir iş akışıyla doğrulayın."
+          "title": "Yapay zekânın atıf yaptığı Yargıtay kararı nasıl doğrulanır? — MESA",
+          "description": "Kararın bilgilerini, asıl metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin."
         }
       },
       "locales": {
@@ -4991,8 +5006,8 @@
           ]
         },
         "tr": {
-          "title": "AI'nin Verdiği Yargıtay Kararı Nasıl Doğrulanır?",
-          "summary": "Karar kimliği, güvenilir metin, alıntılanan bölüm ve hukuki uygunluk kontrol edilene kadar atfı doğrulanmamış bir araştırma ipucu sayın.",
+          "title": "Yapay zekânın atıf yaptığı Yargıtay kararı nasıl doğrulanır?",
+          "summary": "Kararın bilgilerini, asıl metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin.",
           "shortAnswer": "Kararı bağımsız bulun, kimlik bilgilerini eşleştirin, tam metni okuyun, her alıntının izini sürün ve kararın neyi ortaya koyup koymadığını kaydedin.",
           "sections": [
             {
@@ -5001,7 +5016,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Esas ve karar numarasını, daireyi, tarihi, alıntılanan bölümü ve yapay zekânın buna bağladığı sonucu saklayın. Eksik kimlik bilgileri tahmin daveti değil, uyarıdır."
+                  "text": "Esas ve karar numarasını, daireyi, tarihi, alıntıyı ve yapay zekânın bu karardan çıkardığı sonucu kaydedin. Kimlik bilgilerinin eksik olması, tahmin ederek tamamlamanız gereken bir boşluk değil, doğrulama uyarısıdır."
                 }
               ]
             },
@@ -5011,7 +5026,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Belirtilen kimlik bilgileri ve ayırt edici ifadelerle bağımsız arama yapın. Mümkünse resmî yayını tercih edin; değilse repository bilgisini ve erişim tarihini kaydedin."
+                  "text": "Verilen numaralar ve ayırt edici ifadelerle kararı kendiniz arayın. Varsa resmî yayını kullanın. Başka bir kaynaktan ulaştıysanız sitenin veya veri tabanının adını ve erişim tarihini kaydedin."
                 }
               ]
             },
@@ -5042,7 +5057,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Atfa güvenmeden önce hukuki sorunu, maddi olguları, gerekçeyi, hükmü, usulî aşamayı ve sonraki otoriteleri belirleyin."
+                  "text": "Atfa dayanmadan önce uyuşmazlığı, önemli olayları, gerekçeyi, hükmü, usul durumunu ve karardan sonra oluşan içtihadı inceleyin."
                 }
               ]
             },
@@ -5053,17 +5068,18 @@
                 {
                   "kind": "checklist",
                   "items": [
-                    "Stabil kaynak veya saklanan çıktı",
+                    "Kalıcı kaynak bağlantısı veya saklanmış kopya",
                     "Kimlik bilgileri ve erişim tarihi",
                     "Tam destekleyici bölüm",
                     "Bölümün neden ilgili olduğu",
-                    "Aksi yöndeki veya sınırlayıcı otorite",
-                    "İş akışı gerektiriyorsa reviewer ve inceleme tarihi"
+                    "Aksi yöndeki ya da kararı sınırlayan içtihat ve kaynaklar",
+                    "Gerekiyorsa incelemeyi yapan kişi ve inceleme tarihi"
                   ]
                 }
               ]
             }
-          ]
+          ],
+          "category": "Hukuki araştırma"
         }
       },
       "related": [
@@ -5093,8 +5109,8 @@
           "description": "Learn what provenance means in legal AI, retrieval, and evidence-aware memory systems."
         },
         "tr": {
-          "title": "Provenance Nedir? — MESA Sözlüğü",
-          "description": "Provenance'ın legal AI, retrieval ve kanıt odaklı memory sistemlerinde ne anlama geldiğini öğrenin."
+          "title": "Kaynak izi nedir? — MESA",
+          "description": "Kaynak izi, bilginin nereden geldiğini ve bugünkü hâline gelene kadar hangi işlemlerden geçtiğini gösteren kayıttır."
         }
       },
       "locales": {
@@ -5147,8 +5163,8 @@
           ]
         },
         "tr": {
-          "title": "Provenance",
-          "summary": "Provenance, bilginin kaydedilmiş kökeni ve işlenme geçmişidir.",
+          "title": "Kaynak izi nedir?",
+          "summary": "Kaynak izi, bilginin nereden geldiğini ve bugünkü hâline gelene kadar hangi işlemlerden geçtiğini gösteren kayıttır.",
           "shortAnswer": "Bilginin nereden geldiğini, hangi sürümün kullanıldığını, nasıl dönüştürüldüğünü ve kullanımını hangi kanıtın desteklediğini açıklar.",
           "sections": [
             {
@@ -5157,8 +5173,8 @@
               "blocks": [
                 {
                   "kind": "definition",
-                  "term": "Provenance",
-                  "text": "Bir iddia veya retrieval sonucundan kaynak kimliğine ve ilgili işleme adımlarına uzanan iz."
+                  "term": "Kaynak izi",
+                  "text": "Bir iddia veya arama sonucundan kaynak kimliğine ve ilgili işleme adımlarına uzanan iz."
                 }
               ]
             },
@@ -5168,7 +5184,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Atıf verilen bir karar için provenance; mahkeme, daire, esas ve karar kimlikleri, tarih, kaynak URL'si veya saklanan çıktı, erişim tarihi, belge sürümü ve tam destekleyici bölümü içerebilir."
+                  "text": "Bir yargı kararının kaynak izi; mahkeme ve daireyi, esas ve karar numarasını, tarihi, kaynak adresini veya saklanan kopyayı, erişim tarihini, belge sürümünü ve iddiayı destekleyen tam pasajı içerebilir."
                 }
               ]
             },
@@ -5178,7 +5194,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Bir retrieval sisteminde provenance; sonucu belgeye, revizyona, chunk'a, evidence span'e, pipeline sürümüne, model sürümüne, yetkilendirme kapsamına ve katkıda bulunan retrieval sinyallerine bağlayabilir."
+                  "text": "Arama sisteminde kaynak izi; sonucu belgeye, belge sürümüne, metin parçasına, dayanak pasajına, işleme ve model sürümlerine, erişim kapsamına ve sonuca katkı veren arama kanallarına bağlar."
                 }
               ]
             },
@@ -5188,11 +5204,12 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Provenance olmadan makul görünen bir yanıtı incelemek, yeniden üretmek, düzeltmek veya güvenle kullanmak zorlaşabilir."
+                  "text": "Kaynak izi olmadığında, doğru gibi görünen bir yanıtı incelemek, aynı sonucu yeniden elde etmek, hatayı düzeltmek veya güvenle kullanmak zorlaşır."
                 }
               ]
             }
-          ]
+          ],
+          "category": "Kavramlar"
         }
       },
       "related": [
@@ -5223,8 +5240,8 @@
           "description": "Review the minimum evidence, judgments, metrics, versioning, and reporting rules for MESA retrieval evaluations."
         },
         "tr": {
-          "title": "Retrieval Değerlendirme Metodolojisi — MESA Research",
-          "description": "MESA retrieval değerlendirmeleri için asgari kanıt, judgment, metrik, sürümleme ve raporlama kurallarını inceleyin."
+          "title": "Arama sistemleri nasıl değerlendirilir? — MESA",
+          "description": "Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?"
         }
       },
       "locales": {
@@ -5319,9 +5336,9 @@
           ]
         },
         "tr": {
-          "title": "Retrieval değerlendirmesi",
-          "summary": "Bir retrieval sisteminin yararlı ve kaynağa dayalı materyali bulup bulmadığına ilişkin iddialar için asgari metodoloji.",
-          "shortAnswer": "Girdileri dondurun, sorgu üretimini judgment'tan ayırın, birden fazla metriği ve hata örneklerini raporlayın, her sonucu sürümlere ve ham kanıta bağlayın.",
+          "title": "Arama sistemleri nasıl değerlendirilir?",
+          "summary": "Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?",
+          "shortAnswer": "Girdileri sabitleyin. Soruları hazırlayanlarla sonuçları değerlendirenleri ayırın. Birden çok ölçümü ve hata örneklerini raporlayın; sonuçları kullanılan sürümler ve ham çıktılarla birlikte kaydedin.",
           "sections": [
             {
               "id": "kapsam",
@@ -5329,13 +5346,13 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Bu yöntem karşılaştırmalı retrieval değerlendirmelerine uygulanır. Tek bir veri kümesini veya sorgu setini evrensel performans iddiasına dönüştürmez."
+                  "text": "Bu yöntem, farklı arama sistemlerini karşılaştırmak içindir. Tek bir veri kümesinde veya soru listesinde elde edilen sonuçlar, bütün kullanım alanları için başarı garantisi vermez."
                 }
               ]
             },
             {
               "id": "secim",
-              "title": "Veri seti ve sorgu seçimi",
+              "title": "Veri kümesi ve sorgu seçimi",
               "blocks": [
                 {
                   "kind": "list",
@@ -5350,11 +5367,11 @@
             },
             {
               "id": "judgment",
-              "title": "Relevance judgment",
+              "title": "İlgililik değerlendirmesi",
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Judgment rehberi; dereceli relevance'ı, kanıt gereksinimlerini, anlaşmazlık yönetimini ve reviewer bağımsızlığını tanımlamalıdır. Sistem çıktısı kendi ground truth'unu sessizce belirlememelidir."
+                  "text": "Değerlendirme kılavuzu; ilgililik derecelerini, gerekli dayanakları, değerlendiriciler arasındaki görüş ayrılıklarının nasıl çözüleceğini ve bağımsızlığın nasıl sağlanacağını açıklamalıdır. Sistemin kendi çıktısı, doğru kabul edilen yanıtları kendiliğinden belirlememelidir."
                 }
               ]
             },
@@ -5371,7 +5388,7 @@
                   "rows": [
                     [
                       "Recall@k",
-                      "İlgili materyal kesim içinde geri getirildi mi?"
+                      "İlgili kayıtların ne kadarı seçilen ilk k sonuçta bulundu?"
                     ],
                     [
                       "nDCG@k",
@@ -5383,7 +5400,7 @@
                     ],
                     [
                       "Gecikme dağılımı",
-                      "Retrieval hangi operasyonel maliyetle gerçekleşti?"
+                      "Arama ne kadar sürdü ve hangi kaynakları kullandı?"
                     ]
                   ]
                 }
@@ -5397,7 +5414,7 @@
                   "kind": "checklist",
                   "items": [
                     "Yapılandırma ve kod revizyonu",
-                    "Veri seti, sorgu ve judgment sürümleri",
+                    "Veri kümesi, sorgu ve değerlendirme sürümleri",
                     "Toplu ve sorgu bazlı çıktılar",
                     "Hata örnekleri ve hariç tutmalar",
                     "Bilinen sınırlılıklar",
@@ -5406,7 +5423,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "category": "Değerlendirme yöntemleri"
         }
       },
       "related": [

@@ -1,11 +1,11 @@
-## Temsil uyumlu kalmalıdır
+## Belge ve sorgu temsilleri uyumlu olmalı
 
-Assertion vektörleri ve sorgu embedding’leri aynı sağlayıcı/model kimliğini ve boyutu paylaşmalıdır. Belgelenmiş yerel varsayılan Magibu 768 boyutludur; dış text-embedding-3-small 1536 ister. Ayar değişikliği yerinde temsil migration’ı değildir. Belgelenmiş kimlik kurallarıyla rebuild/reindex yapın.
+Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model kimliğini ve boyutları kullanmalıdır. Belgelenen yerel varsayılan Magibu, 768 boyutludur; dış sağlayıcıdaki text-embedding-3-small ise 1536 boyut kullanır. Ayarı değiştirmek eski verileri dönüştürmez. Model değiştirirken belgelenen kimlik kurallarına göre arama görünümünü ve indeksi yeniden oluşturun.
 
-## Yapılandırılmış olmak, çalışır olmak değildir
+## Ayarın bulunması, sağlayıcının çalıştığını göstermez
 
-`GET /v4/capability`, çalışma anındaki kullanılabilirliği ayırır. Özel embedding sağlayıcısı başarılı embedding çağrısına kadar çalışır sayılmaz. Beklenen vektör/sağlayıcı hatası açık 503 döndürür; çalışma zamanı sessizce model değiştirmez. Kanonik V4 yazmaları, modeli etkin combined consumer ve çıkarım bağımlılıkları ister.
+`GET /v4/capability`, o anda kullanılabilen özellikleri bildirir. Özel bir sayısal temsil sağlayıcısı, ilk başarılı çağrıdan önce çalışır kabul edilmez. Beklenen vektör veya sağlayıcı hatalarında açık bir 503 yanıtı verilir; sistem sessizce başka modele geçmez. V4 ile asıl kayıtlara yazmak için modelin etkin olduğu combined süreci ve bilgi çıkarımı bağımlılıkları hazır olmalıdır.
 
-## Sağlayıcı erişimini bilinçli sınırlayın
+## Dış erişimi ayrıca değerlendirin
 
-`MESA_EXTERNAL_PROVIDER_ENABLED=false`, kanonik dış çağrıları sınırlar. Tam air-gap veya sıfır maliyet garantisi değildir. Model indirmeleri, yerel hazırlık ve diğer süreç ağ erişimleri ayrı konulardır. Burada güncel gerçek sağlayıcı hız, kalite veya token maliyeti benchmark’ı iddia edilmez.
+`MESA_EXTERNAL_PROVIDER_ENABLED=false`, asıl işleme hattındaki dış sağlayıcı çağrılarını sınırlar. Bu ayar tek başına sistemin tamamen ağdan yalıtıldığını veya hiç ücret doğurmayacağını garanti etmez. Model indirmeleri ve başka süreçlerin ağ erişimi ayrıca değerlendirilmelidir. Burada gerçek sağlayıcıların hızına, kalitesine veya token maliyetine ilişkin güncel bir ölçüm sunulmuyor.

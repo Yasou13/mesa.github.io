@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Sistem hangi garantileri vermez?
 
-Genel gecikme, throughput, doğruluk veya halüsinasyonları kaldırma garantisi yoktur. Yerel deterministik fixture’lar sözleşmeleri doğrular; mock vektörler anlamsal kaliteyi ölçmez. Çizge sınırları işi sınırlar; tamlığı değil. Bağlam bütçesi biçimlendirilmiş kanıt içindir; muhafazakâr offline sayım bütçeyi eksik doldurabilir. Tarihsel sayıları güncel sağlayıcı sonucu saymadan önce tarihli benchmark koşullarını okuyun.
+Her iş yükü için geçerli bir hız, kapasite veya doğruluk garantisi yoktur. Hatalı model yanıtlarının tamamen ortadan kalktığı da söylenemez. Aynı sonucu veren yerel testler yalnızca tanımlanan davranışı doğrular; önceden belirlenmiş vektörler gerçek modelin anlamsal kalitesini ölçmez. Çizge sınırları iş miktarını kontrol eder, bütün sonuçların bulunmasını garanti etmez. Bağlam bütçesi biçimlendirilmiş kanıt içindir; temkinli çevrimdışı sayım nedeniyle bütçenin tamamı dolmayabilir.
 
-## Sürdürülen sözleşmelerle devam edin
+## Sonuçları koşullarıyla birlikte okuyun
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Eski sayıları güncel sağlayıcı sonucu olarak kullanmadan önce testin tarihini ve koşullarını inceleyin. Ayrıntılar aşağıdaki özgün kaynakta, [mimari](architecture/), [API](docs/core/api-reference/) ve [işletim](docs/core/operations/) rehberlerinde bulunur.

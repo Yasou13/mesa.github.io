@@ -1,11 +1,11 @@
-## Dört farklı sinyal
+## Dört arama kanalı farklı ipuçları kullanır
 
-Vektör kanalı uyumlu anlamsal temsilleri karşılaştırır. BM25, FTS5 pasaj/kanıt metnini ve kapsamlı atıf aramasını kullanır. Assertion kanalı predicate, subject, object/literal ve kanıtı değerlendirir. Çizge kanalı, kanıtla desteklenen sınırlı yollar katkılar. Yetkili kanonik sahiplik ve uygunluk, sıralama katkısından önce çözülür.
+Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaştırır. BM25, FTS5 üzerinden pasaj ve kanıt metnini sözcüklerle arar; erişim kapsamındaki atıfları da kullanır. Bilgi kaydı kanalı özne, ilişki, nesne ve dayanağı değerlendirir. Çizge kanalı ise kaynakları belli olan sınırlı bağlantı yollarını bulur. Bir kaydın sahipliği ve erişime uygunluğu, sıralamaya katkı vermesinden önce denetlenir.
 
-## Sıra birleştirme; olasılık değil
+## RRF sıralamaları birleştirir; olasılık hesaplamaz
 
-Varsayılanlar: k=60, dört ağırlık=1.0, sıralar 1’den başlar. Tekrarlanan hit bir kanalda tek oy verir. RRF(c)=Σ w/(k+rank). Kanal içi atıf artırımları kanal sırasını değiştirir; doğrudan RRF’ye eklenmez. Birleştirmeden sonra ayrı, sorguya bağlı hukuk katsayısı uygulanır. Ayrımı ve örnek hesaplayıcıyı [retrieval açıklamasında](retrieval/) inceleyin.
+Varsayılan olarak k=60 ve dört kanalın ağırlığı 1.0’dır. Sıralar 1’den başlar. Aynı aday bir kanalda birden çok kez görünse de yalnızca bir katkı verir: RRF(c)=Σ w/(k+rank). Kanal içindeki atıf artırımları o kanalın sırasını değiştirir; RRF puanına doğrudan eklenmez. Birleştirmeden sonra, sorguya bağlı ayrı bir hukuk katsayısı uygulanabilir. [Arama sayfasındaki](retrieval/) örnek hesaplayıcıyla farkı inceleyebilirsiniz.
 
-## Sınırlı çizge ve bağlam
+## Çizge ve bağlam sınırları
 
-Çizge dolaşımı sınırlıdır: en fazla 20 başlangıç düğümü, üç hop, 500 istenen graph hit, 64 frontier, düğüm başına 32 fan-out ve varsayılan 15 saniyelik istek zaman aşımı. Bunlar kaynak sınırlarıdır; gecikme garantisi değildir. Bağlam, varsayılan 2048 token biçimlendirilmiş kanıt bütçesi ve tek arama kullanır. İsteğe bağlı adaptive mod kapsamı genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.
+Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı, istenen 500 sonuç, 64 düğümlük ilerleme kümesi ve düğüm başına 32 bağlantıyla sınırlandırılır. Varsayılan zaman aşımı 15 saniyedir. Bunlar kaynak tüketimini sınırlayan değerlerdir; hız garantisi değildir. Bağlam oluşturma varsayılan olarak tek arama ve 2048 token’lık biçimlendirilmiş kanıt bütçesi kullanır. İsteğe bağlı uyarlamalı mod, erişim kapsamını genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.

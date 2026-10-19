@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
-  <link rel="stylesheet" href="../../../docs.css?v=91f92e24d3b4">
+  <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
@@ -285,7 +285,7 @@ curl --fail -H &quot;X-API-Key: $MESA_API_KEY&quot; http://127.0.0.1:18080/healt
 </main>
 <script type="application/json" data-doc-copy>"# Installation & deployment\n\n## Choose a supported runtime\n\nV4 runs one model-enabled combined owner per storage root. V3 compatibility uses separate API/worker roles and still needs operational embeddings for ingestion. Keep V3 and V4 roots separate.\n\n## Install the base environment\n\nUse `uv sync --locked --python 3.10` and `uv pip check`; Python 3.10–3.13 are CI-tested. Native storage and HTTP/SDK support are included. Add `dev` for tests, `ml` for local models and `adapters` for provider SDKs as needed. Models-disabled startup needs no ML extra or database server. See [providers](docs/core/embedding-providers/).\n\n## Provision before deployment\n\nPrepare credentials, ACLs, an explicit storage root and reviewed provider settings. Use the current installation section in the source below for native and Docker deployment. Readiness alone does not qualify production.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/getting-started.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
-  <script src="../../../app.js?v=43752e3c2ede"></script>
+  <script src="../../../app.js?v=d389e70c5cac"></script>
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

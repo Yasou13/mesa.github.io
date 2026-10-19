@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
-  <link rel="stylesheet" href="../../../docs.css?v=91f92e24d3b4">
+  <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
@@ -160,7 +160,7 @@
 </main>
 <script type="application/json" data-doc-copy>"# Security & scope\n\n## Tenant is the authorization boundary\n\nAuthenticated keys bind a principal; tenant/workspace/dataset OWNER, WRITER and READER roles inherit downward. Agent IDs describe context, not credentials. Sessions freeze dataset membership. Purge and rollback need explicit dataset permissions in addition to roles. Scope is checked before retrieval ranking.\n\n## Deployment responsibilities remain\n\nCore does not encrypt SQLite/LanceDB/Kùzu at rest. Protect volumes, OS permissions, backups and networks. Versioned memory, health and metrics need an API key, but readiness, OpenAPI, Swagger and Redoc have public boundaries. Provide TLS and access policy at the deployment edge.\n\n## Evidence is untrusted input\n\nSource-linked context is not independently verified truth. `UNTRUSTED_MEMORY_EVIDENCE` must remain data in downstream prompts and tools. Avoid logging content, credentials, model output or claim tokens. Model consensus does not guarantee legal correctness or eliminate hallucinations.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/security-and-privacy.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
-  <script src="../../../app.js?v=43752e3c2ede"></script>
+  <script src="../../../app.js?v=d389e70c5cac"></script>
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

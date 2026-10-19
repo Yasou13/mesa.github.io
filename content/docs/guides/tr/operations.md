@@ -1,11 +1,11 @@
-## Tek yazıcı ve gözlenebilir iş
+## Her veri dizininin tek yazıcısı olmalı
 
-Her storage root için tek combined V4 owner çalıştırın. Projection backlog, dead letter, takılmış lease, cleanup backlog/blocked ve orphan registry metriklerini izleyin. Paylaşılan artifact sayısının sıfır olması gerekmez. Artan backlog, depodaki satırları elle düzenleme izni değil operasyonel sinyaldir.
+Her veri dizini için tek combined V4 süreci çalıştırın. Arama görünümü ve temizlik kuyruklarını, başarısız iş kuyruğunu, takılı iş sahipliklerini ve sahipsiz kayıtları izleyin. Paylaşılan çıktıların sayısının sıfır olması gerekmez. Kuyruğun büyümesi, depodaki satırları elle değiştirmek için gerekçe değildir; nedenini araştırmanız gereken bir işletim işaretidir.
 
-## Kurtarma sahipliği korur
+## Kurtarma, sahiplik kurallarını korur
 
-Yetkili replay’den önce asıl depo/sağlayıcı hatasını giderin. Fencing claim’ini kaybeden iş tamamlanamaz. Rollback, kaynak sahipliğini kaldırır ve ikincil temizlikten önce tombstone yazar; başka etkin kaynak sahip olduğu sürece ortak artifact yaşar. BLOCKED cleanup başarı değildir.
+Bir işi yeniden yürütmeden önce depo veya sağlayıcı hatasını giderin. İş sahipliğini kaybeden bir çalışan, o işi tamamlayamaz. Geri alma işleminde önce kaynağın sahiplik bağı kaldırılıp silindi işareti yazılır, ardından ikincil temizlik yapılır. Başka bir etkin kaynağın hâlâ kullandığı ortak çıktı korunur. Temizliğin BLOCKED olması, başarılı olduğu anlamına gelmez.
 
-## Cutover öncesi yedek alın
+## Yeni düzene geçmeden önce yedek alın
 
-Writer-lock kontrolleri içeren sabitlenmiş offline backup/restore prosedürünü kullanın. Geri dönüş koruması boyunca özgün root ve yedeği saklayın. Yeni boş hedefe restore edin; mevcut root’u ezmeyin veya genel downgrade çalıştırmayın. [Rebuild](docs/core/rebuild-runbook/) offline ve storage-root genelindedir; online veya tenant kapsamlı değildir.
+Aşağıdaki kaynakta yer alan, yazıcı kilidi kontrollerini içeren çevrimdışı yedekleme ve geri yükleme adımlarını izleyin. Geri dönme olanağını koruduğunuz sürece özgün veri dizinini ve yedeği saklayın. Yedeği yeni, boş bir dizine yükleyin; mevcut dizinin üzerine yazmayın veya genel bir sürüm düşürme işlemi çalıştırmayın. [Yeniden oluşturma](docs/core/rebuild-runbook/) çevrimdışıdır ve veri dizininin tamamını kapsar; tek bir üst erişim alanını çevrimiçi onarmaz.

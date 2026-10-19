@@ -1,6 +1,6 @@
-## Sabitlenmiş sürümü kurun
+## Belirli bir sürümü kurun
 
-Geçici bir yerel checkout ve CI matrisinde test edilen Python 3.10–3.13 sürümlerinden birini kullanın. Paket Python >=3.10 beyan eder. Bu komutlar yayımlanmış kaynağı ve ona ait kilit dosyasını seçer.
+Deneme için ayrı bir yerel depo kopyası açın. Python 3.10–3.13 sürümleri otomatik testlerde kullanılıyor; paketin alt sınırı Python 3.10’dur. Aşağıdaki komutlar v0.8.1 kaynak kodunu ve o sürüme ait kilit dosyasını kullanır.
 
 ```bash
 git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
@@ -9,9 +9,9 @@ uv sync --locked --python 3.10
 uv pip check
 ```
 
-## Başlatmadan önce yetkilendirin
+## Başlatmadan önce erişim izinlerini verin
 
-Aşağıdaki profil model veya dış sağlayıcı kullanmaz. Kurulum, credential ve readiness kontrolü yapar. V3 veri alımını veya kanonik V4 eklemeyi tamamlayamaz; embedding ve kanonik çıkarım ayrı hazırlanmalıdır. Oluşturulan anahtar yalnızca bu geçici storage root içindir. Paylaşmayın veya loglara kaydetmeyin.
+Bu kurulum model veya dış sağlayıcı kullanmaz; paketleri, erişim bilgilerini ve sistemin başlatılabildiğini kontrol etmek içindir. V3 ile veri işlemek veya V4’e asıl bilgi kaydı eklemek için sayısal temsil ve bilgi çıkarımı sağlayıcılarını ayrıca hazırlamanız gerekir. Oluşturulan anahtar yalnızca bu geçici veri dizini içindir; paylaşmayın veya günlüklere yazmayın.
 
 ```bash
 mkdir -p "$HOME/mesa-doc-demos"
@@ -28,9 +28,9 @@ export MESA_API_KEY="$(.venv/bin/mesa-v4-admin issue-key --principal docs-princi
 .venv/bin/mesa-v4-admin grant-agent --principal docs-principal --agent docs-agent --permission SESSION_CREATE
 ```
 
-## Çalıştırın ve doğrulayın
+## Sunucuyu başlatıp durumunu kontrol edin
 
-Hazırlıktan sonra loopback sunucusunu başlatın. Sağlık kontrolleri için aynı export ayarlarını ve özel sağlanan anahtarı taşıyan ikinci terminali kullanın. Model kapalı V4 ekleme `503 canonical_processing_unavailable` döndürür; V3 işleme de embedding gerektirir. Yalnızca yeni oluşturulan geçici root’u kaldırmadan önce süreci durdurun.
+Sunucu yalnızca yerel bilgisayardan erişilebilecek şekilde açılır. Kontrolleri, aynı ortam değişkenlerinin ve oluşturduğunuz anahtarın bulunduğu ikinci bir terminalde çalıştırın. Model kapalıyken V4’e bilgi ekleme `503 canonical_processing_unavailable` döndürür. V3 işleme de sayısal temsil sağlayıcısı gerektirir. Deneme bittiğinde yalnızca yeni oluşturduğunuz geçici dizini silin ve önce sunucuyu durdurun.
 
 ```bash
 .venv/bin/python -m uvicorn mesa_memory.api.server:app --host 127.0.0.1 --port 18080
@@ -41,6 +41,6 @@ curl --fail http://127.0.0.1:18080/health/init
 curl --fail -H "X-API-Key: $MESA_API_KEY" http://127.0.0.1:18080/health
 ```
 
-## Kaynağa bağlı ilk V4 ekleme
+## V4 ile ilk kaydı eklemek için
 
-Yeni bir root üzerinde aşağıdaki kaynakta açıklanan modeli etkin combined runtime, çıkarım ve embedding sağlayıcıları, katalog ve ACL’leri hazırlayın. Ardından `.venv/bin/python -m examples.v4_quickstart` çalıştırın. Örnek `COMMITTED` kontrolü yapar, assertion/kaynak referanslarını yazdırır ve oturumu bitirir. Timeout mutasyonu iptal etmez. `make health`, `MESA_BASE_URL` ve `MESA_API_KEY` ile çalışan API’yi kontrol eder.
+Aşağıdaki özgün kaynakta anlatıldığı gibi yeni bir veri dizini, modelin etkin olduğu combined süreci, bilgi çıkarımı ve sayısal temsil sağlayıcıları, katalog ve erişim izinleri hazırlayın. Sonra `.venv/bin/python -m examples.v4_quickstart` komutunu çalıştırın. Örnek, `COMMITTED` durumunu kontrol eder, bilgi kaydıyla kaynak referanslarını yazdırır ve oturumu kapatır. Zaman aşımı, sunucudaki işlemi iptal etmez. Çalışan API’yi kontrol etmek için `MESA_BASE_URL` ve `MESA_API_KEY` ile `make health` kullanabilirsiniz.

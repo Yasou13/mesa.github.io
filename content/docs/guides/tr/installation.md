@@ -1,11 +1,11 @@
-## Desteklenen çalışma profilini seçin
+## Çalışma profilini seçin
 
-V4, storage root başına modeli etkin tek combined owner çalıştırır. V3 uyumluluğu ayrı API/worker rolleri kullanır ve veri alımı için çalışır embedding gerektirir. V3 ve V4 root’larını ayırın.
+V4’te her veri dizinini tek bir combined süreci yönetir; bilgi işlemek için model desteğinin açık olması gerekir. V3 uyumluluk profili ayrı API ve arka plan çalışanı rolleri kullanır. V3 ile veri almak için de çalışan bir sayısal temsil sağlayıcısı gerekir. İki sürümü ayrı veri dizinlerinde tutun.
 
-## Temel ortamı kurun
+## Paketleri kurun
 
-`uv sync --locked --python 3.10` ve `uv pip check` kullanın; CI matrisinde Python 3.10–3.13 test edilir. Yerel depolama ve HTTP/SDK desteği dahildir. Testler için `dev`, yerel modeller için `ml`, sağlayıcı SDK’ları için `adapters` ekleyin. Model kapalı başlangıç ML extra veya veritabanı sunucusu gerektirmez. [Sağlayıcılara](docs/core/embedding-providers/) bakın.
+`uv sync --locked --python 3.10` ve `uv pip check` komutlarını kullanın. Otomatik testlerde Python 3.10–3.13 sürümleri denenir. Yerel depolama, HTTP ve SDK desteği temel kuruluma dahildir. Testler için `dev`, yerel modeller için `ml`, sağlayıcı SDK’ları için `adapters` ek paketlerini seçebilirsiniz. Model kullanmadan başlatmak için ML ek paketi veya ayrı bir veritabanı sunucusu gerekmez. [Sağlayıcı rehberini](docs/core/embedding-providers/) de inceleyin.
 
-## Dağıtımdan önce hazırlayın
+## Başlatmadan önce hazırlayın
 
-Credential, ACL, açık storage root ve gözden geçirilmiş sağlayıcı ayarlarını hazırlayın. Native ve Docker dağıtımı için aşağıdaki kaynağın güncel kurulum bölümünü izleyin. Readiness tek başına üretim yeterliliği değildir.
+Erişim bilgilerini, izinleri, veri dizinini ve sağlayıcı ayarlarını hazırlayın. Doğrudan sistem üzerinde veya Docker ile kurulum için aşağıdaki güncel kaynağı izleyin. Hazır olma kontrolünün geçmesi, canlı kullanım için bütün testlerin tamamlandığı anlamına gelmez.

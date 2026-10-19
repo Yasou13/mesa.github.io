@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
-  <link rel="stylesheet" href="../../../docs.css?v=91f92e24d3b4">
+  <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
 <body>
@@ -231,7 +231,7 @@ export MESA_EMBEDDING_VERSION=v1</code></pre></div>
 </main>
 <script type="application/json" data-doc-copy>"# Configuration\n\n## Start with explicit runtime boundaries\n\nSet `MESA_STORAGE_ROOT`, `MESA_RUNTIME_PROFILE=combined` for V4, `MESA_LOAD_DOTENV=false`, and deliberate model/provider flags. Use different roots for V3/V4. Settings changes do not rewrite an existing dataset representation; embedding identity and dimensions must match stored projections.\n\n## Validation and retrieval controls\n\n`MESA_TIER3_MODE`: 0 deterministic-only, 1 single validator, 2 distinct A/B provider-model consensus. `MESA_RRF_K=60` and the four `MESA_RRF_*_WEIGHT=1.0` settings control fusion. `MESA_V4_GRAPH_TIMEOUT_SECONDS=15.0` bounds graph requests. `MESA_V4_REBUILD_ENABLED=false` keeps durable rebuild disabled by default.\n\n## Use the full pinned setting reference\n\nThe source appendix below preserves the full v0.8.1 settings table, including admission quotas, readiness thresholds, provider models and operator variables. Defaults describe configuration, not proof that a provider is installed or operational. Credentials belong in a reviewed secret environment.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/configuration.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
-  <script src="../../../app.js?v=43752e3c2ede"></script>
+  <script src="../../../app.js?v=d389e70c5cac"></script>
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

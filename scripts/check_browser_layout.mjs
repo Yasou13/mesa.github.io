@@ -144,8 +144,9 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
       const heroImage = hero?.querySelector('picture img');
       return {
         title: document.title,
+        docs: Boolean(document.querySelector('.docs-layout')),
         heroBackground: document.querySelector('.page-hero') ? getComputedStyle(document.querySelector('.page-hero')).backgroundColor : null,
-        cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('.cosmic__field'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
+        cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('.cosmic__field'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, display:field && getComputedStyle(field).display, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
         docsBreadcrumbTop: document.querySelector('.docs-breadcrumbs')?.getBoundingClientRect().top ?? null,
         docsToggleBottom: document.querySelector('.docs-navigation summary')?.getBoundingClientRect().bottom ?? null,
         language: root.lang,
@@ -175,7 +176,8 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
   state.heroNetwork = connection.requests.filter(entry => entry.loaderId === connection.loaderId && /hero(?:-portrait)?\.webp/.test(entry.request.url)).map(entry => ({ url: entry.request.url, initiator: entry.initiator }));
   observations.push({ route: routePath, width, ...state });
   const label = `/${routePath} @ ${width}px`;
-  if (state.cosmic.count !== 1 || state.cosmic.pointer !== 'none' || !(Number(state.cosmic.opacity) > 0) || !(state.cosmic.height > 0)) failures.push(`${label}: shared atmosphere missing or interfering`);
+  // Documentation uses the established plain reading surface in docs.css.
+  if (state.cosmic.count !== 1 || state.cosmic.pointer !== 'none' || (state.docs ? state.cosmic.display !== 'none' : !(Number(state.cosmic.opacity) > 0) || !(state.cosmic.height > 0))) failures.push(`${label}: shared atmosphere missing or interfering`);
   if (state.heroBackground && state.heroBackground !== 'rgba(0, 0, 0, 0)') failures.push(`${label}: hero masks the shared environment`);
   if (!state.title) failures.push(`${label}: missing title`);
   if (state.mainCount !== 1) failures.push(`${label}: main count ${state.mainCount}`);

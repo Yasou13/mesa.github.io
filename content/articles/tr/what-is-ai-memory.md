@@ -3,10 +3,10 @@ id: "what-is-ai-memory"
 slug: "what-is-ai-memory"
 type: "learn"
 language: "tr"
-title: "Yapay zekâ hafızası: konuşmadan sonra ne kalır?"
+title: "Yapay zekâ hafızası: sohbet bitince ne kalır?"
 subtitle: ""
-summary: "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
-shortAnswer: "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
+summary: "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
+shortAnswer: "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
 category: "Foundations"
 tags: ["memory", "context window", "session", "kalıcı hafıza", "bağlam", "oturum"]
 author: "MESA contributors"
@@ -15,8 +15,8 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Yapay zekâ hafızası: konuşmadan sonra ne kalır? — MESA Learn"
-seoDescription: "Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın."
+seoTitle: "Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA"
+seoDescription: "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
 lessonOrder: 1
 learningStage: "foundation"
 prerequisites: []
@@ -25,9 +25,9 @@ learningObjectives: ["Bağlamı kalıcı depodan ayırmak", "Neyi saklayıp ne z
 
 ## “Hatırlamanın” üç ayrı anlamı
 
-Kurgusal Atlas arşivi için çalışan bir asistan düşünün. Pazartesi okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni konuşmada açılış saatini soruyorsunuz. Uygulama kullanılabilir bir kayıt sağlamazsa model ancak parametrelerindeki bilgiye dayanabilir. Kendinden emin yanıt hangi yolun kullanıldığını göstermez.
+Atlas arşivi için çalışan kurgusal bir asistan düşünün. Pazartesi, okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni bir sohbette açılış saatini soruyorsunuz. Uygulama önceki kaydı modele sunmazsa model yalnızca eğitimde öğrendiklerine dayanabilir. Kendinden emin bir yanıt vermesi, bilgiyi gerçekten hatırladığını göstermez.
 
-Büyük dil modeli (LLM), aldığı girdiden sonraki token’ları tahmin ederek metin üretir. Token kodlanmış metin birimidir; her zaman tam kelime değildir. Bağlam penceresi modelin arayüzü altında çalışabildiği sınırlı girdi/çıktı token dizisidir. Kalıcı depolama bu tahmin sürecinin dışında, uygulamaya ait mekanizmadır. Burada hafıza bir mühendislik terimidir; insan gibi hatırlama iddiası değildir.
+Büyük dil modeli (LLM), girdiden sonra hangi token’ların geleceğini tahmin ederek metin üretir. Token, her zaman tam bir sözcüğe karşılık gelmeyen kodlanmış metin birimidir. Bağlam penceresi, modelin tek istekte işleyebildiği sınırlı girdi ve çıktı alanıdır. Kalıcı depolama ise bu tahmin sürecinin dışında, uygulama tarafından yönetilir. Burada “hafıza” bir mühendislik kavramıdır; modelin insan gibi hatırladığı söylenmiyor.
 
 | Katman | İçerik | Değişim yolu |
 | --- | --- | --- |
@@ -35,11 +35,11 @@ Büyük dil modeli (LLM), aldığı girdiden sonraki token’ları tahmin ederek
 | Bağlam penceresi | Bu isteğe verilen token’lar | Yeni istek oluşturma |
 | Kalıcı hafıza | Model dışındaki kayıtlar | Yetkili yazma/güncelleme/silme |
 
-Veritabanına satır yazmak modeli yeniden eğitmez. O satırı getirmek, seçim ve bağlam sınırları içinde yalnızca bir istekte kullanılabilir kılar. Konuşma geçmişinde duran bir cümlenin budamadan sonra veya başka oturumda bulunacağı da garanti değildir. Bunlar farklı hata biçimleri olan ayrı mekanizmalardır.
+Veritabanına bir satır eklemek modeli yeniden eğitmez. Uygulama o satırı bulup bağlama eklerse model, yalnızca ilgili istekte bu bilgiden yararlanabilir. Konuşma geçmişinde duran bir cümlenin de geçmiş kısaltıldığında veya yeni oturum açıldığında erişilebilir kalacağı garanti değildir. Bunlar, farklı biçimlerde hata verebilen ayrı mekanizmalardır.
 
 ## Kullanışlı kayıt bir cümleden fazlasıdır
 
-“Dokuzda açılır” bilgisini saklamadan önce sorun: hangi salon, hangi günler, kime göre ve hangi okuyucular için? Kullanışlı kayıt özgün gözlemi, kaynağı, erişim kapsamını ve zamanı korur. Çıkarılmış olgu bu gözlemin yorumudur. İkisini saklamak, özgün kaynak değişmiş gibi davranmadan çıkarımı düzeltmenizi sağlar.
+“Dokuzda açılır” bilgisini saklamadan önce şu soruları sorun: Hangi salon? Hangi günler? Hangi kaynağa göre? Kimler görebilir? İyi bir kayıt, özgün ifadeyi, kaynağını, erişim izinlerini ve zamanını korur. Bu ifadeden çıkarılan bilgi ise bir yorumdur. İkisini ayrı saklamak, kaynağı değiştirmeden hatalı yorumu düzeltmenizi sağlar.
 
 ```text
 record_id: hours-17
@@ -64,21 +64,21 @@ status: active
 
 *Her ok başarısız olabilir. Kaydedilmiş mesaj, kullanılabilir hafızanın tamamlandığını kanıtlamaz.*
 
-Yazma politikasını açık seçin. Her mesajı saklamak özel veriyi, tekrarları ve eski talimatları biriktirir. Yalnızca LLM özeti saklamak istisnaları veya kanıtı kaybettirebilir. Başlangıç için tam kaynak kayıtlarını koruyup görevle ilgili az sayıda iddia çıkarmak ve her iddiayı kaynağına bağlamak uygundur. Bu bir tasarım örüntüsüdür; evrensel gereklilik değildir.
+Neyin saklanacağına açıkça karar verin. Her mesajı kaydetmek; özel bilgileri, tekrarları ve geçerliliğini yitirmiş talimatları biriktirir. Yalnızca model özeti saklamak da istisnaları veya dayanakları kaybettirebilir. Başlangıç için kaynak metni koruyup görevle ilgili az sayıda bilgi kaydı çıkarabilir ve her birini kaynağına bağlayabilirsiniz. Bu, her sistemde zorunlu olan tek çözüm değil, bir tasarım seçeneğidir.
 
 ## Silme ve düzeltme de hafızanın parçasıdır
 
-Çarşamba salonun saati değişiyor. Yeni cümle eklemek, revizyon veya geçerlilik izlenmiyorsa yarışan iki yanıt bırakır. Politikanızın izin verdiği denetim izini korurken önceki iddiayı geçersizleşmiş olarak işaretleyin. Kaynak silindiğinde türetilmiş özet, embedding ve önbellekler hakkında da karar gerekir; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir.
+Çarşamba salonun açılış saati değişsin. Sürüm ve geçerlilik bilgisi tutmadan yalnızca yeni bir cümle eklerseniz, arama birbiriyle yarışan iki yanıt bulabilir. Saklama kurallarınıza uygun geçmişi koruyun ve eski kaydın geçerliliğini yitirdiğini belirtin. Kaynak silindiğinde ona bağlı özetleri, sayısal temsilleri ve önbellekleri de değerlendirin; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir.
 
-Test, gözlenebilir devamlılıktır: oturumu kapatın, başka yetkili oturum açın, soruyu sorun; sonra erişimi kaldırıp veya kaynağı değiştirip tekrarlayın. Yanıtla birlikte dönen kaynak kimliğini kontrol edin. Uzun bağlam bu testin yerini tutmaz. Liu ve arkadaşları belirli uzun bağlam görevlerinde konum etkisini inceler; bulgu her model için zamansız sınır değil, kendi modelinizi değerlendirme nedenidir. [Araştırma](https://arxiv.org/abs/2307.03172).
+Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka bir yetkili oturum açın ve aynı soruyu sorun. Ardından erişimi kaldırıp veya kaynağı değiştirip testi tekrarlayın. Yanıtla birlikte kaynak kimliğini de kontrol edin. Uzun bir bağlam penceresi bu testin yerini tutmaz. Liu ve arkadaşlarının belirli uzun bağlam görevlerinde bulduğu konum etkisi, her model için değişmez bir sınır değil; kendi sisteminizi ölçmeniz için bir gerekçedir. [Araştırma](https://arxiv.org/abs/2307.03172)
 
 ## İlk hafıza politikanızı tasarlayın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Retrieval satırı her seferinde bulsa bile hangi iki sorun sürer?
+> Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Arama satırı her seferinde bulsa bile hangi iki sorun sürer?
 >
-> **Answer:** Kaynağa bağlı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Retrieval başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
+> **Açıklama:** Kaynağıyla bağlantılı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Arama başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
 
 ## Kaynaklar ve ileri okuma
 

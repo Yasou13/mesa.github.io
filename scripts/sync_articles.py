@@ -26,11 +26,12 @@ ARTICLES_DIR = ROOT / "content" / "articles"
 SEED_SQL_FILE = ROOT / "supabase" / "seed.sql"
 
 
-def block_to_markdown(block: dict) -> str:
+def block_to_markdown(block: dict, language: str = "en") -> str:
     kind = block.get("kind")
     if kind == "exercise":
+        answer_label = "Açıklama" if language == "tr" else "Answer"
         return (f"> [!EXERCISE]\n> **{block['title']}**\n> {block['text']}\n>\n"
-                f"> **Answer:** {block['answer']}\n\n")
+                f"> **{answer_label}:** {block['answer']}\n\n")
     if kind == "paragraph":
         return block.get("text", "") + "\n\n"
     elif kind == "list":
@@ -120,7 +121,7 @@ def parse_markdown_blocks(content: str, sec_title: str = "") -> list[dict]:
             continue
 
         if chunk.startswith("> [!EXERCISE]"):
-            match = re.fullmatch(r"> \[!EXERCISE\]\n> \*\*(.*?)\*\*\n> (.*?)\n>\n> \*\*Answer:\*\* (.*)", chunk, re.DOTALL)
+            match = re.fullmatch(r"> \[!EXERCISE\]\n> \*\*(.*?)\*\*\n> (.*?)\n>\n> \*\*(?:Answer|Açıklama):\*\* (.*)", chunk, re.DOTALL)
             if match:
                 title, question, answer = match.groups()
                 blocks.append({"kind": "exercise", "title": title, "text": question, "answer": answer})
@@ -323,7 +324,7 @@ def generate_article_markdown(entry: dict, lang: str) -> str:
         if sec_title:
             body_md += f"## {sec_title}\n\n"
         for block in sec.get("blocks", []):
-            body_md += block_to_markdown(block)
+            body_md += block_to_markdown(block, lang)
 
     frontmatter = {
         "id": eid,
@@ -422,7 +423,7 @@ def generate_seed_sql(hub_data: dict) -> str:
                 if sec_title:
                     body_md += f"## {sec_title}\n\n"
                 for block in sec.get("blocks", []):
-                    body_md += block_to_markdown(block)
+                    body_md += block_to_markdown(block, lang)
 
             tags_sql = "ARRAY[" + ", ".join(escape_sql(t) for t in tags) + "]::text[]" if tags else "'{}'::text[]"
             sql_lines.append(

@@ -3,10 +3,10 @@ id: "bm25-tuning-for-domain-documents"
 slug: "bm25-tuning-for-domain-documents"
 type: "learn"
 language: "tr"
-title: "BM25: nadir kelime neden tekrarlanan kelimeyi geçer?"
+title: "BM25: bir sözcük ne zaman daha önemli olur?"
 subtitle: ""
-summary: "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
-shortAnswer: "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
+summary: "Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin."
+shortAnswer: "Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin."
 category: "Memory & Retrieval"
 tags: ["BM25", "IDF", "tokenization", "FTS5", "lexical", "sözcüksel", "Türkçe", "tokenizasyon"]
 author: "MESA contributors"
@@ -15,8 +15,8 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn"
-seoDescription: "Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin."
+seoTitle: "BM25: bir sözcük ne zaman daha önemli olur? — MESA"
+seoDescription: "Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin."
 lessonOrder: 5
 learningStage: "retrieval"
 prerequisites: ["semantic-search"]
@@ -25,9 +25,9 @@ learningObjectives: ["BM25 formülünü okumak", "Belge uzunluğu etkisini hesap
 
 ## Sözcüksel sıralamanın arkasındaki üç soru
 
-“Atlas cuma saatleri” için sözcüksel retriever sorgu terimlerini içeren pasajları bulur. Hangi eşleşmenin önemli olduğuna karar vermelidir. BM25 terim nadirliğini, belge içi sıklığı ve belge uzunluğu düzeltmesini birleştirir. “Saat” kelimesini elli kez tekrarlamak uzun ilgisiz belgeyi yenilmez yapmamalıdır; nadir kimlik daha ayırt edici ipucu olabilir.
+“Atlas cuma saatleri” sorgusunda sözcük tabanlı arama, bu terimleri içeren pasajları bulur. BM25 hangi eşleşmenin daha önemli olduğuna karar verirken sözcüğün nadirliğini, belge içindeki sıklığını ve belge uzunluğunu birlikte kullanır. “Saat” sözcüğünü elli kez yineleyen ilgisiz bir belge sırf bu yüzden öne çıkmamalıdır. Nadir bir kimlik kodu çok daha ayırt edici olabilir.
 
-Ters indeks terimi onu içeren belgelere eşler. Terimleri sıralamadan önce tokenizasyon belirler. “A-17”, “a” ve “17” olarak bölünürse skor ayarı hiç indekslenmemiş kimlik sınırını geri getiremez. Önce token’ları ve sorgu ayrıştırmasını inceleyin. Tam kimlik ayrı normalize alan veya eşitlik filtresi gerektirebilir.
+Ters indeks, her terimi geçtiği belgelerle eşleştirir. Ancak hangi terimlerin oluşacağını metnin parçalanma yöntemi belirler. “A-17” kodu “a” ve “17” diye ayrılırsa sonradan puan ayarlamak kaybolan kimliği geri getirmez. Önce üretilen token’ları ve sorgunun nasıl çözümlendiğini inceleyin. Tam kimlik araması için ayrı bir alan veya eşitlik filtresi gerekebilir.
 
 ## Formülü çarpanlarına ayırın
 
@@ -42,7 +42,7 @@ N: corpus documents   df: documents containing t
 f: term frequency    avgdl: average document length
 ```
 
-IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan bir tekrara çıkmak, ondan on bire çıkmaktan daha önemlidir. `k1` doygunluğu, `b` uzunluk normalizasyonunu kontrol eder. `b=0` iken uzunluk etkisizdir; `b=1` iken tam uzunluk oranı girer. BM25 sürümleri IDF ayrıntısında farklılaşır; parametre adlarıyla birlikte uygulamayı da kaydedin.
+IDF, nadir geçen terimlere daha çok ağırlık verir. Sözcük sıklığının katkısı ise giderek azalır: İlk eşleşme, onuncudan on birinci tekrara geçişten daha önemlidir. `k1` bu doygunluğu, `b` belge uzunluğuna göre düzeltmeyi belirler. `b=0` uzunluk etkisini kaldırır; `b=1` tam uzunluk oranını kullanır. BM25 uygulamalarında IDF hesabı değişebilir; yalnızca parametreleri değil, kullanılan uygulamayı da kaydedin.
 
 ## Uzunluk etkisini hesaplayın
 
@@ -54,7 +54,7 @@ IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan
 | Pay: 2 × 2.2 | 4.4 | 4.4 |
 | Sıklık çarpanı | 1.60 | 1.073 |
 
-Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa parçaların her zaman iyi olduğunu kanıtlamaz. Belgeleri bölmek terim istatistiğini, bağlam tamlığını ve ilgili sayılan birimi değiştirir. Sıralama değişikliğini test ederken parçalamayı sabit tutun; sonra parçalamayı ayrı deneyde değerlendirin.
+IDF ve sözcük sıklığı aynıysa kısa pasaj daha yüksek katkı alır. Bu hesap, kısa parçaların her durumda daha iyi olduğunu göstermez. Metni bölmek sözcük istatistiklerini, bağlam bütünlüğünü ve ilgili sayılan birimi değiştirir. Sıralama ayarını sınarken parçalamayı sabit tutun; parçalama değişikliğini ayrı bir deneyde değerlendirin.
 
 ## Hata örneklerine göre ayarlayın
 
@@ -67,7 +67,7 @@ Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa pa
 
 *Son skoru vereceğiniz örneklerle ayar yapmayın.*
 
-Türkçe için gerçek sorgu/belge çiftlerinde noktalı/noktasız I, ekler ve aksanları inceleyin. Küçük harfe çevirme ve işaret kaldırma bazı eşleşmelere yardımcı olurken anlamlı ayrımları silebilir. Özgün metni koruyup hem kimlik kesinliğini hem doğal dil recall’unu test edin. Arama sözdizimi ve tokenizer davranışı, arayüzün metin normalizasyonundan ayrıdır.
+Türkçe sorgu ve belgelerde noktalı/noktasız I, ekler ve düzeltme işaretleriyle oluşan farkları inceleyin. Küçük harfe dönüştürmek veya işaretleri kaldırmak bazı eşleşmeleri kolaylaştırırken anlamlı ayrımları da silebilir. Özgün metni koruyun; hem kimlik kodlarının tam eşleşmesini hem doğal dilde ilgili sonuçları bulma oranını test edin. Arama motorunun sorgu dili ve token üretimi, arayüzdeki metin normalizasyonundan ayrıdır.
 
 SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanları bu parametreler değil sütun ağırlıklarıdır. Daha iyi eşleşmeye daha küçük değer döndürdüğü için artan sıralama bilinçlidir. Başka motordan azalan-skor kuralı kopyalamayın. Hesap örneğimiz belirli bir IDF çeşidi kullanır; FTS5’in tam tanımı kendi referansındadır. [FTS5](https://www.sqlite.org/fts5.html).
 
@@ -77,7 +77,7 @@ SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanlar
 > **Kendinizi sınayın**
 > A-17 politikası araması her defasında A-71’i öne getiriyor. Hemen sıralama ağırlığını mı artırmalısınız?
 >
-> **Answer:** İndekslenen token ve sorgu sözdizimini inceleyin; sonra tam kimlik alanını test edin. İndeks kimlikleri ayırmıyorsa ağırlık bunu güvenilir biçimde onaramaz. Temsil doğru olduktan sonra skor ayarlayın.
+> **Açıklama:** İndekslenen token ve sorgu sözdizimini inceleyin; sonra tam kimlik alanını test edin. İndeks kimlikleri ayırmıyorsa ağırlık bunu güvenilir biçimde onaramaz. Temsil doğru olduktan sonra skor ayarlayın.
 
 ## Kaynaklar ve ileri okuma
 

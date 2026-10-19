@@ -395,7 +395,7 @@ if (learningCatalog || learningArticle) {
     const unread=[...document.querySelectorAll('[data-lesson-id]')].find(row=>!completed.has(row.dataset.lessonId));
     if(resume&&count>0&&unread) {resume.href=unread.querySelector('[data-lesson-url]').href;resume.textContent=isTurkish?'Kaldığınız yerden devam edin ↗':'Continue your learning path ↗';}
     const mark=document.querySelector('[data-mark-lesson]');
-    if(mark){mark.hidden=false;mark.setAttribute('aria-pressed',String(completed.has(mark.dataset.markLesson)));mark.textContent=completed.has(mark.dataset.markLesson)?(isTurkish?'✓ Okundu · geri al':'✓ Read · undo'):(isTurkish?'Okundu işaretle ✓':'Mark as read ✓');}
+    if(mark){mark.hidden=false;mark.setAttribute('aria-pressed',String(completed.has(mark.dataset.markLesson)));mark.textContent=completed.has(mark.dataset.markLesson)?(isTurkish?'✓ Okundu · geri al':'✓ Read · undo'):(isTurkish?'Okundu olarak işaretle ✓':'Mark as read ✓');}
   };
   document.querySelector('[data-mark-lesson]')?.addEventListener('click',event=>{
     const id=event.currentTarget.dataset.markLesson;
@@ -449,6 +449,7 @@ if (learningCatalog || learningArticle) {
 const appleKeyboard = /Mac|iPad|iPhone/.test(navigator.platform || navigator.userAgent);
 const searchShortcut = appleKeyboard ? '⌘ K' : 'Ctrl K';
 for (const trigger of document.querySelectorAll('.search-trigger')) {
-  trigger.querySelector('.search-shortcut').textContent = searchShortcut;
+  const hint = trigger.querySelector('.search-shortcut') || trigger.querySelector('kbd');
+  if (hint) hint.textContent = searchShortcut;
   trigger.setAttribute('aria-label', (isTurkish ? 'Sitede ara' : 'Search site') + (matchMedia('(pointer: fine)').matches ? ` (${searchShortcut})` : ''));
 }

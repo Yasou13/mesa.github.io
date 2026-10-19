@@ -1,11 +1,11 @@
-## Sonucun taşıdığı bilgi
+## Arama sonucunda neler korunur?
 
-Kanonik assertion; subject, predicate, entity/literal object ve kaynak kanıtını document, revision, chunk, mutation ve pipeline kimliklerine bağlar. Sınırlı çizge kanıtı ayrıca destekleyen assertion kimlikleri, düğümler, predicate ve yönleri korur. Yol, kendi destek kaynaklarından kopmamalıdır.
+Asıl bilgi kaydı; özne, ilişki ve nesneyi dayanak metinle birleştirir. Belge, sürüm, metin parçası, değişiklik işlemi ve işleme hattının kimlikleri bu bağın izlenmesini sağlar. Çizge aramasında da yolu destekleyen bilgi kayıtları, düğümler ve bağlantı yönleri korunur. Bulunan bir yol, onu destekleyen kaynaklardan ayrı sunulmamalıdır.
 
-## Üç hash farklı anlam taşır
+## Üç içerik özeti aynı şeyi göstermez
 
-Beyan edilen bütün-revizyon içerik hash’i, dondurulmuş parça manifest hash’i ve parça başına content hash farklı şeyleri tanımlar. Doğrudan parça ekleme bütün-revizyon hash’i oluşturmaz. Tipli hukuk kimliği yapısal bağlantıyı ve sınırlı alias eşlemesini kontrol eder; kaynağın yorumu üreticinin sorumluluğunda kalır.
+Belge sürümünün tamamına ait içerik özeti, sürümdeki parçaları listeleyen sabitlenmiş bildirimin özeti ve tek parçanın içerik özeti farklıdır. Tek bir parça eklemek, bütün sürüm için içerik özeti oluşturmaz. Hukuki kimlik alanları yapısal bağlantıyı ve sınırlı ad eşleştirmesini denetler; kaynağın yorumlanması yine veriyi sağlayan sistemin sorumluluğundadır.
 
-## Bütçe içinde tam kanıtı paketleyin
+## Kanıt bağlam bütçesine tam olarak sığmalı
 
-ContextBuilder tüm HTTP yanıtını değil, modelin göreceği biçimlendirilmiş kanıtı sayar. Tam graph proof bütçeye atomik sığmalıdır; kanonik BPE yüklenemezse muhafazakâr UTF-8 bayt üst sınırı daha az kanıt sığdırabilir. Boş retrieval, uygun kanıt dönmediği anlamındadır; önermenin yanlışlığını kanıtlamaz.
+ContextBuilder, HTTP yanıtının tamamını değil modelin göreceği biçimlendirilmiş kanıtı sayar. Bir çizge yolunun kanıtı bütçeye bütün olarak sığmalıdır. Asıl BPE sayacı yüklenemezse UTF-8 baytlarına dayanan temkinli bir üst sınır kullanılır; bu durumda bütçeye daha az kanıt sığabilir. Boş arama sonucu, uygun kanıt bulunamadığını gösterir; iddianın yanlış olduğunu kanıtlamaz.

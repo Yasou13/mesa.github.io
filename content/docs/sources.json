@@ -7,7 +7,7 @@
     },
     "description": {
       "en": "Deterministic AI memory infrastructure, SQLite canonical ledger, LanceDB & Kùzu projections, hybrid retrieval.",
-      "tr": "Deterministik yapay zekâ hafıza altyapısı, SQLite kanonik defter, LanceDB ve Kùzu projeksiyonları, hibrit retrieval."
+      "tr": "Bilgiyi kaynaklarıyla saklayan hafıza altyapısı; asıl kayıtlar, arama görünümleri ve hibrit arama."
     },
     "base_route": "docs/core/",
     "allowlist": [
@@ -33,19 +33,19 @@
         "src": "docs/concepts-and-ingestion.md",
         "slug": "concepts-and-ingestion",
         "title": "Concepts & Ingestion",
-        "title_tr": "Kavramlar ve Ingestion"
+        "title_tr": "Kavramlar ve veri alımı"
       },
       {
         "src": "docs/configuration.md",
         "slug": "configuration",
         "title": "Configuration",
-        "title_tr": "Konfigürasyon"
+        "title_tr": "Yapılandırma"
       },
       {
         "src": "docs/retrieval-and-graph.md",
         "slug": "retrieval-and-graph",
         "title": "Retrieval & Graph",
-        "title_tr": "Retrieval ve Çizge"
+        "title_tr": "Arama ve çizge"
       },
       {
         "src": "docs/api-reference.md",
@@ -57,7 +57,7 @@
         "src": "docs/v4-rebuild-runbook.md",
         "slug": "rebuild-runbook",
         "title": "V4 Rebuild Runbook",
-        "title_tr": "V4 Yeniden Derleme Kılavuzu"
+        "title_tr": "V4 arama görünümlerini yeniden oluşturma"
       },
       {
         "src": "CHANGELOG.md",
@@ -81,7 +81,7 @@
         "src": "docs/RUNBOOK.md",
         "slug": "operations",
         "title": "Operations & Recovery",
-        "title_tr": "Operasyon ve Kurtarma"
+        "title_tr": "İşletim ve kurtarma"
       },
       {
         "src": "docs/testing.md",
@@ -123,7 +123,7 @@
         "src": "docs/adr/0011-v4-tenant-dataset-authorization.md",
         "slug": "adr-0011",
         "title": "Tenant/dataset authorization",
-        "title_tr": "Tenant/dataset yetkilendirmesi"
+        "title_tr": "Erişim alanları ve veri kümesi izinleri"
       },
       {
         "src": "docs/adr/0012-memory-dao-repository-boundaries.md",
@@ -141,7 +141,7 @@
         "src": "docs/adr/0014-v4-closure-and-staged-evolution.md",
         "slug": "adr-0014",
         "title": "Rebuild closure",
-        "title_tr": "Rebuild kapanışı"
+        "title_tr": "Yeniden oluşturmanın tamamlanması"
       },
       {
         "src": "docs/adr/0015-bounded-adaptive-query-planning.md",
@@ -163,7 +163,7 @@
     },
     "description": {
       "en": "Turkish legal and official gazette data preparation pipeline with deterministic provenance.",
-      "tr": "Deterministik provenance ile Türk hukuku ve Resmî Gazete veri hazırlama hattı."
+      "tr": "Türk hukuk kaynaklarının toplanması, korunması, denetlenmesi ve yayına hazırlanması."
     },
     "base_route": "docs/data/",
     "allowlist": [
@@ -215,7 +215,7 @@
     },
     "description": {
       "en": "Source-aware legal workflow system with strict evidence verification.",
-      "tr": "Sıkı kanıt doğrulamalı kaynak odaklı hukuk iş akışı sistemi."
+      "tr": "MESA hafızasını kullanan hukuk dosyası, belge ve inceleme uygulaması."
     },
     "base_route": "docs/law/",
     "allowlist": [
@@ -255,7 +255,7 @@
     },
     "description": {
       "en": "Independent QA harness, endurance and restart failure injection testing.",
-      "tr": "Bağımsız QA harness, dayanıklılık ve yeniden başlatma hata enjeksiyon testleri."
+      "tr": "Asıl sistemden ayrı yürütülen doğruluk, kalıcılık ve dayanıklılık testleri."
     },
     "base_route": "docs/qa/",
     "allowlist": [
@@ -275,7 +275,7 @@
         "src": "prompts/REPAIR.md",
         "slug": "repair-prompt",
         "title": "Repair Prompt Specification",
-        "title_tr": "Onarım Prompt Spesifikasyonu"
+        "title_tr": "Hata düzeltme isteminin kuralları"
       },
       {
         "src": "prompts/REPRODUCE.md",
@@ -295,7 +295,7 @@
     },
     "description": {
       "en": "Multi-tier end-to-end certification harness and ground truth validation for MESA Profile B.",
-      "tr": "MESA Profil B için çok katmanlı uçtan uca sertifikasyon ve ground truth doğrulama."
+      "tr": "Data → Core akışı için bağımsız uçtan uca doğrulama ve sertifikasyon koşulları."
     },
     "base_route": "docs/e2e/",
     "allowlist": [

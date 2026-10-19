@@ -3,10 +3,10 @@ id: "evidence-aware-memory"
 slug: "what-is-evidence-aware-memory"
 type: "learn"
 language: "tr"
-title: "Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?"
+title: "Kaynak izi: bir atıf neyi kanıtlar?"
 subtitle: ""
-summary: "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
-shortAnswer: "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
+summary: "Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin."
+shortAnswer: "Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin."
 category: "Evidence & Trust"
 tags: ["provenance", "citation", "hash", "SHA256", "evidence", "kaynak izi", "atıf", "kanıt", "halüsinasyon"]
 author: "MESA contributors"
@@ -15,17 +15,17 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn"
-seoDescription: "Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın."
+seoTitle: "Kaynak izi: bir atıf neyi kanıtlar? — MESA"
+seoDescription: "Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin."
 lessonOrder: 9
 learningStage: "systems"
 prerequisites: ["structured-vs-unstructured-memory"]
-learningObjectives: ["Kanıt aralığını sabit kaynakta doğrulamak", "Hash ile kaynak özgünlüğünü ayırmak", "Denetim kaydı ve desteksiz yanıt davranışı tasarlamak"]
+learningObjectives: ["Kanıt aralığını sabit kaynakta doğrulamak", "İçerik bütünlüğü ile kaynak özgünlüğünü ayırmak", "Denetim kaydı ve desteksiz yanıt davranışı tasarlamak"]
 ---
 
 ## Dört kontrol, dört ayrı sonuç
 
-Asistan “Salon cumaları onda açılır” diyor ve bağlantı gösteriyor. Gerçek bağlantı yalnızca ilk adımdır. Kaynak var mı, atıf pasajı yanıtın dediğini söylüyor mu, kaynak bu zaman ve kapsama uygulanıyor mu, kaynak güvenilir mi? Bunları ayrı sorun. Bir kontrolü geçmek diğerlerini sağlamaz.
+Asistan “Salon cumaları onda açılır” deyip bir bağlantı göstersin. Bağlantının gerçekten var olması yalnızca ilk kontroldür. Kaynak erişilebilir mi? Alıntılanan pasaj bu yanıtı destekliyor mu? Bilgi sorulan tarih ve kapsam için geçerli mi? Kaynak güvenilir mi? Bu soruları ayrı değerlendirin; birini doğrulamak diğerlerini otomatik olarak doğrulamaz.
 
 | Kontrol | Başarının gösterdiği | Göstermediği |
 | --- | --- | --- |
@@ -43,9 +43,9 @@ assert text[start:end] == "09:00"
 # A different encoding/offset convention must be declared explicitly.
 ```
 
-Konumlar ancak çıkarımda kullanılan tam kaynak temsiline göre anlamlıdır. Bayt, Unicode kod noktası veya başka birim mi sayıldığını ve bitişin dışarıda olup olmadığını belirtin. Unicode normalizasyonu, PDF çıkarımı veya satır sonu dönüşümü konumları değiştirebilir. Değişmez kaynak revizyonunu ve metni yeniden üretmeye yetecek bilgiyi tutup çıkarılan aralığın eşleşmesini doğrulayın.
+Metindeki başlangıç ve bitiş konumları, yalnızca bilgi çıkarılırken kullanılan tam metin üzerinde anlamlıdır. Konumların bayt, Unicode kod noktası veya başka bir birimle sayıldığını belirtin. Bitiş konumunun aralığa dâhil olup olmadığını da tanımlayın. Unicode normalizasyonu, PDF’den metin çıkarma veya satır sonu dönüşümü konumları değiştirebilir. Kaynak sürümünü ve aynı metni yeniden elde etmek için gereken bilgileri koruyun; seçilen aralığın gerçekten eşleştiğini kontrol edin.
 
-SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. Saldırgan uydurma metni de gerçek metin kadar kolay hash’leyebilir. Metin ve beklenen hash aynı güvenilmeyen taraftan geliyorsa eşitlik özgünlük kanıtı değildir. Kaynak edinimi, doğrulanmış yayıncı kimliği ve teslim zinciri kayıtları problemin başka parçalarını çözer.
+SHA-256 gibi bir özet, elinizdeki içeriğin güvenilir bir beklenen özetle uyuşup uyuşmadığını gösterir. Ancak uydurma bir metnin özeti de kolayca hesaplanabilir. Metin ve beklenen özet aynı güvenilmeyen kişiden geliyorsa eşleşme özgünlüğü kanıtlamaz. Kaynağın nasıl edinildiği, yayıncının kimliğinin doğrulanması ve aktarım kayıtları farklı soruları yanıtlar.
 
 ## Yanıttan kaynağa zinciri koruyun
 
@@ -53,18 +53,18 @@ SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. S
 1. Yanıt · cuma onda
 2. İddia · a42 + koşullar
 3. Aralık · tam destek metni
-4. Revizyon · handbook-r3
+4. Sürüm · handbook-r3
 5. Köken · edinim kaydı
 
 *Atıf inceleyenin hattı yeniden kurmadan kanıtı kontrol etmesini sağlamalıdır.*
 
-Alıntıyı incelenebilir ölçüde dar tutun; gerektiğinde niteleyici cümleyi ekleyin. “1 Kasım sonrası cumaları” olmadan “onda açılır” ifadesi ekim sorusunu desteklemez. Tek atfı paragrafa iliştirip her cümleyi kapsadığını varsaymak yerine çok iddialı yanıtta desteklenmeyen parçaları işaretleyin.
+Alıntıyı kolay incelenecek kadar kısa tutun; anlamı sınırlayan cümleleri de ekleyin. “1 Kasım sonrası cumaları” koşulu olmadan “onda açılır” ifadesi ekim ayına ilişkin soruyu desteklemez. Bir paragrafın sonundaki tek atfın bütün cümlelere dayanak olduğunu varsaymayın. Birden çok iddia içeren yanıtta desteklenmeyen kısımları ayrıca belirtin.
 
 ## Özel veriyi çoğaltmadan kararları kaydedin
 
-Retrieval kararında istek/çalışma kimliği, çağıran kapsam kimliği, kaynak nesli, aday kimlikleri, filtre gerekçeleri ve son kanıt kimliklerini kaydedin. Özel belgeleri bütünüyle log’a kopyalamak yerine referans tercih edin. Hassas değerleri hata mesajlarından çıkarın. Denetim kaydı da erişim, saklama ve silme kuralı ister; “her şeyi log’la” denetimsiz başka hafıza deposu yaratır.
+Arama kararlarını izlemek için istek kimliğini, erişim kapsamını, kaynakların güncelleme bilgisini, adayları, elenme gerekçelerini ve kullanılan son kanıtları kaydedin. Özel belgeleri bütünüyle günlüklere kopyalamak yerine kimlik veya referans kullanın. Hassas değerleri hata mesajlarından çıkarın. Denetim kayıtları için de erişim, saklama ve silme kuralları gerekir. Her şeyi kaydetmek, denetimsiz ikinci bir hafıza deposu oluşturabilir.
 
-Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün veya daha dar soru isteyin. Atıf biçimi ve retrieval ile kaynaklandırma bazı desteksiz çıktıları azaltabilir; halüsinasyonu ortadan kaldırmaz. W3C PROV türetim sözlüğü sunar; OWASP getirilen materyalin talimat olarak neden güvenilmez kalacağını açıklar. Bunlar tamamlayıcı konulardır. [PROV](https://www.w3.org/TR/prov-overview/), [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html).
+Uygun kaynaklar yanıtı desteklemiyorsa kanıtın eksik olduğunu söyleyin veya sorunun daraltılmasını isteyin. Aramayla kaynak sağlamak ve atıfları düzenlemek, bazı dayanaksız yanıtları azaltabilir; tamamen ortadan kaldırmaz. W3C PROV, bilginin hangi kaynaktan nasıl türediğini anlatan kavramlar sunar. OWASP ise bulunan metnin neden güvenilir talimat sayılmaması gerektiğini açıklar. Bu iki konu birbirini tamamlar. [PROV](https://www.w3.org/TR/prov-overview/) [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 
 ## Bağlantıyı değil iddiayı test edin
 
@@ -72,7 +72,7 @@ Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün v
 > **Kendinizi sınayın**
 > Belge SHA-256 özetiyle eşleşiyor; fakat belgeyi bilinmeyen kullanıcı yüklemiş. Ne sonuç çıkarabilirsiniz?
 >
-> **Answer:** Yalnızca verilen baytların belirtilen yöntemle o özete uyduğunu söyleyebilirsiniz. Köken/özgünlük değerlendirmesi ve pasajın cevabı desteklediğine ayrı kontrol gerekir. Sağlama toplamı kaynak doğruluğunu sertifikalandırmaz.
+> **Açıklama:** Yalnızca verilen baytların belirtilen yöntemle o özete uyduğunu söyleyebilirsiniz. Köken/özgünlük değerlendirmesi ve pasajın cevabı desteklediğine ayrı kontrol gerekir. Sağlama toplamı kaynak doğruluğunu sertifikalandırmaz.
 
 ## Kaynaklar ve ileri okuma
 

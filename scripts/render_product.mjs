@@ -16,7 +16,7 @@ export function rankCalculator() {
   const lanes = [
     ['vector', 'Vector', 'Vektör'],
     ['bm25', 'BM25', 'BM25'],
-    ['assertion', 'Assertion', 'Assertion'],
+    ['assertion', 'Assertion', 'Bilgi kaydı'],
     ['graph', 'Graph', 'Çizge']
   ];
 
@@ -39,7 +39,7 @@ export function rankCalculator() {
   </div>
   ${paragraph(
     'All enabled lanes rank the same candidate first; weights are 1.0 and k=60. This calculator makes no API call and measures neither probability nor retrieval quality.',
-    'Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya retrieval kalitesi ölçmez.'
+    'Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.'
   )}
   <noscript>${t('Static example: four contributions give 4/61.', 'Statik örnek: dört katkı 4/61 verir.')}</noscript>
 </form>`;
@@ -81,7 +81,7 @@ export function retrievalPage({ header, footer, route, cta }) {
 ${header('architecture')}
 <main id="main-content">
   <section class="page-hero compact page-hero--trajectory">
-    ${eyebrow('MESA V4 · RETRIEVAL', 'MESA V4 · RETRIEVAL')}
+    ${eyebrow('MESA V4 · RETRIEVAL', 'MESA V4 · ARAMA')}
     <h1>${t('Different signals. One evidence identity.', 'Farklı sinyaller. Tek kanıt kimliği.')}</h1>
     ${paragraph(
       'Each lane proposes eligible candidates for a different reason. Fusion combines their ranks; provenance keeps the reasons inspectable.',
@@ -95,7 +95,7 @@ ${header('architecture')}
       ${row(
         t('Vector · semantic similarity', 'Vektör · anlamsal benzerlik'),
         'Does this assertion mean something close to the query? Compatible query embeddings search the LanceDB assertion projection.',
-        'Bu assertion sorguya yakın bir anlam taşıyor mu? Uyumlu sorgu embedding’i LanceDB assertion projeksiyonunu arar.'
+        'Bu bilgi kaydı sorguya yakın bir anlam taşıyor mu? Uyumlu sorgu embedding’i LanceDB bilgi kaydı arama görünümünü arar.'
       )}
       ${row(
         t('BM25 · passage and citation', 'BM25 · pasaj ve atıf'),
@@ -103,14 +103,14 @@ ${header('architecture')}
         'Kanıt metni yararlı terimler veya kapsamlı atıf içeriyor mu? FTS5 pasajları sıralar; tam atıf araması kanal içinde katkı verir.'
       )}
       ${row(
-        t('Assertion · structured relation', 'Assertion · yapılandırılmış ilişki'),
+        t('Assertion · structured relation', 'Bilgi kaydı · yapılandırılmış ilişki'),
         'Do subject, predicate, entity/literal object and evidence match? SQLite-owned relations provide a separate signal.',
         'Subject, predicate, entity/literal object ve kanıt eşleşiyor mu? SQLite’ın sahip olduğu ilişkiler ayrı sinyal sağlar.'
       )}
       ${row(
         t('Graph · supported path', 'Çizge · desteklenen yol'),
         'Is there a bounded relationship path supported by eligible canonical assertions? Paths retain supporting IDs and direction.',
-        'Uygun kanonik assertion’larla desteklenen sınırlı ilişki yolu var mı? Yollar destekleyen kimlikleri ve yönü korur.'
+        'Uygun asıl bilgi kayıtlarıla desteklenen sınırlı ilişki yolu var mı? Yollar destekleyen kimlikleri ve yönü korur.'
       )}
     </div>
   </section>
@@ -122,12 +122,12 @@ ${header('architecture')}
 k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     ${paragraph(
       'A duplicate candidate casts one vote per lane. Ties resolve by candidate identity. A lane may return no eligible hit. This example uses one first-ranked candidate; it does not simulate the complete retrieval engine.',
-      'Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; retrieval motorunun tamamını simüle etmez.'
+      'Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; arama motorunun tamamını simüle etmez.'
     )}
     ${rankCalculator()}
     ${paragraph(
       'Citation boosts apply inside lanes: BM25 exact +200, same statute +40; assertion exact +150, same statute +40. They affect lane order, not RRF increments. After fusion, a query-dependent legal factor is 1.5 for exact statute/article, 1.25 for the same statute, 0.25 for a competing statute, and 1.0 otherwise.',
-      'Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; assertion tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.'
+      'Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; bilgi kaydı tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.'
     )}
     ${paragraph(
       'Responses expose rrf_score, legal_factor, raw_score and final_score separately. Higher fused relevance is better; none of these fields is a probability of truth.',
@@ -141,7 +141,7 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
       ${row(
         t('Graph resources', 'Çizge kaynakları'),
         'At most 20 seeds, 3 hops and 500 requested graph hits; frontier 64, per-node fan-out 32, default request timeout 15 seconds. PageRank is telemetry only. These limits do not guarantee latency or completeness.',
-        'En fazla 20 başlangıç, 3 hop ve 500 istenen graph hit; frontier 64, düğüm başına fan-out 32, varsayılan istek zaman aşımı 15 saniye. PageRank yalnız telemetridir. Bu sınırlar gecikme veya tamlık garantilemez.'
+        'Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı ve istenen 500 sonuçla sınırlıdır. İlerleme kümesi 64 düğümü, düğüm başına yayılım 32 bağlantıyı aşmaz. Varsayılan zaman aşımı 15 saniyedir. PageRank yalnızca izleme verisidir. Bu sınırlar, belirli bir hızda bütün sonuçların bulunacağını garanti etmez.'
       )}
       ${row(
         t('Context packing', 'Bağlam paketleme'),
@@ -156,7 +156,7 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
       ${row(
         t('Runtime availability', 'Çalışma anında kullanılabilirlik'),
         'Capability flags describe operational support. An expected failure of a configured vector/graph backend returns explicit 503. Projection-only graph adapters do not advertise neighbor traversal.',
-        'Capability bayrakları çalışır desteği tanımlar. Yapılandırılmış vektör/çizge backend’inin beklenen hatası açık 503 döndürür. Yalnız projeksiyon yazan çizge adapter’ları komşu dolaşımı bildirmez.'
+        'Capability bayrakları çalışır desteği tanımlar. Yapılandırılmış vektör/çizge arka uç’inin beklenen hatası açık 503 döndürür. Yalnız arama görünümü yazan çizge adapter’ları komşu dolaşımı bildirmez.'
       )}
     </div>
   </section>
@@ -210,14 +210,14 @@ export function ecosystemMaturity() {
   const components = [
     ['MESA Core v0.8.1', 'Implemented · published source', 'Uygulanmış · yayımlanmış kaynak', 'Production qualification NO-GO; real-provider rehearsal and soak incomplete.', 'Üretim yeterliliği NO-GO; gerçek sağlayıcı provası ve dayanıklılık çalışması eksik.'],
     ['MESA Data v0.1.0', 'Implemented release pipeline', 'Uygulanmış yayın hattı', 'Reviewed Turkish legal sources; package version differs from its v1.0 release tag.', 'Gözden geçirilmiş Türk hukuk kaynakları; paket sürümü v1.0 yayın tag’inden farklıdır.'],
-    ['MESA Law v0.1.0', 'In development · reference app', 'Geliştirme aşamasında · referans uygulama', 'Current CI failing; live Core v0.8.1 integration unverified. Research/draft/rebuild disabled.', 'Güncel CI başarısız; canlı Core v0.8.1 entegrasyonu doğrulanmadı. Research/draft/rebuild kapalı.'],
-    ['MESA QA v0.1.0', 'Experimental evaluation tooling', 'Deneysel değerlendirme araçları', 'Latest first-write failure and historical candidate FAIL are not current qualification.', 'Son ilk-yazma hatası ve tarihsel aday FAIL güncel yeterlilik değildir.'],
-    ['E2E Certification v0.1.0', 'Implemented harness · blocked profile', 'Uygulanmış harness · engelli profil', 'B4/B6/B7/B8 external receipts and a fresh official PASS remain absent.', 'B4/B6/B7/B8 dış receipt’leri ve yeni resmî PASS halen eksiktir.']
+    ['MESA Law v0.1.0', 'In development · reference app', 'Geliştirme aşamasında · örnek uygulama', 'Current CI failing; live Core v0.8.1 integration unverified. Research/draft/rebuild disabled.', 'Güncel otomatik testler başarısız; canlı Core v0.8.1 bağlantısı doğrulanmadı. Araştırma, taslak üretimi ve yeniden oluşturma özellikleri kapalı.'],
+    ['MESA QA v0.1.0', 'Experimental evaluation tooling', 'Deneysel değerlendirme araçları', 'Latest first-write failure and historical candidate FAIL are not current qualification.', 'Son ilk-yazma hatası ve geçmiş aday FAIL güncel yeterlilik değildir.'],
+    ['E2E Certification v0.1.0', 'Implemented harness · blocked profile', 'Uygulanmış test düzeneği · engelli profil', 'B4/B6/B7/B8 external receipts and a fresh official PASS remain absent.', 'B4/B6/B7/B8 dış işlem alındısı’leri ve yeni resmî PASS halen eksiktir.']
   ];
 
   return `
 <section class="section">
-  ${eyebrow('IMPLEMENTATION AND MATURITY', 'UYGULAMA VE OLGUNLUK')}
+  ${eyebrow('IMPLEMENTATION AND MATURITY', 'UYGULAMA VE GELİŞTİRME AŞAMASI')}
   ${title('A repository role is not production approval.', 'Depodaki rol, üretim onayı değildir.')}
   <div class="table-scroll" tabindex="0">
     <table class="maturity-table">
@@ -246,8 +246,8 @@ export function coreRelease(route) {
     ${eyebrow('WHAT CHANGED · v0.8.1', 'NELER DEĞİŞTİ · v0.8.1')}
     ${title('Stronger boundaries. Clearer operations.', 'Daha güçlü sınırlar. Daha açık operasyonlar.')}
     <div class="storage-grid">
-      ${row(t('Scoped retrieval', 'Kapsamlı retrieval'), 'BM25 statistics and audit queries use authorized tenant/dataset scope. RRF rejects non-finite weights.', 'BM25 istatistikleri ve denetim sorguları yetkili tenant/dataset kapsamını kullanır. RRF sonlu olmayan ağırlıkları reddeder.')}
-      ${row(t('Storage ownership', 'Depolama sahipliği'), 'Fenced projection completion, safer dataset repair and consistent Kùzu rollback caches protect canonical ownership.', 'Fencing kontrollü projeksiyon tamamlanması, güvenli dataset onarımı ve tutarlı Kùzu rollback önbellekleri kanonik sahipliği korur.')}
+      ${row(t('Scoped retrieval', 'Kapsamlı arama'), 'BM25 statistics and audit queries use authorized tenant/dataset scope. RRF rejects non-finite weights.', 'BM25 istatistikleri ve denetimleri yalnızca erişime izin verilen veri kümelerinde hesaplanır. RRF, sonlu olmayan ağırlıkları kabul etmez.')}
+      ${row(t('Storage ownership', 'Depolama sahipliği'), 'Fenced projection completion, safer dataset repair and consistent Kùzu rollback caches protect canonical ownership.', 'Arama görünümleri tamamlanırken işin hâlâ aynı çalışana ait olduğu denetlenir. Veri kümesi onarımı ve Kùzu geri alma önbellekleri, asıl kayıtların sahiplik bağlarını korur.')}
       ${row(t('SDK and operations', 'SDK ve operasyon'), 'Sync/async insertion accepts legal_identity. Mutation polling defaults to two seconds; make health checks the running API.', 'Senkron/asenkron ekleme legal_identity kabul eder. Mutasyon sorgulama varsayılanı iki saniyedir; make health çalışan API’yi kontrol eder.')}
     </div>
     ${paragraph('The unused Core dashboard/showcase was removed. MCP control APIs and operator approval CLI remain. Consolidated guides replace duplicated installation, CLI, troubleshooting and upgrade documents.', 'Kullanılmayan Core dashboard/showcase kaldırıldı. MCP control API ve operatör onay CLI’ı korunur. Birleştirilmiş rehberler yinelenen kurulum, CLI, sorun giderme ve yükseltme belgelerinin yerini alır.')}

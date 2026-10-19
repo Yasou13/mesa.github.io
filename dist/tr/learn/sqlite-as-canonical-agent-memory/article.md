@@ -3,10 +3,10 @@ id: "sqlite-as-canonical-agent-memory"
 slug: "sqlite-as-canonical-agent-memory"
 type: "learn"
 language: "tr"
-title: "Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak"
+title: "Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak"
 subtitle: ""
-summary: "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
-shortAnswer: "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
+summary: "Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin."
+shortAnswer: "Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin."
 category: "Evidence & Trust"
 tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
@@ -15,52 +15,52 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn"
-seoDescription: "Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın."
+seoTitle: "Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA"
+seoDescription: "Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin."
 lessonOrder: 11
 learningStage: "systems"
 prerequisites: ["structured-vs-unstructured-memory", "evidence-aware-memory"]
 learningObjectives: ["Kanonik ve türetilmiş durumu ayırmak", "Depolar arasındaki çökmeden kurtulmak", "Idempotent yazma ve gözlenebilir durum tasarlamak"]
 ---
 
-## Kimlik ve yaşam döngüsü için otorite belirleyin
+## Hangi deponun asıl kayıt olacağını belirleyin
 
-Hafıza uygulaması kaynak kayıtları için SQL, benzerlik için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa iddianın var ve etkin olduğuna hangisi karar verir? Kanonik depo bu kararın sahibidir. Projeksiyon, kanonik veri ve beyan edilmiş dönüşümden yeniden kurulabilen türetilmiş temsildir. “Türetilmiş” önem veya arama kalitesini değil otoriteyi anlatır.
+Bir hafıza uygulaması asıl kayıtlar için SQL, benzerlik araması için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa bir kaydın hâlâ var ve etkin olduğuna hangisi karar verecek? Ana kayıt deposu bu kararın dayanağıdır. Diğer arama görünümleri, asıl veriden tanımlı bir dönüşümle yeniden üretilebilir. “Türetilmiş” olmaları önemsiz olduklarını değil, asıl kayıt yerine geçmediklerini anlatır.
 
-Örnek tasarımda SQL kaynak revizyonunu, iddia kimliğini, durumu ve mutasyon defterini sahiplenir. Vektör ve çizge satırı bu kimliklere bağlanır. Arama isabeti ancak kanonik uygunluk kontrolünden sonra kanıt olur. Eski indeks satırı, vektörü sorguya yakın diye silinmiş iddiayı diriltmemelidir.
+Bu örnekte SQL; kaynak sürümünü, bilgi kaydının kimliğini, durumunu ve değişiklik günlüğünü tutar. Vektör ve çizge satırları bu kimliklere bağlanır. Aramada bulunan bir sonuç ancak asıl kaydın uygunluğu denetlendikten sonra dayanak olarak kullanılabilir. Eski indekste kalan bir vektör, soruya yakın diye silinmiş bir kaydı yeniden geçerli hâle getirmemelidir.
 
 ## Depolar arasındaki çökmeyi izleyin
 
-<!-- diagram: SQL mutasyonu ve outbox işini kabul eder; ardından vektör/çizge projeksiyonları çalışır ve görünürlük tamamlanır. -->
-1. SQL işlemi · kaynak + outbox
+<!-- diagram: SQL mutasyonu ve gönderim kuyruğu işini kabul eder; ardından vektör/çizge arama görünümlerini çalışır ve görünürlük tamamlanır. -->
+1. SQL işlemi · kaynak + gönderim kuyruğu
 2. Worker · bekleyen işi al
 3. Vektör · sabit kimlikle uygula
 4. Çizge · sabit kimlikle uygula
-5. Tamamla · projeksiyonları doğrula
+5. Tamamla · arama görünümlerini doğrula
 
 *SQL commit, bağımsız bütün arka uçları kapsayan tek atomik işlem oluşturmaz.*
 
-SQL commit olsun, vektör ekleme başarılı olsun; süreç çizge eklemeden çöksün. Kalıcı bekleyen iş yoksa çizge yazması tamamen kaybolabilir. Kanonik mutasyonla aynı SQL işleminde kaydedilmiş outbox varsa yeniden başlayan worker eksik işi bulup tekrarlar. Teslim birden fazla kez gerçekleşebilir; etkiyi tekrarlamak bu yüzden güvenli olmalıdır.
+SQL işlemi tamamlansın ve vektör yazılsın; süreç çizgeye yazmadan çöksün. Bekleyen iş kalıcı olarak tutulmuyorsa eksik adım kaybolabilir. Değişiklikle aynı SQL işleminde bir gönderim kuyruğu kaydı oluşturulmuşsa, yeniden başlayan çalışan işi bulup tekrar deneyebilir. Aktarım birden fazla kez yapılabileceği için aynı işlemi tekrarlamanın sonucu bozmaması gerekir.
 
-## Kimlik ve fencing ile güvenli tekrar
+## Tekrar denemede iş sahipliğini koruyun
 
-Idempotency aynı mantıksal işlemi yeniden uygulamanın farklı son etki oluşturmamasıdır. Sabit işlem kimliği ve tanımlı payload kimliği kullanın. Aynı anahtarı başka içerikle kullanmak reddedilmeli veya açık sözleşmeyle yönetilmelidir. Her tekrarda rastgele kimlik üretmek idempotency değil kopya üretir. Timeout, çağıranın tamamlanmayı gözlemediğini söyler; yazma olmadığını kanıtlamaz.
+Güvenli tekrar (idempotency), aynı mantıksal işlemi yeniden yapmanın son durumu değiştirmemesidir. Sabit işlem kimliği ve içeriği tanımlayan bir kimlik kullanın. Aynı anahtarın farklı içerikle kullanılmasını reddedin veya bu durumu açıkça belirlenmiş kurallarla yönetin. Her denemeye yeni rastgele kimlik vermek güvenli tekrar değil, kopya kayıt üretir. Zaman aşımı yalnızca istemcinin sonucu göremediğini söyler; yazmanın yapılmadığını kanıtlamaz.
 
-Lease, worker’ın işi geçici sahiplenmesini sağlar. Fencing token veya eşdeğer sahiplik kontrolü başka sahip devraldıktan sonra eski worker’ın işi tamamlamasını önler. Sahipliği yalnızca başlangıçta değil gerçek durum değişikliğinde kontrol edin. A worker’ını durdurup iznini düşürün, B’ye devrettikten sonra A’yı sürdürerek yarışı test edin.
+Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmesini sağlar. Sahiplik anahtarı (fencing token) ise iş başka çalışana geçtiğinde eski çalışanın işlemi tamamlamasını önler. Yetkiyi yalnızca başlangıçta değil, kayıt durumu değişirken de kontrol edin. Yarışı sınamak için A çalışanını durdurun, işini B’ye devredin ve ardından A’yı sürdürün.
 
 ## SQLite neyi garanti eder?
 
 SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.8.1 root başına tek combined owner kullanır; LanceDB/Kùzu projeksiyondur. Rebuild çevrimdışı ve tüm root kapsamındadır; çevrimiçi tenant başına onarım değildir. Bunlar ürüne özgü sınırlardır; başka sistem başka depolama seçebilir. Doğru rebuild, kanonik kanıtı ve temsil kimliğini korumayı; geçişten önce yeni projeksiyonu doğrulamayı gerektirir. [Core sözleşmesi](docs/core/architecture/).
+MESA Core v0.8.1’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
 
-## Timeout’u yorumlayın
+## Zaman aşımını yorumlayın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> İstemci vektör yazmasından sonra timeout alıyor. Hemen yeni kimlikle yeni mutasyon oluşturmalı mı?
+> İstemci, vektör yazıldıktan sonra zaman aşımına uğruyor. Hemen yeni kimlikle bir yazma işlemi başlatmalı mı?
 >
-> **Answer:** Önce özgün mutasyon durumunu inceleyin. Uygunsa tanımlı idempotency sözleşmesiyle tekrarlayın. Yeni kimlik zaten kabul edilmiş işlemi çoğaltabilir; timeout gözlem hatasıdır, rollback kanıtı değildir.
+> **Açıklama:** Önce ilk işlemin durumunu kontrol edin. Yeniden deneme uygunsa aynı işlem kimliği ve güvenli tekrar kurallarıyla ilerleyin. Yeni kimlik, zaten kabul edilmiş işlemi çoğaltabilir. Zaman aşımı, istemcinin sonucu göremediğini gösterir; işlemin geri alındığını göstermez.
 
 ## Kaynaklar ve ileri okuma
 

@@ -11,7 +11,7 @@
       },
       "description": {
         "en": "Context, RAG and source-linked records",
-        "tr": "Bağlam, RAG ve kaynağa bağlı kayıtlar"
+        "tr": "Bağlam, RAG ve kaynağıyla bağlantılı kayıtlar"
       }
     },
     {
@@ -47,7 +47,7 @@
       },
       "description": {
         "en": "Judge retrieval and run your first lab",
-        "tr": "Retrieval’ı değerlendirin, ilk laboratuvarı çalıştırın"
+        "tr": "Arama kalitesini ölçün ve ilk uygulamanızı çalıştırın"
       }
     }
   ],

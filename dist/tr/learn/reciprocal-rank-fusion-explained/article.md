@@ -3,10 +3,10 @@ id: "reciprocal-rank-fusion"
 slug: "reciprocal-rank-fusion-explained"
 type: "learn"
 language: "tr"
-title: "Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek"
+title: "RRF: iki sıralama nasıl birleştirilir?"
 subtitle: ""
-summary: "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
-shortAnswer: "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
+summary: "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin."
+shortAnswer: "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin."
 category: "Memory & Retrieval"
 tags: ["RRF", "rank fusion", "weighted", "k=60", "sıra birleştirme", "ağırlık"]
 author: "MESA contributors"
@@ -15,19 +15,19 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek — MESA Learn"
-seoDescription: "İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın."
+seoTitle: "RRF: iki sıralama nasıl birleştirilir? — MESA"
+seoDescription: "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin."
 lessonOrder: 7
 learningStage: "retrieval"
 prerequisites: ["hybrid-retrieval"]
 learningObjectives: ["Üç aday için RRF hesaplamak", "Yumuşatma sabiti ve kanal ağırlığını anlamak", "Tekrar, eksik sıra ve eşitlik politikasını tanımlamak"]
 ---
 
-## Ham skorları kıyaslamadan uzlaşmayı birleştirin
+## Farklı listelerdeki sıraları kullanın
 
-Atlas arşivinde iki retriever farklı sıralıyor. Sözcüksel liste A, B, C; yoğun liste B, C, D. Ham skorların birimi aynıymış gibi davranmadan liste sırasını kullanmak istiyorsunuz. Reciprocal Rank Fusion her sıraya azalan katkı atar ve aynı adayın katkılarını toplar. Varsayımları açık, basit bir başlangıç yöntemidir.
+Atlas arşivinde iki arama yöntemi farklı listeler üretsin: Sözcük tabanlı liste A, B, C; anlamsal liste B, C, D olsun. Ham puanları aynı ölçekteymiş gibi toplamadan bu listeleri birleştirmek istiyorsunuz. Reciprocal Rank Fusion (RRF), her konuma giderek azalan bir katkı verir ve aynı adayın farklı listelerdeki katkılarını toplar. Hesabı açık, basit bir başlangıç yöntemidir.
 
-Cormack, Clarke ve Büttcher yöntemi belirli retrieval deneylerinde değerlendirdi. Sonuçları RRF’yi denemeyi gerekçelendirir; görevinizde iyileşmeyi garanti etmez. Özgün yöntem ağırlıksız oy kullanır. Ağırlıklı RRF, her kanal katkısını açık ağırlıkla çarpan bir genişletmedir. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf).
+Cormack, Clarke ve Büttcher, yöntemi belirli arama deneylerinde değerlendirdi. Sonuçları RRF’yi denemek için gerekçe sunar; her görevde iyileşme garantisi vermez. Özgün yöntemde katkılar eşit ağırlıktadır. Ağırlıklı RRF ise her kanalın katkısını ayrıca belirlenen bir ağırlıkla çarpar. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 
 ## Sıralamayı birden başlatın
 
@@ -44,7 +44,7 @@ Example below: k = 60, every weight = 1.
 | C | 3 | 2 | 1/63 + 1/62 = 0.032002 |
 | D | yok | 3 | 1/63 = 0.015873 |
 
-Birleşik sıra B, C, A, D’dir. Listeler arası uzlaşma, tek kanalda birinci olan A’ya rağmen B ve C’yi yükseltir. Kesilmiş listede olmayan aday o kanaldan sıfır alır; sonsuz veya sıfırıncı sıra oyu almaz. Kesim oyları değiştirdiği için aday kesimlerini deney kaydına yazın.
+Birleşen liste B, C, A, D olur. A tek kanalda birinci olsa da iki listede birden öne çıkan B ve C daha yüksek toplam katkı alır. Bir kanalın kısaltılmış listesinde bulunmayan aday, o kanaldan sıfır katkı alır; ona sıfırıncı veya sonsuzuncu sıra verilmez. Listenin nereden kesildiği sonucu etkilediği için bu sınırları deney kaydında belirtin.
 
 ## k değişince ne olur?
 
@@ -61,9 +61,9 @@ Birleşik sıra B, C, A, D’dir. Listeler arası uzlaşma, tek kanalda birinci 
 
 ## Uç durumları dağıtımdan önce belirleyin
 
-Oy vermeden önce kanal içindeki aday tekrarını ayıklayın. Aksi halde arka ucun aynı kimliği iki kez döndürmesi yöntemi değiştirir. Kimliğin temsil ettiği birimi belirleyip kanallar arasında koruyun. Bir kanal belge, diğeri iddia kimliği döndürüyorsa birleştirmeden önce ortak birime uzlaştırın; yalnızca aynı metin sağlam kimlik sözleşmesi değildir.
+Katkıları toplamadan önce her kanalın kendi içindeki tekrarları ayıklayın. Aynı kimliğin iki kez dönmesi iki katkı sayılırsa yöntem değişir. Kimliğin belgeyi mi, pasajı mı, bilgi kaydını mı gösterdiğini belirleyin. Kanallar farklı birimler döndürüyorsa önce ortak birimde eşleştirin. Metnin aynı olması tek başına güvenilir kimlik eşleştirmesi değildir.
 
-Tam eşit birleşik skorda kanonik kimlik sırası gibi belgeli sabit kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlığı reddedin; sıfırın kanalı kapatıp kapatmadığını belirleyin. Aynı retriever’ın iki kopyasına tam ağırlık vermek ilişkili kanıtı iki kez sayabilir. Fazla oy yanlış veya yetkisiz kaynağı kabul edilebilir yapmaz.
+Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve belgelenmiş bir kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlıkları reddedin; sıfır ağırlığın kanalı kapatıp kapatmadığını açıkça belirleyin. Aynı arama yönteminin iki kopyasına tam ağırlık vermek aynı dayanağı iki kez sayabilir. Çok katkı alması, yanlış veya yetkisiz bir kaynağı kabul edilebilir yapmaz.
 
 ## Ağırlık değişince yeniden hesaplayın
 
@@ -71,7 +71,7 @@ Tam eşit birleşik skorda kanonik kimlik sırası gibi belgeli sabit kural kull
 > **Kendinizi sınayın**
 > Tabloda yoğun kanalın ağırlığını sıfırlayın. Hangi sıra kalır; D’ye ne olur?
 >
-> **Answer:** A, B, C sözcüksel sırada kalır. D sıfır katkı alır; sıfır skorlu adayın çıkarılması açık çıktı politikasıdır. Sıfır, D’nin yanlış veya ilgisiz olduğunu kanıtlamaz.
+> **Açıklama:** A, B, C sözcüksel sırada kalır. D sıfır katkı alır; sıfır skorlu adayın çıkarılması açık çıktı politikasıdır. Sıfır, D’nin yanlış veya ilgisiz olduğunu kanıtlamaz.
 
 ## Kaynaklar ve ileri okuma
 

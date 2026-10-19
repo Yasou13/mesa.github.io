@@ -1,16 +1,16 @@
 ## v0.8.1 · 18 Ekim 2026
 
-Yayımlanmış kaynak sürümü kapsamlı retrieval, depolama sahipliği ve hata yönetimini güçlendirir. Üretim yeterliliği NO-GO; gerçek sağlayıcı entegrasyonu, üretim boyutunda kapasite ve 24 saatlik dayanıklılık sertifikalı değildir. Açıklamalı tag imzasızdır.
+Bu sürüm, erişim sınırları içinde aramayı, depoların sahiplik denetimini ve hata yönetimini iyileştirir. Canlı kullanım durumu NO-GO’dur. Gerçek sağlayıcı bağlantısı, canlı sistem ölçeğinde kapasite ve 24 saatlik dayanıklılık henüz sertifikalandırılmamıştır. Açıklamalı sürüm etiketi imzasızdır.
 
-## Neler değişti
+## Neler değişti?
 
-- BM25 corpus istatistikleri ve sıralama öncesi denetim sorguları yetkili tenant/dataset kapsamını kullanır.
-- Projeksiyon tamamlanması sahiplik/fencing kontrolü yapar; onarım diğer dataset artefaktlarını silmez. Kùzu silme ve rollback önbellekleri tutarlı tutulur.
-- Vektör ve embedding hataları açıktır; ayrılmış `_mesa_` metadata ve sonlu olmayan RRF ağırlıkları reddedilir.
-- Senkron ve asenkron V4 SDK ekleme isteğe bağlı `legal_identity` kabul eder; varsayılan durum sorgulama iki saniyedir. `make health` çalışan API’yi kontrol eder.
-- Dashboard/showcase ve eski script’ler kaldırıldı. MCP control API ve onay CLI’ı korunur.
-- Kurulum, CLI, sorun giderme, yükseltme, ekosistem ve sınırlar güncel ana rehberlerde birleştirildi. Şema head’i v0.8.0 ile aynıdır.
+- BM25’in belge istatistikleri ve sıralama öncesi denetimleri, izin verilen üst erişim alanı ve veri kümesiyle sınırlandırıldı.
+- Arama görünümlerinin tamamlanmasında sahiplik kontrolü eklendi. Onarım başka veri kümelerinin çıktılarını silmez. Kùzu’daki silme ve geri alma önbellekleri tutarlı tutulur.
+- Vektör ve sayısal temsil hataları açıkça bildirilir. Ayrılmış `_mesa_` üst veri alanları ile sonlu olmayan RRF ağırlıkları reddedilir.
+- Senkron ve asenkron V4 SDK ekleme işlemleri, isteğe bağlı `legal_identity` kabul eder. Varsayılan durum sorgulama aralığı iki saniyedir. `make health`, çalışan API’yi kontrol eder.
+- Eski gösterim panelleri ve betikler kaldırıldı. MCP yönetim API’si ve onay komutları korundu.
+- Kurulum, komutlar, sorun giderme, yükseltme, ekosistem ve sınırlarla ilgili bilgiler güncel ana rehberlerde toplandı. Veritabanı şeması v0.8.0 ile aynıdır.
 
-## Güncel kaynakları okuyun
+## İlgili belgeler
 
-Aşağıdaki değişiklik günlüğü sürüm geçmişini korur. [Kurulum](docs/core/installation/), [API ve CLI](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [mimari kararlar](docs/core/decisions/) yeni kaynak ağacını yansıtır.
+Aşağıdaki değişiklik günlüğü sürüm geçmişini korur. [Kurulum](docs/core/installation/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [mimari kararlar](docs/core/decisions/) belgeleri güncel kaynak yapısına göre düzenlenmiştir.

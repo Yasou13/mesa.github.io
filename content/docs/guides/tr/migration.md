@@ -1,9 +1,7 @@
-## Amaç ve sınırlar
+## Sürüm geçişinden önce yedek alın
 
-İleri migration öncesi offline yedek alın. V4 açık combined owner ve kanonik model işleme gerektirir; V3 ayrı root kullanır. Eski graph/vector/temporal capability adlarının daha dar karşılıkları vardır. Geri dönüş için saklanan yedeği yeni boş hedefe restore edin; migration uygulanmış root’u yerinde düşürmeyin.
+İleri sürüme geçmeden önce sistemi çevrimdışına alıp yedekleyin. V4, modeli etkin olan tek combined süreciyle çalışır; V3 için ayrı veri dizini gerekir. Eski çizge, vektör ve zaman özelliklerinin adları yeni sürümde daha dar kapsamlı karşılıklara sahiptir. Geri dönmeniz gerekirse sakladığınız yedeği yeni ve boş bir dizine yükleyin; dönüştürülen dizinin sürümünü yerinde düşürmeyin.
 
-## Sürdürülen sözleşmelerle devam edin
+## v0.8.1’de şema değişmiyor
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
-
-v0.8.1, v0.8.0 şema head’ini korur; yeni şema migration’ı getirmez. Kurulum ve kurtarma rehberi artık operasyon runbook içindedir.
+v0.8.1, v0.8.0’ın son veritabanı şemasını kullanır; yeni bir şema geçişi eklemez. Kurulum ve kurtarma adımları artık [işletim kılavuzunda](docs/core/operations/) toplanmıştır. Komutları ve ayrıntılı koşulları aşağıdaki özgün kaynakta, [API](docs/core/api-reference/) ve [sürüm sınırları](docs/core/limitations/) belgelerinde bulabilirsiniz.

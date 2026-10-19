@@ -3,9 +3,9 @@ id: "keyword-semantic-protocol"
 slug: "keyword-vs-semantic-search"
 type: "research"
 language: "tr"
-title: "Keyword vs Semantic Search"
-subtitle: "Planlanan retrieval benchmark protokolü"
-summary: "Bu yayın önerilen bir karşılaştırmayı tanımlar. Herhangi bir benchmark sonucu sunmaz."
+title: "Sözcük ve anlam temelli arama nasıl karşılaştırılacak?"
+subtitle: "Planlanan arama karşılaştırmalı test protokolü"
+summary: "Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı."
 shortAnswer: ""
 category: "Retrieval Evaluation"
 tags: ["benchmark", "retrieval", "semantic-search"]
@@ -15,19 +15,19 @@ updatedAt: "2026-10-01"
 readingMinutes: 9
 status: "published"
 indexable: true
-seoTitle: "Keyword vs Semantic Search — Planlanan Araştırma Protokolü"
-seoDescription: "Keyword, semantic ve hybrid hukuki retrieval karşılaştırması için MESA'nın sonuç içermeyen planlı protokolünü inceleyin."
+seoTitle: "Sözcük ve anlam temelli arama nasıl karşılaştırılacak? — MESA"
+seoDescription: "Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı."
 ---
 
 ## Araştırma sorusu
 
-Dondurulmuş bir hukuk retrieval veri kümesi ve bağımsız değerlendirilen sorgu seti altında lexical, semantic ve hybrid retrieval relevance ve operasyonel maliyet bakımından nasıl farklılaşır?
+Aynı hukuk belgeleri, sabit sorgular ve bağımsız ilgililik değerlendirmeleri kullanıldığında sözcük tabanlı, anlamsal ve hibrit arama; ilgili sonuçları bulma ve işletim maliyeti bakımından nasıl farklılaşır?
 
 ## Neden önemli?
 
-Arama yaklaşımları çoğu zaman veri kümesi, sorgu, relevance ve yapılandırma seçimlerini gizleyen geniş iddialarla karşılaştırılır. Yararlı bir karşılaştırma bu seçimleri incelenebilir kılmalıdır.
+Arama yöntemleri bazen kullanılan belgeler, sorular, etiketler ve ayarlar açıklanmadan karşılaştırılıyor. Yararlı bir karşılaştırma, bu seçimlerin nasıl yapıldığını da göstermelidir.
 
-## Veri seti
+## Veri kümesi
 
 > [!NOTE]
 > **Henüz seçilmedi**
@@ -36,17 +36,17 @@ Arama yaklaşımları çoğu zaman veri kümesi, sorgu, relevance ve yapılandı
 ## Deney düzeni
 
 - Veri kümesini, sorgu setini, değerlendirmeleri ve sistem yapılandırmalarını dondur.
-- Lexical, semantic ve hybrid koşulları aynı uygun belgeler üzerinde çalıştır.
-- Sorgu üretimini relevance değerlendirmesinden ayır.
+- Sözcük tabanlı, anlamsal ve hibrit koşulları aynı uygun belgeler üzerinde çalıştır.
+- Sorgu üretimini ilgililik değerlendirmesinden ayır.
 - Yalnızca olumlu örnekleri değil, hataları ve sıfır sonuçlu sorguları da kaydet.
 
 ## Sonuçlar
 
 > [!WARNING]
 > **Henüz sonuç yok**
-> Benchmark çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir.
+> Karşılaştırmalı test çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir.
 
-## Yeniden üretilebilirlik
+## Tekrarlanabilirlik
 
-Yayımlanabilir bir çalışma; veri seti kimliğini, sorgu ve değerlendirme sürümlerini, model kimliklerini, yapılandırmayı, kod revizyonunu, uygun olduğunda seed değerlerini, ortamı, ham çıktıları ve analiz adımlarını kaydetmelidir.
+Yayımlanacak bir deneyde veri kümesi, sorgu ve değerlendirme sürümleri; model kimlikleri, ayarlar, kod sürümü, gerekiyorsa rastgelelik başlangıç değerleri, çalışma ortamı, ham çıktılar ve analiz adımları kaydedilmelidir.
 

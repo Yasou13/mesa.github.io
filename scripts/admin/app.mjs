@@ -20,8 +20,8 @@ const status = (message, error = false) => {
 const errors = {
   SESSION: t('Your session is unavailable or expired. Sign in again.', 'Oturum kullanılamıyor veya süresi dolmuş. Tekrar giriş yapın.'),
   ROLE: t('This account has no administrator access.', 'Bu hesabın yönetici erişimi yok.'),
-  DATA: t('Records could not be loaded. Check the connection and database setup.', 'Kayıtlar yüklenemedi. Bağlantıyı ve veritabanı kurulumunu kontrol edin.'),
-  CONFLICT: t('The draft changed or access was denied. Reload it before saving again.', 'Taslak değişmiş veya erişim reddedilmiş. Yeniden kaydetmeden önce yükleyin.'),
+  DATA: t('Records could not be loaded. Check the connection and database setup.', 'Kayıtlara ulaşılamadı. Bağlantıyı ve veritabanı ayarlarını kontrol edin.'),
+  CONFLICT: t('The draft changed or access was denied. Reload it before saving again.', 'Bu taslak başka bir yerde değişmiş olabilir veya yazma izniniz olmayabilir. Metninizi indirdikten sonra makaleyi yeniden açın.'),
   VALIDATION: t('Enter a title, summary, article body and reading time between 1 and 60 minutes.', 'Başlık, özet, makale metni ve 1–60 dakika arasında okuma süresi girin.'),
   SLUG: t('Use lowercase Latin letters, numbers and single hyphens in the URL.', 'URL’de küçük Latin harfleri, rakamlar ve tek tire kullanın.'),
   DUPLICATE: t('This URL already exists in this language. Choose a different slug.', 'Bu dilde aynı URL zaten var. Farklı bir kısa ad seçin.'),
@@ -264,8 +264,8 @@ if (config) {
       }
       if ($('btn-toggle-ready')) {
         $('btn-toggle-ready').textContent = article.status === 'ready'
-          ? t('Revert to Draft', 'Taslağa Geri Al')
-          : t('Mark Ready', 'Hazır Olarak İşaretle');
+          ? t('Revert to Draft', 'Taslağa geri çevir')
+          : t('Mark Ready', 'İncelemeye hazır');
         $('btn-toggle-ready').hidden = !['draft', 'ready'].includes(article.status);
       }
 
@@ -309,7 +309,7 @@ if (config) {
         $('editor-notice-banner').hidden = isEditable;
       }
 
-      status(t('Article loaded from the database.', 'Makale veritabanından yüklendi.'));
+      status(t('Article loaded from the database.', 'Makale açıldı.'));
       if (isEditable) $('article-title').focus(); else $('btn-close-editor').focus();
     }
 
@@ -350,7 +350,7 @@ if (config) {
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'button secondary btn-sm';
-          btn.textContent = t('Restore', 'Geri Yükle');
+          btn.textContent = t('Restore', 'Editöre al');
           btn.disabled = !editable(article);
           btn.addEventListener('click', () => action(btn, async () => {
             if (!confirm(t('Restore this revision into the editor?', 'Bu sürüm editöre geri yüklensin mi?'))) return;
@@ -656,7 +656,7 @@ if (config) {
       if (active !== generation) return;
       updateStats(allArticles);
       openEditor(created);
-      status(t('Created editable draft from published article.', 'Yayındaki makaleden düzenlenebilir taslak kopya oluşturuldu.'));
+      status(t('Created editable draft from published article.', 'Makalenin bir taslak kopyası oluşturuldu. Artık düzenleyebilirsiniz.'));
     }));
 
     // Toggle Ready status
@@ -673,7 +673,7 @@ if (config) {
         $('editor-status-chip').textContent = stateNames[article.status] || article.status;
         $('editor-status-chip').className = `status-chip status-${article.status}`;
       }
-      $('btn-toggle-ready').textContent = article.status === 'ready' ? t('Revert to Draft', 'Taslağa Geri Al') : t('Mark Ready', 'Hazır Olarak İşaretle');
+      $('btn-toggle-ready').textContent = article.status === 'ready' ? t('Revert to Draft', 'Taslağa geri çevir') : t('Mark Ready', 'İncelemeye hazır');
       status(t(`Article marked as ${article.status}.`, `Makale ${article.status} olarak işaretlendi.`));
       upsertRow(article);
       await loadRevisions(article.id);
@@ -706,7 +706,7 @@ if (config) {
         switchTab('articles', true);
         await records('articles');
         openEditor(created);
-        status(t('New draft article created and loaded in editor.', 'Yeni taslak makale oluşturuldu ve editörde açıldı.'));
+        status(t('New draft article created and loaded in editor.', 'Yeni taslak hazır. Yazmaya başlayabilirsiniz.'));
       });
     });
 

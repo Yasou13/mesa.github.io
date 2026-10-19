@@ -79,7 +79,7 @@
       ],
       "title": {
         "en": "Retrieval & graph",
-        "tr": "Retrieval ve çizge"
+        "tr": "Arama ve çizge"
       }
     },
     {
@@ -259,7 +259,7 @@
       ],
       "title": {
         "en": "Projection rebuild",
-        "tr": "Projeksiyon rebuild"
+        "tr": "Arama görünümlerini yeniden oluşturma"
       }
     },
     {
@@ -391,7 +391,7 @@
       ],
       "title": {
         "en": "Tenant/dataset authorization",
-        "tr": "Tenant/dataset yetkilendirmesi"
+        "tr": "Erişim alanları ve veri kümesi izinleri"
       }
     },
     {
@@ -427,7 +427,7 @@
       ],
       "title": {
         "en": "Rebuild closure",
-        "tr": "Rebuild kapanışı"
+        "tr": "Yeniden oluşturmanın tamamlanması"
       }
     },
     {

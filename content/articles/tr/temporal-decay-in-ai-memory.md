@@ -3,10 +3,10 @@ id: "temporal-decay-in-ai-memory"
 slug: "temporal-decay-in-ai-memory"
 type: "learn"
 language: "tr"
-title: "Değişen bilgi: geçerlilik, çelişki ve unutma"
+title: "Bilgi değiştiğinde: güncelleme, çelişki ve unutma"
 subtitle: ""
-summary: "Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin."
-shortAnswer: "Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin."
+summary: "Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin."
+shortAnswer: "Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin."
 category: "Evidence & Trust"
 tags: ["temporal", "validity", "decay", "contradiction", "version", "zaman", "geçerlilik", "çelişki", "unutma"]
 author: "MESA contributors"
@@ -15,15 +15,15 @@ updatedAt: "2026-10-18"
 readingMinutes: 5
 status: "published"
 indexable: true
-seoTitle: "Değişen bilgi: geçerlilik, çelişki ve unutma — MESA Learn"
-seoDescription: "Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin."
+seoTitle: "Bilgi değiştiğinde: güncelleme, çelişki ve unutma — MESA"
+seoDescription: "Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin."
 lessonOrder: 12
 learningStage: "systems"
 prerequisites: ["evidence-aware-memory", "sqlite-as-canonical-agent-memory"]
 learningObjectives: ["Geçerlilik zamanı ile kayıt zamanını ayırmak", "Görünür ve gerçek çelişkiyi tanımak", "Azalmayı doğruluk değil sıralama politikası olarak açıklamak"]
 ---
 
-## İki saat farklı soruları yanıtlar
+## Geçerlilik zamanı ve kayıt zamanı farklıdır
 
 Arşiv 18 Ekim’de yeni cuma açılış saatini duyuruyor; değişiklik 1 Kasım’da geçerli. Sistem duyuruyu 20 Ekim’de öğreniyor. “Bugün açılış saati ne?” ve “Sistemimiz 19 Ekim’e kadar ne kaydetmişti?” farklı sorulardır. Tek `updated_at` alanı iki anlamı güvenilir temsil edemez.
 
@@ -34,11 +34,11 @@ Arşiv 18 Ekim’de yeni cuma açılış saatini duyuruyor; değişiklik 1 Kası
 | recorded_at | 20 Ekim | Bu sistemin kaydettiği zaman |
 | source_revision | handbook-r3 | Bunu söyleyen belge |
 
-Bunlar dersin kavramsal alanlarıdır. Geçerlilik ve işlem zamanı geçmiş sorgularını birlikte desteklemek açık bitemporal model ve sorgu semantiği ister. Ürün zaman damgası saklıyor diye bu yeteneği çıkarmayın. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir.
+Bunlar dersin kavramsal alanlarıdır. Hem bilginin geçerlilik tarihine hem sistemin onu kaydettiği tarihe göre geçmiş sorgusu yapabilmek için iki zaman boyutunu açıkça tanımlayan bir model gerekir. Sistemin zaman damgası tutması, bu sorguları desteklediği anlamına gelmez. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir.
 
 ## Değişimi aralıkla temsil edin
 
-<!-- diagram: Revizyon 2 kasımdan önce, revizyon 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir. -->
+<!-- diagram: Sürüm 2 kasımdan önce, sürüm 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir. -->
 1. Eski iddia · cuma 09.00
 2. Bitiş · 1 Kasım’dan önce
 3. Yeni iddia · cuma 10.00
@@ -65,15 +65,15 @@ age = 2H => weight = 0.25
 Apply only after eligibility; this is a ranking policy.
 ```
 
-Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Tarihsel sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin.
+Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Geçmiş sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin.
 
 ## Görünür çatışmayı sınıflandırın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Revizyon 2 kasıma kadar cuma 09.00, revizyon 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?
+> Sürüm 2 kasıma kadar cuma 09.00, sürüm 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?
 >
-> **Answer:** Hayır. Farklı aralıklara uygulanıyorlar. İkisini koruyup sorunun tarihiyle filtreleyin. Çelişki için aynı varlık, kapsam ve örtüşen geçerlilik koşullarında uyumsuz değer gerekir.
+> **Açıklama:** Hayır. Farklı aralıklara uygulanıyorlar. İkisini koruyup sorunun tarihiyle filtreleyin. Çelişki için aynı varlık, kapsam ve örtüşen geçerlilik koşullarında uyumsuz değer gerekir.
 
 ## Kaynaklar ve ileri okuma
 

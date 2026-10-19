@@ -1,11 +1,11 @@
-## Kaynağını koruyan hafıza
+## Bilgi, kaynağıyla birlikte saklanır
 
-MESA Core, yazılım ajanları için hafıza altyapısıdır. Kaynağın tam metnini kabul eder, kalıcı mutasyonları kaydeder ve yetkili kapsam içinde kanıt getirir. Kaynağa bağlı hafıza ve sınırlandırılmış bağlam döndürür; bunların nasıl kullanılacağına uygulamalar karar verir.
+MESA Core, yazılım ajanları için bir hafıza altyapısıdır. Kaynağın tam metnini alır, değişiklikleri kalıcı olarak izler ve yalnızca erişime izin verilen bilgileri dayanaklarıyla birlikte getirir. Bu bilgileri nasıl kullanacağına ve yanıtı nasıl üreteceğine uygulama karar verir.
 
-## İlk iş akışınızı seçin
+## İlk adımı seçin
 
-Kurulum ve sağlık kontrolü için [model kapalı hızlı başlangıcı](docs/core/getting-started/) kullanın; V3 veri alımı da embedding gerektirir. [V4 örneklerini](docs/core/examples/) yalnızca çıkarım ve embedding sağlayıcılarını hazırladıktan sonra çalıştırın. Depolama sahipliği için [mimariyi](architecture/), sıralama için [retrieval açıklamasını](retrieval/) okuyun.
+Kurulum ve durum kontrolü için [model kullanmayan hızlı başlangıcı](docs/core/getting-started/) izleyin. V3 ile veri işlemek de bir sayısal temsil sağlayıcısı gerektirir. [V4 örneklerini](docs/core/examples/), bilgi çıkarımı ve sayısal temsil sağlayıcılarını hazırladıktan sonra çalıştırın. Depoların görevleri için [mimariyi](architecture/), sonuçların sıralanması için [arama açıklamasını](retrieval/) okuyun.
 
-## Yayın ve yeterlilik
+## Kaynak kodunun yayımlanması, canlı kullanım onayı değildir
 
-Bu rehber, 18 Ekim 2026 tarihli yayımlanmış v0.8.1 kaynak sürümüne sabitlenmiştir. Yayınlanmış olması üretim yeterliliğinin tamamlandığı anlamına gelmez. Gerçek sağlayıcı provası, üretim benzeri 24 saatlik dayanıklılık çalışması ve yeni resmî Profile B sertifikasyonu bu sürümün kanıtları arasında değildir. [Sürüm sınırlarını okuyun](docs/core/release-notes/).
+Bu rehber, 18 Ekim 2026’da yayımlanan v0.8.1 kaynak koduna göre hazırlanmıştır. Gerçek sağlayıcıyla prova, canlı sisteme benzer koşullarda 24 saatlik dayanıklılık testi ve yeni resmî Profile B sertifikasyonu bu sürümün doğrulamaları arasında değildir. [Sürüm notlarında](docs/core/release-notes/) kapsamı inceleyin.

@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MESA V4 Retrieval — Dört Kanal, RRF ve Kanıt</title>
-  <meta name="description" content="MESA Core v0.8.1 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin.">
+  <title>MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar</title>
+  <meta name="description" content="Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.">
   <meta name="theme-color" content="#050508">
   <link rel="canonical" href="https://mesamemory.dev/tr/retrieval/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/retrieval/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/retrieval/">
   <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/retrieval/">
-  <meta property="og:title" content="MESA V4 Retrieval — Dört Kanal, RRF ve Kanıt">
-  <meta property="og:description" content="MESA Core v0.8.1 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin.">
+  <meta property="og:title" content="MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar">
+  <meta property="og:description" content="Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesamemory.dev/tr/retrieval/">
   <meta property="og:locale" content="tr_TR">
@@ -21,10 +21,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MESA V4 Retrieval — Dört Kanal, RRF ve Kanıt">
-  <meta name="twitter:description" content="MESA Core v0.8.1 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin.">
+  <meta name="twitter:title" content="MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar">
+  <meta name="twitter:description" content="Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"MESA Core v0.8.1 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA Core v0.8.1 vektör, BM25, assertion ve sınırlı çizge retrieval kanallarını, RRF formülünü, kaynak izini ve bağlam sınırlarını keşfedin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"MESA","url":"https://mesamemory.dev/","inLanguage":"tr","description":"Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin."},{"@type":"SoftwareSourceCode","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../favicon.ico?v=396056f03e59" sizes="32x32">
   <link rel="icon" href="../../favicon.svg?v=dd68b71b87a3" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png">
@@ -61,7 +61,7 @@
     </header>
 <main id="main-content">
   <section class="page-hero compact page-hero--trajectory">
-    <p class="eyebrow">MESA V4 · RETRIEVAL</p>
+    <p class="eyebrow">MESA V4 · ARAMA</p>
     <h1>Farklı sinyaller. Tek kanıt kimliği.</h1>
     <p>Her kanal uygun adayları farklı gerekçeyle önerir. Birleştirme sıralarını toplar; kaynak izi gerekçeleri incelenebilir tutar.</p>
   </section>
@@ -69,10 +69,10 @@
   <section class="section">
     <h2>Dört kanal, dört yararlı soru.</h2>
     <div class="editorial-rows">
-      <article><h3>Vektör · anlamsal benzerlik</h3><p>Bu assertion sorguya yakın bir anlam taşıyor mu? Uyumlu sorgu embedding’i LanceDB assertion projeksiyonunu arar.</p></article>
+      <article><h3>Vektör · anlamsal benzerlik</h3><p>Bu bilgi kaydı sorguya yakın bir anlam taşıyor mu? Uyumlu sorgu embedding’i LanceDB bilgi kaydı arama görünümünü arar.</p></article>
       <article><h3>BM25 · pasaj ve atıf</h3><p>Kanıt metni yararlı terimler veya kapsamlı atıf içeriyor mu? FTS5 pasajları sıralar; tam atıf araması kanal içinde katkı verir.</p></article>
-      <article><h3>Assertion · yapılandırılmış ilişki</h3><p>Subject, predicate, entity/literal object ve kanıt eşleşiyor mu? SQLite’ın sahip olduğu ilişkiler ayrı sinyal sağlar.</p></article>
-      <article><h3>Çizge · desteklenen yol</h3><p>Uygun kanonik assertion’larla desteklenen sınırlı ilişki yolu var mı? Yollar destekleyen kimlikleri ve yönü korur.</p></article>
+      <article><h3>Bilgi kaydı · yapılandırılmış ilişki</h3><p>Subject, predicate, entity/literal object ve kanıt eşleşiyor mu? SQLite’ın sahip olduğu ilişkiler ayrı sinyal sağlar.</p></article>
+      <article><h3>Çizge · desteklenen yol</h3><p>Uygun asıl bilgi kayıtlarıla desteklenen sınırlı ilişki yolu var mı? Yollar destekleyen kimlikleri ve yönü korur.</p></article>
     </div>
   </section>
 
@@ -81,7 +81,7 @@
     <h2>Sıralar birleşir; ham skorlar ayrı kalır.</h2>
     <pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
 k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
-    <p>Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; retrieval motorunun tamamını simüle etmez.</p>
+    <p>Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; arama motorunun tamamını simüle etmez.</p>
     
 <form class="rank-calculator" data-rank-calculator>
   <fieldset disabled>
@@ -100,7 +100,7 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
       </label>
       <label>
         <input type="checkbox" name="assertion" checked>
-        <span>Assertion</span>
+        <span>Bilgi kaydı</span>
         <code>1 / (60 + 1)</code>
       </label>
       <label>
@@ -114,20 +114,20 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     <span>RRF skoru</span>
     <output aria-live="polite">4 / 61 = 0.065574</output>
   </div>
-  <p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya retrieval kalitesi ölçmez.</p>
+  <p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.</p>
   <noscript>Statik örnek: dört katkı 4/61 verir.</noscript>
 </form>
-    <p>Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; assertion tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.</p>
+    <p>Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; bilgi kaydı tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.</p>
     <p>Yanıtlar rrf_score, legal_factor, raw_score ve final_score alanlarını ayrı sunar. Daha yüksek birleştirilmiş uygunluk daha iyidir; bu alanların hiçbiri doğruluk olasılığı değildir.</p>
   </section>
 
   <section class="section">
     <h2>Sınırlar sözleşmenin parçasıdır.</h2>
     <div class="editorial-rows">
-      <article><h3>Çizge kaynakları</h3><p>En fazla 20 başlangıç, 3 hop ve 500 istenen graph hit; frontier 64, düğüm başına fan-out 32, varsayılan istek zaman aşımı 15 saniye. PageRank yalnız telemetridir. Bu sınırlar gecikme veya tamlık garantilemez.</p></article>
+      <article><h3>Çizge kaynakları</h3><p>Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı ve istenen 500 sonuçla sınırlıdır. İlerleme kümesi 64 düğümü, düğüm başına yayılım 32 bağlantıyı aşmaz. Varsayılan zaman aşımı 15 saniyedir. PageRank yalnızca izleme verisidir. Bu sınırlar, belirli bir hızda bütün sonuçların bulunacağını garanti etmez.</p></article>
       <article><h3>Bağlam paketleme</h3><p>Varsayılan 2048 token bütçesi, modelin göreceği biçimlendirilmiş kanıtı cl100k_base ile sayar. BPE yüklenemezse muhafazakâr UTF-8 bayt üst sınırı daha az kanıt sığdırabilir. Tam çizge ispatı atomik sığmalıdır.</p></article>
       <article><h3>Adaptive bağlam · isteğe bağlı</h3><p>Varsayılan tek sorgudur. Adaptive mod, Q0 boşsa veya ilk üçte iki-kanal desteği yoksa tetiklenir; en fazla bir planlayıcı ve iki genişletme aynı kapsamı korur. Dış birleştirme ağırlıkları Q0=1.0 ve Q1/Q2=0.5’tir. Hata Q0’ı korur.</p></article>
-      <article><h3>Çalışma anında kullanılabilirlik</h3><p>Capability bayrakları çalışır desteği tanımlar. Yapılandırılmış vektör/çizge backend’inin beklenen hatası açık 503 döndürür. Yalnız projeksiyon yazan çizge adapter’ları komşu dolaşımı bildirmez.</p></article>
+      <article><h3>Çalışma anında kullanılabilirlik</h3><p>Capability bayrakları çalışır desteği tanımlar. Yapılandırılmış vektör/çizge arka uç’inin beklenen hatası açık 503 döndürür. Yalnız arama görünümü yazan çizge adapter’ları komşu dolaşımı bildirmez.</p></article>
     </div>
   </section>
 
@@ -147,22 +147,22 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
         <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
-        <p>MESA v0.8.1 yayımlanmış bir kaynak sürümüdür. Model kapalı hızlı başlangıçla başlayın; tam V4 çalışma zamanını değerlendirmeden önce üretim yeterliliği sınırlarını inceleyin.</p>
+        <p>MESA v0.8.1’in kaynak kodu yayımlandı. Önce model kullanmayan hızlı başlangıç kurulumunu deneyin. Tam V4 sistemini değerlendirmeden önce canlı kullanıma ilişkin sınırları okuyun.</p>
         <div class="actions"><a class="button primary" href="../docs/core/getting-started/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Yapay zekâ için kaynağıyla hafıza.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Kaynağını koruyan yapay zekâ hafızası.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../status/">Durumu görüntüle →</a></p></div>
       <div class="footer-groups">
         <div><h3>Keşfet</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../use-cases/">Kullanım alanları</a><a href="../evaluation/">Değerlendirme ve güven</a><a href="../status/">Proje durumu</a></div>
         <div><h3>Ekosistem</h3><a href="../mesa/">Core hafıza motoru</a><a href="../data/">MESA Data</a><a href="../qa/">MESA QA</a><a href="../certification/">E2E Certification</a><a href="../law/">MESA Law</a></div>
-        <div><h3>Kaynaklar</h3><a href="../learn/">Öğren</a><a href="../research/">Araştırma</a><a href="../guides/">Rehberler</a><a href="../glossary/">Sözlük</a><a href="../methodology/">Metodoloji</a></div>
-        <div><h3>Dokümantasyon</h3><a href="../docs/core/getting-started/">Hızlı başlangıç</a><a href="../docs/core/architecture/">Core mimari dokümanları</a><a href="../retrieval/">Retrieval</a><a href="../docs/core/security/">Güvenlik</a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
-        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue aç</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Bakımcı profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Kaynaklar</h3><a href="../learn/">Dersler</a><a href="../research/">Araştırma</a><a href="../guides/">Rehberler</a><a href="../glossary/">Sözlük</a><a href="../methodology/">Yöntemler</a></div>
+        <div><h3>Dokümanlar</h3><a href="../docs/core/getting-started/">Hızlı başlangıç</a><a href="../docs/core/architecture/">Core mimari dokümanları</a><a href="../retrieval/">Arama</a><a href="../docs/core/security/">Güvenlik</a><a href="../docs/mcp/">MCP entegrasyonu</a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Hata veya öneri bildir</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Geliştiricinin profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA katkıcıları</span><span>Yayımlanan kaynak koduyla karşılaştırılmış dokümanlar</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Yayımlanan kaynak koduna göre hazırlanmıştır</span></div>
     </footer>
 </main>
-  <script src="../../app.js?v=43752e3c2ede"></script>
+  <script src="../../app.js?v=d389e70c5cac"></script>
 </body>
 </html>

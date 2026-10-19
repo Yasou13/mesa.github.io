@@ -1,7 +1,7 @@
-## Mimari kararlar
+## Tasarım kararlarının gerekçeleri
 
-Bu güncel karar v0.8.1 tasarım gerekçesini kaydeder. Uygulanmış davranışı güncel mimari ve çalışma zamanı sözleşmeleri belirler; emekli kararlar tarihsel bağlamdır.
+Bu dizin, v0.8.1’de geçerli olan mimari kararları ve önceki kararların hangi nedenle değiştiğini bir araya getirir. Güncel davranışı anlamak için karar notlarını [mimari rehberiyle](docs/core/architecture/) birlikte okuyun. Geçerliliğini yitirmiş bir karar, yalnızca geçmiş tasarımı açıklar.
 
-## Güncel referansı okuyun
+## Kararları inceleyin
 
-Aşağıdaki kaynak durum, gerekçe ve sonuçları içerir. [Karar dizini](docs/core/decisions/) ve [mimari](docs/core/architecture/) ile başlayın.
+Her notta kararın durumu, gerekçesi ve sonuçları bulunur. Tam dizin aşağıdaki özgün kaynaktadır.

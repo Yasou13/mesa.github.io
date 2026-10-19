@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## İki bağlantı seçeneğini ayırın
 
-Eski doğrudan stdio sunucusu ile V4 HTTP gateway/yerel bridge farklı çalışma sözleşmelerine sahiptir. Dataset kapsamlı bridge sunucunun yetkilendirdiği kapsamı korur; mutating global rebuild açmaz. Araç kullanılabilirliği capability’ye bağlıdır; kimlik doğrulamayı atlamaz veya çizge dolaşımını çalışır hale getirmez.
+Eski doğrudan stdio sunucusu ile V4 HTTP geçidi ve yerel köprü farklı biçimde çalışır. Belirli veri kümeleriyle sınırlı köprü, sunucunun verdiği erişim kapsamını korur; tüm sistemi değiştiren yeniden oluşturma işlemini açmaz. Bir aracın kullanılabilir olması, sistemin yetenek bildirimine bağlıdır. MCP kullanmak kimlik doğrulamayı atlamaz veya desteklenmeyen çizge aramasını etkinleştirmez.
 
-## Sürdürülen sözleşmelerle devam edin
+## Ayrıntılara geçin
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Tam bağlantı kuralları aşağıdaki özgün kaynakta bulunur. Ayrıca [mimariyi](architecture/), [API’yi](docs/core/api-reference/), [işletim koşullarını](docs/core/operations/) ve [sürümün sınırlarını](docs/core/limitations/) okuyun.

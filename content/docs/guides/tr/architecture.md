@@ -1,11 +1,11 @@
-## Tek yetkili hafıza kataloğu
+## Asıl kayıtlar SQLite’ta tutulur
 
-SQLite; kaynak kimliği, değişmez revizyonlar, assertion’lar, mutasyon durumu ve artifact sahipliğinin otoritesidir. LanceDB vektör, Kùzu çizge projeksiyonu sağlar. Bir bilginin etkinliğine veya kimin okuyabileceğine bağımsız karar vermezler.
+Kaynak kimliği, değiştirilemeyen belge sürümleri, bilgi kayıtları, değişikliklerin durumu ve çıktıların sahipliği SQLite’ta tutulur. LanceDB vektör araması, Kùzu ise ilişkiler üzerinde arama için kullanılır. Bu iki sistem, bir bilginin hâlâ geçerli olduğuna veya kimlerin erişebileceğine kendi başına karar vermez.
 
-## Veri alımı ve kurtarma
+## Veri alımı ve kurtarma nasıl ilerler?
 
-Kabul işlemi; arka plan çıkarımı, seçili doğrulama ve SQL → vektör → çizge projeksiyonundan önce kalıcı işi kaydeder. Depolar tek ACID transaction paylaşmaz; fencing token’lı lease, idempotent receipt, sahiplik ve reconciliation durumlarını tutarlı hale getirir. Yalnızca COMMITTED tamamlanmış hafızadır.
+Bir istek kabul edildiğinde, yapılacak iş önce kalıcı olarak kaydedilir. Ardından bilgi çıkarımı ve seçilen doğrulamalar yapılır; kayıtlar SQL → vektör → çizge sırasıyla yazılır. Üç depo tek bir ACID işlemini paylaşmaz. Bu nedenle işin kime ait olduğu, hangi adımların tamamlandığı ve yeniden denendiğinde ne yapılacağı ayrıca izlenir. Yazma ancak `COMMITTED` durumuna ulaştığında tamamlanmış sayılır.
 
-## Sistemi ayrı görünümlerle okuyun
+## Ayrıntıları nerede bulabilirsiniz?
 
-[Mimari sayfası](architecture/); mantıksal akışı, fiziksel depoları, retrieval yürütmesini ve kanıt kimliğini ayrı anlatır. [Veri alımı](docs/core/concepts-and-ingestion/), [retrieval](retrieval/), [güvenlik](docs/core/security/) ve [operasyon](docs/core/operations/) ayrıntılı sözleşmeleri sunar.
+[Mimari sayfası](architecture/) veri akışını, depoları, aramayı ve kaynak izini ayrı ayrı açıklar. Uygulama ayrıntıları için [veri alımı](docs/core/concepts-and-ingestion/), [arama](retrieval/), [güvenlik](docs/core/security/) ve [işletim](docs/core/operations/) rehberlerine bakın.

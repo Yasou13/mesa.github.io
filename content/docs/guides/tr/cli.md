@@ -1,7 +1,7 @@
-## Amaç ve sınırlar
+## Yönetim komutlarını doğru sürümle kullanın
 
-Anahtar, rol ve açık dataset izinleri için sürümle eşleşen `mesa-v4-admin` kullanın. `mesa-v4-rebuild` offline operatör yüzeyidir. Storage root’a dokunmadan önce sabitlenmiş referanstaki tam bayrakları ve çıkış koşullarını okuyun.
+Anahtar oluşturmak, rol atamak ve veri kümesi izinlerini vermek için kurduğunuz sürümle gelen `mesa-v4-admin` aracını kullanın. `mesa-v4-rebuild` ise sistem çevrimdışıyken çalışan bir yönetim aracıdır. Veri dizininde değişiklik yapmadan önce aşağıdaki kaynakta komut seçeneklerini ve tamamlanma koşullarını okuyun.
 
-## Sürdürülen sözleşmelerle devam edin
+## İlgili rehberler
 
-Tam tablolar ve operatör ayrıntıları için aşağıdaki sabitlenmiş kaynak referansını kullanın. İlgili rehberler: [mimari](architecture/), [API](docs/core/api-reference/), [operasyon](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/).
+Tam komut listesi ve yönetim ayrıntıları aşağıdaki özgün kaynakta bulunur. Öncesinde [mimariyi](architecture/), [API’yi](docs/core/api-reference/), [işletim rehberini](docs/core/operations/) ve [sürümün sınırlarını](docs/core/limitations/) inceleyebilirsiniz.

@@ -1,11 +1,11 @@
-## Kanonik bilgiler, türetilmiş yollar
+## Asıl kayıtlarla çizge görünümünü ayırın
 
-Düğüm ve assertion’ların otoritesi SQLite’tır. Kùzu, sınırlı komşu retrieval için ilişkileri projekte eder. Aynı düğümler arasındaki farklı assertion’lar; predicate, kaynak ve zaman kimliği önemli olduğu için ayrı kalır. Bir düğüme ulaşılabilmesi tek başına destekli yanıt değildir.
+Düğümlerin ve bilgi kayıtlarının aslı SQLite’ta tutulur. Kùzu, ilişkileri belirli sınırlar içinde gezip aramak için kullanılır. Aynı düğümleri bağlayan farklı kayıtlar tekleştirilmez; ilişki türü, kaynak ve zaman bilgisi ayrı anlam taşıyabilir. Bir düğüme ulaşılabilmesi, tek başına o düğüme dayalı bir yanıtı doğrulamaz.
 
-## Yolu ve çalışma zamanı bayrağını okuyun
+## Yolun dayanaklarını ve kullanılabilirliğini kontrol edin
 
-Destekleyen assertion kimlikleri, hizalı düğüm yolları ve kenar yönleri, yetkili kanonik kayıtlarla uzlaştırılmış olmalıdır. `graph_neighbor_retrieval`, çalışır desteği bildirir; yalnız projeksiyon yazan adapter dolaşım uygulamaz. Çalışır backend’in hatası, sessizce eksiksiz gösterilen arama değil açık 503’tür.
+Bir yolu destekleyen kayıt kimlikleri, düğüm sırası ve bağlantı yönleri, erişime izin verilen asıl kayıtlarla eşleşmelidir. `graph_neighbor_retrieval`, çizge üzerinde aramanın gerçekten kullanılabildiğini bildirir. Yalnızca çizge görünümüne yazabilen bir bileşen arama yapabiliyor sayılmaz. Çalışan arka uç hata verirse eksik sonuçlar tam gibi sunulmaz; açık 503 yanıtı döner.
 
-## Ablation ve sınırlar
+## Kanalı kapatarak karşılaştırın
 
-`graph_mode=disabled`, eşleştirilmiş karşılaştırma için retrieval kanalını kapatır; kanonik assertion retrieval ve graph projection yazmaları sürer. PageRank yalnızca telemetridir. Başlangıç, hop, fan-out ve istek süresi sınırları sınırsız işi önler; tamlık veya gecikme garantisi vermez.
+`graph_mode=disabled`, eş koşullarda karşılaştırma yapmak için çizge arama kanalını kapatır. Bilgi kaydı araması ve çizge görünümüne yazma devam eder. PageRank yalnızca izleme verisidir. Başlangıç düğümü, adım sayısı, düğüm başına bağlantı ve istek süresi sınırları işi kontrol altında tutar; tüm sonuçların bulunacağını veya belirli bir hız sağlanacağını garanti etmez.

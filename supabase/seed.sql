@@ -70,11 +70,11 @@ The test is observable continuity: close the session, start another authorized s
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'AI memory: what survives after a conversation? — MESA Learn', 'Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'tr', 'Yapay zekâ hafızası: konuşmadan sonra ne kalır?', '', 'Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın.', 'Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın.', '## “Hatırlamanın” üç ayrı anlamı
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'tr', 'Yapay zekâ hafızası: sohbet bitince ne kalır?', '', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', '## “Hatırlamanın” üç ayrı anlamı
 
-Kurgusal Atlas arşivi için çalışan bir asistan düşünün. Pazartesi okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni konuşmada açılış saatini soruyorsunuz. Uygulama kullanılabilir bir kayıt sağlamazsa model ancak parametrelerindeki bilgiye dayanabilir. Kendinden emin yanıt hangi yolun kullanıldığını göstermez.
+Atlas arşivi için çalışan kurgusal bir asistan düşünün. Pazartesi, okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni bir sohbette açılış saatini soruyorsunuz. Uygulama önceki kaydı modele sunmazsa model yalnızca eğitimde öğrendiklerine dayanabilir. Kendinden emin bir yanıt vermesi, bilgiyi gerçekten hatırladığını göstermez.
 
-Büyük dil modeli (LLM), aldığı girdiden sonraki token’ları tahmin ederek metin üretir. Token kodlanmış metin birimidir; her zaman tam kelime değildir. Bağlam penceresi modelin arayüzü altında çalışabildiği sınırlı girdi/çıktı token dizisidir. Kalıcı depolama bu tahmin sürecinin dışında, uygulamaya ait mekanizmadır. Burada hafıza bir mühendislik terimidir; insan gibi hatırlama iddiası değildir.
+Büyük dil modeli (LLM), girdiden sonra hangi token’ların geleceğini tahmin ederek metin üretir. Token, her zaman tam bir sözcüğe karşılık gelmeyen kodlanmış metin birimidir. Bağlam penceresi, modelin tek istekte işleyebildiği sınırlı girdi ve çıktı alanıdır. Kalıcı depolama ise bu tahmin sürecinin dışında, uygulama tarafından yönetilir. Burada “hafıza” bir mühendislik kavramıdır; modelin insan gibi hatırladığı söylenmiyor.
 
 | Katman | İçerik | Değişim yolu |
 | --- | --- | --- |
@@ -82,11 +82,11 @@ Büyük dil modeli (LLM), aldığı girdiden sonraki token’ları tahmin ederek
 | Bağlam penceresi | Bu isteğe verilen token’lar | Yeni istek oluşturma |
 | Kalıcı hafıza | Model dışındaki kayıtlar | Yetkili yazma/güncelleme/silme |
 
-Veritabanına satır yazmak modeli yeniden eğitmez. O satırı getirmek, seçim ve bağlam sınırları içinde yalnızca bir istekte kullanılabilir kılar. Konuşma geçmişinde duran bir cümlenin budamadan sonra veya başka oturumda bulunacağı da garanti değildir. Bunlar farklı hata biçimleri olan ayrı mekanizmalardır.
+Veritabanına bir satır eklemek modeli yeniden eğitmez. Uygulama o satırı bulup bağlama eklerse model, yalnızca ilgili istekte bu bilgiden yararlanabilir. Konuşma geçmişinde duran bir cümlenin de geçmiş kısaltıldığında veya yeni oturum açıldığında erişilebilir kalacağı garanti değildir. Bunlar, farklı biçimlerde hata verebilen ayrı mekanizmalardır.
 
 ## Kullanışlı kayıt bir cümleden fazlasıdır
 
-“Dokuzda açılır” bilgisini saklamadan önce sorun: hangi salon, hangi günler, kime göre ve hangi okuyucular için? Kullanışlı kayıt özgün gözlemi, kaynağı, erişim kapsamını ve zamanı korur. Çıkarılmış olgu bu gözlemin yorumudur. İkisini saklamak, özgün kaynak değişmiş gibi davranmadan çıkarımı düzeltmenizi sağlar.
+“Dokuzda açılır” bilgisini saklamadan önce şu soruları sorun: Hangi salon? Hangi günler? Hangi kaynağa göre? Kimler görebilir? İyi bir kayıt, özgün ifadeyi, kaynağını, erişim izinlerini ve zamanını korur. Bu ifadeden çıkarılan bilgi ise bir yorumdur. İkisini ayrı saklamak, kaynağı değiştirmeden hatalı yorumu düzeltmenizi sağlar.
 
 ```text
 record_id: hours-17
@@ -111,21 +111,21 @@ status: active
 
 *Her ok başarısız olabilir. Kaydedilmiş mesaj, kullanılabilir hafızanın tamamlandığını kanıtlamaz.*
 
-Yazma politikasını açık seçin. Her mesajı saklamak özel veriyi, tekrarları ve eski talimatları biriktirir. Yalnızca LLM özeti saklamak istisnaları veya kanıtı kaybettirebilir. Başlangıç için tam kaynak kayıtlarını koruyup görevle ilgili az sayıda iddia çıkarmak ve her iddiayı kaynağına bağlamak uygundur. Bu bir tasarım örüntüsüdür; evrensel gereklilik değildir.
+Neyin saklanacağına açıkça karar verin. Her mesajı kaydetmek; özel bilgileri, tekrarları ve geçerliliğini yitirmiş talimatları biriktirir. Yalnızca model özeti saklamak da istisnaları veya dayanakları kaybettirebilir. Başlangıç için kaynak metni koruyup görevle ilgili az sayıda bilgi kaydı çıkarabilir ve her birini kaynağına bağlayabilirsiniz. Bu, her sistemde zorunlu olan tek çözüm değil, bir tasarım seçeneğidir.
 
 ## Silme ve düzeltme de hafızanın parçasıdır
 
-Çarşamba salonun saati değişiyor. Yeni cümle eklemek, revizyon veya geçerlilik izlenmiyorsa yarışan iki yanıt bırakır. Politikanızın izin verdiği denetim izini korurken önceki iddiayı geçersizleşmiş olarak işaretleyin. Kaynak silindiğinde türetilmiş özet, embedding ve önbellekler hakkında da karar gerekir; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir.
+Çarşamba salonun açılış saati değişsin. Sürüm ve geçerlilik bilgisi tutmadan yalnızca yeni bir cümle eklerseniz, arama birbiriyle yarışan iki yanıt bulabilir. Saklama kurallarınıza uygun geçmişi koruyun ve eski kaydın geçerliliğini yitirdiğini belirtin. Kaynak silindiğinde ona bağlı özetleri, sayısal temsilleri ve önbellekleri de değerlendirin; yalnızca görünen sohbet mesajını kaldırmak yeterli değildir.
 
-Test, gözlenebilir devamlılıktır: oturumu kapatın, başka yetkili oturum açın, soruyu sorun; sonra erişimi kaldırıp veya kaynağı değiştirip tekrarlayın. Yanıtla birlikte dönen kaynak kimliğini kontrol edin. Uzun bağlam bu testin yerini tutmaz. Liu ve arkadaşları belirli uzun bağlam görevlerinde konum etkisini inceler; bulgu her model için zamansız sınır değil, kendi modelinizi değerlendirme nedenidir. [Araştırma](https://arxiv.org/abs/2307.03172).
+Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka bir yetkili oturum açın ve aynı soruyu sorun. Ardından erişimi kaldırıp veya kaynağı değiştirip testi tekrarlayın. Yanıtla birlikte kaynak kimliğini de kontrol edin. Uzun bir bağlam penceresi bu testin yerini tutmaz. Liu ve arkadaşlarının belirli uzun bağlam görevlerinde bulduğu konum etkisi, her model için değişmez bir sınır değil; kendi sisteminizi ölçmeniz için bir gerekçedir. [Araştırma](https://arxiv.org/abs/2307.03172)
 
 ## İlk hafıza politikanızı tasarlayın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Retrieval satırı her seferinde bulsa bile hangi iki sorun sürer?
+> Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Arama satırı her seferinde bulsa bile hangi iki sorun sürer?
 >
-> **Answer:** Kaynağa bağlı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Retrieval başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
+> **Açıklama:** Kaynağıyla bağlantılı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Arama başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
 
 ## Kaynaklar ve ileri okuma
 
@@ -133,7 +133,7 @@ Test, gözlenebilir devamlılıktır: oturumu kapatın, başka yetkili oturum a�
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'Yapay zekâ hafızası: konuşmadan sonra ne kalır? — MESA Learn', 'Model ağırlıklarını, güncel bağlamı ve kalıcı kayıtları ayırın. Veritabanı seçmeden önce bir hafıza kaydını tasarlayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('rag-vs-ai-memory', 'learn', 'en', 'RAG and memory: build the request step by step', '', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', '## RAG is a pattern, memory is a lifecycle concern
 
 Retrieval-augmented generation means fetching external information and conditioning a generated answer on it. An application may retrieve a manual, a user preference or a previous task record. “Memory” describes what the application retains and how it manages that information over time. A memory system can supply a RAG pipeline; a RAG corpus can be updated continuously. Static versus dynamic is not the defining distinction.
@@ -197,30 +197,30 @@ Retrieved text is data, even when it says “ignore previous instructions.” Ke
 3. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 
 ', ARRAY['RAG', 'chunking', 'context budget', 'parçalama', 'bağlam bütçesi', 'prompt injection']::text[], 'MESA contributors', 5, 'published', 'RAG and memory: build the request step by step — MESA Learn', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('rag-vs-ai-memory', 'learn', 'tr', 'RAG ve hafıza: isteği adım adım kurmak', '', 'Kaynağı retrieval’dan yanıta kadar izleyin. RAG ile hafızanın örtüşmesini, bağlam bütçesini ve kaynaklandırmanın nerede bozulduğunu öğrenin.', 'Kaynağı retrieval’dan yanıta kadar izleyin. RAG ile hafızanın örtüşmesini, bağlam bütçesini ve kaynaklandırmanın nerede bozulduğunu öğrenin.', '## RAG bir örüntü, hafıza bir yaşam döngüsü konusudur
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('rag-vs-ai-memory', 'learn', 'tr', 'RAG ve hafıza: kaynaktan yanıta', '', 'Bilginin aramada bulunmasından yanıta dönüşmesine kadar geçen adımları izleyin. RAG ile hafızanın ilişkisini ve bağlam bütçesini örneklerle öğrenin.', 'Bilginin aramada bulunmasından yanıta dönüşmesine kadar geçen adımları izleyin. RAG ile hafızanın ilişkisini ve bağlam bütçesini örneklerle öğrenin.', '## RAG ne yapar, hafıza neyi yönetir?
 
-Retrieval-augmented generation, dış bilgiyi getirip üretilen yanıtı bu bilgiyle koşullandırmaktır. Uygulama bir kılavuz, kullanıcı tercihi veya önceki görev kaydı getirebilir. “Hafıza”, uygulamanın neyi koruduğunu ve zaman içinde nasıl yönettiğini anlatır. Hafıza sistemi RAG hattını besleyebilir; RAG veri kümesi sürekli güncellenebilir. Tanımlayıcı ayrım statik/dinamik olması değildir.
+RAG, dışarıdan bulunan bilgiyi dil modeline sunarak yanıtı bu bilgiye dayandırma yöntemidir. Getirilen içerik bir kılavuz, kullanıcı tercihi veya önceki görev kaydı olabilir. “Hafıza” ise uygulamanın neyi sakladığını ve bunu zaman içinde nasıl yönettiğini anlatır. Bir hafıza sistemi RAG akışına veri sağlayabilir; RAG’in kullandığı belgeler de sürekli güncellenebilir. Ayrım, birinin sabit diğerinin değişken olması değildir.
 
-Lewis ve arkadaşları parametrik bilgiyle getirilen bilgiyi birleştiren belirli bir eğitilebilir RAG mimarisi sundu. Güncel uygulamalarda terim, retriever ve generator birlikte eğitilmeden, istek anındaki retrieval için de kullanılır. Hangi anlamı kullandığınızı belirtin. Bu ders uygulama örüntüsünü açıklar; her kaynaklı prompt’un özgün eğitim yöntemini uyguladığını iddia etmez. [Özgün makale](https://arxiv.org/abs/2005.11401).
+Lewis ve arkadaşları, modelin öğrendiği bilgiyle aramada bulunan bilgiyi birleştiren belirli bir eğitilebilir RAG mimarisi sundu. Bugün RAG adı, arama bileşeniyle yanıt üreten model birlikte eğitilmeden yapılan uygulamalar için de kullanılıyor. Hangi kullanımdan söz ettiğinizi belirtin. Bu ders uygulama akışını açıklar; kaynağa dayanan her istemin özgün makaledeki eğitim yöntemini kullandığını söylemez. [Özgün makale](https://arxiv.org/abs/2005.11401)
 
 ## Tek soru, incelenebilir beş karar
 
-<!-- diagram: Soru üretimden önce yetkilendirme, retrieval, seçim ve bağlam kurulumundan geçer. -->
+<!-- diagram: Soru üretimden önce yetkilendirme, arama, seçim ve bağlam kurulumundan geçer. -->
 1. Soru · hafta içi saat?
 2. Kapsam · archive-team
-3. Adaylar · revizyon 1 ve 2
+3. Adaylar · sürüm 1 ve 2
 4. Seçim · etkin kaynak 2
 5. Üretim · yanıt + kaynak
 
 *Generator yalnızca isteğe gerçekten yerleştirilen kanıtı görür.*
 
-Önce çağıranın izinli kaynaklarını çözün. Sonra adayları getirin; uygun olmayan veya eski sürümle değiştirilmiş kayıtları çıkarın. Kalan adayları sıralayıp sınırlı kanıt bağlamına yerleştirin. Son olarak generator’dan bu bağlama dayanarak cevap ve destekleyen kaynak isteyin. Aşamaları ayrı kaydedin: makul son yanıt bozuk retriever’ı veya model parametrelerinden gelen tesadüfi cevabı gizleyebilir.
+Önce isteği yapan kişinin hangi kaynaklara erişebildiğini belirleyin. Sonra adayları bulun; uygun olmayan veya yerini daha yeni sürüme bırakmış kayıtları çıkarın. Kalan sonuçları sıralayıp sınırlı kanıt bağlamına yerleştirin. Son olarak modelden bu bağlama dayalı bir yanıt ve onu destekleyen kaynakları isteyin. Her aşamayı ayrı izleyin: Makul görünen son yanıt, aramadaki bir hatayı veya modelin eğitimden tesadüfen bildiği bir cevabı gizleyebilir.
 
 ## Parça sınırları cevaplanabilirliği değiştirir
 
-Kaynak “Salon hafta içi 09.00’da açılır; resmî tatiller hariç” diyor. Parçalama istisnayı başka kayda ayırır ve retrieval yalnızca ilkini getirirse sistem gerçek cümleye atıf yaparken yanıltıcı cevap verebilir. Belge yapısıyla başlayın: başlık, paragraf, tablo ve ek sınırları. Kaynak konumlarını koruyup soruların komşu parçalara ihtiyaç duyup duymadığını test edin.
+Kaynakta “Salon hafta içi 09.00’da açılır; resmî tatiller hariç” yazsın. Metni bölerken istisna ayrı parçaya düşer ve arama yalnızca ilk parçayı getirirse sistem gerçek bir cümleye atıf yaparak yanlış yönlendirebilir. Başlık, paragraf, tablo ve ek sınırlarını gözetin. Kaynak içindeki konumları koruyun; soruların komşu parçalara ihtiyaç duyup duymadığını test edin.
 
-Örtüşme yerel bağlamı korumaya yardımcıdır; aynı zamanda birbirine çok benzeyen adaylar üretir. Bağlamı doldurmadan önce kaynak/revizyon/aralıkla tekrarları ayıklayın. Evrensel parça boyutu yoktur: kısa SSS ve uzun tanımlı tablo farklı işlem ister. Token sayısını kural yapmak yerine başlangıç ayarı seçin, hataları inceleyin ve ayrılmış test sorularında karşılaştırın.
+Parçaları bir miktar örtüştürmek yakın bağlamı koruyabilir, ancak çok benzer sonuçları da çoğaltır. Modelin bağlamını doldurmadan önce belge, sürüm ve metin aralığına göre tekrarları ayıklayın. Her belgeye uygun tek bir parça boyutu yoktur. Kısa bir SSS ile uzun bir tablo aynı biçimde bölünmez. Başlangıç ayarını seçin, hataları inceleyin ve daha önce ayarlarda kullanmadığınız test sorularıyla karşılaştırın.
 
 ## Kanıt bütçesini hesaplayın
 
@@ -232,18 +232,18 @@ If the model limit includes output: reserve output separately.
 Actual packing must include source labels and separators.
 ```
 
-Her kanıt 500 token ve kimlik/biçim için 50 token gerektiriyorsa on öğe 5.500 token tüketir. On bir öğe 6.050 ile bu örnek bütçeyi aşar. Sığdırmak için parçayı olumsuzluk veya istisna ortasında kesmeyin. Öğeyi çıkarın ya da değiştirin; kaynak kimliğini koruyun ve mümkünse modelin gerçek tokenizer’ıyla sayın. Sayılar model özelliği değil alıştırmadır.
+Her kanıt 500 token, kimlik ve biçim bilgileri de 50 token gerektiriyorsa on öğe 5.500 token tutar. On bir öğe 6.050 token ile bu örnekteki bütçeyi aşar. Sığdırmak için metni olumsuzluk veya istisna cümlesinin ortasından kesmeyin. Öğeyi çıkarın ya da daha uygun bir bütünle değiştirin. Kaynak kimliğini koruyun; mümkünse modelin gerçek token sayacını kullanın. Bu sayılar bir modelin kapasitesini değil, hesap örneğini gösterir.
 
-## Retrieval ile üretimi ayrı teşhis edin
+## Aramayla yanıt üretimini ayrı değerlendirin
 
 | Gözlem | İncelenecek alan |
 | --- | --- |
 | Doğru kaynak adaylarda yok | Veri alımı, sorgu, indeks ve kapsam |
 | Kaynak geldi ama bağlama girmedi | Sıralama, tekrar ayıklama ve paketleme |
-| Kaynak prompt’ta, cevap yanlış | Talimat, model davranışı ve belirsizlik |
+| Kaynak bağlamda var, yanıt yine de yanlış | Talimat, model davranışı ve belirsizlik |
 | Cevap doğru, kaynak ilgisiz | Atfın desteği ve olası model ezberi |
 
-Getirilen metin “önceki talimatları yok say” dese bile veridir. Güvenilir talimattan ayrı tutun; belge istedi diye araç eylemine yetki vermeyin. Kaynağın bulunması doğruluğu veya araç çağrısının güvenliğini sağlamaz. OWASP dolaylı prompt injection riskini ve katmanlı önlemleri açıklar; tek ayraç sorunu ortadan kaldırmaz. [Güvenlik kaynağı](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html).
+Aramada bulunan metin “önceki talimatları yok say” dese bile veri olarak kalmalıdır. Onu güvenilir talimatlardan ayırın; bir belge istedi diye araçlara işlem yetkisi vermeyin. Kaynağın bulunması, içeriğin doğru olduğunu veya araç çağrısının güvenliğini göstermez. OWASP, dolaylı istem enjeksiyonu riskini ve birden fazla katmanda alınabilecek önlemleri açıklar. Tek bir ayraç kullanmak sorunu çözmez. [Güvenlik kaynağı](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 
 ## Eksik istisnayı bulun
 
@@ -251,7 +251,7 @@ Getirilen metin “önceki talimatları yok say” dese bile veridir. Güvenilir
 > **Kendinizi sınayın**
 > Kaynak 400 token kural ve 100 token istisna içeriyor. Yalnızca kurallar sığıyor. Son 100 token’ı kesmek güvenli optimizasyon mudur?
 >
-> **Answer:** Hayır. Kuralı istisnalarıyla koruyun, daha küçük tam birim getirin veya tam cevap veremediğinizi belirtin. Yalnızca bağlama yerleştirilen parça sayısını değil, yanıtın kaynak desteğini ölçün.
+> **Açıklama:** Hayır. Kuralı istisnalarıyla koruyun, daha küçük tam birim getirin veya tam cevap veremediğinizi belirtin. Yalnızca bağlama yerleştirilen parça sayısını değil, yanıtın kaynak desteğini ölçün.
 
 ## Kaynaklar ve ileri okuma
 
@@ -259,7 +259,7 @@ Getirilen metin “önceki talimatları yok say” dese bile veridir. Güvenilir
 2. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 3. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 
-', ARRAY['RAG', 'chunking', 'context budget', 'parçalama', 'bağlam bütçesi', 'prompt injection']::text[], 'MESA contributors', 5, 'published', 'RAG ve hafıza: isteği adım adım kurmak — MESA Learn', 'Kaynağı retrieval’dan yanıta kadar izleyin. RAG ile hafızanın örtüşmesini, bağlam bütçesini ve kaynaklandırmanın nerede bozulduğunu öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['RAG', 'chunking', 'context budget', 'parçalama', 'bağlam bütçesi', 'prompt injection']::text[], 'MESA contributors', 5, 'published', 'RAG ve hafıza: kaynaktan yanıta — MESA', 'Bilginin aramada bulunmasından yanıta dönüşmesine kadar geçen adımları izleyin. RAG ile hafızanın ilişkisini ve bağlam bütçesini örneklerle öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('structured-vs-unstructured-memory', 'learn', 'en', 'From documents to claims: preserve what extraction loses', '', 'Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record.', 'Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record.', '## Three representations of the same source
 
 The Atlas handbook says “Starting 1 November, the reading room opens at 10:00 on Fridays; other weekdays remain 09:00.” Raw text preserves wording. A chunk makes part of it retrievable. An assertion makes one interpretation explicit: subject, predicate, value and qualifiers. A graph makes relationships traversable. None of these representations automatically proves that the source is correct.
@@ -323,18 +323,18 @@ For corrections, distinguish a changed source from a changed interpretation. If 
 2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'From documents to claims: preserve what extraction loses — MESA Learn', 'Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('structured-vs-unstructured-memory', 'learn', 'tr', 'Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak', '', 'Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun.', 'Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun.', '## Aynı kaynağın üç temsili
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('structured-vs-unstructured-memory', 'learn', 'tr', 'Metinden bilgi kaydına: kaynakta neyi korumalı?', '', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', '## Aynı kaynağın üç temsili
 
-Atlas kılavuzu “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00’da açılır; diğer hafta içi günler 09.00 olarak kalır” diyor. Ham metin ifadeyi korur. Parça, bölümünü getirilebilir yapar. İddia bir yorumu açıklaştırır: özne, yüklem, değer ve niteleyiciler. Çizge ilişkileri gezilebilir yapar. Bu temsillerin hiçbiri kaynağın doğruluğunu kendiliğinden kanıtlamaz.
+Atlas kılavuzunda “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00’da açılır; diğer hafta içi günlerde saat 09.00 olarak kalır” yazsın. Ham metin özgün ifadeyi korur. Metin parçası, ilgili bölümü aramada bulmayı sağlar. Yapılandırılmış kayıt; özneyi, ilişkiyi, değeri ve koşulları ayrı alanlara ayırır. Çizge de ilişkilerin izlenmesini kolaylaştırır. Bu temsillerin hiçbiri kaynağın doğruluğunu kendiliğinden kanıtlamaz.
 
 | Temsil | Güçlü yönü | Kaybedebileceği bilgi |
 | --- | --- | --- |
 | Tam kaynak | Denetim ve yeniden yorumlama | Kolay sorgu yapısı |
-| Metin parçası | Pasaj retrieval’ı | Belge genelindeki niteleyici |
+| Metin parçası | Pasaj aramayı | Belge genelindeki niteleyici |
 | İddia | Filtreleme ve join | Nüans veya çıkarım belirsizliği |
 | Çizge kenarı | İlişki gezintisi | Açıkça bağlanmazsa kanıt |
 
-Temsili soruya göre seçin. “Dördüncü paragraf ne diyor?” tam metin gerektirir. “Cuma dokuzdan sonra hangi salonlar açılıyor?” tipli saat/gün alanlarından yararlanır. Metin yanında kaynağa bağlı iddia tutmak ikisine de hizmet eder. Yapılı satırı parser veya model değişince yeniden çıkarılabilir türetilmiş yorum olarak ele alın.
+Temsili, soracağınız soruya göre seçin. “Dördüncü paragraf ne diyor?” için tam metin gerekir. “Cuma günü dokuzdan sonra hangi salonlar açılıyor?” sorusu ise saat ve gün alanlarından yararlanır. Kaynak metni ve ona bağlı yapılandırılmış kaydı birlikte tutmak iki ihtiyacı da karşılar. Yapılandırılmış kaydı, ayrıştırıcı veya model değiştiğinde kaynaktan yeniden üretilebilen bir yorum olarak ele alın.
 
 ## Koşullarını koruyan bir iddia kurun
 
@@ -350,27 +350,27 @@ evidence_text: "opens at 10:00 on Fridays"
 extractor_version: example-parser-2
 ```
 
-“Cuma”yı düşürmek iddiayı değiştirir. “1 Kasım’dan itibaren” kısmını düşürmek gelecekteki değişikliği güncel gösterir. Birim, olumsuzluk, yetki alanı, zaman ve istisna anlamı etkiliyorsa iddianın parçasıdır. Çıkarım koşulu temsil edemiyorsa kaynağı koruyup yorumu eksik olarak işaretleyin; sessizce atmayın.
+“Cuma” koşulunu kaldırmak kaydın anlamını değiştirir. “1 Kasım’dan itibaren” kısmını atmak da gelecekte başlayacak uygulamayı bugün geçerliymiş gibi gösterir. Birim, olumsuzluk, yetki alanı, zaman ve istisnalar anlamı etkiliyorsa kayıtta korunmalıdır. Çıkarım yöntemi bunları gösteremiyorsa kaynağı saklayın ve yorumu eksik olarak işaretleyin; koşulları sessizce atmayın.
 
 Salonu etiketinden ayırmak için sabit kimlik kullanın. “Atlas”, “Atlas Okuma Salonu” ve “A Salonu” aynı varlık da olabilir, farklı varlıklar da. Varlık çözümleme kanıt gerektiren ayrı karardır. Metin eşleşmesi aday önerebilir; kurumlar veya erişim kapsamları arasında kayıtları otomatik birleştirmemelidir.
 
 ## Türetimi görünür tutun
 
 <!-- diagram: Kaynak revizyonu parça, çıkarım çalışması ve koşullu iddia üretir. -->
-1. Revizyon r3 · özgün metin
+1. Sürüm r3 · özgün metin
 2. Parça c4 · tam aralık
 3. Çıkarım e2 · model/parser
 4. İddia a42 · niteleyiciler
 
-*Düzeltme türetilmiş iddiayı değiştirir; özgün revizyon tanımlanabilir kalır.*
+*Düzeltme türetilmiş iddiayı değiştirir; özgün sürüm tanımlanabilir kalır.*
 
-W3C PROV kaynak izi anlatımında varlık, faaliyet ve aktörü ayırır. Bu örnekte kaynak ve iddia varlık; çıkarım faaliyet; yazılım servisi aktördür. Bu sözlük, iddiayı kimin neyden ürettiğini sormayı kolaylaştırır. Veritabanı şemanızı zorunlu kılmaz veya çıkarımın doğruluğunu sertifikalandırmaz. [PROV genel bakış](https://www.w3.org/TR/prov-overview/).
+W3C PROV, kaynak izini anlatırken varlık, faaliyet ve aktör ayrımı yapar. Bu örnekte kaynak belge ve çıkarılan kayıt birer varlık; çıkarım işlemi faaliyet; yazılım hizmeti ise aktördür. Bu kavramlar, kaydın kim tarafından ve hangi kaynaktan üretildiğini sormayı kolaylaştırır. Belirli bir veritabanı şemasını zorunlu kılmaz veya çıkarımın doğru olduğunu belgelemez. [PROV genel bakış](https://www.w3.org/TR/prov-overview/)
 
 ## Yapıyı ve anlamı ayrı doğrulayın
 
 Şema doğrulama eksik kaynak kimliğini, hatalı saati veya eksik özneyi reddedebilir. Anlamsal kontrol, kaynağın iddiayı gerçekten destekleyip desteklemediğini ve koşulların korunup korunmadığını sorar. JSON doğrulamasını geçmek yalnızca yapısal uyumu gösterir. İki model aynı yanlış anlamayı paylaşabilir; uzlaşma sinyaldir, bağımsız kaynak değildir.
 
-Düzeltmede değişen kaynakla değişen yorumu ayırın. Kaynak aynıysa ama “cuma” yanlışlıkla “her gün” okunduysa yeni çıkarım veya iddia sürümü oluşturup hatalıyı geri çekin. Kılavuz değiştiyse yeni kaynak revizyonu oluşturun. Bu ayrım sonraki yanıtın gerçek, belge veya çıkarım hattı değiştiği için mi değiştiğini denetletir.
+Düzeltme yaparken kaynağın mı, yorumun mu değiştiğini ayırın. Kaynak aynı kaldığı hâlde “cuma” yanlışlıkla “her gün” okunmuşsa yeni bir çıkarım sürümü oluşturup hatalı kaydı geri çekin. Kılavuz gerçekten değiştiyse yeni belge sürümü oluşturun. Böylece bir yanıtın gerçek dünya, kaynak belge veya işleme yöntemi değiştiği için mi farklılaştığını inceleyebilirsiniz.
 
 ## Çıkarımı onarın
 
@@ -378,14 +378,14 @@ Düzeltmede değişen kaynakla değişen yorumu ayırın. Kaynak aynıysa ama �
 > **Kendinizi sınayın**
 > Çıkarım “resmî tatillerde kapalı” ifadesini `is_open=true` yapıyor. JSON şeması geçerli. İnceleme neyi kaydetmeli?
 >
-> **Answer:** Tam destek aralığı, çıkarım sürümü ve etkilenen iddia kimliğiyle anlamsal çelişkiyi kaydetmeli. Türetilmiş iddiayı geri çekin veya değiştirin; kaynak revizyonunu koruyun ve buna kaynak güncellemesi demeyin.
+> **Açıklama:** Tam destek aralığı, çıkarım sürümü ve etkilenen iddia kimliğiyle anlamsal çelişkiyi kaydetmeli. Türetilmiş iddiayı geri çekin veya değiştirin; kaynak revizyonunu koruyun ve buna kaynak güncellemesi demeyin.
 
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'Belgeden iddiaya: çıkarımın kaybettirdiklerini korumak — MESA Learn', 'Tam metni, varlığı ve iddiayı; çıkarımı doğrulanmış gerçek sanmadan temsil edin. Kaynağa bağlı bir kaydı adım adım kurun.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'Metinden bilgi kaydına: kaynakta neyi korumalı? — MESA', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('semantic-search', 'learn', 'en', 'Embeddings and semantic search, with numbers', '', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', '## What an embedding actually represents
 
 An embedding model maps input into numbers arranged as a vector. Training encourages some relationships to be reflected in geometric proximity. A document about “opening hours” may be close to “when can I enter?” even without shared words. This is useful for candidate retrieval. The coordinates are learned features, not labeled columns such as “truth”, “permission” or “currentness”.
@@ -440,11 +440,11 @@ Identifiers, negation and near-duplicate versions expose limits. “Rule A-17 ap
 3. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 
 ', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 5, 'published', 'Embeddings and semantic search, with numbers — MESA Learn', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('semantic-search', 'learn', 'tr', 'Embedding ve anlamsal arama: sayılarla açıklama', '', 'Benzerliği hesaplayın, yoğun ve seyrek temsili ayırın; en yakın komşunun neden gerçeklik veya erişim kararı olmadığını anlayın.', 'Benzerliği hesaplayın, yoğun ve seyrek temsili ayırın; en yakın komşunun neden gerçeklik veya erişim kararı olmadığını anlayın.', '## Embedding neyi temsil eder?
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('semantic-search', 'learn', 'tr', 'Anlamsal arama: vektörler neyi anlatır?', '', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', '## Embedding neyi temsil eder?
 
-Embedding modeli girdiyi vektör halinde düzenlenmiş sayılara dönüştürür. Eğitim, bazı ilişkilerin geometrik yakınlıkta görünmesini teşvik eder. “Açılış saatleri” belgesi ortak kelime olmadan “ne zaman girebilirim?” sorusuna yakın olabilir. Aday retrieval için yararlıdır. Koordinatlar öğrenilmiş özelliklerdir; “doğruluk”, “izin” veya “güncellik” gibi etiketli sütunlar değildir.
+Bir sayısal temsil (embedding) modeli, girdiyi vektör hâlinde düzenlenmiş sayılara dönüştürür. Eğitim sırasında bazı anlam ilişkileri bu uzaydaki yakınlığa yansır. Örneğin “Açılış saatleri” başlıklı belge, ortak sözcük bulunmasa da “Ne zaman girebilirim?” sorusuna yakın çıkabilir. Bu yöntem aday bulmaya yardımcı olur. Ancak vektörün boyutları “doğruluk”, “erişim izni” veya “güncellik” gibi açıkça adlandırılmış alanlar değildir.
 
-Yoğun temsil genellikle çok sayıda sıfır olmayan değer içeren sabit uzunluklu dizidir. Seyrek temsil çok daha büyük uzaydan az sayıda ağırlıklı boyut tutar. Klasik sözcüksel boyutlar terimlere karşılık gelir; öğrenilmiş seyrek modeller bunları genişletebilir veya yeniden ağırlıklandırabilir. Seyrek “öğrenmesiz”, yoğun ise “alanda daha iyi retrieval” demek değildir. Seçim kendi sorularınızda ölçüm gerektirir.
+Yoğun temsil, genellikle çok sayıda sıfır olmayan değer içeren sabit uzunlukta bir dizidir. Seyrek temsil ise çok daha büyük bir uzaydan az sayıda boyut ve ağırlık tutar. Klasik sözcük tabanlı temsillerde boyutlar terimlere karşılık gelir; öğrenilmiş seyrek modeller bu terimleri genişletebilir veya ağırlıklarını değiştirebilir. Seyrek olması modelin öğrenmediği, yoğun olması da her alanda daha iyi aradığı anlamına gelmez. Seçimi kendi sorularınızla ölçerek yapın.
 
 ## İki boyutlu benzerlik hesabı
 
@@ -458,12 +458,12 @@ C = [8, 6]       norm(C) = 10  cosine(q,C) = 0.8
 
 A ve C’nin kosinüs benzerliği aynıdır; kosinüs uzunluğu değil yönü karşılaştırır. Ham iç çarpım A için 0,8, C için 8’dir. Birim uzunluğa normalize edilmiş vektörlerde kosinüs ile iç çarpım aynıdır; normalizasyon yoksa aynı olmak zorunda değildir. Bu kurgusal iki boyutlu vektörler yalnızca hesabı açıklar. Dil modeli çıktısı veya anlamsal kalite kanıtı değildir.
 
-0,8 benzerlik, yüzde 80 ilgililik olasılığı değildir. Anlamı embedding modeline, skor dağılımına ve göreve bağlıdır. Bir veri kümesinde çalışan eşik; dil, parçalama veya model değişince bozulabilir. Eşiği etiketlenmiş sorgularla ayarlayın ve precision/recall dengesini izleyin.
+0,8 benzerlik puanı, sonucun yüzde 80 olasılıkla ilgili olduğunu söylemez. Puanın anlamı modele, puan dağılımına ve göreve bağlıdır. Bir veri kümesinde işe yarayan eşik, dil, parçalama veya model değiştiğinde uygun olmayabilir. Eşiği etiketli sorgularla belirleyin; bulunan sonuçların isabetiyle ilgili sonuçları yakalama oranını birlikte izleyin.
 
 ## Kodlama ile indeksleme farklı adımlardır
 
 <!-- diagram: Belge ve sorgu kodlayıcıları vektör karşılaştırmasını besler; uygunluk bağımsız uygulanır. -->
-1. Kaynak · parça + revizyon
+1. Kaynak · parça + sürüm
 2. Kodla · sabit model kimliği
 3. İndeks · tam veya yaklaşık
 4. Sorgu · uyumlu kodlayıcı
@@ -471,21 +471,21 @@ A ve C’nin kosinüs benzerliği aynıdır; kosinüs uzunluğu değil yönü ka
 
 *Vektör indeksi karşılaştırmayı hızlandırır. Kaydın anlamını belirlemez.*
 
-Tam arama uygun her vektörü skorlar. Yaklaşık en yakın komşu araması daha düşük maliyet karşılığında bazı komşuları kaçırabilir. Aynı uzaklık ve kapsamla yönetilebilir örnekte tam aramaya kıyasla yaklaşım kaybını ölçün. Anlamsal ilgililiği insan etiketleriyle ayrıca ölçün; indeks en yakın vektörleri kusursuz bulurken bu vektörler kötü yanıtlar olabilir.
+Tam arama, uygun olan bütün vektörleri puanlar. Yaklaşık en yakın komşu araması ise daha düşük maliyet karşılığında bazı komşuları kaçırabilir. Yönetilebilir büyüklükte bir örnekte, aynı uzaklık ölçüsü ve erişim kapsamıyla tam aramaya göre ne kaybettiğini ölçün. Anlamsal ilgililiği ayrıca insan değerlendirmesiyle sınayın. İndeks en yakın vektörleri doğru bulsa bile bu vektörlerin metinleri soruya iyi yanıt vermeyebilir.
 
 ## Boyutların eşleşmesi yeterli değildir
 
-Sağlayıcı, model, revizyon, boyut, normalizasyon ve kodlama talimatını kaydedin. İki model de 768 sayı döndürüp uyumsuz uzay kullanabilir. Bazı retrieval modelleri farklı sorgu/belge kodlayıcısı veya öneki ister; uyumluluk mutlaka aynı metin değil, modelin öngördüğü eşleşmedir. Temsili değiştirmek çoğunlukla belgeleri yeniden kodlayıp türetilmiş indeksi kurmayı gerektirir.
+Sağlayıcıyı, modeli, model sürümünü, boyut sayısını, normalizasyonu ve kodlama talimatını kaydedin. İki model de 768 sayı üretebilir, ancak bu sayılar farklı anlam uzaylarına ait olabilir. Bazı modeller sorgu ve belge için ayrı kodlayıcılar veya ön ekler kullanır. Önemli olan girdilerin aynı olması değil, modelin öngördüğü biçimde eşleşmesidir. Temsil değiştiğinde belgeleri yeniden kodlamak ve arama indeksini yeniden kurmak genellikle gerekir.
 
-Kimlikler, olumsuzluk ve benzer revizyonlar sınırları ortaya çıkarır. “A-17 kuralı uygulanır” ve “A-17 kuralı uygulanmaz” anlamsal olarak yakın olabilir. Tam semboller için sözcüksel retrieval, geçerlilik için yapılı filtre kullanın. DPR ve Sentence-BERT öğrenilmiş yoğun retrieval ve cümle temsili örnekleridir; her çok dilli arşiv için garanti değildir. [DPR](https://arxiv.org/abs/2004.04906), [Sentence-BERT](https://arxiv.org/abs/1908.10084).
+Kimlik numaraları, olumsuzluklar ve birbirine benzeyen belge sürümleri anlamsal aramanın sınırlarını gösterir. “A-17 kuralı uygulanır” ile “A-17 kuralı uygulanmaz” yakın vektörler üretebilir. Tam kodlar için sözcük tabanlı aramadan, geçerlilik için yapılandırılmış filtrelerden yararlanın. DPR ve Sentence-BERT, öğrenilmiş yoğun arama ve cümle temsili örnekleridir; her çok dilli arşivde aynı başarıyı garanti etmez. [DPR](https://arxiv.org/abs/2004.04906) [Sentence-BERT](https://arxiv.org/abs/1908.10084)
 
-## Şüpheli iyileşmeyi açıklayın
+## Model değişikliğini değerlendirin
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
 > Model değişince vektörler hâlâ 768 boyutlu ve servis sonuç döndürüyor. Eski belge indeksini kullanmak için yeterli mi?
 >
-> **Answer:** Hayır. Sorgu/belge temsil sözleşmesini kontrol edin; uyumsuzsa yeniden kodlayın. Yapısal olarak geçerli vektör başka uzayda olabilir. Hem komşu bulmayı hem görev ilgililiğini değerlendirin.
+> **Açıklama:** Hayır. Sorgu/belge temsil sözleşmesini kontrol edin; uyumsuzsa yeniden kodlayın. Yapısal olarak geçerli vektör başka uzayda olabilir. Hem komşu bulmayı hem görev ilgililiğini değerlendirin.
 
 ## Kaynaklar ve ileri okuma
 
@@ -493,7 +493,7 @@ Kimlikler, olumsuzluk ve benzer revizyonlar sınırları ortaya çıkarır. “A
 2. [Reimers & Gurevych (2019) · Sentence-BERT](https://arxiv.org/abs/1908.10084)
 3. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 
-', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 5, 'published', 'Embedding ve anlamsal arama: sayılarla açıklama — MESA Learn', 'Benzerliği hesaplayın, yoğun ve seyrek temsili ayırın; en yakın komşunun neden gerçeklik veya erişim kararı olmadığını anlayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 5, 'published', 'Anlamsal arama: vektörler neyi anlatır? — MESA', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-tuning-for-domain-documents', 'learn', 'en', 'BM25: why a rare word can beat repeated words', '', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', '## Three questions behind lexical ranking
 
 For “Atlas Friday hours”, a lexical retriever finds passages containing query terms. It needs to decide which match matters most. BM25 combines term rarity, within-document frequency and a correction for document length. Repeating “hours” fifty times should not make a long irrelevant document unbeatable; an uncommon identifier may be a more discriminating clue.
@@ -556,11 +556,11 @@ SQLite FTS5 uses fixed `k1=1.2` and `b=0.75`; its `bm25(table, ...)` arguments a
 2. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 
 ', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 5, 'published', 'BM25: why a rare word can beat repeated words — MESA Learn', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-tuning-for-domain-documents', 'learn', 'tr', 'BM25: nadir kelime neden tekrarlanan kelimeyi geçer?', '', 'Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.', 'Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.', '## Sözcüksel sıralamanın arkasındaki üç soru
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-tuning-for-domain-documents', 'learn', 'tr', 'BM25: bir sözcük ne zaman daha önemli olur?', '', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', '## Sözcüksel sıralamanın arkasındaki üç soru
 
-“Atlas cuma saatleri” için sözcüksel retriever sorgu terimlerini içeren pasajları bulur. Hangi eşleşmenin önemli olduğuna karar vermelidir. BM25 terim nadirliğini, belge içi sıklığı ve belge uzunluğu düzeltmesini birleştirir. “Saat” kelimesini elli kez tekrarlamak uzun ilgisiz belgeyi yenilmez yapmamalıdır; nadir kimlik daha ayırt edici ipucu olabilir.
+“Atlas cuma saatleri” sorgusunda sözcük tabanlı arama, bu terimleri içeren pasajları bulur. BM25 hangi eşleşmenin daha önemli olduğuna karar verirken sözcüğün nadirliğini, belge içindeki sıklığını ve belge uzunluğunu birlikte kullanır. “Saat” sözcüğünü elli kez yineleyen ilgisiz bir belge sırf bu yüzden öne çıkmamalıdır. Nadir bir kimlik kodu çok daha ayırt edici olabilir.
 
-Ters indeks terimi onu içeren belgelere eşler. Terimleri sıralamadan önce tokenizasyon belirler. “A-17”, “a” ve “17” olarak bölünürse skor ayarı hiç indekslenmemiş kimlik sınırını geri getiremez. Önce token’ları ve sorgu ayrıştırmasını inceleyin. Tam kimlik ayrı normalize alan veya eşitlik filtresi gerektirebilir.
+Ters indeks, her terimi geçtiği belgelerle eşleştirir. Ancak hangi terimlerin oluşacağını metnin parçalanma yöntemi belirler. “A-17” kodu “a” ve “17” diye ayrılırsa sonradan puan ayarlamak kaybolan kimliği geri getirmez. Önce üretilen token’ları ve sorgunun nasıl çözümlendiğini inceleyin. Tam kimlik araması için ayrı bir alan veya eşitlik filtresi gerekebilir.
 
 ## Formülü çarpanlarına ayırın
 
@@ -575,7 +575,7 @@ N: corpus documents   df: documents containing t
 f: term frequency    avgdl: average document length
 ```
 
-IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan bir tekrara çıkmak, ondan on bire çıkmaktan daha önemlidir. `k1` doygunluğu, `b` uzunluk normalizasyonunu kontrol eder. `b=0` iken uzunluk etkisizdir; `b=1` iken tam uzunluk oranı girer. BM25 sürümleri IDF ayrıntısında farklılaşır; parametre adlarıyla birlikte uygulamayı da kaydedin.
+IDF, nadir geçen terimlere daha çok ağırlık verir. Sözcük sıklığının katkısı ise giderek azalır: İlk eşleşme, onuncudan on birinci tekrara geçişten daha önemlidir. `k1` bu doygunluğu, `b` belge uzunluğuna göre düzeltmeyi belirler. `b=0` uzunluk etkisini kaldırır; `b=1` tam uzunluk oranını kullanır. BM25 uygulamalarında IDF hesabı değişebilir; yalnızca parametreleri değil, kullanılan uygulamayı da kaydedin.
 
 ## Uzunluk etkisini hesaplayın
 
@@ -587,7 +587,7 @@ IDF nadir terime daha fazla etki verir. Sıklık kesri doygunlaşır: sıfırdan
 | Pay: 2 × 2.2 | 4.4 | 4.4 |
 | Sıklık çarpanı | 1.60 | 1.073 |
 
-Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa parçaların her zaman iyi olduğunu kanıtlamaz. Belgeleri bölmek terim istatistiğini, bağlam tamlığını ve ilgili sayılan birimi değiştirir. Sıralama değişikliğini test ederken parçalamayı sabit tutun; sonra parçalamayı ayrı deneyde değerlendirin.
+IDF ve sözcük sıklığı aynıysa kısa pasaj daha yüksek katkı alır. Bu hesap, kısa parçaların her durumda daha iyi olduğunu göstermez. Metni bölmek sözcük istatistiklerini, bağlam bütünlüğünü ve ilgili sayılan birimi değiştirir. Sıralama ayarını sınarken parçalamayı sabit tutun; parçalama değişikliğini ayrı bir deneyde değerlendirin.
 
 ## Hata örneklerine göre ayarlayın
 
@@ -600,7 +600,7 @@ Aynı IDF ve sıklıkta kısa pasaj daha büyük katkı alır. Bu hesap kısa pa
 
 *Son skoru vereceğiniz örneklerle ayar yapmayın.*
 
-Türkçe için gerçek sorgu/belge çiftlerinde noktalı/noktasız I, ekler ve aksanları inceleyin. Küçük harfe çevirme ve işaret kaldırma bazı eşleşmelere yardımcı olurken anlamlı ayrımları silebilir. Özgün metni koruyup hem kimlik kesinliğini hem doğal dil recall’unu test edin. Arama sözdizimi ve tokenizer davranışı, arayüzün metin normalizasyonundan ayrıdır.
+Türkçe sorgu ve belgelerde noktalı/noktasız I, ekler ve düzeltme işaretleriyle oluşan farkları inceleyin. Küçük harfe dönüştürmek veya işaretleri kaldırmak bazı eşleşmeleri kolaylaştırırken anlamlı ayrımları da silebilir. Özgün metni koruyun; hem kimlik kodlarının tam eşleşmesini hem doğal dilde ilgili sonuçları bulma oranını test edin. Arama motorunun sorgu dili ve token üretimi, arayüzdeki metin normalizasyonundan ayrıdır.
 
 SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanları bu parametreler değil sütun ağırlıklarıdır. Daha iyi eşleşmeye daha küçük değer döndürdüğü için artan sıralama bilinçlidir. Başka motordan azalan-skor kuralı kopyalamayın. Hesap örneğimiz belirli bir IDF çeşidi kullanır; FTS5’in tam tanımı kendi referansındadır. [FTS5](https://www.sqlite.org/fts5.html).
 
@@ -610,14 +610,14 @@ SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanlar
 > **Kendinizi sınayın**
 > A-17 politikası araması her defasında A-71’i öne getiriyor. Hemen sıralama ağırlığını mı artırmalısınız?
 >
-> **Answer:** İndekslenen token ve sorgu sözdizimini inceleyin; sonra tam kimlik alanını test edin. İndeks kimlikleri ayırmıyorsa ağırlık bunu güvenilir biçimde onaramaz. Temsil doğru olduktan sonra skor ayarlayın.
+> **Açıklama:** İndekslenen token ve sorgu sözdizimini inceleyin; sonra tam kimlik alanını test edin. İndeks kimlikleri ayırmıyorsa ağırlık bunu güvenilir biçimde onaramaz. Temsil doğru olduktan sonra skor ayarlayın.
 
 ## Kaynaklar ve ileri okuma
 
 1. [Manning, Raghavan & Schütze · Okapi BM25](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
 2. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 
-', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 5, 'published', 'BM25: nadir kelime neden tekrarlanan kelimeyi geçer? — MESA Learn', 'Terim sıklığını, nadirliği ve uzunluk normalizasyonunu hesaplayın. Büyük model aramadan önce tokenizasyonu ve alan ağırlıklarını inceleyin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 5, 'published', 'BM25: bir sözcük ne zaman daha önemli olur? — MESA', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'en', 'Hybrid retrieval: candidates, fusion and reranking', '', 'Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.', 'Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.', '## Two ways to miss the same answer
 
 A reader asks “When can I visit on the last working day?” The handbook says “Friday opening: 10:00.” Dense retrieval may bridge the wording; lexical retrieval may preserve exact room names and policy IDs. Hybrid retrieval combines complementary candidate sets. It is useful only when the additional lane finds relevant items that the baseline misses, or improves their ordering at acceptable cost.
@@ -669,11 +669,11 @@ A reranker cannot recover a relevant record missing from its input. If the union
 3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 
 ', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hybrid retrieval: candidates, fusion and reranking — MESA Learn', 'Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'tr', 'Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama', '', 'Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın.', 'Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın.', '## Aynı cevabı kaçırmanın iki yolu
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'tr', 'Hibrit arama: farklı sonuçları birleştirmek', '', 'Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.', 'Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.', '## Aynı cevabı kaçırmanın iki yolu
 
-Okur “son iş gününde ne zaman gelebilirim?” diye soruyor. Kılavuz “Cuma açılışı: 10.00” diyor. Yoğun retrieval ifade farkını köprüleyebilir; sözcüksel retrieval tam salon adı ve politika kimliğini koruyabilir. Hibrit retrieval tamamlayıcı aday kümelerini birleştirir. Ek kanal, tabanın kaçırdığı ilgili öğeyi buluyor veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır.
+Kullanıcı “Son iş gününde ne zaman gelebilirim?” diye sorsun; kılavuzda ise “Cuma açılışı: 10.00” yazsın. Anlamsal arama bu ifade farkını aşabilir. Sözcük tabanlı arama da salon adını veya kural kodunu tam eşleştirebilir. Hibrit arama, farklı yöntemlerin bulduğu adayları birleştirir. Yeni bir kanal, diğerinin kaçırdığı ilgili sonucu buluyorsa veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır.
 
-Çizge veya başka embedding modeli eklemek otomatik iyileşme değildir. Neredeyse aynı kanallar aynı yanlışı güçlendirebilir. Açıklanabilir sözcüksel taban ve bir uyumlu yoğun modelle başlayın; örtüşme, özgün ilgili isabet, boş sonuç ve gecikmeyi ölçün. Belgelenmiş hata gerektiriyorsa karmaşıklık ekleyin. BEIR yöntemlerin veri kümelerinde değiştiğini gösterir; benchmark sonucu sizin arşivinizin skoru değildir. [BEIR](https://arxiv.org/abs/2104.08663).
+Çizge veya başka bir model eklemek, aramayı kendiliğinden iyileştirmez. Birbirine çok benzeyen kanallar aynı hatayı güçlendirebilir. Önce anlaşılır bir sözcük tabanlı yöntem ve uyumlu bir anlamsal model kurun. Ortak ve yalnızca tek kanalda bulunan ilgili sonuçları, boş yanıtları ve gecikmeyi ölçün. Karmaşıklığı, gördüğünüz bir hatayı çözmek için artırın. BEIR, yöntemlerin başarısının veri kümesine göre değiştiğini gösterir; o çalışmanın puanı sizin arşivinizin puanı değildir. [BEIR](https://arxiv.org/abs/2104.08663)
 
 ## Aşamaları ayrı tutun
 
@@ -686,32 +686,32 @@ Okur “son iş gününde ne zaman gelebilirim?” diye soruyor. Kılavuz “Cum
 
 *Aday üretimi kapsamayı hedefler; yeniden sıralama az öğeye daha fazla iş harcar.*
 
-Her kanal 20 aday döndürsün ve 8 kimlik örtüşsün. Birleşimde 40 değil 32 benzersiz aday vardır. Gerçek retrieval birimiyle tekrar ayıklayın: belge, pasaj veya iddia. Aynı belgeden iki parça ayrı kanıt olabilir; aynı parçanın kopyası arka uç satırı tekrarladı diye ek oy almamalıdır.
+İki kanal da 20 aday döndürsün ve sekiz kimlik ortak olsun. Birleşimde 40 değil, 32 ayrı aday bulunur. Tekrarları, gerçekten aradığınız birime göre ayıklayın: belge, pasaj veya bilgi kaydı. Aynı belgedeki iki parça ayrı dayanak olabilir; aynı parçanın kopyası ise arka uç iki satır döndürdü diye fazladan katkı almamalıdır.
 
 ## İlişkisiz ham skorları toplamayın
 
-0,72 kosinüs skoru ile 12 sözcüksel skor ortak ölçekte değildir. Toplamak sonucu keyfî aralığa bağımlı yapar. Sıra birleştirme konum kullanır; skor birleştirme açık normalizasyon veya öğrenilmiş kalibrasyon ister. Adayın neden taşındığını açıklamak için kanal skorunu ve sırasını iz kaydında koruyun. Sonraki derste tam RRF hesabı var.
+0,72 kosinüs puanı ile sözcük tabanlı aramadan gelen 12 puan aynı ölçekte değildir. Bunları doğrudan toplamak, sonucu keyfî puan aralıklarına bağımlı kılar. Sıralama birleştirme, listedeki konumları kullanır. Ham puanları birleştirmek için ise açık bir normalizasyon veya öğrenilmiş eşleme gerekir. Sonucun neden yükseldiğini açıklayabilmek için her kanalın puanını ve sırasını koruyun. Sonraki derste RRF hesabını yapacağız.
 
 | Aşama | Soru | Yararlı ölçü |
 | --- | --- | --- |
-| Aday retrieval | İlgili kanıt birleşime girdi mi? | Aday kesiminde Recall |
+| Aday arama | İlgili kanıt birleşime girdi mi? | Aday kesiminde Recall |
 | Birleştirme | Tamamlayıcı kanıt yükseldi mi? | Sabit kesimde nDCG / MRR |
 | Yeniden sıralama | Ek skor sıralamayı iyileştirdi mi? | Gecikme/maliyete göre kazanım |
 | Paketleme | Tam kanıt modele ulaştı mı? | Destek ve bütçe uyumu |
 
-## Reranker neyi düzeltebilir?
+## Yeniden sıralama neyi düzeltebilir?
 
-Cross-encoder sorgu ve adayı birlikte skorlayarak token’ları doğrudan etkileştirir. Önceden hesaplanmış belge vektörlerini karşılaştırmaktan genellikle daha pahalıdır; bu nedenle kısa listeye uygulanır. Nogueira ve Cho BERT ile pasaj yeniden sıralamayı inceler; bu tasarım her reranker’ın sizin alanınızı iyileştireceğini göstermez. [Makale](https://arxiv.org/abs/1901.04085).
+Cross-encoder, sorguyla adayı birlikte değerlendirir; iki metindeki token’lar hesap sırasında doğrudan etkileşir. Bu işlem, hazır belge vektörlerini karşılaştırmaktan genellikle daha pahalıdır; bu yüzden kısa bir aday listesine uygulanır. Nogueira ve Cho, BERT ile pasajları yeniden sıralamayı inceler. Çalışma, her yeniden sıralayıcının sizin alanınızda iyileşme sağlayacağını göstermez. [Makale](https://arxiv.org/abs/1901.04085)
 
-Reranker girdisinde olmayan ilgili kaydı geri getiremez. Birleşimde ilgili aday sıfırsa reranker değiştirmek recall’u çözmez. Erişim kontrolünü geçersiz kılmamalı veya eski kaynağı diriltmemelidir. Hat boyunca uygunluğu uygulayıp son kanıtın kimliğini doğrulayın; “çok ilgili ama yasak” hâlâ yasaktır.
+Yeniden sıralayıcı, kendisine ulaşmayan ilgili bir kaydı bulamaz. Birleşen adaylar arasında doğru pasaj yoksa yalnızca bu bileşeni değiştirmek eksik sonucu çözmez. Yeniden sıralama erişim izinlerini de aşmamalı veya geçersiz kaynağı geri getirmemelidir. Uygunluk denetimini akış boyunca koruyun ve son dayanağın kimliğini doğrulayın. Çok ilgili olması, erişimi yasak bir kaydı kullanılabilir yapmaz.
 
 ## Hatayı konumlandırın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Doğru pasaj yoğun kanalda 45. sırada, sözcüksel ilk 20’de yok; yalnızca ilk-20 birleşimini yeniden sıralıyorsunuz. Daha iyi reranker onu bulabilir mi?
+> Doğru pasaj yoğun kanalda 45. sırada, sözcüksel ilk 20’de yok; yalnızca ilk-20 birleşimini yeniden sıralıyorsunuz. Daha iyi yeniden sıralayıcı onu bulabilir mi?
 >
-> **Answer:** Hayır. Reranker’a ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın.
+> **Açıklama:** Hayır. Bu pasaj yeniden sıralayıcıya hiç ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın.
 
 ## Kaynaklar ve ileri okuma
 
@@ -719,7 +719,7 @@ Reranker girdisinde olmayan ilgili kaydı geri getiremez. Birleşimde ilgili ada
 2. [Nogueira & Cho (2019) · Passage Re-ranking with BERT](https://arxiv.org/abs/1901.04085)
 3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 
-', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hibrit retrieval: adaylar, birleştirme ve yeniden sıralama — MESA Learn', 'Sözcüksel ve anlamsal kanalların farklı kanıt sağladığı arama hattını kurun. Recall, birleştirme ve yeniden sıralama hatasını ayırın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hibrit arama: farklı sonuçları birleştirmek — MESA', 'Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'en', 'Reciprocal Rank Fusion: calculate and inspect every vote', '', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', '## Combine agreement without comparing raw scores
 
 Two retrievers disagree about the Atlas archive. Lexical ranks A, B, C; dense ranks B, C, D. You want a method that uses each list’s order without pretending their raw scores share units. Reciprocal Rank Fusion assigns a decreasing contribution to each rank and sums the contributions for the same candidate. It is a simple baseline with explicit assumptions.
@@ -776,11 +776,11 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'Reciprocal Rank Fusion: calculate and inspect every vote — MESA Learn', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'tr', 'Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek', '', 'İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın.', 'İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın.', '## Ham skorları kıyaslamadan uzlaşmayı birleştirin
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'tr', 'RRF: iki sıralama nasıl birleştirilir?', '', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', '## Farklı listelerdeki sıraları kullanın
 
-Atlas arşivinde iki retriever farklı sıralıyor. Sözcüksel liste A, B, C; yoğun liste B, C, D. Ham skorların birimi aynıymış gibi davranmadan liste sırasını kullanmak istiyorsunuz. Reciprocal Rank Fusion her sıraya azalan katkı atar ve aynı adayın katkılarını toplar. Varsayımları açık, basit bir başlangıç yöntemidir.
+Atlas arşivinde iki arama yöntemi farklı listeler üretsin: Sözcük tabanlı liste A, B, C; anlamsal liste B, C, D olsun. Ham puanları aynı ölçekteymiş gibi toplamadan bu listeleri birleştirmek istiyorsunuz. Reciprocal Rank Fusion (RRF), her konuma giderek azalan bir katkı verir ve aynı adayın farklı listelerdeki katkılarını toplar. Hesabı açık, basit bir başlangıç yöntemidir.
 
-Cormack, Clarke ve Büttcher yöntemi belirli retrieval deneylerinde değerlendirdi. Sonuçları RRF’yi denemeyi gerekçelendirir; görevinizde iyileşmeyi garanti etmez. Özgün yöntem ağırlıksız oy kullanır. Ağırlıklı RRF, her kanal katkısını açık ağırlıkla çarpan bir genişletmedir. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf).
+Cormack, Clarke ve Büttcher, yöntemi belirli arama deneylerinde değerlendirdi. Sonuçları RRF’yi denemek için gerekçe sunar; her görevde iyileşme garantisi vermez. Özgün yöntemde katkılar eşit ağırlıktadır. Ağırlıklı RRF ise her kanalın katkısını ayrıca belirlenen bir ağırlıkla çarpar. [Özgün makale](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 
 ## Sıralamayı birden başlatın
 
@@ -797,7 +797,7 @@ Example below: k = 60, every weight = 1.
 | C | 3 | 2 | 1/63 + 1/62 = 0.032002 |
 | D | yok | 3 | 1/63 = 0.015873 |
 
-Birleşik sıra B, C, A, D’dir. Listeler arası uzlaşma, tek kanalda birinci olan A’ya rağmen B ve C’yi yükseltir. Kesilmiş listede olmayan aday o kanaldan sıfır alır; sonsuz veya sıfırıncı sıra oyu almaz. Kesim oyları değiştirdiği için aday kesimlerini deney kaydına yazın.
+Birleşen liste B, C, A, D olur. A tek kanalda birinci olsa da iki listede birden öne çıkan B ve C daha yüksek toplam katkı alır. Bir kanalın kısaltılmış listesinde bulunmayan aday, o kanaldan sıfır katkı alır; ona sıfırıncı veya sonsuzuncu sıra verilmez. Listenin nereden kesildiği sonucu etkilediği için bu sınırları deney kaydında belirtin.
 
 ## k değişince ne olur?
 
@@ -814,9 +814,9 @@ Birleşik sıra B, C, A, D’dir. Listeler arası uzlaşma, tek kanalda birinci 
 
 ## Uç durumları dağıtımdan önce belirleyin
 
-Oy vermeden önce kanal içindeki aday tekrarını ayıklayın. Aksi halde arka ucun aynı kimliği iki kez döndürmesi yöntemi değiştirir. Kimliğin temsil ettiği birimi belirleyip kanallar arasında koruyun. Bir kanal belge, diğeri iddia kimliği döndürüyorsa birleştirmeden önce ortak birime uzlaştırın; yalnızca aynı metin sağlam kimlik sözleşmesi değildir.
+Katkıları toplamadan önce her kanalın kendi içindeki tekrarları ayıklayın. Aynı kimliğin iki kez dönmesi iki katkı sayılırsa yöntem değişir. Kimliğin belgeyi mi, pasajı mı, bilgi kaydını mı gösterdiğini belirleyin. Kanallar farklı birimler döndürüyorsa önce ortak birimde eşleştirin. Metnin aynı olması tek başına güvenilir kimlik eşleştirmesi değildir.
 
-Tam eşit birleşik skorda kanonik kimlik sırası gibi belgeli sabit kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlığı reddedin; sıfırın kanalı kapatıp kapatmadığını belirleyin. Aynı retriever’ın iki kopyasına tam ağırlık vermek ilişkili kanıtı iki kez sayabilir. Fazla oy yanlış veya yetkisiz kaynağı kabul edilebilir yapmaz.
+Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve belgelenmiş bir kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlıkları reddedin; sıfır ağırlığın kanalı kapatıp kapatmadığını açıkça belirleyin. Aynı arama yönteminin iki kopyasına tam ağırlık vermek aynı dayanağı iki kez sayabilir. Çok katkı alması, yanlış veya yetkisiz bir kaynağı kabul edilebilir yapmaz.
 
 ## Ağırlık değişince yeniden hesaplayın
 
@@ -824,14 +824,14 @@ Tam eşit birleşik skorda kanonik kimlik sırası gibi belgeli sabit kural kull
 > **Kendinizi sınayın**
 > Tabloda yoğun kanalın ağırlığını sıfırlayın. Hangi sıra kalır; D’ye ne olur?
 >
-> **Answer:** A, B, C sözcüksel sırada kalır. D sıfır katkı alır; sıfır skorlu adayın çıkarılması açık çıktı politikasıdır. Sıfır, D’nin yanlış veya ilgisiz olduğunu kanıtlamaz.
+> **Açıklama:** A, B, C sözcüksel sırada kalır. D sıfır katkı alır; sıfır skorlu adayın çıkarılması açık çıktı politikasıdır. Sıfır, D’nin yanlış veya ilgisiz olduğunu kanıtlamaz.
 
 ## Kaynaklar ve ileri okuma
 
 1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'Reciprocal Rank Fusion: her oyu hesaplamak ve incelemek — MESA Learn', 'İki sıralı listeyi elle birleştirin, tekrarları ve eşitlikleri yönetin; RRF skorunun neden güven olasılığı olmadığını anlayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'RRF: iki sıralama nasıl birleştirilir? — MESA', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'en', 'Knowledge graphs: follow relations without inventing proof', '', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', '## A relationship needs identity and evidence
 
 A text search finds passages. A graph query follows explicitly represented relationships. For the fictional Atlas archive, create nodes for the reading room, archive and district, then edges for “part of” and “located in”. Use stable node IDs and link each asserted edge to the source revision that supports it. A label such as “Central” is not enough to resolve identity.
@@ -884,9 +884,9 @@ GraphRAG is a family of retrieval-augmented approaches using graph information. 
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Knowledge graphs: follow relations without inventing proof — MESA Learn', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'tr', 'Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek', '', 'Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın.', 'Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın.', '## İlişki kimlik ve kanıt gerektirir
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'tr', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek', '', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', '## İlişkinin kimliğini ve dayanağını koruyun
 
-Metin araması pasaj bulur. Çizge sorgusu açıkça temsil edilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe düğümleri; “parçası” ve “bulunduğu yer” kenarları kurun. Sabit düğüm kimliği kullanıp her iddia kenarını destekleyen kaynak revizyonuna bağlayın. “Merkez” gibi etiket kimliği çözmeye yetmez.
+Metin araması ilgili pasajları bulur; çizge araması ise açıkça kaydedilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe için düğümler; “parçasıdır” ve “bulunur” ilişkileri için bağlantılar kurun. Her düğüme sabit kimlik verin ve her ilişkiyi destekleyen kaynak sürümüne bağlayın. “Merkez” gibi bir ad, hangi varlıktan söz edildiğini tek başına belirlemez.
 
 ```text
 room-7 --part_of [evidence: handbook-r3/c4]--> archive-2
@@ -894,11 +894,11 @@ archive-2 --located_in [evidence: directory-r1/c2]--> district-5
 room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
 ```
 
-İlişkiler yön ve tür taşır. “A, B’yi yönetir”, “B, A’yı yönetir” değildir; “atıf yapar”, “katılır” değildir. Zaman, kapsam ve belirsizlik ilişkiyi değiştiriyorsa koruyun. Kaynağın aynı paragrafta iki isim anması aralarında anlamlı kenar kurmaz. Birlikte görünme keşif sinyali olabilir; doğrulanmış ilişki değildir.
+İlişkinin yönü ve türü önemlidir. “A, B’yi yönetir” ile “B, A’yı yönetir” aynı değildir; “atıf yapar” da “katılır” anlamına gelmez. Anlamı etkileyen zaman, kapsam ve belirsizlik bilgisini koruyun. İki adın aynı paragrafta geçmesi, aralarında doğrulanmış bir ilişki kurmaz; yalnızca incelenebilecek bir ipucu olabilir.
 
 ## İki adımlı soruyu çözün
 
-“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” diye sorun. Salon 7’yi çözün, `part_of` ile arşiv 2’ye, `located_in` ile ilçe 5’e gidin. İki kenar kimliğini ve kaynaklarını döndürün. Her adımın anlamı belli olduğundan kanıt zinciri incelenebilir. Kaynaklardan biri erişilemez, eski veya belirsizse tam yanıt o çağıran için desteklenmez.
+“7 numaralı salonun bağlı olduğu arşiv hangi ilçede?” sorusunu ele alın. Önce Salon 7’yi bulun; `part_of` bağlantısıyla Arşiv 2’ye, `located_in` bağlantısıyla İlçe 5’e gidin. İki ilişkinin kimliğini ve dayanak kaynaklarını da döndürün. Böylece yanıtın nasıl bulunduğu incelenebilir. Kaynaklardan biri eski, belirsiz veya isteği yapan kişiye kapalıysa tam yanıt o kullanıcı için desteklenmiş sayılmaz.
 
 <!-- diagram: Okuma salonu arşive, ardından ilçeye bağlanır; her adım kaynak kimliğini korur. -->
 1. Çöz · room-7
@@ -913,13 +913,13 @@ room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
 
 A, B’ye; B de C’ye atıf yapıyor olsun. A’dan C’ye iki kenarlı atıf yolu olduğunu söyleyebilirsiniz. A’nın C’ye katıldığını, C’nin doğru olduğunu veya A’nın doğrudan C’ye atıf yaptığını çıkaramazsınız. Geçerli çıkarım, anlamı bileşime izin veren kural gerektirir. Bulunan yol ile yolun gerçekten desteklediği önermeyi ayırın.
 
-Benzer biçimde merkezilik, seçilmiş tanım altında bağlantısallığı ölçer. Popüler düğüme sık atıf yapılıp düğüm yanlış olabilir. PageRank’i doğruluk skoru yapmayın veya açık politika olmadan hoşunuza gitmeyen kaynağı bastırmasına izin vermeyin. Kaynak niteliği, ilgililik ve çizge görünürlüğü ayrı soruları yanıtlar.
+Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. PageRank’i doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir.
 
 ## Maliyeti sınırlayın, eksikliği tanıyın
 
-Ortalama dallanma 10 ise üç adım, tekrar ayıklamadan önce yaklaşık 10 + 100 + 1.000 komşu inceleyebilir. Merkez düğüm bunu büyütebilir. Başlangıç sayısı, adım derinliği, düğüm başına yayılım, toplam kenar bütçesi ve timeout belirleyin. Sınırlı arama geçerli yolu kaçırabilir; “ilişki yok” demek yerine kesilmeyi belirtin. Önbellek anahtarı erişim kapsamını ve kaynak neslini içermelidir.
+Her düğümden ortalama on bağlantı çıkıyorsa üç adımda, tekrarlar ayıklanmadan önce yaklaşık 10 + 100 + 1.000 komşu incelenebilir. Çok bağlantılı bir düğüm işi büyütür. Başlangıç sayısını, adım derinliğini, düğüm başına bağlantıyı, toplam bağlantı bütçesini ve zaman aşımını sınırlandırın. Bu sınırlar geçerli bir yolu da dışarıda bırakabilir. Böyle bir durumda “ilişki yok” demek yerine aramanın sınırda durduğunu belirtin. Önbellek anahtarı erişim kapsamını ve kaynakların hangi güncellemesine ait olduğunu içermelidir.
 
-GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. Edge ve arkadaşları veri kümesi genelindeki sorular için çizgeden türetilmiş topluluk özetleri açıklar. Bu, yerel soruda ham yol döndürmekten farklıdır. Özet üretimi, kaynak kapsamı ve güncelleme politikası değerlendirilecek yeni türetilmiş artefakt ekler. Kenarları çizge veritabanına yazmak tek başına o araştırma yöntemini uygulamaz. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130).
+GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların genel adıdır. Edge ve arkadaşları, bütün veri kümesini ilgilendiren sorular için bağlantı gruplarından üretilmiş özetler kullanır. Bu, tek bir soruya ham bağlantı yolu döndürmekten farklıdır. Üretilen her özet için kaynak kapsamını ve güncelleme yöntemini ayrıca değerlendirmek gerekir. İlişkileri bir çizge veritabanına yazmak, tek başına makaledeki yöntemi uygulamak anlamına gelmez. [GraphRAG makalesi](https://arxiv.org/abs/2404.16130)
 
 ## Bağlantı ile desteği ayırın
 
@@ -927,7 +927,7 @@ GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. E
 > **Kendinizi sınayın**
 > A, B’ye atıf yapıyor; B, C’yi eleştiriyor. Çizge yolu var diye asistan “A, C’yi destekliyor” diyebilir mi?
 >
-> **Answer:** Hayır. İlgiliyse türleri belirtilmiş yolu döndürüp kaynak pasajlarını inceleyin. Bu ilişki türleri destek sonucuna birleşmez. Çizge incelenecek zinciri açar; mantıksal anlamını icat etmez.
+> **Açıklama:** Hayır. İlgiliyse türleri belirtilmiş yolu döndürüp kaynak pasajlarını inceleyin. Bu ilişki türleri destek sonucuna birleşmez. Çizge incelenecek zinciri açar; mantıksal anlamını icat etmez.
 
 ## Kaynaklar ve ileri okuma
 
@@ -935,7 +935,7 @@ GraphRAG çizge bilgisini kullanan retrieval destekli yaklaşımlar ailesidir. E
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Bilgi çizgeleri: kanıt uydurmadan ilişkileri izlemek — MESA Learn', 'Kaynağa bağlı çizge kurun, iki adımlı soruyu izleyin; çizge gezintisini GraphRAG özetlerinden ve geçerli çıkarımdan ayırın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek — MESA', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'en', 'Evidence and provenance: what a citation actually proves', '', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', '## Four checks, four different conclusions
 
 An assistant answers “The room opens at ten on Fridays” and displays a link. A real link is only the first step. You must ask whether the source exists, whether the cited passage says what the answer claims, whether that source applies to this time and scope, and whether the source itself is trustworthy. Passing one check does not imply the others.
@@ -994,9 +994,9 @@ If no eligible source supports the answer, return a clear evidence gap or ask a 
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Evidence and provenance: what a citation actually proves — MESA Learn', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'tr', 'Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar?', '', 'Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.', 'Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.', '## Dört kontrol, dört ayrı sonuç
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'tr', 'Kaynak izi: bir atıf neyi kanıtlar?', '', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', '## Dört kontrol, dört ayrı sonuç
 
-Asistan “Salon cumaları onda açılır” diyor ve bağlantı gösteriyor. Gerçek bağlantı yalnızca ilk adımdır. Kaynak var mı, atıf pasajı yanıtın dediğini söylüyor mu, kaynak bu zaman ve kapsama uygulanıyor mu, kaynak güvenilir mi? Bunları ayrı sorun. Bir kontrolü geçmek diğerlerini sağlamaz.
+Asistan “Salon cumaları onda açılır” deyip bir bağlantı göstersin. Bağlantının gerçekten var olması yalnızca ilk kontroldür. Kaynak erişilebilir mi? Alıntılanan pasaj bu yanıtı destekliyor mu? Bilgi sorulan tarih ve kapsam için geçerli mi? Kaynak güvenilir mi? Bu soruları ayrı değerlendirin; birini doğrulamak diğerlerini otomatik olarak doğrulamaz.
 
 | Kontrol | Başarının gösterdiği | Göstermediği |
 | --- | --- | --- |
@@ -1014,9 +1014,9 @@ assert text[start:end] == "09:00"
 # A different encoding/offset convention must be declared explicitly.
 ```
 
-Konumlar ancak çıkarımda kullanılan tam kaynak temsiline göre anlamlıdır. Bayt, Unicode kod noktası veya başka birim mi sayıldığını ve bitişin dışarıda olup olmadığını belirtin. Unicode normalizasyonu, PDF çıkarımı veya satır sonu dönüşümü konumları değiştirebilir. Değişmez kaynak revizyonunu ve metni yeniden üretmeye yetecek bilgiyi tutup çıkarılan aralığın eşleşmesini doğrulayın.
+Metindeki başlangıç ve bitiş konumları, yalnızca bilgi çıkarılırken kullanılan tam metin üzerinde anlamlıdır. Konumların bayt, Unicode kod noktası veya başka bir birimle sayıldığını belirtin. Bitiş konumunun aralığa dâhil olup olmadığını da tanımlayın. Unicode normalizasyonu, PDF’den metin çıkarma veya satır sonu dönüşümü konumları değiştirebilir. Kaynak sürümünü ve aynı metni yeniden elde etmek için gereken bilgileri koruyun; seçilen aralığın gerçekten eşleştiğini kontrol edin.
 
-SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. Saldırgan uydurma metni de gerçek metin kadar kolay hash’leyebilir. Metin ve beklenen hash aynı güvenilmeyen taraftan geliyorsa eşitlik özgünlük kanıtı değildir. Kaynak edinimi, doğrulanmış yayıncı kimliği ve teslim zinciri kayıtları problemin başka parçalarını çözer.
+SHA-256 gibi bir özet, elinizdeki içeriğin güvenilir bir beklenen özetle uyuşup uyuşmadığını gösterir. Ancak uydurma bir metnin özeti de kolayca hesaplanabilir. Metin ve beklenen özet aynı güvenilmeyen kişiden geliyorsa eşleşme özgünlüğü kanıtlamaz. Kaynağın nasıl edinildiği, yayıncının kimliğinin doğrulanması ve aktarım kayıtları farklı soruları yanıtlar.
 
 ## Yanıttan kaynağa zinciri koruyun
 
@@ -1024,18 +1024,18 @@ SHA-256 gibi özet, güvenilen beklenen özete göre uyuşmazlığı belirler. S
 1. Yanıt · cuma onda
 2. İddia · a42 + koşullar
 3. Aralık · tam destek metni
-4. Revizyon · handbook-r3
+4. Sürüm · handbook-r3
 5. Köken · edinim kaydı
 
 *Atıf inceleyenin hattı yeniden kurmadan kanıtı kontrol etmesini sağlamalıdır.*
 
-Alıntıyı incelenebilir ölçüde dar tutun; gerektiğinde niteleyici cümleyi ekleyin. “1 Kasım sonrası cumaları” olmadan “onda açılır” ifadesi ekim sorusunu desteklemez. Tek atfı paragrafa iliştirip her cümleyi kapsadığını varsaymak yerine çok iddialı yanıtta desteklenmeyen parçaları işaretleyin.
+Alıntıyı kolay incelenecek kadar kısa tutun; anlamı sınırlayan cümleleri de ekleyin. “1 Kasım sonrası cumaları” koşulu olmadan “onda açılır” ifadesi ekim ayına ilişkin soruyu desteklemez. Bir paragrafın sonundaki tek atfın bütün cümlelere dayanak olduğunu varsaymayın. Birden çok iddia içeren yanıtta desteklenmeyen kısımları ayrıca belirtin.
 
 ## Özel veriyi çoğaltmadan kararları kaydedin
 
-Retrieval kararında istek/çalışma kimliği, çağıran kapsam kimliği, kaynak nesli, aday kimlikleri, filtre gerekçeleri ve son kanıt kimliklerini kaydedin. Özel belgeleri bütünüyle log’a kopyalamak yerine referans tercih edin. Hassas değerleri hata mesajlarından çıkarın. Denetim kaydı da erişim, saklama ve silme kuralı ister; “her şeyi log’la” denetimsiz başka hafıza deposu yaratır.
+Arama kararlarını izlemek için istek kimliğini, erişim kapsamını, kaynakların güncelleme bilgisini, adayları, elenme gerekçelerini ve kullanılan son kanıtları kaydedin. Özel belgeleri bütünüyle günlüklere kopyalamak yerine kimlik veya referans kullanın. Hassas değerleri hata mesajlarından çıkarın. Denetim kayıtları için de erişim, saklama ve silme kuralları gerekir. Her şeyi kaydetmek, denetimsiz ikinci bir hafıza deposu oluşturabilir.
 
-Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün veya daha dar soru isteyin. Atıf biçimi ve retrieval ile kaynaklandırma bazı desteksiz çıktıları azaltabilir; halüsinasyonu ortadan kaldırmaz. W3C PROV türetim sözlüğü sunar; OWASP getirilen materyalin talimat olarak neden güvenilmez kalacağını açıklar. Bunlar tamamlayıcı konulardır. [PROV](https://www.w3.org/TR/prov-overview/), [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html).
+Uygun kaynaklar yanıtı desteklemiyorsa kanıtın eksik olduğunu söyleyin veya sorunun daraltılmasını isteyin. Aramayla kaynak sağlamak ve atıfları düzenlemek, bazı dayanaksız yanıtları azaltabilir; tamamen ortadan kaldırmaz. W3C PROV, bilginin hangi kaynaktan nasıl türediğini anlatan kavramlar sunar. OWASP ise bulunan metnin neden güvenilir talimat sayılmaması gerektiğini açıklar. Bu iki konu birbirini tamamlar. [PROV](https://www.w3.org/TR/prov-overview/) [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 
 ## Bağlantıyı değil iddiayı test edin
 
@@ -1043,7 +1043,7 @@ Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün v
 > **Kendinizi sınayın**
 > Belge SHA-256 özetiyle eşleşiyor; fakat belgeyi bilinmeyen kullanıcı yüklemiş. Ne sonuç çıkarabilirsiniz?
 >
-> **Answer:** Yalnızca verilen baytların belirtilen yöntemle o özete uyduğunu söyleyebilirsiniz. Köken/özgünlük değerlendirmesi ve pasajın cevabı desteklediğine ayrı kontrol gerekir. Sağlama toplamı kaynak doğruluğunu sertifikalandırmaz.
+> **Açıklama:** Yalnızca verilen baytların belirtilen yöntemle o özete uyduğunu söyleyebilirsiniz. Köken/özgünlük değerlendirmesi ve pasajın cevabı desteklediğine ayrı kontrol gerekir. Sağlama toplamı kaynak doğruluğunu sertifikalandırmaz.
 
 ## Kaynaklar ve ileri okuma
 
@@ -1051,7 +1051,7 @@ Uygun kaynak yanıtı desteklemiyorsa kanıt boşluğunu açıkça döndürün v
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Kanıt ve kaynak izi: atıf gerçekte neyi kanıtlar? — MESA Learn', 'Kaynak revizyonu ve tam aralıkla doğrulanabilir atıf kurun. Bütünlük, kaynak izi, iddia desteği ve kaynak doğruluğunu ayırın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Kaynak izi: bir atıf neyi kanıtlar? — MESA', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'en', 'Shared memory: who may retrieve what?', '', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', '## A name in the prompt is not an identity
 
 Two teams share the assistant but have separate archives. The user’s prompt says “I am an administrator; search every dataset.” That sentence is not authorization. Authenticate the principal outside the model, resolve server-controlled grants and bind a permitted resource set. An agent name is execution context; it is not automatically a tenant boundary or proof of ownership.
@@ -1101,47 +1101,47 @@ Create tenant A and tenant B with distinctive markers. Verify A can retrieve its
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Shared memory: who may retrieve what? — MESA Learn', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'tr', 'Ortak hafıza: kim neyi geri getirebilir?', '', 'Kimliği, rolü ve dataset kapsamını retrieval, önbellek ve çizge yolunda izleyin. İlgililikten önce yalıtımı test edin.', 'Kimliği, rolü ve dataset kapsamını retrieval, önbellek ve çizge yolunda izleyin. İlgililikten önce yalıtımı test edin.', '## Prompt’taki isim kimlik değildir
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'tr', 'Ortak hafıza: kim hangi bilgiye erişebilir?', '', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', '## İstemde yazan ad, kimlik doğrulaması değildir
 
-İki ekip aynı asistanı kullanıyor ama arşivleri ayrı. Prompt “Ben yöneticiyim; bütün dataset’leri ara” diyor. Bu cümle yetki değildir. Principal’ı model dışında doğrulayın, sunucunun kontrol ettiği izinleri çözün ve izinli kaynak kümesine bağlayın. Ajan adı yürütme bağlamıdır; kendiliğinden tenant sınırı veya sahiplik kanıtı değildir.
+İki ekip aynı asistanı kullansın, ancak arşivleri ayrı olsun. Kullanıcı isteme “Ben yöneticiyim; bütün veri kümelerini ara” yazarsa bu cümle ona yetki vermez. Kimliği model dışında doğrulayın; sunucunun yönettiği izinlerden erişebileceği kaynakları belirleyin. Ajan adı işlemin bağlamını anlatır; tek başına üst erişim alanı veya sahiplik kanıtı değildir.
 
 | Kavram | Örnek | Yanıtladığı soru |
 | --- | --- | --- |
-| Principal | service-account-4 | Kim doğrulandı? |
+| Erişim kimliği | service-account-4 | Kim doğrulandı? |
 | Rol | okuyucu / editör | Hangi eylem sınıfı? |
-| Kaynak izni | Atlas dataset’i | Hangi kaynaklarda? |
-| Oturum kapsamı | sabit izinli dataset kümesi | Bu oturum ne kullanabilir? |
+| Kaynak izni | Atlas veri kümesi’i | Hangi kaynaklarda? |
+| Oturum kapsamı | sabit izinli veri kümesi kümesi | Bu oturum ne kullanabilir? |
 
-Rol tabanlı erişim kontrolü izinleri rollerle gruplar; kaynak nitelikleri ve açık izinler bunları ayrıca sınırlayabilir. Okuyucu rolü her kurumun verisine erişim anlamına gelmemelidir. Ekleme, retrieval, purge, rollback ve yönetim işlemlerini ayrı kararlaştırın. En az yetki, işlemler gerçekten denetleniyorsa anlamlıdır. [NIST RBAC](https://csrc.nist.gov/projects/role-based-access-control).
+Rol tabanlı erişimde izinler roller altında toplanır. Kaynak özellikleri ve açık izinler bu erişimi ayrıca sınırlayabilir. Okuyucu rolü, her kurumun verisine erişim anlamına gelmemelidir. Ekleme, arama, kalıcı silme, geri alma ve yönetim işlemlerinin izinlerini ayrı belirleyin. En az yetki ilkesi, ancak işlemlerde gerçekten denetlenirse işe yarar. [NIST RBAC](https://csrc.nist.gov/projects/role-based-access-control)
 
 ## Sıralamadan sonra filtreleme neden yetmeyebilir?
 
-Küresel ilk-10’un tamamı yasak kayıt olsun. Onları silmek boş cevap verir; oysa izinli en iyi kayıt on birincidir. Bu, kapsamın geç uygulanmasından doğan recall hatasıdır. Daha önemlisi yasak metin generator’a, iz kaydına veya çağırana görünen açıklamaya ulaşmamalıdır. Yetkili aday üretimini tercih edin ve son çıktı öncesi uygunluğu ayrıca doğrulayın.
+Bütün verilerdeki ilk on sonucun kullanıcıya kapalı olduğunu düşünün. Bunları sonradan çıkarmak boş yanıt verir; oysa kullanıcının görebileceği en iyi kayıt on birinci sıradadır. Erişim kapsamını geç uygulamak, ilgili sonucu kaçırmanıza neden olur. Daha önemlisi, kapalı metin yanıt üreten modele, kullanıcıya açık açıklamalara veya iz kayıtlarına ulaşmamalıdır. Adayları izin verilen kaynaklardan üretin ve çıkışta uygunluğu yeniden denetleyin.
 
-<!-- diagram: Doğrulanmış kimlik izinli kapsam üretir; kapsam her retrieval kanalını ve son kanıtı sınırlar. -->
-1. Doğrula · principal
+<!-- diagram: Doğrulanmış kimlik izinli kapsam üretir; kapsam her arama kanalını ve son kanıtı sınırlar. -->
+1. Doğrula · erişim kimliği
 2. Çöz · güncel izinler
-3. Bağla · dataset kapsamı
+3. Bağla · veri kümesi kapsamı
 4. Getir · her kanal kapsamlı
 5. Kontrol · çıktı ve atıflar
 
-*Kapsam sunucu kararıdır; skor bonusu veya prompt talimatı değildir.*
+*Erişim kapsamını sunucu belirler; puan artırımı veya istemdeki talimatlar bu izni değiştirmez.*
 
 ## İstatistik, önbellek ve yol da kapsam taşır
 
-Dönen satırları filtrelemek yalıtımın tamamı değildir. Başka tenant belge ekleyince küresel corpus istatistiği sözcüksel sıralamayı değiştirebilir. Önbellek daha geniş kapsamın kanıtını yeniden sunabilir. Çizge izinli başlangıçtan yasak komşuya geçebilir. Yalıtım sözleşmesini belirtin: metin ifşasını önlemek ile kapsam dışı sıralama etkisini önlemek ilişkili fakat ayrı özelliklerdir.
+Yalnızca dönen satırları filtrelemek tam yalıtım sağlamaz. Başka bir erişim alanına belge eklenmesi, bütün veriler üzerinden hesaplanan sözcük istatistiklerini ve sıralamayı değiştirebilir. Önbellek daha geniş bir kapsamdan bilgi döndürebilir. Çizge, izinli bir düğümden kapalı bir komşuya geçebilir. İçeriğin dışarı sızmasını önlemekle, kapsam dışındaki verilerin sıralamayı etkilemesini önlemek ayrı güvencelerdir; hangisini sağladığınızı açıkça belirtin.
 
-Önbellek anahtarı çağıran/kaynak kapsamını, sorgu parametrelerini, kaynak neslini ve temsil ayarlarını ayırmalıdır. İzin değişince önbellek kanıtını kullanmadan geçersizleştirme veya tekrar doğrulama gerekir. Çok ajanlı paylaşım istisna değildir: özetleyen ajan özel kanıtı diğer ajanların görebildiği ortak nota kopyalamamalıdır. Türetilmiş artefaktlar özgün ifade değişse bile hassas bilgi taşıyabilir.
+Önbellek anahtarı; kullanıcının ve kaynakların erişim kapsamını, sorgu ayarlarını, kaynak güncellemesini ve temsil ayarlarını ayırt etmelidir. İzinler değiştiğinde eski sonucu yeniden kullanmadan önce geçersizleştirme veya tekrar doğrulama gerekir. Birden fazla ajanın çalışması bu kuralı değiştirmez: Özetleyen ajan özel bilgiyi herkese açık ortak nota taşımamalıdır. Sözcükler değişse bile türetilen özet hassas bilgiyi koruyabilir.
 
 ## Olumlu ve olumsuz kontrolleri çalıştırın
 
-A ve B tenant’larını ayırt edici işaretlerle oluşturun. A’nın kendi kanıtını getirdiğini doğrulayın; sonra A’ya B’nin işaretini sorup metin, kimlik veya sayının bunu açığa çıkarmadığını kontrol edin. Sözcüksel, vektör, çizge ve bağlam endpoint’lerinde; restart ve önbellek ısınması sonrasında tekrarlayın. İzni kaldırıp mevcut oturumu ürünün beyan ettiği iptal politikasına göre test edin. İzinli olumlu kontrol olmadan sıfır sonuç testi bozuk sistemi gizleyebilir.
+A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici işaretler ekleyin. A’nın kendi kaynağını bulduğunu doğrulayın; sonra B’nin işaretini sorup metin, kimlik veya sayılar üzerinden bilgi sızmadığını kontrol edin. Sözcük, vektör, çizge ve bağlam arayüzlerinde; yeniden başlatmadan ve önbellek dolduktan sonra testi tekrarlayın. İzni kaldırıp mevcut oturumun bildirilen iptal kuralına uyduğunu da sınayın. İzinli bir sonucun bulunabildiğini kontrol etmeden yalnızca boş yanıt beklemek, çalışmayan bir sistemi güvenliymiş gibi gösterebilir.
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Yasak belge sonuçta hiç görünmüyor ama eklenmesi A tenant’ının sıralamasını değiştiriyor. Tam kapsam yalıtımı gösterildi mi?
+> Yasak belge sonuçta hiç görünmüyor ama eklenmesi A’nın sıralamasını değiştiriyor. Tam kapsam yalıtımı gösterildi mi?
 >
-> **Answer:** Hayır. İçerik ifşası engellenmiş olabilir; sıralama kapsam dışı duruma bağımlıdır. Corpus istatistiğini, ortak önbelleği ve aday üretimini yalıtım sözleşmesine göre kontrol edin.
+> **Açıklama:** Hayır. İçerik ifşası engellenmiş olabilir; sıralama kapsam dışı duruma bağımlıdır. Belge istatistiklerini, ortak önbelleği ve aday üretimini yalıtım sözleşmesine göre kontrol edin.
 
 ## Kaynaklar ve ileri okuma
 
@@ -1149,7 +1149,7 @@ A ve B tenant’larını ayırt edici işaretlerle oluşturun. A’nın kendi ka
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Ortak hafıza: kim neyi geri getirebilir? — MESA Learn', 'Kimliği, rolü ve dataset kapsamını retrieval, önbellek ve çizge yolunda izleyin. İlgililikten önce yalıtımı test edin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Ortak hafıza: kim hangi bilgiye erişebilir? — MESA', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'en', 'Canonical storage and projections: survive a partial write', '', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', '## Pick an authority for identity and lifecycle
 
 A memory application may use SQL for source records, a vector index for similarity and a graph for relationships. If the three stores disagree, which decides whether a claim exists and is active? A canonical store owns that decision. A projection is a derived representation rebuilt from the canonical data and its declared transformation. “Derived” describes authority, not importance or search quality.
@@ -1196,44 +1196,44 @@ MESA Core v0.8.1 uses one combined owner per root and treats LanceDB/Kùzu as pr
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Canonical storage and projections: survive a partial write — MESA Learn', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'tr', 'Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak', '', 'Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.', 'Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.', '## Kimlik ve yaşam döngüsü için otorite belirleyin
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'tr', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak', '', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', '## Hangi deponun asıl kayıt olacağını belirleyin
 
-Hafıza uygulaması kaynak kayıtları için SQL, benzerlik için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa iddianın var ve etkin olduğuna hangisi karar verir? Kanonik depo bu kararın sahibidir. Projeksiyon, kanonik veri ve beyan edilmiş dönüşümden yeniden kurulabilen türetilmiş temsildir. “Türetilmiş” önem veya arama kalitesini değil otoriteyi anlatır.
+Bir hafıza uygulaması asıl kayıtlar için SQL, benzerlik araması için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa bir kaydın hâlâ var ve etkin olduğuna hangisi karar verecek? Ana kayıt deposu bu kararın dayanağıdır. Diğer arama görünümleri, asıl veriden tanımlı bir dönüşümle yeniden üretilebilir. “Türetilmiş” olmaları önemsiz olduklarını değil, asıl kayıt yerine geçmediklerini anlatır.
 
-Örnek tasarımda SQL kaynak revizyonunu, iddia kimliğini, durumu ve mutasyon defterini sahiplenir. Vektör ve çizge satırı bu kimliklere bağlanır. Arama isabeti ancak kanonik uygunluk kontrolünden sonra kanıt olur. Eski indeks satırı, vektörü sorguya yakın diye silinmiş iddiayı diriltmemelidir.
+Bu örnekte SQL; kaynak sürümünü, bilgi kaydının kimliğini, durumunu ve değişiklik günlüğünü tutar. Vektör ve çizge satırları bu kimliklere bağlanır. Aramada bulunan bir sonuç ancak asıl kaydın uygunluğu denetlendikten sonra dayanak olarak kullanılabilir. Eski indekste kalan bir vektör, soruya yakın diye silinmiş bir kaydı yeniden geçerli hâle getirmemelidir.
 
 ## Depolar arasındaki çökmeyi izleyin
 
-<!-- diagram: SQL mutasyonu ve outbox işini kabul eder; ardından vektör/çizge projeksiyonları çalışır ve görünürlük tamamlanır. -->
-1. SQL işlemi · kaynak + outbox
+<!-- diagram: SQL mutasyonu ve gönderim kuyruğu işini kabul eder; ardından vektör/çizge arama görünümlerini çalışır ve görünürlük tamamlanır. -->
+1. SQL işlemi · kaynak + gönderim kuyruğu
 2. Worker · bekleyen işi al
 3. Vektör · sabit kimlikle uygula
 4. Çizge · sabit kimlikle uygula
-5. Tamamla · projeksiyonları doğrula
+5. Tamamla · arama görünümlerini doğrula
 
 *SQL commit, bağımsız bütün arka uçları kapsayan tek atomik işlem oluşturmaz.*
 
-SQL commit olsun, vektör ekleme başarılı olsun; süreç çizge eklemeden çöksün. Kalıcı bekleyen iş yoksa çizge yazması tamamen kaybolabilir. Kanonik mutasyonla aynı SQL işleminde kaydedilmiş outbox varsa yeniden başlayan worker eksik işi bulup tekrarlar. Teslim birden fazla kez gerçekleşebilir; etkiyi tekrarlamak bu yüzden güvenli olmalıdır.
+SQL işlemi tamamlansın ve vektör yazılsın; süreç çizgeye yazmadan çöksün. Bekleyen iş kalıcı olarak tutulmuyorsa eksik adım kaybolabilir. Değişiklikle aynı SQL işleminde bir gönderim kuyruğu kaydı oluşturulmuşsa, yeniden başlayan çalışan işi bulup tekrar deneyebilir. Aktarım birden fazla kez yapılabileceği için aynı işlemi tekrarlamanın sonucu bozmaması gerekir.
 
-## Kimlik ve fencing ile güvenli tekrar
+## Tekrar denemede iş sahipliğini koruyun
 
-Idempotency aynı mantıksal işlemi yeniden uygulamanın farklı son etki oluşturmamasıdır. Sabit işlem kimliği ve tanımlı payload kimliği kullanın. Aynı anahtarı başka içerikle kullanmak reddedilmeli veya açık sözleşmeyle yönetilmelidir. Her tekrarda rastgele kimlik üretmek idempotency değil kopya üretir. Timeout, çağıranın tamamlanmayı gözlemediğini söyler; yazma olmadığını kanıtlamaz.
+Güvenli tekrar (idempotency), aynı mantıksal işlemi yeniden yapmanın son durumu değiştirmemesidir. Sabit işlem kimliği ve içeriği tanımlayan bir kimlik kullanın. Aynı anahtarın farklı içerikle kullanılmasını reddedin veya bu durumu açıkça belirlenmiş kurallarla yönetin. Her denemeye yeni rastgele kimlik vermek güvenli tekrar değil, kopya kayıt üretir. Zaman aşımı yalnızca istemcinin sonucu göremediğini söyler; yazmanın yapılmadığını kanıtlamaz.
 
-Lease, worker’ın işi geçici sahiplenmesini sağlar. Fencing token veya eşdeğer sahiplik kontrolü başka sahip devraldıktan sonra eski worker’ın işi tamamlamasını önler. Sahipliği yalnızca başlangıçta değil gerçek durum değişikliğinde kontrol edin. A worker’ını durdurup iznini düşürün, B’ye devrettikten sonra A’yı sürdürerek yarışı test edin.
+Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmesini sağlar. Sahiplik anahtarı (fencing token) ise iş başka çalışana geçtiğinde eski çalışanın işlemi tamamlamasını önler. Yetkiyi yalnızca başlangıçta değil, kayıt durumu değişirken de kontrol edin. Yarışı sınamak için A çalışanını durdurun, işini B’ye devredin ve ardından A’yı sürdürün.
 
 ## SQLite neyi garanti eder?
 
 SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.8.1 root başına tek combined owner kullanır; LanceDB/Kùzu projeksiyondur. Rebuild çevrimdışı ve tüm root kapsamındadır; çevrimiçi tenant başına onarım değildir. Bunlar ürüne özgü sınırlardır; başka sistem başka depolama seçebilir. Doğru rebuild, kanonik kanıtı ve temsil kimliğini korumayı; geçişten önce yeni projeksiyonu doğrulamayı gerektirir. [Core sözleşmesi](docs/core/architecture/).
+MESA Core v0.8.1’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
 
-## Timeout’u yorumlayın
+## Zaman aşımını yorumlayın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> İstemci vektör yazmasından sonra timeout alıyor. Hemen yeni kimlikle yeni mutasyon oluşturmalı mı?
+> İstemci, vektör yazıldıktan sonra zaman aşımına uğruyor. Hemen yeni kimlikle bir yazma işlemi başlatmalı mı?
 >
-> **Answer:** Önce özgün mutasyon durumunu inceleyin. Uygunsa tanımlı idempotency sözleşmesiyle tekrarlayın. Yeni kimlik zaten kabul edilmiş işlemi çoğaltabilir; timeout gözlem hatasıdır, rollback kanıtı değildir.
+> **Açıklama:** Önce ilk işlemin durumunu kontrol edin. Yeniden deneme uygunsa aynı işlem kimliği ve güvenli tekrar kurallarıyla ilerleyin. Yeni kimlik, zaten kabul edilmiş işlemi çoğaltabilir. Zaman aşımı, istemcinin sonucu göremediğini gösterir; işlemin geri alındığını göstermez.
 
 ## Kaynaklar ve ileri okuma
 
@@ -1241,7 +1241,7 @@ MESA Core v0.8.1 root başına tek combined owner kullanır; LanceDB/Kùzu proje
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Kanonik depo ve projeksiyonlar: yarım yazmadan kurtulmak — MESA Learn', 'Bir mutasyonu SQL, vektör ve çizge depolarında izleyin. Kalıcı kabulü, tekrarı, idempotency ve projeksiyon rebuild’ini anlayın.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'en', 'Changing facts: validity, contradiction and forgetting', '', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', '## Two clocks answer different questions
 
 The archive announces a new Friday opening time on 18 October, effective 1 November. The system learns the announcement on 20 October. “What is the opening time today?” and “What had our system recorded by 19 October?” are different questions. A single `updated_at` field cannot represent both meanings reliably.
@@ -1300,7 +1300,7 @@ A recent task note may deserve more attention than an old one. A historical cont
 2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Changing facts: validity, contradiction and forgetting — MESA Learn', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'tr', 'Değişen bilgi: geçerlilik, çelişki ve unutma', '', 'Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.', 'Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.', '## İki saat farklı soruları yanıtlar
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'tr', 'Bilgi değiştiğinde: güncelleme, çelişki ve unutma', '', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', '## Geçerlilik zamanı ve kayıt zamanı farklıdır
 
 Arşiv 18 Ekim’de yeni cuma açılış saatini duyuruyor; değişiklik 1 Kasım’da geçerli. Sistem duyuruyu 20 Ekim’de öğreniyor. “Bugün açılış saati ne?” ve “Sistemimiz 19 Ekim’e kadar ne kaydetmişti?” farklı sorulardır. Tek `updated_at` alanı iki anlamı güvenilir temsil edemez.
 
@@ -1311,11 +1311,11 @@ Arşiv 18 Ekim’de yeni cuma açılış saatini duyuruyor; değişiklik 1 Kası
 | recorded_at | 20 Ekim | Bu sistemin kaydettiği zaman |
 | source_revision | handbook-r3 | Bunu söyleyen belge |
 
-Bunlar dersin kavramsal alanlarıdır. Geçerlilik ve işlem zamanı geçmiş sorgularını birlikte desteklemek açık bitemporal model ve sorgu semantiği ister. Ürün zaman damgası saklıyor diye bu yeteneği çıkarmayın. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir.
+Bunlar dersin kavramsal alanlarıdır. Hem bilginin geçerlilik tarihine hem sistemin onu kaydettiği tarihe göre geçmiş sorgusu yapabilmek için iki zaman boyutunu açıkça tanımlayan bir model gerekir. Sistemin zaman damgası tutması, bu sorguları desteklediği anlamına gelmez. MESA mimarisi kendi zaman filtrelerini ve sınırlarını belgeler; buradaki örnek tam bitemporal destek iddiası değildir.
 
 ## Değişimi aralıkla temsil edin
 
-<!-- diagram: Revizyon 2 kasımdan önce, revizyon 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir. -->
+<!-- diagram: Sürüm 2 kasımdan önce, sürüm 3 kasımdan itibaren geçerlidir; kayıt ayrı zaman çizgisindedir. -->
 1. Eski iddia · cuma 09.00
 2. Bitiş · 1 Kasım’dan önce
 3. Yeni iddia · cuma 10.00
@@ -1342,22 +1342,22 @@ age = 2H => weight = 0.25
 Apply only after eligibility; this is a ranking policy.
 ```
 
-Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Tarihsel sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin.
+Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Geçmiş sözleşme yaşından bağımsız olarak geçmiş tarih için doğru kaynak kalabilir. Azalma seçilmiş sıralama sezgisidir; sürenin dolması geçerlilik kuralı; silme saklama eylemidir. Bunları ayırın. Güncellik ağırlığı açmadan hem “şimdi” hem geçmiş tarih sorularını test edin.
 
 ## Görünür çatışmayı sınıflandırın
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Revizyon 2 kasıma kadar cuma 09.00, revizyon 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?
+> Sürüm 2 kasıma kadar cuma 09.00, sürüm 3 kasımdan itibaren cuma 10.00 diyor. Birini yanlış etiketlemek zorunlu mu?
 >
-> **Answer:** Hayır. Farklı aralıklara uygulanıyorlar. İkisini koruyup sorunun tarihiyle filtreleyin. Çelişki için aynı varlık, kapsam ve örtüşen geçerlilik koşullarında uyumsuz değer gerekir.
+> **Açıklama:** Hayır. Farklı aralıklara uygulanıyorlar. İkisini koruyup sorunun tarihiyle filtreleyin. Çelişki için aynı varlık, kapsam ve örtüşen geçerlilik koşullarında uyumsuz değer gerekir.
 
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Değişen bilgi: geçerlilik, çelişki ve unutma — MESA Learn', 'Bilginin geçerli olduğu zamanla kaydedildiği zamanı ayırın. Yaşı geçersizlik sanmadan düzeltme ve çatışmayı yönetin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Bilgi değiştiğinde: güncelleme, çelişki ve unutma — MESA', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('evaluating-ndcg-and-mrr-in-memory', 'learn', 'en', 'Evaluate retrieval: recall, MRR, nDCG and latency', '', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', '## Start with questions and relevance judgments
 
 A search result looks plausible until you define what should have been found. Build a small question set with source-backed judgments. Include exact identifiers, paraphrases, date-sensitive questions, missing-answer cases and forbidden sources. Record the retrieval unit: a relevant document may contain many irrelevant chunks. Have a reviewer judge whether each unit supports the question and retain disagreements for adjudication.
@@ -1413,11 +1413,11 @@ Measure end-to-end retrieval and stage timings separately. Declare hardware, cor
 2. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 
 ', ARRAY['evaluation', 'MRR', 'nDCG', 'recall', 'precision', 'benchmark', 'latency', 'değerlendirme', 'gecikme']::text[], 'MESA contributors', 5, 'published', 'Evaluate retrieval: recall, MRR, nDCG and latency — MESA Learn', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('evaluating-ndcg-and-mrr-in-memory', 'learn', 'tr', 'Retrieval değerlendirme: recall, MRR, nDCG ve gecikme', '', 'Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.', 'Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.', '## Soru ve ilgililik etiketiyle başlayın
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('evaluating-ndcg-and-mrr-in-memory', 'learn', 'tr', 'Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız', '', 'Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın.', 'Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın.', '## Soru ve ilgililik etiketiyle başlayın
 
-Neyin bulunması gerektiğini tanımlayana kadar arama sonucu makul görünür. Kaynak destekli etiketlerle küçük soru kümesi kurun. Tam kimlik, farklı ifade, tarihe duyarlı soru, cevapsız durum ve yasak kaynak ekleyin. Retrieval birimini kaydedin: ilgili belge çok sayıda ilgisiz parça içerebilir. İnceleyici her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışmaları uzlaştırma için tutun.
+Ne bulunması gerektiğini tanımlamadığınızda birçok sonuç makul görünebilir. Kaynaklarla desteklenmiş etiketler kullanarak küçük bir soru kümesi oluşturun. Tam kimlik araması, farklı ifadeler, tarih duyarlılığı, yanıtı bulunmayan sorular ve kapalı kaynaklar da yer alsın. Ölçtüğünüz birimi belirtin: İlgili bir belgenin her parçası ilgili olmayabilir. İnceleyen kişiler her birimin soruyu destekleyip desteklemediğini değerlendirsin; ayrışan kararları ayrıca gözden geçirin.
 
-Parça boyutu, birleştirme ağırlığı veya eşik ayarlamadan geliştirme sorusunu son testten ayırın. Sentetik soru kapsamı genişletebilir; fakat LLM sorusu ve LLM etiketi aynı hatayı veya yapay ifadeyi paylaşabilir. Örnekleri inceleyin, uygunsa gerçek kullanıcı sorusunu tutun ve kümeler arasındaki benzer soruları ayıklayın. Cevap metnini sorgu temsiline sızdırmayın.
+Parça boyutunu, birleştirme ağırlığını veya eşikleri ayarlamadan önce geliştirme sorularını son test sorularından ayırın. Yapay sorular kapsamı genişletebilir, ancak soruyu ve etiketi aynı model üretirse ikisinde de aynı hata veya yapay anlatım bulunabilir. Örnekleri inceleyin; uygunsa gerçek kullanıcı sorularını kullanın ve kümeler arasındaki çok benzer soruları ayıklayın. Yanıt metnini sorgu temsiline sızdırmayın.
 
 ## Tek sıralı liste, farklı ölçüm soruları
 
@@ -1437,7 +1437,7 @@ Ideal    [2,1,0]: 3 + 1/log2(3) + 0           = 3.6309
 nDCG@3 = 2.3928 / 3.6309 = 0.6590
 ```
 
-Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek başına bunu gizler; nDCG dereceli ilgililik ve konumla cezalandırır. Kazanç, indirim, kesim ve ilgili etiketi olmayan sorgu politikasını belirtin. Farklı tanımlar farklı değer üretebilir. Etiketlenmemiş materyal kendiliğinden ilgisiz kanıtlanmış değildir.
+Sistem bütün ilgili öğeleri bulmuş, ancak ilgisiz bir öğeyi ilk sıraya koymuş olabilir. Recall tek başına bu sorunu göstermez; nDCG hem ilgililik derecesini hem konumu hesaba katar. Kazanç, konuma bağlı indirim ve liste sınırı tanımlarını; ilgili etiketi bulunmayan sorgulara nasıl davranıldığını belirtin. Farklı tanımlar farklı puanlar verir. Etiketlenmemiş bir içeriğin ilgisiz olduğu da kendiliğinden kabul edilemez.
 
 ## Tek etkeni değiştirin, hataları inceleyin
 
@@ -1450,24 +1450,24 @@ Sistem bütün ilgili öğeyi buldu fakat ilk sıraya ilgisizi koydu. Recall tek
 
 *Daha yüksek ortalama kimlik, dil veya yetkilendirme gerilemesini gizleyebilir.*
 
-Sorgu başına değişimi ve yararlı alt grupları kıyaslayın: kimlik/farklı ifade, kısa/uzun kaynak, dil ve kaynak yaşı. Örnek boyutu uygunsa belirsizlik raporlayın ve ham sorgu sonuçlarını koruyun. BEIR heterojen görevlerde değerlendirme örneğidir; skorunu kendinizin saymak yerine disiplinini kullanın. [BEIR](https://arxiv.org/abs/2104.08663), [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html).
+Değişimi sorgu başına ve anlamlı alt gruplarda inceleyin: kimlik araması veya farklı ifade, kısa veya uzun kaynak, dil ve kaynak yaşı. Örneklem uygunsa belirsizliği raporlayın ve ham sonuçları koruyun. BEIR, farklı görevleri birlikte değerlendirmeye örnektir. O çalışmanın puanını kendi başarınız gibi kullanmak yerine değerlendirme yaklaşımından yararlanın. [BEIR](https://arxiv.org/abs/2104.08663) [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 
 ## Hataları gizlemeden hızı ölçün
 
-Uçtan uca retrieval ile aşama sürelerini ayrı ölçün. Donanım, veri boyutu, eşzamanlılık, önbellek, ısınma, istek sayısı ve timeout’u belirtin. Ortanca ve kuyruk gecikmesini hata ve boş yanıtlarla raporlayın. Timeout’ları tablodan çıkarmak bozuk sistemi hızlı gösterebilir. Yerel deterministik örnek sözleşme testidir; gerçek embedding sağlayıcısı kalitesini veya üretim kapasitesini ölçmez.
+Aramanın toplam süresini ve her aşamasını ayrı ölçün. Donanımı, veri büyüklüğünü, eşzamanlı istek sayısını, önbelleği, ısınmayı ve zaman aşımını belirtin. Ortanca süreyi ve yüksek gecikme yüzdeliklerini; hatalar ve boş sonuçlarla birlikte raporlayın. Zaman aşımına uğrayan istekleri dışarıda bırakmak, sorunlu bir sistemi hızlı gösterebilir. Sabit girdilerle yapılan yerel örnek, davranış testidir; gerçek modelin kalitesini veya canlı kullanım kapasitesini ölçmez.
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
 > X değişkeni Recall@20’yi artırıp nDCG@5’i düşürüyor. X doğrudan daha iyi mi?
 >
-> **Answer:** Zorunlu değil. Daha fazla ilgili aday bulup üst sıralara daha kötü yerleştiriyor. Sonraki görev, yeniden sıralama bütçesi, hata alt grupları ve gecikmeyle karar verin; hangi sorunun iyileşip gerilediğini inceleyin.
+> **Açıklama:** Zorunlu değil. Daha fazla ilgili aday bulup üst sıralara daha kötü yerleştiriyor. Sonraki görev, yeniden sıralama bütçesi, hata alt grupları ve gecikmeyle karar verin; hangi sorunun iyileşip gerilediğini inceleyin.
 
 ## Kaynaklar ve ileri okuma
 
 1. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 2. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 
-', ARRAY['evaluation', 'MRR', 'nDCG', 'recall', 'precision', 'benchmark', 'latency', 'değerlendirme', 'gecikme']::text[], 'MESA contributors', 5, 'published', 'Retrieval değerlendirme: recall, MRR, nDCG ve gecikme — MESA Learn', 'Etiketli listede sıralama metriklerini hesaplayın, kaliteyi hızdan ayırın; kendi eğitim örneğini puanlamayan deney tasarlayın.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['evaluation', 'MRR', 'nDCG', 'recall', 'precision', 'benchmark', 'latency', 'değerlendirme', 'gecikme']::text[], 'MESA contributors', 5, 'published', 'Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız — MESA', 'Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('build-a-small-search-lab', 'learn', 'en', 'Build a small search lab, without an LLM', '', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', '## What you will build
 
 This lab retrieves one source passage from a tiny archive. It uses Python’s standard `sqlite3` module and a SQLite build with FTS5 enabled. No model, network call, embedding download or MESA server is required. Save the code as `search_lab.py` and run `python3 search_lab.py`. If FTS5 is unavailable, SQLite reports “no such module: fts5”; use a Python/SQLite distribution that includes it.
@@ -1536,11 +1536,11 @@ Build a file of judged queries and expected source IDs, then calculate Recall@k 
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
 ', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'Build a small search lab, without an LLM — MESA Learn', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('build-a-small-search-lab', 'learn', 'tr', 'LLM kullanmadan küçük bir arama laboratuvarı kurun', '', 'Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın.', 'Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın.', '## Ne kuracaksınız?
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('build-a-small-search-lab', 'learn', 'tr', 'Dil modeli olmadan küçük bir arama sistemi kurun', '', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', '## Ne kuracaksınız?
 
-Bu laboratuvar küçük arşivden bir kaynak pasajı getirir. Python’ın standart `sqlite3` modülü ve FTS5 etkin SQLite gerekir. Model, ağ çağrısı, embedding indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` olarak kaydedip `python3 search_lab.py` çalıştırın. FTS5 yoksa SQLite “no such module: fts5” der; bunu içeren Python/SQLite dağıtımı kullanın.
+Bu alıştırmada küçük bir arşivden ilgili kaynak pasajını bulan program kuracaksınız. Python’ın standart `sqlite3` modülü ve FTS5 desteği açık bir SQLite yeterlidir. Model, ağ çağrısı, temsil modeli indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` adıyla kaydedip `python3 search_lab.py` komutuyla çalıştırın. “no such module: fts5” hatası alırsanız FTS5 içeren bir Python/SQLite kurulumu kullanın.
 
-Örnek her izinli gösterim veri kümesi için ayrı FTS tablosu açar. Bu küçük alıştırmada aday istatistiğini yerel tutar. Üretim tenant stratejisi değildir; doğrulanmış kapsam çözümü, şema yönetimi, kaynak sınırı ve yaşam döngüsü ayrı tasarım ister. Sabit `allowed_archive` eşlemesi güvenilir sunucu kararını temsil eder; prompt’tan alınan değer değildir.
+Örnek, izin verilen her deneme veri kümesi için ayrı FTS tablosu açar. Böylece bu küçük alıştırmada arama istatistikleri de ayrı tutulur. Bu, canlı bir sistemin erişim alanlarını yönetmek için hazır bir çözüm değildir. Kimlik doğrulama, kapsam belirleme, şema, kaynak sınırları ve kayıtların yaşam döngüsü ayrıca tasarlanmalıdır. Koddaki sabit `allowed_archive` eşlemesi, kullanıcının isteminden gelen bir değer değil, güvenilir sunucu kararını temsil eder.
 
 ## Tam örneği çalıştırın
 
@@ -1575,27 +1575,27 @@ with sqlite3.connect(":memory:") as db:
 <!-- diagram: Güvenilir arşiv seçimi sözcüksel adayları sınırlar; sonuç inceleme için kaynak kimliğini korur. -->
 1. Güvenilir eşleme · atlas
 2. Parametreli MATCH · sorgu
-3. BM25 sırası · yerel corpus
+3. BM25 sırası · yalnızca bu veri kümesi
 4. Sınır · üç aday
 5. İncele · kaynak kimliği + metin
 
-*Bu yalnızca retrieval’dır. Örnekte gizli yanıt üretimi veya iddia çıkarımı yoktur.*
+*Bu örnek yalnızca arama yapar; arka planda yanıt üretmez veya bilgi çıkarmaz.*
 
-SQL parametresi sorgu değerinin SQL sözdizimine dönüşmesini önler; FTS sorgu dilini kapatmaz. `OR`, tırnak veya bozuk sözdizimi içeren kullanıcı girdisi hâlâ açık arama politikası ve hata yönetimi ister. Tablo kimliği `?` ile bağlanamaz; örnek yalnızca kodda sabit güvenilir eşlemeyi yerleştirir. Bu eşlemeyi keyfî kullanıcı girdisiyle değiştirmeyin.
+SQL parametreleri sorgu değerinin SQL komutuna dönüşmesini önler; ancak FTS’nin kendi sorgu dilini kapatmaz. Kullanıcı girdisindeki `OR`, tırnaklar veya bozuk sözdizimi için hâlâ açık arama kuralları ve hata yönetimi gerekir. Tablo adı `?` parametresiyle verilemez. Örnek bu yüzden yalnızca kodda belirlenmiş güvenilir eşlemeyi kullanır; bunu keyfî kullanıcı girdisiyle değiştirmeyin.
 
 ## Tek değişiklik yapıp sonucu öngörün
 
-Friday yerine Monday yazıp beklenen kimliği c2 yapın. Salonun bakım için kapalı olduğunu söyleyen ikinci cuma pasajı ekleyin. Artık ikisi de kelimelere uyar: retrieval çatışmayı gösterdi, çözmedi. Güncel cevabı seçmeden kaynak revizyonu ve geçerlilik ekleyin. Son olarak “last working day” deneyin; bu sözcüksel taban onun Friday anlamında kullanıldığını bilmez.
+Friday yerine Monday yazıp beklenen kimliği c2 yapın. Sonra salonun bakım nedeniyle kapalı olduğunu belirten ikinci bir cuma pasajı ekleyin. Artık iki metin de aynı sözcüklere uyar: Arama çelişkiyi bulmuştur, çözmemiştir. Güncel yanıtı seçmeden önce kaynak sürümü ve geçerlilik bilgisi ekleyin. Son olarak “last working day” ifadesini deneyin. Bu sözcük tabanlı yöntem, ifadenin Friday anlamında kullanıldığını kendi başına bilemez.
 
-Etiketli sorgu ve beklenen kaynak kimliği dosyası oluşturup önceki dersten Recall@k ve MRR hesaplayın. Dokunulmamış test kümesi tutun. Sözcüksel hatayı anladıktan sonra yoğun retrieval veya reranker ekleyin. Gerçek MESA entegrasyonu için credential ve sağlayıcı içeren sürüme sabit hızlı başlangıca geçin; bu laboratuvar bağımsız eğitim kodudur.
+Etiketli sorguları ve beklenen kaynak kimliklerini bir dosyada tutun; önceki dersteki Recall@k ile MRR ölçümlerini hesaplayın. Ayar yaparken hiç kullanmadığınız bir test kümesi ayırın. Sözcük tabanlı aramanın hatalarını anladıktan sonra anlamsal arama veya yeniden sıralama ekleyin. Gerçek MESA bağlantısı için erişim bilgileri ve sağlayıcı gereksinimleri bulunan hızlı başlangıca geçin. Bu alıştırma bağımsız bir eğitim örneğidir.
 
 ## Gösterimin sınırını bulun
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
-> Kod beklenen kaynağı döndürüyor. Bu, kılavuzun güncel, yanıtın doğru ve tenant yalıtımının üretime hazır olduğunu kanıtlar mı?
+> Kod beklenen kaynağı döndürüyor. Bu, kılavuzun güncel, yanıtın doğru ve üst erişim alanı yalıtımının canlı kullanıma hazır olduğunu kanıtlar mı?
 >
-> **Answer:** Hayır. Assert kontrollü veride tek retrieval davranışını doğrular. Geçerlilik, kaynak güveni, kimlik doğrulama, eşzamanlılık, silme ve üretim kapasitesi ayrı test ve uygulama ister.
+> **Açıklama:** Hayır. Assert kontrollü veride tek arama davranışını doğrular. Geçerlilik, kaynak güveni, kimlik doğrulama, eşzamanlılık, silme ve üretim kapasitesi ayrı test ve uygulama ister.
 
 ## Kaynaklar ve ileri okuma
 
@@ -1603,7 +1603,7 @@ Etiketli sorgu ve beklenen kaynak kimliği dosyası oluşturup önceki dersten R
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
 
-', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'LLM kullanmadan küçük bir arama laboratuvarı kurun — MESA Learn', 'Tam Python/SQLite örneğini çalıştırın, sonucunu öngörün ve etiketli gerileme örneği ekleyin. Dersleri incelenebilir programa bağlayın.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'Dil modeli olmadan küçük bir arama sistemi kurun — MESA', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('keyword-vs-semantic-search', 'research', 'en', 'Keyword vs semantic search', 'A planned retrieval benchmark protocol', 'This publication defines a proposed comparison. It reports no benchmark result.', '', '## Research question
 
 Under a frozen legal retrieval corpus and independently judged query set, how do lexical, semantic, and hybrid retrieval differ in relevance and operational cost?
@@ -1636,15 +1636,15 @@ Search approaches are often compared with broad claims that hide corpus, query, 
 A publishable run should record dataset identity, query and judgment versions, model identifiers, configuration, code revision, seeds where applicable, environment, raw outputs, and analysis steps.
 
 ', ARRAY['benchmark', 'retrieval', 'semantic-search']::text[], 'MESA contributors', 9, 'published', 'Keyword vs Semantic Search — Planned Research Protocol', 'Review MESA''s planned, result-free protocol for comparing keyword, semantic, and hybrid legal retrieval.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('keyword-vs-semantic-search', 'research', 'tr', 'Keyword vs Semantic Search', 'Planlanan retrieval benchmark protokolü', 'Bu yayın önerilen bir karşılaştırmayı tanımlar. Herhangi bir benchmark sonucu sunmaz.', '', '## Araştırma sorusu
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('keyword-vs-semantic-search', 'research', 'tr', 'Sözcük ve anlam temelli arama nasıl karşılaştırılacak?', 'Planlanan arama karşılaştırmalı test protokolü', 'Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı.', '', '## Araştırma sorusu
 
-Dondurulmuş bir hukuk retrieval veri kümesi ve bağımsız değerlendirilen sorgu seti altında lexical, semantic ve hybrid retrieval relevance ve operasyonel maliyet bakımından nasıl farklılaşır?
+Aynı hukuk belgeleri, sabit sorgular ve bağımsız ilgililik değerlendirmeleri kullanıldığında sözcük tabanlı, anlamsal ve hibrit arama; ilgili sonuçları bulma ve işletim maliyeti bakımından nasıl farklılaşır?
 
 ## Neden önemli?
 
-Arama yaklaşımları çoğu zaman veri kümesi, sorgu, relevance ve yapılandırma seçimlerini gizleyen geniş iddialarla karşılaştırılır. Yararlı bir karşılaştırma bu seçimleri incelenebilir kılmalıdır.
+Arama yöntemleri bazen kullanılan belgeler, sorular, etiketler ve ayarlar açıklanmadan karşılaştırılıyor. Yararlı bir karşılaştırma, bu seçimlerin nasıl yapıldığını da göstermelidir.
 
-## Veri seti
+## Veri kümesi
 
 > [!NOTE]
 > **Henüz seçilmedi**
@@ -1653,21 +1653,21 @@ Arama yaklaşımları çoğu zaman veri kümesi, sorgu, relevance ve yapılandı
 ## Deney düzeni
 
 - Veri kümesini, sorgu setini, değerlendirmeleri ve sistem yapılandırmalarını dondur.
-- Lexical, semantic ve hybrid koşulları aynı uygun belgeler üzerinde çalıştır.
-- Sorgu üretimini relevance değerlendirmesinden ayır.
+- Sözcük tabanlı, anlamsal ve hibrit koşulları aynı uygun belgeler üzerinde çalıştır.
+- Sorgu üretimini ilgililik değerlendirmesinden ayır.
 - Yalnızca olumlu örnekleri değil, hataları ve sıfır sonuçlu sorguları da kaydet.
 
 ## Sonuçlar
 
 > [!WARNING]
 > **Henüz sonuç yok**
-> Benchmark çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir.
+> Karşılaştırmalı test çalıştırılmadı. Tablolar ve grafikler yalnızca kanıt çıktıları mevcut olduğunda eklenecektir.
 
-## Yeniden üretilebilirlik
+## Tekrarlanabilirlik
 
-Yayımlanabilir bir çalışma; veri seti kimliğini, sorgu ve değerlendirme sürümlerini, model kimliklerini, yapılandırmayı, kod revizyonunu, uygun olduğunda seed değerlerini, ortamı, ham çıktıları ve analiz adımlarını kaydetmelidir.
+Yayımlanacak bir deneyde veri kümesi, sorgu ve değerlendirme sürümleri; model kimlikleri, ayarlar, kod sürümü, gerekiyorsa rastgelelik başlangıç değerleri, çalışma ortamı, ham çıktılar ve analiz adımları kaydedilmelidir.
 
-', ARRAY['benchmark', 'retrieval', 'semantic-search']::text[], 'MESA contributors', 9, 'published', 'Keyword vs Semantic Search — Planlanan Araştırma Protokolü', 'Keyword, semantic ve hybrid hukuki retrieval karşılaştırması için MESA''nın sonuç içermeyen planlı protokolünü inceleyin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['benchmark', 'retrieval', 'semantic-search']::text[], 'MESA contributors', 9, 'published', 'Sözcük ve anlam temelli arama nasıl karşılaştırılacak? — MESA', 'Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'en', 'How do you verify an AI-cited Yargıtay decision?', '', 'Treat the citation as an unverified lead until the decision identity, authoritative text, quoted passage, and legal fit are checked.', 'Locate the decision independently, match its identifiers, read the full text, trace every quotation, and document what the decision does and does not establish.', '## 1. Capture the exact claim
 
 Save the decision number, chamber, date, quoted passage, and the conclusion the AI attached to it. Missing identifiers are a warning, not an invitation to guess.
@@ -1702,13 +1702,13 @@ Identify the issue, material facts, reasoning, holding, procedural posture, and 
 - [ ] Reviewer and review date when the workflow requires one
 
 ', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'How to Verify an AI-Cited Yargıtay Decision — MESA Guide', 'Use a cautious, repeatable workflow to verify the identity, source, text, and relevance of an AI-cited Yargıtay decision.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'tr', 'AI''nin Verdiği Yargıtay Kararı Nasıl Doğrulanır?', '', 'Karar kimliği, güvenilir metin, alıntılanan bölüm ve hukuki uygunluk kontrol edilene kadar atfı doğrulanmamış bir araştırma ipucu sayın.', 'Kararı bağımsız bulun, kimlik bilgilerini eşleştirin, tam metni okuyun, her alıntının izini sürün ve kararın neyi ortaya koyup koymadığını kaydedin.', '## 1. İddiayı aynen kaydedin
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'tr', 'Yapay zekânın atıf yaptığı Yargıtay kararı nasıl doğrulanır?', '', 'Kararın bilgilerini, asıl metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin.', 'Kararı bağımsız bulun, kimlik bilgilerini eşleştirin, tam metni okuyun, her alıntının izini sürün ve kararın neyi ortaya koyup koymadığını kaydedin.', '## 1. İddiayı aynen kaydedin
 
-Esas ve karar numarasını, daireyi, tarihi, alıntılanan bölümü ve yapay zekânın buna bağladığı sonucu saklayın. Eksik kimlik bilgileri tahmin daveti değil, uyarıdır.
+Esas ve karar numarasını, daireyi, tarihi, alıntıyı ve yapay zekânın bu karardan çıkardığı sonucu kaydedin. Kimlik bilgilerinin eksik olması, tahmin ederek tamamlamanız gereken bir boşluk değil, doğrulama uyarısıdır.
 
 ## 2. Güvenilir veya izlenebilir kaynağı bulun
 
-Belirtilen kimlik bilgileri ve ayırt edici ifadelerle bağımsız arama yapın. Mümkünse resmî yayını tercih edin; değilse repository bilgisini ve erişim tarihini kaydedin.
+Verilen numaralar ve ayırt edici ifadelerle kararı kendiniz arayın. Varsa resmî yayını kullanın. Başka bir kaynaktan ulaştıysanız sitenin veya veri tabanının adını ve erişim tarihini kaydedin.
 
 ## 3. Kimliği ve metni eşleştirin
 
@@ -1724,18 +1724,18 @@ Belirtilen kimlik bilgileri ve ayırt edici ifadelerle bağımsız arama yapın.
 > **Var olmak, ilgili olmak değildir**
 > Gerçek bir karar yine de olgusal olarak ayrışabilir, sonraki içtihatla aşılmış olabilir, istisnai olabilir veya önerilen sonuçla ilgisiz olabilir.
 
-Atfa güvenmeden önce hukuki sorunu, maddi olguları, gerekçeyi, hükmü, usulî aşamayı ve sonraki otoriteleri belirleyin.
+Atfa dayanmadan önce uyuşmazlığı, önemli olayları, gerekçeyi, hükmü, usul durumunu ve karardan sonra oluşan içtihadı inceleyin.
 
 ## 5. Doğrulama izini kaydedin
 
-- [ ] Stabil kaynak veya saklanan çıktı
+- [ ] Kalıcı kaynak bağlantısı veya saklanmış kopya
 - [ ] Kimlik bilgileri ve erişim tarihi
 - [ ] Tam destekleyici bölüm
 - [ ] Bölümün neden ilgili olduğu
-- [ ] Aksi yöndeki veya sınırlayıcı otorite
-- [ ] İş akışı gerektiriyorsa reviewer ve inceleme tarihi
+- [ ] Aksi yöndeki ya da kararı sınırlayan içtihat ve kaynaklar
+- [ ] Gerekiyorsa incelemeyi yapan kişi ve inceleme tarihi
 
-', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'AI''nin Verdiği Yargıtay Kararı Nasıl Doğrulanır? — MESA Rehberi', 'Yapay zekânın atıf verdiği Yargıtay kararının kimliğini, kaynağını, metnini ve relevance''ını dikkatli bir iş akışıyla doğrulayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'Yapay zekânın atıf yaptığı Yargıtay kararı nasıl doğrulanır? — MESA', 'Kararın bilgilerini, asıl metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('provenance', 'glossary', 'en', 'Provenance', '', 'Provenance is the recorded origin and processing history of information.', 'It answers where information came from, which version was used, how it was transformed, and which evidence supports its use.', '## Simple explanation
 
 **Provenance**
@@ -1754,24 +1754,24 @@ In a retrieval system, provenance can connect a result to document, revision, ch
 Without provenance, a plausible answer may be difficult to inspect, reproduce, correct, or safely rely on.
 
 ', ARRAY['provenance', 'evidence']::text[], 'MESA contributors', 4, 'published', 'Provenance — MESA Glossary', 'Learn what provenance means in legal AI, retrieval, and evidence-aware memory systems.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('provenance', 'glossary', 'tr', 'Provenance', '', 'Provenance, bilginin kaydedilmiş kökeni ve işlenme geçmişidir.', 'Bilginin nereden geldiğini, hangi sürümün kullanıldığını, nasıl dönüştürüldüğünü ve kullanımını hangi kanıtın desteklediğini açıklar.', '## Basit açıklama
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('provenance', 'glossary', 'tr', 'Kaynak izi nedir?', '', 'Kaynak izi, bilginin nereden geldiğini ve bugünkü hâline gelene kadar hangi işlemlerden geçtiğini gösteren kayıttır.', 'Bilginin nereden geldiğini, hangi sürümün kullanıldığını, nasıl dönüştürüldüğünü ve kullanımını hangi kanıtın desteklediğini açıklar.', '## Basit açıklama
 
-**Provenance**
-: Bir iddia veya retrieval sonucundan kaynak kimliğine ve ilgili işleme adımlarına uzanan iz.
+**Kaynak izi**
+: Bir iddia veya arama sonucundan kaynak kimliğine ve ilgili işleme adımlarına uzanan iz.
 
 ## Hukuki örnek
 
-Atıf verilen bir karar için provenance; mahkeme, daire, esas ve karar kimlikleri, tarih, kaynak URL''si veya saklanan çıktı, erişim tarihi, belge sürümü ve tam destekleyici bölümü içerebilir.
+Bir yargı kararının kaynak izi; mahkeme ve daireyi, esas ve karar numarasını, tarihi, kaynak adresini veya saklanan kopyayı, erişim tarihini, belge sürümünü ve iddiayı destekleyen tam pasajı içerebilir.
 
 ## Teknik açıklama
 
-Bir retrieval sisteminde provenance; sonucu belgeye, revizyona, chunk''a, evidence span''e, pipeline sürümüne, model sürümüne, yetkilendirme kapsamına ve katkıda bulunan retrieval sinyallerine bağlayabilir.
+Arama sisteminde kaynak izi; sonucu belgeye, belge sürümüne, metin parçasına, dayanak pasajına, işleme ve model sürümlerine, erişim kapsamına ve sonuca katkı veren arama kanallarına bağlar.
 
 ## Neden önemli?
 
-Provenance olmadan makul görünen bir yanıtı incelemek, yeniden üretmek, düzeltmek veya güvenle kullanmak zorlaşabilir.
+Kaynak izi olmadığında, doğru gibi görünen bir yanıtı incelemek, aynı sonucu yeniden elde etmek, hatayı düzeltmek veya güvenle kullanmak zorlaşır.
 
-', ARRAY['provenance', 'evidence']::text[], 'MESA contributors', 4, 'published', 'Provenance Nedir? — MESA Sözlüğü', 'Provenance''ın legal AI, retrieval ve kanıt odaklı memory sistemlerinde ne anlama geldiğini öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['provenance', 'evidence']::text[], 'MESA contributors', 4, 'published', 'Kaynak izi nedir? — MESA', 'Kaynak izi, bilginin nereden geldiğini ve bugünkü hâline gelene kadar hangi işlemlerden geçtiğini gösteren kayıttır.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('retrieval-evaluation', 'methodology', 'en', 'Retrieval evaluation', '', 'A minimum methodology for claims about whether a retrieval system finds useful, source-grounded material.', 'Freeze inputs, separate query creation from judgment, report multiple metrics and failure cases, and bind every result to versions and raw evidence.', '## Scope
 
 This method applies to comparative retrieval evaluations. It does not turn one corpus or query set into a universal performance claim.
@@ -1806,39 +1806,39 @@ Judgment guidance should define graded relevance, evidence requirements, disagre
 - [ ] Correction date and change record when findings are amended
 
 ', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 8, 'published', 'Retrieval Evaluation Methodology — MESA Research', 'Review the minimum evidence, judgments, metrics, versioning, and reporting rules for MESA retrieval evaluations.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('retrieval-evaluation', 'methodology', 'tr', 'Retrieval değerlendirmesi', '', 'Bir retrieval sisteminin yararlı ve kaynağa dayalı materyali bulup bulmadığına ilişkin iddialar için asgari metodoloji.', 'Girdileri dondurun, sorgu üretimini judgment''tan ayırın, birden fazla metriği ve hata örneklerini raporlayın, her sonucu sürümlere ve ham kanıta bağlayın.', '## Kapsam
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('retrieval-evaluation', 'methodology', 'tr', 'Arama sistemleri nasıl değerlendirilir?', '', 'Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?', 'Girdileri sabitleyin. Soruları hazırlayanlarla sonuçları değerlendirenleri ayırın. Birden çok ölçümü ve hata örneklerini raporlayın; sonuçları kullanılan sürümler ve ham çıktılarla birlikte kaydedin.', '## Kapsam
 
-Bu yöntem karşılaştırmalı retrieval değerlendirmelerine uygulanır. Tek bir veri kümesini veya sorgu setini evrensel performans iddiasına dönüştürmez.
+Bu yöntem, farklı arama sistemlerini karşılaştırmak içindir. Tek bir veri kümesinde veya soru listesinde elde edilen sonuçlar, bütün kullanım alanları için başarı garantisi vermez.
 
-## Veri seti ve sorgu seçimi
+## Veri kümesi ve sorgu seçimi
 
 - Kaynak uygunluğunu ve zamansal kesimi tanımlayın.
 - Lisans ve saklama sınırlarını kaydedin.
 - Veri kümesini, sorguları ve hariç tutmaları sürümleyin.
 - Zor ve sıfır sonuçlu örnekleri bilinçli biçimde dahil edin.
 
-## Relevance judgment
+## İlgililik değerlendirmesi
 
-Judgment rehberi; dereceli relevance''ı, kanıt gereksinimlerini, anlaşmazlık yönetimini ve reviewer bağımsızlığını tanımlamalıdır. Sistem çıktısı kendi ground truth''unu sessizce belirlememelidir.
+Değerlendirme kılavuzu; ilgililik derecelerini, gerekli dayanakları, değerlendiriciler arasındaki görüş ayrılıklarının nasıl çözüleceğini ve bağımsızlığın nasıl sağlanacağını açıklamalıdır. Sistemin kendi çıktısı, doğru kabul edilen yanıtları kendiliğinden belirlememelidir.
 
 ## Metrikler
 
 | Ölçüm | Soru |
 | --- | --- |
-| Recall@k | İlgili materyal kesim içinde geri getirildi mi? |
+| Recall@k | İlgili kayıtların ne kadarı seçilen ilk k sonuçta bulundu? |
 | nDCG@k | Daha ilgili öğeler daha önce sıralandı mı? |
 | MRR | İlk ilgili öğe ne kadar erken göründü? |
-| Gecikme dağılımı | Retrieval hangi operasyonel maliyetle gerçekleşti? |
+| Gecikme dağılımı | Arama ne kadar sürdü ve hangi kaynakları kullandı? |
 
 ## Raporlama ve düzeltmeler
 
 - [ ] Yapılandırma ve kod revizyonu
-- [ ] Veri seti, sorgu ve judgment sürümleri
+- [ ] Veri kümesi, sorgu ve değerlendirme sürümleri
 - [ ] Toplu ve sorgu bazlı çıktılar
 - [ ] Hata örnekleri ve hariç tutmalar
 - [ ] Bilinen sınırlılıklar
 - [ ] Bulgular değiştirildiğinde düzeltme tarihi ve değişiklik kaydı
 
-', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 8, 'published', 'Retrieval Değerlendirme Metodolojisi — MESA Research', 'MESA retrieval değerlendirmeleri için asgari kanıt, judgment, metrik, sürümleme ve raporlama kurallarını inceleyin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 8, 'published', 'Arama sistemleri nasıl değerlendirilir? — MESA', 'Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 
 COMMIT;

@@ -1,7 +1,7 @@
-## Tarihsel denetim belgesi emekli edildi
+## Eski denetim belgesi güncel sürümden kaldırıldı
 
-Bağımsız denetim belgesi ve eski benchmark raporları v0.8.1’de güncel ağaçtan kaldırıldı. Önceki kayıtlar Git geçmişindedir; bu sayfa artık tam metinlerini güncel sürüm kanıtı olarak sunmaz.
+Bağımsız denetim belgesiyle eski performans raporları, v0.8.1’de güncel dosyalar arasından çıkarıldı. Önceki sürümlere Git geçmişinden ulaşılabilir. Bu eski sonuçlar, güncel sürümün doğrulandığı anlamına gelmez.
 
-## Güncel test ve yayın kanıtlarını kullanın
+## Güncel doğrulamalara bakın
 
-Sürdürülen test rehberi aşağıdadır. Kanıt kapsamı ve açık kapılar için [v0.8.1 sürüm notları](docs/core/release-notes/) ve [yayın yeterliliğine](docs/core/release-policy/) bakın.
+Aşağıda güncel test rehberi yer alıyor. Hangi kontrollerin tamamlandığını ve hangilerinin beklediğini görmek için [v0.8.1 sürüm notlarını](docs/core/release-notes/) ve [yayın koşullarını](docs/core/release-policy/) okuyun.

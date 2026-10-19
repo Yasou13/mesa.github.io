@@ -1,10 +1,10 @@
-## Başlangıcı kontrol edin, ardından modelleri hazırlayın
+## Önce kurulumu, ardından sağlayıcıları kontrol edin
 
-Model kapalı başlangıç ve sağlık kontrolleri için [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. İlk V4 veri alımı hazırlanmış çıkarım ve embedding sağlayıcıları gerektirir; V3 ham hafıza işleme de embedding ister. Tam `examples/v4_quickstart.py` örneği kataloğunu hazırlar, kaynak referanslarını yazdırır ve oturumu bitirir.
+Model kullanmadan başlatma ve durum kontrolü için [hızlı başlangıç rehberini](docs/core/getting-started/) izleyin. İlk V4 eklemesinden önce bilgi çıkarımı ve sayısal temsil sağlayıcıları hazır olmalıdır. V3’te ham hafıza işlemek de sayısal temsil sağlayıcısı gerektirir. Tam `examples/v4_quickstart.py` örneği kataloğu hazırlar, kaynak referanslarını gösterir ve oturumu kapatır.
 
-## V4 ekle, bekle, ara
+## V4 ile ekleyin, tamamlanmasını bekleyin ve arayın
 
-Önkoşullar: modeli etkin combined owner, çalışır embedding sağlayıcısı, hazırlanmış credential/agent izni ve principal’ın yazabildiği mevcut workspace/dataset. Bağımsız her çalıştırmada yeni dataset veya yeni document/revision kimlikleri kullanın. Bu örnek yayımlanmış SDK sözleşmesini izler; üretim veya gerçek sağlayıcı yeterlilik sonucu değildir.
+Önkoşullar: modelin etkin olduğu combined süreci, çalışan sayısal temsil sağlayıcısı, erişim anahtarı, ajan izni ve erişim kimliğinin yazabildiği mevcut çalışma alanı/veri kümesi. Birbirinden bağımsız denemelerde yeni veri kümesi veya yeni belge/sürüm kimlikleri kullanın. Örnek, yayımlanan SDK’nın kullanımını gösterir; canlı kullanım veya gerçek sağlayıcı doğrulaması değildir.
 
 ```python
 import os
@@ -28,6 +28,6 @@ with MesaV4Client("http://127.0.0.1:18080", api_key=os.environ["MESA_API_KEY"]) 
     print(results)
 ```
 
-## Kaynak sözleşmesini koruyun
+## Kaynağı ve işlem kimliğini koruyun
 
-İstemci metadata’sından kapsam çıkarmayın. Tam content ve source_ref’i koruyun; tekrarlarda sabit idempotency key kullanın. v0.8.1’de senkron ve asenkron V4 insert metodları isteğe bağlı `legal_identity` kabul eder. Varsayılan mutasyon sorgulama aralığı iki saniyedir. Sunucu oturumunu HTTP istemcisini kapatmaktan ayrı sonlandırın; timeout sonrasında tekrardan önce mutasyon durumunu inceleyin. Çok parçalı finalization için [veri alımını](docs/core/concepts-and-ingestion/), grant’ler için [güvenliği](docs/core/security/) izleyin.
+Erişim kapsamını istemcinin gönderdiği ek bilgilerden çıkarmayın. Kaynağın tam metnini ve `source_ref` değerini koruyun. Tekrar denemelerde aynı yineleme anahtarını kullanın. v0.8.1’de senkron ve asenkron V4 ekleme yöntemleri isteğe bağlı `legal_identity` kabul eder; durum varsayılan olarak iki saniyede bir sorgulanır. HTTP istemcisini kapatmakla sunucudaki oturumu bitirmek farklı işlemlerdir. Zaman aşımından sonra yeniden denemeden önce işlemin durumuna bakın. Birden fazla parçadan oluşan sürümler için [veri alımı](docs/core/concepts-and-ingestion/), izinler için [güvenlik](docs/core/security/) rehberini okuyun.

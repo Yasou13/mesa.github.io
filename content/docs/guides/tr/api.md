@@ -1,26 +1,26 @@
-## Kimliği doğrulayın ve kapsamı bağlayın
+## Kimliği doğrulayın ve erişim kapsamını belirleyin
 
-Versioned memory, health ve metrics istekleri `X-API-Key` ister. Açık `/health/init`, OpenAPI, Swagger ve ReDoc için dağıtım ağ politikası gerekir. Dataset kapsamlı oturumu başlatmadan önce yetkili principal ile katalog kaynaklarını oluşturun. [SDK örneği](docs/core/examples/) terminal durumu açıkça kontrol eder.
+Sürümlü hafıza, sağlık ve ölçüm isteklerinde `X-API-Key` gerekir. Dışarıya açık `/health/init`, OpenAPI, Swagger ve ReDoc için ağ erişim kurallarını kurulumda ayrıca belirleyin. Veri kümeleriyle sınırlı bir oturum açmadan önce katalog kaynaklarını yetkili erişim kimliğiyle oluşturun. [SDK örneği](docs/core/examples/) işlemin son durumunu açıkça kontrol eder.
 
-## Uygulanan endpoint aileleri
+## Kullanılabilen API işlemleri
 
 | Metot | Yol | Amaç |
 |---|---|---|
-| GET | `/v4/capability` | Çalışır özellikler ve rebuild sınırları |
-| POST / GET | `/v4/catalog/workspaces` | Workspace kataloğu |
-| POST / GET | `/v4/catalog/datasets` | Dataset kataloğu |
+| GET | `/v4/capability` | Kullanılabilir özellikler ve yeniden oluşturma sınırları |
+| POST / GET | `/v4/catalog/workspaces` | Çalışma alanı kataloğu |
+| POST / GET | `/v4/catalog/datasets` | Veri kümesi kataloğu |
 | POST / GET | `/v4/catalog/documents` | Belge kataloğu |
-| POST / GET | `/v4/catalog/revisions` | Değişmez revizyonlar |
+| POST / GET | `/v4/catalog/revisions` | Değiştirilemeyen belge sürümleri |
 | POST | `/v4/catalog/source-chunks` | Tam kaynak parçaları |
-| POST | `/v4/sessions/start` | Yetkili dataset kapsamını sabitleme |
-| POST | `/v4/memory/insert` | Kalıcı mutasyon kabulü (202) |
-| POST | `/v4/memory/search` | Kapsamlı hibrit retrieval |
+| POST | `/v4/sessions/start` | Oturumun erişebileceği veri kümelerini belirleme |
+| POST | `/v4/memory/insert` | Değişiklik isteğini kalıcı kayda alma (202) |
+| POST | `/v4/memory/search` | Erişim izinlerine göre hibrit arama |
 | GET | `/v4/mutations/{mutation_id}` | İşleme durumunu izleme |
-| POST | `/v4/mutations/{mutation_id}/replay` | Yetkili tekrar |
-| POST | `/v4/mutations/{mutation_id}/rollback` | Kaynak sahipli rollback |
+| POST | `/v4/mutations/{mutation_id}/replay` | Yetkili yeniden yürütme |
+| POST | `/v4/mutations/{mutation_id}/rollback` | Kaynağın sahiplik bağını geri alma |
 | GET | `/v4/sessions/{session_id}/context` | Sınırlı kanıt bağlamı |
 | POST | `/v4/sessions/{session_id}/end` | Kalıcı oturum sonlandırma |
 
-## Yanıt ve hata sözleşmeleri
+## Yanıtları nasıl yorumlamalı?
 
-202, kabul anlamına gelir. Başarılı yazma `COMMITTED` durumuna ulaşmalıdır. Arama; `rrf_score`, `legal_factor`, `raw_score`, `final_score` ve katkı veren kanalları açığa çıkarır. Model kapalı kanonik yazma `503 canonical_processing_unavailable` döndürür; beklenen sağlayıcı hataları açık 503 yanıtlarıdır. Yönetim rebuild’i ayrıdır ve varsayılan kapalıdır. Sabitlenmiş ek; istek şemalarını, diğer yönetim endpoint’lerini ve yetkilendirme ayrıntılarını içerir.
+HTTP 202 yalnızca isteğin kabul edildiğini bildirir. Başarılı bir yazma `COMMITTED` durumuna ulaşmalıdır. Arama yanıtı; `rrf_score`, `legal_factor`, `raw_score`, `final_score` ve katkı veren kanalları içerir. Model kapalıyken asıl bilgi kaydını yazma `503 canonical_processing_unavailable` döndürür; beklenen sağlayıcı hataları da açık 503 yanıtıyla bildirilir. Yönetim amaçlı yeniden oluşturma ayrı bir işlemdir ve varsayılan olarak kapalıdır. Tam istek şemaları, diğer yönetim işlemleri ve yetkilendirme ayrıntıları aşağıdaki özgün kaynakta bulunur.
