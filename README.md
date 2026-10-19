@@ -44,10 +44,22 @@ validates identity and existing PostgreSQL RLS validates data access. Production
 login has **not been verified**. See [owner setup](docs/admin/ADMIN_AUTH_SETUP.md)
 and [verification](docs/security/MESA_ADMIN_LOGIN_VERIFICATION.md).
 
-Authenticated users with `ADMIN` or `EDITOR` role can read real records and edit existing draft/ready
-articles. Role management and administrative inspection require the `ADMIN` role. Uploading, creating a
-complete article, revision restoration and publication/export/dispatch remain unavailable from client-side RLS.
-A database draft save does not update the static website.
+Verified `ADMIN` users can search, filter, sort and page through the full article
+catalog, create articles, edit draft/ready content and SEO, copy published content
+into non-indexable drafts, restore revisions, and download Markdown. The editor
+warns before discarding unsaved changes. Published records remain read-only.
+
+Apply `supabase/migrations/20261019000000_editorial_revision_tracking.sql` to enable
+transactional revision snapshots and administrator deletion of never-published
+drafts. The migration records content, SEO and editorial metadata together with
+each draft write; a failed transaction rolls back both the article and snapshot.
+Ordinary draft editing works with the existing RLS setup; draft deletion requires
+the new policy. `EDITOR` database roles retain their RLS access, but this panel
+requires `ADMIN`.
+
+Publishing/export-to-site and deployment dispatch still require a trusted backend.
+A database save or marking an article ready does not update `content/hub.json` or
+the static public website. Markdown download is a local editorial handoff.
 
 ## Routes
 

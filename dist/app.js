@@ -444,3 +444,11 @@ if (learningCatalog || learningArticle) {
     updateCatalog();
   }
 }
+
+// Advertise the shortcut available on this device. Touch interfaces need no hint.
+const appleKeyboard = /Mac|iPad|iPhone/.test(navigator.platform || navigator.userAgent);
+const searchShortcut = appleKeyboard ? '⌘ K' : 'Ctrl K';
+for (const trigger of document.querySelectorAll('.search-trigger')) {
+  trigger.querySelector('.search-shortcut').textContent = searchShortcut;
+  trigger.setAttribute('aria-label', (isTurkish ? 'Sitede ara' : 'Search site') + (matchMedia('(pointer: fine)').matches ? ` (${searchShortcut})` : ''));
+}

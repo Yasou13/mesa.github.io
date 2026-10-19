@@ -430,7 +430,7 @@ def main() -> int:
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "Give your AI a memory it can trace." not in home_text or "MESA is open-source memory infrastructure for AI systems." not in home_text:
+    if "Source-linked memory for AI." not in home_text or "MESA is open-source memory infrastructure for AI systems." not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
@@ -455,7 +455,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Yapay zekânız bilgiyi kaynağıyla hatırlasın.", "Bir notun hafızadaki yolculuğu", "AÇIK KAYNAK · v0.8.1"),
+        "tr/": ("Yapay zekâ için kaynağıyla hafıza.", "Bir notun hafızadaki yolculuğu", "Üretim: NO-GO"),
         "tr/how-it-works/": ("Bir not eklediğinizde ne olur?", "Bir ana kayıt. İki arama görünümü.", "Sıralamaları birleştir"),
         "tr/mesa/": ("Dört sinyal", "Graph path", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),

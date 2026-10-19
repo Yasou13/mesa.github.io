@@ -356,6 +356,10 @@ async function checkIntroPages() {
   for (const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/']) {
     for (const width of [320, 390, 768, 1024, 1440]) await inspect(routePath, width);
     await navigate(new URL(routePath, baseUrl).href);
+    if (routePath === '' || routePath === 'tr/') {
+      const publicChecks = await evaluate(`(() => {const badge=document.querySelector('.home-production-badge');return {badge:badge && getComputedStyle(badge).display!=='none' && badge.getBoundingClientRect().height>0,admin:!!document.querySelector('.site-footer a[href*="admin/"]'),license:!!document.querySelector('.site-footer a[href$="LICENSE"]'),quickstart:!!document.querySelector('.hero-copy .actions a[href*="getting-started"]')};})()`);
+      if(!publicChecks.badge || publicChecks.admin || !publicChecks.license || !publicChecks.quickstart)failures.push(routePath+': public review regressions '+JSON.stringify(publicChecks));
+    }
     await evaluate(axe);
     const violations = await evaluate(`(async () => (await axe.run(document, {runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
     if (violations.length) failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);

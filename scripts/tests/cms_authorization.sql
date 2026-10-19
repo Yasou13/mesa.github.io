@@ -61,6 +61,33 @@ DO $$ BEGIN
   EXCEPTION WHEN insufficient_privilege THEN NULL;
   END;
 END $$;
+
+-- New editorial behavior: complete snapshots, atomic rollback and draft-only deletion.
+DO $$ DECLARE target uuid; rev integer; saved_time timestamptz;
+BEGIN
+ SELECT id,current_revision,updated_at INTO target,rev,saved_time FROM public.articles WHERE slug='private-draft';
+ UPDATE public.articles SET title='Revision check',seo_title='Restorable SEO',tags=ARRAY['traceable'] WHERE id=target AND updated_at=saved_time;
+ IF NOT FOUND THEN RAISE EXCEPTION 'optimistic draft save failed'; END IF;
+ IF NOT EXISTS(SELECT FROM public.article_revisions WHERE article_id=target AND revision_number=rev+1 AND title='Revision check' AND metadata->'tags'='["traceable"]'::jsonb) THEN RAISE EXCEPTION 'revision snapshot missing content or metadata'; END IF;
+ UPDATE public.articles SET title='stale' WHERE id=target AND updated_at=saved_time;
+ IF FOUND THEN RAISE EXCEPTION 'stale update unexpectedly accepted'; END IF;
+ BEGIN
+   UPDATE public.articles SET title='must roll back' WHERE id=target;
+   RAISE EXCEPTION 'force rollback';
+ EXCEPTION WHEN raise_exception THEN NULL;
+ END;
+ IF (SELECT title FROM public.articles WHERE id=target)<>'Revision check' THEN RAISE EXCEPTION 'draft transaction did not roll back'; END IF;
+ IF EXISTS(SELECT FROM public.article_revisions WHERE article_id=target AND title='must roll back') THEN RAISE EXCEPTION 'revision transaction did not roll back'; END IF;
+ DELETE FROM public.articles WHERE slug='public-article';
+ IF FOUND THEN RAISE EXCEPTION 'admin deleted published content'; END IF;
+ INSERT INTO public.articles(slug,language,title,summary,body_markdown,seo_title,seo_description)
+ VALUES('disposable-draft','tr','Draft','Summary','Body','SEO','SEO') RETURNING id INTO target;
+ IF NOT EXISTS(SELECT FROM public.article_revisions WHERE article_id=target AND revision_number=1) THEN RAISE EXCEPTION 'creation snapshot missing'; END IF;
+ DELETE FROM public.articles WHERE id=target;
+ IF NOT FOUND THEN RAISE EXCEPTION 'admin could not delete draft'; END IF;
+ IF EXISTS(SELECT FROM public.article_revisions WHERE article_id=target) THEN RAISE EXCEPTION 'orphan revision remained'; END IF;
+END $$;
+SELECT 'EDITORIAL REVISIONS AND DRAFT DELETION PASS' AS result;
 SELECT set_config('request.jwt.claim.sub','33333333-3333-3333-3333-333333333333',false);
 DO $$ BEGIN
   IF public.is_editor() THEN RAISE EXCEPTION 'unassigned user is editor'; END IF;

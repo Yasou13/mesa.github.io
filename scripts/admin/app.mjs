@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { AdminService } from './service.mjs';
-import { renderMarkdown } from '../markdown_engine.mjs';
+import { editable, slugify, filterAndSort, articlePath, markdownEdit } from './editor.mjs';
+import { escapeHtml, renderMarkdown } from '../markdown_engine.mjs';
 
 const config = JSON.parse(document.getElementById('admin-config').textContent);
 const tr = document.documentElement.lang === 'tr';
@@ -11,6 +12,8 @@ const status = (message, error = false) => {
   if (el) {
     el.textContent = message;
     el.dataset.error = String(error);
+    const feedback = $('editor-feedback');
+    if (feedback && !$('editor').hidden) { feedback.textContent = message; feedback.dataset.error = String(error); }
   }
 };
 
@@ -19,6 +22,9 @@ const errors = {
   ROLE: t('This account has no administrator access.', 'Bu hesabın yönetici erişimi yok.'),
   DATA: t('Records could not be loaded. Check the connection and database setup.', 'Kayıtlar yüklenemedi. Bağlantıyı ve veritabanı kurulumunu kontrol edin.'),
   CONFLICT: t('The draft changed or access was denied. Reload it before saving again.', 'Taslak değişmiş veya erişim reddedilmiş. Yeniden kaydetmeden önce yükleyin.'),
+  VALIDATION: t('Enter a title, summary, article body and reading time between 1 and 60 minutes.', 'Başlık, özet, makale metni ve 1–60 dakika arasında okuma süresi girin.'),
+  SLUG: t('Use lowercase Latin letters, numbers and single hyphens in the URL.', 'URL’de küçük Latin harfleri, rakamlar ve tek tire kullanın.'),
+  DUPLICATE: t('This URL already exists in this language. Choose a different slug.', 'Bu dilde aynı URL zaten var. Farklı bir kısa ad seçin.'),
   PUBLISHED: t('Published articles are read-only.', 'Yayımlanmış makaleler salt okunurdur.')
 };
 
@@ -30,7 +36,7 @@ if (config) {
   if (!storage) {
     status(t('Session storage is unavailable. Allow storage in this browser to sign in.', 'Oturum depolaması kullanılamıyor. Giriş için tarayıcı depolamasına izin verin.'), true);
   } else {
-    const hadStoredSession = !storage.getItem(storageKey);
+    const hadStoredSession = Boolean(storage.getItem(storageKey));
     const client = createClient(config.url, config.key, {
       auth: { storage, storageKey, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' }
     });
@@ -38,7 +44,50 @@ if (config) {
 
     let article = null, allArticles = [], categories = [], tags = [];
     let generation = 0, syncId = 0, expiryTimer, signingOut = false;
-    let currentUser = null;
+    let currentUser = null, dirty = false, busy = false, baseline = '', page = 0;
+    const pageSize = 12;
+    const stateNames = {draft:t('Draft','Taslak'),ready:t('Ready for review','İncelemeye hazır'),published:t('Published','Yayında'),publishing:t('Publishing','Yayımlanıyor'),failed:t('Failed','Başarısız'),unpublished:t('Unpublished','Yayından kaldırıldı')};
+    const typeNames = {learn:t('Lesson','Ders'),guide:t('Guide','Rehber'),research:t('Research','Araştırma'),glossary:t('Glossary','Sözlük'),methodology:t('Methodology','Metodoloji')};
+    const date = value => value ? new Date(value).toLocaleString(tr ? 'tr-TR' : 'en-GB', {dateStyle:'medium',timeStyle:'short'}) : '—';
+    function changes() {
+      return {title:$('article-title').value.trim(),subtitle:$('article-subtitle').value || null,summary:$('article-summary').value.trim(),short_answer:$('article-short-answer').value || null,body_markdown:$('article-body').value,slug:$('article-slug').value.trim(),category_id:$('article-category').value || null,tags:[...new Set($('article-tags').value.split(',').map(v=>v.trim()).filter(Boolean))],reading_minutes:Number($('article-reading-minutes').value),seo_title:$('article-seo-title').value.trim() || $('article-title').value.trim(),seo_description:$('article-seo-description').value.trim() || $('article-summary').value.trim(),indexable:$('article-indexable').checked};
+    }
+    function trackChanges() {
+      dirty = Boolean(article && editable(article) && JSON.stringify(changes()) !== baseline);
+      $('save-state').textContent = dirty ? t('Unsaved changes','Kaydedilmemiş değişiklikler') : t('Saved','Kaydedildi');
+      $('save-state').dataset.dirty = String(dirty);
+    }
+    function canLeave() { return !busy && (!dirty || confirm(t('Discard unsaved changes?', 'Kaydedilmemiş değişiklikler silinsin mi?'))); }
+    function showSubtab(name) {
+      document.querySelectorAll('.editor-subtabs .subtab').forEach(b=>{b.classList.toggle('active',b.dataset.subtab===name); b.setAttribute('aria-pressed',String(b.dataset.subtab===name));});
+      document.querySelectorAll('.subtab-pane').forEach(p=>p.classList.toggle('active',p.id === 'subtab-'+name));
+    }
+    function upsertRow(value) {
+      const idx = allArticles.findIndex(row=>row.id === value.id);
+      if (idx < 0) allArticles.unshift(value); else allArticles[idx] = {...allArticles[idx],...value};
+      updateStats(allArticles); filterArticles();
+    }
+    async function saveCurrent() {
+      if (!article || !editable(article)) throw new Error('PUBLISHED');
+      // All required inputs must be focusable when native validity reports an error.
+      const invalid = $('editor').querySelector('input:invalid, textarea:invalid, select:invalid');
+      if (invalid) { showSubtab(invalid.closest('#subtab-meta') ? 'meta' : 'content'); invalid.reportValidity(); return false; }
+      const active = generation, current = article, payload = changes();
+      $('article-fields').disabled = true;
+      try {
+        const saved = await service.saveDraft(current, payload);
+        if (active !== generation) return false;
+        article = {...current,...payload,...saved};
+        baseline = JSON.stringify(changes()); trackChanges();
+        upsertRow(article);
+        $('editor-updated').textContent = t('Updated: ','Güncellendi: ') + date(article.updated_at);
+        $('editor-path').textContent = '/' + articlePath(article);
+        await loadRevisions(article.id);
+        if (active !== generation) return false;
+        status(t('Draft saved. It has not been published.','Taslak kaydedildi. Henüz yayımlanmadı.'));
+        return true;
+      } finally { if (active === generation) $('article-fields').disabled = !editable(article); }
+    }
     const query = new URLSearchParams(location.search);
     let recovery = storage.getItem(storageKey + '-recovery') === '1' || (query.get('recovery') === '1' && query.has('code'));
 
@@ -46,6 +95,8 @@ if (config) {
 
     function lock() {
       generation++;
+      document.body.classList.remove('has-workspace');
+      dirty = false; baseline = "";
       clearTimeout(expiryTimer);
       article = null;
       allArticles = [];
@@ -53,7 +104,7 @@ if (config) {
       if ($('workspace')) $('workspace').hidden = true;
       if ($('recovery-panel')) $('recovery-panel').hidden = true;
       if ($('login-panel')) $('login-panel').hidden = false;
-      if ($('records')) $('records').replaceChildren();
+      for (const id of ['records','aux-records','revisions-list','categories-list','tags-list','audit-events-list','editor-roles-list','markdown-preview']) $(id)?.replaceChildren();
       if ($('editor')) { $('editor').reset(); $('editor').hidden = true; }
       if ($('login-form')) {
         $('login-form').elements.password.value = '';
@@ -82,6 +133,8 @@ if (config) {
     }
 
     async function action(button, task) {
+      if (busy) return;
+      busy = true;
       if (button) { button.disabled = true; button.setAttribute('aria-busy', 'true'); }
       status(t('Working…', 'İşlem sürüyor…'));
       try {
@@ -90,12 +143,17 @@ if (config) {
         if (['SESSION', 'ROLE'].includes(error.message)) await rejectAccess(error);
         else report(error);
       } finally {
+        busy = false;
         if (button) { button.disabled = false; button.removeAttribute('aria-busy'); }
       }
     }
 
     // Switch between top tabs
-    function switchTab(tabName) {
+    function switchTab(tabName, force = false) {
+      if (!force && !canLeave()) return false;
+      dirty = false; article = null;
+      $('editor').hidden = true;
+      $('aux-records-panel').hidden = true;
       document.querySelectorAll('.admin-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tabName));
       const panes = {
         articles: $('tab-content-articles'),
@@ -109,8 +167,9 @@ if (config) {
       if (tabName !== 'articles' && $('editor')) {
         $('editor').hidden = true;
       }
-      if (tabName === 'taxonomy') loadTaxonomy();
-      if (tabName === 'audit') loadAudit();
+      if (tabName === 'taxonomy') action(null, loadTaxonomy);
+      if (tabName === 'audit') action(null, loadAudit);
+      return true;
     }
 
     // Update Quick Stats Counter
@@ -141,8 +200,14 @@ if (config) {
         card.type = 'button';
         card.className = `admin-article-card status-${row.status}`;
 
-        // Critical: row.title as textContent preserves security and existing test assertions
-        card.textContent = `${row.title} · ${row.language.toUpperCase()} · ${row.status}`;
+        const heading = document.createElement('strong'); heading.textContent = row.title;
+        const meta = document.createElement('span'); meta.className = 'article-card-meta';
+        const chip = document.createElement('span'); chip.className = `status-chip status-${row.status}`; chip.textContent = stateNames[row.status] || row.status;
+        const details = document.createElement('span'); details.textContent = `${(row.language || '').toUpperCase()} · ${typeNames[row.type] || row.type || ''} · ${date(row.updated_at)}`;
+        meta.append(chip, details);
+        const summary = document.createElement('span'); summary.className = 'article-card-summary'; summary.textContent = row.summary || '';
+        const link = document.createElement('small'); link.textContent = `/${articlePath(row)}`;
+        card.append(heading, meta, summary, link);
 
         card.addEventListener('click', () => action(card, async () => {
           const reqGen = generation;
@@ -157,28 +222,25 @@ if (config) {
 
     // Filter & Search Logic
     function filterArticles() {
-      const search = ($('article-search')?.value || '').toLowerCase().trim();
-      const lang = $('filter-lang')?.value || 'all';
-      const stat = $('filter-status')?.value || 'all';
-
-      const filtered = allArticles.filter(a => {
-        if (lang !== 'all' && a.language !== lang) return false;
-        if (stat !== 'all' && a.status !== stat) return false;
-        if (search) {
-          const inTitle = (a.title || '').toLowerCase().includes(search);
-          const inSlug = (a.slug || '').toLowerCase().includes(search);
-          const inSummary = (a.summary || '').toLowerCase().includes(search);
-          if (!inTitle && !inSlug && !inSummary) return false;
-        }
-        return true;
-      });
-
-      renderArticlesList(filtered);
+      const filtered = filterAndSort(allArticles, {search:$('article-search').value,language:$('filter-lang').value,status:$('filter-status').value,type:$('filter-type').value,sort:$('article-sort').value});
+      const pages = Math.max(1, Math.ceil(filtered.length / pageSize)); page = Math.min(page,pages-1);
+      renderArticlesList(filtered.slice(page*pageSize,(page+1)*pageSize));
+      $('article-count').textContent = t(`${filtered.length} of ${allArticles.length} articles`, `${allArticles.length} makaleden ${filtered.length} sonuç`);
+      $('page-label').textContent = `${page+1} / ${pages}`;
+      $('page-prev').disabled = page === 0; $('page-next').disabled = page >= pages-1;
     }
 
     // Open Article in Editor
     function openEditor(loaded) {
+      if (!currentUser) return;
       article = loaded;
+      dirty = false;
+      showSubtab('content');
+      $('editor-heading').textContent = editable(article) ? t('Edit article','Makaleyi düzenle') : t('View article','Makaleyi görüntüle');
+      $('editor-path').textContent = '/' + articlePath(article);
+      $('editor-updated').textContent = t('Updated: ','Güncellendi: ') + date(article.updated_at);
+      $('editor-feedback').textContent = '';
+      $('btn-delete-draft').hidden = !editable(article);
       $('article-title').value = article.title || '';
       $('article-summary').value = article.summary || '';
       $('article-body').value = article.body_markdown || '';
@@ -197,7 +259,7 @@ if (config) {
       }
       if ($('article-indexable')) $('article-indexable').checked = article.indexable !== false;
       if ($('editor-status-chip')) {
-        $('editor-status-chip').textContent = article.status;
+        $('editor-status-chip').textContent = stateNames[article.status] || article.status;
         $('editor-status-chip').className = `status-chip status-${article.status}`;
       }
       if ($('btn-toggle-ready')) {
@@ -236,25 +298,27 @@ if (config) {
       // Hide articles list so editor is placed cleanly at top of screen
       if ($('tab-content-articles')) $('tab-content-articles').hidden = true;
       $('editor').hidden = false;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      $('editor').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
 
       const isEditable = ['draft', 'ready'].includes(article.status);
-      $('editor').querySelector('fieldset').disabled = !isEditable;
+      $('article-fields').disabled = !isEditable;
+      $('editor').querySelector('button[type=submit]').disabled = !isEditable;
+      baseline = JSON.stringify(changes()); trackChanges();
 
       if ($('editor-notice-banner')) {
         $('editor-notice-banner').hidden = isEditable;
       }
 
       status(t('Article loaded from the database.', 'Makale veritabanından yüklendi.'));
-      $('article-title').focus();
+      if (isEditable) $('article-title').focus(); else $('btn-close-editor').focus();
     }
 
     function updateLivePreview() {
       const markdown = $('article-body')?.value || '';
-      if ($('body-char-count')) $('body-char-count').textContent = `${markdown.length} chars`;
+      if ($('body-char-count')) $('body-char-count').textContent = t(`${markdown.length} characters · ${markdown.trim() ? markdown.trim().split(/\s+/).length : 0} words`, `${markdown.length} karakter · ${markdown.trim() ? markdown.trim().split(/\s+/).length : 0} sözcük`);
       if ($('markdown-preview')) {
         try {
-          $('markdown-preview').innerHTML = renderMarkdown(markdown);
+          $('markdown-preview').innerHTML = renderMarkdown(markdown).html;
         } catch {
           $('markdown-preview').textContent = markdown;
         }
@@ -270,8 +334,10 @@ if (config) {
       const listEl = $('revisions-list');
       if (!listEl) return;
       listEl.replaceChildren();
+      const active = generation;
       try {
         const revs = await service.listRevisions(articleId);
+        if (active !== generation || article?.id !== articleId) return;
         if (!revs.length) {
           listEl.innerHTML = `<p class="empty-notice">${t('No revisions recorded yet.', 'Henüz kaydedilmiş sürüm yok.')}</p>`;
           return;
@@ -285,25 +351,33 @@ if (config) {
           btn.type = 'button';
           btn.className = 'button secondary btn-sm';
           btn.textContent = t('Restore', 'Geri Yükle');
-          btn.addEventListener('click', async () => {
+          btn.disabled = !editable(article);
+          btn.addEventListener('click', () => action(btn, async () => {
             if (!confirm(t('Restore this revision into the editor?', 'Bu sürüm editöre geri yüklensin mi?'))) return;
             const fullRev = await service.loadRevision(rev.id);
-            $('article-title').value = fullRev.title || '';
-            $('article-summary').value = fullRev.summary || '';
-            $('article-body').value = fullRev.body_markdown || '';
-            updateLivePreview();
-            status(t('Revision content loaded into editor. Click Save to apply.', 'Sürüm içeriği editöre yüklendi. Uygulamak için Kaydet\'e tıklayın.'));
-          });
+            if (active !== generation || article?.id !== articleId) return;
+            const snapshot = fullRev.metadata || {};
+            for (const [key, id] of Object.entries({title:'title',subtitle:'subtitle',summary:'summary',short_answer:'short-answer',body_markdown:'body',seo_title:'seo-title',seo_description:'seo-description'})) $('article-'+id).value = fullRev[key] || '';
+            for (const [key,id] of Object.entries({slug:'slug',category_id:'category',reading_minutes:'reading-minutes'})) if (snapshot[key] !== undefined) $('article-'+id).value = snapshot[key] ?? '';
+            if (snapshot.tags) $('article-tags').value = snapshot.tags.join(', ');
+            if (snapshot.indexable !== undefined) $('article-indexable').checked = snapshot.indexable;
+            updateLivePreview(); trackChanges(); showSubtab('content');
+            status(t('Revision restored into the editor. Save to apply it.', 'Sürüm editöre alındı. Uygulamak için kaydedin.'));
+          }));
           item.append(btn);
           listEl.append(item);
         }
-      } catch {}
+      } catch (error) {
+        if (active === generation && article?.id === articleId) { listEl.textContent = t('Revision history could not be loaded. Try reopening the article.', 'Sürüm geçmişi yüklenemedi. Makaleyi yeniden açmayı deneyin.'); if (['SESSION','ROLE'].includes(error.message)) await rejectAccess(error); }
+      }
     }
 
     // Load Taxonomy
     async function loadTaxonomy() {
-      categories = await service.listCategories();
-      tags = await service.listTags();
+      const active = generation;
+      const loaded = await Promise.all([service.listCategories(), service.listTags()]);
+      if (active !== generation) return;
+      [categories, tags] = loaded;
 
       const catList = $('categories-list');
       if (catList) {
@@ -329,10 +403,13 @@ if (config) {
 
     // Load Audit & Roles
     async function loadAudit() {
+      const active = generation;
+      const [events, roles] = await Promise.all([service.listAuditEvents(), service.listRoles()]);
+      if (active !== generation) return;
       const auditList = $('audit-events-list');
       if (auditList) {
         auditList.replaceChildren();
-        const events = await service.listAuditEvents();
+
         if (!events.length) auditList.innerHTML = `<p class="empty-notice">${t('No audit events found.', 'Denetim olayı bulunamadı.')}</p>`;
         for (const ev of events) {
           const d = document.createElement('div');
@@ -345,7 +422,7 @@ if (config) {
       const rolesList = $('editor-roles-list');
       if (rolesList) {
         rolesList.replaceChildren();
-        const roles = await service.listRoles();
+
         for (const r of roles) {
           const d = document.createElement('div');
           d.className = 'role-entry';
@@ -362,15 +439,17 @@ if (config) {
       if (active !== generation) return;
 
       if ($('editor')) $('editor').hidden = true;
-      if ($('tab-content-articles')) $('tab-content-articles').hidden = false;
-      article = null;
+      for (const id of ['tab-content-articles','create-panel','taxonomy-panel','audit-panel','aux-records-panel']) $(id).hidden = true;
+      dirty = false; article = null;
+      if (table === 'articles') $('tab-content-articles').hidden = false;
+      else { $('aux-records-panel').hidden = false; $('aux-records-title').textContent = table === 'media_assets' ? t('Media records','Medya kayıtları') : t('Publication jobs','Yayın kayıtları'); }
 
       if (table === 'articles') {
         allArticles = rows;
         updateStats(allArticles);
         filterArticles();
       } else {
-        const container = $('records');
+        const container = $('aux-records');
         container.replaceChildren();
         if (!rows.length) {
           const p = document.createElement('p');
@@ -420,11 +499,12 @@ if (config) {
         } else {
           const newlyOpened = $('workspace').hidden;
           $('workspace').hidden = false;
+          document.body.classList.add('has-workspace');
           $('recovery-panel').hidden = true;
           if ($('current-user-email')) $('current-user-email').textContent = session.user.email || '';
           if ($('current-user-role')) $('current-user-role').textContent = 'ADMIN';
 
-          loadTaxonomy();
+          if (newlyOpened) await loadTaxonomy();
           if (newlyOpened) await records('articles');
         }
       } catch (err) {
@@ -488,7 +568,7 @@ if (config) {
       }
     }
 
-    $('logout')?.addEventListener('click', event => action(event.currentTarget, logout));
+    $('logout')?.addEventListener('click', event => { if (canLeave()) action(event.currentTarget, logout); });
 
     $('recovery-form')?.addEventListener('submit', event => {
       event.preventDefault();
@@ -512,19 +592,16 @@ if (config) {
     });
 
     document.querySelectorAll('[data-records]').forEach(button => {
-      button.addEventListener('click', () => action(button, async () => {
+      button.addEventListener('click', () => { if (!canLeave()) return; action(button, async () => {
         document.querySelectorAll('.admin-tab').forEach(b => b.classList.toggle('active', b === button));
         await records(button.dataset.records);
-      }));
+      }); });
     });
 
     // Subtab switching in editor
     document.querySelectorAll('.editor-subtabs .subtab').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.editor-subtabs .subtab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.subtab-pane').forEach(p => p.classList.remove('active'));
-        $(`subtab-${btn.dataset.subtab}`)?.classList.add('active');
+        showSubtab(btn.dataset.subtab);
       });
     });
 
@@ -536,13 +613,16 @@ if (config) {
     $('article-seo-description')?.addEventListener('input', e => updateCharCount('seo-desc-count', e.target.value.length, 160));
 
     // Search and filter triggers
-    $('article-search')?.addEventListener('input', filterArticles);
-    $('filter-lang')?.addEventListener('change', filterArticles);
-    $('filter-status')?.addEventListener('change', filterArticles);
+    $('article-search')?.addEventListener('input', () => {page=0;filterArticles();});
+    for (const id of ['filter-lang','filter-status','filter-type','article-sort']) $(id).addEventListener('change',()=>{page=0;filterArticles();});
+    $('page-prev').addEventListener('click',()=>{page--;filterArticles();});
+    $('page-next').addEventListener('click',()=>{page++;filterArticles();});
     $('btn-refresh-articles')?.addEventListener('click', () => action($('btn-refresh-articles'), () => records('articles')));
 
     // Editor close
     $('btn-close-editor')?.addEventListener('click', () => {
+      if (!canLeave()) return;
+      article = null; dirty = false; filterArticles();
       $('editor').hidden = true;
       if ($('tab-content-articles')) $('tab-content-articles').hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -569,8 +649,11 @@ if (config) {
         seo_description: article.seo_description || article.summary,
         indexable: false
       };
+      const active = generation;
       const created = await service.createArticle(newDraftData);
+      if (active !== generation) return;
       allArticles = await service.listArticles();
+      if (active !== generation) return;
       updateStats(allArticles);
       openEditor(created);
       status(t('Created editable draft from published article.', 'Yayındaki makaleden düzenlenebilir taslak kopya oluşturuldu.'));
@@ -579,52 +662,29 @@ if (config) {
     // Toggle Ready status
     $('btn-toggle-ready')?.addEventListener('click', () => action($('btn-toggle-ready'), async () => {
       if (!article) return;
+      if (!await saveCurrent()) return;
+      const active = generation;
       const targetStatus = article.status === 'ready' ? 'draft' : 'ready';
       const updated = await service.setArticleStatus(article, targetStatus);
+      if (active !== generation || !article) return;
       article.status = updated.status;
       article.updated_at = updated.updated_at;
       if ($('editor-status-chip')) {
-        $('editor-status-chip').textContent = article.status;
+        $('editor-status-chip').textContent = stateNames[article.status] || article.status;
         $('editor-status-chip').className = `status-chip status-${article.status}`;
       }
       $('btn-toggle-ready').textContent = article.status === 'ready' ? t('Revert to Draft', 'Taslağa Geri Al') : t('Mark Ready', 'Hazır Olarak İşaretle');
       status(t(`Article marked as ${article.status}.`, `Makale ${article.status} olarak işaretlendi.`));
-      records('articles');
+      upsertRow(article);
+      await loadRevisions(article.id);
     }));
 
+    $('editor').noValidate = true;
     // Editor save draft
     $('editor')?.addEventListener('submit', event => {
       event.preventDefault();
       action(event.currentTarget.querySelector('button[type="submit"]'), async () => {
-        const active = generation, current = article;
-        if (!current) throw new Error('DATA');
-
-        const tagsRaw = $('article-tags')?.value || '';
-        const tagsArr = tagsRaw.split(',').map(s => s.trim()).filter(Boolean);
-
-        const changes = {
-          title: $('article-title').value,
-          subtitle: $('article-subtitle')?.value || null,
-          summary: $('article-summary').value,
-          short_answer: $('article-short-answer')?.value || null,
-          body_markdown: $('article-body').value,
-          slug: $('article-slug')?.value || current.slug,
-          category_id: $('article-category')?.value || null,
-          tags: tagsArr,
-          reading_minutes: Number($('article-reading-minutes')?.value) || 5,
-          seo_title: $('article-seo-title')?.value || null,
-          seo_description: $('article-seo-description')?.value || null,
-          indexable: $('article-indexable')?.checked !== false
-        };
-
-        const saved = await service.saveDraft(current, changes);
-        if (active !== generation) return;
-        article = { ...current, ...changes, updated_at: saved.updated_at };
-
-        // Save revision snapshot silently
-        try { await service.saveRevision(article, 'Web editor update'); loadRevisions(article.id); } catch {}
-
-        status(t('Draft saved to the database. It has not been published.', 'Taslak veritabanına kaydedildi. Yayımlanmadı.'));
+        await saveCurrent();
       });
     });
 
@@ -639,9 +699,11 @@ if (config) {
         const slug = $('new-article-slug').value.trim();
         const summary = $('new-article-summary').value.trim();
 
+        const active = generation;
         const created = await service.createArticle({ title, type, language, slug, summary });
+        if (active !== generation) return;
         form.reset();
-        switchTab('articles');
+        switchTab('articles', true);
         await records('articles');
         openEditor(created);
         status(t('New draft article created and loaded in editor.', 'Yeni taslak makale oluşturuldu ve editörde açıldı.'));
@@ -677,11 +739,44 @@ if (config) {
       });
     });
 
+    $('editor').addEventListener('input', trackChanges);
+    $('editor').addEventListener('change', trackChanges);
+    window.addEventListener('beforeunload', event => { if (dirty || busy) {event.preventDefault();event.returnValue='';} });
+    document.querySelectorAll('[data-format]').forEach(button=>button.addEventListener('click',()=>{
+      if (!editable(article) || busy) return;
+      const body=$('article-body'), edit=markdownEdit(body.value,body.selectionStart,body.selectionEnd,button.dataset.format);
+      body.value=edit.value; body.focus(); body.setSelectionRange(edit.start,edit.end); updateLivePreview(); trackChanges();
+    }));
+    let autoSlug = '';
+    $('new-article-title').addEventListener('input',()=>{
+      const input=$('new-article-slug');
+      if (!input.value || input.value === autoSlug) {autoSlug=slugify($('new-article-title').value);input.value=autoSlug;}
+    });
+    $('btn-delete-draft').addEventListener('click',event=>{
+      if (!article || !editable(article) || !confirm(t('Permanently delete this draft and its history?', 'Bu taslak ve sürüm geçmişi kalıcı olarak silinsin mi?'))) return;
+      action(event.currentTarget,async()=>{
+        const id=article.id, active=generation;
+        await service.deleteDraft(article);
+        if (active !== generation) return;
+        allArticles=allArticles.filter(row=>row.id!==id); dirty=false; article=null;
+        switchTab('articles',true); updateStats(allArticles); filterArticles();
+        status(t('Draft deleted.','Taslak silindi.'));
+      });
+    });
+    $('btn-export-draft').addEventListener('click',()=>{
+      if (!article) return;
+      const current={...article,...changes()};
+      const file=new Blob(['---\n'+JSON.stringify({title:current.title,slug:current.slug,language:current.language,type:current.type,summary:current.summary,seo_title:current.seo_title,seo_description:current.seo_description,tags:current.tags},null,2)+'\n---\n\n'+current.body_markdown],{type:'text/markdown;charset=utf-8'});
+      const url=URL.createObjectURL(file), link=document.createElement('a');
+      link.href=url;link.download=current.slug+'.'+current.language+'.md';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      status(t('Markdown downloaded. This does not publish the article.', 'Markdown indirildi. Bu işlem makaleyi yayımlamaz.'));
+    });
+
     // Keyboard shortcut for saving: Ctrl+S / Cmd+S
     document.addEventListener('keydown', event => {
       if ((event.ctrlKey || event.metaKey) && event.key === 's') {
         const editor = $('editor');
-        if (editor && !editor.hidden) {
+        if (editor && !editor.hidden && editable(article) && !busy) {
           event.preventDefault();
           editor.requestSubmit();
         }

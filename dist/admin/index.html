@@ -65,7 +65,7 @@
   <section id="workspace" hidden aria-labelledby="workspace-title">
     <div class="workspace-topbar">
       <div>
-        <h2 id="workspace-title">Editorial Dashboard</h2>
+        <h2 id="workspace-title" class="sr-only">Editorial Dashboard</h2>
         <p class="user-info">Signed in as <strong id="current-user-email"></strong> <span id="current-user-role" class="user-role-chip"></span></p>
       </div>
       <div class="topbar-actions">
@@ -95,9 +95,10 @@
       </div>
 
       <!-- Search & Filters Toolbar -->
+      <div class="workspace-guide"><strong>Draft → Review → Ready → Site deployment</strong><p>Write and save here. “Ready” marks an editorial handoff; it does not publish to the website.</p></div>
       <div class="table-toolbar">
         <div class="search-box">
-          <input id="article-search" type="search" placeholder="Search articles by title, slug or summary…">
+          <input aria-label="Search articles" id="article-search" type="search" placeholder="Search articles by title, slug or summary…">
         </div>
         <div class="filter-group">
           <select id="filter-lang" aria-label="Language filter">
@@ -109,26 +110,31 @@
             <option value="all">All Statuses</option>
             <option value="draft">Draft</option>
             <option value="ready">Ready to publish</option>
-            <option value="published">Published</option>
+            <option value="published">Published</option><option value="publishing">Publishing</option><option value="failed">Failed</option><option value="unpublished">Unpublished</option>
           </select>
+          <select id="filter-type" aria-label="Content type filter"><option value="all">All types</option><option value="learn">Lesson</option><option value="guide">Guide</option><option value="research">Research</option><option value="glossary">Glossary</option><option value="methodology">Methodology</option></select>
+          <select id="article-sort" aria-label="Sort articles"><option value="updated">Recently updated</option><option value="oldest">Oldest updated</option><option value="title">Title A–Z</option></select>
           <button id="btn-refresh-articles" class="button secondary" type="button">Refresh</button>
         </div>
       </div>
 
+      <p id="article-count" role="status" class="admin-note"></p>
       <!-- Articles List Container (Required for automated tests & UI) -->
       <div id="records" class="admin-records" role="region" aria-label="Records list"></div>
+      <div class="list-pagination"><button id="page-prev" class="button secondary" type="button">Previous</button><span id="page-label"></span><button id="page-next" class="button secondary" type="button">Next</button></div>
     </div>
+    <section id="aux-records-panel" class="admin-panel" hidden><h3 id="aux-records-title"></h3><div id="aux-records"></div></section>
 
     <!-- TAB 2: Full Article Editor Form -->
     <form id="editor" class="admin-panel editor-panel" hidden>
-      <fieldset>
+      <div class="editor-frame">
         <div class="editor-header">
           <div>
             <button id="btn-close-editor" type="button" class="button secondary btn-sm">← Back to list</button>
-            <legend id="editor-heading">Edit Article</legend>
+            <h3 id="editor-heading">Edit Article</h3>
           </div>
           <div class="editor-header-actions">
-            <span id="editor-status-chip" class="status-chip">draft</span>
+            <span id="save-state" role="status"></span><span id="editor-status-chip" class="status-chip">draft</span>
             <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">Mark Ready</button>
             <button class="button primary" type="submit">Save draft <kbd class="kbd-hint">Ctrl+S</kbd></button>
           </div>
@@ -142,6 +148,8 @@
           <button id="btn-duplicate-draft" type="button" class="button secondary btn-sm">Duplicate as Editable Draft</button>
         </div>
 
+        <div class="editor-context"><span id="editor-path"></span><span id="editor-updated"></span></div>
+        <p id="editor-feedback" class="editor-feedback" role="status" aria-live="polite"></p>
         <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
         <div class="editor-subtabs">
           <button type="button" class="subtab active" data-subtab="content">Content & Markdown</button>
@@ -150,7 +158,7 @@
         </div>
 
         <!-- Subtab 1: Content & Live Preview -->
-        <div id="subtab-content" class="subtab-pane active">
+        <fieldset id="article-fields"><div id="subtab-content" class="subtab-pane active">
           <div class="form-grid">
             <div class="form-group col-span-2">
               <label for="article-title">Title</label>
@@ -177,14 +185,15 @@
                 <label for="article-body"><strong>Markdown Source</strong></label>
                 <span class="char-count" id="body-char-count">0 chars</span>
               </div>
-              <textarea id="article-body" name="article-body" required rows="22" spellcheck="false" placeholder="# Heading&#10;&#10;Write markdown content here..."></textarea>
+              <div class="markdown-toolbar" role="group" aria-label="Formatting tools"><button type="button" data-format="heading">Heading</button><button type="button" data-format="bold">Bold</button><button type="button" data-format="italic">Italic</button><button type="button" data-format="list">List</button><button type="button" data-format="link">Link</button><button type="button" data-format="code">Code</button><button type="button" data-format="quote">Quote</button></div>
+              <textarea id="article-body" name="article-body" required rows="22" placeholder="## Heading&#10;&#10;Write your article…"></textarea>
             </div>
             <div class="markdown-preview-pane">
               <div class="pane-header">
                 <strong>Live Preview</strong>
                 <span class="preview-badge">Real-time</span>
               </div>
-              <div id="markdown-preview" class="preview-content knowledge-article" aria-live="polite"></div>
+              <div id="markdown-preview" class="preview-content knowledge-article"></div>
             </div>
           </div>
         </div>
@@ -194,7 +203,7 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="article-slug">Slug</label>
-              <input id="article-slug" name="article-slug" type="text" required>
+              <input id="article-slug" name="article-slug" type="text" required pattern="[a-z0-9]+(-[a-z0-9]+)*" aria-describedby="slug-help"><small id="slug-help">URL: lowercase letters, numbers and hyphens.</small>
             </div>
             <div class="form-group">
               <label for="article-category">Category</label>
@@ -225,19 +234,21 @@
           </div>
         </div>
 
+        </fieldset>
         <!-- Subtab 3: Revisions History -->
         <div id="subtab-revisions" class="subtab-pane">
-          <p class="admin-panel__intro">Every draft save records an immutable revision snapshot. Click any revision to restore its content.</p>
+          <p class="admin-panel__intro">Saved revisions appear here when database revision tracking is enabled. Restore a revision into the editor, then save to apply it.</p>
           <div id="revisions-list" class="revisions-timeline"></div>
         </div>
-      </fieldset>
+        <div class="editor-utilities"><button id="btn-export-draft" class="button secondary" type="button">Download Markdown</button><button id="btn-delete-draft" class="button secondary danger" type="button">Delete draft</button></div>
+      </div>
       <p class="admin-note">Published articles are read-only. Saving a draft updates the database; public site publication requires triggering the deployment pipeline.</p>
     </form>
 
     <!-- TAB 3: New Article Creator -->
     <section id="create-panel" class="admin-panel" hidden>
       <h2>Create New Article</h2>
-      <p class="admin-panel__intro">Draft a new article. Once created, you can write the markdown content and link paired translations.</p>
+      <p class="admin-panel__intro">Draft a new article. Once created, you can write, preview and organize its content.</p>
       <form id="create-article-form">
         <div class="form-grid">
           <div class="form-group col-span-2">
@@ -247,7 +258,7 @@
           <div class="form-group">
             <label for="new-article-type">Content Type</label>
             <select id="new-article-type">
-              <option value="learn">Learn</option>
+              <option value="learn">Lesson</option>
               <option value="guide">Guide</option>
               <option value="research">Research</option>
               <option value="glossary">Glossary</option>
@@ -257,13 +268,13 @@
           <div class="form-group">
             <label for="new-article-lang">Language</label>
             <select id="new-article-lang">
-              <option value="en">English (EN)</option>
+              <option value="en" selected>English (EN)</option>
               <option value="tr">Türkçe (TR)</option>
             </select>
           </div>
           <div class="form-group col-span-2">
             <label for="new-article-slug">Slug</label>
-            <input id="new-article-slug" type="text" placeholder="auto-generated-from-title">
+            <input id="new-article-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="auto-generated-from-title">
           </div>
           <div class="form-group col-span-2">
             <label for="new-article-summary">Summary</label>
@@ -286,9 +297,9 @@
           <div id="categories-list" class="taxonomy-list"></div>
           <form id="add-category-form" class="inline-subform">
             <h4>Add Category</h4>
-            <input id="cat-id" type="text" placeholder="ID (slug)" required>
-            <input id="cat-title-en" type="text" placeholder="Title (EN)" required>
-            <input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
+            <label for="cat-id">Category ID</label><input id="cat-id" type="text" placeholder="ID (slug)" required>
+            <label for="cat-title-en">Category name (EN)</label><input id="cat-title-en" type="text" placeholder="Title (EN)" required>
+            <label for="cat-title-tr">Category name (TR)</label><input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
             <button type="submit" class="button secondary btn-sm">Save Category</button>
           </form>
         </div>
@@ -297,9 +308,9 @@
           <div id="tags-list" class="taxonomy-list"></div>
           <form id="add-tag-form" class="inline-subform">
             <h4>Add Tag</h4>
-            <input id="tag-slug" type="text" placeholder="Slug" required>
-            <input id="tag-name-en" type="text" placeholder="Name (EN)" required>
-            <input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
+            <label for="tag-slug">Tag slug</label><input id="tag-slug" type="text" placeholder="Slug" required>
+            <label for="tag-name-en">Tag name (EN)</label><input id="tag-name-en" type="text" placeholder="Name (EN)" required>
+            <label for="tag-name-tr">Tag name (TR)</label><input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
             <button type="submit" class="button secondary btn-sm">Save Tag</button>
           </form>
         </div>

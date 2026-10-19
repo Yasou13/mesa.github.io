@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">MESA — Memory with evidence, not mystery.</title>
+  <title id="title">MESA — Source-linked memory for AI.</title>
   <desc id="desc">Obsidian archival social preview with a traced evidence graph.</desc>
   <rect width="1200" height="630" fill="#0b0c0f"/>
   <rect x="42" y="38" width="1116" height="554" rx="4" fill="none" stroke="#2b2c31"/>
@@ -7,8 +7,8 @@
     <path d="M0 42V0h10l16 21L42 0h10v42H41V16L26 36 11 16v26Z" fill="#7562a8"/>
     <text x="70" y="33" fill="#f1efe9" font-family="DejaVu Sans,Arial,sans-serif" font-size="27" font-weight="700" letter-spacing="3">MESA</text>
   </g>
-  <text x="72" y="245" fill="#f1efe9" font-family="DejaVu Sans,Arial,sans-serif" font-size="68" font-weight="400">Memory with evidence,</text>
-  <text x="72" y="326" fill="#f1efe9" font-family="DejaVu Serif,Georgia,serif" font-size="68" font-style="italic">not mystery.</text>
+  <text x="72" y="245" fill="#f1efe9" font-family="DejaVu Sans,Arial,sans-serif" font-size="68" font-weight="400">Source-linked memory</text>
+  <text x="72" y="326" fill="#f1efe9" font-family="DejaVu Serif,Georgia,serif" font-size="68" font-style="italic">for AI.</text>
   <text x="76" y="406" fill="#9b9aa2" font-family="DejaVu Sans,Arial,sans-serif" font-size="23">Evidence-aware memory infrastructure for AI systems</text>
   <line x1="76" y1="493" x2="1124" y2="493" stroke="#2b2c31"/>
   <text x="76" y="545" fill="#a99bd0" font-family="DejaVu Sans Mono,monospace" font-size="15" letter-spacing="3">SOURCE  →  MEMORY  →  EVIDENCE</text>

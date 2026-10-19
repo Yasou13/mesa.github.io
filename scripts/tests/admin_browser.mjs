@@ -4,6 +4,8 @@ export const adminFixture = `(() => {
  const originalFetch=window.fetch.bind(window), key='mesa-admin-127.0.0.1:54321';
  const user={id:'11111111-1111-4111-8111-111111111111',aud:'authenticated',role:'authenticated',email:'owner@example.test',app_metadata:{},user_metadata:{},created_at:'2026-10-16T00:00:00Z'};
  const f=window.__authFixture={mode:sessionStorage.getItem('mesa-fixture-mode')||'ok',calls:[],delay:0,revoked:false};
+ f.articles=Array.from({length:15},(_,i)=>({id:i?'article-'+i:'draft',slug:i?'article-'+i:'private-draft',type:i===2?'guide':'learn',title:i===0?'<img src=x onerror=alert(1)> fixture':'Article '+i,language:i===2?'tr':'en',summary:'Private summary',body_markdown:'# Private draft',status:i===1?'published':'draft',reading_minutes:5,tags:[],seo_title:'Fixture',seo_description:'Summary',updated_at:'2026-10-16T10:00:00Z',current_revision:1}));
+ f.revisions=[];
  f.session=(expiry=3600)=>{const exp=Math.floor(Date.now()/1000)+expiry;return {access_token:btoa(JSON.stringify({alg:'HS256',typ:'JWT'}))+'.'+btoa(JSON.stringify({sub:user.id,exp,iat:Math.floor(Date.now()/1000),aud:'authenticated',role:'authenticated'}))+'.fixture',refresh_token:'isolated-refresh-fixture',token_type:'bearer',expires_in:expiry,expires_at:exp,user};};
  window.fetch=async(input,options={})=>{
   const url=new URL(typeof input==='string'?input:input.url);if(url.origin!=='http://127.0.0.1:54321')return originalFetch(input,options);
@@ -24,10 +26,28 @@ export const adminFixture = `(() => {
   if(url.pathname==='/rest/v1/rpc/is_admin')return f.mode==='role-error'?response({message:'Unavailable'},503):response(f.mode!=='nonadmin');
   if(url.pathname==='/rest/v1/articles'){
    if(f.mode==='data-fail')return response({message:'Denied'},403);
-   if(method==='PATCH')return f.mode==='conflict'?response({message:'No rows',code:'PGRST116'},406):response({id:'draft',updated_at:'2026-10-16T10:01:00Z'});
-   const article={id:'draft',title:'<img src=x onerror=alert(1)> fixture',language:'en',summary:'Private summary',body_markdown:'# Private draft',status:'draft',updated_at:'2026-10-16T10:00:00Z'};
-   return response(url.searchParams.has('id')?article:[article]);
+   const id=(url.searchParams.get('id')||'').replace(/^eq[.]/,'');
+   const current=f.articles.find(a=>a.id===id);
+   const payload=options.body?JSON.parse(options.body):{};
+   if(method==='PATCH'){
+    if(f.mode==='conflict')return response({message:'No rows',code:'PGRST116'},406);
+    if(current.status==='published')return response({message:'Denied'},403);
+    Object.assign(current,payload,{updated_at:new Date().toISOString(),current_revision:current.current_revision+1});
+    f.revisions.unshift({...current,id:'rev-'+current.current_revision,article_id:id,revision_number:current.current_revision,created_at:current.updated_at,change_summary:'Saved <script>unsafe</script>',metadata:{slug:current.slug,tags:current.tags,indexable:current.indexable}});
+    return response(current);
+   }
+   if(method==='POST'){
+    if(f.articles.some(a=>a.slug===payload.slug && a.language===payload.language))return response({code:'23505'},409);
+    const created={...payload,id:'created-'+f.articles.length};f.articles.unshift(created);return response(created);
+   }
+   if(method==='DELETE'){f.articles=f.articles.filter(a=>a.id!==id);return response({id});}
+   return response(id?current:f.articles.slice(Number(url.searchParams.get('offset')||0),Number(url.searchParams.get('offset')||0)+Number(url.searchParams.get('limit')||200)));
   }
+  if(url.pathname==='/rest/v1/article_revisions'){
+   const id=(url.searchParams.get('id')||'').replace(/^eq[.]/,'');
+   return response(id?f.revisions.find(r=>r.id===id):f.revisions.filter(r=>r.article_id===(url.searchParams.get('article_id')||'').replace(/^eq[.]/,'')));
+  }
+  if(['/rest/v1/categories','/rest/v1/tags','/rest/v1/audit_events','/rest/v1/editor_roles'].includes(url.pathname))return response([]);
   if(['/rest/v1/media_assets','/rest/v1/publication_jobs'].includes(url.pathname))return response([]);
   throw new Error('Unexpected fixture endpoint '+url.pathname);
  };
@@ -35,6 +55,7 @@ export const adminFixture = `(() => {
 
 export async function checkAdminAuth({connection,evaluate,navigate,baseUrl,failures,fallbackChecks,screenshotsDirectory,fs,path}) {
  await connection.send('Page.addScriptToEvaluateOnNewDocument',{source:adminFixture});
+ const axeSource=fs.readFileSync(new URL('../../node_modules/axe-core/axe.min.js',import.meta.url),'utf8');
  const key='mesa-admin-127.0.0.1:54321';
  const until=async expression=>{for(let i=0;i<100;i++){if(await evaluate(expression))return;await new Promise(r=>setTimeout(r,50));}throw new Error('Timed out: '+expression);};
  const record=(name,passed)=>{fallbackChecks.push({type:'isolated-auth-fixture',name,status:passed?'PASS':'FAIL'});if(!passed)failures.push('Admin fixture: '+name);};
@@ -54,14 +75,57 @@ export async function checkAdminAuth({connection,evaluate,navigate,baseUrl,failu
   record(locale+'loading state',await evaluate(`document.querySelector('#login-form button').disabled`));
   await until(`!document.querySelector('#workspace').hidden && document.querySelector('#records button')`);
   record(locale+'real SDK token user and role sequence',await evaluate(`['/auth/v1/token','/auth/v1/user','/rest/v1/rpc/is_admin','/rest/v1/articles'].every(path=>__authFixture.calls.some(c=>c.path===path))`));
+  for (const width of [390,1440]) {
+    await connection.send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<800});
+    record(locale+'article list fits '+width+'px',await evaluate(`document.documentElement.scrollWidth<=innerWidth+1`));
+    if(screenshotsDirectory){const shot=await connection.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync(path.join(screenshotsDirectory,(locale?'tr-':'')+'articles-'+width+'.png'),Buffer.from(shot.data,'base64'));}
+  }
   record(locale+'draft title remains text',await evaluate(`!document.querySelector('#records img') && document.querySelector('#records').textContent.includes('<img')`));
   await evaluate(`document.querySelector('#records button').click()`);await until(`!document.querySelector('#editor').hidden`);
-  await evaluate(`document.querySelector('#article-title').value='Saved fixture';document.querySelector('#editor').requestSubmit()`);await until(`!document.querySelector('#editor button').disabled`);
+  await evaluate(`document.querySelector('#article-title').value='Saved fixture';document.querySelector('#article-title').dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('#editor').requestSubmit()`);await until(`!document.querySelector('#editor button[type=submit]').disabled`);
   record(locale+'draft save waits for backend',await evaluate(`__authFixture.calls.some(c=>c.method==='PATCH') && document.querySelector('#admin-status').textContent.includes('${locale?'kaydedildi':'saved'}')`));
-  await evaluate(`__authFixture.mode='conflict';document.querySelector('#editor').requestSubmit()`);await until(`!document.querySelector('#editor button').disabled`);
+  await evaluate(`__authFixture.mode='conflict';document.querySelector('#editor').requestSubmit()`);await until(`!document.querySelector('#editor button[type=submit]').disabled`);
   record(locale+'stale write rejected',await evaluate(`document.querySelector('#admin-status').dataset.error==='true'`));
-  await evaluate(`__authFixture.mode='ok';document.querySelector('[data-records="media_assets"]').click()`);await until(`__authFixture.calls.some(c=>c.path==='/rest/v1/media_assets')`);
-  await evaluate(`document.querySelector('[data-records="publication_jobs"]').click()`);await until(`__authFixture.calls.some(c=>c.path==='/rest/v1/publication_jobs')`);
+  await evaluate(`__authFixture.mode='ok';document.querySelector('#btn-close-editor').click()`);
+  record(locale+'pagination contains 12 records',await evaluate(`document.querySelectorAll('#records button').length===12 && !document.querySelector('#page-next').disabled`));
+  await evaluate(`document.querySelector('#page-next').click()`);
+  record(locale+'pagination reaches remaining records',await evaluate(`document.querySelectorAll('#records button').length===3`));
+  await evaluate(`document.querySelector('#filter-type').value='guide';document.querySelector('#filter-type').dispatchEvent(new Event('change'))`);
+  record(locale+'type filter resets pagination',await evaluate(`document.querySelectorAll('#records button').length===1 && document.querySelector('#records').textContent.includes('TR')`));
+  await evaluate(`document.querySelector('#filter-type').value='all';document.querySelector('#filter-type').dispatchEvent(new Event('change'));document.querySelector('#filter-status').value='published';document.querySelector('#filter-status').dispatchEvent(new Event('change'));document.querySelector('#records button').click()`);
+  await until(`!document.querySelector('#editor').hidden`);
+  record(locale+'published editor preserves navigation and duplicate',await evaluate(`document.querySelector('#article-fields').disabled && !document.querySelector('#btn-close-editor').disabled && !document.querySelector('#btn-duplicate-draft').disabled`));
+  await evaluate(`document.querySelector('#btn-duplicate-draft').click()`);
+  await until(`!document.querySelector('#article-fields').disabled && !document.querySelector('#btn-duplicate-draft').disabled`);
+  record(locale+'published article duplicates as non-indexable draft',await evaluate(`!document.querySelector('#article-indexable').checked && __authFixture.articles.some(a=>a.slug.includes('-draft-') && a.status==='draft')`));
+  await evaluate(`document.querySelector('#article-body').value='Edited text';document.querySelector('#article-body').dispatchEvent(new Event('input',{bubbles:true}));window.confirm=()=>false;document.querySelector('#btn-close-editor').click()`);
+  record(locale+'unsaved edits cannot be discarded by cancelled navigation',await evaluate(`!document.querySelector('#editor').hidden && document.querySelector('#save-state').dataset.dirty==='true'`));
+  await evaluate(`document.querySelector('#article-seo-title').value='';document.querySelector('#article-seo-description').value='';document.querySelector('#editor').requestSubmit()`);
+  await until(`!document.querySelector('#editor button[type=submit]').disabled`);
+  record(locale+'blank SEO falls back to content and revisions are readable',await evaluate(`__authFixture.articles.some(a=>a.body_markdown==='Edited text' && a.seo_title && a.seo_description) && document.querySelector('#revisions-list button') && !document.querySelector('#markdown-preview').textContent.includes('[object Object]') && !document.querySelector('#revisions-list script')`));
+  await evaluate(`window.confirm=()=>true;document.querySelector('#btn-toggle-ready').click()`);
+  await until(`document.querySelector('#editor-status-chip').classList.contains('status-ready') && !document.querySelector('#btn-toggle-ready').disabled`);
+  record(locale+'mark ready saves content and keeps editor open',await evaluate(`!document.querySelector('#editor').hidden && document.querySelector('#article-body').value==='Edited text'`));
+  await evaluate(`document.querySelector('#btn-delete-draft').click()`);
+  await until(`document.querySelector('#editor').hidden`);
+  record(locale+'delete removes only the draft copy',await evaluate(`!__authFixture.articles.some(a=>a.slug.includes('-draft-')) && __authFixture.articles.some(a=>a.status==='published')`));
+  await evaluate(`document.querySelector('[data-tab=create]').click();document.querySelector('#new-article-title').value='Türkçe İçerik Çalışması';document.querySelector('#new-article-title').dispatchEvent(new Event('input'));document.querySelector('#new-article-summary').value='New summary';document.querySelector('#create-article-form').requestSubmit()`);
+  await until(`!document.querySelector('#editor').hidden && !document.querySelector('#article-fields').disabled`);
+  record(locale+'new article receives Turkish-safe slug',await evaluate(`document.querySelector('#article-slug').value==='turkce-icerik-calismasi'`));
+  await evaluate(`document.querySelector('#article-body').focus();document.querySelector('#article-body').setSelectionRange(0,2);document.querySelector('[data-format=bold]').click()`);
+  record(locale+'formatting updates preview and dirty state',await evaluate(`document.querySelector('#article-body').value.startsWith('**') && document.querySelector('#markdown-preview strong') && document.querySelector('#save-state').dataset.dirty==='true'`));
+  await evaluate(`document.querySelector('#editor').requestSubmit()`);await until(`!document.querySelector('#editor button[type=submit]').disabled`);
+  for (const width of [390,1440]) {
+    await connection.send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<800});
+    await evaluate(axeSource);
+    const violations=await evaluate(`(async()=>(await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
+    record(locale+'editor WCAG '+width+'px',violations.length===0);
+    if(violations.length)failures.push(JSON.stringify(violations));
+    record(locale+'editor fits '+width+'px',await evaluate(`document.documentElement.scrollWidth<=innerWidth+1`));
+    if(screenshotsDirectory){const shot=await connection.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync(path.join(screenshotsDirectory,(locale?'tr-':'')+'editor-'+width+'.png'),Buffer.from(shot.data,'base64'));}
+  }
+  await evaluate(`__authFixture.mode='ok';document.querySelector('[data-records="media_assets"]').click()`);await until(`__authFixture.calls.some(c=>c.path==='/rest/v1/media_assets') && !document.querySelector('[data-records="media_assets"]').disabled`);
+  await evaluate(`document.querySelector('[data-records="publication_jobs"]').click()`);await until(`__authFixture.calls.some(c=>c.path==='/rest/v1/publication_jobs') && !document.querySelector('[data-records="publication_jobs"]').disabled`);
   record(locale+'private media and publication metadata',true);
   await evaluate(`document.querySelector('#logout').click()`);await until(`!sessionStorage.getItem('${key}')`);
   record(locale+'logout clears private fields and session',await evaluate(`document.querySelector('#workspace').hidden && document.querySelector('#records').children.length===0 && document.querySelector('#article-body').value===''`));
@@ -80,7 +144,7 @@ export async function checkAdminAuth({connection,evaluate,navigate,baseUrl,failu
   await until(`!sessionStorage.getItem('${key}')`);
   record(locale+'password change and logout',await evaluate(`__authFixture.calls.some(c=>c.path==='/auth/v1/user'&&c.method==='PUT') && document.querySelector('#workspace').hidden`));
   await reset();await signin();await until(`!document.querySelector('#workspace').hidden`);
-  await evaluate(`__authFixture.mode='nonadmin';document.querySelector('[data-records="articles"]').click()`);await until(`document.querySelector('#workspace').hidden`);
+  await evaluate(`__authFixture.mode='nonadmin';document.querySelector('#btn-refresh-articles').click()`);await until(`document.querySelector('#workspace').hidden`);
   record(locale+'revoked role clears loaded private content',await evaluate(`document.querySelector('#records').children.length===0 && document.querySelector('#article-body').value===''`));
   await reset();await signin();await until(`!document.querySelector('#workspace').hidden`);
   await evaluate(`__authFixture.mode='logout-fail';document.querySelector('#logout').click()`);await until(`!sessionStorage.getItem('${key}')`);

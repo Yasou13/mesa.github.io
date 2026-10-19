@@ -65,7 +65,7 @@
   <section id="workspace" hidden aria-labelledby="workspace-title">
     <div class="workspace-topbar">
       <div>
-        <h2 id="workspace-title">Editöryal Panel</h2>
+        <h2 id="workspace-title" class="sr-only">Editöryal Panel</h2>
         <p class="user-info">Oturum: <strong id="current-user-email"></strong> <span id="current-user-role" class="user-role-chip"></span></p>
       </div>
       <div class="topbar-actions">
@@ -95,9 +95,10 @@
       </div>
 
       <!-- Search & Filters Toolbar -->
+      <div class="workspace-guide"><strong>Taslak → İnceleme → Hazır → Siteye aktarım</strong><p>İçeriği burada yazıp kaydedin. “Hazır”, editöryal onay durumudur; siteye otomatik yayın yapmaz.</p></div>
       <div class="table-toolbar">
         <div class="search-box">
-          <input id="article-search" type="search" placeholder="Başlık, slug veya özete göre ara…">
+          <input aria-label="Makalelerde ara" id="article-search" type="search" placeholder="Başlık, slug veya özete göre ara…">
         </div>
         <div class="filter-group">
           <select id="filter-lang" aria-label="Dil filtresi">
@@ -109,26 +110,31 @@
             <option value="all">Tüm Durumlar</option>
             <option value="draft">Taslak</option>
             <option value="ready">Yayına hazır</option>
-            <option value="published">Yayımlanmış</option>
+            <option value="published">Yayımlanmış</option><option value="publishing">Yayımlanıyor</option><option value="failed">Başarısız</option><option value="unpublished">Yayından kaldırıldı</option>
           </select>
+          <select id="filter-type" aria-label="İçerik türü filtresi"><option value="all">Tüm türler</option><option value="learn">Ders</option><option value="guide">Rehber</option><option value="research">Araştırma</option><option value="glossary">Sözlük</option><option value="methodology">Metodoloji</option></select>
+          <select id="article-sort" aria-label="Makale sıralaması"><option value="updated">Son güncellenen</option><option value="oldest">Uzun süredir güncellenmeyen</option><option value="title">Başlık A–Z</option></select>
           <button id="btn-refresh-articles" class="button secondary" type="button">Yenile</button>
         </div>
       </div>
 
+      <p id="article-count" role="status" class="admin-note"></p>
       <!-- Articles List Container (Required for automated tests & UI) -->
       <div id="records" class="admin-records" role="region" aria-label="Kayıt listesi"></div>
+      <div class="list-pagination"><button id="page-prev" class="button secondary" type="button">Önceki</button><span id="page-label"></span><button id="page-next" class="button secondary" type="button">Sonraki</button></div>
     </div>
+    <section id="aux-records-panel" class="admin-panel" hidden><h3 id="aux-records-title"></h3><div id="aux-records"></div></section>
 
     <!-- TAB 2: Full Article Editor Form -->
     <form id="editor" class="admin-panel editor-panel" hidden>
-      <fieldset>
+      <div class="editor-frame">
         <div class="editor-header">
           <div>
             <button id="btn-close-editor" type="button" class="button secondary btn-sm">← Listeye dön</button>
-            <legend id="editor-heading">Makale Düzenle</legend>
+            <h3 id="editor-heading">Makale Düzenle</h3>
           </div>
           <div class="editor-header-actions">
-            <span id="editor-status-chip" class="status-chip">draft</span>
+            <span id="save-state" role="status"></span><span id="editor-status-chip" class="status-chip">draft</span>
             <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">Hazır Olarak İşaretle</button>
             <button class="button primary" type="submit">Taslağı kaydet <kbd class="kbd-hint">Ctrl+S</kbd></button>
           </div>
@@ -142,6 +148,8 @@
           <button id="btn-duplicate-draft" type="button" class="button secondary btn-sm">Taslak Olarak Kopyala ve Düzenle</button>
         </div>
 
+        <div class="editor-context"><span id="editor-path"></span><span id="editor-updated"></span></div>
+        <p id="editor-feedback" class="editor-feedback" role="status" aria-live="polite"></p>
         <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
         <div class="editor-subtabs">
           <button type="button" class="subtab active" data-subtab="content">İçerik ve Markdown</button>
@@ -150,7 +158,7 @@
         </div>
 
         <!-- Subtab 1: Content & Live Preview -->
-        <div id="subtab-content" class="subtab-pane active">
+        <fieldset id="article-fields"><div id="subtab-content" class="subtab-pane active">
           <div class="form-grid">
             <div class="form-group col-span-2">
               <label for="article-title">Başlık</label>
@@ -177,14 +185,15 @@
                 <label for="article-body"><strong>Markdown Kaynağı</strong></label>
                 <span class="char-count" id="body-char-count">0 chars</span>
               </div>
-              <textarea id="article-body" name="article-body" required rows="22" spellcheck="false" placeholder="# Heading&#10;&#10;Write markdown content here..."></textarea>
+              <div class="markdown-toolbar" role="group" aria-label="Biçimlendirme araçları"><button type="button" data-format="heading">Başlık</button><button type="button" data-format="bold">Kalın</button><button type="button" data-format="italic">İtalik</button><button type="button" data-format="list">Liste</button><button type="button" data-format="link">Bağlantı</button><button type="button" data-format="code">Kod</button><button type="button" data-format="quote">Alıntı</button></div>
+              <textarea id="article-body" name="article-body" required rows="22" placeholder="## Başlık&#10;&#10;Makalenizi yazın…"></textarea>
             </div>
             <div class="markdown-preview-pane">
               <div class="pane-header">
                 <strong>Canlı Önizleme</strong>
                 <span class="preview-badge">Anlık</span>
               </div>
-              <div id="markdown-preview" class="preview-content knowledge-article" aria-live="polite"></div>
+              <div id="markdown-preview" class="preview-content knowledge-article"></div>
             </div>
           </div>
         </div>
@@ -194,7 +203,7 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="article-slug">Slug</label>
-              <input id="article-slug" name="article-slug" type="text" required>
+              <input id="article-slug" name="article-slug" type="text" required pattern="[a-z0-9]+(-[a-z0-9]+)*" aria-describedby="slug-help"><small id="slug-help">URL: küçük Latin harfleri, rakamlar ve tire kullanın.</small>
             </div>
             <div class="form-group">
               <label for="article-category">Kategori</label>
@@ -225,19 +234,21 @@
           </div>
         </div>
 
+        </fieldset>
         <!-- Subtab 3: Revisions History -->
         <div id="subtab-revisions" class="subtab-pane">
-          <p class="admin-panel__intro">Her taslak kaydında değişmez bir sürüm anlık görüntüsü kaydedilir. İçeriğini geri yüklemek için herhangi bir sürüme tıklayın.</p>
+          <p class="admin-panel__intro">Veritabanı sürüm takibi etkinse kaydedilen sürümler burada görünür. Bir sürümü editöre alın, ardından uygulamak için kaydedin.</p>
           <div id="revisions-list" class="revisions-timeline"></div>
         </div>
-      </fieldset>
+        <div class="editor-utilities"><button id="btn-export-draft" class="button secondary" type="button">Markdown indir</button><button id="btn-delete-draft" class="button secondary danger" type="button">Taslağı sil</button></div>
+      </div>
       <p class="admin-note">Yayımlanmış makaleler salt okunurdur. Taslak kaydetmek veritabanını günceller; genel sitede yayınlama dağıtım hattının tetiklenmesini gerektirir.</p>
     </form>
 
     <!-- TAB 3: New Article Creator -->
     <section id="create-panel" class="admin-panel" hidden>
       <h2>Yeni Makale Oluştur</h2>
-      <p class="admin-panel__intro">Yeni bir taslak makale oluşturun. Oluşturulduktan sonra markdown içeriğini yazabilir ve çeviri eşleşmesini bağlayabilirsiniz.</p>
+      <p class="admin-panel__intro">Yeni bir taslak makale oluşturun. Oluşturulduktan sonra içeriği yazabilir, önizleyebilir ve düzenleyebilirsiniz.</p>
       <form id="create-article-form">
         <div class="form-grid">
           <div class="form-group col-span-2">
@@ -247,9 +258,9 @@
           <div class="form-group">
             <label for="new-article-type">İçerik Türü</label>
             <select id="new-article-type">
-              <option value="learn">Learn</option>
-              <option value="guide">Guide</option>
-              <option value="research">Research</option>
+              <option value="learn">Ders</option>
+              <option value="guide">Rehber</option>
+              <option value="research">Araştırma</option>
               <option value="glossary">Glossary</option>
               <option value="methodology">Methodology</option>
             </select>
@@ -258,12 +269,12 @@
             <label for="new-article-lang">Dil</label>
             <select id="new-article-lang">
               <option value="en">English (EN)</option>
-              <option value="tr">Türkçe (TR)</option>
+              <option value="tr" selected>Türkçe (TR)</option>
             </select>
           </div>
           <div class="form-group col-span-2">
             <label for="new-article-slug">Slug</label>
-            <input id="new-article-slug" type="text" placeholder="basliktan-otomatik-olusturulur">
+            <input id="new-article-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="basliktan-otomatik-olusturulur">
           </div>
           <div class="form-group col-span-2">
             <label for="new-article-summary">Özet</label>
@@ -286,9 +297,9 @@
           <div id="categories-list" class="taxonomy-list"></div>
           <form id="add-category-form" class="inline-subform">
             <h4>Yeni Kategori</h4>
-            <input id="cat-id" type="text" placeholder="ID (slug)" required>
-            <input id="cat-title-en" type="text" placeholder="Title (EN)" required>
-            <input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
+            <label for="cat-id">Kategori kimliği</label><input id="cat-id" type="text" placeholder="ID (slug)" required>
+            <label for="cat-title-en">Kategori adı (EN)</label><input id="cat-title-en" type="text" placeholder="Title (EN)" required>
+            <label for="cat-title-tr">Kategori adı (TR)</label><input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
             <button type="submit" class="button secondary btn-sm">Kategori Ekle</button>
           </form>
         </div>
@@ -297,9 +308,9 @@
           <div id="tags-list" class="taxonomy-list"></div>
           <form id="add-tag-form" class="inline-subform">
             <h4>Yeni Etiket</h4>
-            <input id="tag-slug" type="text" placeholder="Slug" required>
-            <input id="tag-name-en" type="text" placeholder="Name (EN)" required>
-            <input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
+            <label for="tag-slug">Etiket kısa adı</label><input id="tag-slug" type="text" placeholder="Slug" required>
+            <label for="tag-name-en">Etiket adı (EN)</label><input id="tag-name-en" type="text" placeholder="Name (EN)" required>
+            <label for="tag-name-tr">Etiket adı (TR)</label><input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
             <button type="submit" class="button secondary btn-sm">Etiket Ekle</button>
           </form>
         </div>

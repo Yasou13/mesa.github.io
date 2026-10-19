@@ -6,3 +6,6 @@
 *.mp4 binary
 *.pdf binary
 *.ico binary
+
+# Bundled SDK includes a literal whitespace alphabet; preserve its trailing tabs.
+dist/admin.js whitespace=-blank-at-eol

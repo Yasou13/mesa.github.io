@@ -4,7 +4,7 @@ The static page uses the official `@supabase/supabase-js` 2.118.0 SDK, bundled l
 
 ## Owner setup (not performed against production)
 
-1. Use the intended Supabase project. Apply both files in `supabase/migrations/` in timestamp order after testing on an isolated environment. Do not expose a project with only the first migration: its publication policy is unsafe. Verify the second migration's draft-only INSERT/UPDATE policies and revoked job INSERT policy.
+1. Use the intended Supabase project. Apply all files in `supabase/migrations/` in timestamp order after testing on an isolated environment. Do not expose a project with only the first migration: its publication policy is unsafe. Verify the second migration's draft-only INSERT/UPDATE policies and revoked job INSERT policy.
 2. Disable public signup and anonymous sign-in in Auth settings. Create/invite the owner through the Supabase dashboard, confirm the email and establish a password. Do not enable a public signup endpoint in the website.
 3. In a trusted SQL session, assign that existing `auth.users.id` an `ADMIN` row in `public.editor_roles`. The browser must never provision its own role. Example, substituting the owner's actual UUID/email:
 
@@ -26,8 +26,10 @@ Rebuild the committed admin bundle after changing `scripts/admin/`: `npm ci --ig
 
 ## CMS boundary
 
-After server-verified ADMIN login: list up to 100 article records; load full real article bodies; edit existing draft/ready title, summary and Markdown with optimistic concurrency; inspect private media metadata and publication-job status. Published records are read-only. Missing records stay empty; no articles are synthesized from search results.
+After server-verified ADMIN login: browse the full article catalog in pages; search/filter/sort; create articles; edit draft/ready content, taxonomy and SEO with optimistic concurrency; duplicate published content into non-indexable drafts; download Markdown; inspect private media metadata and publication-job status. Published records are read-only. Missing records stay empty; no articles are synthesized from search results.
 
-Creating a full article, revision restore, safe image upload/download, publication snapshots, trusted dispatch, exporter, deployment receipts and rollback are **not implemented**. Publication and upload controls are deliberately absent. `content/hub.json` remains the public site's source. A saved database draft is not a published website update. Do not weaken RLS to make a button appear functional.
+Revision restore loads content and available metadata into the editor and requires an explicit save. Apply `20261019000000_editorial_revision_tracking.sql` for atomic snapshots/audit records and deletion of never-published drafts. Before that migration, ordinary draft saves continue to work but automatic history and deletion are unavailable.
+
+Safe media upload, trusted publication dispatch, static exporter, deployment receipts and site rollback are **not implemented**. Publication and upload controls are deliberately absent. `content/hub.json` remains the public site's source. A saved database draft is not a published website update. Do not weaken RLS to make a button appear functional.
 
 Sessions use `sessionStorage` (tab lifetime), not persistent localStorage. Access tokens are revalidated with Auth `getUser()` and server `is_admin()` before each private operation. RLS is the actual enforcement layer. On expiry, role loss or logout the UI erases private fields; failed remote logout removes local credentials and explicitly reports that server revocation is unconfirmed. Existing JWTs may remain usable until expiry, as with Supabase generally. Revoke roles immediately in the DB when access must end; RLS checks roles per request.

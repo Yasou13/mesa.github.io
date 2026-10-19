@@ -163,7 +163,7 @@ function header(active = '') {
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
           ${nav.map(([key, label, path, glyph]) => `<a class="nav-item${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}"><span class="nav-symbol" aria-hidden="true">${navigationIcon(glyph)}</span><span>${label}</span></a>`).join('')}
-          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">⌘K</kbd></button>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
           ${languageControl()}
           <a class="nav-github" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span>${icon('external', 'icon-external')}</a>
         </nav>
@@ -177,19 +177,19 @@ function footer(compact = false) {
         <p class="eyebrow">OPEN SOURCE · MIT</p>
         <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
         <p>MESA v0.8.1 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
-        <div class="actions">${cta('Read the quickstart', route('docs/'))}${cta('View source', repos.core, 'secondary', true)}</div>
+        <div class="actions">${cta('Read the quickstart', route('docs/core/getting-started/'))}${cta('View source', repos.core, 'secondary', true)}</div>
       </div>
     </section>`}
     <footer class="site-footer">
-      <div class="footer-brand">${logo()}<p>${project.fullName}.</p><p class="footer-note">v${project.version} · ${project.runtime} ${project.maturity.toLowerCase()} · <a href="${route('status/')}">View status →</a></p></div>
+      <div class="footer-brand">${logo()}<p>Source-linked memory for AI.</p><p class="footer-note">Package v${project.version} · Runtime architecture ${project.runtime} · <a href="${route('status/')}">View status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Explore</h3><a href="${route('how-it-works/')}">How it works</a><a href="${route('use-cases/')}">Use cases</a><a href="${route('evaluation/')}">Evaluation & trust</a><a href="${route('status/')}">Project status</a></div>
-        <div><h3>Ecosystem</h3><a href="${route('mesa/')}">MESA Core</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
+        <div><h3>Ecosystem</h3><a href="${route('mesa/')}">Core memory engine</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
         <div><h3>Resources</h3><a href="${route('learn/')}">Learn</a><a href="${route('research/')}">Research</a><a href="${route('guides/')}">Guides</a><a href="${route('glossary/')}">Glossary</a><a href="${route('methodology/')}">Methodology</a></div>
-        <div><h3>Documentation</h3><a href="${route('docs/core/getting-started/')}">Quickstart</a><a href="${route('architecture/')}">Architecture</a><a href="${route('retrieval/')}">Retrieval</a><a href="${route('docs/core/security/')}">Security</a><a href="${route('docs/mcp/')}">MCP integration</a></div>
-        <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}<a href="${route('admin/')}">Admin</a></div>
+        <div><h3>Documentation</h3><a href="${route('docs/core/getting-started/')}">Quickstart</a><a href="${route('docs/core/architecture/')}">Core architecture docs</a><a href="${route('retrieval/')}">Retrieval</a><a href="${route('docs/core/security/')}">Security</a><a href="${route('docs/mcp/')}">MCP integration</a></div>
+        <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}${external(`${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`, 'MIT License')}</div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Source-verified documentation gateway</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Documentation checked against the published source</span></div>
     </footer>`.trim();
 }
 

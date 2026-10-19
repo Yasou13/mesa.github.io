@@ -24,7 +24,7 @@
   "pages": {
     "home": {
       "path": "",
-      "title": "MESA — Evidence-Aware Memory Infrastructure",
+      "title": "MESA — Source-linked Memory for AI",
       "description": "MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."
     },
     "mesa": {

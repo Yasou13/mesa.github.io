@@ -75,7 +75,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
   <section id="workspace" hidden aria-labelledby="workspace-title">
     <div class="workspace-topbar">
       <div>
-        <h2 id="workspace-title">${t('Editorial Dashboard','Editöryal Panel')}</h2>
+        <h2 id="workspace-title" class="sr-only">${t('Editorial Dashboard','Editöryal Panel')}</h2>
         <p class="user-info">${t('Signed in as','Oturum:')} <strong id="current-user-email"></strong> <span id="current-user-role" class="user-role-chip"></span></p>
       </div>
       <div class="topbar-actions">
@@ -105,9 +105,10 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
       </div>
 
       <!-- Search & Filters Toolbar -->
+      <div class="workspace-guide"><strong>${t('Draft → Review → Ready → Site deployment','Taslak → İnceleme → Hazır → Siteye aktarım')}</strong><p>${t('Write and save here. “Ready” marks an editorial handoff; it does not publish to the website.','İçeriği burada yazıp kaydedin. “Hazır”, editöryal onay durumudur; siteye otomatik yayın yapmaz.')}</p></div>
       <div class="table-toolbar">
         <div class="search-box">
-          <input id="article-search" type="search" placeholder="${t('Search articles by title, slug or summary…','Başlık, slug veya özete göre ara…')}">
+          <input aria-label="${t('Search articles','Makalelerde ara')}" id="article-search" type="search" placeholder="${t('Search articles by title, slug or summary…','Başlık, slug veya özete göre ara…')}">
         </div>
         <div class="filter-group">
           <select id="filter-lang" aria-label="${t('Language filter','Dil filtresi')}">
@@ -119,26 +120,31 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
             <option value="all">${t('All Statuses','Tüm Durumlar')}</option>
             <option value="draft">${t('Draft','Taslak')}</option>
             <option value="ready">${t('Ready to publish','Yayına hazır')}</option>
-            <option value="published">${t('Published','Yayımlanmış')}</option>
+            <option value="published">${t('Published','Yayımlanmış')}</option><option value="publishing">${t('Publishing','Yayımlanıyor')}</option><option value="failed">${t('Failed','Başarısız')}</option><option value="unpublished">${t('Unpublished','Yayından kaldırıldı')}</option>
           </select>
+          <select id="filter-type" aria-label="${t('Content type filter','İçerik türü filtresi')}"><option value="all">${t('All types','Tüm türler')}</option>${['learn','guide','research','glossary','methodology'].map(v=>`<option value="${v}">${({learn:t('Lesson','Ders'),guide:t('Guide','Rehber'),research:t('Research','Araştırma'),glossary:t('Glossary','Sözlük'),methodology:t('Methodology','Metodoloji')})[v]}</option>`).join('')}</select>
+          <select id="article-sort" aria-label="${t('Sort articles','Makale sıralaması')}"><option value="updated">${t('Recently updated','Son güncellenen')}</option><option value="oldest">${t('Oldest updated','Uzun süredir güncellenmeyen')}</option><option value="title">${t('Title A–Z','Başlık A–Z')}</option></select>
           <button id="btn-refresh-articles" class="button secondary" type="button">${t('Refresh','Yenile')}</button>
         </div>
       </div>
 
+      <p id="article-count" role="status" class="admin-note"></p>
       <!-- Articles List Container (Required for automated tests & UI) -->
       <div id="records" class="admin-records" role="region" aria-label="${t('Records list','Kayıt listesi')}"></div>
+      <div class="list-pagination"><button id="page-prev" class="button secondary" type="button">${t('Previous','Önceki')}</button><span id="page-label"></span><button id="page-next" class="button secondary" type="button">${t('Next','Sonraki')}</button></div>
     </div>
+    <section id="aux-records-panel" class="admin-panel" hidden><h3 id="aux-records-title"></h3><div id="aux-records"></div></section>
 
     <!-- TAB 2: Full Article Editor Form -->
     <form id="editor" class="admin-panel editor-panel" hidden>
-      <fieldset>
+      <div class="editor-frame">
         <div class="editor-header">
           <div>
             <button id="btn-close-editor" type="button" class="button secondary btn-sm">← ${t('Back to list','Listeye dön')}</button>
-            <legend id="editor-heading">${t('Edit Article','Makale Düzenle')}</legend>
+            <h3 id="editor-heading">${t('Edit Article','Makale Düzenle')}</h3>
           </div>
           <div class="editor-header-actions">
-            <span id="editor-status-chip" class="status-chip">draft</span>
+            <span id="save-state" role="status"></span><span id="editor-status-chip" class="status-chip">draft</span>
             <button id="btn-toggle-ready" type="button" class="button secondary btn-sm">${t('Mark Ready','Hazır Olarak İşaretle')}</button>
             <button class="button primary" type="submit">${t('Save draft','Taslağı kaydet')} <kbd class="kbd-hint">Ctrl+S</kbd></button>
           </div>
@@ -152,6 +158,8 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           <button id="btn-duplicate-draft" type="button" class="button secondary btn-sm">${t('Duplicate as Editable Draft','Taslak Olarak Kopyala ve Düzenle')}</button>
         </div>
 
+        <div class="editor-context"><span id="editor-path"></span><span id="editor-updated"></span></div>
+        <p id="editor-feedback" class="editor-feedback" role="status" aria-live="polite"></p>
         <!-- Editor Tabs: Details, Markdown Editor & Live Preview, Revisions -->
         <div class="editor-subtabs">
           <button type="button" class="subtab active" data-subtab="content">${t('Content & Markdown','İçerik ve Markdown')}</button>
@@ -160,7 +168,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
         </div>
 
         <!-- Subtab 1: Content & Live Preview -->
-        <div id="subtab-content" class="subtab-pane active">
+        <fieldset id="article-fields"><div id="subtab-content" class="subtab-pane active">
           <div class="form-grid">
             <div class="form-group col-span-2">
               <label for="article-title">${t('Title','Başlık')}</label>
@@ -187,14 +195,15 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
                 <label for="article-body"><strong>Markdown ${t('Source','Kaynağı')}</strong></label>
                 <span class="char-count" id="body-char-count">0 chars</span>
               </div>
-              <textarea id="article-body" name="article-body" required rows="22" spellcheck="false" placeholder="# Heading&#10;&#10;Write markdown content here..."></textarea>
+              <div class="markdown-toolbar" role="group" aria-label="${t('Formatting tools','Biçimlendirme araçları')}">${[['heading',t('Heading','Başlık')],['bold',t('Bold','Kalın')],['italic',t('Italic','İtalik')],['list',t('List','Liste')],['link',t('Link','Bağlantı')],['code',t('Code','Kod')],['quote',t('Quote','Alıntı')]].map(([key,text])=>`<button type="button" data-format="${key}">${text}</button>`).join('')}</div>
+              <textarea id="article-body" name="article-body" required rows="22" placeholder="${t('## Heading&#10;&#10;Write your article…','## Başlık&#10;&#10;Makalenizi yazın…')}"></textarea>
             </div>
             <div class="markdown-preview-pane">
               <div class="pane-header">
                 <strong>${t('Live Preview','Canlı Önizleme')}</strong>
                 <span class="preview-badge">${t('Real-time','Anlık')}</span>
               </div>
-              <div id="markdown-preview" class="preview-content knowledge-article" aria-live="polite"></div>
+              <div id="markdown-preview" class="preview-content knowledge-article"></div>
             </div>
           </div>
         </div>
@@ -204,7 +213,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           <div class="form-grid">
             <div class="form-group">
               <label for="article-slug">Slug</label>
-              <input id="article-slug" name="article-slug" type="text" required>
+              <input id="article-slug" name="article-slug" type="text" required pattern="[a-z0-9]+(-[a-z0-9]+)*" aria-describedby="slug-help"><small id="slug-help">${t('URL: lowercase letters, numbers and hyphens.','URL: küçük Latin harfleri, rakamlar ve tire kullanın.')}</small>
             </div>
             <div class="form-group">
               <label for="article-category">${t('Category','Kategori')}</label>
@@ -235,19 +244,21 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           </div>
         </div>
 
+        </fieldset>
         <!-- Subtab 3: Revisions History -->
         <div id="subtab-revisions" class="subtab-pane">
-          <p class="admin-panel__intro">${t('Every draft save records an immutable revision snapshot. Click any revision to restore its content.','Her taslak kaydında değişmez bir sürüm anlık görüntüsü kaydedilir. İçeriğini geri yüklemek için herhangi bir sürüme tıklayın.')}</p>
+          <p class="admin-panel__intro">${t('Saved revisions appear here when database revision tracking is enabled. Restore a revision into the editor, then save to apply it.','Veritabanı sürüm takibi etkinse kaydedilen sürümler burada görünür. Bir sürümü editöre alın, ardından uygulamak için kaydedin.')}</p>
           <div id="revisions-list" class="revisions-timeline"></div>
         </div>
-      </fieldset>
+        <div class="editor-utilities"><button id="btn-export-draft" class="button secondary" type="button">${t('Download Markdown','Markdown indir')}</button><button id="btn-delete-draft" class="button secondary danger" type="button">${t('Delete draft','Taslağı sil')}</button></div>
+      </div>
       <p class="admin-note">${t('Published articles are read-only. Saving a draft updates the database; public site publication requires triggering the deployment pipeline.','Yayımlanmış makaleler salt okunurdur. Taslak kaydetmek veritabanını günceller; genel sitede yayınlama dağıtım hattının tetiklenmesini gerektirir.')}</p>
     </form>
 
     <!-- TAB 3: New Article Creator -->
     <section id="create-panel" class="admin-panel" hidden>
       <h2>${t('Create New Article','Yeni Makale Oluştur')}</h2>
-      <p class="admin-panel__intro">${t('Draft a new article. Once created, you can write the markdown content and link paired translations.','Yeni bir taslak makale oluşturun. Oluşturulduktan sonra markdown içeriğini yazabilir ve çeviri eşleşmesini bağlayabilirsiniz.')}</p>
+      <p class="admin-panel__intro">${t('Draft a new article. Once created, you can write, preview and organize its content.','Yeni bir taslak makale oluşturun. Oluşturulduktan sonra içeriği yazabilir, önizleyebilir ve düzenleyebilirsiniz.')}</p>
       <form id="create-article-form">
         <div class="form-grid">
           <div class="form-group col-span-2">
@@ -257,9 +268,9 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           <div class="form-group">
             <label for="new-article-type">${t('Content Type','İçerik Türü')}</label>
             <select id="new-article-type">
-              <option value="learn">Learn</option>
-              <option value="guide">Guide</option>
-              <option value="research">Research</option>
+              <option value="learn">${t('Lesson','Ders')}</option>
+              <option value="guide">${t('Guide','Rehber')}</option>
+              <option value="research">${t('Research','Araştırma')}</option>
               <option value="glossary">Glossary</option>
               <option value="methodology">Methodology</option>
             </select>
@@ -267,13 +278,13 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           <div class="form-group">
             <label for="new-article-lang">${t('Language','Dil')}</label>
             <select id="new-article-lang">
-              <option value="en">English (EN)</option>
-              <option value="tr">Türkçe (TR)</option>
+              <option value="en"${tr ? '' : ' selected'}>English (EN)</option>
+              <option value="tr"${tr ? ' selected' : ''}>Türkçe (TR)</option>
             </select>
           </div>
           <div class="form-group col-span-2">
             <label for="new-article-slug">Slug</label>
-            <input id="new-article-slug" type="text" placeholder="${t('auto-generated-from-title','basliktan-otomatik-olusturulur')}">
+            <input id="new-article-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="${t('auto-generated-from-title','basliktan-otomatik-olusturulur')}">
           </div>
           <div class="form-group col-span-2">
             <label for="new-article-summary">${t('Summary','Özet')}</label>
@@ -296,9 +307,9 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           <div id="categories-list" class="taxonomy-list"></div>
           <form id="add-category-form" class="inline-subform">
             <h4>${t('Add Category','Yeni Kategori')}</h4>
-            <input id="cat-id" type="text" placeholder="ID (slug)" required>
-            <input id="cat-title-en" type="text" placeholder="Title (EN)" required>
-            <input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
+            <label for="cat-id">${t('Category ID','Kategori kimliği')}</label><input id="cat-id" type="text" placeholder="ID (slug)" required>
+            <label for="cat-title-en">${t('Category name (EN)','Kategori adı (EN)')}</label><input id="cat-title-en" type="text" placeholder="Title (EN)" required>
+            <label for="cat-title-tr">${t('Category name (TR)','Kategori adı (TR)')}</label><input id="cat-title-tr" type="text" placeholder="Title (TR)" required>
             <button type="submit" class="button secondary btn-sm">${t('Save Category','Kategori Ekle')}</button>
           </form>
         </div>
@@ -307,9 +318,9 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
           <div id="tags-list" class="taxonomy-list"></div>
           <form id="add-tag-form" class="inline-subform">
             <h4>${t('Add Tag','Yeni Etiket')}</h4>
-            <input id="tag-slug" type="text" placeholder="Slug" required>
-            <input id="tag-name-en" type="text" placeholder="Name (EN)" required>
-            <input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
+            <label for="tag-slug">${t('Tag slug','Etiket kısa adı')}</label><input id="tag-slug" type="text" placeholder="Slug" required>
+            <label for="tag-name-en">${t('Tag name (EN)','Etiket adı (EN)')}</label><input id="tag-name-en" type="text" placeholder="Name (EN)" required>
+            <label for="tag-name-tr">${t('Tag name (TR)','Etiket adı (TR)')}</label><input id="tag-name-tr" type="text" placeholder="Name (TR)" required>
             <button type="submit" class="button secondary btn-sm">${t('Save Tag','Etiket Ekle')}</button>
           </form>
         </div>

@@ -36,7 +36,24 @@ test('published records cannot be saved and unknown collections cannot be querie
 test('draft saves are allowlisted and reject stale writes',async()=>{
  const calls=[]; const query={eq(...args){calls.push(['eq',...args]);return this;},in(...args){calls.push(['in',...args]);return this;},select(){return this;},async single(){return{data:null,error:{code:'PGRST116'}};}};
  const service=new AdminService({auth:{getUser:async()=>({data:{user:{id:'owner'}}})},rpc:async()=>({data:true}),from:()=>({update:payload=>{calls.push(payload);return query;}})});
- await assert.rejects(service.saveDraft({id:'draft',status:'draft',updated_at:'old'},{title:'Title',summary:'Summary',body_markdown:'Text',status:'published',published_at:'forged'}),/CONFLICT/);
+ await assert.rejects(service.saveDraft({id:'draft',slug:'draft',status:'draft',reading_minutes:5,updated_at:'old'},{title:'Title',summary:'Summary',body_markdown:'Text',status:'published',published_at:'forged'}),/CONFLICT/);
  assert.equal(calls[0].status,undefined);assert.equal(calls[0].published_at,undefined);
  assert.ok(calls.some(c=>c[0]==='eq'&&c[1]==='updated_at'&&c[2]==='old'));
+});
+
+import {slugify, filterAndSort, markdownEdit} from '../admin/editor.mjs';
+test('Turkish titles produce stable public slugs',()=>{
+ assert.equal(slugify('Türkçe İçerik: Işık, Öğrenme ve Şema!'),'turkce-icerik-isik-ogrenme-ve-sema');
+});
+test('filter and sort operate over a copy and search tags',()=>{
+ const rows=[{title:'Z',summary:'A',tags:['Kaynak'],language:'tr',status:'draft',type:'guide',updated_at:'2026-01-01'},{title:'A',language:'en',status:'published',type:'learn',updated_at:'2026-02-01'}];
+ assert.deepEqual(filterAndSort(rows,{search:'kaynak',type:'guide'}),[rows[0]]);
+ assert.equal(filterAndSort(rows)[0],rows[1]);assert.equal(rows[0].title,'Z');
+});
+test('formatting preserves unselected source and selection boundaries',()=>{
+ assert.deepEqual(markdownEdit('one two three',4,7,'bold'),{value:'one **two** three',start:6,end:9});
+});
+test('published records cannot be deleted through draft controls',async()=>{
+ const service=new AdminService({auth:{getUser:async()=>({data:{user:{id:'owner'}}})},rpc:async()=>({data:true}),from:()=>assert.fail('unexpected delete')});
+ await assert.rejects(service.deleteDraft({status:'published'}),/PUBLISHED/);
 });

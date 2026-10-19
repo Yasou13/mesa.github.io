@@ -4202,7 +4202,7 @@
   {
     "id": "core-home-en",
     "url": "",
-    "title": "MESA — Evidence-Aware Memory Infrastructure",
+    "title": "MESA — Source-linked Memory for AI",
     "section": "Ecosystem",
     "category": "Core",
     "summary": "MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.",
@@ -4216,7 +4216,7 @@
   {
     "id": "core-home-tr",
     "url": "tr/",
-    "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
+    "title": "MESA — Yapay Zekâ İçin Kaynağıyla Hafıza",
     "section": "Ekosistem",
     "category": "Core",
     "summary": "Mesa, yapay zekâ uygulamanızın hafızasıdır. Belge ve notlarınızdaki bilgileri saklar, soruya uygun olanları bulur ve kaynağıyla birlikte iletir.",

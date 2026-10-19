@@ -1,7 +1,7 @@
 {
   "pages": {
     "home": {
-      "title": "MESA — Kanıt Odaklı Hafıza Altyapısı",
+      "title": "MESA — Yapay Zekâ İçin Kaynağıyla Hafıza",
       "description": "Mesa, yapay zekâ uygulamanızın hafızasıdır. Belge ve notlarınızdaki bilgileri saklar, soruya uygun olanları bulur ve kaynağıyla birlikte iletir."
     },
     "mesa": {
@@ -179,7 +179,8 @@
     "MESA Law v0.1.0",
     "MESA QA v0.1.0",
     "E2E Certification v0.1.0",
-    "MESA Data → MESA Core → MESA Law"
+    "MESA Data → MESA Core → MESA Law",
+    "Ctrl K"
   ],
   "strings": {
     "Search": "Ara",
@@ -953,6 +954,13 @@
     "Adds matter/document review, provenance, deadlines and a pinned MESA V4 HTTP contract. Research, drafting and rebuild surfaces remain disabled.": "Matter/belge incelemesi, kaynak izi, süreler ve sabitlenmiş MESA V4 HTTP sözleşmesi ekler. Research, drafting ve rebuild yüzeyleri kapalı kalır.",
     "Core overview": "Core genel bakış",
     "The base install includes native storage and HTTP/SDK support. Python 3.10–3.13 are CI-tested; development and model/provider extras are optional.": "Temel kurulum yerel depolama ve HTTP/SDK desteğini içerir. Python 3.10–3.13 CI matrisinde test edilir; geliştirme ve model/sağlayıcı ek paketleri isteğe bağlıdır.",
-    "Architecture decisions": "Mimari kararlar"
+    "Architecture decisions": "Mimari kararlar",
+    "Source-linked memory for AI.": "Yapay zekâ için kaynağıyla hafıza.",
+    "Documentation checked against the published source": "Yayımlanan kaynak koduyla karşılaştırılmış dokümanlar",
+    "MIT License": "MIT Lisansı",
+    "Core memory engine": "Core hafıza motoru",
+    "Package v0.8.1 · Runtime architecture V4 ·": "Paket v0.8.1 · Çalışma zamanı mimarisi V4 ·",
+    "Ctrl K": "Ctrl K",
+    "Core architecture docs": "Core mimari dokümanları"
   }
 }
