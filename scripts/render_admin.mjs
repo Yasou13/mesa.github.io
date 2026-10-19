@@ -1,7 +1,7 @@
 import { escapeHtml } from './markdown_engine.mjs';
 import { cosmicEnvironment } from './cosmic.mjs';
 
-export function renderAdminPage({ assetBase = '../', language = 'en', config = null } = {}) {
+export function renderAdminPage({ assetBase = '../', language = 'en', config = null, bundleVersion = '', cssVersion = '' } = {}) {
   const tr = language === 'tr';
   const t = (en, turkish) => tr ? turkish : en;
   const base = escapeHtml(assetBase);
@@ -19,7 +19,7 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
 <link rel="icon" type="image/png" sizes="48x48" href="${base}favicon-48x48.png">
 <link rel="icon" href="${base}assets/mesa-mark.webp" type="image/webp">
 <link rel="apple-touch-icon" href="${base}apple-touch-icon.png">
-<link rel="stylesheet" href="${base}styles.css"><link rel="stylesheet" href="${base}cosmic.css"><link rel="stylesheet" href="${base}admin.css">
+<link rel="stylesheet" href="${base}styles.css"><link rel="stylesheet" href="${base}cosmic.css"><link rel="stylesheet" href="${base}admin.css${cssVersion ? '?v='+encodeURIComponent(cssVersion) : ''}">
 </head><body>${cosmicEnvironment('admin')}
 <header class="admin-header">
   <div class="admin-header__brand">
@@ -85,8 +85,9 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
     </div>
 
     <!-- Main Navigation Tabs -->
-    <nav class="admin-tabs" aria-label="${t('Çalışma alanı views','Yönetim bölümleri')}">
+    <nav class="admin-tabs" aria-label="${t('Workspace views','Yönetim bölümleri')}">
       <button class="admin-tab active" data-tab="articles" type="button">${t('Articles & Drafts','Makaleler ve Taslaklar')}</button>
+      <button class="admin-tab" data-tab="requests" type="button">${t('Early access requests','Erken erişim talepleri')}</button>
       <button class="admin-tab" data-tab="create" type="button">${t('+ New Article','+ Yeni Makale')}</button>
       <button class="admin-tab" data-tab="taxonomy" type="button">${t('Taxonomy','Kategoriler & Etiketler')}</button>
       <button class="admin-tab" data-records="media_assets" type="button">${t('Media Records','Medya Kayıtları')}</button>
@@ -94,6 +95,14 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
       <button class="admin-tab" data-tab="audit" type="button">${t('Audit & Roles','Denetim ve Roller')}</button>
     </nav>
 
+    <section id="requests-panel" class="admin-panel" hidden aria-labelledby="requests-title">
+      <h2 id="requests-title">${t('Early access requests','Erken erişim talepleri')}</h2><p class="admin-note">${t('Review use cases, add private notes and track follow-up. Changing a status does not send an email or grant access.','Kullanım ihtiyaçlarını inceleyin, özel not ekleyin ve görüşmeleri takip edin. Durum değiştirmek e-posta göndermez veya erişim vermez.')}</p>
+      <form id="request-filter-form" class="table-toolbar"><label for="request-search">${t('Search by email','E-posta ile ara')}<input id="request-search" type="search" maxlength="254" autocomplete="off"></label><label for="request-filter">${t('Request status','Talep durumu')}<select id="request-filter"><option value="all">${t('All statuses','Tüm durumlar')}</option>${[['new','New','Yeni'],['reviewing','Reviewing','İnceleniyor'],['contacted','Contacted','İletişim kuruldu'],['invited','Invited','Davet edildi'],['closed','Closed','Kapatıldı'],['spam','Spam','İstenmeyen']].map(([v,en,tr])=>`<option value="${v}">${t(en,tr)}</option>`).join('')}</select></label><button id="request-refresh" class="button secondary" type="submit">${t('Search / refresh','Ara / yenile')}</button></form>
+      <p id="request-count" role="status"></p><div class="request-inbox"><div><div id="request-list"></div><div class="list-pagination"><button id="request-prev" class="button secondary" type="button" disabled>${t('Previous','Önceki')}</button><button id="request-next" class="button secondary" type="button" disabled>${t('Next','Sonraki')}</button></div></div>
+      <form id="request-detail" hidden><h3 id="request-email" tabindex="-1"></h3><p id="request-date" class="admin-note"></p><h4>${t('Use case','Kullanım amacı')}</h4><p id="request-use-case"></p><h4>${t('Organization / project','Kurum / proje')}</h4><p id="request-organization"></p><h4>GitHub</h4><p id="request-github"></p>
+      <fieldset id="request-edit-fields"><label for="request-state">${t('Status','Durum')}</label><select id="request-state">${[['new','New','Yeni'],['reviewing','Reviewing','İnceleniyor'],['contacted','Contacted','İletişim kuruldu'],['invited','Invited','Davet edildi'],['closed','Closed','Kapatıldı'],['spam','Spam','İstenmeyen']].map(([v,en,tr])=>`<option value="${v}">${t(en,tr)}</option>`).join('')}</select><label for="request-notes">${t('Private admin notes','Yalnızca yöneticilere açık notlar')}</label><textarea id="request-notes" rows="5" maxlength="4000"></textarea><button id="request-save" class="button primary" type="submit">${t('Save request','Talebi kaydet')}</button></fieldset></form></div>
+      <p id="request-feedback" role="status" aria-live="polite"></p>
+    </section>
     <!-- TAB 1: Articles View -->
     <div id="tab-content-articles" class="tab-pane active">
       <!-- Quick Stats -->
@@ -359,6 +368,6 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
 
 <script id="admin-config" type="application/json">${JSON.stringify(config).replaceAll('<','\\u003c')}</script>
 <script src="${base}cosmic-motion.js" defer></script>
-<script src="${base}admin.js" defer></script>
+<script src="${base}admin.js${bundleVersion ? '?v='+encodeURIComponent(bundleVersion) : ''}" defer></script>
 </body></html>`;
 }

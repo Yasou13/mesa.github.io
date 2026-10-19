@@ -61,6 +61,15 @@ Publishing/export-to-site and deployment dispatch still require a trusted backen
 A database save or marking an article ready does not update `content/hub.json` or
 the static public website. Markdown download is a local editorial handoff.
 
+### Early access requests
+
+`/early-access/` and `/tr/early-access/` use the same public Supabase build settings
+as the admin page. Apply `supabase/migrations/20261019010000_early_access_requests.sql`
+to activate the form; no service key enters the site. See
+[the request inbox guide](docs/admin/EARLY_ACCESS.md) for setup, privacy boundaries,
+limits and admin follow-up. The form remains closed if its configuration or RPC is
+unavailable. Requests never appear in static HTML, search or GitHub exports.
+
 ## Routes
 
 English is the source and default language. Existing English URLs remain

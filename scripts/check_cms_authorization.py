@@ -28,6 +28,7 @@ def main():
         sql = setup + migrations[0].read_text() + fixtures
         sql += ''.join(migration.read_text() for migration in migrations[1:])
         sql += (ROOT/'scripts/tests/cms_authorization.sql').read_text()
+        sql += (ROOT/'scripts/tests/early_access_authorization.sql').read_text()
         result = subprocess.run(['docker', 'exec', '-i', name, 'psql', '-U', 'postgres', '-v', 'ON_ERROR_STOP=1'],
                                 input=sql, text=True, capture_output=True, timeout=45)
         if result.returncode:

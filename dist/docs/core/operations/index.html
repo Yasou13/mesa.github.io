@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
+
   <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -318,6 +319,7 @@ mesa-recovery --trusted-root /srv/mesa restore \
 <script type="application/json" data-doc-copy>"# Operations & recovery\n\n## One writer and observable work\n\nRun one combined V4 owner per storage root. Monitor projection backlog, dead letters, stuck leases, cleanup backlog/blocked and orphan registry metrics. A shared-artifact count is expected and need not be zero. A growing backlog is an operational signal, not permission to edit store rows manually.\n\n## Recovery preserves ownership\n\nFix the underlying store/provider fault before authorized replay. A lost fencing claim cannot finalize work. Rollback removes source ownership and writes tombstones before secondary cleanup; shared artifacts survive while another active source owns them. BLOCKED cleanup is not success.\n\n## Backup before cutover\n\nUse the pinned offline backup/restore procedure with writer-lock checks. Keep the original root and backup during rollback protection. Restore into a new empty target; do not overwrite an existing root or run generic downgrade. [Rebuild](docs/core/rebuild-runbook/) is offline and storage-root-wide, not online or tenant-scoped.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
   <script src="../../../app.js?v=d389e70c5cac"></script>
+
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

@@ -57,3 +57,16 @@ test('published records cannot be deleted through draft controls',async()=>{
  const service=new AdminService({auth:{getUser:async()=>({data:{user:{id:'owner'}}})},rpc:async()=>({data:true}),from:()=>assert.fail('unexpected delete')});
  await assert.rejects(service.deleteDraft({status:'published'}),/PUBLISHED/);
 });
+test('request access checks the live role before reading or updating',async()=>{
+ const service = new AdminService({auth:{getUser:async()=>({data:{user:{id:'editor'}}})},rpc:async()=>({data:false}),from:()=>assert.fail('private requests queried')});
+ await assert.rejects(service.listAccessRequests(),/ROLE/);
+ await assert.rejects(service.saveAccessRequest({id:'x'}, {status:'invited',admin_notes:''}),/ROLE/);
+});
+test('request updates allow only status and notes and reject stale writes',async()=>{
+ const calls=[];
+ const query={eq(...args){calls.push(args);return this;},select(){return this;},async single(){return {data:null,error:{code:'PGRST116'}};}};
+ const service=new AdminService({auth:{getUser:async()=>({data:{user:{id:'owner'}}})},rpc:async()=>({data:true}),from:()=>({update:payload=>{calls.push(payload);return query;}})});
+ await assert.rejects(service.saveAccessRequest({id:'x',updated_at:'old'}, {status:'contacted',admin_notes:'Note',email:'forged@example.test'}),/REQUEST_CONFLICT/);
+ assert.deepEqual(calls[0],{status:'contacted',admin_notes:'Note'});
+ assert.ok(calls.some(c=>c[0]==='updated_at'&&c[1]==='old'));
+});

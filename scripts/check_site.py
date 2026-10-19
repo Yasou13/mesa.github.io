@@ -29,6 +29,7 @@ CORE_ROUTES = (
     "status/",
     "about/",
     "faq/",
+    "early-access/",
 )
 HUB_DATA = json.loads(
     (Path(__file__).resolve().parents[1] / "content" / "hub.json").read_text(encoding="utf-8")

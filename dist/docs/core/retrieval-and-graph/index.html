@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
+
   <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -186,6 +187,7 @@
 <script type="application/json" data-doc-copy>"# Retrieval & graph\n\n## Four different signals\n\nVector compares compatible semantic representations. BM25 uses FTS5 passage/evidence text and scoped citation lookup. The assertion lane considers predicate, subject, object/literal and evidence. Graph contributes bounded supported paths. Authorized canonical ownership and eligibility are resolved before rank contribution.\n\n## Rank fusion, not a probability\n\nDefaults: k=60, four weights=1.0, one-based ranks. A duplicate hit casts one lane vote. RRF(c)=Σ w/(k+rank). Lane-local citation boosts change lane order, not RRF increments. A separate query-dependent legal factor follows fusion. See the [retrieval explanation](retrieval/) for the exact distinction and an illustrative calculator.\n\n## Bounded graph and context\n\nGraph traversal is bounded: at most 20 seeds and three hops, 500 requested graph hits, frontier 64, per-node fan-out 32 and a default 15-second request timeout. These are resource limits, not latency guarantees. Context defaults to a 2048-token formatted-evidence budget and single search. Optional adaptive mode uses at most one planner call and two additional searches without widening scope.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/retrieval-and-graph.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
   <script src="../../../app.js?v=d389e70c5cac"></script>
+
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

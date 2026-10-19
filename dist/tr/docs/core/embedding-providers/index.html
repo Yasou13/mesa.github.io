@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../../learn.css?v=ef08fd97f3dc">
+
   <link rel="stylesheet" href="../../../../docs.css?v=c86c13f5ecab">
   <script src="../../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -232,6 +233,7 @@ export MESA_EMBEDDING_VERSION=v1</code></pre></div>
 <script type="application/json" data-doc-copy>"# Embedding ve model sağlayıcıları\n\n## Belge ve sorgu temsilleri uyumlu olmalı\n\nBilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model kimliğini ve boyutları kullanmalıdır. Belgelenen yerel varsayılan Magibu, 768 boyutludur; dış sağlayıcıdaki text-embedding-3-small ise 1536 boyut kullanır. Ayarı değiştirmek eski verileri dönüştürmez. Model değiştirirken belgelenen kimlik kurallarına göre arama görünümünü ve indeksi yeniden oluşturun.\n\n## Ayarın bulunması, sağlayıcının çalıştığını göstermez\n\n`GET /v4/capability`, o anda kullanılabilen özellikleri bildirir. Özel bir sayısal temsil sağlayıcısı, ilk başarılı çağrıdan önce çalışır kabul edilmez. Beklenen vektör veya sağlayıcı hatalarında açık bir 503 yanıtı verilir; sistem sessizce başka modele geçmez. V4 ile asıl kayıtlara yazmak için modelin etkin olduğu combined süreci ve bilgi çıkarımı bağımlılıkları hazır olmalıdır.\n\n## Dış erişimi ayrıca değerlendirin\n\n`MESA_EXTERNAL_PROVIDER_ENABLED=false`, asıl işleme hattındaki dış sağlayıcı çağrılarını sınırlar. Bu ayar tek başına sistemin tamamen ağdan yalıtıldığını veya hiç ücret doğurmayacağını garanti etmez. Model indirmeleri ve başka süreçlerin ağ erişimi ayrıca değerlendirilmelidir. Burada gerçek sağlayıcıların hızına, kalitesine veya token maliyetine ilişkin güncel bir ölçüm sunulmuyor.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/configuration.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Güvenlik</a><span>MIT · Açık kaynak</span></footer>
   <script src="../../../../app.js?v=d389e70c5cac"></script>
+
   <script src="../../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

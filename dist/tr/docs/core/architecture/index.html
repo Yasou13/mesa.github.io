@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../../learn.css?v=ef08fd97f3dc">
+
   <link rel="stylesheet" href="../../../../docs.css?v=c86c13f5ecab">
   <script src="../../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -330,6 +331,7 @@
 <script type="application/json" data-doc-copy>"# Core mimarisi\n\n## Asıl kayıtlar SQLite’ta tutulur\n\nKaynak kimliği, değiştirilemeyen belge sürümleri, bilgi kayıtları, değişikliklerin durumu ve çıktıların sahipliği SQLite’ta tutulur. LanceDB vektör araması, Kùzu ise ilişkiler üzerinde arama için kullanılır. Bu iki sistem, bir bilginin hâlâ geçerli olduğuna veya kimlerin erişebileceğine kendi başına karar vermez.\n\n## Veri alımı ve kurtarma nasıl ilerler?\n\nBir istek kabul edildiğinde, yapılacak iş önce kalıcı olarak kaydedilir. Ardından bilgi çıkarımı ve seçilen doğrulamalar yapılır; kayıtlar SQL → vektör → çizge sırasıyla yazılır. Üç depo tek bir ACID işlemini paylaşmaz. Bu nedenle işin kime ait olduğu, hangi adımların tamamlandığı ve yeniden denendiğinde ne yapılacağı ayrıca izlenir. Yazma ancak `COMMITTED` durumuna ulaştığında tamamlanmış sayılır.\n\n## Ayrıntıları nerede bulabilirsiniz?\n\n[Mimari sayfası](architecture/) veri akışını, depoları, aramayı ve kaynak izini ayrı ayrı açıklar. Uygulama ayrıntıları için [veri alımı](docs/core/concepts-and-ingestion/), [arama](retrieval/), [güvenlik](docs/core/security/) ve [işletim](docs/core/operations/) rehberlerine bakın.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Güvenlik</a><span>MIT · Açık kaynak</span></footer>
   <script src="../../../../app.js?v=d389e70c5cac"></script>
+
   <script src="../../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

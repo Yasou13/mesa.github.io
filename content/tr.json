@@ -67,6 +67,10 @@
     "retrieval": {
       "title": "MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar",
       "description": "Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin."
+    },
+    "earlyAccess": {
+      "title": "MESA Erken Erişim — İhtiyacınızı Anlatın",
+      "description": "MESA ile ne geliştirmek istediğinizi anlatın. Erken erişim talebi bırakın, entegrasyonu görüşelim veya projeye katkıda bulunun."
     }
   },
   "intentionalEnglish": [
@@ -963,6 +967,9 @@
     "Ctrl K": "Ctrl K",
     "Core architecture docs": "Core mimari dokümanları",
     "assertion": "bilgi kaydı",
-    "Assertion": "Bilgi kaydı"
+    "Assertion": "Bilgi kaydı",
+    "Early access": "Erken erişim",
+    "Request early access": "Erken erişim isteyin",
+    "Tell us what you need →": "İhtiyacınızı anlatın →"
   }
 }

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { requestInbox } from './requests.mjs';
 import { AdminService } from './service.mjs';
 import { editable, slugify, filterAndSort, articlePath, markdownEdit } from './editor.mjs';
 import { escapeHtml, renderMarkdown } from '../markdown_engine.mjs';
@@ -18,6 +19,8 @@ const status = (message, error = false) => {
 };
 
 const errors = {
+  REQUESTS: t('Requests could not be loaded. Check the connection and the early-access database migration.', 'Talepler yüklenemedi. Bağlantıyı ve erken erişim veritabanı kurulumunu kontrol edin.'),
+  REQUEST_CONFLICT: t('This request changed or access was denied. Copy your notes, then reload before saving.', 'Bu talep başka bir yerde değişmiş olabilir veya erişim izniniz olmayabilir. Notlarınızı kopyalayıp listeyi yenileyin.'),
   SESSION: t('Your session is unavailable or expired. Sign in again.', 'Oturum kullanılamıyor veya süresi dolmuş. Tekrar giriş yapın.'),
   ROLE: t('This account has no administrator access.', 'Bu hesabın yönetici erişimi yok.'),
   DATA: t('Records could not be loaded. Check the connection and database setup.', 'Kayıtlara ulaşılamadı. Bağlantıyı ve veritabanı ayarlarını kontrol edin.'),
@@ -49,6 +52,7 @@ if (config) {
     const stateNames = {draft:t('Draft','Taslak'),ready:t('Ready for review','İncelemeye hazır'),published:t('Published','Yayında'),publishing:t('Publishing','Yayımlanıyor'),failed:t('Failed','Başarısız'),unpublished:t('Unpublished','Yayından kaldırıldı')};
     const typeNames = {learn:t('Lesson','Ders'),guide:t('Guide','Rehber'),research:t('Research','Araştırma'),glossary:t('Glossary','Sözlük'),methodology:t('Methodology','Metodoloji')};
     const date = value => value ? new Date(value).toLocaleString(tr ? 'tr-TR' : 'en-GB', {dateStyle:'medium',timeStyle:'short'}) : '—';
+    const inbox = requestInbox({service,action,status,t,date});
     function changes() {
       return {title:$('article-title').value.trim(),subtitle:$('article-subtitle').value || null,summary:$('article-summary').value.trim(),short_answer:$('article-short-answer').value || null,body_markdown:$('article-body').value,slug:$('article-slug').value.trim(),category_id:$('article-category').value || null,tags:[...new Set($('article-tags').value.split(',').map(v=>v.trim()).filter(Boolean))],reading_minutes:Number($('article-reading-minutes').value),seo_title:$('article-seo-title').value.trim() || $('article-title').value.trim(),seo_description:$('article-seo-description').value.trim() || $('article-summary').value.trim(),indexable:$('article-indexable').checked};
     }
@@ -57,7 +61,7 @@ if (config) {
       $('save-state').textContent = dirty ? t('Unsaved changes','Kaydedilmemiş değişiklikler') : t('Saved','Kaydedildi');
       $('save-state').dataset.dirty = String(dirty);
     }
-    function canLeave() { return !busy && (!dirty || confirm(t('Discard unsaved changes?', 'Kaydedilmemiş değişiklikler silinsin mi?'))); }
+    function canLeave() { return !busy && inbox.canLeave() && (!dirty || confirm(t('Discard unsaved changes?', 'Kaydedilmemiş değişiklikler silinsin mi?'))); }
     function showSubtab(name) {
       document.querySelectorAll('.editor-subtabs .subtab').forEach(b=>{b.classList.toggle('active',b.dataset.subtab===name); b.setAttribute('aria-pressed',String(b.dataset.subtab===name));});
       document.querySelectorAll('.subtab-pane').forEach(p=>p.classList.toggle('active',p.id === 'subtab-'+name));
@@ -95,6 +99,7 @@ if (config) {
 
     function lock() {
       generation++;
+      inbox.clear(true);
       document.body.classList.remove('has-workspace');
       dirty = false; baseline = "";
       clearTimeout(expiryTimer);
@@ -152,6 +157,7 @@ if (config) {
     function switchTab(tabName, force = false) {
       if (!force && !canLeave()) return false;
       dirty = false; article = null;
+      inbox.clear();
       $('editor').hidden = true;
       $('aux-records-panel').hidden = true;
       document.querySelectorAll('.admin-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tabName));
@@ -159,6 +165,7 @@ if (config) {
         articles: $('tab-content-articles'),
         create: $('create-panel'),
         taxonomy: $('taxonomy-panel'),
+        requests: $('requests-panel'),
         audit: $('audit-panel')
       };
       for (const [key, pane] of Object.entries(panes)) {
@@ -168,6 +175,7 @@ if (config) {
         $('editor').hidden = true;
       }
       if (tabName === 'taxonomy') action(null, loadTaxonomy);
+      if (tabName === 'requests') action(null, () => inbox.load(true));
       if (tabName === 'audit') action(null, loadAudit);
       return true;
     }
@@ -437,9 +445,10 @@ if (config) {
       const active = generation;
       const rows = table === 'articles' ? await service.listArticles() : await service.listRecords(table);
       if (active !== generation) return;
+      inbox.clear();
 
       if ($('editor')) $('editor').hidden = true;
-      for (const id of ['tab-content-articles','create-panel','taxonomy-panel','audit-panel','aux-records-panel']) $(id).hidden = true;
+      for (const id of ['tab-content-articles','create-panel','taxonomy-panel','audit-panel','requests-panel','aux-records-panel']) $(id).hidden = true;
       dirty = false; article = null;
       if (table === 'articles') $('tab-content-articles').hidden = false;
       else { $('aux-records-panel').hidden = false; $('aux-records-title').textContent = table === 'media_assets' ? t('Media records','Medya kayıtları') : t('Publication jobs','Yayın kayıtları'); }
@@ -741,7 +750,7 @@ if (config) {
 
     $('editor').addEventListener('input', trackChanges);
     $('editor').addEventListener('change', trackChanges);
-    window.addEventListener('beforeunload', event => { if (dirty || busy) {event.preventDefault();event.returnValue='';} });
+    window.addEventListener('beforeunload', event => { if (dirty || inbox.dirty() || busy) {event.preventDefault();event.returnValue='';} });
     document.querySelectorAll('[data-format]').forEach(button=>button.addEventListener('click',()=>{
       if (!editable(article) || busy) return;
       const body=$('article-body'), edit=markdownEdit(body.value,body.selectionStart,body.selectionEnd,button.dataset.format);

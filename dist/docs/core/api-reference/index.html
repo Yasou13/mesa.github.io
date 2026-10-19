@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
+
   <link rel="stylesheet" href="../../../docs.css?v=c86c13f5ecab">
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -363,6 +364,7 @@ with MesaV4Client(&quot;http://127.0.0.1:8000&quot;, api_key=credential) as clie
 <script type="application/json" data-doc-copy>"# HTTP API & Python SDK\n\n## Authenticate and bind scope\n\nVersioned memory, health and metrics requests require `X-API-Key`. Public `/health/init`, OpenAPI, Swagger and ReDoc need deployment network policy. Create catalog resources with an authorized principal before starting a dataset-bound session. [The SDK example](docs/core/examples/) checks terminal state explicitly.\n\n## The implemented endpoint families\n\n| Method | Path | Purpose |\n|---|---|---|\n| GET | `/v4/capability` | Operational features and rebuild limits |\n| POST / GET | `/v4/catalog/workspaces` | Workspace catalog |\n| POST / GET | `/v4/catalog/datasets` | Dataset catalog |\n| POST / GET | `/v4/catalog/documents` | Document catalog |\n| POST / GET | `/v4/catalog/revisions` | Immutable revisions |\n| POST | `/v4/catalog/source-chunks` | Exact source chunks |\n| POST | `/v4/sessions/start` | Freeze authorized dataset scope |\n| POST | `/v4/memory/insert` | Admit a durable mutation (202) |\n| POST | `/v4/memory/search` | Scoped hybrid retrieval |\n| GET | `/v4/mutations/{mutation_id}` | Observe processing state |\n| POST | `/v4/mutations/{mutation_id}/replay` | Authorized retry |\n| POST | `/v4/mutations/{mutation_id}/rollback` | Source-owned rollback |\n| GET | `/v4/sessions/{session_id}/context` | Bounded evidence context |\n| POST | `/v4/sessions/{session_id}/end` | Durable session finalization |\n\n## Response and error contracts\n\n202 means admission. A successful write must reach `COMMITTED`. Search exposes `rrf_score`, `legal_factor`, `raw_score`, `final_score` and contributing origins. Model-disabled canonical writes return `503 canonical_processing_unavailable`; expected provider failures are explicit 503 responses. Administrative rebuild is separate and disabled by default. The pinned appendix contains request schemas, remaining administrative endpoints and authorization details.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
   <script src="../../../app.js?v=d389e70c5cac"></script>
+
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

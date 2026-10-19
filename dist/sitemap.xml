@@ -205,6 +205,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/retrieval/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/early-access/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/early-access/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/early-access/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/early-access/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/resources/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/resources/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/resources/" />

@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png">
 <link rel="icon" href="../../assets/mesa-mark.webp" type="image/webp">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../../cosmic.css"><link rel="stylesheet" href="../../admin.css">
+<link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../../cosmic.css"><link rel="stylesheet" href="../../admin.css?v=2ad5923a9799">
 </head><body><div class="cosmic cosmic--admin" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
 <header class="admin-header">
   <div class="admin-header__brand">
@@ -77,6 +77,7 @@
     <!-- Main Navigation Tabs -->
     <nav class="admin-tabs" aria-label="Yönetim bölümleri">
       <button class="admin-tab active" data-tab="articles" type="button">Makaleler ve Taslaklar</button>
+      <button class="admin-tab" data-tab="requests" type="button">Erken erişim talepleri</button>
       <button class="admin-tab" data-tab="create" type="button">+ Yeni Makale</button>
       <button class="admin-tab" data-tab="taxonomy" type="button">Kategoriler & Etiketler</button>
       <button class="admin-tab" data-records="media_assets" type="button">Medya Kayıtları</button>
@@ -84,6 +85,14 @@
       <button class="admin-tab" data-tab="audit" type="button">Denetim ve Roller</button>
     </nav>
 
+    <section id="requests-panel" class="admin-panel" hidden aria-labelledby="requests-title">
+      <h2 id="requests-title">Erken erişim talepleri</h2><p class="admin-note">Kullanım ihtiyaçlarını inceleyin, özel not ekleyin ve görüşmeleri takip edin. Durum değiştirmek e-posta göndermez veya erişim vermez.</p>
+      <form id="request-filter-form" class="table-toolbar"><label for="request-search">E-posta ile ara<input id="request-search" type="search" maxlength="254" autocomplete="off"></label><label for="request-filter">Talep durumu<select id="request-filter"><option value="all">Tüm durumlar</option><option value="new">Yeni</option><option value="reviewing">İnceleniyor</option><option value="contacted">İletişim kuruldu</option><option value="invited">Davet edildi</option><option value="closed">Kapatıldı</option><option value="spam">İstenmeyen</option></select></label><button id="request-refresh" class="button secondary" type="submit">Ara / yenile</button></form>
+      <p id="request-count" role="status"></p><div class="request-inbox"><div><div id="request-list"></div><div class="list-pagination"><button id="request-prev" class="button secondary" type="button" disabled>Önceki</button><button id="request-next" class="button secondary" type="button" disabled>Sonraki</button></div></div>
+      <form id="request-detail" hidden><h3 id="request-email" tabindex="-1"></h3><p id="request-date" class="admin-note"></p><h4>Kullanım amacı</h4><p id="request-use-case"></p><h4>Kurum / proje</h4><p id="request-organization"></p><h4>GitHub</h4><p id="request-github"></p>
+      <fieldset id="request-edit-fields"><label for="request-state">Durum</label><select id="request-state"><option value="new">Yeni</option><option value="reviewing">İnceleniyor</option><option value="contacted">İletişim kuruldu</option><option value="invited">Davet edildi</option><option value="closed">Kapatıldı</option><option value="spam">İstenmeyen</option></select><label for="request-notes">Yalnızca yöneticilere açık notlar</label><textarea id="request-notes" rows="5" maxlength="4000"></textarea><button id="request-save" class="button primary" type="submit">Talebi kaydet</button></fieldset></form></div>
+      <p id="request-feedback" role="status" aria-live="polite"></p>
+    </section>
     <!-- TAB 1: Articles View -->
     <div id="tab-content-articles" class="tab-pane active">
       <!-- Quick Stats -->
@@ -349,5 +358,5 @@
 
 <script id="admin-config" type="application/json">null</script>
 <script src="../../cosmic-motion.js" defer></script>
-<script src="../../admin.js" defer></script>
+<script src="../../admin.js?v=718cecde6ab3" defer></script>
 </body></html>

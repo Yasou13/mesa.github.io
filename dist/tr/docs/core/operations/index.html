@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../../../styles.css?v=ecf9f4160098">
   <link rel="stylesheet" href="../../../../cosmic.css?v=2615e7f7970e">
   <link rel="stylesheet" href="../../../../learn.css?v=ef08fd97f3dc">
+
   <link rel="stylesheet" href="../../../../docs.css?v=c86c13f5ecab">
   <script src="../../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -318,6 +319,7 @@ mesa-recovery --trusted-root /srv/mesa restore \
 <script type="application/json" data-doc-copy>"# Operasyon ve kurtarma\n\n## Her veri dizininin tek yazıcısı olmalı\n\nHer veri dizini için tek combined V4 süreci çalıştırın. Arama görünümü ve temizlik kuyruklarını, başarısız iş kuyruğunu, takılı iş sahipliklerini ve sahipsiz kayıtları izleyin. Paylaşılan çıktıların sayısının sıfır olması gerekmez. Kuyruğun büyümesi, depodaki satırları elle değiştirmek için gerekçe değildir; nedenini araştırmanız gereken bir işletim işaretidir.\n\n## Kurtarma, sahiplik kurallarını korur\n\nBir işi yeniden yürütmeden önce depo veya sağlayıcı hatasını giderin. İş sahipliğini kaybeden bir çalışan, o işi tamamlayamaz. Geri alma işleminde önce kaynağın sahiplik bağı kaldırılıp silindi işareti yazılır, ardından ikincil temizlik yapılır. Başka bir etkin kaynağın hâlâ kullandığı ortak çıktı korunur. Temizliğin BLOCKED olması, başarılı olduğu anlamına gelmez.\n\n## Yeni düzene geçmeden önce yedek alın\n\nAşağıdaki kaynakta yer alan, yazıcı kilidi kontrollerini içeren çevrimdışı yedekleme ve geri yükleme adımlarını izleyin. Geri dönme olanağını koruduğunuz sürece özgün veri dizinini ve yedeği saklayın. Yedeği yeni, boş bir dizine yükleyin; mevcut dizinin üzerine yazmayın veya genel bir sürüm düşürme işlemi çalıştırmayın. [Yeniden oluşturma](docs/core/rebuild-runbook/) çevrimdışıdır ve veri dizininin tamamını kapsar; tek bir üst erişim alanını çevrimiçi onarmaz.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Güvenlik</a><span>MIT · Açık kaynak</span></footer>
   <script src="../../../../app.js?v=d389e70c5cac"></script>
+
   <script src="../../../../docs.js?v=c6166317ecca"></script>
 </body>
 </html>

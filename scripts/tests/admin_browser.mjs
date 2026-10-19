@@ -5,6 +5,7 @@ export const adminFixture = `(() => {
  const user={id:'11111111-1111-4111-8111-111111111111',aud:'authenticated',role:'authenticated',email:'owner@example.test',app_metadata:{},user_metadata:{},created_at:'2026-10-16T00:00:00Z'};
  const f=window.__authFixture={mode:sessionStorage.getItem('mesa-fixture-mode')||'ok',calls:[],delay:0,revoked:false};
  f.articles=Array.from({length:15},(_,i)=>({id:i?'article-'+i:'draft',slug:i?'article-'+i:'private-draft',type:i===2?'guide':'learn',title:i===0?'<img src=x onerror=alert(1)> fixture':'Article '+i,language:i===2?'tr':'en',summary:'Private summary',body_markdown:'# Private draft',status:i===1?'published':'draft',reading_minutes:5,tags:[],seo_title:'Fixture',seo_description:'Summary',updated_at:'2026-10-16T10:00:00Z',current_revision:1}));
+ f.requests=Array.from({length:27},(_,i)=>({id:'request-'+i,email:'person'+i+'@example.test',intent:i%2?'integration':'try',use_case:'Private request <img src=x onerror=alert(1)> '+i,organization:'Example project',github_url:'https://github.com/Yasou13/MESA',language:i%2?'tr':'en',status:i?'reviewing':'new',admin_notes:'',created_at:'2026-10-19T10:00:00Z',updated_at:'2026-10-19T10:00:00Z'}));
  f.revisions=[];
  f.session=(expiry=3600)=>{const exp=Math.floor(Date.now()/1000)+expiry;return {access_token:btoa(JSON.stringify({alg:'HS256',typ:'JWT'}))+'.'+btoa(JSON.stringify({sub:user.id,exp,iat:Math.floor(Date.now()/1000),aud:'authenticated',role:'authenticated'}))+'.fixture',refresh_token:'isolated-refresh-fixture',token_type:'bearer',expires_in:expiry,expires_at:exp,user};};
  window.fetch=async(input,options={})=>{
@@ -24,6 +25,18 @@ export const adminFixture = `(() => {
   if(url.pathname==='/auth/v1/logout'){if(f.mode==='logout-fail')return response({msg:'Unavailable'},503);f.revoked=true;return new Response(null,{status:204});}
   if(url.pathname==='/auth/v1/recover'){return f.mode==='reset-fail'?response({msg:'Rate limit'},429):response({});}
   if(url.pathname==='/rest/v1/rpc/is_admin')return f.mode==='role-error'?response({message:'Unavailable'},503):response(f.mode!=='nonadmin');
+  if(url.pathname==='/rest/v1/early_access_requests'){
+   const id=(url.searchParams.get('id')||'').replace(/^eq[.]/,'');
+   if(method==='PATCH'){
+    if(f.mode==='request-conflict')return response({code:'PGRST116'},406);
+    const row=f.requests.find(r=>r.id===id);Object.assign(row,JSON.parse(options.body),{updated_at:new Date().toISOString()});return response(row);
+   }
+   let rows=f.requests;
+   const status=(url.searchParams.get('status')||'').replace(/^eq[.]/,'');if(status)rows=rows.filter(r=>r.status===status);
+   const term=(url.searchParams.get('email')||'').replace(/^ilike[.]%/,'').replace(/%$/,'');if(term)rows=rows.filter(r=>r.email.includes(term));
+   const offset=Number(url.searchParams.get('offset')||0),limit=Number(url.searchParams.get('limit')||25);
+   return new Response(JSON.stringify(rows.slice(offset,offset+limit)),{status:200,headers:{'Content-Type':'application/json','Content-Range':offset+'-'+(offset+Math.min(limit,rows.length)-1)+'/'+rows.length}});
+  }
   if(url.pathname==='/rest/v1/articles'){
    if(f.mode==='data-fail')return response({message:'Denied'},403);
    const id=(url.searchParams.get('id')||'').replace(/^eq[.]/,'');
@@ -81,6 +94,26 @@ export async function checkAdminAuth({connection,evaluate,navigate,baseUrl,failu
     if(screenshotsDirectory){const shot=await connection.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync(path.join(screenshotsDirectory,(locale?'tr-':'')+'articles-'+width+'.png'),Buffer.from(shot.data,'base64'));}
   }
   record(locale+'draft title remains text',await evaluate(`!document.querySelector('#records img') && document.querySelector('#records').textContent.includes('<img')`));
+  await evaluate(`document.querySelector('[data-tab=requests]').click()`);await until(`document.querySelectorAll('.request-row').length===25`);
+  record(locale+'request inbox paginates server rows',await evaluate(`!document.querySelector('#request-next').disabled && document.querySelector('#request-prev').disabled`));
+  await evaluate(`document.querySelector('.request-row').click()`);
+  record(locale+'request body remains literal text',await evaluate(`!document.querySelector('#request-detail img') && document.querySelector('#request-use-case').textContent.includes('<img')`));
+  for(const width of [390,1440]) {
+    await connection.send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<800});
+    record(locale+'request inbox fits '+width+'px',await evaluate(`document.documentElement.scrollWidth<=innerWidth+1`));
+    await evaluate(axeSource);
+    record(locale+'request inbox accessible '+width+'px',await evaluate(`axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}).then(r=>r.violations.length===0)`));
+    if(screenshotsDirectory){const shot=await connection.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync(path.join(screenshotsDirectory,(locale?'tr-':'')+'requests-'+width+'.png'),Buffer.from(shot.data,'base64'));}
+  }
+  await evaluate(`document.querySelector('#request-state').value='contacted';document.querySelector('#request-notes').value='Follow up later';document.querySelector('#request-detail').requestSubmit()`);await until(`!document.querySelector('#request-save').disabled && !document.querySelector('#request-edit-fields').disabled`);
+  record(locale+'request status and notes saved',await evaluate(`__authFixture.requests[0].status==='contacted' && __authFixture.requests[0].admin_notes==='Follow up later'`));
+  await evaluate(`__authFixture.mode='request-conflict';document.querySelector('#request-notes').value='Preserve this note';document.querySelector('#request-detail').requestSubmit()`);await until(`document.querySelector('#admin-status').dataset.error==='true'`);
+  record(locale+'request conflict preserves unsaved notes',await evaluate(`document.querySelector('#request-notes').value==='Preserve this note'`));
+  await evaluate(`__authFixture.mode='ok';document.querySelector('#request-notes').value='Follow up later';document.querySelector('#request-next').click()`);await until(`document.querySelectorAll('.request-row').length===2`);
+  record(locale+'request second page disables next',await evaluate(`document.querySelector('#request-next').disabled && !document.querySelector('#request-prev').disabled`));
+  await evaluate(`document.querySelector('#request-filter').value='new';document.querySelector('#request-filter').dispatchEvent(new Event('change'))`);await until(`document.querySelectorAll('.request-row').length===0`);
+  record(locale+'request filter empty state',await evaluate(`document.querySelector('#request-count').textContent.includes('0')`));
+  await evaluate(`document.querySelector('[data-tab=articles]').click()`);
   await evaluate(`document.querySelector('#records button').click()`);await until(`!document.querySelector('#editor').hidden`);
   await evaluate(`document.querySelector('#article-title').value='Saved fixture';document.querySelector('#article-title').dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('#editor').requestSubmit()`);await until(`!document.querySelector('#editor button[type=submit]').disabled`);
   record(locale+'draft save waits for backend',await evaluate(`__authFixture.calls.some(c=>c.method==='PATCH') && document.querySelector('#admin-status').textContent.includes('${locale?'kaydedildi':'saved'}')`));

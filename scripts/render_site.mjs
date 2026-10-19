@@ -9,6 +9,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { getAllDocRoutes, renderDocPage, renderDocsHub, renderMcpGuide } from './render_docs.mjs';
 import { renderAdminPage } from './render_admin.mjs';
+import { earlyAccessPage } from './render_early_access.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
 import { writeSearchIndex } from './generate_search_index.mjs';
@@ -34,6 +35,8 @@ const assetVersion = (filename) => crypto
   .slice(0, 12);
 const assetVersions = {
   css: assetVersion('styles.css'),
+  accessCss: assetVersion('early-access.css'),
+  accessJs: assetVersion('early-access.js'),
   learn: assetVersion('learn.css'),
   cosmic: assetVersion('cosmic.css'),
   cosmicMotion: assetVersion('cosmic-motion.js'),
@@ -187,7 +190,7 @@ function footer(compact = false) {
         <div><h3>Ecosystem</h3><a href="${route('mesa/')}">Core memory engine</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
         <div><h3>Resources</h3><a href="${route('learn/')}">Learn</a><a href="${route('research/')}">Research</a><a href="${route('guides/')}">Guides</a><a href="${route('glossary/')}">Glossary</a><a href="${route('methodology/')}">Methodology</a></div>
         <div><h3>Documentation</h3><a href="${route('docs/core/getting-started/')}">Quickstart</a><a href="${route('docs/core/architecture/')}">Core architecture docs</a><a href="${route('retrieval/')}">Retrieval</a><a href="${route('docs/core/security/')}">Security</a><a href="${route('docs/mcp/')}">MCP integration</a></div>
-        <div><h3>Project</h3><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}${external(`${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`, 'MIT License')}</div>
+        <div><h3>Project</h3><a href="${route('early-access/')}">Early access</a><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}${external(`${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`, 'MIT License')}</div>
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Documentation checked against the published source</span></div>
     </footer>`.trim();
@@ -1435,6 +1438,7 @@ function notFound() {
 
 const renderers = {
   home,
+  earlyAccess: () => earlyAccessPage(productHelpers()),
   architecture,
   retrieval,
   mesa,
@@ -1521,12 +1525,16 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
+${content.includes('id="early-access-form"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
 ${content.includes('class="docs-layout"') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
 ${content}
   <script src="${assetBase}app.js?v=${assetVersions.js}"></script>
+${content.includes('id="early-access-form"') ? `  <script id="early-access-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<','\\u003c')}</script>
+  <script src="${assetBase}early-access.js?v=${assetVersions.accessJs}" defer></script>
+` : ''}
 ${content.includes('class="docs-layout"') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
 </html>
 `;
@@ -1811,7 +1819,7 @@ for (const language of ['en', 'tr']) {
   const adminRoute = language === 'tr' ? 'tr/admin/' : 'admin/';
   const destination = path.join(outputDirectory, adminRoute, 'index.html');
   fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language, config: publicAdminConfig }));
+  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language, config: publicAdminConfig, bundleVersion: assetVersion('admin.js'), cssVersion: assetVersion('admin.css') }));
 }
 writeSearchIndex(outputDirectory);
 

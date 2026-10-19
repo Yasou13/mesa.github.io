@@ -10,6 +10,26 @@ export class AdminService {
     if (role.error || role.data !== true) throw new Error('ROLE');
     return data.user;
   }
+  async listAccessRequests({page = 0, status = 'all', search = ''} = {}) {
+    await this.authorize();
+    if (!Number.isInteger(page) || page < 0 || !['all','new','reviewing','contacted','invited','closed','spam'].includes(status)) throw new Error('DATA');
+    let query = this.client.from('early_access_requests').select('id,email,intent,use_case,organization,github_url,language,status,admin_notes,created_at,updated_at', {count:'exact'})
+      .order('created_at', {ascending:false}).order('id');
+    if (status !== 'all') query = query.eq('status',status);
+    // A single ilike field avoids interpreting user input as PostgREST filter syntax.
+    if (search.trim()) query = query.ilike('email','%'+search.trim().replace(/[\\%_]/g, char => '\\'+char)+'%');
+    const result = await query.range(page*25,page*25+24);
+    if (result.error) throw new Error('REQUESTS');
+    return {rows:result.data || [],count:result.count || 0};
+  }
+  async saveAccessRequest(row, changes) {
+    await this.authorize();
+    if (!['new','reviewing','contacted','invited','closed','spam'].includes(changes.status) || typeof changes.admin_notes !== 'string' || changes.admin_notes.length > 4000) throw new Error('DATA');
+    const result = await this.client.from('early_access_requests').update({status:changes.status,admin_notes:changes.admin_notes})
+      .eq('id',row.id).eq('updated_at',row.updated_at).select('id,status,admin_notes,updated_at').single();
+    if (result.error || !result.data) throw new Error('REQUEST_CONFLICT');
+    return result.data;
+  }
   async listArticles() {
     await this.authorize();
     const rows = [];

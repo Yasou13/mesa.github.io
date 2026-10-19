@@ -4646,5 +4646,33 @@
       "hafıza"
     ],
     "language": "tr"
+  },
+  {
+    "id": "core-earlyAccess-en",
+    "url": "early-access/",
+    "title": "Request early access — MESA",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Tell us what you want to build with MESA. Request early access, discuss an integration or contribute to the project.",
+    "keywords": [
+      "earlyAccess",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-earlyAccess-tr",
+    "url": "tr/early-access/",
+    "title": "MESA Erken Erişim — İhtiyacınızı Anlatın",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA ile ne geliştirmek istediğinizi anlatın. Erken erişim talebi bırakın, entegrasyonu görüşelim veya projeye katkıda bulunun.",
+    "keywords": [
+      "earlyAccess",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
   }
 ]
