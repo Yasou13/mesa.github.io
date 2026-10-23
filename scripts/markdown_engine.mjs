@@ -95,7 +95,7 @@ export function renderMarkdown(markdown = '', options = {}) {
 
   function flushTable() {
     if (!inTable) return;
-    let tHtml = '<div class="table-scroll"><table>';
+    let tHtml = `<div class="table-scroll" tabindex="0" role="region" aria-label="${options.language === 'tr' ? 'Kaydırılabilir tablo' : 'Scrollable table'}"><table>`;
     if (tableHeaders.length) {
       tHtml += `<thead><tr>${tableHeaders.map((th) => `<th scope="col">${renderInlineMarkdown(th, options)}</th>`).join('')}</tr></thead>`;
     }

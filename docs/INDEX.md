@@ -41,6 +41,10 @@ Key operational scripts maintained in `scripts/`:
 
 The following files represent point-in-time audit evidence, preserved for compliance and provenance:
 
+- [GEO / SEO baseline inventory](geo-audit-baseline.md) — 23 October 2026, before-change route inventory.
+- [GEO / SEO implementation report](geo-implementation-report.md) — changes, validation, measurement and 90-day follow-up.
+- [Visibility query pool](geo/query-pool.csv) and [results template](geo/results-template.csv) — manual EN/TR measurement.
+
 - **Root Audits**:
   - `AUDIT.md`: Initial website audit and remediation baseline (2026-10-01).
   - `CLAIMS.md`: Public claim verification table against Core 0.7.1 and V4 contract (2026-10-01).

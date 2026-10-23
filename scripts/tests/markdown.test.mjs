@@ -17,6 +17,7 @@ test('code remains literal; duplicate headings receive distinct anchors', () => 
 test('checklists, tables, images, captions and literal math render safely', () => {
   const html=renderMarkdown('- [x] done\n\n| A | B |\n|---|---|\n| 1 | 2 |\n\n![alt](media/p.png "Caption")\n\n$$x^2$$', {route:p=>'../../'+p}).html;
   assert.match(html, /<input type="checkbox" disabled checked>/);
+  assert.match(html, /class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"/);
   assert.match(html, /<table>/);assert.match(html, /src="..\/..\/media\/p.png"/);assert.match(html, /<figcaption>Caption/);assert.match(html, /role="math"/);
 });
 

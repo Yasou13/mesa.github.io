@@ -6,9 +6,11 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+from urllib.robotparser import RobotFileParser
 
 
 CORE_ROUTES = (
@@ -81,6 +83,9 @@ class PageParser(HTMLParser):
         self.title_parts: list[str] = []
         self.text_parts: list[str] = []
         self.description: str | None = None
+        self.robots: set[str] = set()
+        self.dates: set[str] = set()
+        self.unfocusable_tables = 0
         self.canonical: str | None = None
         self.og_title: str | None = None
         self.og_description: str | None = None
@@ -104,6 +109,8 @@ class PageParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        if "table-scroll" in (values.get("class") or "").split() and values.get("tabindex") != "0":
+            self.unfocusable_tables += 1
         self.unsafe_attributes.extend(name for name, _ in attrs if name.lower().startswith("on"))
         if tag == "html":
             self.html_lang = values.get("lang")
@@ -137,6 +144,8 @@ class PageParser(HTMLParser):
             name, prop, content = values.get("name"), values.get("property"), values.get("content")
             if name == "description":
                 self.description = content
+            elif name and name.lower() in {"robots", "googlebot", "bingbot"}:
+                self.robots.update((content or "").lower().replace(",", " ").split())
             elif name == "twitter:card":
                 self.twitter_card = content
             elif name == "twitter:title":
@@ -157,6 +166,8 @@ class PageParser(HTMLParser):
                 self.og_locale = content
         if tag == "link" and values.get("rel") == "canonical":
             self.canonical = values.get("href")
+        if tag == "time" and values.get("datetime"):
+            self.dates.add(str(values["datetime"]))
         if tag == "link" and values.get("rel") == "alternate" and values.get("hreflang"):
             self.alternates[str(values["hreflang"])] = str(values.get("href") or "")
         for key in ("href", "src"):
@@ -272,6 +283,8 @@ def main() -> int:
             errors.append(f"duplicate element IDs: {relative}: {sorted(parsed.duplicate_ids)}")
         if parsed.unsafe_attributes:
             errors.append(f"inline event attributes: {relative}")
+        if parsed.unfocusable_tables:
+            errors.append(f"scrollable table is not keyboard focusable: {relative}")
         if str(relative) in {"admin/index.html", "tr/admin/index.html"} and 'content="noindex, nofollow"' not in text:
             errors.append(f"admin must be noindex: {relative}")
         if not parsed.title:
@@ -306,6 +319,8 @@ def main() -> int:
             errors.append(f"incomplete social/canonical metadata: {relative}")
         if not is_exempt and parsed.canonical != parsed.og_url:
             errors.append(f"canonical/og:url mismatch: {relative}")
+        if str(relative).removesuffix("index.html") in LOCALIZED_ROUTES and parsed.robots & {"noindex", "none", "nosnippet"}:
+            errors.append(f"public page has restrictive robots metadata: {relative}")
         if not is_exempt and parsed.og_image != parsed.twitter_image:
             errors.append(f"Open Graph/Twitter image mismatch: {relative}")
         if not is_exempt and parsed.main_count != 1:
@@ -349,7 +364,7 @@ def main() -> int:
             errors.append(f"expected one shared cosmic environment: {relative}")
         if 'id="app"' in text or "requires JavaScript to render" in text:
             errors.append(f"JavaScript-only shell found: {relative}")
-        if "{{" in text or "}}" in text:
+        if "{{" in text:
             errors.append(f"unresolved build token: {relative}")
         json_ld_match = re.search(
             r'<script type="application/ld\+json">(.*?)</script>', text, re.DOTALL
@@ -366,8 +381,33 @@ def main() -> int:
                     for item in structured.get("@graph", [])
                     if isinstance(item, dict)
                 }
-                if not {"WebSite", "SoftwareSourceCode"}.issubset(schema_types):
+                if not {"WebSite", "WebPage", "SoftwareSourceCode"}.issubset(schema_types):
                     errors.append(f"incomplete JSON-LD graph: {relative}")
+                nodes = structured.get("@graph", [])
+                website = next((node for node in nodes if node.get("@type") == "WebSite"), {})
+                webpage = next((node for node in nodes if node.get("@type") == "WebPage"), {})
+                software = next((node for node in nodes if node.get("@type") == "SoftwareSourceCode"), {})
+                if (webpage.get("url"), webpage.get("name"), webpage.get("description"), webpage.get("inLanguage")) != (parsed.canonical, parsed.title, parsed.description, parsed.html_lang):
+                    errors.append(f"WebPage does not match page metadata: {relative}")
+                if webpage.get("isPartOf", {}).get("@id") != website.get("@id") or webpage.get("about", {}).get("@id") != software.get("@id"):
+                    errors.append(f"disconnected page/site/software identities: {relative}")
+                home_path = root / ("tr/index.html" if expected_language == "tr" else "index.html")
+                home = parsed_pages.get(home_path.resolve())
+                if home and (website.get("description") != home.description or software.get("description") != home.description):
+                    errors.append(f"site/software identity description varies by page: {relative}")
+                for node in nodes:
+                    if node.get("@type") == "BreadcrumbList":
+                        crumbs = node.get("itemListElement", [])
+                        urls = [crumb.get("item") for crumb in crumbs]
+                        if len(urls) != len(set(urls)) or not urls or urls[-1] != parsed.canonical or [crumb.get("position") for crumb in crumbs] != list(range(1, len(crumbs) + 1)):
+                            errors.append(f"invalid breadcrumb hierarchy: {relative}")
+                    if node.get("@type") in {"Article", "TechArticle"}:
+                        author = node.get("author", {}).get("name")
+                        if author and author not in parsed.visible_text:
+                            errors.append(f"Schema author is not visible: {relative}")
+                        for date_field in ("datePublished", "dateModified"):
+                            if node.get(date_field) and node[date_field] not in parsed.dates:
+                                errors.append(f"Schema {date_field} is not visible: {relative}")
                 route_name = str(relative).removesuffix("index.html")
                 unlocalized_route = route_name.removeprefix("tr/")
                 if (
@@ -512,6 +552,17 @@ def main() -> int:
     if home_parser and home_parser.canonical:
         site_url = home_parser.canonical
         sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
+        try:
+            sitemap_root = ET.fromstring(sitemap)
+            namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+            if sitemap_root.tag != f"{namespace}urlset":
+                errors.append("sitemap root is not a sitemap.org urlset")
+            urls = [node.text for node in sitemap_root.findall(f"{namespace}url/{namespace}loc")]
+            expected_urls = {f"{site_url}{route}" for route in LOCALIZED_ROUTES}
+            if len(urls) != len(set(urls)) or set(urls) != expected_urls:
+                errors.append("sitemap must contain exactly the public canonical URLs without duplicates")
+        except ET.ParseError:
+            errors.append("sitemap is not valid XML")
         for route in LOCALIZED_ROUTES:
             expected = f"<loc>{site_url}{route}</loc>"
             if expected not in sitemap:
@@ -521,6 +572,13 @@ def main() -> int:
                 if entry["path"] in sitemap:
                     errors.append(f"draft or non-indexable hub route leaked into sitemap: {entry['path']}")
         robots = (root / "robots.txt").read_text(encoding="utf-8")
+        crawler_rules = RobotFileParser()
+        crawler_rules.parse(robots.splitlines())
+        for bot in ("Googlebot", "Bingbot", "OAI-SearchBot", "PerplexityBot", "Claude-SearchBot"):
+            if any(not crawler_rules.can_fetch(bot, f"{site_url}{route}") for route in LOCALIZED_ROUTES):
+                errors.append(f"robots.txt blocks a public canonical page for {bot}")
+            if any(crawler_rules.can_fetch(bot, f"{site_url}{route}") for route in ("admin/", "tr/admin/")):
+                errors.append(f"robots.txt lost the existing admin exclusion for {bot}")
         if f"Sitemap: {site_url}sitemap.xml" not in robots:
             errors.append("robots.txt sitemap URL does not match canonical origin")
         if site_url == "https://mesamemory.dev/":

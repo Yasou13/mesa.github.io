@@ -239,6 +239,21 @@ anchors, valid JSON-LD, both language route sets, matching `lang`, canonical,
 hreflang, language-switch and sitemap pairs, safe external-link attributes,
 and the absence of legacy branding in the published artifact.
 
+### SEO and AI search visibility
+
+The shared renderer keeps site/software identity separate from each page's
+metadata. Article authors and dates match visible bylines; documentation does
+not infer authors from repository ownership. The build gate checks public
+robots metadata, crawler access, exact sitemap membership, breadcrumb hierarchy,
+page/schema consistency, and keyboard access to scrollable tables. `npm test`
+includes generated-artifact regressions for these checks.
+
+See [the baseline inventory](docs/geo-audit-baseline.md) and
+[the implementation and measurement report](docs/geo-implementation-report.md).
+The [40-question EN/TR pool](docs/geo/query-pool.csv) and
+[empty results template](docs/geo/results-template.csv) support manual visibility
+measurement without adding tracking scripts or claiming measured AI citations.
+
 ## Localization workflow
 
 English renderer copy remains the source. Turkish copy and metadata live in

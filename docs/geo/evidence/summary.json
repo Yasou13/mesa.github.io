@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-23",
+  "baseline_commit": "caa63942c7cbbf373e286d1fd2144ad9a5319609",
+  "public_routes": 200,
+  "html_files": 239,
+  "internal_references": 15994,
+  "external_references": 2173,
+  "python_tests": 18,
+  "node_tests": 27,
+  "negative_seo_mutations": 9,
+  "build_modes": [
+    "production custom domain",
+    "GitHub project subpath",
+    "GitHub user root"
+  ],
+  "live_public_http_200": 200,
+  "live_canonical_mismatches": 0,
+  "live_missing_route_status": 404,
+  "browser_layouts": 132,
+  "axe_sample_pages": 4,
+  "axe_violations": 0,
+  "published": false,
+  "ai_visibility_measured": false
+}

@@ -144,7 +144,7 @@ body:has(.docs-layout) .site-header { background: #0b0b10f5; border-bottom: 1px 
 .docs-layout .docs-body { color: #b4b0bc; font-size: 15px; line-height: 1.85; }
 .docs-layout .docs-body h2 { border: 0; padding-top: 0; color: var(--ink); font-size: 22px; letter-spacing: -.025em; font-weight: 550; margin: 36px 0 16px; scroll-margin-top: 175px; }
 .docs-layout .docs-body h3 { color: var(--ink); font-size: 18px; scroll-margin-top: 175px; }
-.docs-layout .docs-body a { color: #c1b1de; }
+.docs-layout .docs-body a { color: #c1b1de; text-decoration: underline; text-underline-offset: .18em; }
 .docs-layout .docs-body p { margin-top: 0; }
 .docs-layout .code-terminal { border-color: #ffffff19; border-radius: 8px; background: #101016; }
 .docs-layout .code-terminal-header { background: #ffffff03; border-color: #ffffff10; }

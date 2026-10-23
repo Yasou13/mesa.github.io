@@ -89,8 +89,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
     <ol>
       <li><a href="${homeHref}">${isTr ? 'Ana sayfa' : 'Home'}</a></li>
       <li><a href="${docsHubHref}">${isTr ? 'Dokümantasyon' : 'Docs'}</a></li>
-      <li><a href="${repoRootHref}">${escapeHtml(repoTitle)}</a></li>
-      <li aria-current="page">${escapeHtml(pageTitle)}</li>
+      ${page.route === repo.base_route ? '' : `<li><a href="${repoRootHref}">${escapeHtml(repoTitle)}</a></li>\n      `}<li aria-current="page">${escapeHtml(pageTitle)}</li>
     </ol>
   </nav>`;
 

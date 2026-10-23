@@ -1,0 +1,572 @@
+{
+  "pass": true,
+  "browser": "Chrome/155.0.8059.84",
+  "layouts": 42,
+  "observations": [
+    {
+      "route": "docs/core/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/core/"
+      ],
+      "text": "MESA Core overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/core/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/core/"
+      ],
+      "text": "MESA Core overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/core/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/core/"
+      ],
+      "text": "MESA Core overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/data/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/data/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/data/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/data/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/data/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/data/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/law/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/law/"
+      ],
+      "text": "Contract Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/law/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/law/"
+      ],
+      "text": "Contract Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/law/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/law/"
+      ],
+      "text": "Contract Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/qa/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/qa/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/qa/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/qa/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/qa/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/qa/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/e2e/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/e2e/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/e2e/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/e2e/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "docs/e2e/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/docs/",
+        "https://mesamemory.dev/docs/e2e/"
+      ],
+      "text": "Overview",
+      "h1": 1
+    },
+    {
+      "route": "resources/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/resources/"
+      ],
+      "text": "Evidence-aware knowledge, connected.",
+      "h1": 1
+    },
+    {
+      "route": "resources/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/resources/"
+      ],
+      "text": "Evidence-aware knowledge, connected.",
+      "h1": 1
+    },
+    {
+      "route": "resources/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/resources/"
+      ],
+      "text": "Evidence-aware knowledge, connected.",
+      "h1": 1
+    },
+    {
+      "route": "learn/what-is-ai-memory/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/resources/",
+        "https://mesamemory.dev/learn/",
+        "https://mesamemory.dev/learn/what-is-ai-memory/"
+      ],
+      "text": "AI memory: what survives after a conversation?",
+      "h1": 1
+    },
+    {
+      "route": "learn/what-is-ai-memory/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/resources/",
+        "https://mesamemory.dev/learn/",
+        "https://mesamemory.dev/learn/what-is-ai-memory/"
+      ],
+      "text": "AI memory: what survives after a conversation?",
+      "h1": 1
+    },
+    {
+      "route": "learn/what-is-ai-memory/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/",
+      "crumbs": [
+        "https://mesamemory.dev/",
+        "https://mesamemory.dev/resources/",
+        "https://mesamemory.dev/learn/",
+        "https://mesamemory.dev/learn/what-is-ai-memory/"
+      ],
+      "text": "AI memory: what survives after a conversation?",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/core/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/core/"
+      ],
+      "text": "MESA Core genel bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/core/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/core/"
+      ],
+      "text": "MESA Core genel bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/core/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/core/"
+      ],
+      "text": "MESA Core genel bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/data/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/data/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/data/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/data/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/data/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/data/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/law/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/law/"
+      ],
+      "text": "Sözleşme Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/law/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/law/"
+      ],
+      "text": "Sözleşme Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/law/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/law/"
+      ],
+      "text": "Sözleşme Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/qa/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/qa/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/qa/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/qa/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/qa/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/qa/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/e2e/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/e2e/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/e2e/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/e2e/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/docs/e2e/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/docs/",
+        "https://mesamemory.dev/tr/docs/e2e/"
+      ],
+      "text": "Genel Bakış",
+      "h1": 1
+    },
+    {
+      "route": "tr/resources/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/resources/"
+      ],
+      "text": "Öğrenin, deneyin, kaynakları inceleyin.",
+      "h1": 1
+    },
+    {
+      "route": "tr/resources/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/resources/"
+      ],
+      "text": "Öğrenin, deneyin, kaynakları inceleyin.",
+      "h1": 1
+    },
+    {
+      "route": "tr/resources/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/resources/"
+      ],
+      "text": "Öğrenin, deneyin, kaynakları inceleyin.",
+      "h1": 1
+    },
+    {
+      "route": "tr/learn/what-is-ai-memory/",
+      "width": 320,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/resources/",
+        "https://mesamemory.dev/tr/learn/",
+        "https://mesamemory.dev/tr/learn/what-is-ai-memory/"
+      ],
+      "text": "Yapay zekâ hafızası: sohbet bitince ne kalır?",
+      "h1": 1
+    },
+    {
+      "route": "tr/learn/what-is-ai-memory/",
+      "width": 768,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/resources/",
+        "https://mesamemory.dev/tr/learn/",
+        "https://mesamemory.dev/tr/learn/what-is-ai-memory/"
+      ],
+      "text": "Yapay zekâ hafızası: sohbet bitince ne kalır?",
+      "h1": 1
+    },
+    {
+      "route": "tr/learn/what-is-ai-memory/",
+      "width": 1440,
+      "overflow": 0,
+      "home": "http://127.0.0.1:8765/tr/",
+      "crumbs": [
+        "https://mesamemory.dev/tr/",
+        "https://mesamemory.dev/tr/resources/",
+        "https://mesamemory.dev/tr/learn/",
+        "https://mesamemory.dev/tr/learn/what-is-ai-memory/"
+      ],
+      "text": "Yapay zekâ hafızası: sohbet bitince ne kalır?",
+      "h1": 1
+    }
+  ],
+  "accessibility": [
+    {
+      "route": "docs/core/",
+      "violations": []
+    },
+    {
+      "route": "tr/docs/core/",
+      "violations": []
+    },
+    {
+      "route": "learn/what-is-ai-memory/",
+      "violations": []
+    },
+    {
+      "route": "tr/learn/what-is-ai-memory/",
+      "violations": []
+    }
+  ],
+  "noJsBylines": 2
+}

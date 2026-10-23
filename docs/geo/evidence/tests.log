@@ -1,0 +1,99 @@
+
+> test
+> python3 -m unittest discover -s scripts/tests && for t in scripts/tests/*.test.mjs; do node "$t"; done
+
+.............[ERROR] sync_docs failed and no cache exists for: ['core', 'data', 'e2e', 'law', 'qa']
+.[WARN] sync_docs encountered network errors, but --fallback-cache is enabled and existing cache is retained for: ['core', 'data', 'e2e', 'law', 'qa']
+....
+----------------------------------------------------------------------
+Ran 18 tests in 29.066s
+
+OK
+[FAILED] core: OSError: synchronization failed; cache retained
+[FAILED] data: OSError: synchronization failed; cache retained
+[FAILED] law: OSError: synchronization failed; cache retained
+[FAILED] qa: OSError: synchronization failed; cache retained
+[FAILED] e2e: OSError: synchronization failed; cache retained
+[FAILED] core: OSError: synchronization failed; cache retained
+[FAILED] data: OSError: synchronization failed; cache retained
+[FAILED] law: OSError: synchronization failed; cache retained
+[FAILED] qa: OSError: synchronization failed; cache retained
+[FAILED] e2e: OSError: synchronization failed; cache retained
+[OK] test: 29527e618e9fdacffc77860ac94b91f8d1aa862d
+[OK] test: 29527e618e9fdacffc77860ac94b91f8d1aa862d
+[FAILED] test: OSError: synchronization failed; cache retained
+✔ admin safe static shell (en) (1.867726ms)
+✔ admin safe static shell (tr) (0.304278ms)
+✔ public configuration fails closed for missing or privileged keys (0.80798ms)
+✔ identity and database role are independently verified before private access (1.108668ms)
+✔ published records cannot be saved and unknown collections cannot be queried (0.376441ms)
+✔ draft saves are allowlisted and reject stale writes (1.196907ms)
+✔ Turkish titles produce stable public slugs (0.212426ms)
+✔ filter and sort operate over a copy and search tags (0.299339ms)
+✔ formatting preserves unselected source and selection boundaries (0.198655ms)
+✔ published records cannot be deleted through draft controls (0.272551ms)
+✔ request access checks the live role before reading or updating (0.288481ms)
+✔ request updates allow only status and notes and reject stale writes (0.240242ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.237647
+✔ current claims retain external certification blockers and dated Law evidence (1.271239ms)
+✔ package versions and source commits are backed by immutable imports (4.437025ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10.203941
+✔ all Core routes have a paired guide at the same immutable release baseline (8.934838ms)
+✔ localized docs keep source anchors and copy targets without duplicate IDs (112.998142ms)
+✔ docs hub has localized entry points and resolvable section links in both deployment modes (1.403691ms)
+✔ page copy contains localized Markdown and its immutable source (2.594449ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.535075
+✔ the complete curriculum has ordered prerequisites, diagrams, exercises and references (1.427498ms)
+✔ merged articles are absent from search and route to a published canonical lesson (9.492082ms)
+✔ search exposes real lesson sections rather than only title and summary (9.329904ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25.128217
+✔ hostile content cannot create active HTML or unsafe destinations (2.41334ms)
+✔ code remains literal; duplicate headings receive distinct anchors (2.254057ms)
+✔ checklists, tables, images, captions and literal math render safely (1.499167ms)
+✔ source section anchors survive safely and never duplicate heading IDs (0.440384ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.894867
+✔ search handles dotted and dotless Turkish I (2.382521ms)
+✔ beginner questions retain topic words and tolerate unaccented Turkish (5.918513ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.379721

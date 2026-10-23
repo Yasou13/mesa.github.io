@@ -1,0 +1,41 @@
+query_id,locale,query_type,branded,query,target_url,correctness_criteria
+tr-01,tr,definition,yes,MESA nedir ve hangi sorunu çözer?,https://mesamemory.dev/tr/,MESA kaynak bağlantılı hafıza; dil modeli veya genel RAG platformu değil.
+en-01,en,definition,yes,What is MESA and what problem does it solve?,https://mesamemory.dev/,MESA kaynak bağlantılı hafıza; dil modeli veya genel RAG platformu değil.
+tr-02,tr,definition,yes,"MESA açık kaynak mı, lisansı nedir?",https://mesamemory.dev/tr/about/,"Açık kaynak, MIT; ücret veya destek taahhüdü uydurulmaz."
+en-02,en,definition,yes,Is MESA open source and what is its license?,https://mesamemory.dev/about/,"Açık kaynak, MIT; ücret veya destek taahhüdü uydurulmaz."
+tr-03,tr,selection,no,Yapay zekâ ajanında oturumlar arasında hafıza nasıl tutulur?,https://mesamemory.dev/tr/learn/what-is-ai-memory/,Kalıcı depolama ile konuşma bağlamı ayrılır.
+en-03,en,selection,no,How can an AI agent retain memory across sessions?,https://mesamemory.dev/learn/what-is-ai-memory/,Kalıcı depolama ile konuşma bağlamı ayrılır.
+tr-04,tr,comparison,no,Vektör veritabanı ile yapay zekâ hafızası arasındaki fark nedir?,https://mesamemory.dev/tr/faq/,"Bellek yaşam döngüsü, kaynak izi, yetkiler ve arama ayrımı."
+en-04,en,comparison,no,How does AI memory differ from a vector database?,https://mesamemory.dev/faq/,"Bellek yaşam döngüsü, kaynak izi, yetkiler ve arama ayrımı."
+tr-05,tr,comparison,yes,MESA bir RAG çerçevesi midir?,https://mesamemory.dev/tr/faq/,Üretim zincirinin tamamını yönetmediği açıklanır.
+en-05,en,comparison,yes,Is MESA a RAG framework?,https://mesamemory.dev/faq/,Üretim zincirinin tamamını yönetmediği açıklanır.
+tr-06,tr,integration,yes,MESA yerelde nasıl kurulur?,https://mesamemory.dev/tr/docs/core/getting-started/,Sürüme sabitlenmiş kurulum; topoloji ve sınırlar.
+en-06,en,integration,yes,How do I install MESA locally?,https://mesamemory.dev/docs/core/getting-started/,Sürüme sabitlenmiş kurulum; topoloji ve sınırlar.
+tr-07,tr,integration,yes,MESA MCP ile nasıl bağlanır?,https://mesamemory.dev/tr/docs/mcp/,Eski V3 doğrudan sunucu ile V4 gateway ayrılır.
+en-07,en,integration,yes,How does MESA integrate through MCP?,https://mesamemory.dev/docs/mcp/,Eski V3 doğrudan sunucu ile V4 gateway ayrılır.
+tr-08,tr,integration,yes,MESA HTTP API ve Python SDK seçenekleri nelerdir?,https://mesamemory.dev/tr/docs/core/api-reference/,Gerçek belgelenmiş arayüzler; var olmayan uç noktalar yok.
+en-08,en,integration,yes,What HTTP API and Python SDK interfaces does MESA provide?,https://mesamemory.dev/docs/core/api-reference/,Gerçek belgelenmiş arayüzler; var olmayan uç noktalar yok.
+tr-09,tr,suitability,yes,MESA canlı kullanıma hazır mı?,https://mesamemory.dev/tr/status/,NO-GO; yayınlanan kaynak sürümü sertifikasyon değildir.
+en-09,en,suitability,yes,Is MESA ready for production?,https://mesamemory.dev/status/,NO-GO; yayınlanan kaynak sürümü sertifikasyon değildir.
+tr-10,tr,suitability,yes,MESA hangi iş yüklerine uygundur?,https://mesamemory.dev/tr/use-cases/,Değerlendirme senaryoları; müşteri başarı iddiası yok.
+en-10,en,suitability,yes,Which workloads should evaluate MESA?,https://mesamemory.dev/use-cases/,Değerlendirme senaryoları; müşteri başarı iddiası yok.
+tr-11,tr,retrieval,no,Hibrit aramada BM25 ve vektör sonuçları nasıl birleşir?,https://mesamemory.dev/tr/learn/hybrid-retrieval-explained/,RRF ve sıralama; sahte kalite ölçümü yok.
+en-11,en,retrieval,no,How are BM25 and vector search results combined?,https://mesamemory.dev/learn/hybrid-retrieval-explained/,RRF ve sıralama; sahte kalite ölçümü yok.
+tr-12,tr,retrieval,yes,MESA dört arama kanalını nasıl kullanır?,https://mesamemory.dev/tr/retrieval/,"Vektör, BM25, assertion, sınırlı çizge yolu."
+en-12,en,retrieval,yes,How does MESA use its four retrieval lanes?,https://mesamemory.dev/retrieval/,"Vektör, BM25, assertion, sınırlı çizge yolu."
+tr-13,tr,trust,no,Yapay zekâ yanıtındaki bilginin kaynağı nasıl izlenir?,https://mesamemory.dev/tr/glossary/provenance/,"Belge, revizyon, pasaj; doğruluk garantisi yok."
+en-13,en,trust,no,How can the source of an AI answer be traced?,https://mesamemory.dev/glossary/provenance/,"Belge, revizyon, pasaj; doğruluk garantisi yok."
+tr-14,tr,security,no,Ajan hafızasında veri erişim kapsamı nasıl korunur?,https://mesamemory.dev/tr/learn/memory-scope-and-authorization/,Sıralamadan önce erişim denetimi ve kapsam.
+en-14,en,security,no,How is data access scoped in agent memory?,https://mesamemory.dev/learn/memory-scope-and-authorization/,Sıralamadan önce erişim denetimi ve kapsam.
+tr-15,tr,comparison,yes,"SQLite, LanceDB ve Kùzu MESA içinde hangi rolleri üstlenir?",https://mesamemory.dev/tr/architecture/,SQLite asıl kayıt; vektör ve çizge arama izdüşümleri.
+en-15,en,comparison,yes,"What roles do SQLite, LanceDB and Kùzu play in MESA?",https://mesamemory.dev/architecture/,SQLite asıl kayıt; vektör ve çizge arama izdüşümleri.
+tr-16,tr,evaluation,yes,MESA QA ile E2E Certification arasındaki fark nedir?,https://mesamemory.dev/tr/evaluation/,Davranış testleri ve dondurulmuş profil kanıtı ayrımı.
+en-16,en,evaluation,yes,How do MESA QA and E2E Certification differ?,https://mesamemory.dev/evaluation/,Davranış testleri ve dondurulmuş profil kanıtı ayrımı.
+tr-17,tr,evaluation,no,Hafıza aramasında nDCG ve MRR nasıl ölçülür?,https://mesamemory.dev/tr/methodology/retrieval-evaluation/,Yöntem ve örneklem; gerçekleşmemiş sonuçlar yok.
+en-17,en,evaluation,no,How should nDCG and MRR be measured for memory retrieval?,https://mesamemory.dev/methodology/retrieval-evaluation/,Yöntem ve örneklem; gerçekleşmemiş sonuçlar yok.
+tr-18,tr,legal,no,Yapay zekânın verdiği Yargıtay kararı nasıl doğrulanır?,https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/,Resmî kaynağa doğrulama; hukuki sonuç garantisi yok.
+en-18,en,legal,no,How can I verify a Yargıtay decision cited by AI?,https://mesamemory.dev/guides/verify-ai-yargitay-decision/,Resmî kaynağa doğrulama; hukuki sonuç garantisi yok.
+tr-19,tr,legal,yes,MESA Data ve MESA Law Core ile nasıl ilişkilidir?,https://mesamemory.dev/tr/ecosystem/,"Veri hazırlama, hafıza ve uygulama sınırları; entegrasyon durumu."
+en-19,en,legal,yes,How do MESA Data and MESA Law relate to Core?,https://mesamemory.dev/ecosystem/,"Veri hazırlama, hafıza ve uygulama sınırları; entegrasyon durumu."
+tr-20,tr,conversion,yes,MESA erken erişim veya katkı için nereye başvurulur?,https://mesamemory.dev/tr/early-access/,Gerçek erken erişim ve GitHub kanalı; satış/SLA uydurulmaz.
+en-20,en,conversion,yes,Where can I request MESA early access or contribute?,https://mesamemory.dev/early-access/,Gerçek erken erişim ve GitHub kanalı; satış/SLA uydurulmaz.

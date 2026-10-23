@@ -1,0 +1,1633 @@
+[
+  {
+    "url": "https://mesamemory.dev/",
+    "status": 200,
+    "final": "https://mesamemory.dev/",
+    "canonical": "https://mesamemory.dev/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/",
+    "canonical": "https://mesamemory.dev/tr/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/mesa/",
+    "status": 200,
+    "final": "https://mesamemory.dev/mesa/",
+    "canonical": "https://mesamemory.dev/mesa/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/mesa/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/mesa/",
+    "canonical": "https://mesamemory.dev/tr/mesa/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/how-it-works/",
+    "status": 200,
+    "final": "https://mesamemory.dev/how-it-works/",
+    "canonical": "https://mesamemory.dev/how-it-works/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/how-it-works/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/how-it-works/",
+    "canonical": "https://mesamemory.dev/tr/how-it-works/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/ecosystem/",
+    "status": 200,
+    "final": "https://mesamemory.dev/ecosystem/",
+    "canonical": "https://mesamemory.dev/ecosystem/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/ecosystem/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/ecosystem/",
+    "canonical": "https://mesamemory.dev/tr/ecosystem/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/data/",
+    "status": 200,
+    "final": "https://mesamemory.dev/data/",
+    "canonical": "https://mesamemory.dev/data/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/data/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/data/",
+    "canonical": "https://mesamemory.dev/tr/data/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/qa/",
+    "status": 200,
+    "final": "https://mesamemory.dev/qa/",
+    "canonical": "https://mesamemory.dev/qa/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/qa/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/qa/",
+    "canonical": "https://mesamemory.dev/tr/qa/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/certification/",
+    "status": 200,
+    "final": "https://mesamemory.dev/certification/",
+    "canonical": "https://mesamemory.dev/certification/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/certification/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/certification/",
+    "canonical": "https://mesamemory.dev/tr/certification/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/law/",
+    "status": 200,
+    "final": "https://mesamemory.dev/law/",
+    "canonical": "https://mesamemory.dev/law/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/law/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/law/",
+    "canonical": "https://mesamemory.dev/tr/law/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/use-cases/",
+    "status": 200,
+    "final": "https://mesamemory.dev/use-cases/",
+    "canonical": "https://mesamemory.dev/use-cases/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/use-cases/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/use-cases/",
+    "canonical": "https://mesamemory.dev/tr/use-cases/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/evaluation/",
+    "status": 200,
+    "final": "https://mesamemory.dev/evaluation/",
+    "canonical": "https://mesamemory.dev/evaluation/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/evaluation/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/evaluation/",
+    "canonical": "https://mesamemory.dev/tr/evaluation/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/",
+    "canonical": "https://mesamemory.dev/docs/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/",
+    "canonical": "https://mesamemory.dev/tr/docs/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/mcp/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/mcp/",
+    "canonical": "https://mesamemory.dev/docs/mcp/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/mcp/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/mcp/",
+    "canonical": "https://mesamemory.dev/tr/docs/mcp/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/status/",
+    "status": 200,
+    "final": "https://mesamemory.dev/status/",
+    "canonical": "https://mesamemory.dev/status/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/status/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/status/",
+    "canonical": "https://mesamemory.dev/tr/status/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/about/",
+    "status": 200,
+    "final": "https://mesamemory.dev/about/",
+    "canonical": "https://mesamemory.dev/about/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/about/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/about/",
+    "canonical": "https://mesamemory.dev/tr/about/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/faq/",
+    "status": 200,
+    "final": "https://mesamemory.dev/faq/",
+    "canonical": "https://mesamemory.dev/faq/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/faq/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/faq/",
+    "canonical": "https://mesamemory.dev/tr/faq/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/architecture/",
+    "status": 200,
+    "final": "https://mesamemory.dev/architecture/",
+    "canonical": "https://mesamemory.dev/architecture/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/architecture/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/architecture/",
+    "canonical": "https://mesamemory.dev/tr/architecture/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/retrieval/",
+    "status": 200,
+    "final": "https://mesamemory.dev/retrieval/",
+    "canonical": "https://mesamemory.dev/retrieval/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/retrieval/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/retrieval/",
+    "canonical": "https://mesamemory.dev/tr/retrieval/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/early-access/",
+    "status": 200,
+    "final": "https://mesamemory.dev/early-access/",
+    "canonical": "https://mesamemory.dev/early-access/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/early-access/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/early-access/",
+    "canonical": "https://mesamemory.dev/tr/early-access/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/resources/",
+    "status": 200,
+    "final": "https://mesamemory.dev/resources/",
+    "canonical": "https://mesamemory.dev/resources/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/resources/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/resources/",
+    "canonical": "https://mesamemory.dev/tr/resources/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/",
+    "canonical": "https://mesamemory.dev/learn/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/",
+    "canonical": "https://mesamemory.dev/tr/learn/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/research/",
+    "status": 200,
+    "final": "https://mesamemory.dev/research/",
+    "canonical": "https://mesamemory.dev/research/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/research/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/research/",
+    "canonical": "https://mesamemory.dev/tr/research/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/guides/",
+    "status": 200,
+    "final": "https://mesamemory.dev/guides/",
+    "canonical": "https://mesamemory.dev/guides/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/guides/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/guides/",
+    "canonical": "https://mesamemory.dev/tr/guides/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/glossary/",
+    "status": 200,
+    "final": "https://mesamemory.dev/glossary/",
+    "canonical": "https://mesamemory.dev/glossary/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/glossary/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/glossary/",
+    "canonical": "https://mesamemory.dev/tr/glossary/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tools/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tools/",
+    "canonical": "https://mesamemory.dev/tools/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/tools/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/tools/",
+    "canonical": "https://mesamemory.dev/tr/tools/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/methodology/",
+    "status": 200,
+    "final": "https://mesamemory.dev/methodology/",
+    "canonical": "https://mesamemory.dev/methodology/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/methodology/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/methodology/",
+    "canonical": "https://mesamemory.dev/tr/methodology/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/what-is-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/what-is-ai-memory/",
+    "canonical": "https://mesamemory.dev/learn/what-is-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/what-is-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/what-is-ai-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/what-is-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/rag-vs-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/rag-vs-ai-memory/",
+    "canonical": "https://mesamemory.dev/learn/rag-vs-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/rag-vs-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/rag-vs-ai-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/rag-vs-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/structured-vs-unstructured-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/structured-vs-unstructured-memory/",
+    "canonical": "https://mesamemory.dev/learn/structured-vs-unstructured-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/structured-vs-unstructured-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/structured-vs-unstructured-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/structured-vs-unstructured-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/semantic-search/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/semantic-search/",
+    "canonical": "https://mesamemory.dev/learn/semantic-search/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/semantic-search/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/semantic-search/",
+    "canonical": "https://mesamemory.dev/tr/learn/semantic-search/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/",
+    "canonical": "https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/",
+    "canonical": "https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/hybrid-retrieval-explained/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/hybrid-retrieval-explained/",
+    "canonical": "https://mesamemory.dev/learn/hybrid-retrieval-explained/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/hybrid-retrieval-explained/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/hybrid-retrieval-explained/",
+    "canonical": "https://mesamemory.dev/tr/learn/hybrid-retrieval-explained/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/",
+    "canonical": "https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/",
+    "canonical": "https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/",
+    "canonical": "https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/what-is-evidence-aware-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/what-is-evidence-aware-memory/",
+    "canonical": "https://mesamemory.dev/learn/what-is-evidence-aware-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/memory-scope-and-authorization/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/memory-scope-and-authorization/",
+    "canonical": "https://mesamemory.dev/learn/memory-scope-and-authorization/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/memory-scope-and-authorization/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/memory-scope-and-authorization/",
+    "canonical": "https://mesamemory.dev/tr/learn/memory-scope-and-authorization/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/",
+    "canonical": "https://mesamemory.dev/learn/sqlite-as-canonical-agent-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/sqlite-as-canonical-agent-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/temporal-decay-in-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/temporal-decay-in-ai-memory/",
+    "canonical": "https://mesamemory.dev/learn/temporal-decay-in-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/temporal-decay-in-ai-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/",
+    "canonical": "https://mesamemory.dev/learn/evaluating-ndcg-and-mrr-in-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/",
+    "canonical": "https://mesamemory.dev/tr/learn/evaluating-ndcg-and-mrr-in-memory/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/build-a-small-search-lab/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/build-a-small-search-lab/",
+    "canonical": "https://mesamemory.dev/learn/build-a-small-search-lab/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/learn/build-a-small-search-lab/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/learn/build-a-small-search-lab/",
+    "canonical": "https://mesamemory.dev/tr/learn/build-a-small-search-lab/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/research/keyword-vs-semantic-search/",
+    "status": 200,
+    "final": "https://mesamemory.dev/research/keyword-vs-semantic-search/",
+    "canonical": "https://mesamemory.dev/research/keyword-vs-semantic-search/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/research/keyword-vs-semantic-search/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/research/keyword-vs-semantic-search/",
+    "canonical": "https://mesamemory.dev/tr/research/keyword-vs-semantic-search/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/guides/verify-ai-yargitay-decision/",
+    "status": 200,
+    "final": "https://mesamemory.dev/guides/verify-ai-yargitay-decision/",
+    "canonical": "https://mesamemory.dev/guides/verify-ai-yargitay-decision/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/",
+    "canonical": "https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/glossary/provenance/",
+    "status": 200,
+    "final": "https://mesamemory.dev/glossary/provenance/",
+    "canonical": "https://mesamemory.dev/glossary/provenance/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/glossary/provenance/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/glossary/provenance/",
+    "canonical": "https://mesamemory.dev/tr/glossary/provenance/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/methodology/retrieval-evaluation/",
+    "status": 200,
+    "final": "https://mesamemory.dev/methodology/retrieval-evaluation/",
+    "canonical": "https://mesamemory.dev/methodology/retrieval-evaluation/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/methodology/retrieval-evaluation/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/methodology/retrieval-evaluation/",
+    "canonical": "https://mesamemory.dev/tr/methodology/retrieval-evaluation/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/",
+    "canonical": "https://mesamemory.dev/docs/core/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/getting-started/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/getting-started/",
+    "canonical": "https://mesamemory.dev/docs/core/getting-started/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/getting-started/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/getting-started/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/getting-started/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/architecture/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/architecture/",
+    "canonical": "https://mesamemory.dev/docs/core/architecture/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/architecture/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/architecture/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/architecture/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/concepts-and-ingestion/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/concepts-and-ingestion/",
+    "canonical": "https://mesamemory.dev/docs/core/concepts-and-ingestion/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/concepts-and-ingestion/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/concepts-and-ingestion/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/concepts-and-ingestion/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/configuration/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/configuration/",
+    "canonical": "https://mesamemory.dev/docs/core/configuration/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/configuration/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/configuration/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/configuration/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/retrieval-and-graph/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/retrieval-and-graph/",
+    "canonical": "https://mesamemory.dev/docs/core/retrieval-and-graph/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/retrieval-and-graph/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/retrieval-and-graph/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/retrieval-and-graph/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/api-reference/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/api-reference/",
+    "canonical": "https://mesamemory.dev/docs/core/api-reference/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/api-reference/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/api-reference/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/api-reference/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/rebuild-runbook/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/rebuild-runbook/",
+    "canonical": "https://mesamemory.dev/docs/core/rebuild-runbook/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/rebuild-runbook/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/rebuild-runbook/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/rebuild-runbook/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/release-notes/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/release-notes/",
+    "canonical": "https://mesamemory.dev/docs/core/release-notes/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/release-notes/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/release-notes/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/release-notes/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/documentation-map/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/documentation-map/",
+    "canonical": "https://mesamemory.dev/docs/core/documentation-map/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/documentation-map/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/documentation-map/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/documentation-map/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/security/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/security/",
+    "canonical": "https://mesamemory.dev/docs/core/security/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/security/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/security/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/security/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/operations/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/operations/",
+    "canonical": "https://mesamemory.dev/docs/core/operations/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/operations/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/operations/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/operations/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/testing/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/testing/",
+    "canonical": "https://mesamemory.dev/docs/core/testing/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/testing/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/testing/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/testing/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/release-policy/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/release-policy/",
+    "canonical": "https://mesamemory.dev/docs/core/release-policy/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/release-policy/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/release-policy/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/release-policy/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/mcp/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/mcp/",
+    "canonical": "https://mesamemory.dev/docs/core/mcp/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/mcp/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/mcp/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/mcp/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/decisions/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/decisions/",
+    "canonical": "https://mesamemory.dev/docs/core/decisions/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/decisions/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/decisions/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/decisions/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0009/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0009/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0009/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0009/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0009/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0009/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0010/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0010/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0010/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0010/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0010/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0010/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0011/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0011/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0011/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0011/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0011/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0011/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0012/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0012/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0012/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0012/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0012/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0012/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0013/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0013/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0013/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0013/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0013/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0013/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0014/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0014/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0014/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0014/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0014/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0014/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/adr-0015/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/adr-0015/",
+    "canonical": "https://mesamemory.dev/docs/core/adr-0015/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/adr-0015/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/adr-0015/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/adr-0015/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/installation/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/installation/",
+    "canonical": "https://mesamemory.dev/docs/core/installation/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/installation/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/installation/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/installation/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/embedding-providers/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/embedding-providers/",
+    "canonical": "https://mesamemory.dev/docs/core/embedding-providers/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/embedding-providers/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/embedding-providers/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/embedding-providers/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/evidence/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/evidence/",
+    "canonical": "https://mesamemory.dev/docs/core/evidence/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/evidence/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/evidence/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/evidence/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/graph/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/graph/",
+    "canonical": "https://mesamemory.dev/docs/core/graph/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/graph/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/graph/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/graph/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/examples/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/examples/",
+    "canonical": "https://mesamemory.dev/docs/core/examples/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/examples/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/examples/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/examples/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/cli-reference/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/cli-reference/",
+    "canonical": "https://mesamemory.dev/docs/core/cli-reference/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/cli-reference/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/cli-reference/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/cli-reference/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/migration/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/migration/",
+    "canonical": "https://mesamemory.dev/docs/core/migration/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/migration/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/migration/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/migration/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/troubleshooting/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/troubleshooting/",
+    "canonical": "https://mesamemory.dev/docs/core/troubleshooting/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/troubleshooting/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/troubleshooting/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/troubleshooting/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/limitations/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/limitations/",
+    "canonical": "https://mesamemory.dev/docs/core/limitations/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/limitations/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/limitations/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/limitations/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/ecosystem/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/ecosystem/",
+    "canonical": "https://mesamemory.dev/docs/core/ecosystem/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/ecosystem/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/ecosystem/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/ecosystem/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/colab-rehberi/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/colab-rehberi/",
+    "canonical": "https://mesamemory.dev/docs/core/colab-rehberi/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/colab-rehberi/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/colab-rehberi/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/colab-rehberi/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/core/audit/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/core/audit/",
+    "canonical": "https://mesamemory.dev/docs/core/audit/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/core/audit/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/core/audit/",
+    "canonical": "https://mesamemory.dev/tr/docs/core/audit/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/data/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/data/",
+    "canonical": "https://mesamemory.dev/docs/data/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/data/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/data/",
+    "canonical": "https://mesamemory.dev/tr/docs/data/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/data/quickstart/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/data/quickstart/",
+    "canonical": "https://mesamemory.dev/docs/data/quickstart/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/data/quickstart/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/data/quickstart/",
+    "canonical": "https://mesamemory.dev/tr/docs/data/quickstart/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/data/user-guide/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/data/user-guide/",
+    "canonical": "https://mesamemory.dev/docs/data/user-guide/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/data/user-guide/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/data/user-guide/",
+    "canonical": "https://mesamemory.dev/tr/docs/data/user-guide/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/data/import-contract/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/data/import-contract/",
+    "canonical": "https://mesamemory.dev/docs/data/import-contract/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/data/import-contract/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/data/import-contract/",
+    "canonical": "https://mesamemory.dev/tr/docs/data/import-contract/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/data/troubleshooting/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/data/troubleshooting/",
+    "canonical": "https://mesamemory.dev/docs/data/troubleshooting/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/data/troubleshooting/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/data/troubleshooting/",
+    "canonical": "https://mesamemory.dev/tr/docs/data/troubleshooting/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/data/mvp-closure/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/data/mvp-closure/",
+    "canonical": "https://mesamemory.dev/docs/data/mvp-closure/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/data/mvp-closure/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/data/mvp-closure/",
+    "canonical": "https://mesamemory.dev/tr/docs/data/mvp-closure/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/law/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/law/",
+    "canonical": "https://mesamemory.dev/docs/law/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/law/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/law/",
+    "canonical": "https://mesamemory.dev/tr/docs/law/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/law/operations/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/law/operations/",
+    "canonical": "https://mesamemory.dev/docs/law/operations/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/law/operations/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/law/operations/",
+    "canonical": "https://mesamemory.dev/tr/docs/law/operations/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/law/verification/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/law/verification/",
+    "canonical": "https://mesamemory.dev/docs/law/verification/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/law/verification/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/law/verification/",
+    "canonical": "https://mesamemory.dev/tr/docs/law/verification/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/law/baseline/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/law/baseline/",
+    "canonical": "https://mesamemory.dev/docs/law/baseline/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/law/baseline/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/law/baseline/",
+    "canonical": "https://mesamemory.dev/tr/docs/law/baseline/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/qa/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/qa/",
+    "canonical": "https://mesamemory.dev/docs/qa/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/qa/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/qa/",
+    "canonical": "https://mesamemory.dev/tr/docs/qa/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/qa/audit/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/qa/audit/",
+    "canonical": "https://mesamemory.dev/docs/qa/audit/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/qa/audit/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/qa/audit/",
+    "canonical": "https://mesamemory.dev/tr/docs/qa/audit/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/qa/repair-prompt/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/qa/repair-prompt/",
+    "canonical": "https://mesamemory.dev/docs/qa/repair-prompt/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/qa/repair-prompt/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/qa/repair-prompt/",
+    "canonical": "https://mesamemory.dev/tr/docs/qa/repair-prompt/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/qa/reproduce-prompt/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/qa/reproduce-prompt/",
+    "canonical": "https://mesamemory.dev/docs/qa/reproduce-prompt/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/qa/reproduce-prompt/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/qa/reproduce-prompt/",
+    "canonical": "https://mesamemory.dev/tr/docs/qa/reproduce-prompt/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/",
+    "canonical": "https://mesamemory.dev/docs/e2e/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/audit-report/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/audit-report/",
+    "canonical": "https://mesamemory.dev/docs/e2e/audit-report/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/audit-report/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/audit-report/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/audit-report/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/agent-pack-start/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/agent-pack-start/",
+    "canonical": "https://mesamemory.dev/docs/e2e/agent-pack-start/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/agent-pack-start/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/agent-pack-start/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/agent-pack-start/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/system-model/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/system-model/",
+    "canonical": "https://mesamemory.dev/docs/e2e/system-model/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/system-model/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/system-model/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/system-model/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/gates-and-verdicts/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/gates-and-verdicts/",
+    "canonical": "https://mesamemory.dev/docs/e2e/gates-and-verdicts/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/gates-and-verdicts/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/gates-and-verdicts/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/gates-and-verdicts/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/contract/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/contract/",
+    "canonical": "https://mesamemory.dev/docs/e2e/contract/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/contract/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/contract/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/contract/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/current-repair/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/current-repair/",
+    "canonical": "https://mesamemory.dev/docs/e2e/current-repair/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/current-repair/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/current-repair/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/current-repair/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/docs/e2e/repair-verification/",
+    "status": 200,
+    "final": "https://mesamemory.dev/docs/e2e/repair-verification/",
+    "canonical": "https://mesamemory.dev/docs/e2e/repair-verification/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/tr/docs/e2e/repair-verification/",
+    "status": 200,
+    "final": "https://mesamemory.dev/tr/docs/e2e/repair-verification/",
+    "canonical": "https://mesamemory.dev/tr/docs/e2e/repair-verification/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/this-route-does-not-exist-geo-audit/",
+    "status": 404,
+    "final": "https://mesamemory.dev/this-route-does-not-exist-geo-audit/"
+  },
+  {
+    "url": "http://mesamemory.dev/",
+    "status": 200,
+    "final": "https://mesamemory.dev/",
+    "canonical": "https://mesamemory.dev/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://www.mesamemory.dev/",
+    "status": 200,
+    "final": "https://mesamemory.dev/",
+    "canonical": "https://mesamemory.dev/",
+    "robots": [],
+    "x_robots": null
+  },
+  {
+    "url": "https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/",
+    "status": 200,
+    "final": "https://mesamemory.dev/learn/why-vector-search-alone-is-not-enough/",
+    "canonical": "https://mesamemory.dev/learn/semantic-search/",
+    "robots": [
+      "noindex"
+    ],
+    "x_robots": null
+  }
+]

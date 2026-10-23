@@ -1151,7 +1151,7 @@ function renderFormattedText(text) {
 }
 
 function hubBreadcrumb(items) {
-  return `<nav class="breadcrumbs" aria-label="${hubText('Breadcrumb', 'Sayfa yolu')}"><ol>${items.map((item, index) => `<li>${item.path ? `<a href="${route(item.path)}">${escapeHtml(item.label)}</a>` : `<span aria-current="page">${escapeHtml(item.label)}</span>`}${index < items.length - 1 ? '<span aria-hidden="true">/</span>' : ''}</li>`).join('')}</ol></nav>`;
+  return `<nav class="breadcrumbs" aria-label="${hubText('Breadcrumb', 'Sayfa yolu')}"><ol>${items.map((item, index) => `<li>${item.path !== undefined ? `<a href="${route(item.path)}">${escapeHtml(item.label)}</a>` : `<span aria-current="page">${escapeHtml(item.label)}</span>`}${index < items.length - 1 ? '<span aria-hidden="true">/</span>' : ''}</li>`).join('')}</ol></nav>`;
 }
 
 function hubCard(entry) {
@@ -1260,7 +1260,7 @@ function renderHubBlock(block) {
   if (block.kind === 'image') return `<figure><img src="${asset(block.src)}" alt="${escapeHtml(block.alt)}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
   if (block.kind === 'diagram') return `<figure class="article-diagram" aria-label="${escapeHtml(block.alt)}"><ol tabindex="0">${block.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
   if (block.kind === 'references') return `<ol class="reference-list">${block.items.map((item) => `<li>${item.href ? (item.href.startsWith('http') ? external(item.href, escapeHtml(item.label)) : `<a href="${route(item.href)}">${escapeHtml(item.label)}</a>`) : escapeHtml(item.label)}</li>`).join('')}</ol>`;
-  if (block.kind === 'table') return `<div class="table-scroll"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${renderFormattedText(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  if (block.kind === 'table') return `<div class="table-scroll" tabindex="0" role="region" aria-label="${hubText('Scrollable table', 'Kaydırılabilir tablo')}"><table><thead><tr>${block.headers.map((item) => `<th scope="col">${escapeHtml(item)}</th>`).join('')}</tr></thead><tbody>${block.rows.map((row) => `<tr>${row.map((item, index) => `<${index ? 'td' : 'th'}${index ? '' : ' scope="row"'}>${renderFormattedText(item)}</${index ? 'td' : 'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   throw new Error(`Unsupported hub block type: ${block.kind}`);
 }
 
@@ -1471,15 +1471,27 @@ function documentShell({ title, description, canonical, content, assetBase, lang
   const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
+  const siteDescription = language === 'tr' ? trContent.pages.home.description : siteData.pages.home.description;
   const structuredData = JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'WebSite', name: project.name, url: siteUrl, inLanguage: language, description },
+      { '@type': 'WebSite', '@id': `${siteUrl}#website`, name: project.name, url: siteUrl, inLanguage: ['en', 'tr'], description: siteDescription },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        url: canonical,
+        name: title,
+        description,
+        inLanguage: language,
+        isPartOf: { '@id': `${siteUrl}#website` },
+        about: { '@id': `${siteUrl}#software` }
+      },
       {
         '@type': 'SoftwareSourceCode',
+        '@id': `${siteUrl}#software`,
         name: project.fullName,
         alternateName: project.name,
-        description,
+        description: siteDescription,
         codeRepository: repos.core,
         license: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`,
         version: project.version,
@@ -1657,7 +1669,7 @@ function hubStructuredNodes(item, language, canonical) {
     dateModified: data.updatedAt,
     inLanguage: language,
     mainEntityOfPage: canonical,
-    author: { '@type': 'Organization', name: data.author },
+    author: { '@type': 'Organization', name: language === 'tr' && data.author === 'MESA contributors' ? 'MESA’ya katkıda bulunanlar' : data.author },
     publisher: { '@type': 'Organization', name: 'MESA', url: siteUrl },
     articleSection: hubTypeLabels[language][data.type],
     keywords: data.tags.join(', ')
@@ -1755,8 +1767,8 @@ for (const language of ['en', 'tr']) {
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: language === 'tr' ? 'Ana sayfa' : 'Home', item: language === 'tr' ? `${siteUrl}tr/` : siteUrl },
           { '@type': 'ListItem', position: 2, name: crumbParent, item: crumbParentUrl },
-          { '@type': 'ListItem', position: 3, name: crumbRepo, item: crumbRepoUrl },
-          { '@type': 'ListItem', position: 4, name: pageTitle, item: canonical }
+          ...(routePath === item.repo.base_route ? [] : [{ '@type': 'ListItem', position: 3, name: crumbRepo, item: crumbRepoUrl }]),
+          { '@type': 'ListItem', position: routePath === item.repo.base_route ? 3 : 4, name: pageTitle, item: canonical }
         ]
       },
       {
@@ -1765,7 +1777,6 @@ for (const language of ['en', 'tr']) {
         description,
         inLanguage: language,
         mainEntityOfPage: canonical,
-        author: { '@type': 'Organization', name: 'MESA Contributors' },
         publisher: { '@type': 'Organization', name: 'MESA', url: siteUrl },
         keywords: `${item.repoKey}, documentation, ${item.repo.version}`
       }
@@ -1811,7 +1822,7 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   path.join(outputDirectory, 'robots.txt'),
-  `User-agent: *\nDisallow: /admin/\nDisallow: /tr/admin/\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
+  `User-agent: *\nDisallow: ${basePath}admin/\nDisallow: ${basePath}tr/admin/\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
 );
 
 // Admin routes remain reachable but cannot impersonate an authenticated CMS.

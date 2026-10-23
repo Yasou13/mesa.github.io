@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "layouts": 90,
+  "redirects": 36,
+  "features": [
+    "stage filters",
+    "full-text and section search",
+    "Turkish unaccented query",
+    "global deep-link search",
+    "progress and resume",
+    "answered exercises",
+    "no-JavaScript reading"
+  ],
+  "browser": "Chrome/155.0.8059.84"
+}
