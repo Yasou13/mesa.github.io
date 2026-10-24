@@ -395,9 +395,47 @@ async function checkIntroPages() {
   await navigate(new URL('tr/how-it-works/',baseUrl).href);
   await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
   await wait(200);
+  const autoplay = await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`);
+  if (!autoplay) failures.push('Walkthrough did not start automatically on entering the viewport');
+  const storyHeights = [];
+  for (let step = 0; step < 4; step++) {
+    const state = await evaluate(`(() => {const story=document.querySelector('[data-memory-story]');return {step:story.dataset.step,height:story.getBoundingClientRect().height};})()`);
+    if (state.step !== String(step)) failures.push(`Autoplay expected step ${step}, got ${state.step}`);
+    storyHeights.push(state.height);
+    if (screenshotsDirectory) {
+      const shot = await connection.send('Page.captureScreenshot', {format:'png'});
+      fs.writeFileSync(path.join(screenshotsDirectory, `story-step-${step}.png`), Buffer.from(shot.data,'base64'));
+    }
+    await wait(6550);
+  }
+  if (Math.max(...storyHeights)-Math.min(...storyHeights)>1) failures.push('Walkthrough changed height during autoplay');
+  if(await evaluate(`document.querySelector('[data-memory-story]').dataset.step`)!=='0') failures.push('Walkthrough did not loop');
+  await evaluate(`scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})`);
+  await wait(200);
+  if(await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Offscreen walkthrough kept playing');
+  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
+  await wait(200);
+  if(!await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Walkthrough did not resume on reentry');
   await evaluate(`document.querySelector('[data-story-play]').click()`);
-  await wait(6700);
-  if(await evaluate(`document.querySelector('[data-memory-story]').dataset.step`)!=='1') failures.push('Timed walkthrough did not advance');
+  await evaluate(`scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})`);
+  await wait(200);
+  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
+  await wait(200);
+  if(await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Manual pause was lost after scrolling');
+  await navigate(new URL('tr/',baseUrl).href);
+  await connection.send('Emulation.setEmulatedMedia', {features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
+  await wait(200);
+  if(await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Reduced motion started autoplay');
+  await connection.send('Emulation.setEmulatedMedia', {features:[]});
+  await connection.send('Emulation.setDeviceMetricsOverride', {width:390,height:900,deviceScaleFactor:1,mobile:false});
+  await navigate(new URL('tr/',baseUrl).href);
+  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'});document.querySelector('[data-story-step="3"]').click()`);
+  await wait(600);
+  if (screenshotsDirectory) {
+    const shot=await connection.send('Page.captureScreenshot',{format:'png'});
+    fs.writeFileSync(path.join(screenshotsDirectory,'story-mobile.png'),Buffer.from(shot.data,'base64'));
+  }
   await checkMemoryDisclosure('tr/retrieval/');
   await checkMemoryDisclosure('retrieval/');
 }

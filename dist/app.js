@@ -328,6 +328,8 @@ for (const story of document.querySelectorAll('[data-memory-story]')) {
   let current = 0;
   let timer;
   let playing = false;
+  let visible = false;
+  let userPaused = false;
   const playText = isTurkish ? 'Akışı oynat' : 'Play the flow';
   const stopText = isTurkish ? 'Duraklat' : 'Pause';
   const stop = () => {
@@ -348,30 +350,44 @@ for (const story of document.querySelectorAll('[data-memory-story]')) {
   };
   const advance = () => {
     timer = setTimeout(() => {
-      if (current === panels.length - 1) { stop(); return; }
-      show(current + 1);
+      show((current + 1) % panels.length);
       advance();
     }, 6500);
   };
-  controls.forEach((control, index) => control.addEventListener('click', () => { stop(); show(index); }));
-  play.addEventListener('click', () => {
-    if (playing) { stop(); return; }
-    show(0);
+  const start = () => {
+    if (playing || document.hidden) return;
     playing = true;
     play.textContent = stopText;
     play.setAttribute('aria-pressed', 'true');
     story.classList.add('is-playing');
     advance();
+  };
+  const syncPlayback = () => {
+    if (visible && !document.hidden && !reduced.matches && !userPaused) start();
+    else stop();
+  };
+  controls.forEach((control, index) => control.addEventListener('click', () => {
+    userPaused = true;
+    stop();
+    show(index);
+  }));
+  play.addEventListener('click', () => {
+    userPaused = playing;
+    if (playing) stop();
+    else { show(0); start(); }
   });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-  reduced.addEventListener('change', stop);
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) stop(); }).observe(story);
-  }
+  document.addEventListener('visibilitychange', syncPlayback);
+  reduced.addEventListener('change', syncPlayback);
   story.classList.add('is-enhanced');
   play.hidden = false;
   show(0);
   stop();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      syncPlayback();
+    }, { threshold: 0.2 }).observe(story);
+  }
 }
 
 // Course search is a progressive enhancement; all lessons remain static links.

@@ -34,7 +34,7 @@
   <link rel="apple-touch-icon" href="../../../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../../styles.css?v=6f803158fb8f">
+  <link rel="stylesheet" href="../../../../styles.css?v=f8a4d17abb43">
   <link rel="stylesheet" href="../../../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../../../learn.css?v=ef08fd97f3dc">
 
@@ -278,7 +278,7 @@
 </main>
 <script type="application/json" data-doc-copy>"# HTTP API ve Python SDK\n\n## Kimliği doğrulayın ve erişim kapsamını belirleyin\n\nHer uç noktanın istek gövdesi, alanları ve yanıt kodları için [HTTP uç nokta referansına](docs/core/endpoints/) bakın.\n\nSürümlü hafıza, sağlık ve ölçüm isteklerinde `X-API-Key` gerekir. Dışarıya açık `/health/init`, OpenAPI, Swagger ve ReDoc için ağ erişim kurallarını kurulumda ayrıca belirleyin. Veri kümeleriyle sınırlı bir oturum açmadan önce katalog kaynaklarını yetkili erişim kimliğiyle oluşturun. [SDK örneği](docs/core/examples/) işlemin son durumunu açıkça kontrol eder.\n\n## Kullanılabilen API işlemleri\n\n| Metot | Yol | Amaç |\n|---|---|---|\n| GET | `/v4/capability` | Kullanılabilir özellikler ve yeniden oluşturma sınırları |\n| POST / GET | `/v4/catalog/workspaces` | Çalışma alanı kataloğu |\n| POST / GET | `/v4/catalog/datasets` | Veri kümesi kataloğu |\n| POST / GET | `/v4/catalog/documents` | Belge kataloğu |\n| POST / GET | `/v4/catalog/revisions` | Değiştirilemeyen belge sürümleri |\n| POST | `/v4/catalog/source-chunks` | Tam kaynak parçaları |\n| POST | `/v4/sessions/start` | Oturumun erişebileceği veri kümelerini belirleme |\n| POST | `/v4/memory/insert` | Değişiklik isteğini kalıcı kayda alma (202) |\n| POST | `/v4/memory/search` | Erişim izinlerine göre hibrit arama |\n| GET | `/v4/mutations/{mutation_id}` | İşleme durumunu izleme |\n| POST | `/v4/mutations/{mutation_id}/replay` | Yetkili yeniden yürütme |\n| POST | `/v4/mutations/{mutation_id}/rollback` | Kaynağın sahiplik bağını geri alma |\n| GET | `/v4/sessions/{session_id}/context` | Sınırlı kanıt bağlamı |\n| POST | `/v4/sessions/{session_id}/end` | Kalıcı oturum sonlandırma |\n\n## Yanıtları nasıl yorumlamalı?\n\nHTTP 202 yalnızca isteğin kabul edildiğini bildirir. Başarılı bir yazma `COMMITTED` durumuna ulaşmalıdır. Arama yanıtı; `rrf_score`, `legal_factor`, `raw_score`, `final_score` ve katkı veren kanalları içerir. Model kapalıyken asıl bilgi kaydını yazma `503 canonical_processing_unavailable` döndürür; beklenen sağlayıcı hataları da açık 503 yanıtıyla bildirilir. Yönetim amaçlı yeniden oluşturma ayrı bir işlemdir ve varsayılan olarak kapalıdır. Tam istek şemaları, diğer yönetim işlemleri ve yetkilendirme ayrıntıları aşağıdaki özgün kaynakta bulunur.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Güvenlik</a><span>MIT · Açık kaynak</span></footer>
-  <script src="../../../../app.js?v=d389e70c5cac"></script>
+  <script src="../../../../app.js?v=2190864abb0c"></script>
 
   <script src="../../../../docs.js?v=c6166317ecca"></script>
 </body>

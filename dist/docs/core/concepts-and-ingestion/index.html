@@ -34,7 +34,7 @@
   <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../styles.css?v=6f803158fb8f">
+  <link rel="stylesheet" href="../../../styles.css?v=f8a4d17abb43">
   <link rel="stylesheet" href="../../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
 
@@ -234,7 +234,7 @@
 </main>
 <script type="application/json" data-doc-copy>"# Ingestion & memory lifecycle\n\n## The source hierarchy\n\nA tenant contains workspaces and datasets. A dataset owns documents, immutable revisions and exact source chunks. A server-created session binds the principal, tenant, workspace, agent and an immutable authorized dataset set. Caller metadata never grants scope.\n\n## Admission is not completion\n\n`POST /v4/memory/insert` requires session and source identities, title, source_ref and exact content. A 202 returns mutation, candidate, pipeline and raw-log IDs. Poll mutation state; `wait_until_committed` can also return a failed terminal state. Rejection must not create active retrieval artifacts.\n\n## Revision boundaries and retries\n\nFor a multi-chunk revision, use distinct IDs/ordinals and `finalize_revision=false` until the last insert. The final insert freezes membership; activation waits for every required child. Retry with the same body idempotency key and exact payload. Conflicting retries are rejected. Correction creates a new revision; purge and rollback remove source ownership through explicit permissions.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Memory that keeps its evidence.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Security</a><span>MIT · Open source</span></footer>
-  <script src="../../../app.js?v=d389e70c5cac"></script>
+  <script src="../../../app.js?v=2190864abb0c"></script>
 
   <script src="../../../docs.js?v=c6166317ecca"></script>
 </body>
