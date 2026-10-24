@@ -497,7 +497,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Kaynağını koruyan yapay zekâ hafızası.", "BELGEDEN KANITA", "Alfa"),
+        "tr/": ("Kaynağını koruyan yapay zekâ hafızası.", "BİLGİ DEĞİŞİNCE", "Alfa"),
         "tr/how-it-works/": ("Bir not eklediğinizde ne olur?", "Bir ana kayıt. İki arama görünümü.", "Sıralamaları birleştir"),
         "tr/mesa/": ("Dört sinyal", "Çizge yolu", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),

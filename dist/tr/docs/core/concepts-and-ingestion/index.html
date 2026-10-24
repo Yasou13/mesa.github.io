@@ -34,7 +34,7 @@
   <link rel="apple-touch-icon" href="../../../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../../styles.css?v=f8a4d17abb43">
+  <link rel="stylesheet" href="../../../../styles.css?v=316ff283df2e">
   <link rel="stylesheet" href="../../../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../../../learn.css?v=ef08fd97f3dc">
 
@@ -234,7 +234,7 @@
 </main>
 <script type="application/json" data-doc-copy>"# Veri alımı ve hafıza yaşam döngüsü\n\n## Kaynaklar ve erişim alanları nasıl düzenlenir?\n\nÜst erişim alanı (tenant), çalışma alanlarını ve veri kümelerini içerir. Her veri kümesinin belgeleri, değiştirilemeyen sürümleri ve kaynak metin parçaları vardır. Sunucunun açtığı oturum; erişim kimliğini, üst alanı, çalışma alanını, ajanı ve izin verilen sabit veri kümesi listesini bir araya getirir. İstemcinin gönderdiği ek bilgiler kendi başına erişim yetkisi vermez.\n\n## Kabul edilmesi, tamamlandığı anlamına gelmez\n\n`POST /v4/memory/insert` için oturum ve kaynak kimlikleriyle birlikte `title`, `source_ref` ve tam `content` gerekir. HTTP 202 yanıtında değişiklik işleminin, aday kaydın, işleme hattının ve ham günlüğün kimlikleri döner. Sonrasında işlemin durumunu izleyin: `wait_until_committed` başarısız bir son durumla da dönebilir. Reddedilen iş, etkin arama kayıtları oluşturmamalıdır.\n\n## Çok parçalı sürümler ve tekrar denemeler\n\nBir sürüm birden fazla parçadan oluşuyorsa her parçaya ayrı kimlik ve sıra numarası verin. Son eklemeye kadar `finalize_revision=false` gönderin. Son ekleme parça listesini sabitler; sürümün etkinleşmesi gereken tüm alt işlerin başarısını bekler. Tekrar denemede aynı yineleme anahtarını ve birebir aynı içeriği kullanın. Çelişen tekrar reddedilir. Düzeltme için yeni sürüm oluşturulur; kalıcı silme ve geri alma ise açık izinlerle kaynağın sahiplik bağını kaldırır.\n\n\nhttps://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md"</script>
 <footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../../docs/core/release-notes/">v0.8.1</a><a href="../../../docs/core/security/">Güvenlik</a><span>MIT · Açık kaynak</span></footer>
-  <script src="../../../../app.js?v=2190864abb0c"></script>
+  <script src="../../../../app.js?v=46908d800664"></script>
 
   <script src="../../../../docs.js?v=c6166317ecca"></script>
 </body>

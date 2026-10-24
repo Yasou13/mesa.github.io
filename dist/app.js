@@ -376,6 +376,17 @@ for (const story of document.querySelectorAll('[data-memory-story]')) {
     if (playing) stop();
     else { show(0); start(); }
   });
+  // Keep the evidence still while a visitor inspects a supporting passage.
+  story.addEventListener('toggle', (event) => {
+    if (event.target.matches('.story-citation') && event.target.open) {
+      userPaused = true;
+      stop();
+    }
+  }, true);
+  story.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#story-source-"]');
+    if (link) story.querySelector(link.getAttribute('href')).open = true;
+  });
   document.addEventListener('visibilitychange', syncPlayback);
   reduced.addEventListener('change', syncPlayback);
   story.classList.add('is-enhanced');

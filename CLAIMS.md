@@ -84,3 +84,27 @@ context defaults follow `docs/retrieval-and-graph.md` and the prior source map.
 Diagrams represent responsibilities inside the supported combined process,
 not independent storage-writing services. The simplified Atlas example remains
 illustrative. No runtime capability or certification claim was added.
+
+## Evidence change scenario — 2026-10-24
+
+The home and how-it-works scenario now illustrates three-document dependency
+retrieval, explicit revision replacement, session dataset access, and source
+rollback. The Atlas project, services, team, passages and displayed responses
+are fictional, scripted examples; they are not recorded Core query results or
+quality measurements. Links identify immutable Core v0.8.1 `d394784` evidence:
+
+| Displayed mechanism | Source at d394784 |
+|---|---|
+| Three-hop supported graph path | `tests/test_v4_independent_retrieval_audit.py::test_real_three_hop_mixed_direction_and_path_alignment` (real Kùzu graph; no semantic quality claim) |
+| Matched and supporting source passages remain aligned | `tests/test_v4_independent_retrieval_audit.py::test_graph_primary_source_and_parallel_paths_remain_aligned` |
+| Out-of-scope data cannot contribute to any lane or model-visible context | `tests/test_v4_independent_retrieval_audit.py::test_all_lanes_reject_shared_entity_scope_collisions_before_fusion` (real SQL/graph, mock vectors) |
+| Explicitly ingested new revision supersedes prior assertions | `docs/architecture-v4.md`, artifact ownership and rollback |
+| Source-owned rollback; independent knowledge survives | `docs/architecture-v4.md`, artifact ownership and rollback |
+
+The revision example does not imply automatic truth resolution between arbitrary
+conflicting documents. Access examples describe a server-bound session's data
+scope, not client-side security enforcement. The operations source is visibly
+excluded from the illustrated model context when access is absent; its sample
+metadata is shown only to explain the fictional scene. The updated status does
+not certify project readiness. MESA returns evidence, while the application's
+model produces the final answer. Existing alpha/readiness notices remain.

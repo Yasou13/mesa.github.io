@@ -381,6 +381,16 @@ async function checkIntroPages() {
     await connection.send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
     await connection.send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
     if (await evaluate(`document.querySelector('[data-memory-story]').dataset.step`) !== '3') failures.push(`${routePath}: keyboard step failed: ${await evaluate(`JSON.stringify({step:document.querySelector('[data-memory-story]').dataset.step,focus:document.activeElement.outerHTML})`)}`);
+    const evidence = await evaluate(`(() => {
+      const story=document.querySelector('[data-memory-story]');
+      const panels=[...story.querySelectorAll('[data-story-panel]')];
+      return {states:panels.map(p=>p.querySelector('[data-evidence-state]').dataset.evidenceState),paths:panels.map(p=>p.querySelectorAll('.story-dependency-path > li').length),citations:panels.map(p=>p.querySelectorAll('.story-citation').length),excluded:panels.slice(2).every(p=>p.querySelectorAll('.story-citation--excluded').length===1),proof:story.querySelectorAll('.story-proof a[href*="d394784"]').length,basicNote:story.innerText.includes('09:00')||story.innerText.includes('09.00')};
+    })()`);
+    if(JSON.stringify(evidence.states)!==JSON.stringify(['blocked','updated','restricted','retracted'])||evidence.paths.some(n=>n!==4)||evidence.citations.some(n=>n!==3)||!evidence.excluded||evidence.proof!==3||evidence.basicNote)failures.push(`${routePath}: evidence scenario contract ${JSON.stringify(evidence)}`);
+    await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');s.querySelector('[data-story-play]').click();s.querySelector('.story-path-reference').click();})()`);
+    await wait(150);
+    const inspected=await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');return s.querySelector('.story-citation').open&&!s.classList.contains('is-playing');})()`);
+    if(!inspected)failures.push(`${routePath}: source inspection did not open the passage and pause autoplay`);
     await connection.send('Emulation.setEmulatedMedia', {features:[{name:'prefers-reduced-motion',value:'reduce'}]});
     const motion = await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');s.querySelector('[data-story-play]').click();const p=s.querySelector('.intro-specimen');return getComputedStyle(p).animationName;})()`);
     if(motion!=='none') failures.push(`${routePath}: reduced motion failed`);
