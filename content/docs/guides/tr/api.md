@@ -1,5 +1,7 @@
 ## Kimliği doğrulayın ve erişim kapsamını belirleyin
 
+Her uç noktanın istek gövdesi, alanları ve yanıt kodları için [HTTP uç nokta referansına](docs/core/endpoints/) bakın.
+
 Sürümlü hafıza, sağlık ve ölçüm isteklerinde `X-API-Key` gerekir. Dışarıya açık `/health/init`, OpenAPI, Swagger ve ReDoc için ağ erişim kurallarını kurulumda ayrıca belirleyin. Veri kümeleriyle sınırlı bir oturum açmadan önce katalog kaynaklarını yetkili erişim kimliğiyle oluşturun. [SDK örneği](docs/core/examples/) işlemin son durumunu açıkça kontrol eder.
 
 ## Kullanılabilen API işlemleri

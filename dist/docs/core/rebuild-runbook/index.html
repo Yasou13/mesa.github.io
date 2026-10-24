@@ -6,6 +6,8 @@
   <title>Projection rebuild — MESA MESA Core Documentation</title>
   <meta name="description" content="Projection rebuild documentation for MESA Core (v0.8.1).">
   <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://mesamemory.dev/docs/core/rebuild-runbook/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/rebuild-runbook/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/rebuild-runbook/">
@@ -32,8 +34,8 @@
   <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
-  <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../styles.css?v=6f803158fb8f">
+  <link rel="stylesheet" href="../../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
 
   <link rel="stylesheet" href="../../../docs.css?v=7ca2f1908063">
@@ -64,9 +66,9 @@
   <nav class="docs-tabs" aria-label="Documentation sections"><a href="../../../docs/" class="active"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Documentation</span></a><a href="../../../docs/core/installation/"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Deploy</span></a><a href="../../../docs/core/examples/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Python SDK</span></a><a href="../../../docs/core/api-reference/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>HTTP API</span></a><a href="../../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg><span>MCP</span></a><a class="docs-tabs-release" href="../../../docs/core/release-notes/">v0.8.1<span class="docs-release-dot" aria-hidden="true"></span></a></nav>
   <aside class="docs-sidebar" aria-label="Documentation navigation"><details class="docs-navigation" open><summary><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Documentation menu</span><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div class="docs-sidebar-inner">
     <div class="docs-sidebar-header"><a href="../../../docs/" class="docs-wordmark">MESA <span>/ docs</span></a><span class="docs-sidebar-caption">Developer documentation</span></div>
-    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Core</span><small>v0.8.1</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Choose component"><a href="../../../docs/core/" aria-current="true"><span>MESA Core</span><small>v0.8.1</small></a><a href="../../../docs/data/"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><a href="../../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../../docs/e2e/"><span>MESA E2E Certification</span><small>v0.1.0</small></a></nav></details>
+    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Core</span><small>v0.8.1</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Choose component"><a href="../../../docs/core/" aria-current="true"><span>MESA Core</span><small>v0.8.1</small></a><a href="../../../docs/data/"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><span class="docs-product-divider">Internal test tooling</span><a href="../../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../../docs/e2e/"><span>MESA E2E Certification</span><small>v0.1.0</small></a></nav></details>
     <button class="search-trigger docs-search" type="button" aria-label="Search documentation"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search docs…</span><kbd>Ctrl K</kbd></button>
-    <nav class="docs-nav" aria-label="Documentation topics"><ul class="sidebar-links docs-overview-links"><li><a href="../../../docs/"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Introduction</a></li><li><a href="../../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg>MCP integration</a></li></ul><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5c3-3 7-2 7-2s1 4-2 7l-7 7-5-5 7-7Z"/><path d="m12 7-6 1-3 5 5 1m9-2-1 6-5 3-1-5m-5 1-2 4 4-2"/><circle cx="16" cy="8" r="1"/></svg><span>Getting started</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/">MESA Core overview</a></li><li><a href="../../../docs/core/getting-started/">Local quickstart</a></li><li><a href="../../../docs/core/documentation-map/">Documentation map</a></li><li><a href="../../../docs/core/installation/">Installation &amp; deployment</a></li><li><a href="../../../docs/core/examples/">Examples &amp; SDK workflow</a></li><li><a href="../../../docs/core/colab-rehberi/">Retired Colab guide</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Core concepts</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/architecture/">Core architecture</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Ingestion &amp; memory lifecycle</a></li><li><a href="../../../docs/core/decisions/">Architecture decisions</a></li><li><a href="../../../docs/core/adr-0009/">Ledger and single owner</a></li><li><a href="../../../docs/core/adr-0010/">RRF and PageRank</a></li><li><a href="../../../docs/core/adr-0011/">Tenant/dataset authorization</a></li><li><a href="../../../docs/core/adr-0012/">DAO repository boundaries</a></li><li><a href="../../../docs/core/adr-0013/">Production dependencies</a></li><li><a href="../../../docs/core/adr-0014/">Rebuild closure</a></li><li><a href="../../../docs/core/adr-0015/">Adaptive query planning</a></li><li><a href="../../../docs/core/evidence/">Evidence &amp; provenance</a></li><li><a href="../../../docs/core/ecosystem/">Ecosystem boundaries</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="network" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg><span>Retrieval & evidence</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; graph</a></li><li><a href="../../../docs/core/graph/">Graph traversal</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Build & integrate</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/api-reference/">HTTP API &amp; Python SDK</a></li><li><a href="../../../docs/core/mcp/">MCP integration</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding &amp; model providers</a></li><li><a href="../../../docs/core/cli-reference/">CLI reference</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>Operate & recover</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/rebuild-runbook/" class="active" aria-current="page">Projection rebuild</a></li><li><a href="../../../docs/core/security/">Security &amp; scope</a></li><li><a href="../../../docs/core/operations/">Operations &amp; recovery</a></li><li><a href="../../../docs/core/migration/">Upgrade to v0.8.1</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg><span>Releases & verification</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/release-notes/">v0.8.1 release notes</a></li><li><a href="../../../docs/core/testing/">Testing &amp; evidence</a></li><li><a href="../../../docs/core/release-policy/">Release policy</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; limitations</a></li><li><a href="../../../docs/core/audit/">Audit history &amp; current tests</a></li></ul></section></nav>
+    <nav class="docs-nav" aria-label="Documentation topics"><ul class="sidebar-links docs-overview-links"><li><a href="../../../docs/"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Introduction</a></li><li><a href="../../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg>MCP integration</a></li></ul><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5c3-3 7-2 7-2s1 4-2 7l-7 7-5-5 7-7Z"/><path d="m12 7-6 1-3 5 5 1m9-2-1 6-5 3-1-5m-5 1-2 4 4-2"/><circle cx="16" cy="8" r="1"/></svg><span>Getting started</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/">MESA Core overview</a></li><li><a href="../../../docs/core/getting-started/">Local quickstart</a></li><li><a href="../../../docs/core/documentation-map/">Documentation map</a></li><li><a href="../../../docs/core/installation/">Installation &amp; deployment</a></li><li><a href="../../../docs/core/examples/">Examples &amp; SDK workflow</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Core concepts</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/architecture/">Core architecture</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Ingestion &amp; memory lifecycle</a></li><li><a href="../../../docs/core/decisions/">Architecture decisions</a></li><li><a href="../../../docs/core/adr-0009/">Ledger and single owner</a></li><li><a href="../../../docs/core/adr-0010/">RRF and PageRank</a></li><li><a href="../../../docs/core/adr-0011/">Tenant/dataset authorization</a></li><li><a href="../../../docs/core/adr-0012/">DAO repository boundaries</a></li><li><a href="../../../docs/core/adr-0013/">Production dependencies</a></li><li><a href="../../../docs/core/adr-0014/">Rebuild closure</a></li><li><a href="../../../docs/core/adr-0015/">Adaptive query planning</a></li><li><a href="../../../docs/core/evidence/">Evidence &amp; provenance</a></li><li><a href="../../../docs/core/ecosystem/">Ecosystem boundaries</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="network" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg><span>Retrieval & evidence</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; graph</a></li><li><a href="../../../docs/core/graph/">Graph traversal</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Build & integrate</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/api-reference/">HTTP API &amp; Python SDK</a></li><li><a href="../../../docs/core/mcp/">MCP integration</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding &amp; model providers</a></li><li><a href="../../../docs/core/endpoints/">HTTP endpoint reference</a></li><li><a href="../../../docs/core/cli-reference/">CLI reference</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>Operate & recover</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/rebuild-runbook/" class="active" aria-current="page">Projection rebuild</a></li><li><a href="../../../docs/core/security/">Security &amp; scope</a></li><li><a href="../../../docs/core/operations/">Operations &amp; recovery</a></li><li><a href="../../../docs/core/migration/">Upgrade to v0.8.1</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg><span>Releases & verification</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/release-notes/">v0.8.1 release notes</a></li><li><a href="../../../docs/core/testing/">Testing &amp; evidence</a></li><li><a href="../../../docs/core/release-policy/">Release policy</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; limitations</a></li><li><a href="../../../docs/core/audit/">Audit history &amp; current tests</a></li></ul></section></nav>
     <div class="docs-sidebar-footer"><a href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span><span aria-hidden="true">↗</span></a><a href="../../../status/">Project status<span aria-hidden="true">↗</span></a></div>
   </div></details></aside>
   <div class="docs-main-container">
@@ -88,7 +90,7 @@
     <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md" title="d3947846615e63b48dc7a5df9f1051b29f734263" target="_blank" rel="noopener noreferrer">d394784</a></span>
     <span class="docs-source-pill">source: <code>docs/v4-rebuild-runbook.md</code></span>
   </div>
-          <p class="docs-language-notice">This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.</p>
+          <p class="docs-language-notice">This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.</p>
           
         </header>
         <div class="docs-body">
@@ -96,93 +98,92 @@
 <p>Rebuild is a default-disabled, ADMIN-only control-plane operation over the entire storage root. Admission, checkpointed offline replay, verification and cutover are separate stages. Flag-off submission is 501; unsupported scoped requests are 409. Preserve canonical ownership and backup; never describe this as an online per-tenant repair.</p>
 <h2 id="guide-continue-with-the-maintained-contracts">Continue with the maintained contracts<a class="heading-anchor" href="#guide-continue-with-the-maintained-contracts" aria-label="Link to section: Continue with the maintained contracts" title="Link to this section">#</a></h2>
 <p>Use the pinned source reference below for complete tables and operator details. Related guides: <a href="../../../architecture/">architecture</a>, <a href="../../../docs/core/api-reference/">API</a>, <a href="../../../docs/core/operations/">operations</a> and <a href="../../../docs/core/limitations/">release limits</a>.</p>
-          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer"><code>docs/v4-rebuild-runbook.md</code></a></li></ul></div>
-          <details class="source-appendix" id="source-reference"><summary>Complete source reference · original language</summary><p class="docs-language-notice">This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.</p><div class="source-reference-body"><p>Bu prosedür mevcut V4 storage-root-wide projection rebuild içindir; tasarım</p>
-<p><a href="../../../docs/core/adr-0014/">ADR 0014</a> ile başlamıştır.</p>
-<p>LanceDB ve Kùzu generation&#39;ları mevcut canonical V4 snapshot&#39;tan üretilir;</p>
-<p>V3 verisini dönüştürmez ve canonical source/assertion içeriğini yeniden yazmaz.</p>
-<p>FTS integrity snapshot üzerinde doğrulanır. SQLite operation/checkpoint ve</p>
-<p>active-generation kayıtları güncellenir; başarılı cutover sonrası representation</p>
-<p>metadata&#39;sı da aşağıda açıklanan kuralla ilerletilir. Açık <code class="inline-code">adopt-provider</code></p>
-<p>adımı ayrıca eksik provenance metadata&#39;sını tamamlayabilir.</p>
-<p>Tenant, workspace veya dataset kapsamlı rebuild desteklenmez.</p>
-<h2 id="guvenlik-sinirlari-ve-on-kosullar">Güvenlik sınırları ve ön koşullar<a class="heading-anchor" href="#guvenlik-sinirlari-ve-on-kosullar" aria-label="Link to section: Güvenlik sınırları ve ön koşullar" title="Link to this section">#</a></h2>
-<ul><li><code class="inline-code">MESA_V4_REBUILD_ENABLED</code> varsayılan olarak <code class="inline-code">false</code> kalır. Yalnız onaylı</li></ul>
-<p>  rehearsal/değişiklik penceresinde API ve runner için <code class="inline-code">true</code> yapın.</p>
-<ul><li>API işlemleri principal&#39;a bağlı credential ve control-plane <code class="inline-code">ADMIN</code> rolü</li></ul>
-<p>  ister. Dataset rolleri tek başına yeterli değildir.</p>
-<ul><li>Rebuild online değildir. Submit yazma admission&#39;ını kapatır; backlog drain</li></ul>
-<p>  edildikten sonra combined runtime durdurulur ve runner storage writer</p>
-<p>  lock&#39;ını tek başına alır.</p>
-<ul><li>Trusted, storage ve work root&#39;ları önceden var olmalı; storage/work trusted</li></ul>
-<p>  root&#39;un gerçek alt dizinleri olmalı, birbirleriyle örtüşmemeli ve symlink</p>
-<p>  içermemelidir. Bu path&#39;ler HTTP request&#39;iyle alınmaz.</p>
-<ul><li>Work filesystem&#39;de en az storage boyutunun iki katı ve runner&#39;ın güvenlik</li></ul>
-<p>  rezervi kadar boş alan bulunmalıdır. Runner kendi ölçümünü yapar ve yetersiz</p>
-<p>  alanda fail-closed davranır.</p>
-<ul><li>API ile runner aynı provider, embedding model/version ve dimension config&#39;ini</li></ul>
-<p>  kullanmalıdır. <code class="inline-code">MESA_EMBEDDING_VERSION</code> boş bırakılamaz; dimension gerçek</p>
-<p>  provider çıktısıyla aynı olmalıdır. Snapshot provenance&#39;ı uyuşmuyorsa runner</p>
-<p>  rebuild yapmaz.</p>
-<ul><li>Backup ve retained generation otomatik silinmez. Bu release&#39;te otomatik veya</li></ul>
-<p>  zamanlanmış projection-generation cleanup yoktur.</p>
-<p>Başlamadan önce gerçek-provider rehearsal, production-benzeri disk/concurrency</p>
-<p>kanıtı ve geri dönüş penceresi için yeterli kapasite doğrulanmalıdır.</p>
-<h2 id="1-operator-yetkisini-ve-flagi-hazirla">1. Operator yetkisini ve flag&#39;i hazırla<a class="heading-anchor" href="#1-operator-yetkisini-ve-flagi-hazirla" aria-label="Link to section: 1. Operator yetkisini ve flag&#39;i hazırla" title="Link to this section">#</a></h2>
-<p>Flag&#39;i combined runtime&#39;ın açık deployment config&#39;inde etkinleştirin:</p>
+          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer"><code>docs/v4-rebuild-runbook.md</code></a></li></ul></div><details class="source-appendix" id="source-reference"><summary>Source reference for this page</summary><p class="docs-language-notice">The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.</p><div class="source-reference-body"><p>This procedure is for the existing V4 storage-root-wide projection rebuild; its design</p>
+<p>started with <a href="../../../docs/core/adr-0014/">ADR 0014</a>.</p>
+<p>LanceDB and Kùzu generations are produced from the existing canonical V4 snapshot;</p>
+<p>it does not convert V3 data and does not rewrite canonical source/assertion content.</p>
+<p>FTS integrity is verified on the snapshot. SQLite operation/checkpoint and</p>
+<p>active-generation records are updated; after a successful cutover, representation</p>
+<p>metadata is also advanced by the rule described below. The explicit <code class="inline-code">adopt-provider</code></p>
+<p>step can additionally fill in missing provenance metadata.</p>
+<p>Tenant-, workspace- or dataset-scoped rebuilds are not supported.</p>
+<h2 id="safety-boundaries-and-prerequisites">Safety boundaries and prerequisites<a class="heading-anchor" href="#safety-boundaries-and-prerequisites" aria-label="Link to section: Safety boundaries and prerequisites" title="Link to this section">#</a></h2>
+<ul><li><code class="inline-code">MESA_V4_REBUILD_ENABLED</code> stays <code class="inline-code">false</code> by default. Set it to <code class="inline-code">true</code> for the API</li></ul>
+<p>  and runner only during an approved rehearsal/change window.</p>
+<ul><li>API operations need a principal-bound credential and the control-plane <code class="inline-code">ADMIN</code> role.</li></ul>
+<p>  Dataset roles alone are not enough.</p>
+<ul><li>Rebuild is not online. Submit closes write admission; after the backlog is</li></ul>
+<p>  drained the combined runtime is stopped and the runner takes the storage writer</p>
+<p>  lock on its own.</p>
+<ul><li>The trusted, storage and work roots must exist beforehand; storage/work must be real</li></ul>
+<p>  subdirectories of the trusted root, must not overlap each other and must not contain</p>
+<p>  symlinks. These paths are never taken from an HTTP request.</p>
+<ul><li>The work filesystem needs free space of at least twice the storage size plus the</li></ul>
+<p>  runner&#39;s safety reserve. The runner measures this itself and fails closed when</p>
+<p>  space is insufficient.</p>
+<ul><li>The API and the runner must use the same provider, embedding model/version and</li></ul>
+<p>  dimension config. <code class="inline-code">MESA_EMBEDDING_VERSION</code> cannot be empty; the dimension must match</p>
+<p>  the real provider output. If snapshot provenance does not match, the runner does not</p>
+<p>  rebuild.</p>
+<ul><li>Backups and retained generations are never deleted automatically. This release has no</li></ul>
+<p>  automatic or scheduled projection-generation cleanup.</p>
+<p>Before starting, verify a real-provider rehearsal, production-like disk/concurrency</p>
+<p>evidence and enough capacity for the rollback window.</p>
+<h2 id="1-prepare-operator-authority-and-the-flag">1. Prepare operator authority and the flag<a class="heading-anchor" href="#1-prepare-operator-authority-and-the-flag" aria-label="Link to section: 1. Prepare operator authority and the flag" title="Link to this section">#</a></h2>
+<p>Enable the flag in the combined runtime&#39;s explicit deployment config:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>export MESA_V4_REBUILD_ENABLED=true</code></pre></div>
-<p>Mevcut corpus&#39;un doğrulanmış provider/model/version/dimension ayarlarını koruyun.</p>
-<p>Burada örnek bir boyut veya sürüm atayarak mevcut embedding kimliğini değiştirmeyin;</p>
-<p><a href="../../../docs/core/configuration/">yapılandırma</a> ve provenance kayıtları aynı kimliği göstermelidir.</p>
-<p>Credential&#39;ı bir kez üretin ve aynı principal&#39;a control-plane rolü verin.</p>
-<p>Credential&#39;ı shell history, log veya runbook kaydına kopyalamayın:</p>
+<p>Keep the verified provider/model/version/dimension settings of the existing corpus.</p>
+<p>Do not change the existing embedding identity by assigning a sample dimension or</p>
+<p>version here; the <a href="../../../docs/core/configuration/">configuration</a> and provenance records must</p>
+<p>show the same identity.</p>
+<p>Generate the credential once and give the same principal the control-plane role.</p>
+<p>Do not copy the credential into shell history, logs or runbook notes:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
 mesa-v4-admin issue-key --principal rebuild-operator
 mesa-v4-admin grant-control --principal rebuild-operator</code></pre></div>
-<p>Runtime yeniden başladıktan sonra capability gerçeğini kontrol edin:</p>
+<p>After the runtime restarts, check what capability actually reports:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>curl --fail \
   -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   http://127.0.0.1:8000/v4/capability</code></pre></div>
-<p><code class="inline-code">capabilities.durable_rebuild</code> değeri <code class="inline-code">true</code>, <code class="inline-code">limits.rebuild_scope</code> değeri</p>
-<p><code class="inline-code">storage_root</code> ve <code class="inline-code">limits.requires_offline_runner</code> değeri <code class="inline-code">true</code> olmalıdır.</p>
-<h2 id="2-durable-operation-submit-et">2. Durable operation submit et<a class="heading-anchor" href="#2-durable-operation-submit-et" aria-label="Link to section: 2. Durable operation submit et" title="Link to this section">#</a></h2>
-<p>Her değişiklik penceresi için benzersiz, içerik taşımayan bir idempotency key</p>
-<p>kullanın:</p>
+<p><code class="inline-code">capabilities.durable_rebuild</code> must be <code class="inline-code">true</code>, <code class="inline-code">limits.rebuild_scope</code></p>
+<p><code class="inline-code">storage_root</code> and <code class="inline-code">limits.requires_offline_runner</code> <code class="inline-code">true</code>.</p>
+<h2 id="2-submit-the-durable-operation">2. Submit the durable operation<a class="heading-anchor" href="#2-submit-the-durable-operation" aria-label="Link to section: 2. Submit the durable operation" title="Link to this section">#</a></h2>
+<p>Use a unique, content-free idempotency key for each change window:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>export MESA_REBUILD_IDEMPOTENCY_KEY=&quot;$(.venv/bin/python -c &#39;import uuid; print(uuid.uuid4())&#39;)&quot;
 curl --fail-with-body -X POST \
   -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   -H &quot;Idempotency-Key: $MESA_REBUILD_IDEMPOTENCY_KEY&quot; \
   http://127.0.0.1:8000/v4/operations/rebuild</code></pre></div>
-<p>Başarılı durable commit <code class="inline-code">202</code> ve <code class="inline-code">PENDING</code> operation döndürür. Aynı key ve aynı</p>
-<p>sabit storage-root payload aynı operation&#39;ı döndürür. Çakışan payload veya aynı</p>
-<p>root&#39;ta başka aktif rebuild <code class="inline-code">409</code> olur. <code class="inline-code">Idempotency-Key</code> zorunludur.</p>
-<p>Yanıttaki <code class="inline-code">operation_id</code> değerini secret olmayan incident/change kaydına alın:</p>
+<p>A successful durable commit returns <code class="inline-code">202</code> and a <code class="inline-code">PENDING</code> operation. The same key and the</p>
+<p>same fixed storage-root payload return the same operation. A conflicting payload or another</p>
+<p>active rebuild on the same root returns <code class="inline-code">409</code>. <code class="inline-code">Idempotency-Key</code> is mandatory.</p>
+<p>Record the <code class="inline-code">operation_id</code> from the response in a non-secret incident/change record:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre tabindex="0" id="code-block-5" class="language-bash"><code>export MESA_REBUILD_OPERATION_ID=00000000-0000-4000-8000-000000000000</code></pre></div>
-<p>Submit sonrası v4 mutation endpoint&#39;leri <code class="inline-code">503 maintenance_pending</code> ve</p>
-<p><code class="inline-code">Retry-After: 5</code> döndürür. Read, capability, health, metrics ve operation status</p>
-<p>açık kalır. <code class="inline-code">RETRYABLE_FAILED</code> da maintenance admission&#39;ını kapalı tutar.</p>
-<h2 id="3-backlogu-drain-et">3. Backlog&#39;u drain et<a class="heading-anchor" href="#3-backlogu-drain-et" aria-label="Link to section: 3. Backlog&#39;u drain et" title="Link to this section">#</a></h2>
-<p>Combined runtime&#39;ı henüz durdurmadan <code class="inline-code">/health</code> ile özet durumu ve</p>
-<p><code class="inline-code">/health/init</code> ile readiness&#39;i kontrol edin. <code class="inline-code">/metrics</code> üzerinden sunulan</p>
-<p>kuyruk sayaçlarını izleyin; aşağıdaki tüm backlog koşulları offline runner&#39;ın</p>
-<p>preflight kontrolünde yeniden doğrulanır:</p>
-<ul><li>projection backlog ve dead letter;</li><li>cleanup backlog ve blocked cleanup;</li><li>stuck/in-flight projection lease;</li><li>dispatch/raw-log işleri, vector WAL ve session finalization işleri.</li></ul>
-<p>Özellikle <code class="inline-code">mesa_v4_projection_backlog</code>,</p>
+<p>After submit, v4 mutation endpoints return <code class="inline-code">503 maintenance_pending</code> and</p>
+<p><code class="inline-code">Retry-After: 5</code>. Read, capability, health, metrics and operation status stay</p>
+<p>open. <code class="inline-code">RETRYABLE_FAILED</code> also keeps maintenance admission closed.</p>
+<h2 id="3-drain-the-backlog">3. Drain the backlog<a class="heading-anchor" href="#3-drain-the-backlog" aria-label="Link to section: 3. Drain the backlog" title="Link to this section">#</a></h2>
+<p>Before stopping the combined runtime, check the summary with <code class="inline-code">/health</code> and</p>
+<p>readiness with <code class="inline-code">/health/init</code>. Watch the queue counters exposed on <code class="inline-code">/metrics</code>;</p>
+<p>all of the backlog conditions below are verified again in the offline runner&#39;s</p>
+<p>preflight:</p>
+<ul><li>projection backlog and dead letter;</li><li>cleanup backlog and blocked cleanup;</li><li>stuck/in-flight projection leases;</li><li>dispatch/raw-log jobs, the vector WAL and session finalization jobs.</li></ul>
+<p>In particular <code class="inline-code">mesa_v4_projection_backlog</code>,</p>
 <p><code class="inline-code">mesa_v4_projection_dead_letter</code>, <code class="inline-code">mesa_v4_projection_stuck_leases</code>,</p>
-<p><code class="inline-code">mesa_v4_cleanup_backlog</code> ve <code class="inline-code">mesa_v4_cleanup_blocked</code> sıfır olmalıdır. Runner</p>
-<p>canonical SQLite&#39;taki tüm kuyrukları ve storage-root DLQ dosyasını tekrar</p>
-<p>kontrol eder; sıfır olmayan herhangi bir değer rebuild&#39;i reddeder. Kuyruk</p>
-<p>kaydını veya lease&#39;i elle silerek preflight&#39;ı atlamayın.</p>
-<h2 id="4-combined-runtimei-durdur-ve-offline-runneri-calistir">4. Combined runtime&#39;ı durdur ve offline runner&#39;ı çalıştır<a class="heading-anchor" href="#4-combined-runtimei-durdur-ve-offline-runneri-calistir" aria-label="Link to section: 4. Combined runtime&#39;ı durdur ve offline runner&#39;ı çalıştır" title="Link to this section">#</a></h2>
-<p>Backlog sıfırlandıktan sonra combined process&#39;i kontrollü durdurun. Process&#39;in</p>
-<p>storage writer lock&#39;ını bıraktığını doğrulayın. Sonra aynı reviewed provider</p>
-<p>config&#39;iyle şu komutu çalıştırın:</p>
-<p><code class="inline-code">fd4e5f6a7b8c</code> öncesinde oluşturulmuş aktif vector mutation&#39;larında provider</p>
-<p>kimliği eksikse normal runner fail-closed olur. Adoption yalnız henüz hiç claim</p>
-<p>edilmemiş (<code class="inline-code">attempt_count=0</code>), <code class="inline-code">source_manifest_hash</code> yazılmamış fresh <code class="inline-code">PENDING</code></p>
-<p>operation üzerinde yapılabilir. Combined runtime durmuş ve</p>
-<p>provider/model/version/dimension eski generation&#39;ı üreten config kayıtlarından</p>
-<p>dışarıdan doğrulanmışsa bir kez şu açık adoption adımını çalıştırın:</p>
+<p><code class="inline-code">mesa_v4_cleanup_backlog</code> and <code class="inline-code">mesa_v4_cleanup_blocked</code> must be zero. The runner</p>
+<p>checks every queue in canonical SQLite and the storage-root DLQ file again; any</p>
+<p>non-zero value rejects the rebuild. Do not skip the preflight by deleting a queue</p>
+<p>record or lease by hand.</p>
+<h2 id="4-stop-the-combined-runtime-and-run-the-offline-runner">4. Stop the combined runtime and run the offline runner<a class="heading-anchor" href="#4-stop-the-combined-runtime-and-run-the-offline-runner" aria-label="Link to section: 4. Stop the combined runtime and run the offline runner" title="Link to this section">#</a></h2>
+<p>Once the backlog is zero, stop the combined process in a controlled way. Confirm the</p>
+<p>process released the storage writer lock. Then run the command below with the same</p>
+<p>reviewed provider config:</p>
+<p>If active vector mutations created before <code class="inline-code">fd4e5f6a7b8c</code> lack provider identity, the</p>
+<p>normal runner fails closed. Adoption can only be done on a fresh <code class="inline-code">PENDING</code> operation that</p>
+<p>has never been claimed (<code class="inline-code">attempt_count=0</code>) and has no <code class="inline-code">source_manifest_hash</code> written. If</p>
+<p>the combined runtime is stopped and provider/model/version/dimension have been verified</p>
+<p>externally from the config records that produced the old generation, run this explicit</p>
+<p>adoption step once:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-6">Copy</button></div><pre tabindex="0" id="code-block-6" class="language-bash"><code>mesa-v4-rebuild adopt-provider \
   --trusted-root /srv/mesa \
   --storage-root /srv/mesa/v4-data \
@@ -191,128 +192,122 @@ curl --fail-with-body -X POST \
   --version &quot;$MESA_EMBEDDING_VERSION&quot; \
   --dimension &quot;$MESA_EMBEDDING_DIMENSION&quot; \
   --confirm-legacy-provider-unknown</code></pre></div>
-<p>Bu komut rebuild değildir: yalnız aktif vector ownership&#39;ine bağlı canonical</p>
-<p>mutation satırlarındaki eksik provider alanlarını <code class="inline-code">COALESCE</code> ile tamamlayan,</p>
-<p>writer-lock korumalı ve açık operator onayı isteyen tek seferlik metadata</p>
-<p>adoption işlemidir. Var olan herhangi bir provider/model/version/dimension</p>
-<p>değeri assertion ile çelişirse transaction bütünüyle geri alınır. Bu kanıt</p>
-<p>yoksa adoption yapmayın; release <code class="inline-code">NO-GO</code> kalır ve sonraki full raw-source</p>
-<p>rebuild iş paketini bekleyin. <code class="inline-code">mesa-v4-rebuild run</code>, aşağıda açıklanan doğrulanmış</p>
-<p>assertion-vector representation işareti dışında canonical içerik kayıtlarını</p>
-<p>değiştirmez.</p>
-<p>Bir rebuild denemesi başladıysa adoption canonical manifest&#39;i değiştirebileceği</p>
-<p>için aynı backup/checkpoint ile resume güvenli değildir ve komut fail-closed</p>
-<p>olur. Bu kural <code class="inline-code">source_manifest_hash</code> henüz yazılmadan oluşan crash penceresini</p>
-<p>de kapsar; hiçbir <code class="inline-code">RETRYABLE_FAILED</code> operation üzerinde adoption yapılmaz. Eski</p>
-<p>operation&#39;ı cancel edin, yeni bir <code class="inline-code">Idempotency-Key</code> ile fresh rebuild submit</p>
-<p>edin, backlog&#39;u yeniden drain edip runtime&#39;ı durdurun ve adoption&#39;ı yeni</p>
-<p><code class="inline-code">PENDING</code> operation üzerinde runner&#39;dan önce çalıştırın. Eski operation&#39;ın</p>
-<p>backup veya checkpoint&#39;ini yeni operation&#39;da kullanmayın.</p>
-<p>Ardından aynı reviewed provider config&#39;iyle normal runner&#39;ı çalıştırın:</p>
+<p>This command is not a rebuild: it is a one-off, writer-lock-protected metadata adoption</p>
+<p>that needs explicit operator confirmation and fills the missing provider fields in the</p>
+<p>canonical mutation rows tied to active vector ownership using <code class="inline-code">COALESCE</code>. If any existing</p>
+<p>provider/model/version/dimension value contradicts the assertion, the whole transaction</p>
+<p>is rolled back. Without this evidence, do not adopt; the release stays <code class="inline-code">NO-GO</code> and waits</p>
+<p>for the later full raw-source rebuild work package. <code class="inline-code">mesa-v4-rebuild run</code> does not change</p>
+<p>canonical content records, apart from the verified assertion-vector representation marker</p>
+<p>described below.</p>
+<p>If a rebuild attempt has already started, adoption could change the canonical manifest,</p>
+<p>so resuming with the same backup/checkpoint is not safe and the command fails closed.</p>
+<p>This rule also covers the crash window before <code class="inline-code">source_manifest_hash</code> is written;</p>
+<p>adoption is never done on a <code class="inline-code">RETRYABLE_FAILED</code> operation. Cancel the old operation,</p>
+<p>submit a fresh rebuild with a new <code class="inline-code">Idempotency-Key</code>, drain the backlog again, stop the</p>
+<p>runtime and run adoption on the new <code class="inline-code">PENDING</code> operation before the runner. Do not use the</p>
+<p>old operation&#39;s backup or checkpoint for the new operation.</p>
+<p>Then run the normal runner with the same reviewed provider config:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Copy</button></div><pre tabindex="0" id="code-block-7" class="language-bash"><code>mesa-v4-rebuild run \
   --trusted-root /srv/mesa \
   --storage-root /srv/mesa/v4-data \
   --work-root /srv/mesa/rebuild-work \
   --operation-id &quot;$MESA_REBUILD_OPERATION_ID&quot;</code></pre></div>
-<p>İsteğe bağlı <code class="inline-code">--batch-size</code> sınırı <code class="inline-code">1..1000</code>, <code class="inline-code">--lease-seconds</code> sınırı</p>
-<p><code class="inline-code">30..3600</code> arasındadır. Runner sırasıyla writer lock, Alembic head, fenced</p>
-<p>operation lease, backlog, path/symlink, disk, checksummed backup, source</p>
-<p>manifest, provider provenance, deterministic vector/graph replay, parity ve</p>
-<p>cutover kontrollerini yürütür.</p>
-<h3 id="assertion-vector-representation-gecisi">Assertion-vector representation geçişi<a class="heading-anchor" href="#assertion-vector-representation-gecisi" aria-label="Link to section: Assertion-vector representation geçişi" title="Link to this section">#</a></h3>
-<p>Alembic yükseltmesi mevcut <code class="inline-code">ASSERTION_VECTOR</code> kayıtlarını açıkça <code class="inline-code">legacy-v0</code></p>
-<p>olarak işaretler. Runtime, yalnız <code class="inline-code">assertion-semantic-v1</code> representation</p>
-<p>sürümüne sahip vector kayıtlarını semantic lane&#39;e kabul eder; eksik, bozuk veya</p>
-<p>karma sürümlü metadata fail-closed davranır. Yeni ingestion/reprojection aynı</p>
-<p>fiziksel assertion ID&#39;sini upsert eder ve hem receipt hem registry metadata&#39;sını</p>
-<p>güncel sürümle değiştirir.</p>
-<p>Mevcut corpus için desteklenen reindex yolu tam, offline</p>
-<p><code class="inline-code">mesa-v4-rebuild run</code> akışıdır. Replay kaynağı yalnız canonical SQL assertion</p>
-<p>alanlarıdır ve payload subject + predicate + object + tam evidence span&#39;dan</p>
-<p>deterministik olarak yeniden üretilir; entity/chunk vector&#39;ları assertion</p>
-<p>kanıtı gibi taşınmaz. Eski aktif generation çalışırken <code class="inline-code">legacy-v0</code> kayıtları</p>
-<p>semantic lane&#39;e katılmaz. Registry&#39;deki representation sürümü ancak parity,</p>
-<p>atomic cutover ve post-cutover health/smoke doğrulaması başarılı olduktan sonra</p>
-<p><code class="inline-code">assertion-semantic-v1</code> yapılır. Başarısız veya yarım staging generation bu</p>
-<p>işareti ilerletemez; aynı operation&#39;ın crash-resume akışı işareti idempotent</p>
-<p>olarak yeniden yayımlar.</p>
-<p>Exit code&#39;lar:</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th scope="col">Code</th><th scope="col">Anlam</th><th scope="col">Operator işlemi</th></tr></thead><tbody><tr><th scope="row"><code class="inline-code">0</code></th><td><code class="inline-code">COMPLETED</code></td><td>Runtime&#39;ı yeniden başlatma adımına geçin</td></tr><tr><th scope="row"><code class="inline-code">2</code></th><td>Flag/config/operation reddi</td><td>Config ve operation status&#39;unu düzeltin; kör retry yapmayın</td></tr><tr><th scope="row"><code class="inline-code">3</code></th><td>Güvenli retryable failure</td><td>Status/checkpoint&#39;i inceleyip aşağıdaki resume akışını kullanın</td></tr><tr><th scope="row"><code class="inline-code">4</code></th><td>Başka writer aktif</td><td>API/worker/combined process&#39;i bulun; ikinci writer başlatmayın</td></tr><tr><th scope="row"><code class="inline-code">5</code></th><td>Retry bütçesi tükendi, <code class="inline-code">FINAL_FAILED</code></td><td>Rehearsal&#39;ı durdurun; yeni operation öncesi kök nedeni giderin</td></tr></tbody></table></div>
-<p>Runner stdout/stderr çıktısı operation/generation/state/count/error-class ile</p>
-<p>sınırlıdır. Fiziksel path, içerik, credential, manifest payload veya claim</p>
-<p>token loglanmamalıdır.</p>
-<h2 id="5-resume-retry-ve-cancel">5. Resume, retry ve cancel<a class="heading-anchor" href="#5-resume-retry-ve-cancel" aria-label="Link to section: 5. Resume, retry ve cancel" title="Link to this section">#</a></h2>
-<p>Kontrollü hata <code class="inline-code">RETRYABLE_FAILED</code> üretmişse aynı durable operation ve checkpoint</p>
-<p>üzerinde önce retry isteği gönderin, sonra aynı runner komutunu çalıştırın:</p>
+<p>The optional <code class="inline-code">--batch-size</code> range is <code class="inline-code">1..1000</code>, and <code class="inline-code">--lease-seconds</code> is</p>
+<p><code class="inline-code">30..3600</code>. In order, the runner checks the writer lock, Alembic head, fenced</p>
+<p>operation lease, backlog, paths/symlinks, disk, checksummed backup, source</p>
+<p>manifest, provider provenance, deterministic vector/graph replay, parity and</p>
+<p>cutover.</p>
+<h3 id="assertion-vector-representation-transition">Assertion-vector representation transition<a class="heading-anchor" href="#assertion-vector-representation-transition" aria-label="Link to section: Assertion-vector representation transition" title="Link to this section">#</a></h3>
+<p>The Alembic upgrade explicitly marks existing <code class="inline-code">ASSERTION_VECTOR</code> records as</p>
+<p><code class="inline-code">legacy-v0</code>. The runtime admits only vector records with the <code class="inline-code">assertion-semantic-v1</code></p>
+<p>representation version to the semantic lane; missing, broken or mixed-version metadata</p>
+<p>fails closed. New ingestion/reprojection upserts the same physical assertion ID and</p>
+<p>replaces both the receipt and the registry metadata with the current version.</p>
+<p>For an existing corpus the supported reindex path is the full, offline</p>
+<p><code class="inline-code">mesa-v4-rebuild run</code> flow. The only replay source is the canonical SQL assertion</p>
+<p>fields, and the payload is regenerated deterministically from subject + predicate +</p>
+<p>object + the full evidence span; entity/chunk vectors are not carried over as assertion</p>
+<p>evidence. While the old active generation runs, <code class="inline-code">legacy-v0</code> records do not join the</p>
+<p>semantic lane. The registry&#39;s representation version becomes <code class="inline-code">assertion-semantic-v1</code></p>
+<p>only after parity, atomic cutover and post-cutover health/smoke verification succeed.</p>
+<p>A failed or half-done staging generation cannot advance this marker; the same</p>
+<p>operation&#39;s crash-resume flow republishes the marker idempotently.</p>
+<p>Exit codes:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Source · Scrollable table"><table><thead><tr><th scope="col">Code</th><th scope="col">Meaning</th><th scope="col">Operator action</th></tr></thead><tbody><tr><th scope="row"><code class="inline-code">0</code></th><td><code class="inline-code">COMPLETED</code></td><td>Move on to restarting the runtime</td></tr><tr><th scope="row"><code class="inline-code">2</code></th><td>Flag/config/operation rejected</td><td>Fix config and operation status; do not retry blindly</td></tr><tr><th scope="row"><code class="inline-code">3</code></th><td>Safe retryable failure</td><td>Inspect status/checkpoint and use the resume flow below</td></tr><tr><th scope="row"><code class="inline-code">4</code></th><td>Another writer is active</td><td>Find the API/worker/combined process; do not start a second writer</td></tr><tr><th scope="row"><code class="inline-code">5</code></th><td>Retry budget exhausted, <code class="inline-code">FINAL_FAILED</code></td><td>Stop the rehearsal; fix the root cause before a new operation</td></tr></tbody></table></div>
+<p>Runner stdout/stderr output is limited to operation/generation/state/count/error class.</p>
+<p>Physical paths, content, credentials, manifest payloads and claim tokens must not be</p>
+<p>logged.</p>
+<h2 id="5-resume-retry-and-cancel">5. Resume, retry and cancel<a class="heading-anchor" href="#5-resume-retry-and-cancel" aria-label="Link to section: 5. Resume, retry and cancel" title="Link to this section">#</a></h2>
+<p>If a controlled error produced <code class="inline-code">RETRYABLE_FAILED</code>, first send a retry request for the same</p>
+<p>durable operation and checkpoint, then run the same runner command:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-8">Copy</button></div><pre tabindex="0" id="code-block-8" class="language-bash"><code>curl --fail-with-body -X POST \
   -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   &quot;http://127.0.0.1:8000/v4/operations/$MESA_REBUILD_OPERATION_ID/retry&quot;</code></pre></div>
-<p>API bunun için geçici olarak yeniden başlatılmışsa runner&#39;dan önce tekrar</p>
-<p>durdurulmalıdır. <code class="inline-code">retry</code> yalnız <code class="inline-code">RETRYABLE_FAILED</code> durumunda <code class="inline-code">202</code> döndürür ve</p>
-<p>checkpoint&#39;i silmez. Retry budget tükenirse <code class="inline-code">409</code> döner.</p>
-<p>Process <code class="inline-code">SIGKILL</code>, host crash veya güç kaybıyla aktif durumda kesildiyse API</p>
-<p>retry çağrısı yapmayın. Lease süresi dolduktan sonra aynı runner komutu stale</p>
-<p>owner&#39;ı yeni fencing token ile reclaim eder. Tamamlanmış batch&#39;ler yalnız source</p>
-<p>manifest değişmemişse kullanılır. Crash <code class="inline-code">READY_TO_CUTOVER</code> sırasında olduysa</p>
-<p>runner pointer değişmemiş veya target&#39;a değişmiş iki güvenli durumu ayırır;</p>
-<p>replay yapmadan yeniden doğrular, tamamlar ya da retained source&#39;a döner.</p>
-<p>Operasyondan vazgeçmek yalnız <code class="inline-code">PENDING</code> veya <code class="inline-code">RETRYABLE_FAILED</code> için güvenlidir:</p>
+<p>If the API was restarted temporarily for this, stop it again before the runner.</p>
+<p><code class="inline-code">retry</code> returns <code class="inline-code">202</code> only in the <code class="inline-code">RETRYABLE_FAILED</code> state and does not delete the</p>
+<p>checkpoint. When the retry budget is exhausted it returns <code class="inline-code">409</code>.</p>
+<p>If the process was cut off while active by <code class="inline-code">SIGKILL</code>, a host crash or power loss, do</p>
+<p>not call the API retry. After the lease expires, the same runner command reclaims the</p>
+<p>stale owner with a new fencing token. Completed batches are reused only if the source</p>
+<p>manifest has not changed. If the crash happened during <code class="inline-code">READY_TO_CUTOVER</code>, the runner</p>
+<p>distinguishes the two safe states — pointer unchanged or pointer moved to the target —</p>
+<p>and re-verifies without replay, then completes or returns to the retained source.</p>
+<p>Abandoning the operation is safe only for <code class="inline-code">PENDING</code> or <code class="inline-code">RETRYABLE_FAILED</code>:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-9">Copy</button></div><pre tabindex="0" id="code-block-9" class="language-bash"><code>curl --fail-with-body -X POST \
   -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   &quot;http://127.0.0.1:8000/v4/operations/$MESA_REBUILD_OPERATION_ID/cancel&quot;</code></pre></div>
-<p><code class="inline-code">CANCELLED</code> eski active generation ile mutation admission&#39;ını yeniden açar.</p>
-<p>Staging generation ve backup otomatik silinmez. <code class="inline-code">CLAIMED</code>, <code class="inline-code">RUNNING</code>,</p>
-<p><code class="inline-code">VERIFYING</code> veya <code class="inline-code">READY_TO_CUTOVER</code> operation&#39;ını cancel etmeye çalışmak <code class="inline-code">409</code></p>
-<p>olur; runner&#39;ı önce güvenli batch sınırında durdurun.</p>
-<h2 id="6-cutover-otomatik-rollback-ve-restart">6. Cutover, otomatik rollback ve restart<a class="heading-anchor" href="#6-cutover-otomatik-rollback-ve-restart" aria-label="Link to section: 6. Cutover, otomatik rollback ve restart" title="Link to this section">#</a></h2>
-<p>Pre-cutover parity başarısızsa pointer değiştirilmez. Parity geçerse vector ve</p>
-<p>graph birlikte tek SQLite generation pointer transaction&#39;ıyla aktive edilir.</p>
-<p>Post-cutover reopen/health/smoke başarısızsa runner pointer&#39;ı retained source</p>
-<p>generation&#39;a otomatik döndürür, rollback&#39;i tekrar doğrular ve operation&#39;ı</p>
-<p><code class="inline-code">RETRYABLE_FAILED</code> yapar.</p>
-<p>Bu release tamamlanmış operation için manuel HTTP rollback endpoint&#39;i sunmaz.</p>
-<p><code class="inline-code">COMPLETED</code> sonrası yeni generation&#39;da incident görülürse tüm writer&#39;ları</p>
-<p>durdurun; pointer tablolarını veya generation dizinlerini elle değiştirmeyin.</p>
-<p>Backup/retained generation&#39;ı koruyun ve recovery prosedürüyle incident</p>
-<p>escalation yapın. Geç activation crash&#39;i aynı operation&#39;ın reclaim akışıyla</p>
-<p>otomatik olarak tamamlanır veya geri alınır.</p>
-<p>Runner <code class="inline-code">0</code> döndürdükten ya da operation güvenle cancel edildikten sonra combined</p>
-<p>runtime&#39;ı yeniden başlatın. Status&#39;u control-plane <code class="inline-code">ADMIN</code> credential ile</p>
-<p>doğrulayın:</p>
+<p><code class="inline-code">CANCELLED</code> reopens mutation admission with the old active generation.</p>
+<p>The staging generation and backup are not deleted automatically. Trying to cancel a</p>
+<p><code class="inline-code">CLAIMED</code>, <code class="inline-code">RUNNING</code>, <code class="inline-code">VERIFYING</code> or <code class="inline-code">READY_TO_CUTOVER</code> operation returns <code class="inline-code">409</code>;</p>
+<p>stop the runner at a safe batch boundary first.</p>
+<h2 id="6-cutover-automatic-rollback-and-restart">6. Cutover, automatic rollback and restart<a class="heading-anchor" href="#6-cutover-automatic-rollback-and-restart" aria-label="Link to section: 6. Cutover, automatic rollback and restart" title="Link to this section">#</a></h2>
+<p>If pre-cutover parity fails, the pointer is not changed. If parity passes, vector and</p>
+<p>graph are activated together in a single SQLite generation pointer transaction.</p>
+<p>If post-cutover reopen/health/smoke fails, the runner automatically returns the pointer</p>
+<p>to the retained source generation, re-verifies the rollback and sets the operation to</p>
+<p><code class="inline-code">RETRYABLE_FAILED</code>.</p>
+<p>This release offers no manual HTTP rollback endpoint for a completed operation.</p>
+<p>If an incident appears on the new generation after <code class="inline-code">COMPLETED</code>, stop all writers; do not</p>
+<p>edit pointer tables or generation directories by hand. Keep the backup/retained</p>
+<p>generation and escalate the incident through the recovery procedure. A late activation</p>
+<p>crash is completed or rolled back automatically by the same operation&#39;s reclaim flow.</p>
+<p>After the runner returns <code class="inline-code">0</code>, or the operation has been cancelled safely, restart the</p>
+<p>combined runtime. Verify the status with the control-plane <code class="inline-code">ADMIN</code> credential:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-10">Copy</button></div><pre tabindex="0" id="code-block-10" class="language-bash"><code>curl --fail \
   -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   &quot;http://127.0.0.1:8000/v4/operations/$MESA_REBUILD_OPERATION_ID&quot;</code></pre></div>
-<p>Yetkisiz status/cancel/retry çağrıları operation varlığını sızdırmamak için</p>
-<p><code class="inline-code">404</code> döndürür. Status yalnız kind/scope/state/attempt, progress, bounded</p>
-<p>error-class ve zaman alanlarını içerir.</p>
-<p>Tamamlanmış değişiklik penceresinden sonra yeni submit/retry gerekmiyorsa flag&#39;i</p>
-<p>tekrar <code class="inline-code">false</code> yapıp reviewed config ile runtime&#39;ı yeniden başlatın. Existing</p>
-<p>operation status ve health flag kapalıyken de okunabilir.</p>
-<h2 id="7-gozlemlenebilirlik-ve-retained-artifactlar">7. Gözlemlenebilirlik ve retained artifact&#39;lar<a class="heading-anchor" href="#7-gozlemlenebilirlik-ve-retained-artifactlar" aria-label="Link to section: 7. Gözlemlenebilirlik ve retained artifact&#39;lar" title="Link to this section">#</a></h2>
-<p>İzlenecek rebuild metrikleri:</p>
-<ul><li><code class="inline-code">mesa_v4_rebuild_operation_state{state=...}</code>;</li><li><code class="inline-code">mesa_v4_rebuild_duration_seconds</code>;</li><li><code class="inline-code">mesa_v4_rebuild_progress_completed</code> ve</li></ul>
+<p>Unauthorized status/cancel/retry calls return <code class="inline-code">404</code> so the operation&#39;s existence is not</p>
+<p>leaked. Status contains only kind/scope/state/attempt, progress, a bounded error class and</p>
+<p>time fields.</p>
+<p>After the change window, if no new submit/retry is needed, set the flag back to <code class="inline-code">false</code></p>
+<p>and restart the runtime with the reviewed config. Existing operation status and health</p>
+<p>remain readable while the flag is off.</p>
+<h2 id="7-observability-and-retained-artifacts">7. Observability and retained artifacts<a class="heading-anchor" href="#7-observability-and-retained-artifacts" aria-label="Link to section: 7. Observability and retained artifacts" title="Link to this section">#</a></h2>
+<p>Rebuild metrics to watch:</p>
+<ul><li><code class="inline-code">mesa_v4_rebuild_operation_state{state=...}</code>;</li><li><code class="inline-code">mesa_v4_rebuild_duration_seconds</code>;</li><li><code class="inline-code">mesa_v4_rebuild_progress_completed</code> and</li></ul>
 <p>  <code class="inline-code">mesa_v4_rebuild_progress_total</code>;</p>
 <ul><li><code class="inline-code">mesa_v4_rebuild_parity_missing</code>;</li><li><code class="inline-code">mesa_v4_rebuild_staging_bytes</code>;</li><li><code class="inline-code">mesa_v4_rebuild_rollbacks_total</code>.</li></ul>
-<p><code class="inline-code">/health</code> yalnız <code class="inline-code">status</code>, <code class="inline-code">maintenance</code> ve <code class="inline-code">rebuild_state</code> özetini verir;</p>
-<p>ayrı bir rebuild ayrıntı nesnesi içermez. Duration, progress ve rollback</p>
-<p>sayaçları <code class="inline-code">/metrics</code> üzerinden okunur. Operation ayrıntıları yetkili</p>
-<p><code class="inline-code">/v4/operations/{operation_id}</code> endpoint&#39;indedir. <code class="inline-code">FINAL_FAILED</code> degraded;</p>
-<p>aktif ve <code class="inline-code">RETRYABLE_FAILED</code> durumları maintenance kabul edilir.</p>
-<p>Backup, failed staging generation ve retained generation için ayrı change</p>
-<p>record tutun. Bu release&#39;te hiçbirini otomatik silmeyin. Silme/retention</p>
-<p>politikası sonraki açık operator iş paketidir.</p>
-<h2 id="8-apisdk-siniri-ve-production-karari">8. API/SDK sınırı ve production kararı<a class="heading-anchor" href="#8-apisdk-siniri-ve-production-karari" aria-label="Link to section: 8. API/SDK sınırı ve production kararı" title="Link to this section">#</a></h2>
-<p>Deprecated <code class="inline-code">POST /v4/rebuild</code> yalnız storage-root alias&#39;ıdır. <code class="inline-code">tenant_id</code>,</p>
-<p><code class="inline-code">workspace_id</code> veya <code class="inline-code">dataset_id</code> verilirse <code class="inline-code">409</code> döner. Dataset-bound MCP</p>
-<p>araçları global rebuild submit/cancel/retry sunmaz. Sync ve async Python</p>
-<p>SDK&#39;lar <code class="inline-code">capability</code>, <code class="inline-code">submit_rebuild</code>, <code class="inline-code">operation_status</code>, <code class="inline-code">cancel_operation</code></p>
-<p>ve <code class="inline-code">retry_operation</code> metotlarını sunar.</p>
-<p>Merge, unit/integration test veya CI evidence tek başına production <code class="inline-code">GO</code></p>
-<p>değildir. Aşağıdakilerin tamamı aynı release adayıyla tamamlanana kadar karar</p>
-<p><code class="inline-code">NO-GO</code> kalır:</p>
-<ul><li>gerçek LanceDB/Kùzu ve seçilen embedding provider ile backup → rebuild →</li></ul>
-<p>  reopen → parity → rollback rehearsal;</p>
-<ul><li>production-benzeri disk kapasitesi, dataset büyüklüğü ve concurrency;</li><li>migration/DR ve content-free closure evidence artifact&#39;ları;</li><li>cross-tenant/dataset negatif retrieval ve crash/fencing kanıtı;</li><li>kesintisiz 24 saat soak ve operasyon onayı.</li></ul></div></details>
+<p><code class="inline-code">/health</code> gives only the <code class="inline-code">status</code>, <code class="inline-code">maintenance</code> and <code class="inline-code">rebuild_state</code> summary;</p>
+<p>it has no separate rebuild detail object. Duration, progress and rollback counters are</p>
+<p>read from <code class="inline-code">/metrics</code>. Operation details are at the authorized</p>
+<p><code class="inline-code">/v4/operations/{operation_id}</code> endpoint. <code class="inline-code">FINAL_FAILED</code> is degraded;</p>
+<p>active and <code class="inline-code">RETRYABLE_FAILED</code> states count as maintenance.</p>
+<p>Keep a separate change record for the backup, the failed staging generation and the</p>
+<p>retained generation. Delete none of them automatically in this release. A deletion/retention</p>
+<p>policy is a later, explicit operator work package.</p>
+<h2 id="8-apisdk-boundary-and-the-production-decision">8. API/SDK boundary and the production decision<a class="heading-anchor" href="#8-apisdk-boundary-and-the-production-decision" aria-label="Link to section: 8. API/SDK boundary and the production decision" title="Link to this section">#</a></h2>
+<p>The deprecated <code class="inline-code">POST /v4/rebuild</code> is only a storage-root alias. If <code class="inline-code">tenant_id</code>,</p>
+<p><code class="inline-code">workspace_id</code> or <code class="inline-code">dataset_id</code> is given it returns <code class="inline-code">409</code>. Dataset-bound MCP tools offer no</p>
+<p>global rebuild submit/cancel/retry. The sync and async Python SDKs offer the</p>
+<p><code class="inline-code">capability</code>, <code class="inline-code">submit_rebuild</code>, <code class="inline-code">operation_status</code>, <code class="inline-code">cancel_operation</code> and</p>
+<p><code class="inline-code">retry_operation</code> methods.</p>
+<p>A merge, unit/integration tests or CI evidence alone is not a production <code class="inline-code">GO</code>.</p>
+<p>The decision stays <code class="inline-code">NO-GO</code> until all of the following are complete for the same release</p>
+<p>candidate:</p>
+<ul><li>backup → rebuild → reopen → parity → rollback rehearsal with real LanceDB/Kùzu and the</li></ul>
+<p>  selected embedding provider;</p>
+<ul><li>production-like disk capacity, dataset size and concurrency;</li><li>migration/DR and content-free closure evidence artifacts;</li><li>cross-tenant/dataset negative retrieval and crash/fencing evidence;</li><li>an uninterrupted 24-hour soak and operations sign-off.</li></ul></div></details>
         </div>
         <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/api-reference/"><span class="nav-dir">← Previous</span><span class="nav-title">HTTP API &amp; Python SDK</span></a><a class="docs-page-next" href="../../../docs/core/release-notes/"><span class="nav-dir">Next →</span><span class="nav-title">v0.8.1 release notes</span></a></div>
       </article>

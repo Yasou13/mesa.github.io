@@ -5,7 +5,8 @@ import fs from 'node:fs';
 import { docsSidebar as sharedSidebar, docsTabs, docsCopyButton, docsFooter, docsFrame, hubContent } from './docs_ui.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderMarkdown, generateTableOfContents, escapeHtml } from './markdown_engine.mjs';
+import { renderMarkdown, generateTableOfContents, escapeHtml, slugify } from './markdown_engine.mjs';
+import { diagrams as umlDiagrams } from './render_uml.mjs';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
@@ -50,6 +51,63 @@ export function getAllDocRoutes() {
   return routes;
 }
 
+// Each guide shows only its own source sections, so derived pages do not repeat
+// the whole upstream file. Headings inside fenced code are not section breaks.
+function splitSections(markdown) {
+  const lines = markdown.split('\n');
+  const sections = [];
+  let current = { level: 0, title: '', lines: [] };
+  let fence = null;
+  for (const line of lines) {
+    const fenceMatch = line.match(/^\s*(```|~~~)/);
+    if (fenceMatch) fence = fence === fenceMatch[1] ? null : (fence || fenceMatch[1]);
+    const heading = !fence && !fenceMatch && line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
+    if (heading) {
+      // Explicit anchors written just above a heading belong to that heading.
+      const carried = [];
+      while (current.lines.length && /^\s*(<a id="[^"]+"><\/a>)?\s*$/.test(current.lines.at(-1))) carried.unshift(current.lines.pop());
+      sections.push(current);
+      current = { level: heading[1].length, title: heading[2].replace(/[`*_]/g, '').trim(), lines: [...carried, line] };
+    } else current.lines.push(line);
+  }
+  sections.push(current);
+  return sections;
+}
+
+// Each guide shows only its own source sections, so derived pages do not repeat
+// the whole upstream file. Headings inside fenced code are not section breaks.
+export function scopeSourceMarkdown(markdown, { include, exclude = [] } = {}) {
+  if (!include && !exclude.length) return markdown;
+  const kept = [];
+  let mode = null;
+  for (const section of splitSections(markdown)) {
+    if (mode && section.level && section.level <= mode.level) mode = null;
+    if (!mode && section.level) {
+      if (include && include.includes(section.title)) mode = { keep: true, level: section.level };
+      else if (exclude.includes(section.title)) mode = { keep: false, level: section.level };
+    }
+    if (mode ? mode.keep : !include) kept.push(...section.lines);
+  }
+  return kept.join('\n').trim();
+}
+
+// Anchors of excluded top-level sections, so old links still land somewhere useful.
+function excludedAnchors(markdown, exclude = []) {
+  return splitSections(markdown).filter(section => exclude.includes(section.title)).map(section => ({
+    title: section.title,
+    ids: [...new Set([slugify(section.title), ...section.lines.flatMap(line => [...line.matchAll(/<a id="([^"]+)"><\/a>/g)].map(match => match[1]))])]
+  }));
+}
+
+function sourceMarkdownFor(repoKey, page, language) {
+  // English pages read a translated copy when the upstream file mixes in Turkish.
+  if (language === 'en') {
+    const translated = path.join(repositoryRoot, 'content/docs/source-en', repoKey, page.src.replace(/\.md$/, '') + '.md');
+    if (fs.existsSync(translated)) return fs.readFileSync(translated, 'utf8');
+  }
+  return page.raw_markdown;
+}
+
 function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
   return sharedSidebar(getDocsManifest(), currentRoute, language, {base, guides: guideByRoute});
 }
@@ -62,7 +120,14 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const route = (p = '') => `${base}${p}`;
 
   const guide = guideByRoute.get(page.route);
-  const sourceRendered = renderMarkdown(page.raw_markdown, {base, route, skipH1: true, language});
+  const appendixInclude = guide?.appendixSections;
+  const appendixMarkdown = appendixInclude && !appendixInclude.length ? '' : scopeSourceMarkdown(sourceMarkdownFor(repoKey, page, language), {include: appendixInclude, exclude: guide?.appendixExclude || []});
+  const sourceRendered = renderMarkdown(appendixMarkdown, {base, route, skipH1: true, language, tableLabelPrefix: isTr ? 'Kaynak · ' : 'Source · '});
+  const translatedSource = language === 'en' && sourceMarkdownFor(repoKey, page, 'en') !== page.raw_markdown;
+  const movedHtml = (guide?.appendixExclude || []).length ? `<div class="docs-moved"><strong>${isTr ? 'Kendi sayfasına taşınan bölümler' : 'Sections that moved to their own page'}</strong><ul>${excludedAnchors(page.raw_markdown, guide.appendixExclude).map(({title, ids}) => {
+    const home = guideCatalog.guides.find(other => other.sources[0] === page.src && (other.appendixSections || []).includes(title));
+    return `<li id="${ids[0]}">${ids.slice(1).map(id => `<span id="${escapeHtml(id)}"></span>`).join('')}${escapeHtml(title)} → ${home ? `<a href="${route(home.route)}">${escapeHtml(home.title[language] || home.title.en)}</a>` : ''}</li>`;
+  }).join('')}</ul></div>` : '';
   const repositoryNotes = {
     data: ['MESA Data prepares reviewed Turkish legal sources through acquisition, canonicalization, validation and immutable release publication. Staging or HTTP 202 does not prove delivery into Core. Its package version and release tag are separate facts.', 'MESA Data, Türk hukuk kaynaklarını toplar, korur, ortak biçime dönüştürür ve doğrulayıp yayına hazırlar. Hazırlık ortamındaki başarı veya HTTP 202 yanıtı, verinin Core’a ulaştığını göstermez. Paket sürümü ile yayın etiketi de ayrı bilgilerdir.'],
     law: ['Law consumes the V4 HTTP contract for matters, documents and source-backed workflows. Current live Core integration remains unverified; current HEAD CI is failing. The dated Law-side pass used Core 0.7.1. Research, draft and rebuild surfaces are not completed capabilities.', 'Law, hukuk dosyaları ve belgeler için V4 HTTP arayüzünü kullanır. Güncel canlı Core bağlantısı doğrulanmadı; en son kodun CI kontrolleri başarısız. Önceki başarılı Law testleri Core 0.7.1 ile yapıldı. Araştırma, taslak üretimi ve yeniden oluşturma özellikleri henüz tamamlanmış değildir.'],
@@ -79,6 +144,9 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   // Guide anchors have their own namespace; original source anchors stay stable.
   rendered.html = rendered.html.replace(/id="([^"]+)"/g, 'id="guide-$1"').replace(/href="#([^"]+)"/g, 'href="#guide-$1"').replace(/data-copy-target="([^"]+)"/g, 'data-copy-target="guide-$1"');
   for (const heading of rendered.headings) heading.id = `guide-${heading.id}`;
+  const pick = (en, tr) => isTr ? tr : en;
+  const diagramHtml = (guide?.diagrams || []).length ? `<section class="docs-diagrams"><h2 id="guide-diagrams">${isTr ? 'Şemalar' : 'Diagrams'}</h2>${guide.diagrams.map(name => umlDiagrams[name](pick, `doc-${name}`)).join('')}<p class="docs-language-notice">${isTr ? 'Tüm şemalar ve gerekçeleri:' : 'All diagrams with their design rationale:'} <a href="${route('architecture/')}">${isTr ? 'Mimari' : 'Architecture'} →</a></p></section>` : '';
+  if (diagramHtml) rendered.headings.push({id: 'guide-diagrams', title: isTr ? 'Şemalar' : 'Diagrams', level: 2});
   const guideTocHtml = generateTableOfContents(rendered.headings, {label: isTr ? 'Bu rehberde' : 'In this guide'});
   // Breadcrumbs
   const homeHref = route();
@@ -102,9 +170,10 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   </div>`;
 
   // Find previous and next pages within this repo
-  const pageIndex = repo.pages.findIndex((p) => p.slug === page.slug);
-  const prevPage = pageIndex > 0 ? repo.pages[pageIndex - 1] : null;
-  const nextPage = pageIndex < repo.pages.length - 1 ? repo.pages[pageIndex + 1] : null;
+  const visiblePages = repo.pages.filter((p) => !guideByRoute.get(p.route)?.hidden);
+  const pageIndex = visiblePages.findIndex((p) => p.route === page.route);
+  const prevPage = pageIndex > 0 ? visiblePages[pageIndex - 1] : null;
+  const nextPage = pageIndex >= 0 && pageIndex < visiblePages.length - 1 ? visiblePages[pageIndex + 1] : null;
 
   let pageNavHtml = '<div class="docs-page-nav">';
   if (prevPage) {
@@ -135,13 +204,12 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
           <div class="docs-title-row"><h1>${escapeHtml(pageTitle)}</h1>${docsCopyButton(isTr)}</div>
           ${metaBar}
-          <p class="docs-language-notice">${isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Özgün belgeyi aşağıdaki kaynak bölümünde kendi dilinde okuyabilirsiniz. Paketin yayımlanması, canlı kullanım için onaylandığı anlamına gelmez.' : 'This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.'}</p>
+          <p class="docs-language-notice">${isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.' : 'This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.'}</p>
           ${/audit|verification|closure/i.test(page.src) ? `<p class="docs-language-notice">${isTr ? 'Bu kaynak, belirtilen tarihteki testleri kaydeder. Burada paylaşılması, testlerin bu site için yeniden çalıştırıldığı anlamına gelmez.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
         </header>
         <div class="docs-body">
-          ${rendered.html}
-          <div class="guide-source-list"><strong>${isTr ? 'Dayanak kaynaklar' : 'Verified sources'}</strong><ul>${(guide?.sources || [page.src]).map(src => `<li><a href="${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${src}" target="_blank" rel="noopener noreferrer"><code>${escapeHtml(src)}</code></a></li>`).join('')}</ul></div>
-          <details class="source-appendix" id="source-reference"><summary>${isTr ? 'Özgün belgenin tamamı' : 'Complete source reference · original language'}</summary><p class="docs-language-notice">${isTr ? 'Bu bölüm, kaynak belgenin değiştirilmemiş metnini içerir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.' : 'This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.'}</p><div class="source-reference-body">${sourceRendered.html}</div></details>
+          ${rendered.html}${diagramHtml}
+          <div class="guide-source-list"><strong>${isTr ? 'Dayanak kaynaklar' : 'Verified sources'}</strong><ul>${(guide?.sources || [page.src]).map(src => `<li><a href="${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${src}" target="_blank" rel="noopener noreferrer"><code>${escapeHtml(src)}</code></a></li>`).join('')}</ul></div>${movedHtml}${appendixMarkdown ? `<details class="source-appendix" id="source-reference"><summary>${isTr ? 'Kaynak belgedeki ilgili bölümler' : 'Source reference for this page'}</summary><p class="docs-language-notice">${isTr ? 'Bu bölüm, kaynak belgenin bu sayfayla ilgili kısımlarını değiştirmeden gösterir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.' : translatedSource ? 'The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.' : 'The sections of the upstream file that back this page, unchanged. Source section links open the appendix automatically.'}</p><div class="source-reference-body">${sourceRendered.html}</div></details>` : ''}
         </div>
         ${pageNavHtml}
       </article>

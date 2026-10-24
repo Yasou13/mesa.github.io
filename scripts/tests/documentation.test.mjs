@@ -30,7 +30,10 @@ test('localized docs keep source anchors and copy targets without duplicate IDs'
     if(language==='tr') {
       assert.doesNotMatch(html,/>Copy<|aria-label="Link to section|>MCP Integration</);
     }
-    assert.match(html,/id="source-reference"/);
+    // Guides that declare no appendix sections intentionally show only their source links.
+    const guide=catalog.guides.find(g=>g.route===item.path);
+    if(guide?.appendixSections?.length===0) assert.doesNotMatch(html,/id="source-reference"/);
+    else assert.match(html,/id="source-reference"/);
   }
 });
 

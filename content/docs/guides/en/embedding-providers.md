@@ -1,3 +1,17 @@
+## Supported providers at a glance
+
+| Role | Provider value | Example model | Dimension | Install extra |
+| --- | --- | --- | --- | --- |
+| Embeddings · local (default) | sentence-transformers | Magibu, normalized | 768 | `ml` |
+| Embeddings · external | `openai_compatible` | `text-embedding-3-small` | 1536 | `adapters` |
+| Embeddings · Nemotron-3 profile | `openai_compatible` | Nemotron-3, `nemotron-qpass-v1` (query/passage) | 2048 | `adapters` |
+| Extraction / validation LLM | `openai_compatible` | any chat model your endpoint serves, e.g. `gpt-4o-mini` | — | `adapters` |
+| Extraction / validation LLM | `claude` | a Claude model | — | provider SDK extra |
+| Extraction / validation LLM | `ollama` | a model already pulled on a running Ollama | — | provider SDK extra |
+| Tests only | `mock` | returns no facts | — | — |
+
+Extraction and embeddings are configured separately: choosing `claude` or `ollama` for extraction does not set up embeddings. `auto` can fall back to `mock`, so name a provider explicitly. Changing provider, model, dimension or normalization starts a new embedding space and needs a reindex or a new storage root.
+
 ## Representation must stay compatible
 
 Assertion vectors and query embeddings must share provider/model identity and dimension. The documented local default is Magibu with 768 dimensions; external text-embedding-3-small requires 1536. A settings edit is not an in-place representation migration. Rebuild/reindex under the documented identity rules.

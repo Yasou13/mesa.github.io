@@ -1,6 +1,6 @@
 import { detailedArchitecture } from './render_architecture.mjs';
 // Editorial product views share one paired vocabulary with the static localization gate.
-import { introTranslations, beginnerHome } from './render_intro.mjs';
+import { introTranslations, beginnerHome, developerFixture } from './render_intro.mjs';
 export const productTranslations = introTranslations;
 const t = (en, tr) => {
   productTranslations[en] = tr;
@@ -76,7 +76,7 @@ export function productHome(helpers) { return beginnerHome(helpers); }
 
 export function architecturePage(helpers) { return detailedArchitecture({...helpers, t}); }
 
-export function retrievalPage({ header, footer, route, cta }) {
+export function retrievalPage({ header, footer, route, cta, actionExample }) {
   return `
 ${header('architecture')}
 <main id="main-content">
@@ -160,6 +160,8 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
       )}
     </div>
   </section>
+
+  ${developerFixture({actionExample})}
 
   <section class="section source-notes">
     ${title('Inspect the implementation.', 'Uygulamayı inceleyin.')}

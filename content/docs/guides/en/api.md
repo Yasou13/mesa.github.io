@@ -1,5 +1,7 @@
 ## Authenticate and bind scope
 
+For every endpoint with request bodies, fields and response codes, see the [HTTP endpoint reference](docs/core/endpoints/).
+
 Versioned memory, health and metrics requests require `X-API-Key`. Public `/health/init`, OpenAPI, Swagger and ReDoc need deployment network policy. Create catalog resources with an authorized principal before starting a dataset-bound session. [The SDK example](docs/core/examples/) checks terminal state explicitly.
 
 ## The implemented endpoint families

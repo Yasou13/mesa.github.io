@@ -111,6 +111,11 @@
       "path": "early-access/",
       "title": "Request early access — MESA",
       "description": "Tell us what you want to build with MESA. Request early access, discuss an integration or contribute to the project."
+    },
+    "privacy": {
+      "path": "privacy/",
+      "title": "Privacy Notice — MESA",
+      "description": "What the MESA website collects, why, how long it is kept, and how to ask for removal under KVKK and GDPR."
     }
   }
 }

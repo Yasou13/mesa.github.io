@@ -217,6 +217,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/early-access/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/privacy/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/privacy/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/resources/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/resources/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/resources/" />
@@ -839,6 +851,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/graph/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/graph/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/graph/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/endpoints/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/endpoints/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/endpoints/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/endpoints/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/endpoints/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/endpoints/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/endpoints/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/endpoints/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/docs/core/examples/</loc>

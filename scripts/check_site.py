@@ -32,6 +32,7 @@ CORE_ROUTES = (
     "about/",
     "faq/",
     "early-access/",
+    "privacy/",
 )
 HUB_DATA = json.loads(
     (Path(__file__).resolve().parents[1] / "content" / "hub.json").read_text(encoding="utf-8")
@@ -41,7 +42,7 @@ MEDIA_DATA = json.loads(
 )
 REQUIRED_MEDIA_RECORDS = ("event-horizon",)
 HOME_SCENES = ("event-horizon",)
-HOME_SECTIONS = ("hero", "problem", "process", "example", "capabilities", "ecosystem", "explore")
+HOME_SECTIONS = ("hero", "problem", "difference", "process", "example", "capabilities", "ecosystem", "explore")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
     entry["path"]
     for entry in HUB_DATA["entries"]
@@ -356,7 +357,7 @@ def main() -> int:
                     errors.append(f"scene media must be aria-hidden at {relative}: {scene_id}")
                 if state not in {"fallback", "configured"}:
                     errors.append(f"invalid initial media state at {relative}: {scene_id} / {state}")
-        if relative in {Path("how-it-works/index.html"), Path("tr/how-it-works/index.html")}:
+        if relative in {Path("retrieval/index.html"), Path("tr/retrieval/index.html")}:
             for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "d394784"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing technical fixture evidence at {relative}: {fixture_field}")
@@ -496,7 +497,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Kaynağını koruyan yapay zekâ hafızası.", "Bir notun hafızadaki yolculuğu", "Canlı kullanım: NO-GO"),
+        "tr/": ("Kaynağını koruyan yapay zekâ hafızası.", "Bir notun hafızadaki yolculuğu", "Alfa"),
         "tr/how-it-works/": ("Bir not eklediğinizde ne olur?", "Bir ana kayıt. İki arama görünümü.", "Sıralamaları birleştir"),
         "tr/mesa/": ("Dört sinyal", "Çizge yolu", "Gerçek RRF"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
@@ -577,8 +578,13 @@ def main() -> int:
         for bot in ("Googlebot", "Bingbot", "OAI-SearchBot", "PerplexityBot", "Claude-SearchBot"):
             if any(not crawler_rules.can_fetch(bot, f"{site_url}{route}") for route in LOCALIZED_ROUTES):
                 errors.append(f"robots.txt blocks a public canonical page for {bot}")
-            if any(crawler_rules.can_fetch(bot, f"{site_url}{route}") for route in ("admin/", "tr/admin/")):
-                errors.append(f"robots.txt lost the existing admin exclusion for {bot}")
+        # Admin pages stay out of search through noindex; robots.txt must not advertise their path.
+        for admin_route in ("admin/", "tr/admin/"):
+            admin_html = (root / admin_route / "index.html").read_text(encoding="utf-8")
+            if '<meta name="robots" content="noindex' not in admin_html:
+                errors.append(f"admin page lost its noindex directive: /{admin_route}")
+            if f"/{admin_route}" in robots:
+                errors.append(f"robots.txt advertises the admin path: /{admin_route}")
         if f"Sitemap: {site_url}sitemap.xml" not in robots:
             errors.append("robots.txt sitemap URL does not match canonical origin")
         if site_url == "https://mesamemory.dev/":

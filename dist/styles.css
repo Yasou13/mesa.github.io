@@ -2764,3 +2764,181 @@ main > .closing-cta { min-height: 0; padding-block: 48px; }
 
 .intro-hero .hero-copy .home-production-badge { margin: 20px 0 0; }
 .intro-hero-note p.intro-caption { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ===== Site review pass · 2026-10-24 =====================================
+   One content frame for every page (G3/G4), calmer page heroes (G7),
+   higher contrast for secondary text (G6), product hero (G2/G8–G10),
+   "Why MESA", privacy notice and UML diagrams. Loaded last on purpose. */
+:root {
+  --muted-2: #9aa0ad;
+  --frame-gutter: 52px;
+  --frame: min(calc(var(--max) - 40px), calc(100% - 2 * var(--frame-gutter)));
+  --frame-pad: max(var(--frame-gutter), calc((100% - var(--max)) / 2 + 20px));
+}
+@media (max-width: 800px) { :root { --frame-gutter: 20px; } }
+
+/* Content starts where the logo starts, on every page. */
+main:not(.docs-layout) > :is(.section, .intro-page-nav, .breadcrumbs, .development-note, .status-strip),
+.home-page > .section, .architecture-page > .section, .intro-how > .section {
+  width: var(--frame); max-width: none; margin-inline: auto;
+}
+main:not(.docs-layout) > :is(.page-hero, .hero, .closing-cta), .site-footer,
+.home-page .hero, .architecture-page > .page-hero { padding-inline: var(--frame-pad); }
+@media (max-width: 800px) {
+  .nav-shell { width: calc(100% - 16px); padding-inline: 12px; }
+}
+
+/* Page heroes: smaller and shorter except on the home page and docs. */
+main:not(.home-page) > .page-hero, main:not(.home-page) > .page-hero.compact { min-height: 0; padding-top: 148px; padding-bottom: 48px; }
+main:not(.home-page) > .page-hero h1 { max-width: 920px; font-size: clamp(38px, 4.4vw, 62px); line-height: 1.06; }
+main:not(.home-page) > .page-hero > p:not(.eyebrow) { font-size: 18px; }
+@media (max-width: 800px) {
+  main:not(.home-page) > .page-hero, main:not(.home-page) > .page-hero.compact { padding-top: 116px; padding-bottom: 32px; }
+  main:not(.home-page) > .page-hero h1 { font-size: clamp(32px, 9vw, 44px); }
+}
+
+/* Status: framed strip and cards sized to their content. */
+main:not(.docs-layout) > .status-strip { border: 1px solid var(--line); border-radius: var(--radius-panel); overflow: hidden; }
+.status-strip > div { min-height: 0; padding: 22px 24px; }
+.status-strip small { margin-bottom: 10px; }
+.status-timeline article { min-height: 0; padding: 26px; }
+.status-timeline h2 { margin: 18px 0 12px; font-size: 26px; }
+
+/* Secondary text contrast. */
+.intro-caption, .text--meta, .docs-language-notice, .footer-note, .uml-caption { color: var(--muted); }
+
+/* Home hero: message on the left, the product on the right. */
+.home-page .intro-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 4vw, 64px); min-height: 0; padding-top: 150px; padding-bottom: 72px; }
+.home-page .intro-hero h1 { max-width: 13ch; font-size: clamp(44px, 5vw, 72px); }
+.home-production-badge, .intro-hero .hero-copy .home-production-badge { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 24px; padding: 4px 12px 4px 4px; border: 1px solid var(--line-strong); border-radius: 99px; color: var(--muted); font: 12px/1.4 "Commit Mono", monospace; text-decoration: none; }
+.home-production-badge span { padding: 2px 9px; border-radius: 99px; background: var(--evidence); color: #1b140b; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.home-production-badge:hover { border-color: var(--evidence); color: var(--ink); }
+.hero-demo { position: relative; z-index: 2; display: grid; gap: 14px; margin: 0; }
+.hero-demo__code { overflow: hidden; border: 1px solid var(--line-strong); border-radius: 10px; background: #0a0c12; box-shadow: 0 24px 60px rgba(0, 0, 0, .45); }
+.hero-demo__bar { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--line); color: var(--muted); font: 11px/1.4 "Commit Mono", monospace; }
+.hero-demo pre { margin: 0; padding: 16px 18px; overflow-x: auto; background: none; border: 0; color: #d5d9e3; font: 12.5px/1.7 "Commit Mono", monospace; white-space: pre; }
+.hero-demo .tok-k { color: #b6a6e8; }
+.hero-demo .tok-s { color: var(--evidence); }
+.hero-demo__answer { margin-left: clamp(0px, 3vw, 40px); padding: 18px 20px; border: 1px solid rgba(213, 174, 130, .4); border-radius: 10px; background: #13110e; }
+.hero-demo__fact { margin: 8px 0 14px; color: var(--ink); font-size: 21px; line-height: 1.35; }
+.hero-demo__source { display: grid; gap: 6px; margin: 0; font-size: 13px; }
+.hero-demo__source div { display: grid; grid-template-columns: 74px 1fr; gap: 10px; }
+.hero-demo__source dt { color: var(--muted); font: 11px/1.7 "Commit Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+.hero-demo__source dd { margin: 0; color: #d9cfb9; }
+.hero-demo__lanes { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.hero-demo__lanes li { padding: 3px 9px; border: 1px solid var(--line-strong); border-radius: 99px; color: var(--muted); font: 11px/1.5 "Commit Mono", monospace; }
+.hero-demo figcaption { margin-left: clamp(0px, 3vw, 40px); color: var(--muted); font-size: 12.5px; }
+@media (max-width: 1000px) {
+  .home-page .intro-hero { grid-template-columns: 1fr; padding-top: 128px; }
+  .hero-demo__answer, .hero-demo figcaption { margin-left: 0; }
+}
+@media (max-width: 560px) { .hero-demo pre { font-size: 11px; } }
+
+/* Why not plain RAG. */
+.why-mesa__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+.why-mesa__grid article { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--surface); }
+.why-mesa__grid h3 { margin: 14px 0 10px; font-size: 21px; font-weight: 550; }
+.why-mesa__grid p { margin: 0; font-size: 16px; line-height: 1.6; }
+.why-mesa__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 28px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.why-mesa__facts dt { margin-bottom: 6px; color: var(--orientation); font: 12px/1.4 "Commit Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.why-mesa__facts dd { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.why-mesa__facts a { color: var(--purple-soft); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 860px) { .why-mesa__grid, .why-mesa__facts { grid-template-columns: 1fr; } }
+
+/* Architecture: rationale and bounds. */
+.arch-why { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; max-width: 900px; margin: 22px 0 0; padding: 16px 20px; border-left: 2px solid var(--evidence); background: rgba(213, 174, 130, .05); }
+.arch-why .intro-index { grid-row: span 2; color: var(--evidence); }
+.arch-why p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.6; }
+.arch-why a { color: var(--evidence); font-size: 14px; }
+.arch-bounds { margin-top: 28px; }
+.arch-bounds h3 { margin: 0 0 6px; font-size: 20px; }
+.arch-bounds dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 16px 0 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--line); }
+.arch-bounds dl div { padding: 16px 18px; background: var(--surface); }
+.arch-bounds dt { color: var(--muted); font: 11px/1.5 "Commit Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+.arch-bounds dd { margin: 6px 0 0; color: var(--ink); font-size: 15px; }
+@media (max-width: 860px) { .arch-bounds dl { grid-template-columns: 1fr; } .arch-why { grid-template-columns: 1fr; } .arch-why .intro-index { grid-row: auto; } }
+.architecture-page .arch-path-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+
+/* Privacy notice. */
+.privacy-body { display: grid; gap: 0; }
+.privacy-body article { max-width: 780px; padding: 26px 0; border-top: 1px solid var(--line); }
+.privacy-body h2 { margin: 0 0 12px; font-size: 24px; font-weight: 550; }
+.privacy-body ul { margin: 0; padding-left: 20px; color: var(--muted); }
+.privacy-body li { margin: 6px 0; line-height: 1.65; }
+.privacy-body a { color: var(--purple-soft); }
+.privacy-updated { color: var(--muted); font: 12px/1.5 "Commit Mono", monospace; }
+
+/* ===== UML diagrams ======================================================= */
+.uml-figure { margin: 32px 0; padding: 20px 22px 18px; border: 1px solid var(--line); border-radius: 10px; background: linear-gradient(180deg, #0d1018, #090b11); }
+.uml-figure figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.uml-figure figcaption strong { color: var(--ink); font-size: 18px; font-weight: 550; }
+.uml-kind { color: var(--orientation); font: 11px/1.4 "Commit Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+.uml-scroll { margin-top: 16px; overflow-x: auto; overscroll-behavior-x: contain; }
+.uml-scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+svg.uml { display: block; width: 100%; height: auto; }
+svg.uml--min-760 { min-width: 760px; }
+svg.uml--min-780 { min-width: 780px; }
+svg.uml--min-820 { min-width: 820px; }
+svg.uml--min-800 { min-width: 800px; }
+.uml-caption { max-width: 860px; margin: 14px 0 0; font-size: 14.5px; line-height: 1.6; }
+.uml .uml-node { fill: #121621; stroke: #3b4254; stroke-width: 1.2; }
+.uml .uml-node--inner { fill: #171c29; }
+.uml .uml-node--accent, .uml .uml-component--accent .uml-node, .uml .uml-store--accent .uml-node, .uml .uml-class--accent .uml-node { stroke: var(--orientation); }
+.uml .uml-icon rect { fill: #121621; stroke: #7f8aa6; stroke-width: 1; }
+.uml text { font-family: "Instrument Sans", system-ui, sans-serif; }
+.uml .uml-label { fill: var(--ink); font-size: 13px; }
+.uml .uml-title { fill: var(--ink); font-size: 14.5px; font-weight: 600; }
+.uml .uml-title-sm { fill: var(--ink); font-size: 13px; font-weight: 600; }
+.uml .uml-sub { fill: #a9afbd; font-size: 12px; }
+.uml .uml-stereo { fill: var(--orientation); font: italic 10.5px "Commit Mono", monospace; }
+.uml .uml-edge { fill: none; stroke: #8a93a8; stroke-width: 1.3; }
+.uml .uml-edge--dashed { stroke-dasharray: 5 4; }
+.uml .uml-head-open { fill: none; stroke: #8a93a8; stroke-width: 1.4; stroke-linejoin: round; }
+.uml .uml-head-fill { fill: #8a93a8; }
+.uml .uml-edge-label { fill: #b2b8c6; font: 11px "Commit Mono", monospace; }
+.uml .uml-order { fill: var(--evidence); font: 600 11px "Commit Mono", monospace; }
+.uml .uml-msg { fill: var(--ink); font: 11px "Commit Mono", monospace; }
+.uml .uml-msg--return { fill: #a9afbd; }
+.uml .uml-lifeline { fill: none; stroke: #3b4254; stroke-dasharray: 4 5; }
+.uml .uml-activation { fill: #1e2537; stroke: var(--orientation); stroke-width: 1; }
+.uml .uml-frame { fill: none; stroke: #4c5469; stroke-width: 1.1; }
+.uml .uml-boundary .uml-frame { fill: rgba(139, 156, 203, .035); stroke: #56607a; }
+.uml .uml-frame-tab { fill: #161b27; stroke: #4c5469; }
+.uml .uml-frame-label { fill: var(--ink); font: 600 11.5px "Commit Mono", monospace; }
+.uml .uml-guard { fill: #d6bd97; font: italic 11px "Commit Mono", monospace; }
+.uml .uml-note-shape { fill: #19170f; stroke: #6f6247; }
+.uml .uml-note-text { fill: #ddd2ba; font-size: 11.5px; }
+.uml .uml-lollipop { fill: #121621; stroke: var(--orientation); stroke-width: 1.6; }
+.uml .uml-socket { fill: none; stroke: #8a93a8; stroke-width: 1.4; }
+.uml .uml-state-name { fill: var(--ink); font: 600 11.5px "Commit Mono", monospace; }
+.uml .uml-state--ok .uml-node { fill: #11201a; stroke: var(--green); }
+.uml .uml-state--stop .uml-node { fill: #221416; stroke: var(--red); }
+.uml .uml-state--warn .uml-node { fill: #211b11; stroke: var(--evidence); }
+.uml .uml-state--muted .uml-node { stroke: #6b7385; }
+.uml .uml-initial, .uml .uml-bar { fill: var(--ink); }
+.uml .uml-final-ring { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.uml .uml-divider { stroke: #3b4254; }
+.uml .uml-attr { fill: #c6cbd6; font: 11.5px "Commit Mono", monospace; }
+.uml .uml-mult { fill: #a9afbd; font: 10.5px "Commit Mono", monospace; }
+.uml .uml-node-depth { fill: #0d1017; stroke: #3b4254; }
+.uml .uml-node-depth-line { stroke: #3b4254; }
+.uml .uml-doc-icon { fill: none; stroke: #7f8aa6; }
+.uml .uml-constraint { fill: var(--evidence); font: 11px "Commit Mono", monospace; }
+.docs-diagrams .uml-figure { margin: 24px 0; padding: 16px; }
+.docs-product-divider { display: block; margin: 8px 0 2px; padding: 8px 12px 4px; border-top: 1px solid var(--line); color: var(--muted); font: 10.5px/1.4 "Commit Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+/* Glossary terms list. */
+.glossary-terms h2, .publication-index h2:not(.sr-only) { margin: 0 0 18px; font-size: 26px; font-weight: 550; }
+.glossary-index { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 26px; }
+.glossary-index a { padding: 4px 10px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 13px; text-decoration: none; }
+.glossary-index a:hover { border-color: var(--orientation); color: var(--ink); }
+.glossary-terms dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--line); }
+.glossary-terms dl > div { padding: 20px 22px; background: var(--surface); scroll-margin-top: 110px; }
+.glossary-terms dl > div:target { box-shadow: inset 3px 0 0 var(--evidence); }
+.glossary-terms dt { margin-bottom: 8px; color: var(--ink); font-size: 17px; font-weight: 600; }
+.glossary-terms dd { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+@media (max-width: 760px) { .glossary-terms dl { grid-template-columns: 1fr; } }
+.docs-moved { margin: 28px 0 0; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius-panel); color: var(--muted); font-size: 14px; }
+.docs-moved strong { color: var(--ink); }
+.docs-moved ul { margin: 8px 0 0; padding-left: 18px; }
+.docs-moved li { margin: 4px 0; scroll-margin-top: 110px; }

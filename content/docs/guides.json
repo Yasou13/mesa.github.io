@@ -25,7 +25,10 @@
       "title": {
         "en": "Local quickstart",
         "tr": "Yerel hızlı başlangıç"
-      }
+      },
+      "appendixExclude": [
+        "Installation and deployment"
+      ]
     },
     {
       "id": "installation",
@@ -40,7 +43,13 @@
       "title": {
         "en": "Installation & deployment",
         "tr": "Kurulum ve dağıtım"
-      }
+      },
+      "appendixSections": [
+        "Installation and deployment"
+      ],
+      "diagrams": [
+        "deployment"
+      ]
     },
     {
       "id": "architecture",
@@ -53,7 +62,16 @@
       "title": {
         "en": "Core architecture",
         "tr": "Core mimarisi"
-      }
+      },
+      "appendixExclude": [
+        "Canonical entity and Graph V2",
+        "Performance and limitations",
+        "Ecosystem and ownership"
+      ],
+      "diagrams": [
+        "components",
+        "deployment"
+      ]
     },
     {
       "id": "ingestion",
@@ -66,7 +84,11 @@
       "title": {
         "en": "Ingestion & memory lifecycle",
         "tr": "Veri alımı ve hafıza yaşam döngüsü"
-      }
+      },
+      "diagrams": [
+        "write-sequence",
+        "mutation-states"
+      ]
     },
     {
       "id": "retrieval",
@@ -80,7 +102,10 @@
       "title": {
         "en": "Retrieval & graph",
         "tr": "Arama ve çizge"
-      }
+      },
+      "diagrams": [
+        "read-activity"
+      ]
     },
     {
       "id": "configuration",
@@ -93,7 +118,11 @@
       "title": {
         "en": "Configuration",
         "tr": "Yapılandırma"
-      }
+      },
+      "appendixExclude": [
+        "Providers and capacity",
+        "Minimal V4 provider setup"
+      ]
     },
     {
       "id": "security",
@@ -106,7 +135,10 @@
       "title": {
         "en": "Security & scope",
         "tr": "Güvenlik ve kapsam"
-      }
+      },
+      "diagrams": [
+        "catalog-classes"
+      ]
     },
     {
       "id": "operations",
@@ -119,7 +151,11 @@
       "title": {
         "en": "Operations & recovery",
         "tr": "Operasyon ve kurtarma"
-      }
+      },
+      "appendixExclude": [
+        "Troubleshooting",
+        "Upgrading to v0.8.0"
+      ]
     },
     {
       "id": "embedding-providers",
@@ -132,7 +168,11 @@
       "title": {
         "en": "Embedding & model providers",
         "tr": "Embedding ve model sağlayıcıları"
-      }
+      },
+      "appendixSections": [
+        "Providers and capacity",
+        "Minimal V4 provider setup"
+      ]
     },
     {
       "id": "evidence",
@@ -146,7 +186,8 @@
       "title": {
         "en": "Evidence & provenance",
         "tr": "Kanıt ve kaynak izi"
-      }
+      },
+      "appendixSections": []
     },
     {
       "id": "graph",
@@ -160,7 +201,10 @@
       "title": {
         "en": "Graph traversal",
         "tr": "Çizge dolaşımı"
-      }
+      },
+      "appendixSections": [
+        "Canonical entity and Graph V2"
+      ]
     },
     {
       "id": "api",
@@ -174,7 +218,25 @@
       "title": {
         "en": "HTTP API & Python SDK",
         "tr": "HTTP API ve Python SDK"
-      }
+      },
+      "appendixExclude": [
+        "V4 Python SDK",
+        "CLI commands"
+      ]
+    },
+    {
+      "id": "endpoints",
+      "route": "docs/core/endpoints/",
+      "group": "reference",
+      "sources": [
+        "docs/api-reference.md",
+        "docs/reference/openapi.json"
+      ],
+      "title": {
+        "en": "HTTP endpoint reference",
+        "tr": "HTTP uç nokta referansı"
+      },
+      "appendixSections": []
     },
     {
       "id": "examples",
@@ -188,7 +250,10 @@
       "title": {
         "en": "Examples & SDK workflow",
         "tr": "Örnekler ve SDK iş akışı"
-      }
+      },
+      "appendixSections": [
+        "V4 Python SDK"
+      ]
     },
     {
       "id": "cli",
@@ -200,7 +265,10 @@
       "title": {
         "en": "CLI reference",
         "tr": "CLI referansı"
-      }
+      },
+      "appendixSections": [
+        "CLI commands"
+      ]
     },
     {
       "id": "migration",
@@ -212,7 +280,10 @@
       "title": {
         "en": "Upgrade to v0.8.1",
         "tr": "v0.8.1 yükseltmesi"
-      }
+      },
+      "appendixSections": [
+        "Upgrading to v0.8.0"
+      ]
     },
     {
       "id": "release-notes",
@@ -236,7 +307,13 @@
       "title": {
         "en": "Troubleshooting",
         "tr": "Sorun giderme"
-      }
+      },
+      "appendixSections": [
+        "Troubleshooting"
+      ],
+      "diagrams": [
+        "mutation-states"
+      ]
     },
     {
       "id": "limits",
@@ -248,7 +325,10 @@
       "title": {
         "en": "Performance & limitations",
         "tr": "Performans ve sınırlar"
-      }
+      },
+      "appendixSections": [
+        "Performance and limitations"
+      ]
     },
     {
       "id": "rebuild",
@@ -296,7 +376,10 @@
       "title": {
         "en": "Ecosystem boundaries",
         "tr": "Ekosistem sınırları"
-      }
+      },
+      "appendixSections": [
+        "Ecosystem and ownership"
+      ]
     },
     {
       "id": "release-policy",
@@ -332,7 +415,9 @@
       "title": {
         "en": "Retired Colab guide",
         "tr": "Emekli Colab rehberi"
-      }
+      },
+      "hidden": true,
+      "appendixSections": []
     },
     {
       "id": "audit",
@@ -344,7 +429,8 @@
       "title": {
         "en": "Audit history & current tests",
         "tr": "Denetim geçmişi ve güncel testler"
-      }
+      },
+      "appendixSections": []
     },
     {
       "id": "decisions",

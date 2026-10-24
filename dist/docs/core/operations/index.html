@@ -6,6 +6,8 @@
   <title>Operations &amp; recovery — MESA MESA Core Documentation</title>
   <meta name="description" content="Operations &amp; recovery documentation for MESA Core (v0.8.1).">
   <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://mesamemory.dev/docs/core/operations/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/operations/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/operations/">
@@ -32,8 +34,8 @@
   <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
-  <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../styles.css?v=6f803158fb8f">
+  <link rel="stylesheet" href="../../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
 
   <link rel="stylesheet" href="../../../docs.css?v=7ca2f1908063">
@@ -64,9 +66,9 @@
   <nav class="docs-tabs" aria-label="Documentation sections"><a href="../../../docs/" class="active"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Documentation</span></a><a href="../../../docs/core/installation/"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Deploy</span></a><a href="../../../docs/core/examples/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Python SDK</span></a><a href="../../../docs/core/api-reference/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>HTTP API</span></a><a href="../../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg><span>MCP</span></a><a class="docs-tabs-release" href="../../../docs/core/release-notes/">v0.8.1<span class="docs-release-dot" aria-hidden="true"></span></a></nav>
   <aside class="docs-sidebar" aria-label="Documentation navigation"><details class="docs-navigation" open><summary><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Documentation menu</span><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div class="docs-sidebar-inner">
     <div class="docs-sidebar-header"><a href="../../../docs/" class="docs-wordmark">MESA <span>/ docs</span></a><span class="docs-sidebar-caption">Developer documentation</span></div>
-    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Core</span><small>v0.8.1</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Choose component"><a href="../../../docs/core/" aria-current="true"><span>MESA Core</span><small>v0.8.1</small></a><a href="../../../docs/data/"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><a href="../../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../../docs/e2e/"><span>MESA E2E Certification</span><small>v0.1.0</small></a></nav></details>
+    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Core</span><small>v0.8.1</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Choose component"><a href="../../../docs/core/" aria-current="true"><span>MESA Core</span><small>v0.8.1</small></a><a href="../../../docs/data/"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><span class="docs-product-divider">Internal test tooling</span><a href="../../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../../docs/e2e/"><span>MESA E2E Certification</span><small>v0.1.0</small></a></nav></details>
     <button class="search-trigger docs-search" type="button" aria-label="Search documentation"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search docs…</span><kbd>Ctrl K</kbd></button>
-    <nav class="docs-nav" aria-label="Documentation topics"><ul class="sidebar-links docs-overview-links"><li><a href="../../../docs/"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Introduction</a></li><li><a href="../../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg>MCP integration</a></li></ul><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5c3-3 7-2 7-2s1 4-2 7l-7 7-5-5 7-7Z"/><path d="m12 7-6 1-3 5 5 1m9-2-1 6-5 3-1-5m-5 1-2 4 4-2"/><circle cx="16" cy="8" r="1"/></svg><span>Getting started</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/">MESA Core overview</a></li><li><a href="../../../docs/core/getting-started/">Local quickstart</a></li><li><a href="../../../docs/core/documentation-map/">Documentation map</a></li><li><a href="../../../docs/core/installation/">Installation &amp; deployment</a></li><li><a href="../../../docs/core/examples/">Examples &amp; SDK workflow</a></li><li><a href="../../../docs/core/colab-rehberi/">Retired Colab guide</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Core concepts</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/architecture/">Core architecture</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Ingestion &amp; memory lifecycle</a></li><li><a href="../../../docs/core/decisions/">Architecture decisions</a></li><li><a href="../../../docs/core/adr-0009/">Ledger and single owner</a></li><li><a href="../../../docs/core/adr-0010/">RRF and PageRank</a></li><li><a href="../../../docs/core/adr-0011/">Tenant/dataset authorization</a></li><li><a href="../../../docs/core/adr-0012/">DAO repository boundaries</a></li><li><a href="../../../docs/core/adr-0013/">Production dependencies</a></li><li><a href="../../../docs/core/adr-0014/">Rebuild closure</a></li><li><a href="../../../docs/core/adr-0015/">Adaptive query planning</a></li><li><a href="../../../docs/core/evidence/">Evidence &amp; provenance</a></li><li><a href="../../../docs/core/ecosystem/">Ecosystem boundaries</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="network" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg><span>Retrieval & evidence</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; graph</a></li><li><a href="../../../docs/core/graph/">Graph traversal</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Build & integrate</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/api-reference/">HTTP API &amp; Python SDK</a></li><li><a href="../../../docs/core/mcp/">MCP integration</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding &amp; model providers</a></li><li><a href="../../../docs/core/cli-reference/">CLI reference</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>Operate & recover</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/rebuild-runbook/">Projection rebuild</a></li><li><a href="../../../docs/core/security/">Security &amp; scope</a></li><li><a href="../../../docs/core/operations/" class="active" aria-current="page">Operations &amp; recovery</a></li><li><a href="../../../docs/core/migration/">Upgrade to v0.8.1</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg><span>Releases & verification</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/release-notes/">v0.8.1 release notes</a></li><li><a href="../../../docs/core/testing/">Testing &amp; evidence</a></li><li><a href="../../../docs/core/release-policy/">Release policy</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; limitations</a></li><li><a href="../../../docs/core/audit/">Audit history &amp; current tests</a></li></ul></section></nav>
+    <nav class="docs-nav" aria-label="Documentation topics"><ul class="sidebar-links docs-overview-links"><li><a href="../../../docs/"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Introduction</a></li><li><a href="../../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg>MCP integration</a></li></ul><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5c3-3 7-2 7-2s1 4-2 7l-7 7-5-5 7-7Z"/><path d="m12 7-6 1-3 5 5 1m9-2-1 6-5 3-1-5m-5 1-2 4 4-2"/><circle cx="16" cy="8" r="1"/></svg><span>Getting started</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/">MESA Core overview</a></li><li><a href="../../../docs/core/getting-started/">Local quickstart</a></li><li><a href="../../../docs/core/documentation-map/">Documentation map</a></li><li><a href="../../../docs/core/installation/">Installation &amp; deployment</a></li><li><a href="../../../docs/core/examples/">Examples &amp; SDK workflow</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Core concepts</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/architecture/">Core architecture</a></li><li><a href="../../../docs/core/concepts-and-ingestion/">Ingestion &amp; memory lifecycle</a></li><li><a href="../../../docs/core/decisions/">Architecture decisions</a></li><li><a href="../../../docs/core/adr-0009/">Ledger and single owner</a></li><li><a href="../../../docs/core/adr-0010/">RRF and PageRank</a></li><li><a href="../../../docs/core/adr-0011/">Tenant/dataset authorization</a></li><li><a href="../../../docs/core/adr-0012/">DAO repository boundaries</a></li><li><a href="../../../docs/core/adr-0013/">Production dependencies</a></li><li><a href="../../../docs/core/adr-0014/">Rebuild closure</a></li><li><a href="../../../docs/core/adr-0015/">Adaptive query planning</a></li><li><a href="../../../docs/core/evidence/">Evidence &amp; provenance</a></li><li><a href="../../../docs/core/ecosystem/">Ecosystem boundaries</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="network" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg><span>Retrieval & evidence</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/retrieval-and-graph/">Retrieval &amp; graph</a></li><li><a href="../../../docs/core/graph/">Graph traversal</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Build & integrate</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/configuration/">Configuration</a></li><li><a href="../../../docs/core/api-reference/">HTTP API &amp; Python SDK</a></li><li><a href="../../../docs/core/mcp/">MCP integration</a></li><li><a href="../../../docs/core/embedding-providers/">Embedding &amp; model providers</a></li><li><a href="../../../docs/core/endpoints/">HTTP endpoint reference</a></li><li><a href="../../../docs/core/cli-reference/">CLI reference</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>Operate & recover</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/rebuild-runbook/">Projection rebuild</a></li><li><a href="../../../docs/core/security/">Security &amp; scope</a></li><li><a href="../../../docs/core/operations/" class="active" aria-current="page">Operations &amp; recovery</a></li><li><a href="../../../docs/core/migration/">Upgrade to v0.8.1</a></li><li><a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li></ul></section><section class="sidebar-group"><div class="sidebar-group-header"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg><span>Releases & verification</span></div><ul class="sidebar-links"><li><a href="../../../docs/core/release-notes/">v0.8.1 release notes</a></li><li><a href="../../../docs/core/testing/">Testing &amp; evidence</a></li><li><a href="../../../docs/core/release-policy/">Release policy</a></li><li><a href="../../../docs/core/limitations/">Performance &amp; limitations</a></li><li><a href="../../../docs/core/audit/">Audit history &amp; current tests</a></li></ul></section></nav>
     <div class="docs-sidebar-footer"><a href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span><span aria-hidden="true">↗</span></a><a href="../../../status/">Project status<span aria-hidden="true">↗</span></a></div>
   </div></details></aside>
   <div class="docs-main-container">
@@ -88,7 +90,7 @@
     <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md" title="d3947846615e63b48dc7a5df9f1051b29f734263" target="_blank" rel="noopener noreferrer">d394784</a></span>
     <span class="docs-source-pill">source: <code>docs/RUNBOOK.md</code></span>
   </div>
-          <p class="docs-language-notice">This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.</p>
+          <p class="docs-language-notice">This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.</p>
           
         </header>
         <div class="docs-body">
@@ -98,78 +100,76 @@
 <p>Fix the underlying store/provider fault before authorized replay. A lost fencing claim cannot finalize work. Rollback removes source ownership and writes tombstones before secondary cleanup; shared artifacts survive while another active source owns them. BLOCKED cleanup is not success.</p>
 <h2 id="guide-backup-before-cutover">Backup before cutover<a class="heading-anchor" href="#guide-backup-before-cutover" aria-label="Link to section: Backup before cutover" title="Link to this section">#</a></h2>
 <p>Use the pinned offline backup/restore procedure with writer-lock checks. Keep the original root and backup during rollback protection. Restore into a new empty target; do not overwrite an existing root or run generic downgrade. <a href="../../../docs/core/rebuild-runbook/">Rebuild</a> is offline and storage-root-wide, not online or tenant-scoped.</p>
-          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md" target="_blank" rel="noopener noreferrer"><code>docs/RUNBOOK.md</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer"><code>docs/v4-rebuild-runbook.md</code></a></li></ul></div>
-          <details class="source-appendix" id="source-reference"><summary>Complete source reference · original language</summary><p class="docs-language-notice">This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.</p><div class="source-reference-body"><p>Bu runbook v4 full-cognitive release candidate için kanonik operasyon</p>
-<p>rehberidir. Production kararı Final MVP Certification tamamlanana kadar</p>
-<p><code class="inline-code">NO-GO</code>dur. V3 lexical-core uyumluluk işlemleri ayrıca belirtilir.</p>
-<h2 id="1-desteklenen-v4-topology">1. Desteklenen v4 topology<a class="heading-anchor" href="#1-desteklenen-v4-topology" aria-label="Link to section: 1. Desteklenen v4 topology" title="Link to this section">#</a></h2>
-<p>V4 aynı storage root’a yazan tek bir <code class="inline-code">combined</code> process ile çalışır. API</p>
-<p>admission, durable consumer, validation ve SQLite/LanceDB/Kùzu projection</p>
-<p>işleri bu process’tedir.</p>
+          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md" target="_blank" rel="noopener noreferrer"><code>docs/RUNBOOK.md</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md" target="_blank" rel="noopener noreferrer"><code>docs/v4-rebuild-runbook.md</code></a></li></ul></div><div class="docs-moved"><strong>Sections that moved to their own page</strong><ul><li id="troubleshooting">Troubleshooting → <a href="../../../docs/core/troubleshooting/">Troubleshooting</a></li><li id="upgrading-to-v080"><span id="upgrade-v080"></span>Upgrading to v0.8.0 → <a href="../../../docs/core/migration/">Upgrade to v0.8.1</a></li></ul></div><details class="source-appendix" id="source-reference"><summary>Source reference for this page</summary><p class="docs-language-notice">The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.</p><div class="source-reference-body"><p>This runbook is the canonical operations guide for the v4 full-cognitive release</p>
+<p>candidate. The production decision stays <code class="inline-code">NO-GO</code> until Final MVP Certification is</p>
+<p>complete. V3 lexical-core compatibility operations are marked separately.</p>
+<h2 id="1-supported-v4-topology">1. Supported v4 topology<a class="heading-anchor" href="#1-supported-v4-topology" aria-label="Link to section: 1. Supported v4 topology" title="Link to this section">#</a></h2>
+<p>V4 runs with a single <code class="inline-code">combined</code> process writing to one storage root. API</p>
+<p>admission, the durable consumer, validation and SQLite/LanceDB/Kùzu projection</p>
+<p>work all live in this process.</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>export MESA_RUNTIME_PROFILE=combined
 export MESA_STORAGE_ROOT=/srv/mesa/v4-data
 export MESA_LOAD_DOTENV=false
 # Provision credentials and reviewed model/provider settings before startup.
 .venv/bin/python -m mesa_memory.runtime_entrypoint</code></pre></div>
-<p>Bu komut tek başına V4 provider kurulumu değildir. Canonical insert için</p>
-<p><code class="inline-code">MESA_MODEL_ENABLED=true</code>, kullanılabilir extraction/embedding ve seçili</p>
-<p>validation policy gerekir; <a href="../../../docs/core/getting-started/#installation">kurulum</a> ve</p>
-<p><a href="../../../docs/core/configuration/">yapılandırma</a> ön koşullarını tamamlayın.</p>
-<p>Aynı storage root’u ikinci API, worker veya combined process’e yazılabilir</p>
-<p>olarak mount etmeyin. Yatay ölçekleme öncesi storage ownership protokolü</p>
-<p>gerekir. V3 ile v4 farklı fiziksel storage root kullanmalıdır.</p>
+<p>This command on its own is not a V4 provider setup. Canonical insert needs</p>
+<p><code class="inline-code">MESA_MODEL_ENABLED=true</code>, working extraction/embedding and a selected</p>
+<p>validation policy; complete the <a href="../../../docs/core/getting-started/#installation">installation</a> and</p>
+<p><a href="../../../docs/core/configuration/">configuration</a> prerequisites.</p>
+<p>Do not mount the same storage root writable into a second API, worker or combined</p>
+<p>process. Horizontal scaling needs a storage ownership protocol first. V3 and v4 must</p>
+<p>use different physical storage roots.</p>
 <span id="credential-bootstrap"></span>
-<h2 id="2-ilk-credential-ve-acl-kurulumu">2. İlk credential ve ACL kurulumu<a class="heading-anchor" href="#2-ilk-credential-ve-acl-kurulumu" aria-label="Link to section: 2. İlk credential ve ACL kurulumu" title="Link to this section">#</a></h2>
-<p>Uygulama durdurulmuşken veya policy DB’yi kullanan tek operator olarak:</p>
+<h2 id="2-first-credential-and-acl-setup">2. First credential and ACL setup<a class="heading-anchor" href="#2-first-credential-and-acl-setup" aria-label="Link to section: 2. First credential and ACL setup" title="Link to this section">#</a></h2>
+<p>With the application stopped, or as the only operator using the policy DB:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>export MESA_STORAGE_ROOT=/srv/mesa/v4-data
 mesa-v4-admin issue-key --principal service-api
 mesa-v4-admin grant-role --principal service-api \
   --tenant tenant-a --role OWNER
 mesa-v4-admin grant-agent --principal service-api \
   --agent agent-a --permission SESSION_CREATE</code></pre></div>
-<p>İlk komut credential’ı yalnız bir kez stdout’a yazar. Secret manager’a aktarın;</p>
-<p>log, shell history veya dokümana koymayın. Rotate edilen eski key aynı işlemde</p>
-<p>revoke edilir:</p>
+<p>The first command writes the credential to stdout only once. Move it into a secret</p>
+<p>manager; never put it in logs, shell history or documentation. A rotated old key is</p>
+<p>revoked in the same operation:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>mesa-v4-admin rotate-key --key-id KEY_ID
 mesa-v4-admin revoke-key --key-id KEY_ID</code></pre></div>
-<p>Purge/rollback rol ile örtük gelmez:</p>
+<p>Purge/rollback do not come implicitly with a role:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>mesa-v4-admin grant-dataset-permission --principal service-api \
   --tenant tenant-a --dataset dataset-a --permission ROLLBACK</code></pre></div>
-<h2 id="3-projection-backlog-ve-dlq">3. Projection backlog ve DLQ<a class="heading-anchor" href="#3-projection-backlog-ve-dlq" aria-label="Link to section: 3. Projection backlog ve DLQ" title="Link to this section">#</a></h2>
-<p>Önce <code class="inline-code">/health</code> ile <code class="inline-code">status</code>, <code class="inline-code">maintenance</code>, <code class="inline-code">rebuild_state</code> özeti ve</p>
-<p><code class="inline-code">/health/init</code> ile readiness kontrol edilir. <code class="inline-code">/health</code> HTTP 200 dönse de</p>
-<p><code class="inline-code">status</code> degraded olabilir. Aşağıdaki ayrıntılı sayaçlar <code class="inline-code">/metrics</code> üzerinden</p>
-<p>izlenir; public <code class="inline-code">/health</code> yanıtında ayrı alanlar değildir:</p>
+<h2 id="3-projection-backlog-and-dlq">3. Projection backlog and DLQ<a class="heading-anchor" href="#3-projection-backlog-and-dlq" aria-label="Link to section: 3. Projection backlog and DLQ" title="Link to this section">#</a></h2>
+<p>First check the <code class="inline-code">status</code>, <code class="inline-code">maintenance</code>, <code class="inline-code">rebuild_state</code> summary with <code class="inline-code">/health</code> and</p>
+<p>readiness with <code class="inline-code">/health/init</code>. <code class="inline-code">/health</code> can return HTTP 200 while <code class="inline-code">status</code> is</p>
+<p>degraded. The detailed counters below are watched through <code class="inline-code">/metrics</code>; they are not</p>
+<p>separate fields in the public <code class="inline-code">/health</code> response:</p>
 <ul><li><code class="inline-code">mesa_v4_projection_backlog</code></li><li><code class="inline-code">mesa_v4_projection_dead_letter</code></li><li><code class="inline-code">mesa_v4_projection_stuck_leases</code></li><li><code class="inline-code">mesa_v4_cleanup_backlog</code></li><li><code class="inline-code">mesa_v4_cleanup_blocked</code></li><li><code class="inline-code">mesa_v4_orphan_registry</code></li><li><code class="inline-code">mesa_v4_shared_artifacts</code></li></ul>
-<p>Backlog artıyorsa process loglarında mutation/pipeline run ID, failure class ve</p>
-<p>lane aranır. İçerik, credential veya claim token loglanmamalıdır. Geçici hata</p>
-<p>bounded retry ile ilerler; permanent/poison hata DLQ’ya gider.</p>
-<p>Replay’den önce kök neden giderilir ve mutation’ın aynı tenant/dataset</p>
-<p>kapsamında olduğu doğrulanır. Yetkili API çağrısı:</p>
+<p>If the backlog grows, search the process logs for the mutation/pipeline run ID,</p>
+<p>failure class and lane. Content, credentials and claim tokens must not be logged.</p>
+<p>A transient error progresses through bounded retry; a permanent/poison error goes to the DLQ.</p>
+<p>Before replay, fix the root cause and confirm the mutation belongs to the same</p>
+<p>tenant/dataset scope. The authorized API call:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre tabindex="0" id="code-block-5" class="language-bash"><code>curl --fail -X POST \
   -H &quot;X-API-Key: $MESA_API_KEY&quot; \
   &quot;http://127.0.0.1:8000/v4/mutations/$MUTATION_ID/replay&quot;</code></pre></div>
-<p>Fenced lease nedeniyle claim token’ı kaybetmiş worker sonucu finalize edemez.</p>
-<p>Lease’e elle müdahale etmek yerine process’i yeniden başlatın ve reconciler’ın</p>
-<p>expired claim’i almasını bekleyin.</p>
-<h2 id="4-rollback-ve-blocked">4. Rollback ve BLOCKED<a class="heading-anchor" href="#4-rollback-ve-blocked" aria-label="Link to section: 4. Rollback ve BLOCKED" title="Link to this section">#</a></h2>
-<p>Commit edilmemiş başarısız run rollback’i önce SQLite retrieval tombstone’u,</p>
-<p>sonra vector/graph cleanup outbox’ı oluşturur. Yalnız ilgili</p>
-<p><code class="inline-code">artifact_sources</code> sahipliği kaldırılır. Başka aktif sahibi olan ortak artifact</p>
-<p>silinmez.</p>
-<p>Cleanup tamamlanamazsa run <code class="inline-code">BLOCKED</code> olur; bunu başarılı saymayın. Store</p>
-<p>erişimini düzeltin, health parity’yi kontrol edin ve idempotent cleanup/replay</p>
-<p>akışını yeniden çalıştırın. Fiziksel store’da manuel silme yapmayın; ledger ile</p>
-<p>store daha fazla ayrışır.</p>
+<p>Because leases are fenced, a worker that lost its claim token cannot finalize its</p>
+<p>result. Instead of touching the lease by hand, restart the process and wait for the</p>
+<p>reconciler to pick up the expired claim.</p>
+<h2 id="4-rollback-and-blocked">4. Rollback and BLOCKED<a class="heading-anchor" href="#4-rollback-and-blocked" aria-label="Link to section: 4. Rollback and BLOCKED" title="Link to this section">#</a></h2>
+<p>Rolling back an uncommitted failed run first creates the SQLite retrieval tombstone,</p>
+<p>then the vector/graph cleanup outbox. Only the relevant <code class="inline-code">artifact_sources</code> ownership is</p>
+<p>removed. A shared artifact that has another active owner is not deleted.</p>
+<p>If cleanup cannot complete, the run becomes <code class="inline-code">BLOCKED</code>; do not treat it as success.</p>
+<p>Fix store access, check health parity and rerun the idempotent cleanup/replay flow.</p>
+<p>Do not delete manually in the physical store; the ledger and store would drift further apart.</p>
 <h2 id="5-reconciliation">5. Reconciliation<a class="heading-anchor" href="#5-reconciliation" aria-label="Link to section: 5. Reconciliation" title="Link to this section">#</a></h2>
-<p>Reconciliation tenant ve dataset sınırında iki yönlüdür:</p>
-<ul><li>ledger’da olup store’da olmayan artifact yeniden project edilir;</li><li>store’da olup ledger/owner kaydı olmayan artifact karantinaya alınır ve</li></ul>
-<p>  cleanup kuyruğuna taşınır.</p>
-<p>Release veya cutover öncesi projection backlog, blocked cleanup ve ownerless</p>
-<p>orphan sıfır olmalıdır. Shared artifact sayısının sıfır olması gerekmez; ortak</p>
-<p>sahiplik beklenen bir durumdur.</p>
-<h2 id="6-backup-restore-ve-v4-rebuild">6. Backup, restore ve v4 rebuild<a class="heading-anchor" href="#6-backup-restore-ve-v4-rebuild" aria-label="Link to section: 6. Backup, restore ve v4 rebuild" title="Link to this section">#</a></h2>
-<p>Uygulamayı durdurun ve kaynak storage’ı offline hale getirin:</p>
+<p>Reconciliation is two-way at the tenant and dataset boundary:</p>
+<ul><li>an artifact that is in the ledger but missing from the store is projected again;</li><li>an artifact that is in the store without a ledger/owner record is quarantined and</li></ul>
+<p>  moved to the cleanup queue.</p>
+<p>Before a release or cutover, projection backlog, blocked cleanup and ownerless</p>
+<p>orphans must be zero. The shared artifact count need not be zero; shared ownership</p>
+<p>is expected.</p>
+<span id="6-backup-restore-ve-v4-rebuild"></span>
+<h2 id="6-backup-restore-and-v4-rebuild">6. Backup, restore and v4 rebuild<a class="heading-anchor" href="#6-backup-restore-and-v4-rebuild" aria-label="Link to section: 6. Backup, restore and v4 rebuild" title="Link to this section">#</a></h2>
+<p>Stop the application and take the source storage offline:</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-6">Copy</button></div><pre tabindex="0" id="code-block-6" class="language-bash"><code>mesa-recovery --trusted-root /srv/mesa backup \
   --source-root /srv/mesa/v4-data \
   --backup-root /srv/mesa/backups/v4-2026-07-23 \
@@ -179,128 +179,65 @@ mesa-recovery --trusted-root /srv/mesa validate \
 mesa-recovery --trusted-root /srv/mesa restore \
   --backup-root /srv/mesa/backups/v4-2026-07-23 \
   --restore-root /srv/mesa/restore-v4-test</code></pre></div>
-<p><code class="inline-code">--stores-stopped</code> geriye dönük uyumluluk için açık bir operator</p>
-<p>precondition&#39;ıdır; tek başına consistency kanıtı değildir. Backup</p>
-<p>implementation&#39;ı ayrıca storage-root writer lock&#39;ını doğrular/alır, her SQLite</p>
-<p>dosyasını SQLite&#39;ın online backup primitive&#39;iyle ayrı bir tutarlı snapshot</p>
-<p>olarak kopyalar ve ancak staging doğrulamasından sonra atomik publish yapar.</p>
-<p>SQL authoritative/canonical truth&#39;tür. LanceDB vector ve Kùzu graph</p>
-<p>projection&#39;ları rebuildable derived state&#39;tir ve yalnız exclusive writer-lock</p>
-<p>boundary altında kopyalanır.</p>
-<p>Restore mevcut hedefi ezmemelidir. Backup&#39;ı yeni boş root&#39;a, uyumlu kod ve</p>
-<p>config ile geri yükleyip doğrulayın. V3 verisini V4&#39;e taşımak ayrı kaynak/catalog</p>
-<p>eşleme ve V4 ingestion çalışmasıdır; projection runner V3→V4 dönüştürücüsü</p>
-<p>değildir. <a href="../../../docs/core/operations/#upgrade-v080">Migration rehberi</a> V4 yükseltmesini açıklar.</p>
-<p>Backup rollback süresi boyunca korunur.</p>
-<p>V4 projection rebuild&#39;inin submit → drain → stop → offline</p>
-<p>run/resume → restart → status → automatic rollback akışı, exit code&#39;ları ve</p>
-<p>retained generation kuralları</p>
-<p><a href="../../../docs/core/rebuild-runbook/">`v4-rebuild-runbook.md`</a> içinde kanonik olarak</p>
-<p>belgelenir. Dataset/tenant-scoped rebuild veya online runner desteklenmez.</p>
-<p>Alembic migration&#39;ları forward-only&#39;dir. Bir migration başarısız olursa</p>
-<p><code class="inline-code">alembic downgrade</code> çalıştırmayın: release&#39;i durdurun, doğrulanmış backup&#39;ı</p>
-<p>yeni boş bir storage root&#39;a restore edin, parity kontrolünü yeniden çalıştırın</p>
-<p>ve ancak ardından cutover yapın.</p>
-<h3 id="single-writer-kapasite-siniri">Single-writer kapasite sınırı<a class="heading-anchor" href="#single-writer-kapasite-siniri" aria-label="Link to section: Single-writer kapasite sınırı" title="Link to this section">#</a></h3>
-<p>V3 split topology’de bir storage root için yalnız bir aktif <code class="inline-code">worker-only</code> process çalıştırın. V4 yalnız bir <code class="inline-code">combined</code> owner kullanır; ayrı worker-only topology desteklenmez.</p>
-<p>Worker başlangıcı aynı hostta advisory lock ile ikinci writer&#39;ı reddeder;</p>
-<p>çoklu host/NFS için bu bir koordinasyon mekanizması değildir. API, valence ve</p>
-<p>MCP process-local cache&#39;leri yalnız performans optimizasyonudur; doğruluk</p>
-<p>durumu SQLite ledger ve fenced lease&#39;lerdedir. Yatay writer ölçekleme ancak</p>
-<p>paylaşımlı lease/koordinasyon servisi tasarlanıp doğrulandıktan sonra açılır.</p>
-<h2 id="7-modelprovider-olayi">7. Model/provider olayı<a class="heading-anchor" href="#7-modelprovider-olayi" aria-label="Link to section: 7. Model/provider olayı" title="Link to this section">#</a></h2>
-<p><code class="inline-code">MESA_MODEL_ENABLED</code> ve <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED</code> açıkça ayarlanır.</p>
-<p>Provider timeout/rate-limit hatası retryable; bozuk şema permanent; sürekli</p>
-<p>aynı toksik payload poison olarak sınıflanır. Seçili validation policy</p>
-<p>tamamlanmadan SQL/vector/graph projection başlamaz. Provider’ı atlamak için mutation’ı doğrudan VALIDATED</p>
-<p>duruma çekmeyin.</p>
+<p><code class="inline-code">--stores-stopped</code> is an explicit operator precondition kept for backward</p>
+<p>compatibility; on its own it is not proof of consistency. The backup implementation</p>
+<p>also verifies/takes the storage-root writer lock, copies each SQLite file as a separate</p>
+<p>consistent snapshot using SQLite&#39;s online backup primitive, and publishes atomically</p>
+<p>only after staging verification. SQL is the authoritative/canonical truth. The LanceDB</p>
+<p>vector and Kùzu graph projections are rebuildable derived state and are copied only</p>
+<p>under the exclusive writer-lock boundary.</p>
+<p>Restore must not overwrite an existing target. Restore the backup into a new empty</p>
+<p>root with compatible code and config, then verify it. Moving V3 data to V4 is separate</p>
+<p>source/catalog mapping plus V4 ingestion work; the projection runner is not a V3→V4</p>
+<p>converter. The <a href="../../../docs/core/operations/#upgrade-v080">migration guide</a> explains the V4 upgrade.</p>
+<p>Keep the backup for the whole rollback window.</p>
+<p>The V4 projection rebuild flow — submit → drain → stop → offline run/resume →</p>
+<p>restart → status → automatic rollback — together with its exit codes and retained</p>
+<p>generation rules, is documented canonically in</p>
+<p><a href="../../../docs/core/rebuild-runbook/">`v4-rebuild-runbook.md`</a>. Dataset/tenant-scoped rebuilds</p>
+<p>and an online runner are not supported.</p>
+<p>Alembic migrations are forward-only. If a migration fails, do not run</p>
+<p><code class="inline-code">alembic downgrade</code>: stop the release, restore the verified backup into a new empty</p>
+<p>storage root, rerun the parity check, and only then cut over.</p>
+<h3 id="single-writer-capacity-limit">Single-writer capacity limit<a class="heading-anchor" href="#single-writer-capacity-limit" aria-label="Link to section: Single-writer capacity limit" title="Link to this section">#</a></h3>
+<p>In the V3 split topology, run only one active <code class="inline-code">worker-only</code> process per storage root. V4 uses only one <code class="inline-code">combined</code> owner; a separate worker-only topology is not supported.</p>
+<p>On startup a worker rejects a second writer on the same host with an advisory lock;</p>
+<p>this is not a coordination mechanism for multiple hosts/NFS. API, valence and MCP</p>
+<p>process-local caches are only a performance optimization; correctness state lives in</p>
+<p>the SQLite ledger and fenced leases. Horizontal writer scaling opens only after a</p>
+<p>shared lease/coordination service has been designed and verified.</p>
+<h2 id="7-modelprovider-incident">7. Model/provider incident<a class="heading-anchor" href="#7-modelprovider-incident" aria-label="Link to section: 7. Model/provider incident" title="Link to this section">#</a></h2>
+<p>Set <code class="inline-code">MESA_MODEL_ENABLED</code> and <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED</code> explicitly.</p>
+<p>A provider timeout/rate-limit error is retryable; a broken schema is permanent; the</p>
+<p>same toxic payload repeating is classified as poison. SQL/vector/graph projection does</p>
+<p>not start before the selected validation policy completes. Do not force a mutation</p>
+<p>straight to VALIDATED to skip the provider.</p>
 <h2 id="8-pagerank">8. PageRank<a class="heading-anchor" href="#8-pagerank" aria-label="Link to section: 8. PageRank" title="Link to this section">#</a></h2>
-<p>V4 PageRank çıktısı yalnız telemetridir. Düşük merkezilik bir memory,</p>
-<p>assertion, vector veya source’u karantinaya alamaz. PageRank temelli</p>
-<p><code class="inline-code">hallucination</code>/delete davranışı görülürse deploy durdurulmalı; bu v4</p>
-<p>sözleşmesine aykırıdır.</p>
+<p>V4 PageRank output is telemetry only. Low centrality cannot quarantine a memory,</p>
+<p>assertion, vector or source. If PageRank-based <code class="inline-code">hallucination</code>/delete behavior is seen,</p>
+<p>stop the deploy; it violates the v4 contract.</p>
 <h2 id="9-session-finalization">9. Session finalization<a class="heading-anchor" href="#9-session-finalization" aria-label="Link to section: 9. Session finalization" title="Link to this section">#</a></h2>
-<p>Session end durable finalization kaydı oluşturur. Restart sonrası pending işler</p>
-<p>combined consumer tarafından alınır. Uzun süre pending kalırsa session,</p>
-<p>finalization ID, lease ve DLQ durumu kontrol edilir; FastAPI process içi</p>
-<p><code class="inline-code">BackgroundTasks</code> çalışmasına güvenilmez.</p>
-<h2 id="10-logging-ve-olay-kaniti">10. Logging ve olay kanıtı<a class="heading-anchor" href="#10-logging-ve-olay-kaniti" aria-label="Link to section: 10. Logging ve olay kanıtı" title="Link to this section">#</a></h2>
-<p>Production varsayılanı <code class="inline-code">MESA_LOG_LEVEL=INFO</code> ve <code class="inline-code">MESA_LOG_FORMAT=json</code>’dır.</p>
-<p>Loglarda request/operation/mutation/pipeline run kimlikleri bulunabilir;</p>
-<p>query, source content, payload, credential, raw model output ve claim token</p>
-<p>bulunamaz. Docker <code class="inline-code">local</code> driver 10 MB × 5 dosya sınırı kullanır.</p>
-<p>Incident kanıtı olarak maskelenmiş log, mutation status, health/metrics anlık</p>
-<p>görüntüsü, image digest ve storage manifesti saklanır.</p>
+<p>Ending a session creates a durable finalization record. After a restart, pending work is</p>
+<p>picked up by the combined consumer. If something stays pending for long, check the</p>
+<p>session, finalization ID, lease and DLQ state; do not rely on in-process FastAPI</p>
+<p><code class="inline-code">BackgroundTasks</code>.</p>
+<h2 id="10-logging-and-incident-evidence">10. Logging and incident evidence<a class="heading-anchor" href="#10-logging-and-incident-evidence" aria-label="Link to section: 10. Logging and incident evidence" title="Link to this section">#</a></h2>
+<p>The production default is <code class="inline-code">MESA_LOG_LEVEL=INFO</code> and <code class="inline-code">MESA_LOG_FORMAT=json</code>.</p>
+<p>Logs may contain request/operation/mutation/pipeline run identifiers; they must not</p>
+<p>contain queries, source content, payloads, credentials, raw model output or claim</p>
+<p>tokens. The Docker <code class="inline-code">local</code> driver uses a 10 MB × 5 files limit.</p>
+<p>As incident evidence, keep masked logs, mutation status, a health/metrics snapshot,</p>
+<p>the image digest and the storage manifest.</p>
 <h2 id="11-v3-compatibility">11. V3 compatibility<a class="heading-anchor" href="#11-v3-compatibility" aria-label="Link to section: 11. V3 compatibility" title="Link to this section">#</a></h2>
-<p><code class="inline-code">docker-compose.yml</code> ayrı API + worker lexical-core topology’sidir. V3’teki</p>
-<p>telafi edici Saga, agent/session RBAC, soft-delete ve maintenance davranışı</p>
-<p>v4’e genellenmez. V3 sorunlarında mevcut <code class="inline-code">mesa-recovery</code>, worker readiness ve</p>
-<p>maintenance prosedürleri uygulanır; aynı storage root v4’e bağlanmaz.</p>
-<h2 id="12-release-durumu">12. Release durumu<a class="heading-anchor" href="#12-release-durumu" aria-label="Link to section: 12. Release durumu" title="Link to this section">#</a></h2>
-<p>Unit/integration/contract testlerinin geçmesi production GO değildir. Gerçek</p>
-<p>provider ve production-benzeri store ile backup→restore→rebuild→cutover,</p>
-<p>queue saturation, worker crash, cross-tenant concurrency ve 24 saat soak</p>
-<p>kanıtları tamamlanana kadar karar <code class="inline-code">NO-GO</code> kalır.</p>
-<span id="troubleshooting"></span>
-<h2 id="troubleshooting-1">Troubleshooting<a class="heading-anchor" href="#troubleshooting-1" aria-label="Link to section: Troubleshooting" title="Link to this section">#</a></h2>
-<p>Capture version/commit, runtime profile, content-free health, mutation/operation</p>
-<p>IDs and error class. Never include keys, claim tokens or full source/query text.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th scope="col">Symptom</th><th scope="col">Check</th><th scope="col">Safe response</th></tr></thead><tbody><tr><th scope="row">Missing runtime profile/root</th><td>Explicit environment and CLI help</td><td>Use a dedicated writable root, never repo/home/filesystem root</td></tr><tr><th scope="row">401</th><td>Key registry, active principal, key rotation</td><td>Re-provision/reload authorized credentials; do not disable auth</td></tr><tr><th scope="row">403/session conflict</th><td>ACL, session principal and dataset/agent binding</td><td>Grant intended scope offline; start a properly scoped session</td></tr><tr><th scope="row">Insert 422</th><td>Required title/IDs, character bounds and content</td><td>Compare actual OpenAPI schema; keep exact source</td></tr><tr><th scope="row">Insert 409</th><td>Frozen revision, identity/idempotency conflict</td><td>Reuse exact retry payload or create a new revision</td></tr><tr><th scope="row">Embedding 409/mismatch</th><td>Full provider/model/revision/dimension/normalization identity</td><td>Follow offline migration/rebuild; equal dimension is not equal space</td></tr><tr><th scope="row"><code class="inline-code">503 vector_backend_unavailable</code></th><td>Provider availability and operational identity</td><td>Restore the selected provider; no silent model switch</td></tr><tr><th scope="row"><code class="inline-code">503 graph_backend_unavailable</code></th><td>Health, timeout, Kùzu schema/parity</td><td>Diagnose query/backend and bounded traversal; do not advertise complete results</td></tr><tr><th scope="row"><code class="inline-code">503 maintenance_pending</code></th><td>Active/retryable rebuild status</td><td>Follow <a href="../../../docs/core/rebuild-runbook/">rebuild runbook</a>; no manual lease/queue deletion</td></tr><tr><th scope="row">Mutation stalls or enters DLQ</th><td>Projection predecessor, fenced claim, provider errors</td><td>Repair cause, then authorized replay if state permits</td></tr><tr><th scope="row">Semantic rejection</th><td>Rejection reason and validation policy</td><td>Treat as terminal; generic replay returns <code class="inline-code">NON_REPLAYABLE</code></td></tr><tr><th scope="row">Cleanup <code class="inline-code">BLOCKED</code></th><td>Store availability and shared ownership</td><td>Preserve evidence, repair store, run supported recovery</td></tr><tr><th scope="row">Readiness 503</th><td>Worker liveness, thresholds, canonical backlog</td><td>Resolve health; process alive does not mean ready</td></tr><tr><th scope="row">FTS/parity error</th><td>Matching Alembic head and checksummed backup</td><td>Stop writers and rehearse recovery into a new root</td></tr><tr><th scope="row">Old Kùzu timestamp/schema error</th><td>Release code and offline schema migration</td><td>Upgrade/rehearse from backups; do not issue ad hoc ALTER or wipe</td></tr><tr><th scope="row">Growing RSS/disk</th><td>Lance fragments/versions, queues and retained generations</td><td>Measure representative workload; apply supported maintenance, reserve capacity</td></tr></tbody></table></div>
-<p>Inspect <code class="inline-code">/v4/capability</code> before assuming semantic/graph availability. A model-disabled</p>
-<p>profile intentionally lacks semantic generation. <code class="inline-code">wait_until_committed()</code> can</p>
-<p>return failed terminal states; inspect <code class="inline-code">state</code> explicitly.</p>
-<p>CLI <code class="inline-code">--help</code>, <a href="../../../docs/core/configuration/">configuration</a>, <a href="../../../docs/core/api-reference/">API</a>,</p>
-<p><a href="../../../docs/core/operations/">operations</a> and <a href="../../../docs/core/operations/#upgrade-v080">migration</a> describe supported</p>
-<p>interfaces. Avoid raw SQL edits, in-place restore, forced queue completion and</p>
-<p>unbounded retries. Real provider or production-size evidence unavailable in an</p>
-<p>audit must remain <code class="inline-code">NOT EXECUTED</code>, never converted to a simulated success.</p>
-<span id="upgrade-v080"></span>
-<h2 id="upgrading-to-v080">Upgrading to v0.8.0<a class="heading-anchor" href="#upgrading-to-v080" aria-label="Link to section: Upgrading to v0.8.0" title="Link to this section">#</a></h2>
-<p>Current package metadata is 0.8.1. Publication is owner-approved with the limitations in</p>
-<p>the <a href="../../../docs/core/release-notes/#v081-publication">release notes</a>; it does not certify production</p>
-<p>readiness. Confirm actual tags in GitHub Releases. This guide describes changes</p>
-<p>since v0.7.1, not a completed production migration.</p>
-<p>v0.8.1 retains the v0.8.0 schema head below. It adds storage/retrieval hardening</p>
-<p>and developer-experience fixes; it introduces no new schema migration. The</p>
-<p>existing embedding identity, offline upgrade and backup requirements still apply.</p>
-<h3 id="preconditions-and-changed-contracts">Preconditions and changed contracts<a class="heading-anchor" href="#preconditions-and-changed-contracts" aria-label="Link to section: Preconditions and changed contracts" title="Link to this section">#</a></h3>
-<p>Use a stopped, backed-up storage root and rehearse on a new disposable root.</p>
-<p>Record source commit, lockfile, provider/model/revision/dimension/normalization,</p>
-<p>Alembic head, artifacts and rollback path. RBAC has its own schema version.</p>
-<p>Since v0.7.1, the tree includes immutable revision manifest activation, opaque</p>
-<p>physical catalog identity, declared/manifest/chunk hash separation, durable</p>
-<p>rebuild operations/generations, provider identity, assertion FTS/representation</p>
-<p>and typed legal identity migrations. Current source expects Alembic head</p>
-<p><code class="inline-code">d5e6f7a8b9c0</code>. Do not assume an old database is compatible just because the</p>
-<p>package version stayed 0.7.1 throughout the development branch.</p>
-<p>New insertion/reprojection uses <code class="inline-code">assertion-semantic-v1</code>; migrated old vectors</p>
-<p>are <code class="inline-code">legacy-v0</code> and cannot contribute as current semantic evidence. Reindex via</p>
-<p>the supported full offline <a href="../../../docs/core/rebuild-runbook/">rebuild</a>. Unknown legacy provider</p>
-<p>identity can be adopted only with external proof and a fresh unclaimed pending</p>
-<p>operation. Matching dimensions alone do not prove matching embedding spaces.</p>
-<p>Search/context carry temporal and jurisdiction filters; graph ON/OFF ablation</p>
-<p>and bounded diagnostics are available. Context has atomic proof packing and an</p>
-<p>opt-in adaptive mode. HTTP insert supports typed legal identity, while SDK</p>
-<p>insert does not currently expose it. Invalid/frozen/idempotency-conflicting</p>
-<p>source identity fails rather than silently overwriting. Semantic <code class="inline-code">REJECTED</code></p>
-<p>replay returns <code class="inline-code">409 NON_REPLAYABLE</code>.</p>
-<h3 id="migration-configuration">Migration configuration<a class="heading-anchor" href="#migration-configuration" aria-label="Link to section: Migration configuration" title="Link to this section">#</a></h3>
-<p><code class="inline-code">mesa_storage/alembic.ini</code> owns the migration database URL.</p>
-<p><code class="inline-code">MESA_STORAGE_ROOT</code> alone does not change that URL. With all writers stopped,</p>
-<p>prepare a reviewed copy of the Alembic configuration with an absolute staging</p>
-<p>SQLite URL and absolute <code class="inline-code">script_location</code> pointing to this release&#39;s migrations:</p>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Copy</button></div><pre tabindex="0" id="code-block-7" class="language-bash"><code>.venv/bin/alembic -c /srv/mesa/reviewed-staging-alembic.ini upgrade head</code></pre></div>
-<p>The path is an operator example, not a configuration supplied by the repository.</p>
-<p>Use a verified restored staging root and the matching release environment.</p>
-<p>This migrates canonical V4 schema; the <a href="../../../docs/core/rebuild-runbook/">projection runner</a></p>
-<p>rebuilds its derived stores. Neither procedure is a general V3 content converter.</p>
-<p>V3 content needs explicit source/catalog mapping and V4 ingestion into a separate root.</p>
-<h3 id="upgrade-and-rollback-sequence">Upgrade and rollback sequence<a class="heading-anchor" href="#upgrade-and-rollback-sequence" aria-label="Link to section: Upgrade and rollback sequence" title="Link to this section">#</a></h3>
-<ol><li>Drain work, stop writers and take a checksummed backup under the writer-lock boundary.</li><li>Validate the backup and restore to a new empty staging root.</li><li>Apply forward migrations offline with the supported release environment.</li><li>Rebuild derived projections where required; check scope, provenance and parity.</li><li>Rehearse start, insert, poll, search, restart and negative authorization.</li><li>Cut over only with full release evidence and retain previous roots/generations.</li></ol>
-<p>Alembic downgrade is not the rollback strategy. Restore a verified prior backup</p>
-<p>into a new empty root using the matching prior code/config, then validate before</p>
-<p>switching traffic. V3 and V4 never share writable physical storage. Do not alter</p>
-<p>official certification evidence as part of upgrade verification.</p></div></details>
+<p><code class="inline-code">docker-compose.yml</code> is the separate API + worker lexical-core topology. V3&#39;s</p>
+<p>compensating Saga, agent/session RBAC, soft-delete and maintenance behavior do not</p>
+<p>generalize to v4. For V3 problems apply the existing <code class="inline-code">mesa-recovery</code>, worker readiness</p>
+<p>and maintenance procedures; the same storage root is never connected to v4.</p>
+<h2 id="12-release-status">12. Release status<a class="heading-anchor" href="#12-release-status" aria-label="Link to section: 12. Release status" title="Link to this section">#</a></h2>
+<p>Passing unit/integration/contract tests is not a production GO. The decision stays</p>
+<p><code class="inline-code">NO-GO</code> until evidence is complete for backup→restore→rebuild→cutover with a real</p>
+<p>provider and a production-like store, queue saturation, worker crash, cross-tenant</p>
+<p>concurrency and a 24-hour soak.</p></div></details>
         </div>
         <div class="docs-page-nav"><a class="docs-page-prev" href="../../../docs/core/security/"><span class="nav-dir">← Previous</span><span class="nav-title">Security &amp; scope</span></a><a class="docs-page-next" href="../../../docs/core/testing/"><span class="nav-dir">Next →</span><span class="nav-title">Testing &amp; evidence</span></a></div>
       </article>

@@ -71,6 +71,7 @@ export function renderMarkdown(markdown = '', options = {}) {
   let codeLang = '';
   let codeLines = [];
   let inTable = false;
+  let tableCount = 0;
   let tableHeaders = [];
   let tableRows = [];
   let inList = false;
@@ -95,7 +96,10 @@ export function renderMarkdown(markdown = '', options = {}) {
 
   function flushTable() {
     if (!inTable) return;
-    let tHtml = `<div class="table-scroll" tabindex="0" role="region" aria-label="${options.language === 'tr' ? 'Kaydırılabilir tablo' : 'Scrollable table'}"><table>`;
+    // Regions need distinct names when a page shows several tables at once.
+    tableCount += 1;
+    const tableLabel = `${options.tableLabelPrefix || ''}${options.language === 'tr' ? 'Kaydırılabilir tablo' : 'Scrollable table'}${tableCount > 1 ? ` ${tableCount}` : ''}`;
+    let tHtml = `<div class="table-scroll" tabindex="0" role="region" aria-label="${tableLabel}"><table>`;
     if (tableHeaders.length) {
       tHtml += `<thead><tr>${tableHeaders.map((th) => `<th scope="col">${renderInlineMarkdown(th, options)}</th>`).join('')}</tr></thead>`;
     }
@@ -229,7 +233,7 @@ export function renderMarkdown(markdown = '', options = {}) {
     }
 
     // Preserve source-declared section anchors without allowing arbitrary HTML.
-    const explicitAnchor = trimmed.match(/^<a id="([A-Za-z][A-Za-z0-9_-]*)"><\/a>$/);
+    const explicitAnchor = trimmed.match(/^<a id="([A-Za-z0-9][A-Za-z0-9_-]*)"><\/a>$/);
     if (explicitAnchor) {
       flushList();
       flushTable();

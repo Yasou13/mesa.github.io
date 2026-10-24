@@ -22,7 +22,7 @@ const chrome = process.env.CHROME_BIN || 'google-chrome';
 const port = 9300 + (process.pid % 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mesa-browser-qa-'));
 const requiredScenes = ['event-horizon'];
-const requiredHomeSections = ['hero', 'problem', 'process', 'example', 'capabilities', 'ecosystem', 'explore'];
+const requiredHomeSections = ['hero', 'problem', 'difference', 'process', 'example', 'capabilities', 'ecosystem', 'explore'];
 
 const routes = [
   ...Object.values(siteData.pages).map(({ path: routePath }) => routePath),
@@ -155,7 +155,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
         overflow: root.scrollWidth - root.clientWidth,
         overflowElements: [...document.querySelectorAll('body *')].filter(el => el.getBoundingClientRect().right > root.clientWidth + 1 && getComputedStyle(el).position !== 'fixed').slice(0, 8).map(el => ({ tag: el.tagName, class: el.className, right: Math.round(el.getBoundingClientRect().right) })),
         height: root.scrollHeight,
-        fixtureTop: fixture ? Math.round(fixture.getBoundingClientRect().top + scrollY) : null,
+        fixtureTop: (() => { const first = document.querySelector('.hero-demo__answer') || fixture; return first ? Math.round(first.getBoundingClientRect().top + scrollY) : null; })(),
         heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
         heroImage: heroImage ? { src: heroImage.currentSrc, naturalWidth: heroImage.naturalWidth, naturalHeight: heroImage.naturalHeight, loading: heroImage.loading, priority: heroImage.fetchPriority } : null,
         heroRequests: performance.getEntriesByType('resource').filter(entry => /hero(?:-portrait)?\\.webp/.test(entry.name)).map(entry => entry.name),
@@ -398,8 +398,8 @@ async function checkIntroPages() {
   await evaluate(`document.querySelector('[data-story-play]').click()`);
   await wait(6700);
   if(await evaluate(`document.querySelector('[data-memory-story]').dataset.step`)!=='1') failures.push('Timed walkthrough did not advance');
-  await checkMemoryDisclosure('tr/how-it-works/');
-  await checkMemoryDisclosure('how-it-works/');
+  await checkMemoryDisclosure('tr/retrieval/');
+  await checkMemoryDisclosure('retrieval/');
 }
 async function checkArchitectureReview() {
   const axe = fs.readFileSync(path.join(repositoryRoot,'node_modules/axe-core/axe.min.js'),'utf8');
@@ -555,7 +555,7 @@ try {
   for (const routePath of ['', 'tr/', 'mesa/', 'data/', 'law/', 'ecosystem/', 'docs/', 'learn/', 'admin/']) await inspect(routePath, 844, 430);
   for (const routePath of ['', 'tr/']) {
     await checkMobileMenu(routePath);
-    await checkMemoryDisclosure(routePath+'how-it-works/');
+    await checkMemoryDisclosure(routePath+'retrieval/');
     await checkHeroFallbacks(routePath);
   }
 

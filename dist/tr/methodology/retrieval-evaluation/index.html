@@ -6,6 +6,8 @@
   <title>Arama sistemleri nasıl değerlendirilir? — MESA</title>
   <meta name="description" content="Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?">
   <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://mesamemory.dev/tr/methodology/retrieval-evaluation/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/methodology/retrieval-evaluation/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/methodology/retrieval-evaluation/">
@@ -32,8 +34,8 @@
   <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../../styles.css?v=ecf9f4160098">
-  <link rel="stylesheet" href="../../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../../styles.css?v=6f803158fb8f">
+  <link rel="stylesheet" href="../../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../../learn.css?v=ef08fd97f3dc">
 
   <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
@@ -142,21 +144,20 @@
       <section class="closing-cta" aria-labelledby="closing-title">
       <div>
         <p class="eyebrow">AÇIK KAYNAK · MIT</p>
-        <h2 id="closing-title">Kaynak kodunu inceleyin.<br><em>Sınırları sınayın.</em></h2>
-        <p>MESA v0.8.1’in kaynak kodu yayımlandı. Önce model kullanmayan hızlı başlangıç kurulumunu deneyin. Tam V4 sistemini değerlendirmeden önce canlı kullanıma ilişkin sınırları okuyun.</p>
-        <div class="actions"><a class="button primary" href="../../docs/core/getting-started/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodunu görüntüle</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <h2 id="closing-title">Kaynağı okuyun.<br><em>Yerelde çalıştırın.</em></h2>
+        <p>Sürümü kurun, sunucuyu başlatın ve bir notu eklemeden kaynaklı yanıta kadar izleyin.</p>
+        <div class="actions"><a class="button primary" href="../../docs/core/getting-started/"><span>Hızlı başlangıcı okuyun</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a><a class="button secondary" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><span>Kaynak kodu görün</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Kaynağını koruyan yapay zekâ hafızası.</p><p class="footer-note">Paket v0.8.1 · Çalışma zamanı mimarisi V4 · <a href="../../status/">Durumu görüntüle →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Kaynağını koruyan yapay zekâ hafızası.</p><p class="footer-note"><span>v0.8.1</span> · <span>Alfa</span> · <a href="../../status/">Proje durumu →</a></p></div>
       <div class="footer-groups">
-        <div><h3>Keşfet</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../use-cases/">Kullanım alanları</a><a href="../../evaluation/">Değerlendirme ve güven</a><a href="../../status/">Proje durumu</a></div>
-        <div><h3>Ekosistem</h3><a href="../../mesa/">Core hafıza motoru</a><a href="../../data/">MESA Data</a><a href="../../qa/">MESA QA</a><a href="../../certification/">E2E Certification</a><a href="../../law/">MESA Law</a></div>
-        <div><h3>Kaynaklar</h3><a href="../../learn/">Dersler</a><a href="../../research/">Araştırma</a><a href="../../guides/">Rehberler</a><a href="../../glossary/">Sözlük</a><a href="../../methodology/">Yöntemler</a></div>
-        <div><h3>Dokümanlar</h3><a href="../../docs/core/getting-started/">Hızlı başlangıç</a><a href="../../docs/core/architecture/">Core mimari dokümanları</a><a href="../../retrieval/">Arama</a><a href="../../docs/core/security/">Güvenlik</a><a href="../../docs/mcp/">MCP entegrasyonu</a></div>
-        <div><h3>Proje</h3><a href="../../early-access/">Erken erişim</a><a href="../../about/">Hakkında</a><a href="../../faq/">SSS</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Hata veya öneri bildir</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13" target="_blank" rel="noopener noreferrer"><span>Geliştiricinin profili</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Ürün</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../architecture/">Mimari</a><a href="../../ecosystem/">Ekosistem</a><a href="../../use-cases/">Kullanım alanları</a><a href="../../law/">MESA Law</a></div>
+        <div><h3>Geliştiriciler</h3><a href="../../docs/core/getting-started/">Hızlı başlangıç</a><a href="../../docs/core/api-reference/">API referansı</a><a href="../../docs/core/examples/">Python SDK</a><a href="../../docs/mcp/">MCP</a><a href="../../docs/core/security/">Güvenlik</a></div>
+        <div><h3>Öğrenin</h3><a href="../../learn/">Dersler</a><a href="../../glossary/">Sözlük</a><a href="../../guides/">Rehberler</a><a href="../../faq/">SSS</a></div>
+        <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../early-access/">Erken erişim</a><a href="../../privacy/">Gizlilik</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Yayımlanan kaynak koduna göre hazırlanmıştır</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.8.1 · d394784 ile uyumlu</span></div>
     </footer>
     </main>
   <script src="../../../app.js?v=d389e70c5cac"></script>

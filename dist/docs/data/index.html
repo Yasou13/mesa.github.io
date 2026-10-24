@@ -6,6 +6,8 @@
   <title>Overview — MESA MESA Data Documentation</title>
   <meta name="description" content="Overview documentation for MESA Data (v0.1.0).">
   <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://mesamemory.dev/docs/data/">
   <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/data/">
   <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/data/">
@@ -32,8 +34,8 @@
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../styles.css?v=ecf9f4160098">
-  <link rel="stylesheet" href="../../cosmic.css?v=2615e7f7970e">
+  <link rel="stylesheet" href="../../styles.css?v=6f803158fb8f">
+  <link rel="stylesheet" href="../../cosmic.css?v=a59d1921779b">
   <link rel="stylesheet" href="../../learn.css?v=ef08fd97f3dc">
 
   <link rel="stylesheet" href="../../docs.css?v=7ca2f1908063">
@@ -64,7 +66,7 @@
   <nav class="docs-tabs" aria-label="Documentation sections"><a href="../../docs/" class="active"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Documentation</span></a><a href="../../docs/core/installation/"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Deploy</span></a><a href="../../docs/core/examples/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Python SDK</span></a><a href="../../docs/core/api-reference/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>HTTP API</span></a><a href="../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg><span>MCP</span></a><a class="docs-tabs-release" href="../../docs/core/release-notes/">v0.8.1<span class="docs-release-dot" aria-hidden="true"></span></a></nav>
   <aside class="docs-sidebar" aria-label="Documentation navigation"><details class="docs-navigation" open><summary><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Documentation menu</span><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div class="docs-sidebar-inner">
     <div class="docs-sidebar-header"><a href="../../docs/" class="docs-wordmark">MESA <span>/ docs</span></a><span class="docs-sidebar-caption">Developer documentation</span></div>
-    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Data</span><small>v0.1.0</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Choose component"><a href="../../docs/core/"><span>MESA Core</span><small>v0.8.1</small></a><a href="../../docs/data/" aria-current="true"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><a href="../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../docs/e2e/"><span>MESA E2E Certification</span><small>v0.1.0</small></a></nav></details>
+    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Data</span><small>v0.1.0</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Choose component"><a href="../../docs/core/"><span>MESA Core</span><small>v0.8.1</small></a><a href="../../docs/data/" aria-current="true"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><span class="docs-product-divider">Internal test tooling</span><a href="../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../docs/e2e/"><span>MESA E2E Certification</span><small>v0.1.0</small></a></nav></details>
     <button class="search-trigger docs-search" type="button" aria-label="Search documentation"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search docs…</span><kbd>Ctrl K</kbd></button>
     <nav class="docs-nav" aria-label="Documentation topics"><ul class="sidebar-links docs-overview-links"><li><a href="../../docs/"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Introduction</a></li><li><a href="../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg>MCP integration</a></li></ul><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Guides & references</span></div><ul class="sidebar-links"><li><a href="../../docs/data/" class="active" aria-current="page">Overview</a></li><li><a href="../../docs/data/quickstart/">Quickstart (TR)</a></li><li><a href="../../docs/data/user-guide/">User Guide (TR)</a></li><li><a href="../../docs/data/import-contract/">Import Contract</a></li><li><a href="../../docs/data/troubleshooting/">Troubleshooting (TR)</a></li><li><a href="../../docs/data/mvp-closure/">MVP Closure Report</a></li></ul></section></nav>
     <div class="docs-sidebar-footer"><a href="https://github.com/Yasou13/MESA_Data" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span><span aria-hidden="true">↗</span></a><a href="../../status/">Project status<span aria-hidden="true">↗</span></a></div>
@@ -87,48 +89,47 @@
     <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA_Data/blob/e1dc229e9de57c48374e38a87ec7786d1c7bd1f9/README.md" title="e1dc229e9de57c48374e38a87ec7786d1c7bd1f9" target="_blank" rel="noopener noreferrer">e1dc229</a></span>
     <span class="docs-source-pill">source: <code>README.md</code></span>
   </div>
-          <p class="docs-language-notice">This guide has equivalent English and Turkish explanations. The complete source reference is preserved below in its original language. Package version is not production certification.</p>
+          <p class="docs-language-notice">This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.</p>
           
         </header>
         <div class="docs-body">
           <h2 id="guide-scope-of-this-document">Scope of this document<a class="heading-anchor" href="#guide-scope-of-this-document" aria-label="Link to section: Scope of this document" title="Link to this section">#</a></h2>
 <p>MESA Data prepares reviewed Turkish legal sources through acquisition, canonicalization, validation and immutable release publication. Staging or HTTP 202 does not prove delivery into Core. Its package version and release tag are separate facts.</p>
 <p>The original reference below preserves this page’s complete contract, commands or dated evidence in its source language. Test outcomes apply only within their stated date and conditions.</p>
-          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA_Data/blob/e1dc229e9de57c48374e38a87ec7786d1c7bd1f9/README.md" target="_blank" rel="noopener noreferrer"><code>README.md</code></a></li></ul></div>
-          <details class="source-appendix" id="source-reference"><summary>Complete source reference · original language</summary><p class="docs-language-notice">This appendix retains the original source text, separately from the localized guide. Source section links open the appendix automatically.</p><div class="source-reference-body"><p>MESA Legal Data; resmî mevzuat, içtihat ve hukuki atıf verilerini otomatik toplayan, ham dosyaları değiştiremez biçimde saklayan, kanonikleştiren ve kalite kapılarından geçiren veri platformudur. Güvenli koşulları sağlayan sürümler otomatik onaylanabilir; istisnalar insan incelemesine gider. Gerçek MESA gönderimi yalnız insan başlatınca, otomatik oluşturulup doğrulanan immutable release paketinden yapılır. Yerel staging yalnız development aracıdır ve gerçek MESA değildir.</p>
+          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA_Data/blob/e1dc229e9de57c48374e38a87ec7786d1c7bd1f9/README.md" target="_blank" rel="noopener noreferrer"><code>README.md</code></a></li></ul></div><details class="source-appendix" id="source-reference"><summary>Source reference for this page</summary><p class="docs-language-notice">The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.</p><div class="source-reference-body"><p>MESA Legal Data is a data platform that automatically collects official legislation, case law and legal citation data, stores raw files immutably, canonicalizes them and passes them through quality gates. Versions that meet safe conditions can be approved automatically; exceptions go to human review. Real delivery to MESA happens only when a person starts it, from an immutable release package that was built and verified automatically. Local staging is only a development tool and is not real MESA.</p>
 <hr class="article-divider">
-<h2 id="katmanli-mimari">Katmanlı Mimari<a class="heading-anchor" href="#katmanli-mimari" aria-label="Link to section: Katmanlı Mimari" title="Link to this section">#</a></h2>
-<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-text"><code>Resmî Kaynak (HTTPS / Manuel PDF)
-   ├─ Manuel URL / Yerel Dosya (collect)
-   └─ Otomatik Keşif Kuyruğu (harvest discover → run)
+<h2 id="layered-architecture">Layered architecture<a class="heading-anchor" href="#layered-architecture" aria-label="Link to section: Layered architecture" title="Link to this section">#</a></h2>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-text"><code>Official source (HTTPS / manual PDF)
+   ├─ Manual URL / local file (collect)
+   └─ Automatic discovery queue (harvest discover → run)
               ↓
-Ham Veri Deposu (raw/ — Değişmez Artifact + SHA-256 + Metadata)
+Raw data store (raw/ — immutable artifact + SHA-256 + metadata)
               ↓
-Ayrıştırma &amp; Kanonikleştirme Pipeline&#39;ı (parse → canonical JSONL)
+Parsing &amp; canonicalization pipeline (parse → canonical JSONL)
               ↓
-Kalite Kapıları + Gizlilik + Hukuki Metadata Doğrulaması
+Quality gates + privacy + legal metadata validation
               ↓
-Güvenli Otomatik Onay / İnsan İstisna İncelemesi
+Safe automatic approval / human exception review
               ↓
-Immutable Release (otomatik build → verify → frozen summary → insan onayı)
+Immutable release (automatic build → verify → frozen summary → human approval)
               ↓
-Gerçek MESA Publisher (idempotent, yalnız COMMITTED başarı)
-              └─ Yerel Development Staging (ayrı, isteğe bağlı)</code></pre></div>
+Real MESA publisher (idempotent, only COMMITTED counts as success)
+              └─ Local development staging (separate, optional)</code></pre></div>
 <hr class="article-divider">
-<h2 id="veri-dizin-yapisi-workspace">Veri Dizin Yapısı (Workspace)<a class="heading-anchor" href="#veri-dizin-yapisi-workspace" aria-label="Link to section: Veri Dizin Yapısı (Workspace)" title="Link to this section">#</a></h2>
-<p>Sistem tüm verilerini <code class="inline-code">MESA_DATA_DATA_ROOT</code> ortam değişkeninin gösterdiği dizinde saklar (Öncelik: Yapılandırılan <code class="inline-code">MESA_DATA_DATA_ROOT</code> → Varsayılan: <code class="inline-code">/storage/mesa-legal-data/data</code> → İzin hatasında yedek: <code class="inline-code">~/.mesa-data/data</code>).</p>
+<h2 id="data-directory-layout-workspace">Data directory layout (workspace)<a class="heading-anchor" href="#data-directory-layout-workspace" aria-label="Link to section: Data directory layout (workspace)" title="Link to this section">#</a></h2>
+<p>The system keeps all its data in the directory named by the <code class="inline-code">MESA_DATA_DATA_ROOT</code> environment variable (precedence: configured <code class="inline-code">MESA_DATA_DATA_ROOT</code> → default <code class="inline-code">/storage/mesa-legal-data/data</code> → fallback on a permission error: <code class="inline-code">~/.mesa-data/data</code>).</p>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre tabindex="0" id="code-block-2" class="language-text"><code>$DATA_ROOT/
-  raw/                    # Değişmez ham artifact dosyaları (PDF, HTML)
-  canonical/              # Sürüm bazlı kanonik JSONL kayıtları
-  releases/               # Yayınlanan release paketleri (manifest.json + JSONL)
-  exports/                # Üretilen dışa aktarma dosyaları
-  backups/                # Katalog veritabanı yedekleri
-  harvest/                # Harvest veritabanı (harvest.sqlite) ve yedekleri
-  catalog.sqlite          # Ana katalog veritabanı</code></pre></div>
+  raw/                    # Immutable raw artifact files (PDF, HTML)
+  canonical/              # Canonical JSONL records per version
+  releases/               # Published release packages (manifest.json + JSONL)
+  exports/                # Generated export files
+  backups/                # Catalog database backups
+  harvest/                # Harvest database (harvest.sqlite) and its backups
+  catalog.sqlite          # Main catalog database</code></pre></div>
 <hr class="article-divider">
-<h2 id="otomatik-veri-toplama-harvest">Otomatik Veri Toplama (Harvest)<a class="heading-anchor" href="#otomatik-veri-toplama-harvest" aria-label="Link to section: Otomatik Veri Toplama (Harvest)" title="Link to this section">#</a></h2>
-<p>MESA Legal Data, tanımlı resmî kaynaklardan belge bağlantılarını keşfeden ve indirme kuyruğunu yöneten bir Harvest altsistemine sahiptir. Harvest, ana katalogdan bağımsız <code class="inline-code">harvest.sqlite</code> üzerinde çalışır.</p>
-<h3 id="harvest-komutlari">Harvest Komutları<a class="heading-anchor" href="#harvest-komutlari" aria-label="Link to section: Harvest Komutları" title="Link to this section">#</a></h3>
+<h2 id="automatic-data-collection-harvest">Automatic data collection (harvest)<a class="heading-anchor" href="#automatic-data-collection-harvest" aria-label="Link to section: Automatic data collection (harvest)" title="Link to this section">#</a></h2>
+<p>MESA Legal Data has a harvest subsystem that discovers document links from defined official sources and manages the download queue. Harvest runs on <code class="inline-code">harvest.sqlite</code>, independent of the main catalog.</p>
+<h3 id="harvest-commands">Harvest commands<a class="heading-anchor" href="#harvest-commands" aria-label="Link to section: Harvest commands" title="Link to this section">#</a></h3>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>uv run mesa-data harvest init
 uv run mesa-data harvest config-check
 uv run mesa-data harvest discover --source resmi_gazete
@@ -136,26 +137,26 @@ uv run mesa-data harvest status
 uv run mesa-data harvest run --once --limit 25
 uv run mesa-data harvest failures
 uv run mesa-data harvest maintenance</code></pre></div>
-<h3 id="guvenlik-politika">Güvenlik &amp; Politika<a class="heading-anchor" href="#guvenlik-politika" aria-label="Link to section: Güvenlik &amp; Politika" title="Link to this section">#</a></h3>
-<ul><li>Keşif ve indirmeler yalnızca <code class="inline-code">config/sources.yaml</code> ve <code class="inline-code">config/harvest.yaml</code> dosyalarında izin verilen resmi kaynaklarda çalışır.</li><li>İndirme işlemleri SSRF, MIME türü, boyut sınırı (~50 MB) ve hız sınırı denetimlerinden geçer.</li><li>Yalnız sertifikalı kaynak/parser ve PASS kalite koşullarını sağlayan sürümler güvenli biçimde otomatik onaylanabilir; diğerleri insan incelemesine gider.</li><li>MESA&#39;ya gönderim hiçbir zaman otomatik başlamaz.</li></ul>
+<h3 id="security-policy">Security &amp; policy<a class="heading-anchor" href="#security-policy" aria-label="Link to section: Security &amp; policy" title="Link to this section">#</a></h3>
+<ul><li>Discovery and downloads run only on the official sources allowed in <code class="inline-code">config/sources.yaml</code> and <code class="inline-code">config/harvest.yaml</code>.</li><li>Downloads pass SSRF, MIME type, size limit (~50 MB) and rate limit checks.</li><li>Only versions from certified sources/parsers that meet PASS quality conditions can be auto-approved safely; the rest go to human review.</li><li>Delivery to MESA never starts automatically.</li></ul>
 <hr class="article-divider">
-<h2 id="web-yonetim-paneli-fastapi-htmlcssjs">Web Yönetim Paneli (FastAPI + HTML/CSS/JS)<a class="heading-anchor" href="#web-yonetim-paneli-fastapi-htmlcssjs" aria-label="Link to section: Web Yönetim Paneli (FastAPI + HTML/CSS/JS)" title="Link to this section">#</a></h2>
-<p>MESA Legal Data, veri toplama, kalite/istisna incelemesi, immutable release ve insan başlatmalı gerçek MESA gönderimini yönetebileceğiniz web tabanlı bir arayüze sahiptir. Panel normal akışta kullanıcıdan release ID istemez; exact release ve manifest özetini otomatik hazırlar.</p>
-<h3 id="web-panelini-baslatma">Web Panelini Başlatma<a class="heading-anchor" href="#web-panelini-baslatma" aria-label="Link to section: Web Panelini Başlatma" title="Link to this section">#</a></h3>
+<h2 id="web-admin-panel-fastapi-htmlcssjs">Web admin panel (FastAPI + HTML/CSS/JS)<a class="heading-anchor" href="#web-admin-panel-fastapi-htmlcssjs" aria-label="Link to section: Web admin panel (FastAPI + HTML/CSS/JS)" title="Link to this section">#</a></h2>
+<p>MESA Legal Data has a web interface for managing data collection, quality/exception review, immutable releases and human-started real MESA delivery. In the normal flow the panel does not ask the user for a release ID; it prepares the exact release and manifest summary automatically.</p>
+<h3 id="starting-the-web-panel">Starting the web panel<a class="heading-anchor" href="#starting-the-web-panel" aria-label="Link to section: Starting the web panel" title="Link to this section">#</a></h3>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>uv run mesa-data web --host 127.0.0.1 --port 8765</code></pre></div>
-<p>Tarayıcınızda <code class="inline-code">http://127.0.0.1:8765</code> adresini açınız.</p>
-<h3 id="guvenlik-admin-token">Güvenlik &amp; Admin Token<a class="heading-anchor" href="#guvenlik-admin-token" aria-label="Link to section: Güvenlik &amp; Admin Token" title="Link to this section">#</a></h3>
-<ul><li>Web paneli varsayılan olarak yalnızca yerel bilgisayardan (<code class="inline-code">127.0.0.1</code>) erişilebilir durumdadır.</li><li>Sunucu dış ağa (<code class="inline-code">0.0.0.0</code>) açılacağında <code class="inline-code">MESA_DATA_WEB_ADMIN_TOKEN</code> ortam değişkeni zorunludur.</li></ul>
+<p>Open <code class="inline-code">http://127.0.0.1:8765</code> in your browser.</p>
+<h3 id="security-admin-token">Security &amp; admin token<a class="heading-anchor" href="#security-admin-token" aria-label="Link to section: Security &amp; admin token" title="Link to this section">#</a></h3>
+<ul><li>By default the web panel is reachable only from the local machine (<code class="inline-code">127.0.0.1</code>).</li><li>When the server is exposed to an external network (<code class="inline-code">0.0.0.0</code>), the <code class="inline-code">MESA_DATA_WEB_ADMIN_TOKEN</code> environment variable is required.</li></ul>
 <hr class="article-divider">
-<h2 id="hizli-komut-akisi-cli">Hızlı Komut Akışı (CLI)<a class="heading-anchor" href="#hizli-komut-akisi-cli" aria-label="Link to section: Hızlı Komut Akışı (CLI)" title="Link to this section">#</a></h2>
-<h3 id="1-kurulum-ve-baslatma">1. Kurulum ve Başlatma<a class="heading-anchor" href="#1-kurulum-ve-baslatma" aria-label="Link to section: 1. Kurulum ve Başlatma" title="Link to this section">#</a></h3>
+<h2 id="quick-command-flow-cli">Quick command flow (CLI)<a class="heading-anchor" href="#quick-command-flow-cli" aria-label="Link to section: Quick command flow (CLI)" title="Link to this section">#</a></h2>
+<h3 id="1-install-and-initialize">1. Install and initialize<a class="heading-anchor" href="#1-install-and-initialize" aria-label="Link to section: 1. Install and initialize" title="Link to this section">#</a></h3>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre tabindex="0" id="code-block-5" class="language-bash"><code># Bağımlılıkları yükleyin
 uv sync --frozen
 
 # Veri dizinlerini ve veritabanı şemasını hazırlayın
 uv run mesa-data init
 uv run mesa-data migrate</code></pre></div>
-<h3 id="2-ornek-kullanim-akisi">2. Örnek Kullanım Akışı<a class="heading-anchor" href="#2-ornek-kullanim-akisi" aria-label="Link to section: 2. Örnek Kullanım Akışı" title="Link to this section">#</a></h3>
+<h3 id="2-example-usage-flow">2. Example usage flow<a class="heading-anchor" href="#2-example-usage-flow" aria-label="Link to section: 2. Example usage flow" title="Link to this section">#</a></h3>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-6">Copy</button></div><pre tabindex="0" id="code-block-6" class="language-bash"><code># A. Veri Ekleme (Manuel veya URL)
 uv run mesa-data collect url \
   --source mevzuat \
@@ -180,7 +181,8 @@ uv run mesa-data release import --release-id release-v1.0
 
 # F. İzlenebilirlik Sorgusu
 uv run mesa-data provenance &lt;RECORD_ID&gt;</code></pre></div>
-<h3 id="3-teshis-ve-saglik-kontrolu">3. Teşhis ve Sağlık Kontrolü<a class="heading-anchor" href="#3-teshis-ve-saglik-kontrolu" aria-label="Link to section: 3. Teşhis ve Sağlık Kontrolü" title="Link to this section">#</a></h3>
+<p>Code comments are kept as in the upstream file. In order: install dependencies; prepare data directories and the database schema; A. add data (manual or URL); B. pipeline orchestration; C. review and approval; D. build and publish a release; E. local staging import for development only (not real MESA); F. traceability query.</p>
+<h3 id="3-diagnostics-and-health-checks">3. Diagnostics and health checks<a class="heading-anchor" href="#3-diagnostics-and-health-checks" aria-label="Link to section: 3. Diagnostics and health checks" title="Link to this section">#</a></h3>
 <div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Copy</button></div><pre tabindex="0" id="code-block-7" class="language-bash"><code># Sistem teşhisi ve bütünlük denetimi
 uv run mesa-data doctor
 
@@ -189,13 +191,14 @@ uv run mesa-data audit
 
 # Veritabanı yedeği alma
 uv run mesa-data backup</code></pre></div>
+<p>The three commands run system diagnostics and an integrity check, verify raw artifact SHA-256 integrity, and take a database backup.</p>
 <hr class="article-divider">
-<h2 id="dokumantasyon">Dokümantasyon<a class="heading-anchor" href="#dokumantasyon" aria-label="Link to section: Dokümantasyon" title="Link to this section">#</a></h2>
-<ul><li>🚀 **<a href="../../docs/data/quickstart/">Hızlı Başlangıç Rehberi</a>** — 5 dakikada kurulum ve ilk veri aktarımı.</li><li>📖 **<a href="../../docs/data/user-guide/">Kullanım Kılavuzu</a>** — Detaylı operasyon rehberi, Harvest altsistemi, arayüz tanıtımı ve CLI referansı.</li><li>📐 **<a href="../../docs/data/import-contract/">MESA Import Sözleşmesi</a>** — Staging DB aktarım kuralları ve veri modeli sözleşmesi.</li><li>🔒 **<a href="../../docs/data/mvp-closure/">MVP Kapanış Raporu</a>** — MVP freeze doğrulamaları ve TLS güvenlik mimarisi.</li></ul>
+<h2 id="documentation">Documentation<a class="heading-anchor" href="#documentation" aria-label="Link to section: Documentation" title="Link to this section">#</a></h2>
+<ul><li>🚀 **<a href="../../docs/data/quickstart/">Quickstart guide</a>** — Setup and first data import in 5 minutes (Turkish).</li><li>📖 **<a href="../../docs/data/user-guide/">User guide</a>** — Detailed operations guide, the harvest subsystem, the interface and the CLI reference (Turkish).</li><li>📐 **<a href="../../docs/data/import-contract/">MESA import contract</a>** — Staging DB transfer rules and the data model contract.</li><li>🔒 **<a href="../../docs/data/mvp-closure/">MVP closure report</a>** — MVP freeze verification and the TLS security architecture.</li></ul>
 <hr class="article-divider">
-<h2 id="sinirlar-ve-v2-kapsami">Sınırlar ve V2 Kapsamı<a class="heading-anchor" href="#sinirlar-ve-v2-kapsami" aria-label="Link to section: Sınırlar ve V2 Kapsamı" title="Link to this section">#</a></h2>
-<p>Aşağıdaki özellikler MVP kapsamı dışında bırakılmış ve V2 sürümüne ertelenmiştir:</p>
-<ul><li>Kayıt revizyon editörü (record revision UI)</li><li>Web üzerinden kaynak yapılandırma editörü (<code class="inline-code">config/sources.yaml</code> üzerinden yönetilir)</li><li>Otomatik sorun kapatma/waive mekanizması (sorunlar salt okunurdur)</li><li>Çok kullanıcılı OAuth/OIDC yetkilendirmesi</li></ul></div></details>
+<h2 id="limits-and-v2-scope">Limits and V2 scope<a class="heading-anchor" href="#limits-and-v2-scope" aria-label="Link to section: Limits and V2 scope" title="Link to this section">#</a></h2>
+<p>The following features were left out of the MVP and deferred to V2:</p>
+<ul><li>Record revision editor (record revision UI)</li><li>Web-based source configuration editor (managed through <code class="inline-code">config/sources.yaml</code>)</li><li>Automatic issue closing/waive mechanism (issues are read-only)</li><li>Multi-user OAuth/OIDC authorization</li></ul></div></details>
         </div>
         <div class="docs-page-nav"><div class="docs-page-empty"></div><a class="docs-page-next" href="../../docs/data/quickstart/"><span class="nav-dir">Next →</span><span class="nav-title">Quickstart (TR)</span></a></div>
       </article>

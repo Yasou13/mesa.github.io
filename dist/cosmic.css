@@ -1,29 +1,26 @@
-/* Shared hybrid environment: original static texture + composited illumination.
-   CSS-relative URLs also work below a GitHub project path and in admin shells. */
+/* Shared page environment: a quiet grid and one soft light on content pages,
+   the original nebula on the home page only (review G1, 2026-10-24). */
 body { isolation: isolate; }
-.cosmic { --cosmic-strength: .72; --cosmic-texture: url("media/cosmic/cosmic-flow.webp"); position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: #050508; }
-.cosmic__field { position: absolute; inset: 0; background: var(--cosmic-texture) center center / cover no-repeat; opacity: var(--cosmic-strength); mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent); }
-.cosmic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #050508bf 0%, #05050873 45%, #0505084d 100%); }
-.cosmic--home { --cosmic-texture: url("media/cosmic/hero.webp"); --cosmic-strength: .9; }
-.cosmic--data .cosmic__field { transform: scaleX(-1); }
-.cosmic--ecosystem { --cosmic-texture: url("media/cosmic/cosmic-structure.webp"); --cosmic-strength: .56; }
-.cosmic--law, .cosmic--quiet, .cosmic--reading, .cosmic--admin { --cosmic-texture: url("media/cosmic/cosmic-horizon.webp"); }
-.cosmic--law, .cosmic--admin { --cosmic-strength: .64; }
-.cosmic--quiet { --cosmic-strength: .48; }
-.cosmic--reading { --cosmic-strength: .36; }
-/* A static filtered texture is rasterized once. Only its opacity changes;
-   the localized mask avoids moving the camera or repainting SVG turbulence. */
-.cosmic__illumination { position: absolute; inset: 0; background: inherit; filter: brightness(1.8) saturate(1.12); mask-image: radial-gradient(ellipse at 73% 48%, #000 4%, transparent 60%); opacity: .35; }
+.cosmic { --cosmic-glow: rgba(139, 156, 203, .13); --cosmic-glow-at: 72% -12%; --cosmic-grid: rgba(232, 234, 240, .032); position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: radial-gradient(ellipse 75% 55% at var(--cosmic-glow-at), var(--cosmic-glow), transparent 62%), #050508; }
+.cosmic__field { position: absolute; inset: 0; background-image: linear-gradient(var(--cosmic-grid) 1px, transparent 1px), linear-gradient(90deg, var(--cosmic-grid) 1px, transparent 1px); background-size: 64px 64px; background-position: center top; mask-image: linear-gradient(180deg, #000, transparent 75%); }
+.cosmic__illumination { display: none; }
+.cosmic--home { --cosmic-glow: rgba(139, 156, 203, .18); }
+.cosmic--law { --cosmic-glow: rgba(213, 174, 130, .12); }
+.cosmic--data { --cosmic-glow: rgba(119, 185, 142, .10); }
+.cosmic--reading, .cosmic--quiet { --cosmic-glow: rgba(139, 156, 203, .08); --cosmic-grid: rgba(232, 234, 240, .022); }
+.cosmic--admin { --cosmic-glow: rgba(139, 156, 203, .08); }
+@media (max-width: 800px) { .cosmic { --cosmic-glow-at: 80% -8%; } .cosmic__field { background-size: 48px 48px; } }
+/* Home page only: the original nebula, behind a left-side shade so the hero copy stays readable.
+   Other pages keep the plain grid (review G1). */
+.cosmic--home .cosmic__field { background: url("media/cosmic/hero.webp") center / cover no-repeat; opacity: .82; mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent); }
+.cosmic--home::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #050508cc 0%, #05050880 45%, #05050855 100%); }
+.cosmic--home .cosmic__illumination { display: block; position: absolute; inset: 0; background: url("media/cosmic/hero.webp") center / cover no-repeat; filter: brightness(1.8) saturate(1.12); mask-image: radial-gradient(ellipse at 73% 48%, #000 4%, transparent 60%); opacity: .3; }
 @media (prefers-reduced-motion: no-preference) {
-  html[data-cosmic-motion="on"] .cosmic__illumination { animation: cosmic-illumination 14s ease-in-out infinite alternate; }
-  html[data-cosmic-motion="off"] .cosmic__illumination { animation: cosmic-illumination 14s ease-in-out infinite alternate; animation-play-state: paused; }
+  html[data-cosmic-motion="on"] .cosmic--home .cosmic__illumination { animation: cosmic-illumination 14s ease-in-out infinite alternate; }
 }
-@keyframes cosmic-illumination { from { opacity: .08; } to { opacity: .78; } }
+@keyframes cosmic-illumination { from { opacity: .08; } to { opacity: .6; } }
 @media (max-width: 800px) {
-  /* A tall diagonal filament, composed independently of desktop cropping. */
-  .cosmic { --cosmic-texture: url("media/cosmic/cosmic-flow.webp"); }
-  .cosmic__field, .cosmic--data .cosmic__field { inset: auto; width: clamp(780px, 115vh, 1100px); aspect-ratio: 1376 / 768; left: 72%; top: 53%; transform: translate(-50%, -50%) rotate(-58deg); background-size: 100% 100%; opacity: calc(var(--cosmic-strength) * .82); mask-image: radial-gradient(ellipse, #000 25%, transparent 70%); mask-composite: add; }
-  .cosmic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #050508dc, #050508b3 65%, #050508ab); }
-  .cosmic__illumination { mask-image: radial-gradient(ellipse at 66% 40%, #000, transparent 64%); }
+  .cosmic--home .cosmic__field, .cosmic--home .cosmic__illumination { background-image: url("media/cosmic/cosmic-flow.webp"); background-position: 70% center; opacity: .6; }
+  .cosmic--home::after { background: linear-gradient(90deg, #050508dc, #050508b3 65%, #050508ab); }
 }
 @media print { .cosmic { display: none; } }

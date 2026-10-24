@@ -1,3 +1,17 @@
+## Desteklenen sağlayıcılar
+
+| Görev | Sağlayıcı değeri | Örnek model | Boyut | Kurulum eki |
+| --- | --- | --- | --- | --- |
+| Embedding · yerel (varsayılan) | sentence-transformers | Magibu, normalize | 768 | `ml` |
+| Embedding · harici | `openai_compatible` | `text-embedding-3-small` | 1536 | `adapters` |
+| Embedding · Nemotron-3 profili | `openai_compatible` | Nemotron-3, `nemotron-qpass-v1` (sorgu/pasaj) | 2048 | `adapters` |
+| Çıkarım / doğrulama LLM | `openai_compatible` | uç noktanızın sunduğu bir sohbet modeli, örn. `gpt-4o-mini` | — | `adapters` |
+| Çıkarım / doğrulama LLM | `claude` | bir Claude modeli | — | sağlayıcı SDK eki |
+| Çıkarım / doğrulama LLM | `ollama` | çalışan Ollama’da önceden indirilmiş model | — | sağlayıcı SDK eki |
+| Yalnızca test | `mock` | bilgi döndürmez | — | — |
+
+Çıkarım ve embedding ayrı yapılandırılır: çıkarım için `claude` veya `ollama` seçmek embedding’i kurmaz. `auto` gerektiğinde `mock`’a düşebilir; sağlayıcıyı açıkça belirtin. Sağlayıcı, model, boyut veya normalizasyon değişince yeni bir embedding alanı başlar; yeniden indeksleme veya yeni depolama kökü gerekir.
+
 ## Belge ve sorgu temsilleri uyumlu olmalı
 
 Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model kimliğini ve boyutları kullanmalıdır. Belgelenen yerel varsayılan Magibu, 768 boyutludur; dış sağlayıcıdaki text-embedding-3-small ise 1536 boyut kullanır. Ayarı değiştirmek eski verileri dönüştürmez. Model değiştirirken belgelenen kimlik kurallarına göre arama görünümünü ve indeksi yeniden oluşturun.

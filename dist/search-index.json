@@ -2710,6 +2710,72 @@
     "language": "tr"
   },
   {
+    "id": "doc-core-endpoints-en",
+    "url": "docs/core/endpoints/",
+    "title": "HTTP endpoint reference",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "HTTP endpoint reference · MESA Core guide (v0.8.1)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.1",
+      "API reference",
+      "V4 capability",
+      "V4 administrative rebuild operations",
+      "V4 catalog",
+      "V4 session ve memory",
+      "V4 Python SDK",
+      "V4 authorization",
+      "V3 compatibility API",
+      "Health ve metrics",
+      "İstek/SDK ayrıntıları",
+      "Actionable errors",
+      "CLI commands",
+      "Admin bootstrap",
+      "Recovery, rebuild and MCP",
+      "MCP control API",
+      "Yetki ve erişim",
+      "Mevcut route'lar",
+      "Gateway ve onay yaşam döngüsü",
+      "Kanıt sınırı"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "doc-core-endpoints-tr",
+    "url": "tr/docs/core/endpoints/",
+    "title": "HTTP uç nokta referansı",
+    "section": "Docs · MESA Core",
+    "category": "MESA Core",
+    "summary": "HTTP uç nokta referansı · MESA Core rehberi (v0.8.1)",
+    "keywords": [
+      "core",
+      "docs",
+      "v0.8.1",
+      "API reference",
+      "V4 capability",
+      "V4 administrative rebuild operations",
+      "V4 catalog",
+      "V4 session ve memory",
+      "V4 Python SDK",
+      "V4 authorization",
+      "V3 compatibility API",
+      "Health ve metrics",
+      "İstek/SDK ayrıntıları",
+      "Actionable errors",
+      "CLI commands",
+      "Admin bootstrap",
+      "Recovery, rebuild and MCP",
+      "MCP control API",
+      "Yetki ve erişim",
+      "Mevcut route'lar",
+      "Gateway ve onay yaşam döngüsü",
+      "Kanıt sınırı"
+    ],
+    "language": "tr"
+  },
+  {
     "id": "doc-core-examples-en",
     "url": "docs/core/examples/",
     "title": "Examples & SDK workflow",
@@ -4670,6 +4736,34 @@
     "summary": "MESA ile ne geliştirmek istediğinizi anlatın. Erken erişim talebi bırakın, entegrasyonu görüşelim veya projeye katkıda bulunun.",
     "keywords": [
       "earlyAccess",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
+    "id": "core-privacy-en",
+    "url": "privacy/",
+    "title": "Privacy Notice — MESA",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "What the MESA website collects, why, how long it is kept, and how to ask for removal under KVKK and GDPR.",
+    "keywords": [
+      "privacy",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-privacy-tr",
+    "url": "tr/privacy/",
+    "title": "Gizlilik Bildirimi — MESA",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA sitesinin hangi bilgileri neden topladığı, ne kadar sakladığı ve KVKK ile GDPR kapsamında silinmesini nasıl isteyebileceğiniz.",
+    "keywords": [
+      "privacy",
       "mesa",
       "hafıza"
     ],

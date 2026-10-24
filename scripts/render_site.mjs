@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { getAllDocRoutes, renderDocPage, renderDocsHub, renderMcpGuide } from './render_docs.mjs';
 import { renderAdminPage } from './render_admin.mjs';
 import { earlyAccessPage } from './render_early_access.mjs';
+import { privacyPage } from './render_privacy.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
 import { writeSearchIndex } from './generate_search_index.mjs';
@@ -20,6 +21,7 @@ const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data
 const trContent = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'tr.json'), 'utf8'));
 const courseData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/learn-curriculum.json'), 'utf8'));
 const hubData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'hub.json'), 'utf8'));
+const glossaryTerms = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'glossary-terms.json'), 'utf8')).terms;
 const mediaData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'media-scenes.json'), 'utf8'));
 const project = siteData.project;
 const repos = siteData.repositories;
@@ -174,25 +176,27 @@ function header(active = '') {
     </header>`;
 }
 
+// Chrome strings are shared by product, hub and docs pages, so they register in both maps.
+const chrome = (en, tr) => { trContent.strings[en] = tr; productTranslations[en] = tr; return en; };
+
 function footer(compact = false) {
   return `${compact ? '' : `<section class="closing-cta" aria-labelledby="closing-title">
       <div>
-        <p class="eyebrow">OPEN SOURCE · MIT</p>
-        <h2 id="closing-title">Inspect the source.<br><em>Test the boundaries.</em></h2>
-        <p>MESA v0.8.1 is a published source release. Start with the model-disabled quickstart and review the production qualification limits before evaluating the full V4 runtime.</p>
-        <div class="actions">${cta('Read the quickstart', route('docs/core/getting-started/'))}${cta('View source', repos.core, 'secondary', true)}</div>
+        <p class="eyebrow">${chrome('OPEN SOURCE · MIT', 'AÇIK KAYNAK · MIT')}</p>
+        <h2 id="closing-title">${chrome('Read the source.', 'Kaynağı okuyun.')}<br><em>${chrome('Run it locally.', 'Yerelde çalıştırın.')}</em></h2>
+        <p>${chrome('Install the release, start the server and follow one note from insert to a source-linked answer.', 'Sürümü kurun, sunucuyu başlatın ve bir notu eklemeden kaynaklı yanıta kadar izleyin.')}</p>
+        <div class="actions">${cta(chrome('Read the quickstart', 'Hızlı başlangıcı okuyun'), route('docs/core/getting-started/'))}${cta(chrome('View source', 'Kaynak kodu görün'), repos.core, 'secondary', true)}</div>
       </div>
     </section>`}
     <footer class="site-footer">
-      <div class="footer-brand">${logo()}<p>Source-linked memory for AI.</p><p class="footer-note">Package v${project.version} · Runtime architecture ${project.runtime} · <a href="${route('status/')}">View status →</a></p></div>
+      <div class="footer-brand">${logo()}<p>${chrome('Source-linked memory for AI.', 'Kaynağını koruyan yapay zekâ hafızası.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p></div>
       <div class="footer-groups">
-        <div><h3>Explore</h3><a href="${route('how-it-works/')}">How it works</a><a href="${route('use-cases/')}">Use cases</a><a href="${route('evaluation/')}">Evaluation & trust</a><a href="${route('status/')}">Project status</a></div>
-        <div><h3>Ecosystem</h3><a href="${route('mesa/')}">Core memory engine</a><a href="${route('data/')}">MESA Data</a><a href="${route('qa/')}">MESA QA</a><a href="${route('certification/')}">E2E Certification</a><a href="${route('law/')}">MESA Law</a></div>
-        <div><h3>Resources</h3><a href="${route('learn/')}">Learn</a><a href="${route('research/')}">Research</a><a href="${route('guides/')}">Guides</a><a href="${route('glossary/')}">Glossary</a><a href="${route('methodology/')}">Methodology</a></div>
-        <div><h3>Documentation</h3><a href="${route('docs/core/getting-started/')}">Quickstart</a><a href="${route('docs/core/architecture/')}">Core architecture docs</a><a href="${route('retrieval/')}">Retrieval</a><a href="${route('docs/core/security/')}">Security</a><a href="${route('docs/mcp/')}">MCP integration</a></div>
-        <div><h3>Project</h3><a href="${route('early-access/')}">Early access</a><a href="${route('about/')}">About</a><a href="${route('faq/')}">FAQ</a>${external(repos.issues, 'Open an issue')}${external(repos.profile, 'Maintainer profile')}${external(`${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`, 'MIT License')}</div>
+        <div><h3>${chrome('Product', 'Ürün')}</h3><a href="${route('how-it-works/')}">${chrome('How it works', 'Nasıl çalışır')}</a><a href="${route('architecture/')}">${chrome('Architecture', 'Mimari')}</a><a href="${route('ecosystem/')}">${chrome('Ecosystem', 'Ekosistem')}</a><a href="${route('use-cases/')}">${chrome('Use cases', 'Kullanım alanları')}</a><a href="${route('law/')}">MESA Law</a></div>
+        <div><h3>${chrome('Developers', 'Geliştiriciler')}</h3><a href="${route('docs/core/getting-started/')}">${chrome('Quickstart', 'Hızlı başlangıç')}</a><a href="${route('docs/core/api-reference/')}">${chrome('API reference', 'API referansı')}</a><a href="${route('docs/core/examples/')}">Python SDK</a><a href="${route('docs/mcp/')}">MCP</a><a href="${route('docs/core/security/')}">${chrome('Security', 'Güvenlik')}</a></div>
+        <div><h3>${chrome('Learn', 'Öğrenin')}</h3><a href="${route('learn/')}">${chrome('Lessons', 'Dersler')}</a><a href="${route('glossary/')}">${chrome('Glossary', 'Sözlük')}</a><a href="${route('guides/')}">${chrome('Guides', 'Rehberler')}</a><a href="${route('faq/')}">${chrome('FAQ', 'SSS')}</a></div>
+        <div><h3>${chrome('Project', 'Proje')}</h3><a href="${route('about/')}">${chrome('About', 'Hakkında')}</a><a href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a><a href="${route('privacy/')}">${chrome('Privacy', 'Gizlilik')}</a>${external(repos.issues, chrome('Open an issue', 'Issue açın'))}${external(`${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`, chrome('MIT License', 'MIT Lisansı'))}</div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Documentation checked against the published source</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.8.1 · d394784', 'Belgeler Core v0.8.1 · d394784 ile uyumlu')}</span></div>
     </footer>`.trim();
 }
 
@@ -215,7 +219,7 @@ function architectureFlow() {
     ['06', 'Retrieval', 'Vector + BM25 + assertion + graph-path RRF'],
     ['07', 'Clients', 'REST, sync/async SDK, MCP']
   ];
-  return `<div class="architecture-flow">${items.map(([n, title, text]) => `<div class="flow-step"><span>${n}</span><strong>${title}</strong><small>${text}</small></div>`).join('<b aria-hidden="true">→</b>')}</div>`;
+  return `<div class="architecture-flow" tabindex="0" role="region" aria-label="${chrome('Memory lifecycle steps', 'Hafıza yaşam döngüsü adımları')}">${items.map(([n, title, text]) => `<div class="flow-step"><span>${n}</span><strong>${title}</strong><small>${text}</small></div>`).join('<b aria-hidden="true">→</b>')}</div>`;
 }
 
 function publicFlow(compact = false) {
@@ -927,9 +931,9 @@ function aboutPage() {
 function faqPage() {
   const questions = [
     ['What is MESA?', 'MESA is open-source memory infrastructure for AI systems. Its released V4 source combines durable mutation state, structured assertions, scoped retrieval, and source provenance across versioned HTTP, Python SDK, and MCP surfaces.'],
-    ['Is MESA a vector database?', 'No. LanceDB is one internal projection. SQLite is the canonical decision source, Kùzu is a Graph V2 projection, and retrieval can combine vector, BM25, assertion, and bounded graph-path origins.'],
+    ['Is MESA a vector database?', 'No. A vector database is one part inside it. MESA keeps the original record in SQLite, builds a vector index (LanceDB) and a relationship graph (Kùzu) from it, and searches all of them together.'],
     ['Is MESA a RAG framework?', 'Not primarily. It can supply grounded context to an application, but its public contract focuses on durable memory, catalog scope, lifecycle state, evidence, and retrieval rather than owning an entire generation stack.'],
-    ['How is MESA different from plain vector search?', 'It keeps canonical source and assertion identity, applies authorization before ranking, combines several retrieval origins, and exposes mutation, projection, rollback, and provenance state.'],
+    ['How is MESA different from plain vector search?', 'Every result comes back with the document and passage it came from. Access rules are applied before ranking, four search methods are combined instead of one, and every change can be tracked and undone.'],
     ['Why SQLite, LanceDB, and Kùzu?', 'SQLite owns catalog, authorization, ledgers, ownership, assertions, and outbox state. LanceDB stores the vector projection. Kùzu stores the Graph V2 projection and supports bounded graph-path retrieval reconciled to SQLite assertion IDs.'],
     ['What does evidence-aware memory mean?', 'Retrieved knowledge can remain connected to document, revision, chunk, evidence span, assertion, pipeline, and embedding identity instead of returning only detached text.'],
     ['What is provenance?', 'Provenance is the trace of where a memory came from and how it was processed: source reference, catalog identity, evidence span, pipeline and model versions, and contributing retrieval origins when available.'],
@@ -939,7 +943,7 @@ function faqPage() {
     ['Does MESA support MCP?', 'Yes. The repository documents a legacy direct stdio server for the V3-compatible path and a newer V4 gateway/bridge path with binding-scoped operations and approvals.'],
     ['Can MESA run locally?', 'Yes. The repository documents locked local installation and Docker profiles. The simple safe-core profile disables model and external-provider access; the V4 full-cognitive profile requires explicit configuration and one storage owner.'],
     ['Is MESA production-ready?', `No. Core is a ${project.maturity.toLowerCase()} and production remains ${project.production}. Required production-like migration, restore, crash, saturation, concurrency, benchmark, and soak gates are not all complete.`],
-    ['What is the current certification status?', 'Blocked. The current harness implements official execution, scoring and metric producers, but B4/B6/B7/B8 require unavailable external delivery/restart evidence and a fresh official run.'],
+    ['What is the current certification status?', 'Not passed yet. The test harness is built, but some required evidence from external systems is still missing, so no fresh official run has passed. Details are on the status page.'],
     ['Where should a developer start?', 'Read the quickstart, run the locked environment, choose the V3-compatible safe core or the explicit V4 topology deliberately, then inspect the API, SDK, MCP, architecture, and status documents before integration.']
   ];
 
@@ -1232,10 +1236,16 @@ function renderHubIndex(section) {
         </ul>
         <p>${hubText('These are supported by the content model; unpublished pages are not exposed as routes.', 'Bu konular için ayrıntılı rehberler hazırlanabilir. Henüz yayımlanmamış sayfalar listelenmez.')}</p>
       </div>` : '';
-    body = `
+    const termList = section.id === 'glossary' ? `
+      <section class="section glossary-terms" aria-labelledby="glossary-terms-title">
+        <h2 id="glossary-terms-title">${hubText('Terms used on this site', 'Sitede kullanılan terimler')}</h2>
+        <nav class="glossary-index" aria-label="${hubText('Jump to a term', 'Terime git')}">${glossaryTerms.map((term) => `<a href="#term-${term.id}">${escapeHtml(term[currentLanguage][0])}</a>`).join('')}</nav>
+        <dl>${glossaryTerms.map((term) => `<div id="term-${term.id}"><dt>${escapeHtml(term[currentLanguage][0])}</dt><dd>${escapeHtml(term[currentLanguage][1])}</dd></div>`).join('')}</dl>
+      </section>` : '';
+    body = `${termList}
       <section class="section publication-index">
         <div>
-          <h2 class="sr-only">${hubText('Published resources', 'Yayımlanmış kaynaklar')}</h2>
+          ${section.id === 'glossary' ? `<h2>${hubText('In-depth entries', 'Ayrıntılı maddeler')}</h2>` : `<h2 class="sr-only">${hubText('Published resources', 'Yayımlanmış kaynaklar')}</h2>`}
           <div class="publication-grid">
             ${entries.map(hubCard).join('') || `<p class="empty-state">${hubText('No reviewed publication yet.', 'Henüz incelenmiş yayın yok.')}</p>`}
           </div>
@@ -1439,6 +1449,7 @@ function notFound() {
 const renderers = {
   home,
   earlyAccess: () => earlyAccessPage(productHelpers()),
+  privacy: () => privacyPage(productHelpers()),
   architecture,
   retrieval,
   mesa,
@@ -1466,6 +1477,23 @@ function relativeBase(routePath) {
   const depth = routePath.split('/').filter(Boolean).length;
   return depth ? '../'.repeat(depth) : './';
 }
+
+// GitHub Pages cannot send response headers, so the policy travels in a meta tag.
+// frame-ancestors, HSTS and X-Frame-Options still need the CDN (docs/security/HTTP_HEADERS.md).
+const inlineBootHash = `'sha256-${crypto.createHash('sha256').update("document.documentElement.classList.add('js')").digest('base64')}'`;
+const supabaseOrigin = publicAdminConfig?.url ? ` ${new URL(publicAdminConfig.url).origin}` : '';
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' ${inlineBootHash} https://static.cloudflareinsights.com`,
+  "style-src 'self'",
+  "font-src 'self'",
+  "img-src 'self' data: https:",
+  `connect-src 'self' https://cloudflareinsights.com${supabaseOrigin}`,
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+  'upgrade-insecure-requests'
+].join('; ');
 
 function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [] }) {
   const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}`;
@@ -1508,6 +1536,8 @@ function documentShell({ title, description, canonical, content, assetBase, lang
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="${contentSecurityPolicy}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 ${noIndex ? '  <meta name="robots" content="noindex">\n' : ''}  <link rel="canonical" href="${canonical}">
 ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.en}">
   <link rel="alternate" hreflang="tr" href="${alternateUrls.tr}">
@@ -1822,7 +1852,8 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   path.join(outputDirectory, 'robots.txt'),
-  `User-agent: *\nDisallow: ${basePath}admin/\nDisallow: ${basePath}tr/admin/\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
+  // Admin pages carry noindex; listing them here would only advertise the path.
+  `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}sitemap.xml\n`
 );
 
 // Admin routes remain reachable but cannot impersonate an authenticated CMS.
