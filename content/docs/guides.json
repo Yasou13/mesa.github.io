@@ -1,5 +1,5 @@
 {
-  "baseline": "d3947846615e63b48dc7a5df9f1051b29f734263",
+  "baseline": "7062fafe2cff8442eb84d1da60df164099526c8e",
   "guides": [
     {
       "id": "overview",
@@ -27,7 +27,10 @@
         "tr": "Yerel hızlı başlangıç"
       },
       "appendixExclude": [
-        "Installation and deployment"
+        "Advanced Operator & Production Profiles"
+      ],
+      "legacyAnchors": [
+        "provision-before-startup"
       ]
     },
     {
@@ -37,7 +40,6 @@
       "sources": [
         "docs/getting-started.md",
         "pyproject.toml",
-        "docker-compose.yml",
         "docker-compose.v4.yml"
       ],
       "title": {
@@ -45,7 +47,9 @@
         "tr": "Kurulum ve dağıtım"
       },
       "appendixSections": [
-        "Installation and deployment"
+        "Installation",
+        "Quickstart",
+        "Advanced Operator & Production Profiles"
       ],
       "diagrams": [
         "deployment"
@@ -220,8 +224,8 @@
         "tr": "HTTP API ve Python SDK"
       },
       "appendixExclude": [
-        "V4 Python SDK",
-        "CLI commands"
+        "CLI commands",
+        "MCP control API"
       ]
     },
     {
@@ -278,8 +282,8 @@
         "docs/RUNBOOK.md"
       ],
       "title": {
-        "en": "Upgrade to v0.8.1",
-        "tr": "v0.8.1 yükseltmesi"
+        "en": "Upgrade to v0.9.0",
+        "tr": "v0.9.0 yükseltmesi"
       },
       "appendixSections": [
         "Upgrading to v0.8.0"
@@ -293,8 +297,8 @@
         "CHANGELOG.md"
       ],
       "title": {
-        "en": "v0.8.1 release notes",
-        "tr": "v0.8.1 sürüm notları"
+        "en": "v0.9.0 release notes",
+        "tr": "v0.9.0 sürüm notları"
       }
     },
     {
@@ -413,11 +417,12 @@
         "docs/getting-started.md"
       ],
       "title": {
-        "en": "Retired Colab guide",
-        "tr": "Emekli Colab rehberi"
+        "en": "Google Colab quickstart",
+        "tr": "Google Colab hızlı başlangıç"
       },
-      "hidden": true,
-      "appendixSections": []
+      "appendixSections": [
+        "Quickstart"
+      ]
     },
     {
       "id": "audit",

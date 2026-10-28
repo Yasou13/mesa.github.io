@@ -1,0 +1,3928 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MESA API",
+    "version": "0.9.0"
+  },
+  "paths": {
+    "/v4/catalog/workspaces": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Create Workspace",
+        "operationId": "create_workspace_v4_catalog_workspaces_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4WorkspaceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Create Workspace V4 Catalog Workspaces Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "List Workspaces",
+        "operationId": "list_workspaces_v4_catalog_workspaces_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Tenant Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Workspaces V4 Catalog Workspaces Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/catalog/datasets": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Create Dataset",
+        "operationId": "create_dataset_v4_catalog_datasets_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4DatasetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Create Dataset V4 Catalog Datasets Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "List Datasets",
+        "operationId": "list_datasets_v4_catalog_datasets_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Tenant Id"
+            }
+          },
+          {
+            "name": "workspace_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Datasets V4 Catalog Datasets Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/catalog/documents": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Create Document",
+        "operationId": "create_document_v4_catalog_documents_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4DocumentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Create Document V4 Catalog Documents Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "List Documents",
+        "operationId": "list_documents_v4_catalog_documents_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Tenant Id"
+            }
+          },
+          {
+            "name": "workspace_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Documents V4 Catalog Documents Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/catalog/revisions": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Create Revision",
+        "operationId": "create_revision_v4_catalog_revisions_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4RevisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Create Revision V4 Catalog Revisions Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "List Revisions",
+        "operationId": "list_revisions_v4_catalog_revisions_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Tenant Id"
+            }
+          },
+          {
+            "name": "workspace_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "document_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "title": "Document Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Revisions V4 Catalog Revisions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/catalog/source-chunks": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Create Source Chunk",
+        "operationId": "create_source_chunk_v4_catalog_source_chunks_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4SourceChunkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Create Source Chunk V4 Catalog Source Chunks Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v4/catalog/documents/{document_id}": {
+      "delete": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Purge Document",
+        "operationId": "purge_document_v4_catalog_documents__document_id__delete",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "title": "Document Id"
+            }
+          },
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Tenant Id"
+            }
+          },
+          {
+            "name": "workspace_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Purge Document V4 Catalog Documents  Document Id  Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/sessions/start": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Start Session",
+        "operationId": "start_session_v4_sessions_start_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4SessionStartRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Start Session V4 Sessions Start Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v4/capability": {
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Get Capability",
+        "description": "Return bounded capability truth without implying planned behaviour.",
+        "operationId": "get_capability_v4_capability_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4CapabilityResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v4/operations/rebuild": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Create Rebuild Operation",
+        "operationId": "create_rebuild_operation_v4_operations_rebuild_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4OperationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/operations/{operation_id}": {
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Get Rebuild Operation",
+        "operationId": "get_rebuild_operation_v4_operations__operation_id__get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Operation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4OperationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/operations/{operation_id}/cancel": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Cancel Rebuild Operation",
+        "operationId": "cancel_rebuild_operation_v4_operations__operation_id__cancel_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Operation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4OperationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/operations/{operation_id}/retry": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Retry Rebuild Operation",
+        "operationId": "retry_rebuild_operation_v4_operations__operation_id__retry_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Operation Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4OperationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/rebuild": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Rebuild Index",
+        "operationId": "rebuild_index_v4_rebuild_post",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tenant Id"
+            }
+          },
+          {
+            "name": "workspace_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4OperationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/memory/insert": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Insert Memory",
+        "operationId": "insert_memory_v4_memory_insert_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4MemoryInsertRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Insert Memory V4 Memory Insert Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v4/documents": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Ingest Document",
+        "operationId": "ingest_document_v4_documents_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4DocumentIngestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4DocumentIngestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v4/memory/search": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Search Memory",
+        "operationId": "search_memory_v4_memory_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4SearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4SearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v4/mutations/{mutation_id}": {
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Mutation Status",
+        "operationId": "mutation_status_v4_mutations__mutation_id__get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "mutation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Mutation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4MutationStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/mutations/{mutation_id}/rollback": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Rollback Mutation",
+        "operationId": "rollback_mutation_v4_mutations__mutation_id__rollback_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "mutation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Mutation Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Rollback Mutation V4 Mutations  Mutation Id  Rollback Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/mutations/{mutation_id}/replay": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Replay Mutation",
+        "operationId": "replay_mutation_v4_mutations__mutation_id__replay_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "mutation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Mutation Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Replay Mutation V4 Mutations  Mutation Id  Replay Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/sessions/{session_id}/context": {
+      "get": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "Get Context",
+        "operationId": "get_context_v4_sessions__session_id__context_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "token_budget",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 2048,
+              "title": "Token Budget"
+            }
+          },
+          {
+            "name": "jurisdiction",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Jurisdiction"
+            }
+          },
+          {
+            "name": "valid_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Valid At"
+            }
+          },
+          {
+            "name": "valid_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Valid From"
+            }
+          },
+          {
+            "name": "valid_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Valid To"
+            }
+          },
+          {
+            "name": "retrieval_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "single",
+                "adaptive"
+              ],
+              "type": "string",
+              "default": "single",
+              "title": "Retrieval Mode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Context V4 Sessions  Session Id  Context Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4/sessions/{session_id}/end": {
+      "post": {
+        "tags": [
+          "v4-full-cognitive"
+        ],
+        "summary": "End Session",
+        "operationId": "end_session_v4_sessions__session_id__end_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response End Session V4 Sessions  Session Id  End Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/clients": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Clients",
+        "operationId": "list_clients_control_mcp_clients_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Create Client",
+        "operationId": "create_client_control_mcp_clients_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientCreateReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/control/mcp/clients/{client_id}": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Get Client",
+        "operationId": "get_client_control_mcp_clients__client_id__get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Client Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/connections": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Connections",
+        "operationId": "list_connections_control_mcp_connections_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/settings": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Get Settings",
+        "operationId": "get_settings_control_mcp_settings_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Update Setting",
+        "operationId": "update_setting_control_mcp_settings_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Key"
+            }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "Value"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/policies": {
+      "post": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Create Policy",
+        "operationId": "create_policy_control_mcp_policies_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PolicyCreateReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Policies",
+        "operationId": "list_policies_control_mcp_policies_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "operation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Operation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/clients/{client_id}/enabled": {
+      "put": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Toggle Client Enabled",
+        "operationId": "toggle_client_enabled_control_mcp_clients__client_id__enabled_put",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Client Id"
+            }
+          },
+          {
+            "name": "enabled",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "title": "Enabled"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/clients/{client_id}/bindings": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Bindings",
+        "operationId": "list_bindings_control_mcp_clients__client_id__bindings_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Client Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/managed-clients": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Managed Clients",
+        "description": "Secret-safe Codex state; credentials are summaries only.",
+        "operationId": "list_managed_clients_control_mcp_managed_clients_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/control/mcp/credentials/{credential_id}/revoke": {
+      "post": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Revoke Managed Credential",
+        "operationId": "revoke_managed_credential_control_mcp_credentials__credential_id__revoke_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "credential_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Credential Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/activity": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Activity",
+        "operationId": "list_activity_control_mcp_activity_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "client_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Id"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/activity/{call_id}": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Get Activity Call",
+        "operationId": "get_activity_call_control_mcp_activity__call_id__get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "call_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Call Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/approvals": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Approvals",
+        "operationId": "list_approvals_control_mcp_approvals_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/approvals/pending": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "List Pending Approvals Endpoint",
+        "operationId": "list_pending_approvals_endpoint_control_mcp_approvals_pending_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/approvals/{approval_id}/decide": {
+      "post": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Decide Approval Endpoint",
+        "operationId": "decide_approval_endpoint_control_mcp_approvals__approval_id__decide_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "approval_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Approval Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecideApprovalReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/control/mcp/overview": {
+      "get": {
+        "tags": [
+          "mcp-control"
+        ],
+        "summary": "Get Overview",
+        "operationId": "get_overview_control_mcp_overview_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/health/init": {
+      "get": {
+        "summary": "Health Init",
+        "description": "Health probe for container orchestration readiness.",
+        "operationId": "health_init_health_init_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/metrics": {
+      "get": {
+        "summary": "Metrics",
+        "operationId": "metrics_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClientCreateReq": {
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "title": "Client Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "client_type": {
+            "type": "string",
+            "title": "Client Type"
+          },
+          "principal_id": {
+            "type": "string",
+            "title": "Principal Id"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "client_id",
+          "display_name",
+          "client_type",
+          "principal_id"
+        ],
+        "title": "ClientCreateReq"
+      },
+      "DecideApprovalReq": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "DecideApprovalReq"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PolicyCreateReq": {
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "title": "Rule Id"
+          },
+          "scope_type": {
+            "type": "string",
+            "title": "Scope Type"
+          },
+          "operation": {
+            "type": "string",
+            "title": "Operation"
+          },
+          "effect": {
+            "type": "string",
+            "title": "Effect"
+          },
+          "created_by": {
+            "type": "string",
+            "title": "Created By"
+          },
+          "scope_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scope Id"
+          },
+          "priority": {
+            "type": "integer",
+            "title": "Priority",
+            "default": 100
+          },
+          "conditions": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Conditions",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "rule_id",
+          "scope_type",
+          "operation",
+          "effect",
+          "created_by"
+        ],
+        "title": "PolicyCreateReq"
+      },
+      "V4CapabilityFlags": {
+        "properties": {
+          "canonical_ledger": {
+            "type": "boolean",
+            "title": "Canonical Ledger",
+            "default": true
+          },
+          "projection_outbox": {
+            "type": "boolean",
+            "title": "Projection Outbox",
+            "default": true
+          },
+          "idempotent_ingestion": {
+            "type": "boolean",
+            "title": "Idempotent Ingestion",
+            "default": true
+          },
+          "vector_retrieval": {
+            "type": "boolean",
+            "title": "Vector Retrieval",
+            "default": true
+          },
+          "lexical_retrieval": {
+            "type": "boolean",
+            "title": "Lexical Retrieval",
+            "default": true
+          },
+          "assertion_relational_lane": {
+            "type": "boolean",
+            "title": "Assertion Relational Lane",
+            "default": true
+          },
+          "validity_interval_filtering": {
+            "type": "boolean",
+            "title": "Validity Interval Filtering",
+            "default": true
+          },
+          "graph_projection": {
+            "type": "boolean",
+            "title": "Graph Projection",
+            "default": true
+          },
+          "graph_neighbor_retrieval": {
+            "type": "boolean",
+            "title": "Graph Neighbor Retrieval",
+            "default": false
+          },
+          "associative_ppr": {
+            "type": "boolean",
+            "title": "Associative Ppr",
+            "default": false
+          },
+          "bitemporal_query": {
+            "type": "boolean",
+            "title": "Bitemporal Query",
+            "default": false
+          },
+          "durable_rebuild": {
+            "type": "boolean",
+            "title": "Durable Rebuild",
+            "default": false
+          },
+          "human_review": {
+            "type": "boolean",
+            "title": "Human Review",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "V4CapabilityFlags"
+      },
+      "V4CapabilityLimits": {
+        "properties": {
+          "rebuild_kind": {
+            "type": "string",
+            "title": "Rebuild Kind",
+            "default": "projection"
+          },
+          "rebuild_scope": {
+            "type": "string",
+            "title": "Rebuild Scope",
+            "default": "storage_root"
+          },
+          "requires_offline_runner": {
+            "type": "boolean",
+            "title": "Requires Offline Runner",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "V4CapabilityLimits"
+      },
+      "V4CapabilityResponse": {
+        "properties": {
+          "api_version": {
+            "type": "string",
+            "title": "Api Version",
+            "default": "v4"
+          },
+          "features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Features"
+          },
+          "capabilities": {
+            "$ref": "#/components/schemas/V4CapabilityFlags"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/V4ValidationCapability"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/V4CapabilityLimits"
+          }
+        },
+        "type": "object",
+        "required": [
+          "features",
+          "capabilities"
+        ],
+        "title": "V4CapabilityResponse"
+      },
+      "V4DatasetRequest": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Tenant Id"
+          },
+          "workspace_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Workspace Id"
+          },
+          "dataset_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Dataset Id"
+          },
+          "tenant_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tenant Name"
+          },
+          "workspace_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workspace Name"
+          },
+          "dataset_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "workspace_id",
+          "dataset_id"
+        ],
+        "title": "V4DatasetRequest"
+      },
+      "V4DocumentIngestRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id"
+          },
+          "dataset_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Dataset Id"
+          },
+          "document_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Document Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "source_ref": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Source Ref"
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Content"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "dataset_id",
+          "document_id",
+          "title",
+          "source_ref",
+          "content"
+        ],
+        "title": "V4DocumentIngestRequest"
+      },
+      "V4DocumentIngestResponse": {
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "title": "Document Id"
+          },
+          "revision_id": {
+            "type": "string",
+            "title": "Revision Id"
+          },
+          "revision_number": {
+            "type": "integer",
+            "title": "Revision Number"
+          },
+          "chunk_count": {
+            "type": "integer",
+            "title": "Chunk Count"
+          },
+          "mutation_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Mutation Ids"
+          },
+          "duplicate": {
+            "type": "boolean",
+            "title": "Duplicate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "document_id",
+          "revision_id",
+          "revision_number",
+          "chunk_count",
+          "mutation_ids",
+          "duplicate"
+        ],
+        "title": "V4DocumentIngestResponse"
+      },
+      "V4DocumentRequest": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Tenant Id"
+          },
+          "workspace_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Workspace Id"
+          },
+          "dataset_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Dataset Id"
+          },
+          "document_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Document Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "external_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Ref"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "workspace_id",
+          "dataset_id",
+          "document_id",
+          "title"
+        ],
+        "title": "V4DocumentRequest"
+      },
+      "V4GraphAblation": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "title": "Contract Version"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "enabled",
+              "disabled"
+            ],
+            "title": "Mode"
+          },
+          "pair_identity": {
+            "type": "string",
+            "title": "Pair Identity"
+          },
+          "query_identity": {
+            "type": "string",
+            "title": "Query Identity"
+          },
+          "retrieval_config_identity": {
+            "type": "string",
+            "title": "Retrieval Config Identity"
+          },
+          "scope_identity": {
+            "type": "string",
+            "title": "Scope Identity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "contract_version",
+          "mode",
+          "pair_identity",
+          "query_identity",
+          "retrieval_config_identity",
+          "scope_identity"
+        ],
+        "title": "V4GraphAblation",
+        "description": "Versioned identity for a supported graph ON/OFF matched execution."
+      },
+      "V4LegalIdentityRequest": {
+        "properties": {
+          "law_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Law Id"
+          },
+          "statute_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Statute Code"
+          },
+          "article_id": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^(?:madde[- ]*)?\\d+[A-Za-z\u00c7\u011e\u0130\u00d6\u015e\u00dc\u00e7\u011f\u0131\u00f6\u015f\u00fc]?$",
+            "title": "Article Id"
+          },
+          "version_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Id"
+          },
+          "paragraph_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Paragraph Id"
+          },
+          "clause_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clause Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "law_id",
+          "article_id"
+        ],
+        "title": "V4LegalIdentityRequest",
+        "description": "Typed, validated legal identity supplied by an authorized ingestion writer."
+      },
+      "V4MemoryInsertRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id"
+          },
+          "dataset_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Dataset Id"
+          },
+          "document_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Document Id"
+          },
+          "revision_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Revision Id"
+          },
+          "chunk_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Chunk Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "source_ref": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Source Ref"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 32768,
+            "minLength": 1,
+            "title": "Content"
+          },
+          "evidence_span": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Evidence Span",
+            "default": ""
+          },
+          "revision_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision Number",
+            "default": 1
+          },
+          "chunk_ordinal": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Chunk Ordinal",
+            "default": 0
+          },
+          "finalize_revision": {
+            "type": "boolean",
+            "title": "Finalize Revision",
+            "default": true
+          },
+          "supersedes_revision_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Revision Id"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "legal_identity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/V4LegalIdentityRequest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "dataset_id",
+          "document_id",
+          "revision_id",
+          "chunk_id",
+          "title",
+          "source_ref",
+          "content"
+        ],
+        "title": "V4MemoryInsertRequest"
+      },
+      "V4MutationStatusResponse": {
+        "properties": {
+          "mutation_id": {
+            "type": "string",
+            "title": "Mutation Id"
+          },
+          "candidate_id": {
+            "type": "string",
+            "title": "Candidate Id"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "failure_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Class"
+          },
+          "rejection_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rejection Reason"
+          },
+          "tier3_audit": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tier3 Audit"
+          },
+          "pipeline_run": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pipeline Run"
+          },
+          "artifacts": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Artifacts"
+          },
+          "projections": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Projections"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mutation_id",
+          "candidate_id",
+          "state"
+        ],
+        "title": "V4MutationStatusResponse"
+      },
+      "V4OperationProgress": {
+        "properties": {
+          "completed": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Completed"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "completed",
+          "total"
+        ],
+        "title": "V4OperationProgress"
+      },
+      "V4OperationResponse": {
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "title": "Operation Id"
+          },
+          "operation_kind": {
+            "type": "string",
+            "title": "Operation Kind",
+            "default": "projection_rebuild"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": "storage_root"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Attempt"
+          },
+          "progress": {
+            "$ref": "#/components/schemas/V4OperationProgress"
+          },
+          "error_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Class"
+          },
+          "retry_available": {
+            "type": "boolean",
+            "title": "Retry Available"
+          },
+          "cancel_available": {
+            "type": "boolean",
+            "title": "Cancel Available"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "title": "Updated At"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "operation_id",
+          "state",
+          "attempt",
+          "progress",
+          "retry_available",
+          "cancel_available",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "V4OperationResponse",
+        "description": "Content-free control-plane view of one durable operation."
+      },
+      "V4RevisionRequest": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Tenant Id"
+          },
+          "workspace_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Workspace Id"
+          },
+          "dataset_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Dataset Id"
+          },
+          "document_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Document Id"
+          },
+          "revision_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Revision Id"
+          },
+          "revision_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision Number"
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "title": "Content Sha256"
+          },
+          "supersedes_revision_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Revision Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "workspace_id",
+          "dataset_id",
+          "document_id",
+          "revision_id",
+          "revision_number",
+          "content_sha256"
+        ],
+        "title": "V4RevisionRequest"
+      },
+      "V4ScopeAudit": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "title": "Contract Version"
+          },
+          "enforcement_stage": {
+            "type": "string",
+            "const": "pre_rank",
+            "title": "Enforcement Stage"
+          },
+          "requested_scope": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Requested Scope"
+          },
+          "requested_scope_identity": {
+            "type": "string",
+            "title": "Requested Scope Identity"
+          },
+          "query_identity": {
+            "type": "string",
+            "title": "Query Identity"
+          },
+          "evaluated_candidate_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Evaluated Candidate Count"
+          },
+          "excluded_candidate_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Excluded Candidate Count"
+          },
+          "eligible_candidate_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Eligible Candidate Count"
+          },
+          "exclusion_audit_hash": {
+            "type": "string",
+            "title": "Exclusion Audit Hash"
+          }
+        },
+        "type": "object",
+        "required": [
+          "contract_version",
+          "enforcement_stage",
+          "requested_scope",
+          "requested_scope_identity",
+          "query_identity",
+          "evaluated_candidate_count",
+          "excluded_candidate_count",
+          "eligible_candidate_count",
+          "exclusion_audit_hash"
+        ],
+        "title": "V4ScopeAudit",
+        "description": "Versioned proof that the canonical candidate pool was scoped pre-rank."
+      },
+      "V4SearchRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id"
+          },
+          "dataset_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                "type": "array",
+                "maxItems": 64,
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Ids"
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Query"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 10
+          },
+          "jurisdiction": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Jurisdiction"
+          },
+          "valid_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid At"
+          },
+          "valid_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid From"
+          },
+          "valid_to": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid To"
+          },
+          "graph_mode": {
+            "type": "string",
+            "enum": [
+              "enabled",
+              "disabled"
+            ],
+            "title": "Graph Mode",
+            "description": "Enable or disable only the graph retrieval lane for matched ablation.",
+            "default": "enabled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "query"
+        ],
+        "title": "V4SearchRequest"
+      },
+      "V4SearchResponse": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "dataset_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dataset Ids"
+          },
+          "results": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "degraded_sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Degraded Sources",
+            "default": []
+          },
+          "scope_audit": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/V4ScopeAudit"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "graph_ablation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/V4GraphAblation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "vector_lane": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/V4VectorLaneDiagnostics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "dataset_ids",
+          "results"
+        ],
+        "title": "V4SearchResponse"
+      },
+      "V4SessionStartRequest": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Tenant Id"
+          },
+          "workspace_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Workspace Id"
+          },
+          "dataset_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 64,
+            "minItems": 1,
+            "title": "Dataset Ids"
+          },
+          "agent_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Agent Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "workspace_id",
+          "dataset_ids",
+          "agent_id"
+        ],
+        "title": "V4SessionStartRequest"
+      },
+      "V4SourceChunkRequest": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Tenant Id"
+          },
+          "workspace_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Workspace Id"
+          },
+          "dataset_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Dataset Id"
+          },
+          "document_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Document Id"
+          },
+          "revision_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Revision Id"
+          },
+          "chunk_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Chunk Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 32768,
+            "minLength": 1,
+            "title": "Content"
+          },
+          "source_ref": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Source Ref"
+          },
+          "revision_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision Number",
+            "default": 1
+          },
+          "chunk_ordinal": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Chunk Ordinal",
+            "default": 0
+          },
+          "finalize_revision": {
+            "type": "boolean",
+            "title": "Finalize Revision",
+            "default": true
+          },
+          "external_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Ref"
+          },
+          "supersedes_revision_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Revision Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "workspace_id",
+          "dataset_id",
+          "document_id",
+          "revision_id",
+          "chunk_id",
+          "title",
+          "content",
+          "source_ref"
+        ],
+        "title": "V4SourceChunkRequest"
+      },
+      "V4ValidationCapability": {
+        "properties": {
+          "mode": {
+            "type": "integer",
+            "title": "Mode",
+            "default": 0
+          },
+          "policy": {
+            "type": "string",
+            "title": "Policy",
+            "default": "deterministic_only"
+          },
+          "llm_validation_enabled": {
+            "type": "boolean",
+            "title": "Llm Validation Enabled",
+            "default": false
+          },
+          "validator_count": {
+            "type": "integer",
+            "title": "Validator Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "V4ValidationCapability"
+      },
+      "V4VectorLaneDiagnostics": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "title": "Contract Version"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "representation_version": {
+            "type": "string",
+            "title": "Representation Version"
+          },
+          "embedding_space_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embedding Space Id"
+          },
+          "registry_artifact_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Registry Artifact Count"
+          },
+          "compatible_registry_artifact_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Compatible Registry Artifact Count"
+          },
+          "allowed_vector_id_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Allowed Vector Id Count"
+          },
+          "rejected_artifact_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Rejected Artifact Count"
+          },
+          "rejection_reasons": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Rejection Reasons"
+          },
+          "search_executed": {
+            "type": "boolean",
+            "title": "Search Executed"
+          },
+          "search_result_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Search Result Count"
+          },
+          "candidate_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Candidate Count"
+          },
+          "physical_vector_id_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Physical Vector Id Count"
+          },
+          "missing_vector_id_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Missing Vector Id Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "contract_version",
+          "status",
+          "representation_version",
+          "registry_artifact_count",
+          "compatible_registry_artifact_count",
+          "allowed_vector_id_count",
+          "rejected_artifact_count",
+          "rejection_reasons",
+          "search_executed",
+          "search_result_count",
+          "candidate_count",
+          "physical_vector_id_count",
+          "missing_vector_id_count"
+        ],
+        "title": "V4VectorLaneDiagnostics",
+        "description": "Bounded explanation of vector-lane availability for one search."
+      },
+      "V4WorkspaceRequest": {
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Tenant Id"
+          },
+          "workspace_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Workspace Id"
+          },
+          "tenant_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tenant Name"
+          },
+          "workspace_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workspace Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tenant_id",
+          "workspace_id"
+        ],
+        "title": "V4WorkspaceRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

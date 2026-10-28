@@ -15,7 +15,8 @@ Versioned memory, health and metrics requests require `X-API-Key`. Public `/heal
 | POST / GET | `/v4/catalog/revisions` | Immutable revisions |
 | POST | `/v4/catalog/source-chunks` | Exact source chunks |
 | POST | `/v4/sessions/start` | Freeze authorized dataset scope |
-| POST | `/v4/memory/insert` | Admit a durable mutation (202) |
+| POST | `/v4/memory/insert` | Admit a durable chunk mutation (202) |
+| POST | `/v4/documents` | Ingest a whole document with lossless chunking, duplicate detection and revision tracking (202) |
 | POST | `/v4/memory/search` | Scoped hybrid retrieval |
 | GET | `/v4/mutations/{mutation_id}` | Observe processing state |
 | POST | `/v4/mutations/{mutation_id}/replay` | Authorized retry |
@@ -25,4 +26,8 @@ Versioned memory, health and metrics requests require `X-API-Key`. Public `/heal
 
 ## Response and error contracts
 
-202 means admission. A successful write must reach `COMMITTED`. Search exposes `rrf_score`, `legal_factor`, `raw_score`, `final_score` and contributing origins. Model-disabled canonical writes return `503 canonical_processing_unavailable`; expected provider failures are explicit 503 responses. Administrative rebuild is separate and disabled by default. The pinned appendix contains request schemas, remaining administrative endpoints and authorization details.
+202 means admission. A successful write must reach `COMMITTED`. Search exposes `rrf_score`, `legal_factor`, `raw_score`, `final_score` and contributing origins. Model-disabled combined operation accepts documents and supports BM25 search; disabled VECTOR lanes are SKIPPED. `503 canonical_processing_unavailable` means the combined consumer is unavailable. Search reports missing lanes in `degraded_sources`; expected provider failures are explicit 503 responses. Administrative rebuild is separate and disabled by default. The pinned appendix contains request schemas, remaining administrative endpoints and authorization details.
+
+## Whole-document ingestion
+
+`POST /v4/documents` accepts `session_id`, `dataset_id`, `document_id`, `title`, `source_ref`, `content` and optional `metadata`. The response includes `revision_id`, `revision_number`, `chunk_count`, `mutation_ids` and `duplicate`. Poll every mutation for COMMITTED. Identical ACTIVE content reuses its IDs; changed content creates a revision. Text is limited to 5,000,000 UTF-8 bytes; blank text returns 422 and purged document IDs cannot be reused. `Mesa().add()` uses this endpoint.

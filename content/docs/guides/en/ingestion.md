@@ -9,3 +9,7 @@ A tenant contains workspaces and datasets. A dataset owns documents, immutable r
 ## Revision boundaries and retries
 
 For a multi-chunk revision, use distinct IDs/ordinals and `finalize_revision=false` until the last insert. The final insert freezes membership; activation waits for every required child. Retry with the same body idempotency key and exact payload. Conflicting retries are rejected. Correction creates a new revision; purge and rollback remove source ownership through explicit permissions.
+
+## Whole documents and purge
+
+`POST /v4/documents` handles exact-text chunking, duplicate detection and revision IDs on the server. It returns per-chunk mutation IDs; admission remains distinct from COMMITTED. Models-off operation stores text and supports BM25; optional vector and graph lanes can be SKIPPED and later backfilled. Document purge removes owned source/extracted text while retaining audit identifiers and hashes; shared text stays while another document owns it.

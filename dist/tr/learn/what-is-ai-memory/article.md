@@ -11,7 +11,7 @@ category: "Foundations"
 tags: ["memory", "context window", "session", "kalıcı hafıza", "bağlam", "oturum"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-18"
+updatedAt: "2026-10-28"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -84,5 +84,5 @@ Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka b
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
+3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
 

@@ -17,6 +17,6 @@ test('package versions and source commits are backed by immutable imports', () =
   assert.deepEqual(manifest.repositories.core.pages.map(page=>page.src),sources.core.allowlist.map(page=>page.src));
   for(const [key,repo] of Object.entries(manifest.repositories)) {
     assert.match(repo.commit,/^[a-f0-9]{40}$/);
-    assert.equal(repo.version,key==='core'?'v0.8.1':'v0.1.0');
+    assert.equal(repo.version,key==='core'?'v0.9.0':'v0.1.0');
   }
 });

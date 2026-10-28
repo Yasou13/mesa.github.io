@@ -16,6 +16,7 @@ Sürümlü hafıza, sağlık ve ölçüm isteklerinde `X-API-Key` gerekir. Dış
 | POST | `/v4/catalog/source-chunks` | Tam kaynak parçaları |
 | POST | `/v4/sessions/start` | Oturumun erişebileceği veri kümelerini belirleme |
 | POST | `/v4/memory/insert` | Değişiklik isteğini kalıcı kayda alma (202) |
+| POST | `/v4/documents` | Tam belgeyi kayıpsız parçalama, tekrar tespiti ve sürüm takibiyle alma (202) |
 | POST | `/v4/memory/search` | Erişim izinlerine göre hibrit arama |
 | GET | `/v4/mutations/{mutation_id}` | İşleme durumunu izleme |
 | POST | `/v4/mutations/{mutation_id}/replay` | Yetkili yeniden yürütme |
@@ -25,4 +26,8 @@ Sürümlü hafıza, sağlık ve ölçüm isteklerinde `X-API-Key` gerekir. Dış
 
 ## Yanıtları nasıl yorumlamalı?
 
-HTTP 202 yalnızca isteğin kabul edildiğini bildirir. Başarılı bir yazma `COMMITTED` durumuna ulaşmalıdır. Arama yanıtı; `rrf_score`, `legal_factor`, `raw_score`, `final_score` ve katkı veren kanalları içerir. Model kapalıyken asıl bilgi kaydını yazma `503 canonical_processing_unavailable` döndürür; beklenen sağlayıcı hataları da açık 503 yanıtıyla bildirilir. Yönetim amaçlı yeniden oluşturma ayrı bir işlemdir ve varsayılan olarak kapalıdır. Tam istek şemaları, diğer yönetim işlemleri ve yetkilendirme ayrıntıları aşağıdaki özgün kaynakta bulunur.
+HTTP 202 yalnızca isteğin kabul edildiğini bildirir. Başarılı bir yazma `COMMITTED` durumuna ulaşmalıdır. Arama yanıtı; `rrf_score`, `legal_factor`, `raw_score`, `final_score` ve katkı veren kanalları içerir. Modeller kapalıyken combined çalışma belgeleri kabul eder ve BM25 araması sağlar; VECTOR adımları SKIPPED olur. `503 canonical_processing_unavailable`, combined tüketicinin kullanılamadığını belirtir. Yönetim amaçlı yeniden oluşturma ayrı bir işlemdir ve varsayılan olarak kapalıdır. Tam istek şemaları, diğer yönetim işlemleri ve yetkilendirme ayrıntıları aşağıdaki özgün kaynakta bulunur.
+
+## Tam belge alımı
+
+`POST /v4/documents`; `session_id`, `dataset_id`, `document_id`, `title`, `source_ref`, `content` ve isteğe bağlı `metadata` alır. Yanıt `revision_id`, `revision_number`, `chunk_count`, `mutation_ids` ve `duplicate` içerir. Her mutasyon için COMMITTED bekleyin. Aynı ACTIVE içerik kimliklerini yeniden kullanır; değişen içerik yeni sürüm oluşturur. Sınır 5.000.000 UTF-8 bayttır; boş metin 422 döndürür ve silinmiş belge kimliği yeniden kullanılamaz. `Mesa().add()` bu uç noktayı kullanır.

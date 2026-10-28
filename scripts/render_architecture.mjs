@@ -1,5 +1,5 @@
 import { componentDiagram, writeSequenceDiagram, mutationStateDiagram, readActivityDiagram, catalogClassDiagram, deploymentDiagram } from './render_uml.mjs';
-const source = 'https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/';
+const source = 'https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/';
 
 export function detailedArchitecture({ header, footer, route, cta, t }) {
   const p = (en, tr) => `<p>${t(en, tr)}</p>`;
@@ -26,7 +26,7 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
   return `${header('architecture')}
 <main id="main-content" class="intro-page architecture-page">
   <section class="page-hero compact page-hero--short">
-    ${label('MESA CORE v0.8.1 · INSIDE THE ENGINE', 'MESA CORE v0.8.1 · ÇEKİRDEĞİN İÇİNDE')}
+    ${label('MESA CORE v0.9.0 · INSIDE THE ENGINE', 'MESA CORE v0.9.0 · ÇEKİRDEĞİN İÇİNDE')}
     <h1>${t('How information moves through MESA.', 'Bilgi, Mesa’nın içinde nasıl ilerler?')}</h1>
     ${p('Two paths: turning a source into stored memory, and finding evidence when an application asks a question. Each section below has a UML diagram, the reason behind the design and a link to its decision record.', 'İki yol var: bir kaynağı hafızaya yazmak ve uygulama soru sorduğunda dayanak bilgiyi bulmak. Aşağıdaki her bölümde bir UML şeması, tasarımın gerekçesi ve ilgili karar kaydının bağlantısı yer alır.')}
     <nav class="arch-path-links" aria-label="${t('Diagrams on this page', 'Bu sayfadaki şemalar')}"><a href="#runtime-map">${t('Components', 'Bileşenler')}</a><a href="#writing-memory">${t('Write path', 'Yazma yolu')}</a><a href="#mutation-lifecycle">${t('States', 'Durumlar')}</a><a href="#reading-memory">${t('Read path', 'Okuma yolu')}</a><a href="#data-model">${t('Data model', 'Veri modeli')}</a><a href="#deployment">${t('Deployment', 'Dağıtım')}</a></nav>
@@ -49,9 +49,9 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
     <ol class="arch-write-flow">
       ${step('01', t('Check the session and source', 'Oturumu ve kaynağı kontrol et'), t('The server derives access scope from the authenticated session. The request identifies a dataset, document, revision and exact source chunk.', 'Sunucu erişim kapsamını kimliği doğrulanmış oturumdan alır. İstek; veri kümesini, belgeyi, sürümü ve özgün metin parçasını belirtir.'), 'POST /v4/memory/insert')}
       ${step('02', t('Accept the work durably', 'İşi kalıcı olarak kabul et'), t('A candidate, mutation ledger record and pipeline run are created. HTTP 202 confirms admission; it does not confirm completed processing.', 'Bir aday kayıt, değişiklik günlüğü ve işlem hattı çalışması oluşturulur. HTTP 202, kabulü bildirir; işlemenin tamamlandığını bildirmez.'), 'MemoryCandidate · memory_mutations · pipeline_runs')}
-      ${step('03', t('Extract structured facts', 'Düzenli bilgi kayıtları çıkar'), t('A model extracts zero or more subject–relation–object facts, keeping the link to the supporting text.', 'Bir model sıfır veya daha fazla özne–ilişki–nesne kaydı çıkarır; dayanak metinle bağlantıyı korur.'), 'FactExtractionService → 0..N FactCandidate')}
+      ${step('03', t('Extract structured facts', 'Düzenli bilgi kayıtları çıkar'), t('With models enabled, extraction produces subject–relation–object facts. With models off, source text is retained and searchable through BM25.', 'Modeller açıkken özne–ilişki–nesne kayıtları çıkarılır. Modeller kapalıyken kaynak metni korunur ve BM25 ile aranabilir.'), 'FactExtractionService → 0..N FactCandidate')}
       ${step('04', t('Apply the selected validation', 'Seçilen doğrulamayı uygula'), t('Mode 0 uses deterministic checks; mode 1 adds one model validator; mode 2 requires two distinct provider/model pairs to agree.', 'Mod 0 kurala dayalı kontrolleri kullanır; mod 1 bir model doğrulayıcı ekler; mod 2 farklı iki sağlayıcı/model çiftinin uzlaşmasını ister.'), 'MESA_TIER3_MODE = 0 / 1 / 2')}
-      ${step('05', t('Write the stores in order', 'Depolara sırayla yaz'), t('Canonical facts go to SQLite, then vectors to LanceDB, then relationships to Kùzu. Each stage waits for its predecessor.', 'Asıl bilgi kayıtları SQLite’a, ardından vektörler LanceDB’ye, son olarak ilişkiler Kùzu’ya yazılır. Her adım bir öncekini bekler.'), 'SQL_APPLIED → VECTOR_APPLIED → GRAPH_APPLIED')}
+      ${step('05', t('Write the stores in order', 'Depolara sırayla yaz'), t('Canonical records go to SQLite. Enabled vector and graph lanes then write to LanceDB and Kùzu; disabled lanes end SKIPPED and can be backfilled later.', 'Asıl kayıtlar SQLite’a yazılır. Etkin vektör ve çizge adımları ardından LanceDB ve Kùzu’ya yazar; kapalı adımlar SKIPPED olur ve sonradan tamamlanabilir.'), 'SQL_APPLIED → VECTOR_APPLIED → GRAPH_APPLIED')}
       ${step('06', t('Confirm completion', 'Tamamlanmayı doğrula'), t('The client checks the durable mutation status. COMMITTED is the successful final state.', 'İstemci kalıcı değişiklik kaydının durumunu sorgular. Başarılı son durum COMMITTED’dır.'), 'GET /v4/mutations/{id}')}
     </ol></details>
   </section>
@@ -86,9 +86,9 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
   <section class="section" id="deployment">
     ${label('WHERE DOES IT RUN?', 'NEREDE ÇALIŞIR?')}
     ${h('One process, one folder of data.', 'Tek süreç, tek veri klasörü.')}
-    ${p('All three stores are embedded: they are files under one storage root, opened by one Python process. There is no separate database server to run.', 'Üç depo da gömülüdür: tek bir depolama kökü altındaki dosyalardır ve tek bir Python süreci tarafından açılır. Ayrıca çalıştırılacak bir veritabanı sunucusu yoktur.')}
+    ${p('Stores are embedded under one storage root and owned by one combined process. MESA_GRAPH_ENABLED=false avoids opening Kùzu; models-off operation retains BM25 search. No separate database server is required.', 'Depolar tek depolama kökü altında gömülüdür ve tek combined sürece aittir. MESA_GRAPH_ENABLED=false, Kùzu’nun açılmasını önler; modeller kapalıyken BM25 araması çalışır. Ayrı veritabanı sunucusu gerekmez.')}
     ${deploymentDiagram(t)}
-    <div class="arch-bounds"><h3>${t('Configured bounds', 'Yapılandırılmış sınırlar')}</h3><p class="intro-caption">${t('Limits from the v0.8.1 source, not measured latency or capacity. No benchmark has been published yet.', 'v0.8.1 kaynağındaki sınırlar; ölçülmüş gecikme veya kapasite değildir. Henüz yayımlanmış bir ölçüm yoktur.')}</p><dl>${bounds.map(([name, value]) => `<div><dt>${name}</dt><dd>${value}</dd></div>`).join('')}</dl></div>
+    <div class="arch-bounds"><h3>${t('Configured bounds', 'Yapılandırılmış sınırlar')}</h3><p class="intro-caption">${t('Limits from the v0.9.0 source, not measured latency or capacity. No benchmark has been published yet.', 'v0.9.0 kaynağındaki sınırlar; ölçülmüş gecikme veya kapasite değildir. Henüz yayımlanmış bir ölçüm yoktur.')}</p><dl>${bounds.map(([name, value]) => `<div><dt>${name}</dt><dd>${value}</dd></div>`).join('')}</dl></div>
   </section>
 
   <section class="section" id="building-blocks">
@@ -103,7 +103,7 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
       ['mesa_storage/dao.py', t('Canonical storage and search coordination', 'Asıl depolama ve arama koordinasyonu')],
       ['mesa_storage/retrieval_scope.py', t('Eligibility and RRF', 'Uygunluk ve RRF')],
       ['mesa_memory/context_builder.py', t('Evidence context packing', 'Kanıt bağlamının hazırlanması')]
-    ].map(([path, text]) => `<li><a target="_blank" rel="noopener noreferrer" href="${source}${path}">${text}<span aria-hidden="true"> ↗</span></a><code>${path}</code></li>`).join('')}</ul><p class="intro-caption">${t('Verified source baseline: Core v0.8.1 · d394784. Diagrams simplify the runtime.', 'Doğrulanan kaynak temeli: Core v0.8.1 · d394784. Şemalar çalışma zamanını sadeleştirir.')}</p></details>
+    ].map(([path, text]) => `<li><a target="_blank" rel="noopener noreferrer" href="${source}${path}">${text}<span aria-hidden="true"> ↗</span></a><code>${path}</code></li>`).join('')}</ul><p class="intro-caption">${t('Verified source baseline: Core v0.9.0 · 7062faf. Diagrams simplify the runtime.', 'Doğrulanan kaynak temeli: Core v0.9.0 · 7062faf. Şemalar çalışma zamanını sadeleştirir.')}</p></details>
     <div class="actions">${cta(t('Installation and configuration', 'Kurulum ve yapılandırma'), route('docs/core/getting-started/'))}${cta(t('All decision records', 'Tüm karar kayıtları'), route('docs/core/decisions/'), 'secondary')}</div>
   </section>
   ${footer(true)}

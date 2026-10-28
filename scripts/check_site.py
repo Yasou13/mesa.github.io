@@ -358,7 +358,7 @@ def main() -> int:
                 if state not in {"fallback", "configured"}:
                     errors.append(f"invalid initial media state at {relative}: {scene_id} / {state}")
         if relative in {Path("retrieval/index.html"), Path("tr/retrieval/index.html")}:
-            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "d394784"):
+            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "7062faf"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing technical fixture evidence at {relative}: {fixture_field}")
         if text.count('class="cosmic cosmic--') != 1:

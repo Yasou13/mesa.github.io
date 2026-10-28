@@ -1,6 +1,6 @@
 ## Tasarım kararlarının gerekçeleri
 
-Bu dizin, v0.8.1’de geçerli olan mimari kararları ve önceki kararların hangi nedenle değiştiğini bir araya getirir. Güncel davranışı anlamak için karar notlarını [mimari rehberiyle](docs/core/architecture/) birlikte okuyun. Geçerliliğini yitirmiş bir karar, yalnızca geçmiş tasarımı açıklar.
+Bu dizin, v0.9.0’de geçerli olan mimari kararları ve önceki kararların hangi nedenle değiştiğini bir araya getirir. Güncel davranışı anlamak için karar notlarını [mimari rehberiyle](docs/core/architecture/) birlikte okuyun. Geçerliliğini yitirmiş bir karar, yalnızca geçmiş tasarımı açıklar.
 
 ## Kararları inceleyin
 

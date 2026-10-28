@@ -60,6 +60,7 @@ test('page copy contains localized Markdown and its immutable source', () => {
     const guide = fs.readFileSync(new URL(`content/docs/guides/${language}/getting-started.md`, root),'utf8');
     assert.ok(copy.includes(guide));
     assert.ok(copy.includes(`/blob/${catalog.baseline}/`));
-    assert.ok(copy.includes('uv sync --locked --python 3.10'));
+    assert.ok(copy.includes('mesa-memory[adapters]==0.9.0'));
+    assert.ok(html.includes('id="provision-before-startup"'));
   }
 });

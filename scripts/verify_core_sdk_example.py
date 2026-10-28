@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import tempfile
 from unittest.mock import patch
 
 parser = argparse.ArgumentParser()
@@ -19,8 +20,8 @@ parser.add_argument('--source', type=Path, required=True)
 args = parser.parse_args()
 sys.path.insert(0, str(args.source.resolve()))
 import httpx
-from mesa_client import MesaV4Client
-from mesa_api.v4_router import V4SessionStartRequest, V4MemoryInsertRequest, V4SearchRequest
+from mesa_client import Mesa, MesaV4Client
+from mesa_api.v4_router import V4SessionStartRequest, V4MemoryInsertRequest, V4SearchRequest, V4DocumentIngestRequest
 
 root = Path(__file__).resolve().parents[1]
 text = (root/'content/docs/guides/en/examples.md').read_text()
@@ -37,6 +38,14 @@ def transport(request):
     if request.url.path == '/v4/sessions/start':
         V4SessionStartRequest.model_validate(payload)
         return httpx.Response(200, json={'session_id':'docs-session'})
+    if request.url.path in ('/v4/catalog/workspaces', '/v4/catalog/datasets'):
+        return httpx.Response(200, json={})
+    if request.url.path == '/v4/documents':
+        V4DocumentIngestRequest.model_validate(payload)
+        assert payload['content'] == 'The archive opens at nine on weekdays.'
+        return httpx.Response(202, json={'document_id': payload['document_id'], 'mutation_ids': ['docs-mutation']})
+    if request.url.path == '/v4/sessions/docs-session/context':
+        return httpx.Response(200, json={'context':'<UNTRUSTED_MEMORY_EVIDENCE>archive source</UNTRUSTED_MEMORY_EVIDENCE>'})
     if request.url.path == '/v4/memory/insert':
         V4MemoryInsertRequest.model_validate(payload)
         assert payload['content'] == 'The archive opens at nine on weekdays.'
@@ -64,4 +73,16 @@ with patch.dict(os.environ, {'MESA_API_KEY':'fixture-only-credential'}), patch.o
         assert str(error)=='REJECTED'
     else:
         raise AssertionError('The sample accepted failed terminal state')
+    observed.clear()
+    terminal_state = 'COMMITTED'
+    with tempfile.TemporaryDirectory() as local_home, patch.dict(os.environ, {'MESA_HOME':local_home, 'MESA_API_KEY':'', 'MESA_BASE_URL':''}):
+        Path(local_home, 'credentials.json').write_text(json.dumps({'api_key':'fixture-only-credential', 'base_url':'http://127.0.0.1:8000'}))
+        with Mesa() as local:
+            receipt = local.add('The archive opens at nine on weekdays.', source='file://document.txt')
+            assert receipt['mutation_ids'] == ['docs-mutation']
+        local_snippet = re.search(r'```python\n(.*?)```', (root/'content/docs/guides/en/getting-started.md').read_text(), re.S).group(1)
+        assert local_snippet == re.search(r'```python\n(.*?)```', (root/'content/docs/guides/tr/getting-started.md').read_text(), re.S).group(1)
+        exec(compile(local_snippet, 'website-local-example', 'exec'), {})
+        assert observed == [('POST','/v4/catalog/workspaces'),('POST','/v4/catalog/datasets'),('POST','/v4/sessions/start'),('POST','/v4/documents'),('POST','/v4/catalog/workspaces'),('POST','/v4/catalog/datasets'),('POST','/v4/sessions/start'),('POST','/v4/memory/search'),('GET','/v4/sessions/docs-session/context')]
 print('PASS: identical EN/TR snippet; released SDK requests validate against real V4 schemas; COMMITTED path and REJECTED guard checked using fixture HTTP transport (no real provider).')
+print('PASS: Mesa() reads isolated local credentials; document admission, paired local search/context snippet and request schemas checked with fixture transport.')

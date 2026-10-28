@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the static HTTP endpoint reference from the pinned Core OpenAPI file.
 
-Input:  content/docs/openapi-0.8.1.json (Core v0.8.1, docs/reference/openapi.json at d394784)
+Input:  content/docs/openapi-0.9.0.json (Core v0.9.0, docs/reference/openapi.json at 7062faf)
 Output: content/docs/guides/{en,tr}/endpoints.md
 
 Examples are built from the schema (types, defaults, enums and declared examples).
@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = json.loads((ROOT / "content/docs/openapi-0.8.1.json").read_text(encoding="utf-8"))
+SPEC = json.loads((ROOT / "content/docs/openapi-0.9.0.json").read_text(encoding="utf-8"))
 SCHEMAS = SPEC["components"]["schemas"]
 
 # Placeholder values that match the IDs used throughout the quickstart.
@@ -36,7 +36,7 @@ GROUPS = [
 
 LABELS = {
     "en": {
-        "title_note": "Generated from the OpenAPI document published with Core v0.8.1 (commit d394784). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.",
+        "title_note": "Generated from the OpenAPI document published with Core v0.9.0 (commit 7062faf). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.",
         "download": "Download the OpenAPI JSON",
         "auth": "Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 call may touch is limited by the roles granted to that key; see [Security & Scope](docs/core/security/).",
         "params": "Parameters", "body": "Request body", "fields": "Fields", "responses": "Responses",
@@ -45,7 +45,7 @@ LABELS = {
         "contents": "Endpoints in this group",
     },
     "tr": {
-        "title_note": "Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.",
+        "title_note": "Core v0.9.0 (commit 7062faf) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.",
         "download": "OpenAPI JSON dosyasını indirin",
         "auth": "`/health/init` dışındaki her uç nokta `X-API-Key` başlığı ister. V4 çağrısının erişebileceği veri, o anahtara verilen rollerle sınırlıdır; bkz. [Güvenlik ve kapsam](docs/core/security/).",
         "params": "Parametreler", "body": "İstek gövdesi", "fields": "Alanlar", "responses": "Yanıtlar",
@@ -132,7 +132,7 @@ def render(lang: str) -> str:
                 continue
             ops[(op.get("tags") or ["-"])[0]].append((path, method.upper(), op))
     lines = [f"## {'Overview' if lang == 'en' else 'Genel bakış'}", "", L["title_note"], "", L["auth"], "",
-             f"[{L['download']}](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json)", ""]
+             f"[{L['download']}](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json)", ""]
     for key, names in GROUPS:
         group = ops.get(key) or []
         if not group:

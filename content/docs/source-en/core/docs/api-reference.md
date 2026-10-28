@@ -1,14 +1,10 @@
 # API reference
 
-MESA exposes two versioned surfaces:
-
-- v3 is the backward-compatible lexical-core API.
-- v4 is the versioned API authorized by tenant and dataset. Package 0.8.1 is published with the owner's explicit approval, outside production certification.
+MESA exposes the V4 tenant/dataset-authorized API. The pinned source was prepared for package 0.9.0 before publication; the [website release notes](docs/core/release-notes/) record its subsequent GitHub and PyPI publication. Production qualification remains separate.
 
 Versioned memory, health and metrics calls require `X-API-Key`. `/health/init`, OpenAPI, Swagger and ReDoc are public surfaces and need a network/reverse-proxy policy. The V4 key is
 generated with `mesa-v4-admin issue-key`; only a salted scrypt hash is stored.
-The working sources of the OpenAPI contract are `mesa_api/router.py` and
-`mesa_api/v4_router.py`.
+The working source of the OpenAPI contract is `mesa_api/v4_router.py`.
 
 ## V4 capability
 
@@ -71,6 +67,8 @@ The offline operating procedure is in
 | `POST` | `/v4/catalog/source-chunks` | Dataset `WRITER` | Creates an exact source chunk |
 | `DELETE` | `/v4/catalog/documents/{document_id}` | Dataset `OWNER` + `PURGE` | Starts a source-owned purge |
 
+Document purge erases source and extracted text while retaining identifiers and hashes; shared text remains while another document still owns it.
+
 Catalog IDs are tenant-scoped public IDs; physical storage keys are not public
 aliases. Revision/chunk identity, finalization and the distinction between
 `declared_content_hash`, `manifest_hash` and chunk `content_hash` are defined in
@@ -104,6 +102,8 @@ The HTTP insert contract accepts optional typed `legal_identity`: `law_id` and
 `paragraph_id` and `clause_id` are optional. Identity must resolve consistently
 through the bounded legal aliases. Caller metadata cannot supply trusted
 `_mesa_*` fields. The producer remains responsible for source truth.
+
+Search includes `degraded_sources`: `vector` when embeddings are off or any scoped committed record has an incomplete VECTOR lane; `graph` for incomplete/disabled GRAPH lanes. Otherwise it is empty.
 
 Search and context both accept `jurisdiction`, `valid_at`, `valid_from` and
 `valid_to`. Context uses query parameters and defaults to `token_budget=2048`,
@@ -163,7 +163,7 @@ storage and authorization failures raise errors instead. Each hit's
 `assertion_id` identifies a canonical claim; `provenance` links it to the source
 and dataset/chunk. A score ranks evidence; it is not a truth probability.
 Context returns packed text in `context` and structured evidence in
-`canonical_memories`. Finish retrieval before `end_session`; closing the HTTP
+`canonical_memories`; `mutations` contains bounded ID/state receipts without raw evidence spans. Finish retrieval before `end_session`; closing the HTTP
 client alone does not end the server session.
 
 For async code use `async with AsyncMesaV4Client(...) as client` and `await` each
@@ -208,25 +208,9 @@ recreated automatically.
 Internal DAO ownership, projection and Graph V2 structure belong in the
 [architecture](docs/core/architecture/); they are not separate public HTTP methods.
 
-## V3 compatibility API
-
-| Method | Path | Purpose |
-|---|---|---|
-| `POST` | `/v3/memory/insert` | Durable lexical-core dispatch |
-| `POST` | `/v3/memory/search` | V3 retrieval |
-| `GET` | `/v3/memory/status/{log_id}` | Raw-log job status |
-| `DELETE` | `/v3/memory/purge` | V3 soft-delete flow |
-| `POST` | `/v3/memory/session/start` | Starts a V3 session |
-| `GET` | `/v3/memory/session/{session_id}/context` | V3 context |
-| `POST` | `/v3/memory/session/{session_id}/end` | Durable finalization |
-
-V3's `agent_id/session_id` RBAC and compensating multi-store behavior exist only for
-the compatibility surface. Do not confuse them with V4's dataset security or its
-ledger/outbox guarantees.
-
 ## Health and metrics
 
-- `/health` and `/v3/health`: `status`, `maintenance`, `rebuild_state` summary with an API key
+- `/health`: `status`, `maintenance`, `rebuild_state` summary with an API key
 - `/health/init`: public readiness; `200 {"status":"ready"}` when ready, otherwise `503`
 - `/metrics`: Prometheus counters and gauges with an API key
 
@@ -262,6 +246,35 @@ tests are the source of authority. Honour Retry-After for queue saturation and r
 maintenance. The per-minute default is 60/minute and the daily default 10000,
 per principal; health/metrics are outside the daily budget.
 
+### Whole documents: `POST /v4/documents`
+
+Send `session_id`, `dataset_id`, `document_id`, `title`, `source_ref`, `content`
+and optional `metadata`. The session requires WRITE access to the dataset and
+the runtime must own the combined consumer, just as for `/v4/memory/insert`.
+The server splits content into consecutive slices of at most 512 cl100k tokens,
+preferring blank lines, then sentence ends, then hard cuts. Joining the slices
+reproduces the input exactly, including whitespace.
+
+HTTP 202 returns `document_id`, `revision_id`, `revision_number`, `chunk_count`,
+`mutation_ids` and `duplicate`. It means admission; poll each mutation until
+`COMMITTED` before relying on the new revision in search. A changed document
+gets the next revision number and supersedes the active revision when all its
+chunks commit. Repeating the same document and content returns its existing IDs
+with `duplicate: true` for an ACTIVE revision, using its stored chunk count and
+mutation IDs without rechunking. Retrying an interrupted PENDING upload resumes
+its missing chunks. Other matching revisions return 409 `content equals revision
+<n> (<status>); restoring an earlier revision is not supported in v0.9`.
+
+Revision IDs are `rev-` plus the first 32 hex characters of
+`sha256(document_id + "\n" + sha256(content))`, with the inner hash represented
+as lowercase hex and strings encoded as UTF-8. Chunk IDs append `-c` and a
+zero-based five-digit ordinal. Per-chunk idempotency keys are these chunk IDs.
+
+Errors: 409 `document is purged`; 413 for content over 5,000,000 UTF-8 bytes;
+422 for empty or whitespace-only content. Secrets and metadata use the same
+validation and errors as `/v4/memory/insert`. Queue and maintenance failures
+use the existing admission errors below.
+
 ### Actionable errors
 
 Catch `MesaAPIError` to inspect `status_code`, `error` and `detail`. HTTP bodies
@@ -281,7 +294,7 @@ errors. For example, a non-string search query returns HTTP 422:
 | 409 `SESSION_INACTIVE` | Start an authorized active session before new writes |
 | 409 `IDEMPOTENCY_CONFLICT` | Reuse the original payload with that key, or use a new key for new content |
 | 422 `VALIDATION_ERROR` | Correct the named field/format; timestamps need a timezone |
-| 503 `BACKEND_UNAVAILABLE`, detail `canonical_processing_unavailable` | Enable configured extraction/embedding in one combined owner; models-off startup cannot ingest V4 |
+| 503 `BACKEND_UNAVAILABLE`, detail `canonical_processing_unavailable` | Run one combined owner; non-combined profiles cannot ingest V4 |
 | 503, detail `vector_backend_unavailable` / `graph_backend_unavailable` | Check provider credentials, embedding identity and backend readiness; an empty result is not a substitute |
 | 503, detail `queue_over_capacity` / `maintenance_pending` | Respect `Retry-After` when present and wait for capacity/maintenance |
 
@@ -295,16 +308,16 @@ The list catalog calls offer no explicitly documented pagination guarantee here;
 inspect the response/schema. A runnable example, including the first catalog/ACL and
 credential prerequisites, is in [Getting started](docs/core/getting-started/).
 
-Canonical V4 insertion requires the model-enabled combined processing consumer.
-Model-disabled boot is topology/compatibility smoke and rejects V4 writes with
-`503 canonical_processing_unavailable`; it is not a V4 insert/search demonstration.
+Canonical V4 insertion requires the combined processing consumer. With models off, records have a SKIPPED VECTOR lane and remain searchable through BM25. Enabling embeddings later backfills skipped lanes without hiding committed records.
 
-The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json) is a generated reference.
+The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json) is a generated reference.
 Use the running app's `/openapi.json` and route/schema source for the exact
 checkout; do not infer snapshot freshness from this page. Generating a schema
 without server startup does not exercise authentication or runtime behavior.
 
 <a id="cli"></a>
+
+<a id="cli-commands"></a>
 
 ## CLI commands
 
@@ -321,10 +334,10 @@ The entry points are declared in `pyproject.toml`. Run `.venv/bin/<command>
 | `mesa-v4-admin` | Offline credentials and ACL provisioning; defaults to `MESA_STORAGE_ROOT/rbac_policy.db` |
 | `mesa-recovery` | Trusted-root checksummed backup, validate and new-root restore |
 | `mesa-v4-rebuild` | Offline full-root projection rebuild/adoption; never an online worker |
-| `mesa-mcp` | stdio server; V3 default, explicit V4 settings supported |
+| `mesa-mcp` | Direct V4 stdio server; client tool approval and API key grants, no local control-plane database |
 | `mesa-mcp-gateway` | Independently supervised HTTP/Streamable HTTP control gateway |
 | `mesa-antigravity-bridge` | Binding-scoped stdio bridge with encrypted write spool |
-| `mesa` | Codex/Antigravity install, doctor, profiles, credential lifecycle and operations approvals |
+| `mesa` | Local start, add, search, delete, status and mcp-config; also client integration operations |
 
 ### Admin bootstrap
 

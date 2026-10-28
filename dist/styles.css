@@ -1474,7 +1474,7 @@ p { color: var(--muted); }
 .tool-card strong { display: inline-block; margin-top: 25px; color: var(--amber); font-size: 13px; }
 .knowledge-article { width: min(var(--max), calc(100% - 64px)); margin: 0 auto; padding: 200px 0 110px; }
 .article-header { max-width: 960px; padding-bottom: 70px; }
-.article-header h1 { margin-bottom: 28px; font-size: clamp(50px, 6.5vw, 94px); font-weight: 450; letter-spacing: -.055em; line-height: .98; }
+.article-header h1 { overflow-wrap: anywhere; margin-bottom: 28px; font-size: clamp(50px, 6.5vw, 94px); font-weight: 450; letter-spacing: -.055em; line-height: .98; }
 .article-subtitle { color: var(--purple-soft); font: italic 30px/1.25 "Instrument Serif", Georgia, serif; }
 .article-summary { max-width: 790px; font-size: 21px; }
 .article-byline { display: flex; margin: 42px 0 0; flex-wrap: wrap; gap: 38px; }
@@ -1621,7 +1621,7 @@ p { color: var(--muted); }
 @media (max-width: 520px) {
   .footer-groups, .resource-section-grid, .topic-grid, .publication-grid { grid-template-columns: 1fr; }
   .knowledge-hero h1 { font-size: 48px; }
-  .article-header h1 { font-size: 46px; }
+  .article-header h1 { font-size: clamp(32px, 10.8vw, 46px); }
   .article-byline { gap: 24px; }
   .research-record dl { grid-template-columns: 1fr; }
   .resource-card { min-height: 280px; }

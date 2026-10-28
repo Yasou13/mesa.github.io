@@ -384,7 +384,7 @@ async function checkIntroPages() {
     const evidence = await evaluate(`(() => {
       const story=document.querySelector('[data-memory-story]');
       const panels=[...story.querySelectorAll('[data-story-panel]')];
-      return {states:panels.map(p=>p.querySelector('[data-evidence-state]').dataset.evidenceState),paths:panels.map(p=>p.querySelectorAll('.story-dependency-path > li').length),citations:panels.map(p=>p.querySelectorAll('.story-citation').length),excluded:panels.slice(2).every(p=>p.querySelectorAll('.story-citation--excluded').length===1),proof:story.querySelectorAll('.story-proof a[href*="d394784"]').length,basicNote:story.innerText.includes('09:00')||story.innerText.includes('09.00')};
+      return {states:panels.map(p=>p.querySelector('[data-evidence-state]').dataset.evidenceState),paths:panels.map(p=>p.querySelectorAll('.story-dependency-path > li').length),citations:panels.map(p=>p.querySelectorAll('.story-citation').length),excluded:panels.slice(2).every(p=>p.querySelectorAll('.story-citation--excluded').length===1),proof:story.querySelectorAll('.story-proof a[href*="7062faf"]').length,basicNote:story.innerText.includes('09:00')||story.innerText.includes('09.00')};
     })()`);
     if(JSON.stringify(evidence.states)!==JSON.stringify(['blocked','updated','restricted','retracted'])||evidence.paths.some(n=>n!==4)||evidence.citations.some(n=>n!==3)||!evidence.excluded||evidence.proof!==3||evidence.basicNote)failures.push(`${routePath}: evidence scenario contract ${JSON.stringify(evidence)}`);
     await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');s.querySelector('[data-story-play]').click();s.querySelector('.story-path-reference').click();})()`);
@@ -587,7 +587,7 @@ try {
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 
-  if (!process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only') && !process.argv.includes('--architecture-review-only') && !process.argv.includes('--navigation-review-only')) {
+  if (!process.argv.includes('--all-pages') && !process.argv.includes('--performance-only') && !process.argv.includes('--admin-auth-only') && !process.argv.includes('--interactions-only') && !process.argv.includes('--release-checks-only') && !process.argv.includes('--axe-only') && !process.argv.includes('--snapshot-only') && !process.argv.includes('--intro-only') && !process.argv.includes('--architecture-review-only') && !process.argv.includes('--navigation-review-only')) {
   for (const routePath of ['', 'tr/']) {
     for (const width of widths) await inspect(routePath, width);
   }
@@ -608,7 +608,14 @@ try {
   }
 
   }
-  if(process.argv.includes('--navigation-review-only')) await checkNavigationReview();
+  if(process.argv.includes('--all-pages')) {
+    for (const routePath of [...new Set([...localizedRoutes, 'admin/', 'tr/admin/', '404.html'])]) {
+      for (const width of [320, 390, 768, 1440]) await inspect(routePath, width);
+      if (observations.length % 80 === 0) console.log(`ALL-PAGES progress: ${observations.length} layouts checked`);
+    }
+    await checkContentInteractions();
+  }
+  else if(process.argv.includes('--navigation-review-only')) await checkNavigationReview();
   else if(process.argv.includes('--architecture-review-only')) await checkArchitectureReview();
   else if(process.argv.includes('--intro-only')) await checkIntroPages();
   else if(process.argv.includes('--performance-only')) await checkPerformance();
@@ -623,7 +630,8 @@ try {
     for (const failure of failures) console.error(`- ${failure}`);
     process.exitCode = 1;
   } else {
-    if (process.argv.includes('--navigation-review-only')) console.log('NAVIGATION REVIEW PASS: 42 layouts, opaque hit-tested menus, icons, Escape focus, landscape scrolling, no-JS and WCAG checks');
+    if (process.argv.includes('--all-pages')) console.log(`ALL-PAGES QA PASS: ${observations.length} layouts at 320/390/768/1440px; EN/TR public routes, admin shells, 404 and shared interactions`);
+    else if (process.argv.includes('--navigation-review-only')) console.log('NAVIGATION REVIEW PASS: 42 layouts, opaque hit-tested menus, icons, Escape focus, landscape scrolling, no-JS and WCAG checks');
     else if (process.argv.includes('--architecture-review-only')) console.log('ARCHITECTURE REVIEW PASS: 42 responsive layouts, section gaps, diagrams, EN/TR, no-JS and WCAG checks');
     else if (process.argv.includes('--intro-only')) console.log('INTRO QA PASS: EN/TR home and how-it-works, 5 widths, keyboard, timed playback, reduced motion, no-JS and WCAG checks');
     else if (process.argv.includes('--performance-only')) console.log('PERFORMANCE OBSERVATION PASS (local main-thread metrics, not field/GPU certification)');

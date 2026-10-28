@@ -1,10 +1,10 @@
 ## Overview
 
-Generated from the OpenAPI document published with Core v0.8.1 (commit d394784). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.
+Generated from the OpenAPI document published with Core v0.9.0 (commit 7062faf). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.
 
 Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 call may touch is limited by the roles granted to that key; see [Security & Scope](docs/core/security/).
 
-[Download the OpenAPI JSON](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json)
+[Download the OpenAPI JSON](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json)
 
 ## V4 · memory, catalog and sessions
 
@@ -519,6 +519,53 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
 - `202` Successful Response
 - `422` Validation Error · `HTTPValidationError`
 
+### POST /v4/documents
+
+**Ingest Document** · Requires `X-API-Key`.
+
+**Request body** · `V4DocumentIngestRequest`
+
+```json
+{
+  "session_id": "<session_id>",
+  "dataset_id": "docs-dataset",
+  "document_id": "archive-hours",
+  "title": "Archive opening hours",
+  "source_ref": "demo://archive-hours",
+  "content": "The archive opens at nine on weekdays."
+}
+```
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `session_id` | string | yes |  |
+| `dataset_id` | string | yes |  |
+| `document_id` | string | yes |  |
+| `title` | string | yes |  |
+| `source_ref` | string | yes |  |
+| `content` | string | yes |  |
+| `metadata` | object | no |  |
+
+**Responses**
+
+- `202` Successful Response · `V4DocumentIngestResponse`
+- `422` Validation Error · `HTTPValidationError`
+
+*Example*
+
+```json
+{
+  "document_id": "archive-hours",
+  "revision_id": "revision-1",
+  "revision_number": 1,
+  "chunk_count": 1,
+  "mutation_ids": [
+    "string"
+  ],
+  "duplicate": true
+}
+```
+
 ### POST /v4/memory/search
 
 **Search Memory** · Requires `X-API-Key`.
@@ -560,6 +607,7 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
   "results": [
     {}
   ],
+  "degraded_sources": [],
   "scope_audit": {
     "contract_version": "string",
     "enforcement_stage": "string",
@@ -575,14 +623,6 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
     "query_identity": "string",
     "retrieval_config_identity": "string",
     "scope_identity": "string"
-  },
-  "vector_lane": {
-    "contract_version": "string",
-    "status": "string",
-    "representation_version": "string",
-    "embedding_space_id": "string",
-    "registry_artifact_count": 0,
-    "compatible_registry_artifact_count": 0
   }
 }
 ```
@@ -687,14 +727,6 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
 ### GET /health/init
 
 **Health Init** · No API key required.
-
-**Responses**
-
-- `200` Successful Response
-
-### GET /v3/health
-
-**Health V3** · Requires `X-API-Key`.
 
 **Responses**
 
@@ -1009,236 +1041,3 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
 **Responses**
 
 - `200` Successful Response
-
-## V3 compatibility · memory
-
-### POST /v3/memory/insert
-
-**Queue memory insertion (hot path)** · Requires `X-API-Key`.
-
-**Request body** · `MemoryInsertRequest`
-
-```json
-{
-  "agent_id": "agent_alpha",
-  "session_id": "session_001",
-  "content": "The archive opens at nine on weekdays."
-}
-```
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `agent_id` | string | yes | Tenant identifier for row-level isolation |
-| `tenant_id` | string \| null | no | Stable tenant quota/accounting scope. Legacy callers that omit it retain the historical one-agent-per-tenant behavior. |
-| `session_id` | string | yes | Session scope within the agent tenant |
-| `content` | string | yes | Text content to store in the memory layer |
-| `metadata` | object | no | Optional key-value metadata (max 64 keys, flat structure) |
-| `idempotency_key` | string \| null | no | Optional idempotency key to prevent duplicate ingestion |
-
-**Responses**
-
-- `202` Acknowledged with log_id for tracking
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-- `403` RBAC Access Denied · `ErrorResponse`
-
-### GET /v3/memory/status/{log_id}
-
-**Query cold-path processing status for a raw_log entry** · Requires `X-API-Key`.
-
-**Parameters**
-
-| Name | In | Type | Required |
-| --- | --- | --- | --- |
-| `log_id` | path | integer | yes |
-| `agent_id` | query | string | yes |
-
-**Responses**
-
-- `200` Current processing status of the log entry
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-### POST /v3/memory/search
-
-**Search memory** · Requires `X-API-Key`.
-
-**Request body** · `MemorySearchRequest`
-
-```json
-{
-  "agent_id": "docs-agent",
-  "session_id": "<session_id>",
-  "query": "When does the archive open?"
-}
-```
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `agent_id` | string | yes | Tenant identifier for scoped search |
-| `session_id` | string | yes | Session scope within the agent tenant |
-| `query` | string | yes | Search query text |
-| `limit` | integer | no | Maximum results to return (1-50) |
-| `temporal_filter` | object \| null | no | Optional dict with 'valid_from', 'valid_to', or 'valid_at' ISO-8601 strings |
-
-**Responses**
-
-- `200` Retrieved context with latency metrics · `MemorySearchResponse`
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-*Example*
-
-```json
-{
-  "context": "string",
-  "retrieved_nodes": [
-    {
-      "node_id": "string",
-      "entity_name": "string",
-      "type": "ENTITY",
-      "source": "hybrid",
-      "score": 0.5,
-      "content_hash": "string"
-    }
-  ],
-  "metrics": {},
-  "degraded_sources": [
-    "vector"
-  ]
-}
-```
-
-### GET /v3/memory/records/{memory_id}
-
-**Retrieve one memory record within an agent and session scope** · Requires `X-API-Key`.
-
-**Parameters**
-
-| Name | In | Type | Required |
-| --- | --- | --- | --- |
-| `memory_id` | path | string | yes |
-| `agent_id` | query | string | yes |
-| `session_id` | query | string | yes |
-
-**Responses**
-
-- `200` Successful Response
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-### DELETE /v3/memory/purge
-
-**Soft-delete memory records** · Requires `X-API-Key`.
-
-**Request body** · `MemoryPurgeRequest`
-
-```json
-{
-  "agent_id": "docs-agent",
-  "scope": "agent",
-  "scope_id": "string"
-}
-```
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `agent_id` | string | yes | Tenant identifier of the requester |
-| `scope` | agent · session | yes | Purge scope: 'agent' for all data, 'session' for a single session |
-| `scope_id` | string | yes | Target identifier to purge (agent_id or session_id) |
-
-**Responses**
-
-- `200` Purge result with affected record count
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-### POST /v3/memory/session/start
-
-**Start a new session** · Requires `X-API-Key`.
-
-**Request body** · `SessionStartRequest`
-
-```json
-{
-  "agent_id": "docs-agent"
-}
-```
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `agent_id` | string | yes | Tenant identifier |
-
-**Responses**
-
-- `200` Returns a new unique session_id · `SessionStartResponse`
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-*Example*
-
-```json
-{
-  "session_id": "<session_id>",
-  "agent_id": "docs-agent",
-  "status": "started"
-}
-```
-
-### GET /v3/memory/session/{session_id}/context
-
-**Retrieve session context** · Requires `X-API-Key`.
-
-**Parameters**
-
-| Name | In | Type | Required |
-| --- | --- | --- | --- |
-| `session_id` | path | string | yes |
-| `agent_id` | query | string | yes |
-
-**Responses**
-
-- `200` Consolidated memory and recent logs for the session · `SessionContextResponse`
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-*Example*
-
-```json
-{
-  "session_id": "<session_id>",
-  "agent_id": "docs-agent",
-  "context": "string",
-  "recent_logs": [
-    {}
-  ]
-}
-```
-
-### POST /v3/memory/session/{session_id}/end
-
-**End a session** · Requires `X-API-Key`.
-
-**Parameters**
-
-| Name | In | Type | Required |
-| --- | --- | --- | --- |
-| `session_id` | path | string | yes |
-
-**Request body** · `SessionEndRequest`
-
-```json
-{
-  "agent_id": "docs-agent"
-}
-```
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `agent_id` | string | yes | Tenant identifier |
-
-**Responses**
-
-- `200` Session termination status
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`

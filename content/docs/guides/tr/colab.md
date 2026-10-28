@@ -1,7 +1,7 @@
-## Colab rehberi artık güncellenmiyor
+## v0.9.0 Colab not defteri
 
-Bağımsız Colab belgesi v0.8.1’de kaldırıldı. Bu adres, eski not defteri adımları yerine güncel kurulum ve yerel başlangıç belgelerine yönlendiriyor.
+Güncel sürüm, Google Colab üzerinde GPU destekli Ollama denemeleri için `examples/colab_quickstart.ipynb` içerir. [Sürüme sabitlenmiş not defterini](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/examples/colab_quickstart.ipynb) açın; çalıştırmadan önce kurulum ve indirmeleri inceleyin.
 
-## Yerel kurulumla başlayın
+## Yerel çalışma veya not defteri seçin
 
-Sistemi başlatıp durumunu kontrol etmek için [hızlı başlangıç rehberini](docs/core/getting-started/) izleyin. V4 ile veri eklemeden önce model ve sayısal temsil sağlayıcılarını da hazırlamanız gerekir. Güncel kurulumun özgün belgesi aşağıdadır.
+Model indirmeden ilk deneme için [yerel hızlı başlangıcı](docs/core/getting-started/) kullanın: `mesa start`, `mesa add` ve BM25 araması. Colab’ın geçici depolaması, GPU kullanılabilirliği ve model kurulumu, yerel kalıcılık ve üretim yeterliliğinden ayrıdır. Not defterindeki sonuç üretim sertifikası değildir.

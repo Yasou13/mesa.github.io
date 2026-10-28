@@ -1,10 +1,10 @@
-## Önce kurulumu, ardından sağlayıcıları kontrol edin
+## Yerelde başlayın veya açık V4 istemcisini kullanın
 
-Model kullanmadan başlatma ve durum kontrolü için [hızlı başlangıç rehberini](docs/core/getting-started/) izleyin. İlk V4 eklemesinden önce bilgi çıkarımı ve sayısal temsil sağlayıcıları hazır olmalıdır. V3’te ham hafıza işlemek de sayısal temsil sağlayıcısı gerektirir. Tam `examples/v4_quickstart.py` örneği kataloğu hazırlar, kaynak referanslarını gösterir ve oturumu kapatır.
+Otomatik kimlik bilgileri ve modeller kapalıyken BM25 veri alımı/araması için [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. Yerel belge işlemlerinde `Mesa()` kullanın; aşağıdaki `MesaV4Client` oturum ve mutasyon denetimini açıkça gösterir. Bilgi çıkarımı ve anlamsal arama için modeller isteğe bağlıdır.
 
 ## V4 ile ekleyin, tamamlanmasını bekleyin ve arayın
 
-Önkoşullar: modelin etkin olduğu combined süreci, çalışan sayısal temsil sağlayıcısı, erişim anahtarı, ajan izni ve erişim kimliğinin yazabildiği mevcut çalışma alanı/veri kümesi. Birbirinden bağımsız denemelerde yeni veri kümesi veya yeni belge/sürüm kimlikleri kullanın. Örnek, yayımlanan SDK’nın kullanımını gösterir; canlı kullanım veya gerçek sağlayıcı doğrulaması değildir.
+Önkoşullar: combined süreci, erişim anahtarı, ajan izni ve erişim kimliğinin yazabildiği mevcut çalışma alanı/veri kümesi. Birbirinden bağımsız denemelerde yeni veri kümesi veya yeni belge/sürüm kimlikleri kullanın. Örnek, yayımlanan SDK’nın kullanımını gösterir; canlı kullanım veya gerçek sağlayıcı doğrulaması değildir.
 
 ```python
 import os
@@ -30,4 +30,4 @@ with MesaV4Client("http://127.0.0.1:18080", api_key=os.environ["MESA_API_KEY"]) 
 
 ## Kaynağı ve işlem kimliğini koruyun
 
-Erişim kapsamını istemcinin gönderdiği ek bilgilerden çıkarmayın. Kaynağın tam metnini ve `source_ref` değerini koruyun. Tekrar denemelerde aynı yineleme anahtarını kullanın. v0.8.1’de senkron ve asenkron V4 ekleme yöntemleri isteğe bağlı `legal_identity` kabul eder; durum varsayılan olarak iki saniyede bir sorgulanır. HTTP istemcisini kapatmakla sunucudaki oturumu bitirmek farklı işlemlerdir. Zaman aşımından sonra yeniden denemeden önce işlemin durumuna bakın. Birden fazla parçadan oluşan sürümler için [veri alımı](docs/core/concepts-and-ingestion/), izinler için [güvenlik](docs/core/security/) rehberini okuyun.
+Erişim kapsamını istemcinin gönderdiği ek bilgilerden çıkarmayın. Kaynağın tam metnini ve `source_ref` değerini koruyun. Tekrar denemelerde aynı yineleme anahtarını kullanın. v0.9.0’de senkron ve asenkron V4 ekleme yöntemleri isteğe bağlı `legal_identity` kabul eder; durum varsayılan olarak iki saniyede bir sorgulanır. HTTP istemcisini kapatmakla sunucudaki oturumu bitirmek farklı işlemlerdir. Zaman aşımından sonra yeniden denemeden önce işlemin durumuna bakın. Birden fazla parçadan oluşan sürümler için [veri alımı](docs/core/concepts-and-ingestion/), izinler için [güvenlik](docs/core/security/) rehberini okuyun.

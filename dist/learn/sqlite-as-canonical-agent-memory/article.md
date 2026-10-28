@@ -11,7 +11,7 @@ category: "Evidence & Trust"
 tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-18"
+updatedAt: "2026-10-28"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -52,7 +52,7 @@ A lease lets a worker claim work temporarily. A fencing token or equivalent owne
 
 SQLite documents atomic commit and crash-recovery mechanisms for its own transactions under stated assumptions. WAL allows readers and a writer to overlap, but still serializes writers. It does not turn embedded stores into a distributed multi-writer database. Filesystem durability, backup procedure and checkpoint behavior remain operational concerns. [Atomic commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.8.1 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
+MESA Core v0.9.0 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
 
 ## Interpret a timeout
 
@@ -66,5 +66,5 @@ MESA Core v0.8.1 uses one combined owner per root and treats LanceDB/Kùzu as pr
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
+3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
 

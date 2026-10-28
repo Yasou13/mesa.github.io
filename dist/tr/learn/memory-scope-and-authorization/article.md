@@ -11,7 +11,7 @@ category: "Evidence & Trust"
 tags: ["authorization", "RBAC", "tenant", "scope", "cache", "multi agent", "yetki", "kapsam", "yalıtım"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-18"
+updatedAt: "2026-10-28"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -69,5 +69,5 @@ A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici i�
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
+3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
 

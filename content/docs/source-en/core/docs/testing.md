@@ -1,7 +1,7 @@
 # Testing and developer workflow
 
-Install the declared environment with `uv sync --locked --python 3.10 --extra dev`, then run
-`uv pip check`. Use [CONTRIBUTING](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/CONTRIBUTING.md) and [architecture](docs/core/architecture/)
+Install the declared environment with `uv sync --locked --python 3.11 --extra dev`, then run
+`uv pip check`. Use [CONTRIBUTING](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/CONTRIBUTING.md) and [architecture](docs/core/architecture/)
 for module boundaries and documentation requirements.
 
 ```bash
@@ -12,7 +12,7 @@ uv run mypy mesa_memory mesa_storage mesa_workers mesa_api mesa_client \
 make test-local
 ```
 
-`test-local` selects `not optional_provider and not optional_mcp and not live_external`.
+`test-local` selects `not optional_provider and not optional_mcp and not live_external and not timing`.
 For the complete installed contract environment use `dev` and `adapters`, then
 `make test-all`. Optional provider/MCP tests use mocks; live-external tests require
 explicit external enablement. Do not run official TEST or production calls as
@@ -88,10 +88,7 @@ in the Core checkout; they belong to the `mesa_benchmark` project. The small
 deterministic RRF fixture in Core CI is not comparative model-quality evidence.
 External benchmark evidence required for a release is tied to the same commit separately.
 
-`MESA external release gates` tests the two deployment topologies separately:
-
-- `docker-compose.yml`: v3 lexical-core API + worker;
-- `docker-compose.v4.yml`: a single combined storage owner.
+`MESA external release gates` tests the single combined storage owner with `docker-compose.v4.yml`.
 
 V4 Compose starting model-disabled in CI proves only the topology, health, ACL/admin
 CLI and restart contract. Real full-cognitive provider behavior is a staging gate.

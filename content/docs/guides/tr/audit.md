@@ -4,4 +4,4 @@ Bağımsız denetim belgesiyle eski performans raporları, v0.8.1’de güncel d
 
 ## Güncel doğrulamalara bakın
 
-Aşağıda güncel test rehberi yer alıyor. Hangi kontrollerin tamamlandığını ve hangilerinin beklediğini görmek için [v0.8.1 sürüm notlarını](docs/core/release-notes/) ve [yayın koşullarını](docs/core/release-policy/) okuyun.
+[Güncel test rehberini](docs/core/testing/) okuyun. Hangi kontrollerin tamamlandığını ve hangilerinin beklediğini görmek için [v0.9.0 sürüm notlarını](docs/core/release-notes/) ve [yayın koşullarını](docs/core/release-policy/) okuyun.

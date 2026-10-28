@@ -1,7 +1,6 @@
 # Release procedure
 
-The V4 package version is `0.8.1`; the repository owner explicitly approved the
-publication exception recorded below for this source release. Production qualification
+The pinned source describes V4 package `0.9.0` before owner publication. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for the subsequent v0.9.0 publication. Production qualification
 is still assessed as a release candidate. The production decision stays `NO-GO`
 until Final MVP Certification is complete. Assigning a version number or a tag
 does not on its own mean production GO. Old V3 tags/release records are read in their historical context.
@@ -33,7 +32,7 @@ On a clean checkout at the release commit:
 
 ```bash
 uv lock --check
-uv sync --locked --python 3.10 --extra dev --extra mcp
+uv sync --locked --python 3.11 --extra dev
 uv pip check
 uv run ruff check .
 uv run mypy mesa_memory mesa_storage mesa_workers mesa_api mesa_client \

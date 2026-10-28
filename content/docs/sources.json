@@ -62,8 +62,8 @@
       {
         "src": "CHANGELOG.md",
         "slug": "release-notes",
-        "title": "Release Notes v0.8.1",
-        "title_tr": "Sürüm Notları v0.8.1"
+        "title": "Release Notes v0.9.0",
+        "title_tr": "Sürüm Notları v0.9.0"
       },
       {
         "src": "docs/README.md",
@@ -150,10 +150,10 @@
         "title_tr": "Uyarlanabilir sorgu planlama"
       }
     ],
-    "commit": "d3947846615e63b48dc7a5df9f1051b29f734263",
+    "commit": "7062fafe2cff8442eb84d1da60df164099526c8e",
     "version_source": "pyproject.toml",
-    "release_tag": "v0.8.1",
-    "release_date": "2026-10-18"
+    "release_tag": "v0.9.0",
+    "release_date": "2026-10-28"
   },
   "data": {
     "repo_url": "https://github.com/Yasou13/MESA_Data.git",

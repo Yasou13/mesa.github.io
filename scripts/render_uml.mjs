@@ -1,5 +1,5 @@
 // UML-style diagrams for MESA Core, drawn as inline SVG.
-// Facts follow Core v0.8.1 (d394784): docs/architecture-v4.md, ADR 0009–0015,
+// Facts follow Core v0.9.0 (7062faf): docs/architecture-v4.md, ADR 0009–0015,
 // docs/concepts-and-ingestion.md and docs/RUNBOOK.md.
 // Every function takes `t(en, tr)` so the same drawing serves the localized
 // product pages (translation map) and the docs pages (direct language choice).
@@ -104,14 +104,14 @@ export function writeSequenceDiagram(t, id = 'uml-write-sequence') {
   ${bar(590, 222, 560)}${bar(760, 290, 316)}${bar(760, 342, 368)}
   ${msg(590, 400, 232, t('claim run (lease)', 'işi sahiplen (süreli)'))}
   ${msg(400, 590, 256, t('source chunk', 'kaynak parça'), true)}
-  ${msg(590, 760, 298, t('extract facts', 'bilgi çıkar'))}
+  ${msg(590, 760, 298, t('extract if enabled', 'açıksa bilgi çıkar'))}
   ${msg(760, 590, 316, t('0..N facts', '0..N bilgi'), true)}
   ${msg(590, 760, 350, t('validate (mode 0–2)', 'doğrula (mod 0–2)'))}
   ${msg(760, 590, 368, t('accept / reject', 'kabul / ret'), true)}
   ${frame(300, 386, 650, 178, 'alt', t('[accepted]', '[kabul]'))}
   ${msg(590, 400, 428, t('facts · SQL_APPLIED', 'bilgiler · SQL_APPLIED'))}
-  ${msg(590, 890, 456, t('vectors · VECTOR_APPLIED', 'vektörler · VECTOR_APPLIED'))}
-  ${msg(590, 890, 482, t('graph · GRAPH_APPLIED', 'çizge · GRAPH_APPLIED'))}
+  ${msg(590, 890, 456, t('VECTOR_APPLIED / SKIPPED', 'VECTOR_APPLIED / SKIPPED'))}
+  ${msg(590, 890, 482, t('GRAPH_APPLIED / SKIPPED', 'GRAPH_APPLIED / SKIPPED'))}
   ${msg(590, 400, 508, 'state = COMMITTED')}
   <path d="M300 516 H950" class="uml-edge uml-edge--dashed"/>${text(310, 532, t('[rejected]', '[ret]'), 'uml-guard', 'start')}
   ${msg(590, 400, 548, 'state = REJECTED')}

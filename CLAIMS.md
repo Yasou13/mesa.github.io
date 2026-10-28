@@ -108,3 +108,32 @@ excluded from the illustrated model context when access is absent; its sample
 metadata is shown only to explain the fictional scene. The updated status does
 not certify project readiness. MESA returns evidence, while the application's
 model produces the final answer. Existing alpha/readiness notices remain.
+
+
+## v0.9.0 alignment — 2026-10-28
+
+Current website baseline: `7062fafe2cff8442eb84d1da60df164099526c8e`.
+GitHub release `v0.9.0` is published (not draft or prerelease); PyPI
+`mesa-memory` 0.9.0 is available and requires Python >=3.11. Checked against
+the public GitHub release and PyPI JSON APIs on 28 October 2026.
+Earlier entries above retain their original reviewed baselines.
+
+- Local CLI/storage/credentials: `README.md`, `mesa_mcp/local_cli.py`.
+- Local `Mesa()` connection precedence, document ingestion and evidence context:
+  `mesa_client/client.py`.
+- Whole-document chunk/revision/duplicate and admission contracts:
+  `docs/api-reference.md`, `mesa_api/v4_router.py`, pinned OpenAPI 0.9.0.
+- Models-off BM25, optional graph and skipped-lane backfill:
+  `docs/configuration.md`, `docs/architecture-v4.md`.
+- Direct V4 stdio uses client approvals and API grants; HTTP gateway approvals
+  and audit remain separate: `README_MCP.md`, `docs/security-and-privacy.md`.
+- Purge erases owned text while retaining audit IDs/hashes; another owning
+  document can retain shared text: `docs/security-and-privacy.md`.
+- NO-GO remains; publication supplies no new production qualification.
+  Other repositories keep their previously reviewed immutable baselines.
+
+All current Core source links were checked against this Git object.
+The website SDK verification runs both the explicit V4 snippet and the local
+Mesa snippet using fixture HTTP transport and released request schemas; it
+checks admission, COMMITTED/REJECTED handling and local credential discovery.
+It does not claim a real-provider or production-capacity run.

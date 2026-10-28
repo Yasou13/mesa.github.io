@@ -11,7 +11,7 @@ category: "Evidence & Trust"
 tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-18"
+updatedAt: "2026-10-28"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -52,7 +52,7 @@ Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmes
 
 SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.8.1’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
+MESA Core v0.9.0’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
 
 ## Zaman aşımını yorumlayın
 
@@ -66,5 +66,5 @@ MESA Core v0.8.1’de her veri dizinini tek combined süreci yönetir; LanceDB v
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
+3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
 

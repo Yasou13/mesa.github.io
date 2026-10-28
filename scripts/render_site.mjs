@@ -88,27 +88,27 @@ function validateMediaData() {
 validateMediaData();
 
 const docs = {
-  readme: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/README.md`,
-  gettingStarted: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/getting-started.md`,
-  architecture: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md`,
-  concepts: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/concepts-and-ingestion.md`,
-  configuration: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/configuration.md`,
-  retrieval: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/retrieval-and-graph.md`,
-  api: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md`,
-  cli: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md#cli`,
-  mcp: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/README_MCP.md`,
-  installation: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/getting-started.md#installation`,
-  migration: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md#upgrade-v080`,
-  releaseNotes: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/CHANGELOG.md#v081-publication`,
-  releasePolicy: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/release.md`,
-  rebuild: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/v4-rebuild-runbook.md`,
-  security: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/SECURITY.md`,
-  troubleshooting: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/RUNBOOK.md#troubleshooting`,
-  limitations: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md#limitations`,
-  contributing: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/CONTRIBUTING.md`,
-  openapi: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json`,
-  retrievalFixture: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/tests/test_v4_independent_retrieval_audit.py`,
-  retrievalAudit: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/testing.md`,
+  readme: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/README.md`,
+  gettingStarted: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md`,
+  architecture: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md`,
+  concepts: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/concepts-and-ingestion.md`,
+  configuration: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/configuration.md`,
+  retrieval: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/retrieval-and-graph.md`,
+  api: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/api-reference.md`,
+  cli: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/api-reference.md#cli-commands`,
+  mcp: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/README_MCP.md`,
+  installation: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md#installation`,
+  migration: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/RUNBOOK.md#upgrade-v080`,
+  releaseNotes: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/CHANGELOG.md#090---2026-10-28`,
+  releasePolicy: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/release.md`,
+  rebuild: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/v4-rebuild-runbook.md`,
+  security: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/SECURITY.md`,
+  troubleshooting: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/RUNBOOK.md#troubleshooting`,
+  limitations: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md#limitations`,
+  contributing: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/CONTRIBUTING.md`,
+  openapi: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json`,
+  retrievalFixture: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/tests/test_v4_independent_retrieval_audit.py`,
+  retrievalAudit: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/testing.md`,
   certificationAudit: `${repos.certification}/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md`,
   dataGuide: `${repos.data}/blob/main/docs/KULLANIM_KILAVUZU.md`,
   lawStatus: `${repos.law}/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-final-verification.md`
@@ -194,9 +194,9 @@ function footer(compact = false) {
         <div><h3>${chrome('Product', 'Ürün')}</h3><a href="${route('how-it-works/')}">${chrome('How it works', 'Nasıl çalışır')}</a><a href="${route('architecture/')}">${chrome('Architecture', 'Mimari')}</a><a href="${route('ecosystem/')}">${chrome('Ecosystem', 'Ekosistem')}</a><a href="${route('use-cases/')}">${chrome('Use cases', 'Kullanım alanları')}</a><a href="${route('law/')}">MESA Law</a></div>
         <div><h3>${chrome('Developers', 'Geliştiriciler')}</h3><a href="${route('docs/core/getting-started/')}">${chrome('Quickstart', 'Hızlı başlangıç')}</a><a href="${route('docs/core/api-reference/')}">${chrome('API reference', 'API referansı')}</a><a href="${route('docs/core/examples/')}">Python SDK</a><a href="${route('docs/mcp/')}">MCP</a><a href="${route('docs/core/security/')}">${chrome('Security', 'Güvenlik')}</a></div>
         <div><h3>${chrome('Learn', 'Öğrenin')}</h3><a href="${route('learn/')}">${chrome('Lessons', 'Dersler')}</a><a href="${route('glossary/')}">${chrome('Glossary', 'Sözlük')}</a><a href="${route('guides/')}">${chrome('Guides', 'Rehberler')}</a><a href="${route('faq/')}">${chrome('FAQ', 'SSS')}</a></div>
-        <div><h3>${chrome('Project', 'Proje')}</h3><a href="${route('about/')}">${chrome('About', 'Hakkında')}</a><a href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a><a href="${route('privacy/')}">${chrome('Privacy', 'Gizlilik')}</a>${external(repos.issues, chrome('Open an issue', 'Issue açın'))}${external(`${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`, chrome('MIT License', 'MIT Lisansı'))}</div>
+        <div><h3>${chrome('Project', 'Proje')}</h3><a href="${route('about/')}">${chrome('About', 'Hakkında')}</a><a href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a><a href="${route('privacy/')}">${chrome('Privacy', 'Gizlilik')}</a>${external(repos.issues, chrome('Open an issue', 'Issue açın'))}${external(`${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE`, chrome('MIT License', 'MIT Lisansı'))}</div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.8.1 · d394784', 'Belgeler Core v0.8.1 · d394784 ile uyumlu')}</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.0 · 7062faf', 'Belgeler Core v0.9.0 · 7062faf ile uyumlu')}</span></div>
     </footer>`.trim();
 }
 
@@ -249,7 +249,7 @@ function actionExample(compact = false) {
     <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit d394784.</span></p></details>
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit 7062faf.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
   </div>`;
   return `<div class="action-example specimen-plate">
@@ -412,7 +412,7 @@ function mesa() {
           <a href="${route('docs/mcp/')}">
             <span>PROTOCOL</span>
             <strong>MCP</strong>
-            <small>Legacy direct stdio plus the V4 gateway/bridge path</small>
+            <small>Direct V4 stdio or the gateway/bridge path</small>
           </a>
         </div>
       </section>
@@ -642,7 +642,7 @@ function qaPage() {
           <li><span>4</span>Policy-limited diff and verification gates</li>
           <li><span>5</span>No automatic merge or push to main</li>
         </ol>
-        <p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.8.1.</p>
+        <p>The latest QA state records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate current Core 0.9.0.</p>
       </section>
       ${footer()}
     </main>`;
@@ -770,7 +770,7 @@ function lawPage() {
       <section class="section law-status">
         <p class="eyebrow">CURRENT STATUS</p>
         <h2>Historical Law-side gates passed.<br><em>Overall integration: NO-GO.</em></h2>
-        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.8.1 integration proof.</p>
+        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. Current Law HEAD CI reports failure; this is not current Core 0.9.0 integration proof.</p>
         ${cta('Read verification report', docs.lawStatus, 'text', true)}
       </section>
       ${footer()}
@@ -940,11 +940,11 @@ function faqPage() {
     ['What is MESA Data?', 'A Turkish legal-data preparation platform. It preserves raw artifacts, canonicalizes records, applies gates and review, freezes releases, and uses a human-started delivery path. It is not advertised as a universal web ingestion service.'],
     ['What is MESA Law?', 'The primary reference implementation: a legal matter and document workflow with source-aware review and a versioned MESA V4 HTTP contract. Its live Core/full-stack integration is still pending.'],
     ['How do MESA QA and E2E Certification differ?', 'QA asks whether candidate behavior stays correct across time, sessions, and restarts. E2E Certification asks whether one frozen system profile can produce the required authoritative evidence and pass all hard gates.'],
-    ['Does MESA support MCP?', 'Yes. The repository documents a legacy direct stdio server for the V3-compatible path and a newer V4 gateway/bridge path with binding-scoped operations and approvals.'],
-    ['Can MESA run locally?', 'Yes. The repository documents locked local installation and Docker profiles. The simple safe-core profile disables model and external-provider access; the V4 full-cognitive profile requires explicit configuration and one storage owner.'],
+    ['Does MESA support MCP?', 'Yes. Run mesa start then mesa mcp-config for direct V4 stdio. Client tool approvals and key grants apply there; the HTTP gateway/bridge provides separate binding-scoped policy, audit and approvals.'],
+    ['Can MESA run locally?', 'Yes. Install mesa-memory[adapters] and run mesa start. Local credentials are automatic; mesa add and mesa search work through BM25 with models off. Models and graph are optional. Docker uses the same local CLI with persistent volume credentials.'],
     ['Is MESA production-ready?', `No. Core is a ${project.maturity.toLowerCase()} and production remains ${project.production}. Required production-like migration, restore, crash, saturation, concurrency, benchmark, and soak gates are not all complete.`],
     ['What is the current certification status?', 'Not passed yet. The test harness is built, but some required evidence from external systems is still missing, so no fresh official run has passed. Details are on the status page.'],
-    ['Where should a developer start?', 'Read the quickstart, run the locked environment, choose the V3-compatible safe core or the explicit V4 topology deliberately, then inspect the API, SDK, MCP, architecture, and status documents before integration.']
+    ['Where should a developer start?', 'Follow the v0.9.0 quickstart: install the package, run mesa start, add a document and search it. Use Mesa() from Python or mesa mcp-config for MCP, then review the API, architecture and production limits.']
   ];
 
   return `
@@ -989,7 +989,7 @@ function mcpPage() {
       <header class="docs-article-header">
         <p class="eyebrow">MODEL CONTEXT PROTOCOL</p>
         <h1>Two integration paths.<br><em>Different runtime contracts.</em></h1>
-        <p>MESA’s MCP documentation distinguishes the legacy direct stdio server from the current V4 gateway and local bridge path.</p>
+        <p>MESA v0.9.0 supports direct V4 stdio with mesa mcp-config, plus a separately managed HTTP gateway and local bridge.</p>
         <div class="actions">
           ${cta('Source guide', docs.mcp, 'primary', true)}
           ${cta('Core repository', repos.core, 'secondary', true)}
@@ -998,9 +998,9 @@ function mcpPage() {
 
       <section id="integration-paths" class="mcp-paths">
         <article>
-          <p class="eyebrow">LEGACY V3-COMPATIBLE</p>
+          <p class="eyebrow">DIRECT V4 · LOCAL</p>
           <h2>Direct stdio server</h2>
-          <p><code>mesa_mcp.server</code> runs an MCP JSON-RPC stdio stream and calls the public MESA HTTP API; it does not open storage databases directly. The root README documents five project-memory tools.</p>
+          <p><code>mesa_mcp.server</code> runs a V4 JSON-RPC stdio stream against the HTTP API. Run mesa start, then mesa mcp-config to generate the private client configuration. Tool approvals come from the MCP client and access comes from the API key’s grants.</p>
           <div class="tag-row"><span>stdio</span><span>HTTP API</span><span>project scope</span></div>
         </article>
         <article class="highlight">
@@ -1060,8 +1060,8 @@ function statusPage() {
           <h2>${project.runtime} ${project.maturity.toLowerCase()}</h2>
           <p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>
           ${external(docs.architecture, 'Canonical architecture')}
-          ${external(docs.releaseNotes, 'v0.8.1 Release notes')}
-          ${external('https://github.com/Yasou13/MESA/releases/tag/v0.8.1', 'Official v0.8.1 release')}
+          ${external(docs.releaseNotes, 'v0.9.0 Release notes')}
+          ${external('https://github.com/Yasou13/MESA/releases/tag/v0.9.0', 'Official v0.9.0 release')}
         </article>
         <article>
           <span>PROFILE B</span>
@@ -1078,7 +1078,7 @@ function statusPage() {
         <article>
           <span>MESA LAW</span>
           <h2>Historical Law pass / overall ${project.production}</h2>
-          <p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.8.1 integration remains unverified.</p>
+          <p>The dated Law-side report passed against Core 0.7.1; current HEAD CI is failing. Live Core 0.9.0 integration remains unverified.</p>
           ${external(docs.lawStatus, 'Verification report')}
         </article>
       </section>
@@ -1521,7 +1521,7 @@ function documentShell({ title, description, canonical, content, assetBase, lang
         alternateName: project.name,
         description: siteDescription,
         codeRepository: repos.core,
-        license: `${repos.core}/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE`,
+        license: `${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE`,
         version: project.version,
         url: siteUrl
       },
@@ -1778,7 +1778,7 @@ for (const language of ['en', 'tr']) {
     const repoTitle = item.repo.title[language] || item.repo.title.en;
     const title = language === 'tr'
       ? `${pageTitle} — ${repoTitle} Belgeleri`
-      : `${pageTitle} — MESA ${repoTitle} Documentation`;
+      : `${pageTitle} — ${repoTitle} Documentation`;
     const description = language === 'tr'
       ? `${repoTitle} için ${pageTitle} teknik dokümantasyonu (${item.repo.version}).`
       : `${pageTitle} documentation for ${repoTitle} (${item.repo.version}).`;

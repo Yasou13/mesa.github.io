@@ -11,7 +11,7 @@ category: "Practice"
 tags: ["Python", "SQLite", "FTS5", "lab", "tutorial", "uygulama", "laboratuvar", "kod"]
 author: "MESA contributors"
 publishedAt: "2026-10-18"
-updatedAt: "2026-10-18"
+updatedAt: "2026-10-28"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -88,5 +88,5 @@ Build a file of judged queries and expected source IDs, then calculate Recall@k 
 
 1. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
-3. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
+3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
 

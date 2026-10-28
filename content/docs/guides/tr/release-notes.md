@@ -1,16 +1,17 @@
-## v0.8.1 · 18 Ekim 2026
+## v0.9.0 · 28 Ekim 2026
 
-Bu sürüm, erişim sınırları içinde aramayı, depoların sahiplik denetimini ve hata yönetimini iyileştirir. Canlı kullanım durumu NO-GO’dur. Gerçek sağlayıcı bağlantısı, canlı sistem ölçeğinde kapasite ve 24 saatlik dayanıklılık henüz sertifikalandırılmamıştır. Açıklamalı sürüm etiketi imzasızdır.
+GitHub sürümü ve PyPI üzerindeki `mesa-memory` 0.9.0 paketi yayımlandı. Sürüm etiketi `7062fafe2cff8442eb84d1da60df164099526c8e` commit’ine bağlıdır. Python >=3.11 gerekir. Üretim yeterliliği NO-GO durumundadır.
 
 ## Neler değişti?
 
-- BM25’in belge istatistikleri ve sıralama öncesi denetimleri, izin verilen üst erişim alanı ve veri kümesiyle sınırlandırıldı.
-- Arama görünümlerinin tamamlanmasında sahiplik kontrolü eklendi. Onarım başka veri kümelerinin çıktılarını silmez. Kùzu’daki silme ve geri alma önbellekleri tutarlı tutulur.
-- Vektör ve sayısal temsil hataları açıkça bildirilir. Ayrılmış `_mesa_` üst veri alanları ile sonlu olmayan RRF ağırlıkları reddedilir.
-- Senkron ve asenkron V4 SDK ekleme işlemleri, isteğe bağlı `legal_identity` kabul eder. Varsayılan durum sorgulama aralığı iki saniyedir. `make health`, çalışan API’yi kontrol eder.
-- Eski gösterim panelleri ve betikler kaldırıldı. MCP yönetim API’si ve onay komutları korundu.
-- Kurulum, komutlar, sorun giderme, yükseltme, ekosistem ve sınırlarla ilgili bilgiler güncel ana rehberlerde toplandı. Veritabanı şeması v0.8.0 ile aynıdır.
+- Yerel CLI: `start`, `add`, `search`, `delete`, `status` ve `mcp-config`; otomatik yerel depolama ve özel kimlik bilgileri.
+- Üst seviye `Mesa()` SDK: elle oturum hazırlamadan yerel varsayılanlar, tam belge alımı ve kanıt bağlamı.
+- `POST /v4/documents`: kayıpsız ve belirli kurallara dayalı parçalama, tekrar tespiti ve sürüm takibi. Modeller kapalıyken belgeler saklanır ve BM25 araması yapılır.
+- `MESA_GRAPH_ENABLED=false`: Kùzu açılmadan çalışma; GRAPH adımları SKIPPED olur ve çizge yeniden açıldığında tamamlanabilir.
+- Birleşik model ayarları: `MESA_LLM_MODEL` ve `MESA_EMBEDDING_MODEL`, `provider:model` biçimini kullanır. Yerel Docker, `mesa start` çalıştırır ve kimlik bilgilerini volume içinde korur.
+- Belge silme, denetim kimlikleri ve özetleri korunurken kaynak/çıkarım metinlerini temizler; başka bir belgenin hâlâ sahip olduğu ortak metin korunur.
+- Yeniden deneme aralıkları, başarısız işlerin tekrar kuyruğa alınması, SDK başlangıç 503 denemeleri, eksik ek paket mesajları ve Türkçe atıfları koruyan parçalama geliştirildi.
 
-## İlgili belgeler
+## Güncel kaynakları okuyun
 
-Aşağıdaki değişiklik günlüğü sürüm geçmişini korur. [Kurulum](docs/core/installation/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [mimari kararlar](docs/core/decisions/) belgeleri güncel kaynak yapısına göre düzenlenmiştir.
+[Yerel hızlı başlangıç](docs/core/getting-started/), [CLI](docs/core/cli-reference/), [HTTP uç noktaları](docs/core/endpoints/) ve [yapılandırma](docs/core/configuration/) ile başlayın. Aşağıdaki özgün değişiklik günlüğü önceki sürümleri tarihsel bağlamında korur. Paket yayını tek başına yeni üretim sertifikası veya performans ölçümü sağlamaz.

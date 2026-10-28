@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="MESA FAQ — Architecture, Interfaces, Scope, and Status">
   <meta name="twitter:description" content="Direct answers about MESA, vector search, RAG, provenance, MCP, local operation, MESA Law, QA, certification, and production status.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."},{"@type":"WebPage","@id":"https://mesamemory.dev/faq/#webpage","url":"https://mesamemory.dev/faq/","name":"MESA FAQ — Architecture, Interfaces, Scope, and Status","description":"Direct answers about MESA, vector search, RAG, provenance, MCP, local operation, MESA Law, QA, certification, and production status.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."},{"@type":"WebPage","@id":"https://mesamemory.dev/faq/#webpage","url":"https://mesamemory.dev/faq/","name":"MESA FAQ — Architecture, Interfaces, Scope, and Status","description":"Direct answers about MESA, vector search, RAG, provenance, MCP, local operation, MESA Law, QA, certification, and production status.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE","version":"0.9.0","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../favicon.ico?v=396056f03e59" sizes="32x32">
   <link rel="icon" href="../favicon.svg?v=dd68b71b87a3" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
@@ -34,9 +34,9 @@
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles.css?v=316ff283df2e">
+  <link rel="stylesheet" href="../styles.css?v=8eecc624fc62">
   <link rel="stylesheet" href="../cosmic.css?v=a59d1921779b">
-  <link rel="stylesheet" href="../learn.css?v=ef08fd97f3dc">
+  <link rel="stylesheet" href="../learn.css?v=45ed18ca11a1">
 
   <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -66,7 +66,7 @@
       <section class="page-hero compact page-hero--functional faq-hero docs-accent">
         <p class="eyebrow">FREQUENTLY ASKED QUESTIONS</p>
         <h1>Short answers.<br><em>Source-linked depth.</em></h1>
-        <p>These answers reflect current public repositories and the V4 published source release status as of 2026-10-18.</p>
+        <p>These answers reflect current public repositories and the V4 published source release status as of 2026-10-28.</p>
       </section>
 
       <section class="section faq-list">
@@ -113,11 +113,11 @@
         </details>
         <details>
           <summary>Does MESA support MCP?</summary>
-          <p>Yes. The repository documents a legacy direct stdio server for the V3-compatible path and a newer V4 gateway/bridge path with binding-scoped operations and approvals.</p>
+          <p>Yes. Run mesa start then mesa mcp-config for direct V4 stdio. Client tool approvals and key grants apply there; the HTTP gateway/bridge provides separate binding-scoped policy, audit and approvals.</p>
         </details>
         <details>
           <summary>Can MESA run locally?</summary>
-          <p>Yes. The repository documents locked local installation and Docker profiles. The simple safe-core profile disables model and external-provider access; the V4 full-cognitive profile requires explicit configuration and one storage owner.</p>
+          <p>Yes. Install mesa-memory[adapters] and run mesa start. Local credentials are automatic; mesa add and mesa search work through BM25 with models off. Models and graph are optional. Docker uses the same local CLI with persistent volume credentials.</p>
         </details>
         <details>
           <summary>Is MESA production-ready?</summary>
@@ -129,7 +129,7 @@
         </details>
         <details>
           <summary>Where should a developer start?</summary>
-          <p>Read the quickstart, run the locked environment, choose the V3-compatible safe core or the explicit V4 topology deliberately, then inspect the API, SDK, MCP, architecture, and status documents before integration.</p>
+          <p>Follow the v0.9.0 quickstart: install the package, run mesa start, add a document and search it. Use Mesa() from Python or mesa mcp-config for MCP, then review the API, architecture and production limits.</p>
         </details>
       </section>
 
@@ -153,14 +153,14 @@
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Source-linked memory for AI.</p><p class="footer-note"><span>v0.8.1</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Source-linked memory for AI.</p><p class="footer-note"><span>v0.9.0</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Product</h3><a href="../how-it-works/">How it works</a><a href="../architecture/">Architecture</a><a href="../ecosystem/">Ecosystem</a><a href="../use-cases/">Use cases</a><a href="../law/">MESA Law</a></div>
         <div><h3>Developers</h3><a href="../docs/core/getting-started/">Quickstart</a><a href="../docs/core/api-reference/">API reference</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Security</a></div>
         <div><h3>Learn</h3><a href="../learn/">Lessons</a><a href="../glossary/">Glossary</a><a href="../guides/">Guides</a><a href="../faq/">FAQ</a></div>
-        <div><h3>Project</h3><a href="../about/">About</a><a href="../early-access/">Early access</a><a href="../privacy/">Privacy</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT License</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Project</h3><a href="../about/">About</a><a href="../early-access/">Early access</a><a href="../privacy/">Privacy</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT License</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.8.1 · d394784</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.0 · 7062faf</span></div>
     </footer>
     </main>
   <script src="../app.js?v=46908d800664"></script>

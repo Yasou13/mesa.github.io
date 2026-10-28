@@ -11,7 +11,7 @@ category: "Foundations"
 tags: ["assertion", "entity", "schema", "chunk", "iddia", "varlık", "şema", "kanıt aralığı"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-18"
+updatedAt: "2026-10-28"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -83,5 +83,5 @@ For corrections, distinguish a changed source from a changed interpretation. If 
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.8.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/architecture-v4.md)
+2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
 

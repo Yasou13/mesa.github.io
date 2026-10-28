@@ -9,3 +9,7 @@ Core does not encrypt SQLite/LanceDB/Kùzu at rest. Protect volumes, OS permissi
 ## Evidence is untrusted input
 
 Source-linked context is not independently verified truth. `UNTRUSTED_MEMORY_EVIDENCE` must remain data in downstream prompts and tools. Avoid logging content, credentials, model output or claim tokens. Model consensus does not guarantee legal correctness or eliminate hallucinations.
+
+## v0.9.0 operation
+
+Purge erases the document’s owned source and extracted text while retaining audit IDs and hashes. Shared assertion/entity text remains while another document owns it. Protect local credentials and generated MCP configuration.

@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="MESA Core — Structured, Evidence-Aware Agent Memory">
   <meta name="twitter:description" content="Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."},{"@type":"WebPage","@id":"https://mesamemory.dev/mesa/#webpage","url":"https://mesamemory.dev/mesa/","name":"MESA Core — Structured, Evidence-Aware Agent Memory","description":"Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE","version":"0.8.1","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."},{"@type":"WebPage","@id":"https://mesamemory.dev/mesa/#webpage","url":"https://mesamemory.dev/mesa/","name":"MESA Core — Structured, Evidence-Aware Agent Memory","description":"Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE","version":"0.9.0","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../favicon.ico?v=396056f03e59" sizes="32x32">
   <link rel="icon" href="../favicon.svg?v=dd68b71b87a3" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
@@ -34,9 +34,9 @@
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles.css?v=316ff283df2e">
+  <link rel="stylesheet" href="../styles.css?v=8eecc624fc62">
   <link rel="stylesheet" href="../cosmic.css?v=a59d1921779b">
-  <link rel="stylesheet" href="../learn.css?v=ef08fd97f3dc">
+  <link rel="stylesheet" href="../learn.css?v=45ed18ca11a1">
 
   <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -64,7 +64,7 @@
     </header>
     <main id="main-content">
       <section class="page-hero page-hero--core">
-        <p class="eyebrow">MESA CORE · V0.8.1</p>
+        <p class="eyebrow">MESA CORE · V0.9.0</p>
         <h1>A durable memory engine<br>with <em>structured evidence.</em></h1>
         <p>The V4 published source release introduces canonical provenance, selectable validation, dataset isolation, ordered projections, and versioned REST, SDK, and MCP operations.</p>
         <div class="actions">
@@ -73,21 +73,21 @@
         </div>
       </section>
       <section class="status-strip" aria-label="Current project status">
-      <div><small>CORE LINE</small><strong>v0.8.1 / V4</strong></div>
+      <div><small>CORE LINE</small><strong>v0.9.0 / V4</strong></div>
       <div><small>MATURITY</small><strong>Published source release</strong></div>
       <div><small>FINAL MVP CERTIFICATION</small><strong>In progress</strong></div>
       <div><small>PRODUCTION</small><strong class="status-no-go">NO-GO</strong></div>
     </section>
-      <section class="section" id="release-081">
-    <p class="eyebrow">WHAT CHANGED · v0.8.1</p>
-    <h2>Stronger boundaries. Clearer operations.</h2>
+      <section class="section" id="release-090">
+    <p class="eyebrow">WHAT CHANGED · v0.9.0</p>
+    <h2>Start locally. Keep every source.</h2>
     <div class="storage-grid">
-      <article><h3>Scoped retrieval</h3><p>BM25 statistics and audit queries use authorized tenant/dataset scope. RRF rejects non-finite weights.</p></article>
-      <article><h3>Storage ownership</h3><p>Fenced projection completion, safer dataset repair and consistent Kùzu rollback caches protect canonical ownership.</p></article>
-      <article><h3>SDK and operations</h3><p>Sync/async insertion accepts legal_identity. Mutation polling defaults to two seconds; make health checks the running API.</p></article>
+      <article><h3>Local CLI and SDK</h3><p>Install mesa-memory[adapters], run mesa start, then add and search documents. Mesa() reads your local credentials automatically.</p></article>
+      <article><h3>Whole documents</h3><p>POST /v4/documents preserves exact text, splits it deterministically and tracks duplicates and revisions. Poll each mutation before relying on a new revision.</p></article>
+      <article><h3>Optional models and graph</h3><p>BM25 search works with models off. Select provider:model settings for semantic search or set MESA_GRAPH_ENABLED=false to skip Kùzu.</p></article>
     </div>
-    <p>The unused Core dashboard/showcase was removed. MCP control APIs and operator approval CLI remain. Consolidated guides replace duplicated installation, CLI, troubleshooting and upgrade documents.</p>
-    <a href="../docs/core/release-notes/">Read v0.8.1 release notes →</a>
+    <p>Retry and dead-letter recovery are improved. Document purge erases source and extracted text while retaining audit identifiers and hashes; shared text remains while another document owns it. Production qualification remains NO-GO.</p>
+    <a href="../docs/core/release-notes/">Read v0.9.0 release notes →</a>
   </section>
 
       <section class="section">
@@ -106,7 +106,7 @@
           <p class="eyebrow">SECURITY BOUNDARY</p>
           <h2>Agents are context.<br><em>Tenants are boundaries.</em></h2>
           <p>V4 authorization follows principal → tenant → workspace → dataset → agent → server-created session. Roles inherit down the catalog. Purge and rollback require explicit dataset permissions.</p>
-          <a class="button text" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Read security policy</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+          <a class="button text" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/SECURITY.md" target="_blank" rel="noopener noreferrer"><span>Read security policy</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
         </div>
         <div class="scope-visual" role="img" aria-label="Nested MESA authorization scopes">
           <span>Principal<strong>Tenant<span>Workspace<strong>Dataset<span>Agent<strong>Session</strong></span></strong></span></strong></span>
@@ -183,12 +183,12 @@
           </div>
         </div>
         <div class="client-grid">
-          <a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/api-reference.md" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/api-reference.md" target="_blank" rel="noopener noreferrer">
             <span>HTTP</span>
             <strong>V4 REST API</strong>
             <small>Catalog, sessions, memory, mutations, operations</small>
           </a>
-          <a href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/README.md" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/README.md" target="_blank" rel="noopener noreferrer">
             <span>PYTHON</span>
             <strong>Sync & async SDK</strong>
             <small>MesaV4Client and version-matched operations</small>
@@ -196,7 +196,7 @@
           <a href="../docs/mcp/">
             <span>PROTOCOL</span>
             <strong>MCP</strong>
-            <small>Legacy direct stdio plus the V4 gateway/bridge path</small>
+            <small>Direct V4 stdio or the gateway/bridge path</small>
           </a>
         </div>
       </section>
@@ -209,14 +209,14 @@
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Source-linked memory for AI.</p><p class="footer-note"><span>v0.8.1</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=83a56e3fb8b5" alt="" width="128" height="128"></span><span>MESA</span></a><p>Source-linked memory for AI.</p><p class="footer-note"><span>v0.9.0</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p></div>
       <div class="footer-groups">
         <div><h3>Product</h3><a href="../how-it-works/">How it works</a><a href="../architecture/">Architecture</a><a href="../ecosystem/">Ecosystem</a><a href="../use-cases/">Use cases</a><a href="../law/">MESA Law</a></div>
         <div><h3>Developers</h3><a href="../docs/core/getting-started/">Quickstart</a><a href="../docs/core/api-reference/">API reference</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Security</a></div>
         <div><h3>Learn</h3><a href="../learn/">Lessons</a><a href="../glossary/">Glossary</a><a href="../guides/">Guides</a><a href="../faq/">FAQ</a></div>
-        <div><h3>Project</h3><a href="../about/">About</a><a href="../early-access/">Early access</a><a href="../privacy/">Privacy</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT License</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Project</h3><a href="../about/">About</a><a href="../early-access/">Early access</a><a href="../privacy/">Privacy</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT License</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.8.1 · d394784</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.0 · 7062faf</span></div>
     </footer>
     </main>
   <script src="../app.js?v=46908d800664"></script>

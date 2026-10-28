@@ -1,10 +1,10 @@
 ## Genel bakış
 
-Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.
+Core v0.9.0 (commit 7062faf) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.
 
 `/health/init` dışındaki her uç nokta `X-API-Key` başlığı ister. V4 çağrısının erişebileceği veri, o anahtara verilen rollerle sınırlıdır; bkz. [Güvenlik ve kapsam](docs/core/security/).
 
-[OpenAPI JSON dosyasını indirin](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json)
+[OpenAPI JSON dosyasını indirin](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json)
 
 ## V4 · hafıza, katalog ve oturumlar
 
@@ -519,6 +519,53 @@ Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 - `202` Successful Response
 - `422` Validation Error · `HTTPValidationError`
 
+### POST /v4/documents
+
+**Ingest Document** · `X-API-Key` gerekir.
+
+**İstek gövdesi** · `V4DocumentIngestRequest`
+
+```json
+{
+  "session_id": "<session_id>",
+  "dataset_id": "docs-dataset",
+  "document_id": "archive-hours",
+  "title": "Archive opening hours",
+  "source_ref": "demo://archive-hours",
+  "content": "The archive opens at nine on weekdays."
+}
+```
+
+| Alan | Tür | Zorunlu | Açıklama |
+| --- | --- | --- | --- |
+| `session_id` | string | evet |  |
+| `dataset_id` | string | evet |  |
+| `document_id` | string | evet |  |
+| `title` | string | evet |  |
+| `source_ref` | string | evet |  |
+| `content` | string | evet |  |
+| `metadata` | object | hayır |  |
+
+**Yanıtlar**
+
+- `202` Successful Response · `V4DocumentIngestResponse`
+- `422` Validation Error · `HTTPValidationError`
+
+*Örnek*
+
+```json
+{
+  "document_id": "archive-hours",
+  "revision_id": "revision-1",
+  "revision_number": 1,
+  "chunk_count": 1,
+  "mutation_ids": [
+    "string"
+  ],
+  "duplicate": true
+}
+```
+
 ### POST /v4/memory/search
 
 **Search Memory** · `X-API-Key` gerekir.
@@ -560,6 +607,7 @@ Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örn
   "results": [
     {}
   ],
+  "degraded_sources": [],
   "scope_audit": {
     "contract_version": "string",
     "enforcement_stage": "string",
@@ -575,14 +623,6 @@ Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örn
     "query_identity": "string",
     "retrieval_config_identity": "string",
     "scope_identity": "string"
-  },
-  "vector_lane": {
-    "contract_version": "string",
-    "status": "string",
-    "representation_version": "string",
-    "embedding_space_id": "string",
-    "registry_artifact_count": 0,
-    "compatible_registry_artifact_count": 0
   }
 }
 ```
@@ -687,14 +727,6 @@ Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 ### GET /health/init
 
 **Health Init** · API anahtarı gerekmez.
-
-**Yanıtlar**
-
-- `200` Successful Response
-
-### GET /v3/health
-
-**Health V3** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
@@ -1009,236 +1041,3 @@ Core v0.8.1 (commit d394784) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 **Yanıtlar**
 
 - `200` Successful Response
-
-## V3 uyumluluk · hafıza
-
-### POST /v3/memory/insert
-
-**Queue memory insertion (hot path)** · `X-API-Key` gerekir.
-
-**İstek gövdesi** · `MemoryInsertRequest`
-
-```json
-{
-  "agent_id": "agent_alpha",
-  "session_id": "session_001",
-  "content": "The archive opens at nine on weekdays."
-}
-```
-
-| Alan | Tür | Zorunlu | Açıklama |
-| --- | --- | --- | --- |
-| `agent_id` | string | evet | Tenant identifier for row-level isolation |
-| `tenant_id` | string \| null | hayır | Stable tenant quota/accounting scope. Legacy callers that omit it retain the historical one-agent-per-tenant behavior. |
-| `session_id` | string | evet | Session scope within the agent tenant |
-| `content` | string | evet | Text content to store in the memory layer |
-| `metadata` | object | hayır | Optional key-value metadata (max 64 keys, flat structure) |
-| `idempotency_key` | string \| null | hayır | Optional idempotency key to prevent duplicate ingestion |
-
-**Yanıtlar**
-
-- `202` Acknowledged with log_id for tracking
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-- `403` RBAC Access Denied · `ErrorResponse`
-
-### GET /v3/memory/status/{log_id}
-
-**Query cold-path processing status for a raw_log entry** · `X-API-Key` gerekir.
-
-**Parametreler**
-
-| Ad | Yer | Tür | Zorunlu |
-| --- | --- | --- | --- |
-| `log_id` | path | integer | evet |
-| `agent_id` | query | string | evet |
-
-**Yanıtlar**
-
-- `200` Current processing status of the log entry
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-### POST /v3/memory/search
-
-**Search memory** · `X-API-Key` gerekir.
-
-**İstek gövdesi** · `MemorySearchRequest`
-
-```json
-{
-  "agent_id": "docs-agent",
-  "session_id": "<session_id>",
-  "query": "When does the archive open?"
-}
-```
-
-| Alan | Tür | Zorunlu | Açıklama |
-| --- | --- | --- | --- |
-| `agent_id` | string | evet | Tenant identifier for scoped search |
-| `session_id` | string | evet | Session scope within the agent tenant |
-| `query` | string | evet | Search query text |
-| `limit` | integer | hayır | Maximum results to return (1-50) |
-| `temporal_filter` | object \| null | hayır | Optional dict with 'valid_from', 'valid_to', or 'valid_at' ISO-8601 strings |
-
-**Yanıtlar**
-
-- `200` Retrieved context with latency metrics · `MemorySearchResponse`
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-*Örnek*
-
-```json
-{
-  "context": "string",
-  "retrieved_nodes": [
-    {
-      "node_id": "string",
-      "entity_name": "string",
-      "type": "ENTITY",
-      "source": "hybrid",
-      "score": 0.5,
-      "content_hash": "string"
-    }
-  ],
-  "metrics": {},
-  "degraded_sources": [
-    "vector"
-  ]
-}
-```
-
-### GET /v3/memory/records/{memory_id}
-
-**Retrieve one memory record within an agent and session scope** · `X-API-Key` gerekir.
-
-**Parametreler**
-
-| Ad | Yer | Tür | Zorunlu |
-| --- | --- | --- | --- |
-| `memory_id` | path | string | evet |
-| `agent_id` | query | string | evet |
-| `session_id` | query | string | evet |
-
-**Yanıtlar**
-
-- `200` Successful Response
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-### DELETE /v3/memory/purge
-
-**Soft-delete memory records** · `X-API-Key` gerekir.
-
-**İstek gövdesi** · `MemoryPurgeRequest`
-
-```json
-{
-  "agent_id": "docs-agent",
-  "scope": "agent",
-  "scope_id": "string"
-}
-```
-
-| Alan | Tür | Zorunlu | Açıklama |
-| --- | --- | --- | --- |
-| `agent_id` | string | evet | Tenant identifier of the requester |
-| `scope` | agent · session | evet | Purge scope: 'agent' for all data, 'session' for a single session |
-| `scope_id` | string | evet | Target identifier to purge (agent_id or session_id) |
-
-**Yanıtlar**
-
-- `200` Purge result with affected record count
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-### POST /v3/memory/session/start
-
-**Start a new session** · `X-API-Key` gerekir.
-
-**İstek gövdesi** · `SessionStartRequest`
-
-```json
-{
-  "agent_id": "docs-agent"
-}
-```
-
-| Alan | Tür | Zorunlu | Açıklama |
-| --- | --- | --- | --- |
-| `agent_id` | string | evet | Tenant identifier |
-
-**Yanıtlar**
-
-- `200` Returns a new unique session_id · `SessionStartResponse`
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-*Örnek*
-
-```json
-{
-  "session_id": "<session_id>",
-  "agent_id": "docs-agent",
-  "status": "started"
-}
-```
-
-### GET /v3/memory/session/{session_id}/context
-
-**Retrieve session context** · `X-API-Key` gerekir.
-
-**Parametreler**
-
-| Ad | Yer | Tür | Zorunlu |
-| --- | --- | --- | --- |
-| `session_id` | path | string | evet |
-| `agent_id` | query | string | evet |
-
-**Yanıtlar**
-
-- `200` Consolidated memory and recent logs for the session · `SessionContextResponse`
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`
-
-*Örnek*
-
-```json
-{
-  "session_id": "<session_id>",
-  "agent_id": "docs-agent",
-  "context": "string",
-  "recent_logs": [
-    {}
-  ]
-}
-```
-
-### POST /v3/memory/session/{session_id}/end
-
-**End a session** · `X-API-Key` gerekir.
-
-**Parametreler**
-
-| Ad | Yer | Tür | Zorunlu |
-| --- | --- | --- | --- |
-| `session_id` | path | string | evet |
-
-**İstek gövdesi** · `SessionEndRequest`
-
-```json
-{
-  "agent_id": "docs-agent"
-}
-```
-
-| Alan | Tür | Zorunlu | Açıklama |
-| --- | --- | --- | --- |
-| `agent_id` | string | evet | Tenant identifier |
-
-**Yanıtlar**
-
-- `200` Session termination status
-- `422` Validation Error · `ErrorResponse`
-- `500` Internal Error · `ErrorResponse`

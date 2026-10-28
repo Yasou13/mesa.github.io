@@ -1,46 +1,45 @@
-## Install the pinned release
+## Install v0.9.0
 
-Use a disposable local checkout and Python 3.10–3.13, the CI-tested matrix. The package declares Python >=3.10. These commands select the released source and its lockfile.
+Use Python 3.11–3.13. Linux and macOS run natively; Windows users can use Docker or WSL.
 
 ```bash
-git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
-cd MESA
-uv sync --locked --python 3.10
-uv pip check
+pip install "mesa-memory[adapters]==0.9.0"
+mesa start
 ```
 
-## Provision before startup
+`mesa start` starts a local server at `http://127.0.0.1:8000`, provisions storage in `~/.mesa/data` and writes private credentials to `~/.mesa/credentials.json`. Leave this terminal running. Models and external providers are off by default; BM25 lexical search works without a model.
 
-The following profile uses no model or external provider. It checks installation, credentials and readiness. It cannot complete V3 ingestion or canonical V4 insertion; embeddings and canonical extraction must be provisioned separately. The generated key belongs only to this temporary storage root. Do not share it or capture it in logs.
+## Add a document and search
+
+In a second terminal, add a UTF-8 text file and search it. The server splits the complete document into deterministic chunks and tracks its revision. These commands use the local credentials automatically.
 
 ```bash
-mkdir -p "$HOME/mesa-doc-demos"
-export MESA_STORAGE_ROOT="$(mktemp -d "$HOME/mesa-doc-demos/run-XXXXXX")"
-export MESA_RUNTIME_PROFILE=combined
-export MESA_LOAD_DOTENV=false
-export MESA_MODEL_ENABLED=false
-export MESA_EXTERNAL_PROVIDER_ENABLED=false
-export MESA_TIER3_MODE=0
-export MESA_PRINCIPAL_ID=docs-principal
-export MESA_PORT=18080
-export MESA_API_KEY="$(.venv/bin/mesa-v4-admin issue-key --principal docs-principal)"
-.venv/bin/mesa-v4-admin grant-role --principal docs-principal --tenant docs-tenant --role OWNER
-.venv/bin/mesa-v4-admin grant-agent --principal docs-principal --agent docs-agent --permission SESSION_CREATE
+printf '%s\n' 'The archive opens at nine on weekdays.' > document.txt
+mesa add document.txt --source file://document.txt
+mesa search "archive"
+mesa status
 ```
 
-## Run and verify
+`Mesa.add()` and `mesa add` return an admission receipt. Background processing must finish before the new document is searchable; HTTP 202 alone is not completion. Inspect the receipt's mutations when needed with the [mutation status API](docs/core/api-reference/).
 
-Start the loopback server after provisioning. Use a second terminal with the same exported settings and privately supplied key for health checks. Models-disabled V4 insertion returns `503 canonical_processing_unavailable`; V3 processing also needs embeddings. Stop the process before removing only the newly created temporary root.
+## Use Python or connect an MCP client
 
-```bash
-.venv/bin/python -m uvicorn mesa_memory.api.server:app --host 127.0.0.1 --port 18080
+After starting the local server, `Mesa()` reads the credentials automatically. Explicit arguments and `MESA_API_KEY` / `MESA_BASE_URL` can override the connection. The context contains evidence for your application’s language model; MESA does not generate the final answer.
+
+```python
+from mesa_client import Mesa
+
+with Mesa() as mesa:
+    print(mesa.search("archive"))
+    print(mesa.context("When does the archive open?"))
 ```
 
 ```bash
-curl --fail http://127.0.0.1:18080/health/init
-curl --fail -H "X-API-Key: $MESA_API_KEY" http://127.0.0.1:18080/health
+mesa mcp-config
 ```
 
-## First source-backed V4 insertion
+The MCP configuration includes your local API key. Keep it private and paste it into your MCP client’s configuration. Direct stdio uses the client’s tool approvals and the key’s grants; gateway approvals are a separate path.
 
-On a new root, provision the model-enabled combined runtime, extraction and embedding providers, catalog and ACLs described in the source below. Then run `.venv/bin/python -m examples.v4_quickstart`. It checks `COMMITTED`, prints assertion/source references and ends the session. A timeout does not cancel a mutation. `make health` checks the running API using `MESA_BASE_URL` and `MESA_API_KEY`.
+## Enable optional models and graph
+
+Models are optional. Set `MESA_MODEL_ENABLED=true`, `MESA_LLM_MODEL=provider:model` and `MESA_EMBEDDING_MODEL=provider:model` for extraction and semantic search, using provisioned providers. `MESA_GRAPH_ENABLED=false` skips Kùzu and GRAPH lanes. Re-enabling graph or embeddings backfills skipped lanes at startup. See [configuration](docs/core/configuration/) and [providers](docs/core/embedding-providers/). Production qualification remains NO-GO.

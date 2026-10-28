@@ -1,11 +1,31 @@
-## Çalışma profilini seçin
+## Yayımlanmış paketi kurun
 
-V4’te her veri dizinini tek bir combined süreci yönetir; bilgi işlemek için model desteğinin açık olması gerekir. V3 uyumluluk profili ayrı API ve arka plan çalışanı rolleri kullanır. V3 ile veri almak için de çalışan bir sayısal temsil sağlayıcısı gerekir. İki sürümü ayrı veri dizinlerinde tutun.
+Test matrisi Python 3.11–3.13’tür. Linux/macOS üzerinde doğrudan; Windows üzerinde Docker veya WSL ile çalışır. Rehberlerle aynı sürümü kurun:
 
-## Paketleri kurun
+```bash
+pip install "mesa-memory[adapters]==0.9.0"
+mesa start
+```
 
-`uv sync --locked --python 3.10` ve `uv pip check` komutlarını kullanın. Otomatik testlerde Python 3.10–3.13 sürümleri denenir. Yerel depolama, HTTP ve SDK desteği temel kuruluma dahildir. Testler için `dev`, yerel modeller için `ml`, sağlayıcı SDK’ları için `adapters` ek paketlerini seçebilirsiniz. Model kullanmadan başlatmak için ML ek paketi veya ayrı bir veritabanı sunucusu gerekmez. [Sağlayıcı rehberini](docs/core/embedding-providers/) de inceleyin.
+CLI; yerel kataloğu, yetkileri, depolamayı ve kimlik bilgilerini hazırlar. Modeller varsayılan olarak kapalıdır; belgeler alınabilir ve BM25 ile aranabilir. İsteğe bağlı `adapters` ve `ml` ekleri seçilen model sağlayıcılarını destekler. Ayrı veritabanı sunucusu gerekmez.
 
-## Başlatmadan önce hazırlayın
+## Sabitlenmiş kaynak kodunu kullanın
 
-Erişim bilgilerini, izinleri, veri dizinini ve sağlayıcı ayarlarını hazırlayın. Doğrudan sistem üzerinde veya Docker ile kurulum için aşağıdaki güncel kaynağı izleyin. Hazır olma kontrolünün geçmesi, canlı kullanım için bütün testlerin tamamlandığı anlamına gelmez.
+Geliştirme için sürümün Git nesnesini ve kilit dosyasını kullanın:
+
+```bash
+git clone --branch v0.9.0 --depth 1 https://github.com/Yasou13/MESA.git
+cd MESA
+uv sync --locked --python 3.11
+uv pip check
+```
+
+## Yerel Docker çalıştırın
+
+```bash
+docker compose -f docker-compose.v4.yml up --build -d
+docker compose -f docker-compose.v4.yml exec -T mesa-v4 mesa add - --source file://document.txt < document.txt
+docker compose -f docker-compose.v4.yml exec mesa-v4 mesa search "archive"
+```
+
+Compose komutlarını sabitlenmiş kaynak klasöründen, kendi `document.txt` dosyanız hazırken çalıştırın. Konteyner `mesa start` çalıştırır, içeride `0.0.0.0` adresine bağlanır ve yalnızca ana makinenin loopback adresinde yayımlanır. Volume, verileri ve `/var/lib/mesa/credentials.json` kimlik dosyasını korur. Her depolama kökünün tek bir combined yazma sahibi vardır. Hazır olma ve yerel başlangıç üretim yeterliliği sağlamaz.

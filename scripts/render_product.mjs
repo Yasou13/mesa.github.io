@@ -10,7 +10,7 @@ const paragraph = (en, tr) => `<p>${t(en, tr)}</p>`;
 const title = (en, tr) => `<h2>${t(en, tr)}</h2>`;
 const eyebrow = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const row = (name, en, tr) => `<article><h3>${name}</h3>${paragraph(en, tr)}</article>`;
-const source = 'https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/';
+const source = 'https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/';
 
 export function rankCalculator() {
   const lanes = [
@@ -166,9 +166,9 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
   <section class="section source-notes">
     ${title('Inspect the implementation.', 'Uygulamayı inceleyin.')}
     <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · d394784</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · d394784</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 7062faf</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 7062faf</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · 7062faf</a></li>
     </ul>
     <div class="actions">
       ${cta(t('API response reference', 'API yanıt referansı'), route('docs/core/api-reference/'))}
@@ -190,7 +190,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.8.1 · d394784</p>
+  <p class="eyebrow">CORE v0.9.0 · 7062faf</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `
@@ -210,9 +210,9 @@ export function documentationJourney(route) {
 
 export function ecosystemMaturity() {
   const components = [
-    ['MESA Core v0.8.1', 'Implemented · published source', 'Uygulanmış · yayımlanmış kaynak', 'Production qualification NO-GO; real-provider rehearsal and soak incomplete.', 'Üretim yeterliliği NO-GO; gerçek sağlayıcı provası ve dayanıklılık çalışması eksik.'],
+    ['MESA Core v0.9.0', 'Implemented · published source', 'Uygulanmış · yayımlanmış kaynak', 'Production qualification NO-GO; real-provider rehearsal and soak incomplete.', 'Üretim yeterliliği NO-GO; gerçek sağlayıcı provası ve dayanıklılık çalışması eksik.'],
     ['MESA Data v0.1.0', 'Implemented release pipeline', 'Uygulanmış yayın hattı', 'Reviewed Turkish legal sources; package version differs from its v1.0 release tag.', 'Gözden geçirilmiş Türk hukuk kaynakları; paket sürümü v1.0 yayın tag’inden farklıdır.'],
-    ['MESA Law v0.1.0', 'In development · reference app', 'Geliştirme aşamasında · örnek uygulama', 'Current CI failing; live Core v0.8.1 integration unverified. Research/draft/rebuild disabled.', 'Güncel otomatik testler başarısız; canlı Core v0.8.1 bağlantısı doğrulanmadı. Araştırma, taslak üretimi ve yeniden oluşturma özellikleri kapalı.'],
+    ['MESA Law v0.1.0', 'In development · reference app', 'Geliştirme aşamasında · örnek uygulama', 'Current CI failing; live Core v0.9.0 integration unverified. Research/draft/rebuild disabled.', 'Güncel otomatik testler başarısız; canlı Core v0.9.0 bağlantısı doğrulanmadı. Araştırma, taslak üretimi ve yeniden oluşturma özellikleri kapalı.'],
     ['MESA QA v0.1.0', 'Experimental evaluation tooling', 'Deneysel değerlendirme araçları', 'Latest first-write failure and historical candidate FAIL are not current qualification.', 'Son ilk-yazma hatası ve geçmiş aday FAIL güncel yeterlilik değildir.'],
     ['E2E Certification v0.1.0', 'Implemented harness · blocked profile', 'Uygulanmış test düzeneği · engelli profil', 'B4/B6/B7/B8 external receipts and a fresh official PASS remain absent.', 'B4/B6/B7/B8 dış işlem alındısı’leri ve yeni resmî PASS halen eksiktir.']
   ];
@@ -244,15 +244,15 @@ export function ecosystemMaturity() {
 }
 
 export function coreRelease(route) {
-  return `<section class="section" id="release-081">
-    ${eyebrow('WHAT CHANGED · v0.8.1', 'NELER DEĞİŞTİ · v0.8.1')}
-    ${title('Stronger boundaries. Clearer operations.', 'Daha güçlü sınırlar. Daha açık operasyonlar.')}
+  return `<section class="section" id="release-090">
+    ${eyebrow('WHAT CHANGED · v0.9.0', 'NELER DEĞİŞTİ · v0.9.0')}
+    ${title('Start locally. Keep every source.', 'Yerelde başlayın. Her kaynağı koruyun.')}
     <div class="storage-grid">
-      ${row(t('Scoped retrieval', 'Kapsamlı arama'), 'BM25 statistics and audit queries use authorized tenant/dataset scope. RRF rejects non-finite weights.', 'BM25 istatistikleri ve denetimleri yalnızca erişime izin verilen veri kümelerinde hesaplanır. RRF, sonlu olmayan ağırlıkları kabul etmez.')}
-      ${row(t('Storage ownership', 'Depolama sahipliği'), 'Fenced projection completion, safer dataset repair and consistent Kùzu rollback caches protect canonical ownership.', 'Arama görünümleri tamamlanırken işin hâlâ aynı çalışana ait olduğu denetlenir. Veri kümesi onarımı ve Kùzu geri alma önbellekleri, asıl kayıtların sahiplik bağlarını korur.')}
-      ${row(t('SDK and operations', 'SDK ve operasyon'), 'Sync/async insertion accepts legal_identity. Mutation polling defaults to two seconds; make health checks the running API.', 'Senkron/asenkron ekleme legal_identity kabul eder. Mutasyon sorgulama varsayılanı iki saniyedir; make health çalışan API’yi kontrol eder.')}
+      ${row(t('Local CLI and SDK', 'Yerel CLI ve SDK'), 'Install mesa-memory[adapters], run mesa start, then add and search documents. Mesa() reads your local credentials automatically.', 'mesa-memory[adapters] kurun, mesa start çalıştırın, belge ekleyip arayın. Mesa() yerel kimlik bilgilerinizi otomatik okur.')}
+      ${row(t('Whole documents', 'Tam belgeler'), 'POST /v4/documents preserves exact text, splits it deterministically and tracks duplicates and revisions. Poll each mutation before relying on a new revision.', 'POST /v4/documents özgün metni korur, belirli kurallarla parçalar, tekrarları ve sürümleri izler. Yeni sürüme güvenmeden önce her mutasyonun durumunu kontrol edin.')}
+      ${row(t('Optional models and graph', 'İsteğe bağlı modeller ve çizge'), 'BM25 search works with models off. Select provider:model settings for semantic search or set MESA_GRAPH_ENABLED=false to skip Kùzu.', 'BM25 araması modeller kapalıyken çalışır. Anlamsal arama için provider:model ayarlarını seçin; Kùzu kullanmamak için MESA_GRAPH_ENABLED=false ayarlayın.')}
     </div>
-    ${paragraph('The unused Core dashboard/showcase was removed. MCP control APIs and operator approval CLI remain. Consolidated guides replace duplicated installation, CLI, troubleshooting and upgrade documents.', 'Kullanılmayan Core dashboard/showcase kaldırıldı. MCP control API ve operatör onay CLI’ı korunur. Birleştirilmiş rehberler yinelenen kurulum, CLI, sorun giderme ve yükseltme belgelerinin yerini alır.')}
-    <a href="${route('docs/core/release-notes/')}">${t('Read v0.8.1 release notes →', 'v0.8.1 sürüm notlarını okuyun →')}</a>
+    ${paragraph('Retry and dead-letter recovery are improved. Document purge erases source and extracted text while retaining audit identifiers and hashes; shared text remains while another document owns it. Production qualification remains NO-GO.', 'Yeniden deneme ve başarısız işlerin kurtarılması geliştirildi. Belge silme, denetim kimlikleri ve özetler korunurken kaynak ve çıkarım metnini temizler; başka bir belgenin sahip olduğu ortak metin kalır. Üretim yeterliliği NO-GO durumundadır.')}
+    <a href="${route('docs/core/release-notes/')}">${t('Read v0.9.0 release notes →', 'v0.9.0 sürüm notlarını okuyun →')}</a>
   </section>`;
 }

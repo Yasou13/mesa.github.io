@@ -18,8 +18,12 @@ Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model
 
 ## Ayarın bulunması, sağlayıcının çalıştığını göstermez
 
-`GET /v4/capability`, o anda kullanılabilen özellikleri bildirir. Özel bir sayısal temsil sağlayıcısı, ilk başarılı çağrıdan önce çalışır kabul edilmez. Beklenen vektör veya sağlayıcı hatalarında açık bir 503 yanıtı verilir; sistem sessizce başka modele geçmez. V4 ile asıl kayıtlara yazmak için modelin etkin olduğu combined süreci ve bilgi çıkarımı bağımlılıkları hazır olmalıdır.
+`GET /v4/capability`, o anda kullanılabilen özellikleri bildirir. Özel bir sayısal temsil sağlayıcısı, ilk başarılı çağrıdan önce çalışır kabul edilmez. Beklenen vektör veya sağlayıcı hatalarında açık bir 503 yanıtı verilir; sistem sessizce başka modele geçmez. V4 combined tüketici, modeller kapalıyken de veri alır ve BM25 araması sağlar; çıkarım ve sayısal temsil sağlayıcılarını gerektiğinde açın.
 
 ## Dış erişimi ayrıca değerlendirin
 
 `MESA_EXTERNAL_PROVIDER_ENABLED=false`, asıl işleme hattındaki dış sağlayıcı çağrılarını sınırlar. Bu ayar tek başına sistemin tamamen ağdan yalıtıldığını veya hiç ücret doğurmayacağını garanti etmez. Model indirmeleri ve başka süreçlerin ağ erişimi ayrıca değerlendirilmelidir. Burada gerçek sağlayıcıların hızına, kalitesine veya token maliyetine ilişkin güncel bir ölçüm sunulmuyor.
+
+## v0.9.0 ile çalışma
+
+`MESA_LLM_MODEL=provider:model` ve `MESA_EMBEDDING_MODEL=provider:model` kullanın. Modeller kapalıyken BM25 veri alımı/araması çalışır. Dış sağlayıcı bayrağı kapalıyken yerel Ollama ve OpenAI uyumlu uç noktalar kullanılabilir; bulut sağlayıcıları açık bayrak ve anahtar ister.

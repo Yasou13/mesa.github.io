@@ -156,7 +156,7 @@ storage root, rerun the parity check, and only then cut over.
 
 ### Single-writer capacity limit
 
-In the V3 split topology, run only one active `worker-only` process per storage root. V4 uses only one `combined` owner; a separate worker-only topology is not supported.
+V4 uses one active `combined` owner per storage root.
 On startup a worker rejects a second writer on the same host with an advisory lock;
 this is not a coordination mechanism for multiple hosts/NFS. API, valence and MCP
 process-local caches are only a performance optimization; correctness state lives in
@@ -193,13 +193,6 @@ tokens. The Docker `local` driver uses a 10 MB × 5 files limit.
 
 As incident evidence, keep masked logs, mutation status, a health/metrics snapshot,
 the image digest and the storage manifest.
-
-## 11. V3 compatibility
-
-`docker-compose.yml` is the separate API + worker lexical-core topology. V3's
-compensating Saga, agent/session RBAC, soft-delete and maintenance behavior do not
-generalize to v4. For V3 problems apply the existing `mesa-recovery`, worker readiness
-and maintenance procedures; the same storage root is never connected to v4.
 
 ## 12. Release status
 
@@ -249,7 +242,7 @@ audit must remain `NOT EXECUTED`, never converted to a simulated success.
 
 ## Upgrading to v0.8.0
 
-Current package metadata is 0.8.1. Publication is owner-approved with the limitations in
+The pinned source describes package metadata 0.9.0 before its publication. The v0.8.1 publication was owner-approved with the limitations in
 the [release notes](docs/core/release-notes/#v081-publication); it does not certify production
 readiness. Confirm actual tags in GitHub Releases. This guide describes changes
 since v0.7.1, not a completed production migration.

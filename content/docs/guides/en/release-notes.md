@@ -1,16 +1,17 @@
-## v0.8.1 · 18 October 2026
+## v0.9.0 · 28 October 2026
 
-The published source release hardens scoped retrieval, storage ownership and error handling. Production qualification remains NO-GO; real-provider integration, production-size capacity and a 24-hour soak are not certified. The annotated tag is unsigned.
+GitHub release and PyPI package `mesa-memory` 0.9.0 are published. The release tag resolves to `7062fafe2cff8442eb84d1da60df164099526c8e`. Python >=3.11 is required. Production qualification remains NO-GO.
 
 ## What changed
 
-- BM25 corpus statistics and pre-rank audit queries now use authorized tenant/dataset scope.
-- Projection completion checks ownership/fencing; repair avoids deleting other datasets’ artifacts. Kùzu delete and rollback caches stay consistent.
-- Vector and embedding failures are explicit; reserved `_mesa_` metadata and non-finite RRF weights are rejected.
-- Sync and async V4 SDK insertion accept optional `legal_identity`; default status polling is two seconds. `make health` checks the running API.
-- The dashboard/showcase and obsolete scripts were removed. MCP control APIs and approval CLI remain.
-- Installation, CLI, troubleshooting, upgrades, ecosystem and limits are consolidated into maintained guides. The schema head is unchanged from v0.8.0.
+- Local CLI: `start`, `add`, `search`, `delete`, `status` and `mcp-config`; automatic local storage and private credentials.
+- High-level `Mesa()` SDK: local defaults, whole-document ingestion and evidence context without manual session setup.
+- `POST /v4/documents`: lossless deterministic chunking, duplicate detection and revision tracking. Models-disabled operation stores documents and supports BM25 retrieval.
+- `MESA_GRAPH_ENABLED=false`: run without opening Kùzu; GRAPH lanes are SKIPPED and can be backfilled when re-enabled.
+- Unified model settings: `MESA_LLM_MODEL` and `MESA_EMBEDDING_MODEL` use `provider:model` syntax. Local Docker runs `mesa start` and retains credentials in its volume.
+- Document purge erases source/extracted text while retaining audit identifiers and hashes; shared text remains while another document still owns it.
+- Retry backoff, dead-letter replay, SDK startup 503 retries, missing-extra messages and Turkish citation-aware chunking are improved.
 
 ## Read the maintained sources
 
-The changelog below retains release history. [Installation](docs/core/installation/), [API and CLI](docs/core/api-reference/), [operations](docs/core/operations/) and [architecture decisions](docs/core/decisions/) reflect the new source tree.
+Start with [local quickstart](docs/core/getting-started/), [CLI](docs/core/cli-reference/), [HTTP endpoints](docs/core/endpoints/) and [configuration](docs/core/configuration/). The original changelog below keeps earlier releases in their historical context. A package release supplies no new production certificate or benchmark by itself.

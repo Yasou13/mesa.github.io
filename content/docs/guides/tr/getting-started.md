@@ -1,46 +1,45 @@
-## Belirli bir sürümü kurun
+## v0.9.0 sürümünü kurun
 
-Deneme için ayrı bir yerel depo kopyası açın. Python 3.10–3.13 sürümleri otomatik testlerde kullanılıyor; paketin alt sınırı Python 3.10’dur. Aşağıdaki komutlar v0.8.1 kaynak kodunu ve o sürüme ait kilit dosyasını kullanır.
+Python 3.11–3.13 kullanın. Linux ve macOS üzerinde doğrudan; Windows üzerinde Docker veya WSL ile çalıştırın.
 
 ```bash
-git clone --branch v0.8.1 --depth 1 https://github.com/Yasou13/MESA.git
-cd MESA
-uv sync --locked --python 3.10
-uv pip check
+pip install "mesa-memory[adapters]==0.9.0"
+mesa start
 ```
 
-## Başlatmadan önce erişim izinlerini verin
+`mesa start`, `http://127.0.0.1:8000` adresinde yerel sunucuyu başlatır, `~/.mesa/data` altında depolamayı hazırlar ve özel kimlik bilgilerini `~/.mesa/credentials.json` dosyasına yazar. Bu terminali açık bırakın. Modeller ve dış sağlayıcılar varsayılan olarak kapalıdır; BM25 sözcük araması model olmadan çalışır.
 
-Bu kurulum model veya dış sağlayıcı kullanmaz; paketleri, erişim bilgilerini ve sistemin başlatılabildiğini kontrol etmek içindir. V3 ile veri işlemek veya V4’e asıl bilgi kaydı eklemek için sayısal temsil ve bilgi çıkarımı sağlayıcılarını ayrıca hazırlamanız gerekir. Oluşturulan anahtar yalnızca bu geçici veri dizini içindir; paylaşmayın veya günlüklere yazmayın.
+## Bir belge ekleyip arayın
+
+İkinci bir terminalde UTF-8 metin dosyasını ekleyip arayın. Sunucu belgenin tamamını belirli kurallarla parçalara ayırır ve sürümünü izler. Komutlar yerel kimlik bilgilerini kendiliğinden kullanır.
 
 ```bash
-mkdir -p "$HOME/mesa-doc-demos"
-export MESA_STORAGE_ROOT="$(mktemp -d "$HOME/mesa-doc-demos/run-XXXXXX")"
-export MESA_RUNTIME_PROFILE=combined
-export MESA_LOAD_DOTENV=false
-export MESA_MODEL_ENABLED=false
-export MESA_EXTERNAL_PROVIDER_ENABLED=false
-export MESA_TIER3_MODE=0
-export MESA_PRINCIPAL_ID=docs-principal
-export MESA_PORT=18080
-export MESA_API_KEY="$(.venv/bin/mesa-v4-admin issue-key --principal docs-principal)"
-.venv/bin/mesa-v4-admin grant-role --principal docs-principal --tenant docs-tenant --role OWNER
-.venv/bin/mesa-v4-admin grant-agent --principal docs-principal --agent docs-agent --permission SESSION_CREATE
+printf '%s\n' 'The archive opens at nine on weekdays.' > document.txt
+mesa add document.txt --source file://document.txt
+mesa search "archive"
+mesa status
 ```
 
-## Sunucuyu başlatıp durumunu kontrol edin
+`Mesa.add()` ve `mesa add`, işin kabul edildiğini gösteren bir alındı döndürür. Yeni belgenin aranabilmesi için arka plandaki işlemenin bitmesi gerekir; HTTP 202 tek başına tamamlanma değildir. Gerektiğinde alındıdaki mutasyonları [durum API’siyle](docs/core/api-reference/) inceleyin.
 
-Sunucu yalnızca yerel bilgisayardan erişilebilecek şekilde açılır. Kontrolleri, aynı ortam değişkenlerinin ve oluşturduğunuz anahtarın bulunduğu ikinci bir terminalde çalıştırın. Model kapalıyken V4’e bilgi ekleme `503 canonical_processing_unavailable` döndürür. V3 işleme de sayısal temsil sağlayıcısı gerektirir. Deneme bittiğinde yalnızca yeni oluşturduğunuz geçici dizini silin ve önce sunucuyu durdurun.
+## Python kullanın veya MCP istemcisi bağlayın
 
-```bash
-.venv/bin/python -m uvicorn mesa_memory.api.server:app --host 127.0.0.1 --port 18080
+Yerel sunucu başladıktan sonra `Mesa()` kimlik bilgilerini otomatik okur. Açıkça verilen parametreler ve `MESA_API_KEY` / `MESA_BASE_URL`, bağlantıyı değiştirebilir. Bağlam, uygulamanızın dil modeli için kanıt içerir; son yanıtı MESA üretmez.
+
+```python
+from mesa_client import Mesa
+
+with Mesa() as mesa:
+    print(mesa.search("archive"))
+    print(mesa.context("When does the archive open?"))
 ```
 
 ```bash
-curl --fail http://127.0.0.1:18080/health/init
-curl --fail -H "X-API-Key: $MESA_API_KEY" http://127.0.0.1:18080/health
+mesa mcp-config
 ```
 
-## V4 ile ilk kaydı eklemek için
+MCP yapılandırması yerel API anahtarınızı içerir. Özel tutun ve MCP istemcinizin yapılandırmasına yapıştırın. Doğrudan stdio bağlantısı, istemcinin araç onaylarını ve anahtarın yetkilerini kullanır; gateway onayları ayrı bir yoldur.
 
-Aşağıdaki özgün kaynakta anlatıldığı gibi yeni bir veri dizini, modelin etkin olduğu combined süreci, bilgi çıkarımı ve sayısal temsil sağlayıcıları, katalog ve erişim izinleri hazırlayın. Sonra `.venv/bin/python -m examples.v4_quickstart` komutunu çalıştırın. Örnek, `COMMITTED` durumunu kontrol eder, bilgi kaydıyla kaynak referanslarını yazdırır ve oturumu kapatır. Zaman aşımı, sunucudaki işlemi iptal etmez. Çalışan API’yi kontrol etmek için `MESA_BASE_URL` ve `MESA_API_KEY` ile `make health` kullanabilirsiniz.
+## İsteğe bağlı modelleri ve çizgeyi açın
+
+Modeller zorunlu değildir. Bilgi çıkarımı ve anlamsal arama için hazır sağlayıcılarla `MESA_MODEL_ENABLED=true`, `MESA_LLM_MODEL=provider:model` ve `MESA_EMBEDDING_MODEL=provider:model` ayarlarını kullanın. `MESA_GRAPH_ENABLED=false`, Kùzu’yu ve GRAPH adımlarını atlar. Çizge veya embedding yeniden açıldığında atlanan adımlar başlangıçta tamamlanır. [Yapılandırma](docs/core/configuration/) ve [sağlayıcılar](docs/core/embedding-providers/) rehberlerine bakın. Üretim yeterliliği NO-GO durumundadır.

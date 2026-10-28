@@ -1,11 +1,11 @@
 ## Memory that keeps its sources
 
-MESA Core is memory infrastructure for software agents. It accepts exact source text, records durable mutations and retrieves evidence within an authorized scope. It returns source-linked memory and bounded context; applications decide how to use them.
+MESA Core stores exact document text with document, revision and passage identities. It retrieves authorized evidence and bounded context over HTTP, Python SDK and MCP. Your application’s model writes the answer.
 
 ## Choose your first workflow
 
-Start with the [model-disabled quickstart](docs/core/getting-started/) to check installation and health; V3 ingestion also requires embeddings. Use [V4 examples](docs/core/examples/) only after provisioning extraction and embedding providers. See [architecture](architecture/) for storage ownership and [retrieval](retrieval/) for ranking.
+Follow the [local quickstart](docs/core/getting-started/): install `mesa-memory[adapters]==0.9.0`, run `mesa start`, then use `mesa add` and `mesa search`. No model is needed for BM25 lexical search. `Mesa()` reads local credentials automatically; `mesa mcp-config` prepares an MCP connection. Enable models for extraction and semantic search; disable Kùzu with `MESA_GRAPH_ENABLED=false` when appropriate.
 
 ## Release and qualification
 
-This handbook is pinned to the published v0.8.1 source release, dated 18 October 2026. Publication does not complete production qualification. Real-provider rehearsal, a production-like 24-hour soak and new official Profile B certification are not supplied by this release. [Read the release limits](docs/core/release-notes/).
+These guides follow v0.9.0, published on 28 October 2026 at commit `7062faf`. The release adds whole-document ingestion, local CLI and SDK defaults, optional graph operation and improved retry/purge behavior. GitHub and PyPI publication do not establish production qualification: NO-GO remains until the required provider, recovery, soak and certification evidence is complete.

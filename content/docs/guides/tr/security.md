@@ -9,3 +9,7 @@ Core; SQLite, LanceDB ve Kùzu verilerini diskte kendisi şifrelemez. Diskleri, 
 ## Kanıt metnini güvenilir talimat saymayın
 
 Kaynağı belli bir kayıt, bağımsız olarak doğrulanmış gerçek anlamına gelmez. `UNTRUSTED_MEMORY_EVIDENCE`, modele ve araçlara aktarılırken veri olarak kalmalı; talimat yetkisi kazanmamalıdır. İçeriği, erişim bilgilerini, model çıktısını veya iş sahipliği anahtarlarını günlüklere yazmayın. İki modelin aynı fikirde olması hukuki doğruluğu garanti etmez veya hatalı yanıtları tamamen önlemez.
+
+## v0.9.0 ile çalışma
+
+Silme, denetim kimlikleri ve özetler korunurken belgenin sahip olduğu kaynak ve çıkarım metnini temizler. Başka bir belgenin sahip olduğu ortak bilgi/varlık metni kalır. Yerel kimlik bilgilerini ve üretilen MCP yapılandırmasını koruyun.

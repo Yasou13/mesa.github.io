@@ -23,7 +23,7 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 - `scripts/build_endpoint_reference.py` — regenerates the HTTP endpoint reference
-  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.8.1.json`
+  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.0.json`
 - `content/docs/source-en/` — English copies of upstream docs that mix in Turkish;
   English doc pages show these in their source appendix
 - `content/glossary-terms.json` — short bilingual definitions on `/glossary/`
@@ -235,6 +235,8 @@ page families at 320, 360, 390, 430, 768, 799, 800, 801, 1024, 1099, 1100, 1101,
 1440 and 1920 px, plus landscape samples. It checks document overflow, the
 shared atmosphere, opaque hero regressions, layout shift, navigation, search,
 reduced motion, no-JavaScript reading and disabled unconfigured admin controls.
+`--all-pages` checks every public route, both admin shells and the 404 page at
+320, 390, 768 and 1440 px, then exercises shared search and no-JavaScript flows.
 `--performance-only` measures local main-thread idle cost; `--axe-only` with
 `--axe-source node_modules/axe-core/axe.min.js` runs automated accessibility checks.
 

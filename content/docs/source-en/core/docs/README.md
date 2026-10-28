@@ -2,7 +2,7 @@
 
 This folder holds 12 usage/development guides and 8 architecture decision records.
 You do not need to read them in order. Pick the entry point below that matches your goal.
-Package version 0.8.1; V4 is the current API, V3 the compatibility surface.
+Package version 0.9.0; V4 is the current API.
 
 ## Where should I start?
 
@@ -24,7 +24,7 @@ Package version 0.8.1; V4 is the current API, V3 the compatibility surface.
 ## Where did merged topics go?
 
 - Docker and runtime profiles: [installation](docs/core/getting-started/#installation).
-- Terminal commands: [CLI](docs/core/api-reference/#cli).
+- Terminal commands: [CLI](docs/core/api-reference/#cli-commands).
 - MCP management endpoints and approval IDs: [control API](docs/core/api-reference/#mcp-control-api).
 - Error table: [troubleshooting](docs/core/operations/#troubleshooting).
 - Upgrading older V4 data: [v0.8.0 upgrade](docs/core/operations/#upgrade-v080).
@@ -39,9 +39,9 @@ The [ADR index](docs/core/decisions/) explains why the design was chosen. Seven 
 decisions have their own files; the index holds a short history of retired decisions.
 Historical decisions are not a current feature or performance guarantee.
 
-The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/reference/openapi.json) is a generated API schema; the running
+The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json) is a generated API schema; the running
 application's `/openapi.json` output and the route/schema code are the current authority.
-The [Prometheus rules](https://github.com/Yasou13/MESA/blob/d3947846615e63b48dc7a5df9f1051b29f734263/docs/prometheus_alerts.yml) are alert rules loaded into the monitoring
+The [Prometheus rules](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/prometheus_alerts.yml) are alert rules loaded into the monitoring
 system; they are not a Markdown guide.
 
 ## Keeping the docs current

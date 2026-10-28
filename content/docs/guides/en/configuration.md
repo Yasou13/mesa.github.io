@@ -1,11 +1,21 @@
-## Start with explicit runtime boundaries
+## Local defaults and operator configuration
 
-Set `MESA_STORAGE_ROOT`, `MESA_RUNTIME_PROFILE=combined` for V4, `MESA_LOAD_DOTENV=false`, and deliberate model/provider flags. Use different roots for V3/V4. Settings changes do not rewrite an existing dataset representation; embedding identity and dimensions must match stored projections.
+`mesa start` provisions `~/.mesa/data`, a local catalog and `~/.mesa/credentials.json`; models and external providers default off. Direct runtime launchers still require explicit `MESA_STORAGE_ROOT`, `MESA_RUNTIME_PROFILE=combined`, keys and ACLs. `Mesa()` reads explicit arguments, environment connection settings, then local credentials.
 
-## Validation and retrieval controls
+## Optional models, graph and validation
 
-`MESA_TIER3_MODE`: 0 deterministic-only, 1 single validator, 2 distinct A/B provider-model consensus. `MESA_RRF_K=60` and the four `MESA_RRF_*_WEIGHT=1.0` settings control fusion. `MESA_V4_GRAPH_TIMEOUT_SECONDS=15.0` bounds graph requests. `MESA_V4_REBUILD_ENABLED=false` keeps durable rebuild disabled by default.
+Use `MESA_LLM_MODEL=provider:model` and `MESA_EMBEDDING_MODEL=provider:model`. For example:
 
-## Use the full pinned setting reference
+```bash
+MESA_MODEL_ENABLED=true
+MESA_LLM_MODEL=ollama:qwen2.5:7b
+MESA_EMBEDDING_MODEL=ollama:bge-m3
+```
 
-The source appendix below preserves the full v0.8.1 settings table, including admission quotas, readiness thresholds, provider models and operator variables. Defaults describe configuration, not proof that a provider is installed or operational. Credentials belong in a reviewed secret environment.
+Put local settings in `~/.mesa/.env` and restart the local server. The selected provider must be installed and running. `MESA_EMBEDDING_ENABLED` and `MESA_EXTRACTION_ENABLED` default to the model flag. Both off still allows ingestion and BM25 search; disabled VECTOR lanes are SKIPPED. `MESA_GRAPH_ENABLED=false` avoids opening Kùzu, marks GRAPH lanes SKIPPED and reports graph as degraded. Re-enabling a lane backfills it on combined startup.
+
+`MESA_TIER3_MODE`: 0 deterministic checks, 1 one validator, 2 distinct A/B validators. `MESA_RRF_K=60` and lane weights defaulting to 1.0 control fusion. Durable rebuild remains disabled by default.
+
+## Provider and storage boundaries
+
+Local Ollama/OpenAI-compatible endpoints can run with `MESA_EXTERNAL_PROVIDER_ENABLED=false`; cloud providers require it to be true and need their keys. Embedding identity includes model, revision, dimension and normalization. Active vectors require an explicit rebuild before an identity change. See the full pinned setting table below; configuration is separate from operational availability.
