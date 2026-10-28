@@ -1,20 +1,20 @@
 {
   "pages": {
     "home": {
-      "title": "MESA — Kaynağını Koruyan Yapay Zekâ Hafızası",
-      "description": "MESA, belge ve notlarınızdaki bilgileri saklar, sorunuzla ilgili olanları bulur ve dayanaklarıyla birlikte uygulamanıza sunar."
+      "title": "MESA — Yapay Zekâ Uygulamanız İçin Belge Arama",
+      "description": "Asistanınızı kendi belgelerinize bağlayın. MESA’yı kurun, bir metin dosyası ekleyin ve ilgili metni kaynağıyla birlikte bulun."
     },
     "mesa": {
       "title": "MESA Core — Yapay Zekâ İçin Kalıcı Hafıza",
       "description": "Bilginin MESA Core’da nasıl saklandığını, güncellendiğini ve erişim izinleriyle kaynakları korunarak nasıl bulunduğunu öğrenin."
     },
     "howItWorks": {
-      "title": "MESA Nasıl Çalışır? — Bir Notun Yolculuğu",
-      "description": "Bir notun sisteme eklenmesinden soruya yanıt olacak kanıtın bulunmasına kadar MESA’nın nasıl çalıştığını örneklerle izleyin."
+      "title": "MESA Nasıl Çalışır? — Belge Ekleyin, Bilgiyi Bulun",
+      "description": "Bir mağaza koşulları dosyası üzerinden ekleme, işleme, arama ve güncelleme adımlarını görün. MESA’nın ve uygulamanızın görevlerini öğrenin."
     },
     "ecosystem": {
-      "title": "MESA Ekosistemi — Hangi Bileşen Ne İş Yapar?",
-      "description": "MESA Data, Core, QA, E2E Certification ve Law projelerinin görevlerini ve birbirleriyle nasıl çalıştıklarını inceleyin."
+      "title": "MESA Projeleri — Core, Data, Law ve Test Araçlarının Görevleri",
+      "description": "Core ile başlayın. Data ve Law projelerinin ne işe yaradığını, QA ve E2E Certification araçlarının neyi test ettiğini görün."
     },
     "data": {
       "title": "MESA Data — Türk Hukuk Kaynaklarını Hazırlama",

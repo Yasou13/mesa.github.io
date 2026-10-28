@@ -4394,10 +4394,10 @@
   {
     "id": "core-home-en",
     "url": "",
-    "title": "MESA — Source-linked Memory for AI",
+    "title": "MESA — Search Your Documents from Your AI Application",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages.",
+    "summary": "Connect your assistant to your own documents. Install MESA, add a text file and retrieve relevant passages with their source.",
     "keywords": [
       "home",
       "mesa",
@@ -4408,10 +4408,10 @@
   {
     "id": "core-home-tr",
     "url": "tr/",
-    "title": "MESA — Kaynağını Koruyan Yapay Zekâ Hafızası",
+    "title": "MESA — Yapay Zekâ Uygulamanız İçin Belge Arama",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "MESA, belge ve notlarınızdaki bilgileri saklar, sorunuzla ilgili olanları bulur ve dayanaklarıyla birlikte uygulamanıza sunar.",
+    "summary": "Asistanınızı kendi belgelerinize bağlayın. MESA’yı kurun, bir metin dosyası ekleyin ve ilgili metni kaynağıyla birlikte bulun.",
     "keywords": [
       "home",
       "mesa",
@@ -4420,40 +4420,12 @@
     "language": "tr"
   },
   {
-    "id": "core-mesa-en",
-    "url": "mesa/",
-    "title": "MESA Core — Structured, Evidence-Aware Agent Memory",
-    "section": "Ecosystem",
-    "category": "Core",
-    "summary": "Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces.",
-    "keywords": [
-      "mesa",
-      "mesa",
-      "memory"
-    ],
-    "language": "en"
-  },
-  {
-    "id": "core-mesa-tr",
-    "url": "tr/mesa/",
-    "title": "MESA Core — Yapay Zekâ İçin Kalıcı Hafıza",
-    "section": "Ekosistem",
-    "category": "Core",
-    "summary": "Bilginin MESA Core’da nasıl saklandığını, güncellendiğini ve erişim izinleriyle kaynakları korunarak nasıl bulunduğunu öğrenin.",
-    "keywords": [
-      "mesa",
-      "mesa",
-      "hafıza"
-    ],
-    "language": "tr"
-  },
-  {
     "id": "core-howItWorks-en",
     "url": "how-it-works/",
-    "title": "How MESA Works — From Source to Evidence-Aware Context",
+    "title": "How MESA Works — Add a Document, Find Its Text",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence.",
+    "summary": "Follow one shop-policy document through adding, processing, search and updates. See what MESA returns and what your application does.",
     "keywords": [
       "howItWorks",
       "mesa",
@@ -4464,10 +4436,10 @@
   {
     "id": "core-howItWorks-tr",
     "url": "tr/how-it-works/",
-    "title": "MESA Nasıl Çalışır? — Bir Notun Yolculuğu",
+    "title": "MESA Nasıl Çalışır? — Belge Ekleyin, Bilgiyi Bulun",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "Bir notun sisteme eklenmesinden soruya yanıt olacak kanıtın bulunmasına kadar MESA’nın nasıl çalıştığını örneklerle izleyin.",
+    "summary": "Bir mağaza koşulları dosyası üzerinden ekleme, işleme, arama ve güncelleme adımlarını görün. MESA’nın ve uygulamanızın görevlerini öğrenin.",
     "keywords": [
       "howItWorks",
       "mesa",
@@ -4478,10 +4450,10 @@
   {
     "id": "core-ecosystem-en",
     "url": "ecosystem/",
-    "title": "MESA Ecosystem — Data, Memory, Quality, and Applications",
+    "title": "MESA Projects — What Core, Data, Law and the Tests Do",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "Understand how MESA Data, Core, QA, E2E Certification, and MESA Law connect through explicit system boundaries.",
+    "summary": "Start with Core. Understand the optional Data and Law projects and the separate QA and E2E Certification tools.",
     "keywords": [
       "ecosystem",
       "mesa",
@@ -4492,10 +4464,10 @@
   {
     "id": "core-ecosystem-tr",
     "url": "tr/ecosystem/",
-    "title": "MESA Ekosistemi — Hangi Bileşen Ne İş Yapar?",
+    "title": "MESA Projeleri — Core, Data, Law ve Test Araçlarının Görevleri",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "MESA Data, Core, QA, E2E Certification ve Law projelerinin görevlerini ve birbirleriyle nasıl çalıştıklarını inceleyin.",
+    "summary": "Core ile başlayın. Data ve Law projelerinin ne işe yaradığını, QA ve E2E Certification araçlarının neyi test ettiğini görün.",
     "keywords": [
       "ecosystem",
       "mesa",
@@ -4610,34 +4582,6 @@
     "summary": "MESA’nın hafıza altyapısını kullanan örnek hukuk uygulaması: dosyalar, belgeler, inceleme ve kaynakları belli olan bilgiler.",
     "keywords": [
       "law",
-      "mesa",
-      "hafıza"
-    ],
-    "language": "tr"
-  },
-  {
-    "id": "core-useCases-en",
-    "url": "use-cases/",
-    "title": "MESA Use Cases — Structured Memory Where Evidence Matters",
-    "section": "Ecosystem",
-    "category": "Core",
-    "summary": "Explore realistic evaluation scenarios for MESA, including agent memory, knowledge-heavy assistants, and provenance-sensitive workflows.",
-    "keywords": [
-      "useCases",
-      "mesa",
-      "memory"
-    ],
-    "language": "en"
-  },
-  {
-    "id": "core-useCases-tr",
-    "url": "tr/use-cases/",
-    "title": "MESA Nerelerde Kullanılabilir?",
-    "section": "Ekosistem",
-    "category": "Core",
-    "summary": "Ajan hafızası, belgelerinizle çalışan asistanlar ve bilginin kaynağını izlemeyi gerektiren işler için olası kullanım alanları.",
-    "keywords": [
-      "useCases",
       "mesa",
       "hafıza"
     ],

@@ -22,10 +22,10 @@ const chrome = process.env.CHROME_BIN || 'google-chrome';
 const port = 9300 + (process.pid % 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mesa-browser-qa-'));
 const requiredScenes = ['event-horizon'];
-const requiredHomeSections = ['hero', 'problem', 'difference', 'process', 'example', 'capabilities', 'ecosystem', 'explore'];
+const requiredHomeSections = ['hero', 'process', 'capabilities', 'explore'];
 
 const routes = [
-  ...Object.values(siteData.pages).map(({ path: routePath }) => routePath),
+  ...Object.values(siteData.pages).filter(page => !page.redirectTo).map(({ path: routePath }) => routePath),
   ...hubData.sections.map(({ path: routePath }) => routePath),
   ...hubData.entries.filter(({ draft, indexable }) => !draft && indexable).map(({ path: routePath }) => routePath),
 ];
@@ -354,97 +354,23 @@ async function checkReleaseInteractions() {
   await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
 }
 async function checkIntroPages() {
-  const axe = fs.readFileSync(path.join(repositoryRoot, 'node_modules/axe-core/axe.min.js'), 'utf8');
-  for (const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/']) {
-    for (const width of [320, 390, 768, 1024, 1440]) await inspect(routePath, width);
-    await navigate(new URL(routePath, baseUrl).href);
-    if (routePath === '' || routePath === 'tr/') {
-      const publicChecks = await evaluate(`(() => {const badge=document.querySelector('.home-production-badge');return {badge:badge && getComputedStyle(badge).display!=='none' && badge.getBoundingClientRect().height>0,admin:!!document.querySelector('.site-footer a[href*="admin/"]'),license:!!document.querySelector('.site-footer a[href$="LICENSE"]'),quickstart:!!document.querySelector('.hero-copy .actions a[href*="getting-started"]')};})()`);
-      if(!publicChecks.badge || publicChecks.admin || !publicChecks.license || !publicChecks.quickstart)failures.push(routePath+': public review regressions '+JSON.stringify(publicChecks));
-    }
-    await evaluate(axe);
-    const violations = await evaluate(`(async () => (await axe.run(document, {runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
-    if (violations.length) failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
-    const controls = await evaluate(`(() => {
-      const story=document.querySelector('[data-memory-story]');
-      const buttons=[...story.querySelectorAll('[data-story-step]')];
-      const panels=[...story.querySelectorAll('[data-story-panel]')];
-      const initial=panels.filter(p=>!p.hidden).length===1;
-      buttons[2].click();
-      const chosen=panels.every((p,i)=>p.hidden===(i!==2)) && buttons[2].getAttribute('aria-pressed')==='true';
-      const play=story.querySelector('[data-story-play]');play.click();
-      const running=story.classList.contains('is-playing') && story.dataset.step==='0';
-      play.click();const paused=!story.classList.contains('is-playing');
-      buttons[3].focus();return {initial,chosen,running,paused,focus:getComputedStyle(buttons[3]).outlineStyle};
-    })()`);
-    if (!controls.initial || !controls.chosen || !controls.running || !controls.paused || controls.focus==='none') failures.push(`${routePath}: walkthrough control failure ${JSON.stringify(controls)}`);
-    await connection.send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
-    await connection.send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
-    if (await evaluate(`document.querySelector('[data-memory-story]').dataset.step`) !== '3') failures.push(`${routePath}: keyboard step failed: ${await evaluate(`JSON.stringify({step:document.querySelector('[data-memory-story]').dataset.step,focus:document.activeElement.outerHTML})`)}`);
-    const evidence = await evaluate(`(() => {
-      const story=document.querySelector('[data-memory-story]');
-      const panels=[...story.querySelectorAll('[data-story-panel]')];
-      return {states:panels.map(p=>p.querySelector('[data-evidence-state]').dataset.evidenceState),paths:panels.map(p=>p.querySelectorAll('.story-dependency-path > li').length),citations:panels.map(p=>p.querySelectorAll('.story-citation').length),excluded:panels.slice(2).every(p=>p.querySelectorAll('.story-citation--excluded').length===1),proof:story.querySelectorAll('.story-proof a[href*="7062faf"]').length,basicNote:story.innerText.includes('09:00')||story.innerText.includes('09.00')};
-    })()`);
-    if(JSON.stringify(evidence.states)!==JSON.stringify(['blocked','updated','restricted','retracted'])||evidence.paths.some(n=>n!==4)||evidence.citations.some(n=>n!==3)||!evidence.excluded||evidence.proof!==3||evidence.basicNote)failures.push(`${routePath}: evidence scenario contract ${JSON.stringify(evidence)}`);
-    await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');s.querySelector('[data-story-play]').click();s.querySelector('.story-path-reference').click();})()`);
-    await wait(150);
-    const inspected=await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');return s.querySelector('.story-citation').open&&!s.classList.contains('is-playing');})()`);
-    if(!inspected)failures.push(`${routePath}: source inspection did not open the passage and pause autoplay`);
-    await connection.send('Emulation.setEmulatedMedia', {features:[{name:'prefers-reduced-motion',value:'reduce'}]});
-    const motion = await evaluate(`(() => {const s=document.querySelector('[data-memory-story]');s.querySelector('[data-story-play]').click();const p=s.querySelector('.intro-specimen');return getComputedStyle(p).animationName;})()`);
-    if(motion!=='none') failures.push(`${routePath}: reduced motion failed`);
-    await connection.send('Emulation.setEmulatedMedia', {features:[]});
-    await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
+  const axe = fs.readFileSync(path.join(repositoryRoot,'node_modules/axe-core/axe.min.js'),'utf8');
+  for(const routePath of ['', 'tr/', 'how-it-works/', 'tr/how-it-works/', 'ecosystem/', 'tr/ecosystem/', 'resources/', 'tr/resources/']) {
+    for(const width of [320,390,768,1024,1440]) await inspect(routePath,width);
     await navigate(new URL(routePath,baseUrl).href);
-    const fallback = await evaluate(`({panels:[...document.querySelectorAll('[data-story-panel]')].filter(p=>getComputedStyle(p).display!=='none').length,playHidden:document.querySelector('[data-story-play]').hidden})`);
-    if(fallback.panels!==4 || !fallback.playHidden) failures.push(`${routePath}: static fallback failed`);
-    await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
-    fallbackChecks.push({type:'intro',routePath,controls,motion,fallback,violations});
-  }
-  await navigate(new URL('tr/how-it-works/',baseUrl).href);
-  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
-  await wait(200);
-  const autoplay = await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`);
-  if (!autoplay) failures.push('Walkthrough did not start automatically on entering the viewport');
-  const storyHeights = [];
-  for (let step = 0; step < 4; step++) {
-    const state = await evaluate(`(() => {const story=document.querySelector('[data-memory-story]');return {step:story.dataset.step,height:story.getBoundingClientRect().height};})()`);
-    if (state.step !== String(step)) failures.push(`Autoplay expected step ${step}, got ${state.step}`);
-    storyHeights.push(state.height);
-    if (screenshotsDirectory) {
-      const shot = await connection.send('Page.captureScreenshot', {format:'png'});
-      fs.writeFileSync(path.join(screenshotsDirectory, `story-step-${step}.png`), Buffer.from(shot.data,'base64'));
+    await evaluate(axe);
+    const violations=await evaluate(`(async ()=>(await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
+    if(violations.length)failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
+    if(routePath===''||routePath==='tr/') {
+      const state=await evaluate(`({install:document.querySelector('#home-install')?.textContent,document:!!document.querySelector('.explain-card--document'),source:!!document.querySelector('.explain-source'),status:!!document.querySelector('.home-release a[href*="status/"]'),retiredStory:!!document.querySelector('[data-memory-story]')})`);
+      if(!state.install?.includes('pip install')||!state.install.includes('\\nmesa start')||!state.document||!state.source||!state.status||state.retiredStory)failures.push(`${routePath}: installation/overview regression ${JSON.stringify(state)}`);
+      await evaluate(`document.querySelector('.home-start__next').open=true`);
+      if(!await evaluate(`document.querySelector('#home-search').textContent.includes('mesa add policy.txt')`))failures.push(`${routePath}: second-terminal instructions missing`);
     }
-    await wait(6550);
-  }
-  if (Math.max(...storyHeights)-Math.min(...storyHeights)>1) failures.push('Walkthrough changed height during autoplay');
-  if(await evaluate(`document.querySelector('[data-memory-story]').dataset.step`)!=='0') failures.push('Walkthrough did not loop');
-  await evaluate(`scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})`);
-  await wait(200);
-  if(await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Offscreen walkthrough kept playing');
-  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
-  await wait(200);
-  if(!await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Walkthrough did not resume on reentry');
-  await evaluate(`document.querySelector('[data-story-play]').click()`);
-  await evaluate(`scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})`);
-  await wait(200);
-  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
-  await wait(200);
-  if(await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Manual pause was lost after scrolling');
-  await navigate(new URL('tr/',baseUrl).href);
-  await connection.send('Emulation.setEmulatedMedia', {features:[{name:'prefers-reduced-motion',value:'reduce'}]});
-  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'})`);
-  await wait(200);
-  if(await evaluate(`document.querySelector('[data-memory-story]').classList.contains('is-playing')`)) failures.push('Reduced motion started autoplay');
-  await connection.send('Emulation.setEmulatedMedia', {features:[]});
-  await connection.send('Emulation.setDeviceMetricsOverride', {width:390,height:900,deviceScaleFactor:1,mobile:false});
-  await navigate(new URL('tr/',baseUrl).href);
-  await evaluate(`document.querySelector('[data-memory-story]').scrollIntoView({behavior:'instant',block:'center'});document.querySelector('[data-story-step="3"]').click()`);
-  await wait(600);
-  if (screenshotsDirectory) {
-    const shot=await connection.send('Page.captureScreenshot',{format:'png'});
-    fs.writeFileSync(path.join(screenshotsDirectory,'story-mobile.png'),Buffer.from(shot.data,'base64'));
+    if(routePath.includes('how-it-works/')) {
+      const state=await evaluate(`({steps:document.querySelectorAll('.walkthrough-step').length,oldValue:document.querySelector('.revision-comparison').textContent.includes('14'),newValue:document.querySelector('.revision-comparison').textContent.includes('30'),retiredStory:!!document.querySelector('[data-memory-story]')})`);
+      if(state.steps!==3||!state.oldValue||!state.newValue||state.retiredStory)failures.push(`${routePath}: document walkthrough regression ${JSON.stringify(state)}`);
+    }
   }
   await checkMemoryDisclosure('tr/retrieval/');
   await checkMemoryDisclosure('retrieval/');
@@ -472,10 +398,10 @@ async function checkArchitectureReview() {
     if(violations.length) failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
     if(routePath.includes('architecture/')) {
       const structure=await evaluate(`({steps:document.querySelectorAll('.arch-write-flow > li').length,modules:document.querySelectorAll('.arch-modules article').length,diagrams:document.querySelectorAll('figure').length,heroMinHeight:getComputedStyle(document.querySelector('.page-hero')).minHeight})`);
-      if(structure.steps!==6||structure.modules!==5||structure.diagrams!==3||structure.heroMinHeight!=='0px')failures.push(`${routePath}: architecture structure ${JSON.stringify(structure)}`);
+      if(structure.steps!==6||structure.modules!==5||structure.diagrams!==6||structure.heroMinHeight!=='0px')failures.push(`${routePath}: architecture structure ${JSON.stringify(structure)}`);
       await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
       await navigate(new URL(routePath,baseUrl).href);
-      const staticFlow=await evaluate(`document.querySelector('.arch-write-flow').innerText.includes('COMMITTED') && document.querySelectorAll('.intro-lane').length===4`);
+      const staticFlow=await evaluate(`document.querySelector('.arch-write-flow').innerText.includes('COMMITTED') && document.querySelectorAll('.uml-figure').length===6`);
       if(!staticFlow) failures.push(`${routePath}: architecture diagrams require JS`);
       await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
     }

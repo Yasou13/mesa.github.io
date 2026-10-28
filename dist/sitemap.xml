@@ -13,18 +13,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/mesa/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/mesa/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/mesa/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/mesa/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/mesa/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/mesa/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/mesa/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/mesa/" />
-  </url>
-  <url>
     <loc>https://mesamemory.dev/how-it-works/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/how-it-works/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/how-it-works/" />
@@ -95,18 +83,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/use-cases/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/use-cases/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/use-cases/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/use-cases/" />
-  </url>
-  <url>
-    <loc>https://mesamemory.dev/tr/use-cases/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/use-cases/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/use-cases/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/use-cases/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/evaluation/</loc>

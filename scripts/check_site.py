@@ -42,7 +42,7 @@ MEDIA_DATA = json.loads(
 )
 REQUIRED_MEDIA_RECORDS = ("event-horizon",)
 HOME_SCENES = ("event-horizon",)
-HOME_SECTIONS = ("hero", "problem", "difference", "process", "example", "capabilities", "ecosystem", "explore")
+HOME_SECTIONS = ("hero", "process", "capabilities", "explore")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
     entry["path"]
     for entry in HUB_DATA["entries"]
@@ -69,7 +69,11 @@ GUIDE_CATALOG = json.loads((Path(__file__).resolve().parents[1] / "content/docs/
 DOC_ROUTES = tuple(dict.fromkeys((*DOC_ROUTES, *(guide["route"] for guide in GUIDE_CATALOG["guides"]))))
 DOC_ENTRY_ROUTES = set(DOC_ROUTES)
 
-ROUTES = CORE_ROUTES + HUB_ROUTES + DOC_ROUTES
+PAGE_REDIRECTS = {page["path"]: page["redirectTo"] for page in json.loads(
+    (Path(__file__).resolve().parents[1] / "site-data.json").read_text()
+)["pages"].values() if page.get("redirectTo")}
+REDIRECT_ROUTES = {prefix + route: prefix + target for prefix in ("", "tr/") for route, target in PAGE_REDIRECTS.items()}
+ROUTES = tuple(route for route in CORE_ROUTES if route not in PAGE_REDIRECTS) + HUB_ROUTES + DOC_ROUTES
 LOCALIZED_ROUTES = ROUTES + tuple(f"tr/{route}" for route in ROUTES)
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
@@ -239,8 +243,8 @@ def main() -> int:
     titles: set[str] = set()
     descriptions: set[str] = set()
 
-    route_pages = [root / route / "index.html" if route else root / "index.html" for route in LOCALIZED_ROUTES]
-    for route, page in zip(LOCALIZED_ROUTES, route_pages, strict=True):
+    for route in (*LOCALIZED_ROUTES, *REDIRECT_ROUTES):
+        page = root / route / "index.html"
         if not page.is_file():
             errors.append(f"missing route: /{route}")
     for required in (
@@ -337,7 +341,7 @@ def main() -> int:
                 errors.append(
                     f"heading level jumps from h{previous} to h{current}: {relative}"
                 )
-        if not is_exempt and len(parsed.visible_text) < 250:
+        if not is_exempt and str(relative).removesuffix("index.html") not in REDIRECT_ROUTES and len(parsed.visible_text) < 250:
             errors.append(f"insufficient static HTML content: {relative}")
         if relative in {Path("index.html"), Path("tr/index.html")}:
             if tuple(parsed.home_sections) != HOME_SECTIONS:
@@ -349,9 +353,9 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("Atlas", "MESA Core", "09:00" if relative == Path("index.html") else "09.00"):
+            for fixture_field in ("pip install", "mesa-memory[adapters]==0.9.0", "mesa start", "MESA Core", "policy.txt"):
                 if fixture_field not in parsed.visible_text:
-                    errors.append(f"missing homepage walkthrough evidence at {relative}: {fixture_field}")
+                    errors.append(f"missing homepage installation or document example at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
                 if hidden != "true":
                     errors.append(f"scene media must be aria-hidden at {relative}: {scene_id}")
@@ -466,26 +470,26 @@ def main() -> int:
             if value.startswith("/") or ".." in value.split("/") or urlsplit(value).scheme or "admin/" in value:
                 errors.append("unsafe/private search URL")
                 continue
+            if value in REDIRECT_ROUTES:
+                errors.append(f"consolidated route leaked into search: {value}")
             target = root / value / "index.html"
             if not target.is_file():
                 errors.append(f"search result has no public route: {value}")
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "Source-linked memory for AI." not in home_text or "MESA is open-source memory infrastructure for AI systems." not in home_text:
+    if "pip install" not in home_text or "relevant text and its source" not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
 
     static_markers = {
-        "how-it-works/": ("What happens when you add a note?", "One main record. Two search views.", "Combine the rankings"),
-        "mesa/": ("Four signals", "Graph paths", "True RRF"),
+        "how-it-works/": ("You add a text file.", "MESA prepares the text for search.", "Your application asks a question."),
         "law/": ("PRIMARY REFERENCE IMPLEMENTATION", "Official legal source"),
-        "use-cases/": ("Agent memory", "Expected benefit"),
         "evaluation/": ("MESA QA", "E2E CERTIFICATION", "Certification remains blocked"),
         "about/": ("WHO MAINTAINS IT", "Open a GitHub issue"),
-        "faq/": ("Is MESA a vector database?", "Is MESA production-ready?"),
-        "resources/": ("Six surfaces. One knowledge graph.", "METHODOLOGY"),
+        "faq/": ("Does MESA write the answer?", "Is MESA production-ready?"),
+        "resources/": ("Install MESA", "Learn how AI memory works", "Look up an unfamiliar term"),
         "research/keyword-vs-semantic-search/": ("No results yet", "Planned protocol · no results"),
         "guides/verify-ai-yargitay-decision/": ("Capture the exact claim", "Existence is not relevance"),
     }
@@ -497,15 +501,13 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Kaynağını koruyan yapay zekâ hafızası.", "BİLGİ DEĞİŞİNCE", "Alfa"),
-        "tr/how-it-works/": ("Bir not eklediğinizde ne olur?", "Bir ana kayıt. İki arama görünümü.", "Sıralamaları birleştir"),
-        "tr/mesa/": ("Dört sinyal", "Çizge yolu", "Gerçek RRF"),
+        "tr/": ("belgelerinizden bilgi bulsun.", "pip install", "Alfa"),
+        "tr/how-it-works/": ("Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
-        "tr/use-cases/": ("Ajan hafızası", "Beklenen yarar"),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),
         "tr/about/": ("KİM GELİŞTİRİYOR", "GitHub üzerinden bildirin"),
-        "tr/faq/": ("MESA bir vektör veritabanı mı?", "MESA canlı kullanıma hazır mı?"),
-        "tr/resources/": ("Altı alan. Tek bilgi ağı.", "YÖNTEMLER"),
+        "tr/faq/": ("MESA yanıtı kendisi mi yazar?", "MESA canlı kullanıma hazır mı?"),
+        "tr/resources/": ("MESA’yı kurmak istiyorum", "Bilmediğim bir terime bakacağım", "Değerlendirme yöntemleri"),
         "tr/learn/semantic-search/": ("Anlamsal arama: vektörler neyi anlatır?", "İki boyutlu benzerlik hesabı"),
         "tr/research/keyword-vs-semantic-search/": ("Henüz sonuç yok", "Araştırma planı · henüz sonuç yok"),
         "tr/guides/verify-ai-yargitay-decision/": ("İddiayı aynen kaydedin", "Var olmak, ilgili olmak değildir"),
@@ -548,6 +550,21 @@ def main() -> int:
                     if tag == "a"
                 ):
                     errors.append(f"missing context-preserving language switch: {page.relative_to(root)}")
+
+    for old_route, target in REDIRECT_ROUTES.items():
+        page = root / old_route / "index.html"
+        parsed = parsed_pages.get(page.resolve())
+        if not parsed:
+            continue
+        origin = english_home.canonical if english_home else None
+        if not origin:
+            continue
+        if "noindex" not in parsed.robots or parsed.canonical != origin + target.split("#")[0]:
+            errors.append(f"invalid consolidated route metadata: {old_route}")
+        if not any(tag == "a" and resolve_local(page, root, value) == (root / target.split("#")[0] / "index.html").resolve() for tag, value, attrs in parsed.refs):
+            errors.append(f"consolidated route has no working destination: {old_route}")
+        if 'http-equiv="refresh"' not in page.read_text():
+            errors.append(f"consolidated route does not forward: {old_route}")
 
     home_parser = parsed_pages.get((root / "index.html").resolve())
     if home_parser and home_parser.canonical:

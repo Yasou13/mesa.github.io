@@ -32,6 +32,8 @@ class SeoTests(unittest.TestCase):
 
             mutations = [
                 ('index.html', lambda s: s.replace('</head>', '<meta name="robots" content="noindex"></head>'), 'restrictive robots'),
+                ('mesa/index.html', lambda s: s.replace('rel="canonical"', 'rel="notcanonical"'), 'invalid consolidated route metadata'),
+                ('tr/use-cases/index.html', lambda s: s.replace('http-equiv="refresh"', 'http-equiv="notrefresh"'), 'consolidated route does not forward'),
                 ('sitemap.xml', lambda s: s.replace('</urlset>', '<url><loc>https://example.test/project/admin/</loc></url></urlset>'), 'exactly the public canonical'),
                 ('sitemap.xml', lambda s: s.replace('</urlset>', ''), 'not valid XML'),
                 ('robots.txt', lambda s: 'User-agent: OAI-SearchBot\nDisallow: /\n\n' + s, 'blocks a public canonical'),

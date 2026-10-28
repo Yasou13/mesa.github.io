@@ -24,23 +24,24 @@
   "pages": {
     "home": {
       "path": "",
-      "title": "MESA — Source-linked Memory for AI",
-      "description": "MESA gives AI applications a source-linked memory: store information from documents, find relevant facts and return their supporting passages."
+      "title": "MESA — Search Your Documents from Your AI Application",
+      "description": "Connect your assistant to your own documents. Install MESA, add a text file and retrieve relevant passages with their source."
     },
     "mesa": {
       "path": "mesa/",
       "title": "MESA Core — Structured, Evidence-Aware Agent Memory",
-      "description": "Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces."
+      "description": "Explore MESA Core's durable memory lifecycle, scoped retrieval, provenance, storage projections, API, SDK, and MCP surfaces.",
+      "redirectTo": "architecture/"
     },
     "howItWorks": {
       "path": "how-it-works/",
-      "title": "How MESA Works — From Source to Evidence-Aware Context",
-      "description": "New to MESA? Follow an animated note example, a simple core architecture diagram and the four search paths from a question to its source evidence."
+      "title": "How MESA Works — Add a Document, Find Its Text",
+      "description": "Follow one shop-policy document through adding, processing, search and updates. See what MESA returns and what your application does."
     },
     "ecosystem": {
       "path": "ecosystem/",
-      "title": "MESA Ecosystem — Data, Memory, Quality, and Applications",
-      "description": "Understand how MESA Data, Core, QA, E2E Certification, and MESA Law connect through explicit system boundaries."
+      "title": "MESA Projects — What Core, Data, Law and the Tests Do",
+      "description": "Start with Core. Understand the optional Data and Law projects and the separate QA and E2E Certification tools."
     },
     "data": {
       "path": "data/",
@@ -65,7 +66,8 @@
     "useCases": {
       "path": "use-cases/",
       "title": "MESA Use Cases — Structured Memory Where Evidence Matters",
-      "description": "Explore realistic evaluation scenarios for MESA, including agent memory, knowledge-heavy assistants, and provenance-sensitive workflows."
+      "description": "Explore realistic evaluation scenarios for MESA, including agent memory, knowledge-heavy assistants, and provenance-sensitive workflows.",
+      "redirectTo": "#use-cases"
     },
     "evaluation": {
       "path": "evaluation/",

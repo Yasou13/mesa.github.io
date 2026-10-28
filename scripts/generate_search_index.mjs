@@ -81,7 +81,7 @@ export function buildSearchIndex() {
     const trContent = JSON.parse(fs.readFileSync(trContentPath, 'utf8'));
 
     for (const [pageKey, meta] of Object.entries(siteData.pages)) {
-      if (meta.path === 'docs/') continue; // handled above
+      if (meta.path === 'docs/' || meta.redirectTo) continue; // handled above
 
       // English
       index.push({

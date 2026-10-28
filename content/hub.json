@@ -6,18 +6,18 @@
       "path": "resources/",
       "locales": {
         "en": {
-          "title": "MESA Resources — Learn, Research, Guides, and Methods",
-          "description": "Explore MESA's connected learning, research, guide, glossary, tool, and methodology resources.",
-          "eyebrow": "KNOWLEDGE & RESEARCH",
-          "heading": "Evidence-aware knowledge, connected.",
-          "intro": "A durable publishing layer for practical guidance, technical concepts, research protocols, and transparent methods."
+          "title": "MESA Resources — Installation, Lessons and Definitions",
+          "description": "Find the installation guide, step-by-step lessons, term definitions and practical guides for MESA.",
+          "eyebrow": "START HERE",
+          "heading": "Install MESA or learn the concepts.",
+          "intro": "Choose the installation guide if you want to use MESA. Start with the lessons if you want to understand memory and search first."
         },
         "tr": {
-          "title": "MESA Kaynakları — Dersler, Rehberler ve Araştırmalar",
-          "description": "MESA’yı öğrenmek ve yapay zekâ uygulamaları geliştirmek için dersler, rehberler, araştırma planları ve teknik kavramlar.",
-          "eyebrow": "BİLGİ VE ARAŞTIRMA",
-          "heading": "Öğrenin, deneyin, kaynakları inceleyin.",
-          "intro": "Temel kavramları öğrenmek, uygulama geliştirmek veya bir yöntemin dayanaklarına bakmak için buradan başlayabilirsiniz."
+          "title": "MESA Kaynakları — Kurulum, Dersler ve Terim Açıklamaları",
+          "description": "MESA kurulum rehberini, adım adım dersleri, terim açıklamalarını ve uygulama rehberlerini bulun.",
+          "eyebrow": "BURADAN BAŞLAYIN",
+          "heading": "MESA’yı kurmak mı, konuyu öğrenmek mi istiyorsunuz?",
+          "intro": "MESA kullanmak için kurulum rehberine, hafıza ve arama konularını öğrenmek için derslere gidin. Diğer bağlantılar aşağıda ne işe yaradıklarıyla birlikte listelenir."
         }
       }
     },
@@ -28,16 +28,16 @@
         "en": {
           "title": "MESA Learn — From first principles to a working search system",
           "description": "A guided AI memory and retrieval course: 14 substantial lessons, worked examples, diagrams, source references and a runnable search lab.",
-          "eyebrow": "LEARN",
-          "heading": "Understand memory.\nBuild with evidence.",
-          "intro": "Start with no background. Follow one connected course from context windows to retrieval, evidence and a working search lab."
+          "eyebrow": "LESSONS",
+          "heading": "Learn AI memory and search, step by step.",
+          "intro": "Start with the first lesson, then build up to a small search program. Each lesson includes an example and an exercise."
         },
         "tr": {
           "title": "MESA Dersleri — Temelden Çalışan Bir Arama Sistemine",
           "description": "Yapay zekâ hafızası ve arama üzerine 14 ders; adım adım örnekler, şemalar ve çalıştırabileceğiniz küçük bir arama sistemi.",
           "eyebrow": "DERSLER",
-          "heading": "Hafızayı anlayın.\nBir arama sistemi kurun.",
-          "intro": "Ön bilgi gerekmiyor. Bağlam penceresinden başlayıp arama, kaynak izi ve çalışan bir uygulamaya uzanan dersleri sırayla izleyin."
+          "heading": "Yapay zekâ hafızası ve aramayı adım adım öğrenin.",
+          "intro": "İlk dersten başlayıp küçük bir arama programı kurmaya kadar ilerleyin. Her derste bir örnek ve alıştırma vardır."
         }
       }
     },
@@ -48,16 +48,16 @@
         "en": {
           "title": "MESA Research — Protocols, Benchmarks, and Findings",
           "description": "Read transparent MESA research protocols, methods, limitations, and reproducibility notes without invented results.",
-          "eyebrow": "RESEARCH",
-          "heading": "Methods before metrics.",
-          "intro": "Research publications separate planned work, executed experiments, results, limitations, and reproducibility evidence."
+          "eyebrow": "RESEARCH PLANS",
+          "heading": "Which search questions are being studied?",
+          "intro": "Read the planned experiments, the data they need and their limitations. A plan is not a completed experiment or a published result."
         },
         "tr": {
           "title": "MESA Araştırmaları — Yöntemler ve Bulgular",
           "description": "MESA araştırmalarının sorularını, yöntemlerini, sınırlarını ve tekrarlanabilmesi için gereken kayıtları inceleyin.",
-          "eyebrow": "ARAŞTIRMA",
-          "heading": "Önce yöntemi açıklayın.",
-          "intro": "Her yayında planlanan çalışma, yapılan deney ve elde edilen sonuç ayrı belirtilir. Henüz yapılmayan testler için sonuç sunulmaz."
+          "eyebrow": "ARAŞTIRMA PLANLARI",
+          "heading": "Hangi arama soruları inceleniyor?",
+          "intro": "Planlanan deneyleri, gerekli verileri ve sınırlarını okuyun. Araştırma planı, tamamlanmış deney veya yayımlanmış sonuç anlamına gelmez."
         }
       }
     },
@@ -68,16 +68,16 @@
         "en": {
           "title": "MESA Guides — Practical, Evidence-Aware Workflows",
           "description": "Follow practical guides for legal research, verification, retrieval, and evidence-aware AI workflows.",
-          "eyebrow": "GUIDES",
-          "heading": "Start with the problem. Keep the evidence.",
-          "intro": "Step-by-step guidance with warnings, checklists, examples, related concepts, and restrained product context."
+          "eyebrow": "PRACTICAL GUIDES",
+          "heading": "Follow a task from start to finish.",
+          "intro": "Choose a guide below for worked steps, examples and source checks."
         },
         "tr": {
           "title": "MESA Rehberleri — Adım Adım Uygulama",
           "description": "Hukuki araştırma, kaynak doğrulama ve yapay zekâ uygulamaları için adım adım rehberler.",
-          "eyebrow": "REHBERLER",
-          "heading": "Bir işi adım adım yapın.",
-          "intro": "Somut bir sorundan başlayın; örnekleri, uyarıları ve kontrol listelerini izleyerek ilerleyin."
+          "eyebrow": "UYGULAMA REHBERLERİ",
+          "heading": "Bir işi baştan sona nasıl yaparsınız?",
+          "intro": "Adımları, örnekleri ve kaynak kontrollerini görmek için aşağıdaki rehberlerden birini seçin."
         }
       }
     },
@@ -89,15 +89,15 @@
           "title": "MESA Glossary — Legal AI and Retrieval Concepts",
           "description": "Understand the legal AI, retrieval, provenance, and memory concepts used throughout MESA resources.",
           "eyebrow": "GLOSSARY",
-          "heading": "Shared terms for a connected knowledge graph.",
-          "intro": "Only concepts used by MESA topic clusters are included; each term points back to practical and research context."
+          "heading": "What do these terms mean?",
+          "intro": "Look up the short definition first. Open the longer entry if you need an example or technical detail."
         },
         "tr": {
           "title": "MESA Sözlüğü — Hafıza, Arama ve Kaynak İzi",
           "description": "MESA belgelerinde geçen yapay zekâ, arama, kaynak izi ve hafıza kavramlarının açıklamaları.",
           "eyebrow": "SÖZLÜK",
-          "heading": "Terimleri birlikte anlayalım.",
-          "intro": "Her kavram kısa bir açıklamayla birlikte, kullanıldığı rehber ve araştırmalara bağlanır."
+          "heading": "Bu terimler ne anlama geliyor?",
+          "intro": "Önce kısa tanıma bakın. Örnek veya teknik ayrıntı gerekiyorsa ilgili uzun açıklamayı açın."
         }
       }
     },
@@ -108,16 +108,16 @@
         "en": {
           "title": "MESA Tools — Practical Research Utilities",
           "description": "See the focused, transparent utilities planned for MESA's legal research and AI evaluation workflows.",
-          "eyebrow": "TOOLS",
-          "heading": "Useful tools, when they are ready.",
-          "intro": "This index exposes planned utility categories without pretending unfinished tools already work."
+          "eyebrow": "PLANNED TOOLS",
+          "heading": "Tools that are not available yet.",
+          "intro": "These utilities are planned. Use the installation guide and lessons for software and examples you can run today."
         },
         "tr": {
           "title": "MESA Araçları — Planlanan Yardımcılar",
           "description": "Hukuki araştırma ve yapay zekâ değerlendirmesi için planlanan yardımcı araçları inceleyin.",
-          "eyebrow": "ARAÇLAR",
-          "heading": "Hangi araçlar hazırlanıyor?",
-          "intro": "Burada geliştirilmesi planlanan araçlar listelenir. Henüz tamamlanmamış bir araç, kullanıma hazır gibi sunulmaz."
+          "eyebrow": "PLANLANAN ARAÇLAR",
+          "heading": "Bu araçlar henüz kullanıma açık değil.",
+          "intro": "Aşağıdaki yardımcılar geliştirme planıdır. Bugün çalıştırabileceğiniz yazılım ve örnekler için kurulum rehberini ve dersleri kullanın."
         }
       }
     },
@@ -128,16 +128,16 @@
         "en": {
           "title": "MESA Research Methodology — Evaluation and Reproducibility",
           "description": "Review MESA's foundation for dataset selection, relevance judgment, retrieval metrics, versioning, limitations, and corrections.",
-          "eyebrow": "METHODOLOGY",
-          "heading": "Trust starts with visible methods.",
-          "intro": "Methodology pages define how evidence should be selected, judged, measured, versioned, reproduced, limited, and corrected."
+          "eyebrow": "EVALUATION METHODS",
+          "heading": "How do you measure a search system?",
+          "intro": "Learn how to choose test questions, judge returned passages and calculate search metrics."
         },
         "tr": {
           "title": "MESA’nın Değerlendirme Yöntemleri",
           "description": "Veri ve soru seçimi, ilgililik değerlendirmesi, arama ölçümleri, sürümleme ve düzeltme yöntemleri.",
-          "eyebrow": "YÖNTEMLER",
-          "heading": "Sonuca nasıl ulaşıldığı belli olsun.",
-          "intro": "Verinin nasıl seçileceği, sonuçların nasıl değerlendirileceği ve aynı deneyin nasıl tekrarlanacağı burada açıklanır."
+          "eyebrow": "DEĞERLENDİRME YÖNTEMLERİ",
+          "heading": "Bir arama sistemini nasıl ölçersiniz?",
+          "intro": "Test sorularını seçmeyi, dönen metinleri değerlendirmeyi ve arama ölçümlerini hesaplamayı öğrenin."
         }
       }
     }
