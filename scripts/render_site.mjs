@@ -1481,11 +1481,14 @@ function relativeBase(routePath) {
 // GitHub Pages cannot send response headers, so the policy travels in a meta tag.
 // frame-ancestors, HSTS and X-Frame-Options still need the CDN (docs/security/HTTP_HEADERS.md).
 const inlineBootHash = `'sha256-${crypto.createHash('sha256').update("document.documentElement.classList.add('js')").digest('base64')}'`;
+// Allow the observed Codex annotation overlay stylesheet without enabling arbitrary inline CSS.
+// If Codex changes this stylesheet, verify its new contents before updating the hash.
+const codexAnnotationStyleHash = "'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='";
 const supabaseOrigin = publicAdminConfig?.url ? ` ${new URL(publicAdminConfig.url).origin}` : '';
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' ${inlineBootHash} https://static.cloudflareinsights.com`,
-  "style-src 'self'",
+  `style-src 'self' ${codexAnnotationStyleHash}`,
   "font-src 'self'",
   "img-src 'self' data: https:",
   `connect-src 'self' https://cloudflareinsights.com${supabaseOrigin}`,

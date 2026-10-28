@@ -5,13 +5,22 @@ there. The site therefore ships what HTML can carry, and leaves the rest to Clou
 
 ## Already in the HTML (every public page)
 
-- `Content-Security-Policy` as a `<meta http-equiv>` tag. Scripts and styles load only
-  from the site itself; the one inline boot script is allowed by its SHA-256 hash.
+- `Content-Security-Policy` as a `<meta http-equiv>` tag. Scripts and styles load
+  from the site itself; the inline boot script and the observed Codex browser
+  annotation overlay stylesheet are allowed by their SHA-256 hashes.
   Cloudflare Web Analytics (`static.cloudflareinsights.com`, `cloudflareinsights.com`)
   and the configured Supabase origin are allowed. Admin pages keep their own stricter policy.
 - `<meta name="referrer" content="strict-origin-when-cross-origin">`.
 - Admin pages carry `noindex, nofollow`. `robots.txt` no longer lists `/admin/`, so the
   path is not advertised.
+
+The annotation stylesheet exception fixes the unstyled selection cursor and
+missing annotation editor in Codex. It does not allow arbitrary inline styles.
+On 2026-10-28, the identical 5,382-byte overlay stylesheet loaded on GitHub but
+was blocked on MESA. A local browser comparison confirmed that the exact hash
+restored its fixed positioning and border, while modified CSS remained blocked.
+If a Codex update changes that stylesheet, inspect the new CSS and repeat this
+comparison before changing `codexAnnotationStyleHash` in `scripts/render_site.mjs`.
 
 ## Still needed in Cloudflare (owner action)
 
