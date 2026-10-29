@@ -1,6 +1,6 @@
 /* MESA documentation workspace. Scoped to documentation routes. */
 body:has(.docs-layout) { background: #0b0b10; --docs-purple: #b3a2e3; --docs-surface: #111118; --docs-border: #ffffff12; }
-body:has(.docs-layout) .cosmic { display: none; }
+body:has(.docs-layout:not(.docs-standalone)) .cosmic { display: none; }
 .js body:has(.docs-layout) .site-header { position: fixed; }
 body:has(.docs-layout) .site-header { background: #0b0b10f5; border-bottom: 1px solid var(--docs-border); }
 .docs-layout { max-width: 1600px; padding: 105px 36px 76px; grid-template-columns: 248px minmax(0, 1fr); column-gap: 48px; row-gap: 0; align-items: start; }
