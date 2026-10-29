@@ -90,6 +90,7 @@ unchanged. Every public route also has a static Turkish counterpart under
 the same in both languages. The EN/TR control preserves the current page.
 
 - `/` — value proposition, problem, ecosystem, example path, and use cases
+- `/get-started/` — standalone first-use journey, with Get started active and no docs sidebar
 - `/how-it-works/` — simple public flow, verified retrieval fixture, technical path
 - `/mesa/` — MESA Core
 - `/ecosystem/` — ecosystem overview and component boundaries

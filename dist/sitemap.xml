@@ -205,6 +205,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/privacy/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/get-started/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/get-started/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/get-started/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/get-started/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/get-started/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/get-started/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/get-started/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/get-started/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/resources/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/resources/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/resources/" />

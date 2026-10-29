@@ -15,6 +15,7 @@ from urllib.robotparser import RobotFileParser
 
 CORE_ROUTES = (
     "",
+    "get-started/",
     "how-it-works/",
     "architecture/",
     "retrieval/",

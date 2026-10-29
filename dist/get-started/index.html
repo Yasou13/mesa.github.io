@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get Started with MESA — Your First Local Search</title>
+  <meta name="description" content="Follow a focused setup path: check prerequisites, install MESA, add a document and verify your first search.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/get-started/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/get-started/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/get-started/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/get-started/">
+  <meta property="og:title" content="Get Started with MESA — Your First Local Search">
+  <meta property="og:description" content="Follow a focused setup path: check prerequisites, install MESA, add a document and verify your first search.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/get-started/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Get Started with MESA — Your First Local Search">
+  <meta name="twitter:description" content="Follow a focused setup path: check prerequisites, install MESA, add a document and verify your first search.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"See a recorded real search with source and revision information, then try MESA locally with a step-by-step setup guide."},{"@type":"WebPage","@id":"https://mesamemory.dev/get-started/#webpage","url":"https://mesamemory.dev/get-started/","name":"Get Started with MESA — Your First Local Search","description":"Follow a focused setup path: check prerequisites, install MESA, add a document and verify your first search.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"See a recorded real search with source and revision information, then try MESA locally with a step-by-step setup guide.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE","version":"0.9.0","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css?v=0f3e72057806">
+  <link rel="stylesheet" href="../cosmic.css?v=26e4cf860d9e">
+  <link rel="stylesheet" href="../learn.css?v=45ed18ca11a1">
+
+  <link rel="stylesheet" href="../docs.css?v=f7e9b5b1f493">
+  <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <a class="nav-item" href="../how-it-works/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="workflow" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="8" height="8" x="3" y="3" rx="2" /> <path d="M7 11v4a2 2 0 0 0 2 2h4" /> <rect width="8" height="8" x="13" y="13" rx="2" /> </svg></span><span>How it works</span></a><a class="nav-item active" aria-current="page" href="../get-started/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="workflow" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="8" height="8" x="3" y="3" rx="2" /> <path d="M7 11v4a2 2 0 0 0 2 2h4" /> <rect width="8" height="8" x="13" y="13" rx="2" /> </svg></span><span>Get started</span></a><a class="nav-item" href="../docs/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg></span><span>Docs</span></a><a class="nav-item" href="../resources/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="library" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 6 4 14" /> <path d="M12 6v14" /> <path d="M8 8v12" /> <path d="M4 4v16" /> </svg></span><span>Resources</span></a>
+          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../get-started/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../tr/get-started/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout docs-onboarding docs-standalone">
+
+
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Breadcrumbs"><ol>
+    <li><a href="../">Home</a></li>
+
+    <li aria-current="page">Get started with MESA</li>
+  </ol></nav>
+      <article class="docs-article" data-doc-copy-content>
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Core · v0.9.0</p>
+          <div class="docs-title-row"><h1>Get started with MESA</h1><button class="docs-copy-page" type="button" hidden><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span aria-live="polite">Copy page</span></button></div>
+          <p class="docs-language-notice" hidden>This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.</p>
+
+        </header>
+        <div class="docs-body">
+<nav class="onboarding-steps" aria-label="Setup steps"><ol><li><a href="#guide-check-the-prerequisites">1. Prerequisites</a></li><li><a href="#guide-install-v090">2. Install</a></li><li><a href="#guide-start-the-local-server">3. Start</a></li><li><a href="#guide-add-a-document-and-search">4. Document</a></li><li><a href="#guide-verify-processing-has-finished">5. Processing</a></li><li><a href="#guide-see-your-first-search-result">6. Search</a></li></ol></nav>
+          <span id="provision-before-startup"></span><h2 id="guide-check-the-prerequisites">Check the prerequisites<a class="heading-anchor" href="#guide-check-the-prerequisites" aria-label="Link to section: Check the prerequisites" title="Link to this section">#</a></h2>
+<p>This is a local evaluation. You will add text and retrieve a result with its source; no model account is required. MESA does not write the final answer. A terminal is the application where you enter commands; open Terminal on Linux or macOS.</p>
+<h3 id="guide-linux-and-macos">Linux and macOS<a class="heading-anchor" href="#guide-linux-and-macos" aria-label="Link to section: Linux and macOS" title="Link to this section">#</a></h3>
+<p>You need Python 3.11–3.13 and pip. Check the version first:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-1">Copy</button></div><pre tabindex="0" id="guide-code-block-1" class="language-bash"><code>python3 --version</code></pre></div>
+<p><strong>Success:</strong> the output begins with <code class="inline-code">Python 3.11</code>, <code class="inline-code">3.12</code> or <code class="inline-code">3.13</code>. If Python is missing or a different version is installed, use the <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">official Python downloads</a>. If venv is missing on Linux, install your distribution’s Python venv package.</p>
+<h3 id="guide-windows-wsl">Windows: WSL<a class="heading-anchor" href="#guide-windows-wsl" aria-label="Link to section: Windows: WSL" title="Link to this section">#</a></h3>
+<p><code class="inline-code">mesa start</code> does not run in native Windows PowerShell. Follow <a href="https://learn.microsoft.com/windows/wsl/install" target="_blank" rel="noopener noreferrer">Microsoft’s WSL installation guide</a>, open a Linux terminal and use the Linux commands below there. Check Python inside WSL.</p>
+<h3 id="guide-docker-path">Docker path<a class="heading-anchor" href="#guide-docker-path" aria-label="Link to section: Docker path" title="Link to this section">#</a></h3>
+<p>If you prefer containers, <a href="https://docs.docker.com/get-started/get-docker/" target="_blank" rel="noopener noreferrer">install Docker</a> and skip to <a href="#guide-docker-setup">Docker setup</a>.</p>
+<h2 id="guide-install-v090">Install v0.9.0<a class="heading-anchor" href="#guide-install-v090" aria-label="Link to section: Install v0.9.0" title="Link to this section">#</a></h2>
+<p>Run these commands in a new working directory. The virtual environment keeps MESA packages separate from your other Python projects.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-2">Copy</button></div><pre tabindex="0" id="guide-code-block-2" class="language-bash"><code>python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install &quot;mesa-memory[adapters]==0.9.0&quot;
+mesa --help</code></pre></div>
+<p><strong>Success:</strong> the help lists <code class="inline-code">start</code>, <code class="inline-code">add</code>, <code class="inline-code">search</code> and <code class="inline-code">status</code>. For <code class="inline-code">mesa: command not found</code>, run <code class="inline-code">. .venv/bin/activate</code> in the correct directory.</p>
+<h2 id="guide-start-the-local-server">Start the local server<a class="heading-anchor" href="#guide-start-the-local-server" aria-label="Link to section: Start the local server" title="Link to this section">#</a></h2>
+<p>In Terminal 1:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-3">Copy</button></div><pre tabindex="0" id="guide-code-block-3" class="language-bash"><code>mesa start</code></pre></div>
+<p><strong>Success:</strong> the server starts at <code class="inline-code">http://127.0.0.1:8000</code> and logs <code class="inline-code">Application startup complete</code>. Keep this window open. Local storage is in <code class="inline-code">~/.mesa/data</code> and private credentials in <code class="inline-code">~/.mesa/credentials.json</code>.</p>
+<p>Models and external providers are off by default; an existing <code class="inline-code">.env</code> configuration can change those defaults. This guide uses word search.</p>
+<h2 id="guide-add-a-document-and-search">Add a document and search<a class="heading-anchor" href="#guide-add-a-document-and-search" aria-label="Link to section: Add a document and search" title="Link to this section">#</a></h2>
+<p>Open Terminal 2 in the same working directory and activate the environment:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-4">Copy</button></div><pre tabindex="0" id="guide-code-block-4" class="language-bash"><code>. .venv/bin/activate</code></pre></div>
+<p>Create the UTF-8 sample document. Save its receipt in <code class="inline-code">receipt.json</code> for the next step:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-5">Copy</button></div><pre tabindex="0" id="guide-code-block-5" class="language-bash"><code>printf &#39;%s\n&#39; &#39;The Atlas archive opens at 09:00 on weekdays.&#39; &gt; archive-en.txt
+mesa add archive-en.txt --source file://archive-en.txt --json &gt; receipt.json
+cat receipt.json</code></pre></div>
+<p>Selected receipt fields from the recorded run are shown below. Your identifiers can differ; <code class="inline-code">receipt.json</code> contains your own complete receipt.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">json</span><button class="copy-button" type="button" data-copy-target="guide-code-block-6">Copy</button></div><pre tabindex="0" id="guide-code-block-6" class="language-json"><code>{
+  &quot;document_id&quot;: &quot;doc-5239a0bb570c977f678a3a48e2947b81&quot;,
+  &quot;revision_number&quot;: 1,
+  &quot;chunk_count&quot;: 1,
+  &quot;mutation_ids&quot;: [
+    &quot;8db5a8d0-d6f0-592c-8d23-23d27662de2c&quot;
+  ]
+}</code></pre></div>
+<p><strong>Success:</strong> the receipt includes <code class="inline-code">document_id</code>, <code class="inline-code">chunk_count</code> and <code class="inline-code">mutation_ids</code>. This is admission, not proof that the document is searchable yet.</p>
+<h2 id="guide-verify-processing-has-finished">Verify processing has finished<a class="heading-anchor" href="#guide-verify-processing-has-finished" aria-label="Link to section: Verify processing has finished" title="Link to this section">#</a></h2>
+<p>Save the following code as <code class="inline-code">wait_for_document.py</code>. It reads local credentials automatically and checks the terminal state of every mutation:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="guide-code-block-7">Copy</button></div><pre tabindex="0" id="guide-code-block-7" class="language-python"><code>import json
+from mesa_client import Mesa, MesaV4Client
+
+receipt = json.load(open(&quot;receipt.json&quot;, encoding=&quot;utf-8&quot;))
+with Mesa() as local:
+    with MesaV4Client(local.base_url, api_key=local.api_key) as client:
+        for mutation_id in receipt[&quot;mutation_ids&quot;]:
+            state = client.wait_until_committed(mutation_id)
+            print(mutation_id, state[&quot;state&quot;])
+            if state[&quot;state&quot;] != &quot;COMMITTED&quot;:
+                raise SystemExit(&quot;Document processing failed&quot;)</code></pre></div>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-8">Copy</button></div><pre tabindex="0" id="guide-code-block-8" class="language-bash"><code>python wait_for_document.py</code></pre></div>
+<p><strong>Success:</strong> every line ends with <code class="inline-code">COMMITTED</code>. Another terminal state makes the script fail; do not treat that document as successfully processed. On timeout, check that the server is running and run the same script again. The <a href="../docs/core/api-reference/">status API</a> exposes the details.</p>
+<p><code class="inline-code">mesa status</code> reports server readiness and health; it does not verify that document mutations have finished.</p>
+<h2 id="guide-see-your-first-search-result">See your first search result<a class="heading-anchor" href="#guide-see-your-first-search-result" aria-label="Link to section: See your first search result" title="Link to this section">#</a></h2>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-9">Copy</button></div><pre tabindex="0" id="guide-code-block-9" class="language-bash"><code>mesa search &quot;archive&quot;</code></pre></div>
+<p>Recorded real CLI output:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="guide-code-block-10">Copy</button></div><pre tabindex="0" id="guide-code-block-10" class="language-text"><code>[1] score: 0.033 | doc-5239a0bb570c977f678a3a48e2947b81
+    The Atlas archive opens at 09:00 on weekdays.</code></pre></div>
+<p><strong>Success:</strong> the result contains your document’s <code class="inline-code">09:00</code> text and document identifier. Identifiers and scores can differ; a score is not a truth probability. Inspect source and revision fields in the <a href="https://mesamemory.dev/#example" target="_blank" rel="noopener noreferrer">recorded example on the home page</a>.</p>
+<p><strong>Empty result:</strong> run the completion script first, then search for the exact word in your document. <strong>Connection error:</strong> keep Terminal 1 running and check for healthy <code class="inline-code">mesa status</code> output. <strong>Port already in use:</strong> check for another MESA instance; this guide does not require deleting existing storage.</p>
+<h2 id="guide-docker-setup">Docker setup<a class="heading-anchor" href="#guide-docker-setup" aria-label="Link to section: Docker setup" title="Link to this section">#</a></h2>
+<p>This path needs Git, Docker Engine/Desktop and Compose. Open the pinned source release:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-11">Copy</button></div><pre tabindex="0" id="guide-code-block-11" class="language-bash"><code>git clone --branch v0.9.0 --depth 1 https://github.com/Yasou13/MESA.git
+cd MESA
+docker compose -f docker-compose.v4.yml up --build -d
+docker compose -f docker-compose.v4.yml exec mesa-v4 mesa status</code></pre></div>
+<p><strong>Success:</strong> the status output shows <code class="inline-code">ready</code> and <code class="inline-code">healthy</code>. Compose publishes port 8000 only on the host loopback address; the volume preserves data and credentials.</p>
+<p>Run the document, completion and search steps inside the container. Open a shell with:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-12">Copy</button></div><pre tabindex="0" id="guide-code-block-12" class="language-bash"><code>docker compose -f docker-compose.v4.yml exec mesa-v4 sh</code></pre></div>
+<p>Skip virtual-environment activation in this shell. Create the sample file, then use the <code class="inline-code">mesa add</code> command and Python completion script above. Enter <code class="inline-code">exit</code> when done. A host-side <code class="inline-code">mesa</code> command does not automatically read container credentials. See the <a href="../docs/core/installation/">deployment guide</a> for details.</p>
+<h2 id="guide-use-python-or-connect-an-mcp-client">Use Python or connect an MCP client<a class="heading-anchor" href="#guide-use-python-or-connect-an-mcp-client" aria-label="Link to section: Use Python or connect an MCP client" title="Link to this section">#</a></h2>
+<p>After your first successful search, open the <a href="../docs/core/examples/">Python SDK examples</a> or <a href="../docs/mcp/">MCP guide</a>. Generate MCP settings with:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-13">Copy</button></div><pre tabindex="0" id="guide-code-block-13" class="language-bash"><code>mesa mcp-config</code></pre></div>
+<p>The output contains your local API key; keep it private. MESA returns context; your application and its model write the final answer.</p>
+<details class="onboarding-advanced"><summary>Advanced: models and graph</summary><h2 id="guide-enable-optional-models-and-graph">Enable optional models and graph<a class="heading-anchor" href="#guide-enable-optional-models-and-graph" aria-label="Link to section: Enable optional models and graph" title="Link to this section">#</a></h2>
+<p>You do not need this for your first search. For semantic search and extraction, review <a href="../docs/core/configuration/">model configuration</a> and <a href="../docs/core/embedding-providers/">providers</a>. External providers can transmit data and incur usage charges. Re-enabling graph/embeddings can backfill skipped work at startup. Local success does not establish production qualification; production checks remain incomplete.</p></details>
+<details class="onboarding-source"><summary>Source and version</summary><div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.9.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md" title="7062fafe2cff8442eb84d1da60df164099526c8e" target="_blank" rel="noopener noreferrer">7062faf</a></span>
+    <span class="docs-source-pill">source: <code>docs/getting-started.md</code></span>
+  </div></details>
+          <div class="guide-source-list"><strong>Verified sources</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md" target="_blank" rel="noopener noreferrer"><code>docs/getting-started.md</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/examples/v4_quickstart.py" target="_blank" rel="noopener noreferrer"><code>examples/v4_quickstart.py</code></a></li></ul></div><div class="docs-moved"><strong>Sections that moved to their own page</strong><ul><li id="advanced-operator-production-profiles">Advanced Operator &amp; Production Profiles → <a href="../docs/core/installation/">Installation &amp; deployment</a></li></ul></div><details class="source-appendix" id="source-reference"><summary>Source reference for this page</summary><p class="docs-language-notice">The sections of the upstream file that back this page, unchanged. Source section links open the appendix automatically.</p><div class="source-reference-body"><p>This guide covers getting started with MESA as a new user, from installation to querying evidence, followed by advanced operator provisioning and production runtime profiles. Production qualification remains at the release candidate stage: <strong>NO-GO</strong> until the <a href="../docs/core/release-policy/">release gates</a> pass for the intended commit.</p>
+<span id="installation"></span>
+<h2 id="installation-1">Installation<a class="heading-anchor" href="#installation-1" aria-label="Link to section: Installation" title="Link to this section">#</a></h2>
+<p>Install MESA with the adapters extra:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Copy</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>pip install &quot;mesa-memory[adapters]&quot;</code></pre></div>
+<p>Supported natively on Linux and macOS. On Windows, use Docker or WSL.</p>
+<p>The development version can be installed directly from git: <code class="inline-code">pip install &quot;mesa-memory[adapters] @ git+https://github.com/Yasou13/MESA&quot;</code>.</p>
+<p>Or install from source with <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener noreferrer">uv</a>:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Copy</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>git clone https://github.com/Yasou13/MESA.git
+cd MESA
+uv sync --locked --python 3.11
+uv pip check</code></pre></div>
+<h2 id="quickstart">Quickstart<a class="heading-anchor" href="#quickstart" aria-label="Link to section: Quickstart" title="Link to this section">#</a></h2>
+<h3 id="1-start-the-server">1. Start the server<a class="heading-anchor" href="#1-start-the-server" aria-label="Link to section: 1. Start the server" title="Link to this section">#</a></h3>
+<p>For standard local usage, <code class="inline-code">mesa start</code> automatically provisions local storage (<code class="inline-code">~/.mesa/data</code>), writes credentials (<code class="inline-code">~/.mesa/credentials.json</code>), sets model-disabled defaults, and starts the loopback server on <code class="inline-code">http://127.0.0.1:8000</code>:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Copy</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>mesa start</code></pre></div>
+<h3 id="2-add-and-search-documents">2. Add and search documents<a class="heading-anchor" href="#2-add-and-search-documents" aria-label="Link to section: 2. Add and search documents" title="Link to this section">#</a></h3>
+<p>In another terminal, add and search documents immediately without manual credential configuration:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Copy</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>mesa add document.txt --source file://document.txt
+mesa search &quot;your query&quot;
+mesa status</code></pre></div>
+<h3 id="3-python-sdk">3. Python SDK<a class="heading-anchor" href="#3-python-sdk" aria-label="Link to section: 3. Python SDK" title="Link to this section">#</a></h3>
+<p>Use the high-level <code class="inline-code">Mesa</code> client to ingest documents and query evidence contexts:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-5">Copy</button></div><pre tabindex="0" id="code-block-5" class="language-python"><code>from mesa_client import Mesa
+
+mesa = Mesa()
+mesa.add(open(&quot;document.txt&quot;).read(), source=&quot;file://document.txt&quot;)
+print(mesa.context(&quot;your query&quot;))</code></pre></div>
+<p><code class="inline-code">Mesa()</code> uses <code class="inline-code">MESA_API_KEY</code> and <code class="inline-code">MESA_BASE_URL</code> when they are set, otherwise the local credentials in <code class="inline-code">~/.mesa/credentials.json</code>.</p>
+<h3 id="4-connect-mcp-clients">4. Connect MCP clients<a class="heading-anchor" href="#4-connect-mcp-clients" aria-label="Link to section: 4. Connect MCP clients" title="Link to this section">#</a></h3>
+<p>Connect Claude Desktop or any MCP client by generating a ready-to-paste configuration block:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-6">Copy</button></div><pre tabindex="0" id="code-block-6" class="language-bash"><code>mesa mcp-config</code></pre></div>
+<h3 id="5-internal-models-optional">5. Internal models (optional)<a class="heading-anchor" href="#5-internal-models-optional" aria-label="Link to section: 5. Internal models (optional)" title="Link to this section">#</a></h3>
+<p>Models stay off by default. Documents are stored and found through BM25 lexical search without any model running.</p>
+<p>To enable semantic vector search and fact extraction with local Ollama, add to <code class="inline-code">~/.mesa/.env</code>:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Copy</button></div><pre tabindex="0" id="code-block-7" class="language-bash"><code>MESA_MODEL_ENABLED=true
+MESA_LLM_MODEL=ollama:qwen2.5:7b
+MESA_EMBEDDING_MODEL=ollama:bge-m3</code></pre></div>
+<p>Under decision D31, local <code class="inline-code">openai_compatible</code> servers (e.g. vLLM started with <code class="inline-code">--port 8001</code>, at <code class="inline-code">http://127.0.0.1:8001/v1</code>, since MESA itself uses port 8000) are also permitted with <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED=false</code> on a local endpoint and require no API key. For external cloud APIs (OpenAI, Anthropic), set <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED=true</code> and supply the required API keys.</p>
+<p>Missing extras raise clear, actionable installation messages:</p>
+<ul><li>Ollama LLM, Ollama embedding, or OpenAI-compatible embedding → <code class="inline-code">pip install &quot;mesa-memory[adapters]&quot;</code></li><li>Local embedding (<code class="inline-code">sentence-transformers</code>) → <code class="inline-code">pip install &quot;mesa-memory[ml]&quot;</code></li></ul>
+<h3 id="6-graph-toggle">6. Graph toggle<a class="heading-anchor" href="#6-graph-toggle" aria-label="Link to section: 6. Graph toggle" title="Link to this section">#</a></h3>
+<p>To run without the Kùzu graph database, set:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-8">Copy</button></div><pre tabindex="0" id="code-block-8" class="language-bash"><code>MESA_GRAPH_ENABLED=false</code></pre></div>
+<p>GRAPH lanes end <code class="inline-code">SKIPPED</code>, and turning the flag back on later backfills the graph at startup.</p>
+<h3 id="7-docker">7. Docker<a class="heading-anchor" href="#7-docker" aria-label="Link to section: 7. Docker" title="Link to this section">#</a></h3>
+<p>Run MESA in a single-user local container (D32):</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-9">Copy</button></div><pre tabindex="0" id="code-block-9" class="language-bash"><code>docker compose -f docker-compose.v4.yml up --build -d</code></pre></div>
+<p>Credentials are written to <code class="inline-code">/var/lib/mesa/credentials.json</code> in the container volume:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-10">Copy</button></div><pre tabindex="0" id="code-block-10" class="language-bash"><code>docker compose -f docker-compose.v4.yml exec mesa-v4 cat /var/lib/mesa/credentials.json
+docker compose -f docker-compose.v4.yml exec -T mesa-v4 mesa add - --source file://document.txt &lt; document.txt
+docker compose -f docker-compose.v4.yml exec mesa-v4 mesa search &quot;your query&quot;</code></pre></div>
+<p>No environment variables are required: models and external providers default</p>
+<p>off. The image runs <code class="inline-code">mesa start --host 0.0.0.0</code> as a non-root user; Compose</p>
+<p>publishes only <code class="inline-code">127.0.0.1:8000</code>. Credentials retain a loopback base URL for CLI</p>
+<p>use inside the container. The named volume keeps data and credentials on</p>
+<p>restart. <code class="inline-code">MESA_API_KEY</code> and <code class="inline-code">MESA_PRINCIPAL_ID</code> are optional for existing</p>
+<p>bootstrap setups; when set, the <code class="inline-code">mesa</code> commands inside the container use that</p>
+<p>key first, so add <code class="inline-code">-e MESA_API_KEY=</code> after <code class="inline-code">exec</code> to use the local credentials. Ollama defaults to <code class="inline-code">http://host.docker.internal:11434</code>,</p>
+<p>which reaches the Docker host. The default image includes <code class="inline-code">adapters</code>; add</p>
+<p>sentence-transformers with</p>
+<p><code class="inline-code">docker compose -f docker-compose.v4.yml build --build-arg MESA_EXTRAS=ml,adapters</code>.</p>
+<h3 id="8-google-colab">8. Google Colab<a class="heading-anchor" href="#8-google-colab" aria-label="Link to section: 8. Google Colab" title="Link to this section">#</a></h3>
+<p>Run MESA with GPU-accelerated Ollama in Google Colab:</p>
+<p><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/examples/colab_quickstart.ipynb" target="_blank" rel="noopener noreferrer">Colab Quickstart</a></p>
+<span id="using-mesa-with-your-llm"></span>
+<h2 id="using-mesa-with-your-llm-1">Using MESA with your LLM<a class="heading-anchor" href="#using-mesa-with-your-llm-1" aria-label="Link to section: Using MESA with your LLM" title="Link to this section">#</a></h2>
+<p>When connecting an external language model to answer questions from MESA memory, supply a system prompt that enforces untrusted data boundaries and precise source citations. <code class="inline-code">mesa_client</code> exports <code class="inline-code">RECOMMENDED_SYSTEM_PROMPT</code> for this purpose:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-11">Copy</button></div><pre tabindex="0" id="code-block-11" class="language-python"><code>from mesa_client import AsyncMesaV4Client, RECOMMENDED_SYSTEM_PROMPT
+
+# System prompt for answering LLMs:
+system_prompt = RECOMMENDED_SYSTEM_PROMPT
+
+# Retrieved memory context goes into the prompt/message:
+async with AsyncMesaV4Client(base_url=&quot;http://127.0.0.1:8000&quot;, api_key=api_key) as client:
+    bundle = await client.get_context(session_id=session_id, query=&quot;What is the policy?&quot;)
+    user_message = f&quot;{bundle[&#39;context&#39;]}\n\nQuestion: What is the policy?&quot;</code></pre></div>
+<p>The context returned in <code class="inline-code">bundle[&quot;context&quot;]</code> is deterministically wrapped in <code class="inline-code">&lt;UNTRUSTED_MEMORY_EVIDENCE&gt;...&lt;/UNTRUSTED_MEMORY_EVIDENCE&gt;</code>. The prompt instructs the model to treat everything within those tags strictly as data, never follow instructions contained within them, cite document and revision IDs for every claim, and decline to answer if the evidence is insufficient.</p>
+<hr class="article-divider">
+<h2 id="local-quickstart">Local quickstart<a class="heading-anchor" href="#local-quickstart" aria-label="Link to section: Local quickstart" title="Link to this section">#</a></h2>
+<p>Run from the repository after <code class="inline-code">uv sync --locked --python 3.11</code>. This uses one</p>
+<p>combined process, no model loading and no external provider access. It checks</p>
+<p>installation, credentials and readiness. This profile stores V4 records and finds them through BM25</p>
+<p>without embedding or extraction calls. VECTOR lanes end <code class="inline-code">SKIPPED</code>; enable</p>
+<p>embedding later to backfill vectors at startup with the same identity.</p>
+<h3 id="automatic-local-bootstrap-mesa-start">Automatic local bootstrap (<code class="inline-code">mesa start</code>)<a class="heading-anchor" href="#automatic-local-bootstrap-mesa-start" aria-label="Link to section: Automatic local bootstrap (mesa start)" title="Link to this section">#</a></h3>
+<p>For standard local usage, <code class="inline-code">mesa start</code> provisions local storage (<code class="inline-code">~/.mesa/data</code>), initializes credentials (<code class="inline-code">~/.mesa/credentials.json</code>), sets model-disabled defaults, and starts the loopback server:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-12">Copy</button></div><pre tabindex="0" id="code-block-12" class="language-bash"><code>mesa start</code></pre></div>
+<p>In another terminal, add and search documents immediately without manually exporting credentials:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-13">Copy</button></div><pre tabindex="0" id="code-block-13" class="language-bash"><code>mesa add notes.txt --source file://notes.txt
+mesa search &quot;notes&quot;
+mesa status</code></pre></div>
+<h3 id="provision-before-startup-manual">Provision before startup (manual)<a class="heading-anchor" href="#provision-before-startup-manual" aria-label="Link to section: Provision before startup (manual)" title="Link to this section">#</a></h3>
+<p>Choose a disposable location on a disk with sufficient free space. The example</p>
+<p>uses a unique child under <code class="inline-code">~/mesa-doc-demos</code>; do not reuse user storage.</p>
+<p><code class="inline-code">/tmp</code> may be memory-backed on some hosts.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-14">Copy</button></div><pre tabindex="0" id="code-block-14" class="language-bash"><code>mkdir -p &quot;$HOME/mesa-doc-demos&quot;
+export MESA_STORAGE_ROOT=&quot;$(mktemp -d &quot;$HOME/mesa-doc-demos/run-XXXXXX&quot;)&quot;
+export MESA_RUNTIME_PROFILE=combined
+export MESA_LOAD_DOTENV=false
+export MESA_MODEL_ENABLED=false
+export MESA_EXTERNAL_PROVIDER_ENABLED=false
+export MESA_TIER3_MODE=0
+export MESA_PRINCIPAL_ID=docs-principal
+export MESA_PORT=18080
+export MESA_API_KEY=&quot;$(.venv/bin/mesa-v4-admin issue-key --principal docs-principal)&quot;
+.venv/bin/mesa-v4-admin grant-role --principal docs-principal --tenant docs-tenant --role OWNER
+.venv/bin/mesa-v4-admin grant-agent --principal docs-principal --agent docs-agent --permission SESSION_CREATE</code></pre></div>
+<p>Keep the issued key out of logs and shared terminal output. The commands write</p>
+<p>only the new sample policy database. Start the following server in this terminal after provisioning. For client</p>
+<p>commands, use another terminal with the same exported settings and key supplied</p>
+<p>privately; a newly opened terminal does not automatically inherit these exports:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-15">Copy</button></div><pre tabindex="0" id="code-block-15" class="language-bash"><code>.venv/bin/python -m uvicorn mesa_memory.api.server:app --host 127.0.0.1 --port 18080</code></pre></div>
+<p>Wait for readiness:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-16">Copy</button></div><pre tabindex="0" id="code-block-16" class="language-bash"><code>curl --fail http://127.0.0.1:18080/health/init
+curl --fail -H &quot;X-API-Key: $MESA_API_KEY&quot; http://127.0.0.1:18080/health</code></pre></div>
+<p>Readiness returns <code class="inline-code">{&quot;status&quot;:&quot;ready&quot;}</code> on success; health reports store/queue</p>
+<p>state. The normal launcher binds all interfaces internally; this explicit</p>
+<p>uvicorn command limits the local example to loopback.</p>
+<p>With <code class="inline-code">MESA_API_KEY</code> already exported, the same checks are available through:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-17">Copy</button></div><pre tabindex="0" id="code-block-17" class="language-bash"><code>MESA_BASE_URL=http://127.0.0.1:18080 make health</code></pre></div>
+<p>This checks <code class="inline-code">/health/init</code> and authenticated <code class="inline-code">/health</code> with a five-second timeout</p>
+<p>per request. It exits nonzero for missing/invalid credentials, connection errors,</p>
+<p>invalid responses or unhealthy status. It does not open local databases, print</p>
+<p>credentials or follow redirects. The default base URL is <code class="inline-code">http://127.0.0.1:8000</code>.</p>
+<h3 id="v4-canonical-example-provider-prerequisites">V4 canonical example (provider prerequisites)<a class="heading-anchor" href="#v4-canonical-example-provider-prerequisites" aria-label="Link to section: V4 canonical example (provider prerequisites)" title="Link to this section">#</a></h3>
+<p><code class="inline-code">examples/v4_quickstart.py</code> supplies required title/source/catalog IDs, freezes</p>
+<p>one chunk, polls the mutation and checks source-linked evidence. It works with</p>
+<p>the model-disabled combined environment above through BM25. For vector search</p>
+<p>and fact extraction, set <code class="inline-code">MESA_MODEL_ENABLED=true</code> (or enable each model flag</p>
+<p>separately), install the needed <code class="inline-code">ml</code>/<code class="inline-code">adapters</code> extras and provision reviewed</p>
+<p>provider/model/dimension settings. Retain the same ACL and one-owner rules.</p>
+<p>A concrete provider environment is in <a href="../docs/core/configuration/#minimal-v4-provider-setup">minimal V4 provider setup</a>.</p>
+<p>Follow <a href="../docs/core/configuration/">configuration</a></p>
+<p>and <a href="../docs/core/getting-started/#installation">installation</a>. The exact command after those prerequisites is:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-18">Copy</button></div><pre tabindex="0" id="code-block-18" class="language-bash"><code>.venv/bin/python -m examples.v4_quickstart</code></pre></div>
+<p>The example prints assertion IDs and source/dataset/chunk references after</p>
+<p>checking <code class="inline-code">COMMITTED</code> and provenance, then ends the session. The client&#39;s <code class="inline-code">with</code></p>
+<p>block closes HTTP resources; ending a session is a separate server operation.</p>
+<p><code class="inline-code">wait_until_committed()</code> can return failed terminal states; always check</p>
+<p><code class="inline-code">state == &quot;COMMITTED&quot;</code>. A timeout does not cancel the mutation: inspect</p>
+<p><code class="inline-code">client.status(mutation_id)</code> before deciding what to retry.</p>
+<p>Developer-experience verification on Linux/Python 3.11 used an isolated,</p>
+<p>non-editable locked Core install, models-disabled startup/health checks,</p>
+<p>and this V4 example with explicitly injected deterministic extraction/embedding.</p>
+<p>SQLite, LanceDB, Kùzu and background processing were real. The test limited Kùzu</p>
+<p>to a 64 MiB buffer pool, 256 MiB mapping and one query thread to fit the host&#39;s</p>
+<p>available RAM; this is test sizing, not a production capacity result. No real</p>
+<p>model was called. Real-provider V4 and Docker were <strong>not verified</strong> in this pass.</p>
+<h3 id="restart-and-cleanup">Restart and cleanup<a class="heading-anchor" href="#restart-and-cleanup" aria-label="Link to section: Restart and cleanup" title="Link to this section">#</a></h3>
+<p>Stop this example&#39;s server with Ctrl-C and restart it with the same environment.</p>
+<p>Query the saved session/mutation while the session is active. Do not run two</p>
+<p>writers. End the session only after retrieval. Reads after end depend on retained</p>
+<p>permissions; new writes require an active session. <code class="inline-code">end_session</code> can return</p>
+<p><code class="inline-code">status=pending</code> with a <code class="inline-code">finalization_id</code>: finalization is durable background</p>
+<p>work, not an HTTP client close operation.</p>
+<p>After stopping the server, retain or remove only this newly created sample root</p>
+<p>using your file manager. No generic database/volume removal command is provided.</p>
+<p>If the port is occupied choose another loopback port and set <code class="inline-code">MESA_BASE_URL</code></p>
+<p>for the example accordingly.</p>
+<span id="python-sdk"></span>
+<h2 id="python-sdk-1">Python SDK<a class="heading-anchor" href="#python-sdk-1" aria-label="Link to section: Python SDK" title="Link to this section">#</a></h2>
+<p>For local scripting, rapid prototyping, and agent applications, the high-level <code class="inline-code">Mesa</code> client provides a clean interface with automatic credential discovery and catalog session handling:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-19">Copy</button></div><pre tabindex="0" id="code-block-19" class="language-python"><code>from mesa_client import Mesa
+
+mesa = Mesa()
+mesa.add(open(&quot;kira.txt&quot;).read(), source=&quot;file://kira.txt&quot;)
+print(mesa.context(&quot;kira ne zaman ödenir?&quot;))</code></pre></div>
+<p><code class="inline-code">Mesa()</code> automatically discovers connection settings and API keys from environment variables (<code class="inline-code">MESA_BASE_URL</code>, <code class="inline-code">MESA_API_KEY</code>) or from <code class="inline-code">&lt;MESA_HOME or ~/.mesa&gt;/credentials.json</code> provisioned by <code class="inline-code">mesa start</code>. On first use, it ensures the configured workspace and dataset exist, starts a session, and reuses it for subsequent additions, searches, and context retrieval.</p>
+<h2 id="using-mesa-with-your-llm-2">Using MESA with your LLM<a class="heading-anchor" href="#using-mesa-with-your-llm-2" aria-label="Link to section: Using MESA with your LLM" title="Link to this section">#</a></h2>
+<p>When connecting an external language model to answer questions from MESA memory,</p>
+<p>supply a system prompt that enforces untrusted data boundaries and precise source citations.</p>
+<p><code class="inline-code">mesa_client</code> exports <code class="inline-code">RECOMMENDED_SYSTEM_PROMPT</code> for this purpose:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-20">Copy</button></div><pre tabindex="0" id="code-block-20" class="language-python"><code>from mesa_client import AsyncMesaV4Client, RECOMMENDED_SYSTEM_PROMPT
+
+# System prompt for answering LLMs:
+system_prompt = RECOMMENDED_SYSTEM_PROMPT
+
+# Retrieved memory context goes into the prompt/message:
+async with AsyncMesaV4Client(base_url=&quot;http://127.0.0.1:8000&quot;, api_key=api_key) as client:
+    bundle = await client.get_context(session_id=session_id, query=&quot;What is the policy?&quot;)
+    user_message = f&quot;{bundle[&#39;context&#39;]}\n\nQuestion: What is the policy?&quot;</code></pre></div>
+<p>The context returned in <code class="inline-code">bundle[&quot;context&quot;]</code> is deterministically wrapped in</p>
+<p><code class="inline-code">&lt;UNTRUSTED_MEMORY_EVIDENCE&gt;...&lt;/UNTRUSTED_MEMORY_EVIDENCE&gt;</code>. The prompt instructs</p>
+<p>the model to treat everything within those tags strictly as data, never follow</p>
+<p>instructions contained within them, cite document and revision IDs for every claim,</p>
+<p>and decline to answer if the evidence is insufficient.</p></div></details>
+        </div>
+        <div class="standalone-next"><a href="../docs/">Open technical documentation →</a></div>
+      </article>
+    </div>
+    <div class="docs-toc-column" aria-label="Table of contents">
+      <nav class="article-toc" aria-label="In this guide"><strong>In this guide</strong><ol><li class="toc-item"><a href="#guide-check-the-prerequisites">Check the prerequisites</a></li><li class="toc-item toc-sub"><a href="#guide-linux-and-macos">Linux and macOS</a></li><li class="toc-item toc-sub"><a href="#guide-windows-wsl">Windows: WSL</a></li><li class="toc-item toc-sub"><a href="#guide-docker-path">Docker path</a></li><li class="toc-item"><a href="#guide-install-v090">Install v0.9.0</a></li><li class="toc-item"><a href="#guide-start-the-local-server">Start the local server</a></li><li class="toc-item"><a href="#guide-add-a-document-and-search">Add a document and search</a></li><li class="toc-item"><a href="#guide-verify-processing-has-finished">Verify processing has finished</a></li><li class="toc-item"><a href="#guide-see-your-first-search-result">See your first search result</a></li><li class="toc-item"><a href="#guide-docker-setup">Docker setup</a></li><li class="toc-item"><a href="#guide-use-python-or-connect-an-mcp-client">Use Python or connect an MCP client</a></li><li class="toc-item"><a href="#guide-enable-optional-models-and-graph">Enable optional models and graph</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Open source on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="application/json" data-doc-copy>"# Get started with MESA\n\n## Check the prerequisites\n\nThis is a local evaluation. You will add text and retrieve a result with its source; no model account is required. MESA does not write the final answer. A terminal is the application where you enter commands; open Terminal on Linux or macOS.\n\n### Linux and macOS\n\nYou need Python 3.11–3.13 and pip. Check the version first:\n\n```bash\npython3 --version\n```\n\n**Success:** the output begins with `Python 3.11`, `3.12` or `3.13`. If Python is missing or a different version is installed, use the [official Python downloads](https://www.python.org/downloads/). If venv is missing on Linux, install your distribution’s Python venv package.\n\n### Windows: WSL\n\n`mesa start` does not run in native Windows PowerShell. Follow [Microsoft’s WSL installation guide](https://learn.microsoft.com/windows/wsl/install), open a Linux terminal and use the Linux commands below there. Check Python inside WSL.\n\n### Docker path\n\nIf you prefer containers, [install Docker](https://docs.docker.com/get-started/get-docker/) and skip to [Docker setup](#docker-setup).\n\n## Install v0.9.0\n\nRun these commands in a new working directory. The virtual environment keeps MESA packages separate from your other Python projects.\n\n```bash\npython3 -m venv .venv\n. .venv/bin/activate\npython -m pip install \"mesa-memory[adapters]==0.9.0\"\nmesa --help\n```\n\n**Success:** the help lists `start`, `add`, `search` and `status`. For `mesa: command not found`, run `. .venv/bin/activate` in the correct directory.\n\n## Start the local server\n\nIn Terminal 1:\n\n```bash\nmesa start\n```\n\n**Success:** the server starts at `http://127.0.0.1:8000` and logs `Application startup complete`. Keep this window open. Local storage is in `~/.mesa/data` and private credentials in `~/.mesa/credentials.json`.\n\nModels and external providers are off by default; an existing `.env` configuration can change those defaults. This guide uses word search.\n\n## Add a document and search\n\nOpen Terminal 2 in the same working directory and activate the environment:\n\n```bash\n. .venv/bin/activate\n```\n\nCreate the UTF-8 sample document. Save its receipt in `receipt.json` for the next step:\n\n```bash\nprintf '%s\\n' 'The Atlas archive opens at 09:00 on weekdays.' > archive-en.txt\nmesa add archive-en.txt --source file://archive-en.txt --json > receipt.json\ncat receipt.json\n```\n\nSelected receipt fields from the recorded run are shown below. Your identifiers can differ; `receipt.json` contains your own complete receipt.\n\n```json\n{\n  \"document_id\": \"doc-5239a0bb570c977f678a3a48e2947b81\",\n  \"revision_number\": 1,\n  \"chunk_count\": 1,\n  \"mutation_ids\": [\n    \"8db5a8d0-d6f0-592c-8d23-23d27662de2c\"\n  ]\n}\n```\n\n**Success:** the receipt includes `document_id`, `chunk_count` and `mutation_ids`. This is admission, not proof that the document is searchable yet.\n\n## Verify processing has finished\n\nSave the following code as `wait_for_document.py`. It reads local credentials automatically and checks the terminal state of every mutation:\n\n```python\nimport json\nfrom mesa_client import Mesa, MesaV4Client\n\nreceipt = json.load(open(\"receipt.json\", encoding=\"utf-8\"))\nwith Mesa() as local:\n    with MesaV4Client(local.base_url, api_key=local.api_key) as client:\n        for mutation_id in receipt[\"mutation_ids\"]:\n            state = client.wait_until_committed(mutation_id)\n            print(mutation_id, state[\"state\"])\n            if state[\"state\"] != \"COMMITTED\":\n                raise SystemExit(\"Document processing failed\")\n```\n\n```bash\npython wait_for_document.py\n```\n\n**Success:** every line ends with `COMMITTED`. Another terminal state makes the script fail; do not treat that document as successfully processed. On timeout, check that the server is running and run the same script again. The [status API](docs/core/api-reference/) exposes the details.\n\n`mesa status` reports server readiness and health; it does not verify that document mutations have finished.\n\n## See your first search result\n\n```bash\nmesa search \"archive\"\n```\n\nRecorded real CLI output:\n\n```text\n[1] score: 0.033 | doc-5239a0bb570c977f678a3a48e2947b81\n    The Atlas archive opens at 09:00 on weekdays.\n```\n\n**Success:** the result contains your document’s `09:00` text and document identifier. Identifiers and scores can differ; a score is not a truth probability. Inspect source and revision fields in the [recorded example on the home page](https://mesamemory.dev/#example).\n\n**Empty result:** run the completion script first, then search for the exact word in your document. **Connection error:** keep Terminal 1 running and check for healthy `mesa status` output. **Port already in use:** check for another MESA instance; this guide does not require deleting existing storage.\n\n## Docker setup\n\nThis path needs Git, Docker Engine/Desktop and Compose. Open the pinned source release:\n\n```bash\ngit clone --branch v0.9.0 --depth 1 https://github.com/Yasou13/MESA.git\ncd MESA\ndocker compose -f docker-compose.v4.yml up --build -d\ndocker compose -f docker-compose.v4.yml exec mesa-v4 mesa status\n```\n\n**Success:** the status output shows `ready` and `healthy`. Compose publishes port 8000 only on the host loopback address; the volume preserves data and credentials.\n\nRun the document, completion and search steps inside the container. Open a shell with:\n\n```bash\ndocker compose -f docker-compose.v4.yml exec mesa-v4 sh\n```\n\nSkip virtual-environment activation in this shell. Create the sample file, then use the `mesa add` command and Python completion script above. Enter `exit` when done. A host-side `mesa` command does not automatically read container credentials. See the [deployment guide](docs/core/installation/) for details.\n\n## Use Python or connect an MCP client\n\nAfter your first successful search, open the [Python SDK examples](docs/core/examples/) or [MCP guide](docs/mcp/). Generate MCP settings with:\n\n```bash\nmesa mcp-config\n```\n\nThe output contains your local API key; keep it private. MESA returns context; your application and its model write the final answer.\n\n## Enable optional models and graph\n\nYou do not need this for your first search. For semantic search and extraction, review [model configuration](docs/core/configuration/) and [providers](docs/core/embedding-providers/). External providers can transmit data and incur usage charges. Re-enabling graph/embeddings can backfill skipped work at startup. Local success does not establish production qualification; production checks remain incomplete.\n\n\nhttps://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md"</script>
+<footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Document search for your AI application.</p><p class="footer-note"><span>v0.9.0</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Product</h3><a href="../how-it-works/">How it works</a><a href="../architecture/">Architecture</a><a href="../ecosystem/">Ecosystem</a><a href="../#use-cases">Use cases</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Developers</h3><a href="../get-started/">Quickstart</a><a href="../docs/core/cli-reference/">MESA CLI</a><a href="../docs/core/api-reference/">API reference</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Security</a></div>
+        <div><h3>Learn</h3><a href="../learn/">Lessons</a><a href="../glossary/">Glossary</a><a href="../guides/">Guides</a><a href="../faq/">FAQ</a></div>
+        <div><h3>Project</h3><a href="../about/">About</a><a href="../early-access/">Early access</a><a href="../privacy/">Privacy</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT License</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.0 · 7062faf</span></div>
+    </footer>
+  <script src="../app.js?v=bbe96ea01010"></script>
+
+  <script src="../docs.js?v=c6166317ecca"></script>
+</body>
+</html>

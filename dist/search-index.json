@@ -4838,5 +4838,33 @@
       "hafıza"
     ],
     "language": "tr"
+  },
+  {
+    "id": "core-getStarted-en",
+    "url": "get-started/",
+    "title": "Get Started with MESA — Your First Local Search",
+    "section": "Getting started",
+    "category": "Core",
+    "summary": "Follow a focused setup path: check prerequisites, install MESA, add a document and verify your first search.",
+    "keywords": [
+      "getStarted",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-getStarted-tr",
+    "url": "tr/get-started/",
+    "title": "MESA ile Başlayın — İlk Yerel Aramanız",
+    "section": "Başlangıç",
+    "category": "Core",
+    "summary": "Ön koşulları kontrol edin, MESA’yı kurun, belge ekleyin ve ilk arama sonucunuzu adım adım doğrulayın.",
+    "keywords": [
+      "getStarted",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
   }
 ]

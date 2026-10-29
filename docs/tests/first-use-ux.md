@@ -23,3 +23,16 @@
 Reproduction commands and the isolated capture procedure are in the README.
 Local browser reports and screenshots were retained in
 `/tmp/mesa-first-use-browser/` for this session.
+
+## Standalone Get started follow-up
+
+- Public navigation now opens `/get-started/` or `/tr/get-started/` with
+  Get started/Başlayın selected and no documentation sidebar or tabs.
+  The existing technical quickstart URLs remain available.
+- Both screens render the same guide source to keep commands in sync.
+- The full test suite, admin bundle check, route/link verification and
+  public-artifact scan passed again.
+- EN/TR home, standalone setup, docs hub, technical quickstart and CLI passed
+  50 viewport checks; 20 axe scans returned zero WCAG A/AA violations.
+  Clipboard, keyboard, mobile navigation, reduced motion and no-JavaScript
+  checks also passed. Reports: `/tmp/mesa-standalone-browser/`.

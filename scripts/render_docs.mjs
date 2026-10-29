@@ -112,10 +112,10 @@ function docsSidebar(currentRoute, language = 'en', { base = './' } = {}) {
   return sharedSidebar(getDocsManifest(), currentRoute, language, {base, guides: guideByRoute});
 }
 
-export function renderDocPage(item, language = 'en', { base = './', assetBase = './', siteUrl, headerHtml, footerHtml }) {
+export function renderDocPage(item, language = 'en', { base = './', assetBase = './', siteUrl, headerHtml, footerHtml, standalone = false }) {
   const isTr = language === 'tr';
   const { repoKey, repo, page } = item;
-  const pageTitle = page.title[language] || page.title.en;
+  const pageTitle = standalone ? (isTr ? 'MESA ile başlayın' : 'Get started with MESA') : (page.title[language] || page.title.en);
   const repoTitle = repo.title[language] || repo.title.en;
   const route = (p = '') => `${base}${p}`;
 
@@ -160,13 +160,11 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const docsHubHref = route('docs/');
   const repoRootHref = route(repo.base_route);
 
-  const breadcrumbs = `<nav class="breadcrumbs docs-breadcrumbs" aria-label="${isTr ? 'Konum' : 'Breadcrumbs'}">
-    <ol>
-      <li><a href="${homeHref}">${isTr ? 'Ana sayfa' : 'Home'}</a></li>
-      <li><a href="${docsHubHref}">${isTr ? 'Dokümantasyon' : 'Docs'}</a></li>
-      ${page.route === repo.base_route ? '' : `<li><a href="${repoRootHref}">${escapeHtml(repoTitle)}</a></li>\n      `}<li aria-current="page">${escapeHtml(pageTitle)}</li>
-    </ol>
-  </nav>`;
+  const breadcrumbs = `<nav class="breadcrumbs docs-breadcrumbs" aria-label="${isTr ? 'Konum' : 'Breadcrumbs'}"><ol>
+    <li><a href="${homeHref}">${isTr ? 'Ana sayfa' : 'Home'}</a></li>
+${standalone ? '' : `    <li><a href="${docsHubHref}">${isTr ? 'Dokümantasyon' : 'Docs'}</a></li>${page.route === repo.base_route ? '' : `<li><a href="${repoRootHref}">${escapeHtml(repoTitle)}</a></li>`}`}
+    <li aria-current="page">${escapeHtml(pageTitle)}</li>
+  </ol></nav>`;
 
   // Source & version meta bar
   const sourceUrl = `${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${page.src}`;
@@ -200,9 +198,9 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const sidebarHtml = docsSidebar(page.route, language, { base });
 
   return `${headerHtml}
-<main id="main-content" class="docs-layout${onboarding ? ' docs-onboarding' : ''}">
-  ${docsTabs(page.route, language, base)}
-  ${sidebarHtml}
+<main id="main-content" class="docs-layout${onboarding ? ' docs-onboarding' : ''}${standalone ? ' docs-standalone' : ''}">
+${standalone ? '' : docsTabs(page.route, language, base)}
+${standalone ? '' : sidebarHtml}
   <div class="docs-main-container">
     <div class="docs-content-column">
       ${breadcrumbs}
@@ -211,14 +209,14 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
           <div class="docs-title-row"><h1>${escapeHtml(pageTitle)}</h1>${docsCopyButton(isTr)}</div>
 ${onboarding ? '' : `          ${metaBar}\n`}          <p class="docs-language-notice"${onboarding ? ' hidden' : ''}>${isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.' : 'This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.'}</p>
-          ${/audit|verification|closure/i.test(page.src) ? `<p class="docs-language-notice">${isTr ? 'Bu kaynak, belirtilen tarihteki testleri kaydeder. Burada paylaşılması, testlerin bu site için yeniden çalıştırıldığı anlamına gelmez.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
+${/audit|verification|closure/i.test(page.src) ? `          <p class="docs-language-notice">${isTr ? 'Bu kaynak, belirtilen tarihteki testleri kaydeder. Burada paylaşılması, testlerin bu site için yeniden çalıştırıldığı anlamına gelmez.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
         </header>
         <div class="docs-body">
 ${onboarding ? `<nav class="onboarding-steps" aria-label="${isTr ? 'Kurulum adımları' : 'Setup steps'}"><ol>${rendered.headings.filter(h => h.level === 2).slice(0, 6).map((h, index) => `<li><a href="#${h.id}">${index + 1}. ${(isTr ? ['Ön koşullar', 'Kurulum', 'Sunucu', 'Belge', 'İşleme', 'Arama'] : ['Prerequisites', 'Install', 'Start', 'Document', 'Processing', 'Search'])[index]}</a></li>`).join('')}</ol></nav>` : ''}
           ${(guide?.legacyAnchors || []).map(id => `<span id="${escapeHtml(id)}"></span>`).join('')}${rendered.html}${diagramHtml}
 ${onboarding ? `<details class="onboarding-source"><summary>${isTr ? 'Kaynak ve sürüm' : 'Source and version'}</summary>${metaBar}</details>\n` : ''}          <div class="guide-source-list"><strong>${isTr ? 'Dayanak kaynaklar' : 'Verified sources'}</strong><ul>${(guide?.sources || [page.src]).map(src => `<li><a href="${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${src}" target="_blank" rel="noopener noreferrer"><code>${escapeHtml(src)}</code></a></li>`).join('')}</ul></div>${movedHtml}${appendixMarkdown ? `<details class="source-appendix" id="source-reference"><summary>${isTr ? 'Kaynak belgedeki ilgili bölümler' : 'Source reference for this page'}</summary><p class="docs-language-notice">${isTr ? 'Bu bölüm, kaynak belgenin bu sayfayla ilgili kısımlarını değiştirmeden gösterir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.' : translatedSource ? 'The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.' : 'The sections of the upstream file that back this page, unchanged. Source section links open the appendix automatically.'}</p><div class="source-reference-body">${sourceRendered.html}</div></details>` : ''}
         </div>
-        ${pageNavHtml}
+        ${standalone ? `<div class="standalone-next"><a href="${route('docs/')}">${isTr ? 'Teknik dokümantasyonu aç →' : 'Open technical documentation →'}</a></div>` : pageNavHtml}
       </article>
     </div>
     <div class="docs-toc-column" aria-label="${isTr ? 'İçindekiler' : 'Table of contents'}">
@@ -233,7 +231,7 @@ ${onboarding ? `<details class="onboarding-source"><summary>${isTr ? 'Kaynak ve 
   </div>
 </main>
 <script type="application/json" data-doc-copy>${JSON.stringify(`# ${pageTitle}\n\n${guideMarkdown}\n\n${sourceUrl}`).replaceAll('<', '\\u003c')}</script>
-${docsFooter(isTr, base)}`;
+${standalone ? footerHtml : docsFooter(isTr, base)}`;
 }
 
 export function renderDocsHub(language = 'en', {base = './', headerHtml}) {

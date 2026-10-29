@@ -154,7 +154,7 @@ function languageControl() {
 function header(active = '') {
   const nav = [
     ['how', 'How it works', 'how-it-works/', 'workflow'],
-    ['start', chrome('Get started', 'Başlayın'), 'docs/core/getting-started/', 'workflow'],
+    ['start', chrome('Get started', 'Başlayın'), 'get-started/', 'workflow'],
     ['docs', 'Docs', 'docs/', 'book-open'],
     ['resources', 'Resources', 'resources/', 'library'],
   ];
@@ -184,7 +184,7 @@ function footer() {
       <div class="footer-brand">${logo()}<p>${chrome('Document search for your AI application.', 'Yapay zekâ uygulamanız için belge arama.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p></div>
       <div class="footer-groups">
         <div><h3>${chrome('Product', 'Ürün')}</h3><a href="${route('how-it-works/')}">${chrome('How it works', 'Nasıl çalışır')}</a><a href="${route('architecture/')}">${chrome('Architecture', 'Mimari')}</a><a href="${route('ecosystem/')}">${chrome('Ecosystem', 'Ekosistem')}</a><a href="${route('#use-cases')}">${chrome('Use cases', 'Kullanım alanları')}</a><a href="${route('law/')}">MESA Law</a></div>
-        <div><h3>${chrome('Developers', 'Geliştiriciler')}</h3><a href="${route('docs/core/getting-started/')}">${chrome('Quickstart', 'Hızlı başlangıç')}</a><a href="${route('docs/core/cli-reference/')}">MESA CLI</a><a href="${route('docs/core/api-reference/')}">${chrome('API reference', 'API referansı')}</a><a href="${route('docs/core/examples/')}">Python SDK</a><a href="${route('docs/mcp/')}">MCP</a><a href="${route('docs/core/security/')}">${chrome('Security', 'Güvenlik')}</a></div>
+        <div><h3>${chrome('Developers', 'Geliştiriciler')}</h3><a href="${route('get-started/')}">${chrome('Quickstart', 'Hızlı başlangıç')}</a><a href="${route('docs/core/cli-reference/')}">MESA CLI</a><a href="${route('docs/core/api-reference/')}">${chrome('API reference', 'API referansı')}</a><a href="${route('docs/core/examples/')}">Python SDK</a><a href="${route('docs/mcp/')}">MCP</a><a href="${route('docs/core/security/')}">${chrome('Security', 'Güvenlik')}</a></div>
         <div><h3>${chrome('Learn', 'Öğrenin')}</h3><a href="${route('learn/')}">${chrome('Lessons', 'Dersler')}</a><a href="${route('glossary/')}">${chrome('Glossary', 'Sözlük')}</a><a href="${route('guides/')}">${chrome('Guides', 'Rehberler')}</a><a href="${route('faq/')}">${chrome('FAQ', 'SSS')}</a></div>
         <div><h3>${chrome('Project', 'Proje')}</h3><a href="${route('about/')}">${chrome('About', 'Hakkında')}</a><a href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a><a href="${route('privacy/')}">${chrome('Privacy', 'Gizlilik')}</a>${external(repos.issues, chrome('Open an issue', 'Issue açın'))}${external(`${repos.core}/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE`, chrome('MIT License', 'MIT Lisansı'))}</div>
       </div>
@@ -837,7 +837,7 @@ function renderHubIndex(section) {
   let body = '';
   if (section.id === 'resources') {
     const choices = [
-      ['docs/core/getting-started/', hubText('Install MESA', 'MESA’yı kurmak istiyorum'), hubText('Install the package, start the server, add one file and search it.', 'Paketi kurun, sunucuyu başlatın, bir dosya ekleyip arayın.'), hubText('Commands + requirements', 'Komutlar + gereksinimler')],
+      ['get-started/', hubText('Install MESA', 'MESA’yı kurmak istiyorum'), hubText('Install the package, start the server, add one file and search it.', 'Paketi kurun, sunucuyu başlatın, bir dosya ekleyip arayın.'), hubText('Commands + requirements', 'Komutlar + gereksinimler')],
       ['learn/', hubText('Learn how AI memory works', 'Yapay zekâ hafızasını öğrenmek istiyorum'), hubText('Follow the lessons in order, from basic concepts to a small working search program.', 'Temel kavramlardan küçük bir arama programına uzanan dersleri sırayla izleyin.'), hubText(`${courseData.lessons.length} lessons · start with no background`, `${courseData.lessons.length} ders · ön bilgi gerektirmez`)],
       ['glossary/', hubText('Look up an unfamiliar term', 'Bilmediğim bir terime bakacağım'), hubText('Find short explanations of RAG, embeddings, context windows and the other terms used here.', 'RAG, embedding, bağlam penceresi ve burada geçen diğer terimlerin kısa açıklamalarını bulun.'), hubText('Short definitions + examples', 'Kısa tanımlar + örnekler')],
       ['guides/', hubText('Follow a practical guide', 'Bir işi adım adım yapmak istiyorum'), hubText('Work through concrete tasks such as verifying a legal source, with examples and checks.', 'Hukuk kaynağı doğrulama gibi somut işleri örnek ve kontrollerle adım adım izleyin.'), hubText('Practical walkthroughs', 'Uygulama rehberleri')]
@@ -1090,8 +1090,17 @@ function notFound() {
     </main>`;
 }
 
+function getStartedPage() {
+  const item = getAllDocRoutes().find(item => item.path === 'docs/core/getting-started/');
+  return renderDocPage(item, currentLanguage, {
+    base, assetBase, siteUrl, standalone: true,
+    headerHtml: hubChrome(header('start')), footerHtml: hubChrome(footer())
+  });
+}
+
 const renderers = {
   home,
+  getStarted: getStartedPage,
   earlyAccess: () => earlyAccessPage(productHelpers()),
   privacy: () => privacyPage(productHelpers()),
   architecture,
@@ -1311,7 +1320,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = key === 'docs' || key === 'mcp';
+    const nativeDocs = key === 'docs' || key === 'mcp' || key === 'getStarted';
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');

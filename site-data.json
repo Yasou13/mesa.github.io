@@ -118,6 +118,11 @@
       "path": "privacy/",
       "title": "Privacy Notice — MESA",
       "description": "What the MESA website collects, why, how long it is kept, and how to ask for removal under KVKK and GDPR."
+    },
+    "getStarted": {
+      "path": "get-started/",
+      "title": "Get Started with MESA — Your First Local Search",
+      "description": "Follow a focused setup path: check prerequisites, install MESA, add a document and verify your first search."
     }
   }
 }

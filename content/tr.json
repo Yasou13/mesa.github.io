@@ -75,6 +75,10 @@
     "privacy": {
       "title": "Gizlilik Bildirimi — MESA",
       "description": "MESA sitesinin hangi bilgileri neden topladığı, ne kadar sakladığı ve KVKK ile GDPR kapsamında silinmesini nasıl isteyebileceğiniz."
+    },
+    "getStarted": {
+      "title": "MESA ile Başlayın — İlk Yerel Aramanız",
+      "description": "Ön koşulları kontrol edin, MESA’yı kurun, belge ekleyin ve ilk arama sonucunuzu adım adım doğrulayın."
     }
   },
   "intentionalEnglish": [

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA ile Başlayın — İlk Yerel Aramanız</title>
+  <meta name="description" content="Ön koşulları kontrol edin, MESA’yı kurun, belge ekleyin ve ilk arama sonucunuzu adım adım doğrulayın.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/tr/get-started/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/get-started/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/get-started/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/get-started/">
+  <meta property="og:title" content="MESA ile Başlayın — İlk Yerel Aramanız">
+  <meta property="og:description" content="Ön koşulları kontrol edin, MESA’yı kurun, belge ekleyin ve ilk arama sonucunuzu adım adım doğrulayın.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/tr/get-started/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA ile Başlayın — İlk Yerel Aramanız">
+  <meta name="twitter:description" content="Ön koşulları kontrol edin, MESA’yı kurun, belge ekleyin ve ilk arama sonucunuzu adım adım doğrulayın.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/get-started/#webpage","url":"https://mesamemory.dev/tr/get-started/","name":"MESA ile Başlayın — İlk Yerel Aramanız","description":"Ön koşulları kontrol edin, MESA’yı kurun, belge ekleyin ve ilk arama sonucunuzu adım adım doğrulayın.","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE","version":"0.9.0","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../styles.css?v=0f3e72057806">
+  <link rel="stylesheet" href="../../cosmic.css?v=26e4cf860d9e">
+  <link rel="stylesheet" href="../../learn.css?v=45ed18ca11a1">
+
+  <link rel="stylesheet" href="../../docs.css?v=f7e9b5b1f493">
+  <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <a class="nav-item" href="../how-it-works/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="workflow" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="8" height="8" x="3" y="3" rx="2" /> <path d="M7 11v4a2 2 0 0 0 2 2h4" /> <rect width="8" height="8" x="13" y="13" rx="2" /> </svg></span><span>Nasıl çalışır</span></a><a class="nav-item active" aria-current="page" href="../get-started/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="workflow" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="8" height="8" x="3" y="3" rx="2" /> <path d="M7 11v4a2 2 0 0 0 2 2h4" /> <rect width="8" height="8" x="13" y="13" rx="2" /> </svg></span><span>Başlayın</span></a><a class="nav-item" href="../docs/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg></span><span>Dokümanlar</span></a><a class="nav-item" href="../resources/"><span class="nav-symbol" aria-hidden="true"><svg class="mesa-icon lucide-icon" data-nav-icon="library" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 6 4 14" /> <path d="M12 6v14" /> <path d="M8 8v12" /> <path d="M4 4v16" /> </svg></span><span>Kaynaklar</span></a>
+          <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Ara</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+          <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../get-started/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../get-started/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+          <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout docs-onboarding docs-standalone">
+
+
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum"><ol>
+    <li><a href="../">Ana sayfa</a></li>
+
+    <li aria-current="page">MESA ile başlayın</li>
+  </ol></nav>
+      <article class="docs-article" data-doc-copy-content>
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Core · v0.9.0</p>
+          <div class="docs-title-row"><h1>MESA ile başlayın</h1><button class="docs-copy-page" type="button" hidden><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span aria-live="polite">Sayfayı kopyala</span></button></div>
+          <p class="docs-language-notice" hidden>Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.</p>
+
+        </header>
+        <div class="docs-body">
+<nav class="onboarding-steps" aria-label="Kurulum adımları"><ol><li><a href="#guide-on-kosullari-kontrol-edin">1. Ön koşullar</a></li><li><a href="#guide-v090-surumunu-kurun">2. Kurulum</a></li><li><a href="#guide-yerel-sunucuyu-baslatin">3. Sunucu</a></li><li><a href="#guide-bir-belge-ekleyip-arayin">4. Belge</a></li><li><a href="#guide-islemenin-tamamlandigini-dogrulayin">5. İşleme</a></li><li><a href="#guide-ilk-arama-sonucunu-gorun">6. Arama</a></li></ol></nav>
+          <span id="provision-before-startup"></span><h2 id="guide-on-kosullari-kontrol-edin">Ön koşulları kontrol edin<a class="heading-anchor" href="#guide-on-kosullari-kontrol-edin" aria-label="Bölüm bağlantısı: Ön koşulları kontrol edin" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Bu rehber bir yerel denemedir. Metin belgesi ekleyip kaynaklı arama sonucu alacaksınız; model hesabı gerekmez. MESA son yanıtı yazmaz. Terminal, komut yazdığınız uygulamadır; Linux’ta Terminal’i, macOS’ta Terminal uygulamasını açın.</p>
+<h3 id="guide-linux-ve-macos">Linux ve macOS<a class="heading-anchor" href="#guide-linux-ve-macos" aria-label="Bölüm bağlantısı: Linux ve macOS" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Python 3.11–3.13 ve pip gerekir. Önce sürümü kontrol edin:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-1">Kopyala</button></div><pre tabindex="0" id="guide-code-block-1" class="language-bash"><code>python3 --version</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> çıktı <code class="inline-code">Python 3.11</code>, <code class="inline-code">3.12</code> veya <code class="inline-code">3.13</code> ile başlamalıdır. Python yoksa veya sürüm farklıysa <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">resmî Python indirme sayfasını</a> kullanın. Linux’ta venv bileşeni eksikse dağıtımınızın Python venv paketini kurun.</p>
+<h3 id="guide-windows-wsl">Windows: WSL<a class="heading-anchor" href="#guide-windows-wsl" aria-label="Bölüm bağlantısı: Windows: WSL" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Windows’un yerel PowerShell penceresinde <code class="inline-code">mesa start</code> çalışmaz. <a href="https://learn.microsoft.com/windows/wsl/install" target="_blank" rel="noopener noreferrer">Microsoft’un WSL kurulum rehberini</a> izleyip Linux terminali açın; aşağıdaki Linux komutlarını o terminalde uygulayın. Python sürümünü WSL içinde kontrol edin.</p>
+<h3 id="guide-docker-yolu">Docker yolu<a class="heading-anchor" href="#guide-docker-yolu" aria-label="Bölüm bağlantısı: Docker yolu" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Python kurulumunu kullanmayacaksanız <a href="https://docs.docker.com/get-started/get-docker/" target="_blank" rel="noopener noreferrer">Docker kurulumunu</a> tamamlayıp <a href="#guide-docker-ile-kurulum">Docker ile kurulum bölümüne</a> geçin.</p>
+<h2 id="guide-v090-surumunu-kurun">v0.9.0 sürümünü kurun<a class="heading-anchor" href="#guide-v090-surumunu-kurun" aria-label="Bölüm bağlantısı: v0.9.0 sürümünü kurun" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Yeni bir çalışma klasöründe bu komutları çalıştırın. Sanal ortam, MESA paketlerini diğer Python projelerinizden ayırır.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-2">Kopyala</button></div><pre tabindex="0" id="guide-code-block-2" class="language-bash"><code>python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install &quot;mesa-memory[adapters]==0.9.0&quot;
+mesa --help</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> yardım çıktısında <code class="inline-code">start</code>, <code class="inline-code">add</code>, <code class="inline-code">search</code> ve <code class="inline-code">status</code> komutları görünür. <code class="inline-code">mesa: command not found</code> hatasında doğru klasörde <code class="inline-code">. .venv/bin/activate</code> çalıştırın.</p>
+<h2 id="guide-yerel-sunucuyu-baslatin">Yerel sunucuyu başlatın<a class="heading-anchor" href="#guide-yerel-sunucuyu-baslatin" aria-label="Bölüm bağlantısı: Yerel sunucuyu başlatın" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Terminal 1’de:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-3">Kopyala</button></div><pre tabindex="0" id="guide-code-block-3" class="language-bash"><code>mesa start</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> sunucu <code class="inline-code">http://127.0.0.1:8000</code> adresinde başlar ve <code class="inline-code">Application startup complete</code> kaydı görünür. Bu pencereyi açık bırakın. Yerel depolama <code class="inline-code">~/.mesa/data</code>, özel kimlik bilgileri <code class="inline-code">~/.mesa/credentials.json</code> içindedir.</p>
+<p>Modeller ve dış sağlayıcılar varsayılan olarak kapalıdır; mevcut <code class="inline-code">.env</code> ayarlarınız bu varsayılanı değiştirebilir. Bu rehber sözcük araması içindir.</p>
+<h2 id="guide-bir-belge-ekleyip-arayin">Bir belge ekleyip arayın<a class="heading-anchor" href="#guide-bir-belge-ekleyip-arayin" aria-label="Bölüm bağlantısı: Bir belge ekleyip arayın" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Terminal 2’yi aynı çalışma klasöründe açıp sanal ortamı etkinleştirin:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-4">Kopyala</button></div><pre tabindex="0" id="guide-code-block-4" class="language-bash"><code>. .venv/bin/activate</code></pre></div>
+<p>UTF-8 örnek belgeyi oluşturun. Alındıyı bir sonraki adım için <code class="inline-code">receipt.json</code> dosyasına kaydedin:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-5">Kopyala</button></div><pre tabindex="0" id="guide-code-block-5" class="language-bash"><code>printf &#39;%s\n&#39; &#39;Atlas arşivi hafta içi 09:00 saatinde açılır.&#39; &gt; archive-tr.txt
+mesa add archive-tr.txt --source file://archive-tr.txt --json &gt; receipt.json
+cat receipt.json</code></pre></div>
+<p>Kaydedilmiş çalıştırmadan seçilmiş alındı alanları aşağıdadır. Kimlikler sizin çalıştırmanızda farklı olabilir; <code class="inline-code">receipt.json</code> kendi tam alındınızı içerir.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">json</span><button class="copy-button" type="button" data-copy-target="guide-code-block-6">Kopyala</button></div><pre tabindex="0" id="guide-code-block-6" class="language-json"><code>{
+  &quot;document_id&quot;: &quot;doc-d206865140f38f4fcadb22c4645c222f&quot;,
+  &quot;revision_number&quot;: 1,
+  &quot;chunk_count&quot;: 1,
+  &quot;mutation_ids&quot;: [
+    &quot;a7e6110e-5e6f-55f5-88ee-0ad1fd9086ee&quot;
+  ]
+}</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> alındıda <code class="inline-code">document_id</code>, <code class="inline-code">chunk_count</code> ve <code class="inline-code">mutation_ids</code> bulunur. Bu kabul bilgisidir; henüz aranabilir olduğunu göstermez.</p>
+<h2 id="guide-islemenin-tamamlandigini-dogrulayin">İşlemenin tamamlandığını doğrulayın<a class="heading-anchor" href="#guide-islemenin-tamamlandigini-dogrulayin" aria-label="Bölüm bağlantısı: İşlemenin tamamlandığını doğrulayın" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Aşağıdaki kodu <code class="inline-code">wait_for_document.py</code> adlı dosyaya kaydedin. Yerel kimlik bilgilerini otomatik okur ve her mutasyonun son durumunu kontrol eder:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="guide-code-block-7">Kopyala</button></div><pre tabindex="0" id="guide-code-block-7" class="language-python"><code>import json
+from mesa_client import Mesa, MesaV4Client
+
+receipt = json.load(open(&quot;receipt.json&quot;, encoding=&quot;utf-8&quot;))
+with Mesa() as local:
+    with MesaV4Client(local.base_url, api_key=local.api_key) as client:
+        for mutation_id in receipt[&quot;mutation_ids&quot;]:
+            state = client.wait_until_committed(mutation_id)
+            print(mutation_id, state[&quot;state&quot;])
+            if state[&quot;state&quot;] != &quot;COMMITTED&quot;:
+                raise SystemExit(&quot;Document processing failed&quot;)</code></pre></div>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-8">Kopyala</button></div><pre tabindex="0" id="guide-code-block-8" class="language-bash"><code>python wait_for_document.py</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> her satırın sonunda <code class="inline-code">COMMITTED</code> görünür. Başka bir son durumda betik hata ile durur; belgeyi başarılı işlenmiş kabul etmeyin. Zaman aşımında sunucunun açık olduğunu kontrol edip aynı betiği yeniden çalıştırın. <a href="../docs/core/api-reference/">Durum API’si</a> ayrıntıları gösterir.</p>
+<p><code class="inline-code">mesa status</code>, sunucunun hazır ve sağlıklı olup olmadığını gösterir; belge mutasyonlarının tamamlandığını göstermez.</p>
+<h2 id="guide-ilk-arama-sonucunu-gorun">İlk arama sonucunu görün<a class="heading-anchor" href="#guide-ilk-arama-sonucunu-gorun" aria-label="Bölüm bağlantısı: İlk arama sonucunu görün" title="Bu bölümün bağlantısı">#</a></h2>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-9">Kopyala</button></div><pre tabindex="0" id="guide-code-block-9" class="language-bash"><code>mesa search &quot;arşivi&quot;</code></pre></div>
+<p>Kaydedilmiş gerçek CLI çıktısı:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">text</span><button class="copy-button" type="button" data-copy-target="guide-code-block-10">Kopyala</button></div><pre tabindex="0" id="guide-code-block-10" class="language-text"><code>[1] score: 0.033 | doc-d206865140f38f4fcadb22c4645c222f
+    Atlas arşivi hafta içi 09:00 saatinde açılır.</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> sonuçta belgenizdeki <code class="inline-code">09:00</code> metni ve belge kimliği görünür. Kimlik ve skor değişebilir; skor doğruluk olasılığı değildir. Kaynak ve sürüm alanlarını <a href="https://mesamemory.dev/tr/#example" target="_blank" rel="noopener noreferrer">ana sayfadaki gerçek kayıt örneğinde</a> görebilirsiniz.</p>
+<p><strong>Sonuç boşsa:</strong> önce tamamlanma betiğini çalıştırın; sonra belgedeki sözcüğü aynen arayın. <strong>Bağlantı hatasında:</strong> Terminal 1’in açık ve <code class="inline-code">mesa status</code> çıktısının sağlıklı olduğunu kontrol edin. <strong>Port kullanımda ise:</strong> başka bir MESA örneği olup olmadığını kontrol edin; bu rehber mevcut depolamayı silmenizi gerektirmez.</p>
+<h2 id="guide-docker-ile-kurulum">Docker ile kurulum<a class="heading-anchor" href="#guide-docker-ile-kurulum" aria-label="Bölüm bağlantısı: Docker ile kurulum" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Bu yol için Git, Docker Engine/Desktop ve Compose gerekir. Sabitlenmiş kaynak sürümünü açın:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-11">Kopyala</button></div><pre tabindex="0" id="guide-code-block-11" class="language-bash"><code>git clone --branch v0.9.0 --depth 1 https://github.com/Yasou13/MESA.git
+cd MESA
+docker compose -f docker-compose.v4.yml up --build -d
+docker compose -f docker-compose.v4.yml exec mesa-v4 mesa status</code></pre></div>
+<p><strong>Başarı ölçütü:</strong> durum çıktısı <code class="inline-code">ready</code> ve <code class="inline-code">healthy</code> gösterir. Compose, 8000 portunu yalnızca ana makinenin loopback adresinde yayımlar; volume veriyi ve kimlik bilgilerini korur.</p>
+<p>Belge ekleme, tamamlanma kontrolü ve arama adımlarını konteyner içinde uygulayın. Kabuk açmak için:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-12">Kopyala</button></div><pre tabindex="0" id="guide-code-block-12" class="language-bash"><code>docker compose -f docker-compose.v4.yml exec mesa-v4 sh</code></pre></div>
+<p>Konteyner kabuğunda sanal ortam etkinleştirme adımını atlayın; örnek dosyayı oluşturup yukarıdaki <code class="inline-code">mesa add</code> ve Python tamamlanma betiğini kullanın. Komut bitince <code class="inline-code">exit</code> ile çıkın. Yerel makinedeki <code class="inline-code">mesa</code> komutu konteyner kimlik bilgilerini kendiliğinden kullanmaz. <a href="../docs/core/installation/">Dağıtım rehberi</a> ayrıntıları açıklar.</p>
+<h2 id="guide-python-kullanin-veya-mcp-istemcisi-baglayin">Python kullanın veya MCP istemcisi bağlayın<a class="heading-anchor" href="#guide-python-kullanin-veya-mcp-istemcisi-baglayin" aria-label="Bölüm bağlantısı: Python kullanın veya MCP istemcisi bağlayın" title="Bu bölümün bağlantısı">#</a></h2>
+<p>İlk aramanız başarılı olduktan sonra <a href="../docs/core/examples/">Python SDK örneklerine</a> veya <a href="../docs/mcp/">MCP rehberine</a> geçin. MCP ayarını üretmek için:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="guide-code-block-13">Kopyala</button></div><pre tabindex="0" id="guide-code-block-13" class="language-bash"><code>mesa mcp-config</code></pre></div>
+<p>Çıktı yerel API anahtarını içerir; paylaşmayın. MESA bağlam metnini döndürür, son yanıtı uygulamanız ve onun modeli üretir.</p>
+<details class="onboarding-advanced"><summary>İleri seçenekler: modeller ve çizge</summary><h2 id="guide-istege-bagli-modelleri-ve-cizgeyi-acin">İsteğe bağlı modelleri ve çizgeyi açın<a class="heading-anchor" href="#guide-istege-bagli-modelleri-ve-cizgeyi-acin" aria-label="Bölüm bağlantısı: İsteğe bağlı modelleri ve çizgeyi açın" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Bu ilk arama için gerekli değildir. Anlamsal arama ve bilgi çıkarımı için <a href="../docs/core/configuration/">model yapılandırmasını</a> ve <a href="../docs/core/embedding-providers/">sağlayıcıları</a> inceleyin. Dış sağlayıcılar veri aktarımı ve kullanım ücreti doğurabilir. Grafik/embedding yeniden açıldığında atlanan işler başlangıçta tamamlanabilir. Yerel başarı üretim yeterliliği sağlamaz; canlı kullanım doğrulamaları tamamlanmadı.</p></details>
+<details class="onboarding-source"><summary>Kaynak ve sürüm</summary><div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.9.0</span>
+    <span class="docs-commit-pill">commit: <a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md" title="7062fafe2cff8442eb84d1da60df164099526c8e" target="_blank" rel="noopener noreferrer">7062faf</a></span>
+    <span class="docs-source-pill">kaynak: <code>docs/getting-started.md</code></span>
+  </div></details>
+          <div class="guide-source-list"><strong>Dayanak kaynaklar</strong><ul><li><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md" target="_blank" rel="noopener noreferrer"><code>docs/getting-started.md</code></a></li><li><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/examples/v4_quickstart.py" target="_blank" rel="noopener noreferrer"><code>examples/v4_quickstart.py</code></a></li></ul></div><div class="docs-moved"><strong>Kendi sayfasına taşınan bölümler</strong><ul><li id="advanced-operator-production-profiles">Advanced Operator &amp; Production Profiles → <a href="../docs/core/installation/">Kurulum ve dağıtım</a></li></ul></div><details class="source-appendix" id="source-reference"><summary>Kaynak belgedeki ilgili bölümler</summary><p class="docs-language-notice">Bu bölüm, kaynak belgenin bu sayfayla ilgili kısımlarını değiştirmeden gösterir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.</p><div class="source-reference-body"><p>This guide covers getting started with MESA as a new user, from installation to querying evidence, followed by advanced operator provisioning and production runtime profiles. Production qualification remains at the release candidate stage: <strong>NO-GO</strong> until the <a href="../docs/core/release-policy/">release gates</a> pass for the intended commit.</p>
+<span id="installation"></span>
+<h2 id="installation-1">Installation<a class="heading-anchor" href="#installation-1" aria-label="Bölüm bağlantısı: Installation" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Install MESA with the adapters extra:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-1">Kopyala</button></div><pre tabindex="0" id="code-block-1" class="language-bash"><code>pip install &quot;mesa-memory[adapters]&quot;</code></pre></div>
+<p>Supported natively on Linux and macOS. On Windows, use Docker or WSL.</p>
+<p>The development version can be installed directly from git: <code class="inline-code">pip install &quot;mesa-memory[adapters] @ git+https://github.com/Yasou13/MESA&quot;</code>.</p>
+<p>Or install from source with <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener noreferrer">uv</a>:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-2">Kopyala</button></div><pre tabindex="0" id="code-block-2" class="language-bash"><code>git clone https://github.com/Yasou13/MESA.git
+cd MESA
+uv sync --locked --python 3.11
+uv pip check</code></pre></div>
+<h2 id="quickstart">Quickstart<a class="heading-anchor" href="#quickstart" aria-label="Bölüm bağlantısı: Quickstart" title="Bu bölümün bağlantısı">#</a></h2>
+<h3 id="1-start-the-server">1. Start the server<a class="heading-anchor" href="#1-start-the-server" aria-label="Bölüm bağlantısı: 1. Start the server" title="Bu bölümün bağlantısı">#</a></h3>
+<p>For standard local usage, <code class="inline-code">mesa start</code> automatically provisions local storage (<code class="inline-code">~/.mesa/data</code>), writes credentials (<code class="inline-code">~/.mesa/credentials.json</code>), sets model-disabled defaults, and starts the loopback server on <code class="inline-code">http://127.0.0.1:8000</code>:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-3">Kopyala</button></div><pre tabindex="0" id="code-block-3" class="language-bash"><code>mesa start</code></pre></div>
+<h3 id="2-add-and-search-documents">2. Add and search documents<a class="heading-anchor" href="#2-add-and-search-documents" aria-label="Bölüm bağlantısı: 2. Add and search documents" title="Bu bölümün bağlantısı">#</a></h3>
+<p>In another terminal, add and search documents immediately without manual credential configuration:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-4">Kopyala</button></div><pre tabindex="0" id="code-block-4" class="language-bash"><code>mesa add document.txt --source file://document.txt
+mesa search &quot;your query&quot;
+mesa status</code></pre></div>
+<h3 id="3-python-sdk">3. Python SDK<a class="heading-anchor" href="#3-python-sdk" aria-label="Bölüm bağlantısı: 3. Python SDK" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Use the high-level <code class="inline-code">Mesa</code> client to ingest documents and query evidence contexts:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-5">Kopyala</button></div><pre tabindex="0" id="code-block-5" class="language-python"><code>from mesa_client import Mesa
+
+mesa = Mesa()
+mesa.add(open(&quot;document.txt&quot;).read(), source=&quot;file://document.txt&quot;)
+print(mesa.context(&quot;your query&quot;))</code></pre></div>
+<p><code class="inline-code">Mesa()</code> uses <code class="inline-code">MESA_API_KEY</code> and <code class="inline-code">MESA_BASE_URL</code> when they are set, otherwise the local credentials in <code class="inline-code">~/.mesa/credentials.json</code>.</p>
+<h3 id="4-connect-mcp-clients">4. Connect MCP clients<a class="heading-anchor" href="#4-connect-mcp-clients" aria-label="Bölüm bağlantısı: 4. Connect MCP clients" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Connect Claude Desktop or any MCP client by generating a ready-to-paste configuration block:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-6">Kopyala</button></div><pre tabindex="0" id="code-block-6" class="language-bash"><code>mesa mcp-config</code></pre></div>
+<h3 id="5-internal-models-optional">5. Internal models (optional)<a class="heading-anchor" href="#5-internal-models-optional" aria-label="Bölüm bağlantısı: 5. Internal models (optional)" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Models stay off by default. Documents are stored and found through BM25 lexical search without any model running.</p>
+<p>To enable semantic vector search and fact extraction with local Ollama, add to <code class="inline-code">~/.mesa/.env</code>:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-7">Kopyala</button></div><pre tabindex="0" id="code-block-7" class="language-bash"><code>MESA_MODEL_ENABLED=true
+MESA_LLM_MODEL=ollama:qwen2.5:7b
+MESA_EMBEDDING_MODEL=ollama:bge-m3</code></pre></div>
+<p>Under decision D31, local <code class="inline-code">openai_compatible</code> servers (e.g. vLLM started with <code class="inline-code">--port 8001</code>, at <code class="inline-code">http://127.0.0.1:8001/v1</code>, since MESA itself uses port 8000) are also permitted with <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED=false</code> on a local endpoint and require no API key. For external cloud APIs (OpenAI, Anthropic), set <code class="inline-code">MESA_EXTERNAL_PROVIDER_ENABLED=true</code> and supply the required API keys.</p>
+<p>Missing extras raise clear, actionable installation messages:</p>
+<ul><li>Ollama LLM, Ollama embedding, or OpenAI-compatible embedding → <code class="inline-code">pip install &quot;mesa-memory[adapters]&quot;</code></li><li>Local embedding (<code class="inline-code">sentence-transformers</code>) → <code class="inline-code">pip install &quot;mesa-memory[ml]&quot;</code></li></ul>
+<h3 id="6-graph-toggle">6. Graph toggle<a class="heading-anchor" href="#6-graph-toggle" aria-label="Bölüm bağlantısı: 6. Graph toggle" title="Bu bölümün bağlantısı">#</a></h3>
+<p>To run without the Kùzu graph database, set:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-8">Kopyala</button></div><pre tabindex="0" id="code-block-8" class="language-bash"><code>MESA_GRAPH_ENABLED=false</code></pre></div>
+<p>GRAPH lanes end <code class="inline-code">SKIPPED</code>, and turning the flag back on later backfills the graph at startup.</p>
+<h3 id="7-docker">7. Docker<a class="heading-anchor" href="#7-docker" aria-label="Bölüm bağlantısı: 7. Docker" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Run MESA in a single-user local container (D32):</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-9">Kopyala</button></div><pre tabindex="0" id="code-block-9" class="language-bash"><code>docker compose -f docker-compose.v4.yml up --build -d</code></pre></div>
+<p>Credentials are written to <code class="inline-code">/var/lib/mesa/credentials.json</code> in the container volume:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-10">Kopyala</button></div><pre tabindex="0" id="code-block-10" class="language-bash"><code>docker compose -f docker-compose.v4.yml exec mesa-v4 cat /var/lib/mesa/credentials.json
+docker compose -f docker-compose.v4.yml exec -T mesa-v4 mesa add - --source file://document.txt &lt; document.txt
+docker compose -f docker-compose.v4.yml exec mesa-v4 mesa search &quot;your query&quot;</code></pre></div>
+<p>No environment variables are required: models and external providers default</p>
+<p>off. The image runs <code class="inline-code">mesa start --host 0.0.0.0</code> as a non-root user; Compose</p>
+<p>publishes only <code class="inline-code">127.0.0.1:8000</code>. Credentials retain a loopback base URL for CLI</p>
+<p>use inside the container. The named volume keeps data and credentials on</p>
+<p>restart. <code class="inline-code">MESA_API_KEY</code> and <code class="inline-code">MESA_PRINCIPAL_ID</code> are optional for existing</p>
+<p>bootstrap setups; when set, the <code class="inline-code">mesa</code> commands inside the container use that</p>
+<p>key first, so add <code class="inline-code">-e MESA_API_KEY=</code> after <code class="inline-code">exec</code> to use the local credentials. Ollama defaults to <code class="inline-code">http://host.docker.internal:11434</code>,</p>
+<p>which reaches the Docker host. The default image includes <code class="inline-code">adapters</code>; add</p>
+<p>sentence-transformers with</p>
+<p><code class="inline-code">docker compose -f docker-compose.v4.yml build --build-arg MESA_EXTRAS=ml,adapters</code>.</p>
+<h3 id="8-google-colab">8. Google Colab<a class="heading-anchor" href="#8-google-colab" aria-label="Bölüm bağlantısı: 8. Google Colab" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Run MESA with GPU-accelerated Ollama in Google Colab:</p>
+<p><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/examples/colab_quickstart.ipynb" target="_blank" rel="noopener noreferrer">Colab Quickstart</a></p>
+<span id="using-mesa-with-your-llm"></span>
+<h2 id="using-mesa-with-your-llm-1">Using MESA with your LLM<a class="heading-anchor" href="#using-mesa-with-your-llm-1" aria-label="Bölüm bağlantısı: Using MESA with your LLM" title="Bu bölümün bağlantısı">#</a></h2>
+<p>When connecting an external language model to answer questions from MESA memory, supply a system prompt that enforces untrusted data boundaries and precise source citations. <code class="inline-code">mesa_client</code> exports <code class="inline-code">RECOMMENDED_SYSTEM_PROMPT</code> for this purpose:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-11">Kopyala</button></div><pre tabindex="0" id="code-block-11" class="language-python"><code>from mesa_client import AsyncMesaV4Client, RECOMMENDED_SYSTEM_PROMPT
+
+# System prompt for answering LLMs:
+system_prompt = RECOMMENDED_SYSTEM_PROMPT
+
+# Retrieved memory context goes into the prompt/message:
+async with AsyncMesaV4Client(base_url=&quot;http://127.0.0.1:8000&quot;, api_key=api_key) as client:
+    bundle = await client.get_context(session_id=session_id, query=&quot;What is the policy?&quot;)
+    user_message = f&quot;{bundle[&#39;context&#39;]}\n\nQuestion: What is the policy?&quot;</code></pre></div>
+<p>The context returned in <code class="inline-code">bundle[&quot;context&quot;]</code> is deterministically wrapped in <code class="inline-code">&lt;UNTRUSTED_MEMORY_EVIDENCE&gt;...&lt;/UNTRUSTED_MEMORY_EVIDENCE&gt;</code>. The prompt instructs the model to treat everything within those tags strictly as data, never follow instructions contained within them, cite document and revision IDs for every claim, and decline to answer if the evidence is insufficient.</p>
+<hr class="article-divider">
+<h2 id="local-quickstart">Local quickstart<a class="heading-anchor" href="#local-quickstart" aria-label="Bölüm bağlantısı: Local quickstart" title="Bu bölümün bağlantısı">#</a></h2>
+<p>Run from the repository after <code class="inline-code">uv sync --locked --python 3.11</code>. This uses one</p>
+<p>combined process, no model loading and no external provider access. It checks</p>
+<p>installation, credentials and readiness. This profile stores V4 records and finds them through BM25</p>
+<p>without embedding or extraction calls. VECTOR lanes end <code class="inline-code">SKIPPED</code>; enable</p>
+<p>embedding later to backfill vectors at startup with the same identity.</p>
+<h3 id="automatic-local-bootstrap-mesa-start">Automatic local bootstrap (<code class="inline-code">mesa start</code>)<a class="heading-anchor" href="#automatic-local-bootstrap-mesa-start" aria-label="Bölüm bağlantısı: Automatic local bootstrap (mesa start)" title="Bu bölümün bağlantısı">#</a></h3>
+<p>For standard local usage, <code class="inline-code">mesa start</code> provisions local storage (<code class="inline-code">~/.mesa/data</code>), initializes credentials (<code class="inline-code">~/.mesa/credentials.json</code>), sets model-disabled defaults, and starts the loopback server:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-12">Kopyala</button></div><pre tabindex="0" id="code-block-12" class="language-bash"><code>mesa start</code></pre></div>
+<p>In another terminal, add and search documents immediately without manually exporting credentials:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-13">Kopyala</button></div><pre tabindex="0" id="code-block-13" class="language-bash"><code>mesa add notes.txt --source file://notes.txt
+mesa search &quot;notes&quot;
+mesa status</code></pre></div>
+<h3 id="provision-before-startup-manual">Provision before startup (manual)<a class="heading-anchor" href="#provision-before-startup-manual" aria-label="Bölüm bağlantısı: Provision before startup (manual)" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Choose a disposable location on a disk with sufficient free space. The example</p>
+<p>uses a unique child under <code class="inline-code">~/mesa-doc-demos</code>; do not reuse user storage.</p>
+<p><code class="inline-code">/tmp</code> may be memory-backed on some hosts.</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-14">Kopyala</button></div><pre tabindex="0" id="code-block-14" class="language-bash"><code>mkdir -p &quot;$HOME/mesa-doc-demos&quot;
+export MESA_STORAGE_ROOT=&quot;$(mktemp -d &quot;$HOME/mesa-doc-demos/run-XXXXXX&quot;)&quot;
+export MESA_RUNTIME_PROFILE=combined
+export MESA_LOAD_DOTENV=false
+export MESA_MODEL_ENABLED=false
+export MESA_EXTERNAL_PROVIDER_ENABLED=false
+export MESA_TIER3_MODE=0
+export MESA_PRINCIPAL_ID=docs-principal
+export MESA_PORT=18080
+export MESA_API_KEY=&quot;$(.venv/bin/mesa-v4-admin issue-key --principal docs-principal)&quot;
+.venv/bin/mesa-v4-admin grant-role --principal docs-principal --tenant docs-tenant --role OWNER
+.venv/bin/mesa-v4-admin grant-agent --principal docs-principal --agent docs-agent --permission SESSION_CREATE</code></pre></div>
+<p>Keep the issued key out of logs and shared terminal output. The commands write</p>
+<p>only the new sample policy database. Start the following server in this terminal after provisioning. For client</p>
+<p>commands, use another terminal with the same exported settings and key supplied</p>
+<p>privately; a newly opened terminal does not automatically inherit these exports:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-15">Kopyala</button></div><pre tabindex="0" id="code-block-15" class="language-bash"><code>.venv/bin/python -m uvicorn mesa_memory.api.server:app --host 127.0.0.1 --port 18080</code></pre></div>
+<p>Wait for readiness:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-16">Kopyala</button></div><pre tabindex="0" id="code-block-16" class="language-bash"><code>curl --fail http://127.0.0.1:18080/health/init
+curl --fail -H &quot;X-API-Key: $MESA_API_KEY&quot; http://127.0.0.1:18080/health</code></pre></div>
+<p>Readiness returns <code class="inline-code">{&quot;status&quot;:&quot;ready&quot;}</code> on success; health reports store/queue</p>
+<p>state. The normal launcher binds all interfaces internally; this explicit</p>
+<p>uvicorn command limits the local example to loopback.</p>
+<p>With <code class="inline-code">MESA_API_KEY</code> already exported, the same checks are available through:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-17">Kopyala</button></div><pre tabindex="0" id="code-block-17" class="language-bash"><code>MESA_BASE_URL=http://127.0.0.1:18080 make health</code></pre></div>
+<p>This checks <code class="inline-code">/health/init</code> and authenticated <code class="inline-code">/health</code> with a five-second timeout</p>
+<p>per request. It exits nonzero for missing/invalid credentials, connection errors,</p>
+<p>invalid responses or unhealthy status. It does not open local databases, print</p>
+<p>credentials or follow redirects. The default base URL is <code class="inline-code">http://127.0.0.1:8000</code>.</p>
+<h3 id="v4-canonical-example-provider-prerequisites">V4 canonical example (provider prerequisites)<a class="heading-anchor" href="#v4-canonical-example-provider-prerequisites" aria-label="Bölüm bağlantısı: V4 canonical example (provider prerequisites)" title="Bu bölümün bağlantısı">#</a></h3>
+<p><code class="inline-code">examples/v4_quickstart.py</code> supplies required title/source/catalog IDs, freezes</p>
+<p>one chunk, polls the mutation and checks source-linked evidence. It works with</p>
+<p>the model-disabled combined environment above through BM25. For vector search</p>
+<p>and fact extraction, set <code class="inline-code">MESA_MODEL_ENABLED=true</code> (or enable each model flag</p>
+<p>separately), install the needed <code class="inline-code">ml</code>/<code class="inline-code">adapters</code> extras and provision reviewed</p>
+<p>provider/model/dimension settings. Retain the same ACL and one-owner rules.</p>
+<p>A concrete provider environment is in <a href="../docs/core/configuration/#minimal-v4-provider-setup">minimal V4 provider setup</a>.</p>
+<p>Follow <a href="../docs/core/configuration/">configuration</a></p>
+<p>and <a href="../docs/core/getting-started/#installation">installation</a>. The exact command after those prerequisites is:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">bash</span><button class="copy-button" type="button" data-copy-target="code-block-18">Kopyala</button></div><pre tabindex="0" id="code-block-18" class="language-bash"><code>.venv/bin/python -m examples.v4_quickstart</code></pre></div>
+<p>The example prints assertion IDs and source/dataset/chunk references after</p>
+<p>checking <code class="inline-code">COMMITTED</code> and provenance, then ends the session. The client&#39;s <code class="inline-code">with</code></p>
+<p>block closes HTTP resources; ending a session is a separate server operation.</p>
+<p><code class="inline-code">wait_until_committed()</code> can return failed terminal states; always check</p>
+<p><code class="inline-code">state == &quot;COMMITTED&quot;</code>. A timeout does not cancel the mutation: inspect</p>
+<p><code class="inline-code">client.status(mutation_id)</code> before deciding what to retry.</p>
+<p>Developer-experience verification on Linux/Python 3.11 used an isolated,</p>
+<p>non-editable locked Core install, models-disabled startup/health checks,</p>
+<p>and this V4 example with explicitly injected deterministic extraction/embedding.</p>
+<p>SQLite, LanceDB, Kùzu and background processing were real. The test limited Kùzu</p>
+<p>to a 64 MiB buffer pool, 256 MiB mapping and one query thread to fit the host&#39;s</p>
+<p>available RAM; this is test sizing, not a production capacity result. No real</p>
+<p>model was called. Real-provider V4 and Docker were <strong>not verified</strong> in this pass.</p>
+<h3 id="restart-and-cleanup">Restart and cleanup<a class="heading-anchor" href="#restart-and-cleanup" aria-label="Bölüm bağlantısı: Restart and cleanup" title="Bu bölümün bağlantısı">#</a></h3>
+<p>Stop this example&#39;s server with Ctrl-C and restart it with the same environment.</p>
+<p>Query the saved session/mutation while the session is active. Do not run two</p>
+<p>writers. End the session only after retrieval. Reads after end depend on retained</p>
+<p>permissions; new writes require an active session. <code class="inline-code">end_session</code> can return</p>
+<p><code class="inline-code">status=pending</code> with a <code class="inline-code">finalization_id</code>: finalization is durable background</p>
+<p>work, not an HTTP client close operation.</p>
+<p>After stopping the server, retain or remove only this newly created sample root</p>
+<p>using your file manager. No generic database/volume removal command is provided.</p>
+<p>If the port is occupied choose another loopback port and set <code class="inline-code">MESA_BASE_URL</code></p>
+<p>for the example accordingly.</p>
+<span id="python-sdk"></span>
+<h2 id="python-sdk-1">Python SDK<a class="heading-anchor" href="#python-sdk-1" aria-label="Bölüm bağlantısı: Python SDK" title="Bu bölümün bağlantısı">#</a></h2>
+<p>For local scripting, rapid prototyping, and agent applications, the high-level <code class="inline-code">Mesa</code> client provides a clean interface with automatic credential discovery and catalog session handling:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-19">Kopyala</button></div><pre tabindex="0" id="code-block-19" class="language-python"><code>from mesa_client import Mesa
+
+mesa = Mesa()
+mesa.add(open(&quot;kira.txt&quot;).read(), source=&quot;file://kira.txt&quot;)
+print(mesa.context(&quot;kira ne zaman ödenir?&quot;))</code></pre></div>
+<p><code class="inline-code">Mesa()</code> automatically discovers connection settings and API keys from environment variables (<code class="inline-code">MESA_BASE_URL</code>, <code class="inline-code">MESA_API_KEY</code>) or from <code class="inline-code">&lt;MESA_HOME or ~/.mesa&gt;/credentials.json</code> provisioned by <code class="inline-code">mesa start</code>. On first use, it ensures the configured workspace and dataset exist, starts a session, and reuses it for subsequent additions, searches, and context retrieval.</p>
+<h2 id="using-mesa-with-your-llm-2">Using MESA with your LLM<a class="heading-anchor" href="#using-mesa-with-your-llm-2" aria-label="Bölüm bağlantısı: Using MESA with your LLM" title="Bu bölümün bağlantısı">#</a></h2>
+<p>When connecting an external language model to answer questions from MESA memory,</p>
+<p>supply a system prompt that enforces untrusted data boundaries and precise source citations.</p>
+<p><code class="inline-code">mesa_client</code> exports <code class="inline-code">RECOMMENDED_SYSTEM_PROMPT</code> for this purpose:</p>
+<div class="code-terminal"><div class="code-terminal-header"><span class="lang-tag">python</span><button class="copy-button" type="button" data-copy-target="code-block-20">Kopyala</button></div><pre tabindex="0" id="code-block-20" class="language-python"><code>from mesa_client import AsyncMesaV4Client, RECOMMENDED_SYSTEM_PROMPT
+
+# System prompt for answering LLMs:
+system_prompt = RECOMMENDED_SYSTEM_PROMPT
+
+# Retrieved memory context goes into the prompt/message:
+async with AsyncMesaV4Client(base_url=&quot;http://127.0.0.1:8000&quot;, api_key=api_key) as client:
+    bundle = await client.get_context(session_id=session_id, query=&quot;What is the policy?&quot;)
+    user_message = f&quot;{bundle[&#39;context&#39;]}\n\nQuestion: What is the policy?&quot;</code></pre></div>
+<p>The context returned in <code class="inline-code">bundle[&quot;context&quot;]</code> is deterministically wrapped in</p>
+<p><code class="inline-code">&lt;UNTRUSTED_MEMORY_EVIDENCE&gt;...&lt;/UNTRUSTED_MEMORY_EVIDENCE&gt;</code>. The prompt instructs</p>
+<p>the model to treat everything within those tags strictly as data, never follow</p>
+<p>instructions contained within them, cite document and revision IDs for every claim,</p>
+<p>and decline to answer if the evidence is insufficient.</p></div></details>
+        </div>
+        <div class="standalone-next"><a href="../docs/">Teknik dokümantasyonu aç →</a></div>
+      </article>
+    </div>
+    <div class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu rehberde"><strong>Bu rehberde</strong><ol><li class="toc-item"><a href="#guide-on-kosullari-kontrol-edin">Ön koşulları kontrol edin</a></li><li class="toc-item toc-sub"><a href="#guide-linux-ve-macos">Linux ve macOS</a></li><li class="toc-item toc-sub"><a href="#guide-windows-wsl">Windows: WSL</a></li><li class="toc-item toc-sub"><a href="#guide-docker-yolu">Docker yolu</a></li><li class="toc-item"><a href="#guide-v090-surumunu-kurun">v0.9.0 sürümünü kurun</a></li><li class="toc-item"><a href="#guide-yerel-sunucuyu-baslatin">Yerel sunucuyu başlatın</a></li><li class="toc-item"><a href="#guide-bir-belge-ekleyip-arayin">Bir belge ekleyip arayın</a></li><li class="toc-item"><a href="#guide-islemenin-tamamlandigini-dogrulayin">İşlemenin tamamlandığını doğrulayın</a></li><li class="toc-item"><a href="#guide-ilk-arama-sonucunu-gorun">İlk arama sonucunu görün</a></li><li class="toc-item"><a href="#guide-docker-ile-kurulum">Docker ile kurulum</a></li><li class="toc-item"><a href="#guide-python-kullanin-veya-mcp-istemcisi-baglayin">Python kullanın veya MCP istemcisi bağlayın</a></li><li class="toc-item"><a href="#guide-istege-bagli-modelleri-ve-cizgeyi-acin">İsteğe bağlı modelleri ve çizgeyi açın</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="application/json" data-doc-copy>"# MESA ile başlayın\n\n## Ön koşulları kontrol edin\n\nBu rehber bir yerel denemedir. Metin belgesi ekleyip kaynaklı arama sonucu alacaksınız; model hesabı gerekmez. MESA son yanıtı yazmaz. Terminal, komut yazdığınız uygulamadır; Linux’ta Terminal’i, macOS’ta Terminal uygulamasını açın.\n\n### Linux ve macOS\n\nPython 3.11–3.13 ve pip gerekir. Önce sürümü kontrol edin:\n\n```bash\npython3 --version\n```\n\n**Başarı ölçütü:** çıktı `Python 3.11`, `3.12` veya `3.13` ile başlamalıdır. Python yoksa veya sürüm farklıysa [resmî Python indirme sayfasını](https://www.python.org/downloads/) kullanın. Linux’ta venv bileşeni eksikse dağıtımınızın Python venv paketini kurun.\n\n### Windows: WSL\n\nWindows’un yerel PowerShell penceresinde `mesa start` çalışmaz. [Microsoft’un WSL kurulum rehberini](https://learn.microsoft.com/windows/wsl/install) izleyip Linux terminali açın; aşağıdaki Linux komutlarını o terminalde uygulayın. Python sürümünü WSL içinde kontrol edin.\n\n### Docker yolu\n\nPython kurulumunu kullanmayacaksanız [Docker kurulumunu](https://docs.docker.com/get-started/get-docker/) tamamlayıp [Docker ile kurulum bölümüne](#docker-ile-kurulum) geçin.\n\n## v0.9.0 sürümünü kurun\n\nYeni bir çalışma klasöründe bu komutları çalıştırın. Sanal ortam, MESA paketlerini diğer Python projelerinizden ayırır.\n\n```bash\npython3 -m venv .venv\n. .venv/bin/activate\npython -m pip install \"mesa-memory[adapters]==0.9.0\"\nmesa --help\n```\n\n**Başarı ölçütü:** yardım çıktısında `start`, `add`, `search` ve `status` komutları görünür. `mesa: command not found` hatasında doğru klasörde `. .venv/bin/activate` çalıştırın.\n\n## Yerel sunucuyu başlatın\n\nTerminal 1’de:\n\n```bash\nmesa start\n```\n\n**Başarı ölçütü:** sunucu `http://127.0.0.1:8000` adresinde başlar ve `Application startup complete` kaydı görünür. Bu pencereyi açık bırakın. Yerel depolama `~/.mesa/data`, özel kimlik bilgileri `~/.mesa/credentials.json` içindedir.\n\nModeller ve dış sağlayıcılar varsayılan olarak kapalıdır; mevcut `.env` ayarlarınız bu varsayılanı değiştirebilir. Bu rehber sözcük araması içindir.\n\n## Bir belge ekleyip arayın\n\nTerminal 2’yi aynı çalışma klasöründe açıp sanal ortamı etkinleştirin:\n\n```bash\n. .venv/bin/activate\n```\n\nUTF-8 örnek belgeyi oluşturun. Alındıyı bir sonraki adım için `receipt.json` dosyasına kaydedin:\n\n```bash\nprintf '%s\\n' 'Atlas arşivi hafta içi 09:00 saatinde açılır.' > archive-tr.txt\nmesa add archive-tr.txt --source file://archive-tr.txt --json > receipt.json\ncat receipt.json\n```\n\nKaydedilmiş çalıştırmadan seçilmiş alındı alanları aşağıdadır. Kimlikler sizin çalıştırmanızda farklı olabilir; `receipt.json` kendi tam alındınızı içerir.\n\n```json\n{\n  \"document_id\": \"doc-d206865140f38f4fcadb22c4645c222f\",\n  \"revision_number\": 1,\n  \"chunk_count\": 1,\n  \"mutation_ids\": [\n    \"a7e6110e-5e6f-55f5-88ee-0ad1fd9086ee\"\n  ]\n}\n```\n\n**Başarı ölçütü:** alındıda `document_id`, `chunk_count` ve `mutation_ids` bulunur. Bu kabul bilgisidir; henüz aranabilir olduğunu göstermez.\n\n## İşlemenin tamamlandığını doğrulayın\n\nAşağıdaki kodu `wait_for_document.py` adlı dosyaya kaydedin. Yerel kimlik bilgilerini otomatik okur ve her mutasyonun son durumunu kontrol eder:\n\n```python\nimport json\nfrom mesa_client import Mesa, MesaV4Client\n\nreceipt = json.load(open(\"receipt.json\", encoding=\"utf-8\"))\nwith Mesa() as local:\n    with MesaV4Client(local.base_url, api_key=local.api_key) as client:\n        for mutation_id in receipt[\"mutation_ids\"]:\n            state = client.wait_until_committed(mutation_id)\n            print(mutation_id, state[\"state\"])\n            if state[\"state\"] != \"COMMITTED\":\n                raise SystemExit(\"Document processing failed\")\n```\n\n```bash\npython wait_for_document.py\n```\n\n**Başarı ölçütü:** her satırın sonunda `COMMITTED` görünür. Başka bir son durumda betik hata ile durur; belgeyi başarılı işlenmiş kabul etmeyin. Zaman aşımında sunucunun açık olduğunu kontrol edip aynı betiği yeniden çalıştırın. [Durum API’si](docs/core/api-reference/) ayrıntıları gösterir.\n\n`mesa status`, sunucunun hazır ve sağlıklı olup olmadığını gösterir; belge mutasyonlarının tamamlandığını göstermez.\n\n## İlk arama sonucunu görün\n\n```bash\nmesa search \"arşivi\"\n```\n\nKaydedilmiş gerçek CLI çıktısı:\n\n```text\n[1] score: 0.033 | doc-d206865140f38f4fcadb22c4645c222f\n    Atlas arşivi hafta içi 09:00 saatinde açılır.\n```\n\n**Başarı ölçütü:** sonuçta belgenizdeki `09:00` metni ve belge kimliği görünür. Kimlik ve skor değişebilir; skor doğruluk olasılığı değildir. Kaynak ve sürüm alanlarını [ana sayfadaki gerçek kayıt örneğinde](https://mesamemory.dev/tr/#example) görebilirsiniz.\n\n**Sonuç boşsa:** önce tamamlanma betiğini çalıştırın; sonra belgedeki sözcüğü aynen arayın. **Bağlantı hatasında:** Terminal 1’in açık ve `mesa status` çıktısının sağlıklı olduğunu kontrol edin. **Port kullanımda ise:** başka bir MESA örneği olup olmadığını kontrol edin; bu rehber mevcut depolamayı silmenizi gerektirmez.\n\n## Docker ile kurulum\n\nBu yol için Git, Docker Engine/Desktop ve Compose gerekir. Sabitlenmiş kaynak sürümünü açın:\n\n```bash\ngit clone --branch v0.9.0 --depth 1 https://github.com/Yasou13/MESA.git\ncd MESA\ndocker compose -f docker-compose.v4.yml up --build -d\ndocker compose -f docker-compose.v4.yml exec mesa-v4 mesa status\n```\n\n**Başarı ölçütü:** durum çıktısı `ready` ve `healthy` gösterir. Compose, 8000 portunu yalnızca ana makinenin loopback adresinde yayımlar; volume veriyi ve kimlik bilgilerini korur.\n\nBelge ekleme, tamamlanma kontrolü ve arama adımlarını konteyner içinde uygulayın. Kabuk açmak için:\n\n```bash\ndocker compose -f docker-compose.v4.yml exec mesa-v4 sh\n```\n\nKonteyner kabuğunda sanal ortam etkinleştirme adımını atlayın; örnek dosyayı oluşturup yukarıdaki `mesa add` ve Python tamamlanma betiğini kullanın. Komut bitince `exit` ile çıkın. Yerel makinedeki `mesa` komutu konteyner kimlik bilgilerini kendiliğinden kullanmaz. [Dağıtım rehberi](docs/core/installation/) ayrıntıları açıklar.\n\n## Python kullanın veya MCP istemcisi bağlayın\n\nİlk aramanız başarılı olduktan sonra [Python SDK örneklerine](docs/core/examples/) veya [MCP rehberine](docs/mcp/) geçin. MCP ayarını üretmek için:\n\n```bash\nmesa mcp-config\n```\n\nÇıktı yerel API anahtarını içerir; paylaşmayın. MESA bağlam metnini döndürür, son yanıtı uygulamanız ve onun modeli üretir.\n\n## İsteğe bağlı modelleri ve çizgeyi açın\n\nBu ilk arama için gerekli değildir. Anlamsal arama ve bilgi çıkarımı için [model yapılandırmasını](docs/core/configuration/) ve [sağlayıcıları](docs/core/embedding-providers/) inceleyin. Dış sağlayıcılar veri aktarımı ve kullanım ücreti doğurabilir. Grafik/embedding yeniden açıldığında atlanan işler başlangıçta tamamlanabilir. Yerel başarı üretim yeterliliği sağlamaz; canlı kullanım doğrulamaları tamamlanmadı.\n\n\nhttps://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/getting-started.md"</script>
+<footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Yapay zekâ uygulamanız için belge arama.</p><p class="footer-note"><span>v0.9.0</span> · <span>Alfa</span> · <a href="../status/">Proje durumu →</a></p></div>
+      <div class="footer-groups">
+        <div><h3>Ürün</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../architecture/">Mimari</a><a href="../ecosystem/">Ekosistem</a><a href="../#use-cases">Kullanım alanları</a><a href="../law/">MESA Law</a></div>
+        <div><h3>Geliştiriciler</h3><a href="../get-started/">Hızlı başlangıç</a><a href="../docs/core/cli-reference/">MESA CLI</a><a href="../docs/core/api-reference/">API referansı</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Güvenlik</a></div>
+        <div><h3>Öğrenin</h3><a href="../learn/">Dersler</a><a href="../glossary/">Sözlük</a><a href="../guides/">Rehberler</a><a href="../faq/">SSS</a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../early-access/">Erken erişim</a><a href="../privacy/">Gizlilik</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.0 · 7062faf ile uyumlu</span></div>
+    </footer>
+  <script src="../../app.js?v=bbe96ea01010"></script>
+
+  <script src="../../docs.js?v=c6166317ecca"></script>
+</body>
+</html>
