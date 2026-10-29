@@ -2979,3 +2979,5 @@ button:focus-visible,a:focus-visible,summary:focus-visible,pre:focus-visible { o
 .site-header kbd,.site-header .language-control a { font-size:14px; }
 .start-code .copy-button { min-height:44px; min-width:44px; }
 .start-code pre { padding-top:64px; }
+.site-footer h3,.site-footer .footer-bottom span { font-size:14px; }
+.site-header .language-switch,.site-header .language-switch a,.site-header .language-switch span { font-size:14px; }

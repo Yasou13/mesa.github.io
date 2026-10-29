@@ -420,9 +420,9 @@ async function checkNavigationReview() {
           const r=nav.getBoundingClientRect();const css=getComputedStyle(nav);
           const samples=[];
           for(let y=r.top+8;y<Math.min(r.bottom,innerHeight)-8;y+=24)for(let x=r.left+8;x<r.right-8;x+=60){const hit=document.elementFromPoint(x,y);samples.push(nav===hit||nav.contains(hit));}
-          return {open:toggle.getAttribute('aria-expanded')==='true',visible:css.display!=='none',background:css.backgroundColor,opacity:css.opacity,covered:samples.every(Boolean),icons:nav.querySelectorAll('.nav-item .nav-symbol svg').length,iconNames:[...nav.querySelectorAll('.nav-item svg')].map(x=>x.dataset.navIcon),activeBackground:getComputedStyle(nav.querySelector('.nav-item.active')).backgroundColor,bottom:r.bottom,viewport:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth};
+          return {open:toggle.getAttribute('aria-expanded')==='true',visible:css.display!=='none',background:css.backgroundColor,opacity:css.opacity,covered:samples.every(Boolean),icons:nav.querySelectorAll('.nav-item .nav-symbol svg').length,iconNames:[...nav.querySelectorAll('.nav-item svg')].map(x=>x.dataset.navIcon),activeBackground:nav.querySelector('.nav-item.active')?getComputedStyle(nav.querySelector('.nav-item.active')).backgroundColor:null,bottom:r.bottom,viewport:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth};
         })()`);
-        if(!state.open||!state.visible||state.background!=='rgb(5, 5, 8)'||state.opacity!=='1'||!state.covered||state.icons!==5||JSON.stringify(state.iconNames)!==JSON.stringify(['workflow','network','layers','library','book-open'])||state.activeBackground!=='rgb(24, 24, 27)'||state.bottom>state.viewport||state.overflow>1)failures.push(`${routePath}@${width}: menu overlay ${JSON.stringify(state)}`);
+        if(!state.open||!state.visible||state.background!=='rgb(5, 5, 8)'||state.opacity!=='1'||!state.covered||state.icons!==4||JSON.stringify(state.iconNames)!==JSON.stringify(['workflow','workflow','book-open','library'])||(state.activeBackground!==null&&state.activeBackground!=='rgb(24, 24, 27)')||state.bottom>state.viewport||state.overflow>1)failures.push(`${routePath}@${width}: menu overlay ${JSON.stringify(state)}`);
         if(screenshotsDirectory&&routePath.includes('resources/')&&[390,732,900].includes(width)) {
           const shot=await connection.send('Page.captureScreenshot',{format:'png'});
           fs.writeFileSync(path.join(screenshotsDirectory,`${routePath.replaceAll('/','-')}${width}-menu-open.png`),Buffer.from(shot.data,'base64'));
@@ -433,7 +433,7 @@ async function checkNavigationReview() {
         fallbackChecks.push({type:'navigation-overlay',routePath,width,state,closed});
       } else {
         const desktop=await evaluate(`({icons:document.querySelectorAll('.nav-item .nav-symbol svg').length,visible:getComputedStyle(document.querySelector('#main-navigation')).display,overflow:document.documentElement.scrollWidth-innerWidth})`);
-        if(desktop.icons!==5||desktop.visible==='none'||desktop.overflow>1)failures.push(`${routePath}@${width}: desktop nav ${JSON.stringify(desktop)}`);
+        if(desktop.icons!==4||desktop.visible==='none'||desktop.overflow>1)failures.push(`${routePath}@${width}: desktop nav ${JSON.stringify(desktop)}`);
       }
     }
   }
@@ -450,7 +450,7 @@ async function checkNavigationReview() {
     await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
     await navigate(new URL(routePath,baseUrl).href);
     const staticNav=await evaluate(`({visible:getComputedStyle(document.querySelector('#main-navigation')).display,icons:document.querySelectorAll('.nav-item .nav-symbol svg').length,overflow:document.documentElement.scrollWidth-innerWidth})`);
-    if(staticNav.visible==='none'||staticNav.icons!==5||staticNav.overflow>1)failures.push(`${routePath}: no-JS navigation failed`);
+    if(staticNav.visible==='none'||staticNav.icons!==4||staticNav.overflow>1)failures.push(`${routePath}: no-JS navigation failed`);
     await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
   }
 }

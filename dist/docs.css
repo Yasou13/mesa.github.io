@@ -284,3 +284,10 @@ body:has(.docs-layout) .site-header { background: #0b0b10f5; border-bottom: 1px 
 .docs-layout .docs-sidebar-footer a,.docs-layout .docs-product-select summary,.docs-layout .docs-product-select small,
 .docs-layout .breadcrumbs a,.docs-layout .breadcrumbs li,.docs-layout kbd { font-size:14px; }
 .docs-layout .docs-body p,.docs-layout .docs-body li { font-size:16px; }
+/* Legacy captions and inline code used fractional sizes. Keep their inherited
+   heading size where larger, with a 14px floor in the documentation workspace. */
+.docs-layout :is(a,span,strong,small,kbd,code,summary,figcaption,th) { font-size:max(14px,1em) !important; }
+.docs-layout .docs-flow-stage strong,.docs-layout .docs-start-links,.docs-layout .docs-start-links a,
+.docs-footer,.docs-footer a,.docs-footer span { font-size:14px; }
+.docs-layout .docs-kicker,.docs-layout .docs-rail-note,.docs-layout .docs-rail-note a { font-size:14px; }
+.docs-section-heading > a { text-decoration:underline; text-underline-offset:4px; }
