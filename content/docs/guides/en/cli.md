@@ -1,6 +1,13 @@
 ## Local single-user commands
 
-Install v0.9.0, then run `mesa start`. Storage and credentials are provisioned automatically. Use a second terminal for document commands.
+MESA CLI is the command-line interface included with the `mesa-memory` package. No separate CLI package is needed. Install v0.9.0 and start the local server:
+
+```bash
+pip install "mesa-memory[adapters]==0.9.0"
+mesa start
+```
+
+Storage and credentials are provisioned automatically. Keep this terminal running and use a second terminal for document commands.
 
 ```bash
 mesa add document.txt --source file://document.txt

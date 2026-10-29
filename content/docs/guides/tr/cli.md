@@ -1,6 +1,13 @@
 ## Yerel tek kullanıcılı komutlar
 
-v0.9.0 sürümünü kurup `mesa start` çalıştırın. Depolama ve kimlik bilgileri otomatik hazırlanır. Belge komutları için ikinci terminal kullanın.
+MESA CLI, `mesa-memory` paketiyle birlikte gelen komut satırı arayüzüdür. Ayrı bir CLI paketi kurmanız gerekmez. v0.9.0 sürümünü kurup yerel sunucuyu başlatın:
+
+```bash
+pip install "mesa-memory[adapters]==0.9.0"
+mesa start
+```
+
+Depolama ve kimlik bilgileri otomatik hazırlanır. Bu terminali açık tutup belge komutları için ikinci terminal kullanın.
 
 ```bash
 mesa add document.txt --source file://document.txt
