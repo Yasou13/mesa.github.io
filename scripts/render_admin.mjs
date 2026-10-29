@@ -1,10 +1,11 @@
 import { escapeHtml } from './markdown_engine.mjs';
 import { cosmicEnvironment } from './cosmic.mjs';
 
-export function renderAdminPage({ assetBase = '../', language = 'en', config = null, bundleVersion = '', cssVersion = '' } = {}) {
+export function renderAdminPage({ assetBase = '../', language = 'en', config = null, bundleVersion = '', cssVersion = '', assetVersions = {} } = {}) {
   const tr = language === 'tr';
   const t = (en, turkish) => tr ? turkish : en;
   const base = escapeHtml(assetBase);
+  const version = key => assetVersions[key] ? '?v=' + encodeURIComponent(assetVersions[key]) : '';
   const field = (id, label, type = 'text', autocomplete = '', extra = '') =>
     `<div class="form-group"><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}"${autocomplete ? ` autocomplete="${autocomplete}"` : ''}${extra} required></div>`;
 
@@ -14,17 +15,17 @@ export function renderAdminPage({ assetBase = '../', language = 'en', config = n
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'${config ? ' '+escapeHtml(config.url) : ''}; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>${t('MESA Admin — Workspace','MESA Yönetim — Çalışma Alanı')}</title>
 <meta name="description" content="${t('Private MESA administration. Authentication is required; publishing is blocked.','Özel MESA yönetimi. Kimlik doğrulama gerekir; yayınlama kapalıdır.')}">
-<link rel="icon" href="${base}favicon.ico" sizes="32x32">
-<link rel="icon" href="${base}favicon.svg" type="image/svg+xml">
-<link rel="icon" type="image/png" sizes="48x48" href="${base}favicon-48x48.png">
-<link rel="icon" href="${base}assets/mesa-mark.webp" type="image/webp">
-<link rel="apple-touch-icon" href="${base}apple-touch-icon.png">
-<link rel="stylesheet" href="${base}styles.css"><link rel="stylesheet" href="${base}cosmic.css"><link rel="stylesheet" href="${base}admin.css${cssVersion ? '?v='+encodeURIComponent(cssVersion) : ''}">
+<link rel="icon" href="${base}favicon.ico${version('faviconIco')}" sizes="32x32">
+<link rel="icon" href="${base}favicon.svg${version('faviconSvg')}" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="48x48" href="${base}favicon-48x48.png${version('logo')}">
+<link rel="icon" href="${base}assets/mesa-mark.webp${version('logo')}" type="image/webp">
+<link rel="apple-touch-icon" href="${base}apple-touch-icon.png${version('logo')}">
+<link rel="stylesheet" href="${base}styles.css${version('css')}"><link rel="stylesheet" href="${base}cosmic.css${version('cosmic')}"><link rel="stylesheet" href="${base}admin.css${cssVersion ? '?v='+encodeURIComponent(cssVersion) : ''}">
 </head><body>${cosmicEnvironment('admin')}
 <header class="admin-header">
   <div class="admin-header__brand">
     <a class="logo" href="${base}${tr ? 'tr/' : ''}" aria-label="${tr ? 'MESA ana sayfa' : 'MESA home'}">
-      <img src="${base}assets/mesa-mark.webp" alt="" width="36" height="36">
+      <span class="mesa-mark" aria-hidden="true"><img src="${base}assets/mesa-mark.webp${version('logo')}" alt="" width="256" height="124"></span>
       <span>MESA</span>
     </a>
     <span class="admin-tag">${t('CMS Workspace','İçerik Yönetimi')}</span>

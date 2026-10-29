@@ -138,7 +138,7 @@ const external = (href, label, className = '') =>
 const cta = (label, href, kind = 'primary', isExternal = false) =>
   `<a class="button ${kind}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}><span>${label}</span>${icon(isExternal ? 'external' : 'arrow', isExternal ? 'icon-external' : 'icon-arrow')}</a>`;
 
-const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-mark.webp')}?v=${assetVersions.logo}" alt="" width="128" height="128"></span>`;
+const mark = () => `<span class="mesa-mark" aria-hidden="true"><img src="${asset('assets/mesa-mark.webp')}?v=${assetVersions.logo}" alt="" width="256" height="124"></span>`;
 const logo = () => `<a class="logo" href="${route()}" aria-label="${currentLanguage === 'tr' ? 'MESA ana sayfa' : 'MESA home'}">${mark()}<span>MESA</span></a>`;
 
 function languageControl() {
@@ -1142,7 +1142,7 @@ const contentSecurityPolicy = [
 ].join('; ');
 
 function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [] }) {
-  const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}`;
+  const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}?v=${assetVersions.logo}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
   const siteDescription = language === 'tr' ? trContent.pages.home.description : siteData.pages.home.description;
@@ -1205,9 +1205,9 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <script type="application/ld+json">${structuredData}</script>
   <link rel="icon" href="${assetBase}favicon.ico?v=${assetVersions.faviconIco}" sizes="32x32">
   <link rel="icon" href="${assetBase}favicon.svg?v=${assetVersions.faviconSvg}" type="image/svg+xml">
-  <link rel="icon" type="image/png" sizes="48x48" href="${assetBase}favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="${assetBase}favicon-48x48.png?v=${assetVersions.logo}">
   <link rel="icon" href="${assetBase}assets/mesa-mark.webp?v=${assetVersions.logo}" type="image/webp">
-  <link rel="apple-touch-icon" href="${assetBase}apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="${assetBase}apple-touch-icon.png?v=${assetVersions.logo}">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="${assetBase}fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
@@ -1520,7 +1520,7 @@ for (const language of ['en', 'tr']) {
   const adminRoute = language === 'tr' ? 'tr/admin/' : 'admin/';
   const destination = path.join(outputDirectory, adminRoute, 'index.html');
   fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language, config: publicAdminConfig, bundleVersion: assetVersion('admin.js'), cssVersion: assetVersion('admin.css') }));
+  fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language, config: publicAdminConfig, bundleVersion: assetVersion('admin.js'), cssVersion: assetVersion('admin.css'), assetVersions }));
 }
 writeSearchIndex(outputDirectory);
 

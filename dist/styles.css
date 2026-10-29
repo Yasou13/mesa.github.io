@@ -194,12 +194,9 @@ em { color: var(--purple-soft); font-style: normal; }
   flex: 0 0 auto;
 }
 .mesa-mark img {
-  position: absolute;
-  width: 82px;
-  height: 82px;
-  max-width: none;
-  left: -15px;
-  top: -18px;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   filter: none;
 }
@@ -667,7 +664,6 @@ em { color: var(--purple-soft); font-style: normal; }
   .nav-shell { width: calc(100% - 20px); }
   .logo { font-size: 20px; }
   .mesa-mark { width: 38px; height: 30px; }
-  .mesa-mark img { width: 60px; height: 60px; left: -11px; top: -13px; }
   .actions { align-items: stretch; flex-direction: column; }
   .button { width: 100%; }
   .status-strip { grid-template-columns: 1fr; }
@@ -1852,7 +1848,6 @@ em { color: #f1f2f5; }
 
 @media (max-width: 520px) {
   .mesa-mark { width: 44px; height: 34px; }
-  .mesa-mark img { width: 69px; height: 69px; left: -12px; top: -15px; }
   .hero { min-height: 790px; }
   .hero h1 { font-size: clamp(46px, 13vw, 58px); }
   .hero-copy .actions { margin-top: 32px; }
