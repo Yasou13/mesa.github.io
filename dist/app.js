@@ -271,6 +271,25 @@ document.querySelectorAll('.search-trigger').forEach((btn) => {
 });
 
 // Delegate copy button for dynamically rendered code blocks
+for (const demo of document.querySelectorAll('[data-recorded-demo]')) {
+  const steps = [...demo.querySelectorAll('[data-demo-step]')];
+  const controls = demo.querySelector('.demo-controls');
+  const previous = demo.querySelector('[data-demo-prev]');
+  const next = demo.querySelector('[data-demo-next]');
+  const progress = demo.querySelector('[data-demo-progress]');
+  let index = 0;
+  const show = () => {
+    steps.forEach((step, i) => { step.hidden = i !== index; });
+    progress.textContent = `${index + 1} / ${steps.length}`;
+    previous.disabled = index === 0;
+    next.disabled = index === steps.length - 1;
+  };
+  previous.addEventListener('click', () => { index = Math.max(0, index - 1); show(); if (previous.disabled) next.focus(); });
+  next.addEventListener('click', () => { index = Math.min(steps.length - 1, index + 1); show(); if (next.disabled) previous.focus(); });
+  controls.hidden = false;
+  show();
+}
+
 document.addEventListener('click', async (e) => {
   const btn = e.target.closest('.copy-button');
   if (!btn) return;

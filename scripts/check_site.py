@@ -353,7 +353,7 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("pip install", "mesa-memory[adapters]==0.9.0", "mesa start", "MESA Core", "policy.txt"):
+            for fixture_field in ("pip install", "mesa-memory[adapters]==0.9.0", "mesa start", "MESA Core", "archive-"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing homepage installation or document example at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
@@ -478,7 +478,7 @@ def main() -> int:
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "pip install" not in home_text or "relevant text and its source" not in home_text:
+    if "pip install" not in home_text or "relevant passage and its source" not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
@@ -501,7 +501,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("belgelerinizden bilgi bulsun.", "pip install", "Alfa"),
+        "tr/": ("Belgelerinizdeki bilgiyi kaynağıyla bulun.", "pip install", "Alfa"),
         "tr/how-it-works/": ("Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),

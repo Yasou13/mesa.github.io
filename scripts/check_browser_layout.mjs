@@ -362,10 +362,9 @@ async function checkIntroPages() {
     const violations=await evaluate(`(async ()=>(await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})))()`);
     if(violations.length)failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
     if(routePath===''||routePath==='tr/') {
-      const state=await evaluate(`({install:document.querySelector('#home-install')?.textContent,document:!!document.querySelector('.explain-card--document'),source:!!document.querySelector('.explain-source'),status:!!document.querySelector('.home-release a[href*="status/"]'),retiredStory:!!document.querySelector('[data-memory-story]')})`);
+      const state=await evaluate(`({install:document.querySelector('#home-install')?.textContent,document:!!document.querySelector('[data-demo-step]'),source:!!document.querySelector('.demo-source'),status:!!document.querySelector('.home-release a[href*="status/"]'),retiredStory:!!document.querySelector('[data-memory-story]')})`);
       if(!state.install?.includes('pip install')||!state.install.includes('\\nmesa start')||!state.document||!state.source||!state.status||state.retiredStory)failures.push(`${routePath}: installation/overview regression ${JSON.stringify(state)}`);
-      await evaluate(`document.querySelector('.home-start__next').open=true`);
-      if(!await evaluate(`document.querySelector('#home-search').textContent.includes('mesa add policy.txt')`))failures.push(`${routePath}: second-terminal instructions missing`);
+      if(!await evaluate(`!!document.querySelector('.home-start a[href*="getting-started/"]')`))failures.push(`${routePath}: setup guide missing`);
     }
     if(routePath.includes('how-it-works/')) {
       const state=await evaluate(`({steps:document.querySelectorAll('.walkthrough-step').length,oldValue:document.querySelector('.revision-comparison').textContent.includes('14'),newValue:document.querySelector('.revision-comparison').textContent.includes('30'),retiredStory:!!document.querySelector('[data-memory-story]')})`);

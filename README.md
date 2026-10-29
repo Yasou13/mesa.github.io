@@ -150,6 +150,35 @@ node scripts/render_site.mjs \
   --site-url https://mesamemory.dev/
 ```
 
+## Recorded first-search example
+
+The home page replays real Core v0.9.0 searches over fictional EN/TR archive-hours
+text, including a completed second revision. It does not query a live service or
+accept uploads. `content/examples/first-search.json` preserves the receipts,
+terminal states, source references and original outputs without credentials.
+
+Re-record using the environment of the pinned Core checkout (7062faf):
+
+```bash
+/path/to/MESA/.venv/bin/python scripts/capture_first_search.py --core /path/to/MESA
+```
+
+The script uses a temporary MESA home and port 18765, with models, external
+providers and graph disabled, then terminates its server. It never uses the
+operator's existing MESA home. Review the record before regenerating the site.
+
+With the local site preview running, run the focused UX regression checks:
+
+```bash
+node scripts/tests/first_use_browser.mjs http://127.0.0.1:8000/ /tmp/mesa-first-use-browser
+```
+
+This reuses the existing isolated Chrome harness and installed axe-core. It
+checks EN/TR home, docs, setup and CLI routes at five viewport widths, contrast,
+keyboard navigation, copy, reduced motion and no-JavaScript reading. Native
+Windows/macOS installation and Docker execution are separate platform checks;
+the setup commands are based on the pinned Core source and Compose contract.
+
 ## Build modes
 
 The build accepts the exact public URL through `--site-url`. Without that

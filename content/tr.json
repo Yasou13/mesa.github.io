@@ -1,8 +1,8 @@
 {
   "pages": {
     "home": {
-      "title": "MESA — Yapay Zekâ Uygulamanız İçin Belge Arama",
-      "description": "Asistanınızı kendi belgelerinize bağlayın. MESA’yı kurun, bir metin dosyası ekleyin ve ilgili metni kaynağıyla birlikte bulun."
+      "title": "MESA — Bilgiyi Kaynağıyla Bulun",
+      "description": "Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin."
     },
     "mesa": {
       "title": "MESA Core — Yapay Zekâ İçin Kalıcı Hafıza",

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { getAllDocRoutes, renderDocPage, renderDocsHub } from '../render_docs.mjs';
 const root = new URL('../../', import.meta.url);
+const demo = JSON.parse(fs.readFileSync(new URL('content/examples/first-search.json', root),'utf8'));
 const catalog = JSON.parse(fs.readFileSync(new URL('content/docs/guides.json',root),'utf8'));
 
 test('all Core routes have a paired guide at the same immutable release baseline', () => {
@@ -17,7 +18,13 @@ test('all Core routes have a paired guide at the same immutable release baseline
     assert.notEqual(texts[0],texts[1],guide.id);
     assert.equal((texts[0].match(/^## /gm)||[]).length,(texts[1].match(/^## /gm)||[]).length,guide.id);
     const snippets=text=>[...text.matchAll(/```[^\n]*\n([\s\S]*?)```/g)].map(match=>match[1]);
-    assert.deepEqual(snippets(texts[0]),snippets(texts[1]),guide.id);
+    if (guide.id === 'getting-started') {
+      const commands = (text, language) => [...text.matchAll(/```(bash|python)\n([\s\S]*?)```/g)].map(match => {
+        const example = demo.examples[language];
+        return match[2].replaceAll(example.text, 'EXAMPLE_TEXT').replaceAll(example.file, 'EXAMPLE_FILE').replaceAll(example.query, 'EXAMPLE_QUERY');
+      });
+      assert.deepEqual(commands(texts[0], 'en'), commands(texts[1], 'tr'), guide.id);
+    } else assert.deepEqual(snippets(texts[0]),snippets(texts[1]),guide.id);
   }
 });
 

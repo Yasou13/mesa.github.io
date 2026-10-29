@@ -24,3 +24,7 @@ body { isolation: isolate; }
   .cosmic--home::after { background: linear-gradient(90deg, #050508dc, #050508b3 65%, #050508ab); }
 }
 @media print { .cosmic { display: none; } }
+/* Keep the brand texture quiet behind the first-use content. */
+.cosmic--home .cosmic__field { opacity:.35; }
+.cosmic--home .cosmic__illumination { opacity:.08; animation:none !important; }
+.cosmic--home::after { background:linear-gradient(90deg,#050508e6,#050508bb); }

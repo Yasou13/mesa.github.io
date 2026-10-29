@@ -251,3 +251,36 @@ body:has(.docs-layout) .site-header { background: #0b0b10f5; border-bottom: 1px 
 /* Keep small navigation labels and source links readable in the docs theme. */
 .docs-repo-number { color: #9b8eae; }
 .docs-rail-note > a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* A focused first-run guide, with larger shared documentation text. */
+.docs-body { font-size:16px; line-height:1.8; }
+.docs-body p,.docs-body li { max-width:72ch; }
+.docs-layout .sidebar-links a,.docs-layout .sidebar-group-header,.docs-layout .docs-tabs > a,
+.docs-layout .docs-sidebar-caption,.docs-layout .docs-search,.docs-layout .docs-language-notice,
+.docs-layout .docs-meta-bar,.docs-layout .breadcrumbs,.docs-layout .toc-nav a,.docs-layout pre code { font-size:14px; }
+.docs-layout button,.docs-layout summary,.docs-layout .sidebar-links a,.docs-tabs > a { min-height:44px; }
+.docs-onboarding .docs-tabs,.docs-onboarding .docs-toc-column { display:none; }
+.docs-onboarding { padding-top:128px; }
+.docs-onboarding .docs-main-container { grid-template-columns:minmax(0,1fr); max-width:800px; }
+.docs-onboarding .docs-sidebar { top:115px; max-height:calc(100dvh - 140px); }
+.onboarding-steps { margin:20px 0 32px; padding:18px 20px; border:1px solid var(--docs-border); border-radius:8px; }
+.onboarding-steps ul { display:flex; flex-wrap:wrap; gap:8px 20px; list-style:none; padding:0; margin:0; }
+.onboarding-steps a { display:inline-flex; align-items:center; min-height:44px; font-size:14px; }
+.onboarding-steps li { margin:0; }
+.onboarding-advanced,.onboarding-source { margin:28px 0; padding:16px 20px; border:1px solid var(--docs-border); border-radius:8px; }
+.onboarding-advanced summary,.onboarding-source summary { cursor:pointer; font-size:16px; padding:10px 0; }
+.onboarding-source .docs-meta-bar { margin-top:16px; }
+.docs-layout pre { max-width:100%; overflow:auto; }
+@media (max-width:800px) {
+  .docs-onboarding { padding-top:110px; }
+  .docs-onboarding .docs-sidebar { top:auto; max-height:none; }
+  .onboarding-steps { padding:12px; }
+}
+.docs-layout .docs-quickstart-card p,.docs-layout .docs-hub-section > p,.docs-layout .docs-interface-card p,
+.docs-layout .docs-repo-list p,.docs-layout .docs-release-note p { font-size:16px; }
+.docs-layout .docs-rail-note p { font-size:14px; }
+.onboarding-steps ol { display:flex; flex-wrap:wrap; gap:4px 18px; list-style:none; padding:0; margin:0; }
+.docs-layout .docs-article-header .eyebrow,.docs-layout .lang-tag,.docs-layout .docs-copy-page,
+.docs-layout .docs-sidebar-footer a,.docs-layout .docs-product-select summary,.docs-layout .docs-product-select small,
+.docs-layout .breadcrumbs a,.docs-layout .breadcrumbs li,.docs-layout kbd { font-size:14px; }
+.docs-layout .docs-body p,.docs-layout .docs-body li { font-size:16px; }

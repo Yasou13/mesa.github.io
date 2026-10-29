@@ -154,10 +154,9 @@ function languageControl() {
 function header(active = '') {
   const nav = [
     ['how', 'How it works', 'how-it-works/', 'workflow'],
-    ['ecosystem', 'Ecosystem', 'ecosystem/', 'network'],
-    ['architecture', 'Architecture', 'architecture/', 'layers'],
-    ['resources', 'Resources', 'resources/', 'library'],
+    ['start', chrome('Get started', 'Başlayın'), 'docs/core/getting-started/', 'workflow'],
     ['docs', 'Docs', 'docs/', 'book-open'],
+    ['resources', 'Resources', 'resources/', 'library'],
   ];
   return `<a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
@@ -248,7 +247,7 @@ function actionExample(compact = false) {
   </div>`;
 }
 
-const productHelpers = () => ({header,footer,route,cta,actionExample});
+const productHelpers = () => ({header,footer,route,cta,actionExample,language:currentLanguage});
 function home() { return productHome(productHelpers()); }
 function architecture() { return architecturePage(productHelpers()); }
 function retrieval() { return retrievalPage(productHelpers()); }
@@ -1214,7 +1213,7 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
 ${content.includes('id="early-access-form"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
-${content.includes('class="docs-layout"') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
+${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
@@ -1223,7 +1222,7 @@ ${content}
 ${content.includes('id="early-access-form"') ? `  <script id="early-access-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<','\\u003c')}</script>
   <script src="${assetBase}early-access.js?v=${assetVersions.accessJs}" defer></script>
 ` : ''}
-${content.includes('class="docs-layout"') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
+${content.includes('class="docs-layout') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
 </html>
 `;
 }
@@ -1522,6 +1521,8 @@ for (const language of ['en', 'tr']) {
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.writeFileSync(destination, renderAdminPage({ assetBase: relativeBase(adminRoute), language, config: publicAdminConfig, bundleVersion: assetVersion('admin.js'), cssVersion: assetVersion('admin.css'), assetVersions }));
 }
+fs.mkdirSync(path.join(outputDirectory, 'examples'), {recursive: true});
+fs.copyFileSync(path.join(repositoryRoot, 'content/examples/first-search.json'), path.join(outputDirectory, 'examples/first-search.json'));
 writeSearchIndex(outputDirectory);
 
 base = basePath;

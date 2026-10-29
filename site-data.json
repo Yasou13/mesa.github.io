@@ -24,8 +24,8 @@
   "pages": {
     "home": {
       "path": "",
-      "title": "MESA — Search Your Documents from Your AI Application",
-      "description": "Connect your assistant to your own documents. Install MESA, add a text file and retrieve relevant passages with their source."
+      "title": "MESA — Find Information with Its Source",
+      "description": "See a recorded real search with source and revision information, then try MESA locally with a step-by-step setup guide."
     },
     "mesa": {
       "path": "mesa/",

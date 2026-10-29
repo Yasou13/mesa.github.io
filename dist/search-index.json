@@ -4394,10 +4394,10 @@
   {
     "id": "core-home-en",
     "url": "",
-    "title": "MESA — Search Your Documents from Your AI Application",
+    "title": "MESA — Find Information with Its Source",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "Connect your assistant to your own documents. Install MESA, add a text file and retrieve relevant passages with their source.",
+    "summary": "See a recorded real search with source and revision information, then try MESA locally with a step-by-step setup guide.",
     "keywords": [
       "home",
       "mesa",
@@ -4408,10 +4408,10 @@
   {
     "id": "core-home-tr",
     "url": "tr/",
-    "title": "MESA — Yapay Zekâ Uygulamanız İçin Belge Arama",
+    "title": "MESA — Bilgiyi Kaynağıyla Bulun",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "Asistanınızı kendi belgelerinize bağlayın. MESA’yı kurun, bir metin dosyası ekleyin ve ilgili metni kaynağıyla birlikte bulun.",
+    "summary": "Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin.",
     "keywords": [
       "home",
       "mesa",

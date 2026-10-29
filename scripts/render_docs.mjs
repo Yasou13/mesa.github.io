@@ -136,6 +136,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   };
   const note = repositoryNotes[repoKey]?.[isTr ? 1 : 0];
   const guideMarkdown = guide ? fs.readFileSync(path.join(repositoryRoot, 'content/docs/guides', language, `${guide.id}.md`), 'utf8') : `## ${isTr ? 'Bu belgenin kapsamı' : 'Scope of this document'}\n\n${note}\n\n${isTr ? 'Aşağıda özgün belgeyi, komutları ve varsa test kayıtlarını kendi dilinde okuyabilirsiniz. Sonuçlar yalnızca belgede belirtilen tarih ve koşullar için geçerlidir.' : 'The original reference below preserves this page’s complete contract, commands or dated evidence in its source language. Test outcomes apply only within their stated date and conditions.'}`;
+  const onboarding = guide?.id === 'getting-started';
   const rendered = renderMarkdown(guideMarkdown, {
     base,
     route,
@@ -148,6 +149,12 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const diagramHtml = (guide?.diagrams || []).length ? `<section class="docs-diagrams"><h2 id="guide-diagrams">${isTr ? 'Şemalar' : 'Diagrams'}</h2>${guide.diagrams.map(name => umlDiagrams[name](pick, `doc-${name}`)).join('')}<p class="docs-language-notice">${isTr ? 'Tüm şemalar ve gerekçeleri:' : 'All diagrams with their design rationale:'} <a href="${route('architecture/')}">${isTr ? 'Mimari' : 'Architecture'} →</a></p></section>` : '';
   if (diagramHtml) rendered.headings.push({id: 'guide-diagrams', title: isTr ? 'Şemalar' : 'Diagrams', level: 2});
   const guideTocHtml = generateTableOfContents(rendered.headings, {label: isTr ? 'Bu rehberde' : 'In this guide'});
+  if (onboarding) {
+    const lastHeading = rendered.headings.filter(heading => heading.level === 2).at(-1);
+    const marker = `<h2 id="${lastHeading.id}">`;
+    const start = rendered.html.indexOf(marker);
+    if (start >= 0) rendered.html = rendered.html.slice(0, start) + `<details class="onboarding-advanced"><summary>${isTr ? 'İleri seçenekler: modeller ve çizge' : 'Advanced: models and graph'}</summary>` + rendered.html.slice(start) + '</details>';
+  }
   // Breadcrumbs
   const homeHref = route();
   const docsHubHref = route('docs/');
@@ -193,7 +200,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
   const sidebarHtml = docsSidebar(page.route, language, { base });
 
   return `${headerHtml}
-<main id="main-content" class="docs-layout">
+<main id="main-content" class="docs-layout${onboarding ? ' docs-onboarding' : ''}">
   ${docsTabs(page.route, language, base)}
   ${sidebarHtml}
   <div class="docs-main-container">
@@ -203,13 +210,13 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
         <header class="docs-article-header">
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
           <div class="docs-title-row"><h1>${escapeHtml(pageTitle)}</h1>${docsCopyButton(isTr)}</div>
-          ${metaBar}
-          <p class="docs-language-notice">${isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.' : 'This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.'}</p>
+${onboarding ? '' : `          ${metaBar}\n`}          <p class="docs-language-notice"${onboarding ? ' hidden' : ''}>${isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.' : 'This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.'}</p>
           ${/audit|verification|closure/i.test(page.src) ? `<p class="docs-language-notice">${isTr ? 'Bu kaynak, belirtilen tarihteki testleri kaydeder. Burada paylaşılması, testlerin bu site için yeniden çalıştırıldığı anlamına gelmez.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
         </header>
         <div class="docs-body">
+${onboarding ? `<nav class="onboarding-steps" aria-label="${isTr ? 'Kurulum adımları' : 'Setup steps'}"><ol>${rendered.headings.filter(h => h.level === 2).slice(0, 6).map((h, index) => `<li><a href="#${h.id}">${index + 1}. ${(isTr ? ['Ön koşullar', 'Kurulum', 'Sunucu', 'Belge', 'İşleme', 'Arama'] : ['Prerequisites', 'Install', 'Start', 'Document', 'Processing', 'Search'])[index]}</a></li>`).join('')}</ol></nav>` : ''}
           ${(guide?.legacyAnchors || []).map(id => `<span id="${escapeHtml(id)}"></span>`).join('')}${rendered.html}${diagramHtml}
-          <div class="guide-source-list"><strong>${isTr ? 'Dayanak kaynaklar' : 'Verified sources'}</strong><ul>${(guide?.sources || [page.src]).map(src => `<li><a href="${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${src}" target="_blank" rel="noopener noreferrer"><code>${escapeHtml(src)}</code></a></li>`).join('')}</ul></div>${movedHtml}${appendixMarkdown ? `<details class="source-appendix" id="source-reference"><summary>${isTr ? 'Kaynak belgedeki ilgili bölümler' : 'Source reference for this page'}</summary><p class="docs-language-notice">${isTr ? 'Bu bölüm, kaynak belgenin bu sayfayla ilgili kısımlarını değiştirmeden gösterir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.' : translatedSource ? 'The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.' : 'The sections of the upstream file that back this page, unchanged. Source section links open the appendix automatically.'}</p><div class="source-reference-body">${sourceRendered.html}</div></details>` : ''}
+${onboarding ? `<details class="onboarding-source"><summary>${isTr ? 'Kaynak ve sürüm' : 'Source and version'}</summary>${metaBar}</details>\n` : ''}          <div class="guide-source-list"><strong>${isTr ? 'Dayanak kaynaklar' : 'Verified sources'}</strong><ul>${(guide?.sources || [page.src]).map(src => `<li><a href="${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${src}" target="_blank" rel="noopener noreferrer"><code>${escapeHtml(src)}</code></a></li>`).join('')}</ul></div>${movedHtml}${appendixMarkdown ? `<details class="source-appendix" id="source-reference"><summary>${isTr ? 'Kaynak belgedeki ilgili bölümler' : 'Source reference for this page'}</summary><p class="docs-language-notice">${isTr ? 'Bu bölüm, kaynak belgenin bu sayfayla ilgili kısımlarını değiştirmeden gösterir. Kaynak içindeki bir bölüme giden bağlantıyı açtığınızda metin otomatik olarak görünür.' : translatedSource ? 'The sections of the upstream file that back this page, translated to English where the original mixes in Turkish. The GitHub link shows the exact original.' : 'The sections of the upstream file that back this page, unchanged. Source section links open the appendix automatically.'}</p><div class="source-reference-body">${sourceRendered.html}</div></details>` : ''}
         </div>
         ${pageNavHtml}
       </article>
