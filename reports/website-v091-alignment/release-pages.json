@@ -1,0 +1,194 @@
+[
+  {
+    "lang": "en",
+    "route": "retrieval/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "retrieval/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "architecture/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "architecture/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/release-notes/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/release-notes/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/configuration/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/configuration/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/installation/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/installation/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/examples/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "en",
+    "route": "docs/core/examples/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "retrieval/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "retrieval/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "architecture/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "architecture/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/release-notes/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/release-notes/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/configuration/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/configuration/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/installation/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/installation/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/examples/",
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  },
+  {
+    "lang": "tr",
+    "route": "docs/core/examples/",
+    "width": 1280,
+    "overflow": false,
+    "h1": 1,
+    "version": true
+  }
+]

@@ -5,3 +5,7 @@ Sürümde birim, entegrasyon ve denetim odaklı testler bulunur. Önceden belirl
 ## Tam test rehberi
 
 Komutlar ve koşullar aşağıdaki özgün kaynakta bulunur. [Mimari](architecture/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/) belgeleri de testleri yorumlamanıza yardımcı olur.
+
+## v0.9.1 DEV arama ölçümleri
+
+[Sürüm kanıtı tablosu](docs/core/release-notes/) sabit DEV bölümünü, ağırlık/yeniden sıralama matrisini ve CPU/GPU koşullarını kaydeder. Deterministik sözleşme testlerinden ve üretim sertifikasyonundan ayrı değerlendirilir.

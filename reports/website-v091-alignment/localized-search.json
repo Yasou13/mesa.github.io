@@ -1,0 +1,60 @@
+[
+  {
+    "locale": "en",
+    "query": "MESA_RERANK_ENABLED",
+    "results": [
+      "http://127.0.0.1:8765/docs/core/configuration/",
+      "http://127.0.0.1:8765/docs/core/retrieval-and-graph/"
+    ]
+  },
+  {
+    "locale": "en",
+    "query": "MESA_CHUNKING",
+    "results": [
+      "http://127.0.0.1:8765/docs/core/concepts-and-ingestion/",
+      "http://127.0.0.1:8765/docs/core/configuration/",
+      "http://127.0.0.1:8765/docs/core/release-notes/",
+      "http://127.0.0.1:8765/docs/core/migration/"
+    ]
+  },
+  {
+    "locale": "en",
+    "query": "MESA_SEARCH_SCOPE_CACHE",
+    "results": [
+      "http://127.0.0.1:8765/docs/core/architecture/",
+      "http://127.0.0.1:8765/docs/core/retrieval-and-graph/"
+    ]
+  },
+  {
+    "locale": "tr",
+    "query": "MESA_RERANK_ENABLED",
+    "results": [
+      "http://127.0.0.1:8765/tr/docs/core/configuration/",
+      "http://127.0.0.1:8765/tr/docs/core/retrieval-and-graph/"
+    ]
+  },
+  {
+    "locale": "tr",
+    "query": "MESA_CHUNKING",
+    "results": [
+      "http://127.0.0.1:8765/tr/docs/core/concepts-and-ingestion/",
+      "http://127.0.0.1:8765/tr/docs/core/configuration/",
+      "http://127.0.0.1:8765/tr/docs/core/release-notes/",
+      "http://127.0.0.1:8765/tr/docs/core/migration/"
+    ]
+  },
+  {
+    "locale": "tr",
+    "query": "MESA_SEARCH_SCOPE_CACHE",
+    "results": [
+      "http://127.0.0.1:8765/tr/docs/core/architecture/",
+      "http://127.0.0.1:8765/tr/docs/core/retrieval-and-graph/"
+    ]
+  },
+  {
+    "table": {
+      "scrollable": false,
+      "tabindex": "0"
+    }
+  }
+]

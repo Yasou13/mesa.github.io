@@ -23,7 +23,7 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 - `scripts/build_endpoint_reference.py` — regenerates the HTTP endpoint reference
-  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.0.json`
+  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.1.json`
 - `content/docs/source-en/` — English copies of upstream docs that mix in Turkish;
   English doc pages show these in their source appendix
 - `content/glossary-terms.json` — short bilingual definitions on `/glossary/`
@@ -327,3 +327,23 @@ The social card sources are `dist/og-image.svg` and `dist/og-image-tr.svg`;
 their committed PNG files are the 1200×630 published assets. `dist/CNAME` records the
 custom domain, while the build still renders URLs from the Pages-reported
 deployment base so preview/fallback artifacts remain testable.
+
+## Core v0.9.1 website refresh — 1 November 2026
+
+Current docs pin `e2f984d4ad97c01782a347e29e44808e5a16dad3` (GitHub tag `v0.9.1`); sync reads committed Git objects, not dirty working files. EN/TR maintained guides are updated independently from the imported source cache. OpenAPI is copied from the tagged `docs/reference/openapi.json` and endpoint guides regenerated.
+
+GitHub and PyPI v0.9.1 publication were verified on 1 November 2026. The PyPI endpoint initially returned 404, then returned 200 during the full re-audit after publication. The verified PyPI wheel’s 149 Python files match the release tag; active install/copy boxes now use `pip install mesa-memory==0.9.1`, and upgrades use `pip install --upgrade mesa-memory==0.9.1`. OpenAI/Ollama are base dependencies; Anthropic uses `[adapters]`, local ML/reranking `[ml]`.
+
+The CLI waits for ACTIVE by default. Contrary to the initial update checklist, the tagged `Mesa.add` signature defaults to `wait=False`; examples use `wait=True` explicitly. The recorded demo remains v0.9.0 and is labelled accordingly. DEV measurements are not certification; Alpha / production NO-GO remains. Live origin verification returned 403; no current deployment is inferred from cached search results.
+
+### Full re-audit
+
+See `reports/website-v091-alignment/README.md` and its retained JSON evidence. The complete browser sweep covers all public page families, admin shells and the 404 page at four widths. Guide search includes maintained EN/TR content, long source paths wrap, wide documentation tables scroll without splitting words into letters, and the recorded demo reserves its enhanced layout before JavaScript initialization.
+
+The focused SDK verifier can be run with the Core environment against an exported pinned checkout:
+
+```bash
+/path/to/MESA/.venv/bin/python scripts/verify_core_sdk_example.py --source /tmp/mesa-091-core-audit
+```
+
+It uses fixture HTTP, temporary credentials and a temporary receipt file; it checks both published SDK examples and the paired quickstart completion script. It never uses the operator’s live storage or credentials.

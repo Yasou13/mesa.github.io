@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar">
   <meta name="twitter:description" content="Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.">
   <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/retrieval/#webpage","url":"https://mesamemory.dev/tr/retrieval/","name":"MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar","description":"Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE","version":"0.9.0","url":"https://mesamemory.dev/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/retrieval/#webpage","url":"https://mesamemory.dev/tr/retrieval/","name":"MESA’da Arama — Dört Kanal ve Kaynaklarıyla Sonuçlar","description":"Vektör, BM25, bilgi kaydı ve çizge aramasının nasıl birleştirildiğini; sıralamayı, erişim sınırlarını ve kaynak izini öğrenin.","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/LICENSE","version":"0.9.1","url":"https://mesamemory.dev/"}]}</script>
   <link rel="icon" href="../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
   <link rel="icon" href="../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png?v=9af4302fa17b">
@@ -34,7 +34,7 @@
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=9af4302fa17b">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../styles.css?v=0f3e72057806">
+  <link rel="stylesheet" href="../../styles.css?v=c5108a9405b0">
   <link rel="stylesheet" href="../../cosmic.css?v=26e4cf860d9e">
   <link rel="stylesheet" href="../../learn.css?v=45ed18ca11a1">
 
@@ -83,7 +83,7 @@
     <p class="eyebrow">RECIPROCAL RANK FUSION</p>
     <h2>Sıralar birleşir; ham skorlar ayrı kalır.</h2>
     <pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
-k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
+k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code></pre>
     <p>Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; arama motorunun tamamını simüle etmez.</p>
     
 <form class="rank-calculator" data-rank-calculator>
@@ -117,7 +117,7 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     <span>RRF skoru</span>
     <output aria-live="polite">4 / 61 = 0.065574</output>
   </div>
-  <p>Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.</p>
+  <p>Etkin kanallar aynı adayı ilk sıraya koyar; bu öğretici örnekte bilinçli olarak ağırlıklar 1.0 ve k=60 seçilmiştir. Çalışma zamanı varsayılanları vektör 8.0 ve diğer kanallar 1.0’dır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.</p>
   <noscript>Statik örnek: dört katkı 4/61 verir.</noscript>
 </form>
     <p>Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; bilgi kaydı tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.</p>
@@ -134,7 +134,12 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     </div>
   </section>
 
-  <section class="section" id="verified-example"><p class="eyebrow">GELİŞTİRİCİLER İÇİN · SÖZLEŞME TESTİ</p><details class="intro-technical"><summary>Depo testini ve kaynakları göster</summary><div><p>Core’da deterministik bir sözleşme testi bulunur: “Alice knows Aurora” kaydı dört kanalda da ilk sıradadır ve RRF = 4/61 olur. Gerçek SQLite ve Kùzu ile mock vektörler kullanılır; kalite karşılaştırması değildir.</p><div class="memory-example panel--evidence">
+  <section class="section">
+    <h2>v0.9.1 çalışma zamanı ve DEV kanıtı</h2>
+    <p>Vektör ağırlığı varsayılanı 8.0’dır; önceki ayar için MESA_RRF_VECTOR_WEIGHT=1 kullanın. Sıfır, kanal katkısını kapatır. İsteğe bağlı BGE yeniden sıralama varsayılan kapalıdır; [ml] gerektirir ve rrf_score/final_score değerlerini koruyup birleştirme sonrasında rerank_score ekler.</p>
+    <a class="text-link" href="../docs/core/release-notes/">DEV matrisi, CPU/GPU gecikmeleri ve sınırları okuyun →</a>
+  </section>
+  <section class="section" id="verified-example"><p class="eyebrow">GELİŞTİRİCİLER İÇİN · SÖZLEŞME TESTİ</p><details class="intro-technical"><summary>Depo testini ve kaynakları göster</summary><div><p>Core’da deterministik bir sözleşme testi bulunur: “Alice knows Aurora” kaydı dört kanalda da ilk sıradadır ve açıkça seçilmiş birim ağırlıklarda RRF = 4/61 olur (çalışma zamanı vektör varsayılanı 8.0’dır). Gerçek SQLite ve Kùzu ile mock vektörler kullanılır; kalite karşılaştırması değildir.</p><div class="memory-example panel--evidence">
     <div class="memory-example__query"><span class="text--meta">SORGU</span><code>“Alice”</code><span class="text--meta">Aynı girdide aynı sonucu veren test örneği</span></div>
     <div class="memory-example__body">
       <div class="memory-example__knowledge"><span class="text--meta">GERİ GETİRİLEN BİLGİ</span><p><strong>Alice</strong><span>knows</span><strong>Aurora</strong></p><p class="memory-example__identity">Tek bir bilgi kaydı; kaynağıyla birlikte.</p></div>
@@ -143,16 +148,16 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     <details class="memory-example__details"><summary>Arama sinyalleri ve uygulama bağlamı</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>sıra 1</b></li><li>BM25 <b>sıra 1</b></li><li>bilgi kaydı <b>sıra 1</b></li><li>çizge yolu <b>sıra 1</b></li></ul><p class="fixture-score">Beklenen RRF: 4 ÷ 61</p></div><div><span class="text--meta">UYGULAMA BAĞLAMI</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Gösterilen alanlar testteki şemaya uygundur. Gerçek sistemin ürettiği bağlam ise token sayısı sınırlandırılmış JSON biçimindeki kanıtlardan oluşur.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core testi, yayın commiti 7062faf.</span></p></details>
+}</code></pre><p class="text--meta">Gösterilen alanlar testteki şemaya uygundur. Gerçek sistemin ürettiği bağlam ise token sayısı sınırlandırılmış JSON biçimindeki kanıtlardan oluşur.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core testi, yayın commiti e2f984d.</span></p></details>
     <p class="memory-example__caption text--meta">Bu testte vektör arama sonuçları önceden belirlenmiştir. Gösterim sabit bir örnektir; çalışan sistemin performans ölçümü değildir.</p>
-  </div><div class="intro-proof-links"><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Core mimarisi ↗</a><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/retrieval-and-graph.md" target="_blank" rel="noopener noreferrer">Arama sözleşmesi ↗</a><a href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer">Gerçek test örneği testi ↗</a></div><p class="intro-caption">Kaynak temeli: Core v0.9.0 · commit 7062faf.</p></div></details></section>
+  </div><div class="intro-proof-links"><a href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">Core mimarisi ↗</a><a href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/retrieval-and-graph.md" target="_blank" rel="noopener noreferrer">Arama sözleşmesi ↗</a><a href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer">Gerçek test örneği testi ↗</a></div><p class="intro-caption">Kaynak temeli: Core v0.9.1 · commit e2f984d.</p></div></details></section>
 
   <section class="section source-notes">
     <h2>Uygulamayı inceleyin.</h2>
     <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 7062faf</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 7062faf</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/mesa_memory/context_builder.py">mesa_memory/context_builder.py · 7062faf</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · e2f984d</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · e2f984d</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/mesa_memory/context_builder.py">mesa_memory/context_builder.py · e2f984d</a></li>
     </ul>
     <div class="actions">
       <a class="button primary" href="../docs/core/api-reference/"><span>API yanıt referansı</span><svg class="mesa-icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
@@ -160,17 +165,17 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     </div>
   </section>
   <footer class="site-footer">
-      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Yapay zekâ uygulamanız için belge arama.</p><p class="footer-note"><span>v0.9.0</span> · <span>Alfa</span> · <a href="../status/">Proje durumu →</a></p></div>
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Yapay zekâ uygulamanız için belge arama.</p><p class="footer-note"><span>v0.9.1</span> · <span>Alfa</span> · <a href="../status/">Proje durumu →</a></p></div>
       <div class="footer-groups">
         <div><h3>Ürün</h3><a href="../how-it-works/">Nasıl çalışır</a><a href="../architecture/">Mimari</a><a href="../ecosystem/">Ekosistem</a><a href="../#use-cases">Kullanım alanları</a><a href="../law/">MESA Law</a></div>
         <div><h3>Geliştiriciler</h3><a href="../get-started/">Hızlı başlangıç</a><a href="../docs/core/cli-reference/">MESA CLI</a><a href="../docs/core/api-reference/">API referansı</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Güvenlik</a></div>
         <div><h3>Öğrenin</h3><a href="../learn/">Dersler</a><a href="../glossary/">Sözlük</a><a href="../guides/">Rehberler</a><a href="../faq/">SSS</a></div>
-        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../early-access/">Erken erişim</a><a href="../privacy/">Gizlilik</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+        <div><h3>Proje</h3><a href="../about/">Hakkında</a><a href="../early-access/">Erken erişim</a><a href="../privacy/">Gizlilik</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.0 · 7062faf ile uyumlu</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.1 · e2f984d ile uyumlu</span></div>
     </footer>
 </main>
-  <script src="../../app.js?v=bbe96ea01010"></script>
+  <script src="../../app.js?v=50712bbd6709"></script>
 
 </body>
 </html>

@@ -1,9 +1,11 @@
-## Yayın ile doğrulama farklıdır
+## Yayın ve üretim yeterliliği
 
-Kaynak kodunu yayımlamak için gözden geçirilmiş yayın süreci ve proje sahibinin açık onayı gerekir. Paket sürümü, doğrulanan özellikler ve canlı kullanım onayı ayrı ayrı değerlendirilir. Bu site v0.9.0’i anlatır; sürüm etiketi oluşturmaz, Core paketini yayımlamaz veya bekleyen testleri tamamlamaz.
+Site v0.9.1 kaynak sürümünü izler. Alfa / üretim NO-GO sürer; yayın, CI sonuçları ve DEV arama ölçümleri sertifikasyon sayılmaz. GitHub ve PyPI v0.9.1 yayını 1 Kasım 2026’da doğrulandı. PyPI wheel’inin 149 Python kaynak dosyası etiketli sürümle aynı.
 
-## Yayın koşullarını inceleyin
+## Etiket, kimlik ve derleme kanıtı
 
-Tam süreç aşağıdaki özgün kaynakta yer alır. Ayrıca [mimari](architecture/), [API](docs/core/api-reference/), [işletim](docs/core/operations/) ve [sürüm sınırları](docs/core/limitations/) belgelerine bakın.
+Normal yayın süreci annotated, GPG imzalı etiket ve güvenilir operatör anahtarlığıyla imza ön kontrolü kullanır. Proje sahibi v0.9.1 için imzasız annotated etiketi açıkça onayladı; imzalı etiket kontrolünün geçtiği iddia edilmez. GPG etiket imzalayanını doğrular; OIDC build attestation, artefakt özetlerini derleme kimliğine bağlar. Farklı kanıtlardır.
 
-Özgün kaynak eki v0.9.0 yayımlanmadan önce hazırlandığı için “yayımlanmadı” diyebilir. GitHub sürümü ve PyPI paketi 28 Ekim 2026’da doğrulandı; bu yayın üretim koşullarını tamamlamaz.
+## Trusted publishing kurulumu
+
+Etiketle tetiklenen `.github/workflows/release.yml` wheel/sdist üretir, Twine ile doğrular ve GitHub Actions OIDC üzerinden yayımlar. Proje sahibi PyPI `mesa-memory` trusted publisher ayarını bir kez yapmalıdır: owner `Yasou13`, repository `MESA`, workflow `release.yml`, environment `pypi`; GitHub’da eşleşen `pypi` ortamını oluşturmalıdır. İş akışının varlığı paket yayını kanıtı değildir. Doğrulanmış artefakt yolu için [kuruluma](docs/core/installation/), mevcut veri dizinine dokunmadan önce [yükseltme rehberine](docs/core/migration/) bakın.

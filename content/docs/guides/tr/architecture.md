@@ -9,3 +9,7 @@ Bir istek kabul edildiğinde, yapılacak iş önce kalıcı olarak kaydedilir. A
 ## Ayrıntıları nerede bulabilirsiniz?
 
 [Mimari sayfası](architecture/) veri akışını, depoları, aramayı ve kaynak izini ayrı ayrı açıklar. Uygulama ayrıntıları için [veri alımı](docs/core/concepts-and-ingestion/), [arama](retrieval/), [güvenlik](docs/core/security/) ve [işletim](docs/core/operations/) rehberlerine bakın.
+
+## Eşzamanlı arama ve kapsam önbelleği
+
+`MESA_SEARCH_SCOPE_CACHE=true`, kapsama özel geçici FTS indekslerini ve satır/metin özelliklerini dört kapsamlık LRU önbelleğinde yeniden kullanır. SQLite commit değişiklikleri önbelleği geçersiz kılar; her istekte yetkilendirme yeniden denetlenir. Sorgu embedding’i arama kilidinden önce hesaplanır; yeniden sıralama bağlantı bırakıldıktan sonra çalışır. scrypt doğrulama, anahtar oluşturma ve döndürme işlemleri event loop dışında yürütülür; yetki sonuçları önbelleğe alınmaz. Çizge kapalıysa başlangıç düğümlerinin hazırlığı atlanır.

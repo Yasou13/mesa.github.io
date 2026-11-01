@@ -3,7 +3,7 @@
 Python 3.11–3.13 is the tested matrix. Linux/macOS run natively; Windows uses Docker or WSL. Install the version matched to these guides:
 
 ```bash
-pip install "mesa-memory[adapters]==0.9.0"
+pip install mesa-memory==0.9.1
 mesa start
 ```
 
@@ -14,7 +14,7 @@ The CLI provisions the local catalog, grants, storage and credentials. Models de
 For development, use the released Git object and lockfile:
 
 ```bash
-git clone --branch v0.9.0 --depth 1 https://github.com/Yasou13/MESA.git
+git clone --branch v0.9.1 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 uv sync --locked --python 3.11
 uv pip check
@@ -29,3 +29,21 @@ docker compose -f docker-compose.v4.yml exec mesa-v4 mesa search "archive"
 ```
 
 Run Compose from the pinned source checkout, with your own `document.txt` present. The container runs `mesa start`, binds internally to `0.0.0.0` and publishes only on the host loopback. Its volume retains data and credentials at `/var/lib/mesa/credentials.json`. One combined writer owns each storage root. Readiness and local startup do not qualify production.
+
+## Package index and optional extras
+
+On 1 November 2026, both the GitHub release and PyPI 0.9.1 publication were verified. The PyPI wheel is not yanked, requires Python >=3.11, and its 149 Python source files match the release tag. Base installation and upgrade:
+
+```bash
+pip install mesa-memory==0.9.1
+pip install --upgrade mesa-memory==0.9.1
+```
+
+OpenAI and Ollama SDKs are included in the base package. Anthropic needs `[adapters]`; local embedding and BGE reranking need `[ml]`. Install only the extras needed for your selected provider:
+
+```bash
+pip install "mesa-memory[adapters]==0.9.1"
+pip install "mesa-memory[ml]==0.9.1"
+```
+
+Publication does not change the Alpha / production NO-GO status.

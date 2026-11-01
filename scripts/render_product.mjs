@@ -10,7 +10,7 @@ const paragraph = (en, tr) => `<p>${t(en, tr)}</p>`;
 const title = (en, tr) => `<h2>${t(en, tr)}</h2>`;
 const eyebrow = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const row = (name, en, tr) => `<article><h3>${name}</h3>${paragraph(en, tr)}</article>`;
-const source = 'https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/';
+const source = 'https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/';
 
 export function rankCalculator() {
   const lanes = [
@@ -38,8 +38,8 @@ export function rankCalculator() {
     <output aria-live="polite">4 / 61 = 0.065574</output>
   </div>
   ${paragraph(
-    'All enabled lanes rank the same candidate first; weights are 1.0 and k=60. This calculator makes no API call and measures neither probability nor retrieval quality.',
-    'Etkin kanallar aynı adayı ilk sıraya koyar; ağırlıklar 1.0 ve k=60’tır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.'
+    'All enabled lanes rank the same candidate first; this teaching example deliberately uses weights of 1.0 and k=60. Runtime defaults use vector 8.0 and other lanes 1.0. This calculator makes no API call and measures neither probability nor retrieval quality.',
+    'Etkin kanallar aynı adayı ilk sıraya koyar; bu öğretici örnekte bilinçli olarak ağırlıklar 1.0 ve k=60 seçilmiştir. Çalışma zamanı varsayılanları vektör 8.0 ve diğer kanallar 1.0’dır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.'
   )}
   <noscript>${t('Static example: four contributions give 4/61.', 'Statik örnek: dört katkı 4/61 verir.')}</noscript>
 </form>`;
@@ -119,7 +119,7 @@ ${header('architecture')}
     ${eyebrow('RECIPROCAL RANK FUSION', 'RECIPROCAL RANK FUSION')}
     ${title('Ranks combine; raw scores stay separate.', 'Sıralar birleşir; ham skorlar ayrı kalır.')}
     <pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
-k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
+k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code></pre>
     ${paragraph(
       'A duplicate candidate casts one vote per lane. Ties resolve by candidate identity. A lane may return no eligible hit. This example uses one first-ranked candidate; it does not simulate the complete retrieval engine.',
       'Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; arama motorunun tamamını simüle etmez.'
@@ -161,14 +161,19 @@ k = 60 · weight_lane = 1.0 · rank starts at 1</code></pre>
     </div>
   </section>
 
+  <section class="section">
+    ${title('v0.9.1 runtime and DEV evidence', 'v0.9.1 çalışma zamanı ve DEV kanıtı')}
+    ${paragraph('Vector weight defaults to 8.0; use MESA_RRF_VECTOR_WEIGHT=1 for the previous setting. Zero removes a lane contribution. Optional BGE reranking is off by default, needs [ml] and adds rerank_score after fusion while preserving rrf_score and final_score.', 'Vektör ağırlığı varsayılanı 8.0’dır; önceki ayar için MESA_RRF_VECTOR_WEIGHT=1 kullanın. Sıfır, kanal katkısını kapatır. İsteğe bağlı BGE yeniden sıralama varsayılan kapalıdır; [ml] gerektirir ve rrf_score/final_score değerlerini koruyup birleştirme sonrasında rerank_score ekler.')}
+    <a class="text-link" href="${route('docs/core/release-notes/')}">${t('Read the DEV matrix, CPU/GPU latency and limits →', 'DEV matrisi, CPU/GPU gecikmeleri ve sınırları okuyun →')}</a>
+  </section>
   ${developerFixture({actionExample})}
 
   <section class="section source-notes">
     ${title('Inspect the implementation.', 'Uygulamayı inceleyin.')}
     <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · 7062faf</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · 7062faf</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · 7062faf</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · e2f984d</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · e2f984d</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · e2f984d</a></li>
     </ul>
     <div class="actions">
       ${cta(t('API response reference', 'API yanıt referansı'), route('docs/core/api-reference/'))}
@@ -190,7 +195,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.9.0 · 7062faf</p>
+  <p class="eyebrow">CORE v0.9.1 · e2f984d</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `
@@ -202,8 +207,8 @@ export function documentationJourney(route) {
     </li>`).join('')}
   </ol>
   ${paragraph(
-    'Published source release · 18 October 2026. Production qualification remains NO-GO.',
-    'Yayımlanmış kaynak sürümü · 18 Ekim 2026. Üretim yeterliliği NO-GO durumundadır.'
+    'Published source release · 1 November 2026. Production qualification remains NO-GO.',
+    'Yayımlanmış kaynak sürümü · 1 Kasım 2026. Üretim yeterliliği NO-GO durumundadır.'
   )}
 </section>`;
 }

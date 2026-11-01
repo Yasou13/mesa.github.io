@@ -1,11 +1,11 @@
-## Kaynaklarını koruyan hafıza
+## Core’un görevi
 
-MESA Core, özgün belge metnini belge, sürüm ve pasaj kimlikleriyle saklar. HTTP, Python SDK ve MCP üzerinden yetki kapsamındaki kanıtları ve boyutu sınırlı bağlamı getirir. Yanıtı uygulamanızın modeli yazar.
+MESA Core, bilgiyi kaynağı ve erişim kapsamıyla kalıcı olarak saklar. Asıl kayıtların sahibi SQLite’tır; LanceDB ve Kùzu arama görünümleri sağlar. Yanıtı uygulama bu kanıttan üretir.
 
-## İlk iş akışınızı seçin
+## Yerelde başlayın
 
-[Yerel hızlı başlangıcı](docs/core/getting-started/) izleyin: `mesa-memory[adapters]==0.9.0` kurun, `mesa start` çalıştırın; ardından `mesa add` ve `mesa search` kullanın. BM25 sözcük araması için model gerekmez. `Mesa()` yerel kimlik bilgilerini otomatik okur; `mesa mcp-config` MCP bağlantısını hazırlar. Bilgi çıkarımı ve anlamsal arama için modelleri açın; gerektiğinde `MESA_GRAPH_ENABLED=false` ile Kùzu’yu kapatın.
+Doğrulanan PyPI paketi `mesa-memory==0.9.1` ile [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. `mesa start`, ardından `mesa add` ve `mesa search` kullanın. BM25 için model gerekmez. OpenAI/Ollama temel pakettedir; Anthropic `[adapters]`, yerel ML/yeniden sıralama `[ml]` gerektirir.
 
-## Sürüm ve yeterlilik
+## Sürüm temeli
 
-Rehberler, 28 Ekim 2026’da `7062faf` commit’iyle yayımlanan v0.9.0 sürümünü izler. Bu sürüm tam belge alımı, yerel CLI ve SDK varsayılanları, isteğe bağlı çizge ve geliştirilmiş yeniden deneme/silme davranışını getirir. GitHub ve PyPI yayını üretim yeterliliği anlamına gelmez: gerekli sağlayıcı, kurtarma, dayanıklılık ve sertifikasyon kanıtları tamamlanana kadar NO-GO geçerlidir.
+Rehberler 1 Kasım 2026’da `e2f984d4ad97c01782a347e29e44808e5a16dad3` commit’iyle yayımlanan [v0.9.1](https://github.com/Yasou13/MESA/releases/tag/v0.9.1) sürümünü izler. Round 13 kapsamlı aramayı ve CLI etkinleşme beklemesini iyileştirir; Round 14 madde sınırlarını koruyan parçalama, isteğe bağlı BGE yeniden sıralama, 8.0 vektör ağırlığı ve kaynakla silme ekler. Mevcut V4 yolları ve istek biçimleri uyumludur. Alfa / üretim NO-GO sürer. [Sürüm notları ve DEV kanıtına](docs/core/release-notes/) bakın.

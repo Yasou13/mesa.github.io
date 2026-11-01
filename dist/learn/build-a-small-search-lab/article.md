@@ -88,5 +88,5 @@ Build a file of judged queries and expected source IDs, then calculate Recall@k 
 
 1. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 

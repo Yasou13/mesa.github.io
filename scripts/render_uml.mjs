@@ -1,5 +1,5 @@
 // UML-style diagrams for MESA Core, drawn as inline SVG.
-// Facts follow Core v0.9.0 (7062faf): docs/architecture-v4.md, ADR 0009–0015,
+// Facts follow Core v0.9.1 (e2f984d): docs/architecture-v4.md, ADR 0009–0015,
 // docs/concepts-and-ingestion.md and docs/RUNBOOK.md.
 // Every function takes `t(en, tr)` so the same drawing serves the localized
 // product pages (translation map) and the docs pages (direct language choice).

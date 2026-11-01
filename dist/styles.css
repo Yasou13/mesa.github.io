@@ -2932,6 +2932,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible,pre:focus-visible { o
 .demo-heading p { font-size:14px; line-height:1.7; margin:0; }
 .demo-controls { display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; padding:12px 20px; border-bottom:1px solid var(--line); }
 .demo-controls[hidden],.demo-steps [hidden] { display:none; }
+/* Reserve the enhanced demo layout before deferred JavaScript initializes it. */
+.js [data-recorded-demo]:not([data-demo-ready]) .demo-controls[hidden] { display:flex; }
+.js [data-recorded-demo]:not([data-demo-ready]) [data-demo-step]:not(:first-child) { display:none; }
 .demo-controls button { border:1px solid #66728a; border-radius:6px; background:#1c2535; color:var(--ink); padding:8px 12px; font:inherit; font-size:14px; cursor:pointer; }
 .demo-controls button:disabled { opacity:.45; cursor:default; }
 .demo-controls span { font-size:14px; color:var(--muted); }

@@ -137,3 +137,24 @@ The website SDK verification runs both the explicit V4 snippet and the local
 Mesa snippet using fixture HTTP transport and released request schemas; it
 checks admission, COMMITTED/REJECTED handling and local credential discovery.
 It does not claim a real-provider or production-capacity run.
+
+## v0.9.1 / Round 13–14 verification — 2026-11-01
+
+- GitHub release API confirms published `v0.9.1`, release commit `e2f984d4ad97c01782a347e29e44808e5a16dad3`; local tag dereference matches it. The tag is annotated and unsigned under the owner’s explicit release exception; no GPG preflight PASS is claimed.
+- PyPI version JSON endpoint returned HTTP 404. Website commands use the GitHub wheel; package-index install/upgrade commands remain conditional.
+- Core cache, guides baseline, source links and OpenAPI snapshot pin the same commit. Imported cache updates do not replace handwritten guides or English source copies.
+- Runtime RRF vector 8.0, other lanes 1.0, k=60 and zero-weight behavior: tagged `docs/configuration.md` and `mesa_memory/config.py`. Unit-weight calculator/fixture is labelled explicitly.
+- Article-aware auto/plain planning, 512-token bound, retry plan preservation and ambiguous-prefix 409: tagged configuration and chunking implementation.
+- Optional BGE reranker settings, lazy load, worker execution and retained fusion fields: tagged configuration/retrieval docs.
+- CLI default wait is verified. The requested checklist’s SDK-default claim is contradicted by `mesa_client/client.py`: `Mesa.add(..., wait=False)`. Website examples explicitly opt in with `wait=True`. `Mesa.add` takes document text, not a filename; source deletion and terminal failures are checked against tagged client code.
+- DEV matrix, split, model/hardware, CPU/GPU latency and limitations: tagged `docs/retrieval-and-graph.md#round-14-dev-benchmark` and `docs/benchmarks/round14_dev.json`. These are not test-split results or production qualification. DAO microcheck is synthetic and excludes HTTP/auth/model time.
+- Home demo record and capture baseline remain v0.9.0. No new recording is claimed. Existing V4 routes and request shapes remain compatible.
+- `https://mesamemory.dev/` returned HTTP 403. No claim of current live release state. Alpha / production NO-GO and independent certification blockers remain unchanged.
+
+## Full v0.9.1 re-audit — superseding publication state, 2026-11-01
+
+PyPI publication completed after the earlier 404 check. The version JSON now returns 200; wheel and sdist are present and not yanked. The wheel upload is `2026-11-01T16:25:12.917825Z` (19:25 Istanbul). SHA256: `84aa8f285496319a8b1392cddfac43d7d088a05e567b82317fb5e07ca2901a83`. All 149 wheel Python files match the pinned v0.9.1 tag. Current installation and copy boxes use `pip install mesa-memory==0.9.1`; upgrade uses `pip install --upgrade mesa-memory==0.9.1`. Earlier 404 observations remain historical only.
+
+The released wheel was run in a temporary Linux environment using existing Core dependencies, models/graph disabled and a dedicated loopback port/storage root. Real EN/TR CLI ingestion, default ACTIVE waiting, revision replacement, immediate search, source deletion, SDK `wait=True` and CLI `--no-wait` passed. This is not a clean dependency installation, Docker check, real-model run or production qualification.
+
+The full review found and fixed long source-path overflow, unreadable mobile table wrapping, absent handwritten guide search content and deferred demo initialization layout shift. SDK example verification was repaired for the receipt-file quickstart and now exercises activation, source deletion, retryable and terminal mutation states. Mutation polling (2 seconds) and revision activation polling (1 second) are distinguished. The browser check now correctly distinguishes standalone Get started from the docs workspace's intentionally hidden background, while retaining the original overflow and CLS thresholds.

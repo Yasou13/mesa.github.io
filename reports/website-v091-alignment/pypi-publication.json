@@ -1,0 +1,33 @@
+{
+  "url": "https://pypi.org/pypi/mesa-memory/0.9.1/json",
+  "http_status": 200,
+  "version": "0.9.1",
+  "requires_python": ">=3.11",
+  "files": [
+    {
+      "filename": "mesa_memory-0.9.1-py3-none-any.whl",
+      "upload_time_iso_8601": "2026-11-01T16:25:12.917825Z",
+      "digests": {
+        "blake2b_256": "42584043944375c9378f9328f969cbf62b38cdc68c27db1caa8d05759f3d1806",
+        "md5": "58b356c035ac0bff3be829ee0de6b9a3",
+        "sha256": "84aa8f285496319a8b1392cddfac43d7d088a05e567b82317fb5e07ca2901a83"
+      },
+      "yanked": false,
+      "requires_python": ">=3.11"
+    },
+    {
+      "filename": "mesa_memory-0.9.1.tar.gz",
+      "upload_time_iso_8601": "2026-11-01T16:25:14.692508Z",
+      "digests": {
+        "blake2b_256": "a28d5fa7224fb88adaeb19f2d1e20af2eb662d52905e5e0fb51f1976c69e36bf",
+        "md5": "db82781a44e414b90e2bd56d9a90f8a4",
+        "sha256": "4d075fd6fe4866d01e492e726c9cffe2056bbdbf9682d8d4d0e3f361cebcfe51"
+      },
+      "yanked": false,
+      "requires_python": ">=3.11"
+    }
+  ],
+  "verified_at_utc": "2026-11-01T16:41:59.681150+00:00",
+  "python_files_matching_tag": 149,
+  "python_file_differences": []
+}

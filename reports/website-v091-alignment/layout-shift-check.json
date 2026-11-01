@@ -1,0 +1,1332 @@
+{
+  "baseUrl": "http://127.0.0.1:8765/",
+  "cacheMode": "cold",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.84",
+    "revision": "@5869fe313571d75152b77813cf0a4ee26a4e6df0",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.25"
+  },
+  "observations": [
+    {
+      "route": "",
+      "width": 390,
+      "title": "MESA — Find Information with Its Source",
+      "docs": false,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--home",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "0.35",
+        "width": 390,
+        "height": 844
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 759
+        }
+      ],
+      "height": 7390,
+      "fixtureTop": 1590,
+      "heroHeight": 1566,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/cosmic-flow.webp",
+          "encoded": 51958,
+          "transfer": 52258
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/favicon.svg?v=c54e33ae15fa",
+          "encoded": 53413,
+          "transfer": 53713
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "process",
+        "capabilities",
+        "explore"
+      ],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "",
+      "width": 1440,
+      "title": "MESA — Find Information with Its Source",
+      "docs": false,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--home",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "0.35",
+        "width": 1440,
+        "height": 1000
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 1497
+        }
+      ],
+      "height": 4205,
+      "fixtureTop": 900,
+      "heroHeight": 860,
+      "heroImage": null,
+      "heroRequests": [
+        "http://127.0.0.1:8765/media/cosmic/hero.webp"
+      ],
+      "heroTransfers": [
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/hero.webp",
+          "transfer": 30538,
+          "encoded": 30238
+        }
+      ],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/hero.webp",
+          "encoded": 30238,
+          "transfer": 30538
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "process",
+        "capabilities",
+        "explore"
+      ],
+      "mediaLayers": [],
+      "heroNetwork": [
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/hero.webp",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e"
+          }
+        }
+      ]
+    },
+    {
+      "route": "tr/",
+      "width": 390,
+      "title": "MESA — Bilgiyi Kaynağıyla Bulun",
+      "docs": false,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--home",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "0.35",
+        "width": 390,
+        "height": 844
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 759
+        }
+      ],
+      "height": 7356,
+      "fixtureTop": 1523,
+      "heroHeight": 1499,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/cosmic-flow.webp",
+          "encoded": 51958,
+          "transfer": 52258
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "process",
+        "capabilities",
+        "explore"
+      ],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/",
+      "width": 1440,
+      "title": "MESA — Bilgiyi Kaynağıyla Bulun",
+      "docs": false,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--home",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "0.35",
+        "width": 1440,
+        "height": 1000
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "CODE",
+          "class": "",
+          "right": 1497
+        }
+      ],
+      "height": 4205,
+      "fixtureTop": 900,
+      "heroHeight": 860,
+      "heroImage": null,
+      "heroRequests": [
+        "http://127.0.0.1:8765/media/cosmic/hero.webp"
+      ],
+      "heroTransfers": [
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/hero.webp",
+          "transfer": 30538,
+          "encoded": 30238
+        }
+      ],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": null,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/hero.webp",
+          "encoded": 30238,
+          "transfer": 30538
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [
+        "event-horizon"
+      ],
+      "homeSections": [
+        "hero",
+        "process",
+        "capabilities",
+        "explore"
+      ],
+      "mediaLayers": [],
+      "heroNetwork": [
+        {
+          "url": "http://127.0.0.1:8765/media/cosmic/hero.webp",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e"
+          }
+        }
+      ]
+    },
+    {
+      "route": "how-it-works/",
+      "width": 390,
+      "title": "How MESA Works — Add a Document, Find Its Text",
+      "docs": false,
+      "heroBackground": "rgba(0, 0, 0, 0)",
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--core",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 390,
+        "height": 844
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 5096,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 44,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "how-it-works/",
+      "width": 1440,
+      "title": "How MESA Works — Add a Document, Find Its Text",
+      "docs": false,
+      "heroBackground": "rgba(0, 0, 0, 0)",
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--core",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 1440,
+        "height": 1000
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 2924,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 52,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/how-it-works/",
+      "width": 390,
+      "title": "MESA Nasıl Çalışır? — Belge Ekleyin, Bilgiyi Bulun",
+      "docs": false,
+      "heroBackground": "rgba(0, 0, 0, 0)",
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--core",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 390,
+        "height": 844
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 5006,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 44,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/how-it-works/",
+      "width": 1440,
+      "title": "MESA Nasıl Çalışır? — Belge Ekleyin, Bilgiyi Bulun",
+      "docs": false,
+      "heroBackground": "rgba(0, 0, 0, 0)",
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--core",
+        "display": "block",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 1440,
+        "height": 1000
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": null,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 2836,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 52,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "docs/",
+      "width": 390,
+      "title": "MESA Documentation Hub — Start, Understand, Integrate",
+      "docs": true,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--reading",
+        "display": "none",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 0,
+        "height": 0
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": 202.390625,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "A",
+          "class": "",
+          "right": 497
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "right": 401
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "right": 399
+        },
+        {
+          "tag": "SPAN",
+          "class": "",
+          "right": 497
+        },
+        {
+          "tag": "A",
+          "class": "",
+          "right": 611
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "right": 533
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "right": 530
+        },
+        {
+          "tag": "SPAN",
+          "class": "",
+          "right": 611
+        }
+      ],
+      "height": 3542,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0.03507420007498622,
+      "layoutShiftSources": [
+        {
+          "value": 0.03507420007498622,
+          "sources": [
+            {
+              "tag": "SECTION",
+              "className": "docs-start-section",
+              "previous": {
+                "x": 20,
+                "y": 495.234375,
+                "width": 350,
+                "height": 271.484375,
+                "top": 495.234375,
+                "right": 370,
+                "bottom": 766.71875,
+                "left": 20
+              },
+              "current": {
+                "x": 20,
+                "y": 553.234375,
+                "width": 350,
+                "height": 271.484375,
+                "top": 553.234375,
+                "right": 370,
+                "bottom": 824.71875,
+                "left": 20
+              }
+            },
+            {
+              "tag": "P",
+              "className": "docs-lead",
+              "previous": {
+                "x": 20,
+                "y": 363.671875,
+                "width": 350,
+                "height": 103.5625,
+                "top": 363.671875,
+                "right": 370,
+                "bottom": 467.234375,
+                "left": 20
+              },
+              "current": {
+                "x": 20,
+                "y": 421.671875,
+                "width": 350,
+                "height": 103.5625,
+                "top": 421.671875,
+                "right": 370,
+                "bottom": 525.234375,
+                "left": 20
+              }
+            },
+            {
+              "tag": "SECTION",
+              "className": "docs-hub-section",
+              "previous": {
+                "x": 20,
+                "y": 800.71875,
+                "width": 350,
+                "height": 43.28125,
+                "top": 800.71875,
+                "right": 370,
+                "bottom": 844,
+                "left": 20
+              },
+              "current": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "lcpMs": 36,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.css?v=2755e9b4d274",
+          "encoded": 26772,
+          "transfer": 27072
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.js?v=c6166317ecca",
+          "encoded": 2360,
+          "transfer": 2660
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "docs/",
+      "width": 1440,
+      "title": "MESA Documentation Hub — Start, Understand, Integrate",
+      "docs": true,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--reading",
+        "display": "none",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 0,
+        "height": 0
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": 0,
+      "language": "en",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 2751,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 48,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.css?v=2755e9b4d274",
+          "encoded": 26772,
+          "transfer": 27072
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.js?v=c6166317ecca",
+          "encoded": 2360,
+          "transfer": 2660
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/docs/",
+      "width": 390,
+      "title": "MESA Dokümanları — Kurulumdan Entegrasyona",
+      "docs": true,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--reading",
+        "display": "none",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 0,
+        "height": 0
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": 202.390625,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [
+        {
+          "tag": "A",
+          "class": "",
+          "right": 513
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "right": 418
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "right": 416
+        },
+        {
+          "tag": "SPAN",
+          "class": "",
+          "right": 513
+        },
+        {
+          "tag": "A",
+          "class": "",
+          "right": 628
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "right": 549
+        },
+        {
+          "tag": "path",
+          "class": {},
+          "right": 547
+        },
+        {
+          "tag": "SPAN",
+          "class": "",
+          "right": 628
+        }
+      ],
+      "height": 3658,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 36,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.css?v=2755e9b4d274",
+          "encoded": 26772,
+          "transfer": 27072
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.js?v=c6166317ecca",
+          "encoded": 2360,
+          "transfer": 2660
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    },
+    {
+      "route": "tr/docs/",
+      "width": 1440,
+      "title": "MESA Dokümanları — Kurulumdan Entegrasyona",
+      "docs": true,
+      "heroBackground": null,
+      "cosmic": {
+        "count": 1,
+        "variant": "cosmic cosmic--reading",
+        "display": "none",
+        "pointer": "none",
+        "opacity": "1",
+        "width": 0,
+        "height": 0
+      },
+      "docsBreadcrumbTop": null,
+      "docsToggleBottom": 0,
+      "language": "tr",
+      "mainCount": 1,
+      "h1Count": 1,
+      "overflow": 0,
+      "overflowElements": [],
+      "height": 2780,
+      "fixtureTop": null,
+      "heroHeight": null,
+      "heroImage": null,
+      "heroRequests": [],
+      "heroTransfers": [],
+      "layoutShift": 0,
+      "layoutShiftSources": [],
+      "lcpMs": 52,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:8765/fonts/instrument-sans-variable.woff2",
+          "encoded": 60240,
+          "transfer": 60540
+        },
+        {
+          "url": "http://127.0.0.1:8765/styles.css?v=c5108a9405b0",
+          "encoded": 161944,
+          "transfer": 162244
+        },
+        {
+          "url": "http://127.0.0.1:8765/learn.css?v=45ed18ca11a1",
+          "encoded": 18736,
+          "transfer": 19036
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic.css?v=26e4cf860d9e",
+          "encoded": 2997,
+          "transfer": 3297
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.css?v=2755e9b4d274",
+          "encoded": 26772,
+          "transfer": 27072
+        },
+        {
+          "url": "http://127.0.0.1:8765/cosmic-motion.js?v=7eb2c06f4e3c",
+          "encoded": 556,
+          "transfer": 856
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        },
+        {
+          "url": "http://127.0.0.1:8765/app.js?v=50712bbd6709",
+          "encoded": 20990,
+          "transfer": 21290
+        },
+        {
+          "url": "http://127.0.0.1:8765/fonts/commit-mono-variable.woff2",
+          "encoded": 86768,
+          "transfer": 87068
+        },
+        {
+          "url": "http://127.0.0.1:8765/docs.js?v=c6166317ecca",
+          "encoded": 2360,
+          "transfer": 2660
+        },
+        {
+          "url": "http://127.0.0.1:8765/assets/mesa-mark.webp?v=9af4302fa17b",
+          "encoded": 11508,
+          "transfer": 11808
+        }
+      ],
+      "brokenImages": [],
+      "scenes": [],
+      "homeSections": [],
+      "mediaLayers": [],
+      "heroNetwork": []
+    }
+  ],
+  "fallbackChecks": [],
+  "failures": []
+}

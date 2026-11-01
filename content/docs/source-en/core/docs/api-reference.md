@@ -1,6 +1,6 @@
 # API reference
 
-MESA exposes the V4 tenant/dataset-authorized API. The pinned source was prepared for package 0.9.0 before publication; the [website release notes](docs/core/release-notes/) record its subsequent GitHub and PyPI publication. Production qualification remains separate.
+MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.1 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
 
 Versioned memory, health and metrics calls require `X-API-Key`. `/health/init`, OpenAPI, Swagger and ReDoc are public surfaces and need a network/reverse-proxy policy. The V4 key is
 generated with `mesa-v4-admin issue-key`; only a salted scrypt hash is stored.
@@ -251,8 +251,7 @@ per principal; health/metrics are outside the daily budget.
 Send `session_id`, `dataset_id`, `document_id`, `title`, `source_ref`, `content`
 and optional `metadata`. The session requires WRITE access to the dataset and
 the runtime must own the combined consumer, just as for `/v4/memory/insert`.
-The server splits content into consecutive slices of at most 512 cl100k tokens,
-preferring blank lines, then sentence ends, then hard cuts. Joining the slices
+With `MESA_CHUNKING=auto` (default), at least three line-start Turkish article headings preserve article boundaries. Long pieces remain at most 512 cl100k tokens; `plain` uses paragraph, sentence and hard-cut splitting. Joining the slices
 reproduces the input exactly, including whitespace.
 
 HTTP 202 returns `document_id`, `revision_id`, `revision_number`, `chunk_count`,
@@ -262,7 +261,7 @@ gets the next revision number and supersedes the active revision when all its
 chunks commit. Repeating the same document and content returns its existing IDs
 with `duplicate: true` for an ACTIVE revision, using its stored chunk count and
 mutation IDs without rechunking. Retrying an interrupted PENDING upload resumes
-its missing chunks. Other matching revisions return 409 `content equals revision
+its missing chunks with the plan matching admitted text; an ambiguous prefix matching two plans returns HTTP 409 without appending. Existing ACTIVE revisions are unchanged. Other matching revisions return 409 `content equals revision
 <n> (<status>); restoring an earlier revision is not supported in v0.9`.
 
 Revision IDs are `rev-` plus the first 32 hex characters of
@@ -310,7 +309,7 @@ credential prerequisites, is in [Getting started](docs/core/getting-started/).
 
 Canonical V4 insertion requires the combined processing consumer. With models off, records have a SKIPPED VECTOR lane and remain searchable through BM25. Enabling embeddings later backfills skipped lanes without hiding committed records.
 
-The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/reference/openapi.json) is a generated reference.
+The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/reference/openapi.json) is a generated reference.
 Use the running app's `/openapi.json` and route/schema source for the exact
 checkout; do not infer snapshot freshness from this page. Generating a schema
 without server startup does not exercise authentication or runtime behavior.
@@ -426,3 +425,7 @@ operator CLI examples are in the [MCP guide](docs/core/mcp/).
 An activity record can show that a context response was delivered; it does not prove
 that the model actually used that information or that the answer is correct. Human
 approval is not the same as the Core V4 `human_review` legal capability flag.
+
+## v0.9.1 SDK and CLI additions
+
+`mesa add` waits for ACTIVE by default (`--no-wait` returns admission); `Mesa.add(text, source=..., wait=True)` explicitly waits because its tagged SDK default is `wait=False`. Terminal chunk errors include mutation ID, state and error class; `RETRY_PENDING` remains pending. Delete with `mesa delete --source <ref>` or `Mesa.delete(source=...)`; document IDs remain supported. Optional `[ml]` BGE reranking adds `rerank_score` without replacing fusion fields. V4 HTTP routes and request shapes remain compatible.

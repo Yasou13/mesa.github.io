@@ -144,7 +144,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
       const heroImage = hero?.querySelector('picture img');
       return {
         title: document.title,
-        docs: Boolean(document.querySelector('.docs-layout')),
+        docs: Boolean(document.querySelector('.docs-layout:not(.docs-standalone)')),
         heroBackground: document.querySelector('.page-hero') ? getComputedStyle(document.querySelector('.page-hero')).backgroundColor : null,
         cosmic: (() => { const field=document.querySelector('.cosmic'); const svg=field?.querySelector('.cosmic__field'); return {count:document.querySelectorAll('.cosmic').length, variant:field?.className, display:field && getComputedStyle(field).display, pointer:field && getComputedStyle(field).pointerEvents, opacity:svg && getComputedStyle(svg).opacity, width:svg?.getBoundingClientRect().width, height:svg?.getBoundingClientRect().height}; })(),
         docsBreadcrumbTop: document.querySelector('.docs-breadcrumbs')?.getBoundingClientRect().top ?? null,
@@ -161,6 +161,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
         heroRequests: performance.getEntriesByType('resource').filter(entry => /hero(?:-portrait)?\\.webp/.test(entry.name)).map(entry => entry.name),
         heroTransfers: performance.getEntriesByType('resource').filter(entry => /hero(?:-portrait)?\\.webp/.test(entry.name)).map(entry => ({ url: entry.name, transfer: entry.transferSize, encoded: entry.encodedBodySize })),
         layoutShift: window.__mesaAuditCLS || 0,
+        layoutShiftSources: window.__mesaAuditCLSDetails || [],
         lcpMs: window.__mesaAuditLCP || null,
         resources: performance.getEntriesByType('resource').map(entry => ({url: entry.name, encoded: entry.encodedBodySize, transfer: entry.transferSize})),
         brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).map((image) => image.currentSrc),
@@ -505,10 +506,14 @@ try {
   browserVersion = await connection.send('Browser.getVersion');
   await connection.send('Page.addScriptToEvaluateOnNewDocument', { source: `
     window.__mesaAuditCLS = 0;
+    window.__mesaAuditCLSDetails = [];
     window.__mesaAuditLCP = 0;
     new PerformanceObserver(list => { for(const entry of list.getEntries()) window.__mesaAuditLCP=entry.startTime; }).observe({type: 'largest-contentful-paint', buffered: true});
     new PerformanceObserver(list => {
-      for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__mesaAuditCLS += entry.value;
+      for (const entry of list.getEntries()) if (!entry.hadRecentInput) {
+        window.__mesaAuditCLS += entry.value;
+        window.__mesaAuditCLSDetails.push({value:entry.value, sources:entry.sources.map(source => ({tag:source.node?.tagName, className:String(source.node?.className || ''), previous:source.previousRect.toJSON(), current:source.currentRect.toJSON()}))});
+      }
     }).observe({ type: 'layout-shift', buffered: true });
   ` });
 

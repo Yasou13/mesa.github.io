@@ -69,5 +69,5 @@ Create tenant A and tenant B with distinctive markers. Verify A can retrieve its
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 

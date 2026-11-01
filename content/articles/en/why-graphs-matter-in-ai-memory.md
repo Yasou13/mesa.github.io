@@ -72,5 +72,5 @@ GraphRAG is a family of retrieval-augmented approaches using graph information. 
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 

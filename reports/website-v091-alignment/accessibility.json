@@ -1,0 +1,122 @@
+[
+  {
+    "language": "en",
+    "route": "",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "get-started/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "get-started/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "docs/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "docs/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "docs/core/getting-started/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "docs/core/getting-started/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "docs/core/cli-reference/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "en",
+    "route": "docs/core/cli-reference/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "get-started/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "get-started/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "docs/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "docs/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "docs/core/getting-started/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "docs/core/getting-started/",
+    "width": 1280,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "docs/core/cli-reference/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "language": "tr",
+    "route": "docs/core/cli-reference/",
+    "width": 1280,
+    "violations": []
+  }
+]

@@ -13,3 +13,7 @@ For a multi-chunk revision, use distinct IDs/ordinals and `finalize_revision=fal
 ## Whole documents and purge
 
 `POST /v4/documents` handles exact-text chunking, duplicate detection and revision IDs on the server. It returns per-chunk mutation IDs; admission remains distinct from COMMITTED. Models-off operation stores text and supports BM25; optional vector and graph lanes can be SKIPPED and later backfilled. Document purge removes owned source/extracted text while retaining audit identifiers and hashes; shared text stays while another document owns it.
+
+## Article-aware chunking and retries
+
+`MESA_CHUNKING=auto|plain` defaults to `auto`. At least three Turkish article headings at line starts trigger article-boundary splitting; long pieces remain bounded to 512 tokens and preserve exact source text. `plain` keeps the previous plan for new revisions. Existing ACTIVE revisions do not change. A retry preserves the plan matching the admitted text, even after restart or a setting change. If the admitted prefix matches two different plans, admission fails closed with HTTP 409 without appending chunks.

@@ -1,0 +1,49 @@
+{
+  "source": "verified PyPI wheel 0.9.1",
+  "models_enabled": false,
+  "graph_enabled": false,
+  "checks": [
+    {
+      "language": "en",
+      "stage": "initial",
+      "chunk_count": 1,
+      "revision": 1,
+      "immediately_searchable": true
+    },
+    {
+      "language": "en",
+      "stage": "updated",
+      "chunk_count": 1,
+      "revision": 2,
+      "immediately_searchable": true
+    },
+    {
+      "language": "en",
+      "source_delete": true
+    },
+    {
+      "language": "tr",
+      "stage": "initial",
+      "chunk_count": 1,
+      "revision": 1,
+      "immediately_searchable": true
+    },
+    {
+      "language": "tr",
+      "stage": "updated",
+      "chunk_count": 1,
+      "revision": 2,
+      "immediately_searchable": true
+    },
+    {
+      "language": "tr",
+      "source_delete": true
+    },
+    {
+      "sdk_explicit_wait_and_source_delete": true
+    },
+    {
+      "cli_no_wait_then_explicit_completion": true
+    }
+  ]
+}

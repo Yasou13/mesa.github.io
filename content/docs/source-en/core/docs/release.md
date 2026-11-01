@@ -1,6 +1,6 @@
 # Release procedure
 
-The pinned source describes V4 package `0.9.0` before owner publication. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for the subsequent v0.9.0 publication. Production qualification
+The pinned source describes V4 package `0.9.1` before owner publication. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for verified v0.9.1 GitHub/PyPI publication and the explicitly authorized unsigned annotated tag. Production qualification
 is still assessed as a release candidate. The production decision stays `NO-GO`
 until Final MVP Certification is complete. Assigning a version number or a tag
 does not on its own mean production GO. Old V3 tags/release records are read in their historical context.
@@ -124,3 +124,7 @@ The v0.8.0 source publication approval, unsigned tag and missing certification e
 are kept in the [v0.8.0 release notes](docs/core/release-notes/#v080-publication). This exception
 does not carry over to later releases and does not count as production GO. This page defines
 the general procedure; the release notes define the status of that publication.
+
+## PyPI trusted publishing
+
+The tag-triggered `.github/workflows/release.yml` builds wheel/sdist, runs Twine validation and uses GitHub Actions OIDC trusted publishing. One-time owner setup: PyPI project `mesa-memory`, GitHub owner `Yasou13`, repository `MESA`, workflow `release.yml`, environment `pypi`; create the matching GitHub environment. GPG tag signatures and OIDC build attestations are distinct evidence. For v0.9.1 the owner explicitly authorized an unsigned annotated tag; signed-tag preflight success is not claimed. A configured workflow is not proof that a PyPI version exists.

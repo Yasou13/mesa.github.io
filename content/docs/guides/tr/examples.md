@@ -30,4 +30,24 @@ with MesaV4Client("http://127.0.0.1:18080", api_key=os.environ["MESA_API_KEY"]) 
 
 ## Kaynağı ve işlem kimliğini koruyun
 
-Erişim kapsamını istemcinin gönderdiği ek bilgilerden çıkarmayın. Kaynağın tam metnini ve `source_ref` değerini koruyun. Tekrar denemelerde aynı yineleme anahtarını kullanın. v0.9.0’de senkron ve asenkron V4 ekleme yöntemleri isteğe bağlı `legal_identity` kabul eder; durum varsayılan olarak iki saniyede bir sorgulanır. HTTP istemcisini kapatmakla sunucudaki oturumu bitirmek farklı işlemlerdir. Zaman aşımından sonra yeniden denemeden önce işlemin durumuna bakın. Birden fazla parçadan oluşan sürümler için [veri alımı](docs/core/concepts-and-ingestion/), izinler için [güvenlik](docs/core/security/) rehberini okuyun.
+Erişim kapsamını istemcinin gönderdiği ek bilgilerden çıkarmayın. Kaynağın tam metnini ve `source_ref` değerini koruyun. Tekrar denemelerde aynı yineleme anahtarını kullanın. v0.9.1’de senkron ve asenkron V4 ekleme yöntemleri isteğe bağlı `legal_identity` kabul eder; durum varsayılan olarak iki saniyede bir sorgulanır. HTTP istemcisini kapatmakla sunucudaki oturumu bitirmek farklı işlemlerdir. Zaman aşımından sonra yeniden denemeden önce işlemin durumuna bakın. Birden fazla parçadan oluşan sürümler için [veri alımı](docs/core/concepts-and-ingestion/), izinler için [güvenlik](docs/core/security/) rehberini okuyun.
+
+## Etkinleşmeyi bekleme ve kaynakla silme
+
+`mesa add` varsayılan olarak ACTIVE durumunu bekler. Etiketli v0.9.1 SDK’sında `Mesa.add` varsayılanı `wait=False` değeridir; ACTIVE durumunu beklemek için açıkça `wait=True` verin. Kabulden hemen sonra dönmek için `mesa add document.txt --source file://document.txt --no-wait` veya `Mesa.add(..., wait=False)` kullanın. Terminal parça hatası, mutation ID, durum ve hata sınıfıyla erken bildirilir. `RETRY_PENDING` terminal durum değildir.
+
+```bash
+mesa delete --source file://document.txt
+mesa delete DOCUMENT_ID
+```
+
+```python
+from mesa_client import Mesa
+
+with Mesa() as mesa:
+    receipt = mesa.add("The archive opens at nine.", source="file://document.txt", wait=True)
+    admitted = mesa.add("Another document.", source="file://other.txt", wait=False)
+    mesa.delete(source="file://document.txt")
+```
+
+Kimlikle silme korunur. Silme yine sahiplik kapsamını ve purge izinlerini gerektirir.

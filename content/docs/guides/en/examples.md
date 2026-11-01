@@ -31,3 +31,23 @@ with MesaV4Client("http://127.0.0.1:18080", api_key=os.environ["MESA_API_KEY"]) 
 ## Preserve the source contract
 
 Never infer scope from caller metadata. Keep exact content and source_ref; use stable idempotency keys for retries. Both synchronous and asynchronous V4 insert methods retain optional `legal_identity`. Default mutation polling is two seconds. End the server session separately from closing the HTTP client; on timeout inspect mutation status before retrying. Follow [ingestion](docs/core/concepts-and-ingestion/) for multi-chunk finalization and [security](docs/core/security/) for grants.
+
+## Wait for activation and delete by source
+
+`mesa add` waits for ACTIVE by default. In the tagged v0.9.1 SDK, `Mesa.add` defaults to `wait=False`; pass `wait=True` explicitly to wait for ACTIVE. Use `mesa add document.txt --source file://document.txt --no-wait` or `Mesa.add(..., wait=False)` to return after admission. A terminal chunk failure is reported early with mutation ID, state and error class. `RETRY_PENDING` is not terminal.
+
+```bash
+mesa delete --source file://document.txt
+mesa delete DOCUMENT_ID
+```
+
+```python
+from mesa_client import Mesa
+
+with Mesa() as mesa:
+    receipt = mesa.add("The archive opens at nine.", source="file://document.txt", wait=True)
+    admitted = mesa.add("Another document.", source="file://other.txt", wait=False)
+    mesa.delete(source="file://document.txt")
+```
+
+ID-based deletion is retained. Deletion still requires the owning scope and purge permissions.

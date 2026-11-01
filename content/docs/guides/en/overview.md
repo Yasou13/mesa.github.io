@@ -1,11 +1,11 @@
-## Memory that keeps its sources
+## What Core owns
 
-MESA Core stores exact document text with document, revision and passage identities. It retrieves authorized evidence and bounded context over HTTP, Python SDK and MCP. Your application’s model writes the answer.
+MESA Core stores durable, scoped memory with source evidence. SQLite owns canonical records; LanceDB and Kùzu provide derived search projections. Applications use the evidence to write answers.
 
-## Choose your first workflow
+## Start locally
 
-Follow the [local quickstart](docs/core/getting-started/): install `mesa-memory[adapters]==0.9.0`, run `mesa start`, then use `mesa add` and `mesa search`. No model is needed for BM25 lexical search. `Mesa()` reads local credentials automatically; `mesa mcp-config` prepares an MCP connection. Enable models for extraction and semantic search; disable Kùzu with `MESA_GRAPH_ENABLED=false` when appropriate.
+Follow the [local quickstart](docs/core/getting-started/) using the verified PyPI package `mesa-memory==0.9.1`. Run `mesa start`, then `mesa add` and `mesa search`. BM25 needs no model. OpenAI/Ollama are in the base package; Anthropic needs `[adapters]` and local ML/reranking needs `[ml]`.
 
-## Release and qualification
+## Release baseline
 
-These guides follow v0.9.0, published on 28 October 2026 at commit `7062faf`. The release adds whole-document ingestion, local CLI and SDK defaults, optional graph operation and improved retry/purge behavior. GitHub and PyPI publication do not establish production qualification: NO-GO remains until the required provider, recovery, soak and certification evidence is complete.
+These guides follow [v0.9.1](https://github.com/Yasou13/MESA/releases/tag/v0.9.1), published on 1 November 2026 at `e2f984d4ad97c01782a347e29e44808e5a16dad3`. Round 13 improves scoped search work and CLI activation waiting; Round 14 adds article-aware chunking, optional BGE reranking, vector weight 8.0 and source-based deletion. Existing V4 routes and request shapes remain compatible. Alpha / production NO-GO remains. See [release notes and DEV evidence](docs/core/release-notes/).

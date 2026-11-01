@@ -13,3 +13,7 @@ Bir sürüm birden fazla parçadan oluşuyorsa her parçaya ayrı kimlik ve sır
 ## Tam belgeler ve silme
 
 `POST /v4/documents`, sunucuda özgün metni parçalar, tekrarları ve sürüm kimliklerini yönetir. Parça başına mutasyon kimliği döndürür; kabul edilmek COMMITTED olmakla aynı değildir. Modeller kapalıyken metin saklanır ve BM25 ile aranır; isteğe bağlı vektör ve çizge adımları SKIPPED olup sonradan tamamlanabilir. Belge silme, denetim kimliklerini ve özetleri korurken sahip olunan kaynak/çıkarım metnini temizler; başka bir belgenin sahip olduğu ortak metin kalır.
+
+## Madde sınırlarını koruyan parçalama ve yeniden deneme
+
+`MESA_CHUNKING=auto|plain` varsayılan olarak `auto` kullanır. Satır başında en az üç Türkçe madde başlığı varsa madde sınırları korunur; uzun parçalar en fazla 512 token olur ve kaynak metin aynen saklanır. `plain`, yeni sürümlerde önceki planı kullanır. Mevcut ACTIVE sürümler değişmez. Yeniden deneme, sunucu yeniden başlatılsa veya ayar değişse bile kabul edilmiş metne uyan planı korur. Kabul edilmiş önek iki farklı plana da uyuyorsa yeni parça eklenmeden HTTP 409 döner.

@@ -67,7 +67,7 @@ The test is observable continuity: close the session, start another authorized s
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'AI memory: what survives after a conversation? — MESA Learn', 'Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'tr', 'Yapay zekâ hafızası: sohbet bitince ne kalır?', '', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', '## “Hatırlamanın” üç ayrı anlamı
@@ -131,7 +131,7 @@ Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka b
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('rag-vs-ai-memory', 'learn', 'en', 'RAG and memory: build the request step by step', '', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', '## RAG is a pattern, memory is a lifecycle concern
@@ -320,7 +320,7 @@ For corrections, distinguish a changed source from a changed interpretation. If 
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+2. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'From documents to claims: preserve what extraction loses — MESA Learn', 'Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('structured-vs-unstructured-memory', 'learn', 'tr', 'Metinden bilgi kaydına: kaynakta neyi korumalı?', '', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', '## Aynı kaynağın üç temsili
@@ -383,7 +383,7 @@ Düzeltme yaparken kaynağın mı, yorumun mu değiştiğini ayırın. Kaynak ay
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+2. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'Metinden bilgi kaydına: kaynakta neyi korumalı? — MESA', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('semantic-search', 'learn', 'en', 'Embeddings and semantic search, with numbers', '', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', '## What an embedding actually represents
@@ -773,7 +773,7 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 ## Sources and further reading
 
 1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+2. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'Reciprocal Rank Fusion: calculate and inspect every vote — MESA Learn', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'tr', 'RRF: iki sıralama nasıl birleştirilir?', '', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', '## Farklı listelerdeki sıraları kullanın
@@ -829,7 +829,7 @@ Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve bel
 ## Kaynaklar ve ileri okuma
 
 1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+2. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'RRF: iki sıralama nasıl birleştirilir? — MESA', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'en', 'Knowledge graphs: follow relations without inventing proof', '', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', '## A relationship needs identity and evidence
@@ -881,7 +881,7 @@ GraphRAG is a family of retrieval-augmented approaches using graph information. 
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Knowledge graphs: follow relations without inventing proof — MESA Learn', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'tr', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek', '', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', '## İlişkinin kimliğini ve dayanağını koruyun
@@ -933,7 +933,7 @@ GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek — MESA', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'en', 'Evidence and provenance: what a citation actually proves', '', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', '## Four checks, four different conclusions
@@ -991,7 +991,7 @@ If no eligible source supports the answer, return a clear evidence gap or ask a 
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Evidence and provenance: what a citation actually proves — MESA Learn', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'tr', 'Kaynak izi: bir atıf neyi kanıtlar?', '', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', '## Dört kontrol, dört ayrı sonuç
@@ -1049,7 +1049,7 @@ Uygun kaynaklar yanıtı desteklemiyorsa kanıtın eksik olduğunu söyleyin vey
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Kaynak izi: bir atıf neyi kanıtlar? — MESA', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'en', 'Shared memory: who may retrieve what?', '', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', '## A name in the prompt is not an identity
@@ -1098,7 +1098,7 @@ Create tenant A and tenant B with distinctive markers. Verify A can retrieve its
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Shared memory: who may retrieve what? — MESA Learn', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'tr', 'Ortak hafıza: kim hangi bilgiye erişebilir?', '', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', '## İstemde yazan ad, kimlik doğrulaması değildir
@@ -1147,7 +1147,7 @@ A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici i�
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Ortak hafıza: kim hangi bilgiye erişebilir? — MESA', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'en', 'Canonical storage and projections: survive a partial write', '', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', '## Pick an authority for identity and lifecycle
@@ -1179,7 +1179,7 @@ A lease lets a worker claim work temporarily. A fencing token or equivalent owne
 
 SQLite documents atomic commit and crash-recovery mechanisms for its own transactions under stated assumptions. WAL allows readers and a writer to overlap, but still serializes writers. It does not turn embedded stores into a distributed multi-writer database. Filesystem durability, backup procedure and checkpoint behavior remain operational concerns. [Atomic commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.9.0 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
+MESA Core v0.9.1 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
 
 ## Interpret a timeout
 
@@ -1193,7 +1193,7 @@ MESA Core v0.9.0 uses one combined owner per root and treats LanceDB/Kùzu as pr
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Canonical storage and projections: survive a partial write — MESA Learn', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'tr', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak', '', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', '## Hangi deponun asıl kayıt olacağını belirleyin
@@ -1225,7 +1225,7 @@ Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmes
 
 SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.9.0’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
+MESA Core v0.9.1’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
 
 ## Zaman aşımını yorumlayın
 
@@ -1239,7 +1239,7 @@ MESA Core v0.9.0’de her veri dizinini tek combined süreci yönetir; LanceDB v
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'en', 'Changing facts: validity, contradiction and forgetting', '', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', '## Two clocks answer different questions
@@ -1297,7 +1297,7 @@ A recent task note may deserve more attention than an old one. A historical cont
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+2. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Changing facts: validity, contradiction and forgetting — MESA Learn', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'tr', 'Bilgi değiştiğinde: güncelleme, çelişki ve unutma', '', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', '## Geçerlilik zamanı ve kayıt zamanı farklıdır
@@ -1355,7 +1355,7 @@ Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Geçmiş sözleşme y
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+2. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Bilgi değiştiğinde: güncelleme, çelişki ve unutma — MESA', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('evaluating-ndcg-and-mrr-in-memory', 'learn', 'en', 'Evaluate retrieval: recall, MRR, nDCG and latency', '', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', '## Start with questions and relevance judgments
@@ -1533,7 +1533,7 @@ Build a file of judged queries and expected source IDs, then calculate Recall@k 
 
 1. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'Build a small search lab, without an LLM — MESA Learn', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('build-a-small-search-lab', 'learn', 'tr', 'Dil modeli olmadan küçük bir arama sistemi kurun', '', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', '## Ne kuracaksınız?
@@ -1601,7 +1601,7 @@ Etiketli sorguları ve beklenen kaynak kimliklerini bir dosyada tutun; önceki d
 
 1. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
-3. [MESA Core v0.9.0 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/7062fafe2cff8442eb84d1da60df164099526c8e/docs/architecture-v4.md)
+3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
 
 ', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'Dil modeli olmadan küçük bir arama sistemi kurun — MESA', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('keyword-vs-semantic-search', 'research', 'en', 'Keyword vs semantic search', 'A planned retrieval benchmark protocol', 'This publication defines a proposed comparison. It reports no benchmark result.', '', '## Research question

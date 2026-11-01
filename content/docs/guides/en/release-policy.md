@@ -1,9 +1,11 @@
-## Purpose and boundaries
+## Publication and production qualification
 
-Source publication requires the reviewed release process and explicit owner authorization. Package version, signed-off evidence scope and production certification are separate facts. This website pins v0.9.0 and does not create tags, publish Core packages or complete outstanding production gates.
+This site follows the v0.9.1 source release. Alpha / production NO-GO remains; release publication, CI results and DEV retrieval measurements do not establish certification. GitHub and PyPI v0.9.1 publication were verified on 1 November 2026. The PyPI wheel’s 149 Python source files match the tagged release.
 
-## Continue with the maintained contracts
+## Tag, identity and build evidence
 
-Use the pinned source reference below for complete tables and operator details. Related guides: [architecture](architecture/), [API](docs/core/api-reference/), [operations](docs/core/operations/) and [release limits](docs/core/limitations/).
+The normal reviewed release process uses an annotated GPG-signed tag and signature preflight against a trusted operator keyring. The owner explicitly approved an unsigned annotated tag for v0.9.1; signed-tag preflight success is not claimed. GPG proves the tag signer; OIDC build attestation ties artifact digests to the build identity. They are different evidence.
 
-The original source appendix was prepared before the v0.9.0 publication and may say “unreleased”. The GitHub release and PyPI package were verified on 28 October 2026; this changes no production gate.
+## Trusted publishing setup
+
+The tag-triggered `.github/workflows/release.yml` builds wheel/sdist, validates them with Twine and publishes with GitHub Actions OIDC. The owner must configure the PyPI `mesa-memory` trusted publisher once: owner `Yasou13`, repository `MESA`, workflow `release.yml`, environment `pypi`; create the matching GitHub `pypi` environment. A workflow existing is not proof of package publication. Use [installation](docs/core/installation/) for the verified artifact path and [migration](docs/core/migration/) before touching an existing root.

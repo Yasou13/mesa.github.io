@@ -286,8 +286,9 @@ for (const demo of document.querySelectorAll('[data-recorded-demo]')) {
   };
   previous.addEventListener('click', () => { index = Math.max(0, index - 1); show(); if (previous.disabled) next.focus(); });
   next.addEventListener('click', () => { index = Math.min(steps.length - 1, index + 1); show(); if (next.disabled) previous.focus(); });
-  controls.hidden = false;
   show();
+  controls.hidden = false;
+  demo.dataset.demoReady = 'true';
 }
 
 document.addEventListener('click', async (e) => {

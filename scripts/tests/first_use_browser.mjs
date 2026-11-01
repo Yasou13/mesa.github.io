@@ -78,7 +78,7 @@ try {
       if (await b.evaluate(`document.querySelector('[data-copy-target="home-install"]').textContent === ${language === 'tr' ? '"Kopyalandı"' : '"Copied"'}`)) break;
       await new Promise(resolve=>setTimeout(resolve,50));
     }
-    assert.equal(await b.evaluate(`navigator.clipboard.readText()`), 'pip install "mesa-memory[adapters]==0.9.0"\nmesa start');
+    assert.equal(await b.evaluate(`navigator.clipboard.readText()`), 'pip install mesa-memory==0.9.1\nmesa start');
     await b.send('Emulation.setScriptExecutionDisabled',{value:true});
     await b.navigate(base+prefix);
     assert.equal(await b.evaluate(`document.querySelectorAll('[data-demo-step]:not([hidden])').length`),4);
