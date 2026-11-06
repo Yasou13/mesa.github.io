@@ -104,7 +104,7 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
       ['mesa_storage/dao.py', t('Canonical storage and search coordination', 'Asıl depolama ve arama koordinasyonu')],
       ['mesa_storage/retrieval_scope.py', t('Eligibility and RRF', 'Uygunluk ve RRF')],
       ['mesa_memory/context_builder.py', t('Evidence context packing', 'Kanıt bağlamının hazırlanması')]
-    ].map(([path, text]) => `<li><a target="_blank" rel="noopener noreferrer" href="${source}${path}">${text}<span aria-hidden="true"> ↗</span></a><code>${path}</code></li>`).join('')}</ul><p class="intro-caption">${t('Verified source baseline: Core v0.9.1 · e2f984d. Diagrams simplify the runtime.', 'Doğrulanan kaynak temeli: Core v0.9.1 · e2f984d. Şemalar çalışma zamanını sadeleştirir.')}</p></details>
+    ].map(([path, text]) => `<li><a target="_blank" rel="noopener noreferrer" href="${source}${path}">${text}<span aria-hidden="true"> ↗</span></a><code>${path}</code></li>`).join('')}</ul><p class="intro-caption">${t('Verified source baseline: Core v0.9.1. Diagrams simplify the runtime.', 'Doğrulanan kaynak temeli: Core v0.9.1. Şemalar çalışma zamanını sadeleştirir.')}</p></details>
     <div class="actions">${cta(t('Installation and configuration', 'Kurulum ve yapılandırma'), route('docs/core/getting-started/'))}${cta(t('All decision records', 'Tüm karar kayıtları'), route('docs/core/decisions/'), 'secondary')}</div>
   </section>
   ${footer(true)}

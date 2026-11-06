@@ -171,9 +171,9 @@ k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code><
   <section class="section source-notes">
     ${title('Inspect the implementation.', 'Uygulamayı inceleyin.')}
     <ul>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py · e2f984d</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md · e2f984d</a></li>
-      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py · e2f984d</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_storage/retrieval_scope.py">mesa_storage/retrieval_scope.py</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}docs/retrieval-and-graph.md">docs/retrieval-and-graph.md</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="${source}mesa_memory/context_builder.py">mesa_memory/context_builder.py</a></li>
     </ul>
     <div class="actions">
       ${cta(t('API response reference', 'API yanıt referansı'), route('docs/core/api-reference/'))}
@@ -195,7 +195,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.9.1 · e2f984d</p>
+  <p class="eyebrow">CORE v0.9.1</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `

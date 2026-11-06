@@ -1,6 +1,5 @@
-// One page-level canvas, drawn as a single inline SVG: "mesa topography", contour lines of a
-// flat-topped plateau. Content sits on opaque panels above it, so lines never run behind text.
-// The "highlighted passage" motif is a separate component (passage_mark.mjs).
+// One page-level canvas. It is plain black today: the "highlighted passage" drawing
+// (passage_mark.mjs) trails down each page instead. topography() is kept for later use.
 // Shapes are seeded by the page variant, so builds are stable. The layer is decorative and
 // aria-hidden; it uses SVG presentation attributes only (the site CSP blocks inline styles).
 
@@ -95,6 +94,7 @@ export function cosmicEnvironment(variant = 'core') {
   }
   const random = seededRandom(`mesa-${variant}`);
   // The home page draws its own passage motif (render_intro.mjs); its canvas stays plain.
-  const art = variant === 'home' ? '' : topography(random, variant === 'reading' || variant === 'admin');
+  // Every page uses the plain black canvas; the passage drawing lives in the page itself.
+  const art = '';
   return `<div class="cosmic cosmic--${variant}" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 ${WIDTH} ${HEIGHT}" preserveAspectRatio="xMidYMid slice" focusable="false">${art}</svg><div class="cosmic__illumination"></div></div></div>`;
 }

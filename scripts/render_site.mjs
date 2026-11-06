@@ -195,6 +195,7 @@ function header(active = '') {
     <header class="site-header">
       <div class="nav-shell">
         ${logo()}
+        <div class="nav-lang">${languageControl()}</div>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
           <span></span><span></span><span></span>
         </button>
@@ -227,7 +228,7 @@ function footer() {
         ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
         ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('privacy/', chrome('Privacy', 'Gizlilik')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(`${repos.core}/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/LICENSE`, chrome('MIT License', 'MIT Lisansı'))])}
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.1 · e2f984d', 'Belgeler Core v0.9.1 · e2f984d ile uyumlu')}</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.1', 'Belgeler Core v0.9.1 ile uyumlu')}</span></div>
       <div class="footer-wordmark" aria-hidden="true"></div>
     </footer>`.trim();
 }
@@ -268,7 +269,7 @@ function actionExample(compact = false) {
     <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test at release commit e2f984d.</span></p></details>
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test in the v0.9.1 release.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
   </div>`;
   return `<div class="action-example specimen-plate">
@@ -1246,7 +1247,17 @@ function wayfinding(key, language, content) {
   return at === -1 ? html : html.slice(0, at) + block + html.slice(at);
 }
 
+// Inner pages get the home page's background: the passage drawing at the page edges,
+// a few times down the page (behind content, hidden on narrow screens).
+function withPageTrail(content) {
+  const match = content.match(/<main\b[^>]*>/);
+  if (!match || /home-page|docs-layout|learn-redirect/.test(match[0])) return content;
+  const trail = `<div class="page-trail" aria-hidden="true">${passageMark(11, 'trail-l passage-mark--y20')}${passageMark(12, 'trail-r passage-mark--y50', {marked: false})}${passageMark(13, 'trail-l passage-mark--y80')}</div>`;
+  return content.replace(match[0], match[0] + trail);
+}
+
 function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [] }) {
+  content = withPageTrail(content);
   const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}?v=${assetVersions.logo}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';

@@ -34,9 +34,9 @@
   <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=9af4302fa17b">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles.css?v=37751c4d02ad">
+  <link rel="stylesheet" href="../styles.css?v=9576076d9c18">
   <link rel="stylesheet" href="../cosmic.css?v=7e5407940fe1">
-  <link rel="stylesheet" href="../learn.css?v=445eb789d8be">
+  <link rel="stylesheet" href="../learn.css?v=933dd8ed11c4">
 
   <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
 </head>
@@ -46,6 +46,11 @@
     <header class="site-header">
       <div class="nav-shell">
         <a class="logo" href="./" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="./">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
         <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
           <span></span><span></span><span></span>
         </button>
@@ -88,7 +93,7 @@
     <section class="band band--graphite home-flow" id="mesa-in-action" data-home-section="flow" aria-labelledby="flow-title">
       <div class="band__inner">
         <p class="eyebrow">BELGELERDEN MODELE</p><h2 id="flow-title">Arşiviniz ile modeliniz arasında tek bir hafıza.</h2>
-        <div class="flow">
+        <div class="flow" role="region" tabindex="0" aria-label="Belgelerden modele">
     <div class="flow__col flow__docs"><p class="flow__label">BELGELERİNİZ</p><ul><li><code>politikalar/</code></li><li><code>sozlesmeler/2026/</code></li><li><code>urun-notlari.md</code></li><li><code>destek-kayitlari/</code></li><li><code>toplanti-notlari.txt</code></li><li><code>mevzuat/</code></li><li><code>egitim-belgeleri/</code></li><li><code>sss.md</code></li></ul><p class="flow__caption">Çok sayıda dosya, sürüm ve ekip.</p></div>
     <div class="flow__pipe" aria-hidden="true"><i></i></div>
     <div class="flow__col flow__core"><p class="flow__label">MESA</p><ol><li><strong>Ekle</strong><span>Belgeler kaynağıyla birlikte bir kez eklenir.</span></li><li><strong>Parçala</strong><span>Metin aranabilir pasajlara dönüşür; model varsa bilgi kayıtları da çıkarılır.</span></li><li><strong>Sürümleri tut</strong><span>Değişiklik yeni sürüm oluşturur; güncel olan öne çıkar.</span></li><li><strong>Dört yoldan ara</strong><span>Anlam, sözcük, bilgi kaydı ve ilişki; uygulamanın okuma yetkisi içinde.</span></li><li><strong>Sırala ve sınırla</strong><span>Sonuçlar birleştirilir ve modele sığacak şekilde sınırlanır.</span></li></ol></div>
@@ -111,10 +116,11 @@
 
     <section class="band band--graphite home-how" id="how-it-works" data-home-section="how" aria-labelledby="how-title"><span id="why-mesa"></span>
       <div class="band__inner">
-        <p class="eyebrow">BİR DAKİKADA</p><h2 id="how-title">MESA üç adımda nasıl çalışır?</h2>
-        <ol class="how-steps"><li><span class="how-steps__number">1</span><h3>Belgelerinizi ekleyin</h3><p>Metin dosyaları, notlar, kurallar. MESA metni ve nereden geldiğini saklar.</p><code>mesa add policy.txt</code></li><li><span class="how-steps__number">2</span><h3>MESA onları hazırlar</h3><p>Her belgeyi pasajlara böler ve arka planda aranabilir hâle getirir.</p></li><li><span class="how-steps__number">3</span><h3>Sorun, pasajı alın</h3><p>Uygulamanız bir soru sorar. MESA eşleşen pasajı, belgesini ve sürümünü döndürür.</p><code>mesa search "returns"</code></li></ol>
+        <p class="eyebrow">MESA NE YAPAR</p><h2 id="how-title">Büyük sistemlerin <em class="accent-word">hafızası olmak için tasarlandı.</em></h2>
+        <p class="home-how__lead">Birçok uygulama, ajan ve ekip aynı hafızayı paylaşabilir. MESA onu düzenli, güncel ve her birinin yalnızca okuyabileceğiyle sınırlı tutar.</p>
+        <div class="capabilities" role="region" tabindex="0" aria-label="MESA ne yapar"><article class="capability"><span class="capability__index">01</span><h3>Kalıcı kayıt</h3><p>Belgeler önce kabul edilir, sonra arka planda işlenir. Yarım kalmış hiçbir şey aramaya karışmaz.</p><code>SQLite · LanceDB · Kùzu</code></article><article class="capability"><span class="capability__index">02</span><h3>Dört arama yolu</h3><p>Anlam, birebir sözcük, çıkarılmış bilgi ve ilişkiler birlikte aranır ve tek bir sıralamada birleşir.</p><code>vector · BM25 · assertion · graph</code></article><article class="capability"><span class="capability__index">03</span><h3>Kapsamlı erişim</h3><p>Her çalışma alanı, veri kümesi ve ajan yalnızca izin verileni görür. Uygunluk, sıralamadan önce kontrol edilir.</p><code>tenant · workspace · dataset · agent</code></article><article class="capability"><span class="capability__index">04</span><h3>Sürüm ve geçmiş</h3><p>Her değişiklik yeni bir sürüm olur. Arama güncel olanı kullanır; geçmiş korunur.</p><code>revision · COMMITTED</code></article><article class="capability"><span class="capability__index">05</span><h3>Modele sığan bağlam</h3><p>Sonuçlar modele gitmeden önce bir token bütçesine göre kısaltılır; kaynakları yanlarında gider.</p><code>token budget · evidence</code></article><article class="capability"><span class="capability__index">06</span><h3>Her yerden bağlanın</h3><p>CLI, Python SDK, HTTP API ve MCP aynı hafızaya ulaşır.</p><code>CLI · SDK · HTTP · MCP</code></article></div>
         <p class="how-note"><strong>Bilmekte fayda var:</strong> cevabı sizin modeliniz yazar. MESA ona doğru metni verir.</p>
-        <a class="text-link" href="./how-it-works/">Belgenin yaşam döngüsünü inceleyin →</a>
+        <div class="home-how__links"><a class="text-link" href="./architecture/">Mimariyi inceleyin →</a><a class="text-link" href="./how-it-works/">Belgenin yaşam döngüsünü inceleyin →</a></div>
       </div>
     </section>
 
@@ -149,8 +155,9 @@ mesa start</code></pre></div></div>
 
     <section class="band band--graphite home-uses" id="use-cases" data-home-section="use-cases" aria-labelledby="uses-title">
       <div class="band__inner">
-        <p class="eyebrow">NE ZAMAN İŞE YARAR?</p><h2 id="uses-title">Uygulamanızın sizin bilgilerinize ihtiyacı olduğunda.</h2>
-        <div class="practical-uses use-grid" role="region" tabindex="0" aria-label="Kullanım alanları"><article class="use-card"><div><h3>Şirket içi asistan</h3><p>Prosedürlerde, ürün belgelerinde ve ekip notlarında yanıt arar.</p></div><div class="doc-lines" aria-hidden="true"><i class="w2"></i><i class="w5"></i><i class="w2"></i><i class="w4"></i><i class="w2 hl"></i><i class="w5"></i><i class="w3"></i></div></article><article class="use-card"><div><h3>Araştırma aracı</h3><p>Bulduğu bilginin hangi belgeye ve metne dayandığını gösterir.</p></div><div class="doc-lines" aria-hidden="true"><i class="w3"></i><i class="w1"></i><i class="w2"></i><i class="w3 hl"></i><i class="w3"></i><i class="w1"></i><i class="w5"></i></div></article><article class="use-card"><div><h3>Hafızası olan ajan</h3><p>Önceden kaydedilen notları sonraki konuşmalarda arar.</p></div><div class="doc-lines" aria-hidden="true"><i class="w5"></i><i class="w2"></i><i class="w1 hl"></i><i class="w2"></i><i class="w4"></i><i class="w1"></i><i class="w2"></i></div></article><article class="use-card"><div><h3>Hukuk ekipleri</h3><p>Mevzuat ve mahkeme kararlarında arar, dayanak pasajı gösterir. Henüz geliştirme aşamasındaki MESA Data ve MESA Law üzerine kurulur.</p></div><div class="doc-lines" aria-hidden="true"><i class="w5"></i><i class="w1"></i><i class="w2"></i><i class="w5 hl"></i><i class="w1"></i><i class="w2"></i><i class="w3"></i></div></article></div>
+        <p class="eyebrow">NEREDE İŞE YARAR</p><h2 id="uses-title">Belgelerle çalışan <em class="accent-word">her kurum için.</em></h2>
+        <p class="home-uses__lead">Büyük belge koleksiyonlarının yapay zekâyı güvenilir biçimde beslemesi gereken her yerde. Bunlar uygun senaryolardır, müşteri referansı değildir.</p>
+        <div class="practical-uses use-grid" role="region" tabindex="0" aria-label="Kullanım alanları"><article class="use-card use-card--featured"><h3>Hukuk büroları ve hukuk ekipleri</h3><p>Dava dosyaları, sözleşmeler, mevzuat ve mahkeme kararları tek bir hafızada; her cevap dayandığı pasajı gösterir. Bunun için geliştirilen MESA Data ve MESA Law hâlâ geliştirme aşamasında.</p><ul class="use-card__docs"><li>Dava dosyaları</li><li>Sözleşmeler</li><li>Mevzuat</li><li>İçtihat</li></ul></article><article class="use-card"><h3>Kurumsal bilgi yönetimi</h3><p>Birçok departmandan prosedür, politika ve notlar; her ekibin yalnızca kendi görebileceğini gören asistanlarla aranır.</p><ul class="use-card__docs"><li>Prosedürler</li><li>Politikalar</li><li>Ekip notları</li></ul></article><article class="use-card"><h3>Müşteri desteği</h3><p>Ürün belgeleri ve geçmiş destek kayıtları, destek asistanlarına geçen yılın değil güncel cevabı verir.</p><ul class="use-card__docs"><li>Ürün belgeleri</li><li>Destek kayıtları</li><li>SSS</li></ul></article><article class="use-card"><h3>Uyum ve denetim</h3><p>Mevzuat ve iç kurallar değişir; sürüm geçmişi bir cevabın hangi sürüme dayandığını gösterir.</p><ul class="use-card__docs"><li>Yönetmelikler</li><li>İç kurallar</li><li>Denetim kayıtları</li></ul></article><article class="use-card"><h3>Araştırma ve analiz</h3><p>Raporlar ve makaleler hem anlama hem birebir terime göre aranır; her bulgunun kaynağı bellidir.</p><ul class="use-card__docs"><li>Raporlar</li><li>Makaleler</li><li>Saha notları</li></ul></article><article class="use-card"><h3>Yapay zekâ ajanları</h3><p>Ajanlar öğrendiklerini oturumlar ve yeniden başlatmalar boyunca, ajan ve çalışma alanı bazında ayrı tutar.</p><ul class="use-card__docs"><li>Oturum notları</li><li>Görev geçmişi</li></ul></article></div>
       </div>
     </section>
 
@@ -188,7 +195,7 @@ mesa start</code></pre></div></div>
         <div><h3>Öğrenin</h3><a href="./learn/">Dersler</a><a href="./guides/">Rehberler</a><a href="./glossary/">Sözlük</a><a href="./research/">Araştırma</a><a href="./faq/">SSS</a></div>
         <div><h3>Proje</h3><a href="./about/">Hakkında</a><a href="./status/">Durum</a><a href="./privacy/">Gizlilik</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.1 · e2f984d ile uyumlu</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.1 ile uyumlu</span></div>
       <div class="footer-wordmark" aria-hidden="true"></div>
     </footer></main>
   <script src="../app.js?v=157058c17983"></script>

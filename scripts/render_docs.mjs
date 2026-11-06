@@ -170,7 +170,6 @@ ${standalone ? '' : `    <li><a href="${docsHubHref}">${isTr ? 'Dokümantasyon' 
   const sourceUrl = `${repo.repo_url.replace(/\.git$/, '')}/blob/${repo.commit}/${page.src}`;
   const metaBar = `<div class="docs-meta-bar">
     <span class="docs-version-pill">${escapeHtml(repo.version)}</span>
-    <span class="docs-commit-pill">commit: <a href="${sourceUrl}" title="${escapeHtml(repo.commit)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.commit.slice(0, 7))}</a></span>
     <span class="docs-source-pill">${isTr ? 'kaynak' : 'source'}: <code>${escapeHtml(page.src)}</code></span>
   </div>`;
 
