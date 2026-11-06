@@ -1,20 +1,9 @@
-/* Shared page environment (2026-11): one inline SVG per page.
-   Home: faint document lines with one highlighted passage tied to its source.
-   Other pages: contour lines of a mesa (flat-topped plateau). No grid, no pixels, no glow. */
+/* Shared page canvas (2026-11): contour lines of a mesa (flat-topped plateau), fixed behind
+   every page. Content sits on opaque panels above it (styles.css), so lines never run behind text. */
 body { isolation: isolate; }
 .cosmic { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: var(--bg, #07080a); }
 .cosmic__field { position: absolute; inset: 0; }
 .cosmic__art { display: block; width: 100%; height: 100%; }
 .cosmic__illumination { display: none; animation: none; }
-/* The passage motif belongs to the home hero: it scrolls away with it instead of sitting behind later sections. */
-.cosmic--home { position: absolute; bottom: auto; height: min(100svh, 980px); }
-.cosmic--reading .cosmic__art, .cosmic--admin .cosmic__art { opacity: .6; }
-@media (max-width: 800px) {
-  .cosmic__art { opacity: .55; }
-}
-/* The source thread draws itself once on the home page. */
-@media (prefers-reduced-motion: no-preference) {
-  html[data-cosmic-motion="on"] .cosmic__thread { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cosmic-thread 1.6s .4s cubic-bezier(.45, 0, .15, 1) forwards; }
-}
-@keyframes cosmic-thread { to { stroke-dashoffset: 0; } }
+.cosmic--reading .cosmic__art, .cosmic--admin .cosmic__art { opacity: .7; }
 @media print { .cosmic { display: none; } }

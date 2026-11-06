@@ -3339,3 +3339,66 @@ main:not(.docs-layout) > .crumbs + :is(.page-hero, .hero) { padding-top: 28px; }
 .law-grid article { min-height: 0; padding: 28px; border: 1px solid var(--line); border-radius: 6px; background: #121418; }
 .law-grid h3 { margin: 0 0 12px; font-size: 22px; }
 .law-grid p { margin: 0; font-size: 16px; line-height: 1.65; }
+
+/* ---- Canvas + panels (2026-11 revision) ----------------------------------
+   The page background is a canvas (cosmic.css). Text never sits on it: every content
+   block is an opaque panel with a hairline border and rounded corners. Heroes and page
+   titles stay on the canvas. */
+:root { --panel: #0e1013; --panel-line: rgba(255, 255, 255, .075); --panel-gap: 20px; --panel-radius: 22px; }
+.home-v2 .band:not(.home-cta), .home-v2 .home-problem,
+main:not(.home-page):not(.docs-layout) > :is(.section, .next-step, .learn-reader-grid, .knowledge-article, .learn-academy, .development-note, .cert-status) {
+  width: min(1320px, calc(100% - 48px)); max-width: none; margin: 0 auto var(--panel-gap); padding-inline: clamp(24px, 4.5vw, 64px);
+  border: 1px solid var(--panel-line); border-radius: var(--panel-radius); background: var(--panel);
+}
+.home-v2 .band:not(.home-cta), .home-v2 .home-problem { padding-block: clamp(64px, 8vw, 112px); }
+main:not(.home-page):not(.docs-layout) > :is(.section, .next-step) { padding-block: clamp(48px, 6vw, 88px); }
+main:not(.home-page):not(.docs-layout) > :is(.learn-reader-grid, .knowledge-article, .learn-academy, .development-note, .cert-status) { padding-block: clamp(32px, 4vw, 56px); }
+.home-v2 .band--graphite { background: var(--panel); border-block: 1px solid var(--panel-line); }
+.next-step { border-top: 1px solid var(--panel-line); }
+main:not(.home-page):not(.docs-layout) > .next-step { margin-top: 0; }
+.home-v2 .home-cta { background: transparent; }
+.site-footer { border-top: 1px solid var(--panel-line); }
+/* Cards inside panels are one step lighter. */
+.problem-card, .path-card, .use-card, .eco-satellites a, .eco-core, .next-card, .law-grid article { background: #14161a; }
+.path-card--featured { background: linear-gradient(180deg, rgba(227, 181, 122, .07), rgba(227, 181, 122, 0) 60%), #14161a; }
+/* Get started (standalone docs): the reading column is a panel on the canvas. */
+.docs-layout.docs-standalone .docs-content-column { padding: clamp(24px, 4vw, 56px); border: 1px solid var(--panel-line); border-radius: var(--panel-radius); background: var(--panel); }
+@media (max-width: 720px) {
+  :root { --panel-gap: 12px; --panel-radius: 16px; }
+  .home-v2 .band:not(.home-cta), .home-v2 .home-problem,
+  main:not(.home-page):not(.docs-layout) > :is(.section, .next-step, .learn-reader-grid, .knowledge-article, .learn-academy, .development-note, .cert-status) { width: calc(100% - 16px); padding-inline: 18px; }
+  .home-v2 .band:not(.home-cta), .home-v2 .home-problem { padding-block: 52px; }
+  .problem-cards, .home-v2 .use-grid, .eco-satellites { margin-inline: -18px; padding-inline: 18px; scroll-padding-inline: 18px; }
+  .docs-layout.docs-standalone .docs-content-column { padding: 20px 16px; }
+}
+
+/* ---- Highlighted-passage mark ------------------------------------------- */
+.passage-mark { position: absolute; z-index: 0; width: 300px; pointer-events: none; }
+.passage-mark svg { display: block; width: 100%; height: auto; overflow: visible; }
+.passage-mark .pm-line { fill: rgba(255, 255, 255, .07); }
+.passage-mark .pm-band { fill: rgba(227, 181, 122, .1); }
+.passage-mark .pm-hl { fill: rgba(227, 181, 122, .7); transform-box: fill-box; transform-origin: left center; }
+.passage-mark .pm-thread { fill: none; stroke: rgba(227, 181, 122, .5); stroke-width: 1.2; }
+.passage-mark .pm-tag rect:first-child, .passage-mark .pm-tag path { fill: none; stroke: rgba(227, 181, 122, .55); stroke-width: 1.2; }
+.passage-mark .pm-tag-bar { fill: rgba(227, 181, 122, .55); }
+.home-hero, .home-cta, .home-how, .page-hero { position: relative; }
+.home-hero > :not(.passage-mark), .home-cta > :not(.passage-mark), .page-hero > :not(.passage-mark) { position: relative; z-index: 1; }
+.passage-mark--hero-left { left: max(24px, calc(50% - 700px)); top: 210px; width: 230px; opacity: .65; }
+.passage-mark--hero-right { right: max(24px, calc(50% - 700px)); top: 400px; width: 300px; }
+.passage-mark--cta-left { left: max(24px, calc(50% - 640px)); top: 50%; width: 240px; margin-top: -90px; opacity: .65; }
+.passage-mark--cta-right { right: max(24px, calc(50% - 640px)); top: 50%; width: 260px; margin-top: -110px; }
+.passage-mark--section { right: clamp(24px, 4.5vw, 64px); top: clamp(56px, 7vw, 100px); width: 260px; }
+.passage-mark--page { right: var(--frame-pad, 40px); top: 50%; width: 280px; margin-top: -90px; }
+/* Drawn in once it scrolls into view (app.js adds .is-drawn). Without JS or with reduced motion it is static. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .passage-mark .pm-hl { transform: scaleX(0); transition: transform .9s cubic-bezier(.45, 0, .15, 1) .2s; }
+  .js .passage-mark .pm-band { opacity: 0; transition: opacity .6s ease .2s; }
+  .js .passage-mark .pm-thread { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s cubic-bezier(.45, 0, .15, 1) 1s; }
+  .js .passage-mark .pm-tag { opacity: 0; transform: translateY(6px); transition: opacity .5s ease 1.9s, transform .5s ease 1.9s; }
+  .js .passage-mark.is-drawn .pm-hl { transform: none; }
+  .js .passage-mark.is-drawn .pm-band { opacity: 1; }
+  .js .passage-mark.is-drawn .pm-thread { stroke-dashoffset: 0; }
+  .js .passage-mark.is-drawn .pm-tag { opacity: 1; transform: none; }
+}
+@media (max-width: 1180px) { .passage-mark--page, .passage-mark--section { display: none; } }
+@media (max-width: 1000px) { .passage-mark { display: none; } }

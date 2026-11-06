@@ -1,4 +1,5 @@
 import { recordedExample } from './render_first_search.mjs';
+import { passageMark } from './passage_mark.mjs';
 // Public explanations follow Core v0.9.1 (e2f984d). Technical details live in docs.
 export const introTranslations = {};
 const t = (en, tr) => { introTranslations[en] = tr; return en; };
@@ -62,7 +63,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
     [t('Size limit', 'Boyut sınırı'), t('The document HTTP API accepts up to 5,000,000 UTF-8 bytes per request.', 'Belge HTTP API’si istek başına en fazla 5.000.000 UTF-8 bayt kabul eder.')]
   ];
   return `${header('home')}<main id="main-content" class="home-page intro-page simple-public home-v2">
-    <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
+    <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">${passageMark(2, 'hero-left')}${passageMark(4, 'hero-right')}
       <p class="eyebrow">${t('OPEN SOURCE · v0.9.1 ALPHA', 'AÇIK KAYNAK · v0.9.1 ALFA')}</p>
       <h1 id="home-title">${t('Let your AI find answers', 'Yapay zekânız bilgiyi')} <em class="accent-word">${t('with their source.', 'kaynağıyla bulsun.')}</em></h1>
       <p class="home-hero__lead">${t('Give MESA your documents. When a question comes in, it returns the relevant passage to your application, with the document and version it came from.', 'Belgelerinizi MESA’ya verin. Bir soru geldiğinde ilgili pasajı, hangi belgeden ve hangi sürümden geldiğiyle birlikte uygulamanıza döndürür.')}</p>
@@ -85,7 +86,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       </div>
     </section>
 
-    <section class="band band--graphite home-how" id="how-it-works" data-home-section="how" aria-labelledby="how-title"><span id="why-mesa"></span>
+    <section class="band band--graphite home-how" id="how-it-works" data-home-section="how" aria-labelledby="how-title"><span id="why-mesa"></span>${passageMark(3, 'section')}
       <div class="band__inner">
         <p class="eyebrow">${t('IN ONE MINUTE', 'BİR DAKİKADA')}</p><h2 id="how-title">${t('How MESA works, in three steps.', 'MESA üç adımda nasıl çalışır?')}</h2>
         <ol class="how-steps">${steps.map(([title, text, code], index) => `<li><span class="how-steps__number">${index + 1}</span><h3>${title}</h3><p>${text}</p>${code ? `<code>${code}</code>` : ''}</li>`).join('')}</ol>
@@ -141,7 +142,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       </div>
     </section>
 
-    <section class="band home-cta" data-home-section="cta" aria-labelledby="cta-title">
+    <section class="band home-cta" data-home-section="cta" aria-labelledby="cta-title">${passageMark(5, 'cta-left')}${passageMark(7, 'cta-right')}
       <div class="band__inner">
         <p class="eyebrow">${t('GET STARTED', 'BAŞLAYIN')}</p><h2 id="cta-title">${t('Try it with', 'Kendi belgelerinizle')} <em class="accent-word">${t('your own documents.', 'deneyin.')}</em></h2>
         <div class="actions">${cta(t('Step-by-step setup', 'Adım adım kurulum'), route('get-started/'))}${cta('GitHub', repos.core, 'secondary', true)}</div>

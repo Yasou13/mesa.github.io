@@ -75,6 +75,19 @@ document.addEventListener('click', (event) => {
   if (!event.target.closest('[data-nav-group]')) closeGroups();
 });
 
+// Highlighted-passage marks draw themselves once they scroll into view.
+const passageMarks = document.querySelectorAll('.passage-mark');
+if (passageMarks.length) {
+  if ('IntersectionObserver' in window) {
+    const drawObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-drawn');
+      drawObserver.unobserve(entry.target);
+    }), { threshold: .35 });
+    passageMarks.forEach((mark) => drawObserver.observe(mark));
+  } else passageMarks.forEach((mark) => mark.classList.add('is-drawn'));
+}
+
 const siteHeader = document.querySelector('.site-header');
 const markScrolled = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 12);
 markScrolled();

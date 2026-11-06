@@ -1,6 +1,6 @@
-// One page-level environment, drawn as a single inline SVG. Two motifs, both MESA's own:
-// - home: "highlighted passage" — faint document lines with one amber passage linked to its source;
-// - every other page: "mesa topography" — contour lines of a flat-topped plateau (mesa).
+// One page-level canvas, drawn as a single inline SVG: "mesa topography", contour lines of a
+// flat-topped plateau. Content sits on opaque panels above it, so lines never run behind text.
+// The "highlighted passage" motif is a separate component (passage_mark.mjs).
 // Shapes are seeded by the page variant, so builds are stable. The layer is decorative and
 // aria-hidden; it uses SVG presentation attributes only (the site CSP blocks inline styles).
 
@@ -35,7 +35,7 @@ const VALID_VARIANTS = new Set([
 
 const WIDTH = 1440;
 const HEIGHT = 900;
-const LINE = 'rgba(255,255,255,.055)';
+const LINE = 'rgba(255,255,255,.07)';
 const ACCENT = 'rgba(227,181,122,';
 
 function seededRandom(text) {
@@ -51,32 +51,6 @@ function seededRandom(text) {
 
 const n = value => Math.round(value * 10) / 10;
 
-// Highlighted passage: two columns of document lines, one passage marked and tied to a source tag.
-function passage(random) {
-  const parts = [];
-  for (const [x, width] of [[70, 300], [1080, 300]]) {
-    let y = 120;
-    while (y < 860) {
-      const lines = 3 + Math.floor(random() * 4);
-      for (let line = 0; line < lines; line += 1) {
-        const w = width * (line === 0 ? .3 + random() * .3 : .55 + random() * .45);
-        parts.push(`<rect x="${x}" y="${y}" width="${Math.round(w)}" height="6" rx="3" fill="${LINE}"/>`);
-        y += 18;
-      }
-      y += 26;
-    }
-  }
-  const y = 430;
-  parts.push(`<rect x="1074" y="${y - 7}" width="292" height="20" rx="3" fill="${ACCENT}.12)"/>`);
-  parts.push(`<rect class="cosmic__passage" x="1080" y="${y}" width="250" height="6" rx="3" fill="${ACCENT}.62)"/>`);
-  parts.push(`<path class="cosmic__thread" d="M1366 ${y + 3} C1402 ${y + 3} 1402 ${y + 92} 1362 ${y + 110}" fill="none" stroke="${ACCENT}.45)" stroke-width="1" pathLength="1"/>`);
-  parts.push(`<rect x="1250" y="${y + 100}" width="110" height="24" rx="4" fill="none" stroke="${ACCENT}.45)"/>`);
-  parts.push(`<path d="M1262 ${y + 106}h7l4 4v8h-11z" fill="none" stroke="${ACCENT}.6)" stroke-width="1"/>`);
-  parts.push(`<rect x="1282" y="${y + 109}" width="64" height="5" rx="2.5" fill="${ACCENT}.5)"/>`);
-  parts.push(`<rect x="70" y="250" width="180" height="6" rx="3" fill="${ACCENT}.25)"/>`);
-  return parts.join('');
-}
-
 // Mesa topography: nested contours of a plateau with a flattened top, in two corners.
 function contour(cx, cy, rx, ry, phase, amplitude) {
   const points = [];
@@ -91,19 +65,22 @@ function contour(cx, cy, rx, ry, phase, amplitude) {
 
 function topography(random, quiet) {
   const parts = [];
+  // Plateaus spread over the canvas so the margins between content panels always show some lines.
   const plateaus = [
-    [1150 + random() * 160, 760 + random() * 90, 500 + random() * 60, 11],
-    [120 + random() * 120, 60 + random() * 60, 360 + random() * 40, 8]
+    [1180 + random() * 160, 760 + random() * 90, 520 + random() * 60, 11],
+    [140 + random() * 120, 80 + random() * 60, 380 + random() * 40, 9],
+    [-40 + random() * 80, 760 + random() * 80, 300 + random() * 40, 7],
+    [1400 + random() * 60, 120 + random() * 80, 280 + random() * 40, 7]
   ];
-  for (const [cx, cy, base, rings] of plateaus) {
+  plateaus.forEach(([cx, cy, base, rings], index) => {
     const phase = random() * 3;
-    const accentRing = quiet ? -1 : rings - 3;
+    const accentRing = quiet || index > 0 ? -1 : rings - 3;
     for (let ring = 0; ring < rings; ring += 1) {
       const scale = 1 - ring / (rings + 1);
-      const stroke = ring === accentRing ? `${ACCENT}.28)` : LINE;
+      const stroke = ring === accentRing ? `${ACCENT}.3)` : LINE;
       parts.push(`<path d="${contour(cx, cy, base * scale * 1.25, base * scale * .8, phase + ring * .18, .1 + .02 * ring)}" fill="none" stroke="${stroke}" stroke-width="1"/>`);
     }
-  }
+  });
   return parts.join('');
 }
 
@@ -117,6 +94,6 @@ export function cosmicEnvironment(variant = 'core') {
     throw new Error('Unknown cosmic variant');
   }
   const random = seededRandom(`mesa-${variant}`);
-  const art = variant === 'home' ? passage(random) : topography(random, variant === 'reading' || variant === 'admin');
+  const art = topography(random, variant === 'reading' || variant === 'admin');
   return `<div class="cosmic cosmic--${variant}" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 ${WIDTH} ${HEIGHT}" preserveAspectRatio="xMidYMid slice" focusable="false">${art}</svg><div class="cosmic__illumination"></div></div></div>`;
 }

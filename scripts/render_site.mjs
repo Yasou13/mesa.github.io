@@ -3,6 +3,7 @@ import { learningIndex, renderLesson, validateCurriculum } from './render_learn.
 import { beginnerHow, beginnerEcosystem, beginnerFaq } from './render_intro.mjs';
 import fs from 'node:fs';
 import { cosmicEnvironment, cosmicVariant } from './cosmic.mjs';
+import { passageMark } from './passage_mark.mjs';
 import { productHome, architecturePage, retrievalPage, productTranslations } from './render_product.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -1230,6 +1231,8 @@ function wayfinding(key, language, content) {
   crumbs.push(`<li><span aria-current="page">${pick(en, turkish)}</span></li>`);
   const nav = `<nav class="crumbs" aria-label="${pick('Breadcrumb', 'Sayfa yolu')}"><ol>${crumbs.join('')}</ol></nav>`;
   let html = content.replace(/(<main\b[^>]*>)/, `$1${nav}`);
+  // The highlighted-passage mark sits beside the page title on wide screens.
+  html = html.replace(/(<section class="page-hero[^"]*"[^>]*>)/, `$1${passageMark(key.length, 'page')}`);
   const flow = WAY_FLOW[key];
   if (!flow) return html;
   const cards = flow.map((id, index) => {
