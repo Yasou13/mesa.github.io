@@ -17,3 +17,9 @@ Bir sürüm birden fazla parçadan oluşuyorsa her parçaya ayrı kimlik ve sır
 ## Madde sınırlarını koruyan parçalama ve yeniden deneme
 
 `MESA_CHUNKING=auto|plain` varsayılan olarak `auto` kullanır. Satır başında en az üç Türkçe madde başlığı varsa madde sınırları korunur; uzun parçalar en fazla 512 token olur ve kaynak metin aynen saklanır. `plain`, yeni sürümlerde önceki planı kullanır. Mevcut ACTIVE sürümler değişmez. Yeniden deneme, sunucu yeniden başlatılsa veya ayar değişse bile kabul edilmiş metne uyan planı korur. Kabul edilmiş önek iki farklı plana da uyuyorsa yeni parça eklenmeden HTTP 409 döner.
+
+## Kuyruk kapasitesi ve belge zaman bütçesi
+
+Belge kabulü, `queue_over_capacity` durumunda aynı istek içindeki tam parça planını koruyarak geçerli parça için kısa süre yer bekler. Baskı sürerse yine `503 queue_over_capacity` döner; kayıtlı sıralardan devam etmek için aynı gövdeyi yeniden gönderin. `add_document(deadline=600)`, HTTP isteğinde kalan belge süresini kullanır. Kabul ve tamamen hazır olma ayrıdır; büyük yüklemeler dakikalar sürebilir.
+
+Yeni kabul edilen parçalarda hukuk kuralları varsayılan açık; model tabanlı SPO çıkarımı modeller açık olsa da varsayılan kapalıdır. Hukuki öğeler özgün parça konumlarını korur ve SPO kayıtlarından ayrı kalır. Mevcut kimlikler devam sırasında değişmez.

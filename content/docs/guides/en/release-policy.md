@@ -1,10 +1,10 @@
 ## Publication and production qualification
 
-This site follows the v0.9.1 source release. Alpha / production NO-GO remains; release publication, CI results and DEV retrieval measurements do not establish certification. GitHub and PyPI v0.9.1 publication were verified on 1 November 2026. The PyPI wheel’s 149 Python source files match the tagged release.
+This site follows the v0.9.2 source release. Alpha / production NO-GO remains; release publication, CI results and DEV retrieval measurements do not establish certification. GitHub and PyPI v0.9.2 publication were verified on 7 November 2026. The PyPI wheel’s 150 Python source files match the tagged release.
 
 ## Tag, identity and build evidence
 
-The normal reviewed release process uses an annotated GPG-signed tag and signature preflight against a trusted operator keyring. The owner explicitly approved an unsigned annotated tag for v0.9.1; signed-tag preflight success is not claimed. GPG proves the tag signer; OIDC build attestation ties artifact digests to the build identity. They are different evidence.
+The official v0.9.2 release records an SSH-signed annotated tag and a passing full local signed-tag preflight. Tag signatures verify the signer; OIDC build attestations tie artifact digests to the build identity. The release attaches verified provenance reports constrained to Yasou13/MESA, .github/workflows/ci.yml, refs/tags/v0.9.2 and release commit 8cd2cfe1df5356e73b3bef83ae640850fd54c798. These are separate evidence from production certification.
 
 ## Trusted publishing setup
 

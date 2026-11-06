@@ -1,4 +1,30 @@
-## v0.9.1 · 1 Kasım 2026
+## v0.9.2 · 6 Kasım 2026
+
+[Resmî yayın](https://github.com/Yasou13/MESA/releases/tag/v0.9.2), `8cd2cfe1df5356e73b3bef83ae640850fd54c798` commit’ine sabittir. [PyPI 0.9.2](https://pypi.org/project/mesa-memory/0.9.2/) wheel ve sdist yayını, geri çekilmemiş olması ve yayınla eşleşen SHA256 özetleri 7 Kasım 2026’da doğrulandı. Python >=3.11 gerekir; `pip install --upgrade mesa-memory==0.9.2` ile yükseltin. V4 HTTP yolları uyumludur. Alfa / üretim NO-GO sürer.
+
+## Hukuki çıkarım ve arama
+
+Yeni parçalar; citation, decision_ref, date, amount, duration ve outcome türlerinde sürümlü kural öğeleri saklar. `retrieval_provenance.legal_items`, özgün parçaya göre konumlarla `{version, items}` döndürür. Bunlar modelin çıkardığı özne–yüklem–nesne (SPO) kayıtlarından ayrıdır ve birleştirme skoruna eklenmez. Purge bu öğelerin kaynak alıntılarını da siler.
+
+İzinli başlıklar ve ilk parça kanun başlıkları, `K.` kısaltması dâhil kapsam önbellekli kanun adları öğretir. Tam kanun/madde veya kararın kendi esas/karar numarası eşleşmesi, belge sırasıyla en fazla üç sonucu başa alabilir. Karar kimliği, sıfırıncı parçanın ilk 300 karakterinde başlayan referansı gerektirir; sonraki alıntılar kimlik sayılmaz. Diğer sonuçlar birleşik veya yeniden sıralanmış düzenini korur. Yalnızca AYM/mahkeme adı geçmesi artık Anayasa sıralamasını tetiklemez.
+
+## Değişen varsayılanlar ve kabul
+
+`MESA_LEGAL_RULES_ENABLED=true`; kimlikleri, anlık görüntüleri ve hukuki aramayı açar. `false`; yeni otomatik hukuki kimlik/öğeleri, atıf çözümlemeyi, tam eşleşme önceliğini, hukuk katsayılarını ve çizge atıf ayrıştırmasını kapatır; kalıcı kimlikleri/anlık görüntüleri silmeden sonuç kopyalarındaki hukuki ekleri gizler. Genel arama çalışır. `MESA_EXTRACTION_ENABLED=false`, artık `MESA_MODEL_ENABLED` değerinden bağımsızdır; açık `true` SPO çıkarımını açar. Embedding varsayılanı model bayrağını izlemeyi sürdürür.
+
+Belge kabulü, tam parçalama planını yeniden üretmeden kuyruk kapasitesini kısa süre bekler. `add_document(deadline=600)`, HTTP isteğinde kalan belge süresini kullanır. Süren kuyruk baskısı yine `503 queue_over_capacity` döndürebilir; aynı gövdeyi yeniden gönderin. HTTP 202 hazır olma değil, kabul anlamındadır.
+
+## Güvenlik ve ölçülen sınırlar
+
+Sınırlı ayrıştırma, worker thread ve işbirlikli çalışma; ölçülen kural çıkarımı, atıf, kapsam ve yoğun puanlama örneklerinde `/health` yanıt verebilirliğini düzeltir. 0.9.1’i de etkileyen istek yolu duraklamaları için yükseltme önerilir. Bu, yoğun sorguların hızlandığını kanıtlamaz: 1.000 adaylı arama yaklaşık 11,6 saniye sürmüştür. Modeller kapalı, çizge açıkken 4.999.000 baytlık belge yaklaşık yedi dakikada hazır olmuştur. Bunlar belirli geliştirme ölçümleridir; hizmet garantisi değildir.
+
+Tam belge gizli bilgi taraması ve uç Unicode normalizasyonu saniye altı duraklamalar yaratabilir. UUID eşitlikleri ayrı doldurulmuş depolarda sıralamayı değiştirebilir; aynı depodaki korunan girdiler deterministiktir. Nesne olmayan belge isteklerinde INFO düzeyli 422 ayrıntı metni farklılığı sürer; durum, kod, konum ve OpenAPI uyumludur. Resmî yayın ayrıca Python 3.13 birleşim sonrası ayrıştırıcı testinin CI’da 200 ms sınırını aştığını kaydeder; hız düzeltmesi bu sürümün dışında, 0.9.3 için planlanmıştır.
+
+## Yayın doğrulaması ve kanıt
+
+Resmî yayın; 2.037 yerel test ve ayrı 10 MCP testi, PR kapsam işlerinin her birinde 2.032 geçen test raporlar (3.11: %88,09; 3.13: %88,07). [PR #143](https://github.com/Yasou13/MESA/pull/143), derleme kanıtı, SBOM ve köken raporları yayın sayfasındadır. Bunlar yayına atfedilen sonuçlardır; web sitesi çalışmasında yeniden yürütülmüş Core sertifikasyonu değildir. Bağımsız QA, Law ve E2E kanıtları kendi tarih ve kaynaklarına bağlı kalır. Tarihsel v0.9.0 demo kayıtları ve aşağıdaki v0.9.1 DEV ölçümleri tarihsel kalır.
+
+## Önceki sürüm v0.9.1 · 1 Kasım 2026
 
 [GitHub sürümü](https://github.com/Yasou13/MESA/releases/tag/v0.9.1), `e2f984d4ad97c01782a347e29e44808e5a16dad3` commit’iyle yayımlandı. [PyPI 0.9.1 paketi](https://pypi.org/project/mesa-memory/0.9.1/) de yayımlandı ve doğrulandı; [kurulum rehberini](docs/core/installation/) izleyin. Python >=3.11 gerekir. Alfa / üretim NO-GO sürer.
 

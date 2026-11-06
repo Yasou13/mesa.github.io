@@ -9,3 +9,7 @@ A declared whole-revision content hash, frozen chunk manifest hash and per-chunk
 ## Pack complete proof within a budget
 
 ContextBuilder counts formatted model-visible evidence, not the entire HTTP response. Complete graph proof must fit atomically; if canonical BPE cannot load, the conservative UTF-8 byte upper bound may pack less evidence. Empty retrieval means no eligible evidence was returned, not proof a proposition is false.
+
+## Versioned legal items preserve chunk offsets
+
+New chunks can return `retrieval_provenance.legal_items` as `{version, items}` for citation, decision_ref, date, amount, duration and outcome. `start`/`end` positions refer to the original source chunk even if the hit quotes a shorter fact. These annotations are separate from SPO assertions and do not add fusion score. Disabling legal rules hides stored overlays in returned copies; it does not erase snapshots. Document purge erases their source quotes.

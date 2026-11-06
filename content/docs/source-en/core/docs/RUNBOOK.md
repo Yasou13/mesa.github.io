@@ -242,7 +242,7 @@ audit must remain `NOT EXECUTED`, never converted to a simulated success.
 
 ## Upgrading to v0.8.0
 
-The pinned source describes package metadata 0.9.1 before its publication. The v0.8.1 publication was owner-approved with the limitations in
+The pinned source describes package metadata 0.9.2 before its publication. The v0.8.1 publication was owner-approved with the limitations in
 the [release notes](docs/core/release-notes/#v081-publication); it does not certify production
 readiness. Confirm actual tags in GitHub Releases. This guide describes changes
 since v0.7.1, not a completed production migration.

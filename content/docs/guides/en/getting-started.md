@@ -20,16 +20,16 @@ python3 --version
 
 If you prefer containers, [install Docker](https://docs.docker.com/get-started/get-docker/) and skip to [Docker setup](#docker-setup).
 
-## Install v0.9.1
+## Install v0.9.2
 
 Run these commands in a new working directory. The virtual environment keeps MESA packages separate from your other Python projects.
 
-The v0.9.1 package is published on PyPI; the command pins that verified version. See [installation and extras](docs/core/installation/#guide-package-index-and-optional-extras).
+The v0.9.2 package is published on PyPI; the command pins that verified version. See [installation and extras](docs/core/installation/#guide-package-index-and-optional-extras).
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.1
+python -m pip install mesa-memory==0.9.2
 mesa --help
 ```
 
@@ -110,7 +110,7 @@ python wait_for_document.py
 mesa search "archive"
 ```
 
-Historical Core v0.9.0 recorded CLI output (not a v0.9.1 recording):
+Historical Core v0.9.0 recorded CLI output (not a v0.9.2 recording):
 
 ```text
 [1] score: 0.033 | doc-5239a0bb570c977f678a3a48e2947b81
@@ -126,7 +126,7 @@ Historical Core v0.9.0 recorded CLI output (not a v0.9.1 recording):
 This path needs Git, Docker Engine/Desktop and Compose. Open the pinned source release:
 
 ```bash
-git clone --branch v0.9.1 --depth 1 https://github.com/Yasou13/MESA.git
+git clone --branch v0.9.2 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 docker compose -f docker-compose.v4.yml up --build -d
 docker compose -f docker-compose.v4.yml exec mesa-v4 mesa status
@@ -156,6 +156,6 @@ The output contains your local API key; keep it private. MESA returns context; y
 
 You do not need this for your first search. For semantic search and extraction, review [model configuration](docs/core/configuration/) and [providers](docs/core/embedding-providers/). External providers can transmit data and incur usage charges. Re-enabling graph/embeddings can backfill skipped work at startup. Local success does not establish production qualification; production checks remain incomplete.
 
-## v0.9.1 waiting behavior
+## v0.9.2 waiting behavior
 
-`mesa add` returns successfully after the revision becomes ACTIVE. `--no-wait` returns admission only. Receipts and CLI output above are historical Core v0.9.0 evidence, not re-recorded with v0.9.1. The completion script remains an optional verification step.
+`mesa add` returns successfully after the revision becomes ACTIVE. `--no-wait` returns admission only. Receipts and CLI output above are historical Core v0.9.0 evidence, not re-recorded with v0.9.2. The completion script remains an optional verification step.

@@ -1,0 +1,18 @@
+{
+  "version": "0.9.2",
+  "requires_python": ">=3.11",
+  "files": [
+    {
+      "filename": "mesa_memory-0.9.2-py3-none-any.whl",
+      "sha256": "fc6ff6cfdeda3e9c295f4d17ca158d4b55538beb388931632e7a72dd40cd926e",
+      "yanked": false,
+      "upload_time": "2026-11-06T17:57:45.891377Z"
+    },
+    {
+      "filename": "mesa_memory-0.9.2.tar.gz",
+      "sha256": "1d0b6a0dc46bf60ff4611e61d52c653a6a221f0a6cf75944d13542f69e468aaf",
+      "yanked": false,
+      "upload_time": "2026-11-06T17:57:47.660562Z"
+    }
+  ]
+}

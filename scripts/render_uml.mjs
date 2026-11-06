@@ -1,5 +1,5 @@
 // UML-style diagrams for MESA Core, drawn as inline SVG.
-// Facts follow Core v0.9.1 (e2f984d): docs/architecture-v4.md, ADR 0009–0015,
+// Facts follow Core v0.9.2 (8cd2cfe): docs/architecture-v4.md, ADR 0009–0015,
 // docs/concepts-and-ingestion.md and docs/RUNBOOK.md.
 // Every function takes `t(en, tr)` so the same drawing serves the localized
 // product pages (translation map) and the docs pages (direct language choice).
@@ -97,14 +97,14 @@ export function writeSequenceDiagram(t, id = 'uml-write-sequence') {
   const body = `${head}
   ${bar(225, 92, 186)}${bar(400, 112, 150)}
   ${msg(70, 225, 100, t('insert(source chunk)', 'insert(kaynak parça)'))}
-  ${msg(225, 400, 122, t('create mutation + run', 'değişiklik + çalışma yarat'))}
+  ${msg(225, 400, 122, t('legal items + mutation + run', 'hukuki öğe + değişiklik + iş'))}
   ${msg(400, 225, 146, 'mutation_id', true)}
   ${msg(225, 70, 176, '202 · mutation_id', true)}
   ${note(86, 194, 200, 44, [t('202 = accepted, not processed.', '202 = kabul edildi, işlenmedi.'), t('Processing continues below.', 'İşleme aşağıda sürer.')])}
   ${bar(590, 222, 560)}${bar(760, 290, 316)}${bar(760, 342, 368)}
   ${msg(590, 400, 232, t('claim run (lease)', 'işi sahiplen (süreli)'))}
   ${msg(400, 590, 256, t('source chunk', 'kaynak parça'), true)}
-  ${msg(590, 760, 298, t('extract if enabled', 'açıksa bilgi çıkar'))}
+  ${msg(590, 760, 298, t('SPO only if enabled', 'SPO ayrıca açıksa'))}
   ${msg(760, 590, 316, t('0..N facts', '0..N bilgi'), true)}
   ${msg(590, 760, 350, t('validate (mode 0–2)', 'doğrula (mod 0–2)'))}
   ${msg(760, 590, 368, t('accept / reject', 'kabul / ret'), true)}
@@ -123,7 +123,7 @@ export function writeSequenceDiagram(t, id = 'uml-write-sequence') {
   ${msg(225, 70, 714, t('final state', 'son durum'), true)}`;
   return figure({ id, t, viewBox: '0 0 960 760', minWidth: 820, body,
     title: [t('UML · Sequence diagram', 'UML · Sıralı etkileşim şeması'), t('Write path: accept now, process in the background, poll for the result', 'Yazma yolu: hemen kabul, arka planda işleme, sonucu sorgulama')],
-    caption: t('Each store write waits for the previous one. Retries reuse idempotent artifact IDs, so a repeated step does not create duplicates. Default SDK polling interval: 2 seconds.', 'Her depo yazması bir öncekini bekler. Yeniden denemeler aynı kimlikleri kullanır; tekrarlanan adım çift kayıt üretmez. SDK’nın varsayılan sorgulama aralığı 2 saniyedir.') });
+    caption: t('Admission snapshots legal items separately from SPO facts. Legal rules default on; model-based SPO extraction defaults off. Each enabled store write follows the previous one; retries reuse idempotent IDs. Mutation polling: 2 s; revision activation: 1 s.', 'Kabul, hukuki öğeleri SPO kayıtlarından ayrı saklar. Hukuk kuralları varsayılan açık, model tabanlı SPO çıkarımı kapalıdır. Etkin depolar sırayla yazılır; yeniden denemeler aynı kimlikleri kullanır. Mutation sorgusu 2 sn, sürüm etkinleşmesi 1 sn aralıklıdır.') });
 }
 
 // 3 · State machine — one mutation's lifecycle, failure branches included.
@@ -138,7 +138,7 @@ export function mutationStateDiagram(t, id = 'uml-mutation-states') {
   const node = (name) => { const [x, y] = states[name]; return `<g class="uml-state uml-state--${kind[name] || 'flow'}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" class="uml-node"/>${text(x + w / 2, y + 28, name, 'uml-state-name')}</g>`; };
   const L = (n) => states[n][0], R = (n) => states[n][0] + w, M = (n) => states[n][0] + w / 2, T = (n) => states[n][1], B = (n) => states[n][1] + h, C = (n) => states[n][1] + h / 2;
   const flow = ['QUEUED', 'RUNNING', 'EXTRACTED', 'VALIDATED', 'PROJECTING', 'COMMITTED'];
-  const labels = [t('worker claims', 'işçi alır'), t('facts found', 'bilgi çıktı'), t('checks pass', 'kontrol geçti'), t('SQL written', 'SQL yazıldı'), t('all stores', 'tüm depolar')];
+  const labels = [t('worker claims', 'işçi alır'), t('facts or fallback', 'bilgi veya kaynak'), t('checks pass', 'kontrol geçti'), t('SQL written', 'SQL yazıldı'), t('lanes complete', 'adımlar tamam')];
   const forward = flow.slice(0, -1).map((name, i) => `${line(`M${R(name)} ${C(name)} H${L(flow[i + 1]) - 2}`, id)}${text((R(name) + L(flow[i + 1])) / 2, T(name) - 12, labels[i], 'uml-edge-label')}`).join('');
   const body = `
   <circle cx="30" cy="${C('QUEUED')}" r="9" class="uml-initial"/>${line(`M39 ${C('QUEUED')} H${L('QUEUED') - 2}`, id)}
@@ -154,7 +154,7 @@ export function mutationStateDiagram(t, id = 'uml-mutation-states') {
   ${note(386, 336, 352, 40, [t('REJECTED keeps the audit source but creates no search data.', 'REJECTED denetim kaynağını tutar, arama verisi oluşturmaz.')])}`;
   return figure({ id, t, viewBox: '0 0 1050 390', minWidth: 800, body,
     title: [t('UML · State machine', 'UML · Durum makinesi'), t('One mutation from QUEUED to a terminal state', 'Bir değişikliğin QUEUED’dan son duruma yolu')],
-    caption: t('Only COMMITTED means every store was written. Retries are bounded; exhausted work parks in the dead-letter queue (DLQ) until someone replays it. A failure stays visible instead of being hidden by compensation.', 'Yalnızca COMMITTED tüm depolara yazıldığını gösterir. Yeniden denemeler sınırlıdır; sonuçlanmayan iş, biri yeniden kuyruğa alana kadar hata kuyruğunda (DLQ) bekler. Hata gizlenmez, görünür kalır.') });
+    caption: t('COMMITTED means required lanes completed; disabled vector/graph lanes may be SKIPPED. Retries are bounded; exhausted work parks in the dead-letter queue (DLQ) until someone replays it. A failure stays visible instead of being hidden by compensation.', 'COMMITTED, gerekli adımların tamamlandığını gösterir; kapalı vektör/çizge adımları SKIPPED olabilir. Yeniden denemeler sınırlıdır; sonuçlanmayan iş, biri yeniden kuyruğa alana kadar hata kuyruğunda (DLQ) bekler. Hata gizlenmez, görünür kalır.') });
 }
 
 // 4 · Activity diagram — the read path with four parallel lanes.
@@ -177,15 +177,17 @@ export function readActivityDiagram(t, id = 'uml-read-activity') {
   ${lanes.map(([name, sub], i) => `${line(`M427 ${ys[i] + 34} H452`, id)}${action(454, ys[i], 200, 68, name, sub)}${line(`M654 ${ys[i] + 34} H678`, id)}`).join('')}
   <rect x="680" y="40" width="7" height="312" class="uml-bar"/>
   ${line('M687 196 H708', id)}
-  ${action(710, 160, 120, 72, t('Fuse ranks', 'Sıraları birleştir'), 'RRF · k = 60')}
-  ${line('M770 232 V266', id)}
-  ${action(700, 268, 140, 72, t('Pack evidence', 'Kanıtı paketle'), t('≤ 2048 tokens', '≤ 2048 token'))}
-  ${line('M840 304 H896', id)}
-  <circle cx="910" cy="304" r="12" class="uml-final-ring"/><circle cx="910" cy="304" r="7" class="uml-initial"/>
-  ${text(560, 375, t('fork: each lane runs on the same eligible set · join: one vote per lane per candidate', 'çatal: her kanal aynı uygun küme üzerinde çalışır · birleşim: aday başına kanal başına bir oy'), 'uml-guard')}`;
-  return figure({ id, t, viewBox: '0 0 940 390', minWidth: 760, body,
+  ${action(710, 160, 150, 72, t('Fuse / rank', 'Birleştir / sırala'), 'RRF · legal · rerank')}
+  ${line('M785 232 V266', id)}
+  ${action(710, 268, 150, 72, t('Exact match first', 'Tam eşleşme başta'), t('if legal on · ≤ 3 hits', 'hukuk açıksa · ≤ 3'))}
+  ${line('M785 340 V376', id)}
+  ${action(710, 378, 150, 72, t('Pack evidence', 'Kanıtı paketle'), t('≤ 2048 tokens', '≤ 2048 token'))}
+  ${line('M860 414 H896', id)}
+  <circle cx="910" cy="414" r="12" class="uml-final-ring"/><circle cx="910" cy="414" r="7" class="uml-initial"/>
+  ${text(480, 486, t('fork: each lane runs on the same eligible set · join: one vote per lane per candidate', 'çatal: her kanal aynı uygun küme üzerinde çalışır · birleşim: aday başına kanal başına bir oy'), 'uml-guard')}`;
+  return figure({ id, t, viewBox: '0 0 940 510', minWidth: 760, body,
     title: [t('UML · Activity diagram', 'UML · Etkinlik şeması'), t('Read path: four lanes in parallel, one fused result', 'Okuma yolu: dört paralel kanal, tek birleşik sonuç')],
-    caption: t('Scope is applied before ranking, so no lane can rank a record the session may not read. RRF combines rank positions, not raw scores; PageRank is telemetry only (ADR 0010).', 'Kapsam sıralamadan önce uygulanır; hiçbir kanal oturumun okuyamayacağı kaydı sıralayamaz. RRF ham skorları değil sıra konumlarını birleştirir; PageRank yalnızca izleme verisidir (ADR 0010).') });
+    caption: t('Scope precedes ranking. Legal factors and optional reranking follow fusion; exact law/article or a decision’s own first-chunk reference may reserve at most three leading positions. Other results retain order. Legal rules off bypasses legal stages; PageRank remains telemetry.', 'Kapsam sıralamadan önce uygulanır. Birleştirmeyi hukuk katsayıları ve isteğe bağlı yeniden sıralama izler; tam kanun/madde veya kararın kendi ilk parça referansı en fazla üç sonucu başa alabilir. Diğer sonuçların düzeni korunur. Hukuk kuralları kapalıysa hukuki aşamalar atlanır; PageRank izleme verisi kalır.') });
 }
 
 // 5 · Class diagram — catalog scope and source identity.
@@ -207,6 +209,8 @@ export function catalogClassDiagram(t, id = 'uml-catalog-classes') {
   ${cls(780, 250, 'Document', ['+ document_id', '+ title'])}
   ${cls(780, 400, 'Revision', ['+ revision_id'], { stereotype: 'immutable' })}
   ${cls(540, 400, 'SourceChunk', ['+ chunk_id', t('+ exact content', '+ özgün metin')])}
+  ${cls(540, 530, 'LegalItem', ['+ version, type', '+ start, end', t('+ source quote', '+ kaynak alıntısı')], { stereotype: 'snapshot' })}
+  ${line('M635 476 V529', id, { head: '', tail: 'diamond' })}${mult(642, 520, '0..*', 'start')}
   ${cls(280, 400, 'Assertion', [t('+ subject', '+ özne'), t('+ predicate', '+ yüklem'), t('+ object', '+ nesne'), '+ state'])}
   ${line('M470 72 H539', id, { head: '', tail: 'diamond' })}${mult(534, 64, '1..*', 'end')}
   ${line('M730 72 H779', id, { head: '', tail: 'diamond' })}${mult(774, 64, '1..*', 'end')}
@@ -220,9 +224,9 @@ export function catalogClassDiagram(t, id = 'uml-catalog-classes') {
   ${line('M115 326 V364 H750 V190 H810 V120', id, { dashed: true })}${text(430, 356, t('«scope» 1..* datasets', '«kapsam» 1..* veri kümesi'), 'uml-edge-label')}
   <path d="M540 444 H471" class="uml-edge"/>${mult(535, 436, '1..*', 'end')}${mult(476, 436, '0..*', 'start')}${text(505, 462, t('evidence', 'kanıt'), 'uml-edge-label')}
   ${note(20, 400, 230, 60, [t('Roles inherit downward.', 'Roller aşağı doğru miras kalır.'), t('Request metadata never', 'İstek verisi hiçbir zaman'), t('grants authority (ADR 0011).', 'yetki vermez (ADR 0011).')])}`;
-  return figure({ id, t, viewBox: '0 0 990 525', minWidth: 780, body,
+  return figure({ id, t, viewBox: '0 0 990 680', minWidth: 780, body,
     title: [t('UML · Class diagram', 'UML · Sınıf şeması'), t('Who may read what, and where every fact comes from', 'Kim neyi okuyabilir, her bilgi nereden gelir')],
-    caption: t('Filled diamonds mean ownership (composition): deleting a dataset removes its documents. Role is an association class on the Principal–Tenant link and inherits down to workspaces and datasets. A session is created by the server and freezes its dataset set.', 'Dolu elmas sahipliği (bileşim) gösterir: veri kümesi silinince belgeleri de gider. Role, Principal–Tenant bağındaki ilişki sınıfıdır ve çalışma alanlarına, veri kümelerine miras kalır. Oturumu sunucu oluşturur ve veri kümesi setini sabitler.') });
+    caption: t('Filled diamonds mean ownership (composition): deleting a dataset removes its documents. Role is an association class on the Principal–Tenant link and inherits down to workspaces and datasets. A session is created by the server and freezes its dataset set. LegalItem snapshots belong to source chunks, remain separate from SPO assertions and are hidden from returned copies when legal rules are off.', 'Dolu elmas sahipliği (bileşim) gösterir: veri kümesi silinince belgeleri de gider. Role, Principal–Tenant bağındaki ilişki sınıfıdır ve çalışma alanlarına, veri kümelerine miras kalır. Oturumu sunucu oluşturur ve veri kümesi setini sabitler. LegalItem anlık görüntüleri kaynak parçalarına aittir; SPO kayıtlarından ayrıdır ve hukuk kuralları kapalıyken sonuç kopyalarında gizlenir.') });
 }
 
 // 6 · Deployment diagram — what runs where.
@@ -231,7 +235,7 @@ export function deploymentDiagram(t, id = 'uml-deployment') {
   const artifact = (x, y, w, title, sub) => `<g class="uml-artifact"><rect x="${x}" y="${y}" width="${w}" height="54" rx="3" class="uml-node uml-node--inner"/><path d="M${x + w - 22} ${y + 8} h9 l5 5 v13 h-14z" class="uml-doc-icon"/>${stereo(x + 10, y + 18, 'artifact', 'start')}${text(x + 10, y + 36, title, 'uml-title-sm', 'start')}${sub ? text(x + 10, y + 49, sub, 'uml-sub', 'start') : ''}</g>`;
   const body = `
   ${node3d(196, 18, 540, 392, 'device', t('Host · VM or Docker Compose service', 'Sunucu · VM veya Docker Compose servisi'))}
-  ${node3d(222, 86, 262, 200, 'execution environment', 'Python 3.10–3.13 · uvicorn', 'uml-deploy-node--inner')}
+  ${node3d(222, 86, 262, 200, 'execution environment', 'Python 3.11–3.13 · uvicorn', 'uml-deploy-node--inner')}
   ${artifact(240, 160, 226, t('mesa · combined runtime', 'mesa · birleşik çalışma'), t('API + workers + MemoryDAO', 'API + işçiler + MemoryDAO'))}
   ${text(252, 246, '{replicas = 1}', 'uml-constraint', 'start')}
   ${node3d(512, 86, 196, 296, 'volume', 'MESA_STORAGE_ROOT', 'uml-deploy-node--inner')}
@@ -248,7 +252,7 @@ export function deploymentDiagram(t, id = 'uml-deployment') {
   ${note(222, 312, 262, 64, [t('Never point two processes', 'İki süreci aynı depolama'), t('at one storage root.', 'köküne bağlamayın.'), t('Scale admission, not writers.', 'Kabulü ölçekleyin, yazıcıyı değil.')])}`;
   return figure({ id, t, viewBox: '0 0 960 420', minWidth: 780, body,
     title: [t('UML · Deployment diagram', 'UML · Dağıtım şeması'), t('One process, one storage root, optional model providers', 'Tek süreç, tek depolama kökü, isteğe bağlı model sağlayıcılar')],
-    caption: t('The three stores are embedded files under one root, so they are backed up and restored together. With models disabled the server starts and answers health checks, but cannot admit new memory (503).', 'Üç depo tek kök altındaki gömülü dosyalardır; birlikte yedeklenir ve geri yüklenir. Modeller kapalıyken sunucu açılır ve sağlık kontrolüne yanıt verir, ancak yeni hafıza kabul edemez (503).') });
+    caption: t('The three stores are embedded files under one root, so they are backed up and restored together. Models-off combined operation accepts documents and supports BM25. Legal rules need no model; open-ended SPO extraction requires explicit enablement.', 'Üç depo tek kök altındaki gömülü dosyalardır; birlikte yedeklenir ve geri yüklenir. Modeller kapalı combined çalışma belgeleri kabul eder ve BM25 araması sunar. Hukuk kuralları model istemez; açık uçlu SPO çıkarımı ayrıca açılır.') });
 }
 
 export const diagrams = {

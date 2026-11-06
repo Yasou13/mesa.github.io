@@ -20,16 +20,16 @@ Windows’un yerel PowerShell penceresinde `mesa start` çalışmaz. [Microsoft�
 
 Python kurulumunu kullanmayacaksanız [Docker kurulumunu](https://docs.docker.com/get-started/get-docker/) tamamlayıp [Docker ile kurulum bölümüne](#docker-ile-kurulum) geçin.
 
-## v0.9.1 sürümünü kurun
+## v0.9.2 sürümünü kurun
 
 Yeni bir çalışma klasöründe bu komutları çalıştırın. Sanal ortam, MESA paketlerini diğer Python projelerinizden ayırır.
 
-v0.9.1 paketi PyPI’da yayımlandı; komut doğrulanan bu sürümü sabitler. [Kurulum ve eklere](docs/core/installation/) bakın.
+v0.9.2 paketi PyPI’da yayımlandı; komut doğrulanan bu sürümü sabitler. [Kurulum ve eklere](docs/core/installation/) bakın.
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.1
+python -m pip install mesa-memory==0.9.2
 mesa --help
 ```
 
@@ -110,7 +110,7 @@ python wait_for_document.py
 mesa search "arşivi"
 ```
 
-Tarihsel Core v0.9.0 kaydından gerçek CLI çıktısı (v0.9.1 ile yeniden kaydedilmedi):
+Tarihsel Core v0.9.0 kaydından gerçek CLI çıktısı (v0.9.2 ile yeniden kaydedilmedi):
 
 ```text
 [1] score: 0.033 | doc-d206865140f38f4fcadb22c4645c222f
@@ -126,7 +126,7 @@ Tarihsel Core v0.9.0 kaydından gerçek CLI çıktısı (v0.9.1 ile yeniden kayd
 Bu yol için Git, Docker Engine/Desktop ve Compose gerekir. Sabitlenmiş kaynak sürümünü açın:
 
 ```bash
-git clone --branch v0.9.1 --depth 1 https://github.com/Yasou13/MESA.git
+git clone --branch v0.9.2 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 docker compose -f docker-compose.v4.yml up --build -d
 docker compose -f docker-compose.v4.yml exec mesa-v4 mesa status
@@ -156,6 +156,6 @@ mesa mcp-config
 
 Bu ilk arama için gerekli değildir. Anlamsal arama ve bilgi çıkarımı için [model yapılandırmasını](docs/core/configuration/) ve [sağlayıcıları](docs/core/embedding-providers/) inceleyin. Dış sağlayıcılar veri aktarımı ve kullanım ücreti doğurabilir. Grafik/embedding yeniden açıldığında atlanan işler başlangıçta tamamlanabilir. Yerel başarı üretim yeterliliği sağlamaz; canlı kullanım doğrulamaları tamamlanmadı.
 
-## v0.9.1 bekleme davranışı
+## v0.9.2 bekleme davranışı
 
-`mesa add`, başarılı dönüşten önce ACTIVE belge sürümünü bekler. `--no-wait` yalnız kabul alındısını döndürür. Yukarıdaki alındı ve CLI çıktıları tarihsel Core v0.9.0 kaydından alınmıştır; v0.9.1 ile yeniden kaydedilmedi. Ek durum kontrolü isteğe bağlı doğrulama olarak kullanılabilir.
+`mesa add`, başarılı dönüşten önce ACTIVE belge sürümünü bekler. `--no-wait` yalnız kabul alındısını döndürür. Yukarıdaki alındı ve CLI çıktıları tarihsel Core v0.9.0 kaydından alınmıştır; v0.9.2 ile yeniden kaydedilmedi. Ek durum kontrolü isteğe bağlı doğrulama olarak kullanılabilir.

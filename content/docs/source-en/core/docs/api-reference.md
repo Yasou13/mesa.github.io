@@ -1,6 +1,6 @@
 # API reference
 
-MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.1 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
+MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.2 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
 
 Versioned memory, health and metrics calls require `X-API-Key`. `/health/init`, OpenAPI, Swagger and ReDoc are public surfaces and need a network/reverse-proxy policy. The V4 key is
 generated with `mesa-v4-admin issue-key`; only a salted scrypt hash is stored.
@@ -309,7 +309,7 @@ credential prerequisites, is in [Getting started](docs/core/getting-started/).
 
 Canonical V4 insertion requires the combined processing consumer. With models off, records have a SKIPPED VECTOR lane and remain searchable through BM25. Enabling embeddings later backfills skipped lanes without hiding committed records.
 
-The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/reference/openapi.json) is a generated reference.
+The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/reference/openapi.json) is a generated reference.
 Use the running app's `/openapi.json` and route/schema source for the exact
 checkout; do not infer snapshot freshness from this page. Generating a schema
 without server startup does not exercise authentication or runtime behavior.

@@ -24,6 +24,6 @@ Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model
 
 `MESA_EXTERNAL_PROVIDER_ENABLED=false`, asıl işleme hattındaki dış sağlayıcı çağrılarını sınırlar. Bu ayar tek başına sistemin tamamen ağdan yalıtıldığını veya hiç ücret doğurmayacağını garanti etmez. Model indirmeleri ve başka süreçlerin ağ erişimi ayrıca değerlendirilmelidir. [v0.9.1 DEV benchmark’ı](docs/core/release-notes/), belirtilen koşullarda BGE arama kalitesini ve donanım gecikmesini raporlar; bulut sağlayıcısının token maliyetini ölçmez.
 
-## v0.9.1 ile çalışma
+## v0.9.2 ile çalışma
 
 `MESA_LLM_MODEL=provider:model` ve `MESA_EMBEDDING_MODEL=provider:model` kullanın. Modeller kapalıyken BM25 veri alımı/araması çalışır. Dış sağlayıcı bayrağı kapalıyken yerel Ollama ve OpenAI uyumlu uç noktalar kullanılabilir; bulut sağlayıcıları açık bayrak ve anahtar ister.

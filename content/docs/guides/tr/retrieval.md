@@ -10,7 +10,7 @@ Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaşt�
 
 Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı, istenen 500 sonuç, 64 düğümlük ilerleme kümesi ve düğüm başına 32 bağlantıyla sınırlandırılır. Varsayılan zaman aşımı 15 saniyedir. Bunlar kaynak tüketimini sınırlayan değerlerdir; hız garantisi değildir. Bağlam oluşturma varsayılan olarak tek arama ve 2048 token’lık biçimlendirilmiş kanıt bütçesi kullanır. İsteğe bağlı uyarlamalı mod, erişim kapsamını genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.
 
-## v0.9.1 ile çalışma
+## v0.9.2 ile çalışma
 
 Modeller kapalıyken BM25 saklanan kaynak metnini getirir. Kapalı veya eksik vektör ve çizge adımları degraded_sources içinde bildirilir. MESA_GRAPH_ENABLED=false, Kùzu’yu atlar; çizge veya embedding yeniden açıldığında başlangıçta eksikler tamamlanır.
 
@@ -21,3 +21,9 @@ Varsayılan `MESA_RERANK_ENABLED=false` değeridir. Açmak için `[ml]` eki gere
 ## Eşzamanlı arama ve kapsam önbelleği
 
 `MESA_SEARCH_SCOPE_CACHE=true`, kapsama özel geçici FTS indekslerini ve satır/metin özelliklerini dört kapsamlık LRU önbelleğinde yeniden kullanır. SQLite commit değişiklikleri önbelleği geçersiz kılar; her istekte yetkilendirme yeniden denetlenir. Sorgu embedding’i arama kilidinden önce hesaplanır; yeniden sıralama bağlantı bırakıldıktan sonra çalışır. scrypt doğrulama, anahtar oluşturma ve döndürme işlemleri event loop dışında yürütülür; yetki sonuçları önbelleğe alınmaz. Çizge kapalıysa başlangıç düğümlerinin hazırlığı atlanır.
+
+## Kapsama bağlı hukuki kimlikler ve tam eşleşme önceliği
+
+Hukuk kuralları açıkken izinli başlıklar ve ilk parça kanun başlıkları, `K.` dâhil kapsam önbellekli kanun adları öğretir. Tam kanun/madde veya kararın kendi esas/karar numarası, birleştirme ve isteğe bağlı yeniden sıralamadan sonra belge sırasıyla en fazla üç konumu başa alabilir; diğer sonuçlar düzenini korur. Karar kimliği sıfırıncı parçanın ilk 300 karakterinde başlamalıdır. Sonraki alıntılar sayılmaz. Yalnızca AYM gibi mahkeme adları Anayasa’yı seçmez.
+
+`retrieval_provenance.legal_items`, özgün parça konumlarıyla sürümlü öğeleri döndürür; SPO kayıtlarından ayrıdır ve birleştirme skoruna eklenmez. `MESA_LEGAL_RULES_ENABLED=false`, hukuki işlemeyi atlar, sonuç kopyalarındaki mevcut hukuki ekleri gizler ve genel aramayı açık tutar. Kalıcı anlık görüntüler/kimlikler saklanır.

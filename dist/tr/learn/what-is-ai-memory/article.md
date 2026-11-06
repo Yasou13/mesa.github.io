@@ -84,5 +84,5 @@ Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka b
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.1 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/architecture-v4.md)
+3. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
 

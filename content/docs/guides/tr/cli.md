@@ -1,11 +1,11 @@
 ## Yerel tek kullanıcılı komutlar
 
-MESA CLI, `mesa-memory` paketiyle birlikte gelen komut satırı arayüzüdür. Ayrı bir CLI paketi kurmanız gerekmez. v0.9.1 sürümünü kurup yerel sunucuyu başlatın:
+MESA CLI, `mesa-memory` paketiyle birlikte gelen komut satırı arayüzüdür. Ayrı bir CLI paketi kurmanız gerekmez. v0.9.2 sürümünü kurup yerel sunucuyu başlatın:
 
-v0.9.1 paketi PyPI’da yayımlandı; komut doğrulanan bu sürümü sabitler. [Kurulum ve eklere](docs/core/installation/) bakın.
+v0.9.2 paketi PyPI’da yayımlandı; komut doğrulanan bu sürümü sabitler. [Kurulum ve eklere](docs/core/installation/) bakın.
 
 ```bash
-pip install mesa-memory==0.9.1
+pip install mesa-memory==0.9.2
 mesa start
 ```
 
@@ -26,7 +26,7 @@ mesa mcp-config
 
 ## Etkinleşmeyi bekleme ve kaynakla silme
 
-`mesa add` varsayılan olarak ACTIVE durumunu bekler. Etiketli v0.9.1 SDK’sında `Mesa.add` varsayılanı `wait=False` değeridir; ACTIVE durumunu beklemek için açıkça `wait=True` verin. Kabulden hemen sonra dönmek için `mesa add document.txt --source file://document.txt --no-wait` veya `Mesa.add(..., wait=False)` kullanın. Terminal parça hatası, mutation ID, durum ve hata sınıfıyla erken bildirilir. `RETRY_PENDING` terminal durum değildir.
+`mesa add` varsayılan olarak ACTIVE durumunu bekler. Etiketli v0.9.2 SDK’sında `Mesa.add` varsayılanı `wait=False` değeridir; ACTIVE durumunu beklemek için açıkça `wait=True` verin. Kabulden hemen sonra dönmek için `mesa add document.txt --source file://document.txt --no-wait` veya `Mesa.add(..., wait=False)` kullanın. Terminal parça hatası, mutation ID, durum ve hata sınıfıyla erken bildirilir. `RETRY_PENDING` terminal durum değildir.
 
 ```bash
 mesa delete --source file://document.txt

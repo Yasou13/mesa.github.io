@@ -24,6 +24,6 @@ Assertion vectors and query embeddings must share provider/model identity and di
 
 `MESA_EXTERNAL_PROVIDER_ENABLED=false` allows local Ollama/OpenAI-compatible endpoints and blocks cloud providers. Set it true and supply keys for cloud providers. It is not a complete air-gap or zero-cost guarantee. Model downloads, local provisioning and other process networking are separate concerns. The [v0.9.1 DEV benchmark](docs/core/release-notes/) reports BGE retrieval and device latency under stated conditions; it does not measure cloud-provider token cost.
 
-## v0.9.1 operation
+## v0.9.2 operation
 
 Use `MESA_LLM_MODEL=provider:model` and `MESA_EMBEDDING_MODEL=provider:model`. BM25 ingestion/search works with models off. Local Ollama and OpenAI-compatible endpoints are allowed with the external-provider flag off; cloud providers require it on and need keys.

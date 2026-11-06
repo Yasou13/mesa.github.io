@@ -6,6 +6,6 @@ Run `mesa start` then `mesa mcp-config` for the direct V4 stdio configuration. T
 
 Use the pinned source reference below for complete tables and operator details. Related guides: [architecture](architecture/), [API](docs/core/api-reference/), [operations](docs/core/operations/) and [release limits](docs/core/limitations/).
 
-## v0.9.1 operation
+## v0.9.2 operation
 
 Direct V4 stdio uses the MCP client’s tool approvals and API key grants; gateway approval/audit is a separate integration. Keep generated mcp-config output private.

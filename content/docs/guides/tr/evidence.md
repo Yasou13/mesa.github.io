@@ -9,3 +9,7 @@ Belge sürümünün tamamına ait içerik özeti, sürümdeki parçaları listel
 ## Kanıt bağlam bütçesine tam olarak sığmalı
 
 ContextBuilder, HTTP yanıtının tamamını değil modelin göreceği biçimlendirilmiş kanıtı sayar. Bir çizge yolunun kanıtı bütçeye bütün olarak sığmalıdır. Asıl BPE sayacı yüklenemezse UTF-8 baytlarına dayanan temkinli bir üst sınır kullanılır; bu durumda bütçeye daha az kanıt sığabilir. Boş arama sonucu, uygun kanıt bulunamadığını gösterir; iddianın yanlış olduğunu kanıtlamaz.
+
+## Sürümlü hukuki öğeler parça konumlarını korur
+
+Yeni parçalar; citation, decision_ref, date, amount, duration ve outcome için `retrieval_provenance.legal_items` alanını `{version, items}` biçiminde döndürebilir. Sonuç daha kısa bir bilgi alıntılasa da `start`/`end`, özgün kaynak parçasını gösterir. Bu ekler SPO kayıtlarından ayrıdır ve birleştirme skoruna eklenmez. Hukuk kurallarını kapatmak, sonuç kopyalarındaki mevcut ekleri gizler; anlık görüntüleri silmez. Belge purge işlemi bunların kaynak alıntılarını siler.

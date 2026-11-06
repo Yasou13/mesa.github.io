@@ -10,7 +10,7 @@ Runtime defaults: k=60, vector weight=8.0; BM25, assertion and graph weights=1.0
 
 Graph traversal is bounded: at most 20 seeds and three hops, 500 requested graph hits, frontier 64, per-node fan-out 32 and a default 15-second request timeout. These are resource limits, not latency guarantees. Context defaults to a 2048-token formatted-evidence budget and single search. Optional adaptive mode uses at most one planner call and two additional searches without widening scope.
 
-## v0.9.1 operation
+## v0.9.2 operation
 
 With models off, BM25 still retrieves stored source text. Disabled/incomplete vector and graph lanes are reported in degraded_sources. MESA_GRAPH_ENABLED=false skips Kùzu; re-enabling graph or embedding backfills skipped lanes at startup.
 
@@ -21,3 +21,9 @@ With models off, BM25 still retrieves stored source text. Disabled/incomplete ve
 ## Search concurrency and scope cache
 
 `MESA_SEARCH_SCOPE_CACHE=true` reuses temporary scope-specific FTS indexes and row/text features in a four-scope LRU. SQLite commit changes invalidate the cache; every request still rechecks authorization. Query embedding is computed before the search lock, and reranking runs after releasing the connection. scrypt verification, issuance and rotation run outside the event loop without caching authorization results. With graph disabled, graph seed preparation is skipped.
+
+## Scoped legal identities and exact-match-first results
+
+With legal rules enabled, authorized titles and first-chunk law headers teach scope-cached law names, including `K.`. An exact law/article or decision’s own docket/decision reference can occupy at most three leading positions in document order after fusion and optional reranking; remaining results retain their order. A decision identity must start within the first 300 characters of chunk zero. Later quotations do not count. Court-name mentions such as AYM alone do not select the Constitution.
+
+`retrieval_provenance.legal_items` returns versioned items with original chunk offsets; these are separate from SPO facts and do not add fusion score. `MESA_LEGAL_RULES_ENABLED=false` skips legal processing, hides stored legal annotations in result copies and leaves generic retrieval available. Existing snapshots/identities remain stored.

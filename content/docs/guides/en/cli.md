@@ -1,11 +1,11 @@
 ## Local single-user commands
 
-MESA CLI is the command-line interface included with the `mesa-memory` package. No separate CLI package is needed. Install v0.9.1 and start the local server:
+MESA CLI is the command-line interface included with the `mesa-memory` package. No separate CLI package is needed. Install v0.9.2 and start the local server:
 
-The v0.9.1 package is published on PyPI; the command pins that verified version. See [installation and extras](docs/core/installation/#guide-package-index-and-optional-extras).
+The v0.9.2 package is published on PyPI; the command pins that verified version. See [installation and extras](docs/core/installation/#guide-package-index-and-optional-extras).
 
 ```bash
-pip install mesa-memory==0.9.1
+pip install mesa-memory==0.9.2
 mesa start
 ```
 
@@ -26,7 +26,7 @@ mesa mcp-config
 
 ## Wait for activation and delete by source
 
-`mesa add` waits for ACTIVE by default. In the tagged v0.9.1 SDK, `Mesa.add` defaults to `wait=False`; pass `wait=True` explicitly to wait for ACTIVE. Use `mesa add document.txt --source file://document.txt --no-wait` or `Mesa.add(..., wait=False)` to return after admission. A terminal chunk failure is reported early with mutation ID, state and error class. `RETRY_PENDING` is not terminal.
+`mesa add` waits for ACTIVE by default. In the tagged v0.9.2 SDK, `Mesa.add` defaults to `wait=False`; pass `wait=True` explicitly to wait for ACTIVE. Use `mesa add document.txt --source file://document.txt --no-wait` or `Mesa.add(..., wait=False)` to return after admission. A terminal chunk failure is reported early with mutation ID, state and error class. `RETRY_PENDING` is not terminal.
 
 ```bash
 mesa delete --source file://document.txt

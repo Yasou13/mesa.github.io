@@ -158,3 +158,21 @@ PyPI publication completed after the earlier 404 check. The version JSON now ret
 The released wheel was run in a temporary Linux environment using existing Core dependencies, models/graph disabled and a dedicated loopback port/storage root. Real EN/TR CLI ingestion, default ACTIVE waiting, revision replacement, immediate search, source deletion, SDK `wait=True` and CLI `--no-wait` passed. This is not a clean dependency installation, Docker check, real-model run or production qualification.
 
 The full review found and fixed long source-path overflow, unreadable mobile table wrapping, absent handwritten guide search content and deferred demo initialization layout shift. SDK example verification was repaired for the receipt-file quickstart and now exercises activation, source deletion, retryable and terminal mutation states. Mutation polling (2 seconds) and revision activation polling (1 second) are distinguished. The browser check now correctly distinguishes standalone Get started from the docs workspace's intentionally hidden background, while retaining the original overflow and CLS thresholds.
+
+## v0.9.2 alignment — 7 November 2026
+
+Current Core baseline: `8cd2cfe1df5356e73b3bef83ae640850fd54c798` (`v0.9.2`). Earlier dated entries retain their original reviewed baselines. Official release metadata and PyPI JSON were checked live; wheel/sdist are not yanked and match official release SHA256 digests. All 150 Python files in the wheel match the release tag.
+
+| Current claim | Source and qualification |
+| --- | --- |
+| Legal rules default on; model SPO extraction defaults off independently of models | Tagged `docs/configuration.md`, runtime settings and `CHANGELOG.md` |
+| Legal items are versioned, chunk-offset snapshots separate from SPO and fusion scoring | Tagged `mesa_storage/dao.py`, `mesa_storage/legal_rules.py`, configuration; purge clears quotes |
+| Exact legal matches reserve at most three leading results; decision identity uses first 300 characters of chunk zero | Tagged DAO exact selection and `_rerank_results`; authorization and document order retained |
+| Legal rules off bypasses legal search and hides returned overlays while retaining durable data | Tagged DAO, graph provider and configuration; generic retrieval remains |
+| Queue pressure waits without repeating the chunk plan; SDK uses remaining document deadline | Tagged `docs/concepts-and-ingestion.md`, router and client |
+| Bounded CPU work restores health responsiveness in measured repros | Official release security notes; no faster-heavy-query or general latency claim |
+| Heavy search ~11.6 s, ~5 MB readiness ~7 min; scan/Unicode stalls, UUID ties and 422 wording remain | Tagged changelog; scenario-specific development evidence |
+| Python 3.13 parser CI wall-clock timing issue is outside the 0.9.2 fix | Official GitHub release known issues; intended 0.9.3 fix is not attributed to this version |
+| Models-off combined runtime accepts documents with BM25; Python >=3.11 | Tagged ingestion contract, pyproject and PyPI metadata; corrected obsolete UML claims |
+
+No new certification, current independent QA/Law runtime PASS, production readiness or universal performance guarantee is inferred. Prior v0.9.1 DEV figures are preserved as historical results. Context7 returned unrelated Mesa agent-modeling projects; this MESA release is verified from its own immutable repository sources.

@@ -4,4 +4,4 @@ The standalone independent audit and obsolete benchmark reports were removed fro
 
 ## Use current testing and release evidence
 
-Read the [maintained testing guide](docs/core/testing/). See [v0.9.1 release notes](docs/core/release-notes/) and [release qualification](docs/core/release-policy/) for evidence scope and outstanding gates.
+Read the [maintained testing guide](docs/core/testing/). See [v0.9.2 release notes](docs/core/release-notes/) and [release qualification](docs/core/release-policy/) for evidence scope and outstanding gates.

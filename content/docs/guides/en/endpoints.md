@@ -1,10 +1,10 @@
 ## Overview
 
-Generated from the OpenAPI document published with Core v0.9.1 (commit e2f984d). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.
+Generated from the OpenAPI document published with Core v0.9.2 (commit 8cd2cfe). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.
 
 Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 call may touch is limited by the roles granted to that key; see [Security & Scope](docs/core/security/).
 
-[Download the OpenAPI JSON](https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/docs/reference/openapi.json)
+[Download the OpenAPI JSON](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/reference/openapi.json)
 
 ## V4 · memory, catalog and sessions
 

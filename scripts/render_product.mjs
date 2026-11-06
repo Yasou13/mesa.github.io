@@ -10,7 +10,7 @@ const paragraph = (en, tr) => `<p>${t(en, tr)}</p>`;
 const title = (en, tr) => `<h2>${t(en, tr)}</h2>`;
 const eyebrow = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const row = (name, en, tr) => `<article><h3>${name}</h3>${paragraph(en, tr)}</article>`;
-const source = 'https://github.com/Yasou13/MESA/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/';
+const source = 'https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/';
 
 export function rankCalculator() {
   const lanes = [
@@ -126,13 +126,20 @@ k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code><
     )}
     ${rankCalculator()}
     ${paragraph(
-      'Citation boosts apply inside lanes: BM25 exact +200, same statute +40; assertion exact +150, same statute +40. They affect lane order, not RRF increments. After fusion, a query-dependent legal factor is 1.5 for exact statute/article, 1.25 for the same statute, 0.25 for a competing statute, and 1.0 otherwise.',
-      'Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; bilgi kaydı tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. Birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.'
+      'Citation boosts apply inside lanes: BM25 exact +200, same statute +40; assertion exact +150, same statute +40. They affect lane order, not RRF increments. When MESA_LEGAL_RULES_ENABLED=true, a query-dependent legal factor after fusion is 1.5 for exact statute/article, 1.25 for the same statute, 0.25 for a competing statute, and 1.0 otherwise.',
+      'Atıf artırımları kanal içinde uygulanır: BM25 tam eşleşme +200, aynı kanun +40; bilgi kaydı tam eşleşme +150, aynı kanun +40. Kanal sırasını etkiler; doğrudan RRF’ye eklenmez. MESA_LEGAL_RULES_ENABLED=true iken birleştirmeden sonra sorguya bağlı hukuk katsayısı tam kanun/madde için 1.5, aynı kanun için 1.25, rakip kanun için 0.25, diğer durumda 1.0’dır.'
     )}
     ${paragraph(
       'Responses expose rrf_score, legal_factor, raw_score and final_score separately. Higher fused relevance is better; none of these fields is a probability of truth.',
       'Yanıtlar rrf_score, legal_factor, raw_score ve final_score alanlarını ayrı sunar. Daha yüksek birleştirilmiş uygunluk daha iyidir; bu alanların hiçbiri doğruluk olasılığı değildir.'
     )}
+  </section>
+
+  <section class="section">
+    ${title('Exact legal matches can lead the results.', 'Tam hukuki eşleşmeler başa alınabilir.')}
+    ${paragraph('With legal rules enabled, an exact law/article or a decision’s own docket/decision reference reserves at most three leading positions in document order after fusion and optional reranking. Decision identity must start within the first 300 characters of chunk zero; later quotations do not count. Other hits retain their order. Scoped titles and first-chunk law headers teach law names, including K.; AYM alone does not select the Constitution.', 'Hukuk kuralları açıkken tam kanun/madde veya kararın kendi esas/karar numarası, birleştirme ve isteğe bağlı yeniden sıralamadan sonra belge sırasıyla en fazla üç konumu başa alır. Karar kimliği sıfırıncı parçanın ilk 300 karakterinde başlamalıdır; sonraki alıntılar sayılmaz. Diğer sonuçlar düzenini korur. Kapsamdaki başlıklar ve ilk parça kanun başlıkları, K. dâhil kanun adlarını öğretir; yalnızca AYM adı Anayasa’yı seçmez.')}
+    ${paragraph('Versioned legal_items retain original chunk offsets separately from SPO facts and do not add fusion score. MESA_LEGAL_RULES_ENABLED=false bypasses legal processing and hides stored legal overlays in returned copies while preserving generic retrieval and durable snapshots.', 'Sürümlü legal_items, özgün parça konumlarını SPO kayıtlarından ayrı korur ve birleştirme skoruna eklenmez. MESA_LEGAL_RULES_ENABLED=false, genel aramayı ve kalıcı anlık görüntüleri koruyarak hukuki işlemeyi atlar ve sonuç kopyalarındaki hukuki ekleri gizler.')}
+    ${cta(t('Legal settings and limits', 'Hukuki ayarlar ve sınırlar'), route('docs/core/configuration/'), 'text')}
   </section>
 
   <section class="section">
@@ -162,7 +169,7 @@ k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code><
   </section>
 
   <section class="section">
-    ${title('v0.9.1 runtime and DEV evidence', 'v0.9.1 çalışma zamanı ve DEV kanıtı')}
+    ${title('v0.9.2 runtime and DEV evidence', 'v0.9.2 çalışma zamanı ve DEV kanıtı')}
     ${paragraph('Vector weight defaults to 8.0; use MESA_RRF_VECTOR_WEIGHT=1 for the previous setting. Zero removes a lane contribution. Optional BGE reranking is off by default, needs [ml] and adds rerank_score after fusion while preserving rrf_score and final_score.', 'Vektör ağırlığı varsayılanı 8.0’dır; önceki ayar için MESA_RRF_VECTOR_WEIGHT=1 kullanın. Sıfır, kanal katkısını kapatır. İsteğe bağlı BGE yeniden sıralama varsayılan kapalıdır; [ml] gerektirir ve rrf_score/final_score değerlerini koruyup birleştirme sonrasında rerank_score ekler.')}
     <a class="text-link" href="${route('docs/core/release-notes/')}">${t('Read the DEV matrix, CPU/GPU latency and limits →', 'DEV matrisi, CPU/GPU gecikmeleri ve sınırları okuyun →')}</a>
   </section>
@@ -195,7 +202,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.9.1</p>
+  <p class="eyebrow">CORE v0.9.2</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `
@@ -207,8 +214,8 @@ export function documentationJourney(route) {
     </li>`).join('')}
   </ol>
   ${paragraph(
-    'Published source release · 1 November 2026. Production qualification remains NO-GO.',
-    'Yayımlanmış kaynak sürümü · 1 Kasım 2026. Üretim yeterliliği NO-GO durumundadır.'
+    'Published source release · 6 November 2026. Production qualification remains NO-GO.',
+    'Yayımlanmış kaynak sürümü · 6 Kasım 2026. Üretim yeterliliği NO-GO durumundadır.'
   )}
 </section>`;
 }

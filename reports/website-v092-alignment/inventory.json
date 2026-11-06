@@ -1,0 +1,5431 @@
+{
+  "before_head": "7039edbdc280cdc4e48ba31ffedf2f951e5f11b4",
+  "target_version": "0.9.2",
+  "target_commit": "8cd2cfe1df5356e73b3bef83ae640850fd54c798",
+  "tracked_files": 880,
+  "files": [
+    {
+      "file": ".gitattributes",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": ".github/workflows/pages.yml",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": ".gitignore",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "AUDIT.md",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "CLAIMS.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "README.md",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/README.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/bm25-tuning-for-domain-documents.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/build-a-small-search-lab.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/evaluating-ndcg-and-mrr-in-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/hybrid-retrieval-explained.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/keyword-vs-semantic-search.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/memory-scope-and-authorization.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/provenance.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/rag-vs-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/reciprocal-rank-fusion-explained.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/retrieval-evaluation.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/semantic-search.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/sqlite-as-canonical-agent-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/structured-vs-unstructured-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/temporal-decay-in-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/verify-ai-yargitay-decision.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/en/what-is-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/what-is-evidence-aware-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/en/why-graphs-matter-in-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/bm25-tuning-for-domain-documents.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/build-a-small-search-lab.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/evaluating-ndcg-and-mrr-in-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/hybrid-retrieval-explained.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/keyword-vs-semantic-search.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/memory-scope-and-authorization.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/provenance.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/rag-vs-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/reciprocal-rank-fusion-explained.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/retrieval-evaluation.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/semantic-search.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/sqlite-as-canonical-agent-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/structured-vs-unstructured-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/temporal-decay-in-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/verify-ai-yargitay-decision.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "content/articles/tr/what-is-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/what-is-evidence-aware-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/articles/tr/why-graphs-matter-in-ai-memory.md",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides.json",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0009.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0010.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0011.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0012.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0013.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0014.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/adr-0015.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/api.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/architecture.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/audit.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/cli.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/colab.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/configuration.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/decisions.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/documentation-map.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/ecosystem.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/embedding-providers.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/endpoints.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/evidence.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/examples.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/getting-started.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/graph.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/ingestion.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/installation.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/limits.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/mcp-core.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/migration.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/operations.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/overview.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/rebuild.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/en/release-notes.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/release-policy.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/retrieval.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/security.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/testing.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/en/troubleshooting.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0009.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0010.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0011.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0012.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0013.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0014.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/adr-0015.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/api.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/architecture.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/audit.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/cli.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/colab.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/configuration.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/decisions.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/documentation-map.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/ecosystem.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/embedding-providers.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/endpoints.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/evidence.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/examples.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/getting-started.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/graph.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/ingestion.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/installation.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/limits.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/mcp-core.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/migration.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/operations.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/overview.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/rebuild.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/guides/tr/release-notes.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/release-policy.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/retrieval.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/security.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/testing.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/guides/tr/troubleshooting.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/manifest.json",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d",
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "content/docs/openapi-0.8.1.json",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/openapi-0.9.0.json",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/openapi-0.9.1.json",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/source-en/core/docs/README.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/source-en/core/docs/RUNBOOK.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/source-en/core/docs/api-reference.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/source-en/core/docs/release.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "content/docs/source-en/core/docs/testing.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/docs/source-en/core/docs/v4-rebuild-runbook.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/source-en/data/README.md",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": []
+    },
+    {
+      "file": "content/docs/sources.json",
+      "review": "Refresh Core pin/source cache, EN/TR guides, OpenAPI and source appendices; retain independent repository baselines",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/examples/first-search.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "content/glossary-terms.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "content/hub.json",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "content/learn-curriculum.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "content/media-scenes.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "content/tr.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "dist/.nojekyll",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/404.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/CNAME",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/about/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/admin.css",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/admin.js",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/admin/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/app.js",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/apple-touch-icon.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/architecture/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/assets/cartographic-triangulation-plate.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/certification-seal-plate.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/chronometer-cycles.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/hero-astronomical-trace.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/legal-gazette-engraving.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/mesa-logo.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/mesa-mark.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/provenance-lineage-plate.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/stratigraphy-layers.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/taxonomic-classification-plate.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/assets/topological-network-plate.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/certification/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/cosmic-motion.js",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/cosmic.css",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/data/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs.css",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/docs.js",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/docs/core/adr-0009/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/adr-0010/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/adr-0011/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/adr-0012/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/adr-0013/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/adr-0014/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/adr-0015/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/api-reference/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/architecture/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/audit/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/cli-reference/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/colab-rehberi/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/concepts-and-ingestion/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/configuration/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d",
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "dist/docs/core/decisions/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/documentation-map/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/ecosystem/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/embedding-providers/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d",
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "dist/docs/core/endpoints/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/evidence/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/examples/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/getting-started/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/graph/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/installation/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/limitations/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/mcp/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/migration/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/operations/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/rebuild-runbook/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/release-notes/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/release-policy/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/retrieval-and-graph/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/security/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/testing/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/core/troubleshooting/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/data/import-contract/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/data/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/data/mvp-closure/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/data/quickstart/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/data/troubleshooting/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/data/user-guide/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/agent-pack-start/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/audit-report/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/contract/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/current-repair/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/gates-and-verdicts/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/repair-verification/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/e2e/system-model/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/law/baseline/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/law/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/law/operations/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/law/verification/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/mcp/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/qa/audit/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/qa/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/qa/repair-prompt/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/docs/qa/reproduce-prompt/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/early-access.css",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/early-access.js",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/early-access/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/ecosystem/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/evaluation/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/examples/first-search.json",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/faq/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/favicon-32x32.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/favicon-48x48.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/favicon.ico",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/favicon.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/favicon.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/OFL-Commit-Mono.txt",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/OFL-Instrument-Sans.txt",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/OFL-Instrument-Serif.txt",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/commit-mono-variable.woff2",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/instrument-sans-variable.ttf",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/instrument-sans-variable.woff2",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/instrument-serif-italic.ttf",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/fonts/instrument-serif-italic.woff2",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/get-started/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/glossary/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/glossary/provenance/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/guides/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/guides/verify-ai-yargitay-decision/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/how-it-works/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/law/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn.css",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/audit-logging-in-production-ai/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/benchmarking-retrieval-latency/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/bm25-tuning-for-domain-documents/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/bm25-tuning-for-domain-documents/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/build-a-small-search-lab/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/build-a-small-search-lab/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/contradiction-detection-in-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/cryptographic-evidence-spans/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/dense-vs-sparse-embeddings/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/evaluating-ndcg-and-mrr-in-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/evaluating-ndcg-and-mrr-in-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/graph-rag-vs-pure-graphs/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/hallucination-mitigation-via-evidence/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/hybrid-retrieval-explained/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/hybrid-retrieval-explained/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/index.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/kuzu-graph-storage-projections/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/lancedb-vector-indexing-patterns/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/legal-statute-invalidation-pipelines/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/memory-scope-and-authorization/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/memory-scope-and-authorization/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/multi-agent-shared-memory-protocols/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/multi-hop-reasoning-over-knowledge-graphs/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/rag-vs-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/rag-vs-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/reciprocal-rank-fusion-explained/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/reciprocal-rank-fusion-explained/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/reranking-strategies-for-agent-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/role-based-access-control-in-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/semantic-search/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/learn/semantic-search/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/session-state-vs-durable-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/sqlite-as-canonical-agent-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/sqlite-as-canonical-agent-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/structured-vs-unstructured-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/structured-vs-unstructured-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/synthetic-query-generation-for-benchmarks/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/temporal-decay-in-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/temporal-decay-in-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/what-is-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/what-is-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/what-is-evidence-aware-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/what-is-evidence-aware-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/what-is-provenance-in-ai/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/why-graphs-matter-in-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/why-graphs-matter-in-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/learn/why-vector-search-alone-is-not-enough/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/licenses/github-icons.txt",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/licenses/lucide-icons.txt",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/media/cosmic/cosmic-flow.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/media/cosmic/cosmic-horizon.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/media/cosmic/cosmic-structure.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/media/cosmic/hero.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/media/desktop/hero.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/media/mobile/hero-portrait.webp",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/mesa/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/methodology/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/methodology/retrieval-evaluation/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/og-image-tr.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/og-image-tr.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/og-image.png",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/og-image.svg",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/privacy/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/qa/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/research/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/research/keyword-vs-semantic-search/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/resources/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/retrieval/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/robots.txt",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/search-index.json",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d",
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "dist/sitemap.xml",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/status/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/styles.css",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tools/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/about/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/admin/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/architecture/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/certification/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/data/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0009/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0010/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0011/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0012/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0013/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0014/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/adr-0015/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/api-reference/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/architecture/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/audit/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/cli-reference/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/colab-rehberi/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/concepts-and-ingestion/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/configuration/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d",
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/decisions/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/documentation-map/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/ecosystem/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/embedding-providers/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d",
+        "MESA_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/endpoints/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/evidence/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/examples/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/getting-started/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/graph/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/installation/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/limitations/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/mcp/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/migration/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/operations/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/rebuild-runbook/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/release-notes/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/release-policy/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/retrieval-and-graph/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/security/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/testing/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/core/troubleshooting/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/data/import-contract/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/data/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/data/mvp-closure/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/data/quickstart/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/data/troubleshooting/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/data/user-guide/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/agent-pack-start/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/audit-report/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/contract/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/current-repair/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/gates-and-verdicts/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/repair-verification/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/e2e/system-model/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/law/baseline/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/law/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/law/operations/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/law/verification/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/mcp/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/qa/audit/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/qa/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/qa/repair-prompt/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/docs/qa/reproduce-prompt/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/early-access/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/ecosystem/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/evaluation/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/faq/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/get-started/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/glossary/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/glossary/provenance/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/guides/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/guides/verify-ai-yargitay-decision/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/how-it-works/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/law/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/audit-logging-in-production-ai/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/benchmarking-retrieval-latency/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/bm25-tuning-for-domain-documents/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/learn/bm25-tuning-for-domain-documents/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/build-a-small-search-lab/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/build-a-small-search-lab/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/contradiction-detection-in-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/cryptographic-evidence-spans/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/dense-vs-sparse-embeddings/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/evaluating-ndcg-and-mrr-in-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/learn/evaluating-ndcg-and-mrr-in-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/graph-rag-vs-pure-graphs/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/hallucination-mitigation-via-evidence/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/hybrid-retrieval-explained/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/learn/hybrid-retrieval-explained/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/index.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/learn/kuzu-graph-storage-projections/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/lancedb-vector-indexing-patterns/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/legal-statute-invalidation-pipelines/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/memory-scope-and-authorization/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/memory-scope-and-authorization/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/multi-agent-shared-memory-protocols/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/multi-hop-reasoning-over-knowledge-graphs/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/rag-vs-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/learn/rag-vs-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/reciprocal-rank-fusion-explained/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/reciprocal-rank-fusion-explained/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/reranking-strategies-for-agent-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/role-based-access-control-in-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/semantic-search/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": []
+    },
+    {
+      "file": "dist/tr/learn/semantic-search/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/session-state-vs-durable-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/sqlite-as-canonical-agent-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/sqlite-as-canonical-agent-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/structured-vs-unstructured-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/structured-vs-unstructured-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/synthetic-query-generation-for-benchmarks/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/temporal-decay-in-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/temporal-decay-in-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/what-is-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/what-is-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/what-is-evidence-aware-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/what-is-evidence-aware-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/what-is-provenance-in-ai/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/why-graphs-matter-in-ai-memory/article.md",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/why-graphs-matter-in-ai-memory/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/learn/why-vector-search-alone-is-not-enough/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/mesa/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/methodology/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/methodology/retrieval-evaluation/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/privacy/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/qa/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/research/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/research/keyword-vs-semantic-search/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/resources/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/retrieval/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/status/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/tools/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/tr/use-cases/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "dist/use-cases/index.html",
+      "review": "Regenerate pages/search/SEO; retain visual assets unless affected",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "docs/INDEX.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/admin/ADMIN_AUTH_SETUP.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/admin/CMS_USER_GUIDE.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/admin/DEPLOYMENT_SETUP.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/admin/EARLY_ACCESS.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/architecture/CONTENT_PLATFORM.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/architecture/DOCUMENTATION_SYNC.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/architecture/PUBLISHING_PIPELINE.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/INITIAL_DEFECTS.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/MESA_AUDIT_REPAIR_LOG.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/MESA_CMS_SECURITY_REPORT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/MESA_COSMIC_VISUAL_REPAIR.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/MESA_GLOBAL_VISUAL_AUDIT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/MESA_VERSION_ACCURACY_REPORT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/MESA_WEBSITE_FULL_AUDIT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/accessibility.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/all-routes/matrix.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/axe.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/baseline-detection/matrix.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-hero-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-hero-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-hero-801.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-motion-0.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-motion-10.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-motion-20.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-motion-5.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-rows-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-rows-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before-rows-801.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/before.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/builds.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/compositing.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/contrast.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-normal-0.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-normal-10.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-normal-20.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-normal-5.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-reduced-0.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-reduced-10.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-reduced-20.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-1440-reduced-5.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-normal-0.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-normal-10.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-normal-20.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-normal-5.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-reduced-0.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-reduced-10.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-reduced-20.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion-390-reduced-5.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-motion/motion.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-admin-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-admin-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-certification-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-certification-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-data-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-data-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-docs-core-api-reference-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-docs-core-api-reference-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-ecosystem-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-ecosystem-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-guides-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-guides-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-home-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-home-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-how-it-works-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-how-it-works-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-law-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-law-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-learn-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-learn-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-mesa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-mesa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-qa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-qa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-research-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-research-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-rows-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-rows-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-status-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-status-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-admin-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-admin-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-certification-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-certification-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-data-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-data-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-docs-core-api-reference-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-docs-core-api-reference-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-ecosystem-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-ecosystem-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-guides-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-guides-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-how-it-works-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-how-it-works-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-law-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-law-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-learn-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-learn-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-mesa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-mesa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-qa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-qa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-research-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-research-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-rows-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-rows-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-status-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-status-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-transition-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-tr-transition-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-transition-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/after-transition-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/final-responsive/matrix.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/gallery.html",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/interactions.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/node-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/peak-background-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/peak-background-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/peak-content-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/peak-content-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/performance.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/pixel-differences.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/preservation-and-sizes.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/project-interactions.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/project-interactions.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/python-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/resolved-findings.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/rrf/after-learn-reciprocal-rank-fusion-explained-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/rrf/after-learn-reciprocal-rank-fusion-explained-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/rrf/after-tr-learn-reciprocal-rank-fusion-explained-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/rrf/after-tr-learn-reciprocal-rank-fusion-explained-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/rrf/matrix.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/supplement.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/cosmic-repair/texture-provenance.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/admin-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/baseline.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/browser-interactions-project.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/browser-interactions-project.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/browser-interactions-root.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/browser-interactions-root.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/browser-observations.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/browser.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/claim-reconciliation.csv",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/claim-table.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/claims-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/core-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/e2e-final-full-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/e2e-first-full-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/e2e-focused-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/final-build.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/live-site.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/markdown-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/media-integrity.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/page-inventory.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/payloads.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/python-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/release-artifacts.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/release-checksums.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/repair-commits.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/repository-links.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/reproducibility.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/route-preservation.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/after-docs-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/after-home-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/after-home-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/after-home-801.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/after-tr-docs-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/after-tr-home-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/before-docs-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/screenshots/before-home-801.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/search-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/secret-scan.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/site-check.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/sql-authorization.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/sync-network.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/upstream.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/audits/evidence/user-change-preservation.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/branding.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/composition-audit.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/01_SITE_AUDIT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/02_ART_DIRECTION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/03_SCENE_STORYBOARD_AND_ASSET_CONTRACT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/04_PHASE1_IMPLEMENTATION_REPORT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/05_COSMIC_PHASES_2_4_IMPLEMENTATION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/MESA_COSMIC_BACKGROUND_SYSTEM.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/MESA_DESIGN_CONSISTENCY.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/design/MESA_Faz_1_Premium_Kozmik_Altyapi_Agent_Prompt.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo-audit-baseline.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo-implementation-report.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/evidence/browser.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/evidence/learn-browser.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/evidence/live-http.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/evidence/summary.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/evidence/tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/query-pool.csv",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/geo/results-template.csv",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/iconography.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/localization-glossary.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/localization.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/plans/MESA_CONTENT_PLATFORM_PLAN.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/plans/MESA_COSMIC_MINIMALISM_REDESIGN.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/releases/learn-redesign-2026-10-18.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/releases/v0.8.1-website-update.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/releases/v0.9.0-full-audit.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/releases/v0.9.0-plain-language-website.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/releases/v0.9.0-website-update.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/security/CMS_SECURITY.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/security/HTTP_HEADERS.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/security/MESA_ADMIN_LOGIN_VERIFICATION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/MESA_VISUAL_REGRESSION_REPORT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/accessibility.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/auth-fixture.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/browser-matrix.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/cms-authorization.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/configuration-state.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/hosting-builds.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/mesa-node-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/mesa-python-tests.log",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/performance.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/preservation-and-sizes.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/project-interactions.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/evidence/resolved-accessibility-findings.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/first-use-ux.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/admin-configured-fixture.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-docs-core-api-reference-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-docs-core-api-reference-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-home-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-home-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-law-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-law-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-learn-what-is-ai-memory-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-learn-what-is-ai-memory-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-mesa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-mesa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-tr-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/before-tr-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-admin-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-admin-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-certification-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-certification-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-data-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-data-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-docs-core-api-reference-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-docs-core-api-reference-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-ecosystem-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-ecosystem-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-home-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-home-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-law-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-law-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-learn-what-is-ai-memory-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-learn-what-is-ai-memory-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-mesa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-mesa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-qa-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-qa-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-tr-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/final-tr-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/screenshots/tr-admin-configured-fixture.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/tests/visual-gallery.html",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/visual-polish-audit.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "docs/visual-sources.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "package-lock.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "package.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/00_BASELINE_AND_SOURCE_OF_TRUTH.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/01_DOCUMENTATION_INVENTORY.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/02_WEBSITE_CONTENT_AUDIT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/03_TECHNICAL_CLAIM_TRACEABILITY.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/04_INFORMATION_ARCHITECTURE_CHANGES.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/05_DESIGN_SYSTEM_AND_VISUAL_REFINEMENT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/06_PAGE_BY_PAGE_CHANGELOG.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/07_BILINGUAL_CONTENT_VERIFICATION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/08_SEO_ACCESSIBILITY_AND_PERFORMANCE.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/09_BUILD_DEPLOYMENT_AND_ROUTE_VERIFICATION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/10_REMAINING_LIMITATIONS.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261015T221500Z/11_FINAL_VERDICT_AND_GIT_HANDOFF.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/00_BASELINE_AND_SOURCE_OF_TRUTH.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/01_DOCUMENTATION_INVENTORY.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/02_WEBSITE_CONTENT_AUDIT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/03_TECHNICAL_CLAIM_TRACEABILITY.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/04_INFORMATION_ARCHITECTURE_CHANGES.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/05_DESIGN_SYSTEM_AND_VISUAL_REFINEMENT.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/06_PAGE_BY_PAGE_CHANGELOG.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/07_BILINGUAL_CONTENT_VERIFICATION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/08_SEO_ACCESSIBILITY_AND_PERFORMANCE.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/09_BUILD_DEPLOYMENT_AND_ROUTE_VERIFICATION.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/10_REMAINING_LIMITATIONS.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/11_FINAL_VERDICT_AND_GIT_HANDOFF.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/asset-optimization.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/axe-all-routes.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/axe-tool.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/baseline.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/browser-matrix.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/core-retrieval-execution.txt",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/dependency-checks.txt",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/documentation-inventory.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/ecosystem-remote.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/final-checks.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/final-snapshots.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/guide-source-verification.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/hosting-modes.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/official-release.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/project-path-interactions.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/quickstart-execution.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/release-browser-checks.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/route-preservation.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/architecture-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/docs-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/docs-core-getting-started-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/home-1440-full.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/home-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/retrieval-1440.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/tr-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/tr-architecture-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/tr-docs-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/screenshots/tr-retrieval-390.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/sdk-example-execution.txt",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/technical-claims.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v080-alignment/20261016-documentation-design/evidence/user-change-preservation.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/README.md",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "reports/website-v091-alignment/accessibility.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/all-pages-browser.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/core-source-links.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/dev-benchmark-320.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/first-use-browser.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/layout-shift-check.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/localized-search.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/pypi-publication.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "reports/website-v091-alignment/release-pages.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "reports/website-v091-alignment/released-wheel-runtime.json",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "reports/website-v091-alignment/source-metadata-320.png",
+      "review": "Review; retain historical evidence; append current audit where relevant",
+      "markers": []
+    },
+    {
+      "file": "scripts/admin/app.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/admin/config.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/admin/editor.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/admin/requests.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/admin/service.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/apply_20_articles.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/article_builder.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/build_endpoint_reference.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "scripts/build_site.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/bundle_admin.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/capture_first_search.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_browser_layout.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_cms_authorization.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_cosmic_performance.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_cosmic_repair.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_cosmic_supplement.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_early_access.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_public_artifact.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/check_site.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "scripts/cosmic.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/data_articles_11_20.py",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "scripts/data_articles_1_10.py",
+      "review": "Review and update current Core source citations; preserve dated examples and measurements",
+      "markers": []
+    },
+    {
+      "file": "scripts/docs_ui.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "scripts/generate_search_index.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/locale_labels.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/markdown_engine.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/migrate_hub_to_db.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/navigation_icons.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/passage_mark.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/prepare_web_assets.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_admin.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_architecture.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "scripts/render_docs.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_early_access.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_first_search.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_intro.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "scripts/render_learn.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_privacy.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/render_product.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "scripts/render_site.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "scripts/render_uml.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1",
+        "e2f984d"
+      ]
+    },
+    {
+      "file": "scripts/sync_articles.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/sync_docs.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/admin.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/admin_browser.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/claims.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/cms_authorization.sql",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/cms_fixture.sql",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/documentation.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "scripts/tests/early_access_authorization.sql",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/first_search.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/first_use_browser.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "scripts/tests/learn.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/learn_browser.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/markdown.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/search.test.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/test_articles.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/test_build.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/test_learning_examples.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/test_secrets.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/test_seo.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/test_sync.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/tests/visual_browser.mjs",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/github/LICENSE",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/github/SOURCE.json",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/github/github-mark.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/LICENSE",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/SOURCE.json",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/book-open.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/layers.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/library.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/network.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/search.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/vendor/lucide/workflow.svg",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/verify_admin_setup.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "scripts/verify_core_sdk_example.py",
+      "review": "Review renderer, diagrams, commands, generators and relevant regressions",
+      "markers": []
+    },
+    {
+      "file": "site-data.json",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": [
+        "0.9.1"
+      ]
+    },
+    {
+      "file": "supabase/config.toml",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "supabase/migrations/20261015000000_content_platform_schema.sql",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "supabase/migrations/20261015010000_lock_publication_boundaries.sql",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "supabase/migrations/20261015020000_storage_and_media_policies.sql",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "supabase/migrations/20261019000000_editorial_revision_tracking.sql",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "supabase/migrations/20261019010000_early_access_requests.sql",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    },
+    {
+      "file": "supabase/seed.sql",
+      "review": "Review version-sensitive metadata/configuration; preserve unrelated settings",
+      "markers": []
+    }
+  ]
+}

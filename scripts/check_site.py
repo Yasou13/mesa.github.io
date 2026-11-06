@@ -354,7 +354,7 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("pip install", "mesa-memory==0.9.1", "mesa start", "MESA Core", "MESA"):
+            for fixture_field in ("pip install", "mesa-memory==0.9.2", "mesa start", "MESA Core", "MESA"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing homepage installation or document example at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
@@ -363,7 +363,7 @@ def main() -> int:
                 if state not in {"fallback", "configured"}:
                     errors.append(f"invalid initial media state at {relative}: {scene_id} / {state}")
         if relative in {Path("retrieval/index.html"), Path("tr/retrieval/index.html")}:
-            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "v0.9.1"):
+            for fixture_field in ("source-chunk-1", "doc-1 / chunk-1", "4 ÷ 61", "v0.9.2"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing technical fixture evidence at {relative}: {fixture_field}")
         if text.count('class="cosmic cosmic--') != 1:

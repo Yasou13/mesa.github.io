@@ -34,7 +34,7 @@ Never infer scope from caller metadata. Keep exact content and source_ref; use s
 
 ## Wait for activation and delete by source
 
-`mesa add` waits for ACTIVE by default. In the tagged v0.9.1 SDK, `Mesa.add` defaults to `wait=False`; pass `wait=True` explicitly to wait for ACTIVE. Use `mesa add document.txt --source file://document.txt --no-wait` or `Mesa.add(..., wait=False)` to return after admission. A terminal chunk failure is reported early with mutation ID, state and error class. `RETRY_PENDING` is not terminal.
+`mesa add` waits for ACTIVE by default. In the tagged v0.9.2 SDK, `Mesa.add` defaults to `wait=False`; pass `wait=True` explicitly to wait for ACTIVE. Use `mesa add document.txt --source file://document.txt --no-wait` or `Mesa.add(..., wait=False)` to return after admission. A terminal chunk failure is reported early with mutation ID, state and error class. `RETRY_PENDING` is not terminal.
 
 ```bash
 mesa delete --source file://document.txt

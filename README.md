@@ -23,7 +23,7 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 - `scripts/build_endpoint_reference.py` — regenerates the HTTP endpoint reference
-  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.1.json`
+  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.2.json`
 - `content/docs/source-en/` — English copies of upstream docs that mix in Turkish;
   English doc pages show these in their source appendix
 - `content/glossary-terms.json` — short bilingual definitions on `/glossary/`
@@ -347,3 +347,9 @@ The focused SDK verifier can be run with the Core environment against an exporte
 ```
 
 It uses fixture HTTP, temporary credentials and a temporary receipt file; it checks both published SDK examples and the paired quickstart completion script. It never uses the operator’s live storage or credentials.
+
+## Core v0.9.2 website refresh — 7 November 2026
+
+The current baseline is release tag `v0.9.2`, commit `8cd2cfe1df5356e73b3bef83ae640850fd54c798`, published on 6 November. GitHub release and PyPI wheel/sdist publication were verified on 7 November; wheel Python source bytes match the tag. See `reports/website-v092-alignment/INVENTORY.md` for the pre-change inventory and `reports/website-v092-alignment/README.md` for final checks/publication evidence.
+
+Current commands use `mesa-memory==0.9.2`. Core source cache, maintained EN/TR guides, OpenAPI, current article references, search and metadata are aligned. Six UML views now show explicit SPO extraction, admission-time legal snapshots, bounded exact-match priority, current Python requirements and models-off BM25 admission. `MESA_EXTRACTION_ENABLED` defaults false independently from models; `MESA_LEGAL_RULES_ENABLED` defaults true. Existing historical demo recordings and v0.9.1 DEV measurements retain their original provenance. Independent repository evidence and production NO-GO remain separately qualified.
