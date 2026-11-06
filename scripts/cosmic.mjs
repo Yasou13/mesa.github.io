@@ -94,6 +94,7 @@ export function cosmicEnvironment(variant = 'core') {
     throw new Error('Unknown cosmic variant');
   }
   const random = seededRandom(`mesa-${variant}`);
-  const art = topography(random, variant === 'reading' || variant === 'admin');
+  // The home page draws its own passage motif (render_intro.mjs); its canvas stays plain.
+  const art = variant === 'home' ? '' : topography(random, variant === 'reading' || variant === 'admin');
   return `<div class="cosmic cosmic--${variant}" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 ${WIDTH} ${HEIGHT}" preserveAspectRatio="xMidYMid slice" focusable="false">${art}</svg><div class="cosmic__illumination"></div></div></div>`;
 }
