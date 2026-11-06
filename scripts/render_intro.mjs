@@ -10,16 +10,13 @@ const arrow = '<span class="explain-arrow" aria-hidden="true">→</span>';
 const fileIcon = '<svg viewBox="0 0 32 38" aria-hidden="true" class="explain-file-icon"><path d="M5 1h14l8 8v28H5zM19 1v9h8M10 18h12M10 24h12M10 30h8"/></svg>';
 const codeBlock = (id, code) => `<div class="start-code"><button type="button" class="copy-button" data-copy-target="${id}" aria-label="${t('Copy commands', 'Komutları kopyala')}">${t('Copy', 'Kopyala')}</button><pre tabindex="0"><code id="${id}">${code.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</code></pre></div>`;
 
-// Decorative "evidence block" strips used inside cards. Seeded, so builds are stable.
-function blockStrip(seed, columns = 16, rows = 3, accent = false) {
+// Decorative "document lines" inside cards: faint text lines, one marked as the found passage.
+// Seeded, so builds are stable; widths are classes because the site CSP blocks inline styles.
+function docLines(seed, lines = 4, marked = 1) {
   let state = seed * 9301 + 49297;
   const next = () => { state = (state * 9301 + 49297) % 233280; return state / 233280; };
-  const cells = Array.from({length: columns * rows}, () => {
-    const value = next();
-    const tone = accent && value > .78 ? 'a' : value > .62 ? 's' : value > .3 ? 'm' : 'w';
-    return `<i class="b-${tone}"></i>`;
-  }).join('');
-  return `<div class="block-strip block-strip--${columns}" aria-hidden="true">${cells}</div>`;
+  const rows = Array.from({length: lines}, (_, index) => `<i class="w${1 + Math.floor(next() * 5)}${index === marked ? ' hl' : ''}"></i>`).join('');
+  return `<div class="doc-lines" aria-hidden="true">${rows}</div>`;
 }
 const warning = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4 21 20H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
 const check = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
@@ -84,7 +81,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
           <div><p class="eyebrow">${t('THE PROBLEM', 'SORUN')}</p><h2 id="problem-title">${t('AI gives answers, but not', 'Yapay zekâ cevap veriyor, ama')} <em class="accent-word">${t('where they came from.', 'nereden bildiğini söylemiyor.')}</em></h2><p class="home-problem__lead">${t('A language model only knows what it was trained on and what you put in front of it. MESA fills that gap with your own documents.', 'Bir dil modeli yalnızca eğitildiği şeyi ve önüne koyduğunuz metni bilir. MESA bu boşluğu kendi belgelerinizle doldurur.')}</p></div>
           <ul class="problem-flags" aria-label="${t('Common problems', 'Sık görülen sorunlar')}"><li>${warning}<span>${t('Can’t show its source.', 'Kaynağını gösteremiyor.')}</span></li><li>${warning}<span>${t('Uses an outdated document.', 'Eski belgeyi kullanıyor.')}</span></li><li>${warning}<span>${t('Forgets what it learned yesterday.', 'Dün öğrendiğini unutuyor.')}</span></li></ul>
         </div>
-        <div class="problem-cards">${problemCards.map(([n, kind, title, text, fix, href, more, accent], index) => `<article class="problem-card"><div class="problem-card__body"><p class="card-index"><span>${n}</span><span class="card-index__kind">${kind}</span></p><h3>${title}</h3><p>${text}</p><p class="problem-card__fix">${check}<span>${fix}</span></p><a class="text-link" href="${href.startsWith('#') ? href : route(href)}">${more}</a></div>${blockStrip(index + 2, 16, 3, accent)}</article>`).join('')}</div>
+        <div class="problem-cards">${problemCards.map(([n, kind, title, text, fix, href, more, accent], index) => `<article class="problem-card"><div class="problem-card__body"><p class="card-index"><span>${n}</span><span class="card-index__kind">${kind}</span></p><h3>${title}</h3><p>${text}</p><p class="problem-card__fix">${check}<span>${fix}</span></p><a class="text-link" href="${href.startsWith('#') ? href : route(href)}">${more}</a></div>${docLines(index + 2, 4, index + 1)}</article>`).join('')}</div>
       </div>
     </section>
 
@@ -121,7 +118,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
     <section class="band band--graphite home-uses" id="use-cases" data-home-section="use-cases" aria-labelledby="uses-title">
       <div class="band__inner">
         <p class="eyebrow">${t('WHEN IS IT USEFUL?', 'NE ZAMAN İŞE YARAR?')}</p><h2 id="uses-title">${t('When your application needs your information.', 'Uygulamanızın sizin bilgilerinize ihtiyacı olduğunda.')}</h2>
-        <div class="practical-uses use-grid" role="region" tabindex="0" aria-label="${t('Use cases', 'Kullanım alanları')}">${uses.map(([name, text, seed]) => `<article class="use-card"><div><h3>${name}</h3><p>${text}</p></div>${blockStrip(seed, 10, 6)}</article>`).join('')}</div>
+        <div class="practical-uses use-grid" role="region" tabindex="0" aria-label="${t('Use cases', 'Kullanım alanları')}">${uses.map(([name, text, seed]) => `<article class="use-card"><div><h3>${name}</h3><p>${text}</p></div>${docLines(seed, 7, seed % 5 + 1)}</article>`).join('')}</div>
       </div>
     </section>
 

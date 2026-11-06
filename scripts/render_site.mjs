@@ -158,26 +158,26 @@ const chevron = '<svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true"
 function navGroups() {
   return [
     ['product', chrome('Product', 'Ürün'), [
-      ['how-it-works/', chrome('How it works', 'Nasıl çalışır'), chrome('Follow one document, step by step', 'Bir belgenin yolculuğu, adım adım')],
-      ['architecture/', chrome('Architecture', 'Mimari'), chrome('Storage, processing and search diagrams', 'Saklama, işleme ve arama şemaları')],
-      ['ecosystem/', chrome('Ecosystem', 'Ekosistem'), chrome('What Core, Data, Law and the tests do', 'Core, Data, Law ve testler ne yapar')],
-      ['#use-cases', chrome('Use cases', 'Kullanım alanları'), chrome('When MESA is useful', 'MESA ne zaman işe yarar')],
-      ['law/', 'MESA Law', chrome('A workflow for legal teams', 'Hukuk ekipleri için iş akışı')]
+      ['how-it-works/', chrome('How it works', 'Nasıl çalışır')],
+      ['architecture/', chrome('Architecture', 'Mimari')],
+      ['ecosystem/', chrome('Ecosystem', 'Ekosistem')],
+      ['#use-cases', chrome('Use cases', 'Kullanım alanları')],
+      ['law/', 'MESA Law']
     ]],
     ['developers', chrome('Developers', 'Geliştiriciler'), [
-      ['get-started/', chrome('Get started', 'Başlayın'), chrome('Your first search, step by step', 'İlk aramanız, adım adım')],
-      ['docs/core/cli-reference/', 'MESA CLI', chrome('Commands for your terminal', 'Terminal komutları')],
-      ['docs/core/examples/', 'Python SDK', chrome('Use MESA from Python', 'MESA’yı Python’dan kullanın')],
-      ['docs/core/api-reference/', 'HTTP API', chrome('Connect any application', 'Herhangi bir uygulamayı bağlayın')],
-      ['docs/mcp/', 'MCP', chrome('Connect an AI client', 'Bir yapay zekâ istemcisi bağlayın')],
-      ['docs/core/security/', chrome('Security', 'Güvenlik'), chrome('Keys, access and limits', 'Anahtarlar, erişim ve sınırlar')]
+      ['get-started/', chrome('Get started', 'Başlayın')],
+      ['docs/core/cli-reference/', 'MESA CLI'],
+      ['docs/core/examples/', 'Python SDK'],
+      ['docs/core/api-reference/', 'HTTP API'],
+      ['docs/mcp/', 'MCP'],
+      ['docs/core/security/', chrome('Security', 'Güvenlik')]
     ]],
     ['learn', chrome('Learn', 'Öğrenin'), [
-      ['learn/', chrome('Lessons', 'Dersler'), chrome('Short lessons on AI memory', 'Yapay zekâ hafızası üzerine kısa dersler')],
-      ['guides/', chrome('Guides', 'Rehberler'), chrome('Practical walkthroughs', 'Uygulamalı anlatımlar')],
-      ['glossary/', chrome('Glossary', 'Sözlük'), chrome('Terms in plain language', 'Terimler, sade dille')],
-      ['faq/', chrome('FAQ', 'SSS'), chrome('Short answers before you start', 'Başlamadan önce kısa yanıtlar')],
-      ['resources/', chrome('All resources', 'Tüm kaynaklar'), chrome('Research, methods and tools', 'Araştırma, yöntem ve araçlar')]
+      ['learn/', chrome('Lessons', 'Dersler')],
+      ['guides/', chrome('Guides', 'Rehberler')],
+      ['glossary/', chrome('Glossary', 'Sözlük')],
+      ['faq/', chrome('FAQ', 'SSS')],
+      ['resources/', chrome('All resources', 'Tüm kaynaklar')]
     ]]
   ];
 }
@@ -187,7 +187,7 @@ function header(active = '') {
   const groups = navGroups().map(([id, label, links]) => `<div class="nav-group${currentGroup === id ? ' is-current' : ''}" data-nav-group>
             <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-${id}"><span>${label}</span>${chevron}</button>
             <p class="nav-group__label" aria-hidden="true">${label}</p>
-            <div class="nav-group__panel" id="nav-panel-${id}">${links.map(([path, name, text]) => `<a class="nav-link" href="${route(path)}"><strong>${name}</strong><span>${text}</span></a>`).join('')}</div>
+            <div class="nav-group__panel" id="nav-panel-${id}">${links.map(([path, name]) => `<a class="nav-link" href="${route(path)}">${name}</a>`).join('')}</div>
           </div>`).join('');
   const plain = (key, label, path) => `<a class="nav-item nav-item--plain${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}">${label}</a>`;
   return `<a class="skip-link" href="#main-content">Skip to content</a>

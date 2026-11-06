@@ -1,40 +1,20 @@
-/* Shared page environment (2026-11 redesign): a faint 56px grid with a few
-   seeded "evidence blocks". No bitmap, no nebula, no glow clouds. */
+/* Shared page environment (2026-11): one inline SVG per page.
+   Home: faint document lines with one highlighted passage tied to its source.
+   Other pages: contour lines of a mesa (flat-topped plateau). No grid, no pixels, no glow. */
 body { isolation: isolate; }
-.cosmic {
-  --cell: 56px;
-  --cosmic-grid: rgba(255, 255, 255, .045);
-  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict;
-  background: var(--bg, #07080a);
-}
-.cosmic__field {
-  position: absolute; inset: 0;
-  background-image: linear-gradient(var(--cosmic-grid) 1px, transparent 1px), linear-gradient(90deg, var(--cosmic-grid) 1px, transparent 1px);
-  background-size: var(--cell) var(--cell);
-  background-position: 50% 0;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 92%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 92%);
-}
-.cosmic__block {
-  position: absolute;
-  left: calc(50% + var(--x) * var(--cell) + 1px);
-  top: calc(var(--y) * var(--cell) + 1px);
-  width: calc(var(--cell) - 1px); height: calc(var(--cell) - 1px);
-  background: rgba(255, 255, 255, .028);
-}
-.cosmic__block--strong { background: rgba(255, 255, 255, .055); }
-.cosmic__block--accent { background: rgba(227, 181, 122, .13); }
+.cosmic { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: var(--bg, #07080a); }
+.cosmic__field { position: absolute; inset: 0; }
+.cosmic__art { display: block; width: 100%; height: 100%; }
 .cosmic__illumination { display: none; animation: none; }
-.cosmic--reading .cosmic__block, .cosmic--admin .cosmic__block { opacity: .6; }
-.cosmic--reading, .cosmic--admin { --cosmic-grid: rgba(255, 255, 255, .03); }
+/* The passage motif belongs to the home hero: it scrolls away with it instead of sitting behind later sections. */
+.cosmic--home { position: absolute; bottom: auto; height: min(100svh, 980px); }
+.cosmic--reading .cosmic__art, .cosmic--admin .cosmic__art { opacity: .6; }
 @media (max-width: 800px) {
-  .cosmic { --cell: 44px; }
-  .cosmic__block { opacity: .7; }
+  .cosmic__art { opacity: .55; }
 }
+/* The source thread draws itself once on the home page. */
 @media (prefers-reduced-motion: no-preference) {
-  html[data-cosmic-motion="on"] .cosmic__block--pulse { animation: cosmic-block 9s ease-in-out infinite alternate; }
+  html[data-cosmic-motion="on"] .cosmic__thread { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cosmic-thread 1.6s .4s cubic-bezier(.45, 0, .15, 1) forwards; }
 }
-@keyframes cosmic-block { from { opacity: 1; } to { opacity: .25; } }
-/* Block positions (CSP blocks inline styles). */
-.cxm16{--x:-16} .cxm15{--x:-15} .cxm14{--x:-14} .cxm13{--x:-13} .cxm12{--x:-12} .cxm11{--x:-11} .cxm10{--x:-10} .cxm9{--x:-9} .cxm8{--x:-8} .cxm7{--x:-7} .cxm6{--x:-6} .cxm5{--x:-5} .cxm4{--x:-4} .cxm3{--x:-3} .cxm2{--x:-2} .cxm1{--x:-1} .cx0{--x:0} .cx1{--x:1} .cx2{--x:2} .cx3{--x:3} .cx4{--x:4} .cx5{--x:5} .cx6{--x:6} .cx7{--x:7} .cx8{--x:8} .cx9{--x:9} .cx10{--x:10} .cx11{--x:11} .cx12{--x:12} .cx13{--x:13} .cx14{--x:14} .cx15{--x:15} .cx16{--x:16} .cy0{--y:0} .cy1{--y:1} .cy2{--y:2} .cy3{--y:3} .cy4{--y:4} .cy5{--y:5} .cy6{--y:6} .cy7{--y:7} .cy8{--y:8} .cy9{--y:9} .cy10{--y:10} .cy11{--y:11} .cy12{--y:12} .cy13{--y:13} .cy14{--y:14} .cy15{--y:15} .cy16{--y:16} .cy17{--y:17} .cy18{--y:18} .cy19{--y:19}
+@keyframes cosmic-thread { to { stroke-dashoffset: 0; } }
 @media print { .cosmic { display: none; } }
