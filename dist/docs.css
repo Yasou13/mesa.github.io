@@ -1,5 +1,5 @@
 /* MESA documentation workspace. Scoped to documentation routes. */
-body:has(.docs-layout) { background: #030303; --docs-purple: #e3b57a; --docs-surface: #1a1510; --docs-border: #ffffff12; }
+body:has(.docs-layout) { background: #030303; --docs-purple: #e3b57a; --docs-surface: #0e1528; --docs-border: #ffffff12; }
 body:has(.docs-layout:not(.docs-standalone)) .cosmic { display: none; }
 .js body:has(.docs-layout) .site-header { position: fixed; }
 body:has(.docs-layout) .site-header { background: #030303f5; border-bottom: 1px solid var(--docs-border); }
@@ -20,7 +20,7 @@ body:has(.docs-layout) .site-header { background: #030303f5; border-bottom: 1px 
 .docs-wordmark { font-size: 20px; font-weight: 650; letter-spacing: -.045em; color: var(--ink); }
 .docs-wordmark span { color: var(--muted-2); font-size: 16px; font-weight: 400; letter-spacing: -.025em; margin-left: 5px; }
 .docs-sidebar-caption { color: var(--muted-2); font-size: 12px; }
-.docs-product-select { position: relative; border: 1px solid #ffffff23; border-radius: 7px; margin-bottom: 12px; background: #1a1510; }
+.docs-product-select { position: relative; border: 1px solid #ffffff23; border-radius: 7px; margin-bottom: 12px; background: #0e1528; }
 .docs-product-select > summary { display: flex; align-items: center; gap: 9px; cursor: pointer; padding: 10px; min-height: 42px; list-style: none; font-size: 13px; font-weight: 500; }
 .docs-product-select summary::-webkit-details-marker, .docs-navigation > summary::-webkit-details-marker { display: none; }
 .docs-product-select summary > small { margin-left: auto; font: 9px 'Commit Mono', monospace; color: var(--muted-2); }
@@ -94,13 +94,13 @@ body:has(.docs-layout) .site-header { background: #030303f5; border-bottom: 1px 
 .docs-flow-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); position: relative; }
 .docs-flow-stage { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .docs-flow-stage:not(:last-child)::after { content: '→'; position: absolute; color: #6b6f78; left: calc(50% + 32px); right: calc(-50% + 32px); top: 27px; font-size: 12px; border-top: 1px dashed #e3b57a33; line-height: 0; text-align: right; }
-.docs-flow-visual { height: 56px; width: 56px; display: grid; place-items: center; position: relative; border: 1px solid #e3b57a2b; border-radius: 10px; background: #1f1a14; color: #d8dade; margin-bottom: 16px; }
+.docs-flow-visual { height: 56px; width: 56px; display: grid; place-items: center; position: relative; border: 1px solid #e3b57a2b; border-radius: 10px; background: #111a30; color: #d8dade; margin-bottom: 16px; }
 .docs-flow-visual > svg { height: 25px; width: 25px; }
 .docs-flow-stage--memory .docs-flow-visual { transform: rotate(-4deg); border-color: #e3b57a71; box-shadow: 0 0 28px #e3b57a0b; }
 .docs-flow-stage--memory i { position: absolute; height: 4px; width: 4px; border-radius: 50%; background: #d8dade; right: -3px; }
 .docs-flow-stage--memory i:nth-of-type(1) { top: 7px; }
 .docs-flow-stage--memory i:nth-of-type(3) { bottom: 7px; }
-.docs-flow-stage--evidence .docs-flow-visual { color: #cfb08c; background: #191510; border-color: #cfb08c3b; }
+.docs-flow-stage--evidence .docs-flow-visual { color: #cfb08c; background: #0e1527; border-color: #cfb08c3b; }
 .docs-flow-number { color: #6b6f78; font: 9px 'Commit Mono', monospace; margin-bottom: 5px; }
 .docs-flow-stage strong { font-size: 13px; font-weight: 500; }
 .docs-flow-stage small { font-size: 10px; color: var(--muted-2); margin-top: 5px; }
@@ -149,7 +149,7 @@ body:has(.docs-layout) .site-header { background: #030303f5; border-bottom: 1px 
 .docs-layout .docs-body h3 { color: var(--ink); font-size: 18px; scroll-margin-top: 175px; }
 .docs-layout .docs-body a { color: #d8dade; text-decoration: underline; text-underline-offset: .18em; }
 .docs-layout .docs-body p { margin-top: 0; }
-.docs-layout .code-terminal { border-color: #ffffff19; border-radius: 8px; background: #0a0806; }
+.docs-layout .code-terminal { border-color: #ffffff19; border-radius: 8px; background: #050811; }
 .docs-layout .code-terminal-header { background: #ffffff03; border-color: #ffffff10; }
 .docs-layout .code-terminal pre { font-size: 11px; line-height: 1.9; padding: 20px; }
 .docs-layout .docs-body .source-appendix { background: #ffffff02; border-color: #ffffff16; padding: 16px 20px; }
