@@ -1,30 +1,40 @@
-/* Shared page environment: a quiet grid and one soft light on content pages,
-   the original nebula on the home page only (review G1, 2026-10-24). */
+/* Shared page environment (2026-11 redesign): a faint 56px grid with a few
+   seeded "evidence blocks". No bitmap, no nebula, no glow clouds. */
 body { isolation: isolate; }
-.cosmic { --cosmic-glow: rgba(139, 156, 203, .13); --cosmic-glow-at: 72% -12%; --cosmic-grid: rgba(232, 234, 240, .032); position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; background: radial-gradient(ellipse 75% 55% at var(--cosmic-glow-at), var(--cosmic-glow), transparent 62%), #050508; }
-.cosmic__field { position: absolute; inset: 0; background-image: linear-gradient(var(--cosmic-grid) 1px, transparent 1px), linear-gradient(90deg, var(--cosmic-grid) 1px, transparent 1px); background-size: 64px 64px; background-position: center top; mask-image: linear-gradient(180deg, #000, transparent 75%); }
-.cosmic__illumination { display: none; }
-.cosmic--home { --cosmic-glow: rgba(139, 156, 203, .18); }
-.cosmic--law { --cosmic-glow: rgba(213, 174, 130, .12); }
-.cosmic--data { --cosmic-glow: rgba(119, 185, 142, .10); }
-.cosmic--reading, .cosmic--quiet { --cosmic-glow: rgba(139, 156, 203, .08); --cosmic-grid: rgba(232, 234, 240, .022); }
-.cosmic--admin { --cosmic-glow: rgba(139, 156, 203, .08); }
-@media (max-width: 800px) { .cosmic { --cosmic-glow-at: 80% -8%; } .cosmic__field { background-size: 48px 48px; } }
-/* Home page only: the original nebula, behind a left-side shade so the hero copy stays readable.
-   Other pages keep the plain grid (review G1). */
-.cosmic--home .cosmic__field { background: url("media/cosmic/hero.webp") center / cover no-repeat; opacity: .82; mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent); }
-.cosmic--home::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #050508cc 0%, #05050880 45%, #05050855 100%); }
-.cosmic--home .cosmic__illumination { display: block; position: absolute; inset: 0; background: url("media/cosmic/hero.webp") center / cover no-repeat; filter: brightness(1.8) saturate(1.12); mask-image: radial-gradient(ellipse at 73% 48%, #000 4%, transparent 60%); opacity: .3; }
-@media (prefers-reduced-motion: no-preference) {
-  html[data-cosmic-motion="on"] .cosmic--home .cosmic__illumination { animation: cosmic-illumination 14s ease-in-out infinite alternate; }
+.cosmic {
+  --cell: 56px;
+  --cosmic-grid: rgba(255, 255, 255, .045);
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict;
+  background: var(--bg, #07080a);
 }
-@keyframes cosmic-illumination { from { opacity: .08; } to { opacity: .6; } }
+.cosmic__field {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--cosmic-grid) 1px, transparent 1px), linear-gradient(90deg, var(--cosmic-grid) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+  background-position: 50% 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 92%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 92%);
+}
+.cosmic__block {
+  position: absolute;
+  left: calc(50% + var(--x) * var(--cell) + 1px);
+  top: calc(var(--y) * var(--cell) + 1px);
+  width: calc(var(--cell) - 1px); height: calc(var(--cell) - 1px);
+  background: rgba(255, 255, 255, .028);
+}
+.cosmic__block--strong { background: rgba(255, 255, 255, .055); }
+.cosmic__block--accent { background: rgba(227, 181, 122, .13); }
+.cosmic__illumination { display: none; animation: none; }
+.cosmic--reading .cosmic__block, .cosmic--admin .cosmic__block { opacity: .6; }
+.cosmic--reading, .cosmic--admin { --cosmic-grid: rgba(255, 255, 255, .03); }
 @media (max-width: 800px) {
-  .cosmic--home .cosmic__field, .cosmic--home .cosmic__illumination { background-image: url("media/cosmic/cosmic-flow.webp"); background-position: 70% center; opacity: .6; }
-  .cosmic--home::after { background: linear-gradient(90deg, #050508dc, #050508b3 65%, #050508ab); }
+  .cosmic { --cell: 44px; }
+  .cosmic__block { opacity: .7; }
 }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-cosmic-motion="on"] .cosmic__block--pulse { animation: cosmic-block 9s ease-in-out infinite alternate; }
+}
+@keyframes cosmic-block { from { opacity: 1; } to { opacity: .25; } }
+/* Block positions (CSP blocks inline styles). */
+.cxm16{--x:-16} .cxm15{--x:-15} .cxm14{--x:-14} .cxm13{--x:-13} .cxm12{--x:-12} .cxm11{--x:-11} .cxm10{--x:-10} .cxm9{--x:-9} .cxm8{--x:-8} .cxm7{--x:-7} .cxm6{--x:-6} .cxm5{--x:-5} .cxm4{--x:-4} .cxm3{--x:-3} .cxm2{--x:-2} .cxm1{--x:-1} .cx0{--x:0} .cx1{--x:1} .cx2{--x:2} .cx3{--x:3} .cx4{--x:4} .cx5{--x:5} .cx6{--x:6} .cx7{--x:7} .cx8{--x:8} .cx9{--x:9} .cx10{--x:10} .cx11{--x:11} .cx12{--x:12} .cx13{--x:13} .cx14{--x:14} .cx15{--x:15} .cx16{--x:16} .cy0{--y:0} .cy1{--y:1} .cy2{--y:2} .cy3{--y:3} .cy4{--y:4} .cy5{--y:5} .cy6{--y:6} .cy7{--y:7} .cy8{--y:8} .cy9{--y:9} .cy10{--y:10} .cy11{--y:11} .cy12{--y:12} .cy13{--y:13} .cy14{--y:14} .cy15{--y:15} .cy16{--y:16} .cy17{--y:17} .cy18{--y:18} .cy19{--y:19}
 @media print { .cosmic { display: none; } }
-/* Keep the brand texture quiet behind the first-use content. */
-.cosmic--home .cosmic__field { opacity:.35; }
-.cosmic--home .cosmic__illumination { opacity:.08; animation:none !important; }
-.cosmic--home::after { background:linear-gradient(90deg,#050508e6,#050508bb); }

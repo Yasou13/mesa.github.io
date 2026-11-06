@@ -151,13 +151,45 @@ function languageControl() {
   </div>`;
 }
 
-function header(active = '') {
-  const nav = [
-    ['how', 'How it works', 'how-it-works/', 'workflow'],
-    ['start', chrome('Get started', 'Başlayın'), 'get-started/', 'workflow'],
-    ['docs', 'Docs', 'docs/', 'book-open'],
-    ['resources', 'Resources', 'resources/', 'library'],
+// Top navigation: three groups with one-line descriptions, two direct links and one action.
+const NAV_GROUP_OF = { how: 'product', architecture: 'product', ecosystem: 'product', certification: 'product', law: 'product', start: 'developers', resources: 'learn' };
+const chevron = '<svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg>';
+
+function navGroups() {
+  return [
+    ['product', chrome('Product', 'Ürün'), [
+      ['how-it-works/', chrome('How it works', 'Nasıl çalışır'), chrome('Follow one document, step by step', 'Bir belgenin yolculuğu, adım adım')],
+      ['architecture/', chrome('Architecture', 'Mimari'), chrome('Storage, processing and search diagrams', 'Saklama, işleme ve arama şemaları')],
+      ['ecosystem/', chrome('Ecosystem', 'Ekosistem'), chrome('What Core, Data, Law and the tests do', 'Core, Data, Law ve testler ne yapar')],
+      ['#use-cases', chrome('Use cases', 'Kullanım alanları'), chrome('When MESA is useful', 'MESA ne zaman işe yarar')],
+      ['law/', 'MESA Law', chrome('A workflow for legal teams', 'Hukuk ekipleri için iş akışı')]
+    ]],
+    ['developers', chrome('Developers', 'Geliştiriciler'), [
+      ['get-started/', chrome('Get started', 'Başlayın'), chrome('Your first search, step by step', 'İlk aramanız, adım adım')],
+      ['docs/core/cli-reference/', 'MESA CLI', chrome('Commands for your terminal', 'Terminal komutları')],
+      ['docs/core/examples/', 'Python SDK', chrome('Use MESA from Python', 'MESA’yı Python’dan kullanın')],
+      ['docs/core/api-reference/', 'HTTP API', chrome('Connect any application', 'Herhangi bir uygulamayı bağlayın')],
+      ['docs/mcp/', 'MCP', chrome('Connect an AI client', 'Bir yapay zekâ istemcisi bağlayın')],
+      ['docs/core/security/', chrome('Security', 'Güvenlik'), chrome('Keys, access and limits', 'Anahtarlar, erişim ve sınırlar')]
+    ]],
+    ['learn', chrome('Learn', 'Öğrenin'), [
+      ['learn/', chrome('Lessons', 'Dersler'), chrome('Short lessons on AI memory', 'Yapay zekâ hafızası üzerine kısa dersler')],
+      ['guides/', chrome('Guides', 'Rehberler'), chrome('Practical walkthroughs', 'Uygulamalı anlatımlar')],
+      ['glossary/', chrome('Glossary', 'Sözlük'), chrome('Terms in plain language', 'Terimler, sade dille')],
+      ['faq/', chrome('FAQ', 'SSS'), chrome('Short answers before you start', 'Başlamadan önce kısa yanıtlar')],
+      ['resources/', chrome('All resources', 'Tüm kaynaklar'), chrome('Research, methods and tools', 'Araştırma, yöntem ve araçlar')]
+    ]]
   ];
+}
+
+function header(active = '') {
+  const currentGroup = NAV_GROUP_OF[active] || '';
+  const groups = navGroups().map(([id, label, links]) => `<div class="nav-group${currentGroup === id ? ' is-current' : ''}" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-${id}"><span>${label}</span>${chevron}</button>
+            <p class="nav-group__label" aria-hidden="true">${label}</p>
+            <div class="nav-group__panel" id="nav-panel-${id}">${links.map(([path, name, text]) => `<a class="nav-link" href="${route(path)}"><strong>${name}</strong><span>${text}</span></a>`).join('')}</div>
+          </div>`).join('');
+  const plain = (key, label, path) => `<a class="nav-item nav-item--plain${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}">${label}</a>`;
   return `<a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -166,10 +198,13 @@ function header(active = '') {
           <span></span><span></span><span></span>
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
-          ${nav.map(([key, label, path, glyph]) => `<a class="nav-item${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}"><span class="nav-symbol" aria-hidden="true">${navigationIcon(glyph)}</span><span>${label}</span></a>`).join('')}
-          <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
-          ${languageControl()}
-          <a class="nav-github" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span>${icon('external', 'icon-external')}</a>
+          <div class="nav-menu">${groups}${plain('docs', 'Docs', 'docs/')}${plain('status', chrome('Status', 'Durum'), 'status/')}</div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            ${languageControl()}
+            <a class="nav-github" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a>
+            <a class="nav-item nav-cta${active === 'start' ? ' active' : ''}"${active === 'start' ? ' aria-current="page"' : ''} href="${route('get-started/')}">${chrome('Get started', 'Başlayın')}</a>
+          </div>
         </nav>
       </div>
     </header>`;
@@ -179,16 +214,20 @@ function header(active = '') {
 const chrome = (en, tr) => { trContent.strings[en] = tr; productTranslations[en] = tr; return en; };
 
 function footer() {
+  const group = (title, links) => `<div><h3>${title}</h3>${links.join('')}</div>`;
+  const link = (path, label) => `<a href="${route(path)}">${label}</a>`;
   return `
     <footer class="site-footer">
-      <div class="footer-brand">${logo()}<p>${chrome('Document search for your AI application.', 'Yapay zekâ uygulamanız için belge arama.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p></div>
+      <div class="footer-brand">${logo()}<p>${chrome('Let your AI find information with its source.', 'Yapay zekânız bilgiyi kaynağıyla bulsun.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a><a class="footer-pill" href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a></div></div>
       <div class="footer-groups">
-        <div><h3>${chrome('Product', 'Ürün')}</h3><a href="${route('how-it-works/')}">${chrome('How it works', 'Nasıl çalışır')}</a><a href="${route('architecture/')}">${chrome('Architecture', 'Mimari')}</a><a href="${route('ecosystem/')}">${chrome('Ecosystem', 'Ekosistem')}</a><a href="${route('#use-cases')}">${chrome('Use cases', 'Kullanım alanları')}</a><a href="${route('law/')}">MESA Law</a></div>
-        <div><h3>${chrome('Developers', 'Geliştiriciler')}</h3><a href="${route('get-started/')}">${chrome('Quickstart', 'Hızlı başlangıç')}</a><a href="${route('docs/core/cli-reference/')}">MESA CLI</a><a href="${route('docs/core/api-reference/')}">${chrome('API reference', 'API referansı')}</a><a href="${route('docs/core/examples/')}">Python SDK</a><a href="${route('docs/mcp/')}">MCP</a><a href="${route('docs/core/security/')}">${chrome('Security', 'Güvenlik')}</a></div>
-        <div><h3>${chrome('Learn', 'Öğrenin')}</h3><a href="${route('learn/')}">${chrome('Lessons', 'Dersler')}</a><a href="${route('glossary/')}">${chrome('Glossary', 'Sözlük')}</a><a href="${route('guides/')}">${chrome('Guides', 'Rehberler')}</a><a href="${route('faq/')}">${chrome('FAQ', 'SSS')}</a></div>
-        <div><h3>${chrome('Project', 'Proje')}</h3><a href="${route('about/')}">${chrome('About', 'Hakkında')}</a><a href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a><a href="${route('privacy/')}">${chrome('Privacy', 'Gizlilik')}</a>${external(repos.issues, chrome('Open an issue', 'Issue açın'))}${external(`${repos.core}/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/LICENSE`, chrome('MIT License', 'MIT Lisansı'))}</div>
+        ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data')])}
+        ${group(chrome('Developers', 'Geliştiriciler'), [link('get-started/', chrome('Quickstart', 'Hızlı başlangıç')), link('docs/', chrome('Documentation', 'Dokümantasyon')), link('docs/core/cli-reference/', 'MESA CLI'), link('docs/core/api-reference/', chrome('API reference', 'API referansı')), link('docs/core/examples/', 'Python SDK'), link('docs/mcp/', 'MCP'), link('docs/core/security/', chrome('Security', 'Güvenlik'))])}
+        ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
+        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('privacy/', chrome('Privacy', 'Gizlilik')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(`${repos.core}/blob/e2f984d4ad97c01782a347e29e44808e5a16dad3/LICENSE`, chrome('MIT License', 'MIT Lisansı'))])}
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.1 · e2f984d', 'Belgeler Core v0.9.1 · e2f984d ile uyumlu')}</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
     </footer>`.trim();
 }
 
@@ -247,7 +286,7 @@ function actionExample(compact = false) {
   </div>`;
 }
 
-const productHelpers = () => ({header,footer,route,cta,actionExample,language:currentLanguage});
+const productHelpers = () => ({header,footer,route,cta,actionExample,repos,language:currentLanguage});
 function home() { return productHome(productHelpers()); }
 function architecture() { return architecturePage(productHelpers()); }
 function retrieval() { return retrievalPage(productHelpers()); }
@@ -310,9 +349,6 @@ function dataPage() {
             <span role="cell">Official case law</span>
           </div>
         </div>
-        <figure class="data-figure" aria-hidden="true">
-          <img src="${asset('assets/stratigraphy-layers.svg')}" alt="" loading="lazy" width="600" height="380">
-        </figure>
       </section>
 
       <section class="section pipeline-section">
@@ -373,9 +409,6 @@ function qaPage() {
             <p>Scenarios restart candidate processes and verify that expected memory survives.</p>
           </article>
         </div>
-        <figure class="qa-figure" aria-hidden="true">
-          <img src="${asset('assets/chronometer-cycles.svg')}" alt="" loading="lazy" width="600" height="360">
-        </figure>
       </section>
 
       <section class="section worktree-section">
@@ -440,10 +473,6 @@ function certification() {
         </div>
       </section>
 
-      <figure class="cert-figure" aria-hidden="true">
-        <img src="${asset('assets/certification-seal-plate.svg')}" alt="" loading="lazy" width="600" height="360">
-      </figure>
-
       <section class="section historical-note">
         <p class="eyebrow">STATUS TRANSPARENCY</p>
         <h2>The historical result is preserved,<br><em>but not promoted.</em></h2>
@@ -483,9 +512,6 @@ function lawPage() {
           <li><span>04</span><strong>Versioned HTTP</strong><small>Explicit integration boundary</small></li>
           <li><span>05</span><strong>MESA Law</strong><small>Matter, document, review, sourced QA</small></li>
         </ol>
-        <figure class="law-figure" aria-hidden="true">
-          <img src="${asset('assets/legal-gazette-engraving.svg')}" alt="" loading="lazy" width="640" height="360">
-        </figure>
       </section>
 
       <section class="section">
@@ -703,7 +729,7 @@ function mcpPage() {
 
 function statusPage() {
   return `
-    ${header()}
+    ${header('status')}
     <main id="main-content">
       <section class="page-hero compact page-hero--operational status-accent">
         <p class="eyebrow">PROJECT STATUS</p>
@@ -1150,6 +1176,73 @@ const contentSecurityPolicy = [
   'upgrade-insecure-requests'
 ].join('; ');
 
+// Wayfinding for top-level pages: a breadcrumb at the top and "next step" cards at the end.
+// Added after localization, so labels are written per language here.
+const WAY_GROUP = { product: ['Product', 'Ürün'], project: ['Project', 'Proje'], learn: ['Learn', 'Öğrenin'] };
+const WAY_PAGES = {
+  howItWorks: ['product', 'How it works', 'Nasıl çalışır'],
+  architecture: ['product', 'Architecture', 'Mimari'],
+  retrieval: ['product', 'Retrieval', 'Arama', 'architecture'],
+  ecosystem: ['product', 'Ecosystem', 'Ekosistem'],
+  data: ['product', 'MESA Data', 'MESA Data', 'ecosystem'],
+  law: ['product', 'MESA Law', 'MESA Law', 'ecosystem'],
+  qa: ['product', 'MESA QA', 'MESA QA', 'ecosystem'],
+  certification: ['product', 'E2E Certification', 'E2E Certification', 'ecosystem'],
+  evaluation: ['product', 'Evaluation & trust', 'Değerlendirme ve güven', 'ecosystem'],
+  status: ['project', 'Status', 'Durum'],
+  about: ['project', 'About', 'Hakkında'],
+  faq: ['learn', 'FAQ', 'SSS'],
+  privacy: ['project', 'Privacy', 'Gizlilik'],
+  earlyAccess: ['project', 'Early access', 'Erken erişim']
+};
+const WAY_NEXT = {
+  start: ['get-started/', 'Try it on your computer', 'Bilgisayarınızda deneyin', 'Install, start and run your first search.', 'Kurun, başlatın ve ilk aramanızı yapın.'],
+  how: ['how-it-works/', 'How it works', 'Nasıl çalışır', 'Follow one document from file to answer.', 'Bir belgeyi dosyadan cevaba kadar izleyin.'],
+  architecture: ['architecture/', 'Architecture', 'Mimari', 'Storage, processing and search diagrams.', 'Saklama, işleme ve arama şemaları.'],
+  retrieval: ['retrieval/', 'Retrieval', 'Arama', 'Four search lanes and how results are combined.', 'Dört arama yolu ve sonuçların birleştirilmesi.'],
+  api: ['docs/core/api-reference/', 'API reference', 'API referansı', 'Every endpoint, with request and response.', 'Tüm uç noktalar, istek ve yanıtlarıyla.'],
+  ecosystem: ['ecosystem/', 'Ecosystem', 'Ekosistem', 'What Core, Data, Law and the tests do.', 'Core, Data, Law ve testler ne yapar.'],
+  data: ['data/', 'MESA Data', 'MESA Data', 'How legal sources are prepared.', 'Hukuk kaynakları nasıl hazırlanır.'],
+  law: ['law/', 'MESA Law', 'MESA Law', 'The legal workflow built on Core.', 'Core üzerine kurulu hukuk iş akışı.'],
+  qa: ['qa/', 'MESA QA', 'MESA QA', 'How memory behavior is tested.', 'Hafıza davranışı nasıl test edilir.'],
+  certification: ['certification/', 'E2E Certification', 'E2E Certification', 'The end-to-end evidence contract.', 'Uçtan uca kanıt sözleşmesi.'],
+  evaluation: ['evaluation/', 'Evaluation & trust', 'Değerlendirme ve güven', 'What has been tested, and what has not.', 'Neler test edildi, neler edilmedi.'],
+  status: ['status/', 'Project status', 'Proje durumu', 'Versions, test results and current limits.', 'Sürümler, test sonuçları ve güncel sınırlar.'],
+  faq: ['faq/', 'FAQ', 'SSS', 'Short answers before you start.', 'Başlamadan önce kısa yanıtlar.'],
+  about: ['about/', 'About', 'Hakkında', 'Why MESA exists and who maintains it.', 'MESA neden var, kim geliştiriyor.'],
+  access: ['early-access/', 'Early access', 'Erken erişim', 'Tell us what you want to build.', 'Ne yapmak istediğinizi anlatın.']
+};
+const WAY_FLOW = {
+  architecture: ['retrieval', 'start'], retrieval: ['api', 'start'], ecosystem: ['start', 'law'],
+  data: ['law', 'ecosystem'], law: ['data', 'status'], qa: ['certification', 'evaluation'],
+  certification: ['evaluation', 'status'], evaluation: ['status', 'qa'], status: ['start', 'faq'],
+  privacy: ['about', 'access'], earlyAccess: ['start', 'about']
+};
+
+function wayfinding(key, language, content) {
+  const page = WAY_PAGES[key];
+  if (!page) return content;
+  const tr = language === 'tr';
+  const pick = (en, turkish) => tr ? turkish : en;
+  const [group, en, turkish, parent] = page;
+  const crumbs = [`<li><a href="${route()}">${pick('Home', 'Ana sayfa')}</a></li>`, `<li><span>${pick(...WAY_GROUP[group])}</span></li>`];
+  if (parent) crumbs.push(`<li><a href="${route(siteData.pages[parent].path)}">${pick(WAY_PAGES[parent][1], WAY_PAGES[parent][2])}</a></li>`);
+  crumbs.push(`<li><span aria-current="page">${pick(en, turkish)}</span></li>`);
+  const nav = `<nav class="crumbs" aria-label="${pick('Breadcrumb', 'Sayfa yolu')}"><ol>${crumbs.join('')}</ol></nav>`;
+  let html = content.replace(/(<main\b[^>]*>)/, `$1${nav}`);
+  const flow = WAY_FLOW[key];
+  if (!flow) return html;
+  const cards = flow.map((id, index) => {
+    const [path, titleEn, titleTr, textEn, textTr] = WAY_NEXT[id];
+    return `<a class="next-card${index === 0 ? ' next-card--primary' : ''}" href="${route(path)}"><span class="next-card__label">${index === 0 ? pick('Next', 'Sonraki') : pick('Or', 'Ya da')}</span><strong>${pick(titleEn, titleTr)}</strong><span>${pick(textEn, textTr)}</span><span class="next-card__arrow" aria-hidden="true">→</span></a>`;
+  }).join('');
+  const block = `<section class="next-step" aria-labelledby="next-step-title"><p class="eyebrow">${pick('NEXT STEP', 'SONRAKİ ADIM')}</p><h2 id="next-step-title">${pick('Where to go from here', 'Buradan nereye?')}</h2><div class="next-step__grid">${cards}</div></section>`;
+  const footerAt = html.indexOf('<footer class="site-footer">');
+  const mainEnd = html.indexOf('</main>');
+  const at = footerAt !== -1 && footerAt < mainEnd ? footerAt : mainEnd;
+  return at === -1 ? html : html.slice(0, at) + block + html.slice(at);
+}
+
 function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [] }) {
   const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}?v=${assetVersions.logo}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
@@ -1330,7 +1423,7 @@ for (const language of ['en', 'tr']) {
       title: localizedMetadata.title,
       description: localizedMetadata.description,
       canonical: `${siteUrl}${localizedPath}`,
-      content,
+      content: wayfinding(key, language, content),
       language,
       alternateUrls: { en: `${siteUrl}${metadata.path}`, tr: `${siteUrl}tr/${metadata.path}` },
       assetBase: relativeBase(localizedPath)

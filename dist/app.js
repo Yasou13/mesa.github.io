@@ -28,6 +28,58 @@ document.addEventListener('keydown', (event) => {
   toggle.focus();
 });
 
+// Navigation groups: hover/focus opens them without JavaScript; this adds click, Escape and arrow keys.
+const navGroups = [...document.querySelectorAll('[data-nav-group]')];
+const closeGroups = (except) => navGroups.forEach((group) => {
+  if (group === except) return;
+  group.classList.remove('open');
+  group.querySelector('.nav-group__toggle')?.setAttribute('aria-expanded', 'false');
+});
+navGroups.forEach((group) => {
+  const button = group.querySelector('.nav-group__toggle');
+  const links = () => [...group.querySelectorAll('.nav-link')];
+  button?.addEventListener('click', () => {
+    const open = !group.classList.contains('open');
+    closeGroups(group);
+    group.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+  });
+  button?.addEventListener('keydown', (event) => {
+    if (event.key !== 'ArrowDown') return;
+    event.preventDefault();
+    closeGroups(group);
+    group.classList.add('open');
+    button.setAttribute('aria-expanded', 'true');
+    links()[0]?.focus();
+  });
+  group.addEventListener('keydown', (event) => {
+    const items = links();
+    const index = items.indexOf(document.activeElement);
+    if (event.key === 'Escape' && group.classList.contains('open')) {
+      event.stopPropagation();
+      closeGroups();
+      button?.focus();
+    } else if (index >= 0 && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+      event.preventDefault();
+      items[(index + (event.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length].focus();
+    }
+  });
+  group.addEventListener('focusout', (event) => {
+    if (!group.contains(event.relatedTarget)) {
+      group.classList.remove('open');
+      button?.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('[data-nav-group]')) closeGroups();
+});
+
+const siteHeader = document.querySelector('.site-header');
+const markScrolled = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 12);
+markScrolled();
+window.addEventListener('scroll', markScrolled, { passive: true });
+
 document.querySelectorAll('.heading-anchor').forEach((link) => {
   link.addEventListener('click', async (event) => {
     event.preventDefault();

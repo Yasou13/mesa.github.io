@@ -22,7 +22,7 @@ const chrome = process.env.CHROME_BIN || 'google-chrome';
 const port = 9300 + (process.pid % 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mesa-browser-qa-'));
 const requiredScenes = ['event-horizon'];
-const requiredHomeSections = ['hero', 'process', 'capabilities', 'explore'];
+const requiredHomeSections = ['hero', 'demo', 'problem', 'how', 'start', 'use-cases', 'ecosystem', 'scope', 'cta'];
 
 const routes = [
   ...Object.values(siteData.pages).filter(page => !page.redirectTo).map(({ path: routePath }) => routePath),
@@ -194,7 +194,7 @@ async function inspect(routePath, width, height = width <= 520 ? 844 : 1000) {
     if (state.layoutShift > .1) failures.push(`${label}: load-time layout shift ${state.layoutShift}`);
     if (width === 390) {
       if (state.fixtureTop === null || state.fixtureTop > 1800) failures.push(`${label}: fixture starts too late (${state.fixtureTop}px)`);
-      const heightBudget = routePath === 'tr/' ? 10000 : 9000;
+      const heightBudget = 10000;
       if (state.height > heightBudget) failures.push(`${label}: homepage exceeds ${heightBudget}px (${state.height}px)`);
     }
   }
@@ -364,7 +364,7 @@ async function checkIntroPages() {
     if(violations.length)failures.push(`${routePath}: accessibility ${JSON.stringify(violations)}`);
     if(routePath===''||routePath==='tr/') {
       const state=await evaluate(`({install:document.querySelector('#home-install')?.textContent,document:!!document.querySelector('[data-demo-step]'),source:!!document.querySelector('.demo-source'),status:!!document.querySelector('.home-release a[href*="status/"]'),retiredStory:!!document.querySelector('[data-memory-story]')})`);
-      if(!state.install?.includes('pip install')||!state.install.includes('\\nmesa start')||!state.document||!state.source||!state.status||state.retiredStory)failures.push(`${routePath}: installation/overview regression ${JSON.stringify(state)}`);
+      if(!state.install?.includes('pip install')||!state.install.includes('\nmesa start')||!state.document||!state.source||!state.status||state.retiredStory)failures.push(`${routePath}: installation/overview regression ${JSON.stringify(state)}`);
       if(!await evaluate(`!!document.querySelector('.home-start a[href*="get-started/"]')`))failures.push(`${routePath}: setup guide missing`);
     }
     if(routePath.includes('how-it-works/')) {
@@ -421,9 +421,9 @@ async function checkNavigationReview() {
           const r=nav.getBoundingClientRect();const css=getComputedStyle(nav);
           const samples=[];
           for(let y=r.top+8;y<Math.min(r.bottom,innerHeight)-8;y+=24)for(let x=r.left+8;x<r.right-8;x+=60){const hit=document.elementFromPoint(x,y);samples.push(nav===hit||nav.contains(hit));}
-          return {open:toggle.getAttribute('aria-expanded')==='true',visible:css.display!=='none',background:css.backgroundColor,opacity:css.opacity,covered:samples.every(Boolean),icons:nav.querySelectorAll('.nav-item .nav-symbol svg').length,iconNames:[...nav.querySelectorAll('.nav-item svg')].map(x=>x.dataset.navIcon),activeBackground:nav.querySelector('.nav-item.active')?getComputedStyle(nav.querySelector('.nav-item.active')).backgroundColor:null,bottom:r.bottom,viewport:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth};
+          return {open:toggle.getAttribute('aria-expanded')==='true',visible:css.display!=='none',background:css.backgroundColor,opacity:css.opacity,covered:samples.every(Boolean),icons:nav.querySelectorAll('.nav-link').length,iconNames:[...nav.querySelectorAll('.nav-group__label')].map(x=>x.textContent.trim()).length,activeBackground:nav.querySelector('.nav-item.active')?getComputedStyle(nav.querySelector('.nav-item.active')).backgroundColor:null,bottom:r.bottom,viewport:innerHeight,overflow:document.documentElement.scrollWidth-innerWidth};
         })()`);
-        if(!state.open||!state.visible||state.background!=='rgb(5, 5, 8)'||state.opacity!=='1'||!state.covered||state.icons!==4||JSON.stringify(state.iconNames)!==JSON.stringify(['workflow','workflow','book-open','library'])||(state.activeBackground!==null&&state.activeBackground!=='rgb(24, 24, 27)')||state.bottom>state.viewport||state.overflow>1)failures.push(`${routePath}@${width}: menu overlay ${JSON.stringify(state)}`);
+        if(!state.open||!state.visible||state.background!=='rgb(11, 12, 15)'||state.opacity!=='1'||!state.covered||state.icons!==16||state.iconNames!==3||(state.activeBackground!==null&&state.activeBackground!=='rgba(255, 255, 255, 0.05)'&&state.activeBackground!=='rgb(240, 200, 144)')||state.bottom>state.viewport||state.overflow>1)failures.push(`${routePath}@${width}: menu overlay ${JSON.stringify(state)}`);
         if(screenshotsDirectory&&routePath.includes('resources/')&&[390,732,900].includes(width)) {
           const shot=await connection.send('Page.captureScreenshot',{format:'png'});
           fs.writeFileSync(path.join(screenshotsDirectory,`${routePath.replaceAll('/','-')}${width}-menu-open.png`),Buffer.from(shot.data,'base64'));
@@ -433,8 +433,8 @@ async function checkNavigationReview() {
         if(!closed)failures.push(`${routePath}@${width}: Escape did not close and restore focus`);
         fallbackChecks.push({type:'navigation-overlay',routePath,width,state,closed});
       } else {
-        const desktop=await evaluate(`({icons:document.querySelectorAll('.nav-item .nav-symbol svg').length,visible:getComputedStyle(document.querySelector('#main-navigation')).display,overflow:document.documentElement.scrollWidth-innerWidth})`);
-        if(desktop.icons!==4||desktop.visible==='none'||desktop.overflow>1)failures.push(`${routePath}@${width}: desktop nav ${JSON.stringify(desktop)}`);
+        const desktop=await evaluate(`({icons:document.querySelectorAll('.nav-link').length,visible:getComputedStyle(document.querySelector('#main-navigation')).display,overflow:document.documentElement.scrollWidth-innerWidth})`);
+        if(desktop.icons!==16||desktop.visible==='none'||desktop.overflow>1)failures.push(`${routePath}@${width}: desktop nav ${JSON.stringify(desktop)}`);
       }
     }
   }
@@ -450,8 +450,8 @@ async function checkNavigationReview() {
     fallbackChecks.push({type:'navigation-landscape',routePath,landscape,violations});
     await connection.send('Emulation.setScriptExecutionDisabled',{value:true});
     await navigate(new URL(routePath,baseUrl).href);
-    const staticNav=await evaluate(`({visible:getComputedStyle(document.querySelector('#main-navigation')).display,icons:document.querySelectorAll('.nav-item .nav-symbol svg').length,overflow:document.documentElement.scrollWidth-innerWidth})`);
-    if(staticNav.visible==='none'||staticNav.icons!==4||staticNav.overflow>1)failures.push(`${routePath}: no-JS navigation failed`);
+    const staticNav=await evaluate(`({visible:getComputedStyle(document.querySelector('#main-navigation')).display,icons:document.querySelectorAll('.nav-link').length,overflow:document.documentElement.scrollWidth-innerWidth})`);
+    if(staticNav.visible==='none'||staticNav.icons!==16||staticNav.overflow>1)failures.push(`${routePath}: no-JS navigation failed`);
     await connection.send('Emulation.setScriptExecutionDisabled',{value:false});
   }
 }

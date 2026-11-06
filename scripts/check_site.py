@@ -43,7 +43,7 @@ MEDIA_DATA = json.loads(
 )
 REQUIRED_MEDIA_RECORDS = ("event-horizon",)
 HOME_SCENES = ("event-horizon",)
-HOME_SECTIONS = ("hero", "process", "capabilities", "explore")
+HOME_SECTIONS = ("hero", "demo", "problem", "how", "start", "use-cases", "ecosystem", "scope", "cta")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
     entry["path"]
     for entry in HUB_DATA["entries"]
@@ -479,7 +479,7 @@ def main() -> int:
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "pip install" not in home_text or "relevant passage and its source" not in home_text:
+    if "pip install" not in home_text or "returns the relevant passage" not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
@@ -502,7 +502,7 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("Belgelerinizdeki bilgiyi kaynağıyla bulun.", "pip install", "Alfa"),
+        "tr/": ("kaynağıyla bulsun.", "pip install", "Alfa"),
         "tr/how-it-works/": ("Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),

@@ -10,41 +10,147 @@ const arrow = '<span class="explain-arrow" aria-hidden="true">→</span>';
 const fileIcon = '<svg viewBox="0 0 32 38" aria-hidden="true" class="explain-file-icon"><path d="M5 1h14l8 8v28H5zM19 1v9h8M10 18h12M10 24h12M10 30h8"/></svg>';
 const codeBlock = (id, code) => `<div class="start-code"><button type="button" class="copy-button" data-copy-target="${id}" aria-label="${t('Copy commands', 'Komutları kopyala')}">${t('Copy', 'Kopyala')}</button><pre tabindex="0"><code id="${id}">${code.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</code></pre></div>`;
 
-function quickstart(route, language = 'en') {
-  return `<aside class="home-start" aria-labelledby="home-start-title">
-    <div class="home-start__heading"><span class="intro-index">${t('MESA CLI · COMMAND-LINE TOOL', 'MESA CLI · KOMUT SATIRI ARACI')}</span><h2 id="home-start-title">${t('Install. Start. Search.', 'Kurun. Başlatın. Arayın.')}</h2><p>${t('Start MESA, add documents and search from your terminal. The mesa command comes with the mesa-memory package.', 'MESA’yı terminalden başlatın, belge ekleyip arayın. mesa komutu, mesa-memory paketiyle birlikte gelir.')}</p><p>${t('Python 3.11–3.13 · Linux / macOS · Windows with WSL or Docker', 'Python 3.11–3.13 · Linux / macOS · Windows için WSL veya Docker')}</p></div>
-    <div class="home-start__terminal"><span>${t('Terminal 1 · keep this running', 'Terminal 1 · bu pencere açık kalsın')}</span>${codeBlock('home-install', 'pip install mesa-memory==0.9.1\nmesa start')}</div>
-    <p class="home-start-note">${t('Verified PyPI v0.9.1 package · Python 3.11 or newer.', 'Doğrulanmış PyPI v0.9.1 paketi · Python 3.11 veya üstü.')}</p>
-    <p class="home-start-note">${t('New to Python or terminals? Start with the setup guide. It walks through prerequisites, adding a document, waiting for processing and the first search.', 'Python veya terminalde yeni misiniz? Kurulum rehberiyle başlayın. Ön koşulları, belge eklemeyi, işlemenin tamamlanmasını ve ilk aramayı adım adım gösterir.')}</p>
-    <a class="text-link" href="${route('get-started/')}">${t('Step-by-step setup →', 'Adım adım kurulum →')}</a>
-    <a class="text-link" href="${route('docs/core/cli-reference/')}">${t('MESA CLI commands →', 'MESA CLI komutları →')}</a>
-  </aside>`;
+// Decorative "evidence block" strips used inside cards. Seeded, so builds are stable.
+function blockStrip(seed, columns = 16, rows = 3, accent = false) {
+  let state = seed * 9301 + 49297;
+  const next = () => { state = (state * 9301 + 49297) % 233280; return state / 233280; };
+  const cells = Array.from({length: columns * rows}, () => {
+    const value = next();
+    const tone = accent && value > .78 ? 'a' : value > .62 ? 's' : value > .3 ? 'm' : 'w';
+    return `<i class="b-${tone}"></i>`;
+  }).join('');
+  return `<div class="block-strip block-strip--${columns}" aria-hidden="true">${cells}</div>`;
+}
+const warning = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4 21 20H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
+const check = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+
+function quickstart(route) {
+  return `<article class="path-card home-start" aria-labelledby="home-start-title">
+      <div class="path-card__meta"><span class="path-card__when">${t('Today', 'Bugün')}</span><span class="path-card__kind">${t('LOCAL', 'YEREL')}</span></div>
+      <h3 id="home-start-title">${t('Run MESA on your computer', 'MESA’yı bilgisayarınızda çalıştırın')}</h3>
+      <p>${t('Install the package and start the server. Word search works without any model account.', 'Paketi kurun ve sunucuyu başlatın. Sözcük araması için model hesabı gerekmez.')}</p>
+      <div class="home-start__terminal"><span>${t('Terminal · keep this window open', 'Terminal · bu pencere açık kalsın')}</span>${codeBlock('home-install', 'pip install mesa-memory==0.9.1\nmesa start')}</div>
+      <p class="home-start-note">${t('Python 3.11–3.13 · Linux / macOS · Windows with WSL or Docker', 'Python 3.11–3.13 · Linux / macOS · Windows için WSL veya Docker')}</p>
+      <div class="path-card__footer"><span>${t('New to terminals? The guide goes step by step.', 'Terminalde yeni misiniz? Rehber adım adım anlatır.')}</span><a href="${route('get-started/')}">${t('Step-by-step setup →', 'Adım adım kurulum →')}</a></div>
+    </article>`;
 }
 
-export function beginnerHome({header, footer, route, cta, language}) {
-  const cards = items => `<div class="practical-uses">${items.map(([name, text]) => `<article><h3>${name}</h3><p>${text}</p></article>`).join('')}</div>`;
-  return `${header('home')}<main id="main-content" class="home-page intro-page simple-public">
-    <section class="hero hero--home intro-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
-      <div class="hero-copy">${label('OPEN SOURCE · YOUR DOCUMENTS, WITH THEIR SOURCES', 'AÇIK KAYNAK · BELGELERİNİZ VE KAYNAKLARI')}<h1 id="home-title">${t('Find information in your documents, with its source.', 'Belgelerinizdeki bilgiyi kaynağıyla bulun.')}</h1>${p('MESA Core searches document text for your application. It returns the relevant passage and its source, so you can see where information came from.', 'MESA Core, belge metinlerini uygulamanız için arar. İlgili pasajı ve kaynağını geri verir; bilginin nereden geldiğini görebilirsiniz.')}<div class="actions">${cta(t('Explore the example', 'Örneği inceleyin'), '#example')}${cta(t('Try it on your computer', 'Bilgisayarınızda deneyin'), '#start', 'secondary')}</div>
-      <div class="home-release"><span>${t('v0.9.1 · Alpha', 'v0.9.1 · Alfa')}</span><p>${t('Try it for local evaluation; production qualification is incomplete.', 'Yerel değerlendirme için deneyin; canlı kullanım doğrulamaları tamamlanmadı.')}</p><a href="${route('status/')}">${t('Open project status ↗', 'Proje durumunu aç ↗')}</a></div></div>${recordedExample({t, route, language})}
+export function beginnerHome({header, footer, route, cta, repos, language}) {
+  const problemCards = [
+    ['01', t('SOURCE', 'KAYNAK'), t('Every answer has a source', 'Her cevabın bir kaynağı var'), t('Your assistant can show which document and which passage supports what it says.', 'Asistanınız söylediğinin hangi belgeye ve hangi pasaja dayandığını gösterebilir.'), t('MESA returns the passage and its document.', 'MESA pasajı ve belgesini birlikte döndürür.'), 'how-it-works/', t('How search works →', 'Arama nasıl çalışır →'), true],
+    ['02', t('REVISION', 'SÜRÜM'), t('The current version wins', 'Güncel sürüm öne çıkar'), t('When a document changes, searches return the new version once it is processed. The old one stays in history.', 'Bir belge değiştiğinde, işlendikten sonra aramalar yeni sürümü döndürür. Eskisi geçmişte kalır.'), t('MESA numbers every revision.', 'MESA her sürüme bir numara verir.'), '#example', t('See it in the example →', 'Örnekte görün →'), false],
+    ['03', t('MEMORY', 'HAFIZA'), t('Memory that lasts', 'Kalıcı hafıza'), t('Notes saved today can be found in later conversations, and after a restart.', 'Bugün kaydedilen notlar sonraki konuşmalarda ve yeniden başlatmadan sonra da bulunur.'), t('MESA keeps memory on your own disk.', 'MESA hafızayı kendi diskinizde tutar.'), 'architecture/', t('See the architecture →', 'Mimariyi inceleyin →'), false]
+  ];
+  const steps = [
+    [t('Add your documents', 'Belgelerinizi ekleyin'), t('Text files, notes, policies. MESA keeps the text and where it came from.', 'Metin dosyaları, notlar, kurallar. MESA metni ve nereden geldiğini saklar.'), 'mesa add policy.txt'],
+    [t('MESA prepares them', 'MESA onları hazırlar'), t('It splits each document into passages and makes them searchable in the background.', 'Her belgeyi pasajlara böler ve arka planda aranabilir hâle getirir.'), ''],
+    [t('Ask, and get the passage', 'Sorun, pasajı alın'), t('Your application asks a question. MESA returns the matching passage, its document and version.', 'Uygulamanız bir soru sorar. MESA eşleşen pasajı, belgesini ve sürümünü döndürür.'), 'mesa search "returns"']
+  ];
+  const uses = [
+    [t('A company assistant', 'Şirket içi asistan'), t('Finds answers in procedures, product documents and team notes.', 'Prosedürlerde, ürün belgelerinde ve ekip notlarında yanıt arar.'), 3],
+    [t('A research tool', 'Araştırma aracı'), t('Shows which document and passage supports a finding.', 'Bulduğu bilginin hangi belgeye ve metne dayandığını gösterir.'), 7],
+    [t('An agent with memory', 'Hafızası olan ajan'), t('Looks up previously saved notes in later conversations.', 'Önceden kaydedilen notları sonraki konuşmalarda arar.'), 11],
+    [t('Legal teams', 'Hukuk ekipleri'), t('Searches legislation and court decisions and shows the exact passage. Built on MESA Data and MESA Law, which are still in development.', 'Mevzuat ve mahkeme kararlarında arar, dayanak pasajı gösterir. Henüz geliştirme aşamasındaki MESA Data ve MESA Law üzerine kurulur.'), 17]
+  ];
+  const satellites = [
+    ['MESA Data', 'data/', t('Prepares legal source documents.', 'Hukuk kaynaklarını hazırlar.'), t('Optional for your own documents.', 'Kendi belgeleriniz için zorunlu değildir.')],
+    ['MESA Law', 'law/', t('Uses Core in a legal application.', 'Core’u bir hukuk uygulamasında kullanır.'), t('Under development; live integration is not yet verified.', 'Geliştirme aşamasında; canlı bağlantısı henüz doğrulanmadı.')],
+    ['MESA QA', 'qa/', t('Tests memory behavior.', 'Hafızanın davranışını test eder.'), t('A test tool, not part of every query.', 'Her sorguda çalışan bir parça değil, test aracıdır.')],
+    ['E2E Certification', 'certification/', t('Checks a complete test setup.', 'Bütün bir test kurulumunu değerlendirir.'), t('No completed production approval.', 'Tamamlanmış bir üretim onayı yoktur.')]
+  ];
+  const scope = [
+    [t('Text input', 'Metin girişi'), t('The CLI reads UTF-8 text files. Convert PDF and Word files to text first.', 'CLI, UTF-8 metin dosyalarını okur. PDF ve Word dosyalarını önce metne dönüştürün.')],
+    [t('Local data', 'Yerel veri'), t('Data is stored in ~/.mesa/data. Models and external providers are off by default; this is not a full network-isolation guarantee.', 'Veri ~/.mesa/data altında saklanır. Modeller ve dış sağlayıcılar başlangıçta kapalıdır; bu tam ağ yalıtımı garantisi değildir.')],
+    [t('Optional models', 'İsteğe bağlı modeller'), t('Meaning search and fact extraction need a model provider, which can receive data and charge for use.', 'Anlam araması ve bilgi çıkarımı bir model sağlayıcısı ister; sağlayıcı veri alabilir ve ücret doğurabilir.')],
+    [t('Size limit', 'Boyut sınırı'), t('The document HTTP API accepts up to 5,000,000 UTF-8 bytes per request.', 'Belge HTTP API’si istek başına en fazla 5.000.000 UTF-8 bayt kabul eder.')]
+  ];
+  return `${header('home')}<main id="main-content" class="home-page intro-page simple-public home-v2">
+    <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
+      <p class="eyebrow">${t('OPEN SOURCE · v0.9.1 ALPHA', 'AÇIK KAYNAK · v0.9.1 ALFA')}</p>
+      <h1 id="home-title">${t('Let your AI find answers', 'Yapay zekânız bilgiyi')} <em class="accent-word">${t('with their source.', 'kaynağıyla bulsun.')}</em></h1>
+      <p class="home-hero__lead">${t('Give MESA your documents. When a question comes in, it returns the relevant passage to your application, with the document and version it came from.', 'Belgelerinizi MESA’ya verin. Bir soru geldiğinde ilgili pasajı, hangi belgeden ve hangi sürümden geldiğiyle birlikte uygulamanıza döndürür.')}</p>
+      <div class="actions">${cta(t('Try it on your computer', 'Bilgisayarınızda deneyin'), '#start')}${cta(t('See how it works', 'Nasıl çalıştığını görün'), '#how-it-works', 'secondary')}</div>
+      <div class="home-hero__connects"><span class="home-hero__label">${t('CONNECTS THROUGH', 'BAĞLANMA YOLLARI')}</span><ul><li>MESA CLI</li><li>Python SDK</li><li>HTTP API</li><li>MCP</li></ul></div>
+      <div class="home-release"><span class="chip chip--accent">${t('v0.9.1 · Alpha', 'v0.9.1 · Alfa')}</span><p>${t('Ready for local evaluation, not yet for production.', 'Yerel değerlendirmeye hazır, canlı kullanıma henüz değil.')}</p><a href="${route('status/')}">${t('Project status →', 'Proje durumu →')}</a></div>
     </section>
-    <section class="section" id="how-it-works" data-home-section="process"><span id="why-mesa"></span><span id="the-problem"></span><span id="mesa-in-action"></span>${label('WHY KEEP THE SOURCE?', 'KAYNAĞI NEDEN KORUYALIM?')}${h('See the passage. Follow its revision.', 'Metni görün. Sürümünü izleyin.')}${cards([
-      [t('Inspect the evidence', 'Dayanak metni inceleyin'), t('A search result carries the original passage and source reference. Your application can show what supports an answer.', 'Arama sonucu özgün pasajı ve kaynak bilgisini taşır. Uygulamanız bir yanıtın hangi metne dayandığını gösterebilir.')],
-      [t('Use the current document', 'Güncel belgeyi kullanın'), t('After a changed document is processed, current searches return the new revision. The example above records this change.', 'Değişen belge işlendikten sonra güncel aramalar yeni sürümü döndürür. Yukarıdaki örnek bu değişimi kaydeder.')],
-      [t('Connect your application', 'Uygulamanıza bağlayın'), t('Try the CLI first, then connect through Python, HTTP or MCP. Your application and its model produce the final answer.', 'Önce CLI ile deneyin; ardından Python, HTTP veya MCP ile bağlanın. Son yanıtı uygulamanız ve onun modeli üretir.')]
-    ])}<a class="text-link" href="${route('how-it-works/')}">${t('Follow the document lifecycle →', 'Belgenin yaşam döngüsünü inceleyin →')}</a></section>
-    <section class="section product-scope" id="scope">${label('BEFORE YOU TRY IT', 'DENEMEDEN ÖNCE')}${h('What works, and what you need.', 'Neler çalışır, nelere ihtiyacınız var?')}${cards([
-      [t('Text input', 'Metin girişi'), t('The CLI reads UTF-8 text files. PDF and Word files need text extraction before this workflow; direct binary-file parsing is not demonstrated here.', 'CLI, UTF-8 metin dosyalarını okur. PDF ve Word dosyaları bu akıştan önce metne dönüştürülmelidir; doğrudan ikili dosya işleme burada gösterilmez.')],
-      [t('Local data', 'Yerel veri'), t('The default local setup stores data in ~/.mesa/data. Models and external providers are off by default. This is not a guarantee of complete network isolation.', 'Varsayılan yerel kurulum veriyi ~/.mesa/data altında saklar. Modeller ve dış sağlayıcılar başlangıçta kapalıdır. Bu, tam ağ yalıtımı garantisi değildir.')],
-      [t('Optional models', 'İsteğe bağlı modeller'), t('Word search needs no model account. Semantic search and extraction need extra setup; a cloud provider can receive data and charge for use.', 'Sözcük araması model hesabı gerektirmez. Anlamsal arama ve bilgi çıkarımı ek kurulum ister; bulut sağlayıcısı veri alabilir ve kullanım ücreti doğurabilir.')]
-    ])}<p class="scope-note">${t('The document HTTP API accepts up to 5,000,000 UTF-8 bytes. This is an API limit, not a separately measured CLI file-size limit. The Turkish demo is one working example, not a general quality guarantee.', 'Belge HTTP API’si en fazla 5.000.000 UTF-8 bayt kabul eder. Bu API sınırıdır; ayrıca ölçülmüş bir CLI dosya boyutu sınırı değildir. Türkçe demo çalışan tek bir örnektir; genel kalite garantisi değildir.')}</p><div class="scope-links"><a href="${route('docs/core/configuration/')}">${t('Product data and model settings →', 'Ürün verisi ve model ayarları →')}</a><a href="${route('privacy/')}">${t('Website forms and analytics →', 'Web sitesi formları ve istatistikleri →')}</a></div></section>
-    <section class="section local-start" id="start">${label('YOUR FIRST SUCCESSFUL SEARCH', 'İLK BAŞARILI ARAMANIZ')}${h('Try locally. Then choose your connection.', 'Yerelde deneyin. Sonra bağlantı yolunuzu seçin.')}<div class="local-start-grid">${quickstart(route, language)}<div class="integration-options"><h3>${t('After your first search', 'İlk aramadan sonra')}</h3><p>${t('The setup guide explains prerequisites, expected results and common errors. Start with the CLI; add an integration when you need it.', 'Kurulum rehberi ön koşulları, beklenen sonuçları ve sık hataları açıklar. CLI ile başlayın; ihtiyacınız olduğunda entegrasyon ekleyin.')}</p><a href="${route('docs/core/examples/')}"><strong>Python SDK</strong><span>${t('Use MESA in your Python application', 'Python uygulamanızdan kullanın')}</span></a><a href="${route('docs/mcp/')}"><strong>MCP</strong><span>${t('Connect an AI client', 'Bir yapay zekâ istemcisi bağlayın')}</span></a><a href="${route('docs/core/api-reference/')}"><strong>HTTP API</strong><span>${t('Connect another application', 'Başka bir uygulamadan bağlanın')}</span></a></div></div></section>
-    <section class="section" id="use-cases" data-home-section="capabilities">${label('WHEN IS IT USEFUL?', 'NE ZAMAN İŞE YARAR?')}${h('When your application needs your information.', 'Uygulamanızın sizin bilgilerinize ihtiyacı olduğunda.')}<div class="practical-uses">${[
-      [t('A company assistant', 'Şirket içi asistan'), t('Finds answers in procedures, product documents and team notes.', 'Prosedürlerde, ürün belgelerinde ve ekip notlarında yanıt arar.')],
-      [t('A research tool', 'Araştırma aracı'), t('Shows which document and passage supports a finding.', 'Bulduğu bilginin hangi belgeye ve metne dayandığını gösterir.')],
-      [t('An agent with memory', 'Hafızası olan ajan'), t('Looks up previously saved notes in later conversations.', 'Önceden kaydedilen notları sonraki konuşmalarda arar.')]
-    ].map(([name,text])=>`<article><h3>${name}</h3><p>${text}</p></article>`).join('')}</div></section>
-    <section class="section next-steps" id="ecosystem" data-home-section="explore">${h('Explore the technical details.', 'Teknik ayrıntıları inceleyin.')}<div class="next-step-links"><a href="${route('docs/')}"><strong>${t('Documentation', 'Dokümantasyon')}</strong><span>${t('Guides, commands and integration paths →', 'Rehberler, komutlar ve entegrasyon yolları →')}</span></a><a href="${route('architecture/')}"><strong>${t('Architecture', 'Mimari')}</strong><span>${t('Storage, processing and search diagrams →', 'Depolama, işleme ve arama şemaları →')}</span></a><a href="${route('ecosystem/')}"><strong>${t('Ecosystem', 'Ekosistem')}</strong><span>${t('What Core, Data, Law and the tests do →', 'Core, Data, Law ve testlerin görevleri →')}</span></a></div></section>${footer()}</main>`;
+
+    <section class="band band--graphite home-demo" id="mesa-in-action" data-home-section="demo">
+      <div class="band__inner">${recordedExample({t, route, language})}</div>
+    </section>
+
+    <section class="band home-problem" id="the-problem" data-home-section="problem" aria-labelledby="problem-title">
+      <div class="band__inner">
+        <div class="home-problem__head">
+          <div><p class="eyebrow">${t('THE PROBLEM', 'SORUN')}</p><h2 id="problem-title">${t('AI gives answers, but not', 'Yapay zekâ cevap veriyor, ama')} <em class="accent-word">${t('where they came from.', 'nereden bildiğini söylemiyor.')}</em></h2><p class="home-problem__lead">${t('A language model only knows what it was trained on and what you put in front of it. MESA fills that gap with your own documents.', 'Bir dil modeli yalnızca eğitildiği şeyi ve önüne koyduğunuz metni bilir. MESA bu boşluğu kendi belgelerinizle doldurur.')}</p></div>
+          <ul class="problem-flags" aria-label="${t('Common problems', 'Sık görülen sorunlar')}"><li>${warning}<span>${t('Can’t show its source.', 'Kaynağını gösteremiyor.')}</span></li><li>${warning}<span>${t('Uses an outdated document.', 'Eski belgeyi kullanıyor.')}</span></li><li>${warning}<span>${t('Forgets what it learned yesterday.', 'Dün öğrendiğini unutuyor.')}</span></li></ul>
+        </div>
+        <div class="problem-cards">${problemCards.map(([n, kind, title, text, fix, href, more, accent], index) => `<article class="problem-card"><div class="problem-card__body"><p class="card-index"><span>${n}</span><span class="card-index__kind">${kind}</span></p><h3>${title}</h3><p>${text}</p><p class="problem-card__fix">${check}<span>${fix}</span></p><a class="text-link" href="${href.startsWith('#') ? href : route(href)}">${more}</a></div>${blockStrip(index + 2, 16, 3, accent)}</article>`).join('')}</div>
+      </div>
+    </section>
+
+    <section class="band band--graphite home-how" id="how-it-works" data-home-section="how" aria-labelledby="how-title"><span id="why-mesa"></span>
+      <div class="band__inner">
+        <p class="eyebrow">${t('IN ONE MINUTE', 'BİR DAKİKADA')}</p><h2 id="how-title">${t('How MESA works, in three steps.', 'MESA üç adımda nasıl çalışır?')}</h2>
+        <ol class="how-steps">${steps.map(([title, text, code], index) => `<li><span class="how-steps__number">${index + 1}</span><h3>${title}</h3><p>${text}</p>${code ? `<code>${code}</code>` : ''}</li>`).join('')}</ol>
+        <p class="how-note"><strong>${t('Good to know:', 'Bilmekte fayda var:')}</strong> ${t('your own model writes the answer. MESA gives it the right text.', 'cevabı sizin modeliniz yazar. MESA ona doğru metni verir.')}</p>
+        <a class="text-link" href="${route('how-it-works/')}">${t('Follow the document lifecycle →', 'Belgenin yaşam döngüsünü inceleyin →')}</a>
+      </div>
+    </section>
+
+    <section class="band home-path" id="start" data-home-section="start" aria-labelledby="path-title">
+      <div class="band__inner">
+        <p class="eyebrow">${t('YOUR FIRST SUCCESSFUL SEARCH', 'İLK BAŞARILI ARAMANIZ')}</p><h2 id="path-title">${t('Start small. Grow when you need to.', 'Küçük başlayın. Gerektikçe büyütün.')}</h2>
+        <div class="path-cards">
+          ${quickstart(route)}
+          <article class="path-card">
+            <div class="path-card__meta"><span class="path-card__when">${t('Next', 'Sonra')}</span><span class="path-card__kind">${t('CONNECT', 'BAĞLAN')}</span></div>
+            <h3>${t('Connect your application', 'Uygulamanıza bağlayın')}</h3>
+            <p>${t('Call MESA from your code. Pick the path that fits your stack.', 'MESA’yı kodunuzdan çağırın. Size uyan yolu seçin.')}</p>
+            <ul class="path-links"><li><a href="${route('docs/core/examples/')}"><strong>Python SDK</strong><span>${t('Use MESA in your Python application', 'Python uygulamanızdan kullanın')}</span></a></li><li><a href="${route('docs/core/api-reference/')}"><strong>HTTP API</strong><span>${t('Connect another application', 'Başka bir uygulamadan bağlanın')}</span></a></li><li><a href="${route('docs/mcp/')}"><strong>MCP</strong><span>${t('Connect an AI client', 'Bir yapay zekâ istemcisi bağlayın')}</span></a></li></ul>
+          </article>
+          <article class="path-card path-card--featured">
+            <div class="path-card__meta"><span class="path-card__when">${t('If needed', 'Gerekirse')}</span><span class="path-card__kind">${t('SPECIALIZE', 'UYARLA')}</span></div>
+            <h3>${t('Adapt it to your field', 'Alanınıza uyarlayın')}</h3>
+            <p>${t('The legal example adds Turkish legal data and a legal workspace. Both are optional and still in development.', 'Hukuk örneği Türk hukuk verisini ve bir hukuk çalışma alanını ekler. İkisi de isteğe bağlıdır ve hâlâ geliştirme aşamasındadır.')}</p>
+            <ul class="path-links"><li><a href="${route('data/')}"><strong>MESA Data</strong><span>${t('Prepares legal source documents.', 'Hukuk kaynaklarını hazırlar.')}</span></a></li><li><a href="${route('law/')}"><strong>MESA Law</strong><span>${t('Uses Core in a legal application.', 'Core’u bir hukuk uygulamasında kullanır.')}</span></a></li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--graphite home-uses" id="use-cases" data-home-section="use-cases" aria-labelledby="uses-title">
+      <div class="band__inner">
+        <p class="eyebrow">${t('WHEN IS IT USEFUL?', 'NE ZAMAN İŞE YARAR?')}</p><h2 id="uses-title">${t('When your application needs your information.', 'Uygulamanızın sizin bilgilerinize ihtiyacı olduğunda.')}</h2>
+        <div class="practical-uses use-grid" role="region" tabindex="0" aria-label="${t('Use cases', 'Kullanım alanları')}">${uses.map(([name, text, seed]) => `<article class="use-card"><div><h3>${name}</h3><p>${text}</p></div>${blockStrip(seed, 10, 6)}</article>`).join('')}</div>
+      </div>
+    </section>
+
+    <section class="band home-ecosystem" id="ecosystem" data-home-section="ecosystem" aria-labelledby="eco-title">
+      <div class="band__inner">
+        <p class="eyebrow">${t('THE PROJECTS', 'PROJELER')}</p><h2 id="eco-title">${t('Start with Core. Add the rest only if you need it.', 'Core ile başlayın. Gerisini yalnızca gerekirse ekleyin.')}</h2>
+        <div class="eco-map">
+          <a class="eco-core" href="${route('architecture/')}"><span class="card-index">${t('THE CENTER', 'MERKEZ')}</span><strong>MESA Core</strong><span>${t('Stores and searches your documents.', 'Belgelerinizi saklar ve arar.')}</span><span>${t('Start here to build with MESA.', 'MESA kullanmak için buradan başlayın.')}</span></a>
+          <div class="eco-satellites">${satellites.map(([name, path, role, note]) => `<a href="${route(path)}"><strong>${name}</strong><span>${role}</span><small>${note}</small></a>`).join('')}</div>
+        </div>
+        <a class="text-link" href="${route('ecosystem/')}">${t('What Core, Data, Law and the tests do →', 'Core, Data, Law ve testlerin görevleri →')}</a>
+      </div>
+    </section>
+
+    <section class="band band--graphite home-scope" id="scope" data-home-section="scope" aria-labelledby="scope-title">
+      <div class="band__inner">
+        <p class="eyebrow">${t('BEFORE YOU TRY IT', 'DENEMEDEN ÖNCE')}</p><h2 id="scope-title">${t('What works, and what you need.', 'Neler çalışır, nelere ihtiyacınız var?')}</h2>
+        <dl class="scope-grid">${scope.map(([name, text]) => `<div><dt>${name}</dt><dd>${text}</dd></div>`).join('')}</dl>
+        <div class="scope-links"><a href="${route('docs/core/configuration/')}">${t('Product data and model settings →', 'Ürün verisi ve model ayarları →')}</a><a href="${route('privacy/')}">${t('Website forms and analytics →', 'Web sitesi formları ve istatistikleri →')}</a></div>
+      </div>
+    </section>
+
+    <section class="band home-cta" data-home-section="cta" aria-labelledby="cta-title">
+      <div class="band__inner">
+        <p class="eyebrow">${t('GET STARTED', 'BAŞLAYIN')}</p><h2 id="cta-title">${t('Try it with', 'Kendi belgelerinizle')} <em class="accent-word">${t('your own documents.', 'deneyin.')}</em></h2>
+        <div class="actions">${cta(t('Step-by-step setup', 'Adım adım kurulum'), route('get-started/'))}${cta('GitHub', repos.core, 'secondary', true)}</div>
+        <p class="home-cta__line"><code>$ pip install mesa-memory==0.9.1</code><span>·</span><span>${t('Open source · MIT', 'Açık kaynak · MIT')}</span></p>
+      </div>
+    </section>${footer()}</main>`;
 }
 
 export function beginnerHow({header, footer, route, cta}) {
