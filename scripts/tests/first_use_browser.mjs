@@ -44,7 +44,9 @@ try {
           assert.deepEqual(violations, [], JSON.stringify({language,route,width,violations}));
         }
         if (!route) {
-          assert.equal(state.steps, 1, JSON.stringify({language,route,width,state}));
+          assert.ok(await b.evaluate(`!!document.querySelector('#mesa-in-action .flow')`), 'home shows the documents-to-model flow');
+          await b.navigate(base + prefix + 'how-it-works/');
+          assert.equal(await b.evaluate(`[...document.querySelectorAll('[data-demo-step]')].filter(e=>e.getClientRects().length>0).length`), 1, JSON.stringify({language,route,width}));
           await b.evaluate(`document.querySelector('[data-demo-next]').click(); document.querySelector('[data-demo-next]').click();`);
           assert.ok(await b.evaluate(`document.querySelector('[data-demo-step]:not([hidden])').textContent.includes('09:00') && document.querySelector('[data-demo-step]:not([hidden])').textContent.includes('COMMITTED')`));
           await b.evaluate(`document.querySelector('[data-demo-next]').click()`);
@@ -67,12 +69,14 @@ try {
     await b.send('Browser.grantPermissions', {origin:base.replace(/\/$/, ''),permissions:['clipboardReadWrite','clipboardSanitizedWrite']});
     await b.send('Page.bringToFront');
     await b.send('Emulation.setFocusEmulationEnabled',{enabled:true});
+    await b.navigate(base+prefix+'how-it-works/');
     await b.evaluate(`document.querySelector('[data-demo-next]').focus()`);
     await b.send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
     await b.send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
     assert.equal(await b.evaluate(`document.querySelector('[data-demo-progress]').textContent`),'2 / 4');
     await b.evaluate(`document.querySelector('[data-demo-next]').click(); document.querySelector('[data-demo-next]').click()`);
     assert.equal(await b.evaluate(`document.activeElement.hasAttribute('data-demo-prev')`),true);
+    await b.navigate(base+prefix);
     await b.evaluate(`document.querySelector('[data-copy-target="home-install"]').click()`);
     for (let i=0;i<20;i++) {
       if (await b.evaluate(`document.querySelector('[data-copy-target="home-install"]').textContent === ${language === 'tr' ? '"Kopyalandı"' : '"Copied"'}`)) break;
@@ -80,7 +84,7 @@ try {
     }
     assert.equal(await b.evaluate(`navigator.clipboard.readText()`), 'pip install mesa-memory==0.9.1\nmesa start');
     await b.send('Emulation.setScriptExecutionDisabled',{value:true});
-    await b.navigate(base+prefix);
+    await b.navigate(base+prefix+'how-it-works/');
     assert.equal(await b.evaluate(`document.querySelectorAll('[data-demo-step]:not([hidden])').length`),4);
     await b.capture(`${output}/${language}-no-javascript.png`);
     await b.send('Emulation.setScriptExecutionDisabled',{value:false});

@@ -4532,10 +4532,10 @@
   {
     "id": "core-home-en",
     "url": "",
-    "title": "MESA — Find Information with Its Source",
+    "title": "MESA — Memory That Brings Your Documents to Your AI",
     "section": "Ecosystem",
     "category": "Core",
-    "summary": "See a recorded real search with source and revision information, then try MESA locally with a step-by-step setup guide.",
+    "summary": "MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide.",
     "keywords": [
       "home",
       "mesa",
@@ -4546,10 +4546,10 @@
   {
     "id": "core-home-tr",
     "url": "tr/",
-    "title": "MESA — Bilgiyi Kaynağıyla Bulun",
+    "title": "MESA — Belgelerinizi Yapay Zekânıza Taşıyan Hafıza",
     "section": "Ekosistem",
     "category": "Core",
-    "summary": "Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin.",
+    "summary": "MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin.",
     "keywords": [
       "home",
       "mesa",

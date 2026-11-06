@@ -1,8 +1,8 @@
 {
   "pages": {
     "home": {
-      "title": "MESA — Bilgiyi Kaynağıyla Bulun",
-      "description": "Kaynak ve sürüm bilgisi içeren gerçek arama kaydını inceleyin; ardından adım adım kurulumla MESA’yı yerelde deneyin."
+      "title": "MESA — Belgelerinizi Yapay Zekânıza Taşıyan Hafıza",
+      "description": "MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin."
     },
     "mesa": {
       "title": "MESA Core — Yapay Zekâ İçin Kalıcı Hafıza",

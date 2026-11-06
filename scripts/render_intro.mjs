@@ -22,6 +22,34 @@ function docLines(seed, lines = 4, marked = 1) {
 const warning = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4 21 20H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
 const check = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 
+// "From documents to your model": many files in, MESA's steps, bounded context out.
+// File names and sources are code (not translated), so each language gets its own.
+function flowDiagram(language) {
+  const tr = language === 'tr';
+  const files = tr
+    ? ['politikalar/', 'sozlesmeler/2026/', 'urun-notlari.md', 'destek-kayitlari/', 'toplanti-notlari.txt', 'mevzuat/', 'egitim-belgeleri/', 'sss.md']
+    : ['policies/', 'contracts/2026/', 'product-notes.md', 'support-tickets/', 'meeting-notes.txt', 'regulations/', 'training/', 'faq.md'];
+  const stages = [
+    [t('Add', 'Ekle'), t('Documents enter once, with their source.', 'Belgeler kaynağıyla birlikte bir kez eklenir.')],
+    [t('Split', 'Parçala'), t('Text becomes searchable passages; with a model, facts are extracted too.', 'Metin aranabilir pasajlara dönüşür; model varsa bilgi kayıtları da çıkarılır.')],
+    [t('Keep versions', 'Sürümleri tut'), t('A change creates a new revision; the current one wins.', 'Değişiklik yeni sürüm oluşturur; güncel olan öne çıkar.')],
+    [t('Search four ways', 'Dört yoldan ara'), t('Meaning, words, facts and relationships, within what the app may read.', 'Anlam, sözcük, bilgi kaydı ve ilişki; uygulamanın okuma yetkisi içinde.')],
+    [t('Rank and limit', 'Sırala ve sınırla'), t('Results are combined and trimmed to fit the model.', 'Sonuçlar birleştirilir ve modele sığacak şekilde sınırlanır.')]
+  ];
+  const passages = [
+    [t('“Returns are accepted within 30 days.”', '“İade süresi 30 gündür.”'), tr ? 'politikalar/iade.txt · v2' : 'policies/returns.txt · v2'],
+    [t('“Refunds go back to the original payment method.”', '“Ücret, ödemenin yapıldığı yönteme iade edilir.”'), tr ? 'destek-rehberi.md · v5' : 'support-guide.md · v5'],
+    [t('“Opened software cannot be returned.”', '“Açılmış yazılım iade edilemez.”'), tr ? 'politikalar/iade.txt · v2' : 'policies/returns.txt · v2']
+  ];
+  return `<div class="flow" role="region" tabindex="0" aria-label="${t('From documents to your model', 'Belgelerden modele')}">
+    <div class="flow__col flow__docs"><p class="flow__label">${t('YOUR DOCUMENTS', 'BELGELERİNİZ')}</p><ul>${files.map(name => `<li><code>${name}</code></li>`).join('')}</ul><p class="flow__caption">${t('Many files, many versions, different teams.', 'Çok sayıda dosya, sürüm ve ekip.')}</p></div>
+    <div class="flow__pipe" aria-hidden="true"><i></i></div>
+    <div class="flow__col flow__core"><p class="flow__label">MESA</p><ol>${stages.map(([name, text]) => `<li><strong>${name}</strong><span>${text}</span></li>`).join('')}</ol></div>
+    <div class="flow__pipe" aria-hidden="true"><i></i></div>
+    <div class="flow__col flow__context"><p class="flow__label">${t('CONTEXT FOR YOUR MODEL', 'MODELİNİZE GİDEN BAĞLAM')}</p><p class="flow__question">${t('How many days do customers have to return a product?', 'Müşteri ürünü kaç gün içinde iade edebilir?')}</p><ul>${passages.map(([text, source]) => `<li><span>${text}</span><code>${source}</code></li>`).join('')}</ul><p class="flow__caption">${t('Your model writes the answer from this context.', 'Cevabı modeliniz bu bağlamdan yazar.')}</p></div>
+  </div>`;
+}
+
 function quickstart(route) {
   return `<article class="path-card home-start" aria-labelledby="home-start-title">
       <div class="path-card__meta"><span class="path-card__when">${t('Today', 'Bugün')}</span><span class="path-card__kind">${t('LOCAL', 'YEREL')}</span></div>
@@ -35,9 +63,9 @@ function quickstart(route) {
 
 export function beginnerHome({header, footer, route, cta, repos, language}) {
   const problemCards = [
-    ['01', t('SOURCE', 'KAYNAK'), t('Every answer has a source', 'Her cevabın bir kaynağı var'), t('Your assistant can show which document and which passage supports what it says.', 'Asistanınız söylediğinin hangi belgeye ve hangi pasaja dayandığını gösterebilir.'), t('MESA returns the passage and its document.', 'MESA pasajı ve belgesini birlikte döndürür.'), 'how-it-works/', t('How search works →', 'Arama nasıl çalışır →'), true],
-    ['02', t('REVISION', 'SÜRÜM'), t('The current version wins', 'Güncel sürüm öne çıkar'), t('When a document changes, searches return the new version once it is processed. The old one stays in history.', 'Bir belge değiştiğinde, işlendikten sonra aramalar yeni sürümü döndürür. Eskisi geçmişte kalır.'), t('MESA numbers every revision.', 'MESA her sürüme bir numara verir.'), '#example', t('See it in the example →', 'Örnekte görün →'), false],
-    ['03', t('MEMORY', 'HAFIZA'), t('Memory that lasts', 'Kalıcı hafıza'), t('Notes saved today can be found in later conversations, and after a restart.', 'Bugün kaydedilen notlar sonraki konuşmalarda ve yeniden başlatmadan sonra da bulunur.'), t('MESA keeps memory on your own disk.', 'MESA hafızayı kendi diskinizde tutar.'), 'architecture/', t('See the architecture →', 'Mimariyi inceleyin →'), false]
+    ['01', t('MEMORY', 'HAFIZA'), t('A large archive, organised', 'Büyük arşiv, düzenli hafıza'), t('MESA keeps your documents as searchable passages, so the model gets the relevant part, not the whole archive.', 'MESA belgelerinizi aranabilir pasajlar olarak saklar; modele bütün arşiv değil, ilgili kısım gider.'), t('Only what matters reaches the model.', 'Modele yalnızca gereken bilgi gider.'), 'architecture/', t('See the architecture →', 'Mimariyi inceleyin →'), true],
+    ['02', t('REVISION', 'SÜRÜM'), t('The current version wins', 'Güncel sürüm öne çıkar'), t('When a document changes, searches return the new version once it is processed. The old one stays in history.', 'Bir belge değiştiğinde, işlendikten sonra aramalar yeni sürümü döndürür. Eskisi geçmişte kalır.'), t('MESA numbers every revision.', 'MESA her sürüme bir numara verir.'), 'how-it-works/#when-information-changes', t('See it in the example →', 'Örnekte görün →'), false],
+    ['03', t('SOURCE', 'KAYNAK'), t('Every answer has a source', 'Her cevabın bir kaynağı var'), t('Your assistant can show which document and which passage supports what it says.', 'Asistanınız söylediğinin hangi belgeye ve hangi pasaja dayandığını gösterebilir.'), t('MESA returns the passage and its document.', 'MESA pasajı ve belgesini birlikte döndürür.'), 'how-it-works/', t('How search works →', 'Arama nasıl çalışır →'), false]
   ];
   const steps = [
     [t('Add your documents', 'Belgelerinizi ekleyin'), t('Text files, notes, policies. MESA keeps the text and where it came from.', 'Metin dosyaları, notlar, kurallar. MESA metni ve nereden geldiğini saklar.'), 'mesa add policy.txt'],
@@ -65,22 +93,26 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
   return `${header('home')}<main id="main-content" class="home-page intro-page simple-public home-v2">
     <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">${heroPassageArt()}
       <p class="eyebrow">${t('OPEN SOURCE · v0.9.1 ALPHA', 'AÇIK KAYNAK · v0.9.1 ALFA')}</p>
-      <h1 id="home-title">${t('Let your AI find answers', 'Yapay zekânız bilgiyi')} <em class="accent-word">${t('with their source.', 'kaynağıyla bulsun.')}</em></h1>
-      <p class="home-hero__lead">${t('Give MESA your documents. When a question comes in, it returns the relevant passage to your application, with the document and version it came from.', 'Belgelerinizi MESA’ya verin. Bir soru geldiğinde ilgili pasajı, hangi belgeden ve hangi sürümden geldiğiyle birlikte uygulamanıza döndürür.')}</p>
+      <h1 id="home-title">${t('Scattered documents go in.', 'Dağınık belgeler girer.')}<br><em class="accent-word">${t('Your model gets the right information.', 'Modelinize doğru bilgi çıkar.')}</em></h1>
+      <p class="home-hero__lead">${t('MESA turns large, scattered document collections into lasting memory for your AI. When a question comes in, it finds what matters, picks the current version and hands it to your model as the right context.', 'MESA, büyük ve dağınık belge koleksiyonlarınızı yapay zekânız için kalıcı bir hafızaya dönüştürür. Bir soru geldiğinde önemli olanı bulur, güncel sürümü seçer ve modelinize doğru bağlam olarak verir.')}</p>
       <div class="actions">${cta(t('Try it on your computer', 'Bilgisayarınızda deneyin'), '#start')}${cta(t('See how it works', 'Nasıl çalıştığını görün'), '#how-it-works', 'secondary')}</div>
       <div class="home-hero__connects"><span class="home-hero__label">${t('CONNECTS THROUGH', 'BAĞLANMA YOLLARI')}</span><ul><li>MESA CLI</li><li>Python SDK</li><li>HTTP API</li><li>MCP</li></ul></div>
       <div class="home-release"><span class="chip chip--accent">${t('v0.9.1 · Alpha', 'v0.9.1 · Alfa')}</span><p>${t('Ready for local evaluation, not yet for production.', 'Yerel değerlendirmeye hazır, canlı kullanıma henüz değil.')}</p><a href="${route('status/')}">${t('Project status →', 'Proje durumu →')}</a></div>
     </section>
 
-    <section class="band band--graphite home-demo" id="mesa-in-action" data-home-section="demo">
-      <div class="band__inner">${recordedExample({t, route, language})}</div>
+    <section class="band band--graphite home-flow" id="mesa-in-action" data-home-section="flow" aria-labelledby="flow-title">
+      <div class="band__inner">
+        <p class="eyebrow">${t('FROM DOCUMENTS TO YOUR MODEL', 'BELGELERDEN MODELE')}</p><h2 id="flow-title">${t('One memory between your archive and your model.', 'Arşiviniz ile modeliniz arasında tek bir hafıza.')}</h2>
+        ${flowDiagram(language)}
+        <p class="flow-note">${t('Illustrative flow, not a live query.', 'Örnek akıştır, canlı sorgu değildir.')} <a href="${route('how-it-works/#example')}">${t('See a recorded real run →', 'Gerçek bir çalıştırma kaydını görün →')}</a></p>
+      </div>
     </section>
 
     <section class="band home-problem" id="the-problem" data-home-section="problem" aria-labelledby="problem-title">${passageMark(3, 'trail-r passage-mark--low')}${passageMark(6, 'trail-l passage-mark--top', {marked: false})}
       <div class="band__inner">
         <div class="home-problem__head">
-          <div><p class="eyebrow">${t('THE PROBLEM', 'SORUN')}</p><h2 id="problem-title">${t('AI gives answers, but not', 'Yapay zekâ cevap veriyor, ama')} <em class="accent-word">${t('where they came from.', 'nereden bildiğini söylemiyor.')}</em></h2><p class="home-problem__lead">${t('A language model only knows what it was trained on and what you put in front of it. MESA fills that gap with your own documents.', 'Bir dil modeli yalnızca eğitildiği şeyi ve önüne koyduğunuz metni bilir. MESA bu boşluğu kendi belgelerinizle doldurur.')}</p></div>
-          <ul class="problem-flags" aria-label="${t('Common problems', 'Sık görülen sorunlar')}"><li>${warning}<span>${t('Can’t show its source.', 'Kaynağını gösteremiyor.')}</span></li><li>${warning}<span>${t('Uses an outdated document.', 'Eski belgeyi kullanıyor.')}</span></li><li>${warning}<span>${t('Forgets what it learned yesterday.', 'Dün öğrendiğini unutuyor.')}</span></li></ul>
+          <div><p class="eyebrow">${t('THE PROBLEM', 'SORUN')}</p><h2 id="problem-title">${t('The more documents you have,', 'Belgeleriniz çoğaldıkça,')} <em class="accent-word">${t('the harder the right one is to find.', 'doğrusunu bulmak zorlaşır.')}</em></h2><p class="home-problem__lead">${t('A language model only knows what is in front of it. A whole archive does not fit into a prompt, so something has to pick the right passages every time.', 'Bir dil modeli yalnızca önüne konan metni bilir. Bütün bir arşiv isteme sığmaz; her seferinde doğru pasajları seçen bir şey gerekir.')}</p></div>
+          <ul class="problem-flags" aria-label="${t('Common problems', 'Sık görülen sorunlar')}"><li>${warning}<span>${t('The whole archive does not fit.', 'Bütün arşiv bağlama sığmıyor.')}</span></li><li>${warning}<span>${t('Uses an outdated document.', 'Eski belgeyi kullanıyor.')}</span></li><li>${warning}<span>${t('Forgets what it learned yesterday.', 'Dün öğrendiğini unutuyor.')}</span></li></ul>
         </div>
         <div class="problem-cards">${problemCards.map(([n, kind, title, text, fix, href, more, accent], index) => `<article class="problem-card"><div class="problem-card__body"><p class="card-index"><span>${n}</span><span class="card-index__kind">${kind}</span></p><h3>${title}</h3><p>${text}</p><p class="problem-card__fix">${check}<span>${fix}</span></p><a class="text-link" href="${href.startsWith('#') ? href : route(href)}">${more}</a></div>${docLines(index + 2, 4, index + 1)}</article>`).join('')}</div>
       </div>
@@ -151,7 +183,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
     </section>${footer()}</main>`;
 }
 
-export function beginnerHow({header, footer, route, cta}) {
+export function beginnerHow({header, footer, route, cta, language}) {
   return `${header('how')}<main id="main-content" class="intro-page simple-public intro-how">
     <section class="page-hero compact page-hero--short">${label('HOW IT WORKS · ONE EXAMPLE', 'NASIL ÇALIŞIR? · TEK BİR ÖRNEK')}<h1>${t('What happens to the document you add?', 'Eklediğiniz belgeye ne olur?')}</h1>${p('Follow one shop policy from a file on your computer to the text your assistant uses. The example below explains the process; it does not run a live MESA query.', 'Bilgisayarınızdaki bir mağaza koşulları dosyasının, asistanınızın kullanacağı bilgiye nasıl dönüştüğünü izleyin. Aşağıdaki örnek süreci açıklar; canlı MESA sorgusu çalıştırmaz.')}</section>
     <section class="section walkthrough-section" id="memory-walkthrough" aria-label="${t('A document in three steps', 'Üç adımda bir belge')}">
@@ -159,6 +191,7 @@ export function beginnerHow({header, footer, route, cta}) {
       <article class="walkthrough-step" id="inside-core"><div class="walkthrough-number">02</div><div class="walkthrough-copy"><h2>${t('MESA prepares the text for search.', 'MESA metni aranabilir hâle getirir.')}</h2><p>${t('It divides the document into smaller passages, keeps their source and processes the work in the background. Adding a file starts this work; search it once processing is complete.', 'Belgeyi küçük metin parçalarına ayırır, her parçanın kaynağını korur ve arka planda işler. Dosyayı eklemek bu işlemi başlatır; işleme tamamlanınca belgede arama yapabilirsiniz.')}</p></div><div class="walkthrough-example process-notebook"><span class="intro-index">MESA Core</span><ol><li><span>${t('Source file', 'Kaynak dosya')}</span><strong><code>policy.txt · v1</code></strong></li><li><span>${t('Stored text', 'Saklanan metin')}</span><strong>${t('Returns: 14 days. Keep the receipt.', 'İade: 14 gün. Fişi saklayın.')}</strong></li><li><span>${t('Source link', 'Kaynak bağı')}</span><strong>${t('Every passage points back to this file.', 'Her parça bu dosyaya bağlı kalır.')}</strong></li></ol></div></article>
       <article class="walkthrough-step" id="finding-evidence"><div class="walkthrough-number">03</div><div class="walkthrough-copy"><h2>${t('Your application asks a question.', 'Uygulamanız bir soru sorar.')}</h2><p>${t('MESA searches the data this application is allowed to read. It returns the relevant text, document and version. Your application’s model uses that text to write the answer.', 'MESA, uygulamanın okumaya yetkili olduğu verilerde arama yapar. İlgili metni, belgeyi ve sürümünü döndürür. Uygulamanızın modeli bu metni kullanarak yanıtı yazar.')}</p><code>mesa search "returns"</code></div><div class="walkthrough-example" id="source-trail"><div class="explain-question">${t('How long do I have to return it?', 'Kaç gün içinde iade edebilirim?')}</div><span class="intro-index">${t('TEXT FOUND BY MESA', 'MESA’NIN BULDUĞU METİN')}</span><blockquote>${t('“Returns are accepted within 14 days.”', '“İade süresi 14 gündür.”')}</blockquote><div class="explain-source"><span>${t('Source', 'Kaynak')}</span><strong><code>policy.txt · v1</code></strong></div></div></article>
     </section>
+    <section class="section how-recorded">${recordedExample({t, route, language})}</section>
     <section class="section change-example" id="when-information-changes">${label('IF THE DOCUMENT CHANGES', 'BELGE DEĞİŞİRSE')}${h('The new version becomes the current source.', 'Yeni sürüm, güncel kaynak olur.')}${p('Suppose the shop changes its return policy. Once the new document version is processed, current searches use the new information instead of the superseded version.', 'Mağaza iade koşullarını değiştirdi diyelim. Yeni belge sürümü işlendikten sonra güncel aramalar, eski sürümün yerine yeni bilgiyi kullanır.')}<div class="revision-comparison"><div><span>${t('Old version · history', 'Eski sürüm · geçmişte')}</span><strong>${t('14 days', '14 gün')}</strong><code>policy.txt · v1</code></div><span class="revision-comparison__arrow" aria-hidden="true">→</span><div><span>${t('New version · current', 'Yeni sürüm · güncel')}</span><strong>${t('30 days', '30 gün')}</strong><code>policy.txt · v2</code></div></div><p class="intro-caption">${t('To update or delete a source in your application, follow the document lifecycle API.', 'Uygulamanızda bir kaynağı güncellemek veya silmek için belge yaşam döngüsü API’sini izleyin.')} <a href="${route('docs/core/api-reference/')}">${t('Document API →', 'Belge API’si →')}</a></p></section>
     <section class="section plain-boundary"><h2>${t('What does the first installation give you?', 'İlk kurulumda ne çalışır?')}</h2><p>${t('Word search works without a model. To find similar meanings or extract relationships, configure a model provider. MESA returns source material; it does not write the final answer.', 'Sözcük araması model olmadan çalışır. Benzer anlamları bulmak veya ilişkileri çıkarmak için bir model sağlayıcısı ayarlarsınız. MESA kaynak metni döndürür; son yanıtı kendisi yazmaz.')}</p><div class="actions">${cta(t('Try this on your computer', 'Bilgisayarınızda deneyin'), route('get-started/'))}${cta(t('See the technical diagrams', 'Teknik şemaları görün'), route('architecture/'), 'secondary')}</div></section>${footer()}</main>`;
 }

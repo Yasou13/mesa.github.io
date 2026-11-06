@@ -43,7 +43,7 @@ MEDIA_DATA = json.loads(
 )
 REQUIRED_MEDIA_RECORDS = ("event-horizon",)
 HOME_SCENES = ("event-horizon",)
-HOME_SECTIONS = ("hero", "demo", "problem", "how", "start", "use-cases", "ecosystem", "scope", "cta")
+HOME_SECTIONS = ("hero", "flow", "problem", "how", "start", "use-cases", "ecosystem", "scope", "cta")
 HUB_ROUTES = tuple(section["path"] for section in HUB_DATA["sections"]) + tuple(
     entry["path"]
     for entry in HUB_DATA["entries"]
@@ -354,7 +354,7 @@ def main() -> int:
             for anchor in ("the-problem", "why-mesa", "mesa-in-action", "how-it-works", "ecosystem"):
                 if anchor not in parsed.ids:
                     errors.append(f"missing preserved homepage anchor at {relative}: {anchor}")
-            for fixture_field in ("pip install", "mesa-memory==0.9.1", "mesa start", "MESA Core", "archive-"):
+            for fixture_field in ("pip install", "mesa-memory==0.9.1", "mesa start", "MESA Core", "MESA"):
                 if fixture_field not in parsed.visible_text:
                     errors.append(f"missing homepage installation or document example at {relative}: {fixture_field}")
             for scene_id, hidden, state in parsed.scene_media:
@@ -479,7 +479,7 @@ def main() -> int:
 
     home_text = parsed_pages.get((root / "index.html").resolve(), PageParser()).visible_text
     ecosystem_text = parsed_pages.get((root / "ecosystem/index.html").resolve(), PageParser()).visible_text
-    if "pip install" not in home_text or "returns the relevant passage" not in home_text:
+    if "pip install" not in home_text or "hands it to your model" not in home_text:
         errors.append("home page lacks required static value proposition")
     if not all(name in ecosystem_text for name in ("MESA Data", "MESA Core", "MESA QA", "E2E Certification", "MESA Law")):
         errors.append("ecosystem page lacks required static component content")
@@ -502,8 +502,8 @@ def main() -> int:
                 errors.append(f"missing static marker at /{route}: {marker}")
 
     turkish_markers = {
-        "tr/": ("kaynağıyla bulsun.", "pip install", "Alfa"),
-        "tr/how-it-works/": ("Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
+        "tr/": ("Modelinize doğru bilgi çıkar.", "pip install", "Alfa"),
+        "tr/how-it-works/": ("archive-tr.txt", "Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),
         "tr/about/": ("KİM GELİŞTİRİYOR", "GitHub üzerinden bildirin"),

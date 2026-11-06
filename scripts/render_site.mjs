@@ -219,7 +219,7 @@ function footer() {
   const link = (path, label) => `<a href="${route(path)}">${label}</a>`;
   return `
     <footer class="site-footer">
-      <div class="footer-brand">${logo()}<p>${chrome('Let your AI find information with its source.', 'Yapay zekânız bilgiyi kaynağıyla bulsun.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p>
+      <div class="footer-brand">${logo()}<p>${chrome('Memory that brings your documents to your AI.', 'Belgelerinizi yapay zekânıza taşıyan hafıza.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p>
         <div class="footer-actions"><a class="footer-pill" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a><a class="footer-pill" href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a></div></div>
       <div class="footer-groups">
         ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data')])}

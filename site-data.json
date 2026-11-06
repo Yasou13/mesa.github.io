@@ -24,8 +24,8 @@
   "pages": {
     "home": {
       "path": "",
-      "title": "MESA — Find Information with Its Source",
-      "description": "See a recorded real search with source and revision information, then try MESA locally with a step-by-step setup guide."
+      "title": "MESA — Memory That Brings Your Documents to Your AI",
+      "description": "MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide."
     },
     "mesa": {
       "path": "mesa/",
