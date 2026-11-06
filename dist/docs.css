@@ -301,3 +301,13 @@ body:has(.docs-layout) .site-header { background: #07080af5; border-bottom: 1px 
 .docs-standalone .standalone-next { margin-top:32px; padding-block:20px; border-top:1px solid var(--docs-border); }
 .docs-standalone .standalone-next a { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; text-underline-offset:4px; }
 @media (max-width:800px) { .docs-layout.docs-standalone { padding-inline:20px; } }
+/* 2026-11: collapsible sidebar groups and readable tables on phones. */
+.docs-layout details.sidebar-group { margin-bottom: 6px; }
+.docs-layout .sidebar-group > summary { display: flex; align-items: center; min-height: 40px; margin: 0; padding: 0 9px; border-radius: 6px; color: var(--ink); font-size: 14px; cursor: pointer; list-style: none; }
+.docs-layout .sidebar-group > summary::-webkit-details-marker { display: none; }
+.docs-layout .sidebar-group > summary:hover { background: #ffffff07; }
+.docs-layout .sidebar-group > summary small { margin-left: auto; color: var(--muted-2); font: 500 14px/1 "Commit Mono", monospace; }
+.docs-layout .sidebar-group > summary .docs-icon:last-child { width: 14px; height: 14px; margin-left: 8px; color: var(--muted-2); transition: transform .16s; }
+.docs-layout .sidebar-group[open] > summary .docs-icon:last-child { transform: rotate(180deg); }
+.docs-layout .sidebar-group[open] > .sidebar-links { margin-top: 4px; margin-bottom: 14px; }
+@media (max-width: 800px) { .docs-layout .table-scroll table { min-width: 760px; } }
