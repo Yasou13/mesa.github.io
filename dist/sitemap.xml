@@ -217,6 +217,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/research/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/account/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/account/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/privacy/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/privacy/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/privacy/" />

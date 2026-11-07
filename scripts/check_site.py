@@ -34,6 +34,7 @@ CORE_ROUTES = (
     "faq/",
     "early-access/",
     "privacy/",
+    "account/",
     "benchmark/",
     "benchmark/research/",
 )

@@ -1,34 +1,42 @@
 import { createClient } from '@supabase/supabase-js';
 
-const panel = document.querySelector('#benchmark-research-panel');
-const config = JSON.parse(document.querySelector('#benchmark-research-config').textContent);
+const panel = document.querySelector('#mesa-auth-panel');
+const config = JSON.parse(document.querySelector('#mesa-auth-config').textContent);
 const status = panel.querySelector('#research-status');
 const login = panel.querySelector('#research-login');
 const email = panel.querySelector('#research-email');
+const accountSummary = panel.querySelector('#account-summary');
+const accountLink = panel.querySelector('#research-account-link');
 const logout = panel.querySelector('#research-logout');
 const request = panel.querySelector('#research-request');
 const downloads = panel.querySelector('#research-downloads');
 const tr = document.documentElement.lang === 'tr';
 const L = (en, turkish) => tr ? turkish : en;
-const callback = new URL(location.pathname, location.origin);
+const currentPage = new URL(location.pathname, location.origin);
+const callback = new URL(panel.dataset.accountHref, currentPage);
 
-// Keep the session in memory. The one-use verifier can cross tabs for email confirmation.
-const session = new Map();
+// Share the MESA session across pages in this tab and the PKCE verifier across email tabs.
+const sessionKey = 'mesa-benchmark-auth';
 const storage = {
   getItem(key) {
-    return key.endsWith('-code-verifier') ? localStorage.getItem(key) : session.get(key) ?? null;
+    return key.endsWith('-code-verifier') ? localStorage.getItem(key) : sessionStorage.getItem(key);
   },
   setItem(key, value) {
     if (key.endsWith('-code-verifier')) localStorage.setItem(key, value);
-    else session.set(key, value);
+    else if (key === sessionKey) {
+      const saved = JSON.parse(value);
+      delete saved.provider_token;
+      delete saved.provider_refresh_token;
+      sessionStorage.setItem(key, JSON.stringify(saved));
+    } else sessionStorage.setItem(key, value);
   },
   removeItem(key) {
     if (key.endsWith('-code-verifier')) localStorage.removeItem(key);
-    else session.delete(key);
+    else sessionStorage.removeItem(key);
   }
 };
 const client = createClient(config.url, config.key, {
-  auth: { flowType: 'pkce', detectSessionInUrl: false, storageKey: 'mesa-benchmark-auth', storage }
+  auth: { flowType: 'pkce', detectSessionInUrl: false, storageKey: sessionKey, storage }
 });
 let userId;
 
@@ -54,20 +62,22 @@ async function showRequest() {
 
 async function showAccount(user) {
   userId = user.id;
-  login.hidden = true;
-  logout.hidden = false;
+  if (accountSummary) {
+    login.hidden = true;
+    accountSummary.hidden = false;
+    accountSummary.querySelector('#account-email').textContent = user.email ?? '';
+    status.textContent = L('You’re signed in to MESA.', 'MESA hesabına giriş yaptın.');
+  }
   if (request) {
+    accountLink.hidden = true;
     await showRequest();
-  } else {
-    status.textContent = L('You are signed in. Research applications will open when the packages are ready.',
-      'Oturum açtın. Araştırma paketleri hazır olduğunda başvurular açılacak.');
   }
 }
 
-const loginButtons = login.querySelectorAll('button');
+const loginButtons = login?.querySelectorAll('button') ?? [];
 const setLoginBusy = busy => loginButtons.forEach(button => { button.disabled = busy; });
 
-for (const button of login.querySelectorAll('button[data-provider]')) {
+for (const button of login?.querySelectorAll('button[data-provider]') ?? []) {
   button.addEventListener('click', async () => {
     setLoginBusy(true);
     try {
@@ -133,7 +143,7 @@ if (email) {
   });
 }
 
-logout.addEventListener('click', async () => {
+logout?.addEventListener('click', async () => {
   logout.disabled = true;
   try {
     const { error } = await client.auth.signOut({ scope: 'local' });
@@ -195,29 +205,43 @@ async function start() {
   const params = new URL(location.href).searchParams;
   const code = params.get('code');
   const redirectError = params.has('error') || params.has('error_code');
-  if (!code) {
-    login.hidden = false;
-    status.textContent = redirectError
-      ? L('Sign-in or email confirmation did not finish. Try again.', 'Giriş veya e-posta doğrulaması tamamlanamadı. Yeniden dene.')
-      : L('Sign in with your account.', 'Hesabınla giriş yap.');
-    if (redirectError) history.replaceState(null, '', callback);
+  if (code || redirectError) history.replaceState(null, '', currentPage);
+  if (redirectError) {
+    if (login) login.hidden = false;
+    status.textContent = L('Sign-in or email confirmation did not finish. Try again.',
+      'Giriş veya e-posta doğrulaması tamamlanamadı. Yeniden dene.');
     return;
   }
+  if (!code && !login && !request) return;
   try {
-    const flowId = params.get('sb_flow_id');
-    const { data, error } = await client.auth.exchangeCodeForSession(code, flowId ? { flowId } : undefined);
-    if (error || !data.user) throw error ?? new Error('No authenticated user');
-    await showAccount(data.user);
+    if (code) {
+      const flowId = params.get('sb_flow_id');
+      const { data, error } = await client.auth.exchangeCodeForSession(code, flowId ? { flowId } : undefined);
+      if (error || !data.user) throw error ?? new Error('No authenticated user');
+      if (!login) {
+        location.replace(callback.href);
+        return;
+      }
+      await showAccount(data.user);
+      return;
+    }
+    const { data, error } = await client.auth.getSession();
+    if (error) throw error;
+    if (data.session?.user) await showAccount(data.session.user);
+    else if (login) {
+      login.hidden = false;
+      status.textContent = '';
+    } else {
+      status.textContent = L('Sign in to request research access.', 'Araştırma erişimi talep etmek için giriş yap.');
+    }
   } catch (error) {
-    login.hidden = Boolean(userId);
-    if (email && error?.code === 'pkce_code_verifier_not_found') {
+    if (login) login.hidden = Boolean(userId);
+    if (error?.code === 'pkce_code_verifier_not_found') {
       status.textContent = L('If you have confirmed your email address, sign in with your password.',
         'E-posta adresini doğruladıysan şifrenle giriş yap.');
     } else {
       failure();
     }
-  } finally {
-    history.replaceState(null, '', callback);
   }
 }
 start();

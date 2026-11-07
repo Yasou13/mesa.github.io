@@ -1,0 +1,52 @@
+.account-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  align-items: start;
+  gap: clamp(24px, 7vw, 104px);
+  width: min(960px, calc(100% - 48px));
+  margin: 0 auto;
+  padding-block: clamp(112px, 13vw, 170px) 90px;
+}
+.account-intro h1 { margin: 12px 0 18px; font-size: clamp(38px, 5vw, 60px); line-height: 1.07; }
+.account-intro p:not(.eyebrow) { max-width: 36ch; color: var(--muted); font-size: 17px; }
+.account-card { padding: clamp(20px, 4vw, 32px); border: 1px solid var(--line-strong); border-radius: 20px; background: var(--surface, #141517); }
+.account-card [hidden] { display: none; }
+.account-card-title { margin: 0 0 16px; font-size: 21px; }
+.account-status:empty { display: none; }
+.account-status { margin: 0 0 16px; color: var(--muted); }
+.account-providers { display: grid; gap: 10px; }
+.account-provider {
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: center;
+}
+.account-provider { font-family: inherit; font-size: 14px; font-weight: 500; line-height: 20px; }
+.account-provider:hover { border-color: var(--muted); }
+.account-provider--google { background: #131314; border-color: #8e918f; color: #e3e3e3; }
+.account-provider:disabled { cursor: wait; opacity: .65; }
+.account-google-mark { width: 20px; height: 20px; background: url("./assets/google-account-mark.png") center / 40px 40px no-repeat; }
+.account-provider .icon-github { width: 20px; height: 20px; fill: currentColor; }
+.account-divider { display: flex; align-items: center; gap: 12px; margin: 20px 0 16px; color: var(--muted); font-size: 13px; }
+.account-divider::before, .account-divider::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+.account-card form { display: grid; gap: 8px; }
+.account-card label { margin-top: 4px; font-size: 14px; font-weight: 600; }
+.account-card input { width: 100%; min-height: 46px; padding: 10px 13px; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--bg); color: var(--ink); font: inherit; }
+.account-card :is(input, button, a):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.account-card .account-submit { justify-content: center; margin-top: 8px; }
+.account-switch { justify-self: center; min-height: 44px; border: 0; background: transparent; color: var(--accent); cursor: pointer; font: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.account-muted, .account-privacy { color: var(--muted); font-size: 14px; }
+.account-privacy { display: inline-block; margin-top: 16px; text-decoration: underline; text-underline-offset: 3px; }
+.account-email { overflow-wrap: anywhere; }
+@media (max-width: 720px) {
+  .account-shell { grid-template-columns: minmax(0, 1fr); width: min(440px, calc(100% - 32px)); padding-bottom: 64px; }
+}

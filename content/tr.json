@@ -80,6 +80,10 @@
       "title": "MESA Benchmark Verileri ve Örnekleri",
       "description": "Türkçe hukuk araması örneklerini, resmî mevzuat kaynaklarını ve S, M, L araştırma verisi katmanlarını incele."
     },
+    "account": {
+      "title": "MESA Hesabı",
+      "description": "MESA hesabınıza giriş yapın veya yeni bir hesap oluşturun."
+    },
     "privacy": {
       "title": "Gizlilik Bildirimi — MESA",
       "description": "MESA sitesinin hangi bilgileri neden topladığı, ne kadar sakladığı ve KVKK ile GDPR kapsamında silinmesini nasıl isteyebileceğiniz."

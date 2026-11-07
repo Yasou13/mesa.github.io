@@ -3035,7 +3035,7 @@ body { background: var(--bg); color: var(--ink); }
 .nav-group__panel { position: absolute; top: calc(100% + 14px); left: -10px; z-index: 5; display: grid; gap: 2px; min-width: 220px; padding: 6px; border: 1px solid var(--line-strong); border-radius: 12px; background: #0d0f12; box-shadow: 0 24px 60px rgba(0, 0, 0, .55); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity var(--duration-fast) var(--motion-ui), transform var(--duration-fast) var(--motion-ui), visibility 0s linear var(--duration-fast); }
 .nav-group__panel::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
 .js .nav-group.open .nav-group__panel, html:not(.js) .nav-group:focus-within .nav-group__panel { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
-@media (hover: hover) and (min-width: 1101px) { .nav-group:hover .nav-group__panel { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; } .nav-group:hover .nav-chevron { transform: rotate(180deg); } }
+@media (hover: hover) and (min-width: 1181px) { .nav-group:hover .nav-group__panel { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; } .nav-group:hover .nav-chevron { transform: rotate(180deg); } }
 .nav-link { display: flex; align-items: center; min-height: 40px; padding: 0 12px; border-radius: 8px; color: var(--muted); font-size: 15px; text-decoration: none; white-space: nowrap; }
 .nav-link:hover, .nav-link:focus-visible { background: rgba(255, 255, 255, .05); color: var(--ink); }
 .site-header .search-trigger { min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font-size: 14px; }
@@ -3049,8 +3049,8 @@ body { background: var(--bg); color: var(--ink); }
 .site-header .nav-cta { display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 15px; font-weight: 600; white-space: nowrap; }
 .site-header .nav-cta:hover, .site-header .nav-cta.active { background: var(--accent-strong); color: var(--accent-ink); box-shadow: none; }
 .site-header .nav-cta::after { display: none; }
-@media (max-width: 1240px) and (min-width: 1101px) { .site-header .nav-github span { display: none; } .site-header #main-navigation { margin-left: 8px; } }
-@media (max-width: 1100px) {
+@media (max-width: 1240px) and (min-width: 1181px) { .site-header .nav-github span { display: none; } .site-header #main-navigation { margin-left: 8px; } }
+@media (max-width: 1180px) {
   .site-header .nav-shell { flex-wrap: nowrap; padding: 0 8px 0 14px; }
   .site-header .menu-toggle { display: none; margin-left: auto; border-color: var(--line-strong); border-radius: 12px; }
   .js .site-header .menu-toggle { display: block; }
@@ -3445,7 +3445,7 @@ main:not(.home-page):not(.docs-layout) { position: relative; z-index: 0; overflo
 
 /* Language switch: inside the menu on desktop, straight in the top bar on phones and tablets. */
 .site-header .nav-lang { display: none; }
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
   .site-header .nav-lang { display: flex; margin-left: auto; }
   .site-header .nav-lang .language-switch { min-height: 44px; }
   .site-header .nav-lang .language-switch a { min-height: 42px; min-width: 32px; }
@@ -3546,3 +3546,38 @@ main:not(.home-page):not(.docs-layout) { position: relative; z-index: 0; overflo
   .bm-chart { padding: 18px; }
 }
 @media (max-width: 480px) { .bm-run__list { grid-template-columns: minmax(0, 1fr); } }
+
+
+.site-header .nav-account {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 14px;
+}
+.site-header .nav-account:is(:hover, [aria-current="page"]) { border-color: var(--accent); }
+.site-header .nav-github { white-space: nowrap; }
+@media (min-width: 1181px) and (max-width: 1340px) {
+  .site-header .nav-github span, .site-header .search-trigger span { display: none; }
+}
+@media (max-width: 1180px) {
+  .site-header .nav-account { min-height: 44px; }
+}
+
+@media (max-width: 480px) {
+  .site-header .nav-shell { gap: 8px; }
+  .site-header .nav-account { padding-inline: 9px; }
+  .site-header .menu-toggle { margin-left: 0; }
+}
+@media (min-width: 1181px) and (max-width: 1240px) {
+  .site-header .nav-shell { gap: 10px; }
+  .site-header .nav-item--plain, .site-header .nav-group__toggle { padding-inline: 8px; }
+}
+@media (max-width: 400px) {
+  .site-header .nav-lang { display: none; }
+  .site-header .nav-tools .language-switch { display: inline-flex; }
+}

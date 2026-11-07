@@ -5022,6 +5022,34 @@
     "language": "tr"
   },
   {
+    "id": "core-account-en",
+    "url": "account/",
+    "title": "MESA Account",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Sign in to your MESA account or create one.",
+    "keywords": [
+      "account",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-account-tr",
+    "url": "tr/account/",
+    "title": "MESA Hesabı",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "MESA hesabınıza giriş yapın veya yeni bir hesap oluşturun.",
+    "keywords": [
+      "account",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
     "id": "core-privacy-en",
     "url": "privacy/",
     "title": "Privacy Notice — MESA",

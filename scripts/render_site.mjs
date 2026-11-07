@@ -14,6 +14,7 @@ import { earlyAccessPage } from './render_early_access.mjs';
 import { privacyPage } from './render_privacy.mjs';
 import { benchmarkPage } from './render_benchmark.mjs';
 import { benchmarkResearchPage } from './render_benchmark_research.mjs';
+import { accountPage } from './render_account.mjs';
 import { loadBenchmarkCatalog } from './benchmark_data.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
@@ -27,10 +28,10 @@ const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
 const benchmarkResearchEvidence = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/benchmark/research.json'), 'utf8'));
 const benchmarkResearchEnabled = process.env.MESA_BENCHMARK_RESEARCH_ACCESS === 'true' && Boolean(publicAdminConfig);
-const configuredResearchProviders = (process.env.MESA_BENCHMARK_AUTH_PROVIDERS || (benchmarkResearchEnabled ? 'google' : ''))
+const configuredAccountProviders = (process.env.MESA_BENCHMARK_AUTH_PROVIDERS || (benchmarkResearchEnabled ? 'google' : ''))
   .split(',').map(provider => provider.trim());
-const benchmarkResearchProviders = publicAdminConfig
-  ? ['google', 'github', 'email'].filter(provider => configuredResearchProviders.includes(provider))
+const accountProviders = publicAdminConfig
+  ? ['google', 'github', 'email'].filter(provider => configuredAccountProviders.includes(provider))
   : [];
 const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data.json'), 'utf8'));
 const trContent = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'tr.json'), 'utf8'));
@@ -60,6 +61,7 @@ const assetVersions = {
   js: assetVersion('app.js'),
   docs: assetVersion('docs.css'),
   docsJs: assetVersion('docs.js'),
+  accountCss: assetVersion('account.css'),
   benchmarkCss: assetVersion('benchmark.css'),
   benchmarkJs: assetVersion('benchmark.js'),
   benchmarkResearchJs: assetVersion('benchmark-research.js'),
@@ -221,10 +223,11 @@ function header(active = '') {
           <div class="nav-tools">
             <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
             ${languageControl()}
-            <a class="nav-github" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a>
+            <a class="nav-github" aria-label="GitHub" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a>
             <a class="nav-item nav-cta${active === 'start' ? ' active' : ''}"${active === 'start' ? ' aria-current="page"' : ''} href="${route('get-started/')}">${chrome('Get started', 'Başlayın')}</a>
           </div>
         </nav>
+        <a class="nav-account"${active === 'account' ? ' aria-current="page"' : ''} href="${route('account/')}">${chrome('Account', 'Hesap')}</a>
       </div>
     </header>`;
 }
@@ -1166,8 +1169,12 @@ const renderers = {
   benchmark: () => renderBenchmark(),
   benchmarkResearch: () => benchmarkResearchPage({
     header: hubChrome(header('benchmark')), footer: hubChrome(footer()),
-    language: currentLanguage, base, assetBase, evidence: benchmarkResearchEvidence,
-    providers: benchmarkResearchProviders, accessEnabled: benchmarkResearchEnabled
+    language: currentLanguage, base, evidence: benchmarkResearchEvidence,
+    accountsEnabled: Boolean(accountProviders.length), accessEnabled: benchmarkResearchEnabled
+  }),
+  account: () => accountPage({
+    header: hubChrome(header('account')), footer: hubChrome(footer()),
+    language: currentLanguage, base, providers: accountProviders
   })
 };
 
@@ -1360,8 +1367,8 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
-${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') || content.includes('id="benchmark-research-panel"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
-${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
+${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') || content.includes('id="research-request"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
+${content.includes('class="account-page"') ? `  <link rel="stylesheet" href="${assetBase}account.css?v=${assetVersions.accountCss}">\n` : ''}${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
@@ -1370,7 +1377,7 @@ ${content}
 ${content.includes('id="benchmark-compare"') ? `  <script type="module" src="${assetBase}benchmark.js?v=${assetVersions.benchmarkJs}"></script>\n` : ''}${content.includes('id="early-access-form"') ? `  <script id="early-access-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<','\\u003c')}</script>
   <script src="${assetBase}early-access.js?v=${assetVersions.accessJs}" defer></script>
 ` : ''}
-${content.includes('id="benchmark-research-panel"') ? `  <script id="benchmark-research-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<', '\\u003c')}</script>
+${content.includes('id="mesa-auth-panel"') ? `  <script id="mesa-auth-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<', '\\u003c')}</script>
   <script src="${assetBase}benchmark-research.js?v=${assetVersions.benchmarkResearchJs}" defer></script>\n` : ''}${content.includes('class="docs-layout') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
 </html>
 `;
@@ -1460,7 +1467,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch'].includes(key);
+    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account'].includes(key);
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');

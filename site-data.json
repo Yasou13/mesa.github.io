@@ -124,6 +124,11 @@
       "title": "MESA Benchmark Data and Examples",
       "description": "Inspect Turkish legal retrieval examples, official legislation sources and the S, M and L research data tiers."
     },
+    "account": {
+      "path": "account/",
+      "title": "MESA Account",
+      "description": "Sign in to your MESA account or create one."
+    },
     "privacy": {
       "path": "privacy/",
       "title": "Privacy Notice — MESA",

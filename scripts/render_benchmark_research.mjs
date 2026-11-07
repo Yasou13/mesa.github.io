@@ -1,6 +1,6 @@
 import { escapeHtml as e } from '../dist/benchmark.js';
 
-export function benchmarkResearchPage({ header, footer, language, base, assetBase, evidence, providers, accessEnabled }) {
+export function benchmarkResearchPage({ header, footer, language, base, evidence, accountsEnabled, accessEnabled }) {
   const L = (en, tr) => language === 'tr' ? tr : en;
   const official = L('Official source ↗', 'Resmî kaynak ↗');
   const kinds = {
@@ -36,33 +36,18 @@ export function benchmarkResearchPage({ header, footer, language, base, assetBas
     <section class="section bm-section" id="research-access" aria-labelledby="bm-access">
       <h2 id="bm-access">${accessTitle}</h2>
       <p>${L('Reviewed research packages are available to approved accounts. The held-out evaluation questions are kept separately.', 'İncelenmiş araştırma paketlerine onaylı hesaplar erişebilir. Sürüm değerlendirmesinde kullanılan test soruları ayrı tutulur.')}</p>
-      ${providers.length ? `<div id="benchmark-research-panel" class="access-card">
-        <p id="research-status" role="status" aria-live="polite">${L('Checking sign-in…', 'Oturum kontrol ediliyor…')}</p>
-        <div id="research-login" hidden>
-          ${providers.includes('google') ? `<button class="bm-google-button" type="button" data-provider="google"><img src="${assetBase}assets/google-sign-in.png" alt="" width="20" height="20">${L('Continue with Google', 'Google ile devam et')}</button>` : ''}
-          ${providers.includes('github') ? `<button class="button secondary" type="button" data-provider="github">${L('Continue with GitHub', 'GitHub ile devam et')}</button>` : ''}
-          ${providers.includes('email') ? `<form id="research-email" method="post" aria-label="${L('Email sign-in and registration', 'E-posta ile giriş ve kayıt')}">
-            <label for="research-email-address">${L('Email', 'E-posta')}</label>
-            <input id="research-email-address" name="email" type="email" autocomplete="username" required>
-            <label for="research-password">${L('Password', 'Şifre')}</label>
-            <input id="research-password" name="password" type="password" autocomplete="current-password" aria-describedby="research-password-hint" required>
-            <p id="research-password-hint" class="bm-note" hidden>${L('Use at least 8 characters for a new password.', 'Yeni şifren en az 8 karakter olsun.')}</p>
-            <button class="button primary" type="submit">${L('Sign in', 'Giriş yap')}</button>
-            <button class="button secondary" type="button" id="research-email-mode">${L('Create an account', 'Hesap oluştur')}</button>
-          </form>` : ''}
-        </div>
+      ${accountsEnabled ? `<div id="mesa-auth-panel" data-account-href="${base}account/">
+        <p id="research-status" class="bm-note" role="status">${L('Research applications will open when the packages are ready.', 'Araştırma paketleri hazır olduğunda başvurular açılacak.')}</p>
+        <a id="research-account-link" class="button secondary" href="${base}account/">${L('MESA account', 'MESA hesabı')}</a>
         ${accessEnabled ? `
         <form id="research-request" method="post" hidden>
           <label for="research-purpose">${L('How will you use the data?', 'Veriyi ne için kullanacaksınız?')}</label>
+          <p class="bm-note">${L('Keep personal case details out of the request.', 'Talebe kişisel dava ayrıntıları ekleme.')}</p>
           <textarea id="research-purpose" name="purpose" rows="4" minlength="20" maxlength="1000" required></textarea>
           <button class="button primary" type="submit">${L('Request access', 'Erişim talep et')}</button>
         </form>
         <div id="research-downloads" class="bm-versions" hidden>${evidence.tiers.map(({ tier }) =>
           `<button class="button secondary" type="button" data-tier="${tier}">${L('Download', 'İndir')} ${tier}</button>`).join('')}</div>` : ''}
-        <button class="button secondary" id="research-logout" type="button" hidden>${L('Sign out', 'Çıkış yap')}</button>
-        <p class="bm-note">${L('Supabase Auth processes your email address and sign-in details.', 'Supabase Auth e-posta adresini ve giriş bilgilerini işler.')}</p>
-        <p class="bm-note">${L('MESA stores your account ID, request and its status to review and manage access. Keep personal case details out of the request.', 'MESA erişimi değerlendirmek ve yönetmek için hesap kimliğini, talebini ve durumunu saklar. Talebe kişisel dava ayrıntıları ekleme.')}</p>
-        <p><a href="${base}privacy/">${L('Privacy notice', 'Gizlilik bildirimi')}</a></p>
       </div>` : `<p class="bm-note">${L('Research applications will open when the packages are ready.', 'Araştırma paketleri hazır olduğunda başvurular açılacak.')}</p>`}
-    </section>${footer}</main>`;
+    </section></main>${footer}`;
 }

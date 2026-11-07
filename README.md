@@ -247,8 +247,9 @@ archives in `benchmark-research` under `v1/mesa-legal-v1-s.tar.gz`,
 Never publish either bucket. An approved account can read only the three
 reviewed package paths, and revoking its request status stops later downloads.
 
-Allow the exact site callbacks in Supabase Auth (`https://mesamemory.dev/benchmark/research/`
-and `https://mesamemory.dev/tr/benchmark/research/`). For each social provider,
+Allow the exact account callbacks in Supabase Auth (`https://mesamemory.dev/account/`
+and `https://mesamemory.dev/tr/account/`). Keep the previous benchmark research
+callbacks to support outstanding confirmation links. For each social provider,
 register the Supabase Auth callback URL in the corresponding Google or GitHub
 OAuth app and save its client ID and secret in Supabase Auth. The site uses
 Supabase's PKCE redirect flow and only receives the project's publishable key.
@@ -258,7 +259,8 @@ confirmation link. CMS roles continue to require explicit assignment.
 
 After testing the configured methods, set the Pages variable
 `MESA_BENCHMARK_AUTH_PROVIDERS` to the comma-separated list of methods to show
-(`google,github,email`) and redeploy. When the reviewed packages are also ready,
+(`google,github,email`) on the MESA account page and redeploy. When the reviewed
+packages are also ready,
 set `MESA_BENCHMARK_RESEARCH_ACCESS=true`. An administrator can review
 `public.benchmark_research_requests` in the Supabase dashboard and change a
 request's status to `approved`, `declined` or `revoked`. The request records
