@@ -12,6 +12,7 @@ import { getAllDocRoutes, renderDocPage, renderDocsHub, renderMcpGuide } from '.
 import { renderAdminPage } from './render_admin.mjs';
 import { earlyAccessPage } from './render_early_access.mjs';
 import { privacyPage } from './render_privacy.mjs';
+import { benchmarkPage } from './render_benchmark.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
 import { writeSearchIndex } from './generate_search_index.mjs';
@@ -200,7 +201,7 @@ function header(active = '') {
           <span></span><span></span><span></span>
         </button>
         <nav id="main-navigation" aria-label="Main navigation">
-          <div class="nav-menu">${groups}${plain('docs', 'Docs', 'docs/')}${plain('status', chrome('Status', 'Durum'), 'status/')}</div>
+          <div class="nav-menu">${groups}${plain('docs', 'Docs', 'docs/')}${plain('benchmark', 'Benchmark', 'benchmark/')}${plain('status', chrome('Status', 'Durum'), 'status/')}</div>
           <div class="nav-tools">
             <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
             ${languageControl()}
@@ -223,7 +224,7 @@ function footer() {
       <div class="footer-brand">${logo()}<p>${chrome('Memory that brings your documents to your AI.', 'Belgelerinizi yapay zekânıza taşıyan hafıza.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p>
         <div class="footer-actions"><a class="footer-pill" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a><a class="footer-pill" href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a></div></div>
       <div class="footer-groups">
-        ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data')])}
+        ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data'), link('benchmark/', 'Benchmark')])}
         ${group(chrome('Developers', 'Geliştiriciler'), [link('get-started/', chrome('Quickstart', 'Hızlı başlangıç')), link('docs/', chrome('Documentation', 'Dokümantasyon')), link('docs/core/cli-reference/', 'MESA CLI'), link('docs/core/api-reference/', chrome('API reference', 'API referansı')), link('docs/core/examples/', 'Python SDK'), link('docs/mcp/', 'MCP'), link('docs/core/security/', chrome('Security', 'Güvenlik'))])}
         ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
         ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('privacy/', chrome('Privacy', 'Gizlilik')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(`${repos.core}/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/LICENSE`, chrome('MIT License', 'MIT Lisansı'))])}
@@ -1145,7 +1146,8 @@ const renderers = {
   mcp: mcpPage,
   status: statusPage,
   about: aboutPage,
-  faq: faqPage
+  faq: faqPage,
+  benchmark: () => benchmarkPage({ header: hubChrome(header('benchmark')), footer: hubChrome(footer()), language: currentLanguage })
 };
 
 function argument(name, fallback) {
@@ -1192,6 +1194,7 @@ const WAY_PAGES = {
   certification: ['product', 'E2E Certification', 'E2E Certification', 'ecosystem'],
   evaluation: ['product', 'Evaluation & trust', 'Değerlendirme ve güven', 'ecosystem'],
   status: ['project', 'Status', 'Durum'],
+  benchmark: ['product', 'Benchmark', 'Benchmark'],
   about: ['project', 'About', 'Hakkında'],
   faq: ['learn', 'FAQ', 'SSS'],
   privacy: ['project', 'Privacy', 'Gizlilik'],
@@ -1218,7 +1221,7 @@ const WAY_FLOW = {
   architecture: ['retrieval', 'start'], retrieval: ['api', 'start'], ecosystem: ['start', 'law'],
   data: ['law', 'ecosystem'], law: ['data', 'status'], qa: ['certification', 'evaluation'],
   certification: ['evaluation', 'status'], evaluation: ['status', 'qa'], status: ['start', 'faq'],
-  privacy: ['about', 'access'], earlyAccess: ['start', 'about']
+  privacy: ['about', 'access'], earlyAccess: ['start', 'about'], benchmark: ['retrieval', 'status']
 };
 
 function wayfinding(key, language, content) {
@@ -1428,7 +1431,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = key === 'docs' || key === 'mcp' || key === 'getStarted';
+    const nativeDocs = key === 'docs' || key === 'mcp' || key === 'getStarted' || key === 'benchmark';
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');

@@ -193,6 +193,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/early-access/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/benchmark/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/benchmark/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/benchmark/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/benchmark/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/benchmark/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/benchmark/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/privacy/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/privacy/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/privacy/" />
