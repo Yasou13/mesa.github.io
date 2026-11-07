@@ -11,6 +11,7 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
   const navigation = `<nav class="bm-versions" aria-label="${L('Benchmark reports by version', 'Sürüme göre benchmark raporları')}">
     <a class="bm-version" href="${link('')}"${current(undefined)}>${L('Compare versions', 'Sürümleri karşılaştır')}</a>
     ${releases.map(release => `<a class="bm-version" href="${link(release.version + '/')}"${current(release.version)}>MESA ${release.version}</a>`).join('')}
+    <a class="bm-version" href="${link('research/')}">${L('Data and examples', 'Veriler ve örnekler')}</a>
   </nav>`;
 
   const metrics = `<details class="bm-details"><summary>${L('What do the metrics mean?', 'Ölçütler ne anlama geliyor?')}</summary>

@@ -1,0 +1,1270 @@
+{
+  "version": "v1",
+  "run": "MESA 0.9.2 · T2-k20 · 2026-11-07",
+  "tiers": [
+    {
+      "tier": "S",
+      "documents": 30
+    },
+    {
+      "tier": "M",
+      "documents": 141
+    },
+    {
+      "tier": "L",
+      "documents": 182
+    }
+  ],
+  "sources": [
+    {
+      "title": "Hukuk Uyuşmazlıklarında Arabuluculuk Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6325.pdf"
+    },
+    {
+      "title": "Türkiye Kanser Enstitüsü Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261021-7.htm"
+    },
+    {
+      "title": "Engelli Bireylere Yönelik Özel Bakım Merkezleri Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261007-4.htm"
+    },
+    {
+      "title": "Organize Sanayi Bölgelerinin ve Endüstri Bölgelerinin Elektrik Piyasası Faaliyetlerine İlişkin Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261019-7.htm"
+    },
+    {
+      "title": "Tekirdağ Namık Kemal Üniversitesi Tıp Fakültesi Lisans Eğitim ve Öğretim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261004-3.htm"
+    },
+    {
+      "title": "Taşıma İşleri Organizatörlüğü Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261013-2.htm"
+    },
+    {
+      "title": "Coğrafi Veri İzinleri Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261014-1.htm"
+    },
+    {
+      "title": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi Diş Hekimliği Fakültesi Eğitim-Öğretim ve Sınav Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261025-1.htm"
+    },
+    {
+      "title": "Ataşehir Adıgüzel Meslek Yüksekokulu Projeler, Girişimcilik, Kuluçka ve Hızlandırma Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261018-2.htm"
+    },
+    {
+      "title": "Türk Mühendis ve Mimar Odaları Birliği Şehir Plancıları Odası Ana Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261003-6.htm"
+    },
+    {
+      "title": "Harici Güç Kaynakları, Kablosuz Şarj Cihazları, Kablosuz Şarj Pedleri, Genel Kullanım Amaçlı Taşınabilir Bataryalar İçin Batarya Şarj Cihazları ve USB Tip-C Kabloları ile İlgili Çevreye Duyarlı Tasarım Gerekliliklerine Dair Tebliğ (2025/2052/AB) (SGM-2026/7)",
+      "kind": "communique",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261016-14.htm"
+    },
+    {
+      "title": "Demiryolu Emniyet Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261009-2.htm"
+    },
+    {
+      "title": "Bartın Üniversitesi Öğretim Elemanlarının Teknoloji Geliştirme Bölgelerinde Görevlendirilme ve Şirket Kurabilmelerine Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261011-2.htm"
+    },
+    {
+      "title": "Ataşehir Adıgüzel Meslek Yüksekokulu Gıda ve Bitkisel Üretim Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261018-1.htm"
+    },
+    {
+      "title": "Çek Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5941.pdf"
+    },
+    {
+      "title": "Elektrik Piyasasında Depolama Faaliyetleri Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261019-5.htm"
+    },
+    {
+      "title": "Türk Ticaret Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6102.pdf"
+    },
+    {
+      "title": "Burdur Mehmet Akif Ersoy Üniversitesi Lisansüstü Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261005-4.htm"
+    },
+    {
+      "title": "İnternet Ortamında Yapılan Yayınların Düzenlenmesi ve Bu Yayınlar Yoluyla İşlenen Suçlarla Mücadele Edilmesi Hakkında Kanun",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5651.pdf"
+    },
+    {
+      "title": "Ege Üniversitesi Lisansüstü Eğitim-Öğretim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261018-4.htm"
+    },
+    {
+      "title": "Kamulaştırma Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2942.pdf"
+    },
+    {
+      "title": "Elektrik Piyasası Bağlantı ve Sistem Kullanım Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261019-1.htm"
+    },
+    {
+      "title": "Demiryolu Altyapı Erişim ve Kapasite Tahsis Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-3.htm"
+    },
+    {
+      "title": "Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf"
+    },
+    {
+      "title": "Kamu İhale Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4734.pdf"
+    },
+    {
+      "title": "Tren Makinist Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-10.htm"
+    },
+    {
+      "title": "İcra ve İflas Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf"
+    },
+    {
+      "title": "Türkiye Ürün İhtisas Borsasında Aracılık Faaliyetleri ile Aracıların Gözetimi ve Denetimi Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261008-2.htm"
+    },
+    {
+      "title": "Hacettepe Üniversitesi Lisansüstü Eğitim-Öğretim ve Sınav Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261025-2.htm"
+    },
+    {
+      "title": "Tehlikeli Maddelerin Karayoluyla Taşınması Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-9.htm"
+    },
+    {
+      "title": "Sermaye Piyasası Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6362.pdf"
+    },
+    {
+      "title": "İstanbul Üniversitesi Doğal Kaynaklardan İlaç Geliştirme Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261028-2.htm"
+    },
+    {
+      "title": "Ceza Muhakemesi Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf"
+    },
+    {
+      "title": "Çankaya Üniversitesi Ön Lisans ve Lisans Eğitim ve Öğretim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261023-5.htm"
+    },
+    {
+      "title": "Mali Suçları Araştırma Kurulu Genel Tebliği (Sıra No: 5)’nde Değişiklik Yapılmasına Dair Tebliğ (Sıra No: 33)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/09/20260923-3.htm"
+    },
+    {
+      "title": "Türkiye Halk Sağlığı ve Kronik Hastalıklar Enstitüsünün Yapılanması ve Faaliyetlerine Dair Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-11.htm"
+    },
+    {
+      "title": "2026-2027 Eğitim Öğretim Yılında Organize Sanayi Bölgeleri İçinde ve Organize Sanayi Bölgeleri Dışında Açılan Özel Meslekî ve Teknik Anadolu Liselerinde Öğrenim Gören/Görecek Öğrenciler İçin Eğitim ve Öğretim Desteği Verilmesine İlişkin Tebliğ",
+      "kind": "communique",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261006-4.htm"
+    },
+    {
+      "title": "Çiğ Süt Desteği ve Süt Piyasasının Düzenlenmesi Uygulama Tebliği (Tebliğ No: 2024/53)’nde Değişiklik Yapılmasına Dair Tebliğ (No: 2026/28)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261014-3.htm"
+    },
+    {
+      "title": "Piri Reis Üniversitesi Ön Lisans ve Lisans Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261023-8.htm"
+    },
+    {
+      "title": "Gençlik ve Spor Bakanlığı Yurtlarında Bulunan Yemekhane, Kantin ve Diğer İşletmeler Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261021-1.htm"
+    },
+    {
+      "title": "Elektrik Piyasası Dengeleme ve Uzlaştırma Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261021-3.htm"
+    },
+    {
+      "title": "Hacettepe Üniversitesi Arı ve Arı Ürünleri Uygulama ve Araştırma Merkezi (HARÜM) Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261022-3.htm"
+    },
+    {
+      "title": "Beykoz Üniversitesi Ön Lisans ve Lisans Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261005-3.htm"
+    },
+    {
+      "title": "Yükseköğretim Kurumları Teknoloji Transfer Ofisi Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261013-4.htm"
+    },
+    {
+      "title": "Ulusal Meslek Standartlarına Dair Tebliğ (No: 2026/11)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261004-5.htm"
+    },
+    {
+      "title": "Tersane, Tekne İmal ve Çekek Yeri Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027-5.htm"
+    },
+    {
+      "title": "Ulaştırma Hizmetleri Denetim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261009-3.htm"
+    },
+    {
+      "title": "Jandarma ve Sahil Güvenlik Akademisi Güvenlik Bilimleri Enstitüsü Kuruluş, Görev ve Çalışma Esasları ile Lisansüstü Eğitim Öğretim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027-1.htm"
+    },
+    {
+      "title": "Beşeri Tıbbi Ürünler İmalathaneleri Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261021-5.htm"
+    },
+    {
+      "title": "Gazi Üniversitesi Spor Bilimleri Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261012-1.htm"
+    },
+    {
+      "title": "Altınbaş Üniversitesi Toplum, Kadın ve Aile Çalışmaları Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261024-10.htm"
+    },
+    {
+      "title": "İş Mahkemeleri Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.7036.pdf"
+    },
+    {
+      "title": "Demiryolu Araçları Tip Onay Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261008-5.htm"
+    },
+    {
+      "title": "İthalatta Haksız Rekabetin Önlenmesine İlişkin Tebliğ (No: 2026/31)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261014-4.htm"
+    },
+    {
+      "title": "Ev ve Büro Tipi Elektrik-Elektronik Cihazların Hazırda Bekleme, Kapalı ve Ağ Bağlantılı Hazırda Bekleme Konumlarının Elektrik Enerjisi Tüketimi ile İlgili Çevreye Duyarlı Tasarım Gerekliliklerine Dair Tebliğ (2023/826/AB) (SGM-2024/5)’de Değişiklik Yapılması Hakkında Tebliğ (SGM-2026/8)",
+      "kind": "communique",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261016-15.htm"
+    },
+    {
+      "title": "Mali Suçları Araştırma Kurulu Genel Tebliği (Sıra No: 34)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/09/20260923-2.htm"
+    },
+    {
+      "title": "Türk Medeni Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4721.pdf"
+    },
+    {
+      "title": "Tapu Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2644.pdf"
+    },
+    {
+      "title": "İzmir Ekonomi Üniversitesi Lisansüstü Eğitim-Öğretim Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261005-6.htm"
+    },
+    {
+      "title": "Türk Gıda Kodeksi Distile Alkollü İçkiler Tebliği (No: 2026/18)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261001-3.htm"
+    },
+    {
+      "title": "Kabahatler Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5326.pdf"
+    },
+    {
+      "title": "İstanbul Sabahattin Zaim Üniversitesi Gıda, Beslenme ve Biyoteknoloji Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261004-1.htm"
+    },
+    {
+      "title": "Beykoz Üniversitesi Lisansüstü Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261005-2.htm"
+    },
+    {
+      "title": "Yabancı Plakalı Taşıtların Faaliyetlerine Dair 4925 Sayılı Kanun ile 655 Sayılı Kanun Hükmünde Kararname Kapsamında Verilen İdari Para Cezalarının Tahsiline İlişkin Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261008-4.htm"
+    },
+    {
+      "title": "Rekabetin Korunması Hakkında Kanun",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4054.pdf"
+    },
+    {
+      "title": "Kamu İhale Genel Tebliğinde Değişiklik Yapılmasına Dair Tebliğ",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261016-18.htm"
+    },
+    {
+      "title": "Tüketicinin Korunması Hakkında Kanun",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6502.pdf"
+    },
+    {
+      "title": "Kültür ve Tabiat Varlıklarını Koruma Kanunu Kapsamında Kültür ve Turizm Bakanlığına Yapılacak Başvurular ile Sunulacak Hizmetler Karşılığı Alınacak Bedellere İlişkin Usul ve Esaslar Hakkında Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027-3.htm"
+    },
+    {
+      "title": "Sosyal Güvenlik Kurumu İlaç Geri Ödeme Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261003-3.htm"
+    },
+    {
+      "title": "Kentsel Dönüşüm Başkanlığı Personelinin Atama ve Yer Değiştirme Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261007-1.htm"
+    },
+    {
+      "title": "Tarım Ürünleri Lisanslı Depoculuk Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261003-2.htm"
+    },
+    {
+      "title": "Elektrik Piyasası Lisans Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261019-3.htm"
+    },
+    {
+      "title": "Yozgat Bozok Üniversitesi Tıp Fakültesi Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261004-4.htm"
+    },
+    {
+      "title": "İstanbul Yeni Yüzyıl Üniversitesi Türkçe Öğretimi Uygulama ve Araştırma Merkezi Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261012-3.htm"
+    },
+    {
+      "title": "Demiryolu Araçları Tescil ve Sicil Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-4.htm"
+    },
+    {
+      "title": "Elektrik Piyasasında Lisanssız Elektrik Üretim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261019-6.htm"
+    },
+    {
+      "title": "Ürün İhtisas Borsasının Kuruluş, Faaliyet, İşleyiş ve Denetim Usul ve Esasları Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261008-3.htm"
+    },
+    {
+      "title": "Hayvancılık İşletmelerinin Sınıflandırılmasına İlişkin Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261014-2.htm"
+    },
+    {
+      "title": "Katma Değer Vergisi Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.3065.pdf"
+    },
+    {
+      "title": "Okul Gıdası Hakkında Tebliğ (Tebliğ No: 2020/23)’de Değişiklik Yapılmasına Dair Tebliğ (No: 2026/27)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261010-18.htm"
+    },
+    {
+      "title": "Amme Alacaklarının Tahsil Usulü Hakkında Kanun",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.6183.pdf"
+    },
+    {
+      "title": "TMMOB Harita ve Kadastro Mühendisleri Odası Lisanslı Harita ve Kadastro Mühendisleri ve Büroları Tescil Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261010-17.htm"
+    },
+    {
+      "title": "2026-2027 Eğitim ve Öğretim Yılında Adıyaman, Hatay, Kahramanmaraş ve Malatya İlleri ile Gaziantep İlinin İslahiye ve Nurdağı İlçelerindeki Özel Okullarda Öğrenim Gören ve Önceki Yıllarda Eğitim ve Öğretim Desteği Kapsamına Alınıp Öğretim Kademesini Tamamlamayan Öğrenciler İçin Eğitim ve Öğretim Desteği Verilmesine İlişkin Tebliğ",
+      "kind": "communique",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261006-3.htm"
+    },
+    {
+      "title": "Trakya Üniversitesi Ön Lisans ve Lisans Eğitim-Öğretim Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261020-10.htm"
+    },
+    {
+      "title": "Ataşehir Adıgüzel Meslek Yüksekokulu Türkçe Öğretimi Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261018-3.htm"
+    },
+    {
+      "title": "Çanakkale Savaşları Gelibolu Tarihi Alanında Yapılaşmanın ve Yapıların Kullanımının Denetimi ile Kültür ve Tabiat Varlıklarını Koruma Komisyonunun Çalışma Usul ve Esaslarına İlişkin Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261023-4.htm"
+    },
+    {
+      "title": "Türkiye Cumhuriyeti Anayasası",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2709.pdf"
+    },
+    {
+      "title": "Bankacılık Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5411.pdf"
+    },
+    {
+      "title": "Anadolu Üniversitesi Yapay Zeka Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261011-1.htm"
+    },
+    {
+      "title": "Tebligat Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7201.pdf"
+    },
+    {
+      "title": "İstanbul Gedik Üniversitesi Engelsiz Yaşam Uygulama ve Araştırma Merkezi Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261020-9.htm"
+    },
+    {
+      "title": "Samsun Üniversitesi Tıp Fakültesi Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261012-4.htm"
+    },
+    {
+      "title": "Bozulabilir Gıda Maddelerinin Taşımacılığında Kullanılacak Özel Ekipmanlar Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-2.htm"
+    },
+    {
+      "title": "Makine Emniyeti Yönetmeliği (2023/1230/AB)",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261016-12.htm"
+    },
+    {
+      "title": "Rüzgar Kaynağına Dayalı Elektrik Üretimi Başvurularının Teknik Değerlendirmesi Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261003-1.htm"
+    },
+    {
+      "title": "Tehlikeli Madde Taşıyan Araç ve Üstyapıların Teknik Muayeneleri Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-8.htm"
+    },
+    {
+      "title": "Elektrik Piyasası Yan Hizmetler Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261019-4.htm"
+    },
+    {
+      "title": "Ankara Medipol Üniversitesi Lisansüstü Eğitim-Öğretim ve Sınav Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261005-1.htm"
+    },
+    {
+      "title": "Ev Tipi Çamaşır Kurutma Makineleri ile İlgili Çevreye Duyarlı Tasarım Gerekliliklerine Dair Tebliğ (2023/2533/AB) (SGM-2024/3)’de Değişiklik Yapılması Hakkında Tebliğ (SGM-2026/9)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261016-16.htm"
+    },
+    {
+      "title": "Üsküdar Üniversitesi Miyopi Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261012-6.htm"
+    },
+    {
+      "title": "Perakende Ticarette Uygulanacak İlke ve Kurallar Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261015-1.htm"
+    },
+    {
+      "title": "Milli Emlak Genel Tebliği (Sıra No: 324)’nde Değişiklik Yapılmasına Dair Tebliğ (Sıra No: 426)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/09/20260924-3.htm"
+    },
+    {
+      "title": "Dokuz Eylül Üniversitesi Ön Lisans ve Lisans Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261007-3.htm"
+    },
+    {
+      "title": "İdari Yargılama Usulü Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf"
+    },
+    {
+      "title": "İmar Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.3194.pdf"
+    },
+    {
+      "title": "İş Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4857.pdf"
+    },
+    {
+      "title": "Vergi Usul Kanunu Genel Tebliği (Sıra No: 596)",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261011-4.htm"
+    },
+    {
+      "title": "Tehlikeli Madde Güvenlik Danışmanlığı Hizmetleri Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-7.htm"
+    },
+    {
+      "title": "Demiryolu İşletmeciliği Yetkilendirme Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-5.htm"
+    },
+    {
+      "title": "Bilgilendirilmiş Rızanın Elektronik Ortamda Alınması Hakkında Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "S",
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027-4.htm"
+    },
+    {
+      "title": "Hakkari Üniversitesi Dil Öğretimi Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261012-2.htm"
+    },
+    {
+      "title": "Türkiye Anne, Çocuk ve Ergen Sağlığı Enstitüsünün Yapılanması ve Faaliyetlerine Dair Yönetmelikte Değişiklik Yapılmasına İlişkin Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261021-6.htm"
+    },
+    {
+      "title": "Anonim ve Limited Şirketlerin Sermayelerini Yeni Asgari Tutarlara Yükseltme Süresinin Uzatılmasına İlişkin Tebliğ",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261017-12.htm"
+    },
+    {
+      "title": "Noterlik Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1512.pdf"
+    },
+    {
+      "title": "7596 Tasfiyesine Karar Verilen Bazı Yatırım Fonları Hakkında Kanun",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027-0.htm"
+    },
+    {
+      "title": "Türk Borçlar Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6098.pdf"
+    },
+    {
+      "title": "Türk Ceza Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5237.pdf"
+    },
+    {
+      "title": "Çevre Yönetimi Hizmetleri Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261006-1.htm"
+    },
+    {
+      "title": "Elektrikli Skuter Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261013-1.htm"
+    },
+    {
+      "title": "Tehlikeli Maddelerin Demiryolu ile Taşınması Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261013-3.htm"
+    },
+    {
+      "title": "Dokuz Eylül Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261007-2.htm"
+    },
+    {
+      "title": "Demiryolu ile Seyahat Eden Yolcuların Haklarına Dair Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261010-16.htm"
+    },
+    {
+      "title": "Burdur Mehmet Akif Ersoy Üniversitesi Ön Lisans ve Lisans Eğitim-Öğretim ve Sınav Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261005-5.htm"
+    },
+    {
+      "title": "1416 Sayılı Kanun ve Buna Bağlı Yönetmelik Uyarınca Yurt Dışında Lisans ve Lisansüstü Öğrenim Gören Öğrencilere Yapılacak Ödemeler Hakkında Tebliğ",
+      "kind": "communique",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/09/20260930-3.htm"
+    },
+    {
+      "title": "Ankara Medipol Üniversitesi Hukukta Dijital Dönüşüm ve Hukuk Teknolojileri Uygulama ve Araştırma Merkezi Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261022-2.htm"
+    },
+    {
+      "title": "Araç Muayene İstasyonlarının Açılması, İşletilmesi ve Araç Muayenesi Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261009-1.htm"
+    },
+    {
+      "title": "Elektronik Ticaretin Düzenlenmesi Hakkında Kanun",
+      "kind": "legislation",
+      "tiers": [
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6563.pdf"
+    },
+    {
+      "title": "Konutların Turizm Amaçlı Kiralanması Faaliyetlerinin Düzenlenmesine İlişkin Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027-2.htm"
+    },
+    {
+      "title": "Avukatlık Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1136.pdf"
+    },
+    {
+      "title": "İstanbul Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261018-5.htm"
+    },
+    {
+      "title": "Millî Savunma Bakanlığı Ödül Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik",
+      "kind": "regulation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261021-2.htm"
+    },
+    {
+      "title": "Sınai Mülkiyet Kanunu",
+      "kind": "legislation",
+      "tiers": [
+        "M",
+        "L"
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6769.pdf"
+    }
+  ],
+  "examples": [
+    {
+      "question": "Anayasa Mahkemesi'nin iptal kararları hangi tarihte yürürlükten kalkar?",
+      "title": "Türkiye Cumhuriyeti Anayasası",
+      "article": "Madde 153",
+      "rank": 1,
+      "excerpt": "… Meclisi İçtüzüğü ya da bunların hükümleri, iptal kararlarının Resmî Gazetede yayımlandığı tarihte yürürlükten kalkar. Gereken hallerde Anayasa Mahkemesi iptal hükmünün yürürlüğe gireceği tarihi ayrıca kararlaştırabilir. Bu tarih, kararın Resmî Gazetede yayımlandığı günden başlayarak bir yılı geçemez. 95 İptal …",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2709.pdf"
+    },
+    {
+      "question": "Öğrenci kimlik kartını kaybeden öğrencilerin başvurması gereken yer neresidir?",
+      "title": "İstanbul Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği",
+      "article": "MADDE 19",
+      "rank": 1,
+      "excerpt": "… kayıp ilanını dilekçelerine ekleyerek kayıtlı oldukları enstitülere başvurur. (3) Öğrenci kimlik kartını kaybeden veya yenilemeyi talep eden öğrencilerin Rektörlük tarafından belirlenen bedeli ödemeleri gerekir. Öğrenci katkı payı/öğrenim ücreti",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261018-5.htm"
+    },
+    {
+      "question": "Tüketici örgütleri hangi durumlarda tüketici mahkemelerinde dava açabilir?",
+      "title": "Tüketicinin Korunması Hakkında Kanun",
+      "article": "MADDE 73",
+      "rank": 1,
+      "excerpt": "… ilgili kamu kurum ve kuruluşları ile Bakanlık; haksız ticari uygulamalar ve ticari r eklamlara ilişkin hükümler dışında, genel olarak tüketicileri ilgilendiren ve bu Kanuna aykırı bir durumun doğma tehlikesi olan hâllerde bunun",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6502.pdf"
+    },
+    {
+      "question": "Avukatlık disiplin cezaları hangi maddeye göre uygulanır?",
+      "title": "Avukatlık Kanunu",
+      "article": "MADDE 134",
+      "rank": 3,
+      "excerpt": "MADDE 134- (Başlığı ile Birlikte Değişik:24/12/2025-7571/5 md.) Avukatlara; avukatlık onur ve unvanına, savunma hakkının kutsallığının gerektirdiği saygı ve güvene veya özen ve doğruluk yükümlülüklerine uymayan hâl ve hareketlerinin tespit edilmesi üzerine, ihlalin niteliğine ve eylemin ağırlık derecesine göre bu …",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1136.pdf"
+    },
+    {
+      "question": "Eğitimleri başarıyla tamamlayan kişilere verilen belgenin adı nedir?",
+      "title": "Hukuk Uyuşmazlıklarında Arabuluculuk Kanunu",
+      "article": "MADDE 25",
+      "rank": 1,
+      "excerpt": "MADDE 25 – (1) Eğitim kuruluşları, eğitimlerini başarıyla tamamlayan kişilere arabuluculuk eğitimini tamamladıklarına dair bir belge verir. Daire Başkanlığına bilgi verme yükümlülüğü",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6325.pdf"
+    },
+    {
+      "question": "Tasarım hakkından doğan diğer hak ve talepleri saklı kalmak kaydıyla, tasarım sahipliğinin kendisine devredilmesini talep edebilir kim?",
+      "title": "Sınai Mülkiyet Kanunu",
+      "article": "MADDE 71",
+      "rank": 1,
+      "excerpt": "… olmayan bir kişi tarafından kamuya sunulmuşsa, gerçek hak sahibi olduğunu iddia eden kişi, tasarım hakkından doğan diğer hak ve talepleri saklı kalmak kaydıyla, tasarım sahipliğinin kendisine devredilmesini veya tasarım sahibi olarak tanınmayı mahkemeden talep edebilir. (2) Tasarım üzerinde kısmi bir hakkın iddia …",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6769.pdf"
+    },
+    {
+      "question": "Takas işlemi için borçlunun ne yapması gerekmektedir?",
+      "title": "Türk Borçlar Kanunu",
+      "article": "MADDE 143",
+      "rank": 1,
+      "excerpt": "MADDE 143 - Takas, ancak borçlunun tak as iradesini alacaklıya bildirmesiyle gerçekleşir. Bu durumda her iki borç, takas edilebilecekleri anda daha az olan borç tutarınca sona erer. Cari hesapla ilgili ticarete ilişkin özel teamüller saklıdır. III. Alacaklının rızasıyla takas edilebilir alacaklar",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6098.pdf"
+    },
+    {
+      "question": "Madde 43-1'e göre, yetkili makamlardan ruhsat almadan hangi yerlerde silah taşımak idari para cezaya neden olur?",
+      "title": "Kabahatler Kanunu",
+      "article": "Madde 43",
+      "rank": 1,
+      "excerpt": "Madde 43- (1) Yetkili makamlardan ruhsat almaksızın kanuna göre yasak olmayan silahları park, meydan, cadde veya sokaklarda görünür bir şekilde taşıyan kişiye, kolluk tarafından elli Türk Lirası idarî para cezası verilir. Tüzel kişilerin sorumluluğu9",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5326.pdf"
+    },
+    {
+      "question": "Aydınlatılan konularla ilgili meselelerin oylama ve karar süreci nasıl işlenir?",
+      "title": "İdari Yargılama Usulü Kanunu",
+      "article": "Madde 22",
+      "rank": 1,
+      "excerpt": "Madde 22 – 1. Konular aydınlandığında meseleler sırasıyla oya konulur ve karara bağlanır. 2. 15 nci maddede sayılan sebeplerden biri ile veya yargılama usullerine ilişkin meselelerde azınlıkta kalanlar işin esası hakkında da oylarını kullanırlar. Azınlıkta kalanların görüşleri, kararların altına yazılır. Tutanaklar:",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf"
+    },
+    {
+      "question": "Yasaların uygulanmasını hangi kurum üstlenmektedir?",
+      "title": "Çek Kanunu",
+      "article": "MADDE 11",
+      "rank": 4,
+      "excerpt": "MADDE 11 – (1) Bu Kanun hükümlerini Bakanlar Kurulu yürütür. 5941 SAYILI KANUNA EK VE DEĞİŞİKLİK GETİREN MEVZUATIN VEYA ANAYASA MAHKEMESİ TARAFINDAN VERİLEN İPTAL KARARLARININ YÜRÜRLÜĞE GİRİŞ TARİHLERİNİ GÖSTERİR LİSTE Değiştiren Kanunun/ KHK’nin veya İptal Eden Anayasa Mahkemesi Kararının Numarası 4688 Sayılı Kanunun …",
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5941.pdf"
+    }
+  ]
+}

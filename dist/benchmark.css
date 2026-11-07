@@ -28,6 +28,24 @@
 .benchmark-page .bm-controls label { display: grid; gap: 6px; color: var(--muted); }
 .benchmark-page .bm-details { margin-top: 20px; }
 .benchmark-page .bm-details summary { cursor: pointer; color: var(--accent); }
+.benchmark-page .bm-tiers { padding: 0; list-style: none; }
+.benchmark-page .bm-tiers strong { margin-right: 8px; }
+.benchmark-page .bm-source-list li { margin-bottom: 8px; }
+.benchmark-page #research-request label { display: block; margin-bottom: 8px; }
+.benchmark-page .bm-google-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #747775;
+  border-radius: 4px;
+  background: #fff;
+  color: #1f1f1f;
+  font: 500 14px/20px "Google Sans", Arial, sans-serif;
+  cursor: pointer;
+}
+.benchmark-page .bm-google-button img { object-fit: contain; }
 .benchmark-page .bm-table tbody small { display: block; margin-top: 4px; color: var(--muted-2); }
 .benchmark-page .bm-bar { grid-template-columns: minmax(48px, max-content) minmax(0, 1fr) 96px; }
 

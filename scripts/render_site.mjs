@@ -13,6 +13,7 @@ import { renderAdminPage } from './render_admin.mjs';
 import { earlyAccessPage } from './render_early_access.mjs';
 import { privacyPage } from './render_privacy.mjs';
 import { benchmarkPage } from './render_benchmark.mjs';
+import { benchmarkResearchPage } from './render_benchmark_research.mjs';
 import { loadBenchmarkCatalog } from './benchmark_data.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
@@ -24,6 +25,8 @@ const benchmarkCatalog = await loadBenchmarkCatalog({
 });
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
+const benchmarkResearchEvidence = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/benchmark/research.json'), 'utf8'));
+const benchmarkResearchEnabled = process.env.MESA_BENCHMARK_RESEARCH_ACCESS === 'true' && Boolean(publicAdminConfig);
 const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data.json'), 'utf8'));
 const trContent = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'tr.json'), 'utf8'));
 const courseData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/learn-curriculum.json'), 'utf8'));
@@ -54,6 +57,7 @@ const assetVersions = {
   docsJs: assetVersion('docs.js'),
   benchmarkCss: assetVersion('benchmark.css'),
   benchmarkJs: assetVersion('benchmark.js'),
+  benchmarkResearchJs: assetVersion('benchmark-research.js'),
   logo: assetVersion('assets/mesa-mark.webp'),
   faviconSvg: assetVersion('favicon.svg'),
   faviconIco: assetVersion('favicon.ico')
@@ -1154,7 +1158,11 @@ const renderers = {
   status: statusPage,
   about: aboutPage,
   faq: faqPage,
-  benchmark: () => renderBenchmark()
+  benchmark: () => renderBenchmark(),
+  benchmarkResearch: () => benchmarkResearchPage({
+    header: hubChrome(header('benchmark')), footer: hubChrome(footer()),
+    language: currentLanguage, base, assetBase, evidence: benchmarkResearchEvidence, enabled: benchmarkResearchEnabled
+  })
 };
 
 function renderBenchmark(version) {
@@ -1346,7 +1354,7 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
-${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
+${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') || content.includes('id="benchmark-research-panel"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
 ${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
@@ -1356,7 +1364,8 @@ ${content}
 ${content.includes('id="benchmark-compare"') ? `  <script type="module" src="${assetBase}benchmark.js?v=${assetVersions.benchmarkJs}"></script>\n` : ''}${content.includes('id="early-access-form"') ? `  <script id="early-access-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<','\\u003c')}</script>
   <script src="${assetBase}early-access.js?v=${assetVersions.accessJs}" defer></script>
 ` : ''}
-${content.includes('class="docs-layout') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
+${content.includes('id="benchmark-research-panel"') ? `  <script id="benchmark-research-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<', '\\u003c')}</script>
+  <script src="${assetBase}benchmark-research.js?v=${assetVersions.benchmarkResearchJs}" defer></script>\n` : ''}${content.includes('class="docs-layout') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
 </html>
 `;
 }
@@ -1445,7 +1454,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = key === 'docs' || key === 'mcp' || key === 'getStarted' || key === 'benchmark';
+    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch'].includes(key);
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');

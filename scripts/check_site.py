@@ -35,6 +35,7 @@ CORE_ROUTES = (
     "early-access/",
     "privacy/",
     "benchmark/",
+    "benchmark/research/",
 )
 HUB_DATA = json.loads(
     (Path(__file__).resolve().parents[1] / "content" / "hub.json").read_text(encoding="utf-8")

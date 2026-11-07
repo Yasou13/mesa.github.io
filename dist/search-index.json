@@ -4994,6 +4994,34 @@
     "language": "tr"
   },
   {
+    "id": "core-benchmarkResearch-en",
+    "url": "benchmark/research/",
+    "title": "MESA Benchmark Data and Examples",
+    "section": "Ecosystem",
+    "category": "Core",
+    "summary": "Inspect Turkish legal retrieval examples, official legislation sources and the S, M and L research data tiers.",
+    "keywords": [
+      "benchmarkResearch",
+      "mesa",
+      "memory"
+    ],
+    "language": "en"
+  },
+  {
+    "id": "core-benchmarkResearch-tr",
+    "url": "tr/benchmark/research/",
+    "title": "MESA Benchmark Verileri ve Örnekleri",
+    "section": "Ekosistem",
+    "category": "Core",
+    "summary": "Türkçe hukuk araması örneklerini, resmî mevzuat kaynaklarını ve S, M, L araştırma verisi katmanlarını incele.",
+    "keywords": [
+      "benchmarkResearch",
+      "mesa",
+      "hafıza"
+    ],
+    "language": "tr"
+  },
+  {
     "id": "core-privacy-en",
     "url": "privacy/",
     "title": "Privacy Notice — MESA",

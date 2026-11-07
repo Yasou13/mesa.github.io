@@ -76,6 +76,10 @@
       "title": "MESA Benchmark — Sürüme Göre Türkçe Hukuk Araması",
       "description": "MESA sürümlerini Türkçe hukuk aramasında karşılaştır. Ölçütleri, test koşullarını, içe alma sürelerini ve sınırları sürüm raporlarında incele."
     },
+    "benchmarkResearch": {
+      "title": "MESA Benchmark Verileri ve Örnekleri",
+      "description": "Türkçe hukuk araması örneklerini, resmî mevzuat kaynaklarını ve S, M, L araştırma verisi katmanlarını incele."
+    },
     "privacy": {
       "title": "Gizlilik Bildirimi — MESA",
       "description": "MESA sitesinin hangi bilgileri neden topladığı, ne kadar sakladığı ve KVKK ile GDPR kapsamında silinmesini nasıl isteyebileceğiniz."

@@ -119,6 +119,11 @@
       "title": "MESA Benchmark — Turkish Legal Retrieval by Version",
       "description": "Compare MESA versions on Turkish legal retrieval and read each benchmark report with metrics, test conditions, ingestion results and limitations."
     },
+    "benchmarkResearch": {
+      "path": "benchmark/research/",
+      "title": "MESA Benchmark Data and Examples",
+      "description": "Inspect Turkish legal retrieval examples, official legislation sources and the S, M and L research data tiers."
+    },
     "privacy": {
       "path": "privacy/",
       "title": "Privacy Notice — MESA",

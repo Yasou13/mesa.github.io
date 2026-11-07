@@ -235,6 +235,33 @@ or validation stops the build before deployment. To roll back, restore the
 previous digest and rerun the workflow. With the digest unset, builds use the
 bundled catalog. Published pages use their own static copy for all interactions.
 
+The benchmark research page shows recorded development examples, official
+legislation links and corpus counts. The held-out evaluation set is separate
+from the public examples and research downloads.
+
+To activate applications, apply the research access migration. Create the
+private Storage buckets `benchmark-corpus-archive` and `benchmark-research`.
+Keep the original corpus archives in the owner-only bucket. Put only reviewed
+archives in `benchmark-research` under `v1/mesa-legal-v1-s.tar.gz`,
+`v1/mesa-legal-v1-m.tar.gz` and `v1/mesa-legal-v1-l.tar.gz`.
+Never publish either bucket. An approved account can read only the three
+reviewed package paths, and revoking its request status stops later downloads.
+
+Configure the Google provider in Supabase Auth with the Google OAuth client ID
+and secret. Register the Supabase callback URL in Google and allow the exact
+site callbacks in Supabase (`https://mesamemory.dev/benchmark/research/` and
+`https://mesamemory.dev/tr/benchmark/research/`). The website uses Supabase's
+redirect flow. Its browser bundle only receives the project's publishable key.
+To accept new researchers, verify the hosted Auth sign-up settings and the
+existing CMS policies first. CMS roles continue to require explicit assignment.
+
+Once OAuth and the reviewed packages are ready, set the Pages variable
+`MESA_BENCHMARK_RESEARCH_ACCESS=true` and redeploy. An administrator can review
+`public.benchmark_research_requests` in the Supabase dashboard and change a
+request's status to `approved`, `declined` or `revoked`. The request records
+the account UUID and research purpose. Use the Auth user record to look up the
+account if needed.
+
 ## Validation
 
 Custom-domain production build:
