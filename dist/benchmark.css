@@ -32,6 +32,11 @@
 .benchmark-page .bm-tiers strong { margin-right: 8px; }
 .benchmark-page .bm-source-list li { margin-bottom: 8px; }
 .benchmark-page #research-request label { display: block; margin-bottom: 8px; }
+.benchmark-page #research-email { max-width: 30rem; margin-top: 20px; }
+.benchmark-page #benchmark-research-panel [hidden] { display: none; }
+.benchmark-page #research-email label { display: block; margin: 12px 0 6px; }
+.benchmark-page #research-password-hint { margin: 8px 0 0; }
+.benchmark-page #research-login [data-provider] { margin: 4px 8px 0 0; }
 .benchmark-page .bm-google-button {
   display: inline-flex;
   align-items: center;

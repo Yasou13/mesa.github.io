@@ -52,6 +52,7 @@ jobs:
           MESA_SUPABASE_PUBLISHABLE_KEY: ${{ vars.MESA_SUPABASE_PUBLISHABLE_KEY }}
           MESA_BENCHMARK_SHA256: ${{ vars.MESA_BENCHMARK_SHA256 }}
           MESA_BENCHMARK_RESEARCH_ACCESS: ${{ vars.MESA_BENCHMARK_RESEARCH_ACCESS }}
+          MESA_BENCHMARK_AUTH_PROVIDERS: ${{ vars.MESA_BENCHMARK_AUTH_PROVIDERS }}
         run: python3 scripts/build_site.py --site-url "${{ steps.pages.outputs.base_url }}" --verify-articles
       - name: Verify routes and links
         run: |

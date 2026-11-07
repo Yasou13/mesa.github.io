@@ -247,16 +247,19 @@ archives in `benchmark-research` under `v1/mesa-legal-v1-s.tar.gz`,
 Never publish either bucket. An approved account can read only the three
 reviewed package paths, and revoking its request status stops later downloads.
 
-Configure the Google provider in Supabase Auth with the Google OAuth client ID
-and secret. Register the Supabase callback URL in Google and allow the exact
-site callbacks in Supabase (`https://mesamemory.dev/benchmark/research/` and
-`https://mesamemory.dev/tr/benchmark/research/`). The website uses Supabase's
-redirect flow. Its browser bundle only receives the project's publishable key.
-To accept new researchers, verify the hosted Auth sign-up settings and the
-existing CMS policies first. CMS roles continue to require explicit assignment.
+Allow the exact site callbacks in Supabase Auth (`https://mesamemory.dev/benchmark/research/`
+and `https://mesamemory.dev/tr/benchmark/research/`). For each social provider,
+register the Supabase Auth callback URL in the corresponding Google or GitHub
+OAuth app and save its client ID and secret in Supabase Auth. The site uses
+Supabase's PKCE redirect flow and only receives the project's publishable key.
+For email accounts, allow sign-ups, keep email confirmation enabled and
+configure custom SMTP so people outside the Supabase organization receive the
+confirmation link. CMS roles continue to require explicit assignment.
 
-Once OAuth and the reviewed packages are ready, set the Pages variable
-`MESA_BENCHMARK_RESEARCH_ACCESS=true` and redeploy. An administrator can review
+After testing the configured methods, set the Pages variable
+`MESA_BENCHMARK_AUTH_PROVIDERS` to the comma-separated list of methods to show
+(`google,github,email`) and redeploy. When the reviewed packages are also ready,
+set `MESA_BENCHMARK_RESEARCH_ACCESS=true`. An administrator can review
 `public.benchmark_research_requests` in the Supabase dashboard and change a
 request's status to `approved`, `declined` or `revoked`. The request records
 the account UUID and research purpose. Use the Auth user record to look up the

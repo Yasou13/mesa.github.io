@@ -27,6 +27,11 @@ const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
 const benchmarkResearchEvidence = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/benchmark/research.json'), 'utf8'));
 const benchmarkResearchEnabled = process.env.MESA_BENCHMARK_RESEARCH_ACCESS === 'true' && Boolean(publicAdminConfig);
+const configuredResearchProviders = (process.env.MESA_BENCHMARK_AUTH_PROVIDERS || (benchmarkResearchEnabled ? 'google' : ''))
+  .split(',').map(provider => provider.trim());
+const benchmarkResearchProviders = publicAdminConfig
+  ? ['google', 'github', 'email'].filter(provider => configuredResearchProviders.includes(provider))
+  : [];
 const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data.json'), 'utf8'));
 const trContent = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'tr.json'), 'utf8'));
 const courseData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content/learn-curriculum.json'), 'utf8'));
@@ -1161,7 +1166,8 @@ const renderers = {
   benchmark: () => renderBenchmark(),
   benchmarkResearch: () => benchmarkResearchPage({
     header: hubChrome(header('benchmark')), footer: hubChrome(footer()),
-    language: currentLanguage, base, assetBase, evidence: benchmarkResearchEvidence, enabled: benchmarkResearchEnabled
+    language: currentLanguage, base, assetBase, evidence: benchmarkResearchEvidence,
+    providers: benchmarkResearchProviders, accessEnabled: benchmarkResearchEnabled
   })
 };
 
