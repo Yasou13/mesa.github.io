@@ -13,10 +13,15 @@ import { renderAdminPage } from './render_admin.mjs';
 import { earlyAccessPage } from './render_early_access.mjs';
 import { privacyPage } from './render_privacy.mjs';
 import { benchmarkPage } from './render_benchmark.mjs';
+import { loadBenchmarkCatalog } from './benchmark_data.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
 import { writeSearchIndex } from './generate_search_index.mjs';
 
+const benchmarkCatalog = await loadBenchmarkCatalog({
+  origin: process.env.MESA_SUPABASE_URL,
+  digest: process.env.MESA_BENCHMARK_SHA256
+});
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(scriptDirectory);
 const siteData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'site-data.json'), 'utf8'));
@@ -47,6 +52,8 @@ const assetVersions = {
   js: assetVersion('app.js'),
   docs: assetVersion('docs.css'),
   docsJs: assetVersion('docs.js'),
+  benchmarkCss: assetVersion('benchmark.css'),
+  benchmarkJs: assetVersion('benchmark.js'),
   logo: assetVersion('assets/mesa-mark.webp'),
   faviconSvg: assetVersion('favicon.svg'),
   faviconIco: assetVersion('favicon.ico')
@@ -1147,8 +1154,15 @@ const renderers = {
   status: statusPage,
   about: aboutPage,
   faq: faqPage,
-  benchmark: () => benchmarkPage({ header: hubChrome(header('benchmark')), footer: hubChrome(footer()), language: currentLanguage })
+  benchmark: () => renderBenchmark()
 };
+
+function renderBenchmark(version) {
+  return benchmarkPage({
+    header: hubChrome(header('benchmark')), footer: hubChrome(footer()),
+    language: currentLanguage, base, assetBase, catalog: benchmarkCatalog, version
+  });
+}
 
 function argument(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -1332,14 +1346,14 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}styles.css?v=${assetVersions.css}">
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
-${content.includes('id="early-access-form"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
+${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
 ${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
 ${content}
   <script src="${assetBase}app.js?v=${assetVersions.js}"></script>
-${content.includes('id="early-access-form"') ? `  <script id="early-access-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<','\\u003c')}</script>
+${content.includes('id="benchmark-compare"') ? `  <script type="module" src="${assetBase}benchmark.js?v=${assetVersions.benchmarkJs}"></script>\n` : ''}${content.includes('id="early-access-form"') ? `  <script id="early-access-config" type="application/json">${JSON.stringify(publicAdminConfig).replaceAll('<','\\u003c')}</script>
   <script src="${assetBase}early-access.js?v=${assetVersions.accessJs}" defer></script>
 ` : ''}
 ${content.includes('class="docs-layout') ? `  <script src="${assetBase}docs.js?v=${assetVersions.docsJs}"></script>\n` : ''}</body>
@@ -1610,10 +1624,35 @@ for (const language of ['en', 'tr']) {
   }
 }
 
+const benchmarkRoutes = benchmarkCatalog.releases.map(release => ({ path: `benchmark/${release.version}/`, release }));
+for (const { path: routePath, release } of benchmarkRoutes) {
+  for (const language of ['en', 'tr']) {
+    const localizedPath = language === 'tr' ? `tr/${routePath}` : routePath;
+    currentLanguage = language;
+    currentPage = { path: routePath };
+    base = relativeBase(routePath);
+    assetBase = relativeBase(localizedPath);
+    alternateHref = language === 'en' ? `${base}tr/${routePath}` : `${assetBase}${routePath}`;
+    const directory = path.join(outputDirectory, localizedPath);
+    fs.mkdirSync(directory, { recursive: true });
+    fs.writeFileSync(path.join(directory, 'index.html'), documentShell({
+      title: language === 'tr' ? `MESA ${release.version} benchmark raporu` : `MESA ${release.version} benchmark report`,
+      description: release.summary[language],
+      canonical: siteUrl + localizedPath,
+      content: renderBenchmark(release.version),
+      language, assetBase, pageType: 'article',
+      alternateUrls: { en: siteUrl + routePath, tr: `${siteUrl}tr/${routePath}` }
+    }));
+  }
+  const data = { schemaVersion: benchmarkCatalog.schemaVersion, suite: benchmarkCatalog.suites[release.suite], release };
+  fs.writeFileSync(path.join(outputDirectory, routePath, 'metrics.json'), JSON.stringify(data, null, 2) + '\n');
+}
+
 const allPublicRoutes = [
   ...Object.values(siteData.pages).filter(page => !page.redirectTo),
   ...hubRoutes.map(({ path: routePath }) => ({ path: routePath })),
-  ...docRoutes.map(({ path: routePath }) => ({ path: routePath }))
+  ...docRoutes.map(({ path: routePath }) => ({ path: routePath })),
+  ...benchmarkRoutes
 ];
 
 const sitemapEntries = allPublicRoutes

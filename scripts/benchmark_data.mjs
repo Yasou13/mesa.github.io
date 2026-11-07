@@ -1,64 +1,88 @@
-// Frozen Turkish legal retrieval benchmark: MESA 0.9.0 and 0.9.2.
-// Every value is copied verbatim from the owner's frozen benchmark reports. Values are kept
-// as strings so nothing is rounded or recomputed; only the decimal separator changes for Turkish.
-// TODO(owner): link the benchmark data and reports here once they are public. Until then the page
-// must not link to them or describe them as public.
+import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 
-export const benchmark = {
-  runDate: { en: '7 November 2026', tr: '7 Kasım 2026' },
-  heldOutQuestions: '145',
-  answerableTestQuestions: '121',
+const localCatalog = new URL('../content/benchmark/catalog.json', import.meta.url);
+const metricKeys = ['mrr', 'hit1', 'hit5', 'hit10', 'doc1', 'doc5', 'p50', 'p95'];
+const profiles = ['off', 'embedding', 'reranker'];
 
-  // Hero key line and stat tiles.
-  headline: {
-    hit5v092: '74.4', mrr092: '0.656', hit5v090: '51.2', mrr090: '0.431',
-    hit1v092: '57.9', citationHit5: '100'
-  },
+function requireValid(condition, detail) {
+  if (!condition) throw new Error(`Invalid benchmark catalog: ${detail}`);
+}
 
-  // Main results, test split, 121 answerable questions. Search p50 in seconds.
-  results: [
-    { version: '0.9.0', config: 'noModelsKeyword', mrr: '0.293', hit1: '0.223', hit5: '0.331', hit10: '0.388', doc1: '0.364', doc5: '0.603', p50: '0.96', note: '¹' },
-    { version: '0.9.0', config: 'embeddingsDefault', mrr: '0.431', hit1: '0.347', hit5: '0.512', hit10: '0.603', doc1: '0.587', doc5: '0.703', p50: '1.91' },
-    { version: '0.9.0', config: 'embeddingsTuned', mrr: '0.500', hit1: '0.397', hit5: '0.620', hit10: '0.703', doc1: '0.603', doc5: '0.752', p50: '1.87' },
-    { version: '0.9.0', config: 'offlineJina', mrr: '0.654', hit1: '0.570', hit5: '0.760', hit10: '0.802', doc1: '0.694', doc5: '0.826', p50: '2.47', note: '²', offline: true },
-    { version: '0.9.2', config: 'noModels', mrr: '0.300', hit1: '0.223', hit5: '0.397', hit10: '0.463', doc1: '0.446', doc5: '0.579', p50: '0.45' },
-    { version: '0.9.2', config: 'embeddings', mrr: '0.514', hit1: '0.380', hit5: '0.678', hit10: '0.769', doc1: '0.562', doc5: '0.769', p50: '1.35' },
-    { version: '0.9.2', config: 'embeddingsReranker', mrr: '0.656', hit1: '0.579', hit5: '0.744', hit10: '0.810', doc1: '0.694', doc5: '0.793', p50: '1.98' }
-  ],
+function exactKeys(value, keys) {
+  return value && typeof value === 'object' && !Array.isArray(value)
+    && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
+}
 
-  // Hit@5 for the three product levels (percent). null = not available in that version.
-  chart: [
-    { level: 'noModels', v090: '33.1', v092: '39.7' },
-    { level: 'embeddings', v090: '51.2', v092: '67.8' },
-    { level: 'reranker', v090: null, v092: '74.4' }
-  ],
+const localized = value => exactKeys(value, ['en', 'tr'])
+  && [value.en, value.tr].every(text => typeof text === 'string' && text.trim());
+const count = value => Number.isSafeInteger(value) && value > 0;
+const decimal = value => typeof value === 'string' && /^\d+(\.\d+)?$/.test(value) && Number.isFinite(Number(value));
+const ratio = value => decimal(value) && Number(value) <= 1;
+const identifier = value => typeof value === 'string' && /^[a-z0-9][a-z0-9-]*$/i.test(value);
+const versionPattern = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 
-  // Hit@5 by question type, test split. Column order matches byTypeColumns.
-  byTypeColumns: ['v090NoModels', 'v090Tuned', 'v090Offline', 'v092NoModels', 'v092Embeddings', 'v092Reranker'],
-  byType: [
-    { type: 'exact', count: '36', values: ['0.667', '0.889', '0.944', '0.750', '0.861', '0.972'] },
-    { type: 'paraphrase', count: '39', values: ['0.103', '0.564', '0.718', '0.154', '0.692', '0.718'] },
-    { type: 'crossDocument', count: '17', values: ['0.118', '0.471', '0.706', '0.353', '0.588', '0.765'] },
-    { type: 'numberDateDocket', count: '29', values: ['0.345', '0.448', '0.621', '0.310', '0.483', '0.483'] }
-  ],
-
-  // Citation questions (new in 0.9.2), Hit@5 in percent.
-  citations: { named: '100', naturalWording: '95–100', example: 'TBK m. 315' },
-
-  // Ingest: time until all 141 documents are fully searchable, Colab A100.
-  ingest: [
-    { version: '0.9.0', setup: 'withEmbeddings', minutes: '29.7', chunks: '3480', perChunk: '0.51' },
-    { version: '0.9.2', setup: 'withEmbeddings', minutes: '20.7', chunks: '5041', perChunk: '0.25' },
-    { version: '0.9.2', setup: 'withoutModels', minutes: '15.8', chunks: '5041', perChunk: '0.19' }
-  ],
-
-  // Weakest question type in 0.9.2 versus the 0.9.0 offline experiment (Hit@5, percent).
-  limitationNumbers: { v092: '48.3', offline090: '62.1' },
-
-  setup: {
-    corpusDocuments: '141', legalAreas: '8', areaShare: '8–20', decisionYears: '2021–2025', qualityGatePoints: '5',
-    questions: '246', dev: '101', test: '145', answerable: '121', noAnswer: '24',
-    generator: 'qwen2.5:32b', judge: 'gemma3:27b',
-    versions: ['0.9.0', '0.9.2'], embedding: 'BAAI/bge-m3', reranker: 'BAAI/bge-reranker-v2-m3'
+export function validateBenchmarkCatalog(catalog) {
+  requireValid(exactKeys(catalog, ['schemaVersion', 'suites', 'releases']) && catalog.schemaVersion === 1
+    && catalog.suites && typeof catalog.suites === 'object' && !Array.isArray(catalog.suites)
+    && Array.isArray(catalog.releases) && catalog.releases.length > 0, 'schema');
+  for (const [id, suite] of Object.entries(catalog.suites)) {
+    requireValid(identifier(id) && exactKeys(suite, ['documents', 'dev', 'test', 'answerable', 'questionTypes', 'method', 'limits'])
+      && [suite.documents, suite.dev, suite.test, suite.answerable].every(count) && suite.answerable <= suite.test
+      && localized(suite.method) && localized(suite.limits), `suite ${id}`);
+    const types = ['exact', 'paraphrase', 'cross_document', 'number_date_docket'];
+    requireValid(exactKeys(suite.questionTypes, types) && Object.values(suite.questionTypes).every(count)
+      && Object.values(suite.questionTypes).reduce((sum, size) => sum + size, 0) === suite.answerable, `question types in ${id}`);
   }
-};
+
+  const versions = new Set();
+  for (const release of catalog.releases) {
+    requireValid(exactKeys(release, ['version', 'date', 'suite', 'featured', 'configs', 'summary', 'notes', 'ingest', 'citations'])
+      && typeof release.version === 'string' && versionPattern.test(release.version) && !versions.has(release.version)
+      && typeof release.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(release.date)
+      && !Number.isNaN(Date.parse(release.date)) && new Date(release.date).toISOString().slice(0, 10) === release.date
+      && typeof release.suite === 'string' && Object.hasOwn(catalog.suites, release.suite) && localized(release.summary)
+      && Array.isArray(release.notes) && release.notes.every(localized)
+      && Array.isArray(release.configs) && Array.isArray(release.ingest), 'release metadata');
+    versions.add(release.version);
+    const configs = new Map();
+    const seenProfiles = new Set();
+    for (const row of release.configs) {
+      const keys = ['id', 'label', 'gpu', 'source', 'profile', 'experiment', 'metrics', 'byType'];
+      requireValid(exactKeys(row, keys) && identifier(row.id) && !configs.has(row.id) && localized(row.label)
+        && [row.gpu, row.source].every(value => typeof value === 'string' && value.trim())
+        && typeof row.experiment === 'boolean' && (row.profile === null
+          || (profiles.includes(row.profile) && !row.experiment && !seenProfiles.has(row.profile))), `configuration in ${release.version}`);
+      requireValid(exactKeys(row.metrics, metricKeys) && metricKeys.every(key => key.startsWith('p')
+        ? row.metrics[key] === null || decimal(row.metrics[key]) : ratio(row.metrics[key]))
+        && exactKeys(row.byType, Object.keys(catalog.suites[release.suite].questionTypes))
+        && Object.values(row.byType).every(ratio), `metrics in ${release.version}/${row.id}`);
+      configs.set(row.id, row);
+      seenProfiles.add(row.profile);
+    }
+    requireValid(configs.has(release.featured) && !configs.get(release.featured).experiment, `featured configuration in ${release.version}`);
+    requireValid(release.ingest.every(row => exactKeys(row, ['config', 'minutes', 'chunks'])
+      && configs.has(row.config) && decimal(row.minutes) && count(row.chunks)), `ingestion in ${release.version}`);
+    if (release.citations !== null) {
+      const citations = release.citations;
+      requireValid(exactKeys(citations, ['namedCount', 'naturalCount', 'rows']) && count(citations.namedCount)
+        && count(citations.naturalCount) && Array.isArray(citations.rows) && citations.rows.length
+        && citations.rows.every(row => exactKeys(row, ['config', 'named', 'natural']) && configs.has(row.config)
+          && ratio(row.named) && ratio(row.natural)), `citations in ${release.version}`);
+    }
+  }
+  return catalog;
+}
+
+export async function loadBenchmarkCatalog({ origin, digest, fetchCatalog = fetch } = {}) {
+  if (!digest) return validateBenchmarkCatalog(JSON.parse(await readFile(localCatalog, 'utf8')));
+  const url = new URL(origin);
+  if (!/^[a-f0-9]{64}$/.test(digest) || url.href !== url.origin + '/' || url.protocol !== 'https:'
+    || url.username || url.password) throw new Error('Invalid Supabase benchmark build configuration');
+  const path = `/storage/v1/object/public/benchmark-reports/catalogs/${digest}.json`;
+  const response = await fetchCatalog(new URL(path, url), { redirect: 'error', signal: AbortSignal.timeout(15000) });
+  if (!response.ok) throw new Error(`Supabase benchmark catalog returned HTTP ${response.status}`);
+  const data = Buffer.from(await response.arrayBuffer());
+  if (createHash('sha256').update(data).digest('hex') !== digest) throw new Error('Supabase benchmark catalog checksum mismatch');
+  return validateBenchmarkCatalog(JSON.parse(data.toString('utf8')));
+}

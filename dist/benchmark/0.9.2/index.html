@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA 0.9.2 benchmark report</title>
+  <meta name="description" content="With the built-in BGE reranker, the correct passage was first in 57.9% of answerable cases and in the top five in 74.4%. Number, date and docket questions were the weakest group at 48.3% Hit@5.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/benchmark/0.9.2/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/benchmark/0.9.2/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/benchmark/0.9.2/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/0.9.2/">
+  <meta property="og:title" content="MESA 0.9.2 benchmark report">
+  <meta property="og:description" content="With the built-in BGE reranker, the correct passage was first in 57.9% of answerable cases and in the top five in 74.4%. Number, date and docket questions were the weakest group at 48.3% Hit@5.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/benchmark/0.9.2/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA 0.9.2 benchmark report">
+  <meta name="twitter:description" content="With the built-in BGE reranker, the correct passage was first in 57.9% of answerable cases and in the top five in 74.4%. Number, date and docket questions were the weakest group at 48.3% Hit@5.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide."},{"@type":"WebPage","@id":"https://mesamemory.dev/benchmark/0.9.2/#webpage","url":"https://mesamemory.dev/benchmark/0.9.2/","name":"MESA 0.9.2 benchmark report","description":"With the built-in BGE reranker, the correct passage was first in 57.9% of answerable cases and in the top five in 74.4%. Number, date and docket questions were the weakest group at 48.3% Hit@5.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/LICENSE","version":"0.9.2","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../styles.css?v=227988cd5350">
+  <link rel="stylesheet" href="../../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../../learn.css?v=19f1fc8d0d08">
+  <link rel="stylesheet" href="../../benchmark.css?v=675ec15d4987">
+
+  <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../benchmark/0.9.2/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../tr/benchmark/0.9.2/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Product</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Product</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../../how-it-works/">How it works</a><a class="nav-link" href="../../architecture/">Architecture</a><a class="nav-link" href="../../ecosystem/">Ecosystem</a><a class="nav-link" href="../../#use-cases">Use cases</a><a class="nav-link" href="../../law/">MESA Law</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Developers</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Developers</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../../get-started/">Get started</a><a class="nav-link" href="../../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../../docs/core/examples/">Python SDK</a><a class="nav-link" href="../../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../../docs/mcp/">MCP</a><a class="nav-link" href="../../docs/core/security/">Security</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Learn</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Learn</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../../learn/">Lessons</a><a class="nav-link" href="../../guides/">Guides</a><a class="nav-link" href="../../glossary/">Glossary</a><a class="nav-link" href="../../faq/">FAQ</a><a class="nav-link" href="../../resources/">All resources</a></div>
+          </div><a class="nav-item nav-item--plain" href="../../docs/">Docs</a><a class="nav-item nav-item--plain active" aria-current="page" href="../../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../../status/">Status</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../benchmark/0.9.2/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../tr/benchmark/0.9.2/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span></a>
+            <a class="nav-item nav-cta" href="../../get-started/">Get started</a>
+          </div>
+        </nav>
+      </div>
+    </header><main id="main-content" class="benchmark-page"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div><section class="page-hero bm-hero" aria-labelledby="bm-title">
+    <p class="eyebrow">BENCHMARK · MESA 0.9.2</p>
+    <h1 id="bm-title">MESA 0.9.2 benchmark report</h1><p class="bm-hero__lead">With the built-in BGE reranker, the correct passage was first in 57.9% of answerable cases and in the top five in 74.4%. Number, date and docket questions were the weakest group at 48.3% Hit@5.</p><nav class="bm-versions" aria-label="Benchmark reports by version">
+    <a class="bm-version" href="../../benchmark/">Compare versions</a>
+    <a class="bm-version" href="../../benchmark/0.9.2/" aria-current="page">MESA 0.9.2</a><a class="bm-version" href="../../benchmark/0.9.0/">MESA 0.9.0</a>
+  </nav><div class="bm-stats"><div class="bm-stat">
+    <p class="bm-stat__value">74.4%</p><p class="bm-stat__name">Hit@5</p>
+    <p class="bm-stat__text">Correct passage in the first five results</p><p class="bm-stat__scope">BGE-M3 + built-in BGE reranker (T2)</p></div><div class="bm-stat">
+    <p class="bm-stat__value">57.9%</p><p class="bm-stat__name">Hit@1</p>
+    <p class="bm-stat__text">Correct passage in the first result</p><p class="bm-stat__scope">BGE-M3 + built-in BGE reranker (T2)</p></div><div class="bm-stat">
+    <p class="bm-stat__value">0.656</p><p class="bm-stat__name">MRR</p>
+    <p class="bm-stat__text">Ranking of the first correct passage</p><p class="bm-stat__scope">BGE-M3 + built-in BGE reranker (T2)</p></div></div></section><section class="section bm-section" id="results" aria-labelledby="bm-results"><h2 id="bm-results">Search results</h2><p class="bm-note">November 7, 2026 · 141 documents · 121 / 145 answerable test questions</p>
+    <div class="table-scroll bm-table" tabindex="0" role="region" aria-label="Built-in configurations">
+    <table><caption>Built-in configurations</caption><thead><tr><th scope="col">Configuration</th><th scope="col">Hit@5</th><th scope="col">Hit@1</th><th scope="col">MRR</th><th scope="col">Hit@10</th><th scope="col">Doc@1</th><th scope="col">Doc@5</th><th scope="col">p50</th><th scope="col">p95</th><th scope="col">Hardware</th></tr></thead>
+    <tbody><tr><th scope="row">Models off (T0)<small>20261107T141454Z</small></th><td>39.7%</td><td>22.3%</td><td>0.300</td><td>46.3%</td><td>44.6%</td><td>57.9%</td><td>0.45 s</td><td>0.94 s</td><td>Colab A100</td></tr><tr><th scope="row">MiniLM embeddings (T1m)<small>20261107T141454Z</small></th><td>50.4%</td><td>32.2%</td><td>0.410</td><td>59.5%</td><td>52.9%</td><td>68.6%</td><td>1.39 s</td><td>2.33 s</td><td>Colab A100</td></tr><tr><th scope="row">BGE-M3 embeddings (T1b)<small>20261107T141454Z</small></th><td>67.8%</td><td>38.0%</td><td>0.514</td><td>76.9%</td><td>56.2%</td><td>76.9%</td><td>1.35 s</td><td>2.27 s</td><td>Colab A100</td></tr><tr><th scope="row">BGE-M3 + built-in BGE reranker (T2)<small>20261107T141454Z</small></th><td>74.4%</td><td>57.9%</td><td>0.656</td><td>81.0%</td><td>69.4%</td><td>79.3%</td><td>1.98 s</td><td>2.98 s</td><td>Colab A100</td></tr></tbody></table></div><ul class="bm-footnotes"><li>All rows ran on a Colab A100. T2 reused the T1b store, so it has no separate ingestion measurement.</li></ul></section><section class="section bm-section" id="by-type" aria-labelledby="bm-by-type"><h2 id="bm-by-type">Results by question type</h2><div class="table-scroll bm-table" tabindex="0" role="region" aria-label="Correct passage in the first five results">
+    <table><caption>Correct passage in the first five results</caption><thead><tr><th scope="col">Question type</th><th scope="col">Models off (T0)</th><th scope="col">MiniLM embeddings (T1m)</th><th scope="col">BGE-M3 embeddings (T1b)</th><th scope="col">BGE-M3 + built-in BGE reranker (T2)</th></tr></thead>
+    <tbody><tr><th scope="row">Exact wording (36)</th>
+        <td>75.0%</td><td>77.8%</td><td>86.1%</td><td>97.2%</td></tr><tr><th scope="row">Paraphrase (39)</th>
+        <td>15.4%</td><td>48.7%</td><td>69.2%</td><td>71.8%</td></tr><tr><th scope="row">Cross-document (17)</th>
+        <td>35.3%</td><td>23.5%</td><td>58.8%</td><td>76.5%</td></tr><tr><th scope="row">Number, date or docket (29)</th>
+        <td>31.0%</td><td>34.5%</td><td>48.3%</td><td>48.3%</td></tr></tbody></table></div></section><section class="section bm-section" id="citations" aria-labelledby="bm-citations"><h2 id="bm-citations">Citation questions</h2><div class="table-scroll bm-table" tabindex="0" role="region" aria-label="Citation questions, Hit@5">
+    <table><caption>Citation questions, Hit@5</caption><thead><tr><th scope="col">Configuration</th><th scope="col">Explicit citation (50)</th><th scope="col">Natural wording (40)</th></tr></thead>
+    <tbody><tr><th scope="row">Models off (T0)</th><td>100.0%</td><td>97.5%</td></tr><tr><th scope="row">MiniLM embeddings (T1m)</th><td>100.0%</td><td>95.0%</td></tr><tr><th scope="row">BGE-M3 embeddings (T1b)</th><td>100.0%</td><td>97.5%</td></tr><tr><th scope="row">BGE-M3 + built-in BGE reranker (T2)</th><td>100.0%</td><td>100.0%</td></tr></tbody></table></div></section><section class="section bm-section" id="ingest" aria-labelledby="bm-ingest"><h2 id="bm-ingest">Time until searchable</h2><div class="table-scroll bm-table" tabindex="0" role="region" aria-label="Full corpus ingestion">
+    <table><caption>Full corpus ingestion</caption><thead><tr><th scope="col">Configuration</th><th scope="col">Total time</th><th scope="col">Chunks</th><th scope="col">Hardware</th></tr></thead>
+    <tbody><tr><th scope="row">Models off (T0)</th><td>15.8 min</td><td>5,041</td><td>Colab A100</td></tr><tr><th scope="row">MiniLM embeddings (T1m)</th><td>23.7 min</td><td>5,041</td><td>Colab A100</td></tr><tr><th scope="row">BGE-M3 embeddings (T1b)</th><td>20.7 min</td><td>5,041</td><td>Colab A100</td></tr></tbody></table></div></section><section class="section bm-section" id="data" aria-labelledby="bm-data"><h2 id="bm-data">Download results</h2><a class="text-link" href="../../benchmark/0.9.2/metrics.json" download>Report and aggregate metrics (JSON) ↓</a></section><section class="section bm-section" id="method" aria-labelledby="bm-method"><h2 id="bm-method">How we measured</h2><p>Tier M contains 141 Turkish laws, regulations and court decisions. A language model generated questions from the corpus. A separate model and rule checks reviewed them. Configurations were chosen on 101 development questions before evaluation on 145 held-out questions. Retrieval scores use the 121 answerable questions.</p><details class="bm-details"><summary>What do the metrics mean?</summary>
+    <dl class="bm-method">
+      <div><dt>Hit@1 · Hit@5 · Hit@10</dt><dd>Share of questions with the correct passage in the first 1, 5 or 10 results.</dd></div>
+      <div><dt>MRR</dt><dd>Average reciprocal rank of the first correct passage. A score of 1 means it always came first.</dd></div>
+      <div><dt>Doc@1 · Doc@5</dt><dd>Share of questions with the correct document among the first 1 or 5 results.</dd></div>
+      <div><dt>p50 · p95</dt><dd>Half of queries finished within p50 and 95% within p95. Both are measured in seconds.</dd></div>
+    </dl></details></section><section class="section bm-section" id="limitations" aria-labelledby="bm-limitations"><h2 id="bm-limitations">Scope and limitations</h2><p>The test measures whether MESA retrieves the correct passage or document. The 24 questions with no answer in the corpus are outside the retrieval scores. The corpus is small and its decisions come from the Court of Cassation. The questions are synthetic.</p></section><footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Memory that brings your documents to your AI.</p><p class="footer-note"><span>v0.9.2</span> · <span>Alpha</span> · <a href="../../status/">Project status →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg><span>GitHub</span></a><a class="footer-pill" href="../../early-access/">Early access</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Product</h3><a href="../../how-it-works/">How it works</a><a href="../../architecture/">Architecture</a><a href="../../ecosystem/">Ecosystem</a><a href="../../#use-cases">Use cases</a><a href="../../law/">MESA Law</a><a href="../../data/">MESA Data</a><a href="../../benchmark/">Benchmark</a></div>
+        <div><h3>Developers</h3><a href="../../get-started/">Quickstart</a><a href="../../docs/">Documentation</a><a href="../../docs/core/cli-reference/">MESA CLI</a><a href="../../docs/core/api-reference/">API reference</a><a href="../../docs/core/examples/">Python SDK</a><a href="../../docs/mcp/">MCP</a><a href="../../docs/core/security/">Security</a></div>
+        <div><h3>Learn</h3><a href="../../learn/">Lessons</a><a href="../../guides/">Guides</a><a href="../../glossary/">Glossary</a><a href="../../research/">Research</a><a href="../../faq/">FAQ</a></div>
+        <div><h3>Project</h3><a href="../../about/">About</a><a href="../../status/">Status</a><a href="../../privacy/">Privacy</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/LICENSE" target="_blank" rel="noopener noreferrer"><span>MIT License</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.2</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer></main>
+  <script src="../../app.js?v=157058c17983"></script>
+
+</body>
+</html>

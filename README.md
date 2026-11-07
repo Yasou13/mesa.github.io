@@ -215,6 +215,26 @@ the setting above, then rerun the failed workflow. The action's automatic
 separately managed token with additional administration permissions, so this
 repository intentionally uses the safer one-time setting instead.
 
+### Benchmark reports
+
+`content/benchmark/catalog.json` is the bundled public catalog. It contains the
+bilingual reports, run IDs and aggregate metrics. Keep raw questions, expected
+passages, per-query output and logs outside this catalog. Reuse a suite ID only
+for releases evaluated on the same corpus, test split and scoring protocol.
+
+Create a separate public Supabase Storage bucket named `benchmark-reports`
+that accepts JSON. Upload from the project owner's dashboard without adding
+browser write policies. Compute the SHA-256 of the reviewed catalog and upload
+its exact bytes to `catalogs/<sha256>.json`. Each new catalog uses a new object name.
+
+Set the `MESA_BENCHMARK_SHA256` Actions variable to that digest and keep
+`MESA_SUPABASE_URL` set to the project origin. Run the existing Pages workflow.
+It downloads the catalog without credentials, verifies the digest and schema,
+and generates both languages and the downloadable metrics. A failed download
+or validation stops the build before deployment. To roll back, restore the
+previous digest and rerun the workflow. With the digest unset, builds use the
+bundled catalog. Published pages use their own static copy for all interactions.
+
 ## Validation
 
 Custom-domain production build:

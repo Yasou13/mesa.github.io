@@ -59,6 +59,8 @@ def main() -> int:
     # Only the disposable artifact is pruned. Authoritative dist assets survive.
     for old_page in output.rglob("*.html"):
         old_page.unlink()
+    for old_report in (output / "benchmark").glob("*/metrics.json"):
+        old_report.unlink()
 
     node = shutil.which("node")
     renderer = Path(__file__).with_name("render_site.mjs")

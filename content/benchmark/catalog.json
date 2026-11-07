@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "suites": {
+    "tier-m-v1-test": {
+      "documents": 141,
+      "dev": 101,
+      "test": 145,
+      "answerable": 121,
+      "questionTypes": {
+        "exact": 36,
+        "paraphrase": 39,
+        "cross_document": 17,
+        "number_date_docket": 29
+      },
+      "method": {
+        "en": "Tier M contains 141 Turkish laws, regulations and court decisions. A language model generated questions from the corpus. A separate model and rule checks reviewed them. Configurations were chosen on 101 development questions before evaluation on 145 held-out questions. Retrieval scores use the 121 answerable questions.",
+        "tr": "Tier M derlemi 141 Türkçe kanun, yönetmelik ve mahkeme kararı içerir. Bir dil modeli derlemden sorular üretti. Ayrı bir model ve kural kontrolleri soruları denetledi. Ayarlar 101 geliştirme sorusuyla seçildi, ardından ayrılmış 145 soruyla test edildi. Arama puanları cevaplanabilir 121 soru üzerinden hesaplandı."
+      },
+      "limits": {
+        "en": "The test measures whether MESA retrieves the correct passage or document. The 24 questions with no answer in the corpus are outside the retrieval scores. The corpus is small and its decisions come from the Court of Cassation. The questions are synthetic.",
+        "tr": "Test, MESA’nın doğru pasajı veya belgeyi bulup bulmadığını ölçer. Derlemde yanıtı bulunmayan 24 soru arama puanlarına dahil değildir. Derlem küçüktür ve kararlar Yargıtay kaynaklıdır. Sorular yapay olarak üretilmiştir."
+      }
+    }
+  },
+  "releases": [
+    {
+      "version": "0.9.0",
+      "date": "2026-10-29",
+      "suite": "tier-m-v1-test",
+      "featured": "s4",
+      "configs": [
+        {
+          "id": "mode-a",
+          "label": {
+            "en": "Keyword search (Mode A)",
+            "tr": "Anahtar sözcük araması (Mod A)"
+          },
+          "gpu": "Colab T4",
+          "source": "20261029T190820Z",
+          "profile": "off",
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.2925",
+            "hit1": "0.2231",
+            "hit5": "0.3306",
+            "hit10": "0.3884",
+            "doc1": "0.3636",
+            "doc5": "0.6033",
+            "p50": "0.960",
+            "p95": "1.934"
+          },
+          "byType": {
+            "exact": "0.6667",
+            "paraphrase": "0.1026",
+            "cross_document": "0.1176",
+            "number_date_docket": "0.3448"
+          }
+        },
+        {
+          "id": "s0",
+          "label": {
+            "en": "BGE-M3, equal weights (S0)",
+            "tr": "BGE-M3, eşit ağırlıklar (S0)"
+          },
+          "gpu": "Colab A100",
+          "source": "20261029T234645Z_exp",
+          "profile": "embedding",
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.4312",
+            "hit1": "0.3471",
+            "hit5": "0.5124",
+            "hit10": "0.6033",
+            "doc1": "0.5868",
+            "doc5": "0.7025",
+            "p50": "1.914",
+            "p95": "3.489"
+          },
+          "byType": {
+            "exact": "0.8611",
+            "paraphrase": "0.2821",
+            "cross_document": "0.4706",
+            "number_date_docket": "0.4138"
+          }
+        },
+        {
+          "id": "s4",
+          "label": {
+            "en": "BGE-M3, tuned vector weight (S4)",
+            "tr": "BGE-M3, ayarlı vektör ağırlığı (S4)"
+          },
+          "gpu": "Colab A100",
+          "source": "20261029T234645Z_exp",
+          "profile": null,
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.4999",
+            "hit1": "0.3967",
+            "hit5": "0.6198",
+            "hit10": "0.7025",
+            "doc1": "0.6033",
+            "doc5": "0.7521",
+            "p50": "1.870",
+            "p95": "3.292"
+          },
+          "byType": {
+            "exact": "0.8611",
+            "paraphrase": "0.5641",
+            "cross_document": "0.4706",
+            "number_date_docket": "0.4828"
+          }
+        },
+        {
+          "id": "jina",
+          "label": {
+            "en": "Article chunks + offline Jina",
+            "tr": "Madde bazlı parçalar + çevrimdışı Jina"
+          },
+          "gpu": "Colab A100",
+          "source": "20261029T234645Z_exp",
+          "profile": null,
+          "experiment": true,
+          "metrics": {
+            "mrr": "0.6535",
+            "hit1": "0.5702",
+            "hit5": "0.7603",
+            "hit10": "0.8017",
+            "doc1": "0.6942",
+            "doc5": "0.8264",
+            "p50": null,
+            "p95": null
+          },
+          "byType": {
+            "exact": "0.9444",
+            "paraphrase": "0.7949",
+            "cross_document": "0.7059",
+            "number_date_docket": "0.5172"
+          }
+        }
+      ],
+      "summary": {
+        "en": "Tuned BGE-M3 retrieved the correct passage in the first five results on 62.0% of answerable questions. The offline Jina experiment reached 76.0% with a separate article-aware pipeline.",
+        "tr": "Ayarlanmış BGE-M3, cevaplanabilir soruların %62,0’ında doğru pasajı ilk beş sonuçta buldu. Ayrı bir hat kullanan madde bazlı çevrimdışı Jina deneyi %76,0’a ulaştı."
+      },
+      "notes": [
+        {
+          "en": "Mode A ran on a T4. The S0 and S4 rows use the A100 reruns from the article-chunking study. The original T4 embedding runs are separate measurements.",
+          "tr": "Mod A, T4 üzerinde çalıştırıldı. S0 ve S4 satırları, madde bazlı parçalama çalışmasındaki A100 tekrarlarını kullanır. İlk T4 gömme modeli koşuları ayrı ölçümlerdir."
+        },
+        {
+          "en": "The Jina reranking ran offline over saved results. It is reported separately from built-in configurations and excluded from the comparison.",
+          "tr": "Jina, kaydedilmiş sonuçları çevrimdışı yeniden sıraladı. Sonuç ayrı bir deney olarak gösterilir ve sürüm karşılaştırmasının dışında tutulur."
+        }
+      ],
+      "ingest": [
+        {
+          "config": "s0",
+          "minutes": "29.7",
+          "chunks": 3480
+        }
+      ],
+      "citations": null
+    },
+    {
+      "version": "0.9.2",
+      "date": "2026-11-07",
+      "suite": "tier-m-v1-test",
+      "featured": "T2",
+      "configs": [
+        {
+          "id": "T0",
+          "label": {
+            "en": "Models off (T0)",
+            "tr": "Modelsiz (T0)"
+          },
+          "gpu": "Colab A100",
+          "source": "20261107T141454Z",
+          "profile": "off",
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.2999",
+            "hit1": "0.2231",
+            "hit5": "0.3967",
+            "hit10": "0.4628",
+            "doc1": "0.4463",
+            "doc5": "0.5785",
+            "p50": "0.4503",
+            "p95": "0.9358"
+          },
+          "byType": {
+            "exact": "0.7500",
+            "paraphrase": "0.1538",
+            "cross_document": "0.3529",
+            "number_date_docket": "0.3103"
+          }
+        },
+        {
+          "id": "T1m",
+          "label": {
+            "en": "MiniLM embeddings (T1m)",
+            "tr": "MiniLM gömme modeli (T1m)"
+          },
+          "gpu": "Colab A100",
+          "source": "20261107T141454Z",
+          "profile": null,
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.4095",
+            "hit1": "0.3223",
+            "hit5": "0.5041",
+            "hit10": "0.5950",
+            "doc1": "0.5289",
+            "doc5": "0.6860",
+            "p50": "1.3879",
+            "p95": "2.3290"
+          },
+          "byType": {
+            "exact": "0.7778",
+            "paraphrase": "0.4872",
+            "cross_document": "0.2353",
+            "number_date_docket": "0.3448"
+          }
+        },
+        {
+          "id": "T1b",
+          "label": {
+            "en": "BGE-M3 embeddings (T1b)",
+            "tr": "BGE-M3 gömme modeli (T1b)"
+          },
+          "gpu": "Colab A100",
+          "source": "20261107T141454Z",
+          "profile": "embedding",
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.5136",
+            "hit1": "0.3802",
+            "hit5": "0.6777",
+            "hit10": "0.7686",
+            "doc1": "0.5620",
+            "doc5": "0.7686",
+            "p50": "1.3547",
+            "p95": "2.2713"
+          },
+          "byType": {
+            "exact": "0.8611",
+            "paraphrase": "0.6923",
+            "cross_document": "0.5882",
+            "number_date_docket": "0.4828"
+          }
+        },
+        {
+          "id": "T2",
+          "label": {
+            "en": "BGE-M3 + built-in BGE reranker (T2)",
+            "tr": "BGE-M3 + yerleşik BGE yeniden sıralayıcı (T2)"
+          },
+          "gpu": "Colab A100",
+          "source": "20261107T141454Z",
+          "profile": "reranker",
+          "experiment": false,
+          "metrics": {
+            "mrr": "0.6558",
+            "hit1": "0.5785",
+            "hit5": "0.7438",
+            "hit10": "0.8099",
+            "doc1": "0.6942",
+            "doc5": "0.7934",
+            "p50": "1.9843",
+            "p95": "2.9811"
+          },
+          "byType": {
+            "exact": "0.9722",
+            "paraphrase": "0.7179",
+            "cross_document": "0.7647",
+            "number_date_docket": "0.4828"
+          }
+        }
+      ],
+      "summary": {
+        "en": "With the built-in BGE reranker, the correct passage was first in 57.9% of answerable cases and in the top five in 74.4%. Number, date and docket questions were the weakest group at 48.3% Hit@5.",
+        "tr": "Yerleşik BGE yeniden sıralayıcıyla doğru pasaj, cevaplanabilir soruların %57,9’unda ilk sırada ve %74,4’ünde ilk beş sonuçtaydı. Sayı, tarih ve esas no soruları %48,3 Hit@5 ile en düşük başarıya sahip gruptu."
+      },
+      "notes": [
+        {
+          "en": "All rows ran on a Colab A100. T2 reused the T1b store, so it has no separate ingestion measurement.",
+          "tr": "Tüm yapılandırmalar Colab A100’de çalıştırıldı. T2, T1b ile aynı veri deposunu kullandığı için ayrı bir içe alma ölçümü yoktur."
+        }
+      ],
+      "ingest": [
+        {
+          "config": "T0",
+          "minutes": "15.75",
+          "chunks": 5041
+        },
+        {
+          "config": "T1m",
+          "minutes": "23.74",
+          "chunks": 5041
+        },
+        {
+          "config": "T1b",
+          "minutes": "20.67",
+          "chunks": 5041
+        }
+      ],
+      "citations": {
+        "namedCount": 50,
+        "naturalCount": 40,
+        "rows": [
+          {
+            "config": "T0",
+            "named": "1.0000",
+            "natural": "0.9750"
+          },
+          {
+            "config": "T1m",
+            "named": "1.0000",
+            "natural": "0.9500"
+          },
+          {
+            "config": "T1b",
+            "named": "1.0000",
+            "natural": "0.9750"
+          },
+          {
+            "config": "T2",
+            "named": "1.0000",
+            "natural": "1.0000"
+          }
+        ]
+      }
+    }
+  ]
+}

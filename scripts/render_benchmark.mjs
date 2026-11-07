@@ -1,177 +1,120 @@
-// Benchmark page: Turkish legal retrieval, MESA 0.9.0 vs 0.9.2. Rendered natively per language
-// (like the docs pages) so Turkish numbers use Turkish formatting. All numbers come from
-// benchmark_data.mjs; this file only formats and lays them out.
-import { benchmark as b } from './benchmark_data.mjs';
+import { comparison, compareVersions, escapeHtml as e, number, percent } from '../dist/benchmark.js';
 
-export function benchmarkPage({ header, footer, language }) {
+export function benchmarkPage({ header, footer, language, base, assetBase, catalog, version }) {
   const tr = language === 'tr';
-  const L = (en, turkish) => (tr ? turkish : en);
-  // Formatting only: Turkish uses a decimal comma, a leading percent sign and a dot for thousands.
-  const dec = value => (tr ? value.replace('.', ',') : value);
-  const pct = value => (tr ? `%${value.replace('.', ',')}` : `${value}%`);
-  const thousands = value => value.replace(/\B(?=(\d{3})+(?!\d))/g, tr ? '.' : ',');
-  const seconds = value => `${dec(value)} ${L('s', 'sn')}`;
-  const h = b.headline;
-  const s = b.setup;
+  const L = (en, turkish) => tr ? turkish : en;
+  const releases = [...catalog.releases].sort((a, b) => compareVersions(b.version, a.version));
+  const selected = version ? releases.find(release => release.version === version) : releases[0];
+  const suite = catalog.suites[selected.suite];
+  const link = suffix => `${base}benchmark/${suffix}`;
+  const current = currentVersion => currentVersion === version ? ' aria-current="page"' : '';
+  const navigation = `<nav class="bm-versions" aria-label="${L('Benchmark reports by version', 'Sürüme göre benchmark raporları')}">
+    <a class="bm-version" href="${link('')}"${current(undefined)}>${L('Compare versions', 'Sürümleri karşılaştır')}</a>
+    ${releases.map(release => `<a class="bm-version" href="${link(release.version + '/')}"${current(release.version)}>MESA ${release.version}</a>`).join('')}
+  </nav>`;
 
-  const configLabels = {
-    noModelsKeyword: L('No models (keyword search)', 'Modelsiz (anahtar sözcük araması)'),
-    embeddingsDefault: L('Embeddings (BGE-M3), default weights', 'Gömme modeli (BGE-M3), varsayılan ağırlıklar'),
-    embeddingsTuned: L('Embeddings, tuned vector weight 8', 'Gömme modeli, ayarlanmış vektör ağırlığı 8'),
-    offlineJina: L('Offline experiment: article chunks + Jina reranker', 'Çevrimdışı deney: madde parçaları + Jina yeniden sıralayıcı'),
-    noModels: L('No models', 'Modelsiz'),
-    embeddings: L('Embeddings (BGE-M3)', 'Gömme modeli (BGE-M3)'),
-    embeddingsReranker: L('Embeddings + built-in reranker (bge-reranker-v2-m3)', 'Gömme modeli + yerleşik yeniden sıralayıcı (bge-reranker-v2-m3)')
-  };
-  const levelLabels = {
-    noModels: L('No models', 'Modelsiz'),
-    embeddings: L('Embeddings', 'Gömme modeli'),
-    reranker: L('Reranker', 'Yeniden sıralayıcı')
-  };
-  const typeLabels = {
+  const metrics = `<details class="bm-details"><summary>${L('What do the metrics mean?', 'Ölçütler ne anlama geliyor?')}</summary>
+    <dl class="bm-method">
+      <div><dt>Hit@1 · Hit@5 · Hit@10</dt><dd>${L('Share of questions with the correct passage in the first 1, 5 or 10 results.', 'Doğru pasajın ilk 1, 5 veya 10 sonuçta bulunduğu soruların oranı.')}</dd></div>
+      <div><dt>MRR</dt><dd>${L('Average reciprocal rank of the first correct passage. A score of 1 means it always came first.', 'İlk doğru pasajın 1/sıra değerinin ortalaması. Puan 1 ise doğru pasaj her seferinde ilk sıradadır.')}</dd></div>
+      <div><dt>Doc@1 · Doc@5</dt><dd>${L('Share of questions with the correct document among the first 1 or 5 results.', 'Doğru belgenin ilk 1 veya 5 sonuçta bulunduğu soruların oranı.')}</dd></div>
+      <div><dt>p50 · p95</dt><dd>${L('Half of queries finished within p50 and 95% within p95. Both are measured in seconds.', 'Sorguların yarısı p50, %95’i p95 süresi içinde tamamlandı. İkisi de saniye cinsinden ölçülür.')}</dd></div>
+    </dl></details>`;
+  const section = (id, title, body) => `<section class="section bm-section" id="${id}" aria-labelledby="bm-${id}"><h2 id="bm-${id}">${title}</h2>${body}</section>`;
+  const method = section('method', L('How we measured', 'Nasıl ölçtük?'),
+    `<p>${e(suite.method[language])}</p>${metrics}`);
+  const limits = section('limitations', L('Scope and limitations', 'Kapsam ve sınırlar'),
+    `<p>${e(suite.limits[language])}</p>`);
+  const hero = (title, lead, tiles = '') => `<section class="page-hero bm-hero" aria-labelledby="bm-title">
+    <p class="eyebrow">BENCHMARK · ${version ? 'MESA ' + version : 'MESA'}</p>
+    <h1 id="bm-title">${title}</h1><p class="bm-hero__lead">${lead}</p>${navigation}${tiles}</section>`;
+
+  let content;
+  if (!version) {
+    const reference = releases.find(release => release !== selected && release.suite === selected.suite) || releases[1];
+    const opts = active => releases.map(release => `<option value="${release.version}"${release === active ? ' selected' : ''}>MESA ${release.version}</option>`).join('');
+    const results = reference
+      ? `<form id="benchmark-compare" class="bm-controls" hidden>
+        <label for="bm-reference">${L('Reference version', 'Referans sürüm')}<select id="bm-reference" name="reference">${opts(reference)}</select></label>
+        <label for="bm-version">${L('Selected version', 'Seçilen sürüm')}<select id="bm-version" name="version">${opts(selected)}</select></label>
+        </form>
+        <div id="benchmark-comparison" aria-live="polite">${comparison(reference, selected, language)}</div>
+        <script type="application/json" id="benchmark-data">${JSON.stringify(releases).replaceAll('<', '\\u003c')}</script>`
+      : `<p class="bm-note">${L('Comparison becomes available when two releases have reports.', 'İki sürümün raporu yayımlandığında karşılaştırma açılır.')}</p>`;
+    content = hero(L('Turkish legal retrieval benchmark', 'Türkçe hukuk metinlerinde arama benchmark’ı'),
+      L('Compare how MESA versions find the right passage, or open a version report for test conditions and detailed results.',
+        'MESA sürümlerinin doğru pasajı bulma başarısını karşılaştır. Test koşulları ve ayrıntılı sonuçlar için bir sürüm raporunu aç.'))
+      + section('results', L('Compare results', 'Sonuçları karşılaştır'), results) + method + limits;
+  } else {
+    content = hero(L(`MESA ${version} benchmark report`, `MESA ${version} benchmark raporu`),
+      e(selected.summary[language]), stats(selected, language))
+      + report({ selected, suite, language, section, assetBase }) + method + limits;
+  }
+
+  return `${header}<main id="main-content" class="benchmark-page">${content}${footer}</main>`;
+}
+
+function stats(release, language) {
+  const L = (en, tr) => language === 'tr' ? tr : en;
+  const config = release.configs.find(row => row.id === release.featured);
+  const tiles = [
+    [percent(config.metrics.hit5, language), 'Hit@5', L('Correct passage in the first five results', 'Doğru pasaj ilk beş sonuçta')],
+    [percent(config.metrics.hit1, language), 'Hit@1', L('Correct passage in the first result', 'Doğru pasaj ilk sırada')],
+    [number(config.metrics.mrr, language, 3), 'MRR', L('Ranking of the first correct passage', 'İlk doğru pasajın sırası')]
+  ];
+  return `<div class="bm-stats">${tiles.map(([value, label, text]) => `<div class="bm-stat">
+    <p class="bm-stat__value">${value}</p><p class="bm-stat__name">${label}</p>
+    <p class="bm-stat__text">${text}</p><p class="bm-stat__scope">${e(config.label[language])}</p></div>`).join('')}</div>`;
+}
+
+function report({ selected, suite, language, section, assetBase }) {
+  const L = (en, tr) => language === 'tr' ? tr : en;
+  const label = id => e(selected.configs.find(row => row.id === id).label[language]);
+  const seconds = value => value === null ? '—' : `${number(value, language, 2)} ${L('s', 'sn')}`;
+  const configuration = L('Configuration', 'Yapılandırma');
+  const categoryNames = {
     exact: L('Exact wording', 'Birebir ifade'),
     paraphrase: L('Paraphrase', 'Farklı ifade'),
-    crossDocument: L('Cross-document', 'Belgeler arası'),
-    numberDateDocket: L('Number / date / docket', 'Sayı / tarih / esas no')
+    cross_document: L('Cross-document', 'Belgeler arası'),
+    number_date_docket: L('Number, date or docket', 'Sayı, tarih veya esas no')
   };
-  const columnLabels = {
-    v090NoModels: L('0.9.0 no models', '0.9.0 modelsiz'),
-    v090Tuned: L('0.9.0 tuned embeddings', '0.9.0 ayarlı gömme modeli'),
-    v090Offline: L('0.9.0 offline experiment', '0.9.0 çevrimdışı deney'),
-    v092NoModels: L('0.9.2 no models', '0.9.2 modelsiz'),
-    v092Embeddings: L('0.9.2 embeddings', '0.9.2 gömme modeli'),
-    v092Reranker: L('0.9.2 + reranker', '0.9.2 + yeniden sıralayıcı')
-  };
-  const setupLabels = {
-    withEmbeddings: L('with embeddings', 'gömme modeliyle'),
-    withoutModels: L('without models', 'modelsiz')
-  };
-
-  const tiles = [
-    [pct(h.hit5v092), 'Hit@5', L('Right passage in the top 5 results', 'Doğru pasaj ilk 5 sonuçta'), L('MESA 0.9.2 with reranker · test split', 'MESA 0.9.2, yeniden sıralayıcıyla · test bölümü')],
-    [pct(h.hit1v092), L('First-result accuracy (Hit@1)', 'İlk sonuç doğruluğu (Hit@1)'), L('Right passage as the first result', 'Doğru pasaj ilk sırada'), L('MESA 0.9.2 with reranker · test split', 'MESA 0.9.2, yeniden sıralayıcıyla · test bölümü')],
-    [pct(h.citationHit5), L('Citation questions', 'Atıf soruları'), 'Hit@5', L('In every configuration', 'Her yapılandırmada')]
-  ];
-
-  const method = [
-    [L('Corpus', 'Derlem'), L(
-      `${s.corpusDocuments} official Turkish legal documents: laws and regulations from mevzuat.gov.tr and the Resmî Gazete, and Yargıtay Civil and Criminal General Assembly decisions from ${s.decisionYears} (via Bedesten). ${s.legalAreas} legal areas, each ${pct(s.areaShare)} of the corpus. Built with MESA_Data and frozen with checksums. Documents that failed a ${s.qualityGatePoints}-point quality gate were excluded, never hand-edited.`,
-      `${s.corpusDocuments} resmî Türkçe hukuk belgesi: mevzuat.gov.tr ve Resmî Gazete’den kanun ve yönetmelikler; Bedesten üzerinden Yargıtay Hukuk ve Ceza Genel Kurulu’nun ${s.decisionYears} kararları. Her biri derlemin ${pct(s.areaShare)}’sini oluşturan ${s.legalAreas} hukuk alanı. MESA_Data ile oluşturuldu ve sağlama toplamlarıyla donduruldu. ${s.qualityGatePoints} maddelik kalite kontrolünden geçemeyen belgeler çıkarıldı; hiçbiri elle düzenlenmedi.`)],
-    [L('Questions', 'Sorular'), L(
-      `${s.questions} questions generated by ${s.generator} from corpus passages, checked by a separate judge model (${s.judge}) plus rule checks. Split: ${s.dev} dev / ${s.test} test (${s.answerable} answerable, ${s.noAnswer} with no answer in the corpus). Types: exact wording, paraphrase, number/date/docket, cross-document, no-answer.`,
-      `Derlem pasajlarından ${s.generator} ile üretilen, ayrı bir hakem model (${s.judge}) ve kural kontrolleriyle denetlenen ${s.questions} soru. Bölünme: ${s.dev} geliştirme / ${s.test} test (${s.answerable} cevaplanabilir, ${s.noAnswer} sorunun derlemde cevabı yok). Türler: birebir ifade, farklı ifade, sayı/tarih/esas no, belgeler arası, cevapsız.`)],
-    [L('Protocol', 'Protokol'), L(
-      'Every setting is chosen on the dev split only. The choice is saved with a timestamp before the test split is read, and each configuration runs once on the test split. Both versions use the same frozen evaluator.',
-      'Her ayar yalnızca geliştirme bölümünde seçilir. Seçim, test bölümü okunmadan önce zaman damgasıyla kaydedilir ve her yapılandırma test bölümünde bir kez çalıştırılır. İki sürüm de aynı dondurulmuş değerlendiriciyi kullanır.')],
-    [L('Metrics', 'Ölçütler'), L(
-      'Hit@k: the correct passage is in the top k results. MRR: the average of 1/rank of the first correct passage. Doc@k: the correct document is in the top k.',
-      'Hit@k: doğru pasaj ilk k sonuç içinde. MRR: ilk doğru pasajın 1/sıra değerlerinin ortalaması. Doc@k: doğru belge ilk k sonuç içinde.')]
-  ];
-
-  const resultRows = b.results.map(row => `<tr${row.offline ? ' class="bm-row--offline"' : ''}><td>${row.version}</td><th scope="row">${configLabels[row.config]}${row.note === '²' ? '<sup>²</sup>' : ''}</th><td>${dec(row.mrr)}</td><td>${dec(row.hit1)}</td><td>${dec(row.hit5)}</td><td>${dec(row.hit10)}</td><td>${dec(row.doc1)}</td><td>${dec(row.doc5)}</td><td>${seconds(row.p50)}${row.note === '¹' ? '<sup>¹</sup>' : ''}</td></tr>`).join('');
-
-  const bar = (value, version, modifier) => value === null
-    ? `<div class="bm-bar bm-bar--${modifier} bm-bar--none"><span class="bm-bar__version">${version}</span><span class="bm-bar__track"></span><span class="bm-bar__value">${L('none in 0.9.0', '0.9.0’da yok')}</span></div>`
-    : `<div class="bm-bar bm-bar--${modifier}"><span class="bm-bar__version">${version}</span><span class="bm-bar__track"><svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="${value}" height="10" rx="1"/></svg></span><span class="bm-bar__value">${pct(value)}</span></div>`;
-  const chart = b.chart.map(({ level, v090, v092 }) => `<div class="bm-chart__group"><p class="bm-chart__level">${levelLabels[level]}</p>${bar(v090, '0.9.0', 'old')}${bar(v092, '0.9.2', 'new')}</div>`).join('');
-
-  const typeRows = b.byType.map(({ type, count, values }) => `<tr><th scope="row">${typeLabels[type]} (${count})</th>${values.map((value, index) => `<td${b.byTypeColumns[index] === 'v090Offline' ? ' class="bm-col--offline"' : ''}>${dec(value)}</td>`).join('')}</tr>`).join('');
-
-  const ingestRows = b.ingest.map(row => `<tr><td>${row.version}</td><th scope="row">${setupLabels[row.setup]}</th><td>${dec(row.minutes)} ${L('min', 'dk')}</td><td>${thousands(row.chunks)}</td><td>${seconds(row.perChunk)}</td></tr>`).join('');
-
-  const limitations = [
-    L('MESA does not yet detect when a question has no answer in the documents; it always returns the closest passages. This is our next research item.', 'MESA, bir sorunun belgelerde cevabı olmadığını henüz fark etmiyor; her zaman en yakın pasajları döndürüyor. Sıradaki araştırma konumuz bu.'),
-    L(`Number, date and docket questions are the weakest type (${pct(b.limitationNumbers.v092)} Hit@5 in 0.9.2, below the 0.9.0 offline experiment’s ${pct(b.limitationNumbers.offline090)}).`, `Sayı, tarih ve esas no soruları en zayıf tür (0.9.2’de Hit@5 ${pct(b.limitationNumbers.v092)}; 0.9.0 çevrimdışı deneyin ${pct(b.limitationNumbers.offline090)} değerinin altında).`),
-    L(`The corpus is small (${s.corpusDocuments} documents) and all court decisions are from the Yargıtay; Danıştay and Constitutional Court decisions are not included yet.`, `Derlem küçük (${s.corpusDocuments} belge) ve tüm mahkeme kararları Yargıtay’dan; Danıştay ve Anayasa Mahkemesi kararları henüz yok.`),
-    L('Questions were generated by a language model from corpus passages; real user questions may be harder.', 'Sorular bir dil modeliyle derlem pasajlarından üretildi; gerçek kullanıcı soruları daha zor olabilir.'),
-    L('Results are for retrieval only (finding the right passage), not for generated answers.', 'Sonuçlar yalnızca aramayı (doğru pasajı bulmayı) ölçer, üretilen cevapları değil.'),
-    L('Production qualification of MESA is still in progress.', 'MESA’nın canlı kullanım doğrulaması hâlâ sürüyor.')
-  ];
-
-  const run = [
-    [L('Run date (0.9.2)', 'Çalıştırma tarihi (0.9.2)'), b.runDate[language] || b.runDate.en],
-    [L('MESA versions', 'MESA sürümleri'), L(`mesa-memory ${s.versions[0]} and ${s.versions[1]}`, `mesa-memory ${s.versions[0]} ve ${s.versions[1]}`)],
-    [L('Embedding model', 'Gömme modeli'), L(`${s.embedding} via Ollama`, `Ollama üzerinden ${s.embedding}`)],
-    [L('Reranker', 'Yeniden sıralayıcı'), s.reranker]
-  ];
-
-  return `${header}<main id="main-content" class="benchmark-page">
-    <section class="page-hero bm-hero" aria-labelledby="bm-title">
-      <p class="eyebrow">${L('BENCHMARK · MESA 0.9.0 → 0.9.2', 'BENCHMARK · MESA 0.9.0 → 0.9.2')}</p>
-      <h1 id="bm-title">${L('Turkish legal retrieval benchmark', 'Türkçe hukuk metinlerinde arama benchmark’ı')}</h1>
-      <p class="bm-hero__lead">${L(
-        `On ${b.heldOutQuestions} held-out Turkish legal questions, MESA 0.9.2 with its built-in reranker finds the right passage in the top 5 results ${pct(h.hit5v092)} of the time (MRR ${dec(h.mrr092)}). MESA 0.9.0 out of the box: ${pct(h.hit5v090)} (MRR ${dec(h.mrr090)}).`,
-        `Ayrılmış ${b.heldOutQuestions} Türkçe hukuk sorusunda, yerleşik yeniden sıralayıcısıyla MESA 0.9.2 doğru pasajı ilk 5 sonuç içinde ${pct(h.hit5v092)} oranında buluyor (MRR ${dec(h.mrr092)}). Kutudan çıktığı hâliyle MESA 0.9.0: ${pct(h.hit5v090)} (MRR ${dec(h.mrr090)}).`)}</p>
-      <div class="bm-stats">${tiles.map(([value, name, text, scope]) => `<div class="bm-stat"><p class="bm-stat__value">${value}</p><p class="bm-stat__name">${name}</p><p class="bm-stat__text">${text}</p><p class="bm-stat__scope">${scope}</p></div>`).join('')}</div>
-    </section>
-
-    <section class="section bm-section" id="method" aria-labelledby="bm-method">
-      <p class="eyebrow">${L('METHOD', 'YÖNTEM')}</p><h2 id="bm-method">${L('How we measure', 'Nasıl ölçüyoruz')}</h2>
-      <dl class="bm-method">${method.map(([term, text]) => `<div><dt>${term}</dt><dd>${text}</dd></div>`).join('')}</dl>
-    </section>
-
-    <section class="section bm-section" id="results" aria-labelledby="bm-results">
-      <p class="eyebrow">${L('RESULTS', 'SONUÇLAR')}</p><h2 id="bm-results">${L('Main results', 'Ana sonuçlar')}</h2>
-      <p class="bm-note">${L(`Test split, ${b.answerableTestQuestions} answerable questions.`, `Test bölümü, ${b.answerableTestQuestions} cevaplanabilir soru.`)}</p>
-      <figure class="bm-chart">
-        <figcaption>${L('Hit@5 by product level, 0.9.0 vs 0.9.2', 'Ürün seviyesine göre Hit@5: 0.9.0 ve 0.9.2')}</figcaption>
-        ${chart}
-        <p class="bm-chart__legend"><span class="bm-key bm-key--old"></span>MESA 0.9.0<span class="bm-key bm-key--new"></span>MESA 0.9.2</p>
-      </figure>
-      <div class="table-scroll bm-table" tabindex="0" role="region" aria-label="${L('Retrieval results on the test split', 'Test bölümünde arama sonuçları')}">
-        <table>
-          <caption>${L('Retrieval results on the test split', 'Test bölümünde arama sonuçları')}</caption>
-          <thead><tr><th scope="col">${L('Version', 'Sürüm')}</th><th scope="col">${L('Configuration', 'Yapılandırma')}</th><th scope="col">MRR</th><th scope="col">Hit@1</th><th scope="col">Hit@5</th><th scope="col">Hit@10</th><th scope="col">Doc@1</th><th scope="col">Doc@5</th><th scope="col">${L('Search p50', 'Arama p50')}</th></tr></thead>
-          <tbody>${resultRows}</tbody>
-        </table>
-      </div>
-      <ol class="bm-footnotes">
-        <li><sup>¹</sup> ${L('Measured on a Colab T4; all other rows on a Colab A100.', 'Colab T4 üzerinde ölçüldü; diğer tüm satırlar Colab A100 üzerinde.')}</li>
-        <li><sup>²</sup> ${L('Not part of the 0.9.0 product: saved results were re-ranked offline with a Jina model whose licence is non-commercial. 0.9.2 reaches the same level inside the product with an Apache-2.0 reranker.', '0.9.0 ürününün parçası değildir: kaydedilmiş sonuçlar, lisansı ticari kullanıma izin vermeyen bir Jina modeliyle çevrimdışı yeniden sıralandı. 0.9.2 aynı seviyeye ürünün içinde, Apache-2.0 lisanslı bir yeniden sıralayıcıyla ulaşır.')}</li>
-      </ol>
-    </section>
-
-    <section class="section bm-section" id="by-type" aria-labelledby="bm-types">
-      <p class="eyebrow">${L('BY QUESTION TYPE', 'SORU TÜRÜNE GÖRE')}</p><h2 id="bm-types">${L('Results by question type', 'Soru türüne göre sonuçlar')}</h2>
-      <p class="bm-note">${L('Test split, Hit@5.', 'Test bölümü, Hit@5.')}</p>
-      <div class="table-scroll bm-table" tabindex="0" role="region" aria-label="${L('Hit@5 by question type', 'Soru türüne göre Hit@5')}">
-        <table>
-          <caption>${L('Hit@5 by question type', 'Soru türüne göre Hit@5')}</caption>
-          <thead><tr><th scope="col">${L('Question type', 'Soru türü')}</th>${b.byTypeColumns.map(column => `<th scope="col"${column === 'v090Offline' ? ' class="bm-col--offline"' : ''}>${columnLabels[column]}${column === 'v090Offline' ? '<sup>²</sup>' : ''}</th>`).join('')}</tr></thead>
-          <tbody>${typeRows}</tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="section bm-section" id="citations" aria-labelledby="bm-citations">
-      <p class="eyebrow">${L('NEW IN 0.9.2', '0.9.2’DE YENİ')}</p><h2 id="bm-citations">${L('Citation questions', 'Atıf soruları')}</h2>
-      <div class="bm-citations">
-        <div class="bm-citation"><p class="bm-citation__value">${pct(b.citations.named)}</p><p>${L(`Questions that name a statute or article (for example “${b.citations.example}”) get the right passage in the top 5 in every configuration.`, `Bir kanunu veya maddeyi adıyla anan sorular (örneğin “${b.citations.example}”) her yapılandırmada doğru pasajı ilk 5 sonuç içinde buluyor.`)}</p></div>
-        <div class="bm-citation"><p class="bm-citation__value">${pct(b.citations.naturalWording)}</p><p>${L('The same questions in natural wording.', 'Aynı sorular doğal ifadeyle sorulduğunda.')}</p></div>
-      </div>
-    </section>
-
-    <section class="section bm-section" id="ingest" aria-labelledby="bm-ingest">
-      <p class="eyebrow">${L('INGEST', 'İÇE ALMA')}</p><h2 id="bm-ingest">${L('Ingest speed', 'İçe alma hızı')}</h2>
-      <p class="bm-note">${L(`Time until all ${s.corpusDocuments} documents are fully searchable, Colab A100.`, `${s.corpusDocuments} belgenin tamamı aranabilir hâle gelene kadar geçen süre, Colab A100.`)}</p>
-      <div class="table-scroll bm-table" tabindex="0" role="region" aria-label="${L('Ingest time by version', 'Sürüme göre içe alma süresi')}">
-        <table>
-          <caption>${L('Ingest time by version', 'Sürüme göre içe alma süresi')}</caption>
-          <thead><tr><th scope="col">${L('Version', 'Sürüm')}</th><th scope="col">${L('Setup', 'Kurulum')}</th><th scope="col">${L('Total time', 'Toplam süre')}</th><th scope="col">${L('Chunks', 'Parça')}</th><th scope="col">${L('Per chunk', 'Parça başına')}</th></tr></thead>
-          <tbody>${ingestRows}</tbody>
-        </table>
-      </div>
-      <p class="bm-note">${L('0.9.2 splits laws at article boundaries, so the same documents give more chunks.', '0.9.2 kanunları madde sınırlarından böler; bu yüzden aynı belgelerden daha fazla parça çıkar.')}</p>
-    </section>
-
-    <section class="section bm-section" id="limitations" aria-labelledby="bm-limits">
-      <p class="eyebrow">${L('LIMITATIONS', 'SINIRLAR')}</p><h2 id="bm-limits">${L('What these results do not show', 'Bu sonuçların göstermedikleri')}</h2>
-      <ul class="bm-limits">${limitations.map(item => `<li>${item}</li>`).join('')}</ul>
-    </section>
-
-    <section class="section bm-section bm-run" id="run" aria-labelledby="bm-run">
-      <h2 id="bm-run">${L('Run details', 'Çalıştırma bilgileri')}</h2>
-      <dl class="bm-run__list">${run.map(([term, value]) => `<div><dt>${term}</dt><dd>${value}</dd></div>`).join('')}</dl>
-    </section>
-    ${footer}</main>`;
+  const table = (caption, columns, body) => `<div class="table-scroll bm-table" tabindex="0" role="region" aria-label="${caption}">
+    <table><caption>${caption}</caption><thead><tr>${columns.map(col => `<th scope="col">${col}</th>`).join('')}</tr></thead>
+    <tbody>${body}</tbody></table></div>`;
+  const cells = values => values.map(value => `<td>${value}</td>`).join('');
+  const groups = [selected.configs.filter(row => !row.experiment), selected.configs.filter(row => row.experiment)];
+  const resultTables = groups.filter(group => group.length).map(group =>
+    table(group[0].experiment ? L('Offline experiments', 'Çevrimdışı deneyler') : L('Built-in configurations', 'Yerleşik yapılandırmalar'),
+      [configuration, 'Hit@5', 'Hit@1', 'MRR', 'Hit@10', 'Doc@1', 'Doc@5', 'p50', 'p95', L('Hardware', 'Donanım')],
+      group.map(({ id, gpu, source, metrics: m }) => `<tr><th scope="row">${label(id)}<small>${e(source)}</small></th>${cells([
+        percent(m.hit5, language), percent(m.hit1, language), number(m.mrr, language, 3), percent(m.hit10, language),
+        percent(m.doc1, language), percent(m.doc5, language), seconds(m.p50), seconds(m.p95), e(gpu)
+      ])}</tr>`).join(''))
+  ).join('');
+  const date = new Intl.DateTimeFormat(language, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(selected.date));
+  const citation = selected.citations;
+  return section('results', L('Search results', 'Arama sonuçları'),
+    `<p class="bm-note">${date} · ${suite.documents} ${L('documents', 'belge')} · ${suite.answerable} / ${suite.test} ${L('answerable test questions', 'cevaplanabilir test sorusu')}</p>
+    ${resultTables}<ul class="bm-footnotes">${selected.notes.map(note => `<li>${e(note[language])}</li>`).join('')}</ul>`)
+  + section('by-type', L('Results by question type', 'Soru türüne göre sonuçlar'),
+    table(L('Correct passage in the first five results', 'Doğru pasaj ilk beş sonuçta'),
+      [L('Question type', 'Soru türü'), ...selected.configs.map(row => label(row.id))],
+      Object.entries(suite.questionTypes).map(([type, count]) => `<tr><th scope="row">${categoryNames[type]} (${count})</th>
+        ${cells(selected.configs.map(row => percent(row.byType[type], language)))}</tr>`).join('')))
+  + (citation ? section('citations', L('Citation questions', 'Atıf soruları'),
+    table(L('Citation questions, Hit@5', 'Atıf sorularında Hit@5'),
+      [configuration, L(`Explicit citation (${citation.namedCount})`, `Açık madde atfı (${citation.namedCount})`),
+        L(`Natural wording (${citation.naturalCount})`, `Doğal ifade (${citation.naturalCount})`)],
+      citation.rows.map(row => `<tr><th scope="row">${label(row.config)}</th>${cells([
+        percent(row.named, language), percent(row.natural, language)
+      ])}</tr>`).join(''))) : '')
+  + (selected.ingest.length ? section('ingest', L('Time until searchable', 'Belgelerin aramaya hazır olma süresi'),
+    table(L('Full corpus ingestion', 'Derlemin tamamının içe alınması'), [
+      configuration, L('Total time', 'Toplam süre'), L('Chunks', 'Parça'), L('Hardware', 'Donanım')
+    ], selected.ingest.map(row => `<tr><th scope="row">${label(row.config)}</th>${cells([
+      `${number(row.minutes, language, 1)} ${L('min', 'dk')}`, number(row.chunks, language, 0),
+      e(selected.configs.find(config => config.id === row.config).gpu)
+    ])}</tr>`).join(''))) : '')
+  + section('data', L('Download results', 'Sonuçları indir'),
+    `<a class="text-link" href="${assetBase}benchmark/${selected.version}/metrics.json" download>${L('Report and aggregate metrics (JSON)', 'Rapor ve toplu metrikler (JSON)')} ↓</a>`);
 }

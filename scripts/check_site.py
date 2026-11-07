@@ -240,12 +240,18 @@ def main() -> int:
     args = parser.parse_args()
     root = args.root.resolve()
     errors: list[str] = []
+    benchmark_routes = tuple(
+        f"benchmark/{report.parent.name}/" for report in (root / "benchmark").glob("*/metrics.json")
+        if re.fullmatch(r"\d+\.\d+\.\d+", report.parent.name)
+    )
+    public_routes = ROUTES + benchmark_routes
+    localized_routes = LOCALIZED_ROUTES + benchmark_routes + tuple(f"tr/{route}" for route in benchmark_routes)
     internal_refs = 0
     external_refs = 0
     titles: set[str] = set()
     descriptions: set[str] = set()
 
-    for route in (*LOCALIZED_ROUTES, *REDIRECT_ROUTES):
+    for route in (*localized_routes, *REDIRECT_ROUTES):
         page = root / route / "index.html"
         if not page.is_file():
             errors.append(f"missing route: /{route}")
@@ -526,7 +532,7 @@ def main() -> int:
     english_home = parsed_pages.get((root / "index.html").resolve())
     if english_home and english_home.canonical:
         origin = english_home.canonical
-        for route in ROUTES:
+        for route in public_routes:
             for localized, language in ((route, "en"), (f"tr/{route}", "tr")):
                 page = root / localized / "index.html" if localized else root / "index.html"
                 parsed = parsed_pages.get(page.resolve())
@@ -578,12 +584,12 @@ def main() -> int:
             if sitemap_root.tag != f"{namespace}urlset":
                 errors.append("sitemap root is not a sitemap.org urlset")
             urls = [node.text for node in sitemap_root.findall(f"{namespace}url/{namespace}loc")]
-            expected_urls = {f"{site_url}{route}" for route in LOCALIZED_ROUTES}
+            expected_urls = {f"{site_url}{route}" for route in localized_routes}
             if len(urls) != len(set(urls)) or set(urls) != expected_urls:
                 errors.append("sitemap must contain exactly the public canonical URLs without duplicates")
         except ET.ParseError:
             errors.append("sitemap is not valid XML")
-        for route in LOCALIZED_ROUTES:
+        for route in localized_routes:
             expected = f"<loc>{site_url}{route}</loc>"
             if expected not in sitemap:
                 errors.append(f"sitemap missing route: /{route}")
@@ -595,7 +601,7 @@ def main() -> int:
         crawler_rules = RobotFileParser()
         crawler_rules.parse(robots.splitlines())
         for bot in ("Googlebot", "Bingbot", "OAI-SearchBot", "PerplexityBot", "Claude-SearchBot"):
-            if any(not crawler_rules.can_fetch(bot, f"{site_url}{route}") for route in LOCALIZED_ROUTES):
+            if any(not crawler_rules.can_fetch(bot, f"{site_url}{route}") for route in localized_routes):
                 errors.append(f"robots.txt blocks a public canonical page for {bot}")
         # Admin pages stay out of search through noindex; robots.txt must not advertise their path.
         for admin_route in ("admin/", "tr/admin/"):
@@ -628,7 +634,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"SITE CHECK PASS: {len(LOCALIZED_ROUTES)} localized routes, {len(pages)} HTML files, {internal_refs} internal references, {external_refs} external references")
+    print(f"SITE CHECK PASS: {len(localized_routes)} localized routes, {len(pages)} HTML files, {internal_refs} internal references, {external_refs} external references")
     return 0
 
 
