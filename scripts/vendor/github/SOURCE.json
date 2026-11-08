@@ -1,5 +1,7 @@
 {
   "repository": "https://github.com/primer/octicons",
-  "commit": "6dbe38e4e9b4987b2c9332d719c57fbbdd083e2d",
-  "source": "icons/mark-github-16.svg"
+  "tag": "v19.0.0",
+  "commit": "4f0c6b4cff47e3363b212fc3a843ac8e775ca4b0",
+  "source": "icons/mark-github-16.svg",
+  "note": "Classic GitHub mark; later Primer commits redrew this icon."
 }
