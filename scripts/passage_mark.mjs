@@ -51,3 +51,47 @@ export function heroPassageArt() {
   parts.push(`<rect class="pm-hl pm-hl--soft" x="70" y="250" width="180" height="6" rx="3"/>`);
   return `<div class="passage-mark passage-mark--hero-art" aria-hidden="true"><svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">${parts.join('')}</svg></div>`;
 }
+
+// Home page "document stream": one continuous column of document lines at each page edge,
+// behind every black band. It drifts upward slowly and loops seamlessly (the tile is drawn
+// twice, the animation moves it by exactly one tile). Graphite bands are opaque, so the stream
+// shows on black bands and disappears behind the grey ones. Decorative, aria-hidden, no text.
+export function documentStream() {
+  const tile = seed => {
+    let state = seed * 9301 + 49297;
+    const random = () => { state = (state * 9301 + 49297) % 233280; return state / 233280; };
+    const parts = [];
+    let y = 20;
+    let block = 0;
+    while (y < 1560) {
+      const lines = 3 + Math.floor(random() * 4);
+      const marked = block % 3 === 1 ? 1 + Math.floor(random() * (lines - 1)) : -1;
+      for (let line = 0; line < lines; line += 1) {
+        const width = Math.round(300 * (line === 0 ? .3 + random() * .3 : .55 + random() * .45));
+        if (line === marked) {
+          parts.push(`<rect class="pm-band" x="0" y="${y - 7}" width="312" height="20" rx="3"/>`);
+          parts.push(`<rect class="pm-hl" x="6" y="${y}" width="${Math.min(width, 260)}" height="6" rx="3"/>`);
+          if (block % 6 === 1) {
+            parts.push(`<path class="pm-thread" d="M312 ${y + 3} C338 ${y + 3} 340 ${y + 70} 312 ${y + 86}"/>`);
+            parts.push(`<g class="pm-tag"><rect x="206" y="${y + 74}" width="104" height="24" rx="4"/><path d="M217 ${y + 80}h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="236" y="${y + 83}" width="60" height="5" rx="2.5"/></g>`);
+            y += 46;
+          }
+        } else {
+          parts.push(`<rect class="pm-line" x="6" y="${y}" width="${width}" height="6" rx="3"/>`);
+        }
+        y += 18;
+      }
+      y += 28;
+      block += 1;
+    }
+    return parts.join('');
+  };
+  // Ten stacked tiles cover the whole home page (even at narrow desktop widths) plus one spare for the loop.
+  const TILES = 10;
+  const column = (side, seed) => {
+    const art = tile(seed);
+    const stack = Array.from({length: TILES}, (_, index) => `<g transform="translate(0 ${index * 1600})">${art}</g>`).join('');
+    return `<div class="doc-stream__col doc-stream__col--${side}"><svg viewBox="0 0 340 ${TILES * 1600}" focusable="false">${stack}</svg></div>`;
+  };
+  return `<div class="doc-stream" aria-hidden="true">${column('left', 3)}${column('right', 8)}</div>`;
+}

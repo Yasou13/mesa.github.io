@@ -111,6 +111,9 @@ if (email) {
       : L('Sign in with your account.', 'Hesabınla giriş yap.');
   });
 
+  // "Sign up" in the site header links to account/#sign-up: open the form in registration mode.
+  if (location.hash === '#sign-up') mode.click();
+
   email.addEventListener('submit', async event => {
     event.preventDefault();
     setLoginBusy(true);

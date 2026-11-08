@@ -173,6 +173,8 @@ function languageControl() {
 }
 
 // Top navigation: three groups with one-line descriptions, two direct links and one action.
+// Pages reached from a dropdown are marked there, so the header always shows where you are.
+const NAV_ACTIVE_PATH = { start: 'get-started/', how: 'how-it-works/', architecture: 'architecture/', ecosystem: 'ecosystem/', law: 'law/' };
 const NAV_GROUP_OF = { how: 'product', architecture: 'product', ecosystem: 'product', certification: 'product', law: 'product', start: 'developers', resources: 'learn' };
 const chevron = '<svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg>';
 
@@ -208,7 +210,7 @@ function header(active = '') {
   const groups = navGroups().map(([id, label, links]) => `<div class="nav-group${currentGroup === id ? ' is-current' : ''}" data-nav-group>
             <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-${id}"><span>${label}</span>${chevron}</button>
             <p class="nav-group__label" aria-hidden="true">${label}</p>
-            <div class="nav-group__panel" id="nav-panel-${id}">${links.map(([path, name]) => `<a class="nav-link" href="${route(path)}">${name}</a>`).join('')}</div>
+            <div class="nav-group__panel" id="nav-panel-${id}">${links.map(([path, name]) => `<a class="nav-link${NAV_ACTIVE_PATH[active] === path ? ' active' : ''}"${NAV_ACTIVE_PATH[active] === path ? ' aria-current="page"' : ''} href="${route(path)}">${name}</a>`).join('')}</div>
           </div>`).join('');
   const plain = (key, label, path) => `<a class="nav-item nav-item--plain${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''} href="${route(path)}">${label}</a>`;
   return `<a class="skip-link" href="#main-content">Skip to content</a>
@@ -225,10 +227,12 @@ function header(active = '') {
             <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
             ${languageControl()}
             <a class="nav-github" aria-label="GitHub" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a>
-            <a class="nav-item nav-cta${active === 'start' ? ' active' : ''}"${active === 'start' ? ' aria-current="page"' : ''} href="${route('get-started/')}">${chrome('Get started', 'Başlayın')}</a>
+            <div class="nav-auth">
+              <a class="nav-signin"${active === 'account' ? ' aria-current="page"' : ''} href="${route('account/')}">${chrome('Sign in', 'Giriş yap')}</a>
+              <a class="nav-cta" href="${route('account/#sign-up')}">${chrome('Sign up', 'Kayıt ol')}</a>
+            </div>
           </div>
         </nav>
-        <a class="nav-account"${active === 'account' ? ' aria-current="page"' : ''} href="${route('account/')}">${chrome('Account', 'Hesap')}</a>
       </div>
     </header>`;
 }

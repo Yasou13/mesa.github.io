@@ -413,9 +413,10 @@ async function checkArchitectureReview() {
 async function checkNavigationReview() {
   const axe=fs.readFileSync(path.join(repositoryRoot,'node_modules/axe-core/axe.min.js'),'utf8');
   for(const routePath of ['resources/','tr/resources/','architecture/','tr/architecture/','docs/core/api-reference/','tr/docs/core/api-reference/']) {
-    for(const width of [320,390,732,900,1100,1101,1440]) {
+    // The header switches to the menu button at 1180px (the desktop bar needs that width).
+    for(const width of [320,390,732,900,1180,1181,1440]) {
       await inspect(routePath,width);
-      if(width<=1100) {
+      if(width<=1180) {
         const state=await evaluate(`(() => {
           const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#main-navigation');toggle.click();
           const r=nav.getBoundingClientRect();const css=getComputedStyle(nav);

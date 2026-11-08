@@ -11,7 +11,7 @@ export function accountPage({ header, footer, language, base, providers }) {
         <p>${L('Sign in or create an account to use MESA services on this website.', 'Bu sitedeki MESA hizmetlerini kullanmak için giriş yap veya hesap oluştur.')}</p>
       </div>
       ${providers.length ? `<div id="mesa-auth-panel" data-account-href="./" class="account-card">
-        <h2 class="account-card-title">${L('Account access', 'Hesaba erişim')}</h2>
+        <h2 class="account-card-title" id="sign-up">${L('Account access', 'Hesaba erişim')}</h2>
         <p id="research-status" class="account-status" role="status">${L('Checking your session…', 'Oturumun kontrol ediliyor…')}</p>
         <div id="research-login" hidden>
           ${social ? `<div class="account-providers">
@@ -35,7 +35,7 @@ export function accountPage({ header, footer, language, base, providers }) {
           <button class="button secondary" id="research-logout" type="button">${L('Sign out', 'Çıkış yap')}</button>
         </div>
         <a class="account-privacy" href="${base}privacy/#account">${L('Privacy notice', 'Gizlilik bildirimi')}</a>
-      </div>` : `<div class="account-card"><h2 class="account-card-title">${L('Account access', 'Hesaba erişim')}</h2>
+      </div>` : `<div class="account-card"><h2 class="account-card-title" id="sign-up">${L('Account access', 'Hesaba erişim')}</h2>
         <p class="account-muted">${L('Account services are currently unavailable.', 'Hesap hizmetleri şu anda kullanılamıyor.')}</p></div>`}
     </section>
   </main>${footer}`;

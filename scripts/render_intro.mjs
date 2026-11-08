@@ -1,5 +1,5 @@
 import { recordedExample } from './render_first_search.mjs';
-import { passageMark, heroPassageArt } from './passage_mark.mjs';
+import { documentStream } from './passage_mark.mjs';
 // Public explanations follow Core v0.9.2 (8cd2cfe). Technical details live in docs.
 export const introTranslations = {};
 const t = (en, tr) => { introTranslations[en] = tr; return en; };
@@ -95,12 +95,12 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
     [t('Optional models', 'İsteğe bağlı modeller'), t('Meaning search and fact extraction need a model provider, which can receive data and charge for use.', 'Anlam araması ve bilgi çıkarımı bir model sağlayıcısı ister; sağlayıcı veri alabilir ve ücret doğurabilir.')],
     [t('Size limit', 'Boyut sınırı'), t('The document HTTP API accepts up to 5,000,000 UTF-8 bytes per request.', 'Belge HTTP API’si istek başına en fazla 5.000.000 UTF-8 bayt kabul eder.')]
   ];
-  return `${header('home')}<main id="main-content" class="home-page intro-page simple-public home-v2">
-    <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">${heroPassageArt()}
+  return `${header('home')}<main id="main-content" class="home-page intro-page simple-public home-v2">${documentStream()}
+    <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
       <p class="eyebrow">${t('OPEN SOURCE · v0.9.2 ALPHA', 'AÇIK KAYNAK · v0.9.2 ALFA')}</p>
       <h1 id="home-title">${t('Scattered documents go in.', 'Dağınık belgeler girer.')}<br><em class="accent-word">${t('Your model gets the right information.', 'Modelinize doğru bilgi çıkar.')}</em></h1>
       <p class="home-hero__lead">${t('MESA turns large, scattered document collections into lasting memory for your AI. When a question comes in, it finds what matters, picks the current version and hands it to your model as the right context.', 'MESA, büyük ve dağınık belge koleksiyonlarınızı yapay zekânız için kalıcı bir hafızaya dönüştürür. Bir soru geldiğinde önemli olanı bulur, güncel sürümü seçer ve modelinize doğru bağlam olarak verir.')}</p>
-      <div class="actions">${cta(t('Try it on your computer', 'Bilgisayarınızda deneyin'), '#start')}${cta(t('See how it works', 'Nasıl çalıştığını görün'), '#how-it-works', 'secondary')}</div>
+      <div class="actions">${cta(t('Try it on your computer', 'Bilgisayarınızda deneyin'), route('get-started/'))}${cta(t('See how it works', 'Nasıl çalıştığını görün'), '#how-it-works', 'secondary')}</div>
       <div class="home-hero__connects"><span class="home-hero__label">${t('CONNECTS THROUGH', 'BAĞLANMA YOLLARI')}</span><ul><li><a href="${route('docs/core/cli-reference/')}">MESA CLI</a></li><li><a href="${route('docs/core/examples/')}">Python SDK</a></li><li><a href="${route('docs/core/api-reference/')}">HTTP API</a></li><li><a href="${route('docs/mcp/')}">MCP</a></li></ul></div>
       <div class="home-release"><span class="chip chip--accent">${t('v0.9.2 · Alpha', 'v0.9.2 · Alfa')}</span><p>${t('Ready for local evaluation, not yet for production.', 'Yerel değerlendirmeye hazır, canlı kullanıma henüz değil.')}</p><a href="${route('status/')}">${t('Project status →', 'Proje durumu →')}</a></div>
     </section>
@@ -113,7 +113,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       </div>
     </section>
 
-    <section class="band home-problem" id="the-problem" data-home-section="problem" aria-labelledby="problem-title">${passageMark(3, 'trail-r passage-mark--low')}${passageMark(6, 'trail-l passage-mark--top', {marked: false})}
+    <section class="band home-problem" id="the-problem" data-home-section="problem" aria-labelledby="problem-title">
       <div class="band__inner">
         <div class="home-problem__head">
           <div><p class="eyebrow">${t('THE PROBLEM', 'SORUN')}</p><h2 id="problem-title">${t('The more documents you have,', 'Belgeleriniz çoğaldıkça,')} <em class="accent-word">${t('the harder the right one is to find.', 'doğrusunu bulmak zorlaşır.')}</em></h2><p class="home-problem__lead">${t('A language model only knows what is in front of it. A whole archive does not fit into a prompt, so something has to pick the right passages every time.', 'Bir dil modeli yalnızca önüne konan metni bilir. Bütün bir arşiv isteme sığmaz; her seferinde doğru pasajları seçen bir şey gerekir.')}</p></div>
@@ -133,7 +133,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       </div>
     </section>
 
-    <section class="band home-path" id="start" data-home-section="start" aria-labelledby="path-title">${passageMark(4, 'trail-l passage-mark--mid')}
+    <section class="band home-path" id="start" data-home-section="start" aria-labelledby="path-title">
       <div class="band__inner">
         <p class="eyebrow">${t('YOUR FIRST SUCCESSFUL SEARCH', 'İLK BAŞARILI ARAMANIZ')}</p><h2 id="path-title">${t('Start small. Grow when you need to.', 'Küçük başlayın. Gerektikçe büyütün.')}</h2>
         <div class="path-cards">
@@ -162,7 +162,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       </div>
     </section>
 
-    <section class="band home-ecosystem" id="ecosystem" data-home-section="ecosystem" aria-labelledby="eco-title">${passageMark(9, 'trail-r passage-mark--top', {marked: false})}${passageMark(7, 'trail-l passage-mark--low')}
+    <section class="band home-ecosystem" id="ecosystem" data-home-section="ecosystem" aria-labelledby="eco-title">
       <div class="band__inner">
         <p class="eyebrow">${t('THE PROJECTS', 'PROJELER')}</p><h2 id="eco-title">${t('Start with Core. Add the rest only if you need it.', 'Core ile başlayın. Gerisini yalnızca gerekirse ekleyin.')}</h2>
         <div class="eco-map">
@@ -181,7 +181,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       </div>
     </section>
 
-    <section class="band home-cta" data-home-section="cta" aria-labelledby="cta-title">${passageMark(5, 'trail-l passage-mark--mid')}${passageMark(8, 'trail-r passage-mark--top', {marked: false})}
+    <section class="band home-cta" data-home-section="cta" aria-labelledby="cta-title">
       <div class="band__inner">
         <p class="eyebrow">${t('GET STARTED', 'BAŞLAYIN')}</p><h2 id="cta-title">${t('Try it with', 'Kendi belgelerinizle')} <em class="accent-word">${t('your own documents.', 'deneyin.')}</em></h2>
         <div class="actions">${cta(t('Step-by-step setup', 'Adım adım kurulum'), route('get-started/'))}${cta('GitHub', repos.core, 'secondary', true)}</div>

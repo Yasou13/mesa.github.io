@@ -3015,12 +3015,12 @@ body { background: var(--bg); color: var(--ink); }
 /* ---- Header ---------------------------------------------------------- */
 .js .site-header { position: fixed; }
 .site-header { inset: 0 0 auto; padding: 14px 0; z-index: 60; }
-.site-header .nav-shell { width: min(1240px, calc(100% - 32px)); min-height: 62px; padding: 0 10px 0 18px; gap: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(9, 10, 12, .72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); transition: background-color var(--duration-base) var(--motion-ui), border-color var(--duration-base) var(--motion-ui); }
+.site-header .nav-shell { width: min(1240px, calc(100% - 32px)); min-height: 62px; padding: 0 10px 0 18px; gap: 12px; border: 1px solid var(--line); border-radius: 16px; background: rgba(9, 10, 12, .72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); transition: background-color var(--duration-base) var(--motion-ui), border-color var(--duration-base) var(--motion-ui); }
 .site-header.is-scrolled .nav-shell { background: rgba(9, 10, 12, .92); border-color: var(--line-strong); }
 .site-header .logo { gap: 10px; font-size: 20px; letter-spacing: .1em; }
 .site-header .mesa-mark, .site-footer .mesa-mark { width: 40px; height: 30px; }
 .mesa-mark img { filter: grayscale(1) brightness(2.4); }
-.site-header #main-navigation { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 16px; margin-left: 24px; }
+.site-header #main-navigation { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 12px; margin-left: 12px; }
 .site-header .nav-menu, .site-header .nav-tools { display: flex; align-items: center; gap: 2px; }
 .site-header .nav-tools { gap: 8px; }
 .site-header .nav-group { position: relative; }
@@ -3548,36 +3548,72 @@ main:not(.home-page):not(.docs-layout) { position: relative; z-index: 0; overflo
 @media (max-width: 480px) { .bm-run__list { grid-template-columns: minmax(0, 1fr); } }
 
 
-.site-header .nav-account {
-  display: inline-flex;
-  align-items: center;
-  flex: none;
-  min-height: 38px;
-  padding: 0 12px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--ink);
-  font-size: 14px;
-}
-.site-header .nav-account:is(:hover, [aria-current="page"]) { border-color: var(--accent); }
 .site-header .nav-github { white-space: nowrap; }
 @media (min-width: 1181px) and (max-width: 1340px) {
   .site-header .nav-github span, .site-header .search-trigger span { display: none; }
 }
-@media (max-width: 1180px) {
-  .site-header .nav-account { min-height: 44px; }
-}
 
 @media (max-width: 480px) {
   .site-header .nav-shell { gap: 8px; }
-  .site-header .nav-account { padding-inline: 9px; }
   .site-header .menu-toggle { margin-left: 0; }
 }
 @media (min-width: 1181px) and (max-width: 1240px) {
   .site-header .nav-shell { gap: 10px; }
   .site-header .nav-item--plain, .site-header .nav-group__toggle { padding-inline: 8px; }
 }
-@media (max-width: 400px) {
-  .site-header .nav-lang { display: none; }
-  .site-header .nav-tools .language-switch { display: inline-flex; }
+
+/* ---- Header actions: Sign in / Sign up (2026-11-08) -----------------------
+   Industry pattern: quiet text "Sign in", amber filled "Sign up" as the one action. */
+.site-header .nav-github { padding: 0 10px; }
+.site-header .nav-github span { display: none; }
+.site-header .nav-auth { display: flex; align-items: center; gap: 4px; }
+.site-header .nav-signin { display: inline-flex; align-items: center; min-height: 38px; padding: 0 12px; border-radius: 999px; color: var(--ink); font-size: 15px; font-weight: 500; white-space: nowrap; }
+.site-header .nav-signin:hover, .site-header .nav-signin[aria-current="page"] { background: rgba(255, 255, 255, .06); }
+.site-header .nav-link.active { color: var(--ink); background: rgba(255, 255, 255, .05); }
+@media (max-width: 1180px) {
+  /* Phones and tablets: only the main headings; each group opens in place. */
+  .js .site-header .nav-group__label { display: none; }
+  .js .site-header .nav-group__toggle { display: flex; justify-content: space-between; width: 100%; min-height: 48px; padding: 0 12px; border-radius: 10px; color: var(--ink); font-size: 16px; }
+  .js .site-header .nav-group__toggle::after { display: none; }
+  .js .site-header .nav-group__panel { display: none; }
+  .js .site-header .nav-group.open .nav-group__panel { display: grid; margin: 2px 0 8px 12px; padding-left: 8px; border-left: 1px solid var(--line); }
+  .js .site-header .nav-group.open .nav-chevron { transform: rotate(180deg); }
+  .site-header .nav-item--plain { font-size: 16px; }
+  /* Bottom of the menu: search and GitHub on one row, then Sign in / Sign up. */
+  .site-header .nav-tools { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .site-header .nav-tools .search-trigger { justify-content: flex-start; width: 100%; min-height: 48px; padding: 0 16px; }
+  .site-header .nav-tools .nav-github { justify-content: center; width: 48px; min-height: 48px; padding: 0; }
+  .site-header .nav-auth { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .site-header .nav-cta { order: 0; flex: none; justify-content: center; min-height: 48px; }
+  .site-header .nav-signin { order: -1; }
+  .site-header .nav-signin { justify-content: center; min-height: 48px; border: 1px solid var(--line-strong); }
 }
+
+/* ---- Home: continuous document stream (2026-11-08) -------------------------
+   One column per page edge, the full height of the home page, behind every band.
+   Black bands are transparent so it shows there; graphite bands are opaque and hide it. */
+.home-v2 { position: relative; isolation: isolate; overflow-x: clip; }
+.home-v2 > .band, .home-v2 > .home-hero { position: relative; z-index: 1; }
+.home-v2 > .band:not(.band--graphite), .home-v2 > .home-hero { background: transparent; }
+.home-v2 > .site-footer { position: relative; z-index: 1; background: var(--bg); }
+.doc-stream { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.doc-stream__col { position: absolute; top: 0; bottom: 0; width: 300px; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent, #000 220px, #000 calc(100% - 220px), transparent); mask-image: linear-gradient(180deg, transparent, #000 220px, #000 calc(100% - 220px), transparent); }
+.doc-stream__col--left { left: max(16px, calc(50% - 900px)); }
+.doc-stream__col--right { right: max(16px, calc(50% - 900px)); }
+.doc-stream__col svg { display: block; width: 100%; height: auto; }
+.doc-stream .pm-line { fill: rgba(255, 255, 255, .06); }
+.doc-stream .pm-band { fill: rgba(227, 181, 122, .09); }
+.doc-stream .pm-hl { fill: rgba(227, 181, 122, .55); }
+.doc-stream .pm-thread { fill: none; stroke: rgba(227, 181, 122, .45); stroke-width: 1.2; }
+.doc-stream .pm-tag rect:first-child, .doc-stream .pm-tag path { fill: none; stroke: rgba(227, 181, 122, .5); stroke-width: 1.2; }
+.doc-stream .pm-tag-bar { fill: rgba(227, 181, 122, .5); }
+/* The stack of identical tiles drifts up by exactly one tile (300px wide → 1600·300/340 px tall)
+   per cycle, so the loop has no seam. Slow: one tile every 200–240 seconds (about 6–7 px/s). */
+@media (prefers-reduced-motion: no-preference) {
+  .doc-stream__col svg { animation: doc-stream 200s linear infinite; will-change: transform; }
+  .doc-stream__col--right svg { animation-duration: 240s; animation-delay: -90s; }
+}
+@keyframes doc-stream { from { transform: translateY(0); } to { transform: translateY(calc(-300px * 1600 / 340)); } }
+/* Below 1180px the side columns would sit behind content: hide them. */
+@media (max-width: 1180px) { .doc-stream { display: none; } }
+
