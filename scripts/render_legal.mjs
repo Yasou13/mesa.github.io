@@ -24,13 +24,14 @@ export function legalPage(kind, { header, footer, language, base, legal = {} }) 
   const controller = field('controllerName', 'Data controller name', 'Veri sorumlusu adı / unvanı');
   const address = field('controllerAddress', 'Postal address', 'Posta adresi');
   const email = legal.contactEmail ? `<a href="mailto:${escapeHtml(legal.contactEmail)}">${escapeHtml(legal.contactEmail)}</a>` : todo(L('Contact email', 'Başvuru e-postası'));
-  const kep = legal.kep ? escapeHtml(legal.kep) : todo(L('KEP address, if any', 'Varsa KEP adresi'));
+  // KEP is optional: when site-data has none, the KEP row and the KEP application route are left out.
+  const kep = legal.kep ? escapeHtml(legal.kep) : null;
   const city = field('city', 'City', 'Şehir');
   const updated = tr ? '8 Kasım 2026' : '8 November 2026';
   const p = text => `<p>${text}</p>`;
   const ul = items => `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
   const table = (head, rows) => `<div class="table-scroll legal-table" tabindex="0" role="region" aria-label="${escapeHtml(head[0])}"><table><thead><tr>${head.map(cell => `<th scope="col">${cell}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map((cell, index) => index ? `<td>${cell}</td>` : `<th scope="row">${cell}</th>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-  const controllerBlock = `<dl class="legal-contact"><div><dt>${L('Data controller', 'Veri sorumlusu')}</dt><dd>${controller}</dd></div><div><dt>${L('Address', 'Adres')}</dt><dd>${address}</dd></div><div><dt>${L('Email', 'E-posta')}</dt><dd>${email}</dd></div><div><dt>KEP</dt><dd>${kep}</dd></div></dl>`;
+  const controllerBlock = `<dl class="legal-contact"><div><dt>${L('Data controller', 'Veri sorumlusu')}</dt><dd>${controller}</dd></div><div><dt>${L('Address', 'Adres')}</dt><dd>${address}</dd></div><div><dt>${L('Email', 'E-posta')}</dt><dd>${email}</dd></div>${kep ? `<div><dt>KEP</dt><dd>${kep}</dd></div>` : ''}</dl>`;
 
   const processing = [
     [L('MESA account', 'MESA hesabı'),
@@ -86,8 +87,8 @@ export function legalPage(kind, { header, footer, language, base, legal = {} }) 
     'ask that corrections and deletions are notified to those third parties,', 'object to a result against you arising solely from automated analysis,',
     'claim compensation for damage caused by unlawful processing.'
   ]);
-  const application = `${p(L(`You can apply in writing to ${address}; by registered electronic mail (KEP) to ${kep}; with a secure electronic or mobile signature; or by email to ${email} from the email address registered in your MESA account. State your name, your request and an address for the reply.`,
-    `Başvurunuzu yazılı olarak ${address} adresine; kayıtlı elektronik posta (KEP) ile ${kep} adresine; güvenli elektronik imza veya mobil imza ile ya da MESA hesabınızda kayıtlı e-posta adresinizden ${email} adresine iletebilirsiniz. Başvurunuzda adınızı, talebinizi ve yanıt için bir iletişim adresini belirtin.`))}${p(L('We answer within 30 days at the latest, free of charge. If the reply requires a separate cost, the fee set by the Personal Data Protection Board may be charged. If you are not satisfied, you can complain to the Board.',
+  const application = `${p(L(`You can apply in writing to ${address}; ${kep ? `by registered electronic mail (KEP) to ${kep}; ` : ''}with a secure electronic or mobile signature; or by email to ${email} from the email address registered in your MESA account. State your name, your request and an address for the reply.`,
+    `Başvurunuzu yazılı olarak ${address} adresine; ${kep ? `kayıtlı elektronik posta (KEP) ile ${kep} adresine; ` : ''}güvenli elektronik imza veya mobil imza ile ya da MESA hesabınızda kayıtlı e-posta adresinizden ${email} adresine iletebilirsiniz. Başvurunuzda adınızı, talebinizi ve yanıt için bir iletişim adresini belirtin.`))}${p(L('We answer within 30 days at the latest, free of charge. If the reply requires a separate cost, the fee set by the Personal Data Protection Board may be charged. If you are not satisfied, you can complain to the Board.',
     'Başvurunuz en geç 30 gün içinde ücretsiz olarak sonuçlandırılır; işlemin ayrıca bir maliyet gerektirmesi hâlinde Kişisel Verileri Koruma Kurulu’nca belirlenen ücret alınabilir. Yanıtı yeterli bulmazsanız Kurul’a şikâyette bulunabilirsiniz.'))}`;
 
   const docs = {

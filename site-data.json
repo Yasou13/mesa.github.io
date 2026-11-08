@@ -14,11 +14,11 @@
     "licenseRef": "67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a"
   },
   "legal": {
-    "controllerName": null,
-    "controllerAddress": null,
-    "contactEmail": null,
+    "controllerName": "Yasin Büyüktepe",
+    "controllerAddress": "Yunusemre/Manisa",
+    "contactEmail": "yasinbuyuktepe2@gmail.com",
     "kep": null,
-    "city": null
+    "city": "Manisa"
   },
   "repositories": {
     "core": "https://github.com/Yasou13/MESA",
