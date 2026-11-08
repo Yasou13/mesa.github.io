@@ -10,7 +10,8 @@
     "production": "NO-GO",
     "statusAsOf": "2026-11-07",
     "maintainer": "Yasou13",
-    "license": "MIT"
+    "license": "Apache-2.0",
+    "licenseRef": "67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a"
   },
   "repositories": {
     "core": "https://github.com/Yasou13/MESA",

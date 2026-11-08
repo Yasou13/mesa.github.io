@@ -185,7 +185,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       <div class="band__inner">
         <p class="eyebrow">${t('GET STARTED', 'BAŞLAYIN')}</p><h2 id="cta-title">${t('Try it with', 'Kendi belgelerinizle')} <em class="accent-word">${t('your own documents.', 'deneyin.')}</em></h2>
         <div class="actions">${cta(t('Step-by-step setup', 'Adım adım kurulum'), route('get-started/'))}${cta('GitHub', repos.core, 'secondary', true)}</div>
-        <p class="home-cta__line"><code>$ pip install mesa-memory==0.9.2</code><span>·</span><span>${t('Open source · MIT', 'Açık kaynak · MIT')}</span></p>
+        <p class="home-cta__line"><code>$ pip install mesa-memory==0.9.2</code><span>·</span><span>${t('Open source · Apache 2.0', 'Açık kaynak · Apache 2.0')}</span></p>
       </div>
     </section>${footer()}</main>`;
 }

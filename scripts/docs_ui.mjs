@@ -53,7 +53,7 @@ export function docsTabs(currentRoute, language, base) {
 }
 
 export const docsCopyButton = tr => `<button class="docs-copy-page" type="button" hidden>${docIcon('copy')}<span aria-live="polite">${tr ? 'Sayfayı kopyala' : 'Copy page'}</span></button>`;
-export const docsFooter = (tr, base) => `<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> ${tr ? 'Kaynağını koruyan hafıza.' : 'Memory that keeps its evidence.'}</span><a href="${base}docs/core/release-notes/">v0.9.2</a><a href="${base}docs/core/security/">${tr ? 'Güvenlik' : 'Security'}</a><span>${tr ? 'MIT · Açık kaynak' : 'MIT · Open source'}</span></footer>`;
+export const docsFooter = (tr, base) => `<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> ${tr ? 'Kaynağını koruyan hafıza.' : 'Memory that keeps its evidence.'}</span><a href="${base}docs/core/release-notes/">v0.9.2</a><a href="${base}docs/core/security/">${tr ? 'Güvenlik' : 'Security'}</a><span>${tr ? 'Apache 2.0 · Açık kaynak' : 'Apache 2.0 · Open source'}</span></footer>`;
 
 export function docsFrame({manifest, currentRoute, language, base, guides, headerHtml, content, toc}) {
   const tr = language === 'tr';

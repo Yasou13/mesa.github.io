@@ -41,6 +41,7 @@ const glossaryTerms = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'cont
 const mediaData = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'content', 'media-scenes.json'), 'utf8'));
 const project = siteData.project;
 const repos = siteData.repositories;
+const projectLicenseUrl = `${repos.core}/blob/${project.licenseRef}/LICENSE`;
 let base = './';
 let assetBase = './';
 let currentLanguage = 'en';
@@ -246,7 +247,7 @@ function footer() {
         ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data'), link('benchmark/', 'Benchmark')])}
         ${group(chrome('Developers', 'Geliştiriciler'), [link('get-started/', chrome('Quickstart', 'Hızlı başlangıç')), link('docs/', chrome('Documentation', 'Dokümantasyon')), link('docs/core/cli-reference/', 'MESA CLI'), link('docs/core/api-reference/', chrome('API reference', 'API referansı')), link('docs/core/examples/', 'Python SDK'), link('docs/mcp/', 'MCP'), link('docs/core/security/', chrome('Security', 'Güvenlik'))])}
         ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
-        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('privacy/', chrome('Privacy', 'Gizlilik')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(`${repos.core}/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/LICENSE`, chrome('MIT License', 'MIT Lisansı'))])}
+        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('privacy/', chrome('Privacy', 'Gizlilik')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
       </div>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.2', 'Belgeler Core v0.9.2 ile uyumlu')}</span></div>
       <div class="footer-wordmark" aria-hidden="true"></div>
@@ -1321,8 +1322,7 @@ function documentShell({ title, description, canonical, content, assetBase, lang
         alternateName: project.name,
         description: siteDescription,
         codeRepository: repos.core,
-        license: `${repos.core}/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/LICENSE`,
-        version: project.version,
+        license: projectLicenseUrl,
         url: siteUrl
       },
       ...structuredNodes
