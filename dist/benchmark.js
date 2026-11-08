@@ -31,11 +31,24 @@ export function comparison(baseline, target, language) {
   const leftVersion = escapeHtml(baseline.version);
   const rightVersion = escapeHtml(target.version);
   const unavailable = L('Unavailable', 'Ölçüm yok');
-  const bar = (row, version, modifier) => {
-    const value = row?.metrics.hit5;
-    const graphic = row
-      ? `<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="${Number(value) * 100}" height="10" rx="1"/></svg>` : '';
-    return `<div class="bm-bar bm-bar--${modifier}${row ? '' : ' bm-bar--none'}"><span class="bm-bar__version">${version}</span><span class="bm-bar__track">${graphic}</span><span class="bm-bar__value">${row ? percent(value, language) : unavailable}</span></div>`;
+  // Dumbbell row: one 0–100% scale, a grey dot for the reference and an amber dot for the
+  // selected version, joined by a line. Dots are zero-length round-capped lines with
+  // non-scaling strokes, so they stay round while the track stretches to any width.
+  const pct = row => row ? Number(row.metrics.hit5) * 100 : null;
+  const track = (left, right) => {
+    const a = pct(left);
+    const b = pct(right);
+    const grid = [0, 25, 50, 75, 100].map(x => `<line class="bm-db__grid" x1="${x}" x2="${x}" y1="0" y2="20" vector-effect="non-scaling-stroke"/>`).join('');
+    const link = a !== null && b !== null ? `<line class="bm-db__link${b < a ? ' bm-db__link--down' : ''}" x1="${a}" x2="${b}" y1="10" y2="10" vector-effect="non-scaling-stroke"/>` : '';
+    const dot = (x, modifier) => x === null ? '' : `<line class="bm-db__dot bm-db__dot--${modifier}" x1="${x}" x2="${x}" y1="10" y2="10" vector-effect="non-scaling-stroke"/>`;
+    return `<svg class="bm-db__track" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true" focusable="false">${grid}${link}${dot(a, 'old')}${dot(b, 'new')}</svg>`;
+  };
+  const values = (left, right) => `<span class="bm-db__values"><span class="bm-db__old">${left ? percent(left.metrics.hit5, language) : unavailable}</span><span aria-hidden="true">→</span><span class="bm-db__new">${right ? percent(right.metrics.hit5, language) : unavailable}</span></span>`;
+  const change = (left, right) => {
+    if (!left || !right) return `<span class="bm-db__delta bm-db__delta--none">${L('new', 'yeni')}</span>`;
+    const difference = Math.round((Number(right.metrics.hit5) - Number(left.metrics.hit5)) * 1000) / 10;
+    const formatted = new Intl.NumberFormat(language, { minimumFractionDigits: 1, maximumFractionDigits: 1, signDisplay: 'exceptZero' }).format(difference);
+    return `<span class="bm-db__delta${difference < 0 ? ' bm-db__delta--down' : ''}">${formatted} ${L('pp', 'yp')}</span>`;
   };
 
   const label = L('Hit@5 by configuration', 'Yapılandırmaya göre Hit@5');
@@ -50,8 +63,10 @@ export function comparison(baseline, target, language) {
     const formatted = new Intl.NumberFormat(language, { minimumFractionDigits: 1, maximumFractionDigits: 1, signDisplay: 'exceptZero' }).format(difference);
     return `<td>${formatted} ${L('pp', 'yp')}</td>`;
   };
-  return `<figure class="bm-chart"><figcaption>${label}</figcaption>
-    ${rows.map(({ label, left, right }) => `<div class="bm-chart__group"><p class="bm-chart__level">${label}</p>${bar(left, leftVersion, 'old')}${bar(right, rightVersion, 'new')}</div>`).join('')}
+  const axis = [0, 25, 50, 75, 100].map(x => `<span>${percent(x / 100, language).replace(/[.,]0(?=\D*$)/, '')}</span>`).join('');
+  return `<figure class="bm-db"><figcaption><span>${label}</span><span class="bm-db__legend"><span class="bm-db__key bm-db__key--old"></span>MESA ${leftVersion}<span class="bm-db__key bm-db__key--new"></span>MESA ${rightVersion}</span></figcaption>
+    <div class="bm-db__axis" aria-hidden="true"><span></span><div class="bm-db__ticks">${axis}</div><span></span></div>
+    ${rows.map(({ label, left, right }) => `<div class="bm-db__row"><p class="bm-db__label">${label}</p>${track(left, right)}<p class="bm-db__meta">${values(left, right)}${change(left, right)}</p></div>`).join('')}
     </figure>
     <div class="table-scroll bm-table" tabindex="0" role="region" aria-label="${L('Version comparison', 'Sürüm karşılaştırması')}">
     <table><caption>${L('Passage retrieval comparison', 'Pasaj arama karşılaştırması')}</caption><colgroup span="1"></colgroup><colgroup span="2"></colgroup><colgroup span="2"></colgroup><colgroup span="1"></colgroup>

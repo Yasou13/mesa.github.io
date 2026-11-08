@@ -1,4 +1,26 @@
-.benchmark-page .bm-versions,
+/* Version switcher is a tab bar; the compare controls stay as form fields. */
+.benchmark-page .bm-versions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 4px;
+  margin: 28px 0 0;
+  border-bottom: 1px solid var(--line);
+}
+.benchmark-page .bm-versions .bm-version {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: -1px;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--muted);
+}
+.benchmark-page .bm-versions .bm-version:hover { color: var(--ink); }
+.benchmark-page .bm-versions .bm-version[aria-current="page"] { border-bottom-color: var(--accent); color: var(--ink); }
+
 .benchmark-page .bm-controls {
   display: flex;
   flex-wrap: wrap;
@@ -6,7 +28,6 @@
   margin: 24px 0;
 }
 
-.benchmark-page .bm-versions .bm-version,
 .benchmark-page .bm-controls select {
   display: inline-flex;
   align-items: center;
@@ -19,11 +40,6 @@
   font: inherit;
 }
 
-.benchmark-page .bm-versions .bm-version[aria-current="page"] {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 .benchmark-page .bm-controls[hidden] { display: none; }
 .benchmark-page .bm-controls label { display: grid; gap: 6px; color: var(--muted); }
 .benchmark-page .bm-details { margin-top: 20px; }
@@ -34,8 +50,12 @@
 .benchmark-page #research-request label { display: block; margin-bottom: 8px; }
 .benchmark-page #mesa-auth-panel [hidden] { display: none; }
 .benchmark-page .bm-table tbody small { display: block; margin-top: 4px; color: var(--muted-2); }
-.benchmark-page .bm-bar { grid-template-columns: minmax(48px, max-content) minmax(0, 1fr) 96px; }
 
 @media (max-width: 480px) {
   .benchmark-page .bm-controls label { flex: 1 1 120px; }
 }
+
+/* The tab bar and number strip use the full width: no side drawing here, and one rule line. */
+.benchmark-page .page-hero .passage-mark { display: none; }
+.benchmark-page .bm-versions + .bm-strip { margin-top: 28px; }
+.benchmark-page .bm-versions + .bm-strip .bm-strip__items { border-top: 0; }

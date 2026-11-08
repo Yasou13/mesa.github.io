@@ -46,6 +46,7 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
       L('Compare how MESA versions find the right passage, or open a version report for test conditions and detailed results.',
         'MESA sürümlerinin doğru pasajı bulma başarısını karşılaştır. Test koşulları ve ayrıntılı sonuçlar için bir sürüm raporunu aç.'))
       + section('results', L('Compare results', 'Sonuçları karşılaştır'), results) + method + limits;
+    content = content.replace('</section>', `${stats(selected, language)}</section>`);
   } else {
     content = hero(L(`MESA ${version} benchmark report`, `MESA ${version} benchmark raporu`),
       e(selected.summary[language]), stats(selected, language))
@@ -63,9 +64,9 @@ function stats(release, language) {
     [percent(config.metrics.hit1, language), 'Hit@1', L('Correct passage in the first result', 'Doğru pasaj ilk sırada')],
     [number(config.metrics.mrr, language, 3), 'MRR', L('Ranking of the first correct passage', 'İlk doğru pasajın sırası')]
   ];
-  return `<div class="bm-stats">${tiles.map(([value, label, text]) => `<div class="bm-stat">
-    <p class="bm-stat__value">${value}</p><p class="bm-stat__name">${label}</p>
-    <p class="bm-stat__text">${text}</p><p class="bm-stat__scope">${e(config.label[language])}</p></div>`).join('')}</div>`;
+  return `<div class="bm-strip"><div class="bm-strip__items">${tiles.map(([value, label, text]) => `<div class="bm-strip__item">
+    <p class="bm-strip__value">${value}</p><p class="bm-strip__name">${label}</p><p class="bm-strip__text">${text}</p></div>`).join('')}</div>
+    <p class="bm-strip__scope">MESA ${e(release.version)} · ${e(config.label[language])}</p></div>`;
 }
 
 function report({ selected, suite, language, section, assetBase }) {
@@ -83,11 +84,13 @@ function report({ selected, suite, language, section, assetBase }) {
     <table><caption>${caption}</caption><thead><tr>${columns.map(col => `<th scope="col">${col}</th>`).join('')}</tr></thead>
     <tbody>${body}</tbody></table></div>`;
   const cells = values => values.map(value => `<td>${value}</td>`).join('');
+  // Heat map: the cell tone follows the value in ten steps (classes, because the CSP blocks inline styles).
+  const heat = (value, text) => `<td class="bm-heat bm-heat--${Math.min(9, Math.floor(Number(value) * 10))}">${text}</td>`;
   const groups = [selected.configs.filter(row => !row.experiment), selected.configs.filter(row => row.experiment)];
   const resultTables = groups.filter(group => group.length).map(group =>
     table(group[0].experiment ? L('Offline experiments', 'Çevrimdışı deneyler') : L('Built-in configurations', 'Yerleşik yapılandırmalar'),
       [configuration, 'Hit@5', 'Hit@1', 'MRR', 'Hit@10', 'Doc@1', 'Doc@5', 'p50', 'p95', L('Hardware', 'Donanım')],
-      group.map(({ id, gpu, source, metrics: m }) => `<tr><th scope="row">${label(id)}<small>${e(source)}</small></th>${cells([
+      group.map(({ id, gpu, source, metrics: m }) => `<tr${id === selected.featured ? ' class="bm-row--featured"' : ''}><th scope="row">${label(id)}<small>${e(source)}</small></th>${cells([
         percent(m.hit5, language), percent(m.hit1, language), number(m.mrr, language, 3), percent(m.hit10, language),
         percent(m.doc1, language), percent(m.doc5, language), seconds(m.p50), seconds(m.p95), e(gpu)
       ])}</tr>`).join(''))
@@ -98,10 +101,10 @@ function report({ selected, suite, language, section, assetBase }) {
     `<p class="bm-note">${date} · ${suite.documents} ${L('documents', 'belge')} · ${suite.answerable} / ${suite.test} ${L('answerable test questions', 'cevaplanabilir test sorusu')}</p>
     ${resultTables}<ul class="bm-footnotes">${selected.notes.map(note => `<li>${e(note[language])}</li>`).join('')}</ul>`)
   + section('by-type', L('Results by question type', 'Soru türüne göre sonuçlar'),
-    table(L('Correct passage in the first five results', 'Doğru pasaj ilk beş sonuçta'),
+    `<p class="bm-note">${L('Hit@5 per question type. Darker cells mean the right passage was found more often.', 'Soru türüne göre Hit@5. Koyu hücreler doğru pasajın daha sık bulunduğunu gösterir.')}</p>` + table(L('Correct passage in the first five results', 'Doğru pasaj ilk beş sonuçta'),
       [L('Question type', 'Soru türü'), ...selected.configs.map(row => label(row.id))],
       Object.entries(suite.questionTypes).map(([type, count]) => `<tr><th scope="row">${categoryNames[type]} (${count})</th>
-        ${cells(selected.configs.map(row => percent(row.byType[type], language)))}</tr>`).join('')))
+        ${selected.configs.map(row => heat(row.byType[type], percent(row.byType[type], language))).join('')}</tr>`).join('')))
   + (citation ? section('citations', L('Citation questions', 'Atıf soruları'),
     table(L('Citation questions, Hit@5', 'Atıf sorularında Hit@5'),
       [configuration, L(`Explicit citation (${citation.namedCount})`, `Açık madde atfı (${citation.namedCount})`),
