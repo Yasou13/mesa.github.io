@@ -13,6 +13,13 @@
     "license": "Apache-2.0",
     "licenseRef": "67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a"
   },
+  "legal": {
+    "controllerName": null,
+    "controllerAddress": null,
+    "contactEmail": null,
+    "kep": null,
+    "city": null
+  },
   "repositories": {
     "core": "https://github.com/Yasou13/MESA",
     "data": "https://github.com/Yasou13/MESA_Data",
@@ -130,9 +137,49 @@
       "title": "MESA Account",
       "description": "Sign in to your MESA account or create one."
     },
+    "accountSignIn": {
+      "path": "account/sign-in/",
+      "title": "Sign in — MESA",
+      "description": "Sign in to your MESA account with email, Google or GitHub."
+    },
+    "accountSignUp": {
+      "path": "account/sign-up/",
+      "title": "Create your MESA account",
+      "description": "Create a MESA account for benchmark data, early access and MESA updates."
+    },
+    "accountReset": {
+      "path": "account/reset-password/",
+      "title": "Reset your password — MESA",
+      "description": "Request a link to choose a new password for your MESA account."
+    },
+    "accountNewPassword": {
+      "path": "account/new-password/",
+      "title": "Choose a new password — MESA",
+      "description": "Set a new password for your MESA account."
+    },
+    "kvkk": {
+      "path": "legal/kvkk/",
+      "title": "KVKK Information Notice — MESA",
+      "description": "Information under Article 10 of the Turkish Personal Data Protection Law (KVKK) and how to apply as a data subject."
+    },
+    "cookies": {
+      "path": "legal/cookies/",
+      "title": "Cookie Policy — MESA",
+      "description": "The MESA website sets no cookies. The browser storage it uses, why, and for how long."
+    },
+    "terms": {
+      "path": "legal/terms/",
+      "title": "Terms of Use — MESA",
+      "description": "The rules for using mesamemory.dev and a MESA account."
+    },
+    "commercialMessages": {
+      "path": "legal/commercial-messages/",
+      "title": "Commercial Electronic Message Consent — MESA",
+      "description": "What you agree to when you choose to receive MESA news by email, and how to opt out."
+    },
     "privacy": {
       "path": "privacy/",
-      "title": "Privacy Notice — MESA",
+      "title": "Privacy Policy — MESA",
       "description": "What the MESA website collects, why, how long it is kept, and how to ask for removal under KVKK and GDPR."
     },
     "getStarted": {

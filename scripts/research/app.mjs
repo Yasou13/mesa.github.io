@@ -1,19 +1,26 @@
 import { createClient } from '@supabase/supabase-js';
 
+// One client for every MESA account page (data-mode on #mesa-auth-panel) and for the
+// benchmark research page, which has the request form and downloads instead.
 const panel = document.querySelector('#mesa-auth-panel');
 const config = JSON.parse(document.querySelector('#mesa-auth-config').textContent);
 const status = panel.querySelector('#research-status');
-const login = panel.querySelector('#research-login');
-const email = panel.querySelector('#research-email');
-const accountSummary = panel.querySelector('#account-summary');
+const form = panel.querySelector('#account-form');
 const accountLink = panel.querySelector('#research-account-link');
-const logout = panel.querySelector('#research-logout');
 const request = panel.querySelector('#research-request');
 const downloads = panel.querySelector('#research-downloads');
+const mode = panel.dataset.mode || 'research';
 const tr = document.documentElement.lang === 'tr';
 const L = (en, turkish) => tr ? turkish : en;
 const currentPage = new URL(location.pathname, location.origin);
-const callback = new URL(panel.dataset.accountHref, currentPage);
+const pageUrl = attribute => new URL(panel.dataset[attribute] || panel.dataset.accountHref, currentPage);
+const dashboardUrl = pageUrl('accountHref');
+const signInUrl = pageUrl('signInHref');
+const newPasswordUrl = pageUrl('newPasswordHref');
+
+// Consent texts are versioned so a stored agreement can be matched to the text that was shown.
+const LEGAL_VERSION = '2026-11-08';
+const pendingConsentKey = 'mesa-pending-consent';
 
 // Share the MESA session across pages in this tab and the PKCE verifier across email tabs.
 const sessionKey = 'mesa-benchmark-auth';
@@ -40,10 +47,32 @@ const client = createClient(config.url, config.key, {
 });
 let userId;
 
-const failure = () => {
-  status.textContent = L('The request could not be completed. Try again.', 'İşlem tamamlanamadı. Yeniden dene.');
-};
+const say = message => { status.textContent = message; };
+const failure = () => say(L('The request could not be completed. Try again.', 'İşlem tamamlanamadı. Yeniden dene.'));
+const buttons = () => panel.querySelectorAll('button');
+const setBusy = busy => buttons().forEach(button => { button.disabled = busy; });
+const strongEnough = value => value.length >= 8 && /\p{L}/u.test(value) && /\d/.test(value);
 
+function consentRecord(marketing) {
+  const now = new Date().toISOString();
+  return {
+    terms_version: LEGAL_VERSION, terms_accepted_at: now, privacy_version: LEGAL_VERSION,
+    marketing_opt_in: Boolean(marketing), marketing_updated_at: now
+  };
+}
+
+function authMessage(error) {
+  const code = error?.code;
+  if (code === 'email_not_confirmed') return L('Confirm your email address before signing in. Check your inbox.', 'Giriş yapmadan önce e-posta adresini doğrula. Gelen kutunu kontrol et.');
+  if (code === 'invalid_credentials') return L('The email address or password is not correct.', 'E-posta adresi veya şifre hatalı.');
+  if (code === 'weak_password') return L('Choose a stronger password: at least 8 characters with a letter and a number.', 'Daha güçlü bir şifre seç: en az 8 karakter, harf ve rakam içersin.');
+  if (code === 'same_password') return L('Choose a password different from the old one.', 'Eskisinden farklı bir şifre seç.');
+  if (code === 'over_email_send_rate_limit' || code === 'over_request_rate_limit') return L('Too many attempts. Wait a few minutes and try again.', 'Çok fazla deneme yapıldı. Birkaç dakika bekleyip yeniden dene.');
+  if (code === 'user_already_exists' || code === 'email_exists') return L('An account with this email may already exist. Try signing in.', 'Bu e-postayla bir hesap olabilir. Giriş yapmayı dene.');
+  return null;
+}
+
+// ---- Research page (benchmark/research/) ----------------------------------------
 async function showRequest() {
   const { data, error } = await client.from('benchmark_research_requests')
     .select('status').eq('user_id', userId).maybeSingle();
@@ -57,106 +86,8 @@ async function showRequest() {
     declined: L('Your request was declined.', 'Talebin reddedildi.'),
     revoked: L('Your download access has been withdrawn.', 'İndirme erişimin geri alındı.')
   };
-  status.textContent = messages[state] ?? L('Tell us how you plan to use the data.', 'Veriyi ne amaçla kullanacağını anlat.');
+  say(messages[state] ?? L('Tell us how you plan to use the data.', 'Veriyi ne amaçla kullanacağını anlat.'));
 }
-
-async function showAccount(user) {
-  userId = user.id;
-  if (accountSummary) {
-    login.hidden = true;
-    accountSummary.hidden = false;
-    accountSummary.querySelector('#account-email').textContent = user.email ?? '';
-    status.textContent = L('You’re signed in to MESA.', 'MESA hesabına giriş yaptın.');
-  }
-  if (request) {
-    accountLink.hidden = true;
-    await showRequest();
-  }
-}
-
-const loginButtons = login?.querySelectorAll('button') ?? [];
-const setLoginBusy = busy => loginButtons.forEach(button => { button.disabled = busy; });
-
-for (const button of login?.querySelectorAll('button[data-provider]') ?? []) {
-  button.addEventListener('click', async () => {
-    setLoginBusy(true);
-    try {
-      const { error } = await client.auth.signInWithOAuth({
-        provider: button.dataset.provider, options: { redirectTo: callback.href }
-      });
-      if (error) throw error;
-    } catch {
-      failure();
-      setLoginBusy(false);
-    }
-  });
-}
-
-if (email) {
-  const password = email.elements.password;
-  const mode = email.querySelector('#research-email-mode');
-  const submit = email.querySelector('button[type="submit"]');
-  const hint = email.querySelector('#research-password-hint');
-  let registering = false;
-  mode.addEventListener('click', () => {
-    registering = !registering;
-    password.value = '';
-    password.autocomplete = registering ? 'new-password' : 'current-password';
-    if (registering) password.minLength = 8;
-    else password.removeAttribute('minlength');
-    hint.hidden = !registering;
-    submit.textContent = registering ? L('Sign up', 'Kayıt ol') : L('Sign in', 'Giriş yap');
-    mode.textContent = registering ? L('Back to sign-in', 'Girişe dön') : L('Create an account', 'Hesap oluştur');
-    status.textContent = registering ? L('Create an account with your email address.', 'E-posta adresinle hesap oluştur.')
-      : L('Sign in with your account.', 'Hesabınla giriş yap.');
-  });
-
-  // "Sign up" in the site header links to account/#sign-up: open the form in registration mode.
-  if (location.hash === '#sign-up') mode.click();
-
-  email.addEventListener('submit', async event => {
-    event.preventDefault();
-    setLoginBusy(true);
-    const credentials = { email: email.elements.email.value.trim(), password: password.value };
-    try {
-      const { data, error } = registering
-        ? await client.auth.signUp({ ...credentials, options: { emailRedirectTo: callback.href } })
-        : await client.auth.signInWithPassword(credentials);
-      if (error) throw error;
-      password.value = '';
-      if (data.session && data.user) {
-        await showAccount(data.user);
-      } else {
-        status.textContent = L('If registration succeeded, check your inbox for the confirmation link.',
-          'Kayıt tamamlandıysa doğrulama bağlantısı için e-posta kutunu kontrol et.');
-      }
-    } catch (error) {
-      if (error?.code === 'email_not_confirmed') {
-        status.textContent = L('Confirm your email address before signing in.', 'Giriş yapmadan önce e-posta adresini doğrula.');
-      } else if (error?.code === 'invalid_credentials') {
-        status.textContent = L('Check your email address and password.', 'E-posta adresini ve şifreni kontrol et.');
-      } else if (error?.code === 'weak_password') {
-        status.textContent = L('Choose a stronger password.', 'Daha güçlü bir şifre seç.');
-      } else {
-        failure();
-      }
-    } finally {
-      setLoginBusy(false);
-    }
-  });
-}
-
-logout?.addEventListener('click', async () => {
-  logout.disabled = true;
-  try {
-    const { error } = await client.auth.signOut({ scope: 'local' });
-    if (error) throw error;
-    location.replace(callback.href);
-  } catch {
-    failure();
-    logout.disabled = false;
-  }
-});
 
 request?.addEventListener('submit', async event => {
   event.preventDefault();
@@ -165,7 +96,7 @@ request?.addEventListener('submit', async event => {
   try {
     const purpose = request.elements.purpose.value.trim();
     if (purpose.length < 20) {
-      status.textContent = L('Enter at least 20 characters.', 'En az 20 karakter yaz.');
+      say(L('Enter at least 20 characters.', 'En az 20 karakter yaz.'));
       return;
     }
     const { error } = await client.from('benchmark_research_requests').insert({ purpose });
@@ -196,52 +127,199 @@ for (const button of downloads?.querySelectorAll('button[data-tier]') ?? []) {
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch {
-      status.textContent = L('The package could not be downloaded. Check your access and try again.',
-        'Paket indirilemedi. Erişimini kontrol edip yeniden dene.');
+      say(L('The package could not be downloaded. Check your access and try again.',
+        'Paket indirilemedi. Erişimini kontrol edip yeniden dene.'));
     } finally {
       button.disabled = false;
     }
   });
 }
 
+// ---- Sign in / sign up with Google or GitHub ------------------------------------
+for (const button of panel.querySelectorAll('button[data-provider]')) {
+  button.addEventListener('click', async () => {
+    const terms = document.querySelector('#account-terms');
+    if (terms && !terms.checked) {
+      say(L('Accept the Terms of Use to continue.', 'Devam etmek için Kullanım Koşulları’nı kabul et.'));
+      terms.focus();
+      return;
+    }
+    if (terms) {
+      // Saved until the first signed-in page load, then written to the account.
+      localStorage.setItem(pendingConsentKey, JSON.stringify(consentRecord(document.querySelector('#account-marketing')?.checked)));
+    }
+    setBusy(true);
+    try {
+      const { error } = await client.auth.signInWithOAuth({
+        provider: button.dataset.provider, options: { redirectTo: dashboardUrl.href }
+      });
+      if (error) throw error;
+    } catch {
+      failure();
+      setBusy(false);
+    }
+  });
+}
+
+// ---- Email forms -----------------------------------------------------------------
+function matchPasswords() {
+  const password = form.elements.password.value;
+  if (!strongEnough(password)) return L('Use at least 8 characters with a letter and a number.', 'En az 8 karakter kullan; harf ve rakam içersin.');
+  if (form.elements.confirm && password !== form.elements.confirm.value) return L('The passwords do not match.', 'Şifreler eşleşmiyor.');
+  return null;
+}
+
+form?.addEventListener('submit', async event => {
+  event.preventDefault();
+  const email = form.elements.email?.value.trim();
+  if (form.elements.email && !form.elements.email.checkValidity()) {
+    say(L('Enter a valid email address.', 'Geçerli bir e-posta adresi yaz.'));
+    return;
+  }
+  if (mode === 'sign-up' || mode === 'new-password') {
+    const problem = matchPasswords();
+    if (problem) { say(problem); return; }
+  }
+  if (mode === 'sign-up' && !form.elements.terms.checked) {
+    say(L('Accept the Terms of Use to create an account.', 'Hesap oluşturmak için Kullanım Koşulları’nı kabul et.'));
+    return;
+  }
+  setBusy(true);
+  try {
+    if (mode === 'sign-in') {
+      const { error } = await client.auth.signInWithPassword({ email, password: form.elements.password.value });
+      if (error) throw error;
+      location.replace(dashboardUrl.href);
+      return;
+    }
+    if (mode === 'sign-up') {
+      const { data, error } = await client.auth.signUp({
+        email, password: form.elements.password.value,
+        options: { emailRedirectTo: dashboardUrl.href, data: consentRecord(form.elements.marketing.checked) }
+      });
+      if (error) throw error;
+      if (data.session) { location.replace(dashboardUrl.href); return; }
+      form.hidden = true;
+      say(L(`Almost done. We sent a confirmation link to ${email}. Open it to activate your account.`,
+        `Neredeyse bitti. ${email} adresine bir doğrulama bağlantısı gönderdik. Hesabını etkinleştirmek için bağlantıyı aç.`));
+      return;
+    }
+    if (mode === 'reset') {
+      const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: newPasswordUrl.href });
+      if (error && !['user_not_found'].includes(error.code)) throw error;
+      form.hidden = true;
+      // Same message whether or not the address has an account.
+      say(L(`If an account exists for ${email}, a reset link is on its way. The link works in this browser.`,
+        `${email} için bir hesap varsa sıfırlama bağlantısı yolda. Bağlantı bu tarayıcıda çalışır.`));
+      return;
+    }
+    if (mode === 'new-password') {
+      const { error } = await client.auth.updateUser({ password: form.elements.password.value });
+      if (error) throw error;
+      form.hidden = true;
+      say(L('Your password has been changed. Taking you to your account…', 'Şifren değiştirildi. Hesabına yönlendiriliyorsun…'));
+      setTimeout(() => location.replace(dashboardUrl.href), 1200);
+    }
+  } catch (error) {
+    say(authMessage(error) ?? L('The request could not be completed. Try again.', 'İşlem tamamlanamadı. Yeniden dene.'));
+  } finally {
+    setBusy(false);
+  }
+});
+
+// ---- Dashboard -------------------------------------------------------------------
+async function showDashboard(user) {
+  userId = user.id;
+  const pending = localStorage.getItem(pendingConsentKey);
+  if (pending) {
+    localStorage.removeItem(pendingConsentKey);
+    if (!user.user_metadata?.terms_accepted_at) {
+      const { data } = await client.auth.updateUser({ data: JSON.parse(pending) });
+      if (data?.user) user = data.user;
+    }
+  }
+  const dashboard = panel.querySelector('#account-dashboard');
+  dashboard.hidden = false;
+  panel.querySelector('#account-email').textContent = user.email ?? '';
+  say('');
+  const toggle = panel.querySelector('#account-marketing-toggle');
+  toggle.checked = Boolean(user.user_metadata?.marketing_opt_in);
+  toggle.addEventListener('change', async () => {
+    toggle.disabled = true;
+    const { error } = await client.auth.updateUser({ data: { marketing_opt_in: toggle.checked, marketing_updated_at: new Date().toISOString() } });
+    toggle.disabled = false;
+    if (error) { toggle.checked = !toggle.checked; failure(); return; }
+    say(toggle.checked ? L('You will receive MESA news by email.', 'MESA haberleri e-postana gelecek.')
+      : L('You will no longer receive MESA news by email.', 'Artık MESA haberleri e-postana gelmeyecek.'));
+  });
+  panel.querySelector('#account-logout').addEventListener('click', async () => {
+    setBusy(true);
+    try {
+      const { error } = await client.auth.signOut({ scope: 'local' });
+      if (error) throw error;
+      location.replace(signInUrl.href);
+    } catch {
+      failure();
+      setBusy(false);
+    }
+  });
+}
+
+// ---- Start -----------------------------------------------------------------------
 async function start() {
   const params = new URL(location.href).searchParams;
   const code = params.get('code');
   const redirectError = params.has('error') || params.has('error_code');
   if (code || redirectError) history.replaceState(null, '', currentPage);
   if (redirectError) {
-    if (login) login.hidden = false;
-    status.textContent = L('Sign-in or email confirmation did not finish. Try again.',
-      'Giriş veya e-posta doğrulaması tamamlanamadı. Yeniden dene.');
+    say(mode === 'new-password'
+      ? L('This reset link has expired or was already used.', 'Bu sıfırlama bağlantısının süresi dolmuş ya da daha önce kullanılmış.')
+      : L('Sign-in or email confirmation did not finish. Try again.', 'Giriş veya e-posta doğrulaması tamamlanamadı. Yeniden dene.'));
+    panel.querySelector('#account-reset-again')?.removeAttribute('hidden');
     return;
   }
-  if (!code && !login && !request) return;
   try {
+    let user;
     if (code) {
       const flowId = params.get('sb_flow_id');
       const { data, error } = await client.auth.exchangeCodeForSession(code, flowId ? { flowId } : undefined);
       if (error || !data.user) throw error ?? new Error('No authenticated user');
-      if (!login) {
-        location.replace(callback.href);
+      user = data.user;
+    } else {
+      const { data, error } = await client.auth.getSession();
+      if (error) throw error;
+      user = data.session?.user;
+    }
+
+    if (mode === 'dashboard') {
+      if (!user) { location.replace(signInUrl.href); return; }
+      await showDashboard(user);
+    } else if (mode === 'new-password') {
+      if (!user) {
+        say(L('Open this page from the link in your reset email, in the same browser where you asked for it.',
+          'Bu sayfayı, sıfırlamayı istediğin tarayıcıda, e-postadaki bağlantıdan aç.'));
+        panel.querySelector('#account-reset-again').hidden = false;
         return;
       }
-      await showAccount(data.user);
-      return;
-    }
-    const { data, error } = await client.auth.getSession();
-    if (error) throw error;
-    if (data.session?.user) await showAccount(data.session.user);
-    else if (login) {
-      login.hidden = false;
-      status.textContent = '';
-    } else {
-      status.textContent = L('Sign in to request research access.', 'Araştırma erişimi talep etmek için giriş yap.');
+      say('');
+      form.hidden = false;
+    } else if (mode === 'sign-in' || mode === 'sign-up') {
+      if (user) location.replace(dashboardUrl.href);
+    } else if (mode === 'research') {
+      if (user) {
+        userId = user.id;
+        if (accountLink) accountLink.hidden = true;
+        if (request) await showRequest();
+      } else {
+        say(L('Sign in to request research access.', 'Araştırma erişimi talep etmek için giriş yap.'));
+      }
     }
   } catch (error) {
-    if (login) login.hidden = Boolean(userId);
     if (error?.code === 'pkce_code_verifier_not_found') {
-      status.textContent = L('If you have confirmed your email address, sign in with your password.',
-        'E-posta adresini doğruladıysan şifrenle giriş yap.');
+      say(mode === 'new-password'
+        ? L('Open the reset link in the same browser where you asked for it, or request a new one.', 'Sıfırlama bağlantısını istediğin tarayıcıda aç ya da yeni bir bağlantı iste.')
+        : L('If you have confirmed your email address, sign in with your password.', 'E-posta adresini doğruladıysan şifrenle giriş yap.'));
+      panel.querySelector('#account-reset-again')?.removeAttribute('hidden');
     } else {
       failure();
     }

@@ -38,7 +38,7 @@ export function benchmarkResearchPage({ header, footer, language, base, evidence
       <p>${L('Reviewed research packages are available to approved accounts. The held-out evaluation questions are kept separately.', 'İncelenmiş araştırma paketlerine onaylı hesaplar erişebilir. Sürüm değerlendirmesinde kullanılan test soruları ayrı tutulur.')}</p>
       ${accountsEnabled ? `<div id="mesa-auth-panel" data-account-href="${base}account/">
         <p id="research-status" class="bm-note" role="status">${L('Research applications will open when the packages are ready.', 'Araştırma paketleri hazır olduğunda başvurular açılacak.')}</p>
-        <a id="research-account-link" class="button secondary" href="${base}account/">${L('MESA account', 'MESA hesabı')}</a>
+        <a id="research-account-link" class="button secondary" href="${base}account/sign-in/">${L('Sign in to MESA', 'MESA’ya giriş yap')}</a>
         ${accessEnabled ? `
         <form id="research-request" method="post" hidden>
           <label for="research-purpose">${L('How will you use the data?', 'Veriyi ne için kullanacaksınız?')}</label>

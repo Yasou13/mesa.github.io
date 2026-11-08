@@ -3678,3 +3678,50 @@ main:not(.home-page):not(.docs-layout) { position: relative; z-index: 0; overflo
   .bm-db__row { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 14px 0; }
   .bm-db__meta { justify-content: flex-start; }
 }
+
+/* ---- Header account links and legal pages (2026-11-08) ------------------- */
+.site-header .nav-auth [hidden] { display: none !important; }
+.footer-legal { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+.site-footer .footer-legal a { min-height: 36px; color: var(--muted); font-size: 14px; }
+.site-footer .footer-legal a:hover { color: var(--ink); }
+.site-footer .footer-legal + .footer-bottom { margin-top: 0; border-top: 0; }
+.legal-page .legal-updated { margin-top: 18px; color: var(--muted-2) !important; font: 14px/1.5 "Commit Mono", monospace; }
+.legal-layout { display: grid; grid-template-columns: 220px minmax(0, 760px); gap: 56px; align-items: start; }
+.legal-toc { position: sticky; top: 104px; font-size: 14px; }
+.legal-toc p { margin: 0 0 10px; color: var(--muted-2); font: 500 14px/1.5 "Commit Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.legal-toc ol { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+.legal-toc a { display: block; padding: 6px 0 6px 12px; border-left: 1px solid var(--line); color: var(--muted); line-height: 1.4; }
+.legal-toc a:hover { border-color: var(--accent); color: var(--ink); }
+.legal-content article { padding: 0 0 36px; scroll-margin-top: 110px; }
+.legal-content article + article { padding-top: 32px; border-top: 1px solid var(--line); }
+.legal-content h2 { margin: 0 0 14px; font-size: clamp(22px, 2.2vw, 28px); font-weight: 520; letter-spacing: -.02em; }
+.legal-content p, .legal-content li { color: var(--muted); font-size: 16px; line-height: 1.75; }
+.legal-content ul { display: grid; gap: 6px; padding-left: 20px; }
+.legal-content a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(227, 181, 122, .6); text-underline-offset: 3px; }
+.legal-content strong { color: var(--ink); }
+.legal-table { margin: 8px 0; }
+.legal-table table { min-width: 760px; }
+.legal-table th, .legal-table td { padding: 12px 14px; font-size: 14px; line-height: 1.55; text-transform: none; vertical-align: top; }
+.legal-table tbody th { color: var(--ink); font-weight: 560; white-space: nowrap; }
+.legal-table td { color: var(--muted); }
+.legal-contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; margin: 8px 0 0; padding: 18px 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.legal-contact dt { color: var(--muted-2); font-size: 14px; }
+.legal-contact dd { margin: 2px 0 0; color: var(--ink); overflow-wrap: anywhere; }
+.legal-todo { padding: 1px 6px; border-radius: 4px; background: rgba(227, 181, 122, .2); color: var(--accent-strong); font-size: .95em; }
+.legal-others { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 15px; }
+@media (max-width: 900px) {
+  .legal-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .legal-toc { position: static; }
+  .legal-contact { grid-template-columns: minmax(0, 1fr); }
+}
+.legal-activities { display: grid; gap: 14px; margin-top: 8px; }
+.legal-activity { padding: 20px 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.legal-activity h3 { margin: 0 0 12px; color: var(--ink); font-size: 18px; font-weight: 560; }
+.legal-activity dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; margin: 0; }
+.legal-activity dt { color: var(--muted-2); font: 500 13px/1.5 "Commit Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+.legal-activity dd { margin: 2px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+@media (max-width: 720px) { .legal-activity dl { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  .site-footer .footer-groups a, .site-footer .footer-legal a { min-height: 32px; }
+  .footer-legal { gap: 0 18px; padding-top: 14px; }
+}

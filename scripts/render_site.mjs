@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { getAllDocRoutes, renderDocPage, renderDocsHub, renderMcpGuide } from './render_docs.mjs';
 import { renderAdminPage } from './render_admin.mjs';
 import { earlyAccessPage } from './render_early_access.mjs';
-import { privacyPage } from './render_privacy.mjs';
+import { legalPage } from './render_legal.mjs';
 import { benchmarkPage } from './render_benchmark.mjs';
 import { benchmarkResearchPage } from './render_benchmark_research.mjs';
 import { accountPage } from './render_account.mjs';
@@ -227,9 +227,10 @@ function header(active = '') {
             <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)">${navigationIcon('search')}<span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
             ${languageControl()}
             <a class="nav-github" aria-label="GitHub" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a>
-            <div class="nav-auth">
-              <a class="nav-signin"${active === 'account' ? ' aria-current="page"' : ''} href="${route('account/')}">${chrome('Sign in', 'Giriş yap')}</a>
-              <a class="nav-cta" href="${route('account/#sign-up')}">${chrome('Sign up', 'Kayıt ol')}</a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="${route('account/sign-in/')}">${chrome('Sign in', 'Giriş yap')}</a>
+              <a class="nav-cta" href="${route('account/sign-up/')}">${chrome('Sign up', 'Kayıt ol')}</a>
+              <a class="nav-cta nav-account-link" href="${route('account/')}" hidden>${chrome('My account', 'Hesabım')}</a>
             </div>
           </div>
         </nav>
@@ -251,8 +252,9 @@ function footer() {
         ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data'), link('benchmark/', 'Benchmark')])}
         ${group(chrome('Developers', 'Geliştiriciler'), [link('get-started/', chrome('Quickstart', 'Hızlı başlangıç')), link('docs/', chrome('Documentation', 'Dokümantasyon')), link('docs/core/cli-reference/', 'MESA CLI'), link('docs/core/api-reference/', chrome('API reference', 'API referansı')), link('docs/core/examples/', 'Python SDK'), link('docs/mcp/', 'MCP'), link('docs/core/security/', chrome('Security', 'Güvenlik'))])}
         ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
-        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('privacy/', chrome('Privacy', 'Gizlilik')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
+        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('account/', chrome('My account', 'Hesabım')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
       </div>
+      <nav class="footer-legal" aria-label="${chrome('Legal', 'Yasal')}">${[['privacy/', chrome('Privacy Policy', 'Gizlilik Politikası')], ['legal/kvkk/', chrome('KVKK Notice', 'KVKK Aydınlatma Metni')], ['legal/cookies/', chrome('Cookie Policy', 'Çerez Politikası')], ['legal/terms/', chrome('Terms of Use', 'Kullanım Koşulları')], ['legal/commercial-messages/', chrome('Commercial Messages', 'Ticari İleti Onayı')]].map(([path, label]) => link(path, label)).join('')}</nav>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.2', 'Belgeler Core v0.9.2 ile uyumlu')}</span></div>
       <div class="footer-wordmark" aria-hidden="true"></div>
     </footer>`.trim();
@@ -1156,7 +1158,11 @@ const renderers = {
   home,
   getStarted: getStartedPage,
   earlyAccess: () => earlyAccessPage(productHelpers()),
-  privacy: () => privacyPage(productHelpers()),
+  privacy: () => renderLegal('privacy'),
+  kvkk: () => renderLegal('kvkk'),
+  cookies: () => renderLegal('cookies'),
+  terms: () => renderLegal('terms'),
+  commercialMessages: () => renderLegal('commercialMessages'),
   architecture,
   retrieval,
   howItWorks: howItWorksPage,
@@ -1177,11 +1183,26 @@ const renderers = {
     language: currentLanguage, base, evidence: benchmarkResearchEvidence,
     accountsEnabled: Boolean(accountProviders.length), accessEnabled: benchmarkResearchEnabled
   }),
-  account: () => accountPage({
-    header: hubChrome(header('account')), footer: hubChrome(footer()),
-    language: currentLanguage, base, providers: accountProviders
-  })
+  account: () => renderAccount('dashboard'),
+  accountSignIn: () => renderAccount('sign-in'),
+  accountSignUp: () => renderAccount('sign-up'),
+  accountReset: () => renderAccount('reset'),
+  accountNewPassword: () => renderAccount('new-password')
 };
+
+function renderAccount(mode) {
+  return accountPage({
+    header: hubChrome(header('account')), footer: hubChrome(footer()),
+    language: currentLanguage, base, providers: accountProviders, mode
+  });
+}
+
+function renderLegal(kind) {
+  return legalPage(kind, {
+    header: hubChrome(header(kind === 'privacy' ? 'privacy' : 'legal')), footer: hubChrome(footer()),
+    language: currentLanguage, base, legal: siteData.legal
+  });
+}
 
 function renderBenchmark(version) {
   return benchmarkPage({
@@ -1471,7 +1492,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account'].includes(key);
+    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account', 'accountSignIn', 'accountSignUp', 'accountReset', 'accountNewPassword', 'privacy', 'kvkk', 'cookies', 'terms', 'commercialMessages'].includes(key);
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');

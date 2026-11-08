@@ -84,8 +84,40 @@
       "title": "MESA Hesabı",
       "description": "MESA hesabınıza giriş yapın veya yeni bir hesap oluşturun."
     },
+    "accountSignIn": {
+      "title": "Giriş yap — MESA",
+      "description": "MESA hesabına e-posta, Google veya GitHub ile giriş yap."
+    },
+    "accountSignUp": {
+      "title": "MESA hesabını oluştur",
+      "description": "Benchmark verileri, erken erişim ve MESA gelişmeleri için MESA hesabı oluştur."
+    },
+    "accountReset": {
+      "title": "Şifreni sıfırla — MESA",
+      "description": "MESA hesabın için yeni şifre belirleme bağlantısı iste."
+    },
+    "accountNewPassword": {
+      "title": "Yeni şifreni belirle — MESA",
+      "description": "MESA hesabın için yeni bir şifre belirle."
+    },
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni — MESA",
+      "description": "6698 sayılı KVKK’nın 10. maddesi kapsamında aydınlatma metni ve ilgili kişi başvuru yöntemi."
+    },
+    "cookies": {
+      "title": "Çerez Politikası — MESA",
+      "description": "MESA sitesi çerez kullanmaz. Kullandığı tarayıcı depolaması, amacı ve süresi."
+    },
+    "terms": {
+      "title": "Kullanım Koşulları — MESA",
+      "description": "mesamemory.dev sitesinin ve MESA hesabının kullanım kuralları."
+    },
+    "commercialMessages": {
+      "title": "Ticari Elektronik İleti Onay Metni — MESA",
+      "description": "MESA haberlerini e-postayla almayı seçtiğinizde neyi onayladığınız ve nasıl vazgeçebileceğiniz."
+    },
     "privacy": {
-      "title": "Gizlilik Bildirimi — MESA",
+      "title": "Gizlilik Politikası — MESA",
       "description": "MESA sitesinin hangi bilgileri neden topladığı, ne kadar sakladığı ve KVKK ile GDPR kapsamında silinmesini nasıl isteyebileceğiniz."
     },
     "getStarted": {

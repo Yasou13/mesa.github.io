@@ -88,6 +88,17 @@ if (passageMarks.length) {
   } else passageMarks.forEach((mark) => mark.classList.add('is-drawn'));
 }
 
+// Header account links: show "My account" when this tab holds a MESA session.
+try {
+  const session = JSON.parse(sessionStorage.getItem('mesa-benchmark-auth') || 'null');
+  if (session?.user) {
+    for (const auth of document.querySelectorAll('[data-nav-auth]')) {
+      auth.querySelectorAll('.nav-signin, .nav-cta:not(.nav-account-link)').forEach(link => { link.hidden = true; });
+      auth.querySelector('.nav-account-link').hidden = false;
+    }
+  }
+} catch { /* storage unavailable: keep the signed-out links */ }
+
 const siteHeader = document.querySelector('.site-header');
 const markScrolled = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 12);
 markScrolled();
