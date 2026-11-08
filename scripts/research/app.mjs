@@ -68,6 +68,11 @@ function authMessage(error) {
   if (code === 'weak_password') return L('Choose a stronger password: at least 8 characters with a letter and a number.', 'Daha güçlü bir şifre seç: en az 8 karakter, harf ve rakam içersin.');
   if (code === 'same_password') return L('Choose a password different from the old one.', 'Eskisinden farklı bir şifre seç.');
   if (code === 'over_email_send_rate_limit' || code === 'over_request_rate_limit') return L('Too many attempts. Wait a few minutes and try again.', 'Çok fazla deneme yapıldı. Birkaç dakika bekleyip yeniden dene.');
+  // Supabase could not send the confirmation or reset email (SMTP not set up, or the
+  // built-in sender only accepts the project team's addresses).
+  if (code === 'email_address_not_authorized' || /error sending .*email/i.test(error?.message ?? ''))
+    return L('We could not send the email right now. Please try again later or write to us.', 'E-posta şu anda gönderilemedi. Lütfen daha sonra yeniden dene veya bize yaz.');
+  if (code === 'email_address_invalid') return L('This email address cannot be used. Check it and try again.', 'Bu e-posta adresi kullanılamıyor. Kontrol edip yeniden dene.');
   if (code === 'user_already_exists' || code === 'email_exists') return L('An account with this email may already exist. Try signing in.', 'Bu e-postayla bir hesap olabilir. Giriş yapmayı dene.');
   return null;
 }
