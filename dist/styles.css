@@ -3725,3 +3725,7 @@ main:not(.home-page):not(.docs-layout) { position: relative; z-index: 0; overflo
   .site-footer .footer-groups a, .site-footer .footer-legal a { min-height: 32px; }
   .footer-legal { gap: 0 18px; padding-top: 14px; }
 }
+
+/* The GitHub mark is a filled logo: never draw the outline stroke that line icons use,
+   it closes the gaps inside the Octocat. Applies everywhere the mark appears. */
+.mesa-icon.icon-github { fill: currentColor; stroke: none; }
