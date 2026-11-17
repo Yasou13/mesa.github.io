@@ -23,7 +23,7 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 - `scripts/build_endpoint_reference.py` — regenerates the HTTP endpoint reference
-  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.2.json`
+  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.3.json`
 - `content/docs/source-en/` — English copies of upstream docs that mix in Turkish;
   English doc pages show these in their source appendix
 - `content/glossary-terms.json` — short bilingual definitions on `/glossary/`
@@ -405,3 +405,16 @@ It uses fixture HTTP, temporary credentials and a temporary receipt file; it che
 The current baseline is release tag `v0.9.2`, commit `8cd2cfe1df5356e73b3bef83ae640850fd54c798`, published on 6 November. GitHub release and PyPI wheel/sdist publication were verified on 7 November; wheel Python source bytes match the tag. See `reports/website-v092-alignment/INVENTORY.md` for the pre-change inventory and `reports/website-v092-alignment/README.md` for final checks/publication evidence.
 
 Current commands use `mesa-memory==0.9.2`. Core source cache, maintained EN/TR guides, OpenAPI, current article references, search and metadata are aligned. Six UML views now show explicit SPO extraction, admission-time legal snapshots, bounded exact-match priority, current Python requirements and models-off BM25 admission. `MESA_EXTRACTION_ENABLED` defaults false independently from models; `MESA_LEGAL_RULES_ENABLED` defaults true. Existing historical demo recordings and v0.9.1 DEV measurements retain their original provenance. Independent repository evidence and production NO-GO remain separately qualified.
+
+
+## Core v0.9.3 website refresh — 17 November 2026
+
+The current Core baseline is tag `v0.9.3`, commit `531209bc45805b478264f6dfa8a9e40a94e345cb`. Live PyPI JSON confirmed the 0.9.3 wheel and sdist are present and not yanked on 17 November 2026. The changelog dates the release 16 November. Earlier refresh sections retain their historical baselines; this section supersedes their current-version wording.
+
+Current installation commands use `mesa-memory==0.9.3`. The 23-page Core cache and OpenAPI snapshot come from committed tag objects via the existing sync/generator code. Maintained EN/TR guides, embedding defaults (BGE-M3 / 1024, models off), keep-old-store settings, release notes, limits, source links and article exports are aligned. OpenAPI paths/components match 0.9.2; only version metadata differs.
+
+The release notes distinguish the changelog's 718.27 → 245.20 s bulk-ingest measurement from Opus's 239.35 s confirmation, and report the 129.861 → 52.330 ms local parser measurement. These are attributed Round 20 evidence, not measurements performed by this website task. Current limits cover unenforced rate limits, ASCII `yargitay` and Kùzu page-tail memory fragments. The old Python 3.13 parser timing warning remains only in historical release notes. The 11.6 s search result is historical 0.9.2 evidence, not a current measurement.
+
+No new retrieval benchmark, live model test, production certification or deployment was performed. Round 18 results remain 0.9.2. Only the EN/TR T1m display label changed from MiniLM to Magibu, confirmed by D51, the Round 18 reports and actual `settings-T1m-ingest.json` (`local:magibu/embeddingmagibu-200m`, 768 dimensions). Demo recordings and independent repository imports are unchanged.
+
+See [the verification record](reports/website-v093-alignment/README.md). Builds were written to temporary artifacts to preserve all pre-existing `dist/` changes and untracked files. No push or PR was made; the branch remains `codex/website-v0.9.2`.

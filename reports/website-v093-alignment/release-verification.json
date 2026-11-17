@@ -1,0 +1,29 @@
+{
+  "checkedOn": "2026-11-17",
+  "timezone": "Europe/Istanbul",
+  "pypi": {
+    "url": "https://pypi.org/pypi/mesa-memory/0.9.3/json",
+    "version": "0.9.3",
+    "files": [
+      {
+        "filename": "mesa_memory-0.9.3-py3-none-any.whl",
+        "packagetype": "bdist_wheel",
+        "yanked": false,
+        "upload_time_iso_8601": "2026-11-17T03:27:19.856147Z"
+      },
+      {
+        "filename": "mesa_memory-0.9.3.tar.gz",
+        "packagetype": "sdist",
+        "yanked": false,
+        "upload_time_iso_8601": "2026-11-17T03:27:21.593745Z"
+      }
+    ]
+  },
+  "github": {
+    "url": "https://api.github.com/repos/Yasou13/MESA/git/ref/tags/v0.9.3",
+    "tag": "v0.9.3",
+    "tagObject": "2b602a6c44776c36ca1fabc07b65654507416ab1",
+    "commit": "531209bc45805b478264f6dfa8a9e40a94e345cb"
+  },
+  "verificationScope": "Public JSON metadata fetched directly; no artifact byte, signed-tag preflight, attestation, or live release CI audit claimed."
+}

@@ -1,0 +1,18 @@
+{
+  "websiteBaseline": "22d98daa531c0291bffeba8b505a472c31ee2bcd",
+  "coreCommit": "531209bc45805b478264f6dfa8a9e40a94e345cb",
+  "corePages": 23,
+  "originalLocalFilesUnchanged": 295,
+  "independentImportsUnchanged": [
+    "data",
+    "law",
+    "qa",
+    "e2e"
+  ],
+  "demoFilesUnchanged": true,
+  "benchmarkOnlyTwoLabelsChanged": true,
+  "benchmarkResearchUnchanged": true,
+  "openapiPathsIdentical": true,
+  "openapiComponentsIdentical": true,
+  "oldVersionAudit": "Remaining 0.9.2 references in active source tree are historical release/signature records, historical limits qualifications, retained OpenAPI, and benchmark data/tests. Pre-existing dist/review and old reports were preserved."
+}

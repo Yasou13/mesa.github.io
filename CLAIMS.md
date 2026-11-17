@@ -176,3 +176,21 @@ Current Core baseline: `8cd2cfe1df5356e73b3bef83ae640850fd54c798` (`v0.9.2`). Ea
 | Models-off combined runtime accepts documents with BM25; Python >=3.11 | Tagged ingestion contract, pyproject and PyPI metadata; corrected obsolete UML claims |
 
 No new certification, current independent QA/Law runtime PASS, production readiness or universal performance guarantee is inferred. Prior v0.9.1 DEV figures are preserved as historical results. Context7 returned unrelated Mesa agent-modeling projects; this MESA release is verified from its own immutable repository sources.
+
+
+## v0.9.3 alignment — 17 November 2026
+
+Current Core source: tag `v0.9.3`, commit `531209bc45805b478264f6dfa8a9e40a94e345cb`. The GitHub tag API and its annotated tag object resolve to that commit; the local tag agrees. Live PyPI JSON on 17 November confirms wheel and sdist for `mesa-memory` 0.9.3, neither yanked. This does not claim wheel byte parity, signed-tag preflight, attestations or a release CI audit. Earlier entries remain dated historical records.
+
+| Current claim | Source and qualification |
+| --- | --- |
+| Bulk-ingest full readiness 718.27 → 245.20 s, 2.93×; final checked rerun 239.35 s, 3.00× | Tagged CHANGELOG; PROGRESS P13-01/P13-02b and Opus Round 20 check. Models off, graph on, 4,999,000 bytes, 4,882 committed mutations, lossless readback. Not re-measured here. |
+| Legal parser 129.861 → 52.330 ms, 2.48× | Tagged CHANGELOG, API-limit TCK/1, best-of-five local thread CPU; identical outputs/spans, blocking 200 ms CI CPU check restored. |
+| Default embedding BGE-M3 / 1024, normalized; models stay off | Tagged CHANGELOG, docs/configuration.md and mesa_memory/config.py. Older stores retain explicit Magibu/768 settings or rebuild. |
+| Turkish uppercase İ/I fixes; scoped FTS query variants, remaining ASCII mismatch | Tagged CHANGELOG; `yargitay` still does not match `Yargıtay`. |
+| MCP provisions missing fresh-store catalog entries; invalid startup settings fail fast | Tagged CHANGELOG; one retry, original session error retained, Tier 3/extraction and dotted bootstrap-key constraints. |
+| PyPI publishing waits for reusable CI | Tagged CHANGELOG. First live tag wiring and CI outcome were not audited here. |
+| Rate limits not enforced; raw Kùzu graph files may contain process text fragments | Tagged 0.9.3 known issues; logical graph property checks do not imply physical file sanitization. |
+| T1m is Magibu, not MiniLM | TASKS D51, PROGRESS Round 18, mesa_bench/runs/20261107T141454Z_v092_benchmark/settings-T1m-ingest.json. Only two localized labels changed; numbers and release identity preserved. |
+
+All Core imports read committed Git objects. Existing paired-guide, SDK fixture, static and browser checks verify website consistency, not new retrieval quality or Core production readiness. No new 0.9.3 retrieval benchmark, provider run, certification or deployment is claimed. Historical 0.9.2/0.9.0 benchmarks and demo recordings retain their provenance; independent repository caches and original local files are preserved. Detailed check scope and public metadata are in `reports/website-v093-alignment/`.
