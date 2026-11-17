@@ -16,4 +16,4 @@ Purge erases the document’s owned source and extracted text while retaining au
 
 ## Bounded request work in v0.9.3
 
-Legal rule extraction, citation resolution, scope construction and heavy token scoring bound caller-text work and yield thread execution so health requests can run during measured heavy repros. Upgrading from 0.9.1 is recommended by the release. Remaining whole-document secret scanning and extreme Unicode stalls are listed in [limitations](docs/core/limitations/). Legal names, identities and exact-match promotion are resolved within the authorized tenant/dataset/agent/time scope.
+Legal rule extraction, citation resolution, scope construction and heavy token scoring bound caller-text work and yield thread execution so health requests can run during measured heavy repros. In v0.9.3, per-minute and daily rate limits are not enforced for `/v4/*` and `/control/*`. Kùzu 0.11.3 raw graph files may contain process memory fragments; protect the graph directory like SQLite. See [current limitations](docs/core/limitations/). Legal names, identities and exact-match promotion are resolved within the authorized tenant/dataset/agent/time scope.

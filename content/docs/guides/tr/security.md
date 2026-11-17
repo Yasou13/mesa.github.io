@@ -16,4 +16,4 @@ Silme, denetim kimlikleri ve özetler korunurken belgenin sahip olduğu kaynak v
 
 ## v0.9.3’de sınırlı istek işi
 
-Hukuki kural çıkarımı, atıf çözümleme, kapsam hazırlama ve yoğun token puanlama; kullanıcı metni üzerinde yapılan işi sınırlar ve thread yürütmesini paylaşır. Böylece ölçülen yoğun örnekler sürerken sağlık istekleri çalışabilir. Yayın, 0.9.1’den yükseltmeyi önerir. Kalan tam belge gizli bilgi taraması ve uç Unicode duraklamaları [sınırlarda](docs/core/limitations/) açıklanır. Kanun adları, kimlikler ve tam eşleşme önceliği izinli kurum/veri kümesi/ajan/zaman kapsamında çözülür.
+Hukuki kural çıkarımı, atıf çözümleme, kapsam hazırlama ve yoğun token puanlama; kullanıcı metni üzerinde yapılan işi sınırlar ve thread yürütmesini paylaşır. Böylece ölçülen yoğun örnekler sürerken sağlık istekleri çalışabilir. v0.9.3’te `/v4/*` ve `/control/*` için dakikalık ve günlük hız sınırları uygulanmaz. Kùzu 0.11.3 ham çizge dosyaları süreç belleğinden parçalar içerebilir; çizge dizinini SQLite gibi koruyun. [Güncel sınırlara](docs/core/limitations/) bakın. Kanun adları, kimlikler ve tam eşleşme önceliği izinli kurum/veri kümesi/ajan/zaman kapsamında çözülür.
