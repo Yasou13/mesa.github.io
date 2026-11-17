@@ -2,7 +2,7 @@
 
 | Görev | Sağlayıcı değeri | Örnek model | Boyut | Kurulum eki |
 | --- | --- | --- | --- | --- |
-| Embedding · yerel (varsayılan) | sentence-transformers | Magibu, normalize | 768 | `ml` |
+| Embedding · yerel (varsayılan) | sentence-transformers | BAAI/bge-m3, normalize | 1024 | `ml` |
 | Embedding · harici | `openai_compatible` | `text-embedding-3-small` | 1536 | temel paket |
 | Embedding · Nemotron-3 profili | `openai_compatible` | Nemotron-3, `nemotron-qpass-v1` (sorgu/pasaj) | 2048 | temel paket |
 | Çıkarım / doğrulama LLM | `openai_compatible` | uç noktanızın sunduğu bir sohbet modeli, örn. `gpt-4o-mini` | — | temel paket |
@@ -14,7 +14,7 @@
 
 ## Belge ve sorgu temsilleri uyumlu olmalı
 
-Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model kimliğini ve boyutları kullanmalıdır. Belgelenen yerel varsayılan Magibu, 768 boyutludur; dış sağlayıcıdaki text-embedding-3-small ise 1536 boyut kullanır. Ayarı değiştirmek eski verileri dönüştürmez. Model değiştirirken belgelenen kimlik kurallarına göre arama görünümünü ve indeksi yeniden oluşturun.
+Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model kimliğini ve boyutları kullanmalıdır. Belgelenen yerel varsayılan `local:BAAI/bge-m3`, 1024 boyutludur; dış sağlayıcıdaki text-embedding-3-small ise 1536 boyut kullanır. Ayarı değiştirmek eski verileri dönüştürmez. Model değiştirirken belgelenen kimlik kurallarına göre arama görünümünü ve indeksi yeniden oluşturun.
 
 ## Ayarın bulunması, sağlayıcının çalıştığını göstermez
 
@@ -24,6 +24,6 @@ Bilgi kayıtlarının vektörleri ile sorgu vektörleri aynı sağlayıcı/model
 
 `MESA_EXTERNAL_PROVIDER_ENABLED=false`, asıl işleme hattındaki dış sağlayıcı çağrılarını sınırlar. Bu ayar tek başına sistemin tamamen ağdan yalıtıldığını veya hiç ücret doğurmayacağını garanti etmez. Model indirmeleri ve başka süreçlerin ağ erişimi ayrıca değerlendirilmelidir. [v0.9.1 DEV benchmark’ı](docs/core/release-notes/), belirtilen koşullarda BGE arama kalitesini ve donanım gecikmesini raporlar; bulut sağlayıcısının token maliyetini ölçmez.
 
-## v0.9.2 ile çalışma
+## v0.9.3 ile çalışma
 
 `MESA_LLM_MODEL=provider:model` ve `MESA_EMBEDDING_MODEL=provider:model` kullanın. Modeller kapalıyken BM25 veri alımı/araması çalışır. Dış sağlayıcı bayrağı kapalıyken yerel Ollama ve OpenAI uyumlu uç noktalar kullanılabilir; bulut sağlayıcıları açık bayrak ve anahtar ister.

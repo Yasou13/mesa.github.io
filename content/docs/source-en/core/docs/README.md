@@ -2,7 +2,7 @@
 
 This folder holds 12 usage/development guides and 8 architecture decision records.
 You do not need to read them in order. Pick the entry point below that matches your goal.
-Package version 0.9.2; V4 is the current API.
+Package version 0.9.3; V4 is the current API.
 
 ## Where should I start?
 
@@ -39,9 +39,9 @@ The [ADR index](docs/core/decisions/) explains why the design was chosen. Seven 
 decisions have their own files; the index holds a short history of retired decisions.
 Historical decisions are not a current feature or performance guarantee.
 
-The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/reference/openapi.json) is a generated API schema; the running
+The [OpenAPI snapshot](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/reference/openapi.json) is a generated API schema; the running
 application's `/openapi.json` output and the route/schema code are the current authority.
-The [Prometheus rules](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/prometheus_alerts.yml) are alert rules loaded into the monitoring
+The [Prometheus rules](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/prometheus_alerts.yml) are alert rules loaded into the monitoring
 system; they are not a Markdown guide.
 
 ## Keeping the docs current

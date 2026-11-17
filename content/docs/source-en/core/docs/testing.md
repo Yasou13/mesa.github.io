@@ -1,7 +1,7 @@
 # Testing and developer workflow
 
 Install the declared environment with `uv sync --locked --python 3.11 --extra dev`, then run
-`uv pip check`. Use [CONTRIBUTING](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/CONTRIBUTING.md) and [architecture](docs/core/architecture/)
+`uv pip check`. Use [CONTRIBUTING](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CONTRIBUTING.md) and [architecture](docs/core/architecture/)
 for module boundaries and documentation requirements.
 
 ```bash

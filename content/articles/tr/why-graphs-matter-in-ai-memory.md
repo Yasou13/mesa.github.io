@@ -72,5 +72,5 @@ GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+3. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
 

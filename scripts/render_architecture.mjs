@@ -1,5 +1,5 @@
 import { componentDiagram, writeSequenceDiagram, mutationStateDiagram, readActivityDiagram, catalogClassDiagram, deploymentDiagram } from './render_uml.mjs';
-const source = 'https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/';
+const source = 'https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/';
 
 export function detailedArchitecture({ header, footer, route, cta, t }) {
   const p = (en, tr) => `<p>${t(en, tr)}</p>`;
@@ -27,7 +27,7 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
   return `${header('architecture')}
 <main id="main-content" class="intro-page architecture-page">
   <section class="page-hero compact page-hero--short">
-    ${label('MESA CORE v0.9.2 · INSIDE THE ENGINE', 'MESA CORE v0.9.2 · ÇEKİRDEĞİN İÇİNDE')}
+    ${label('MESA CORE v0.9.3 · INSIDE THE ENGINE', 'MESA CORE v0.9.3 · ÇEKİRDEĞİN İÇİNDE')}
     <h1>${t('How information moves through MESA.', 'Bilgi, Mesa’nın içinde nasıl ilerler?')}</h1>
     ${p('Two paths: turning a source into stored memory, and finding evidence when an application asks a question. Each section below has a UML diagram, the reason behind the design and a link to its decision record.', 'İki yol var: bir kaynağı hafızaya yazmak ve uygulama soru sorduğunda dayanak bilgiyi bulmak. Aşağıdaki her bölümde bir UML şeması, tasarımın gerekçesi ve ilgili karar kaydının bağlantısı yer alır.')}
     <nav class="arch-path-links" aria-label="${t('Diagrams on this page', 'Bu sayfadaki şemalar')}"><a href="#runtime-map">${t('Components', 'Bileşenler')}</a><a href="#writing-memory">${t('Write path', 'Yazma yolu')}</a><a href="#mutation-lifecycle">${t('States', 'Durumlar')}</a><a href="#reading-memory">${t('Read path', 'Okuma yolu')}</a><a href="#data-model">${t('Data model', 'Veri modeli')}</a><a href="#deployment">${t('Deployment', 'Dağıtım')}</a></nav>
@@ -89,7 +89,7 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
     ${h('One process, one folder of data.', 'Tek süreç, tek veri klasörü.')}
     ${p('Stores are embedded under one storage root and owned by one combined process. MESA_GRAPH_ENABLED=false avoids opening Kùzu; models-off operation retains BM25 search. No separate database server is required.', 'Depolar tek depolama kökü altında gömülüdür ve tek combined sürece aittir. MESA_GRAPH_ENABLED=false, Kùzu’nun açılmasını önler; modeller kapalıyken BM25 araması çalışır. Ayrı veritabanı sunucusu gerekmez.')}
     ${deploymentDiagram(t)}
-    <div class="arch-bounds"><h3>${t('Configured bounds', 'Yapılandırılmış sınırlar')}</h3><p class="intro-caption">${t('Configured limits from v0.9.2. Separate DEV measurements and CPU/GPU conditions are documented in the release notes; they do not certify production capacity.', 'v0.9.2 yapılandırma sınırları. Ayrı DEV ölçümleri ve CPU/GPU koşulları sürüm notlarındadır; üretim kapasitesini onaylamaz.')}</p><dl>${bounds.map(([name, value]) => `<div><dt>${name}</dt><dd>${value}</dd></div>`).join('')}</dl></div>
+    <div class="arch-bounds"><h3>${t('Configured bounds', 'Yapılandırılmış sınırlar')}</h3><p class="intro-caption">${t('Configured limits from v0.9.3. Separate DEV measurements and CPU/GPU conditions are documented in the release notes; they do not certify production capacity.', 'v0.9.3 yapılandırma sınırları. Ayrı DEV ölçümleri ve CPU/GPU koşulları sürüm notlarındadır; üretim kapasitesini onaylamaz.')}</p><dl>${bounds.map(([name, value]) => `<div><dt>${name}</dt><dd>${value}</dd></div>`).join('')}</dl></div>
   </section>
 
   <section class="section" id="building-blocks">
@@ -106,7 +106,7 @@ export function detailedArchitecture({ header, footer, route, cta, t }) {
       ['mesa_storage/legal_rules.py', t('Versioned legal rule items', 'Sürümlü hukuki kural öğeleri')],
       ['mesa_storage/legal_identity.py', t('Typed citations and scoped law names', 'Türlü atıflar ve kapsama bağlı kanun adları')],
       ['mesa_memory/context_builder.py', t('Evidence context packing', 'Kanıt bağlamının hazırlanması')]
-    ].map(([path, text]) => `<li><a target="_blank" rel="noopener noreferrer" href="${source}${path}">${text}<span aria-hidden="true"> ↗</span></a><code>${path}</code></li>`).join('')}</ul><p class="intro-caption">${t('Verified source baseline: Core v0.9.2. Diagrams simplify the runtime.', 'Doğrulanan kaynak temeli: Core v0.9.2. Şemalar çalışma zamanını sadeleştirir.')}</p></details>
+    ].map(([path, text]) => `<li><a target="_blank" rel="noopener noreferrer" href="${source}${path}">${text}<span aria-hidden="true"> ↗</span></a><code>${path}</code></li>`).join('')}</ul><p class="intro-caption">${t('Verified source baseline: Core v0.9.3. Diagrams simplify the runtime.', 'Doğrulanan kaynak temeli: Core v0.9.3. Şemalar çalışma zamanını sadeleştirir.')}</p></details>
     <div class="actions">${cta(t('Installation and configuration', 'Kurulum ve yapılandırma'), route('docs/core/getting-started/'))}${cta(t('All decision records', 'Tüm karar kayıtları'), route('docs/core/decisions/'), 'secondary')}</div>
   </section>
   ${footer(true)}

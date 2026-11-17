@@ -2,7 +2,7 @@
 
 | Role | Provider value | Example model | Dimension | Install extra |
 | --- | --- | --- | --- | --- |
-| Embeddings · local (default) | sentence-transformers | Magibu, normalized | 768 | `ml` |
+| Embeddings · local (default) | sentence-transformers | BAAI/bge-m3, normalized | 1024 | `ml` |
 | Embeddings · external | `openai_compatible` | `text-embedding-3-small` | 1536 | base |
 | Embeddings · Nemotron-3 profile | `openai_compatible` | Nemotron-3, `nemotron-qpass-v1` (query/passage) | 2048 | base |
 | Extraction / validation LLM | `openai_compatible` | any chat model your endpoint serves, e.g. `gpt-4o-mini` | — | base |
@@ -14,7 +14,7 @@ Extraction and embeddings are configured separately: choosing `claude` or `ollam
 
 ## Representation must stay compatible
 
-Assertion vectors and query embeddings must share provider/model identity and dimension. The documented local default is Magibu with 768 dimensions; external text-embedding-3-small requires 1536. A settings edit is not an in-place representation migration. Rebuild/reindex under the documented identity rules.
+Assertion vectors and query embeddings must share provider/model identity and dimension. The documented local default is `local:BAAI/bge-m3` with 1024 dimensions; external text-embedding-3-small requires 1536. A settings edit is not an in-place representation migration. Rebuild/reindex under the documented identity rules.
 
 ## Configured is not operational
 
@@ -24,6 +24,6 @@ Assertion vectors and query embeddings must share provider/model identity and di
 
 `MESA_EXTERNAL_PROVIDER_ENABLED=false` allows local Ollama/OpenAI-compatible endpoints and blocks cloud providers. Set it true and supply keys for cloud providers. It is not a complete air-gap or zero-cost guarantee. Model downloads, local provisioning and other process networking are separate concerns. The [v0.9.1 DEV benchmark](docs/core/release-notes/) reports BGE retrieval and device latency under stated conditions; it does not measure cloud-provider token cost.
 
-## v0.9.2 operation
+## v0.9.3 operation
 
 Use `MESA_LLM_MODEL=provider:model` and `MESA_EMBEDDING_MODEL=provider:model`. BM25 ingestion/search works with models off. Local Ollama and OpenAI-compatible endpoints are allowed with the external-provider flag off; cloud providers require it on and need keys.

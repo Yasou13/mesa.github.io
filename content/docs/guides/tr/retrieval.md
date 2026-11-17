@@ -10,7 +10,7 @@ Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaşt�
 
 Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı, istenen 500 sonuç, 64 düğümlük ilerleme kümesi ve düğüm başına 32 bağlantıyla sınırlandırılır. Varsayılan zaman aşımı 15 saniyedir. Bunlar kaynak tüketimini sınırlayan değerlerdir; hız garantisi değildir. Bağlam oluşturma varsayılan olarak tek arama ve 2048 token’lık biçimlendirilmiş kanıt bütçesi kullanır. İsteğe bağlı uyarlamalı mod, erişim kapsamını genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.
 
-## v0.9.2 ile çalışma
+## v0.9.3 ile çalışma
 
 Modeller kapalıyken BM25 saklanan kaynak metnini getirir. Kapalı veya eksik vektör ve çizge adımları degraded_sources içinde bildirilir. MESA_GRAPH_ENABLED=false, Kùzu’yu atlar; çizge veya embedding yeniden açıldığında başlangıçta eksikler tamamlanır.
 

@@ -84,5 +84,5 @@ The test is observable continuity: close the session, start another authorized s
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+3. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
 

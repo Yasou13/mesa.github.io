@@ -76,5 +76,5 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 ## Sources and further reading
 
 1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+2. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
 

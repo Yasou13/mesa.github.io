@@ -1,6 +1,6 @@
-## Colab notebook in v0.9.2
+## Colab notebook in v0.9.3
 
-The current release includes `examples/colab_quickstart.ipynb` for GPU-backed Ollama experimentation in Google Colab. Open the [version-pinned notebook](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/examples/colab_quickstart.ipynb) and review its setup and downloads before running it.
+The current release includes `examples/colab_quickstart.ipynb` for GPU-backed Ollama experimentation in Google Colab. Open the [version-pinned notebook](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/examples/colab_quickstart.ipynb) and review its setup and downloads before running it.
 
 ## Choose local or notebook operation
 

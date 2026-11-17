@@ -1,11 +1,7 @@
-## Yayın ve üretim yeterliliği
+## Yayın ve üretim doğrulaması
 
-Site v0.9.2 kaynak sürümünü izler. Alfa / üretim NO-GO sürer; yayın, CI sonuçları ve DEV arama ölçümleri sertifikasyon sayılmaz. GitHub ve PyPI v0.9.2 yayını 7 Kasım 2026’da doğrulandı. PyPI wheel’inin 150 Python kaynak dosyası etiketli sürümle aynı.
+Bu belgeler Core v0.9.3, `531209bc45805b478264f6dfa8a9e40a94e345cb` etiket commit’ini izler. GitHub etiketi ve PyPI wheel/sdist dosyalarının mevcut ve geri çekilmemiş olması 17 Kasım 2026’da doğrulandı. Alfa / üretim NO-GO sürer.
 
-## Etiket, kimlik ve derleme kanıtı
+## Yayınlar CI sonucunu bekler
 
-Resmî v0.9.2 yayını, SSH imzalı annotated etiket ve tam yerel imzalı etiket ön kontrolünün geçtiğini kaydeder. Etiket imzası imzalayanı; OIDC build attestation ise artefakt özetlerini derleme kimliğine bağlar. Yayında Yasou13/MESA, .github/workflows/ci.yml, refs/tags/v0.9.2 ve 8cd2cfe1df5356e73b3bef83ae640850fd54c798 yayın commit’iyle sınırlı doğrulanmış köken raporları bulunur. Bunlar üretim sertifikasyonundan ayrı kanıtlardır.
-
-## Trusted publishing kurulumu
-
-Etiketle tetiklenen `.github/workflows/release.yml` wheel/sdist üretir, Twine ile doğrular ve GitHub Actions OIDC üzerinden yayımlar. Proje sahibi PyPI `mesa-memory` trusted publisher ayarını bir kez yapmalıdır: owner `Yasou13`, repository `MESA`, workflow `release.yml`, environment `pypi`; GitHub’da eşleşen `pypi` ortamını oluşturmalıdır. İş akışının varlığı paket yayını kanıtı değildir. Doğrulanmış artefakt yolu için [kuruluma](docs/core/installation/), mevcut veri dizinine dokunmadan önce [yükseltme rehberine](docs/core/migration/) bakın.
+Etiketli changelog, etiketle tetiklenen PyPI yayınlarının derleme ve yayımlamadan önce tam yeniden kullanılabilir CI iş akışını beklediğini belirtir. Bağlantının doğrulanmasını ilk canlı etiket çalışmasına bırakır; bu web sitesi yenilemesi o çalışmayı, imzalı etiket ön kontrolünü veya derleme kanıtlarını denetlediğini iddia etmez. [Sürüm notlarını](docs/core/release-notes/) ve aşağıdaki sabitlenmiş yayın prosedürünü okuyun.

@@ -33,3 +33,14 @@ Local Ollama/OpenAI-compatible endpoints can run with `MESA_EXTERNAL_PROVIDER_EN
 `MESA_LEGAL_RULES_ENABLED=true` is independent of models. In auto plans, ordinary articles inherit a law number from `metadata.law_number` or a supported header in the first 3,000 characters; continuation chunks keep the article identity. Preambles, GEÇİCİ/EK articles and plain plans receive no automatic identity. Typed identities accept 3–5 digit law numbers; inconsistent number/code pairs and unknown names are rejected.
 
 New chunks keep versioned legal items separately from SPO facts. `false` prevents new identities/items, bypasses legal citation/ranking/exact-match and graph citation parsing, and hides existing legal overlays in result copies without deleting stored data. Generic lexical/vector/graph retrieval remains enabled. Set `MESA_EXTRACTION_ENABLED=true` explicitly if model-based SPO facts are wanted; merely enabling models no longer enables extraction.
+
+## v0.9.3 embedding identity and startup
+
+The default is `MESA_EMBEDDING_MODEL=local:BAAI/bge-m3`, `MESA_EMBEDDING_DIMENSION=1024`, normalized. Models remain off by default. Download the local model before enabling it. For an older store created with the previous default, keep **both** settings below, or rebuild before changing identity:
+
+```bash
+MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
+MESA_EMBEDDING_DIMENSION=768
+```
+
+Startup rejects `MESA_TIER3_MODE=1/2` without an active consolidation loop; extraction must be enabled. Bootstrap `MESA_API_KEY` values containing `.` are rejected at startup.

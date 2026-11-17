@@ -1,6 +1,6 @@
 # Release procedure
 
-The pinned source describes V4 package `0.9.2` before owner publication. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for verified v0.9.2 GitHub/PyPI publication and the SSH-signed annotated tag. Production qualification
+The pinned source describes V4 package `0.9.3`. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for verified v0.9.3 tag and PyPI publication. Production qualification
 is still assessed as a release candidate. The production decision stays `NO-GO`
 until Final MVP Certification is complete. Assigning a version number or a tag
 does not on its own mean production GO. Old V3 tags/release records are read in their historical context.

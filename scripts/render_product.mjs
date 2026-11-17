@@ -10,7 +10,7 @@ const paragraph = (en, tr) => `<p>${t(en, tr)}</p>`;
 const title = (en, tr) => `<h2>${t(en, tr)}</h2>`;
 const eyebrow = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const row = (name, en, tr) => `<article><h3>${name}</h3>${paragraph(en, tr)}</article>`;
-const source = 'https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/';
+const source = 'https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/';
 
 export function rankCalculator() {
   const lanes = [
@@ -169,7 +169,7 @@ k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code><
   </section>
 
   <section class="section">
-    ${title('v0.9.2 runtime and DEV evidence', 'v0.9.2 çalışma zamanı ve DEV kanıtı')}
+    ${title('v0.9.3 runtime and historical DEV evidence', 'v0.9.3 çalışma zamanı ve tarihsel DEV kanıtı')}
     ${paragraph('Vector weight defaults to 8.0; use MESA_RRF_VECTOR_WEIGHT=1 for the previous setting. Zero removes a lane contribution. Optional BGE reranking is off by default, needs [ml] and adds rerank_score after fusion while preserving rrf_score and final_score.', 'Vektör ağırlığı varsayılanı 8.0’dır; önceki ayar için MESA_RRF_VECTOR_WEIGHT=1 kullanın. Sıfır, kanal katkısını kapatır. İsteğe bağlı BGE yeniden sıralama varsayılan kapalıdır; [ml] gerektirir ve rrf_score/final_score değerlerini koruyup birleştirme sonrasında rerank_score ekler.')}
     <a class="text-link" href="${route('docs/core/release-notes/')}">${t('Read the DEV matrix, CPU/GPU latency and limits →', 'DEV matrisi, CPU/GPU gecikmeleri ve sınırları okuyun →')}</a>
   </section>
@@ -202,7 +202,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.9.2</p>
+  <p class="eyebrow">CORE v0.9.3</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `

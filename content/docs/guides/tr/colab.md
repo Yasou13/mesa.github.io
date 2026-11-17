@@ -1,6 +1,6 @@
-## v0.9.2 Colab not defteri
+## v0.9.3 Colab not defteri
 
-Güncel sürüm, Google Colab üzerinde GPU destekli Ollama denemeleri için `examples/colab_quickstart.ipynb` içerir. [Sürüme sabitlenmiş not defterini](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/examples/colab_quickstart.ipynb) açın; çalıştırmadan önce kurulum ve indirmeleri inceleyin.
+Güncel sürüm, Google Colab üzerinde GPU destekli Ollama denemeleri için `examples/colab_quickstart.ipynb` içerir. [Sürüme sabitlenmiş not defterini](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/examples/colab_quickstart.ipynb) açın; çalıştırmadan önce kurulum ve indirmeleri inceleyin.
 
 ## Yerel çalışma veya not defteri seçin
 

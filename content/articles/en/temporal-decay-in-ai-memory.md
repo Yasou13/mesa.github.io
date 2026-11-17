@@ -78,5 +78,5 @@ A recent task note may deserve more attention than an old one. A historical cont
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+2. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
 

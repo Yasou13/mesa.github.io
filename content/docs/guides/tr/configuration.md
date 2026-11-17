@@ -33,3 +33,14 @@ Varsayılan `MESA_RERANK_ENABLED=false` değeridir. Açmak için `[ml]` eki gere
 `MESA_LEGAL_RULES_ENABLED=true`, modellerden bağımsızdır. Otomatik planlarda normal maddeler, `metadata.law_number` veya ilk 3.000 karakterdeki desteklenen başlıktan kanun numarası alır; devam parçaları madde kimliğini korur. Önsözler, GEÇİCİ/EK maddeler ve plain planları otomatik kimlik almaz. Türlü kimlik API’si 3–5 basamaklı kanun numaralarını kabul eder; tutarsız numara/kod çiftleri ve bilinmeyen adlar reddedilir.
 
 Yeni parçalar sürümlü hukuki öğeleri SPO kayıtlarından ayrı saklar. `false`; yeni kimlik/öğeleri, hukuki atıf/sıralama/tam eşleşme ve çizge atıf ayrıştırmasını kapatır, kalıcı verileri silmeden sonuç kopyalarındaki hukuki ekleri gizler. Genel sözcük/vektör/çizge araması çalışır. Model tabanlı SPO kayıtları için `MESA_EXTRACTION_ENABLED=true` değerini açıkça ayarlayın; yalnızca modeli açmak artık çıkarımı açmaz.
+
+## v0.9.3 embedding kimliği ve başlangıç
+
+Varsayılan `MESA_EMBEDDING_MODEL=local:BAAI/bge-m3`, `MESA_EMBEDDING_DIMENSION=1024` ve normalizasyon açıktır. Modeller varsayılan kapalı kalır. Yerel modeli açmadan önce indirin. Önceki varsayılanla oluşturulmuş eski depoda aşağıdaki **iki** ayarı birlikte koruyun veya kimliği değiştirmeden önce yeniden oluşturun:
+
+```bash
+MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
+MESA_EMBEDDING_DIMENSION=768
+```
+
+Başlangıç, etkin consolidation döngüsü olmadan `MESA_TIER3_MODE=1/2` ayarını reddeder; çıkarım açık olmalıdır. `.` içeren başlangıç `MESA_API_KEY` değerleri de başlangıçta reddedilir.

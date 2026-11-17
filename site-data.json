@@ -3,12 +3,12 @@
     "name": "MESA",
     "fullName": "Memory Engine for Structured Agents",
     "domain": "https://mesamemory.dev/",
-    "version": "0.9.2",
+    "version": "0.9.3",
     "runtime": "V4",
     "maturity": "Published source release",
     "certification": "In progress",
     "production": "NO-GO",
-    "statusAsOf": "2026-11-07",
+    "statusAsOf": "2026-11-17",
     "maintainer": "Yasou13",
     "license": "Apache-2.0",
     "licenseRef": "67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a"
@@ -115,7 +115,7 @@
     "retrieval": {
       "path": "retrieval/",
       "title": "MESA V4 Retrieval — Four Lanes, RRF and Evidence",
-      "description": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.9.2."
+      "description": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.9.3."
     },
     "earlyAccess": {
       "path": "early-access/",
