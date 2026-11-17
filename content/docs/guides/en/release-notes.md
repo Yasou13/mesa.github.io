@@ -1,3 +1,36 @@
+## v0.9.3 · 16 November 2026
+
+The [tagged changelog](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CHANGELOG.md#093---2026-11-16) dates this release 16 November. GitHub tag `v0.9.3` resolves to `531209bc45805b478264f6dfa8a9e40a94e345cb`. [PyPI 0.9.3](https://pypi.org/project/mesa-memory/0.9.3/) wheel and sdist were verified present and not yanked on 17 November 2026. Upgrade with `pip install --upgrade mesa-memory==0.9.3`. Alpha / production NO-GO remains.
+
+## v0.9.3 measured ingestion and parser changes
+
+Bulk ingestion batches SQL and graph projections and outbox completion in the existing worker pass. The changelog reports full readiness for a 4,999,000-byte document in **245.20 s versus 718.27 s (2.93× faster)**: all 4,882 mutations COMMITTED, SQL and GRAPH COMPLETED, VECTOR SKIPPED, with lossless chunk readback. Round 20 P13-01/P13-02b records these conditions (models off, graph on). The Opus Round 20 check separately reports **239.35 s (3.00×)** on final checked code `dbf113b`, with the same durable readback. These are local development measurements, not throughput or service guarantees.
+
+Legal extraction skips impossible decision-reference scans and delays law-name cleanup until an attached article is found. For the API-limit `TCK/1` input, best-of-five local thread CPU fell from **129.861 ms to 52.330 ms (2.48×)** with identical saved outputs and spans. The isolated 200 ms CI CPU-budget check is blocking again; a 2 s hang guard remains.
+
+## v0.9.3 embedding default and older stores
+
+The default is now `local:BAAI/bge-m3`, **1024 dimensions**, normalized, including the Compose model default. Models remain **off by default**. Download the model before enabling it. Stores created with the old default must retain both settings below, or rebuild before changing embedding identity:
+
+```bash
+MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
+MESA_EMBEDDING_DIMENSION=768
+```
+
+## v0.9.3 fixes and release behavior
+
+Turkish legal comparisons and date lookups handle uppercase İ/I consistently while preserving original text, offsets and rule versions. Scoped FTS adds deduplicated `ı` → `i` query variants so `YARGITAY` and `yargıtay` find text written `YARGITAY KARARI`; the ASCII limitation below remains.
+
+MCP session creation provisions missing workspace/dataset entries on a fresh store and retries once; a provisioning failure preserves the original session-start error. Mode 0 session ending finalizes deferred records without a consolidation loop. Startup fails clearly for `MESA_TIER3_MODE=1/2` without an active consolidation loop (extraction must be enabled), and for bootstrap `MESA_API_KEY` secrets containing `.`.
+
+Tag-triggered PyPI releases now wait for the complete reusable CI workflow before building and publishing. The changelog leaves verification of that wiring to the first live tag run; this refresh has not audited that run.
+
+## v0.9.3 known issues and measurement scope
+
+Per-minute and daily rate limits are not enforced for `/v4/*` and `/control/*`. ASCII `yargitay` still does not match `Yargıtay`; index-side Turkish folding remains deferred. Kùzu 0.11.3 may write uninitialized memory into graph page tails: raw graph files can contain text fragments handled by the process even though logical graph queries confirm memory text is not stored as graph properties. Treat the graph directory as sensitive like SQLite. See [current limits](docs/core/limitations/).
+
+No new retrieval benchmark was run for 0.9.3. The [Round 18 results](benchmark/0.9.2/) remain labelled 0.9.2, and historical demos and DEV measurements below retain their original versions. The older 11.6 s search measurement is historical 0.9.2 evidence; it is not listed in the 0.9.3 known-issues section and was not re-measured here.
+
 ## v0.9.2 · 6 November 2026
 
 The [official release](https://github.com/Yasou13/MESA/releases/tag/v0.9.2) pins `8cd2cfe1df5356e73b3bef83ae640850fd54c798`. [PyPI 0.9.2](https://pypi.org/project/mesa-memory/0.9.2/) wheel and sdist publication, non-yanked status and matching release SHA256 hashes were verified on 7 November 2026. Python >=3.11; upgrade with `pip install --upgrade mesa-memory==0.9.2`. V4 HTTP routes remain compatible. Alpha / production NO-GO remains.

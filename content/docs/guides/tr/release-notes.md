@@ -1,3 +1,36 @@
+## v0.9.3 · 16 Kasım 2026
+
+[Etiketli changelog](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CHANGELOG.md#093---2026-11-16) sürümü 16 Kasım olarak tarihler. GitHub `v0.9.3` etiketi `531209bc45805b478264f6dfa8a9e40a94e345cb` commit’ine işaret eder. [PyPI 0.9.3](https://pypi.org/project/mesa-memory/0.9.3/) wheel ve sdist dosyalarının mevcut ve geri çekilmemiş olması 17 Kasım 2026’da doğrulandı. `pip install --upgrade mesa-memory==0.9.3` ile yükseltin. Alfa / üretim NO-GO sürer.
+
+## v0.9.3 veri alımı ve ayrıştırıcı ölçümleri
+
+Toplu veri alımı, mevcut worker geçişinde SQL ve çizge izdüşümleri ile outbox tamamlamasını gruplar. Changelog, 4.999.000 baytlık belgenin tam hazır olmasını **718,27 saniyeden 245,20 saniyeye (2,93× hızlanma)** indirir: 4.882 mutation’ın tamamı COMMITTED, SQL ve GRAPH COMPLETED, VECTOR SKIPPED; parçalar kayıpsız geri okunmuştur. Round 20 P13-01/P13-02b bu koşulları kaydeder (modeller kapalı, çizge açık). Opus Round 20 kontrolü, son denetlenen `dbf113b` kodunda aynı kalıcı geri okumayla ayrıca **239,35 saniye (3,00×)** raporlar. Bunlar yerel geliştirme ölçümleridir; kapasite veya hizmet garantisi değildir.
+
+Hukuk ayrıştırması, sonuç vermesi mümkün olmayan karar atfı taramalarını atlar ve kanun adı temizliğini bağlı bir madde bulunana kadar erteler. API sınırındaki `TCK/1` girdisinde yerel thread CPU süresinin beş denemedeki en iyi değeri **129,861 ms’den 52,330 ms’ye (2,48×)** düşmüştür; kayıtlı çıktılar ve metin aralıkları aynıdır. İzole 200 ms CI CPU kontrolü yeniden engelleyicidir; 2 saniyelik takılma koruması sürer.
+
+## v0.9.3 embedding varsayılanı ve eski depolar
+
+Compose model varsayılanı dahil yeni varsayılan `local:BAAI/bge-m3`, **1024 boyut** ve normalizasyon açıktır. Modeller **varsayılan kapalı** kalır. Modeli açmadan önce indirin. Eski varsayılanla oluşturulmuş depolar aşağıdaki iki ayarı birlikte korumalı veya embedding kimliğini değiştirmeden önce yeniden oluşturulmalıdır:
+
+```bash
+MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
+MESA_EMBEDDING_DIMENSION=768
+```
+
+## v0.9.3 düzeltmeleri ve yayın davranışı
+
+Türk hukuk karşılaştırmaları ve tarih aramaları büyük İ/I harflerini tutarlı işler; özgün metin, konumlar ve kural sürümleri korunur. Kapsamlı FTS sorguları tekilleştirilmiş `ı` → `i` çeşitlerini ekler; `YARGITAY` ve `yargıtay`, `YARGITAY KARARI` metnini bulur. Aşağıdaki ASCII sınırlaması sürer.
+
+MCP oturum başlangıcı, yeni depoda eksik workspace/dataset kayıtlarını oluşturup bir kez yeniden dener; oluşturma başarısızsa özgün oturum başlangıcı hatası korunur. Mode 0 oturum sonlandırması, consolidation döngüsü olmadan ertelenen kayıtları tamamlar. Etkin consolidation döngüsü olmayan `MESA_TIER3_MODE=1/2` ayarı (çıkarım açık olmalıdır) ve `.` içeren başlangıç `MESA_API_KEY` sırları, başlangıçta açık hatayla reddedilir.
+
+Etiketle tetiklenen PyPI yayınları artık derleme ve yayımlamadan önce tam yeniden kullanılabilir CI iş akışını bekler. Changelog bu bağlantının doğrulanmasını ilk canlı etiket çalışmasına bırakır; bu yenilemede o çalışma denetlenmedi.
+
+## v0.9.3 bilinen sorunlar ve ölçüm kapsamı
+
+`/v4/*` ve `/control/*` için dakikalık ve günlük hız sınırları uygulanmaz. ASCII `yargitay`, `Yargıtay` ile hâlâ eşleşmez; indeks tarafında Türkçe normalizasyon ertelenmiştir. Kùzu 0.11.3, çizge sayfalarının sonuna başlatılmamış bellek yazabilir: mantıksal çizge sorgularında hafıza metninin özellik olarak saklanmadığı doğrulansa da ham çizge dosyaları sürecin işlediği metin parçalarını içerebilir. Çizge dizinini SQLite gibi hassas kabul edin. [Güncel sınırlara](docs/core/limitations/) bakın.
+
+0.9.3 için yeni erişim benchmark’ı çalıştırılmadı. [Round 18 sonuçları](benchmark/0.9.2/) 0.9.2 olarak kalır; aşağıdaki tarihsel demolar ve DEV ölçümleri kendi sürümlerini korur. Önceki 11,6 saniyelik arama ölçümü tarihsel 0.9.2 kanıtıdır; 0.9.3 bilinen sorunlar bölümünde listelenmez ve burada yeniden ölçülmedi.
+
 ## v0.9.2 · 6 Kasım 2026
 
 [Resmî yayın](https://github.com/Yasou13/MESA/releases/tag/v0.9.2), `8cd2cfe1df5356e73b3bef83ae640850fd54c798` commit’ine sabittir. [PyPI 0.9.2](https://pypi.org/project/mesa-memory/0.9.2/) wheel ve sdist yayını, geri çekilmemiş olması ve yayınla eşleşen SHA256 özetleri 7 Kasım 2026’da doğrulandı. Python >=3.11 gerekir; `pip install --upgrade mesa-memory==0.9.2` ile yükseltin. V4 HTTP yolları uyumludur. Alfa / üretim NO-GO sürer.
