@@ -29,6 +29,23 @@ assert.match(report('0.9.2'), /%74,4/);
 assert.match(report('0.9.2'), /Açık madde atfı \(50\)/);
 assert.match(report('0.9.2'), /href="\.\.\/\.\.\/\.\.\/benchmark\/0\.9\.2\/metrics\.json"/);
 
+// The overview defaults to the latest run, keeps all reports available, and
+// exposes detailed results without requiring client-side comparison controls.
+for (const language of ['en', 'tr']) {
+  const overview = benchmarkPage({ header: '', footer: '', language, base: '../', assetBase: '../', catalog });
+  assert.match(overview, /BENCHMARK · MESA 0\.9\.3/);
+  assert.equal((overview.match(/class="bm-bars__group"/g) || []).length, 3);
+  assert.equal((overview.match(/class="bm-bars__row"/g) || []).length, 9);
+  for (const id of ['results', 'by-type', 'citations', 'ingest', 'limitations']) assert.match(overview, new RegExp(`id="${id}"`));
+  for (const release of catalog.releases) assert.match(overview, new RegExp(`benchmark/${release.version.replaceAll('.', '\\.')}/metrics\\.json`));
+  assert.match(overview, /14\/29/);
+  assert.doesNotMatch(overview, /Ollama/);
+}
+assert.match(report('0.9.3'), /12,0 dk/);
+assert.match(report('0.9.3'), /%75,3/);
+assert.match(report('0.9.3'), /mesa-memory 0\.9\.3/);
+assert.doesNotMatch(report('0.9.2'), /14\/29|bm-strip--four/);
+
 const raw = await readFile(new URL('../../content/benchmark/catalog.json', import.meta.url));
 const digest = createHash('sha256').update(raw).digest('hex');
 const remote = {

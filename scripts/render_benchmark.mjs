@@ -24,10 +24,11 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
   const section = (id, title, body) => `<section class="section bm-section" id="${id}" aria-labelledby="bm-${id}"><h2 id="bm-${id}">${title}</h2>${body}</section>`;
   const method = section('method', L('How we measured', 'Nasıl ölçtük?'),
     `<p>${e(suite.method[language])}</p>${metrics}`);
+  const currentReport = selected.version === '0.9.3';
   const limits = section('limitations', L('Scope and limitations', 'Kapsam ve sınırlar'),
-    `<p>${e(suite.limits[language])}</p>`);
+    `<p>${e(suite.limits[language])}</p>${currentReport ? currentLimitations(language) : ''}`);
   const hero = (title, lead, tiles = '') => `<section class="page-hero bm-hero" aria-labelledby="bm-title">
-    <p class="eyebrow">BENCHMARK · ${version ? 'MESA ' + version : 'MESA'}</p>
+    <p class="eyebrow">BENCHMARK · ${'MESA ' + (version || selected.version)}</p>
     <h1 id="bm-title">${title}</h1><p class="bm-hero__lead">${lead}</p>${navigation}${tiles}</section>`;
 
   let content;
@@ -43,15 +44,18 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
         <script type="application/json" id="benchmark-data">${JSON.stringify(releases).replaceAll('<', '\\u003c')}</script>`
       : `<p class="bm-note">${L('Comparison becomes available when two releases have reports.', 'İki sürümün raporu yayımlandığında karşılaştırma açılır.')}</p>`;
     content = hero(L('Turkish legal retrieval benchmark', 'Türkçe hukuk metinlerinde arama benchmark’ı'),
-      L('Compare how MESA versions find the right passage, or open a version report for test conditions and detailed results.',
+      currentReport ? e(selected.summary[language]) : L('Compare how MESA versions find the right passage, or open a version report for test conditions and detailed results.',
         'MESA sürümlerinin doğru pasajı bulma başarısını karşılaştır. Test koşulları ve ayrıntılı sonuçlar için bir sürüm raporunu aç.'))
-      + section('results', L('Compare results', 'Sonuçları karşılaştır'), results) + method + limits;
+      + section('compare', L('Compare results', 'Sonuçları karşılaştır'), results)
+      + (currentReport ? overview({ releases, suite, language, section, assetBase }) : '') + method + limits;
     content = content.replace('</section>', `${stats(selected, language)}</section>`);
   } else {
     content = hero(L(`MESA ${version} benchmark report`, `MESA ${version} benchmark raporu`),
       e(selected.summary[language]), stats(selected, language))
       + report({ selected, suite, language, section, assetBase }) + method + limits;
   }
+
+  if (currentReport) content += `<p class="bm-note">${L('0.9.3 run: 18 November 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093.', '0.9.3 koşusu: 18 Kasım 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093.')}</p>`;
 
   return `${header}<main id="main-content" class="benchmark-page">${content}${footer}</main>`;
 }
@@ -64,12 +68,13 @@ function stats(release, language) {
     [percent(config.metrics.hit1, language), 'Hit@1', L('Correct passage in the first result', 'Doğru pasaj ilk sırada')],
     [number(config.metrics.mrr, language, 3), 'MRR', L('Ranking of the first correct passage', 'İlk doğru pasajın sırası')]
   ];
-  return `<div class="bm-strip"><div class="bm-strip__items">${tiles.map(([value, label, text]) => `<div class="bm-strip__item">
+  if (release.version === '0.9.3') tiles.push([percent(release.citations.rows.find(row => row.config === release.featured).named, language), L('Citation Hit@5', 'Atıf Hit@5'), L('Explicit citation questions', 'Açık madde atfı soruları')]);
+  return `<div class="bm-strip${release.version === '0.9.3' ? ' bm-strip--four' : ''}"><div class="bm-strip__items">${tiles.map(([value, label, text]) => `<div class="bm-strip__item">
     <p class="bm-strip__value">${value}</p><p class="bm-strip__name">${label}</p><p class="bm-strip__text">${text}</p></div>`).join('')}</div>
     <p class="bm-strip__scope">MESA ${e(release.version)} · ${e(config.label[language])}</p></div>`;
 }
 
-function report({ selected, suite, language, section, assetBase }) {
+function report({ selected, suite, language, section, assetBase, overview = false }) {
   const L = (en, tr) => language === 'tr' ? tr : en;
   const label = id => e(selected.configs.find(row => row.id === id).label[language]);
   const seconds = value => value === null ? '—' : `${number(value, language, 2)} ${L('s', 'sn')}`;
@@ -97,6 +102,7 @@ function report({ selected, suite, language, section, assetBase }) {
   ).join('');
   const date = new Intl.DateTimeFormat(language, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(selected.date));
   const citation = selected.citations;
+  const currentReport = selected.version === '0.9.3';
   return section('results', L('Search results', 'Arama sonuçları'),
     `<p class="bm-note">${date} · ${suite.documents} ${L('documents', 'belge')} · ${suite.answerable} / ${suite.test} ${L('answerable test questions', 'cevaplanabilir test sorusu')}</p>
     ${resultTables}<ul class="bm-footnotes">${selected.notes.map(note => `<li>${e(note[language])}</li>`).join('')}</ul>`)
@@ -106,7 +112,7 @@ function report({ selected, suite, language, section, assetBase }) {
       Object.entries(suite.questionTypes).map(([type, count]) => `<tr><th scope="row">${categoryNames[type]} (${count})</th>
         ${selected.configs.map(row => heat(row.byType[type], percent(row.byType[type], language))).join('')}</tr>`).join('')))
   + (citation ? section('citations', L('Citation questions', 'Atıf soruları'),
-    table(L('Citation questions, Hit@5', 'Atıf sorularında Hit@5'),
+    (currentReport ? `<p class="bm-note">${L('0.9.3 keeps the 0.9.2 result: explicit citation Hit@5 is 100.0% (50/50) for T0, T1b and T2. Natural wording is 97.5% (39/40) for T0 and T1b, and 100.0% (40/40) for T2.', '0.9.3, 0.9.2 sonucunu koruyor: açık madde atfında Hit@5, T0, T1b ve T2 için %100,0 (50/50). Doğal ifadede T0 ve T1b için %97,5 (39/40), T2 için %100,0 (40/40).')}</p>` : '') + table(L('Citation questions, Hit@5', 'Atıf sorularında Hit@5'),
       [configuration, L(`Explicit citation (${citation.namedCount})`, `Açık madde atfı (${citation.namedCount})`),
         L(`Natural wording (${citation.naturalCount})`, `Doğal ifade (${citation.naturalCount})`)],
       citation.rows.map(row => `<tr><th scope="row">${label(row.config)}</th>${cells([
@@ -114,11 +120,45 @@ function report({ selected, suite, language, section, assetBase }) {
       ])}</tr>`).join(''))) : '')
   + (selected.ingest.length ? section('ingest', L('Time until searchable', 'Belgelerin aramaya hazır olma süresi'),
     table(L('Full corpus ingestion', 'Derlemin tamamının içe alınması'), [
-      configuration, L('Total time', 'Toplam süre'), L('Chunks', 'Parça'), L('Hardware', 'Donanım')
+      configuration, L('Total time', 'Toplam süre'), L('Chunks', 'Parça'), ...(currentReport ? [L('Seconds per chunk', 'Parça başına saniye')] : []), L('Hardware', 'Donanım')
     ], selected.ingest.map(row => `<tr><th scope="row">${label(row.config)}</th>${cells([
       `${number(row.minutes, language, 1)} ${L('min', 'dk')}`, number(row.chunks, language, 0),
+      ...(currentReport ? [`${number(Number(row.minutes) * 60 / row.chunks, language, 2)} ${L('s', 'sn')}`] : []),
       e(selected.configs.find(config => config.id === row.config).gpu)
-    ])}</tr>`).join(''))) : '')
+    ])}</tr>`).join('')) + (currentReport ? `<p class="bm-note">${L('0.9.3 batches ingest work; retrieval quality is unchanged.', '0.9.3, içe alma işlerini toplu yürütür; arama kalitesi değişmedi.')}</p>` : '')) : '')
   + section('data', L('Download results', 'Sonuçları indir'),
-    `<a class="text-link" href="${assetBase}benchmark/${selected.version}/metrics.json" download>${L('Report and aggregate metrics (JSON)', 'Rapor ve toplu metrikler (JSON)')} ↓</a>`);
+    `${overview ? selected.downloads.map(version => `<p><a class="text-link" href="${assetBase}benchmark/${version}/metrics.json" download>MESA ${version} · ${L('Report and aggregate metrics (JSON)', 'Rapor ve toplu metrikler (JSON)')} ↓</a></p>`).join('') : `<a class="text-link" href="${assetBase}benchmark/${selected.version}/metrics.json" download>${L('Report and aggregate metrics (JSON)', 'Rapor ve toplu metrikler (JSON)')} ↓</a>`}`);
+}
+
+
+function currentLimitations(language) {
+  return `<p>${language === 'tr'
+    ? 'Sayı, tarih ve esas no sorularında T2 sonucu 0.9.3’te değişmedi: 14/29 = %48,3 Hit@5. Benchmark 50 sonuç ister. 10 sonuç istendiğinde yeniden sıralayıcı 20 aday görür; geliştirme kümesinde Hit@5, %77,7 yerine %75,3 oldu. Bu karşılaştırmada hem aday sayısı hem döndürülen sonuç sayısı değişir.'
+    : 'For number, date and docket questions, the T2 result is unchanged in 0.9.3: 14/29 = 48.3% Hit@5. The benchmark requests 50 results. With a 10-result request the reranker sees 20 candidates; on the dev split Hit@5 was 75.3% instead of 77.7%. This comparison changes both the candidate pool and the number of returned results.'}</p>`;
+}
+
+function overview({ releases, suite, language, section, assetBase }) {
+  const L = (en, tr) => language === 'tr' ? tr : en;
+  const ordered = [...releases].reverse();
+  const latest = ordered.at(-1);
+  const key = (release, id) => `${release.version}-${id}`;
+  const combined = {
+    ...latest,
+    featured: key(latest, latest.featured),
+    configs: ordered.flatMap(release => release.configs.map(row => ({ ...row, id: key(release, row.id),
+      label: { en: `${release.version} · ${row.label.en}`, tr: `${release.version} · ${row.label.tr}` } }))),
+    notes: ordered.flatMap(release => release.notes.map(note => ({ en: `${release.version}: ${note.en}`, tr: `${release.version}: ${note.tr}` }))),
+    ingest: ordered.flatMap(release => release.ingest.map(row => ({ ...row, config: key(release, row.config) }))),
+    citations: { ...latest.citations, rows: ordered.flatMap(release => (release.citations?.rows || []).map(row => ({ ...row, config: key(release, row.config) }))) },
+    downloads: ordered.map(release => release.version)
+  };
+  const chart = ['off', 'embedding', 'reranker'].map((profile, index) => {
+    const title = [L('Models off', 'Modelsiz'), L('BGE-M3 embeddings', 'BGE-M3 gömme modeli'), L('Built-in reranker', 'Yerleşik yeniden sıralayıcı')][index];
+    return `<div class="bm-bars__group"><h3>${title}</h3>${ordered.map((release, i) => {
+      const config = release.configs.find(row => row.profile === profile);
+      return `<div class="bm-bars__row"><span>MESA ${release.version}</span><svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" class="bm-bars__track bm-bars__track--${i}"><rect class="bm-bars__background" width="100" height="10"/>${config ? `<rect width="${Number(config.metrics.hit5) * 100}" height="10"/>` : ''}</svg><span>${config ? percent(config.metrics.hit5, language) : L('Unavailable', 'Ölçüm yok')}</span></div>`;
+    }).join('')}</div>`;
+  }).join('');
+  return section('hit5', L('Hit@5 by configuration', 'Yapılandırmaya göre Hit@5'), `<div class="bm-bars">${chart}</div>`)
+    + report({ selected: combined, suite, language, section, assetBase, overview: true });
 }
