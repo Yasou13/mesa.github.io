@@ -7,7 +7,7 @@ import { benchmarkPage } from '../render_benchmark.mjs';
 
 const catalog = await loadBenchmarkCatalog();
 const [old, current] = catalog.releases;
-assert.deepEqual(catalog.releases.map(release => release.version), ['0.9.0', '0.9.2']);
+assert.deepEqual(catalog.releases.map(release => release.version), ['0.9.0', '0.9.2', '0.9.3']);
 
 const en = comparison(old, current, 'en');
 assert.match(en, /33\.1%/);
