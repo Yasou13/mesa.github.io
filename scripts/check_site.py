@@ -88,6 +88,11 @@ PAGE_REDIRECTS = {page["path"]: page["redirectTo"] for page in json.loads(
 REDIRECT_ROUTES = {prefix + route: prefix + target for prefix in ("", "tr/") for route, target in PAGE_REDIRECTS.items()}
 ROUTES = tuple(route for route in CORE_ROUTES if route not in PAGE_REDIRECTS) + HUB_ROUTES + DOC_ROUTES
 LOCALIZED_ROUTES = ROUTES + tuple(f"tr/{route}" for route in ROUTES)
+NOINDEX_ROUTES = {
+    prefix + route
+    for prefix in ("", "tr/")
+    for route in ("account/", "account/reset-password/", "account/new-password/")
+}
 FORBIDDEN = ("href=\"#\"", "href=''", 'href=""', "javascript:void")
 
 
@@ -343,7 +348,11 @@ def main() -> int:
             errors.append(f"incomplete social/canonical metadata: {relative}")
         if not is_exempt and parsed.canonical != parsed.og_url:
             errors.append(f"canonical/og:url mismatch: {relative}")
-        if str(relative).removesuffix("index.html") in LOCALIZED_ROUTES and parsed.robots & {"noindex", "none", "nosnippet"}:
+        route_key = str(relative).removesuffix("index.html")
+        if route_key in NOINDEX_ROUTES:
+            if "noindex" not in parsed.robots:
+                errors.append(f"private account page must be noindex: {relative}")
+        elif route_key in LOCALIZED_ROUTES and parsed.robots & {"noindex", "none", "nosnippet"}:
             errors.append(f"public page has restrictive robots metadata: {relative}")
         if not is_exempt and parsed.og_image != parsed.twitter_image:
             errors.append(f"Open Graph/Twitter image mismatch: {relative}")
@@ -588,6 +597,7 @@ def main() -> int:
     home_parser = parsed_pages.get((root / "index.html").resolve())
     if home_parser and home_parser.canonical:
         site_url = home_parser.canonical
+        indexable_routes = tuple(route for route in localized_routes if route not in NOINDEX_ROUTES)
         sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
         try:
             sitemap_root = ET.fromstring(sitemap)
@@ -595,12 +605,12 @@ def main() -> int:
             if sitemap_root.tag != f"{namespace}urlset":
                 errors.append("sitemap root is not a sitemap.org urlset")
             urls = [node.text for node in sitemap_root.findall(f"{namespace}url/{namespace}loc")]
-            expected_urls = {f"{site_url}{route}" for route in localized_routes}
+            expected_urls = {f"{site_url}{route}" for route in indexable_routes}
             if len(urls) != len(set(urls)) or set(urls) != expected_urls:
                 errors.append("sitemap must contain exactly the public canonical URLs without duplicates")
         except ET.ParseError:
             errors.append("sitemap is not valid XML")
-        for route in localized_routes:
+        for route in indexable_routes:
             expected = f"<loc>{site_url}{route}</loc>"
             if expected not in sitemap:
                 errors.append(f"sitemap missing route: /{route}")

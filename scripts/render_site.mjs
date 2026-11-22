@@ -1160,6 +1160,8 @@ function getStartedPage() {
   });
 }
 
+const NOINDEX_PAGES = new Set(['account', 'accountReset', 'accountNewPassword']);
+
 const renderers = {
   home,
   getStarted: getStartedPage,
@@ -1516,6 +1518,7 @@ for (const language of ['en', 'tr']) {
       content: wayfinding(key, language, content),
       language,
       alternateUrls: { en: `${siteUrl}${metadata.path}`, tr: `${siteUrl}tr/${metadata.path}` },
+      noIndex: NOINDEX_PAGES.has(key),
       assetBase: relativeBase(localizedPath)
     }));
   }
@@ -1707,6 +1710,9 @@ for (const { path: routePath, release } of benchmarkRoutes) {
   fs.writeFileSync(path.join(outputDirectory, routePath, 'metrics.json'), JSON.stringify(data, null, 2) + '\n');
 }
 
+// Private account steps stay crawlable so search engines can read their noindex tag.
+const noIndexPaths = new Set([...NOINDEX_PAGES].map(key => siteData.pages[key].path));
+
 const allPublicRoutes = [
   ...Object.values(siteData.pages).filter(page => !page.redirectTo),
   ...hubRoutes.map(({ path: routePath }) => ({ path: routePath })),
@@ -1721,6 +1727,7 @@ for (const language of ['en', 'tr']) {
 }
 
 const sitemapEntries = allPublicRoutes
+  .filter(({ path: routePath }) => !noIndexPaths.has(routePath))
   .flatMap(({ path: routePath }) => [routePath, `tr/${routePath}`].map((localizedPath) => `  <url>
     <loc>${siteUrl}${localizedPath}</loc>
     <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}${routePath}" />

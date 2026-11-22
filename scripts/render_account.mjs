@@ -27,9 +27,11 @@ export function accountPage({ header, footer, language, base, providers, mode = 
 
   const consent = `<fieldset class="account-consents">
       <legend class="sr-only">${L('Agreements', 'Onaylar')}</legend>
+      <p class="account-muted account-consent-notice">${L(`How your account data is processed is explained in the <a href="${href('legal/kvkk/')}">KVKK Information Notice</a> and <a href="${href('privacy/')}">Privacy Policy</a>.`,
+        `Hesap verilerinin nasıl işlendiği <a href="${href('legal/kvkk/')}">KVKK Aydınlatma Metni</a> ve <a href="${href('privacy/')}">Gizlilik Politikası</a>’nda açıklanır.`)}</p>
       <label class="account-check"><input type="checkbox" name="terms" id="account-terms" required>
-        <span>${L(`I accept the <a href="${href('legal/terms/')}">Terms of Use</a> and have read the <a href="${href('legal/kvkk/')}">KVKK Information Notice</a> and <a href="${href('privacy/')}">Privacy Policy</a>.`,
-          `<a href="${href('legal/terms/')}">Kullanım Koşulları</a>’nı kabul ediyorum; <a href="${href('legal/kvkk/')}">KVKK Aydınlatma Metni</a>’ni ve <a href="${href('privacy/')}">Gizlilik Politikası</a>’nı okudum.`)}</span></label>
+        <span>${L(`I accept the <a href="${href('legal/terms/')}">Terms of Use</a>.`,
+          `<a href="${href('legal/terms/')}">Kullanım Koşulları</a>’nı kabul ediyorum.`)}</span></label>
       <p id="account-terms-error" class="account-consent-error" role="alert" hidden></p>
       <label class="account-check"><input type="checkbox" name="marketing" id="account-marketing">
         <span>${L(`Optional: send me MESA news and product updates by email, as described in the <a href="${href('legal/commercial-messages/')}">commercial message consent</a>. I can opt out at any time.`,
@@ -59,7 +61,7 @@ export function accountPage({ header, footer, language, base, providers, mode = 
       ${social.length ? `${email ? `<p class="account-divider">${L('or', 'veya')}</p>` : ''}<div class="account-providers">
         ${social.includes('google') ? `<button class="account-provider account-provider--google" type="button" data-provider="google"><span class="account-google-mark" aria-hidden="true"></span>${L('Sign up with Google', 'Google ile kayıt ol')}</button>` : ''}
         ${social.includes('github') ? `<button class="account-provider account-provider--github" type="button" data-provider="github">${navigationIcon('github')}${L('Sign up with GitHub', 'GitHub ile kayıt ol')}</button>` : ''}
-      </div><p class="account-muted account-small">${L('Google and GitHub sign-up also need the first box above.', 'Google ve GitHub ile kayıtta da yukarıdaki ilk kutunun işaretlenmesi gerekir.')}</p>` : ''}
+      </div><p class="account-muted account-small">${L('Google and GitHub sign-up also require accepting the Terms of Use above.', 'Google ve GitHub ile kayıtta da yukarıdaki Kullanım Koşulları kutusunun işaretlenmesi gerekir.')}</p>` : ''}
       <p class="account-alt">${L('Already have an account?', 'Zaten hesabın var mı?')} <a href="${href('account/sign-in/')}">${L('Sign in', 'Giriş yap')}</a></p>`,
     reset: `<form id="account-form" method="post" novalidate>
         <label for="account-email-input">${L('Email', 'E-posta')}</label>
