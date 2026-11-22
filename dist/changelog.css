@@ -1,0 +1,24 @@
+.changelog-page .changelog-actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 18px; }
+.changelog-page .changelog-actions a, .changelog-links a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.changelog-list { max-width: 1040px; margin: 0 auto; }
+.changelog-notice { margin: 0 0 16px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--muted); font-size: 14px; }
+.changelog-release { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 110px; }
+.changelog-release:last-child { border-bottom: 0; }
+.changelog-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 14px; }
+.changelog-latest { padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; }
+.changelog-body h2 { margin: 0 0 10px; font-size: 30px; line-height: 1.15; }
+.changelog-body h2 a { color: inherit; text-decoration: none; }
+.changelog-body h2 a:hover { color: var(--accent); }
+.changelog-summary { margin: 0 0 22px; color: var(--ink); font-size: 18px; line-height: 1.5; }
+.changelog-group { margin: 0 0 20px; }
+.changelog-group h3 { margin: 0 0 8px; color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.changelog-group--limits h3 { color: var(--muted); }
+.changelog-group ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
+.changelog-group li + li { margin-top: 6px; }
+.changelog-links { display: flex; flex-wrap: wrap; gap: 18px; margin: 4px 0 0; font-size: 14px; }
+@media (max-width: 720px) {
+  .changelog-release { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 30px 0; }
+  .changelog-meta { flex-direction: row; align-items: center; }
+  .changelog-body h2 { font-size: 26px; }
+  .changelog-summary { font-size: 16px; }
+}

@@ -30,6 +30,7 @@ CORE_ROUTES = (
     "docs/",
     "docs/mcp/",
     "status/",
+    "changelog/",
     "about/",
     "faq/",
     "early-access/",

@@ -15,6 +15,7 @@ import { legalPage } from './render_legal.mjs';
 import { benchmarkPage } from './render_benchmark.mjs';
 import { benchmarkResearchPage } from './render_benchmark_research.mjs';
 import { accountPage } from './render_account.mjs';
+import { changelogFeed, changelogPage } from './render_changelog.mjs';
 import { loadBenchmarkCatalog } from './benchmark_data.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
@@ -47,6 +48,7 @@ let assetBase = './';
 let currentLanguage = 'en';
 let currentPage = siteData.pages.home;
 let alternateHref = './tr/';
+const changelogData = JSON.parse(fs.readFileSync(new URL('../content/changelog.json', import.meta.url), 'utf8'));
 const assetVersion = (filename) => crypto
   .createHash('sha256')
   .update(fs.readFileSync(path.join(repositoryRoot, 'dist', filename)))
@@ -63,6 +65,7 @@ const assetVersions = {
   docs: assetVersion('docs.css'),
   docsJs: assetVersion('docs.js'),
   accountCss: assetVersion('account.css'),
+  changelogCss: assetVersion('changelog.css'),
   benchmarkCss: assetVersion('benchmark.css'),
   benchmarkJs: assetVersion('benchmark.js'),
   benchmarkResearchJs: assetVersion('benchmark-research.js'),
@@ -174,8 +177,8 @@ function languageControl() {
 
 // Top navigation: three groups with one-line descriptions, two direct links and one action.
 // Pages reached from a dropdown are marked there, so the header always shows where you are.
-const NAV_ACTIVE_PATH = { start: 'get-started/', how: 'how-it-works/', architecture: 'architecture/', ecosystem: 'ecosystem/', law: 'law/' };
-const NAV_GROUP_OF = { how: 'product', architecture: 'product', ecosystem: 'product', certification: 'product', law: 'product', start: 'developers', resources: 'learn' };
+const NAV_ACTIVE_PATH = { start: 'get-started/', how: 'how-it-works/', architecture: 'architecture/', ecosystem: 'ecosystem/', law: 'law/', changelog: 'changelog/' };
+const NAV_GROUP_OF = { how: 'product', architecture: 'product', ecosystem: 'product', certification: 'product', law: 'product', start: 'developers', resources: 'learn', changelog: 'learn' };
 const chevron = '<svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg>';
 
 function navGroups() {
@@ -200,6 +203,7 @@ function navGroups() {
       ['guides/', chrome('Guides', 'Rehberler')],
       ['glossary/', chrome('Glossary', 'Sözlük')],
       ['faq/', chrome('FAQ', 'SSS')],
+      ['changelog/', chrome('Changelog', 'Değişiklik günlüğü')],
       ['resources/', chrome('All resources', 'Tüm kaynaklar')]
     ]]
   ];
@@ -252,7 +256,7 @@ function footer() {
         ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data'), link('benchmark/', 'Benchmark')])}
         ${group(chrome('Developers', 'Geliştiriciler'), [link('get-started/', chrome('Quickstart', 'Hızlı başlangıç')), link('docs/', chrome('Documentation', 'Dokümantasyon')), link('docs/core/cli-reference/', 'MESA CLI'), link('docs/core/api-reference/', chrome('API reference', 'API referansı')), link('docs/core/examples/', 'Python SDK'), link('docs/mcp/', 'MCP'), link('docs/core/security/', chrome('Security', 'Güvenlik'))])}
         ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
-        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('account/', chrome('My account', 'Hesabım')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
+        ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('changelog/', chrome('Changelog', 'Değişiklik günlüğü')), link('account/', chrome('My account', 'Hesabım')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
       </div>
       <nav class="footer-legal" aria-label="${chrome('Legal', 'Yasal')}">${[['privacy/', chrome('Privacy Policy', 'Gizlilik Politikası')], ['legal/kvkk/', chrome('KVKK Notice', 'KVKK Aydınlatma Metni')], ['legal/cookies/', chrome('Cookie Policy', 'Çerez Politikası')], ['legal/terms/', chrome('Terms of Use', 'Kullanım Koşulları')], ['legal/commercial-messages/', chrome('Commercial Messages', 'Ticari İleti Onayı')]].map(([path, label]) => link(path, label)).join('')}</nav>
       <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.3', 'Belgeler Core v0.9.3 ile uyumlu')}</span></div>
@@ -1175,6 +1179,10 @@ const renderers = {
   docs: docsPage,
   mcp: mcpPage,
   status: statusPage,
+  changelog: () => changelogPage({
+    header: hubChrome(header('changelog')), footer: hubChrome(footer()),
+    language: currentLanguage, base, changelog: changelogData, coreRepo: repos.core
+  }),
   about: aboutPage,
   faq: faqPage,
   benchmark: () => renderBenchmark(),
@@ -1259,7 +1267,8 @@ const WAY_PAGES = {
   about: ['project', 'About', 'Hakkında'],
   faq: ['learn', 'FAQ', 'SSS'],
   privacy: ['project', 'Privacy', 'Gizlilik'],
-  earlyAccess: ['project', 'Early access', 'Erken erişim']
+  earlyAccess: ['project', 'Early access', 'Erken erişim'],
+  changelog: ['project', 'Changelog', 'Değişiklik günlüğü']
 };
 const WAY_NEXT = {
   start: ['get-started/', 'Try it on your computer', 'Bilgisayarınızda deneyin', 'Install, start and run your first search.', 'Kurun, başlatın ve ilk aramanızı yapın.'],
@@ -1282,7 +1291,8 @@ const WAY_FLOW = {
   architecture: ['retrieval', 'start'], retrieval: ['api', 'start'], ecosystem: ['start', 'law'],
   data: ['law', 'ecosystem'], law: ['data', 'status'], qa: ['certification', 'evaluation'],
   certification: ['evaluation', 'status'], evaluation: ['status', 'qa'], status: ['start', 'faq'],
-  privacy: ['about', 'access'], earlyAccess: ['start', 'about'], benchmark: ['retrieval', 'status']
+  privacy: ['about', 'access'], earlyAccess: ['start', 'about'], benchmark: ['retrieval', 'status'],
+  changelog: ['status', 'start']
 };
 
 function wayfinding(key, language, content) {
@@ -1393,7 +1403,7 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
 ${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') || content.includes('id="research-request"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
-${content.includes('class="account-page"') ? `  <link rel="stylesheet" href="${assetBase}account.css?v=${assetVersions.accountCss}">\n` : ''}${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
+${content.includes('class="changelog-page"') ? `  <link rel="stylesheet" href="${assetBase}changelog.css?v=${assetVersions.changelogCss}">\n  <link rel="alternate" type="application/rss+xml" title="${language === 'tr' ? 'MESA Değişiklik Günlüğü' : 'MESA Changelog'}" href="${siteUrl}${language === 'tr' ? 'tr/' : ''}changelog/feed.xml">\n` : ''}${content.includes('class="account-page"') ? `  <link rel="stylesheet" href="${assetBase}account.css?v=${assetVersions.accountCss}">\n` : ''}${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
@@ -1492,7 +1502,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account', 'accountSignIn', 'accountSignUp', 'accountReset', 'accountNewPassword', 'privacy', 'kvkk', 'cookies', 'terms', 'commercialMessages'].includes(key);
+    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account', 'accountSignIn', 'accountSignUp', 'accountReset', 'accountNewPassword', 'privacy', 'kvkk', 'cookies', 'terms', 'commercialMessages', 'changelog'].includes(key);
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');
@@ -1701,6 +1711,12 @@ const allPublicRoutes = [
   ...docRoutes.map(({ path: routePath }) => ({ path: routePath })),
   ...benchmarkRoutes
 ];
+
+for (const language of ['en', 'tr']) {
+  const directory = path.join(outputDirectory, language === 'tr' ? 'tr' : '', 'changelog');
+  fs.mkdirSync(directory, { recursive: true });
+  fs.writeFileSync(path.join(directory, 'feed.xml'), changelogFeed({ language, siteUrl, changelog: changelogData, coreRepo: repos.core }));
+}
 
 const sitemapEntries = allPublicRoutes
   .flatMap(({ path: routePath }) => [routePath, `tr/${routePath}`].map((localizedPath) => `  <url>

@@ -52,6 +52,7 @@
       "title": "MESA’nın Güncel Durumu — Sürümler ve Doğrulamalar",
       "description": "Yayımlanan Core sürümü, sertifikasyonda bekleyen adımlar ve canlı kullanım için tamamlanması gereken testler."
     },
+    "changelog": {"title": "MESA Değişiklik Günlüğü — Her Sürümde Neler Değişti", "description": "Her MESA Core sürümündeki önemli değişiklikler, yükseltme notları, ölçülen sonuçlar ve bilinen sınırlar."},
     "about": {
       "title": "MESA Hakkında — Neden Geliştiriliyor?",
       "description": "MESA’nın amacını, projelerin nasıl sürdürüldüğünü, kaynak kodunu ve geliştiriciye ulaşmanın yollarını öğrenin."
