@@ -30,6 +30,7 @@ export function accountPage({ header, footer, language, base, providers, mode = 
       <label class="account-check"><input type="checkbox" name="terms" id="account-terms" required>
         <span>${L(`I accept the <a href="${href('legal/terms/')}">Terms of Use</a> and have read the <a href="${href('legal/kvkk/')}">KVKK Information Notice</a> and <a href="${href('privacy/')}">Privacy Policy</a>.`,
           `<a href="${href('legal/terms/')}">Kullanım Koşulları</a>’nı kabul ediyorum; <a href="${href('legal/kvkk/')}">KVKK Aydınlatma Metni</a>’ni ve <a href="${href('privacy/')}">Gizlilik Politikası</a>’nı okudum.`)}</span></label>
+      <p id="account-terms-error" class="account-consent-error" role="alert" hidden></p>
       <label class="account-check"><input type="checkbox" name="marketing" id="account-marketing">
         <span>${L(`Optional: send me MESA news and product updates by email, as described in the <a href="${href('legal/commercial-messages/')}">commercial message consent</a>. I can opt out at any time.`,
           `İsteğe bağlı: <a href="${href('legal/commercial-messages/')}">Ticari Elektronik İleti Onay Metni</a> kapsamında MESA haberleri ve ürün güncellemeleri e-postayla gönderilsin. Dilediğim zaman vazgeçebilirim.`)}</span></label>

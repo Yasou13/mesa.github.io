@@ -140,15 +140,36 @@ for (const button of downloads?.querySelectorAll('button[data-tier]') ?? []) {
   });
 }
 
+// ---- Terms checkbox ---------------------------------------------------------------
+// The error sits beside the checkbox: the status line at the top of the card can be
+// off-screen or under the fixed header by the time the visitor reaches these buttons.
+const termsBox = panel.querySelector('#account-terms');
+const termsError = panel.querySelector('#account-terms-error');
+
+function termsAccepted(message) {
+  if (!termsBox || termsBox.checked) return true;
+  termsError.textContent = message;
+  termsError.hidden = false;
+  termsBox.setAttribute('aria-invalid', 'true');
+  termsBox.setAttribute('aria-describedby', termsError.id);
+  termsBox.focus({ preventScroll: true });
+  termsBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  return false;
+}
+
+termsBox?.addEventListener('change', () => {
+  if (!termsBox.checked) return;
+  termsError.hidden = true;
+  termsError.textContent = '';
+  termsBox.removeAttribute('aria-invalid');
+  termsBox.removeAttribute('aria-describedby');
+});
+
 // ---- Sign in / sign up with Google or GitHub ------------------------------------
 for (const button of panel.querySelectorAll('button[data-provider]')) {
   button.addEventListener('click', async () => {
-    const terms = document.querySelector('#account-terms');
-    if (terms && !terms.checked) {
-      say(L('Accept the Terms of Use to continue.', 'Devam etmek için Kullanım Koşulları’nı kabul et.'));
-      terms.focus();
-      return;
-    }
+    const terms = termsBox;
+    if (!termsAccepted(L('Accept the Terms of Use to continue.', 'Devam etmek için Kullanım Koşulları’nı kabul et.'))) return;
     if (terms) {
       // Saved until the first signed-in page load, then written to the account.
       localStorage.setItem(pendingConsentKey, JSON.stringify(consentRecord(document.querySelector('#account-marketing')?.checked)));
@@ -185,10 +206,7 @@ form?.addEventListener('submit', async event => {
     const problem = matchPasswords();
     if (problem) { say(problem); return; }
   }
-  if (mode === 'sign-up' && !form.elements.terms.checked) {
-    say(L('Accept the Terms of Use to create an account.', 'Hesap oluşturmak için Kullanım Koşulları’nı kabul et.'));
-    return;
-  }
+  if (mode === 'sign-up' && !termsAccepted(L('Accept the Terms of Use to create an account.', 'Hesap oluşturmak için Kullanım Koşulları’nı kabul et.'))) return;
   setBusy(true);
   try {
     if (mode === 'sign-in') {

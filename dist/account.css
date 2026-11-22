@@ -14,6 +14,9 @@
 .account-card-title { margin: 0 0 16px; font-size: 21px; }
 .account-status:empty { display: none; }
 .account-status { margin: 0 0 16px; color: var(--muted); }
+.account-card .account-consent-error { margin: 0 0 0 30px; color: var(--accent); font-size: 14px; font-weight: 600; line-height: 1.45; }
+.account-card .account-consent-error[hidden] { display: none; }
+.account-card .account-check input[aria-invalid="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
 .account-providers { display: grid; gap: 10px; }
 .account-provider {
   display: grid;
