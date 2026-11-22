@@ -1,0 +1,47 @@
+@namespace xhtml url("http://www.w3.org/1999/xhtml");
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("fonts/instrument-sans-variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+rss {
+  display: block;
+  min-height: 100vh;
+  padding: 64px 16px;
+  background: #030303;
+  color: #ededef;
+  font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+channel { display: block; max-width: 820px; margin: 0 auto; }
+item { display: block; border-top: 1px solid rgba(255, 255, 255, .1); }
+channel > *:not(item):not(xhtml|header):not(xhtml|script), item > *:not(xhtml|article), xhtml|script { display: none; }
+
+xhtml|header { display: block; padding-bottom: 40px; }
+xhtml|h1 { margin: 0 0 14px; font-size: 48px; line-height: 1.05; letter-spacing: -.03em; }
+xhtml|p { margin: 0; color: #a8acb5; }
+xhtml|a { color: #e3b57a; text-underline-offset: 3px; }
+.feed-eyebrow { margin-bottom: 12px; color: #e3b57a; font-size: 12px; font-weight: 600; letter-spacing: .18em; }
+.feed-address { display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; padding: 10px 10px 10px 16px; border: 1px solid rgba(255, 255, 255, .16); border-radius: 12px; background: #16191e; }
+xhtml|code { flex: 1; min-width: 0; color: #ededef; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 14px; overflow-wrap: anywhere; user-select: all; }
+xhtml|button { flex: none; min-height: 40px; padding: 0 18px; border: 0; border-radius: 999px; background: #e3b57a; color: #121418; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+xhtml|button[hidden] { display: none; }
+xhtml|button:hover { background: #f0c890; }
+xhtml|button:focus-visible, xhtml|a:focus-visible { outline: 2px solid #e3b57a; outline-offset: 3px; }
+
+.feed-release { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 26px 0; }
+xhtml|time { color: #a8acb5; font-size: 14px; }
+xhtml|h2 { margin: 0 0 6px; font-size: 24px; line-height: 1.2; }
+xhtml|h2 xhtml|a { color: #ededef; text-decoration: none; }
+xhtml|h2 xhtml|a:hover { color: #e3b57a; }
+
+@media (max-width: 620px) {
+  rss { padding: 36px 16px; }
+  xhtml|h1 { font-size: 36px; }
+  .feed-address { flex-direction: column; align-items: stretch; padding: 14px; }
+  .feed-release { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+}

@@ -66,6 +66,8 @@ const assetVersions = {
   docsJs: assetVersion('docs.js'),
   accountCss: assetVersion('account.css'),
   changelogCss: assetVersion('changelog.css'),
+  changelogFeedCss: assetVersion('changelog-feed.css'),
+  changelogFeedJs: assetVersion('changelog-feed.js'),
   benchmarkCss: assetVersion('benchmark.css'),
   benchmarkJs: assetVersion('benchmark.js'),
   benchmarkResearchJs: assetVersion('benchmark-research.js'),
@@ -1715,7 +1717,7 @@ const allPublicRoutes = [
 for (const language of ['en', 'tr']) {
   const directory = path.join(outputDirectory, language === 'tr' ? 'tr' : '', 'changelog');
   fs.mkdirSync(directory, { recursive: true });
-  fs.writeFileSync(path.join(directory, 'feed.xml'), changelogFeed({ language, siteUrl, changelog: changelogData, coreRepo: repos.core }));
+  fs.writeFileSync(path.join(directory, 'feed.xml'), changelogFeed({ language, siteUrl, changelog: changelogData, coreRepo: repos.core, cssVersion: assetVersions.changelogFeedCss, jsVersion: assetVersions.changelogFeedJs }));
 }
 
 const sitemapEntries = allPublicRoutes

@@ -33,5 +33,7 @@ test('page and feed render every release', () => {
       assert.ok(page.includes(`>v${version}</a>`));
       assert.ok(feed.includes(`<title>MESA v${version}</title>`));
     }
+    assert.match(feed, /<\?xml-stylesheet type="text\/css" href="(\.\.\/)+changelog-feed\.css/);
+    assert.doesNotMatch(feed, /text\/xsl/);
   }
 });
