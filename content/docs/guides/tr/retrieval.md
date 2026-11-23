@@ -1,6 +1,6 @@
 ## Dört arama kanalı farklı ipuçları kullanır
 
-Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaştırır. BM25, FTS5 üzerinden pasaj ve kanıt metnini sözcüklerle arar; erişim kapsamındaki atıfları da kullanır. Bilgi kaydı kanalı özne, ilişki, nesne ve dayanağı değerlendirir. Çizge kanalı ise kaynakları belli olan sınırlı bağlantı yollarını bulur. Bir kaydın sahipliği ve erişime uygunluğu, sıralamaya katkı vermesinden önce denetlenir.
+Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaştırır. BM25, FTS5 üzerinden pasaj ve kanıt metnini sözcüklerle arar; erişim kapsamındaki atıfları da kullanır. Bilgi kaydı kanalı özne, ilişki, nesne ve dayanağı değerlendirir. Çizge kanalı ise kaynakları belli olan sınırlı bağlantı yollarını bulur. Varsayılan yolda vektör ve BM25 çalışır; bilgi kaydı ve çizge yalnızca siz açtığınızda katkı verir. Bir kaydın sahipliği ve erişime uygunluğu, sıralamaya katkı vermesinden önce denetlenir.
 
 ## RRF sıralamaları birleştirir; olasılık hesaplamaz
 

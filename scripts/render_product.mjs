@@ -90,7 +90,7 @@ ${header('architecture')}
   </section>
 
   <section class="section">
-    ${title('Four lanes, four useful questions.', 'Dört kanal, dört yararlı soru.')}
+    ${title('Four lanes, two on by default.', 'Dört kanal, ikisi varsayılan olarak açık.')}
     <div class="editorial-rows">
       ${row(
         t('Vector · semantic similarity', 'Vektör · anlamsal benzerlik'),
@@ -195,7 +195,7 @@ export function documentationJourney(route) {
   const journeyItems = [
     ['docs/core/getting-started/', 'Run locally', 'Yerelde çalıştırın', 'Model-disabled startup health check', 'Model kapalı başlangıç sağlık kontrolü'],
     ['architecture/', 'Understand the system', 'Sistemi anlayın', 'Canonical ownership and projections', 'Kanonik sahiplik ve projeksiyonlar'],
-    ['retrieval/', 'Follow the evidence', 'Kanıtı izleyin', 'Four lanes, fusion and bounded context', 'Dört kanal, birleştirme ve sınırlı bağlam'],
+    ['retrieval/', 'Follow the evidence', 'Kanıtı izleyin', 'Search lanes, fusion and bounded context', 'Arama kanalları, birleştirme ve sınırlı bağlam'],
     ['docs/core/examples/', 'Integrate V4', 'V4 entegre edin', 'SDK workflow and terminal state', 'SDK iş akışı ve terminal durum'],
     ['docs/core/operations/', 'Operate and recover', 'İşletin ve kurtarın', 'Readiness, backup and migration', 'Readiness, yedekleme ve migration']
   ];

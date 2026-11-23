@@ -10,7 +10,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/catalog/workspaces
 
-**Create Workspace** · `X-API-Key` gerekir.
+**Çalışma alanı oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4WorkspaceRequest`
 
@@ -30,12 +30,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /v4/catalog/workspaces
 
-**List Workspaces** · `X-API-Key` gerekir.
+**Çalışma alanlarını listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -45,12 +45,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/catalog/datasets
 
-**Create Dataset** · `X-API-Key` gerekir.
+**Veri kümesi oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4DatasetRequest`
 
@@ -73,12 +73,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /v4/catalog/datasets
 
-**List Datasets** · `X-API-Key` gerekir.
+**Veri kümelerini listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -89,12 +89,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/catalog/documents
 
-**Create Document** · `X-API-Key` gerekir.
+**Belge oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4DocumentRequest`
 
@@ -119,12 +119,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /v4/catalog/documents
 
-**List Documents** · `X-API-Key` gerekir.
+**Belgeleri listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -136,12 +136,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/catalog/revisions
 
-**Create Revision** · `X-API-Key` gerekir.
+**Revizyon oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4RevisionRequest`
 
@@ -170,12 +170,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /v4/catalog/revisions
 
-**List Revisions** · `X-API-Key` gerekir.
+**Revizyonları listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -188,12 +188,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/catalog/source-chunks
 
-**Create Source Chunk** · `X-API-Key` gerekir.
+**Kaynak parçası oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4SourceChunkRequest`
 
@@ -230,12 +230,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### DELETE /v4/catalog/documents/{document_id}
 
-**Purge Document** · `X-API-Key` gerekir.
+**Belgeyi kalıcı olarak sil** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -248,12 +248,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/sessions/start
 
-**Start Session** · `X-API-Key` gerekir.
+**Oturum başlat** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4SessionStartRequest`
 
@@ -277,16 +277,16 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /v4/capability
 
-**Get Capability** · `X-API-Key` gerekir.
+**Yetenekleri getir** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response · `V4CapabilityResponse`
+- `200` Başarılı yanıt · `V4CapabilityResponse`
 
 *Örnek*
 
@@ -320,7 +320,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/operations/rebuild
 
-**Create Rebuild Operation** · `X-API-Key` gerekir.
+**Yeniden oluşturma işlemi başlat** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -330,8 +330,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response · `V4OperationResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt · `V4OperationResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -351,7 +351,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### GET /v4/operations/{operation_id}
 
-**Get Rebuild Operation** · `X-API-Key` gerekir.
+**Yeniden oluşturma işlemini getir** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -361,8 +361,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response · `V4OperationResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt · `V4OperationResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -382,7 +382,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/operations/{operation_id}/cancel
 
-**Cancel Rebuild Operation** · `X-API-Key` gerekir.
+**Yeniden oluşturma işlemini iptal et** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -392,8 +392,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response · `V4OperationResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt · `V4OperationResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -413,7 +413,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/operations/{operation_id}/retry
 
-**Retry Rebuild Operation** · `X-API-Key` gerekir.
+**Yeniden oluşturma işlemini yeniden dene** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -423,8 +423,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response · `V4OperationResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt · `V4OperationResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -444,7 +444,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/rebuild
 
-**Rebuild Index** · `X-API-Key` gerekir.
+**Dizini yeniden oluştur** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -457,8 +457,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response · `V4OperationResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt · `V4OperationResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -478,7 +478,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/memory/insert
 
-**Insert Memory** · `X-API-Key` gerekir.
+**Hafızaya kayıt ekle** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4MemoryInsertRequest`
 
@@ -516,12 +516,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/documents
 
-**Ingest Document** · `X-API-Key` gerekir.
+**Belge yükle** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4DocumentIngestRequest`
 
@@ -548,8 +548,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response · `V4DocumentIngestResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt · `V4DocumentIngestResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -568,7 +568,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/memory/search
 
-**Search Memory** · `X-API-Key` gerekir.
+**Hafızada ara** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `V4SearchRequest`
 
@@ -589,12 +589,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 | `valid_at` | string \| null | hayır |  |
 | `valid_from` | string \| null | hayır |  |
 | `valid_to` | string \| null | hayır |  |
-| `graph_mode` | enabled · disabled | hayır | Enable or disable only the graph retrieval lane for matched ablation. |
+| `graph_mode` | enabled · disabled | hayır | Eşleştirilmiş karşılaştırma için yalnızca çizge arama kanalını açar veya kapatır. |
 
 **Yanıtlar**
 
-- `200` Successful Response · `V4SearchResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt · `V4SearchResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -629,7 +629,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### GET /v4/mutations/{mutation_id}
 
-**Mutation Status** · `X-API-Key` gerekir.
+**Değişiklik durumu** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -639,8 +639,8 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response · `V4MutationStatusResponse`
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt · `V4MutationStatusResponse`
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 *Örnek*
 
@@ -657,7 +657,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 ### POST /v4/mutations/{mutation_id}/rollback
 
-**Rollback Mutation** · `X-API-Key` gerekir.
+**Değişikliği geri al** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -667,12 +667,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/mutations/{mutation_id}/replay
 
-**Replay Mutation** · `X-API-Key` gerekir.
+**Değişikliği yeniden oynat** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -682,12 +682,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `202` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `202` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /v4/sessions/{session_id}/context
 
-**Get Context** · `X-API-Key` gerekir.
+**Bağlamı getir** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -704,12 +704,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /v4/sessions/{session_id}/end
 
-**End Session** · `X-API-Key` gerekir.
+**Oturumu bitir** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -719,48 +719,48 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ## Sağlık ve metrikler
 
 ### GET /health/init
 
-**Health Init** · API anahtarı gerekmez.
+**İlk kurulum sağlık durumu** · API anahtarı gerekmez.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt
 
 ### GET /health
 
-**Health** · `X-API-Key` gerekir.
+**Sağlık durumu** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt
 
 ### GET /metrics
 
-**Metrics** · `X-API-Key` gerekir.
+**Metrikler** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt
 
 ## MCP kontrol düzlemi
 
 ### GET /control/mcp/clients
 
-**List Clients** · `X-API-Key` gerekir.
+**İstemcileri listele** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt
 
 ### POST /control/mcp/clients
 
-**Create Client** · `X-API-Key` gerekir.
+**İstemci oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `ClientCreateReq`
 
@@ -783,12 +783,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/clients/{client_id}
 
-**Get Client** · `X-API-Key` gerekir.
+**İstemciyi getir** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -798,12 +798,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/connections
 
-**List Connections** · `X-API-Key` gerekir.
+**Bağlantıları listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -813,20 +813,20 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/settings
 
-**Get Settings** · `X-API-Key` gerekir.
+**Ayarları getir** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt
 
 ### POST /control/mcp/settings
 
-**Update Setting** · `X-API-Key` gerekir.
+**Ayarı güncelle** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -837,12 +837,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /control/mcp/policies
 
-**Create Policy** · `X-API-Key` gerekir.
+**Politika oluştur** · `X-API-Key` gerekir.
 
 **İstek gövdesi** · `PolicyCreateReq`
 
@@ -869,12 +869,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `201` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `201` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/policies
 
-**List Policies** · `X-API-Key` gerekir.
+**Politikaları listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -884,12 +884,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### PUT /control/mcp/clients/{client_id}/enabled
 
-**Toggle Client Enabled** · `X-API-Key` gerekir.
+**İstemciyi aç veya kapat** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -900,12 +900,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/clients/{client_id}/bindings
 
-**List Bindings** · `X-API-Key` gerekir.
+**Bağlamaları listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -915,20 +915,20 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/managed-clients
 
-**List Managed Clients** · `X-API-Key` gerekir.
+**Yönetilen istemcileri listele** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt
 
 ### POST /control/mcp/credentials/{credential_id}/revoke
 
-**Revoke Managed Credential** · `X-API-Key` gerekir.
+**Yönetilen kimlik bilgisini iptal et** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -938,12 +938,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/activity
 
-**List Activity** · `X-API-Key` gerekir.
+**Etkinlikleri listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -956,12 +956,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/activity/{call_id}
 
-**Get Activity Call** · `X-API-Key` gerekir.
+**Etkinlik çağrısını getir** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -971,12 +971,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/approvals
 
-**List Approvals** · `X-API-Key` gerekir.
+**Onayları listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -988,12 +988,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/approvals/pending
 
-**List Pending Approvals Endpoint** · `X-API-Key` gerekir.
+**Bekleyen onayları listele** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -1003,12 +1003,12 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### POST /control/mcp/approvals/{approval_id}/decide
 
-**Decide Approval Endpoint** · `X-API-Key` gerekir.
+**Onay kararı ver** · `X-API-Key` gerekir.
 
 **Parametreler**
 
@@ -1031,13 +1031,13 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Successful Response
-- `422` Validation Error · `HTTPValidationError`
+- `200` Başarılı yanıt
+- `422` Doğrulama hatası · `HTTPValidationError`
 
 ### GET /control/mcp/overview
 
-**Get Overview** · `X-API-Key` gerekir.
+**Genel görünümü getir** · `X-API-Key` gerekir.
 
 **Yanıtlar**
 
-- `200` Successful Response
+- `200` Başarılı yanıt

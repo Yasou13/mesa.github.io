@@ -56,6 +56,63 @@ LABELS = {
 }
 
 
+TR_TEXT = {
+    "Create Workspace": "Çalışma alanı oluştur",
+    "List Workspaces": "Çalışma alanlarını listele",
+    "Create Dataset": "Veri kümesi oluştur",
+    "List Datasets": "Veri kümelerini listele",
+    "Create Document": "Belge oluştur",
+    "List Documents": "Belgeleri listele",
+    "Create Revision": "Revizyon oluştur",
+    "List Revisions": "Revizyonları listele",
+    "Create Source Chunk": "Kaynak parçası oluştur",
+    "Purge Document": "Belgeyi kalıcı olarak sil",
+    "Start Session": "Oturum başlat",
+    "Get Capability": "Yetenekleri getir",
+    "Create Rebuild Operation": "Yeniden oluşturma işlemi başlat",
+    "Get Rebuild Operation": "Yeniden oluşturma işlemini getir",
+    "Cancel Rebuild Operation": "Yeniden oluşturma işlemini iptal et",
+    "Retry Rebuild Operation": "Yeniden oluşturma işlemini yeniden dene",
+    "Rebuild Index": "Dizini yeniden oluştur",
+    "Insert Memory": "Hafızaya kayıt ekle",
+    "Ingest Document": "Belge yükle",
+    "Search Memory": "Hafızada ara",
+    "Mutation Status": "Değişiklik durumu",
+    "Rollback Mutation": "Değişikliği geri al",
+    "Replay Mutation": "Değişikliği yeniden oynat",
+    "Get Context": "Bağlamı getir",
+    "End Session": "Oturumu bitir",
+    "List Clients": "İstemcileri listele",
+    "Create Client": "İstemci oluştur",
+    "Get Client": "İstemciyi getir",
+    "List Connections": "Bağlantıları listele",
+    "Get Settings": "Ayarları getir",
+    "Update Setting": "Ayarı güncelle",
+    "Create Policy": "Politika oluştur",
+    "List Policies": "Politikaları listele",
+    "Toggle Client Enabled": "İstemciyi aç veya kapat",
+    "List Bindings": "Bağlamaları listele",
+    "List Managed Clients": "Yönetilen istemcileri listele",
+    "Revoke Managed Credential": "Yönetilen kimlik bilgisini iptal et",
+    "List Activity": "Etkinlikleri listele",
+    "Get Activity Call": "Etkinlik çağrısını getir",
+    "List Approvals": "Onayları listele",
+    "List Pending Approvals Endpoint": "Bekleyen onayları listele",
+    "Decide Approval Endpoint": "Onay kararı ver",
+    "Get Overview": "Genel görünümü getir",
+    "Health Init": "İlk kurulum sağlık durumu",
+    "Health": "Sağlık durumu",
+    "Metrics": "Metrikler",
+    "Successful Response": "Başarılı yanıt",
+    "Validation Error": "Doğrulama hatası",
+    "Enable or disable only the graph retrieval lane for matched ablation.": "Eşleştirilmiş karşılaştırma için yalnızca çizge arama kanalını açar veya kapatır."
+}
+
+
+def localized(text: str, lang: str) -> str:
+    return TR_TEXT.get(text, text) if lang == "tr" else text
+
+
 def resolve(schema: dict) -> dict:
     while "$ref" in schema:
         schema = SCHEMAS[schema["$ref"].rsplit("/", 1)[-1]]
@@ -139,7 +196,7 @@ def render(lang: str) -> str:
             continue
         lines += [f"## {names[0 if lang == 'en' else 1]}", ""]
         for path, method, op in group:
-            lines += [f"### {method} {path}", "", f"**{op.get('summary', '')}** · " + (L["auth_required"] if op.get("security") else L["public"]), ""]
+            lines += [f"### {method} {path}", "", f"**{localized(op.get('summary', ''), lang)}** · " + (L["auth_required"] if op.get("security") else L["public"]), ""]
             params = op.get("parameters", [])
             if params:
                 lines += [f"**{L['params']}**", "", table([L["name"], L["in"], L["type"], L["required"]], [[f"`{p['name']}`", p["in"], type_name(p.get("schema", {})), L["yes"] if p.get("required") else L["no"]] for p in params]), ""]
@@ -150,12 +207,12 @@ def render(lang: str) -> str:
                 props = resolved.get("properties", {})
                 if props:
                     required = set(resolved.get("required", []))
-                    lines += [table([L["field"], L["type"], L["required"], L["description"]], [[f"`{k}`", type_name(v), L["yes"] if k in required else L["no"], short(v.get("description", ""))] for k, v in props.items()]), ""]
+                    lines += [table([L["field"], L["type"], L["required"], L["description"]], [[f"`{k}`", type_name(v), L["yes"] if k in required else L["no"], short(localized(v.get("description", ""), lang))] for k, v in props.items()]), ""]
             responses = op.get("responses", {})
             lines += [f"**{L['responses']}**", ""]
             for code, response in responses.items():
                 schema = response.get("content", {}).get("application/json", {}).get("schema")
-                lines.append(f"- `{code}` {response.get('description', '')}" + (f" · `{type_name(schema)}`" if schema and "$ref" in schema else ""))
+                lines.append(f"- `{code}` {localized(response.get('description', ''), lang)}" + (f" · `{type_name(schema)}`" if schema and "$ref" in schema else ""))
             lines.append("")
             ok = next((r for c, r in responses.items() if c.startswith("2")), None)
             schema = ok and ok.get("content", {}).get("application/json", {}).get("schema")

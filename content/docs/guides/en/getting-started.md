@@ -117,7 +117,7 @@ Historical Core v0.9.0 recorded CLI output (not a v0.9.4 recording):
     The Atlas archive opens at 09:00 on weekdays.
 ```
 
-**Success:** the result contains your document’s `09:00` text and document identifier. Identifiers and scores can differ; a score is not a truth probability. Inspect source and revision fields in the [recorded example on the home page](https://mesamemory.dev/#example).
+**Success:** the result contains your document’s `09:00` text and document identifier. Identifiers and scores can differ; a score is not a truth probability. Inspect source and revision fields in the [recorded example on the home page](https://mesamemory.dev/how-it-works/#example).
 
 **Empty result:** run the completion script first, then search for the exact word in your document. **Connection error:** keep Terminal 1 running and check for healthy `mesa status` output. **Port already in use:** check for another MESA instance; this guide does not require deleting existing storage.
 

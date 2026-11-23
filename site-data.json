@@ -116,7 +116,7 @@
     },
     "retrieval": {
       "path": "retrieval/",
-      "title": "MESA V4 Retrieval — Four Lanes, RRF and Evidence",
+      "title": "MESA V4 Retrieval — Search Lanes, RRF and Evidence",
       "description": "Explore vector, BM25, assertion and bounded graph retrieval, exact RRF semantics, provenance and context limits in MESA Core v0.9.4."
     },
     "earlyAccess": {

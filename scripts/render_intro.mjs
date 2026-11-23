@@ -33,7 +33,7 @@ function flowDiagram(language) {
     [t('Add', 'Ekle'), t('Documents enter once, with their source.', 'Belgeler kaynağıyla birlikte bir kez eklenir.')],
     [t('Split', 'Parçala'), t('Text becomes searchable passages; model-based facts require explicit extraction.', 'Metin aranabilir pasajlara dönüşür; model tabanlı bilgi çıkarımı ayrıca açılır.')],
     [t('Keep versions', 'Sürümleri tut'), t('A change creates a new revision; the current one wins.', 'Değişiklik yeni sürüm oluşturur; güncel olan öne çıkar.')],
-    [t('Search four ways', 'Dört yoldan ara'), t('Meaning, words, facts and relationships, within what the app may read.', 'Anlam, sözcük, bilgi kaydı ve ilişki; uygulamanın okuma yetkisi içinde.')],
+    [t('Search meaning and words', 'Anlam ve sözcükle ara'), t('Vector and BM25 by default, facts and relationships when enabled, within what the app may read.', 'Varsayılan olarak vektör ve BM25, açıldığında bilgi kaydı ve ilişki; uygulamanın okuma yetkisi içinde.')],
     [t('Rank and limit', 'Sırala ve sınırla'), t('Results are combined and trimmed to fit the model.', 'Sonuçlar birleştirilir ve modele sığacak şekilde sınırlanır.')]
   ];
   const passages = [
@@ -69,7 +69,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
   ];
   const capabilities = [
     [t('Durable intake', 'Kalıcı kayıt'), t('Documents are accepted first and processed in the background. Nothing half-written reaches search.', 'Belgeler önce kabul edilir, sonra arka planda işlenir. Yarım kalmış hiçbir şey aramaya karışmaz.'), 'SQLite · LanceDB · Kùzu'],
-    [t('Four ways to search', 'Dört arama yolu'), t('Meaning, exact words, extracted facts and relationships are searched together and combined into one ranking.', 'Anlam, birebir sözcük, çıkarılmış bilgi ve ilişkiler birlikte aranır ve tek bir sıralamada birleşir.'), 'vector · BM25 · assertion · graph'],
+    [t('Combined search', 'Birleşik arama'), t('Meaning and exact words are searched by default. Extracted facts and relationships join when enabled, and results merge into one ranking.', 'Varsayılan olarak anlam ve birebir sözcük aranır. Çıkarılmış bilgiler ve ilişkiler açıldığında aramaya katılır, sonuçlar tek sıralamada birleşir.'), t('vector · BM25 · optional assertion · graph', 'vektör · BM25 · isteğe bağlı bilgi kaydı · çizge')],
     [t('Scoped access', 'Kapsamlı erişim'), t('Each workspace, dataset and agent sees only what it is allowed to. Eligibility is checked before ranking.', 'Her çalışma alanı, veri kümesi ve ajan yalnızca izin verileni görür. Uygunluk, sıralamadan önce kontrol edilir.'), 'tenant · workspace · dataset · agent'],
     [t('Versions and history', 'Sürüm ve geçmiş'), t('Every change becomes a new revision. Search uses the current one; the history stays.', 'Her değişiklik yeni bir sürüm olur. Arama güncel olanı kullanır; geçmiş korunur.'), 'revision · COMMITTED'],
     [t('Context that fits', 'Modele sığan bağlam'), t('Results are trimmed to a token budget before they reach the model, with their sources attached.', 'Sonuçlar modele gitmeden önce bir token bütçesine göre kısaltılır; kaynakları yanlarında gider.'), 'token budget · evidence'],

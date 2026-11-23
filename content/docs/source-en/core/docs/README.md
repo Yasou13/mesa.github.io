@@ -2,7 +2,7 @@
 
 This folder holds 12 usage/development guides and 8 architecture decision records.
 You do not need to read them in order. Pick the entry point below that matches your goal.
-Package version 0.9.3; V4 is the current API.
+Package version 0.9.4; V4 is the current API.
 
 ## Where should I start?
 
@@ -47,8 +47,8 @@ system; they are not a Markdown guide.
 ## Keeping the docs current
 
 Update the main document above for each topic; do not open new
-“final/latest/current” files about the same topic. Keep API/package version, the V3/V4
-split, implemented features and measured results apart.
+“final/latest/current” files about the same topic. State the API version, the package
+version and the release that each measured result belongs to.
 Production readiness is judged by the [release gates](docs/core/release-policy/); unit test
 success or a version number is not a production GO.
 

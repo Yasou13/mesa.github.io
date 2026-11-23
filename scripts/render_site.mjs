@@ -288,7 +288,7 @@ function publicFlow(compact = false) {
     ['01', 'Source', 'Exact source material and identity'],
     ['02', 'Prepare', 'MESA Data preserves and reviews legal inputs'],
     ['03', 'Remember', 'Core admits scoped memory and keeps evidence'],
-    ['04', 'Retrieve', 'Four authorized signals are rank-fused'],
+    ['04', 'Retrieve', 'Enabled authorized lanes are rank-fused'],
     ['05', 'Verify', 'Provenance and scope travel with the result'],
     ['06', 'Use', 'Applications consume bounded context']
   ];
@@ -1319,7 +1319,7 @@ const WAY_NEXT = {
   start: ['get-started/', 'Try it on your computer', 'Bilgisayarınızda deneyin', 'Install, start and run your first search.', 'Kurun, başlatın ve ilk aramanızı yapın.'],
   how: ['how-it-works/', 'How it works', 'Nasıl çalışır', 'Follow one document from file to answer.', 'Bir belgeyi dosyadan cevaba kadar izleyin.'],
   architecture: ['architecture/', 'Architecture', 'Mimari', 'Storage, processing and search diagrams.', 'Saklama, işleme ve arama şemaları.'],
-  retrieval: ['retrieval/', 'Retrieval', 'Arama', 'Four search lanes and how results are combined.', 'Dört arama yolu ve sonuçların birleştirilmesi.'],
+  retrieval: ['retrieval/', 'Retrieval', 'Arama', 'Search lanes and how results are combined.', 'Arama kanalları ve sonuçların birleştirilmesi.'],
   api: ['docs/core/api-reference/', 'API reference', 'API referansı', 'Every endpoint, with request and response.', 'Tüm uç noktalar, istek ve yanıtlarıyla.'],
   ecosystem: ['ecosystem/', 'Ecosystem', 'Ekosistem', 'What Core, Data, Law and the tests do.', 'Core, Data, Law ve testler ne yapar.'],
   data: ['data/', 'MESA Data', 'MESA Data', 'How legal sources are prepared.', 'Hukuk kaynakları nasıl hazırlanır.'],

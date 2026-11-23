@@ -117,7 +117,7 @@ Tarihsel Core v0.9.0 kaydından gerçek CLI çıktısı (v0.9.4 ile yeniden kayd
     Atlas arşivi hafta içi 09:00 saatinde açılır.
 ```
 
-**Başarı ölçütü:** sonuçta belgenizdeki `09:00` metni ve belge kimliği görünür. Kimlik ve skor değişebilir; skor doğruluk olasılığı değildir. Kaynak ve sürüm alanlarını [ana sayfadaki gerçek kayıt örneğinde](https://mesamemory.dev/tr/#example) görebilirsiniz.
+**Başarı ölçütü:** sonuçta belgenizdeki `09:00` metni ve belge kimliği görünür. Kimlik ve skor değişebilir; skor doğruluk olasılığı değildir. Kaynak ve sürüm alanlarını [ana sayfadaki gerçek kayıt örneğinde](https://mesamemory.dev/tr/how-it-works/#example) görebilirsiniz.
 
 **Sonuç boşsa:** önce tamamlanma betiğini çalıştırın; sonra belgedeki sözcüğü aynen arayın. **Bağlantı hatasında:** Terminal 1’in açık ve `mesa status` çıktısının sağlıklı olduğunu kontrol edin. **Port kullanımda ise:** başka bir MESA örneği olup olmadığını kontrol edin; bu rehber mevcut depolamayı silmenizi gerektirmez.
 

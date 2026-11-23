@@ -2,7 +2,7 @@
 
 This runbook is the canonical operations guide for the v4 full-cognitive release
 candidate. The production decision stays `NO-GO` until Final MVP Certification is
-complete. V3 lexical-core compatibility operations are marked separately.
+complete.
 
 ## 1. Supported v4 topology
 
@@ -24,8 +24,7 @@ validation policy; complete the [installation](docs/core/getting-started/#instal
 [configuration](docs/core/configuration/) prerequisites.
 
 Do not mount the same storage root writable into a second API, worker or combined
-process. Horizontal scaling needs a storage ownership protocol first. V3 and v4 must
-use different physical storage roots.
+process. Horizontal scaling needs a storage ownership protocol first.
 
 <a id="credential-bootstrap"></a>
 
@@ -139,9 +138,8 @@ vector and Kùzu graph projections are rebuildable derived state and are copied 
 under the exclusive writer-lock boundary.
 
 Restore must not overwrite an existing target. Restore the backup into a new empty
-root with compatible code and config, then verify it. Moving V3 data to V4 is separate
-source/catalog mapping plus V4 ingestion work; the projection runner is not a V3→V4
-converter. The [migration guide](docs/core/operations/#upgrade-v080) explains the V4 upgrade.
+root with compatible code and config, then verify it. The [migration guide](docs/core/operations/#upgrade-v080)
+explains the V4 upgrade and how to bring over legacy V3 sources.
 Keep the backup for the whole rollback window.
 
 The V4 projection rebuild flow — submit → drain → stop → offline run/resume →
@@ -242,7 +240,7 @@ audit must remain `NOT EXECUTED`, never converted to a simulated success.
 
 ## Upgrading to v0.8.0
 
-The pinned source describes package metadata 0.9.3 before its publication. The v0.8.1 publication was owner-approved with the limitations in
+Current package metadata is 0.9.4. The v0.8.1 publication was owner-approved with the limitations in
 the [release notes](docs/core/release-notes/#v081-publication); it does not certify production
 readiness. Confirm actual tags in GitHub Releases. This guide describes changes
 since v0.7.1, not a completed production migration.
@@ -290,9 +288,10 @@ SQLite URL and absolute `script_location` pointing to this release's migrations:
 
 The path is an operator example, not a configuration supplied by the repository.
 Use a verified restored staging root and the matching release environment.
-This migrates canonical V4 schema; the [projection runner](docs/core/rebuild-runbook/)
-rebuilds its derived stores. Neither procedure is a general V3 content converter.
-V3 content needs explicit source/catalog mapping and V4 ingestion into a separate root.
+This migrates canonical V4 schema. The [projection runner](docs/core/rebuild-runbook/)
+rebuilds its derived stores. To bring content from a legacy V3 deployment, preserve its
+backup and ingest the original sources into a separate V4 root with an explicit
+source/catalog mapping.
 
 ### Upgrade and rollback sequence
 
@@ -305,5 +304,5 @@ V3 content needs explicit source/catalog mapping and V4 ingestion into a separat
 
 Alembic downgrade is not the rollback strategy. Restore a verified prior backup
 into a new empty root using the matching prior code/config, then validate before
-switching traffic. V3 and V4 never share writable physical storage. Do not alter
-official certification evidence as part of upgrade verification.
+switching traffic. Do not alter official certification evidence as part of upgrade
+verification.

@@ -1,6 +1,6 @@
 ## Four different signals
 
-Vector compares compatible semantic representations. BM25 uses FTS5 passage/evidence text and scoped citation lookup. The assertion lane considers predicate, subject, object/literal and evidence. Graph contributes bounded supported paths. Authorized canonical ownership and eligibility are resolved before rank contribution.
+Vector compares compatible semantic representations. BM25 uses FTS5 passage/evidence text and scoped citation lookup. The assertion lane considers predicate, subject, object/literal and evidence. Graph contributes bounded supported paths. Vector and BM25 run on the default path; assertion and graph contribute only when you enable them. Authorized canonical ownership and eligibility are resolved before rank contribution.
 
 ## Rank fusion, not a probability
 

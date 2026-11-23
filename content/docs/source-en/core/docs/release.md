@@ -1,6 +1,6 @@
 # Release procedure
 
-The pinned source describes V4 package `0.9.3`. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for verified v0.9.3 tag and PyPI publication. Production qualification
+The pinned source describes V4 package `0.9.4`. The owner previously authorized the v0.8.1 source release exception recorded below. See the website release notes for verified v0.9.4 tag and PyPI publication. Production qualification
 is still assessed as a release candidate. The production decision stays `NO-GO`
 until Final MVP Certification is complete. Assigning a version number or a tag
 does not on its own mean production GO. Old V3 tags/release records are read in their historical context.
@@ -14,7 +14,7 @@ does not mark these gates as met:
 - locked build, Ruff, Black and Mypy;
 - all core and benchmark contract tests;
 - v4 API/SDK/MCP contract parity;
-- Tier-3 rejection, retry, lease loss, projection crash and rollback tests;
+- deterministic validation rejection, retry, lease loss, projection crash and rollback tests;
 - Graph V2 identity/provenance/purge and two-way reconciliation;
 - cross-tenant/workspace/dataset negative security tests;
 - dataset-filtered RRF lane ablation and a vector-only comparison report;
@@ -63,8 +63,8 @@ These workflows must pass on the release commit:
 - Benchmark contracts and the dataset-filtered RRF ablation artifact:
   the old `Benchmark data quality` workflow has been removed from Core; separate
   `mesa_benchmark` evidence must be tied to the same release commit. Its absence is not a PASS;
-- `MESA external release gates`: v3 compatibility Compose, v4 combined Compose,
-  flow, bounded capacity and executable docs.
+- `MESA external release gates`: v4 combined Compose, flow, bounded capacity and
+  executable docs.
 
 A 24-hour soak does not fit in a GitHub-hosted runner's time limit; it runs outside, in a
 production-like environment. Start/end time, image digest, config hash,
@@ -110,7 +110,7 @@ Release artifacts carry together:
 - benchmark and soak evidence.
 
 Restore never overwrites an existing target. If a parity or health gate fails, there is
-no cutover; the old storage and the v3 compatibility service are kept.
+no cutover. The previous storage backup and compatible code and configuration are kept for rollback.
 
 ## Release-specific publication exceptions
 

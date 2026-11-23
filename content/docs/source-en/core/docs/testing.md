@@ -63,12 +63,12 @@ artifact evidence for the same commit.
 | Secrets | TruffleHog history scan + tracked-secret policy | security assurance |
 | Code quality | Ruff, scoped Black, production Mypy, override ratchet | job log |
 | V4 contract | API, SDK, catalog, ownership, Graph V2, projection, RRF, admin CLI | `v4-contract` |
-| V3 compatibility | Principal, queue, worker, finalization and existing route tests | core JUnit |
-| Security | V3 isolation + v4 tenant/workspace/dataset negative tests | security/v4 JUnit |
+| Core | Principal, queue, worker, finalization and route tests | core JUnit |
+| Security | V4 tenant/workspace/dataset negative isolation tests | security/v4 JUnit |
 | Migration/DR | Alembic closure, recovery, v4 rebuild/projection tests | migration/DR |
-| Package | Wheel install, v3/v4 imports, admin CLI smoke | package report |
+| Package | Wheel install, V4 imports, admin CLI smoke | package report |
 | Retrieval contract | Core deterministic RRF ablation and closure manifest | `v4-contract`; comparative benchmark evidence is external |
-| Container | Non-root image, v3 Compose and v4 single-combined Compose | Docker logs |
+| Container | Non-root image and V4 single-combined Compose | Docker logs |
 | Documentation | Documented CLI/import/Compose commands | docs smoke |
 | Coverage | Full test coverage threshold | HTML/XML report |
 

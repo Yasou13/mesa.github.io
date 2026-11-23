@@ -1,6 +1,6 @@
 # API reference
 
-MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.3 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
+MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.4 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
 
 Versioned memory, health and metrics calls require `X-API-Key`. `/health/init`, OpenAPI, Swagger and ReDoc are public surfaces and need a network/reverse-proxy policy. The V4 key is
 generated with `mesa-v4-admin issue-key`; only a salted scrypt hash is stored.
@@ -178,9 +178,8 @@ support all three of `valid_at`, `valid_from` and `valid_to`.
 Besides capability, catalog, session, insert, search, status, wait, replay,
 rollback, purge, context and end operations, `MesaV4Client` and `AsyncMesaV4Client`
 offer the control-plane methods `submit_rebuild`, `operation_status`,
-`cancel_operation` and `retry_operation`. The V3 clients are kept as `MesaClient`
-and `AsyncMesaClient`. The dataset-bound MCP surface offers no mutating global
-rebuild tool.
+`cancel_operation` and `retry_operation`. The dataset-bound MCP surface offers no
+mutating global rebuild tool.
 
 ## V4 authorization
 
