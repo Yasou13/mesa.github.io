@@ -262,7 +262,9 @@ export function renderMarkdown(markdown = '', options = {}) {
       const count = headingIds.get(slug) || 0;
       headingIds.set(slug, count + 1);
       const id = count ? `${slug}-${count}` : slug;
-      headings.push({ level, title: cleanText, id });
+      // Anchors stay as they were; the visible title keeps underscores inside names like memory_get.
+      const title = rawText.replace(/[*`]/g, '').replace(/(^|\s)_+|_+(?=\s|$)/g, '$1');
+      headings.push({ level, title, id });
 
       // Only levels 2, 3, 4 receive heading anchors
       if (level >= 2 && level <= 4) {

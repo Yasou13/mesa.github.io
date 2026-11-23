@@ -66,15 +66,15 @@
       "path": "guides/",
       "locales": {
         "en": {
-          "title": "MESA Guides — Practical, Evidence-Aware Workflows",
-          "description": "Follow practical guides for legal research, verification, retrieval, and evidence-aware AI workflows.",
+          "title": "MESA Guides — Coding Agents, Document Search and Legal AI",
+          "description": "Step-by-step guides for coding agent memory, source-backed document search, search evaluation and checking AI legal citations.",
           "eyebrow": "PRACTICAL GUIDES",
           "heading": "Follow a task from start to finish.",
           "intro": "Choose a guide below for worked steps, examples and source checks."
         },
         "tr": {
-          "title": "MESA Rehberleri — Adım Adım Uygulama",
-          "description": "Hukuki araştırma, kaynak doğrulama ve yapay zekâ uygulamaları için adım adım rehberler.",
+          "title": "MESA Rehberleri — Kodlama Ajanları, Belge Arama ve Hukuk",
+          "description": "Kodlama ajanı hafızası, kaynak gösteren belge araması, arama değerlendirmesi ve yapay zekâ hukuk atıflarını kontrol etmek için adım adım rehberler.",
           "eyebrow": "UYGULAMA REHBERLERİ",
           "heading": "Bir işi baştan sona nasıl yaparsınız?",
           "intro": "Adımları, örnekleri ve kaynak kontrollerini görmek için aşağıdaki rehberlerden birini seçin."
@@ -220,7 +220,9 @@
       "related": [
         "hybrid-retrieval",
         "semantic-search",
-        "reciprocal-rank-fusion"
+        "reciprocal-rank-fusion",
+        "source-backed-document-search",
+        "measure-search-quality"
       ]
     },
     {
@@ -283,7 +285,9 @@
         "what-is-ai-memory",
         "evidence-aware-memory",
         "structured-vs-unstructured-memory",
-        "memory-scope-and-authorization"
+        "memory-scope-and-authorization",
+        "claude-code-persistent-memory",
+        "codex-cli-mcp-memory"
       ]
     }
   ],
@@ -5737,6 +5741,1466 @@
       ]
     },
     {
+      "id": "claude-code-persistent-memory",
+      "type": "guide",
+      "slug": "claude-code-persistent-memory",
+      "path": "guides/claude-code-persistent-memory/",
+      "publishedAt": "2026-11-23",
+      "updatedAt": "2026-11-23",
+      "author": "MESA contributors",
+      "tags": [
+        "claude-code",
+        "agent-memory",
+        "mcp"
+      ],
+      "category": "Coding Agents",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 6,
+      "guideGroup": "coding-agents",
+      "seo": {
+        "en": {
+          "title": "How to Add Persistent Memory to Claude Code — MESA",
+          "description": "Use CLAUDE.md, auto memory and a local MCP memory server together so Claude Code can keep rules and find work from earlier sessions."
+        },
+        "tr": {
+          "title": "Claude Code’a Kalıcı Hafıza Nasıl Eklenir? — MESA",
+          "description": "CLAUDE.md, otomatik hafıza ve yerel MCP hafıza sunucusunu birlikte kullanarak Claude Code’un kuralları korumasını ve eski oturumları bulmasını sağlayın."
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "How do you add persistent memory to Claude Code?",
+          "summary": "Combine CLAUDE.md, auto memory and searchable session history without loading everything into every conversation.",
+          "shortAnswer": "Put stable project rules in CLAUDE.md and let auto memory keep learned preferences. If you also need to find decisions and failed attempts from older sessions, add a local MCP memory server such as MESA Lore.",
+          "category": "Coding agents",
+          "sections": [
+            {
+              "id": "choose",
+              "title": "1. Choose the right memory layer",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Each Claude Code session starts with a fresh context window. Three layers can carry useful information forward, and they solve different problems."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Layer",
+                    "Keep here",
+                    "Do not keep here"
+                  ],
+                  "rows": [
+                    [
+                      "CLAUDE.md",
+                      "Build commands, conventions and project rules",
+                      "Long logs or temporary task notes"
+                    ],
+                    [
+                      "Auto memory",
+                      "Preferences and corrections Claude learns",
+                      "Rules your whole team must follow"
+                    ],
+                    [
+                      "MESA Lore",
+                      "Searchable past sessions, decisions and handoffs",
+                      "A replacement for project instructions"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "claude-md",
+              "title": "2. Put stable rules in CLAUDE.md",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Create `CLAUDE.md` in the project root and keep it short. Write what you would otherwise repeat in each session."
+                },
+                {
+                  "kind": "code",
+                  "code": "# Project rules\n- Run npm test before finishing a change.\n- Use TypeScript for new files.\n- API handlers live in src/api/."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Run `/context all` in a session and check `Memory files` to confirm that it loaded."
+                }
+              ]
+            },
+            {
+              "id": "auto-memory",
+              "title": "3. Check auto memory",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Auto memory is on by default in local sessions. Open `/memory` to view it or use its toggle. At session start, Claude Code loads up to the first 200 lines or 25KB of `MEMORY.md`."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Keep it useful",
+                  "text": "Correct or remove notes that are outdated. A short, accurate memory is easier for the agent to follow."
+                }
+              ]
+            },
+            {
+              "id": "history",
+              "title": "4. Add searchable session history",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Built-in memory is not a search index for everything that happened before. MESA Lore imports past transcripts into one local SQLite file. A new session gets a short index and can search for details when needed."
+                },
+                {
+                  "kind": "code",
+                  "code": "git clone https://github.com/Yasou13/MESA_Lore.git\ncd MESA_Lore\npython3 -m venv .venv\n.venv/bin/pip install .\n.venv/bin/mesa-lore install\n.venv/bin/mesa-lore doctor"
+                },
+                {
+                  "kind": "warning",
+                  "title": "Review what will be imported",
+                  "text": "Install imports existing Claude Code, Codex and Antigravity transcripts into the local database. [Exclude private projects](/docs/lore/data-and-privacy/) before you run it."
+                }
+              ]
+            },
+            {
+              "id": "test",
+              "title": "5. Test it in a new session",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "Start a new Claude Code session in the same project.",
+                    "Ask: “Use memory_index and summarize the recent work in this project.”",
+                    "Ask about a real earlier decision: “Search memory for why we changed the login flow.”",
+                    "Open the returned source and confirm that it supports the answer."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "If the tools are missing, run `mesa-lore doctor` and see [troubleshooting](/docs/lore/troubleshooting/)."
+                }
+              ]
+            },
+            {
+              "id": "faq",
+              "title": "Claude Code memory questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Does Claude Code remember previous sessions?",
+                  "text": "Each session starts fresh, but CLAUDE.md and auto memory can carry selected knowledge across sessions. They do not make every past message searchable."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Should I put everything in CLAUDE.md?",
+                  "text": "No. It loads into each session, so keep it concise and limited to information that is useful every time."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Does MESA Lore replace CLAUDE.md?",
+                  "text": "No. Keep instructions in CLAUDE.md and use Lore to find earlier work."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Does this send my transcripts to another service?",
+                  "text": "MESA Lore makes no network calls. Claude Code still sends retrieved memory to its model provider as context."
+                }
+              ]
+            },
+            {
+              "id": "sources",
+              "title": "Sources",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Claude Code Docs · How Claude remembers your project",
+                      "href": "https://code.claude.com/docs/en/memory"
+                    },
+                    {
+                      "label": "MESA Lore on GitHub",
+                      "href": "https://github.com/Yasou13/MESA_Lore"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Claude Code’a kalıcı hafıza nasıl eklenir?",
+          "summary": "CLAUDE.md, otomatik hafıza ve aranabilir oturum geçmişini her konuşmaya her şeyi yüklemeden birlikte kullanın.",
+          "shortAnswer": "Kalıcı proje kurallarını CLAUDE.md’ye yazın, öğrenilen tercihleri otomatik hafızaya bırakın. Eski oturumlardaki karar ve başarısız denemeleri de bulmak istiyorsanız MESA Lore gibi yerel bir MCP hafıza sunucusu ekleyin.",
+          "category": "Kodlama ajanları",
+          "sections": [
+            {
+              "id": "katman-sec",
+              "title": "1. Doğru hafıza katmanını seçin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Her Claude Code oturumu yeni bir bağlam penceresiyle başlar. Yararlı bilgiyi üç katman taşıyabilir ve her biri farklı bir sorunu çözer."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Katman",
+                    "Burada tutun",
+                    "Burada tutmayın"
+                  ],
+                  "rows": [
+                    [
+                      "CLAUDE.md",
+                      "Derleme komutları, kurallar ve proje standartları",
+                      "Uzun günlükler veya geçici görev notları"
+                    ],
+                    [
+                      "Otomatik hafıza",
+                      "Claude’un öğrendiği tercih ve düzeltmeler",
+                      "Tüm ekibin uyması gereken kurallar"
+                    ],
+                    [
+                      "MESA Lore",
+                      "Aranabilir geçmiş oturumlar, kararlar ve devir notları",
+                      "Proje talimatlarının yerine geçecek içerik"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "claude-md",
+              "title": "2. Kalıcı kuralları CLAUDE.md’ye yazın",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Proje kökünde `CLAUDE.md` oluşturun ve kısa tutun. Her oturumda yeniden söyleyeceğiniz şeyleri yazın."
+                },
+                {
+                  "kind": "code",
+                  "code": "# Project rules\n- Run npm test before finishing a change.\n- Use TypeScript for new files.\n- API handlers live in src/api/."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Yüklendiğini doğrulamak için oturumda `/context all` çalıştırıp `Memory files` listesine bakın."
+                }
+              ]
+            },
+            {
+              "id": "otomatik-hafiza",
+              "title": "3. Otomatik hafızayı kontrol edin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Otomatik hafıza yerel oturumlarda varsayılan olarak açıktır. Görmek veya açıp kapatmak için `/memory` kullanın. Claude Code oturum başında `MEMORY.md` dosyasının en fazla ilk 200 satırını veya 25KB’ını yükler."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Yararlı tutun",
+                  "text": "Eskimiş notları düzeltin veya silin. Kısa ve doğru bir hafızayı ajan daha kolay izler."
+                }
+              ]
+            },
+            {
+              "id": "gecmis",
+              "title": "4. Aranabilir oturum geçmişi ekleyin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Yerleşik hafıza, geçmişte olan her şey için bir arama dizini değildir. MESA Lore eski dökümleri tek bir yerel SQLite dosyasına aktarır. Yeni oturum kısa bir dizin alır ve gerektiğinde ayrıntıları arayabilir."
+                },
+                {
+                  "kind": "code",
+                  "code": "git clone https://github.com/Yasou13/MESA_Lore.git\ncd MESA_Lore\npython3 -m venv .venv\n.venv/bin/pip install .\n.venv/bin/mesa-lore install\n.venv/bin/mesa-lore doctor"
+                },
+                {
+                  "kind": "warning",
+                  "title": "İçe aktarılacakları gözden geçirin",
+                  "text": "Kurulum, mevcut Claude Code, Codex ve Antigravity dökümlerini yerel veritabanına aktarır. Çalıştırmadan önce [özel projeleri hariç tutun](/docs/lore/data-and-privacy/)."
+                }
+              ]
+            },
+            {
+              "id": "test",
+              "title": "5. Yeni oturumda test edin",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "Aynı projede yeni bir Claude Code oturumu başlatın.",
+                    "Şunu sorun: “memory_index kullanarak bu projedeki son çalışmaları özetle.”",
+                    "Gerçek bir eski kararı sorun: “Giriş akışını neden değiştirdiğimizi hafızada ara.”",
+                    "Dönen kaynağı açın ve yanıtı desteklediğini doğrulayın."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Araçlar görünmüyorsa `mesa-lore doctor` çalıştırın ve [sorun giderme](/docs/lore/troubleshooting/) sayfasına bakın."
+                }
+              ]
+            },
+            {
+              "id": "sss",
+              "title": "Claude Code hafızası hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Claude Code önceki oturumları hatırlar mı?",
+                  "text": "Her oturum yeni başlar, ancak CLAUDE.md ve otomatik hafıza seçilen bilgileri oturumlar arasında taşıyabilir. Geçmişteki her mesajı aranabilir yapmazlar."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Her şeyi CLAUDE.md’ye yazmalı mıyım?",
+                  "text": "Hayır. Her oturuma yüklendiği için kısa tutun ve yalnızca her seferinde işe yarayacak bilgileri yazın."
+                },
+                {
+                  "kind": "definition",
+                  "term": "MESA Lore, CLAUDE.md’nin yerine geçer mi?",
+                  "text": "Hayır. Talimatları CLAUDE.md’de tutun, eski çalışmaları bulmak için Lore’u kullanın."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Bu kurulum dökümlerimi başka bir servise gönderir mi?",
+                  "text": "MESA Lore ağ çağrısı yapmaz. Claude Code ise getirilen hafızayı bağlam olarak model sağlayıcısına iletir."
+                }
+              ]
+            },
+            {
+              "id": "kaynaklar",
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Claude Code Docs · How Claude remembers your project",
+                      "href": "https://code.claude.com/docs/en/memory"
+                    },
+                    {
+                      "label": "GitHub’da MESA Lore",
+                      "href": "https://github.com/Yasou13/MESA_Lore"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "codex-cli-mcp-memory",
+        "what-is-ai-memory"
+      ],
+      "productCta": {
+        "href": "docs/lore/agents/",
+        "locales": {
+          "en": {
+            "eyebrow": "MESA LORE",
+            "heading": "Connect your coding agents.",
+            "description": "Read the setup details for Claude Code, Codex CLI, Antigravity and Claude desktop.",
+            "button": "Open agent setup"
+          },
+          "tr": {
+            "eyebrow": "MESA LORE",
+            "heading": "Kodlama ajanlarınızı bağlayın.",
+            "description": "Claude Code, Codex CLI, Antigravity ve Claude masaüstü kurulum ayrıntılarını okuyun.",
+            "button": "Ajan kurulumunu aç"
+          }
+        }
+      }
+    },
+    {
+      "id": "codex-cli-mcp-memory",
+      "type": "guide",
+      "slug": "codex-cli-mcp-memory",
+      "path": "guides/codex-cli-mcp-memory/",
+      "publishedAt": "2026-11-23",
+      "updatedAt": "2026-11-23",
+      "author": "MESA contributors",
+      "tags": [
+        "codex-cli",
+        "agent-memory",
+        "mcp"
+      ],
+      "category": "Coding Agents",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 5,
+      "guideGroup": "coding-agents",
+      "seo": {
+        "en": {
+          "title": "How to Set Up MCP Memory for Codex CLI — MESA",
+          "description": "Add a local MCP memory server to Codex CLI, approve its hooks and search earlier sessions while keeping project rules in AGENTS.md."
+        },
+        "tr": {
+          "title": "Codex CLI için MCP Hafızası Nasıl Kurulur? — MESA",
+          "description": "Codex CLI’a yerel MCP hafıza sunucusu ekleyin, hook’ları onaylayın ve proje kurallarını AGENTS.md’de tutarken eski oturumları arayın."
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "How do you set up MCP memory for Codex CLI?",
+          "summary": "Keep instructions in AGENTS.md and add a local MCP server that can search earlier Codex sessions.",
+          "shortAnswer": "Keep project instructions in AGENTS.md. Install MESA Lore to add a local MCP memory server to Codex, approve its hooks with /hooks, then start a new session and test memory_search.",
+          "category": "Coding agents",
+          "sections": [
+            {
+              "id": "layers",
+              "title": "1. Separate instructions from history",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Codex reads `AGENTS.md` files before doing work, so use them for standards and project rules. A memory server has a different job: it helps the agent find what happened in earlier sessions."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Need",
+                    "Use"
+                  ],
+                  "rows": [
+                    [
+                      "Rules for every task",
+                      "AGENTS.md"
+                    ],
+                    [
+                      "Earlier decisions and failures",
+                      "MCP memory"
+                    ],
+                    [
+                      "A note for the next session",
+                      "Handoff in MESA Lore"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "install",
+              "title": "2. Install the MCP memory server",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "git clone https://github.com/Yasou13/MESA_Lore.git\ncd MESA_Lore\npython3 -m venv .venv\n.venv/bin/pip install .\n.venv/bin/mesa-lore install\n.venv/bin/mesa-lore doctor"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Install adds a `mesa-lore` server to `~/.codex/config.toml`, the default Codex MCP configuration, and adds session hooks to `~/.codex/hooks.json`. It backs up changed files first."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Existing history is imported",
+                  "text": "Install also imports existing agent transcripts. [Exclude private projects](/docs/lore/data-and-privacy/) first."
+                }
+              ]
+            },
+            {
+              "id": "hooks",
+              "title": "3. Approve the hooks",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Codex requires non-managed hooks to be reviewed and trusted before they run. Open Codex, run `/hooks` and approve the MESA Lore commands. Without approval, automatic capture and the session-start index do not run."
+                }
+              ]
+            },
+            {
+              "id": "verify",
+              "title": "4. Verify the connection",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "codex mcp list\nmesa-lore doctor"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "`codex mcp list` should show `mesa-lore`. Inside Codex, `/mcp` shows active servers. `mesa-lore doctor` should report `OK` for Codex MCP and hooks."
+                }
+              ]
+            },
+            {
+              "id": "test",
+              "title": "5. Test memory in a new session",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "Start a new Codex session in the project.",
+                    "Ask: “Call memory_index and summarize recent work.”",
+                    "Ask: “Search memory for the last failed test fix.”",
+                    "Check that the answer points to a real source.",
+                    "Save a decision: “Save this as a decision in memory.”"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "faq",
+              "title": "Codex memory questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Where does Codex store MCP settings?",
+                  "text": "By default in `~/.codex/config.toml`. Trusted projects can also use `.codex/config.toml`."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Does MESA Lore replace AGENTS.md?",
+                  "text": "No. AGENTS.md gives instructions. Lore makes past work searchable."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Why is the memory index not appearing?",
+                  "text": "The hook may not be approved. Run `/hooks`, start a new session and check `mesa-lore doctor`."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Can Codex and Claude Code share memory?",
+                  "text": "Yes. MESA Lore stores both agents in the same local database and searches by project."
+                }
+              ]
+            },
+            {
+              "id": "sources",
+              "title": "Sources",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Codex · Custom instructions with AGENTS.md",
+                      "href": "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+                    },
+                    {
+                      "label": "Codex · Model Context Protocol",
+                      "href": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli"
+                    },
+                    {
+                      "label": "Codex · Hooks",
+                      "href": "https://learn.chatgpt.com/docs/hooks"
+                    },
+                    {
+                      "label": "MESA Lore on GitHub",
+                      "href": "https://github.com/Yasou13/MESA_Lore"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Codex CLI için MCP hafızası nasıl kurulur?",
+          "summary": "Talimatları AGENTS.md’de tutun ve önceki Codex oturumlarını arayabilen yerel bir MCP sunucusu ekleyin.",
+          "shortAnswer": "Proje talimatlarını AGENTS.md’de tutun. Codex’e yerel MCP hafıza sunucusu eklemek için MESA Lore’u kurun, hook’larını /hooks ile onaylayın, sonra yeni oturum açıp memory_search aracını test edin.",
+          "category": "Kodlama ajanları",
+          "sections": [
+            {
+              "id": "katmanlar",
+              "title": "1. Talimatları geçmişten ayırın",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Codex işe başlamadan önce `AGENTS.md` dosyalarını okur; standartlar ve proje kuralları için bunları kullanın. Hafıza sunucusunun görevi farklıdır: ajanın önceki oturumlarda ne olduğunu bulmasına yardım eder."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "İhtiyaç",
+                    "Kullanın"
+                  ],
+                  "rows": [
+                    [
+                      "Her görev için kurallar",
+                      "AGENTS.md"
+                    ],
+                    [
+                      "Önceki kararlar ve hatalar",
+                      "MCP hafızası"
+                    ],
+                    [
+                      "Sonraki oturum için not",
+                      "MESA Lore devir notu"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "kurulum",
+              "title": "2. MCP hafıza sunucusunu kurun",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "git clone https://github.com/Yasou13/MESA_Lore.git\ncd MESA_Lore\npython3 -m venv .venv\n.venv/bin/pip install .\n.venv/bin/mesa-lore install\n.venv/bin/mesa-lore doctor"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Kurulum, Codex’in varsayılan MCP yapılandırması olan `~/.codex/config.toml` dosyasına `mesa-lore` sunucusunu, `~/.codex/hooks.json` dosyasına oturum hook’larını ekler. Değiştirdiği dosyaları önce yedekler."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Mevcut geçmiş içe aktarılır",
+                  "text": "Kurulum, mevcut ajan dökümlerini de içe aktarır. Önce [özel projeleri hariç tutun](/docs/lore/data-and-privacy/)."
+                }
+              ]
+            },
+            {
+              "id": "hooks",
+              "title": "3. Hook’ları onaylayın",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Codex, yönetilmeyen hook’ların çalışmadan önce incelenip güvenilir olarak işaretlenmesini ister. Codex’i açın, `/hooks` çalıştırın ve MESA Lore komutlarını onaylayın. Onay olmadan otomatik yakalama ve oturum başı dizini çalışmaz."
+                }
+              ]
+            },
+            {
+              "id": "dogrula",
+              "title": "4. Bağlantıyı doğrulayın",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "codex mcp list\nmesa-lore doctor"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "`codex mcp list` çıktısında `mesa-lore` görünmelidir. Codex içinde `/mcp` etkin sunucuları gösterir. `mesa-lore doctor`, Codex MCP ve hook’ları için `OK` bildirmelidir."
+                }
+              ]
+            },
+            {
+              "id": "test",
+              "title": "5. Hafızayı yeni oturumda test edin",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "Projede yeni bir Codex oturumu başlatın.",
+                    "Şunu sorun: “memory_index çağır ve son çalışmaları özetle.”",
+                    "Şunu sorun: “Son başarısız test düzeltmesini hafızada ara.”",
+                    "Yanıtın gerçek bir kaynağa dayandığını kontrol edin.",
+                    "Bir karar kaydedin: “Bunu hafızaya karar olarak kaydet.”"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "sss",
+              "title": "Codex hafızası hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Codex MCP ayarlarını nerede saklar?",
+                  "text": "Varsayılan olarak `~/.codex/config.toml` dosyasında. Güvenilir projeler `.codex/config.toml` da kullanabilir."
+                },
+                {
+                  "kind": "definition",
+                  "term": "MESA Lore, AGENTS.md’nin yerine geçer mi?",
+                  "text": "Hayır. AGENTS.md talimat verir, Lore geçmiş çalışmaları aranabilir yapar."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Hafıza dizini neden görünmüyor?",
+                  "text": "Hook onaylanmamış olabilir. `/hooks` çalıştırın, yeni oturum açın ve `mesa-lore doctor` ile kontrol edin."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Codex ve Claude Code aynı hafızayı kullanabilir mi?",
+                  "text": "Evet. MESA Lore iki ajanı aynı yerel veritabanında saklar ve projeye göre arar."
+                }
+              ]
+            },
+            {
+              "id": "kaynaklar",
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "Codex · Custom instructions with AGENTS.md",
+                      "href": "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+                    },
+                    {
+                      "label": "Codex · Model Context Protocol",
+                      "href": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli"
+                    },
+                    {
+                      "label": "Codex · Hooks",
+                      "href": "https://learn.chatgpt.com/docs/hooks"
+                    },
+                    {
+                      "label": "GitHub’da MESA Lore",
+                      "href": "https://github.com/Yasou13/MESA_Lore"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "claude-code-persistent-memory",
+        "what-is-ai-memory"
+      ],
+      "productCta": {
+        "href": "docs/lore/mcp-tools/",
+        "locales": {
+          "en": {
+            "eyebrow": "MESA LORE",
+            "heading": "Learn the four memory tools.",
+            "description": "See the parameters and examples for index, search, get and save.",
+            "button": "Open MCP tools"
+          },
+          "tr": {
+            "eyebrow": "MESA LORE",
+            "heading": "Dört hafıza aracını öğrenin.",
+            "description": "Dizin, arama, açma ve kaydetme araçlarının parametre ve örneklerini görün.",
+            "button": "MCP araçlarını aç"
+          }
+        }
+      }
+    },
+    {
+      "id": "source-backed-document-search",
+      "type": "guide",
+      "slug": "source-backed-document-search",
+      "path": "guides/source-backed-document-search/",
+      "publishedAt": "2026-11-23",
+      "updatedAt": "2026-11-23",
+      "author": "MESA contributors",
+      "tags": [
+        "document-search",
+        "provenance",
+        "mesa-core"
+      ],
+      "category": "Document Memory",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 6,
+      "guideGroup": "document-memory",
+      "seo": {
+        "en": {
+          "title": "How to Build Source-Backed Document Search — MESA",
+          "description": "Add text documents to MESA Core, search them locally, update a revision and verify that each result points back to its source."
+        },
+        "tr": {
+          "title": "Kaynak Gösteren Belge Araması Nasıl Kurulur? — MESA",
+          "description": "Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni sürüm yükleyin ve her sonucun kaynağına bağlandığını doğrulayın."
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "How do you build source-backed document search?",
+          "summary": "Add a document with a source reference, search it locally, update it and check that results come from the current revision.",
+          "shortAnswer": "Install MESA Core, start the local server, add each text file with a stable --source value and search with mesa search. Results return the matching text and document ID, so you can check the answer against its source.",
+          "category": "Document memory",
+          "sections": [
+            {
+              "id": "before",
+              "title": "1. Check what you need",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Python 3.11, 3.12 or 3.13",
+                    "Linux, macOS or WSL",
+                    "UTF-8 text files. Convert PDF and Word files to text first."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "This guide uses word search, so it needs no model account. MESA Core is alpha software and is not ready for production use."
+                }
+              ]
+            },
+            {
+              "id": "start",
+              "title": "2. Install and start MESA Core",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Run this in a new folder and keep the terminal open."
+                },
+                {
+                  "kind": "code",
+                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.3\nmesa start"
+                }
+              ]
+            },
+            {
+              "id": "add",
+              "title": "3. Add a document with its source",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Open a second terminal in the same folder. Use a stable `--source`, because it identifies the document when you update or delete it."
+                },
+                {
+                  "kind": "code",
+                  "code": ". .venv/bin/activate\nprintf '%s\\n' 'Refunds are accepted within 30 days of purchase.' 'Damaged items are replaced at no cost.' > refund-policy.txt\nmesa add refund-policy.txt --source file://refund-policy.txt"
+                }
+              ]
+            },
+            {
+              "id": "search",
+              "title": "4. Search and inspect the source",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "mesa search \"refund days\""
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "A result looks like this. Your document ID can differ."
+                },
+                {
+                  "kind": "code",
+                  "code": "[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68\n    Refunds are accepted within 30 days of purchase.\n    Damaged items are replaced at no cost."
+                },
+                {
+                  "kind": "warning",
+                  "title": "A score is not proof",
+                  "text": "The score orders results for this query. It is not a probability that the text is correct. Read the returned passage before using it."
+                }
+              ]
+            },
+            {
+              "id": "update",
+              "title": "5. Update the document",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Add changed text with the same source. MESA creates a new revision of the same document, and search uses the current text."
+                },
+                {
+                  "kind": "code",
+                  "code": "printf '%s\\n' 'Refunds are accepted within 45 days of purchase.' 'Damaged items are replaced at no cost.' > refund-policy.txt\nmesa add refund-policy.txt --source file://refund-policy.txt\nmesa search \"refund days\""
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "The result should now say 45 days."
+                }
+              ]
+            },
+            {
+              "id": "delete",
+              "title": "6. Delete by source",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "mesa delete --source file://refund-policy.txt"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "After deletion, the same search should no longer return the document. Then stop the server in the first terminal with Ctrl+C."
+                }
+              ]
+            },
+            {
+              "id": "faq",
+              "title": "Document search questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Do I need embeddings to start?",
+                  "text": "No. Word search works without a model. Add a model provider later if you need meaning-based search."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Can I add PDF files directly?",
+                  "text": "The CLI reads UTF-8 text files, so convert PDF and Word files first."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Does MESA write the final answer?",
+                  "text": "No. It returns source text. Your application and language model write the answer."
+                }
+              ]
+            },
+            {
+              "id": "sources",
+              "title": "Sources",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "MESA Core · Getting started",
+                      "href": "docs/core/getting-started/"
+                    },
+                    {
+                      "label": "MESA Core · CLI reference",
+                      "href": "docs/core/cli-reference/"
+                    },
+                    {
+                      "label": "mesa-memory 0.9.3 on PyPI",
+                      "href": "https://pypi.org/project/mesa-memory/0.9.3/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Kaynak gösteren belge araması nasıl kurulur?",
+          "summary": "Belgeyi kaynak bilgisiyle ekleyin, yerelde arayın, güncelleyin ve sonuçların geçerli sürümden geldiğini kontrol edin.",
+          "shortAnswer": "MESA Core’u kurun, yerel sunucuyu başlatın, her metin dosyasını sabit bir --source değeriyle ekleyin ve mesa search ile arayın. Sonuçlar eşleşen metni ve belge kimliğini döndürür; böylece yanıtı kaynağıyla kontrol edebilirsiniz.",
+          "category": "Belge hafızası",
+          "sections": [
+            {
+              "id": "once",
+              "title": "1. Gerekenleri kontrol edin",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Python 3.11, 3.12 veya 3.13",
+                    "Linux, macOS veya WSL",
+                    "UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Bu rehber sözcük aramasını kullanır, bu yüzden model hesabı gerekmez. MESA Core alfa aşamasındadır ve canlı kullanıma hazır değildir."
+                }
+              ]
+            },
+            {
+              "id": "baslat",
+              "title": "2. MESA Core’u kurup başlatın",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Bunu yeni bir klasörde çalıştırın ve terminali açık bırakın."
+                },
+                {
+                  "kind": "code",
+                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.3\nmesa start"
+                }
+              ]
+            },
+            {
+              "id": "ekle",
+              "title": "3. Belgeyi kaynağıyla ekleyin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Aynı klasörde ikinci bir terminal açın. Güncelleme ve silmede belgeyi tanımladığı için sabit bir `--source` kullanın."
+                },
+                {
+                  "kind": "code",
+                  "code": ". .venv/bin/activate\nprintf '%s\\n' 'Refunds are accepted within 30 days of purchase.' 'Damaged items are replaced at no cost.' > refund-policy.txt\nmesa add refund-policy.txt --source file://refund-policy.txt"
+                }
+              ]
+            },
+            {
+              "id": "ara",
+              "title": "4. Arayın ve kaynağı inceleyin",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "mesa search \"refund days\""
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Sonuç aşağıdaki gibi görünür. Belge kimliğiniz farklı olabilir."
+                },
+                {
+                  "kind": "code",
+                  "code": "[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68\n    Refunds are accepted within 30 days of purchase.\n    Damaged items are replaced at no cost."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Puan kanıt değildir",
+                  "text": "Puan, bu sorgudaki sonuçları sıralar. Metnin doğru olma olasılığı değildir. Kullanmadan önce dönen bölümü okuyun."
+                }
+              ]
+            },
+            {
+              "id": "guncelle",
+              "title": "5. Belgeyi güncelleyin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Değişen metni aynı kaynakla ekleyin. MESA aynı belgenin yeni sürümünü oluşturur ve arama güncel metni kullanır."
+                },
+                {
+                  "kind": "code",
+                  "code": "printf '%s\\n' 'Refunds are accepted within 45 days of purchase.' 'Damaged items are replaced at no cost.' > refund-policy.txt\nmesa add refund-policy.txt --source file://refund-policy.txt\nmesa search \"refund days\""
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Sonuç artık 45 gün demelidir."
+                }
+              ]
+            },
+            {
+              "id": "sil",
+              "title": "6. Kaynağa göre silin",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "mesa delete --source file://refund-policy.txt"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde Ctrl+C ile sunucuyu durdurun."
+                }
+              ]
+            },
+            {
+              "id": "sss",
+              "title": "Belge araması hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Başlamak için embedding gerekir mi?",
+                  "text": "Hayır. Sözcük araması modelsiz çalışır. Anlam tabanlı arama gerekirse sonra model sağlayıcısı ekleyin."
+                },
+                {
+                  "kind": "definition",
+                  "term": "PDF dosyalarını doğrudan ekleyebilir miyim?",
+                  "text": "CLI UTF-8 metin dosyalarını okur; PDF ve Word dosyalarını önce dönüştürün."
+                },
+                {
+                  "kind": "definition",
+                  "term": "MESA son yanıtı yazar mı?",
+                  "text": "Hayır. Kaynak metni döndürür. Yanıtı uygulamanız ve dil modeli yazar."
+                }
+              ]
+            },
+            {
+              "id": "kaynaklar",
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "MESA Core · Başlangıç",
+                      "href": "docs/core/getting-started/"
+                    },
+                    {
+                      "label": "MESA Core · CLI referansı",
+                      "href": "docs/core/cli-reference/"
+                    },
+                    {
+                      "label": "PyPI’da mesa-memory 0.9.3",
+                      "href": "https://pypi.org/project/mesa-memory/0.9.3/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "measure-search-quality",
+        "hybrid-retrieval"
+      ],
+      "productCta": {
+        "href": "docs/core/cli-reference/",
+        "locales": {
+          "en": {
+            "eyebrow": "MESA CORE",
+            "heading": "Go further with the CLI.",
+            "description": "See every local command for adding, searching and deleting documents.",
+            "button": "Open CLI reference"
+          },
+          "tr": {
+            "eyebrow": "MESA CORE",
+            "heading": "CLI ile devam edin.",
+            "description": "Belge ekleme, arama ve silme için tüm yerel komutları görün.",
+            "button": "CLI referansını aç"
+          }
+        }
+      }
+    },
+    {
+      "id": "measure-search-quality",
+      "type": "guide",
+      "slug": "measure-search-quality",
+      "path": "guides/measure-search-quality/",
+      "publishedAt": "2026-11-23",
+      "updatedAt": "2026-11-23",
+      "author": "MESA contributors",
+      "tags": [
+        "evaluation",
+        "recall",
+        "mrr"
+      ],
+      "category": "Document Memory",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 6,
+      "guideGroup": "document-memory",
+      "seo": {
+        "en": {
+          "title": "How to Measure Search Quality with Recall and MRR — MESA",
+          "description": "Build a small judged question set, record result ranks and compare two search settings with Recall@5 and MRR using a short Python script."
+        },
+        "tr": {
+          "title": "Arama Kalitesi Recall ve MRR ile Nasıl Ölçülür? — MESA",
+          "description": "Küçük bir etiketli soru seti hazırlayın, sonuç sıralarını kaydedin ve iki arama ayarını kısa bir Python betiğiyle Recall@5 ve MRR üzerinden karşılaştırın."
+        }
+      },
+      "locales": {
+        "en": {
+          "title": "How do you measure search quality with Recall and MRR?",
+          "summary": "Create a small judged question set, record where the right document appears and compare two search settings.",
+          "shortAnswer": "Write real questions, mark the correct document for each and record its rank before and after a change. Recall@5 shows how often it appears in the top five. MRR shows how close to the top it appears.",
+          "category": "Document memory",
+          "sections": [
+            {
+              "id": "questions",
+              "title": "1. Write a small question set",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Start with 20 to 50 questions from real use, then grow the set. Include exact terms, natural wording and questions with no answer in the documents."
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "Each question has a known correct document or passage",
+                    "Questions were written before looking at the new results",
+                    "Easy and hard cases are both included",
+                    "The set is saved so that it can be reused"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "change",
+              "title": "2. Change one thing",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Compare one change at a time, such as chunk size, fusion weight or reranking. If several settings change together, you cannot tell which one helped."
+                }
+              ]
+            },
+            {
+              "id": "record",
+              "title": "3. Record the rank",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Run each question and write the rank of the first correct result. Leave it empty if the result is missing. Save this example as `results.csv`."
+                },
+                {
+                  "kind": "code",
+                  "code": "question,baseline,changed\nq1,1,1\nq2,3,2\nq3,,4\nq4,2,1\nq5,6,"
+                }
+              ]
+            },
+            {
+              "id": "calculate",
+              "title": "4. Calculate Recall@5 and MRR",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Each example question has one correct document, so Recall@5 is the share of questions answered in the top five. A result after rank five counts as a miss."
+                },
+                {
+                  "kind": "code",
+                  "code": "import csv\n\nK = 5\nrows = list(csv.DictReader(open(\"results.csv\", encoding=\"utf-8\")))\nfor column in (\"baseline\", \"changed\"):\n    ranks = [int(row[column]) if row[column] else None for row in rows]\n    hits = [rank for rank in ranks if rank and rank <= K]\n    recall = len(hits) / len(ranks)\n    mrr = sum(1 / rank for rank in hits) / len(ranks)\n    print(f\"{column}: Recall@{K}={recall:.2f} MRR@{K}={mrr:.2f}\")"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Run it with `python3 evaluate.py`:"
+                },
+                {
+                  "kind": "code",
+                  "code": "baseline: Recall@5=0.60 MRR@5=0.37\nchanged: Recall@5=0.80 MRR@5=0.55"
+                }
+              ]
+            },
+            {
+              "id": "read",
+              "title": "5. Read the result carefully",
+              "blocks": [
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Question",
+                    "Baseline",
+                    "Changed",
+                    "What happened"
+                  ],
+                  "rows": [
+                    [
+                      "q2",
+                      "3",
+                      "2",
+                      "Moved up"
+                    ],
+                    [
+                      "q3",
+                      "Missing",
+                      "4",
+                      "Newly found"
+                    ],
+                    [
+                      "q4",
+                      "2",
+                      "1",
+                      "Moved up"
+                    ],
+                    [
+                      "q5",
+                      "6",
+                      "Missing",
+                      "Still outside the top five"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "The change improves both metrics in this illustrative data. Five questions are too few to prove a real improvement, so inspect failures and repeat on a larger set."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Do not tune on your final test set",
+                  "text": "Keep some questions aside. If you repeatedly tune against the same questions, the score can improve without real search improving."
+                }
+              ]
+            },
+            {
+              "id": "faq",
+              "title": "Search evaluation questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "What is a good MRR score?",
+                  "text": "There is no universal threshold. Compare systems on the same questions and documents."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Recall or MRR: which matters more?",
+                  "text": "Recall shows whether the evidence was found. MRR shows how high it ranked. RAG systems usually need both."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Should I use nDCG?",
+                  "text": "Use nDCG when results have graded relevance. See the [evaluation lesson](/learn/evaluating-ndcg-and-mrr-in-memory/)."
+                }
+              ]
+            },
+            {
+              "id": "sources",
+              "title": "Sources",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "MESA Learn · Evaluate retrieval",
+                      "href": "learn/evaluating-ndcg-and-mrr-in-memory/"
+                    },
+                    {
+                      "label": "MESA · Retrieval evaluation methodology",
+                      "href": "methodology/retrieval-evaluation/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "tr": {
+          "title": "Arama kalitesi Recall ve MRR ile nasıl ölçülür?",
+          "summary": "Küçük bir etiketli soru seti hazırlayın, doğru belgenin nerede çıktığını kaydedin ve iki arama ayarını karşılaştırın.",
+          "shortAnswer": "Gerçek sorular yazın, her biri için doğru belgeyi işaretleyin ve değişiklikten önce ve sonra sırasını kaydedin. Recall@5 doğru belgenin ne sıklıkla ilk beşte çıktığını, MRR ise zirveye ne kadar yakın olduğunu gösterir.",
+          "category": "Belge hafızası",
+          "sections": [
+            {
+              "id": "sorular",
+              "title": "1. Küçük bir soru seti yazın",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Gerçek kullanımdan 20 ila 50 soruyla başlayın, sonra seti büyütün. Tam terimler, doğal ifadeler ve belgelerde yanıtı olmayan sorular ekleyin."
+                },
+                {
+                  "kind": "checklist",
+                  "items": [
+                    "Her sorunun bilinen doğru belgesi veya pasajı var",
+                    "Sorular yeni sonuçlara bakmadan önce yazıldı",
+                    "Kolay ve zor durumlar birlikte yer alıyor",
+                    "Set yeniden kullanılmak üzere kaydedildi"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "degisiklik",
+              "title": "2. Tek bir şeyi değiştirin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Parça boyutu, birleştirme ağırlığı veya yeniden sıralama gibi tek bir değişikliği karşılaştırın. Birden fazla ayar birlikte değişirse hangisinin işe yaradığını bilemezsiniz."
+                }
+              ]
+            },
+            {
+              "id": "kaydet",
+              "title": "3. Sırayı kaydedin",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Her soruyu çalıştırın ve ilk doğru sonucun sırasını yazın. Sonuç yoksa boş bırakın. Bu örneği `results.csv` olarak kaydedin."
+                },
+                {
+                  "kind": "code",
+                  "code": "question,baseline,changed\nq1,1,1\nq2,3,2\nq3,,4\nq4,2,1\nq5,6,"
+                }
+              ]
+            },
+            {
+              "id": "hesapla",
+              "title": "4. Recall@5 ve MRR hesaplayın",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Örnekteki her sorunun tek doğru belgesi olduğu için Recall@5, ilk beşte yanıtlanan soruların oranıdır. Beşinci sıradan sonraki sonuç kaçırılmış sayılır."
+                },
+                {
+                  "kind": "code",
+                  "code": "import csv\n\nK = 5\nrows = list(csv.DictReader(open(\"results.csv\", encoding=\"utf-8\")))\nfor column in (\"baseline\", \"changed\"):\n    ranks = [int(row[column]) if row[column] else None for row in rows]\n    hits = [rank for rank in ranks if rank and rank <= K]\n    recall = len(hits) / len(ranks)\n    mrr = sum(1 / rank for rank in hits) / len(ranks)\n    print(f\"{column}: Recall@{K}={recall:.2f} MRR@{K}={mrr:.2f}\")"
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "`python3 evaluate.py` ile çalıştırın:"
+                },
+                {
+                  "kind": "code",
+                  "code": "baseline: Recall@5=0.60 MRR@5=0.37\nchanged: Recall@5=0.80 MRR@5=0.55"
+                }
+              ]
+            },
+            {
+              "id": "yorumla",
+              "title": "5. Sonucu dikkatle yorumlayın",
+              "blocks": [
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Soru",
+                    "Önce",
+                    "Sonra",
+                    "Ne oldu?"
+                  ],
+                  "rows": [
+                    [
+                      "q2",
+                      "3",
+                      "2",
+                      "Yükseldi"
+                    ],
+                    [
+                      "q3",
+                      "Yok",
+                      "4",
+                      "Yeni bulundu"
+                    ],
+                    [
+                      "q4",
+                      "2",
+                      "1",
+                      "Yükseldi"
+                    ],
+                    [
+                      "q5",
+                      "6",
+                      "Yok",
+                      "Hâlâ ilk beşin dışında"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçek bir iyileşmeyi kanıtlamak için azdır; hataları inceleyin ve daha büyük bir sette tekrarlayın."
+                },
+                {
+                  "kind": "warning",
+                  "title": "Son test setinizde ayar yapmayın",
+                  "text": "Bazı soruları ayrı tutun. Aynı sorulara göre tekrar tekrar ayar yaparsanız arama gerçekten iyileşmeden puan yükselebilir."
+                }
+              ]
+            },
+            {
+              "id": "sss",
+              "title": "Arama değerlendirmesi hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "İyi bir MRR değeri nedir?",
+                  "text": "Evrensel bir eşik yoktur. Sistemleri aynı soru ve belgelerle karşılaştırın."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Recall mı MRR mi daha önemli?",
+                  "text": "Recall kanıtın bulunup bulunmadığını, MRR ne kadar üstte çıktığını gösterir. RAG sistemleri genellikle ikisine de ihtiyaç duyar."
+                },
+                {
+                  "kind": "definition",
+                  "term": "nDCG kullanmalı mıyım?",
+                  "text": "Sonuçların dereceli ilgililiği varsa nDCG kullanın. [Değerlendirme dersine](/learn/evaluating-ndcg-and-mrr-in-memory/) bakın."
+                }
+              ]
+            },
+            {
+              "id": "kaynaklar",
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "references",
+                  "items": [
+                    {
+                      "label": "MESA Learn · Arama kalitesini ölçmek",
+                      "href": "learn/evaluating-ndcg-and-mrr-in-memory/"
+                    },
+                    {
+                      "label": "MESA · Arama değerlendirme yöntemi",
+                      "href": "methodology/retrieval-evaluation/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "related": [
+        "evaluating-ndcg-and-mrr-in-memory",
+        "source-backed-document-search"
+      ],
+      "productCta": {
+        "href": "benchmark/",
+        "locales": {
+          "en": {
+            "eyebrow": "MESA BENCHMARK",
+            "heading": "See a real evaluation.",
+            "description": "Read how MESA measures Turkish legal retrieval across versions.",
+            "button": "Open benchmark"
+          },
+          "tr": {
+            "eyebrow": "MESA BENCHMARK",
+            "heading": "Gerçek bir değerlendirmeyi görün.",
+            "description": "MESA’nın Türkçe hukuk aramasını sürümler arasında nasıl ölçtüğünü okuyun.",
+            "button": "Benchmark’ı aç"
+          }
+        }
+      }
+    },
+    {
       "id": "verify-ai-yargitay",
       "type": "guide",
       "slug": "verify-ai-yargitay-decision",
@@ -6135,7 +7599,8 @@
             "button": "MESA Law’u incele"
           }
         }
-      }
+      },
+      "guideGroup": "legal"
     },
     {
       "id": "uyap-emsal-karar-dogrulama",
@@ -6497,7 +7962,8 @@
             "button": "MESA Law’u incele"
           }
         }
-      }
+      },
+      "guideGroup": "legal"
     },
     {
       "id": "yapay-zeka-hukuk-atif-hatalari",
@@ -6851,7 +8317,8 @@
             "button": "MESA Law’u incele"
           }
         }
-      }
+      },
+      "guideGroup": "legal"
     },
     {
       "id": "provenance",

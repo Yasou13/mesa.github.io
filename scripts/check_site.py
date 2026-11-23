@@ -522,6 +522,10 @@ def main() -> int:
         "research/keyword-vs-semantic-search/": ("No results yet", "Planned protocol · no results"),
         "law/guides/yapay-zeka-yargitay-karari-dogrulama/": ("Capture the exact claim", "Existence is not relevance"),
         "law/": ("Check an AI-generated legal citation.",),
+        "guides/": ("Coding agents", "Document memory", "Legal AI"),
+        "guides/claude-code-persistent-memory/": ("Choose the right memory layer", "Add searchable session history"),
+        "docs/lore/": ("What is MESA Lore?", "How a session works"),
+        "docs/lore/mcp-tools/": ("memory_search", "Returned text"),
         "lore/": ("Local MCP memory for Claude Code and Codex", "How it differs from CLAUDE.md and auto memory", "Current limits"),
     }
     for route, markers in static_markers.items():
@@ -534,6 +538,9 @@ def main() -> int:
     turkish_markers = {
         "tr/": ("Modelinize doğru bilgi çıkar.", "pip install", "Alfa"),
         "tr/how-it-works/": ("archive-tr.txt", "Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
+        "tr/docs/lore/": ("MESA Lore nedir?", "Bir oturum nasıl işler?"),
+        "tr/guides/": ("Kodlama ajanları", "Belge hafızası", "Hukukta yapay zekâ"),
+        "tr/guides/codex-cli-mcp-memory/": ("Hook’ları onaylayın", "Bağlantıyı doğrulayın"),
         "tr/lore/": ("Claude Code ve Codex için yerel MCP hafızası", "CLAUDE.md ve otomatik hafızadan farkı", "Güncel sınırlar"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı", "Yapay zekânın verdiği hukuki atfı kontrol edin."),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),

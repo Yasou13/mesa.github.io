@@ -155,6 +155,28 @@
     "release_tag": "v0.9.3",
     "release_date": "2026-11-06"
   },
+  "lore": {
+    "repo_url": "https://github.com/Yasou13/MESA_Lore.git",
+    "title": {
+      "en": "MESA Lore",
+      "tr": "MESA Lore"
+    },
+    "description": {
+      "en": "Local MCP memory for Claude Code, Codex CLI and Antigravity sessions.",
+      "tr": "Claude Code, Codex CLI ve Antigravity oturumları için yerel MCP hafızası."
+    },
+    "base_route": "docs/lore/",
+    "commit": "efb3406e7798fdb8ade25418082150376690b633",
+    "version_source": "pyproject.toml",
+    "allowlist": [
+      {
+        "src": "README.md",
+        "slug": "",
+        "title": "Overview",
+        "title_tr": "Genel bakış"
+      }
+    ]
+  },
   "data": {
     "repo_url": "https://github.com/Yasou13/MESA_Data.git",
     "title": {

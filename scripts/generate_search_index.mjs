@@ -59,7 +59,7 @@ export function buildSearchIndex() {
           const title = page.title?.[lang] || page.title?.en;
           const url = lang === 'tr' ? `tr/${page.route}` : page.route;
           const sectionTitle = lang === 'tr' ? `Docs · ${repoTitleTr}` : `Docs · ${repoTitleEn}`;
-          const guide = repoKey === 'core' ? guideByRoute.get(page.route) : null;
+          const guide = guideByRoute.get(page.route) || null;
           const guideContent = guide ? fs.readFileSync(path.join(repositoryRoot, `content/docs/guides/${lang}/${guide.id}.md`), 'utf8') : '';
 
           index.push({

@@ -532,6 +532,118 @@
         "en": "Adaptive query planning",
         "tr": "Uyarlanabilir sorgu planlama"
       }
+    },
+    {
+      "id": "lore-overview",
+      "repo": "lore",
+      "route": "docs/lore/",
+      "sources": [
+        "README.md",
+        "pyproject.toml"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "Overview",
+        "tr": "Genel bakış"
+      }
+    },
+    {
+      "id": "lore-install",
+      "repo": "lore",
+      "route": "docs/lore/installation/",
+      "sources": [
+        "README.md",
+        "src/mesa_lore/install.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "Installation",
+        "tr": "Kurulum"
+      }
+    },
+    {
+      "id": "lore-agents",
+      "repo": "lore",
+      "route": "docs/lore/agents/",
+      "sources": [
+        "README.md",
+        "src/mesa_lore/install.py",
+        "src/mesa_lore/readers/antigravity.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "Agent setup",
+        "tr": "Ajan kurulumu"
+      }
+    },
+    {
+      "id": "lore-mcp-tools",
+      "repo": "lore",
+      "route": "docs/lore/mcp-tools/",
+      "sources": [
+        "src/mesa_lore/mcp_server.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "MCP tools",
+        "tr": "MCP araçları"
+      }
+    },
+    {
+      "id": "lore-cli",
+      "repo": "lore",
+      "route": "docs/lore/cli/",
+      "sources": [
+        "src/mesa_lore/cli.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "CLI commands",
+        "tr": "CLI komutları"
+      }
+    },
+    {
+      "id": "lore-notes",
+      "repo": "lore",
+      "route": "docs/lore/notes-and-handoffs/",
+      "sources": [
+        "README.md",
+        "src/mesa_lore/store.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "Notes and handoffs",
+        "tr": "Notlar ve devir notları"
+      }
+    },
+    {
+      "id": "lore-data",
+      "repo": "lore",
+      "route": "docs/lore/data-and-privacy/",
+      "sources": [
+        "README.md",
+        "src/mesa_lore/text.py",
+        "src/mesa_lore/store.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "Data and privacy",
+        "tr": "Veri ve gizlilik"
+      }
+    },
+    {
+      "id": "lore-troubleshooting",
+      "repo": "lore",
+      "route": "docs/lore/troubleshooting/",
+      "sources": [
+        "README.md",
+        "bench/run.py"
+      ],
+      "appendixSections": [],
+      "title": {
+        "en": "Troubleshooting and limits",
+        "tr": "Sorun giderme ve sınırlar"
+      }
     }
   ]
 }

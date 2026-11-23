@@ -51,7 +51,7 @@ test('docs hub has localized entry points and resolvable section links in both d
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     assert.equal(new Set(ids).size, ids.length);
     for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), match[1]);
-    for (const repo of ['core', 'data', 'law', 'qa', 'e2e']) assert.ok(html.includes(`href="${base}docs/${repo}/"`));
+    for (const repo of ['core', 'lore', 'data', 'law', 'qa', 'e2e']) assert.ok(html.includes(`href="${base}docs/${repo}/"`));
     assert.match(html, /<details class="docs-navigation" open>/); // Navigation survives without JavaScript.
     assert.equal(html.match(/<h[1-6]\b/)[0], '<h1');
     assert.ok(html.includes(language === 'tr' ? 'Ajanlarınıza hafıza kazandırın.' : 'Give your agents memory.'));

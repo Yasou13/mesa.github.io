@@ -733,7 +733,7 @@ function mcpPage() {
         </article>
       </section>
 
-      <p class="docs-lore-note">${hubText('This page covers MESA Core. To search past Claude Code or Codex sessions, use <a href="' + route('lore/') + '">MESA Lore</a>, a separate local MCP memory server.', 'Bu sayfa MESA Core içindir. Geçmiş Claude Code veya Codex oturumlarını aramak için ayrı bir yerel MCP hafıza sunucusu olan <a href="' + route('lore/') + '">MESA Lore</a>’u kullanın.')}</p>
+      <p class="docs-lore-note">${hubText('This page covers MESA Core. To search past Claude Code or Codex sessions, use <a href="' + route('docs/lore/mcp-tools/') + '">MESA Lore</a>, a separate local MCP memory server.', 'Bu sayfa MESA Core içindir. Geçmiş Claude Code veya Codex oturumlarını aramak için ayrı bir yerel MCP hafıza sunucusu olan <a href="' + route('docs/lore/mcp-tools/') + '">MESA Lore</a>’u kullanın.')}</p>
 
       <section id="bridge-tools" class="tool-section">
         <div class="section-heading">
@@ -872,6 +872,15 @@ const hubChrome = (html) => currentLanguage === 'tr' ? localizeHtml(html, trCont
 const publishedEntries = () => hubData.entries.filter(({ draft, indexable }) => !draft && indexable);
 const isLawGuide = (entry) => entry.path.startsWith('law/guides/');
 
+function guideGroupsSection() {
+  const groups = [
+    ['coding-agents', hubText('Coding agents', 'Kodlama ajanları'), hubText('Give Claude Code and Codex memory across sessions.', 'Claude Code ve Codex’e oturumlar arası hafıza kazandırın.')],
+    ['document-memory', hubText('Document memory', 'Belge hafızası'), hubText('Build source-backed search and measure whether it works.', 'Kaynak gösteren arama kurun ve işe yarayıp yaramadığını ölçün.')],
+    ['legal', hubText('Legal AI', 'Hukukta yapay zekâ'), hubText('Check AI-generated legal citations in official sources.', 'Yapay zekânın verdiği hukuki atıfları resmî kaynaklarda kontrol edin.')]
+  ];
+  return `<section class="section guide-groups">${groups.map(([id, title, intro]) => `<section class="guide-group" id="guides-${id}" aria-labelledby="guides-${id}-title"><h2 id="guides-${id}-title">${title}</h2><p>${intro}</p><div class="publication-grid">${publishedEntries().filter((entry) => entry.type === 'guide' && entry.guideGroup === id).map(hubCard).join('')}</div></section>`).join('')}</section>`;
+}
+
 function lawGuidesSection() {
   return `<section class="section law-guides" aria-labelledby="law-guides-title">
         <p class="eyebrow">${hubText('LEGAL GUIDES', 'HUKUK REHBERLERİ')}</p>
@@ -980,6 +989,7 @@ function renderHubIndex(section) {
         ${future}
       </section>`;
   }
+  if (section.id === 'guides') body = guideGroupsSection();
   return `${hubChrome(header('resources'))}<main id="main-content">${breadcrumbs}<section class="page-hero compact page-hero--editorial knowledge-hero"><p class="eyebrow">${escapeHtml(localized.eyebrow)}</p><h1>${escapeHtml(localized.heading)}</h1><p>${escapeHtml(localized.intro)}</p></section>${body}${hubChrome(footer())}</main>`;
 }
 

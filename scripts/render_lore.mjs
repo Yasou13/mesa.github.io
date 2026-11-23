@@ -1,5 +1,5 @@
 // MESA Lore product page, rendered per language.
-// Facts follow mesa-lore 0.1.0 (1595481). The test and benchmark figures were re-run from that
+// Facts follow mesa-lore 0.1.0 (efb3406). The test and benchmark figures were re-run from that
 // commit on 23 November 2026; update them together with the version.
 export const LORE_VERSION = '0.1.0';
 
@@ -50,7 +50,7 @@ export function lorePage({ header, footer, language, base, repo, external }) {
     ['432', L('tokens at session start', 'oturum başında token'), L('163 for the index, 269 for tool definitions', 'Dizin için 163, araç tanımları için 269')],
     ['8/9', L('keyword benchmark questions', 'sözcük benchmark sorusu'), L('Turkish search: 3 of 3', 'Türkçe arama: 3 sorudan 3’ü')],
     ['47–86 ms', L('search p95 on 10,000 chunks', '10.000 parçada arama p95'), L('Range across three benchmark runs on Linux', 'Linux’ta üç benchmark çalıştırmasının aralığı')],
-    ['198', L('passing tests', 'geçen test'), L('All 31 required benchmark categories pass', 'Zorunlu 31 benchmark kategorisinin tamamı geçiyor')]
+    ['200', L('passing tests', 'geçen test'), L('All 31 required benchmark categories pass', 'Zorunlu 31 benchmark kategorisinin tamamı geçiyor')]
   ];
   const comparison = [
     [L('Written by', 'Yazan'), L('You', 'Siz'), 'Claude', L('Hooks and the agent', 'Hook’lar ve ajan')],
@@ -84,7 +84,7 @@ export function lorePage({ header, footer, language, base, repo, external }) {
       <p class="eyebrow">${L(`MESA LORE · v${LORE_VERSION} · OPEN SOURCE`, `MESA LORE · v${LORE_VERSION} · AÇIK KAYNAK`)}</p>
       <h1>${L('Local MCP memory for Claude Code and Codex', 'Claude Code ve Codex için yerel MCP hafızası')}</h1>
       <p>${L('MESA Lore is an open-source MCP memory server for coding agents. It makes past Claude Code, Codex CLI and Antigravity sessions searchable on your computer. In Claude Code and Codex, each new session starts with a short index. Agents then pull back only what they need, with sources.', 'MESA Lore, kodlama ajanları için açık kaynak bir MCP hafıza sunucusudur. Claude Code, Codex CLI ve Antigravity’deki geçmiş oturumları bilgisayarınızda aranabilir yapar. Claude Code ve Codex’te her yeni oturum kısa bir dizinle başlar. Ajanlar yalnızca ihtiyaç duydukları bilgiyi kaynaklarıyla birlikte geri çağırır.')}</p>
-      <div class="actions"><a class="button primary" href="#install">${L('Install MESA Lore', 'MESA Lore’u kur')}</a>${external(repo, L('View on GitHub', 'GitHub’da incele'), 'button secondary')}</div>
+      <div class="actions"><a class="button primary" href="#install">${L('Install MESA Lore', 'MESA Lore’u kur')}</a><a class="button secondary" href="${href('docs/lore/')}">${L('Read the docs', 'Dokümanları oku')}</a>${external(repo, L('View on GitHub', 'GitHub’da incele'), 'button secondary')}</div>
     </section>
 
     <section class="section lore-facts" aria-label="${L('Key facts', 'Temel bilgiler')}">
@@ -118,6 +118,7 @@ export function lorePage({ header, footer, language, base, repo, external }) {
       ${code('lore-install-code', L('Install from GitHub', 'GitHub’dan kur'), INSTALL)}
       <p>${L('<code>install</code> adds the MCP server and hooks to supported agents, imports existing history and backs up changed files to <code>~/.config/mesa-lore/backup/</code>.', '<code>install</code>, desteklenen ajanlara MCP sunucusunu ve hook’ları ekler, mevcut geçmişi içe aktarır ve değiştirdiği dosyaları <code>~/.config/mesa-lore/backup/</code> altına yedekler.')}</p>
       ${code('lore-usage-code', L('Everyday commands', 'Günlük komutlar'), USAGE)}
+      <p class="lore-related">${L(`See the <a href="${href('docs/lore/installation/')}">installation guide</a>, <a href="${href('docs/lore/agents/')}">agent setup</a> and <a href="${href('docs/lore/cli/')}">CLI reference</a>.`, `<a href="${href('docs/lore/installation/')}">Kurulum rehberine</a>, <a href="${href('docs/lore/agents/')}">ajan kurulumuna</a> ve <a href="${href('docs/lore/cli/')}">CLI komutlarına</a> bakın.`)}</p>
     </section>
 
     <section class="section lore-block" aria-labelledby="lore-agents">

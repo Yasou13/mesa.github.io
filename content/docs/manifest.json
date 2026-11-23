@@ -1750,6 +1750,97 @@
       ],
       "last_sync": "2026-11-17T03:43:14Z"
     },
+    "lore": {
+      "repo_url": "https://github.com/Yasou13/MESA_Lore.git",
+      "commit": "efb3406e7798fdb8ade25418082150376690b633",
+      "version": "v0.1.0",
+      "title": {
+        "en": "MESA Lore",
+        "tr": "MESA Lore"
+      },
+      "description": {
+        "en": "Local MCP memory for Claude Code, Codex CLI and Antigravity sessions.",
+        "tr": "Claude Code, Codex CLI ve Antigravity oturumları için yerel MCP hafızası."
+      },
+      "base_route": "docs/lore/",
+      "pages": [
+        {
+          "src": "README.md",
+          "slug": "",
+          "route": "docs/lore/",
+          "title": {
+            "en": "Overview",
+            "tr": "Genel bakış"
+          },
+          "headings": [
+            {
+              "level": 1,
+              "title": "mesa-lore",
+              "id": "mesa-lore"
+            },
+            {
+              "level": 2,
+              "title": "Why",
+              "id": "why"
+            },
+            {
+              "level": 2,
+              "title": "Install",
+              "id": "install"
+            },
+            {
+              "level": 2,
+              "title": "Supported agents",
+              "id": "supported-agents"
+            },
+            {
+              "level": 2,
+              "title": "CLI",
+              "id": "cli"
+            },
+            {
+              "level": 2,
+              "title": "Memory and handoffs",
+              "id": "memory-and-handoffs"
+            },
+            {
+              "level": 2,
+              "title": "Data and privacy",
+              "id": "data-and-privacy"
+            },
+            {
+              "level": 2,
+              "title": "Platform status",
+              "id": "platform-status"
+            },
+            {
+              "level": 2,
+              "title": "Measured results",
+              "id": "measured-results"
+            },
+            {
+              "level": 2,
+              "title": "Limitations",
+              "id": "limitations"
+            },
+            {
+              "level": 2,
+              "title": "Development",
+              "id": "development"
+            },
+            {
+              "level": 2,
+              "title": "License",
+              "id": "license"
+            }
+          ],
+          "raw_markdown": "# mesa-lore\n\nmesa-lore is a local, CPU-only memory layer for coding agents. It indexes past session transcripts and short agent\nnotes in one SQLite file, then lets a new session pull back only what it needs, in small pieces, with sources. It makes\nno LLM calls, uses no embeddings, and needs no network at runtime.\n\n**Website:** [mesamemory.dev/lore](https://mesamemory.dev/lore/) · [Türkçe](https://mesamemory.dev/tr/lore/)\n\n## Why\n\nResuming work usually means replaying a long session or explaining the context again, and both cost tokens. mesa-lore\nstarts a session with a short index and lets the agent search for details only when it needs them.\n\n## Install\n\nRequires Python 3.10 or newer.\n\n```bash\ngit clone https://github.com/Yasou13/MESA_Lore.git\ncd MESA_Lore\npython3 -m venv .venv\n.venv/bin/pip install .\n.venv/bin/mesa-lore install\n.venv/bin/mesa-lore doctor\n```\n\n`install` adds the MCP server and hooks to the supported agents and imports existing history. It backs up files it\nchanges to `~/.config/mesa-lore/backup/`.\n\n```bash\nmesa-lore install [--home PATH]    # configure agents and import history\nmesa-lore doctor [--home PATH]     # check configuration, schema and ingest warnings\nmesa-lore uninstall [--home PATH]  # restore backed-up configs and keep the database\n```\n\n## Supported agents\n\n| Agent | Memory tools | Automatic capture |\n|---|---|---|\n| Claude Code | MCP | `SessionStart`, `Stop` and `SessionEnd` hooks |\n| Codex CLI | MCP | Same hooks, after you approve them with `/hooks` in Codex |\n| Antigravity | MCP | Transcripts are scanned when the server starts or on `ingest-pending` |\n| Claude desktop | MCP | None. Chats on claude.ai and in the desktop chat tab are not captured |\n\n## CLI\n\n```bash\nmesa-lore search \"why did login fail\" --project my-app\nmesa-lore index --project my-app\nmesa-lore show <id> --before 2 --after 2\nmesa-lore export --project my-app --out my-app.md\nmesa-lore export --all -o notes/\nmesa-lore stats --days 30\nmesa-lore purge --older-than 90d\n```\n\nRun `mesa-lore --help` for all commands.\n\n## Memory and handoffs\n\nAgents use four MCP tools: `memory_index`, `memory_search`, `memory_get` and `memory_save`.\n\n`memory_save` stores a short note of kind `decision`, `fact`, `todo`, `failed_attempt` or `handoff`. A note can replace\nan older one, which marks the older note as superseded.\n\nA handoff tells the next session what was done, what was decided and what comes next. mesa-lore builds a basic handoff\nfrom each ingested session. In agents with a `Stop` hook, it also asks the agent to write its own at turn 8, then at\nmost once every 20 turns. An agent-written handoff takes precedence.\n\nSearch returns the current project plus `global` notes. `research:<topic>` scopes are returned only when asked for\ndirectly.\n\n## Data and privacy\n\n- Data stays in `~/.local/share/mesa-lore/lore.db`. Set `MESA_LORE_DB` to use another path.\n- Nothing is sent over the network by mesa-lore.\n- Common API keys, tokens, passwords and private keys are masked before storage. Masking is pattern-based, so an\n  unusual secret format can be missed.\n- Text returned to agents is wrapped in `<untrusted_memory>` tags so it is treated as data.\n- To exclude projects from ingest, add this to `~/.config/mesa-lore/config.toml`:\n\n```toml\nexcluded_projects = [\"private-client\"]\n```\n\n## Platform status\n\n- Linux: tested.\n- macOS: untested.\n- Windows: not supported yet.\n\n## Measured results\n\nFrom the included test suite and benchmark on Linux with Python 3.12:\n\n- 198 tests pass and all 31 required benchmark categories pass.\n- Keyword search finds 8 of 9 benchmark questions. Turkish search finds 3 of 3.\n- Session startup costs 432 tokens: 163 for the index and 269 for tool definitions.\n- Search p95 was 86 ms on 10,000 chunks in one benchmark run.\n\nFrom a private evaluation on the author's own transcripts (38,291 entries, 168 MB), which cannot be reproduced from this\nrepository:\n\n- 51.7% of 120 questions were answered correctly with an 800-token memory budget. Answers and grading used LLMs.\n- The `Stop` hook has a median runtime of 37.5 ms.\n\nEnd-to-end token savings when resuming a session have not been measured yet.\n\n## Limitations\n\n- Search is lexical. It has no embeddings or synonym understanding, so queries need words or stems present in the text.\n- Recall is incomplete, so check important answers against the returned source.\n\n## Development\n\n```bash\npython3 -m venv .venv\n.venv/bin/pip install -e '.[dev]'\nMESA_LORE_DB=\"$(mktemp -d)/lore.db\" .venv/bin/python -m pytest -q\nMESA_LORE_DB=\"$(mktemp -d)/lore.db\" .venv/bin/python bench/run.py --require all\n```\n\n## License\n\nApache-2.0. See [LICENSE](https://github.com/Yasou13/MESA_Lore/blob/efb3406e7798fdb8ade25418082150376690b633/LICENSE) and [NOTICE](https://github.com/Yasou13/MESA_Lore/blob/efb3406e7798fdb8ade25418082150376690b633/NOTICE).\n",
+          "content_hash": "025039c69fb6",
+          "last_synced": "2026-11-23T11:29:49Z"
+        }
+      ],
+      "last_sync": "2026-11-23T11:29:49Z"
+    },
     "data": {
       "repo_url": "https://github.com/Yasou13/MESA_Data.git",
       "commit": "e1dc229e9de57c48374e38a87ec7786d1c7bd1f9",

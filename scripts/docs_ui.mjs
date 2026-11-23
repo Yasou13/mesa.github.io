@@ -39,21 +39,23 @@ export function docsSidebar(manifest, currentRoute, language, {base = './', guid
   </div></details></aside>`;
 }
 
-export function docsTabs(currentRoute, language, base) {
+export function docsTabs(currentRoute, language, base, productRepo = null) {
   const tr = language === 'tr';
+  // The other tabs are Core references; a Lore page must not light them up by a shared word.
+  const tabRoute = currentRoute.startsWith('docs/lore/') ? 'docs/' : currentRoute;
   const items = [
-    ['docs/', tr ? 'Dokümantasyon' : 'Documentation', 'book-open', !/mcp|api-reference|endpoints|examples|installation|cli-reference/.test(currentRoute)],
-    ['docs/core/installation/', tr ? 'Kurulum' : 'Deploy', 'layers', currentRoute.includes('installation')],
-    ['docs/core/cli-reference/', 'MESA CLI', 'terminal', currentRoute.includes('cli-reference')],
-    ['docs/core/examples/', 'Python SDK', 'code', currentRoute.includes('examples')],
-    ['docs/core/api-reference/', 'HTTP API', 'terminal', /api-reference|endpoints/.test(currentRoute)],
-    ['docs/mcp/', 'MCP', 'plug', currentRoute.includes('mcp')],
+    ['docs/', tr ? 'Dokümantasyon' : 'Documentation', 'book-open', !/mcp|api-reference|endpoints|examples|installation|cli-reference/.test(tabRoute)],
+    ['docs/core/installation/', tr ? 'Kurulum' : 'Deploy', 'layers', tabRoute.includes('installation')],
+    ['docs/core/cli-reference/', 'MESA CLI', 'terminal', tabRoute.includes('cli-reference')],
+    ['docs/core/examples/', 'Python SDK', 'code', tabRoute.includes('examples')],
+    ['docs/core/api-reference/', 'HTTP API', 'terminal', /api-reference|endpoints/.test(tabRoute)],
+    ['docs/mcp/', 'MCP', 'plug', tabRoute.includes('mcp')],
   ];
-  return `<nav class="docs-tabs" aria-label="${tr ? 'Dokümantasyon alanları' : 'Documentation sections'}">${items.map(([p, label, icon, active]) => `<a href="${base + p}"${active ? ' class="active"' : ''}>${docIcon(icon)}<span>${label}</span></a>`).join('')}<a class="docs-tabs-release" href="${base}docs/core/release-notes/">v0.9.3<span class="docs-release-dot" aria-hidden="true"></span></a></nav>`;
+  return `<nav class="docs-tabs" aria-label="${tr ? 'Dokümantasyon alanları' : 'Documentation sections'}">${items.map(([p, label, icon, active]) => `<a href="${base + p}"${active ? ' class="active"' : ''}>${docIcon(icon)}<span>${label}</span></a>`).join('')}<a class="docs-tabs-release" href="${base}${productRepo ? productRepo.base_route : 'docs/core/release-notes/'}">${productRepo ? esc(productRepo.version) : 'v0.9.3'}<span class="docs-release-dot" aria-hidden="true"></span></a></nav>`;
 }
 
 export const docsCopyButton = tr => `<button class="docs-copy-page" type="button" hidden>${docIcon('copy')}<span aria-live="polite">${tr ? 'Sayfayı kopyala' : 'Copy page'}</span></button>`;
-export const docsFooter = (tr, base) => `<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> ${tr ? 'Kaynağını koruyan hafıza.' : 'Memory that keeps its evidence.'}</span><a href="${base}docs/core/release-notes/">v0.9.3</a><a href="${base}docs/core/security/">${tr ? 'Güvenlik' : 'Security'}</a><span>${tr ? 'Apache 2.0 · Açık kaynak' : 'Apache 2.0 · Open source'}</span></footer>`;
+export const docsFooter = (tr, base, productRepo = null) => `<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> ${tr ? 'Kaynağını koruyan hafıza.' : 'Memory that keeps its evidence.'}</span><a href="${base}${productRepo ? productRepo.base_route : 'docs/core/release-notes/'}">${productRepo ? esc(productRepo.version) : 'v0.9.3'}</a><a href="${base}${productRepo ? `${productRepo.base_route}data-and-privacy/` : 'docs/core/security/'}">${productRepo ? (tr ? 'Veri ve gizlilik' : 'Data and privacy') : (tr ? 'Güvenlik' : 'Security')}</a><span>${tr ? 'Apache 2.0 · Açık kaynak' : 'Apache 2.0 · Open source'}</span></footer>`;
 
 export function docsFrame({manifest, currentRoute, language, base, guides, headerHtml, content, toc}) {
   const tr = language === 'tr';
@@ -80,6 +82,7 @@ export function hubContent(manifest, language, base) {
   ];
   const descriptions = {
     core: t('Memory runtime, storage, retrieval and public interfaces.', 'Bilginin işlenmesi, saklanması, aranması ve uygulamalara sunulması.'),
+    lore: t('Local MCP memory for Claude Code, Codex CLI and Antigravity sessions.', 'Claude Code, Codex CLI ve Antigravity oturumları için yerel MCP hafızası.'),
     data: t('Source acquisition, validation and immutable releases.', 'Kaynak edinimi, doğrulama ve değişmez yayınlar.'),
     law: t('Legal workflows built on source-backed memory.', 'Kaynağıyla bağlantılı hafıza üzerine kurulan hukuk iş akışları.'),
     qa: t('Independent behavior, persistence and restart checks.', 'Bağımsız davranış, kalıcılık ve yeniden başlatma kontrolleri.'),
@@ -90,8 +93,7 @@ export function hubContent(manifest, language, base) {
     <section id="start" class="docs-start-section"><a class="docs-quickstart-card" href="${route('get-started/')}"><span class="docs-card-icon">${docIcon('rocket')}</span><div><span class="docs-mini-label">${t('YOUR FIRST STEP', 'İLK ADIMINIZ')}</span><h2>${headings[0][1]}</h2><p>${t('Install v0.9.3, run mesa start, then add and search a document. BM25 works without a model.', 'v0.9.3 sürümünü kurun, mesa start çalıştırın; belge ekleyip arayın. BM25, model olmadan çalışır.')}</p><span class="docs-inline-link">${t('Open the quickstart', 'Hızlı başlangıcı açın')} ${docIcon('arrow')}</span></div>${docIcon('arrow')}</a><div class="docs-start-links"><a href="${route('docs/core/installation/')}">${t('Installation options', 'Kurulum seçenekleri')} <span>↗</span></a><span>Python 3.11–3.13 <span aria-hidden="true">·</span> v0.9.3</span></div></section>
     <section id="memory-flow" class="docs-hub-section"><div class="docs-section-heading"><h2>${headings[1][1]}</h2><a href="${route('docs/core/concepts-and-ingestion/')}">${t('How it works', 'Nasıl çalışır')} ${docIcon('arrow')}</a></div><p>${t('Memory is useful when you can follow it back to the source. MESA keeps that connection through the full lifecycle.', 'Saklanan bilginin dayanağını görebilmeniz gerekir. MESA, bilgi eklenirken, değişirken ve aranırken kaynakla bağlantısını korur.')}</p><figure class="docs-memory-flow"><div class="docs-flow-track">${stages.map(([icon, title, sub, style], i) => `<div class="docs-flow-stage docs-flow-stage--${style}"><div class="docs-flow-visual">${docIcon(icon)}${i === 1 ? '<i></i><i></i><i></i>' : ''}</div><span class="docs-flow-number">0${i + 1}</span><strong>${title}</strong><small>${sub}</small></div>`).join('')}</div><figcaption>${t('Source text → durable memory → authorized retrieval → source references', 'Kaynak metni → kalıcı hafıza → yetkili arama → kaynak referansları')}</figcaption></figure></section>
     <section id="interfaces" class="docs-hub-section"><h2>${headings[2][1]}</h2><p>${t('Use the interface that fits your application. Each path leads to the same source-backed memory system.', 'Uygulamanıza uygun arayüzü seçin. Bu seçeneklerin tümü bilgiyi kaynaklarıyla birlikte saklayan aynı sisteme erişir.')}</p><div class="docs-interface-grid">${interfaces.map(([icon, title, desc, href, label]) => `<a class="docs-interface-card" href="${route(href)}">${docIcon(icon)}<h3>${title}</h3><p>${desc}</p><span>${label} ${docIcon('arrow')}</span></a>`).join('')}</div></section>
-    <section id="ecosystem-docs" class="docs-hub-section"><h2>${headings[3][1]}</h2><p>${t('Five components, clear boundaries. Find the contract for the part you are working with.', 'Beş bileşenin görevi farklıdır. Kullandığınız bileşenin nasıl çalıştığını ilgili belgelerden öğrenin.')}</p><div class="docs-repo-list">${Object.entries(manifest.repositories).map(([key, repo], i) => `<a href="${route(repo.base_route)}"><span class="docs-repo-number">0${i + 1}</span><div><h3>${esc(repo.title[language] || repo.title.en)}</h3><p>${descriptions[key]}</p></div><span class="version-tag">${esc(repo.version)}</span>${docIcon('arrow')}</a>`).join('')}</div></section>
-    <section class="docs-hub-section"><p class="docs-lore-note">${t(`Using Claude Code or Codex? <a href="${route('lore/')}">MESA Lore</a> is a separate local MCP memory server for coding agent sessions.`, `Claude Code veya Codex mi kullanıyorsunuz? <a href="${route('lore/')}">MESA Lore</a>, kodlama ajanı oturumları için ayrı bir yerel MCP hafıza sunucusudur.`)}</p></section>
+    <section id="ecosystem-docs" class="docs-hub-section"><h2>${headings[3][1]}</h2><p>${t('Six components, clear boundaries. Find the contract for the part you are working with.', 'Altı bileşenin görevi farklıdır. Kullandığınız bileşenin nasıl çalıştığını ilgili belgelerden öğrenin.')}</p><div class="docs-repo-list">${Object.entries(manifest.repositories).map(([key, repo], i) => `<a href="${route(repo.base_route)}"><span class="docs-repo-number">0${i + 1}</span><div><h3>${esc(repo.title[language] || repo.title.en)}</h3><p>${descriptions[key]}</p></div><span class="version-tag">${esc(repo.version)}</span>${docIcon('arrow')}</a>`).join('')}</div></section>
     <section id="release-scope" class="docs-release-note">${docIcon('shield')}<div><h2>${headings[4][1]}</h2><p>${t('These docs follow the published v0.9.3 Core source release. A published package is separate from production qualification and fresh Profile B certification.', 'Bu belgeler yayımlanan Core v0.9.3 sürümüne göre hazırlanmıştır. Kaynak kodunun yayımlanmış olması, canlı kullanım onayı veya yeni bir Profile B sertifikasyonu anlamına gelmez.')}</p><a href="${route('docs/core/release-notes/')}">${t('Read release notes & limitations', 'Sürüm notlarını ve sınırları okuyun')} ${docIcon('arrow')}</a></div></section>
   </article>`;
   return {content, toc};

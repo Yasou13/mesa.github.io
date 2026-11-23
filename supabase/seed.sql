@@ -1994,6 +1994,634 @@ Arama yöntemleri bazen kullanılan belgeler, sorular, etiketler ve ayarlar aç�
 Yayımlanacak bir deneyde veri kümesi, sorgu ve değerlendirme sürümleri; model kimlikleri, ayarlar, kod sürümü, gerekiyorsa rastgelelik başlangıç değerleri, çalışma ortamı, ham çıktılar ve analiz adımları kaydedilmelidir.
 
 ', ARRAY['benchmark', 'retrieval', 'semantic-search']::text[], 'MESA contributors', 9, 'published', 'Sözcük ve anlam temelli arama nasıl karşılaştırılacak? — MESA', 'Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('claude-code-persistent-memory', 'guide', 'en', 'How do you add persistent memory to Claude Code?', '', 'Combine CLAUDE.md, auto memory and searchable session history without loading everything into every conversation.', 'Put stable project rules in CLAUDE.md and let auto memory keep learned preferences. If you also need to find decisions and failed attempts from older sessions, add a local MCP memory server such as MESA Lore.', '## 1. Choose the right memory layer
+
+Each Claude Code session starts with a fresh context window. Three layers can carry useful information forward, and they solve different problems.
+
+| Layer | Keep here | Do not keep here |
+| --- | --- | --- |
+| CLAUDE.md | Build commands, conventions and project rules | Long logs or temporary task notes |
+| Auto memory | Preferences and corrections Claude learns | Rules your whole team must follow |
+| MESA Lore | Searchable past sessions, decisions and handoffs | A replacement for project instructions |
+
+## 2. Put stable rules in CLAUDE.md
+
+Create `CLAUDE.md` in the project root and keep it short. Write what you would otherwise repeat in each session.
+
+```text
+# Project rules
+- Run npm test before finishing a change.
+- Use TypeScript for new files.
+- API handlers live in src/api/.
+```
+
+Run `/context all` in a session and check `Memory files` to confirm that it loaded.
+
+## 3. Check auto memory
+
+Auto memory is on by default in local sessions. Open `/memory` to view it or use its toggle. At session start, Claude Code loads up to the first 200 lines or 25KB of `MEMORY.md`.
+
+> [!NOTE]
+> **Keep it useful**
+> Correct or remove notes that are outdated. A short, accurate memory is easier for the agent to follow.
+
+## 4. Add searchable session history
+
+Built-in memory is not a search index for everything that happened before. MESA Lore imports past transcripts into one local SQLite file. A new session gets a short index and can search for details when needed.
+
+```text
+git clone https://github.com/Yasou13/MESA_Lore.git
+cd MESA_Lore
+python3 -m venv .venv
+.venv/bin/pip install .
+.venv/bin/mesa-lore install
+.venv/bin/mesa-lore doctor
+```
+
+> [!WARNING]
+> **Review what will be imported**
+> Install imports existing Claude Code, Codex and Antigravity transcripts into the local database. [Exclude private projects](/docs/lore/data-and-privacy/) before you run it.
+
+## 5. Test it in a new session
+
+1. Start a new Claude Code session in the same project.
+2. Ask: “Use memory_index and summarize the recent work in this project.”
+3. Ask about a real earlier decision: “Search memory for why we changed the login flow.”
+4. Open the returned source and confirm that it supports the answer.
+
+If the tools are missing, run `mesa-lore doctor` and see [troubleshooting](/docs/lore/troubleshooting/).
+
+## Claude Code memory questions
+
+**Does Claude Code remember previous sessions?**
+: Each session starts fresh, but CLAUDE.md and auto memory can carry selected knowledge across sessions. They do not make every past message searchable.
+
+**Should I put everything in CLAUDE.md?**
+: No. It loads into each session, so keep it concise and limited to information that is useful every time.
+
+**Does MESA Lore replace CLAUDE.md?**
+: No. Keep instructions in CLAUDE.md and use Lore to find earlier work.
+
+**Does this send my transcripts to another service?**
+: MESA Lore makes no network calls. Claude Code still sends retrieved memory to its model provider as context.
+
+## Sources
+
+1. [Claude Code Docs · How Claude remembers your project](https://code.claude.com/docs/en/memory)
+2. [MESA Lore on GitHub](https://github.com/Yasou13/MESA_Lore)
+
+', ARRAY['claude-code', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'How to Add Persistent Memory to Claude Code — MESA', 'Use CLAUDE.md, auto memory and a local MCP memory server together so Claude Code can keep rules and find work from earlier sessions.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('claude-code-persistent-memory', 'guide', 'tr', 'Claude Code’a kalıcı hafıza nasıl eklenir?', '', 'CLAUDE.md, otomatik hafıza ve aranabilir oturum geçmişini her konuşmaya her şeyi yüklemeden birlikte kullanın.', 'Kalıcı proje kurallarını CLAUDE.md’ye yazın, öğrenilen tercihleri otomatik hafızaya bırakın. Eski oturumlardaki karar ve başarısız denemeleri de bulmak istiyorsanız MESA Lore gibi yerel bir MCP hafıza sunucusu ekleyin.', '## 1. Doğru hafıza katmanını seçin
+
+Her Claude Code oturumu yeni bir bağlam penceresiyle başlar. Yararlı bilgiyi üç katman taşıyabilir ve her biri farklı bir sorunu çözer.
+
+| Katman | Burada tutun | Burada tutmayın |
+| --- | --- | --- |
+| CLAUDE.md | Derleme komutları, kurallar ve proje standartları | Uzun günlükler veya geçici görev notları |
+| Otomatik hafıza | Claude’un öğrendiği tercih ve düzeltmeler | Tüm ekibin uyması gereken kurallar |
+| MESA Lore | Aranabilir geçmiş oturumlar, kararlar ve devir notları | Proje talimatlarının yerine geçecek içerik |
+
+## 2. Kalıcı kuralları CLAUDE.md’ye yazın
+
+Proje kökünde `CLAUDE.md` oluşturun ve kısa tutun. Her oturumda yeniden söyleyeceğiniz şeyleri yazın.
+
+```text
+# Project rules
+- Run npm test before finishing a change.
+- Use TypeScript for new files.
+- API handlers live in src/api/.
+```
+
+Yüklendiğini doğrulamak için oturumda `/context all` çalıştırıp `Memory files` listesine bakın.
+
+## 3. Otomatik hafızayı kontrol edin
+
+Otomatik hafıza yerel oturumlarda varsayılan olarak açıktır. Görmek veya açıp kapatmak için `/memory` kullanın. Claude Code oturum başında `MEMORY.md` dosyasının en fazla ilk 200 satırını veya 25KB’ını yükler.
+
+> [!NOTE]
+> **Yararlı tutun**
+> Eskimiş notları düzeltin veya silin. Kısa ve doğru bir hafızayı ajan daha kolay izler.
+
+## 4. Aranabilir oturum geçmişi ekleyin
+
+Yerleşik hafıza, geçmişte olan her şey için bir arama dizini değildir. MESA Lore eski dökümleri tek bir yerel SQLite dosyasına aktarır. Yeni oturum kısa bir dizin alır ve gerektiğinde ayrıntıları arayabilir.
+
+```text
+git clone https://github.com/Yasou13/MESA_Lore.git
+cd MESA_Lore
+python3 -m venv .venv
+.venv/bin/pip install .
+.venv/bin/mesa-lore install
+.venv/bin/mesa-lore doctor
+```
+
+> [!WARNING]
+> **İçe aktarılacakları gözden geçirin**
+> Kurulum, mevcut Claude Code, Codex ve Antigravity dökümlerini yerel veritabanına aktarır. Çalıştırmadan önce [özel projeleri hariç tutun](/docs/lore/data-and-privacy/).
+
+## 5. Yeni oturumda test edin
+
+1. Aynı projede yeni bir Claude Code oturumu başlatın.
+2. Şunu sorun: “memory_index kullanarak bu projedeki son çalışmaları özetle.”
+3. Gerçek bir eski kararı sorun: “Giriş akışını neden değiştirdiğimizi hafızada ara.”
+4. Dönen kaynağı açın ve yanıtı desteklediğini doğrulayın.
+
+Araçlar görünmüyorsa `mesa-lore doctor` çalıştırın ve [sorun giderme](/docs/lore/troubleshooting/) sayfasına bakın.
+
+## Claude Code hafızası hakkında sorular
+
+**Claude Code önceki oturumları hatırlar mı?**
+: Her oturum yeni başlar, ancak CLAUDE.md ve otomatik hafıza seçilen bilgileri oturumlar arasında taşıyabilir. Geçmişteki her mesajı aranabilir yapmazlar.
+
+**Her şeyi CLAUDE.md’ye yazmalı mıyım?**
+: Hayır. Her oturuma yüklendiği için kısa tutun ve yalnızca her seferinde işe yarayacak bilgileri yazın.
+
+**MESA Lore, CLAUDE.md’nin yerine geçer mi?**
+: Hayır. Talimatları CLAUDE.md’de tutun, eski çalışmaları bulmak için Lore’u kullanın.
+
+**Bu kurulum dökümlerimi başka bir servise gönderir mi?**
+: MESA Lore ağ çağrısı yapmaz. Claude Code ise getirilen hafızayı bağlam olarak model sağlayıcısına iletir.
+
+## Kaynaklar
+
+1. [Claude Code Docs · How Claude remembers your project](https://code.claude.com/docs/en/memory)
+2. [GitHub’da MESA Lore](https://github.com/Yasou13/MESA_Lore)
+
+', ARRAY['claude-code', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'Claude Code’a Kalıcı Hafıza Nasıl Eklenir? — MESA', 'CLAUDE.md, otomatik hafıza ve yerel MCP hafıza sunucusunu birlikte kullanarak Claude Code’un kuralları korumasını ve eski oturumları bulmasını sağlayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('codex-cli-mcp-memory', 'guide', 'en', 'How do you set up MCP memory for Codex CLI?', '', 'Keep instructions in AGENTS.md and add a local MCP server that can search earlier Codex sessions.', 'Keep project instructions in AGENTS.md. Install MESA Lore to add a local MCP memory server to Codex, approve its hooks with /hooks, then start a new session and test memory_search.', '## 1. Separate instructions from history
+
+Codex reads `AGENTS.md` files before doing work, so use them for standards and project rules. A memory server has a different job: it helps the agent find what happened in earlier sessions.
+
+| Need | Use |
+| --- | --- |
+| Rules for every task | AGENTS.md |
+| Earlier decisions and failures | MCP memory |
+| A note for the next session | Handoff in MESA Lore |
+
+## 2. Install the MCP memory server
+
+```text
+git clone https://github.com/Yasou13/MESA_Lore.git
+cd MESA_Lore
+python3 -m venv .venv
+.venv/bin/pip install .
+.venv/bin/mesa-lore install
+.venv/bin/mesa-lore doctor
+```
+
+Install adds a `mesa-lore` server to `~/.codex/config.toml`, the default Codex MCP configuration, and adds session hooks to `~/.codex/hooks.json`. It backs up changed files first.
+
+> [!WARNING]
+> **Existing history is imported**
+> Install also imports existing agent transcripts. [Exclude private projects](/docs/lore/data-and-privacy/) first.
+
+## 3. Approve the hooks
+
+Codex requires non-managed hooks to be reviewed and trusted before they run. Open Codex, run `/hooks` and approve the MESA Lore commands. Without approval, automatic capture and the session-start index do not run.
+
+## 4. Verify the connection
+
+```text
+codex mcp list
+mesa-lore doctor
+```
+
+`codex mcp list` should show `mesa-lore`. Inside Codex, `/mcp` shows active servers. `mesa-lore doctor` should report `OK` for Codex MCP and hooks.
+
+## 5. Test memory in a new session
+
+1. Start a new Codex session in the project.
+2. Ask: “Call memory_index and summarize recent work.”
+3. Ask: “Search memory for the last failed test fix.”
+4. Check that the answer points to a real source.
+5. Save a decision: “Save this as a decision in memory.”
+
+## Codex memory questions
+
+**Where does Codex store MCP settings?**
+: By default in `~/.codex/config.toml`. Trusted projects can also use `.codex/config.toml`.
+
+**Does MESA Lore replace AGENTS.md?**
+: No. AGENTS.md gives instructions. Lore makes past work searchable.
+
+**Why is the memory index not appearing?**
+: The hook may not be approved. Run `/hooks`, start a new session and check `mesa-lore doctor`.
+
+**Can Codex and Claude Code share memory?**
+: Yes. MESA Lore stores both agents in the same local database and searches by project.
+
+## Sources
+
+1. [Codex · Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+2. [Codex · Model Context Protocol](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)
+3. [Codex · Hooks](https://learn.chatgpt.com/docs/hooks)
+4. [MESA Lore on GitHub](https://github.com/Yasou13/MESA_Lore)
+
+', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 5, 'published', 'How to Set Up MCP Memory for Codex CLI — MESA', 'Add a local MCP memory server to Codex CLI, approve its hooks and search earlier sessions while keeping project rules in AGENTS.md.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('codex-cli-mcp-memory', 'guide', 'tr', 'Codex CLI için MCP hafızası nasıl kurulur?', '', 'Talimatları AGENTS.md’de tutun ve önceki Codex oturumlarını arayabilen yerel bir MCP sunucusu ekleyin.', 'Proje talimatlarını AGENTS.md’de tutun. Codex’e yerel MCP hafıza sunucusu eklemek için MESA Lore’u kurun, hook’larını /hooks ile onaylayın, sonra yeni oturum açıp memory_search aracını test edin.', '## 1. Talimatları geçmişten ayırın
+
+Codex işe başlamadan önce `AGENTS.md` dosyalarını okur; standartlar ve proje kuralları için bunları kullanın. Hafıza sunucusunun görevi farklıdır: ajanın önceki oturumlarda ne olduğunu bulmasına yardım eder.
+
+| İhtiyaç | Kullanın |
+| --- | --- |
+| Her görev için kurallar | AGENTS.md |
+| Önceki kararlar ve hatalar | MCP hafızası |
+| Sonraki oturum için not | MESA Lore devir notu |
+
+## 2. MCP hafıza sunucusunu kurun
+
+```text
+git clone https://github.com/Yasou13/MESA_Lore.git
+cd MESA_Lore
+python3 -m venv .venv
+.venv/bin/pip install .
+.venv/bin/mesa-lore install
+.venv/bin/mesa-lore doctor
+```
+
+Kurulum, Codex’in varsayılan MCP yapılandırması olan `~/.codex/config.toml` dosyasına `mesa-lore` sunucusunu, `~/.codex/hooks.json` dosyasına oturum hook’larını ekler. Değiştirdiği dosyaları önce yedekler.
+
+> [!WARNING]
+> **Mevcut geçmiş içe aktarılır**
+> Kurulum, mevcut ajan dökümlerini de içe aktarır. Önce [özel projeleri hariç tutun](/docs/lore/data-and-privacy/).
+
+## 3. Hook’ları onaylayın
+
+Codex, yönetilmeyen hook’ların çalışmadan önce incelenip güvenilir olarak işaretlenmesini ister. Codex’i açın, `/hooks` çalıştırın ve MESA Lore komutlarını onaylayın. Onay olmadan otomatik yakalama ve oturum başı dizini çalışmaz.
+
+## 4. Bağlantıyı doğrulayın
+
+```text
+codex mcp list
+mesa-lore doctor
+```
+
+`codex mcp list` çıktısında `mesa-lore` görünmelidir. Codex içinde `/mcp` etkin sunucuları gösterir. `mesa-lore doctor`, Codex MCP ve hook’ları için `OK` bildirmelidir.
+
+## 5. Hafızayı yeni oturumda test edin
+
+1. Projede yeni bir Codex oturumu başlatın.
+2. Şunu sorun: “memory_index çağır ve son çalışmaları özetle.”
+3. Şunu sorun: “Son başarısız test düzeltmesini hafızada ara.”
+4. Yanıtın gerçek bir kaynağa dayandığını kontrol edin.
+5. Bir karar kaydedin: “Bunu hafızaya karar olarak kaydet.”
+
+## Codex hafızası hakkında sorular
+
+**Codex MCP ayarlarını nerede saklar?**
+: Varsayılan olarak `~/.codex/config.toml` dosyasında. Güvenilir projeler `.codex/config.toml` da kullanabilir.
+
+**MESA Lore, AGENTS.md’nin yerine geçer mi?**
+: Hayır. AGENTS.md talimat verir, Lore geçmiş çalışmaları aranabilir yapar.
+
+**Hafıza dizini neden görünmüyor?**
+: Hook onaylanmamış olabilir. `/hooks` çalıştırın, yeni oturum açın ve `mesa-lore doctor` ile kontrol edin.
+
+**Codex ve Claude Code aynı hafızayı kullanabilir mi?**
+: Evet. MESA Lore iki ajanı aynı yerel veritabanında saklar ve projeye göre arar.
+
+## Kaynaklar
+
+1. [Codex · Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+2. [Codex · Model Context Protocol](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)
+3. [Codex · Hooks](https://learn.chatgpt.com/docs/hooks)
+4. [GitHub’da MESA Lore](https://github.com/Yasou13/MESA_Lore)
+
+', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 5, 'published', 'Codex CLI için MCP Hafızası Nasıl Kurulur? — MESA', 'Codex CLI’a yerel MCP hafıza sunucusu ekleyin, hook’ları onaylayın ve proje kurallarını AGENTS.md’de tutarken eski oturumları arayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('source-backed-document-search', 'guide', 'en', 'How do you build source-backed document search?', '', 'Add a document with a source reference, search it locally, update it and check that results come from the current revision.', 'Install MESA Core, start the local server, add each text file with a stable --source value and search with mesa search. Results return the matching text and document ID, so you can check the answer against its source.', '## 1. Check what you need
+
+- Python 3.11, 3.12 or 3.13
+- Linux, macOS or WSL
+- UTF-8 text files. Convert PDF and Word files to text first.
+
+This guide uses word search, so it needs no model account. MESA Core is alpha software and is not ready for production use.
+
+## 2. Install and start MESA Core
+
+Run this in a new folder and keep the terminal open.
+
+```text
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install mesa-memory==0.9.3
+mesa start
+```
+
+## 3. Add a document with its source
+
+Open a second terminal in the same folder. Use a stable `--source`, because it identifies the document when you update or delete it.
+
+```text
+. .venv/bin/activate
+printf ''%s\n'' ''Refunds are accepted within 30 days of purchase.'' ''Damaged items are replaced at no cost.'' > refund-policy.txt
+mesa add refund-policy.txt --source file://refund-policy.txt
+```
+
+## 4. Search and inspect the source
+
+```text
+mesa search "refund days"
+```
+
+A result looks like this. Your document ID can differ.
+
+```text
+[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68
+    Refunds are accepted within 30 days of purchase.
+    Damaged items are replaced at no cost.
+```
+
+> [!WARNING]
+> **A score is not proof**
+> The score orders results for this query. It is not a probability that the text is correct. Read the returned passage before using it.
+
+## 5. Update the document
+
+Add changed text with the same source. MESA creates a new revision of the same document, and search uses the current text.
+
+```text
+printf ''%s\n'' ''Refunds are accepted within 45 days of purchase.'' ''Damaged items are replaced at no cost.'' > refund-policy.txt
+mesa add refund-policy.txt --source file://refund-policy.txt
+mesa search "refund days"
+```
+
+The result should now say 45 days.
+
+## 6. Delete by source
+
+```text
+mesa delete --source file://refund-policy.txt
+```
+
+After deletion, the same search should no longer return the document. Then stop the server in the first terminal with Ctrl+C.
+
+## Document search questions
+
+**Do I need embeddings to start?**
+: No. Word search works without a model. Add a model provider later if you need meaning-based search.
+
+**Can I add PDF files directly?**
+: The CLI reads UTF-8 text files, so convert PDF and Word files first.
+
+**Does MESA write the final answer?**
+: No. It returns source text. Your application and language model write the answer.
+
+## Sources
+
+1. [MESA Core · Getting started](docs/core/getting-started/)
+2. [MESA Core · CLI reference](docs/core/cli-reference/)
+3. [mesa-memory 0.9.3 on PyPI](https://pypi.org/project/mesa-memory/0.9.3/)
+
+', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 6, 'published', 'How to Build Source-Backed Document Search — MESA', 'Add text documents to MESA Core, search them locally, update a revision and verify that each result points back to its source.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('source-backed-document-search', 'guide', 'tr', 'Kaynak gösteren belge araması nasıl kurulur?', '', 'Belgeyi kaynak bilgisiyle ekleyin, yerelde arayın, güncelleyin ve sonuçların geçerli sürümden geldiğini kontrol edin.', 'MESA Core’u kurun, yerel sunucuyu başlatın, her metin dosyasını sabit bir --source değeriyle ekleyin ve mesa search ile arayın. Sonuçlar eşleşen metni ve belge kimliğini döndürür; böylece yanıtı kaynağıyla kontrol edebilirsiniz.', '## 1. Gerekenleri kontrol edin
+
+- Python 3.11, 3.12 veya 3.13
+- Linux, macOS veya WSL
+- UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün.
+
+Bu rehber sözcük aramasını kullanır, bu yüzden model hesabı gerekmez. MESA Core alfa aşamasındadır ve canlı kullanıma hazır değildir.
+
+## 2. MESA Core’u kurup başlatın
+
+Bunu yeni bir klasörde çalıştırın ve terminali açık bırakın.
+
+```text
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install mesa-memory==0.9.3
+mesa start
+```
+
+## 3. Belgeyi kaynağıyla ekleyin
+
+Aynı klasörde ikinci bir terminal açın. Güncelleme ve silmede belgeyi tanımladığı için sabit bir `--source` kullanın.
+
+```text
+. .venv/bin/activate
+printf ''%s\n'' ''Refunds are accepted within 30 days of purchase.'' ''Damaged items are replaced at no cost.'' > refund-policy.txt
+mesa add refund-policy.txt --source file://refund-policy.txt
+```
+
+## 4. Arayın ve kaynağı inceleyin
+
+```text
+mesa search "refund days"
+```
+
+Sonuç aşağıdaki gibi görünür. Belge kimliğiniz farklı olabilir.
+
+```text
+[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68
+    Refunds are accepted within 30 days of purchase.
+    Damaged items are replaced at no cost.
+```
+
+> [!WARNING]
+> **Puan kanıt değildir**
+> Puan, bu sorgudaki sonuçları sıralar. Metnin doğru olma olasılığı değildir. Kullanmadan önce dönen bölümü okuyun.
+
+## 5. Belgeyi güncelleyin
+
+Değişen metni aynı kaynakla ekleyin. MESA aynı belgenin yeni sürümünü oluşturur ve arama güncel metni kullanır.
+
+```text
+printf ''%s\n'' ''Refunds are accepted within 45 days of purchase.'' ''Damaged items are replaced at no cost.'' > refund-policy.txt
+mesa add refund-policy.txt --source file://refund-policy.txt
+mesa search "refund days"
+```
+
+Sonuç artık 45 gün demelidir.
+
+## 6. Kaynağa göre silin
+
+```text
+mesa delete --source file://refund-policy.txt
+```
+
+Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde Ctrl+C ile sunucuyu durdurun.
+
+## Belge araması hakkında sorular
+
+**Başlamak için embedding gerekir mi?**
+: Hayır. Sözcük araması modelsiz çalışır. Anlam tabanlı arama gerekirse sonra model sağlayıcısı ekleyin.
+
+**PDF dosyalarını doğrudan ekleyebilir miyim?**
+: CLI UTF-8 metin dosyalarını okur; PDF ve Word dosyalarını önce dönüştürün.
+
+**MESA son yanıtı yazar mı?**
+: Hayır. Kaynak metni döndürür. Yanıtı uygulamanız ve dil modeli yazar.
+
+## Kaynaklar
+
+1. [MESA Core · Başlangıç](docs/core/getting-started/)
+2. [MESA Core · CLI referansı](docs/core/cli-reference/)
+3. [PyPI’da mesa-memory 0.9.3](https://pypi.org/project/mesa-memory/0.9.3/)
+
+', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 6, 'published', 'Kaynak Gösteren Belge Araması Nasıl Kurulur? — MESA', 'Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni sürüm yükleyin ve her sonucun kaynağına bağlandığını doğrulayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('measure-search-quality', 'guide', 'en', 'How do you measure search quality with Recall and MRR?', '', 'Create a small judged question set, record where the right document appears and compare two search settings.', 'Write real questions, mark the correct document for each and record its rank before and after a change. Recall@5 shows how often it appears in the top five. MRR shows how close to the top it appears.', '## 1. Write a small question set
+
+Start with 20 to 50 questions from real use, then grow the set. Include exact terms, natural wording and questions with no answer in the documents.
+
+- [ ] Each question has a known correct document or passage
+- [ ] Questions were written before looking at the new results
+- [ ] Easy and hard cases are both included
+- [ ] The set is saved so that it can be reused
+
+## 2. Change one thing
+
+Compare one change at a time, such as chunk size, fusion weight or reranking. If several settings change together, you cannot tell which one helped.
+
+## 3. Record the rank
+
+Run each question and write the rank of the first correct result. Leave it empty if the result is missing. Save this example as `results.csv`.
+
+```text
+question,baseline,changed
+q1,1,1
+q2,3,2
+q3,,4
+q4,2,1
+q5,6,
+```
+
+## 4. Calculate Recall@5 and MRR
+
+Each example question has one correct document, so Recall@5 is the share of questions answered in the top five. A result after rank five counts as a miss.
+
+```text
+import csv
+
+K = 5
+rows = list(csv.DictReader(open("results.csv", encoding="utf-8")))
+for column in ("baseline", "changed"):
+    ranks = [int(row[column]) if row[column] else None for row in rows]
+    hits = [rank for rank in ranks if rank and rank <= K]
+    recall = len(hits) / len(ranks)
+    mrr = sum(1 / rank for rank in hits) / len(ranks)
+    print(f"{column}: Recall@{K}={recall:.2f} MRR@{K}={mrr:.2f}")
+```
+
+Run it with `python3 evaluate.py`:
+
+```text
+baseline: Recall@5=0.60 MRR@5=0.37
+changed: Recall@5=0.80 MRR@5=0.55
+```
+
+## 5. Read the result carefully
+
+| Question | Baseline | Changed | What happened |
+| --- | --- | --- | --- |
+| q2 | 3 | 2 | Moved up |
+| q3 | Missing | 4 | Newly found |
+| q4 | 2 | 1 | Moved up |
+| q5 | 6 | Missing | Still outside the top five |
+
+The change improves both metrics in this illustrative data. Five questions are too few to prove a real improvement, so inspect failures and repeat on a larger set.
+
+> [!WARNING]
+> **Do not tune on your final test set**
+> Keep some questions aside. If you repeatedly tune against the same questions, the score can improve without real search improving.
+
+## Search evaluation questions
+
+**What is a good MRR score?**
+: There is no universal threshold. Compare systems on the same questions and documents.
+
+**Recall or MRR: which matters more?**
+: Recall shows whether the evidence was found. MRR shows how high it ranked. RAG systems usually need both.
+
+**Should I use nDCG?**
+: Use nDCG when results have graded relevance. See the [evaluation lesson](/learn/evaluating-ndcg-and-mrr-in-memory/).
+
+## Sources
+
+1. [MESA Learn · Evaluate retrieval](learn/evaluating-ndcg-and-mrr-in-memory/)
+2. [MESA · Retrieval evaluation methodology](methodology/retrieval-evaluation/)
+
+', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 6, 'published', 'How to Measure Search Quality with Recall and MRR — MESA', 'Build a small judged question set, record result ranks and compare two search settings with Recall@5 and MRR using a short Python script.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('measure-search-quality', 'guide', 'tr', 'Arama kalitesi Recall ve MRR ile nasıl ölçülür?', '', 'Küçük bir etiketli soru seti hazırlayın, doğru belgenin nerede çıktığını kaydedin ve iki arama ayarını karşılaştırın.', 'Gerçek sorular yazın, her biri için doğru belgeyi işaretleyin ve değişiklikten önce ve sonra sırasını kaydedin. Recall@5 doğru belgenin ne sıklıkla ilk beşte çıktığını, MRR ise zirveye ne kadar yakın olduğunu gösterir.', '## 1. Küçük bir soru seti yazın
+
+Gerçek kullanımdan 20 ila 50 soruyla başlayın, sonra seti büyütün. Tam terimler, doğal ifadeler ve belgelerde yanıtı olmayan sorular ekleyin.
+
+- [ ] Her sorunun bilinen doğru belgesi veya pasajı var
+- [ ] Sorular yeni sonuçlara bakmadan önce yazıldı
+- [ ] Kolay ve zor durumlar birlikte yer alıyor
+- [ ] Set yeniden kullanılmak üzere kaydedildi
+
+## 2. Tek bir şeyi değiştirin
+
+Parça boyutu, birleştirme ağırlığı veya yeniden sıralama gibi tek bir değişikliği karşılaştırın. Birden fazla ayar birlikte değişirse hangisinin işe yaradığını bilemezsiniz.
+
+## 3. Sırayı kaydedin
+
+Her soruyu çalıştırın ve ilk doğru sonucun sırasını yazın. Sonuç yoksa boş bırakın. Bu örneği `results.csv` olarak kaydedin.
+
+```text
+question,baseline,changed
+q1,1,1
+q2,3,2
+q3,,4
+q4,2,1
+q5,6,
+```
+
+## 4. Recall@5 ve MRR hesaplayın
+
+Örnekteki her sorunun tek doğru belgesi olduğu için Recall@5, ilk beşte yanıtlanan soruların oranıdır. Beşinci sıradan sonraki sonuç kaçırılmış sayılır.
+
+```text
+import csv
+
+K = 5
+rows = list(csv.DictReader(open("results.csv", encoding="utf-8")))
+for column in ("baseline", "changed"):
+    ranks = [int(row[column]) if row[column] else None for row in rows]
+    hits = [rank for rank in ranks if rank and rank <= K]
+    recall = len(hits) / len(ranks)
+    mrr = sum(1 / rank for rank in hits) / len(ranks)
+    print(f"{column}: Recall@{K}={recall:.2f} MRR@{K}={mrr:.2f}")
+```
+
+`python3 evaluate.py` ile çalıştırın:
+
+```text
+baseline: Recall@5=0.60 MRR@5=0.37
+changed: Recall@5=0.80 MRR@5=0.55
+```
+
+## 5. Sonucu dikkatle yorumlayın
+
+| Soru | Önce | Sonra | Ne oldu? |
+| --- | --- | --- | --- |
+| q2 | 3 | 2 | Yükseldi |
+| q3 | Yok | 4 | Yeni bulundu |
+| q4 | 2 | 1 | Yükseldi |
+| q5 | 6 | Yok | Hâlâ ilk beşin dışında |
+
+Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçek bir iyileşmeyi kanıtlamak için azdır; hataları inceleyin ve daha büyük bir sette tekrarlayın.
+
+> [!WARNING]
+> **Son test setinizde ayar yapmayın**
+> Bazı soruları ayrı tutun. Aynı sorulara göre tekrar tekrar ayar yaparsanız arama gerçekten iyileşmeden puan yükselebilir.
+
+## Arama değerlendirmesi hakkında sorular
+
+**İyi bir MRR değeri nedir?**
+: Evrensel bir eşik yoktur. Sistemleri aynı soru ve belgelerle karşılaştırın.
+
+**Recall mı MRR mi daha önemli?**
+: Recall kanıtın bulunup bulunmadığını, MRR ne kadar üstte çıktığını gösterir. RAG sistemleri genellikle ikisine de ihtiyaç duyar.
+
+**nDCG kullanmalı mıyım?**
+: Sonuçların dereceli ilgililiği varsa nDCG kullanın. [Değerlendirme dersine](/learn/evaluating-ndcg-and-mrr-in-memory/) bakın.
+
+## Kaynaklar
+
+1. [MESA Learn · Arama kalitesini ölçmek](learn/evaluating-ndcg-and-mrr-in-memory/)
+2. [MESA · Arama değerlendirme yöntemi](methodology/retrieval-evaluation/)
+
+', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 6, 'published', 'Arama Kalitesi Recall ve MRR ile Nasıl Ölçülür? — MESA', 'Küçük bir etiketli soru seti hazırlayın, sonuç sıralarını kaydedin ve iki arama ayarını kısa bir Python betiğiyle Recall@5 ve MRR üzerinden karşılaştırın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'en', 'How do you verify an AI-cited Yargıtay decision?', '', 'Treat the citation as an unverified lead until its identity, official text, quoted passage and legal fit are checked.', 'Search the decision yourself in Yargıtay Karar Arama using its chamber, docket number, decision number and date. Then read the full text, find the quoted passage and check whether the decision really supports the claim. A decision that exists can still be the wrong authority.', '## Why an AI citation needs checking
 
 A language model can produce a citation that looks correct while its number, chamber, date or quotation is wrong. According to [press reports](https://memurlar.net/haber/1170388/), an investigation was opened in Türkiye after Yargıtay decisions added to a petition with AI had incorrect docket and decision numbers.

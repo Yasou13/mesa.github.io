@@ -1,5 +1,5 @@
 // Modular documentation renderer for MESA Native Documentation
-// Renders hierarchical multi-repository documentation for Core, Data, Law, QA, E2E, and MCP.
+// Renders hierarchical multi-repository documentation for Core, Lore, Data, Law, QA, E2E, and MCP.
 
 import fs from 'node:fs';
 import { docsSidebar as sharedSidebar, docsTabs, docsCopyButton, docsFooter, docsFrame, hubContent } from './docs_ui.mjs';
@@ -24,12 +24,14 @@ export function getDocsManifest() {
   const core = cachedManifest.repositories.core;
   if (core.commit !== guideCatalog.baseline) throw new Error("Guide baseline differs from imported Core release");
   for (const guide of guideCatalog.guides) {
-    const existing = core.pages.find(page => page.route === guide.route);
+    const owner = cachedManifest.repositories[guide.repo || 'core'];
+    const existing = owner.pages.find(page => page.route === guide.route);
     if (existing) existing.title = guide.title;
     else {
-      const source = core.pages.find(page => page.src === guide.sources[0]);
+      // Lore has one upstream README, so its guide pages all derive from that imported page.
+      const source = owner.pages.find(page => page.src === guide.sources[0]) || (guide.repo ? owner.pages[0] : null);
       if (!source) throw new Error(`Missing guide source: ${guide.id}`);
-      core.pages.push({ ...source, title: guide.title, route: guide.route, slug: guide.route.split('/').filter(Boolean).at(-1), derivedGuide: true });
+      owner.pages.push({ ...source, src: guide.repo ? guide.sources[0] : source.src, title: guide.title, route: guide.route, slug: guide.route.split('/').filter(Boolean).at(-1), derivedGuide: true });
     }
   }
   return cachedManifest;
@@ -198,7 +200,7 @@ ${standalone ? '' : `    <li><a href="${docsHubHref}">${isTr ? 'Dokümantasyon' 
 
   return `${headerHtml}
 <main id="main-content" class="docs-layout${onboarding ? ' docs-onboarding' : ''}${standalone ? ' docs-standalone' : ''}">
-${standalone ? '' : docsTabs(page.route, language, base)}
+${standalone ? '' : docsTabs(page.route, language, base, guide?.repo ? repo : null)}
 ${standalone ? '' : sidebarHtml}
   <div class="docs-main-container">
     <div class="docs-content-column">
@@ -207,7 +209,7 @@ ${standalone ? '' : sidebarHtml}
         <header class="docs-article-header">
           <p class="eyebrow">${escapeHtml(repoTitle)} · ${escapeHtml(repo.version)}</p>
           <div class="docs-title-row"><h1>${escapeHtml(pageTitle)}</h1>${docsCopyButton(isTr)}</div>
-${onboarding ? '' : `          ${metaBar}\n`}          <p class="docs-language-notice"${onboarding ? ' hidden' : ''}>${isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.' : 'This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.'}</p>
+${onboarding ? '' : `          ${metaBar}\n`}          <p class="docs-language-notice"${onboarding ? ' hidden' : ''}>${guide?.repo ? (isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Dayanak kaynaklar sayfanın sonunda listelenir.' : 'This guide has equivalent English and Turkish versions. Its verified sources are listed at the end of the page.') : isTr ? 'Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Bu sayfayla ilgili kaynak bölümleri en altta yer alır.' : 'This guide has equivalent English and Turkish versions. The source sections behind this page are at the bottom.'}</p>
 ${/audit|verification|closure/i.test(page.src) ? `          <p class="docs-language-notice">${isTr ? 'Bu kaynak, belirtilen tarihteki testleri kaydeder. Burada paylaşılması, testlerin bu site için yeniden çalıştırıldığı anlamına gelmez.' : 'This document contains dated source evidence. Its reported test results are not a fresh execution by this website audit.'}</p>` : ''}
         </header>
         <div class="docs-body">
@@ -230,7 +232,7 @@ ${onboarding ? `<details class="onboarding-source"><summary>${isTr ? 'Kaynak ve 
   </div>
 </main>
 <script type="application/json" data-doc-copy>${JSON.stringify(`# ${pageTitle}\n\n${guideMarkdown}\n\n${sourceUrl}`).replaceAll('<', '\\u003c')}</script>
-${standalone ? footerHtml : docsFooter(isTr, base)}`;
+${standalone ? footerHtml : docsFooter(isTr, base, guide?.repo ? repo : null)}`;
 }
 
 export function renderDocsHub(language = 'en', {base = './', headerHtml}) {
