@@ -519,7 +519,8 @@ def main() -> int:
         "faq/": ("Does MESA write the answer?", "Is MESA production-ready?"),
         "resources/": ("Install MESA", "Learn how AI memory works", "Look up an unfamiliar term"),
         "research/keyword-vs-semantic-search/": ("No results yet", "Planned protocol · no results"),
-        "guides/verify-ai-yargitay-decision/": ("Capture the exact claim", "Existence is not relevance"),
+        "law/guides/yapay-zeka-yargitay-karari-dogrulama/": ("Capture the exact claim", "Existence is not relevance"),
+        "law/": ("Check an AI-generated legal citation.",),
     }
     for route, markers in static_markers.items():
         page = root / route / "index.html"
@@ -531,14 +532,14 @@ def main() -> int:
     turkish_markers = {
         "tr/": ("Modelinize doğru bilgi çıkar.", "pip install", "Alfa"),
         "tr/how-it-works/": ("archive-tr.txt", "Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
-        "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı"),
+        "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı", "Yapay zekânın verdiği hukuki atfı kontrol edin."),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),
         "tr/about/": ("KİM GELİŞTİRİYOR", "GitHub üzerinden bildirin"),
         "tr/faq/": ("MESA yanıtı kendisi mi yazar?", "MESA canlı kullanıma hazır mı?"),
         "tr/resources/": ("MESA’yı kurmak istiyorum", "Bilmediğim bir terime bakacağım", "Değerlendirme yöntemleri"),
         "tr/learn/semantic-search/": ("Anlamsal arama: vektörler neyi anlatır?", "İki boyutlu benzerlik hesabı"),
         "tr/research/keyword-vs-semantic-search/": ("Henüz sonuç yok", "Araştırma planı · henüz sonuç yok"),
-        "tr/guides/verify-ai-yargitay-decision/": ("İddiayı aynen kaydedin", "Var olmak, ilgili olmak değildir"),
+        "tr/law/guides/yapay-zeka-yargitay-karari-dogrulama/": ("İddiayı aynen kaydedin", "Var olmak, ilgili olmak değildir"),
         "tr/glossary/provenance/": ("Kaynak izi", "Hukuki örnek"),
         "tr/methodology/retrieval-evaluation/": ("İlgililik değerlendirmesi", "Raporlama ve düzeltmeler"),
     }

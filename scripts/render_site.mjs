@@ -859,6 +859,16 @@ const escapeHtml = (value) => String(value)
 const hubText = (en, tr) => currentLanguage === 'tr' ? tr : en;
 const hubChrome = (html) => currentLanguage === 'tr' ? localizeHtml(html, trContent.strings) : html;
 const publishedEntries = () => hubData.entries.filter(({ draft, indexable }) => !draft && indexable);
+const isLawGuide = (entry) => entry.path.startsWith('law/guides/');
+
+function lawGuidesSection() {
+  return `<section class="section law-guides" aria-labelledby="law-guides-title">
+        <p class="eyebrow">${hubText('LEGAL GUIDES', 'HUKUK REHBERLERİ')}</p>
+        <h2 id="law-guides-title">${hubText('Check an AI-generated legal citation.', 'Yapay zekânın verdiği hukuki atfı kontrol edin.')}</h2>
+        <p>${hubText('Practical steps for checking decisions in official sources. These guides are not legal advice, and MESA Law does not verify decisions for you.', 'Kararları resmî kaynaklarda kontrol etmek için uygulamalı adımlar. Bu rehberler hukuki danışmanlık değildir ve MESA Law kararları sizin yerinize doğrulamaz.')}</p>
+        <div class="publication-grid">${publishedEntries().filter(isLawGuide).map(hubCard).join('')}</div>
+      </section>`;
+}
 
 function renderFormattedText(text) {
   if (!text) return '';
@@ -1042,7 +1052,11 @@ function renderHubEntry(entry) {
   const typeLabel = hubTypeLabels[currentLanguage][entry.type];
   const date = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.publishedAt}T00:00:00Z`));
   const related = entry.related.map((id) => hubEntries.get(id)).filter((item) => item && !item.draft && item.indexable);
-  const breadcrumbs = hubBreadcrumb([
+  const breadcrumbs = hubBreadcrumb(isLawGuide(entry) ? [
+    { label: hubText('Home', 'Ana sayfa'), path: '' },
+    { label: 'MESA Law', path: 'law/' },
+    { label: localized.title }
+  ] : [
     { label: hubText('Home', 'Ana sayfa'), path: '' },
     { label: hubText('Resources', 'Kaynaklar'), path: 'resources/' },
     { label: hubTypeLabels[currentLanguage][entry.type] || section.locales[currentLanguage].eyebrow, path: section.path },
@@ -1091,7 +1105,7 @@ function renderHubEntry(entry) {
       </div>`;
   const updated = new Intl.DateTimeFormat(currentLanguage === 'tr' ? 'tr-TR' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${entry.updatedAt}T00:00:00Z`));
   return `
-    ${hubChrome(header('resources'))}
+    ${hubChrome(header(isLawGuide(entry) ? 'law' : 'resources'))}
     <main id="main-content">
       ${breadcrumbs}
       <article class="knowledge-article">
@@ -1515,7 +1529,7 @@ for (const language of ['en', 'tr']) {
       title: localizedMetadata.title,
       description: localizedMetadata.description,
       canonical: `${siteUrl}${localizedPath}`,
-      content: wayfinding(key, language, content),
+      content: wayfinding(key, language, key === 'law' ? content.replace('<section class="section law-status">', () => `${lawGuidesSection()}\n      <section class="section law-status">`) : content),
       language,
       alternateUrls: { en: `${siteUrl}${metadata.path}`, tr: `${siteUrl}tr/${metadata.path}` },
       noIndex: NOINDEX_PAGES.has(key),
@@ -1535,7 +1549,11 @@ function hubStructuredNodes(item, language, canonical) {
   const localized = data.locales[language];
   const sectionId = isEntry ? (data.type === 'guide' ? 'guides' : data.type) : data.id;
   const section = hubSections.get(sectionId);
-  const crumbs = [
+  const crumbs = isEntry && isLawGuide(data) ? [
+    [language === 'tr' ? 'Ana sayfa' : 'Home', language === 'tr' ? `${siteUrl}tr/` : siteUrl],
+    ['MESA Law', `${siteUrl}${language === 'tr' ? 'tr/' : ''}law/`],
+    [localized.title, canonical]
+  ] : [
     [language === 'tr' ? 'Ana sayfa' : 'Home', language === 'tr' ? `${siteUrl}tr/` : siteUrl],
     ...(data.id === 'resources' ? [] : [[language === 'tr' ? 'Kaynaklar' : 'Resources', `${siteUrl}${language === 'tr' ? 'tr/' : ''}resources/`]]),
     ...(isEntry ? [[hubTypeLabels[language][data.type] || section.locales[language].eyebrow, `${siteUrl}${language === 'tr' ? 'tr/' : ''}${section.path}`]] : []),

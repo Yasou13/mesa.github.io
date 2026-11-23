@@ -1668,21 +1668,49 @@ Arama yöntemleri bazen kullanılan belgeler, sorular, etiketler ve ayarlar aç�
 Yayımlanacak bir deneyde veri kümesi, sorgu ve değerlendirme sürümleri; model kimlikleri, ayarlar, kod sürümü, gerekiyorsa rastgelelik başlangıç değerleri, çalışma ortamı, ham çıktılar ve analiz adımları kaydedilmelidir.
 
 ', ARRAY['benchmark', 'retrieval', 'semantic-search']::text[], 'MESA contributors', 9, 'published', 'Sözcük ve anlam temelli arama nasıl karşılaştırılacak? — MESA', 'Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'en', 'How do you verify an AI-cited Yargıtay decision?', '', 'Treat the citation as an unverified lead until the decision identity, authoritative text, quoted passage, and legal fit are checked.', 'Locate the decision independently, match its identifiers, read the full text, trace every quotation, and document what the decision does and does not establish.', '## 1. Capture the exact claim
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'en', 'How do you verify an AI-cited Yargıtay decision?', '', 'Treat the citation as an unverified lead until its identity, official text, quoted passage and legal fit are checked.', 'Search the decision yourself in Yargıtay Karar Arama using its chamber, docket number, decision number and date. Then read the full text, find the quoted passage and check whether the decision really supports the claim. A decision that exists can still be the wrong authority.', '## Why an AI citation needs checking
 
-Save the decision number, chamber, date, quoted passage, and the conclusion the AI attached to it. Missing identifiers are a warning, not an invitation to guess.
+A language model can produce a citation that looks correct while its number, chamber, date or quotation is wrong. According to [press reports](https://memurlar.net/haber/1170388/), an investigation was opened in Türkiye after Yargıtay decisions added to a petition with AI had incorrect docket and decision numbers.
 
-## 2. Find an authoritative or traceable source
+> [!NOTE]
+> **Scope of this guide**
+> This guide explains a checking method and is not legal advice. MESA Law is a reference application and does not verify decisions for you. The lawyer or person relying on a citation remains responsible for checking it.
 
-Search independently using the stated identifiers and distinctive phrases. Prefer an official publication where available; otherwise record the repository and retrieval date.
+## 1. Capture the exact claim
+
+Before searching, save exactly what the AI gave you. Do not correct or complete it yet, because the differences are part of the check.
+
+- Court, board or chamber
+- Docket (E.) and decision (K.) numbers
+- Decision date
+- Quoted passage, word for word
+- The legal conclusion the AI drew from the decision
+
+Missing identifiers are a warning, not an invitation to guess.
+
+## 2. Search the official source
+
+Open [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) and use DETAYLI ARAMA. The form has fields for keyword, boards, civil chambers, criminal chambers, docket number, decision number and decision date.
+
+1. Select the stated board or chamber.
+2. Enter the docket number and search.
+3. If nothing appears, search by decision number.
+4. Then search a distinctive phrase from the quotation without any numbers.
+5. Record what you searched and the date.
+
+For regional appeal and first-instance civil decisions, use [UYAP Emsal Karar Arama](/law/guides/uyap-emsal-karar-dogrulama/).
 
 ## 3. Match identity and text
 
-- Court and chamber
-- Docket and decision numbers
-- Decision date
-- Parties or anonymized factual pattern
-- Quoted passage in its surrounding context
+| Check | What must match |
+| --- | --- |
+| Court | Same board or chamber |
+| Docket | Same year and sequence number |
+| Decision | Same year and sequence number |
+| Date | Same day, month and year |
+| Quotation | Same words, in the same context |
+
+If only some fields match, do not repair the citation yourself and continue. It may point to a different decision.
 
 ## 4. Assess legal fit
 
@@ -1690,33 +1718,71 @@ Search independently using the stated identifiers and distinctive phrases. Prefe
 > **Existence is not relevance**
 > A real decision can still be factually distinguishable, superseded, exceptional, or unrelated to the proposed conclusion.
 
-Identify the issue, material facts, reasoning, holding, procedural posture, and any later authority before relying on the citation.
+Read the full decision. Identify the dispute, material facts, reasoning, result and procedural posture. Check whether the quoted sentence is the court’s own reasoning or a summary of a party’s argument or a lower court’s view. Then look for later or contrary decisions.
+
+## If you cannot find the decision
+
+Do not rely on it. A failed search does not prove by itself that the decision was invented, because a database may not contain every decision and numbers can be mistyped. Ask for a copy from the source that supplied it, check another reliable database, or remove the citation.
 
 ## 5. Record the verification trail
 
-- [ ] Stable source or saved artifact
+- [ ] Stable source or saved copy
 - [ ] Identifiers and access date
 - [ ] Exact supporting passage
 - [ ] Reason the passage is relevant
 - [ ] Contrary or limiting authority
 - [ ] Reviewer and review date when the workflow requires one
 
-', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'How to Verify an AI-Cited Yargıtay Decision — MESA Guide', 'Use a cautious, repeatable workflow to verify the identity, source, text, and relevance of an AI-cited Yargıtay decision.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'tr', 'Yapay zekânın atıf yaptığı Yargıtay kararı nasıl doğrulanır?', '', 'Kararın bilgilerini, asıl metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin.', 'Kararı bağımsız bulun, kimlik bilgilerini eşleştirin, tam metni okuyun, her alıntının izini sürün ve kararın neyi ortaya koyup koymadığını kaydedin.', '## 1. İddiayı aynen kaydedin
+## Sources
 
-Esas ve karar numarasını, daireyi, tarihi, alıntıyı ve yapay zekânın bu karardan çıkardığı sonucu kaydedin. Kimlik bilgilerinin eksik olması, tahmin ederek tamamlamanız gereken bir boşluk değil, doğrulama uyarısıdır.
+1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+3. [Memurlar.net · Report on the AI-generated citation investigation](https://memurlar.net/haber/1170388/)
 
-## 2. Güvenilir veya izlenebilir kaynağı bulun
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'How to Verify an AI-Cited Yargıtay Decision — MESA Law', 'Check an AI-cited Yargıtay decision step by step: find it in the official search, match its numbers, read the full text and test whether it supports the claim.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'tr', 'Yapay zekânın verdiği Yargıtay kararı nasıl doğrulanır?', '', 'Kararın kimliğini, resmî metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin.', 'Kararı daire, esas numarası, karar numarası ve tarihle Yargıtay Karar Arama’da kendiniz arayın. Ardından tam metni okuyun, alıntıyı bulun ve kararın iddiayı gerçekten destekleyip desteklemediğini kontrol edin. Var olan bir karar da yanlış dayanak olabilir.', '## Yapay zekâ atfı neden kontrol edilmeli?
 
-Verilen numaralar ve ayırt edici ifadelerle kararı kendiniz arayın. Varsa resmî yayını kullanın. Başka bir kaynaktan ulaştıysanız sitenin veya veri tabanının adını ve erişim tarihini kaydedin.
+Dil modelleri doğru görünen bir atıf üretirken numarayı, daireyi, tarihi veya alıntıyı yanlış verebilir. [Basına yansıyan bir olayda](https://memurlar.net/haber/1170388/) dilekçeye yapay zekâ ile eklenen Yargıtay kararlarının esas ve karar numaralarının hatalı çıkması üzerine soruşturma başlatıldı.
+
+> [!NOTE]
+> **Bu rehberin kapsamı**
+> Bu rehber bir kontrol yöntemini anlatır, hukuki danışmanlık değildir. MESA Law örnek bir uygulamadır ve kararları sizin yerinize doğrulamaz. Atfa dayanan avukat veya kişi, kontrol sorumluluğunu taşımaya devam eder.
+
+## 1. İddiayı aynen kaydedin
+
+Aramaya başlamadan önce yapay zekânın verdiği bilgiyi olduğu gibi saklayın. Henüz düzeltmeyin veya tamamlamayın, çünkü farklılıklar kontrolün parçasıdır.
+
+- Mahkeme, kurul veya daire
+- Esas (E.) ve karar (K.) numaraları
+- Karar tarihi
+- Kelimesi kelimesine alıntı
+- Yapay zekânın karardan çıkardığı hukuki sonuç
+
+Kimlik bilgilerinin eksik olması, tahmin ederek tamamlamanız gereken bir boşluk değil, doğrulama uyarısıdır.
+
+## 2. Resmî kaynakta arayın
+
+[Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) sayfasını açın ve DETAYLI ARAMA bölümünü kullanın. Formda aranacak kelime, kurullar, hukuk daireleri, ceza daireleri, esas numarası, karar numarası ve karar tarihi alanları bulunur.
+
+1. Belirtilen kurulu veya daireyi seçin.
+2. Esas numarasını girip arayın.
+3. Sonuç çıkmazsa karar numarasıyla arayın.
+4. Ardından numaraları kullanmadan alıntıdaki ayırt edici bir ifadeyi arayın.
+5. Neyi aradığınızı ve tarihi kaydedin.
+
+Bölge adliye ve ilk derece hukuk kararları için [UYAP Emsal Karar Arama rehberine](/law/guides/uyap-emsal-karar-dogrulama/) bakın.
 
 ## 3. Kimliği ve metni eşleştirin
 
-- Mahkeme ve daire
-- Esas ve karar numaraları
-- Karar tarihi
-- Taraflar veya anonimleştirilmiş olay örgüsü
-- Alıntılanan bölümün çevresindeki bağlam
+| Kontrol | Eşleşmesi gereken |
+| --- | --- |
+| Mahkeme | Aynı kurul veya daire |
+| Esas | Aynı yıl ve sıra numarası |
+| Karar | Aynı yıl ve sıra numarası |
+| Tarih | Aynı gün, ay ve yıl |
+| Alıntı | Aynı kelimeler, aynı bağlamda |
+
+Yalnızca bazı alanlar eşleşiyorsa atfı kendiniz düzeltip devam etmeyin. Başka bir karara işaret ediyor olabilir.
 
 ## 4. Hukuki uygunluğu değerlendirin
 
@@ -1724,7 +1790,11 @@ Verilen numaralar ve ayırt edici ifadelerle kararı kendiniz arayın. Varsa res
 > **Var olmak, ilgili olmak değildir**
 > Gerçek bir karar yine de olgusal olarak ayrışabilir, sonraki içtihatla aşılmış olabilir, istisnai olabilir veya önerilen sonuçla ilgisiz olabilir.
 
-Atfa dayanmadan önce uyuşmazlığı, önemli olayları, gerekçeyi, hükmü, usul durumunu ve karardan sonra oluşan içtihadı inceleyin.
+Kararın tamamını okuyun. Uyuşmazlığı, önemli olayları, gerekçeyi, sonucu ve usul durumunu belirleyin. Alıntılanan cümlenin mahkemenin kendi gerekçesi mi, yoksa taraf iddiasının ya da alt mahkeme görüşünün özeti mi olduğuna bakın. Sonra daha yeni veya aksi yöndeki kararları arayın.
+
+## Kararı bulamazsanız ne yapmalısınız?
+
+Karara dayanmayın. Aramada çıkmaması tek başına kararın uydurma olduğunu kanıtlamaz, çünkü bir veri tabanı her kararı içermeyebilir ve numara yanlış yazılmış olabilir. Atfı veren kaynaktan kararın örneğini isteyin, güvenilir başka bir veri tabanını kontrol edin ya da atfı çıkarın.
 
 ## 5. Doğrulama izini kaydedin
 
@@ -1735,7 +1805,241 @@ Atfa dayanmadan önce uyuşmazlığı, önemli olayları, gerekçeyi, hükmü, u
 - [ ] Aksi yöndeki ya da kararı sınırlayan içtihat ve kaynaklar
 - [ ] Gerekiyorsa incelemeyi yapan kişi ve inceleme tarihi
 
-', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'Yapay zekânın atıf yaptığı Yargıtay kararı nasıl doğrulanır? — MESA', 'Kararın bilgilerini, asıl metnini, alıntılanan bölümü ve somut olayla ilişkisini kontrol etmeden atfı doğrulanmış kabul etmeyin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+## Kaynaklar
+
+1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+3. [Memurlar.net · Yapay zekâ atfı soruşturması haberi](https://memurlar.net/haber/1170388/)
+
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'Yapay Zekânın Verdiği Yargıtay Kararı Nasıl Doğrulanır? — MESA Law', 'Yapay zekânın gösterdiği Yargıtay kararını resmî aramada bulun, esas ve karar numarasını eşleştirin, tam metni okuyun ve iddiayı destekleyip desteklemediğini kontrol edin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('uyap-emsal-karar-dogrulama', 'guide', 'en', 'How do you check a decision in UYAP Emsal?', '', 'Read the citation, choose the right search, enter its numbers and compare every detail with the full decision.', 'Open UYAP Emsal Karar Arama, choose the court group, enter the docket and decision numbers or a date range, and compare the result with the citation. Use Yargıtay Karar Arama first when the citation names a Yargıtay board or chamber.', '## Which search should you use?
+
+| Citation names | Start with |
+| --- | --- |
+| A Yargıtay board or chamber | [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) |
+| A regional court of appeal (BAM) civil chamber | [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/) |
+| A first-instance civil court | [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/) |
+
+> [!NOTE]
+> **Scope of this guide**
+> This guide explains a checking method and is not legal advice. MESA Law is a reference application and does not verify decisions for you. The lawyer or person relying on a citation remains responsible for checking it.
+
+## Read the citation first
+
+A Turkish decision citation usually has this pattern. The example uses placeholders and is not a real decision.
+
+| Part | Pattern | Meaning |
+| --- | --- | --- |
+| Court | X. Hukuk Dairesi | The court or chamber |
+| Docket | YYYY/NNNN E. | The case file number (esas) |
+| Decision | YYYY/NNNN K. | The decision number (karar) |
+| Date | DD.MM.YYYY T. | The decision date (tarih) |
+
+Two quick checks can reveal an error before you search. The docket year cannot be later than the decision year, and the decision number’s year should normally match the year of the decision date.
+
+## Search step by step
+
+[UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/) has a detailed query form with keyword, court, docket number, decision number, start date, end date and sort order fields.
+
+1. Choose the court group, such as Bam Hukuk Mahkemeleri or Hukuk Mahkemeleri.
+2. Enter the year and sequence of the docket number.
+3. If there is no result, clear it and enter the decision number.
+4. Narrow the search with a start and end date around the cited date.
+5. Try a distinctive phrase from the quotation.
+6. Complete any security step the site shows yourself, then open the decision.
+
+## Compare the result
+
+- [ ] Court and chamber are the same
+- [ ] Docket year and number are the same
+- [ ] Decision year and number are the same
+- [ ] Decision date is the same
+- [ ] The quoted passage appears in the text
+- [ ] The passage supports the stated legal point
+
+## What a search result does and does not show
+
+> [!WARNING]
+> **A result is not the end of the check**
+> Finding a decision confirms that a matching record exists in that search. It does not show that the decision is final, still followed or applicable to your facts.
+
+If nothing appears, do not conclude that the citation is fake from that alone. Check the numbers, try the other official search and ask for a copy from whoever supplied the citation. For the full review, follow the [AI-cited Yargıtay decision guide](/law/guides/yapay-zeka-yargitay-karari-dogrulama/).
+
+## Sources
+
+1. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+2. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 5, 'published', 'How to Check a Decision in UYAP Emsal — MESA Law', 'Use UYAP Emsal Karar Arama to find a decision by court, docket number, decision number and date, then check its citation details against the full text.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('uyap-emsal-karar-dogrulama', 'guide', 'tr', 'UYAP Emsal’de karar nasıl aranır ve doğrulanır?', '', 'Künyeyi okuyun, doğru arama ekranını seçin, numaraları girin ve her bilgiyi kararın tam metniyle karşılaştırın.', 'UYAP Emsal Karar Arama’yı açın, mahkeme grubunu seçin, esas ve karar numarasını veya tarih aralığını girin ve sonucu künyeyle karşılaştırın. Künyede Yargıtay kurulu veya dairesi yazıyorsa önce Yargıtay Karar Arama’yı kullanın.', '## Hangi aramayı kullanmalısınız?
+
+| Künyede yazan | Başlayacağınız yer |
+| --- | --- |
+| Yargıtay kurulu veya dairesi | [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) |
+| Bölge adliye mahkemesi (BAM) hukuk dairesi | [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/) |
+| İlk derece hukuk mahkemesi | [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/) |
+
+> [!NOTE]
+> **Bu rehberin kapsamı**
+> Bu rehber bir kontrol yöntemini anlatır, hukuki danışmanlık değildir. MESA Law örnek bir uygulamadır ve kararları sizin yerinize doğrulamaz. Atfa dayanan avukat veya kişi, kontrol sorumluluğunu taşımaya devam eder.
+
+## Önce künyeyi okuyun
+
+Türk mahkeme kararlarının künyesi genellikle aşağıdaki düzendedir. Örnekte yer tutucular kullanılmıştır, gerçek bir karar değildir.
+
+| Bölüm | Düzen | Anlamı |
+| --- | --- | --- |
+| Mahkeme | X. Hukuk Dairesi | Kararı veren mahkeme veya daire |
+| Esas | YYYY/NNNN E. | Dosyanın esas numarası |
+| Karar | YYYY/NNNN K. | Kararın numarası |
+| Tarih | GG.AA.YYYY T. | Karar tarihi |
+
+İki hızlı kontrol, aramadan önce hatayı gösterebilir. Esas yılı karar yılından sonra olamaz. Karar numarasındaki yıl da normalde karar tarihinin yılıyla aynı olur.
+
+## Adım adım arama
+
+[UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/) sayfasındaki detaylı sorgulama formunda aranacak kelime, mahkeme, esas numarası, karar numarası, başlangıç tarihi, bitiş tarihi ve sıralama alanları bulunur.
+
+1. Bam Hukuk Mahkemeleri veya Hukuk Mahkemeleri gibi mahkeme grubunu seçin.
+2. Esas numarasının yılını ve sırasını girin.
+3. Sonuç çıkmazsa bu alanı temizleyip karar numarasını girin.
+4. Atıftaki tarihin çevresinde başlangıç ve bitiş tarihi vererek aramayı daraltın.
+5. Alıntıdaki ayırt edici bir ifadeyi deneyin.
+6. Sitenin gösterdiği güvenlik adımını kendiniz tamamlayıp kararı açın.
+
+## Sonucu karşılaştırın
+
+- [ ] Mahkeme ve daire aynı
+- [ ] Esas yılı ve numarası aynı
+- [ ] Karar yılı ve numarası aynı
+- [ ] Karar tarihi aynı
+- [ ] Alıntılanan bölüm metinde geçiyor
+- [ ] Bölüm, ileri sürülen hukuki noktayı destekliyor
+
+## Arama sonucu neyi gösterir, neyi göstermez?
+
+> [!WARNING]
+> **Sonuç bulmak kontrolün sonu değildir**
+> Kararı bulmak, o aramada eşleşen bir kayıt olduğunu gösterir. Kararın kesinleştiğini, hâlâ uygulandığını veya sizin olayınıza uyduğunu göstermez.
+
+Sonuç çıkmazsa yalnızca buna bakarak atfın sahte olduğu sonucuna varmayın. Numaraları kontrol edin, diğer resmî aramayı deneyin ve atfı verenden kararın örneğini isteyin. Tam inceleme için [yapay zekânın verdiği Yargıtay kararı rehberini](/law/guides/yapay-zeka-yargitay-karari-dogrulama/) izleyin.
+
+## Kaynaklar
+
+1. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+2. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 5, 'published', 'UYAP Emsal Karar Nasıl Aranır ve Doğrulanır? — MESA Law', 'UYAP Emsal Karar Arama’da kararı mahkeme, esas numarası, karar numarası ve tarihle bulun; künyesini tam metinle adım adım karşılaştırın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('yapay-zeka-hukuk-atif-hatalari', 'guide', 'en', 'What are the most common AI legal citation errors?', '', 'A citation can fail in several ways. Knowing the type of error tells you what to check next.', 'The main errors are invented decisions, wrong identifiers, altered quotations, real decisions that do not support the claim, and outdated legal sources. Check each citation for existence, identity, wording, relevance and currency.', '## Five errors at a glance
+
+| Error | What it looks like | First check |
+| --- | --- | --- |
+| Invented decision | A complete citation with no matching record | Search the official source |
+| Wrong identifier | A real decision with a wrong number, chamber or date | Compare every citation field |
+| Altered quotation | A plausible sentence that is not in the text | Search the exact wording |
+| Irrelevant authority | A real decision on different facts or issues | Read the reasoning |
+| Outdated source | A repealed provision or abandoned approach | Check the current text and later decisions |
+
+> [!NOTE]
+> **Scope of this guide**
+> This guide explains a checking method and is not legal advice. MESA Law is a reference application and does not verify decisions for you. The lawyer or person relying on a citation remains responsible for checking it.
+
+## 1. Invented decisions
+
+The citation has a convincing format, but no matching decision can be found. Search by number and by phrase in [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) or [UYAP Emsal](https://emsal.uyap.gov.tr/). A failed search is a strong warning, but not final proof, so do not use the citation unless you obtain the decision.
+
+## 2. Wrong numbers, chamber or date
+
+The content may resemble a real decision while one identifier is wrong. Do not fix the number by guessing. Find the decision from another detail and confirm that every field and the text refer to the same decision.
+
+## 3. Altered or merged quotations
+
+AI output can paraphrase a passage but present it in quotation marks, or join sentences from different places. Search a short exact phrase, then read the paragraphs around it. Also confirm whose view the sentence states: the court, a party or a lower court.
+
+## 4. Real decision, wrong use
+
+> [!WARNING]
+> **The hardest error to detect**
+> Every identifier can be correct while the decision does not support the conclusion. Automated matching alone cannot settle this.
+
+Compare the material facts, legal issue, procedural stage and result. Note any difference that could change the outcome.
+
+## 5. Outdated law or case law
+
+A model may rely on an older provision or an approach that later changed. Check the current legislation and search for newer decisions from the same chamber and higher boards before relying on it.
+
+## A short check for every citation
+
+1. Existence: Can you find it in a reliable source?
+2. Identity: Do the court, numbers and date match?
+3. Wording: Is the quotation exact?
+4. Relevance: Does it support this claim on these facts?
+5. Currency: Is it still good authority?
+
+For the full method, read [how to verify an AI-cited Yargıtay decision](/law/guides/yapay-zeka-yargitay-karari-dogrulama/).
+
+## Sources
+
+1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+3. [Memurlar.net · Report on the AI-generated citation investigation](https://memurlar.net/haber/1170388/)
+
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 6, 'published', 'Common AI Legal Citation Errors and How to Spot Them — MESA Law', 'Learn the main AI legal citation errors: invented decisions, wrong numbers, altered quotations, irrelevant authority and outdated law, with a check for each.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('yapay-zeka-hukuk-atif-hatalari', 'guide', 'tr', 'Yapay zekânın en sık yaptığı hukuk atıf hataları nelerdir?', '', 'Bir atıf farklı şekillerde hatalı olabilir. Hatanın türünü bilmek, sonra neyi kontrol edeceğinizi gösterir.', 'Başlıca hatalar uydurma kararlar, yanlış künye bilgileri, değiştirilmiş alıntılar, iddiayı desteklemeyen gerçek kararlar ve güncel olmayan hukuki kaynaklardır. Her atıfta varlığı, kimliği, metni, ilgisi ve güncelliği kontrol edin.', '## Beş hata türü
+
+| Hata | Nasıl görünür? | İlk kontrol |
+| --- | --- | --- |
+| Uydurma karar | Eşleşen kaydı olmayan eksiksiz bir künye | Resmî kaynakta arayın |
+| Yanlış künye | Numarası, dairesi veya tarihi hatalı gerçek karar | Künyenin her alanını karşılaştırın |
+| Değiştirilmiş alıntı | Metinde bulunmayan inandırıcı bir cümle | Tam ifadeyi arayın |
+| İlgisiz içtihat | Farklı olay veya konudaki gerçek karar | Gerekçeyi okuyun |
+| Güncel olmayan kaynak | Yürürlükten kalkmış hüküm veya terk edilmiş görüş | Güncel metni ve sonraki kararları kontrol edin |
+
+> [!NOTE]
+> **Bu rehberin kapsamı**
+> Bu rehber bir kontrol yöntemini anlatır, hukuki danışmanlık değildir. MESA Law örnek bir uygulamadır ve kararları sizin yerinize doğrulamaz. Atfa dayanan avukat veya kişi, kontrol sorumluluğunu taşımaya devam eder.
+
+## 1. Uydurma kararlar
+
+Künye inandırıcı görünür, ama eşleşen karar bulunamaz. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) veya [UYAP Emsal](https://emsal.uyap.gov.tr/) üzerinde hem numarayla hem ifadeyle arayın. Sonuç çıkmaması güçlü bir uyarıdır, ama kesin kanıt değildir. Kararı temin edemiyorsanız atfı kullanmayın.
+
+## 2. Yanlış numara, daire veya tarih
+
+İçerik gerçek bir karara benzerken künyenin bir parçası hatalı olabilir. Numarayı tahminle düzeltmeyin. Kararı başka bir bilgiden bulun ve tüm alanların ve metnin aynı karara ait olduğunu doğrulayın.
+
+## 3. Değiştirilmiş veya birleştirilmiş alıntılar
+
+Yapay zekâ bir bölümü kendi cümleleriyle yazıp tırnak içinde verebilir ya da farklı yerlerdeki cümleleri birleştirebilir. Kısa ve tam bir ifadeyle arayın, ardından çevresindeki paragrafları okuyun. Cümlenin kimin görüşü olduğunu da doğrulayın: mahkeme, taraf veya alt mahkeme.
+
+## 4. Gerçek karar, yanlış kullanım
+
+> [!WARNING]
+> **Fark edilmesi en zor hata**
+> Künyenin tamamı doğru olduğu hâlde karar ileri sürülen sonucu desteklemeyebilir. Otomatik eşleştirme bunu tek başına çözemez.
+
+Önemli olayları, hukuki sorunu, usul aşamasını ve sonucu karşılaştırın. Sonucu değiştirebilecek her farkı not edin.
+
+## 5. Güncel olmayan mevzuat veya içtihat
+
+Model eski bir hükme ya da sonradan değişen bir görüşe dayanabilir. Atfa güvenmeden önce güncel mevzuatı kontrol edin; aynı dairenin ve üst kurulların daha yeni kararlarını arayın.
+
+## Her atıf için kısa kontrol
+
+1. Varlık: Güvenilir bir kaynakta bulabiliyor musunuz?
+2. Kimlik: Mahkeme, numaralar ve tarih eşleşiyor mu?
+3. Metin: Alıntı birebir doğru mu?
+4. İlgi: Bu olayda bu iddiayı destekliyor mu?
+5. Güncellik: Hâlâ geçerli bir dayanak mı?
+
+Yöntemin tamamı için [yapay zekânın verdiği Yargıtay kararı nasıl doğrulanır](/law/guides/yapay-zeka-yargitay-karari-dogrulama/) rehberini okuyun.
+
+## Kaynaklar
+
+1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+3. [Memurlar.net · Yapay zekâ atfı soruşturması haberi](https://memurlar.net/haber/1170388/)
+
+', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 6, 'published', 'Yapay Zekâ Hukuk Atıf Hataları ve Tespit Yöntemleri — MESA Law', 'Uydurma karar, yanlış numara, değiştirilmiş alıntı, ilgisiz içtihat ve güncel olmayan mevzuat gibi yapay zekâ atıf hatalarını nasıl fark edeceğinizi öğrenin.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('provenance', 'glossary', 'en', 'Provenance', '', 'Provenance is the recorded origin and processing history of information.', 'It answers where information came from, which version was used, how it was transformed, and which evidence supports its use.', '## Simple explanation
 
 **Provenance**

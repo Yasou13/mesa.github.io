@@ -97,7 +97,7 @@
       "title": "MESA Project Status — Release and Certification",
       "description": "Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness."
     },
-    "changelog": {"path": "changelog/", "title": "MESA Changelog — What Changed in Each Release", "description": "The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits."},
+    "changelog": {"path": "changelog/", "title": "MESA Changelog — What Changed in Each Release", "description": "The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits."}, "yargitayGuideRedirect": {"path": "guides/verify-ai-yargitay-decision/", "title": "How to Verify an AI-Cited Yargıtay Decision — Moved", "description": "This guide has moved to the MESA Law guides.", "redirectTo": "law/guides/yapay-zeka-yargitay-karari-dogrulama/"},
     "about": {
       "path": "about/",
       "title": "About MESA — Open-Source Evidence-Aware Memory",
