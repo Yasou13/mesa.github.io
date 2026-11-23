@@ -31,6 +31,7 @@ CORE_ROUTES = (
     "docs/mcp/",
     "status/",
     "changelog/",
+    "lore/",
     "about/",
     "faq/",
     "early-access/",
@@ -521,6 +522,7 @@ def main() -> int:
         "research/keyword-vs-semantic-search/": ("No results yet", "Planned protocol · no results"),
         "law/guides/yapay-zeka-yargitay-karari-dogrulama/": ("Capture the exact claim", "Existence is not relevance"),
         "law/": ("Check an AI-generated legal citation.",),
+        "lore/": ("Persistent memory for your coding agents", "Current limits", "What has been measured, and what has not."),
     }
     for route, markers in static_markers.items():
         page = root / route / "index.html"
@@ -532,6 +534,7 @@ def main() -> int:
     turkish_markers = {
         "tr/": ("Modelinize doğru bilgi çıkar.", "pip install", "Alfa"),
         "tr/how-it-works/": ("archive-tr.txt", "Bir metin dosyası eklersiniz.", "MESA metni aranabilir hâle getirir.", "Uygulamanız bir soru sorar."),
+        "tr/lore/": ("Kodlama ajanlarınız için kalıcı hafıza", "Güncel sınırlar"),
         "tr/law/": ("BİRİNCİL REFERANS UYGULAMA", "Resmî hukuk kaynağı", "Yapay zekânın verdiği hukuki atfı kontrol edin."),
         "tr/evaluation/": ("MESA QA", "E2E CERTIFICATION", "Sertifikasyon için eksikler sürüyor"),
         "tr/about/": ("KİM GELİŞTİRİYOR", "GitHub üzerinden bildirin"),

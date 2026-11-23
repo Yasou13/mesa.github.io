@@ -26,6 +26,7 @@
     "qa": "https://github.com/Yasou13/MESA_QA",
     "certification": "https://github.com/Yasou13/MESA_E2E_Certification",
     "law": "https://github.com/Yasou13/MESA_Law",
+    "lore": "https://github.com/Yasou13/MESA_Lore",
     "profile": "https://github.com/Yasou13",
     "issues": "https://github.com/Yasou13/MESA/issues"
   },
@@ -48,7 +49,7 @@
     },
     "ecosystem": {
       "path": "ecosystem/",
-      "title": "MESA Projects — What Core, Data, Law and the Tests Do",
+      "title": "MESA Projects — What Core, Lore, Data, Law and the Tests Do",
       "description": "Start with Core. Understand the optional Data and Law projects and the separate QA and E2E Certification tools."
     },
     "data": {
@@ -97,7 +98,7 @@
       "title": "MESA Project Status — Release and Certification",
       "description": "Current MESA Core maturity, Profile B certification blockers, historical evidence status, and production readiness."
     },
-    "changelog": {"path": "changelog/", "title": "MESA Changelog — What Changed in Each Release", "description": "The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits."}, "yargitayGuideRedirect": {"path": "guides/verify-ai-yargitay-decision/", "title": "How to Verify an AI-Cited Yargıtay Decision — Moved", "description": "This guide has moved to the MESA Law guides.", "redirectTo": "law/guides/yapay-zeka-yargitay-karari-dogrulama/"},
+    "changelog": {"path": "changelog/", "title": "MESA Changelog — What Changed in Each Release", "description": "The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits."}, "lore": {"path": "lore/", "title": "MESA Lore — Local Memory for Claude Code and Codex CLI", "description": "Open-source, CPU-only memory for coding agents. MESA Lore lets Claude Code, Codex CLI and Antigravity search past sessions locally, with no LLM calls."}, "yargitayGuideRedirect": {"path": "guides/verify-ai-yargitay-decision/", "title": "How to Verify an AI-Cited Yargıtay Decision — Moved", "description": "This guide has moved to the MESA Law guides.", "redirectTo": "law/guides/yapay-zeka-yargitay-karari-dogrulama/"},
     "about": {
       "path": "about/",
       "title": "About MESA — Open-Source Evidence-Aware Memory",

@@ -3734,3 +3734,5 @@ main:not(.home-page):not(.docs-layout) { position: relative; z-index: 0; overflo
 /* The GitHub mark is a filled logo: never draw the outline stroke that line icons use,
    it closes the gaps inside the Octocat. Applies everywhere the mark appears. */
 .mesa-icon.icon-github { fill: currentColor; stroke: none; }
+
+.eco-satellites > a[href$="lore/"] { grid-column: 1 / -1; border-color: var(--accent); }

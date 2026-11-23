@@ -16,6 +16,7 @@ import { benchmarkPage } from './render_benchmark.mjs';
 import { benchmarkResearchPage } from './render_benchmark_research.mjs';
 import { accountPage } from './render_account.mjs';
 import { changelogFeed, changelogPage } from './render_changelog.mjs';
+import { LORE_VERSION, lorePage } from './render_lore.mjs';
 import { loadBenchmarkCatalog } from './benchmark_data.mjs';
 import { adminConfig } from './admin/config.mjs';
 const publicAdminConfig = adminConfig(process.env);
@@ -66,6 +67,7 @@ const assetVersions = {
   docsJs: assetVersion('docs.js'),
   accountCss: assetVersion('account.css'),
   changelogCss: assetVersion('changelog.css'),
+  loreCss: assetVersion('lore.css'),
   changelogFeedCss: assetVersion('changelog-feed.css'),
   changelogFeedJs: assetVersion('changelog-feed.js'),
   benchmarkCss: assetVersion('benchmark.css'),
@@ -179,8 +181,8 @@ function languageControl() {
 
 // Top navigation: three groups with one-line descriptions, two direct links and one action.
 // Pages reached from a dropdown are marked there, so the header always shows where you are.
-const NAV_ACTIVE_PATH = { start: 'get-started/', how: 'how-it-works/', architecture: 'architecture/', ecosystem: 'ecosystem/', law: 'law/', changelog: 'changelog/' };
-const NAV_GROUP_OF = { how: 'product', architecture: 'product', ecosystem: 'product', certification: 'product', law: 'product', start: 'developers', resources: 'learn', changelog: 'learn' };
+const NAV_ACTIVE_PATH = { start: 'get-started/', how: 'how-it-works/', architecture: 'architecture/', ecosystem: 'ecosystem/', law: 'law/', lore: 'lore/', changelog: 'changelog/' };
+const NAV_GROUP_OF = { how: 'product', architecture: 'product', ecosystem: 'product', certification: 'product', law: 'product', lore: 'product', start: 'developers', resources: 'learn', changelog: 'learn' };
 const chevron = '<svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg>';
 
 function navGroups() {
@@ -190,7 +192,8 @@ function navGroups() {
       ['architecture/', chrome('Architecture', 'Mimari')],
       ['ecosystem/', chrome('Ecosystem', 'Ekosistem')],
       ['#use-cases', chrome('Use cases', 'Kullanım alanları')],
-      ['law/', 'MESA Law']
+      ['law/', 'MESA Law'],
+      ['lore/', 'MESA Lore']
     ]],
     ['developers', chrome('Developers', 'Geliştiriciler'), [
       ['get-started/', chrome('Get started', 'Başlayın')],
@@ -255,7 +258,7 @@ function footer() {
       <div class="footer-brand">${logo()}<p>${chrome('Memory that brings your documents to your AI.', 'Belgelerinizi yapay zekânıza taşıyan hafıza.')}</p><p class="footer-note"><span>v${project.version}</span> · <span>${chrome('Alpha', 'Alfa')}</span> · <a href="${route('status/')}">${chrome('Project status →', 'Proje durumu →')}</a></p>
         <div class="footer-actions"><a class="footer-pill" href="${repos.core}" target="_blank" rel="noopener noreferrer">${navigationIcon('github')}<span>GitHub</span></a><a class="footer-pill" href="${route('early-access/')}">${chrome('Early access', 'Erken erişim')}</a></div></div>
       <div class="footer-groups">
-        ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('law/', 'MESA Law'), link('data/', 'MESA Data'), link('benchmark/', 'Benchmark')])}
+        ${group(chrome('Product', 'Ürün'), [link('how-it-works/', chrome('How it works', 'Nasıl çalışır')), link('architecture/', chrome('Architecture', 'Mimari')), link('ecosystem/', chrome('Ecosystem', 'Ekosistem')), link('#use-cases', chrome('Use cases', 'Kullanım alanları')), link('lore/', 'MESA Lore'), link('law/', 'MESA Law'), link('data/', 'MESA Data'), link('benchmark/', 'Benchmark')])}
         ${group(chrome('Developers', 'Geliştiriciler'), [link('get-started/', chrome('Quickstart', 'Hızlı başlangıç')), link('docs/', chrome('Documentation', 'Dokümantasyon')), link('docs/core/cli-reference/', 'MESA CLI'), link('docs/core/api-reference/', chrome('API reference', 'API referansı')), link('docs/core/examples/', 'Python SDK'), link('docs/mcp/', 'MCP'), link('docs/core/security/', chrome('Security', 'Güvenlik'))])}
         ${group(chrome('Learn', 'Öğrenin'), [link('learn/', chrome('Lessons', 'Dersler')), link('guides/', chrome('Guides', 'Rehberler')), link('glossary/', chrome('Glossary', 'Sözlük')), link('research/', chrome('Research', 'Araştırma')), link('faq/', chrome('FAQ', 'SSS'))])}
         ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('changelog/', chrome('Changelog', 'Değişiklik günlüğü')), link('account/', chrome('My account', 'Hesabım')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
@@ -660,7 +663,7 @@ function aboutPage() {
         <article>
           <p class="eyebrow">WHAT IT IS</p>
           <h2>A multi-repository system.</h2>
-          <p>Core owns the memory lifecycle. Data prepares Turkish legal sources. QA tests behavior. E2E Certification defines a fail-closed evidence path. Law is the primary reference implementation.</p>
+          <p>${chrome('Core owns the memory lifecycle. Lore gives coding agents local memory between sessions. Data prepares Turkish legal sources. QA tests behavior. E2E Certification defines a fail-closed evidence path. Law is the primary reference implementation.', 'Core hafıza yaşam döngüsünü yönetir. Lore, kodlama ajanlarına oturumlar arasında yerel hafıza sağlar. Data Türk hukuk kaynaklarını hazırlar. QA davranışı test eder. E2E Certification, eksik kanıtta başarısız sayılan bir doğrulama yolu tanımlar. Law ise birincil örnek uygulamadır.')}</p>
         </article>
 
         <article>
@@ -782,6 +785,12 @@ function statusPage() {
           ${external(docs.releaseNotes, 'v0.9.3 Release notes')}
           <p>${chrome('GitHub v0.9.3 tag and PyPI publication verified on 17 November 2026. Install mesa-memory==0.9.3.', 'GitHub v0.9.3 etiketi ve PyPI yayını 17 Kasım 2026’da doğrulandı. mesa-memory==0.9.3 kurun.')}</p>
           ${external('https://github.com/Yasou13/MESA/tree/v0.9.3', 'Official v0.9.3 tag')}
+        </article>
+        <article>
+          <span>MESA LORE</span>
+          <h2>${chrome(`v${LORE_VERSION} open-source release`, `v${LORE_VERSION} açık kaynak sürümü`)}</h2>
+          <p>${chrome('Local memory for coding agents. Tested on Linux; macOS is untested and Windows is not supported yet. It is installed from GitHub and does not require Core.', 'Kodlama ajanları için yerel hafıza. Linux’ta test edildi; macOS test edilmedi, Windows henüz desteklenmiyor. GitHub’dan kurulur ve Core gerektirmez.')}</p>
+          <a href="${route('lore/')}">${chrome('Explore MESA Lore →', 'MESA Lore’u incele →')}</a>
         </article>
         <article>
           <span>PROFILE B</span>
@@ -1197,6 +1206,11 @@ const renderers = {
   docs: docsPage,
   mcp: mcpPage,
   status: statusPage,
+  lore: () => lorePage({
+    header: hubChrome(header('lore')), footer: hubChrome(footer()),
+    language: currentLanguage, base, repo: repos.lore,
+    external: (href, label, className) => `<a class="${className}" href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`
+  }),
   changelog: () => changelogPage({
     header: hubChrome(header('changelog')), footer: hubChrome(footer()),
     language: currentLanguage, base, changelog: changelogData, coreRepo: repos.core
@@ -1277,6 +1291,7 @@ const WAY_PAGES = {
   ecosystem: ['product', 'Ecosystem', 'Ekosistem'],
   data: ['product', 'MESA Data', 'MESA Data', 'ecosystem'],
   law: ['product', 'MESA Law', 'MESA Law', 'ecosystem'],
+  lore: ['product', 'MESA Lore', 'MESA Lore', 'ecosystem'],
   qa: ['product', 'MESA QA', 'MESA QA', 'ecosystem'],
   certification: ['product', 'E2E Certification', 'E2E Certification', 'ecosystem'],
   evaluation: ['product', 'Evaluation & trust', 'Değerlendirme ve güven', 'ecosystem'],
@@ -1297,6 +1312,7 @@ const WAY_NEXT = {
   ecosystem: ['ecosystem/', 'Ecosystem', 'Ekosistem', 'What Core, Data, Law and the tests do.', 'Core, Data, Law ve testler ne yapar.'],
   data: ['data/', 'MESA Data', 'MESA Data', 'How legal sources are prepared.', 'Hukuk kaynakları nasıl hazırlanır.'],
   law: ['law/', 'MESA Law', 'MESA Law', 'The legal workflow built on Core.', 'Core üzerine kurulu hukuk iş akışı.'],
+  lore: ['lore/', 'MESA Lore', 'MESA Lore', 'Local memory for coding agents.', 'Kodlama ajanları için yerel hafıza.'],
   qa: ['qa/', 'MESA QA', 'MESA QA', 'How memory behavior is tested.', 'Hafıza davranışı nasıl test edilir.'],
   certification: ['certification/', 'E2E Certification', 'E2E Certification', 'The end-to-end evidence contract.', 'Uçtan uca kanıt sözleşmesi.'],
   evaluation: ['evaluation/', 'Evaluation & trust', 'Değerlendirme ve güven', 'What has been tested, and what has not.', 'Neler test edildi, neler edilmedi.'],
@@ -1310,7 +1326,8 @@ const WAY_FLOW = {
   data: ['law', 'ecosystem'], law: ['data', 'status'], qa: ['certification', 'evaluation'],
   certification: ['evaluation', 'status'], evaluation: ['status', 'qa'], status: ['start', 'faq'],
   privacy: ['about', 'access'], earlyAccess: ['start', 'about'], benchmark: ['retrieval', 'status'],
-  changelog: ['status', 'start']
+  changelog: ['status', 'start'],
+  lore: ['ecosystem', 'status']
 };
 
 function wayfinding(key, language, content) {
@@ -1348,7 +1365,7 @@ function withPageTrail(content) {
   return content.replace(match[0], match[0] + trail);
 }
 
-function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [] }) {
+function documentShell({ title, description, canonical, content, assetBase, language = 'en', alternateUrls, noIndex = false, pageType = 'website', structuredNodes = [], mainEntityId = '' }) {
   content = withPageTrail(content);
   const socialImage = `${siteUrl}${language === 'tr' ? 'og-image-tr.png' : 'og-image.png'}?v=${assetVersions.logo}`;
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
@@ -1366,7 +1383,8 @@ function documentShell({ title, description, canonical, content, assetBase, lang
         description,
         inLanguage: language,
         isPartOf: { '@id': `${siteUrl}#website` },
-        about: { '@id': `${siteUrl}#software` }
+        about: { '@id': `${siteUrl}#software` },
+        ...(mainEntityId ? { mainEntity: { '@id': mainEntityId } } : {})
       },
       {
         '@type': 'SoftwareSourceCode',
@@ -1421,7 +1439,7 @@ ${alternateUrls ? `  <link rel="alternate" hreflang="en" href="${alternateUrls.e
   <link rel="stylesheet" href="${assetBase}cosmic.css?v=${assetVersions.cosmic}">
   <link rel="stylesheet" href="${assetBase}learn.css?v=${assetVersions.learn}">
 ${content.includes('class="benchmark-page"') ? `  <link rel="stylesheet" href="${assetBase}benchmark.css?v=${assetVersions.benchmarkCss}">\n` : ''}${content.includes('id="early-access-form"') || content.includes('id="research-request"') ? `  <link rel="stylesheet" href="${assetBase}early-access.css?v=${assetVersions.accessCss}">\n` : ''}
-${content.includes('class="changelog-page"') ? `  <link rel="stylesheet" href="${assetBase}changelog.css?v=${assetVersions.changelogCss}">\n  <link rel="alternate" type="application/rss+xml" title="${language === 'tr' ? 'MESA Değişiklik Günlüğü' : 'MESA Changelog'}" href="${siteUrl}${language === 'tr' ? 'tr/' : ''}changelog/feed.xml">\n` : ''}${content.includes('class="account-page"') ? `  <link rel="stylesheet" href="${assetBase}account.css?v=${assetVersions.accountCss}">\n` : ''}${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
+${content.includes('class="lore-page"') ? `  <link rel="stylesheet" href="${assetBase}lore.css?v=${assetVersions.loreCss}">\n` : ''}${content.includes('class="changelog-page"') ? `  <link rel="stylesheet" href="${assetBase}changelog.css?v=${assetVersions.changelogCss}">\n  <link rel="alternate" type="application/rss+xml" title="${language === 'tr' ? 'MESA Değişiklik Günlüğü' : 'MESA Changelog'}" href="${siteUrl}${language === 'tr' ? 'tr/' : ''}changelog/feed.xml">\n` : ''}${content.includes('class="account-page"') ? `  <link rel="stylesheet" href="${assetBase}account.css?v=${assetVersions.accountCss}">\n` : ''}${content.includes('class="docs-layout') ? `  <link rel="stylesheet" href="${assetBase}docs.css?v=${assetVersions.docs}">\n` : ''}  <script src="${assetBase}cosmic-motion.js?v=${assetVersions.cosmicMotion}" defer></script>
 </head>
 <body>
 ${cosmicEnvironment(cosmicVariant(new URL(canonical).pathname.slice(basePath.length)))}
@@ -1520,7 +1538,7 @@ for (const language of ['en', 'tr']) {
     if (!localizedMetadata?.title || !localizedMetadata?.description) {
       throw new Error(`Missing ${language} metadata for ${key}`);
     }
-    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account', 'accountSignIn', 'accountSignUp', 'accountReset', 'accountNewPassword', 'privacy', 'kvkk', 'cookies', 'terms', 'commercialMessages', 'changelog'].includes(key);
+    const nativeDocs = ['docs', 'mcp', 'getStarted', 'benchmark', 'benchmarkResearch', 'account', 'accountSignIn', 'accountSignUp', 'accountReset', 'accountNewPassword', 'privacy', 'kvkk', 'cookies', 'terms', 'commercialMessages', 'changelog', 'lore'].includes(key);
     const content = language === 'tr' && !nativeDocs ? localizeHtml(englishContent, {...trContent.strings, ...productTranslations}) : englishContent;
     if (language === 'tr' && !nativeDocs) assertCompleteLocalization(key, englishContent, content);
     const destination = path.join(outputDirectory, localizedPath, 'index.html');
@@ -1533,6 +1551,21 @@ for (const language of ['en', 'tr']) {
       language,
       alternateUrls: { en: `${siteUrl}${metadata.path}`, tr: `${siteUrl}tr/${metadata.path}` },
       noIndex: NOINDEX_PAGES.has(key),
+      ...(key === 'lore' ? {
+        mainEntityId: `${siteUrl}lore/#software`,
+        structuredNodes: [{
+          '@type': 'SoftwareSourceCode',
+          '@id': `${siteUrl}lore/#software`,
+          name: 'MESA Lore',
+          description: localizedMetadata.description,
+          version: LORE_VERSION,
+          programmingLanguage: 'Python',
+          runtimePlatform: 'Python 3.10+',
+          codeRepository: repos.lore,
+          license: 'https://www.apache.org/licenses/LICENSE-2.0',
+          url: `${siteUrl}${localizedPath}`
+        }]
+      } : {}),
       assetBase: relativeBase(localizedPath)
     }));
   }

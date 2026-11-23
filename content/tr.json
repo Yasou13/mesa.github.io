@@ -13,7 +13,7 @@
       "description": "Bir mağaza koşulları dosyası üzerinden ekleme, işleme, arama ve güncelleme adımlarını görün. MESA’nın ve uygulamanızın görevlerini öğrenin."
     },
     "ecosystem": {
-      "title": "MESA Projeleri — Core, Data, Law ve Test Araçlarının Görevleri",
+      "title": "MESA Projeleri — Core, Lore, Data, Law ve Test Araçlarının Görevleri",
       "description": "Core ile başlayın. Data ve Law projelerinin ne işe yaradığını, QA ve E2E Certification araçlarının neyi test ettiğini görün."
     },
     "data": {
@@ -52,7 +52,7 @@
       "title": "MESA’nın Güncel Durumu — Sürümler ve Doğrulamalar",
       "description": "Yayımlanan Core sürümü, sertifikasyonda bekleyen adımlar ve canlı kullanım için tamamlanması gereken testler."
     },
-    "changelog": {"title": "MESA Değişiklik Günlüğü — Her Sürümde Neler Değişti", "description": "Her MESA Core sürümündeki önemli değişiklikler, yükseltme notları, ölçülen sonuçlar ve bilinen sınırlar."}, "yargitayGuideRedirect": {"title": "Yargıtay Kararı Doğrulama Rehberi — Taşındı", "description": "Bu rehber MESA Law rehberlerine taşındı."},
+    "changelog": {"title": "MESA Değişiklik Günlüğü — Her Sürümde Neler Değişti", "description": "Her MESA Core sürümündeki önemli değişiklikler, yükseltme notları, ölçülen sonuçlar ve bilinen sınırlar."}, "lore": {"title": "MESA Lore — Claude Code ve Codex için Yerel Hafıza", "description": "Kodlama ajanları için açık kaynak yerel hafıza. Claude Code, Codex CLI ve Antigravity geçmiş oturumları LLM çağrısı olmadan arar."}, "yargitayGuideRedirect": {"title": "Yargıtay Kararı Doğrulama Rehberi — Taşındı", "description": "Bu rehber MESA Law rehberlerine taşındı."},
     "about": {
       "title": "MESA Hakkında — Neden Geliştiriliyor?",
       "description": "MESA’nın amacını, projelerin nasıl sürdürüldüğünü, kaynak kodunu ve geliştiriciye ulaşmanın yollarını öğrenin."
@@ -127,6 +127,8 @@
     }
   },
   "intentionalEnglish": [
+    "MESA Lore",
+    "MESA LORE",
     "Benchmark",
     "MESA",
     "EN",

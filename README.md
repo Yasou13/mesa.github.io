@@ -98,6 +98,7 @@ the same in both languages. The EN/TR control preserves the current page.
 - `/qa/` — MESA QA
 - `/certification/` — Profile B scope and current status
 - `/law/` — MESA Law
+- `/lore/` — MESA Lore, local memory for coding agents
 - `/use-cases/` — realistic evaluation scenarios and project boundaries
 - `/evaluation/` — QA versus E2E Certification and current evidence state
 - `/docs/` and `/docs/mcp/` — documentation and MCP integration
