@@ -85,6 +85,11 @@ def rewrite_markdown_links(
                    for index, chunk in enumerate(chunks))
 
 
+def redact_local_paths(markdown_text: str) -> str:
+    """Upstream records can name the author's checkout; published pages must not."""
+    return re.sub(r"/home/yasin/Desktop/", "/path/to/", markdown_text)
+
+
 def read_source(config: dict, src: str, local_path: Path | None = None) -> str:
     """Read committed bytes only; a dirty checkout cannot contaminate the cache."""
     import urllib.request
@@ -126,8 +131,8 @@ def sync_repository(repo_key: str, config: dict, existing_manifest: dict | None 
     pages = []
     for item in allowlist:
         src, slug = item["src"], item["slug"]
-        processed = rewrite_markdown_links(contents[src], src, config["base_route"], allowlist,
-                                           config["repo_url"], commit)
+        processed = rewrite_markdown_links(redact_local_paths(contents[src]), src, config["base_route"],
+                                           allowlist, config["repo_url"], commit)
         pages.append({"src": src, "slug": slug,
                       "route": config["base_route"] + (slug + "/" if slug else ""),
                       "title": {"en": item["title"], "tr": item.get("title_tr", item["title"])},
