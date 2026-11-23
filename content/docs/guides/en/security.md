@@ -10,10 +10,10 @@ Core does not encrypt SQLite/LanceDB/Kùzu at rest. Protect volumes, OS permissi
 
 Source-linked context is not independently verified truth. `UNTRUSTED_MEMORY_EVIDENCE` must remain data in downstream prompts and tools. Avoid logging content, credentials, model output or claim tokens. Model consensus does not guarantee legal correctness or eliminate hallucinations.
 
-## v0.9.3 operation
+## v0.9.4 operation
 
 Purge erases the document’s owned source and extracted text while retaining audit IDs and hashes. Shared assertion/entity text remains while another document owns it. Protect local credentials and generated MCP configuration.
 
-## Bounded request work in v0.9.3
+## Bounded request work in v0.9.4
 
-Legal rule extraction, citation resolution, scope construction and heavy token scoring bound caller-text work and yield thread execution so health requests can run during measured heavy repros. In v0.9.3, per-minute and daily rate limits are not enforced for `/v4/*` and `/control/*`. Kùzu 0.11.3 raw graph files may contain process memory fragments; protect the graph directory like SQLite. See [current limitations](docs/core/limitations/). Legal names, identities and exact-match promotion are resolved within the authorized tenant/dataset/agent/time scope.
+Legal rule extraction, citation resolution, scope construction and heavy token scoring bound caller-text work and yield thread execution so health requests can run during measured heavy repros. In v0.9.4, per-minute and daily rate limits are not enforced for `/v4/*` and `/control/*`. Kùzu 0.11.3 raw graph files may contain process memory fragments; protect the graph directory like SQLite. See [current limitations](docs/core/limitations/). Legal names, identities and exact-match promotion are resolved within the authorized tenant/dataset/agent/time scope.

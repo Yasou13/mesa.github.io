@@ -34,7 +34,7 @@ Bunu yeni bir klasörde çalıştırın ve terminali açık bırakın.
 ```text
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.3
+python -m pip install mesa-memory==0.9.4
 mesa start
 ```
 
@@ -101,5 +101,5 @@ Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde C
 
 1. [MESA Core · Başlangıç](docs/core/getting-started/)
 2. [MESA Core · CLI referansı](docs/core/cli-reference/)
-3. [PyPI’da mesa-memory 0.9.3](https://pypi.org/project/mesa-memory/0.9.3/)
+3. [PyPI’da mesa-memory 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/)
 

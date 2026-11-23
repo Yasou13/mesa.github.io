@@ -10,10 +10,10 @@ Core; SQLite, LanceDB ve Kùzu verilerini diskte kendisi şifrelemez. Diskleri, 
 
 Kaynağı belli bir kayıt, bağımsız olarak doğrulanmış gerçek anlamına gelmez. `UNTRUSTED_MEMORY_EVIDENCE`, modele ve araçlara aktarılırken veri olarak kalmalı; talimat yetkisi kazanmamalıdır. İçeriği, erişim bilgilerini, model çıktısını veya iş sahipliği anahtarlarını günlüklere yazmayın. İki modelin aynı fikirde olması hukuki doğruluğu garanti etmez veya hatalı yanıtları tamamen önlemez.
 
-## v0.9.3 ile çalışma
+## v0.9.4 ile çalışma
 
 Silme, denetim kimlikleri ve özetler korunurken belgenin sahip olduğu kaynak ve çıkarım metnini temizler. Başka bir belgenin sahip olduğu ortak bilgi/varlık metni kalır. Yerel kimlik bilgilerini ve üretilen MCP yapılandırmasını koruyun.
 
-## v0.9.3’de sınırlı istek işi
+## v0.9.4’te sınırlı istek işi
 
-Hukuki kural çıkarımı, atıf çözümleme, kapsam hazırlama ve yoğun token puanlama; kullanıcı metni üzerinde yapılan işi sınırlar ve thread yürütmesini paylaşır. Böylece ölçülen yoğun örnekler sürerken sağlık istekleri çalışabilir. v0.9.3’te `/v4/*` ve `/control/*` için dakikalık ve günlük hız sınırları uygulanmaz. Kùzu 0.11.3 ham çizge dosyaları süreç belleğinden parçalar içerebilir; çizge dizinini SQLite gibi koruyun. [Güncel sınırlara](docs/core/limitations/) bakın. Kanun adları, kimlikler ve tam eşleşme önceliği izinli kurum/veri kümesi/ajan/zaman kapsamında çözülür.
+Hukuki kural çıkarımı, atıf çözümleme, kapsam hazırlama ve yoğun token puanlama; kullanıcı metni üzerinde yapılan işi sınırlar ve thread yürütmesini paylaşır. Böylece ölçülen yoğun örnekler sürerken sağlık istekleri çalışabilir. v0.9.4’te `/v4/*` ve `/control/*` için dakikalık ve günlük hız sınırları uygulanmaz. Kùzu 0.11.3 ham çizge dosyaları süreç belleğinden parçalar içerebilir; çizge dizinini SQLite gibi koruyun. [Güncel sınırlara](docs/core/limitations/) bakın. Kanun adları, kimlikler ve tam eşleşme önceliği izinli kurum/veri kümesi/ajan/zaman kapsamında çözülür.

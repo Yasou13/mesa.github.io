@@ -105,7 +105,7 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 - You need a calibrated confidence value. An RRF score is not a probability.
 - You have enough judged data to train and validate a better ranking model.
 
-MESA Core uses weighted RRF with k = 60, vector weight 8 and weight 1 for BM25, assertion and graph lanes. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
+MESA Core uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and the graph lane off by default. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
 
 ## Recalculate after a weight change
 
@@ -135,7 +135,7 @@ MESA Core uses weighted RRF with k = 60, vector weight 8 and weight 1 for BM25, 
 ## Sources and further reading
 
 1. [Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
+2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
 3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
 4. [Microsoft Learn · Hybrid search scoring (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 

@@ -34,7 +34,7 @@ Run this in a new folder and keep the terminal open.
 ```text
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.3
+python -m pip install mesa-memory==0.9.4
 mesa start
 ```
 
@@ -101,5 +101,5 @@ After deletion, the same search should no longer return the document. Then stop 
 
 1. [MESA Core · Getting started](docs/core/getting-started/)
 2. [MESA Core · CLI reference](docs/core/cli-reference/)
-3. [mesa-memory 0.9.3 on PyPI](https://pypi.org/project/mesa-memory/0.9.3/)
+3. [mesa-memory 0.9.4 on PyPI](https://pypi.org/project/mesa-memory/0.9.4/)
 

@@ -194,3 +194,18 @@ Current Core source: tag `v0.9.3`, commit `531209bc45805b478264f6dfa8a9e40a94e34
 | T1m is Magibu, not MiniLM | TASKS D51, PROGRESS Round 18, mesa_bench/runs/20261107T141454Z_v092_benchmark/settings-T1m-ingest.json. Only two localized labels changed; numbers and release identity preserved. |
 
 All Core imports read committed Git objects. Existing paired-guide, SDK fixture, static and browser checks verify website consistency, not new retrieval quality or Core production readiness. No new 0.9.3 retrieval benchmark, provider run, certification or deployment is claimed. Historical 0.9.2/0.9.0 benchmarks and demo recordings retain their provenance; independent repository caches and original local files are preserved. Detailed check scope and public metadata are in `reports/website-v093-alignment/`.
+
+## v0.9.4 alignment — 23 November 2026
+
+Current Core source: tag `v0.9.4`, commit `e30856ec6e7ed9146bb9af992565e864f727b0b9`. PyPI wheel and sdist are present, not yanked and hash-identical to the GitHub release files. Package source files match the tag byte for byte.
+
+| Claim | Source and limit |
+| --- | --- |
+| Graph defaults off; assertion fusion weight defaults to 0.0 | Tagged CHANGELOG, `.env.example`, `docs/configuration.md`, `mesa_memory/config.py`. |
+| 5-character prefix BM25 and stable tie-breaks | Tagged CHANGELOG. Search order can change after upgrade. |
+| V3 store, LLM consolidation and Tier 3 modes 1/2 removed | Tagged CHANGELOG and release notes; migrations `f7a8b9c0d1e2`, `f8b9c0d1e2f3` are forward-only. |
+| Hit@5 50/112 to 61/112, MRR 0.3411 to 0.3955, median 361.3 to 233.9 ms | Tagged CHANGELOG; DEV store, models and reranking off. Not a held-out test result. |
+| 5 MB readiness 249.99 s to 172.61 s | Tagged CHANGELOG; models-off local fixture. |
+| Post-tag CI | PR CI and Release passed on the tagged commit; push CI run 45105643755 failed one 200 ms timing test in `coverage (3.13)`. |
+
+The public benchmark remains 0.9.3 and is labelled as not describing 0.9.4. No 0.9.4 benchmark result is published.

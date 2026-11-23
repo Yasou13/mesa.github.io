@@ -1,3 +1,21 @@
+## v0.9.4 · 23 Kasım 2026
+
+[Etiketli changelog](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/CHANGELOG.md#094---2026-11-23) sürümü 23 Kasım olarak tarihler. GitHub `v0.9.4` etiketi `e30856ec6e7ed9146bb9af992565e864f727b0b9` commit’ine işaret eder. [PyPI 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/) wheel ve sdist dosyalarının mevcut, geri çekilmemiş ve GitHub sürüm dosyalarıyla aynı hash’e sahip olduğu 23 Kasım 2026’da doğrulandı. Çevrimdışı yedekten sonra `pip install --upgrade mesa-memory==0.9.4` ile yükseltin. Alfa / üretim NO-GO sürer.
+
+## v0.9.4 arama varsayılanları
+
+`MESA_GRAPH_ENABLED` artık varsayılan olarak `false`, `MESA_RRF_ASSERTION_WEIGHT` ise `0.0`’dır. Önceki füzyon için `MESA_GRAPH_ENABLED=true` ve `MESA_RRF_ASSERTION_WEIGHT=1.0` ayarlayın. Kapsamlı BM25, 6 veya daha uzun rakamsız sorgu sözcüklerinde 5 karakterlik önek eşleşmesi kullanır. Eşit skorlu sonuçlar kararlı içerik kimliğiyle ayrılır; aynı derlemden kurulan iki yeni depo aynı sıralamayı üretir.
+
+## v0.9.4 kaldırılanlar ve migration’lar
+
+Yalnızca ileri yönlü `f7a8b9c0d1e2` ve `f8b9c0d1e2f3` migration’ları eski V3 düğüm deposunu ve `routing_telemetry` tablosunu siler. V3 route ve istemcileri, LLM consolidation ve Tier 3 mod 1/2 kaldırıldı; doğrulama kurala dayalı mod 0 ile çalışır, isteğe bağlı bilgi çıkarımı `FactExtractionService` üzerinden yürür. Emekli ayarlar yok sayılır ve her anahtar için başlangıçta bir uyarı yazılır. Yeni kurulumlar FastAPI’yi 0.142, LanceDB’yi 0.35, Kùzu’yu 0.12 ve Pydantic’i 3 altında sınırlar. [Yükseltme rehberine](docs/core/migration/) bakın.
+
+## v0.9.4 ölçümleri ve yayın kontrolleri
+
+Changelog, modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 değerinin 50/112’den 61/112’ye, MRR’nin 0,3411’den 0,3955’e çıktığını, medyan arama gecikmesinin 361,3 ms’den 233,9 ms’ye indiğini bildirir. 5 MB’lık modelsiz fikstürde uçtan uca hazır olma 249,99 sn’den 172,61 sn’ye indi. Bunlar DEV ve yerel sonuçlardır; ayrılmış test sonucu veya hizmet garantisi değildir. [0.9.3 benchmark’ı](benchmark/0.9.3/) 0.9.4’ü anlatmaz; 0.9.4 benchmark’ı henüz yayımlanmadı.
+
+Etiketli commit’te PR CI ve yayın iş akışı başarılı oldu. Etiket sonrası push CI’ında `coverage (3.13)` işinde bir hata kaydedildi: bir hukuki çıkarım zamanlama testi 200 ms sınırını aştı, diğer 1.796 test geçti.
+
 ## v0.9.3 · 16 Kasım 2026
 
 [Etiketli changelog](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CHANGELOG.md#093---2026-11-16) sürümü 16 Kasım olarak tarihler. GitHub `v0.9.3` etiketi `531209bc45805b478264f6dfa8a9e40a94e345cb` commit’ine işaret eder. [PyPI 0.9.3](https://pypi.org/project/mesa-memory/0.9.3/) wheel ve sdist dosyalarının mevcut ve geri çekilmemiş olması 17 Kasım 2026’da doğrulandı. `pip install --upgrade mesa-memory==0.9.3` ile yükseltin. Alfa / üretim NO-GO sürer.

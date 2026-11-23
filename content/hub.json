@@ -636,8 +636,8 @@
                       "href": "https://arxiv.org/abs/2005.11401"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     },
                     {
                       "label": "Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents",
@@ -915,8 +915,8 @@
                       "href": "https://arxiv.org/abs/2005.11401"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     },
                     {
                       "label": "Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents",
@@ -1449,8 +1449,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -1584,8 +1584,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -3025,7 +3025,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core uses weighted RRF with k = 60, vector weight 8 and weight 1 for BM25, assertion and graph lanes. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/)."
+                  "text": "MESA Core uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and the graph lane off by default. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/)."
                 }
               ]
             },
@@ -3084,8 +3084,8 @@
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     },
                     {
                       "label": "Elastic · Reciprocal rank fusion",
@@ -3326,7 +3326,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core, k = 60 ile ağırlıklı RRF kullanır; vektör ağırlığı 8, BM25, bilgi kaydı ve çizge kanallarının ağırlığı 1’dir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın."
+                  "text": "MESA Core, k = 60 ile ağırlıklı RRF kullanır; varsayılan olarak vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0’dır ve çizge kanalı kapalıdır. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın."
                 }
               ]
             },
@@ -3385,8 +3385,8 @@
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     },
                     {
                       "label": "Elastic · Reciprocal rank fusion",
@@ -3561,8 +3561,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -3671,8 +3671,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -3869,8 +3869,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4005,8 +4005,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4191,8 +4191,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4317,8 +4317,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4457,7 +4457,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core v0.9.3 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/)."
+                  "text": "MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/)."
                 }
               ]
             },
@@ -4494,8 +4494,8 @@
                       "href": "https://www.sqlite.org/wal.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4568,7 +4568,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core v0.9.3’de her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)"
+                  "text": "MESA Core v0.9.4’te her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)"
                 }
               ]
             },
@@ -4605,8 +4605,8 @@
                       "href": "https://www.sqlite.org/wal.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4799,8 +4799,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4931,8 +4931,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -5409,8 +5409,8 @@
                       "href": "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -5515,8 +5515,8 @@
                       "href": "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html"
                     },
                     {
-                      "label": "MESA Core v0.9.3 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.4 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -6527,7 +6527,7 @@
                 },
                 {
                   "kind": "code",
-                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.3\nmesa start"
+                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.4\nmesa start"
                 }
               ]
             },
@@ -6637,8 +6637,8 @@
                       "href": "docs/core/cli-reference/"
                     },
                     {
-                      "label": "mesa-memory 0.9.3 on PyPI",
-                      "href": "https://pypi.org/project/mesa-memory/0.9.3/"
+                      "label": "mesa-memory 0.9.4 on PyPI",
+                      "href": "https://pypi.org/project/mesa-memory/0.9.4/"
                     }
                   ]
                 }
@@ -6680,7 +6680,7 @@
                 },
                 {
                   "kind": "code",
-                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.3\nmesa start"
+                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.4\nmesa start"
                 }
               ]
             },
@@ -6790,8 +6790,8 @@
                       "href": "docs/core/cli-reference/"
                     },
                     {
-                      "label": "PyPI’da mesa-memory 0.9.3",
-                      "href": "https://pypi.org/project/mesa-memory/0.9.3/"
+                      "label": "PyPI’da mesa-memory 0.9.4",
+                      "href": "https://pypi.org/project/mesa-memory/0.9.4/"
                     }
                   ]
                 }

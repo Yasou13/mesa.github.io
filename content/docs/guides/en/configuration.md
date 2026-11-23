@@ -12,9 +12,9 @@ MESA_LLM_MODEL=ollama:qwen2.5:7b
 MESA_EMBEDDING_MODEL=ollama:bge-m3
 ```
 
-Put local settings in `~/.mesa/.env` and restart the local server. The selected provider must be installed and running. `MESA_EMBEDDING_ENABLED` defaults to the model flag. `MESA_EXTRACTION_ENABLED=false` is the default even when models are enabled; set it explicitly to `true` for open-ended SPO extraction. Both off still allows ingestion and BM25 search; disabled VECTOR lanes are SKIPPED. `MESA_GRAPH_ENABLED=false` avoids opening Kùzu, marks GRAPH lanes SKIPPED and reports graph as degraded. Re-enabling a lane backfills it on combined startup.
+Put local settings in `~/.mesa/.env` and restart the local server. The selected provider must be installed and running. `MESA_EMBEDDING_ENABLED` defaults to the model flag. `MESA_EXTRACTION_ENABLED=false` is the default even when models are enabled; set it explicitly to `true` for open-ended SPO extraction. Both off still allows ingestion and BM25 search; disabled VECTOR lanes are SKIPPED. `MESA_GRAPH_ENABLED=false` is the default: it avoids opening Kùzu, marks GRAPH lanes SKIPPED and reports graph as degraded. Set it to `true` to enable the graph. Re-enabling a lane backfills it on combined startup.
 
-`MESA_TIER3_MODE`: 0 deterministic checks, 1 one validator, 2 distinct A/B validators. `MESA_RRF_K=60`, vector weight 8.0 and BM25/assertion/graph weights 1.0 control fusion. `MESA_RRF_VECTOR_WEIGHT=1` restores the previous vector weight; zero removes a lane’s contribution. Durable rebuild remains disabled by default.
+Validation uses deterministic mode 0; `MESA_TIER3_MODE` and the other retired settings are ignored with one startup warning per key. `MESA_RRF_K=60`, vector weight 8.0, BM25 weight 1.0 and `MESA_RRF_ASSERTION_WEIGHT=0.0` control fusion; the graph weight is 1.0 once the graph is enabled. `MESA_RRF_VECTOR_WEIGHT=1` restores the previous vector weight; zero removes a lane’s contribution. Durable rebuild remains disabled by default.
 
 ## Provider and storage boundaries
 
@@ -43,4 +43,4 @@ MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
 MESA_EMBEDDING_DIMENSION=768
 ```
 
-Startup rejects `MESA_TIER3_MODE=1/2` without an active consolidation loop; extraction must be enabled. Bootstrap `MESA_API_KEY` values containing `.` are rejected at startup.
+v0.9.4 removes Tier 3 modes 1/2 and ignores `MESA_TIER3_MODE` with a warning. Bootstrap `MESA_API_KEY` values containing `.` are rejected at startup.

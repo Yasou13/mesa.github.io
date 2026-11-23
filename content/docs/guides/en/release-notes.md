@@ -1,3 +1,21 @@
+## v0.9.4 · 23 November 2026
+
+The [tagged changelog](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/CHANGELOG.md#094---2026-11-23) dates this release 23 November. GitHub tag `v0.9.4` resolves to `e30856ec6e7ed9146bb9af992565e864f727b0b9`. [PyPI 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/) wheel and sdist were verified present, not yanked and hash-identical to the GitHub release files on 23 November 2026. Upgrade with `pip install --upgrade mesa-memory==0.9.4` after an offline backup. Alpha / production NO-GO remains.
+
+## v0.9.4 changed search defaults
+
+`MESA_GRAPH_ENABLED` now defaults to `false` and `MESA_RRF_ASSERTION_WEIGHT` to `0.0`. Restore the earlier fusion with `MESA_GRAPH_ENABLED=true` and `MESA_RRF_ASSERTION_WEIGHT=1.0`. Scoped BM25 uses 5-character prefix matching for query tokens of 6 or more non-digit characters. Equal-score results break ties by stable content identity, so two fresh stores built from the same corpus produce identical ranks.
+
+## v0.9.4 removals and migrations
+
+Forward-only migrations `f7a8b9c0d1e2` and `f8b9c0d1e2f3` drop the legacy V3 node store and `routing_telemetry`. V3 routes and clients, LLM consolidation and Tier 3 modes 1/2 are removed; validation uses deterministic mode 0 and optional fact extraction runs through `FactExtractionService`. Retired settings are ignored with one startup warning per key. Fresh installs cap FastAPI below 0.142, LanceDB below 0.35, Kùzu below 0.12 and Pydantic below 3. See the [upgrade guide](docs/core/migration/).
+
+## v0.9.4 measurements and release checks
+
+The changelog reports, on the shared Tier M DEV store with models and reranking off, passage Hit@5 from 50/112 to 61/112, MRR from 0.3411 to 0.3955 and median search latency from 361.3 ms to 233.9 ms. A 5 MB models-off fixture went from 249.99 s to 172.61 s end-to-end readiness. These are DEV and local results, not held-out test results or service guarantees. The [0.9.3 benchmark](benchmark/0.9.3/) does not describe 0.9.4, and no 0.9.4 benchmark is published yet.
+
+The pull-request CI and the release workflow passed on the tagged commit. The post-tag push CI recorded one failure in `coverage (3.13)`: a legal-extraction timing test exceeded its 200 ms bound, with 1,796 other tests passing.
+
 ## v0.9.3 · 16 November 2026
 
 The [tagged changelog](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CHANGELOG.md#093---2026-11-16) dates this release 16 November. GitHub tag `v0.9.3` resolves to `531209bc45805b478264f6dfa8a9e40a94e345cb`. [PyPI 0.9.3](https://pypi.org/project/mesa-memory/0.9.3/) wheel and sdist were verified present and not yanked on 17 November 2026. Upgrade with `pip install --upgrade mesa-memory==0.9.3`. Alpha / production NO-GO remains.

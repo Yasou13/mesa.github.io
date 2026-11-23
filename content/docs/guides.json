@@ -1,5 +1,5 @@
 {
-  "baseline": "531209bc45805b478264f6dfa8a9e40a94e345cb",
+  "baseline": "e30856ec6e7ed9146bb9af992565e864f727b0b9",
   "guides": [
     {
       "id": "overview",
@@ -282,8 +282,8 @@
         "docs/RUNBOOK.md"
       ],
       "title": {
-        "en": "Upgrade to v0.9.3",
-        "tr": "v0.9.3 yükseltmesi"
+        "en": "Upgrade to v0.9.4",
+        "tr": "v0.9.4 yükseltmesi"
       },
       "appendixSections": [
         "Upgrading to v0.8.0"
@@ -297,8 +297,8 @@
         "CHANGELOG.md"
       ],
       "title": {
-        "en": "v0.9.3 release notes",
-        "tr": "v0.9.3 sürüm notları"
+        "en": "v0.9.4 release notes",
+        "tr": "v0.9.4 sürüm notları"
       }
     },
     {

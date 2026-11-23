@@ -4,15 +4,15 @@ Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaşt�
 
 ## RRF sıralamaları birleştirir; olasılık hesaplamaz
 
-Çalışma zamanı varsayılanları k=60, vektör ağırlığı 8.0; BM25, bilgi kaydı ve çizge ağırlıkları 1.0’dır. Eski vektör ağırlığı için `MESA_RRF_VECTOR_WEIGHT=1` kullanın. Sıfır ağırlık, kanalın birleştirmeye katkısını kapatır. Hesaplayıcı, öğretici örnek olarak birim ağırlık kullanır. Sıralar 1’den başlar. Aynı aday bir kanalda birden çok kez görünse de yalnızca bir katkı verir: RRF(c)=Σ w/(k+rank). Kanal içindeki atıf artırımları o kanalın sırasını değiştirir; RRF puanına doğrudan eklenmez. Birleştirmeden sonra, sorguya bağlı ayrı bir hukuk katsayısı uygulanabilir. [Arama sayfasındaki](retrieval/) örnek hesaplayıcıyla farkı inceleyebilirsiniz.
+Çalışma zamanı varsayılanları k=60, vektör ağırlığı 8.0, BM25 ağırlığı 1.0, bilgi kaydı ağırlığı 0.0’dır; çizge kapalıdır (açıldığında ağırlığı 1.0’dır). v0.9.4 öncesi füzyon varsayılanları için `MESA_RRF_ASSERTION_WEIGHT=1.0` ve `MESA_GRAPH_ENABLED=true` ayarlayın. Eski vektör ağırlığı için `MESA_RRF_VECTOR_WEIGHT=1` kullanın. Sıfır ağırlık, kanalın birleştirmeye katkısını kapatır. Hesaplayıcı, öğretici örnek olarak birim ağırlık kullanır. Sıralar 1’den başlar. Aynı aday bir kanalda birden çok kez görünse de yalnızca bir katkı verir: RRF(c)=Σ w/(k+rank). Kanal içindeki atıf artırımları o kanalın sırasını değiştirir; RRF puanına doğrudan eklenmez. Birleştirmeden sonra, sorguya bağlı ayrı bir hukuk katsayısı uygulanabilir. [Arama sayfasındaki](retrieval/) örnek hesaplayıcıyla farkı inceleyebilirsiniz.
 
 ## Çizge ve bağlam sınırları
 
 Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı, istenen 500 sonuç, 64 düğümlük ilerleme kümesi ve düğüm başına 32 bağlantıyla sınırlandırılır. Varsayılan zaman aşımı 15 saniyedir. Bunlar kaynak tüketimini sınırlayan değerlerdir; hız garantisi değildir. Bağlam oluşturma varsayılan olarak tek arama ve 2048 token’lık biçimlendirilmiş kanıt bütçesi kullanır. İsteğe bağlı uyarlamalı mod, erişim kapsamını genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.
 
-## v0.9.3 ile çalışma
+## v0.9.4 ile çalışma
 
-Modeller kapalıyken BM25 saklanan kaynak metnini getirir. Kapalı veya eksik vektör ve çizge adımları degraded_sources içinde bildirilir. MESA_GRAPH_ENABLED=false, Kùzu’yu atlar; çizge veya embedding yeniden açıldığında başlangıçta eksikler tamamlanır.
+Modeller kapalıyken BM25 saklanan kaynak metnini getirir. Kapalı veya eksik vektör ve çizge adımları degraded_sources içinde bildirilir. MESA_GRAPH_ENABLED=false varsayılandır ve Kùzu’yu atlar; çizge veya embedding açıldığında başlangıçta eksikler tamamlanır. Kapsamlı BM25, 6 veya daha uzun rakamsız sorgu sözcüklerini ilk 5 karakterleriyle eşler; daha kısa ve rakam içeren sözcükler tam eşleşir. Eşit skorlar kararlı içerik kimliğiyle ayrılır; aynı derlemden kurulan iki yeni depo aynı sıralamayı üretir.
 
 ## İsteğe bağlı BGE yeniden sıralama
 

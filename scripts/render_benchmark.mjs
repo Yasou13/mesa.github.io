@@ -55,7 +55,7 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
       + report({ selected, suite, language, section, assetBase }) + method + limits;
   }
 
-  if (currentReport) content += `<p class="bm-note">${L('0.9.3 run: 18 November 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093.', '0.9.3 koşusu: 18 Kasım 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093.')}</p>`;
+  if (currentReport) content += `<p class="bm-note">${L('0.9.3 run: 18 November 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. These results do not describe 0.9.4, which changed search defaults.', '0.9.3 koşusu: 18 Kasım 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. Bu sonuçlar, arama varsayılanlarını değiştiren 0.9.4’ü anlatmaz.')}</p>`;
 
   return `${header}<main id="main-content" class="benchmark-page">${content}${footer}</main>`;
 }

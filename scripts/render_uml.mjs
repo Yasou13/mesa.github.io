@@ -1,5 +1,5 @@
 // UML-style diagrams for MESA Core, drawn as inline SVG.
-// Facts follow Core v0.9.3 (531209b): docs/architecture-v4.md, ADR 0009–0015,
+// Facts follow Core v0.9.4 (e30856e): docs/architecture-v4.md, ADR 0009–0015,
 // docs/concepts-and-ingestion.md and docs/RUNBOOK.md.
 // Every function takes `t(en, tr)` so the same drawing serves the localized
 // product pages (translation map) and the docs pages (direct language choice).
@@ -186,7 +186,7 @@ export function readActivityDiagram(t, id = 'uml-read-activity') {
   <circle cx="910" cy="414" r="12" class="uml-final-ring"/><circle cx="910" cy="414" r="7" class="uml-initial"/>
   ${text(480, 486, t('fork: each lane runs on the same eligible set · join: one vote per lane per candidate', 'çatal: her kanal aynı uygun küme üzerinde çalışır · birleşim: aday başına kanal başına bir oy'), 'uml-guard')}`;
   return figure({ id, t, viewBox: '0 0 940 510', minWidth: 760, body,
-    title: [t('UML · Activity diagram', 'UML · Etkinlik şeması'), t('Read path: four lanes in parallel, one fused result', 'Okuma yolu: dört paralel kanal, tek birleşik sonuç')],
+    title: [t('UML · Activity diagram', 'UML · Etkinlik şeması'), t('Read path: up to four enabled lanes in parallel, one fused result', 'Okuma yolu: en çok dört etkin kanal paralel, tek birleşik sonuç')],
     caption: t('Scope precedes ranking. Legal factors and optional reranking follow fusion; exact law/article or a decision’s own first-chunk reference may reserve at most three leading positions. Other results retain order. Legal rules off bypasses legal stages; PageRank remains telemetry.', 'Kapsam sıralamadan önce uygulanır. Birleştirmeyi hukuk katsayıları ve isteğe bağlı yeniden sıralama izler; tam kanun/madde veya kararın kendi ilk parça referansı en fazla üç sonucu başa alabilir. Diğer sonuçların düzeni korunur. Hukuk kuralları kapalıysa hukuki aşamalar atlanır; PageRank izleme verisi kalır.') });
 }
 

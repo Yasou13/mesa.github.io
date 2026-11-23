@@ -1,6 +1,53 @@
 {
-  "sourceCommit": "531209bc45805b478264f6dfa8a9e40a94e345cb",
+  "sourceCommit": "e30856ec6e7ed9146bb9af992565e864f727b0b9",
   "releases": [
+    {
+      "version": "0.9.4",
+      "date": "2026-11-23",
+      "anchor": "094---2026-11-23",
+      "summary": {
+        "en": "Search gets simpler defaults and repeatable ranking, whole-document uploads finish sooner, and legacy V3 and LLM consolidation code is removed.",
+        "tr": "Arama daha sade varsayılanlara ve tekrarlanabilir sıralamaya geçiyor, tam belge yüklemeleri daha erken bitiyor, eski V3 ve LLM consolidation kodu kaldırılıyor."
+      },
+      "improved": [
+        {
+          "en": "On the shared Tier M DEV store with models and reranking off, passage Hit@5 rose from 50/112 to 61/112, MRR from 0.3411 to 0.3955, and median search latency fell from 361.3 ms to 233.9 ms.",
+          "tr": "Modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 50/112’den 61/112’ye, MRR 0,3411’den 0,3955’e çıktı; medyan arama gecikmesi 361,3 ms’den 233,9 ms’ye indi."
+        },
+        {
+          "en": "A 5 MB models-off document became fully ready in 172.61 s instead of 249.99 s.",
+          "tr": "5 MB’lık modelsiz belge 249,99 sn yerine 172,61 sn’de tamamen hazır hâle geldi."
+        },
+        {
+          "en": "Two fresh stores built from the same corpus now produce identical ranks.",
+          "tr": "Aynı derlemden kurulan iki yeni depo artık aynı sıralamayı üretiyor."
+        }
+      ],
+      "upgrade": [
+        {
+          "en": "Take an offline backup first. Two forward-only migrations remove the V3 node store and routing telemetry; going back needs v0.9.3 and the pre-upgrade snapshot.",
+          "tr": "Önce çevrimdışı yedek alın. Yalnızca ileri yönlü iki migration V3 düğüm deposunu ve yönlendirme telemetrisini siler; geri dönmek için v0.9.3 ve yükseltme öncesi anlık görüntü gerekir."
+        },
+        {
+          "en": "The graph is now off and the assertion weight is 0.0. Set MESA_GRAPH_ENABLED=true and MESA_RRF_ASSERTION_WEIGHT=1.0 to restore the earlier fusion.",
+          "tr": "Çizge artık kapalı, bilgi kaydı ağırlığı 0.0. Önceki füzyon için MESA_GRAPH_ENABLED=true ve MESA_RRF_ASSERTION_WEIGHT=1.0 ayarlayın."
+        },
+        {
+          "en": "V3 routes and clients, LLM consolidation and Tier 3 modes 1/2 are removed. Retired settings are ignored with a startup warning.",
+          "tr": "V3 route ve istemcileri, LLM consolidation ve Tier 3 mod 1/2 kaldırıldı. Emekli ayarlar başlangıçta uyarı verilerek yok sayılıyor."
+        }
+      ],
+      "limits": [
+        {
+          "en": "The search figures are DEV results with models off. No 0.9.4 benchmark is published yet, and the 0.9.3 benchmark does not describe this release.",
+          "tr": "Arama sayıları modeller kapalıyken alınan DEV sonuçlarıdır. 0.9.4 benchmark’ı henüz yayımlanmadı; 0.9.3 benchmark’ı bu sürümü anlatmaz."
+        },
+        {
+          "en": "Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.",
+          "tr": "Dakikalık ve günlük istek sınırları /v4/* ve /control/* için hâlâ uygulanmıyor."
+        }
+      ]
+    },
     {
       "version": "0.9.3",
       "date": "2026-11-16",
@@ -11,21 +58,48 @@
         "tr": "Büyük belgeler çok daha hızlı hazır hâle geliyor, varsayılan embedding modeli değişiyor ve Türkçe arama büyük harfleri daha iyi işliyor."
       },
       "improved": [
-        { "en": "A 4,999,000-byte document became fully ready in 245.20 s instead of 718.27 s (2.93× faster), measured with models off and graph on.", "tr": "4.999.000 baytlık bir belge 718,27 sn yerine 245,20 sn’de tamamen hazır hâle geldi (2,93 kat hızlı). Ölçüm modeller kapalı, graf açıkken yapıldı." },
-        { "en": "Legal extraction skips impossible reference scans. CPU time for the API-limit TCK/1 input fell from 129.861 ms to 52.330 ms with identical outputs.", "tr": "Hukuki çıkarım, sonuç veremeyecek atıf taramalarını atlıyor. API sınırındaki TCK/1 girdisinde CPU süresi aynı çıktılarla 129,861 ms’den 52,330 ms’ye indi." },
-        { "en": "The default embedding model is now local:BAAI/bge-m3 with 1024 dimensions. Models remain off by default.", "tr": "Varsayılan embedding modeli artık 1024 boyutlu local:BAAI/bge-m3. Modeller varsayılan olarak kapalı kalmaya devam ediyor." }
+        {
+          "en": "A 4,999,000-byte document became fully ready in 245.20 s instead of 718.27 s (2.93× faster), measured with models off and graph on.",
+          "tr": "4.999.000 baytlık bir belge 718,27 sn yerine 245,20 sn’de tamamen hazır hâle geldi (2,93 kat hızlı). Ölçüm modeller kapalı, graf açıkken yapıldı."
+        },
+        {
+          "en": "Legal extraction skips impossible reference scans. CPU time for the API-limit TCK/1 input fell from 129.861 ms to 52.330 ms with identical outputs.",
+          "tr": "Hukuki çıkarım, sonuç veremeyecek atıf taramalarını atlıyor. API sınırındaki TCK/1 girdisinde CPU süresi aynı çıktılarla 129,861 ms’den 52,330 ms’ye indi."
+        },
+        {
+          "en": "The default embedding model is now local:BAAI/bge-m3 with 1024 dimensions. Models remain off by default.",
+          "tr": "Varsayılan embedding modeli artık 1024 boyutlu local:BAAI/bge-m3. Modeller varsayılan olarak kapalı kalmaya devam ediyor."
+        }
       ],
       "fixed": [
-        { "en": "Turkish legal comparisons and date lookups handle uppercase İ and I consistently, so YARGITAY and yargıtay find the same text.", "tr": "Türkçe hukuki karşılaştırmalar ve tarih aramaları büyük İ ve I harflerini tutarlı işliyor; YARGITAY ve yargıtay aynı metni buluyor." },
-        { "en": "MCP sessions now work on a fresh store by creating missing workspace and dataset entries.", "tr": "MCP oturumları, eksik çalışma alanı ve veri kümesi kayıtlarını oluşturarak yeni bir depoda da çalışıyor." },
-        { "en": "Startup now fails with a clear error for invalid consolidation settings.", "tr": "Geçersiz birleştirme ayarlarında başlatma artık açık bir hatayla duruyor." }
+        {
+          "en": "Turkish legal comparisons and date lookups handle uppercase İ and I consistently, so YARGITAY and yargıtay find the same text.",
+          "tr": "Türkçe hukuki karşılaştırmalar ve tarih aramaları büyük İ ve I harflerini tutarlı işliyor; YARGITAY ve yargıtay aynı metni buluyor."
+        },
+        {
+          "en": "MCP sessions now work on a fresh store by creating missing workspace and dataset entries.",
+          "tr": "MCP oturumları, eksik çalışma alanı ve veri kümesi kayıtlarını oluşturarak yeni bir depoda da çalışıyor."
+        },
+        {
+          "en": "Startup now fails with a clear error for invalid consolidation settings.",
+          "tr": "Geçersiz birleştirme ayarlarında başlatma artık açık bir hatayla duruyor."
+        }
       ],
       "upgrade": [
-        { "en": "Stores created with the old default must keep MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m and MESA_EMBEDDING_DIMENSION=768, or be rebuilt.", "tr": "Eski varsayılanla oluşturulan depolar MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m ve MESA_EMBEDDING_DIMENSION=768 ayarlarını korumalı ya da yeniden oluşturulmalı." }
+        {
+          "en": "Stores created with the old default must keep MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m and MESA_EMBEDDING_DIMENSION=768, or be rebuilt.",
+          "tr": "Eski varsayılanla oluşturulan depolar MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m ve MESA_EMBEDDING_DIMENSION=768 ayarlarını korumalı ya da yeniden oluşturulmalı."
+        }
       ],
       "limits": [
-        { "en": "Per-minute and daily rate limits are not enforced for /v4/* and /control/*.", "tr": "Dakikalık ve günlük istek sınırları /v4/* ve /control/* için uygulanmıyor." },
-        { "en": "ASCII yargitay still does not match Yargıtay.", "tr": "ASCII yazımlı yargitay hâlâ Yargıtay ile eşleşmiyor." }
+        {
+          "en": "Per-minute and daily rate limits are not enforced for /v4/* and /control/*.",
+          "tr": "Dakikalık ve günlük istek sınırları /v4/* ve /control/* için uygulanmıyor."
+        },
+        {
+          "en": "ASCII yargitay still does not match Yargıtay.",
+          "tr": "ASCII yazımlı yargitay hâlâ Yargıtay ile eşleşmiyor."
+        }
       ]
     },
     {
@@ -38,20 +112,38 @@
         "tr": "Hukuki arama atıfları ve karar künyelerini anlıyor, ağır istekler artık servisi kilitlemiyor."
       },
       "new": [
-        { "en": "New chunks keep versioned rule items for citations, decision references, dates, amounts, durations and outcomes, with offsets into the original text.", "tr": "Yeni parçalar atıf, karar künyesi, tarih, tutar, süre ve sonuç bilgilerini özgün metindeki konumlarıyla, sürümlü kurallar olarak saklıyor." },
-        { "en": "An exact law and article, or a decision’s own reference, can take up to three leading result positions.", "tr": "Tam kanun ve madde eşleşmesi ya da kararın kendi künyesi, sonuçların ilk üç sırasına kadar yükselebiliyor." }
+        {
+          "en": "New chunks keep versioned rule items for citations, decision references, dates, amounts, durations and outcomes, with offsets into the original text.",
+          "tr": "Yeni parçalar atıf, karar künyesi, tarih, tutar, süre ve sonuç bilgilerini özgün metindeki konumlarıyla, sürümlü kurallar olarak saklıyor."
+        },
+        {
+          "en": "An exact law and article, or a decision’s own reference, can take up to three leading result positions.",
+          "tr": "Tam kanun ve madde eşleşmesi ya da kararın kendi künyesi, sonuçların ilk üç sırasına kadar yükselebiliyor."
+        }
       ],
       "improved": [
-        { "en": "Document admission briefly waits for queue capacity without repeating the full chunk plan.", "tr": "Belge kabulü, parçalama planını baştan yapmadan kuyrukta yer açılmasını kısa süre bekliyor." }
+        {
+          "en": "Document admission briefly waits for queue capacity without repeating the full chunk plan.",
+          "tr": "Belge kabulü, parçalama planını baştan yapmadan kuyrukta yer açılmasını kısa süre bekliyor."
+        }
       ],
       "fixed": [
-        { "en": "Request-path stalls affecting 0.9.1 are fixed, keeping /health responsive in the measured heavy cases. Upgrading is recommended.", "tr": "0.9.1’i etkileyen istek yolu takılmaları giderildi; ölçülen ağır durumlarda /health yanıt vermeye devam ediyor. Yükseltme öneriliyor." }
+        {
+          "en": "Request-path stalls affecting 0.9.1 are fixed, keeping /health responsive in the measured heavy cases. Upgrading is recommended.",
+          "tr": "0.9.1’i etkileyen istek yolu takılmaları giderildi; ölçülen ağır durumlarda /health yanıt vermeye devam ediyor. Yükseltme öneriliyor."
+        }
       ],
       "upgrade": [
-        { "en": "Set MESA_LEGAL_RULES_ENABLED=false to turn off the new legal rules. Generic retrieval stays available.", "tr": "Yeni hukuk kurallarını kapatmak için MESA_LEGAL_RULES_ENABLED=false kullanın. Genel arama çalışmaya devam eder." }
+        {
+          "en": "Set MESA_LEGAL_RULES_ENABLED=false to turn off the new legal rules. Generic retrieval stays available.",
+          "tr": "Yeni hukuk kurallarını kapatmak için MESA_LEGAL_RULES_ENABLED=false kullanın. Genel arama çalışmaya devam eder."
+        }
       ],
       "limits": [
-        { "en": "Heavy queries did not become faster: a 1,000-candidate search still took about 11.6 seconds.", "tr": "Ağır sorgular hızlanmadı: 1.000 adaylı bir arama hâlâ yaklaşık 11,6 saniye sürdü." }
+        {
+          "en": "Heavy queries did not become faster: a 1,000-candidate search still took about 11.6 seconds.",
+          "tr": "Ağır sorgular hızlanmadı: 1.000 adaylı bir arama hâlâ yaklaşık 11,6 saniye sürdü."
+        }
       ]
     },
     {
@@ -63,20 +155,44 @@
         "tr": "Arama sıralaması yeniden ayarlandı, isteğe bağlı yeniden sıralama geldi ve CLI belgeler hazır olana kadar bekliyor."
       },
       "new": [
-        { "en": "MESA_CHUNKING=auto|plain selects how documents are split.", "tr": "MESA_CHUNKING=auto|plain belgelerin nasıl bölüneceğini seçiyor." },
-        { "en": "Optional BGE reranking loads only when it is used.", "tr": "İsteğe bağlı BGE yeniden sıralama yalnızca kullanıldığında yükleniyor." },
-        { "en": "Documents can be deleted by source.", "tr": "Belgeler kaynağa göre silinebiliyor." }
+        {
+          "en": "MESA_CHUNKING=auto|plain selects how documents are split.",
+          "tr": "MESA_CHUNKING=auto|plain belgelerin nasıl bölüneceğini seçiyor."
+        },
+        {
+          "en": "Optional BGE reranking loads only when it is used.",
+          "tr": "İsteğe bağlı BGE yeniden sıralama yalnızca kullanıldığında yükleniyor."
+        },
+        {
+          "en": "Documents can be deleted by source.",
+          "tr": "Belgeler kaynağa göre silinebiliyor."
+        }
       ],
       "improved": [
-        { "en": "Vector weight moves to 8.0. On the Turkish Round 14 DEV set with reranking off, passage MRR rose from 0.3953 to 0.5663.", "tr": "Vektör ağırlığı 8,0 oldu. Türkçe Round 14 DEV kümesinde, yeniden sıralama kapalıyken pasaj MRR değeri 0,3953’ten 0,5663’e çıktı." },
-        { "en": "The CLI waits for ACTIVE by default. Use --no-wait to return at admission.", "tr": "CLI varsayılan olarak ACTIVE durumunu bekliyor. Kabul anında dönmek için --no-wait kullanın." },
-        { "en": "A four-scope cache and ingestion indexes reduce bookkeeping work.", "tr": "Dört kapsamlı önbellek ve veri alımı indeksleri kayıt işlerini azaltıyor." }
+        {
+          "en": "Vector weight moves to 8.0. On the Turkish Round 14 DEV set with reranking off, passage MRR rose from 0.3953 to 0.5663.",
+          "tr": "Vektör ağırlığı 8,0 oldu. Türkçe Round 14 DEV kümesinde, yeniden sıralama kapalıyken pasaj MRR değeri 0,3953’ten 0,5663’e çıktı."
+        },
+        {
+          "en": "The CLI waits for ACTIVE by default. Use --no-wait to return at admission.",
+          "tr": "CLI varsayılan olarak ACTIVE durumunu bekliyor. Kabul anında dönmek için --no-wait kullanın."
+        },
+        {
+          "en": "A four-scope cache and ingestion indexes reduce bookkeeping work.",
+          "tr": "Dört kapsamlı önbellek ve veri alımı indeksleri kayıt işlerini azaltıyor."
+        }
       ],
       "upgrade": [
-        { "en": "The Python SDK’s Mesa.add still defaults to wait=False. Pass wait=True to wait for readiness.", "tr": "Python SDK’daki Mesa.add hâlâ varsayılan olarak wait=False kullanıyor. Hazır olmasını beklemek için wait=True verin." }
+        {
+          "en": "The Python SDK’s Mesa.add still defaults to wait=False. Pass wait=True to wait for readiness.",
+          "tr": "Python SDK’daki Mesa.add hâlâ varsayılan olarak wait=False kullanıyor. Hazır olmasını beklemek için wait=True verin."
+        }
       ],
       "limits": [
-        { "en": "The ranking results are corpus-specific development measurements, not test-split evidence.", "tr": "Sıralama sonuçları bu veri kümesine özgü geliştirme ölçümleridir, test kümesi kanıtı değildir." }
+        {
+          "en": "The ranking results are corpus-specific development measurements, not test-split evidence.",
+          "tr": "Sıralama sonuçları bu veri kümesine özgü geliştirme ölçümleridir, test kümesi kanıtı değildir."
+        }
       ]
     },
     {
@@ -89,17 +205,38 @@
         "tr": "MESA tek kullanıcı için yerelde çalışabiliyor; CLI, Python SDK ve kayıpsız belge alımı geldi."
       },
       "new": [
-        { "en": "Local CLI with start, add, search, delete, status and mcp-config commands.", "tr": "start, add, search, delete, status ve mcp-config komutlarıyla yerel CLI." },
-        { "en": "Python SDK Mesa client with zero-config local defaults.", "tr": "Yerelde ayar gerektirmeyen varsayılanlarla Python SDK Mesa istemcisi." },
-        { "en": "Lossless document ingestion through POST /v4/documents, with duplicate detection and revision tracking.", "tr": "POST /v4/documents ile kopya tespiti ve revizyon takibi yapan kayıpsız belge alımı." },
-        { "en": "MESA_GRAPH_ENABLED=false allows lightweight operation without KùzuDB.", "tr": "MESA_GRAPH_ENABLED=false, KùzuDB olmadan hafif çalışmayı sağlıyor." }
+        {
+          "en": "Local CLI with start, add, search, delete, status and mcp-config commands.",
+          "tr": "start, add, search, delete, status ve mcp-config komutlarıyla yerel CLI."
+        },
+        {
+          "en": "Python SDK Mesa client with zero-config local defaults.",
+          "tr": "Yerelde ayar gerektirmeyen varsayılanlarla Python SDK Mesa istemcisi."
+        },
+        {
+          "en": "Lossless document ingestion through POST /v4/documents, with duplicate detection and revision tracking.",
+          "tr": "POST /v4/documents ile kopya tespiti ve revizyon takibi yapan kayıpsız belge alımı."
+        },
+        {
+          "en": "MESA_GRAPH_ENABLED=false allows lightweight operation without KùzuDB.",
+          "tr": "MESA_GRAPH_ENABLED=false, KùzuDB olmadan hafif çalışmayı sağlıyor."
+        }
       ],
       "improved": [
-        { "en": "Document purge fully erases stored source and assertion text while keeping audit state and hashes.", "tr": "Belge silme, denetim durumu ve özetleri korurken saklanan kaynak ve iddia metinlerini tamamen siliyor." }
+        {
+          "en": "Document purge fully erases stored source and assertion text while keeping audit state and hashes.",
+          "tr": "Belge silme, denetim durumu ve özetleri korurken saklanan kaynak ve iddia metinlerini tamamen siliyor."
+        }
       ],
       "fixed": [
-        { "en": "Retry and dead-letter fixes stop records from hanging in RETRY_PENDING.", "tr": "Yeniden deneme ve dead-letter düzeltmeleri kayıtların RETRY_PENDING durumunda takılmasını önlüyor." },
-        { "en": "The chunker handles Turkish abbreviations and list numbering without splitting mid-citation.", "tr": "Parçalayıcı Türkçe kısaltmaları ve liste numaralarını atıfı ortadan bölmeden işliyor." }
+        {
+          "en": "Retry and dead-letter fixes stop records from hanging in RETRY_PENDING.",
+          "tr": "Yeniden deneme ve dead-letter düzeltmeleri kayıtların RETRY_PENDING durumunda takılmasını önlüyor."
+        },
+        {
+          "en": "The chunker handles Turkish abbreviations and list numbering without splitting mid-citation.",
+          "tr": "Parçalayıcı Türkçe kısaltmaları ve liste numaralarını atıfı ortadan bölmeden işliyor."
+        }
       ]
     }
   ]

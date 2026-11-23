@@ -4,15 +4,15 @@ Vector compares compatible semantic representations. BM25 uses FTS5 passage/evid
 
 ## Rank fusion, not a probability
 
-Runtime defaults: k=60, vector weight=8.0; BM25, assertion and graph weights=1.0, with one-based ranks. Set `MESA_RRF_VECTOR_WEIGHT=1` for the previous vector weight. A zero lane weight removes that lane’s fusion contribution. The calculator deliberately uses unit weights as a teaching example. A duplicate hit casts one lane vote. RRF(c)=Σ w/(k+rank). Lane-local citation boosts change lane order, not RRF increments. A separate query-dependent legal factor follows fusion. See the [retrieval explanation](retrieval/) for the exact distinction and an illustrative calculator.
+Runtime defaults: k=60, vector weight=8.0, BM25 weight=1.0, assertion weight=0.0, graph disabled (its weight is 1.0 once enabled), with one-based ranks. Set `MESA_RRF_ASSERTION_WEIGHT=1.0` and `MESA_GRAPH_ENABLED=true` to restore the fusion defaults used before v0.9.4. Set `MESA_RRF_VECTOR_WEIGHT=1` for the previous vector weight. A zero lane weight removes that lane’s fusion contribution. The calculator deliberately uses unit weights as a teaching example. A duplicate hit casts one lane vote. RRF(c)=Σ w/(k+rank). Lane-local citation boosts change lane order, not RRF increments. A separate query-dependent legal factor follows fusion. See the [retrieval explanation](retrieval/) for the exact distinction and an illustrative calculator.
 
 ## Bounded graph and context
 
 Graph traversal is bounded: at most 20 seeds and three hops, 500 requested graph hits, frontier 64, per-node fan-out 32 and a default 15-second request timeout. These are resource limits, not latency guarantees. Context defaults to a 2048-token formatted-evidence budget and single search. Optional adaptive mode uses at most one planner call and two additional searches without widening scope.
 
-## v0.9.3 operation
+## v0.9.4 operation
 
-With models off, BM25 still retrieves stored source text. Disabled/incomplete vector and graph lanes are reported in degraded_sources. MESA_GRAPH_ENABLED=false skips Kùzu; re-enabling graph or embedding backfills skipped lanes at startup.
+With models off, BM25 still retrieves stored source text. Disabled/incomplete vector and graph lanes are reported in degraded_sources. MESA_GRAPH_ENABLED=false is the default and skips Kùzu; enabling graph or embedding backfills skipped lanes at startup. Scoped BM25 matches query tokens of 6 or more non-digit characters by their first 5 characters; shorter tokens and tokens with digits stay exact. Equal scores break by stable content identity, so two fresh stores built from the same corpus rank identically.
 
 ## Optional BGE reranking
 

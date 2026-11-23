@@ -3,7 +3,7 @@
 Python 3.11–3.13 is the tested matrix. Linux/macOS run natively; Windows uses Docker or WSL. Install the version matched to these guides:
 
 ```bash
-pip install mesa-memory==0.9.3
+pip install mesa-memory==0.9.4
 mesa start
 ```
 
@@ -14,7 +14,7 @@ The CLI provisions the local catalog, grants, storage and credentials. Models de
 For development, use the released Git object and lockfile:
 
 ```bash
-git clone --branch v0.9.3 --depth 1 https://github.com/Yasou13/MESA.git
+git clone --branch v0.9.4 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 uv sync --locked --python 3.11
 uv pip check
@@ -32,18 +32,18 @@ Run Compose from the pinned source checkout, with your own `document.txt` presen
 
 ## Package index and optional extras
 
-On 17 November 2026, GitHub tag `v0.9.3` and PyPI 0.9.3 publication were verified. Both the wheel and sdist are present and not yanked. Base installation and upgrade:
+On 23 November 2026, GitHub tag `v0.9.4` and PyPI 0.9.4 publication were verified. Both the wheel and sdist are present and not yanked. Base installation and upgrade:
 
 ```bash
-pip install mesa-memory==0.9.3
-pip install --upgrade mesa-memory==0.9.3
+pip install mesa-memory==0.9.4
+pip install --upgrade mesa-memory==0.9.4
 ```
 
 OpenAI and Ollama SDKs are included in the base package. Anthropic needs `[adapters]`; local embedding and BGE reranking need `[ml]`. Install only the extras needed for your selected provider:
 
 ```bash
-pip install "mesa-memory[adapters]==0.9.3"
-pip install "mesa-memory[ml]==0.9.3"
+pip install "mesa-memory[adapters]==0.9.4"
+pip install "mesa-memory[ml]==0.9.4"
 ```
 
 Publication does not change the Alpha / production NO-GO status.

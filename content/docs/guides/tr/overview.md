@@ -4,8 +4,8 @@ MESA Core, bilgiyi kaynağı ve erişim kapsamıyla kalıcı olarak saklar. Ası
 
 ## Yerelde başlayın
 
-Doğrulanan PyPI paketi `mesa-memory==0.9.3` ile [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. `mesa start`, ardından `mesa add` ve `mesa search` kullanın. BM25 için model gerekmez. OpenAI/Ollama temel pakettedir; Anthropic `[adapters]`, yerel ML/yeniden sıralama `[ml]` gerektirir.
+Doğrulanan PyPI paketi `mesa-memory==0.9.4` ile [yerel hızlı başlangıcı](docs/core/getting-started/) izleyin. `mesa start`, ardından `mesa add` ve `mesa search` kullanın. BM25 için model gerekmez. OpenAI/Ollama temel pakettedir; Anthropic `[adapters]`, yerel ML/yeniden sıralama `[ml]` gerektirir.
 
 ## Sürüm temeli
 
-Rehberler [v0.9.3](https://github.com/Yasou13/MESA/tree/v0.9.3) etiketini, `531209bc45805b478264f6dfa8a9e40a94e345cb` commit’ini izler. Changelog sürümü 16 Kasım 2026 olarak tarihler; etiket ve PyPI yayını 17 Kasım’da doğrulandı. Bildirilen yerel ölçümlerde toplu veri alımı ve hukuk ayrıştırması hızlandı. Varsayılan embedding kimliği BGE-M3, 1024 boyuttur; modeller varsayılan kapalıdır. Alfa / üretim NO-GO sürer. [Sürüm notları ve sınırlara](docs/core/release-notes/) bakın.
+Rehberler [v0.9.4](https://github.com/Yasou13/MESA/tree/v0.9.4) etiketini, `e30856ec6e7ed9146bb9af992565e864f727b0b9` commit’ini izler. Changelog sürümü 23 Kasım 2026 olarak tarihler; etiket, GitHub sürümü ve PyPI dosyaları aynı gün doğrulandı. Aramanın varsayılan yolu artık BM25 ve vektör kanallarıdır: siz açmadıkça çizge kapalı, bilgi kaydı füzyon ağırlığı 0.0’dır. V3 depolama, LLM consolidation ve Tier 3 mod 1/2 kaldırıldı. Varsayılan embedding kimliği BGE-M3, 1024 boyuttur; modeller varsayılan kapalıdır. Alfa / üretim NO-GO sürer. [Sürüm notları ve sınırlara](docs/core/release-notes/) bakın.

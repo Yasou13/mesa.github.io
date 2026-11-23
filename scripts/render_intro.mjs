@@ -1,12 +1,12 @@
 import { recordedExample } from './render_first_search.mjs';
 import { documentStream } from './passage_mark.mjs';
-// Public explanations follow Core v0.9.3 (531209b). Technical details live in docs.
+// Public explanations follow Core v0.9.4 (e30856e). Technical details live in docs.
 export const introTranslations = {};
 const t = (en, tr) => { introTranslations[en] = tr; return en; };
 const p = (en, tr) => `<p>${t(en, tr)}</p>`;
 const label = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const h = (en, tr) => `<h2>${t(en, tr)}</h2>`;
-const source = 'https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/';
+const source = 'https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/';
 const arrow = '<span class="explain-arrow" aria-hidden="true">→</span>';
 const fileIcon = '<svg viewBox="0 0 32 38" aria-hidden="true" class="explain-file-icon"><path d="M5 1h14l8 8v28H5zM19 1v9h8M10 18h12M10 24h12M10 30h8"/></svg>';
 const codeBlock = (id, code) => `<div class="start-code"><button type="button" class="copy-button" data-copy-target="${id}" aria-label="${t('Copy commands', 'Komutları kopyala')}">${t('Copy', 'Kopyala')}</button><pre tabindex="0"><code id="${id}">${code.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</code></pre></div>`;
@@ -55,7 +55,7 @@ function quickstart(route) {
       <div class="path-card__meta"><span class="path-card__when">${t('Today', 'Bugün')}</span><span class="path-card__kind">${t('LOCAL', 'YEREL')}</span></div>
       <h3 id="home-start-title">${t('Run MESA on your computer', 'MESA’yı bilgisayarınızda çalıştırın')}</h3>
       <p>${t('Install the package and start the server. Word search works without any model account.', 'Paketi kurun ve sunucuyu başlatın. Sözcük araması için model hesabı gerekmez.')}</p>
-      <div class="home-start__terminal"><span>${t('Terminal · keep this window open', 'Terminal · bu pencere açık kalsın')}</span>${codeBlock('home-install', 'pip install mesa-memory==0.9.3\nmesa start')}</div>
+      <div class="home-start__terminal"><span>${t('Terminal · keep this window open', 'Terminal · bu pencere açık kalsın')}</span>${codeBlock('home-install', 'pip install mesa-memory==0.9.4\nmesa start')}</div>
       <p class="home-start-note">${t('Python 3.11–3.13 · Linux / macOS · Windows with WSL or Docker', 'Python 3.11–3.13 · Linux / macOS · Windows için WSL veya Docker')}</p>
       <div class="path-card__footer"><span>${t('New to terminals? The guide goes step by step.', 'Terminalde yeni misiniz? Rehber adım adım anlatır.')}</span><a href="${route('get-started/')}">${t('Step-by-step setup →', 'Adım adım kurulum →')}</a></div>
     </article>`;
@@ -98,12 +98,12 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
   ];
   return `${header('home')}<main id="main-content" class="home-page intro-page simple-public home-v2">${documentStream()}
     <section class="hero hero--home home-hero scene scene--event-horizon" data-scene="event-horizon" data-home-section="hero" aria-labelledby="home-title">
-      <p class="eyebrow">${t('OPEN SOURCE · v0.9.3 ALPHA', 'AÇIK KAYNAK · v0.9.3 ALFA')}</p>
+      <p class="eyebrow">${t('OPEN SOURCE · v0.9.4 ALPHA', 'AÇIK KAYNAK · v0.9.4 ALFA')}</p>
       <h1 id="home-title">${t('Scattered documents go in.', 'Dağınık belgeler girer.')}<br><em class="accent-word">${t('Your model gets the right information.', 'Modelinize doğru bilgi çıkar.')}</em></h1>
       <p class="home-hero__lead">${t('MESA turns large, scattered document collections into lasting memory for your AI. When a question comes in, it finds what matters, picks the current version and hands it to your model as the right context.', 'MESA, büyük ve dağınık belge koleksiyonlarınızı yapay zekânız için kalıcı bir hafızaya dönüştürür. Bir soru geldiğinde önemli olanı bulur, güncel sürümü seçer ve modelinize doğru bağlam olarak verir.')}</p>
       <div class="actions">${cta(t('Try it on your computer', 'Bilgisayarınızda deneyin'), route('get-started/'))}${cta(t('See how it works', 'Nasıl çalıştığını görün'), '#how-it-works', 'secondary')}</div>
       <div class="home-hero__connects"><span class="home-hero__label">${t('CONNECTS THROUGH', 'BAĞLANMA YOLLARI')}</span><ul><li><a href="${route('docs/core/cli-reference/')}">MESA CLI</a></li><li><a href="${route('docs/core/examples/')}">Python SDK</a></li><li><a href="${route('docs/core/api-reference/')}">HTTP API</a></li><li><a href="${route('docs/mcp/')}">MCP</a></li></ul></div>
-      <div class="home-release"><span class="chip chip--accent">${t('v0.9.3 · Alpha', 'v0.9.3 · Alfa')}</span><p>${t('Ready for local evaluation, not yet for production.', 'Yerel değerlendirmeye hazır, canlı kullanıma henüz değil.')}</p><a href="${route('status/')}">${t('Project status →', 'Proje durumu →')}</a></div>
+      <div class="home-release"><span class="chip chip--accent">${t('v0.9.4 · Alpha', 'v0.9.4 · Alfa')}</span><p>${t('Ready for local evaluation, not yet for production.', 'Yerel değerlendirmeye hazır, canlı kullanıma henüz değil.')}</p><a href="${route('status/')}">${t('Project status →', 'Proje durumu →')}</a></div>
     </section>
 
     <section class="band band--graphite home-flow" id="mesa-in-action" data-home-section="flow" aria-labelledby="flow-title">
@@ -187,7 +187,7 @@ export function beginnerHome({header, footer, route, cta, repos, language}) {
       <div class="band__inner">
         <p class="eyebrow">${t('GET STARTED', 'BAŞLAYIN')}</p><h2 id="cta-title">${t('Try it with', 'Kendi belgelerinizle')} <em class="accent-word">${t('your own documents.', 'deneyin.')}</em></h2>
         <div class="actions">${cta(t('Step-by-step setup', 'Adım adım kurulum'), route('get-started/'))}${cta('GitHub', repos.core, 'secondary', true)}</div>
-        <p class="home-cta__line"><code>$ pip install mesa-memory==0.9.3</code><span>·</span><span>${t('Open source · Apache 2.0', 'Açık kaynak · Apache 2.0')}</span></p>
+        <p class="home-cta__line"><code>$ pip install mesa-memory==0.9.4</code><span>·</span><span>${t('Open source · Apache 2.0', 'Açık kaynak · Apache 2.0')}</span></p>
       </div>
     </section>${footer()}</main>`;
 }
@@ -222,7 +222,7 @@ export function beginnerEcosystem({header,footer,route,repos}) {
 }
 
 export function developerFixture({actionExample}) {
-  return `<section class="section" id="verified-example">${label('FOR DEVELOPERS · CONTRACT TEST', 'GELİŞTİRİCİLER İÇİN · SÖZLEŞME TESTİ')}<details class="intro-technical"><summary>${t('Show the repository test and source references', 'Depo testini ve kaynakları göster')}</summary><div>${p('Core has a deterministic contract fixture: one “Alice knows Aurora” assertion ranks first in all four lanes, with RRF = 4/61 under explicit unit weights (the runtime vector default is 8.0). It uses real SQLite and Kùzu with mock vectors; it is not a quality benchmark.', 'Core’da deterministik bir sözleşme testi bulunur: “Alice knows Aurora” kaydı dört kanalda da ilk sıradadır ve açıkça seçilmiş birim ağırlıklarda RRF = 4/61 olur (çalışma zamanı vektör varsayılanı 8.0’dır). Gerçek SQLite ve Kùzu ile mock vektörler kullanılır; kalite karşılaştırması değildir.')}${actionExample(true)}<div class="intro-proof-links"><a href="${source}docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">${t('Core architecture ↗', 'Core mimarisi ↗')}</a><a href="${source}docs/retrieval-and-graph.md" target="_blank" rel="noopener noreferrer">${t('Retrieval contract ↗', 'Arama sözleşmesi ↗')}</a><a href="${source}tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer">${t('Exact fixture test ↗', 'Gerçek test örneği testi ↗')}</a></div><p class="intro-caption">${t('Source baseline: Core v0.9.3.', 'Kaynak temeli: Core v0.9.3.')}</p></div></details></section>`;
+  return `<section class="section" id="verified-example">${label('FOR DEVELOPERS · CONTRACT TEST', 'GELİŞTİRİCİLER İÇİN · SÖZLEŞME TESTİ')}<details class="intro-technical"><summary>${t('Show the repository test and source references', 'Depo testini ve kaynakları göster')}</summary><div>${p('Core has a deterministic contract fixture: one “Alice knows Aurora” assertion ranks first in all four lanes, with RRF = 4/61 under explicit unit weights. Default search differs: vector 8.0, assertion 0.0 and graph off. It uses real SQLite and Kùzu with mock vectors; it is not a quality benchmark.', 'Core’da deterministik bir sözleşme testi bulunur: “Alice knows Aurora” kaydı dört kanalda da ilk sıradadır ve açıkça seçilmiş birim ağırlıklarda RRF = 4/61 olur. Varsayılan arama farklıdır: vektör 8.0, bilgi kaydı 0.0 ve çizge kapalı. Gerçek SQLite ve Kùzu ile mock vektörler kullanılır; kalite karşılaştırması değildir.')}${actionExample(true)}<div class="intro-proof-links"><a href="${source}docs/architecture-v4.md" target="_blank" rel="noopener noreferrer">${t('Core architecture ↗', 'Core mimarisi ↗')}</a><a href="${source}docs/retrieval-and-graph.md" target="_blank" rel="noopener noreferrer">${t('Retrieval contract ↗', 'Arama sözleşmesi ↗')}</a><a href="${source}tests/test_v4_independent_retrieval_audit.py" target="_blank" rel="noopener noreferrer">${t('Exact fixture test ↗', 'Gerçek test örneği testi ↗')}</a></div><p class="intro-caption">${t('Source baseline: Core v0.9.4.', 'Kaynak temeli: Core v0.9.4.')}</p></div></details></section>`;
 }
 
 export function beginnerFaq({header,footer,route,cta}) {
@@ -236,7 +236,7 @@ export function beginnerFaq({header,footer,route,cta}) {
     [t('Can I connect an MCP client?', 'MCP istemcisi bağlayabilir miyim?'), t('Yes. Run mesa start, then mesa mcp-config. Keep the generated connection settings private because they contain your local API key.', 'Evet. mesa start sonrasında mesa mcp-config çalıştırın. Oluşturulan bağlantı ayarları yerel API anahtarınızı içerdiği için gizli tutun.')],
     [t('What if the document changes?', 'Belge değişirse ne olur?'), t('After a new revision is processed, it replaces the old revision in current search results. Document update and deletion operations are described in the API guide.', 'Yeni sürüm işlendikten sonra güncel arama sonuçlarında eski sürümün yerini alır. Belge güncelleme ve silme işlemleri API rehberinde açıklanır.')],
     [t('What is MESA Lore?', 'MESA Lore nedir?'), t('A separate open-source tool that gives coding agents such as Claude Code and Codex CLI a local memory of past sessions. It runs on your computer, makes no model calls and does not require Core.', 'Claude Code ve Codex CLI gibi kodlama ajanlarına geçmiş oturumlar için yerel hafıza sağlayan ayrı bir açık kaynak araçtır. Bilgisayarınızda çalışır, model çağrısı yapmaz ve Core gerektirmez.')],
-    [t('Is MESA production-ready?', 'MESA canlı kullanıma hazır mı?'), t('Not yet. Version 0.9.3 is published, but the required production qualification is incomplete. Try it locally and read the current limits before integrating it.', 'Henüz değil. 0.9.3 sürümü yayımlandı, fakat gerekli üretim doğrulamaları tamamlanmadı. Yerelde deneyin ve uygulamanıza bağlamadan önce güncel sınırları okuyun.')]
+    [t('Is MESA production-ready?', 'MESA canlı kullanıma hazır mı?'), t('Not yet. Version 0.9.4 is published, but the required production qualification is incomplete. Try it locally and read the current limits before integrating it.', 'Henüz değil. 0.9.4 sürümü yayımlandı, fakat gerekli üretim doğrulamaları tamamlanmadı. Yerelde deneyin ve uygulamanıza bağlamadan önce güncel sınırları okuyun.')]
   ];
   return `${header()}<main id="main-content" class="intro-page simple-public"><section class="page-hero compact page-hero--short">${label('FREQUENT QUESTIONS', 'SIK SORULANLAR')}<h1>${t('Before you start using MESA.', 'MESA kullanmaya başlamadan önce.')}</h1>${p('Direct answers about what you install, what it does and what it needs.', 'Ne kuracağınız, ne işe yaradığı ve neye ihtiyaç duyduğu hakkında kısa yanıtlar.')}</section><section class="section faq-list">${questions.map(([question,answer],i)=>`<details${i===0?' open':''}><summary><h2>${question}</h2></summary><p>${answer}</p></details>`).join('')}</section><section class="section"><h2>${t('Try it, or check the limits first.', 'Deneyin veya önce sınırlarını inceleyin.')}</h2><div class="actions">${cta(t('Installation guide', 'Kurulum rehberi'),route('get-started/'))}${cta(t('Current project status', 'Güncel proje durumu'),route('status/'),'secondary')}</div></section>${footer()}</main>`;
 }

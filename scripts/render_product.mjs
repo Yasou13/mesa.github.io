@@ -10,7 +10,7 @@ const paragraph = (en, tr) => `<p>${t(en, tr)}</p>`;
 const title = (en, tr) => `<h2>${t(en, tr)}</h2>`;
 const eyebrow = (en, tr) => `<p class="eyebrow">${t(en, tr)}</p>`;
 const row = (name, en, tr) => `<article><h3>${name}</h3>${paragraph(en, tr)}</article>`;
-const source = 'https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/';
+const source = 'https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/';
 
 export function rankCalculator() {
   const lanes = [
@@ -38,8 +38,8 @@ export function rankCalculator() {
     <output aria-live="polite">4 / 61 = 0.065574</output>
   </div>
   ${paragraph(
-    'All enabled lanes rank the same candidate first; this teaching example deliberately uses weights of 1.0 and k=60. Runtime defaults use vector 8.0 and other lanes 1.0. This calculator makes no API call and measures neither probability nor retrieval quality.',
-    'Etkin kanallar aynı adayı ilk sıraya koyar; bu öğretici örnekte bilinçli olarak ağırlıklar 1.0 ve k=60 seçilmiştir. Çalışma zamanı varsayılanları vektör 8.0 ve diğer kanallar 1.0’dır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.'
+    'All enabled lanes rank the same candidate first; this teaching example deliberately uses weights of 1.0 and k=60. Runtime defaults use vector 8.0, BM25 1.0, assertion 0.0 and graph off. This calculator makes no API call and measures neither probability nor retrieval quality.',
+    'Etkin kanallar aynı adayı ilk sıraya koyar; bu öğretici örnekte bilinçli olarak ağırlıklar 1.0 ve k=60 seçilmiştir. Çalışma zamanı varsayılanları vektör 8.0, BM25 1.0, bilgi kaydı 0.0 ve çizge kapalıdır. Hesaplayıcı API çağrısı yapmaz; olasılık veya arama kalitesi ölçmez.'
   )}
   <noscript>${t('Static example: four contributions give 4/61.', 'Statik örnek: dört katkı 4/61 verir.')}</noscript>
 </form>`;
@@ -119,7 +119,7 @@ ${header('architecture')}
     ${eyebrow('RECIPROCAL RANK FUSION', 'RECIPROCAL RANK FUSION')}
     ${title('Ranks combine; raw scores stay separate.', 'Sıralar birleşir; ham skorlar ayrı kalır.')}
     <pre tabindex="0"><code>RRF(candidate) = Σ weight_lane / (k + rank_lane)
-k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code></pre>
+k = 60 · vector = 8.0 · BM25 = 1.0 · assertion = 0.0 · graph off (1.0 if enabled) · rank starts at 1</code></pre>
     ${paragraph(
       'A duplicate candidate casts one vote per lane. Ties resolve by candidate identity. A lane may return no eligible hit. This example uses one first-ranked candidate; it does not simulate the complete retrieval engine.',
       'Tekrarlanan aday kanal başına bir oy verir. Eşitlikler aday kimliğiyle çözülür. Bir kanal uygun hit döndürmeyebilir. Bu örnek tek ilk-sıra adayı kullanır; arama motorunun tamamını simüle etmez.'
@@ -169,7 +169,7 @@ k = 60 · vector = 8.0 · BM25/assertion/graph = 1.0 · rank starts at 1</code><
   </section>
 
   <section class="section">
-    ${title('v0.9.3 runtime and historical DEV evidence', 'v0.9.3 çalışma zamanı ve tarihsel DEV kanıtı')}
+    ${title('v0.9.4 runtime and historical DEV evidence', 'v0.9.4 çalışma zamanı ve tarihsel DEV kanıtı')}
     ${paragraph('Vector weight defaults to 8.0; use MESA_RRF_VECTOR_WEIGHT=1 for the previous setting. Zero removes a lane contribution. Optional BGE reranking is off by default, needs [ml] and adds rerank_score after fusion while preserving rrf_score and final_score.', 'Vektör ağırlığı varsayılanı 8.0’dır; önceki ayar için MESA_RRF_VECTOR_WEIGHT=1 kullanın. Sıfır, kanal katkısını kapatır. İsteğe bağlı BGE yeniden sıralama varsayılan kapalıdır; [ml] gerektirir ve rrf_score/final_score değerlerini koruyup birleştirme sonrasında rerank_score ekler.')}
     <a class="text-link" href="${route('docs/core/release-notes/')}">${t('Read the DEV matrix, CPU/GPU latency and limits →', 'DEV matrisi, CPU/GPU gecikmeleri ve sınırları okuyun →')}</a>
   </section>
@@ -202,7 +202,7 @@ export function documentationJourney(route) {
 
   return `
 <section class="section docs-reading-path">
-  <p class="eyebrow">CORE v0.9.3</p>
+  <p class="eyebrow">CORE v0.9.4</p>
   <h2>${t('Choose a path through the contracts.', 'Sözleşmeler arasında bir yol seçin.')}</h2>
   <ol>
     ${journeyItems.map(([href, en, tr, desc, trDesc]) => `

@@ -12,9 +12,9 @@ MESA_LLM_MODEL=ollama:qwen2.5:7b
 MESA_EMBEDDING_MODEL=ollama:bge-m3
 ```
 
-Yerel ayarları `~/.mesa/.env` dosyasına koyup sunucuyu yeniden başlatın. Seçilen sağlayıcı kurulu ve çalışır olmalıdır. `MESA_EMBEDDING_ENABLED`, model bayrağını izler. Modeller açık olsa da varsayılan `MESA_EXTRACTION_ENABLED=false` değeridir; açık uçlu SPO çıkarımı için açıkça `true` yapın. İkisi kapalıyken de veri alımı ve BM25 araması çalışır; VECTOR adımları SKIPPED olur. `MESA_GRAPH_ENABLED=false`, Kùzu’nun açılmasını önler, GRAPH adımlarını SKIPPED yapar ve çizgeyi kullanılamayan kaynaklar arasında bildirir. Adım yeniden açılırsa combined başlangıcında eksikler tamamlanır.
+Yerel ayarları `~/.mesa/.env` dosyasına koyup sunucuyu yeniden başlatın. Seçilen sağlayıcı kurulu ve çalışır olmalıdır. `MESA_EMBEDDING_ENABLED`, model bayrağını izler. Modeller açık olsa da varsayılan `MESA_EXTRACTION_ENABLED=false` değeridir; açık uçlu SPO çıkarımı için açıkça `true` yapın. İkisi kapalıyken de veri alımı ve BM25 araması çalışır; VECTOR adımları SKIPPED olur. `MESA_GRAPH_ENABLED=false` varsayılandır;, Kùzu’nun açılmasını önler, GRAPH adımlarını SKIPPED yapar ve çizgeyi kullanılamayan kaynaklar arasında bildirir. Çizgeyi açmak için `true` yapın. Adım yeniden açılırsa combined başlangıcında eksikler tamamlanır.
 
-`MESA_TIER3_MODE`: 0 kurala dayalı kontroller, 1 tek doğrulayıcı, 2 farklı A/B doğrulayıcıları. `MESA_RRF_K=60`, vektör ağırlığı 8.0 ve BM25/bilgi kaydı/çizge ağırlıkları 1.0 birleştirmeyi yönetir. `MESA_RRF_VECTOR_WEIGHT=1` önceki vektör ağırlığını getirir; sıfır ağırlık kanal katkısını kapatır. Kalıcı yeniden oluşturma varsayılan olarak kapalıdır.
+Doğrulama kurala dayalı mod 0 ile çalışır; `MESA_TIER3_MODE` ve emekli edilen diğer ayarlar yok sayılır ve her anahtar için başlangıçta bir uyarı yazılır. `MESA_RRF_K=60`, vektör ağırlığı 8.0, BM25 ağırlığı 1.0 ve `MESA_RRF_ASSERTION_WEIGHT=0.0` birleştirmeyi yönetir; çizge açıldığında ağırlığı 1.0’dır. `MESA_RRF_VECTOR_WEIGHT=1` önceki vektör ağırlığını getirir; sıfır ağırlık kanal katkısını kapatır. Kalıcı yeniden oluşturma varsayılan olarak kapalıdır.
 
 ## Sağlayıcı ve depolama sınırları
 
@@ -43,4 +43,4 @@ MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
 MESA_EMBEDDING_DIMENSION=768
 ```
 
-Başlangıç, etkin consolidation döngüsü olmadan `MESA_TIER3_MODE=1/2` ayarını reddeder; çıkarım açık olmalıdır. `.` içeren başlangıç `MESA_API_KEY` değerleri de başlangıçta reddedilir.
+v0.9.4, Tier 3 mod 1/2’yi kaldırır ve `MESA_TIER3_MODE` ayarını uyarıyla yok sayar. `.` içeren başlangıç `MESA_API_KEY` değerleri de başlangıçta reddedilir.

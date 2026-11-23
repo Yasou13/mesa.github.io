@@ -23,7 +23,7 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 - `scripts/build_endpoint_reference.py` — regenerates the HTTP endpoint reference
-  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.3.json`
+  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.4.json`
 - `content/docs/source-en/` — English copies of upstream docs that mix in Turkish;
   English doc pages show these in their source appendix
 - `content/glossary-terms.json` — short bilingual definitions on `/glossary/`
@@ -419,3 +419,9 @@ The release notes distinguish the changelog's 718.27 → 245.20 s bulk-ingest me
 No new retrieval benchmark, live model test, production certification or deployment was performed. Round 18 results remain 0.9.2. Only the EN/TR T1m display label changed from MiniLM to Magibu, confirmed by D51, the Round 18 reports and actual `settings-T1m-ingest.json` (`local:magibu/embeddingmagibu-200m`, 768 dimensions). Demo recordings and independent repository imports are unchanged.
 
 See [the verification record](reports/website-v093-alignment/README.md). Builds were written to temporary artifacts to preserve all pre-existing `dist/` changes and untracked files. No push or PR was made; the branch remains `codex/website-v0.9.2`.
+
+## Core v0.9.4 website refresh — 23 November 2026
+
+The current Core baseline is tag `v0.9.4`, commit `e30856ec6e7ed9146bb9af992565e864f727b0b9`. Current installation commands use `mesa-memory==0.9.4`. The 23-page Core cache and OpenAPI snapshot come from committed tag objects. Maintained EN/TR guides describe the changed search defaults, V3 and Tier 3 removals, forward-only migrations and retired settings.
+
+The public benchmark remains labelled 0.9.3 until a 0.9.4 result is reviewed. Source evidence is recorded in `CLAIMS.md`.

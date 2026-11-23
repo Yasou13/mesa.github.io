@@ -116,27 +116,27 @@ function validateMediaData() {
 validateMediaData();
 
 const docs = {
-  readme: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/README.md`,
-  gettingStarted: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/getting-started.md`,
-  architecture: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md`,
-  concepts: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/concepts-and-ingestion.md`,
-  configuration: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/configuration.md`,
-  retrieval: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/retrieval-and-graph.md`,
-  api: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/api-reference.md`,
-  cli: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/api-reference.md#cli-commands`,
-  mcp: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/README_MCP.md`,
-  installation: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/getting-started.md#installation`,
-  migration: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/RUNBOOK.md#upgrade-v080`,
-  releaseNotes: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CHANGELOG.md#093---2026-11-16`,
-  releasePolicy: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/release.md`,
-  rebuild: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/v4-rebuild-runbook.md`,
-  security: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/SECURITY.md`,
-  troubleshooting: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/RUNBOOK.md#troubleshooting`,
-  limitations: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md#limitations`,
-  contributing: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/CONTRIBUTING.md`,
-  openapi: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/reference/openapi.json`,
-  retrievalFixture: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/tests/test_v4_independent_retrieval_audit.py`,
-  retrievalAudit: `${repos.core}/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/testing.md`,
+  readme: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/README.md`,
+  gettingStarted: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/getting-started.md`,
+  architecture: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md`,
+  concepts: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/concepts-and-ingestion.md`,
+  configuration: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/configuration.md`,
+  retrieval: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/retrieval-and-graph.md`,
+  api: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/api-reference.md`,
+  cli: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/api-reference.md#cli-commands`,
+  mcp: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/README_MCP.md`,
+  installation: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/getting-started.md#installation`,
+  migration: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/RUNBOOK.md#upgrade-v080`,
+  releaseNotes: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/CHANGELOG.md#094---2026-11-23`,
+  releasePolicy: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/release.md`,
+  rebuild: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/v4-rebuild-runbook.md`,
+  security: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/SECURITY.md`,
+  troubleshooting: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/RUNBOOK.md#troubleshooting`,
+  limitations: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md#limitations`,
+  contributing: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/CONTRIBUTING.md`,
+  openapi: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/reference/openapi.json`,
+  retrievalFixture: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/tests/test_v4_independent_retrieval_audit.py`,
+  retrievalAudit: `${repos.core}/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/testing.md`,
   certificationAudit: `${repos.certification}/blob/3b7562cb65800cde27877dc3a7cd505a70822bf8/reports/profile-b-comprehensive-repair/FINAL_AUDIT_AND_REPAIR_REPORT.md`,
   dataGuide: `${repos.data}/blob/main/docs/KULLANIM_KILAVUZU.md`,
   lawStatus: `${repos.law}/blob/b791be27a5d9d2e0306057529f6a5dce222673a4/docs/mvp-final-verification.md`
@@ -264,7 +264,7 @@ function footer() {
         ${group(chrome('Project', 'Proje'), [link('about/', chrome('About', 'Hakkında')), link('status/', chrome('Status', 'Durum')), link('changelog/', chrome('Changelog', 'Değişiklik günlüğü')), link('account/', chrome('My account', 'Hesabım')), external(repos.issues, chrome('Open an issue', 'Issue açın')), external(projectLicenseUrl, chrome('Apache License 2.0', 'Apache 2.0 Lisansı'))])}
       </div>
       <nav class="footer-legal" aria-label="${chrome('Legal', 'Yasal')}">${[['privacy/', chrome('Privacy Policy', 'Gizlilik Politikası')], ['legal/kvkk/', chrome('KVKK Notice', 'KVKK Aydınlatma Metni')], ['legal/cookies/', chrome('Cookie Policy', 'Çerez Politikası')], ['legal/terms/', chrome('Terms of Use', 'Kullanım Koşulları')], ['legal/commercial-messages/', chrome('Commercial Messages', 'Ticari İleti Onayı')]].map(([path, label]) => link(path, label)).join('')}</nav>
-      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.3', 'Belgeler Core v0.9.3 ile uyumlu')}</span></div>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>${chrome('Docs match Core v0.9.4', 'Belgeler Core v0.9.4 ile uyumlu')}</span></div>
       <div class="footer-wordmark" aria-hidden="true"></div>
     </footer>`.trim();
 }
@@ -305,7 +305,7 @@ function actionExample(compact = false) {
     <details class="memory-example__details"><summary>Retrieval signals & application context</summary><div class="memory-example__expanded"><div><ul class="signal-list"><li>vector <b>rank 1</b></li><li>BM25 <b>rank 1</b></li><li>assertion <b>rank 1</b></li><li>graph path <b>rank 1</b></li></ul><p class="fixture-score">Expected RRF: 4 ÷ 61</p></div><div><span class="text--meta">APPLICATION CONTEXT</span><pre tabindex="0"><code>UNTRUSTED_MEMORY_EVIDENCE {
   subject: "Alice", relation: "knows",
   object: "Aurora", source: "source-chunk-1"
-}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test in the v0.9.3 release.</span></p></details>
+}</code></pre><p class="text--meta">Schema-aligned website rendering of the fixture fields; production context is token-bounded JSON evidence.</p></div></div><p class="memory-example__test"><code>test_real_four_lanes_fuse_once_and_repeat_deterministically</code><span>Core test in the v0.9.4 release.</span></p></details>
     <p class="memory-example__caption text--meta">Vector search results are mocked in this test. This is a static example, not a live benchmark.</p>
   </div>`;
   return `<div class="action-example specimen-plate">
@@ -462,7 +462,7 @@ function qaPage() {
           <li><span>4</span>Policy-limited diff and verification gates</li>
           <li><span>5</span>No automatic merge or push to main</li>
         </ol>
-        <p>The pinned QA report records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate Core 0.9.3.</p>
+        <p>The pinned QA report records a live first-write INVALID_ARGUMENT failure. Earlier Lite harness evidence includes a candidate session verdict of FAIL; it does not validate Core 0.9.4.</p>
       </section>
       ${footer()}
     </main>`;
@@ -583,7 +583,7 @@ function lawPage() {
       <section class="section law-status">
         <p class="eyebrow">CURRENT STATUS</p>
         <h2>Historical Law-side gates passed.<br><em>Overall integration: NO-GO.</em></h2>
-        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. The pinned Law report records failing CI; this is not Core 0.9.3 integration proof.</p>
+        <p>The 2026-08-01 report records isolated Law-side gates against Core 0.7.1. Full-stack and live Core integration were not run. The pinned Law report records failing CI; this is not Core 0.9.4 integration proof.</p>
         ${cta('Read verification report', docs.lawStatus, 'text', true)}
       </section>
       ${footer()}
@@ -711,7 +711,7 @@ function mcpPage() {
       <header class="docs-article-header">
         <p class="eyebrow">MODEL CONTEXT PROTOCOL</p>
         <h1>Two integration paths.<br><em>Different runtime contracts.</em></h1>
-        <p>MESA v0.9.3 supports direct V4 stdio with mesa mcp-config, plus a separately managed HTTP gateway and local bridge.</p>
+        <p>MESA v0.9.4 supports direct V4 stdio with mesa mcp-config, plus a separately managed HTTP gateway and local bridge.</p>
         <div class="actions">
           ${cta('Source guide', docs.mcp, 'primary', true)}
           ${cta('Core repository', repos.core, 'secondary', true)}
@@ -784,9 +784,9 @@ function statusPage() {
           <h2>${project.runtime} ${project.maturity.toLowerCase()}</h2>
           <p>MESA package line v${project.version}. Production remains ${project.production} pending final MVP certification and required production-like gates.</p>
           ${external(docs.architecture, 'Canonical architecture')}
-          ${external(docs.releaseNotes, 'v0.9.3 Release notes')}
-          <p>${chrome('GitHub v0.9.3 tag and PyPI publication verified on 17 November 2026. Install mesa-memory==0.9.3.', 'GitHub v0.9.3 etiketi ve PyPI yayını 17 Kasım 2026’da doğrulandı. mesa-memory==0.9.3 kurun.')}</p>
-          ${external('https://github.com/Yasou13/MESA/tree/v0.9.3', 'Official v0.9.3 tag')}
+          ${external(docs.releaseNotes, 'v0.9.4 Release notes')}
+          <p>${chrome('GitHub v0.9.4 tag and PyPI publication verified on 23 November 2026. Install mesa-memory==0.9.4.', 'GitHub v0.9.4 etiketi ve PyPI yayını 23 Kasım 2026’da doğrulandı. mesa-memory==0.9.4 kurun.')}</p>
+          ${external('https://github.com/Yasou13/MESA/tree/v0.9.4', 'Official v0.9.4 tag')}
         </article>
         <article>
           <span>MESA LORE</span>
@@ -809,7 +809,7 @@ function statusPage() {
         <article>
           <span>MESA LAW</span>
           <h2>Historical Law pass / overall ${project.production}</h2>
-          <p>The dated Law-side report passed against Core 0.7.1; its pinned evidence records failing CI. Live Core 0.9.3 integration remains unverified.</p>
+          <p>The dated Law-side report passed against Core 0.7.1; its pinned evidence records failing CI. Live Core 0.9.4 integration remains unverified.</p>
           ${external(docs.lawStatus, 'Verification report')}
         </article>
       </section>

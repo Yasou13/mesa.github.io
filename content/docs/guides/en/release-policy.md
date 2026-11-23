@@ -1,6 +1,6 @@
 ## Publication and production qualification
 
-These docs follow Core v0.9.3, tag commit `531209bc45805b478264f6dfa8a9e40a94e345cb`. GitHub tag and PyPI wheel/sdist availability (not yanked) were verified on 17 November 2026. Alpha / production NO-GO remains.
+These docs follow Core v0.9.4, tag commit `e30856ec6e7ed9146bb9af992565e864f727b0b9`. GitHub tag and PyPI wheel/sdist availability (not yanked) were verified on 17 November 2026. Alpha / production NO-GO remains.
 
 ## Releases wait for CI
 
