@@ -64,7 +64,8 @@
 .account-alt { margin: 18px 0 0; color: var(--muted); font-size: 15px; text-align: center; }
 .account-small { margin: 8px 0 0; font-size: 14px; }
 .account-card #account-password-rules { margin: 0; }
-.account-card .account-consent-notice { margin: 0; line-height: 1.55; }
+.account-card .account-consent-notice { margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); font-size: 13px; line-height: 1.55; }
+.account-consent-notice strong { color: var(--ink); font-weight: 600; }
 .account-consent-notice a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .account-consents { display: grid; gap: 12px; margin: 12px 0 4px; padding: 0; border: 0; }
 .account-card .account-check { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; align-items: start; margin: 0; font-size: 14px; font-weight: 400; line-height: 1.55; color: var(--muted); }

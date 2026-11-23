@@ -27,8 +27,8 @@ export function accountPage({ header, footer, language, base, providers, mode = 
 
   const consent = `<fieldset class="account-consents">
       <legend class="sr-only">${L('Agreements', 'Onaylar')}</legend>
-      <p class="account-muted account-consent-notice">${L(`How your account data is processed is explained in the <a href="${href('legal/kvkk/')}">KVKK Information Notice</a> and <a href="${href('privacy/')}">Privacy Policy</a>.`,
-        `Hesap verilerinin nasıl işlendiği <a href="${href('legal/kvkk/')}">KVKK Aydınlatma Metni</a> ve <a href="${href('privacy/')}">Gizlilik Politikası</a>’nda açıklanır.`)}</p>
+      <p class="account-muted account-consent-notice">${L(`<strong>About your personal data:</strong> Your email address, password hash, sign-in time and, if you use Google or GitHub, the name, email and profile image they share are processed to create and run your account and sign you in, on the legal ground of establishing and performing a contract (KVKK art. 5/2-c). For the data controller, transfers and your rights, read the <a href="${href('legal/kvkk/')}">KVKK Information Notice</a>.`,
+        `<strong>Kişisel verileriniz hakkında:</strong> E-posta adresiniz, şifrenizin özeti, giriş zamanınız ve Google veya GitHub kullanırsanız bu hizmetlerin paylaştığı ad, e-posta ve profil görseli; hesabınızı oluşturmak, yürütmek ve giriş yapmanızı sağlamak için sözleşmenin kurulması ve ifası hukuki sebebine (KVKK m. 5/2-c) dayanılarak işlenir. Veri sorumlusu, aktarımlar ve haklarınız için <a href="${href('legal/kvkk/')}">KVKK Aydınlatma Metni</a>’ni okuyun.`)}</p>
       <label class="account-check"><input type="checkbox" name="terms" id="account-terms" required>
         <span>${L(`I accept the <a href="${href('legal/terms/')}">Terms of Use</a>.`,
           `<a href="${href('legal/terms/')}">Kullanım Koşulları</a>’nı kabul ediyorum.`)}</span></label>
