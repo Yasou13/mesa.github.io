@@ -341,7 +341,7 @@
       "slug": "what-is-ai-memory",
       "path": "learn/what-is-ai-memory/",
       "publishedAt": "2026-10-01",
-      "updatedAt": "2026-10-28",
+      "updatedAt": "2026-11-23",
       "author": "MESA contributors",
       "tags": [
         "memory",
@@ -354,23 +354,37 @@
       "category": "Foundations",
       "draft": false,
       "indexable": true,
-      "readingMinutes": 5,
+      "readingMinutes": 6,
       "seo": {
         "en": {
-          "title": "AI memory: what survives after a conversation? — MESA Learn",
-          "description": "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database."
+          "title": "What Is AI Agent Memory? Types and Design — MESA",
+          "description": "AI agent memory stores useful information outside the model and retrieves it later. Learn working, episodic, semantic and procedural memory."
         },
         "tr": {
-          "title": "Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA",
-          "description": "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
+          "title": "Yapay Zekâ Hafızası Nedir? Ajan Hafızası Rehberi — MESA",
+          "description": "Yapay zekâ ajanı hafızası, bilgiyi model dışında saklayıp gerektiğinde geri getirir. Çalışma, olay, anlamsal ve yöntem hafızasını ve tasarımını öğrenin."
         }
       },
       "locales": {
         "en": {
-          "title": "AI memory: what survives after a conversation?",
-          "summary": "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.",
-          "shortAnswer": "Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.",
+          "title": "What is AI agent memory?",
+          "summary": "AI agent memory keeps useful information outside the model and brings it back when needed. Learn the main types and design your first memory policy.",
+          "shortAnswer": "AI agent memory is a system outside the language model that saves selected information and retrieves it for later requests. It lets an agent use earlier facts, decisions and experience across sessions. The model is not retrained; the application supplies the relevant memory as context.",
           "sections": [
+            {
+              "id": "what-is-agent-memory",
+              "title": "What is AI agent memory?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "AI memory is the set of mechanisms that lets an application use information beyond the current request. For an AI agent, this usually means storing observations, facts, decisions or instructions, then retrieving the relevant ones when a later task needs them."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "The important point is that the language model does not automatically learn from each conversation. Memory works because the application chooses what to save, finds it again and places it in the model’s context."
+                }
+              ]
+            },
             {
               "id": "three-layers",
               "title": "Three different meanings of “remember”",
@@ -411,6 +425,46 @@
                 {
                   "kind": "paragraph",
                   "text": "Writing a row to a database does not retrain a model. Retrieving that row makes it available in one request, subject to selection and context limits. Conversely, leaving a statement in conversation history does not guarantee that it will be present after truncation or in another session. These are separate mechanisms with separate failure modes."
+                }
+              ]
+            },
+            {
+              "id": "types",
+              "title": "Types of AI agent memory",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "The [CoALA framework](https://arxiv.org/abs/2309.02427) describes agent memory with four useful categories. Real products may combine them or use different names."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Type",
+                    "What it holds",
+                    "Example"
+                  ],
+                  "rows": [
+                    [
+                      "Working memory",
+                      "Active information for the current decision",
+                      "The current task and recent tool result"
+                    ],
+                    [
+                      "Episodic memory",
+                      "Past experiences and behavior",
+                      "A failed deployment from last week"
+                    ],
+                    [
+                      "Semantic memory",
+                      "Knowledge about the world or the agent",
+                      "The reading room opens at 09:00"
+                    ],
+                    [
+                      "Procedural memory",
+                      "Rules and skills that guide action",
+                      "Always run tests before a release"
+                    ]
+                  ]
                 }
               ]
             },
@@ -469,6 +523,57 @@
               ]
             },
             {
+              "id": "memory-vs-rag",
+              "title": "AI memory vs context window vs RAG",
+              "blocks": [
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Concept",
+                    "Main question",
+                    "Lifetime"
+                  ],
+                  "rows": [
+                    [
+                      "Context window",
+                      "What can the model see in this request?",
+                      "One request"
+                    ],
+                    [
+                      "RAG",
+                      "Which source text should support this answer?",
+                      "Depends on the knowledge base"
+                    ],
+                    [
+                      "Agent memory",
+                      "What should the agent retain and reuse?",
+                      "Across tasks and sessions until changed or deleted"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "RAG can be one way to retrieve memory, but memory also needs write, update, scope and deletion rules. Continue with [RAG and memory](/learn/rag-vs-ai-memory/)."
+                }
+              ]
+            },
+            {
+              "id": "common-mistakes",
+              "title": "Common AI memory mistakes",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Saving every message and retrieving noise, private data or old instructions.",
+                    "Keeping only a summary and losing the original evidence.",
+                    "Treating a retrieved document’s instruction as a trusted user preference.",
+                    "Having no way to correct, supersede or delete a memory.",
+                    "Measuring whether a row was saved, but not whether a later session can use it."
+                  ]
+                }
+              ]
+            },
+            {
               "id": "practice",
               "title": "Design your first memory policy",
               "blocks": [
@@ -477,6 +582,37 @@
                   "title": "Check your understanding",
                   "text": "The assistant saves “the room opens at nine” but cannot identify its source or who may see it. Which two problems remain even if retrieval always returns the row?",
                   "answer": "You cannot verify or revise the source-backed claim reliably, and you cannot enforce its access boundary. Retrieval success alone solves neither provenance nor authorization. Add source/revision and scope fields before measuring search quality."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Example: memory for coding agents",
+                  "text": "[MESA Lore](/lore/) applies this idea to coding sessions. It keeps past Claude Code and Codex work in a local, searchable record with sources."
+                }
+              ]
+            },
+            {
+              "id": "faq",
+              "title": "AI agent memory questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Does AI memory retrain the model?",
+                  "text": "No. Most agent memory is stored outside the model and added to context when needed."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Is a larger context window the same as memory?",
+                  "text": "No. It holds more text in one request, but it does not decide what persists, what is current or who may access it."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Does AI agent memory need a vector database?",
+                  "text": "No. Depending on the task, memory can start with files, SQL or keyword search. Add vectors when you measure a need for meaning-based retrieval."
+                },
+                {
+                  "kind": "definition",
+                  "term": "What should an AI agent remember?",
+                  "text": "Keep information likely to help later, with its source, scope and time. Avoid storing secrets, temporary noise and claims you cannot trace."
                 }
               ]
             },
@@ -498,6 +634,10 @@
                     {
                       "label": "MESA Core v0.9.3 · Architecture and limitations",
                       "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                    },
+                    {
+                      "label": "Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents",
+                      "href": "https://arxiv.org/abs/2309.02427"
                     }
                   ]
                 }
@@ -506,10 +646,24 @@
           ]
         },
         "tr": {
-          "title": "Yapay zekâ hafızası: sohbet bitince ne kalır?",
-          "summary": "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.",
-          "shortAnswer": "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.",
+          "title": "Yapay zekâ ajanı hafızası nedir?",
+          "summary": "Yapay zekâ ajanı hafızası, yararlı bilgiyi model dışında saklar ve gerektiğinde geri getirir. Temel türleri öğrenin ve ilk hafıza politikanızı tasarlayın.",
+          "shortAnswer": "Yapay zekâ ajanı hafızası, seçilen bilgileri dil modelinin dışında saklayan ve sonraki isteklerde geri getiren sistemdir. Ajanın önceki bilgi, karar ve deneyimleri oturumlar arasında kullanmasını sağlar. Model yeniden eğitilmez; uygulama ilgili hafızayı bağlam olarak verir.",
           "sections": [
+            {
+              "id": "ajan-hafizasi-nedir",
+              "title": "Yapay zekâ hafızası nedir?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Yapay zekâ hafızası, bir uygulamanın o anki isteğin ötesindeki bilgileri kullanmasını sağlayan mekanizmaların bütünüdür. Bir yapay zekâ ajanında bu genellikle gözlem, bilgi, karar veya talimatları saklamak ve sonraki bir görevde ilgili olanları geri getirmek demektir."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Önemli nokta şudur: Dil modeli her konuşmadan kendiliğinden öğrenmez. Hafıza, uygulamanın neyi saklayacağını seçmesi, onu yeniden bulması ve modelin bağlamına eklemesiyle çalışır."
+                }
+              ]
+            },
             {
               "id": "three-layers",
               "title": "“Hatırlamanın” üç ayrı anlamı",
@@ -550,6 +704,46 @@
                 {
                   "kind": "paragraph",
                   "text": "Veritabanına bir satır eklemek modeli yeniden eğitmez. Uygulama o satırı bulup bağlama eklerse model, yalnızca ilgili istekte bu bilgiden yararlanabilir. Konuşma geçmişinde duran bir cümlenin de geçmiş kısaltıldığında veya yeni oturum açıldığında erişilebilir kalacağı garanti değildir. Bunlar, farklı biçimlerde hata verebilen ayrı mekanizmalardır."
+                }
+              ]
+            },
+            {
+              "id": "hafiza-turleri",
+              "title": "Yapay zekâ ajanı hafıza türleri",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "[CoALA çerçevesi](https://arxiv.org/abs/2309.02427) ajan hafızasını dört kullanışlı kategoriyle açıklar. Gerçek ürünler bunları birleştirebilir veya farklı adlarla kullanabilir."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Tür",
+                    "İçeriği",
+                    "Örnek"
+                  ],
+                  "rows": [
+                    [
+                      "Çalışma hafızası",
+                      "O anki karar için etkin bilgi",
+                      "Güncel görev ve son araç sonucu"
+                    ],
+                    [
+                      "Olay (epizodik) hafızası",
+                      "Geçmiş deneyim ve davranışlar",
+                      "Geçen haftaki başarısız dağıtım"
+                    ],
+                    [
+                      "Anlamsal hafıza",
+                      "Dünya veya ajan hakkındaki bilgiler",
+                      "Okuma salonu 09.00’da açılır"
+                    ],
+                    [
+                      "Yöntem (prosedürel) hafızası",
+                      "Davranışı yönlendiren kural ve beceriler",
+                      "Sürümden önce testleri çalıştır"
+                    ]
+                  ]
                 }
               ]
             },
@@ -608,6 +802,57 @@
               ]
             },
             {
+              "id": "hafiza-rag-farki",
+              "title": "Yapay zekâ hafızası, bağlam penceresi ve RAG farkı",
+              "blocks": [
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Kavram",
+                    "Temel soru",
+                    "Ömrü"
+                  ],
+                  "rows": [
+                    [
+                      "Bağlam penceresi",
+                      "Model bu istekte neyi görebilir?",
+                      "Tek istek"
+                    ],
+                    [
+                      "RAG",
+                      "Bu yanıtı hangi kaynak metin desteklemeli?",
+                      "Bilgi tabanına bağlıdır"
+                    ],
+                    [
+                      "Ajan hafızası",
+                      "Ajan neyi saklayıp yeniden kullanmalı?",
+                      "Değiştirilene veya silinene kadar görev ve oturumlar boyunca"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "RAG, hafızayı geri getirmenin bir yolu olabilir; ancak hafıza ayrıca yazma, güncelleme, kapsam ve silme kuralları ister. [RAG ve hafıza](/learn/rag-vs-ai-memory/) dersiyle devam edin."
+                }
+              ]
+            },
+            {
+              "id": "sik-hatalar",
+              "title": "Yapay zekâ hafızasında sık yapılan hatalar",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Her mesajı saklayıp gürültü, özel veri veya eski talimatları geri getirmek.",
+                    "Yalnızca özet tutup özgün kanıtı kaybetmek.",
+                    "Getirilen bir belgedeki talimatı güvenilir kullanıcı tercihi saymak.",
+                    "Bir kaydı düzeltme, geçersiz kılma veya silme yolu bırakmamak.",
+                    "Kaydın yazıldığını ölçüp sonraki oturumun onu kullanabildiğini ölçmemek."
+                  ]
+                }
+              ]
+            },
+            {
               "id": "practice",
               "title": "İlk hafıza politikanızı tasarlayın",
               "blocks": [
@@ -616,6 +861,37 @@
                   "title": "Kendinizi sınayın",
                   "text": "Asistan “salon dokuzda açılır” kaydını saklıyor; kaynağını ve kimlerin görebileceğini bilmiyor. Arama satırı her seferinde bulsa bile hangi iki sorun sürer?",
                   "answer": "Kaynağıyla bağlantılı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Arama başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Örnek: kodlama ajanları için hafıza",
+                  "text": "[MESA Lore](/lore/) bu fikri kodlama oturumlarına uygular. Geçmiş Claude Code ve Codex çalışmalarını kaynaklarıyla birlikte yerel ve aranabilir bir kayıtta tutar."
+                }
+              ]
+            },
+            {
+              "id": "sss",
+              "title": "Yapay zekâ ajanı hafızası hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Yapay zekâ hafızası modeli yeniden eğitir mi?",
+                  "text": "Hayır. Ajan hafızasının çoğu model dışında saklanır ve gerektiğinde bağlama eklenir."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Daha büyük bağlam penceresi hafıza demek mi?",
+                  "text": "Hayır. Tek istekte daha fazla metin taşır, ama neyin kalıcı olacağına, neyin güncel olduğuna veya kimin erişebileceğine karar vermez."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Ajan hafızası için vektör veritabanı şart mı?",
+                  "text": "Hayır. Göreve göre dosyalar, SQL veya sözcük aramasıyla başlanabilir. Anlam tabanlı aramaya ihtiyaç ölçtüğünüzde vektör ekleyin."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Bir yapay zekâ ajanı neyi hatırlamalı?",
+                  "text": "Sonradan işe yarayacak bilgileri kaynağı, kapsamı ve zamanıyla saklayın. Gizli bilgileri, geçici gürültüyü ve izlenemeyen iddiaları saklamayın."
                 }
               ]
             },
@@ -637,6 +913,10 @@
                     {
                       "label": "MESA Core v0.9.3 · Architecture and limitations",
                       "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                    },
+                    {
+                      "label": "Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents",
+                      "href": "https://arxiv.org/abs/2309.02427"
                     }
                   ]
                 }
@@ -1955,7 +2235,7 @@
       "slug": "hybrid-retrieval-explained",
       "path": "learn/hybrid-retrieval-explained/",
       "publishedAt": "2026-10-01",
-      "updatedAt": "2026-10-18",
+      "updatedAt": "2026-11-23",
       "author": "MESA contributors",
       "tags": [
         "hybrid",
@@ -1972,20 +2252,60 @@
       "readingMinutes": 5,
       "seo": {
         "en": {
-          "title": "Hybrid retrieval: candidates, fusion and reranking — MESA Learn",
-          "description": "Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing."
+          "title": "What Is Hybrid Search? BM25 and Vector Search — MESA",
+          "description": "Hybrid search combines keyword and vector retrieval. Learn when BM25 plus vectors helps, how fusion and reranking work and how to measure the result."
         },
         "tr": {
-          "title": "Hibrit arama: farklı sonuçları birleştirmek — MESA",
-          "description": "Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin."
+          "title": "Hibrit Arama Nedir? BM25 ve Vektör Arama — MESA",
+          "description": "Hibrit arama, sözcük ve vektör aramayı birleştirir. BM25 ile vektörlerin ne zaman işe yaradığını, birleştirme ve yeniden sıralamayı, sonucu ölçmeyi öğrenin."
         }
       },
       "locales": {
         "en": {
-          "title": "Hybrid retrieval: candidates, fusion and reranking",
-          "summary": "Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.",
-          "shortAnswer": "Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.",
+          "title": "What is hybrid search? BM25, vectors and reranking",
+          "summary": "Hybrid search combines keyword and vector retrieval. Learn when it helps, how to fuse results and which stage to fix when search fails.",
+          "shortAnswer": "Hybrid search runs keyword search, usually BM25, and vector search for the same query, then combines their results. Keyword search preserves exact terms, while vector search can match different wording. It helps when each method finds relevant results the other misses.",
           "sections": [
+            {
+              "id": "what-is-hybrid-search",
+              "title": "What is hybrid search?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Hybrid search, also called hybrid retrieval, combines at least two retrieval methods in one search pipeline. The common pair is BM25 keyword search and dense vector search. Each method returns candidates, a fusion step such as RRF merges them, and an optional reranker refines the top results."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Compare",
+                    "BM25 keyword search",
+                    "Vector search"
+                  ],
+                  "rows": [
+                    [
+                      "Matches",
+                      "Words and terms in the text",
+                      "Similarity between embeddings"
+                    ],
+                    [
+                      "Strong at",
+                      "Names, codes, IDs and exact phrases",
+                      "Paraphrases and different wording"
+                    ],
+                    [
+                      "Can miss",
+                      "The same idea in other words",
+                      "A rare exact code or number"
+                    ],
+                    [
+                      "Needs",
+                      "A text index and language analysis",
+                      "An embedding model and vector index"
+                    ]
+                  ]
+                }
+              ]
+            },
             {
               "id": "why-two",
               "title": "Two ways to miss the same answer",
@@ -2077,6 +2397,42 @@
               ]
             },
             {
+              "id": "when-to-use",
+              "title": "When should you use hybrid search?",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Users search with both exact identifiers and natural language.",
+                    "Your documents contain codes, names, dates or legal citations that must not be blurred.",
+                    "Keyword search misses paraphrases, while vector search misses exact terms.",
+                    "Judged questions show that the second method adds relevant results."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Keep one method if it already finds the evidence and a second lane adds only latency. In Turkish, also test suffixes and characters such as ı and i, because language analysis can change what keyword search finds."
+                }
+              ]
+            },
+            {
+              "id": "first-pipeline",
+              "title": "A simple first hybrid search pipeline",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "Apply access scope before retrieval.",
+                    "Run BM25 and vector search separately, for example top 50 from each.",
+                    "Deduplicate each list using the same retrieval unit.",
+                    "Fuse with [Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/), starting with k = 60.",
+                    "Measure recall, MRR or nDCG on judged questions.",
+                    "Add a reranker only if the right evidence is already in the candidates but ranks too low."
+                  ]
+                }
+              ]
+            },
+            {
               "id": "practice",
               "title": "Locate the failure",
               "blocks": [
@@ -2085,6 +2441,32 @@
                   "title": "Check your understanding",
                   "text": "The correct passage is rank 45 in the dense lane, absent from lexical top 20, and you rerank only the top-20 union. Can a better reranker find it?",
                   "answer": "No. It never reaches the reranker. Investigate query representation, lane cutoff, chunking and candidate recall. Compare changes on the same judged questions before spending more on reranking."
+                }
+              ]
+            },
+            {
+              "id": "faq",
+              "title": "Hybrid search questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Is hybrid search always better than vector search?",
+                  "text": "No. It helps when the lanes find different relevant results. Compare both on your own judged questions."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Is hybrid search the same as RAG?",
+                  "text": "No. Hybrid search is a retrieval method. RAG uses retrieved text to help a language model generate an answer, and it may or may not use hybrid search."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Do I need a reranker?",
+                  "text": "Not always. A reranker can improve ordering, but it adds cost and cannot recover a result missing from its input."
+                },
+                {
+                  "kind": "definition",
+                  "term": "How do you combine BM25 and vector scores?",
+                  "text": "A common starting point is RRF, which uses ranks. If you combine raw scores, choose and test an explicit normalization first."
                 }
               ]
             },
@@ -2106,6 +2488,10 @@
                     {
                       "label": "Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion",
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
+                    },
+                    {
+                      "label": "Microsoft Learn · Hybrid search scoring (RRF)",
+                      "href": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking"
                     }
                   ]
                 }
@@ -2114,10 +2500,50 @@
           ]
         },
         "tr": {
-          "title": "Hibrit arama: farklı sonuçları birleştirmek",
-          "summary": "Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.",
-          "shortAnswer": "Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.",
+          "title": "Hibrit arama nedir? BM25, vektörler ve yeniden sıralama",
+          "summary": "Hibrit arama, sözcük ve vektör aramayı birleştirir. Ne zaman işe yaradığını, sonuçların nasıl birleştirildiğini ve hatanın hangi aşamada olduğunu öğrenin.",
+          "shortAnswer": "Hibrit arama, aynı sorgu için sözcük aramasını (genellikle BM25) ve vektör aramayı çalıştırıp sonuçlarını birleştirir. Sözcük araması tam terimleri korur, vektör arama ise farklı ifadeleri eşleştirebilir. Her yöntem diğerinin kaçırdığı ilgili sonuçları buluyorsa işe yarar.",
           "sections": [
+            {
+              "id": "hibrit-arama-nedir",
+              "title": "Hibrit arama nedir?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Hibrit arama, en az iki arama yöntemini tek akışta birleştirir. En yaygın ikili BM25 sözcük araması ve yoğun vektör aramadır. Her yöntem aday döndürür, RRF gibi bir birleştirme adımı bunları tek listede toplar ve isteğe bağlı bir yeniden sıralayıcı üst sonuçları iyileştirir."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Karşılaştırma",
+                    "BM25 sözcük araması",
+                    "Vektör arama"
+                  ],
+                  "rows": [
+                    [
+                      "Eşleştirdiği",
+                      "Metindeki sözcükler ve terimler",
+                      "Embedding’ler arasındaki benzerlik"
+                    ],
+                    [
+                      "Güçlü olduğu",
+                      "Ad, kod, kimlik ve tam ifadeler",
+                      "Farklı sözcüklerle anlatılan aynı fikir"
+                    ],
+                    [
+                      "Kaçırabileceği",
+                      "Başka sözcüklerle yazılmış aynı fikir",
+                      "Nadir bir kod veya tam sayı"
+                    ],
+                    [
+                      "Gereksinimi",
+                      "Metin dizini ve dil analizi",
+                      "Embedding modeli ve vektör dizini"
+                    ]
+                  ]
+                }
+              ]
+            },
             {
               "id": "why-two",
               "title": "Aynı cevabı kaçırmanın iki yolu",
@@ -2209,6 +2635,42 @@
               ]
             },
             {
+              "id": "ne-zaman-kullanilir",
+              "title": "Hibrit arama ne zaman kullanılmalı?",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Kullanıcılar hem tam kimliklerle hem doğal dille arıyorsa.",
+                    "Belgelerde bulanıklaşmaması gereken kod, ad, tarih veya hukuki atıflar varsa.",
+                    "Sözcük araması farklı ifadeleri, vektör arama ise tam terimleri kaçırıyorsa.",
+                    "Etiketli sorular ikinci yöntemin yeni ilgili sonuçlar eklediğini gösteriyorsa."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Bir yöntem kanıtı zaten buluyorsa ve ikinci kanal yalnızca gecikme ekliyorsa tek yöntemle kalın. Türkçede ekleri ve ı/i gibi harfleri de test edin; dil analizi sözcük aramasının bulduklarını değiştirebilir."
+                }
+              ]
+            },
+            {
+              "id": "ilk-akis",
+              "title": "Basit bir ilk hibrit arama akışı",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "Aramadan önce erişim kapsamını uygulayın.",
+                    "BM25 ve vektör aramayı ayrı çalıştırın; örneğin her birinden ilk 50 sonucu alın.",
+                    "Her listeyi aynı arama birimine göre tekilleştirin.",
+                    "[Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/) ile k = 60’tan başlayarak birleştirin.",
+                    "Etiketli sorularda Recall, MRR veya nDCG ölçün.",
+                    "Yeniden sıralayıcıyı yalnızca doğru kanıt adaylarda olduğu hâlde alt sıralarda kalıyorsa ekleyin."
+                  ]
+                }
+              ]
+            },
+            {
               "id": "practice",
               "title": "Hatayı konumlandırın",
               "blocks": [
@@ -2217,6 +2679,32 @@
                   "title": "Kendinizi sınayın",
                   "text": "Doğru pasaj yoğun kanalda 45. sırada, sözcüksel ilk 20’de yok; yalnızca ilk-20 birleşimini yeniden sıralıyorsunuz. Daha iyi yeniden sıralayıcı onu bulabilir mi?",
                   "answer": "Hayır. Bu pasaj yeniden sıralayıcıya hiç ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın."
+                }
+              ]
+            },
+            {
+              "id": "sss",
+              "title": "Hibrit arama hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Hibrit arama her zaman vektör aramadan iyi midir?",
+                  "text": "Hayır. Kanallar farklı ilgili sonuçlar bulduğunda işe yarar. İkisini kendi etiketli sorularınızla karşılaştırın."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Hibrit arama ile RAG aynı şey mi?",
+                  "text": "Hayır. Hibrit arama bir bilgi getirme yöntemidir. RAG ise getirilen metni dil modelinin yanıt üretmesine yardım etmek için kullanır; hibrit arama kullanmak zorunda değildir."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Yeniden sıralayıcı gerekli mi?",
+                  "text": "Her zaman değil. Sıralamayı iyileştirebilir, ama maliyet ekler ve girdisinde olmayan sonucu geri getiremez."
+                },
+                {
+                  "kind": "definition",
+                  "term": "BM25 ve vektör puanları nasıl birleştirilir?",
+                  "text": "Yaygın başlangıç noktası, sıraları kullanan RRF’dir. Ham puanları birleştirecekseniz önce açık bir normalizasyon seçip test edin."
                 }
               ]
             },
@@ -2238,6 +2726,10 @@
                     {
                       "label": "Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion",
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
+                    },
+                    {
+                      "label": "Microsoft Learn · Hibrit arama puanlaması (RRF)",
+                      "href": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking"
                     }
                   ]
                 }
@@ -2279,7 +2771,7 @@
       "slug": "reciprocal-rank-fusion-explained",
       "path": "learn/reciprocal-rank-fusion-explained/",
       "publishedAt": "2026-10-01",
-      "updatedAt": "2026-10-28",
+      "updatedAt": "2026-11-23",
       "author": "MESA contributors",
       "tags": [
         "RRF",
@@ -2292,23 +2784,37 @@
       "category": "Memory & Retrieval",
       "draft": false,
       "indexable": true,
-      "readingMinutes": 5,
+      "readingMinutes": 6,
       "seo": {
         "en": {
-          "title": "Reciprocal Rank Fusion: calculate and inspect every vote — MESA Learn",
-          "description": "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence."
+          "title": "What Is RRF? Reciprocal Rank Fusion and k=60 — MESA",
+          "description": "Reciprocal Rank Fusion (RRF) merges ranked lists using positions, not raw scores. Learn the formula, a worked example, why k is often 60 and when to avoid it."
         },
         "tr": {
-          "title": "RRF: iki sıralama nasıl birleştirilir? — MESA",
-          "description": "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin."
+          "title": "RRF Nedir? Reciprocal Rank Fusion ve k=60 — MESA",
+          "description": "RRF, sonuç listelerini ham puanlar yerine sıralarıyla birleştirir. Formülü, çözümlü örneği, k değerinin neden çoğu zaman 60 olduğunu ve sınırlarını öğrenin."
         }
       },
       "locales": {
         "en": {
-          "title": "Reciprocal Rank Fusion: calculate and inspect every vote",
-          "summary": "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.",
-          "shortAnswer": "Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.",
+          "title": "What is Reciprocal Rank Fusion (RRF)?",
+          "summary": "RRF merges ranked search results using their positions instead of raw scores. Learn the formula, calculate an example and choose k.",
+          "shortAnswer": "Reciprocal Rank Fusion (RRF) combines several ranked lists into one. Each result receives 1/(k + rank) from every list that contains it, and the results are sorted by their total. Because it uses positions, it can combine BM25 and vector search without normalizing their scores.",
           "sections": [
+            {
+              "id": "what-is-rrf",
+              "title": "What is RRF?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Reciprocal Rank Fusion (RRF) is a rank fusion method: it turns several ranked result lists into one list. A result near the top of a list receives a larger contribution, and a result found by several lists adds those contributions together."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "RRF is common in hybrid search because BM25 scores and vector similarities use different scales. RRF ignores those raw values and uses only each result’s position."
+                }
+              ]
+            },
             {
               "id": "problem",
               "title": "Combine agreement without comparing raw scores",
@@ -2395,6 +2901,62 @@
               ]
             },
             {
+              "id": "why-k-60",
+              "title": "Why is k usually 60 in RRF?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "The value comes from the [original 2009 SIGIR paper](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf). Cormack, Clarke and Büttcher fixed k = 60 during a pilot investigation and did not change it during validation. They reported that 60 was near-optimal in their pilot, but that the choice was not critical."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Search systems often keep this starting point. [Elasticsearch](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) defaults `rank_constant` to 60, and [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking) describes 60 as a small value that performs well in experiments. Neither fact proves that 60 is best for your documents."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "k",
+                    "Rank 1",
+                    "Rank 2",
+                    "Rank 10",
+                    "Rank 1 / Rank 10"
+                  ],
+                  "rows": [
+                    [
+                      "1",
+                      "0.5000",
+                      "0.3333",
+                      "0.0909",
+                      "5.50×"
+                    ],
+                    [
+                      "10",
+                      "0.0909",
+                      "0.0833",
+                      "0.0500",
+                      "1.82×"
+                    ],
+                    [
+                      "60",
+                      "0.0164",
+                      "0.0161",
+                      "0.0143",
+                      "1.15×"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "The last column shows how strongly k favors the top. At k = 1, first place counts 5.50 times as much as tenth place. At k = 60, it counts only 1.15 times as much, so agreement across lists matters more than one first-place result."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Do not confuse the two k values",
+                  "text": "In vector search, k often means how many nearest neighbors to return. The RRF k is a separate smoothing constant."
+                }
+              ]
+            },
+            {
               "id": "implementation",
               "title": "Specify the edge cases before deployment",
               "blocks": [
@@ -2405,6 +2967,61 @@
                 {
                   "kind": "paragraph",
                   "text": "For exactly tied fused scores, use a documented stable rule such as canonical ID ordering. For weighted fusion, reject non-finite weights and decide whether zero disables a lane. Giving two copies of the same retriever separate full weights can double-count correlated evidence. More votes do not make an incorrect or unauthorized source acceptable."
+                }
+              ]
+            },
+            {
+              "id": "compare",
+              "title": "RRF vs score normalization and reranking",
+              "blocks": [
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Method",
+                    "Uses",
+                    "Main strength",
+                    "Main limit"
+                  ],
+                  "rows": [
+                    [
+                      "RRF",
+                      "Ranks",
+                      "Simple, needs no training or score calibration",
+                      "Ignores how large the score gap was"
+                    ],
+                    [
+                      "Score normalization",
+                      "Rescaled scores",
+                      "Keeps score gaps",
+                      "Depends on the normalization and score distribution"
+                    ],
+                    [
+                      "Cross-encoder reranking",
+                      "Query and passage text",
+                      "Can compare meaning more directly",
+                      "Costs more and sees only its shortlist"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "when-not",
+              "title": "When should you not use RRF?",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "You have only one retriever, so there is nothing to fuse.",
+                    "Score gaps carry reliable meaning that you do not want to discard.",
+                    "Your lanes return nearly the same results, so fusion adds little new evidence.",
+                    "You need a calibrated confidence value. An RRF score is not a probability.",
+                    "You have enough judged data to train and validate a better ranking model."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "MESA Core uses weighted RRF with k = 60, vector weight 8 and weight 1 for BM25, assertion and graph lanes. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/)."
                 }
               ]
             },
@@ -2421,6 +3038,37 @@
               ]
             },
             {
+              "id": "faq",
+              "title": "RRF questions",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "Does RRF need score normalization?",
+                  "text": "No. RRF uses ranks, so BM25 and vector scores do not need a shared scale."
+                },
+                {
+                  "kind": "definition",
+                  "term": "What is a good k value for RRF?",
+                  "text": "Start with 60, then compare a few values such as 10, 30 and 100 on judged questions from your own data."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Does RRF rank start at 0 or 1?",
+                  "text": "The original formula and Elasticsearch use ranks starting at 1. Keep this consistent, because zero-based ranks change every contribution."
+                },
+                {
+                  "kind": "definition",
+                  "term": "What happens if a document is missing from one list?",
+                  "text": "That list contributes 0 for the document. Its other lists still count."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Is a higher RRF score a confidence score?",
+                  "text": "No. It is useful for ordering results in one query. Do not read it as a probability that the answer is correct."
+                }
+              ]
+            },
+            {
               "id": "references",
               "title": "Sources and further reading",
               "blocks": [
@@ -2428,12 +3076,20 @@
                   "kind": "references",
                   "items": [
                     {
-                      "label": "Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion",
+                      "label": "Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods",
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
                     },
                     {
                       "label": "MESA Core v0.9.3 · Architecture and limitations",
                       "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                    },
+                    {
+                      "label": "Elastic · Reciprocal rank fusion",
+                      "href": "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion"
+                    },
+                    {
+                      "label": "Microsoft Learn · Hybrid search scoring (RRF)",
+                      "href": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking"
                     }
                   ]
                 }
@@ -2442,10 +3098,24 @@
           ]
         },
         "tr": {
-          "title": "RRF: iki sıralama nasıl birleştirilir?",
-          "summary": "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.",
-          "shortAnswer": "İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.",
+          "title": "RRF nedir? Reciprocal Rank Fusion nasıl çalışır?",
+          "summary": "RRF, arama sonuçlarını ham puanlar yerine listedeki sıralarıyla birleştirir. Formülü öğrenin, örneği hesaplayın ve k değerini seçin.",
+          "shortAnswer": "Reciprocal Rank Fusion (RRF), birden fazla sıralı listeyi tek listede birleştirir. Her sonuç, bulunduğu her listeden 1/(k + sıra) katkısı alır ve sonuçlar toplam katkıya göre sıralanır. Konumları kullandığı için BM25 ile vektör aramayı puanları normalize etmeden birleştirebilir.",
           "sections": [
+            {
+              "id": "rrf-nedir",
+              "title": "RRF nedir?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Reciprocal Rank Fusion (RRF), birden fazla sıralı sonuç listesini tek listeye dönüştüren bir sıralama birleştirme yöntemidir. Listenin üst sıralarındaki sonuç daha büyük katkı alır. Birden fazla listede bulunan sonuç ise bu katkıları toplar."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "RRF hibrit aramada sık kullanılır, çünkü BM25 puanları ile vektör benzerlikleri farklı ölçeklerdedir. RRF bu ham değerleri yok sayar ve yalnızca sonucun sırasını kullanır."
+                }
+              ]
+            },
             {
               "id": "problem",
               "title": "Farklı listelerdeki sıraları kullanın",
@@ -2466,7 +3136,7 @@
               "blocks": [
                 {
                   "kind": "code",
-                  "code": "RRF(d) = sum over lanes containing d: w_lane / (k + rank_lane(d))\nrank starts at 1; missing candidate contributes 0.\nExample below: k = 60, every weight = 1."
+                  "code": "RRF(d) = d’yi içeren kanallar üzerinden toplam: w_kanal / (k + sıra_kanal(d))\nSıra 1’den başlar; listede olmayan aday 0 katkı alır.\nAşağıdaki örnek: k = 60, tüm ağırlıklar = 1."
                 },
                 {
                   "kind": "table",
@@ -2532,6 +3202,62 @@
               ]
             },
             {
+              "id": "k-neden-60",
+              "title": "RRF’de k neden çoğu zaman 60?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Bu değer [2009 tarihli özgün SIGIR makalesinden](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf) gelir. Cormack, Clarke ve Büttcher, k = 60 değerini pilot çalışmada sabitlemiş ve doğrulama sırasında değiştirmemiştir. Pilot sonuçlarında 60’ın optimuma yakın olduğunu, ancak seçimin kritik olmadığını bildirmişlerdir."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Arama sistemleri çoğu zaman bu başlangıç noktasını korur. [Elasticsearch](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) `rank_constant` değerini varsayılan olarak 60 yapar. [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking) da 60’ı deneylerde iyi sonuç veren küçük bir değer olarak anar. Bunlar, 60’ın sizin belgeleriniz için en iyi değer olduğunu kanıtlamaz."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "k",
+                    "1. sıra",
+                    "2. sıra",
+                    "10. sıra",
+                    "1. sıra / 10. sıra"
+                  ],
+                  "rows": [
+                    [
+                      "1",
+                      "0,5000",
+                      "0,3333",
+                      "0,0909",
+                      "5,50×"
+                    ],
+                    [
+                      "10",
+                      "0,0909",
+                      "0,0833",
+                      "0,0500",
+                      "1,82×"
+                    ],
+                    [
+                      "60",
+                      "0,0164",
+                      "0,0161",
+                      "0,0143",
+                      "1,15×"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Son sütun, k değerinin üst sıraları ne kadar öne çıkardığını gösterir. k = 1 iken birinci sıra, onuncu sıranın 5,50 katı değerlidir. k = 60 iken bu oran yalnızca 1,15’tir; yani listeler arasındaki uyum, tek bir birincilikten daha önemli hâle gelir."
+                },
+                {
+                  "kind": "callout",
+                  "title": "İki farklı k değerini karıştırmayın",
+                  "text": "Vektör aramada k çoğu zaman döndürülecek en yakın komşu sayısıdır. RRF’deki k ise ayrı bir yumuşatma sabitidir."
+                }
+              ]
+            },
+            {
               "id": "implementation",
               "title": "Uç durumları dağıtımdan önce belirleyin",
               "blocks": [
@@ -2542,6 +3268,61 @@
                 {
                   "kind": "paragraph",
                   "text": "Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve belgelenmiş bir kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlıkları reddedin; sıfır ağırlığın kanalı kapatıp kapatmadığını açıkça belirleyin. Aynı arama yönteminin iki kopyasına tam ağırlık vermek aynı dayanağı iki kez sayabilir. Çok katkı alması, yanlış veya yetkisiz bir kaynağı kabul edilebilir yapmaz."
+                }
+              ]
+            },
+            {
+              "id": "karsilastirma",
+              "title": "RRF, puan normalizasyonu ve yeniden sıralama farkı",
+              "blocks": [
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Yöntem",
+                    "Kullandığı bilgi",
+                    "Güçlü yanı",
+                    "Temel sınırı"
+                  ],
+                  "rows": [
+                    [
+                      "RRF",
+                      "Sıralar",
+                      "Basittir; eğitim veya puan kalibrasyonu istemez",
+                      "Puan farkının büyüklüğünü yok sayar"
+                    ],
+                    [
+                      "Puan normalizasyonu",
+                      "Yeniden ölçeklenmiş puanlar",
+                      "Puan farklarını korur",
+                      "Normalizasyona ve puan dağılımına bağlıdır"
+                    ],
+                    [
+                      "Cross-encoder ile yeniden sıralama",
+                      "Sorgu ve pasaj metni",
+                      "Anlamı daha doğrudan karşılaştırabilir",
+                      "Daha pahalıdır ve yalnızca kısa listeyi görür"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "ne-zaman-kullanilmaz",
+              "title": "RRF ne zaman kullanılmamalı?",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Tek bir arama yönteminiz varsa birleştirilecek liste yoktur.",
+                    "Puan farkları güvenilir bir anlam taşıyorsa ve bunu kaybetmek istemiyorsanız.",
+                    "Kanallar neredeyse aynı sonuçları döndürüyorsa birleştirme az yeni kanıt ekler.",
+                    "Kalibre edilmiş bir güven değeri gerekiyorsa. RRF puanı olasılık değildir.",
+                    "Daha iyi bir sıralama modelini eğitip doğrulayacak kadar etiketli veriniz varsa."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "MESA Core, k = 60 ile ağırlıklı RRF kullanır; vektör ağırlığı 8, BM25, bilgi kaydı ve çizge kanallarının ağırlığı 1’dir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın."
                 }
               ]
             },
@@ -2558,6 +3339,37 @@
               ]
             },
             {
+              "id": "sss",
+              "title": "RRF hakkında sorular",
+              "blocks": [
+                {
+                  "kind": "definition",
+                  "term": "RRF puan normalizasyonu gerektirir mi?",
+                  "text": "Hayır. RRF sıraları kullandığı için BM25 ve vektör puanlarının ortak ölçekte olması gerekmez."
+                },
+                {
+                  "kind": "definition",
+                  "term": "RRF için iyi bir k değeri nedir?",
+                  "text": "60 ile başlayın, ardından 10, 30 ve 100 gibi birkaç değeri kendi verinizdeki etiketli sorularla karşılaştırın."
+                },
+                {
+                  "kind": "definition",
+                  "term": "RRF’de sıra 0’dan mı 1’den mi başlar?",
+                  "text": "Özgün formül ve Elasticsearch sırayı 1’den başlatır. Bunu tutarlı kullanın, çünkü sıfır tabanlı sıra bütün katkıları değiştirir."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Belge bir listede yoksa ne olur?",
+                  "text": "O liste belgeye 0 katkı verir. Belgenin bulunduğu diğer listeler sayılmaya devam eder."
+                },
+                {
+                  "kind": "definition",
+                  "term": "Yüksek RRF puanı güven puanı mıdır?",
+                  "text": "Hayır. Tek bir sorgudaki sonuçları sıralamak için kullanışlıdır. Yanıtın doğru olma olasılığı olarak okunmamalıdır."
+                }
+              ]
+            },
+            {
               "id": "references",
               "title": "Kaynaklar ve ileri okuma",
               "blocks": [
@@ -2565,12 +3377,20 @@
                   "kind": "references",
                   "items": [
                     {
-                      "label": "Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion",
+                      "label": "Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods",
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
                     },
                     {
                       "label": "MESA Core v0.9.3 · Architecture and limitations",
                       "href": "https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md"
+                    },
+                    {
+                      "label": "Elastic · Reciprocal rank fusion",
+                      "href": "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion"
+                    },
+                    {
+                      "label": "Microsoft Learn · Hibrit arama puanlaması (RRF)",
+                      "href": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking"
                     }
                   ]
                 }
@@ -3536,7 +4356,7 @@
       "slug": "sqlite-as-canonical-agent-memory",
       "path": "learn/sqlite-as-canonical-agent-memory/",
       "publishedAt": "2026-10-17",
-      "updatedAt": "2026-10-28",
+      "updatedAt": "2026-11-23",
       "author": "MESA contributors",
       "tags": [
         "SQLite",
@@ -3646,6 +4466,11 @@
                   "title": "Check your understanding",
                   "text": "A client times out after the vector write. Should it create a fresh mutation with a fresh ID immediately?",
                   "answer": "First inspect the original mutation status. Retry using the declared idempotency contract if appropriate. A fresh ID may duplicate an already admitted operation; a timeout is an observation failure, not proof of rollback."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Example: one local SQLite file",
+                  "text": "[MESA Lore](/lore/) stores coding agent sessions and notes in one local SQLite file and searches them without an LLM."
                 }
               ]
             },
@@ -3752,6 +4577,11 @@
                   "title": "Kendinizi sınayın",
                   "text": "İstemci, vektör yazıldıktan sonra zaman aşımına uğruyor. Hemen yeni kimlikle bir yazma işlemi başlatmalı mı?",
                   "answer": "Önce ilk işlemin durumunu kontrol edin. Yeniden deneme uygunsa aynı işlem kimliği ve güvenli tekrar kurallarıyla ilerleyin. Yeni kimlik, zaten kabul edilmiş işlemi çoğaltabilir. Zaman aşımı, istemcinin sonucu göremediğini gösterir; işlemin geri alındığını göstermez."
+                },
+                {
+                  "kind": "callout",
+                  "title": "Örnek: tek yerel SQLite dosyası",
+                  "text": "[MESA Lore](/lore/), kodlama ajanı oturumlarını ve notlarını tek bir yerel SQLite dosyasında saklar ve LLM kullanmadan arar."
                 }
               ]
             },

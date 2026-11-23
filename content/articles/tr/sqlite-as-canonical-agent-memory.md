@@ -11,7 +11,7 @@ category: "Evidence & Trust"
 tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-23"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -61,6 +61,10 @@ MESA Core v0.9.3’de her veri dizinini tek combined süreci yönetir; LanceDB v
 > İstemci, vektör yazıldıktan sonra zaman aşımına uğruyor. Hemen yeni kimlikle bir yazma işlemi başlatmalı mı?
 >
 > **Açıklama:** Önce ilk işlemin durumunu kontrol edin. Yeniden deneme uygunsa aynı işlem kimliği ve güvenli tekrar kurallarıyla ilerleyin. Yeni kimlik, zaten kabul edilmiş işlemi çoğaltabilir. Zaman aşımı, istemcinin sonucu göremediğini gösterir; işlemin geri alındığını göstermez.
+
+> [!NOTE]
+> **Örnek: tek yerel SQLite dosyası**
+> [MESA Lore](/lore/), kodlama ajanı oturumlarını ve notlarını tek bir yerel SQLite dosyasında saklar ve LLM kullanmadan arar.
 
 ## Kaynaklar ve ileri okuma
 

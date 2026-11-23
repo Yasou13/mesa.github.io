@@ -311,3 +311,4 @@ body:has(.docs-layout) .site-header { background: #030303f5; border-bottom: 1px 
 .docs-layout .sidebar-group[open] > summary .docs-icon:last-child { transform: rotate(180deg); }
 .docs-layout .sidebar-group[open] > .sidebar-links { margin-top: 4px; margin-bottom: 14px; }
 @media (max-width: 800px) { .docs-layout .table-scroll table { min-width: 760px; } }
+.docs-layout .docs-lore-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }

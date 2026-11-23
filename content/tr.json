@@ -52,7 +52,7 @@
       "title": "MESA’nın Güncel Durumu — Sürümler ve Doğrulamalar",
       "description": "Yayımlanan Core sürümü, sertifikasyonda bekleyen adımlar ve canlı kullanım için tamamlanması gereken testler."
     },
-    "changelog": {"title": "MESA Değişiklik Günlüğü — Her Sürümde Neler Değişti", "description": "Her MESA Core sürümündeki önemli değişiklikler, yükseltme notları, ölçülen sonuçlar ve bilinen sınırlar."}, "lore": {"title": "MESA Lore — Claude Code ve Codex için Yerel Hafıza", "description": "Kodlama ajanları için açık kaynak yerel hafıza. Claude Code, Codex CLI ve Antigravity geçmiş oturumları LLM çağrısı olmadan arar."}, "yargitayGuideRedirect": {"title": "Yargıtay Kararı Doğrulama Rehberi — Taşındı", "description": "Bu rehber MESA Law rehberlerine taşındı."},
+    "changelog": {"title": "MESA Değişiklik Günlüğü — Her Sürümde Neler Değişti", "description": "Her MESA Core sürümündeki önemli değişiklikler, yükseltme notları, ölçülen sonuçlar ve bilinen sınırlar."}, "lore": {"title": "MESA Lore — Claude Code ve Codex için MCP Hafıza Sunucusu", "description": "Kodlama ajanları için açık kaynak, yerel MCP hafıza sunucusu. Claude Code, Codex CLI ve Antigravity geçmiş oturumları LLM çağrısı olmadan arar."}, "yargitayGuideRedirect": {"title": "Yargıtay Kararı Doğrulama Rehberi — Taşındı", "description": "Bu rehber MESA Law rehberlerine taşındı."},
     "about": {
       "title": "MESA Hakkında — Neden Geliştiriliyor?",
       "description": "MESA’nın amacını, projelerin nasıl sürdürüldüğünü, kaynak kodunu ve geliştiriciye ulaşmanın yollarını öğrenin."

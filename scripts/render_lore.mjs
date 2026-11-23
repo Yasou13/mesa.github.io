@@ -52,11 +52,21 @@ export function lorePage({ header, footer, language, base, repo, external }) {
     ['47–86 ms', L('search p95 on 10,000 chunks', '10.000 parçada arama p95'), L('Range across three benchmark runs on Linux', 'Linux’ta üç benchmark çalıştırmasının aralığı')],
     ['198', L('passing tests', 'geçen test'), L('All 31 required benchmark categories pass', 'Zorunlu 31 benchmark kategorisinin tamamı geçiyor')]
   ];
+  const comparison = [
+    [L('Written by', 'Yazan'), L('You', 'Siz'), 'Claude', L('Hooks and the agent', 'Hook’lar ve ajan')],
+    [L('Holds', 'İçerik'), L('Instructions and rules', 'Talimatlar ve kurallar'), L('Learnings and patterns', 'Öğrenimler ve kalıplar'), L('Past transcripts, notes and handoffs', 'Geçmiş dökümler, notlar ve devir notları')],
+    [L('Reaches a session', 'Oturuma ulaşma'), L('Loaded at session start', 'Oturum başında yüklenir'), L('First 200 lines or 25KB of MEMORY.md', 'MEMORY.md’nin ilk 200 satırı veya 25KB’ı'), L('Short index, then search on demand', 'Kısa dizin, sonra gerektiğinde arama')],
+    [L('Best for', 'En uygun kullanım'), L('Standards and workflows', 'Standartlar ve iş akışları'), L('Preferences and corrections', 'Tercihler ve düzeltmeler'), L('Earlier decisions, failed attempts and work', 'Önceki kararlar, başarısız denemeler ve çalışmalar')]
+  ];
   const questions = [
+    [L('What is an MCP memory server?', 'MCP hafıza sunucusu nedir?'),
+      L('It is a service that gives an AI agent memory tools through the Model Context Protocol. MESA Lore runs locally and provides four tools for viewing an index, searching, opening results and saving notes.', 'Model Context Protocol üzerinden bir yapay zekâ ajanına hafıza araçları sağlayan servistir. MESA Lore yerelde çalışır; dizini görmek, arama yapmak, sonuçları açmak ve not kaydetmek için dört araç sunar.')],
+    [L('Does MESA Lore replace CLAUDE.md or auto memory?', 'MESA Lore, CLAUDE.md veya otomatik hafızanın yerine geçer mi?'),
+      L('No. CLAUDE.md is for instructions and auto memory is for learned preferences. MESA Lore adds searchable history from past sessions alongside them.', 'Hayır. CLAUDE.md talimatlar, otomatik hafıza ise öğrenilen tercihler içindir. MESA Lore bunların yanına geçmiş oturumlardan aranabilir bir kayıt ekler.')],
     [L('How do I give Claude Code memory between sessions?', 'Claude Code’a oturumlar arasında nasıl hafıza kazandırırım?'),
       L('Install MESA Lore and run mesa-lore install. It adds the MCP server and hooks, imports existing history and backs up the files it changes. New sessions then start with a short index and can search earlier work.', 'MESA Lore’u kurup mesa-lore install komutunu çalıştırın. Komut MCP sunucusunu ve hook’ları ekler, mevcut geçmişi içe aktarır ve değiştirdiği dosyaları yedekler. Yeni oturumlar kısa bir dizinle başlar ve önceki çalışmaları arayabilir.')],
-    [L('Does it work with Codex CLI?', 'Codex CLI ile çalışır mı?'),
-      L('Yes. Codex gets the same memory tools and hooks. Approve the hooks with /hooks in Codex to turn on automatic capture.', 'Evet. Codex aynı hafıza araçlarını ve hook’ları kullanır. Otomatik yakalamayı açmak için hook’ları Codex’te /hooks ile onaylayın.')],
+    [L('How do I add memory to Codex CLI?', 'Codex CLI’a nasıl hafıza eklerim?'),
+      L('Run mesa-lore install. Codex gets the same memory tools and hooks. Approve the hooks with /hooks in Codex to turn on automatic capture.', 'mesa-lore install komutunu çalıştırın. Codex aynı hafıza araçlarını ve hook’ları kullanır. Otomatik yakalamayı açmak için hook’ları Codex’te /hooks ile onaylayın.')],
     [L('Does MESA Lore send my code or transcripts anywhere?', 'MESA Lore kodumu veya dökümlerimi bir yere gönderir mi?'),
       L('MESA Lore sends nothing over the network. Your coding agent still sends the memory it retrieves to its own model provider, as it does with any other context.', 'MESA Lore ağ üzerinden hiçbir şey göndermez. Ancak kodlama ajanınız, aldığı hafızayı diğer bağlamlar gibi kendi model sağlayıcısına iletir.')],
     [L('Do I need an API key, GPU or embedding model?', 'API anahtarı, GPU veya embedding modeli gerekir mi?'),
@@ -72,8 +82,8 @@ export function lorePage({ header, footer, language, base, repo, external }) {
   return `${header}<main id="main-content" class="lore-page">
     <section class="page-hero compact">
       <p class="eyebrow">${L(`MESA LORE · v${LORE_VERSION} · OPEN SOURCE`, `MESA LORE · v${LORE_VERSION} · AÇIK KAYNAK`)}</p>
-      <h1>${L('Persistent memory for your coding agents', 'Kodlama ajanlarınız için kalıcı hafıza')}</h1>
-      <p>${L('MESA Lore gives Claude Code, Codex CLI and Antigravity a local memory of past sessions. In Claude Code and Codex, each new session starts with a short index. Agents then pull back only what they need, with sources.', 'MESA Lore; Claude Code, Codex CLI ve Antigravity’ye geçmiş oturumlar için yerel bir hafıza kazandırır. Claude Code ve Codex’te her yeni oturum kısa bir dizinle başlar. Ajanlar yalnızca ihtiyaç duydukları bilgiyi kaynaklarıyla birlikte geri çağırır.')}</p>
+      <h1>${L('Local MCP memory for Claude Code and Codex', 'Claude Code ve Codex için yerel MCP hafızası')}</h1>
+      <p>${L('MESA Lore is an open-source MCP memory server for coding agents. It makes past Claude Code, Codex CLI and Antigravity sessions searchable on your computer. In Claude Code and Codex, each new session starts with a short index. Agents then pull back only what they need, with sources.', 'MESA Lore, kodlama ajanları için açık kaynak bir MCP hafıza sunucusudur. Claude Code, Codex CLI ve Antigravity’deki geçmiş oturumları bilgisayarınızda aranabilir yapar. Claude Code ve Codex’te her yeni oturum kısa bir dizinle başlar. Ajanlar yalnızca ihtiyaç duydukları bilgiyi kaynaklarıyla birlikte geri çağırır.')}</p>
       <div class="actions"><a class="button primary" href="#install">${L('Install MESA Lore', 'MESA Lore’u kur')}</a>${external(repo, L('View on GitHub', 'GitHub’da incele'), 'button secondary')}</div>
     </section>
 
@@ -83,8 +93,16 @@ export function lorePage({ header, footer, language, base, repo, external }) {
 
     <section class="section lore-block" aria-labelledby="lore-problem">
       <p class="eyebrow">${L('THE PROBLEM', 'SORUN')}</p>
-      <h2 id="lore-problem">${L('Every new session forgets the last one.', 'Her yeni oturum öncekini unutur.')}</h2>
-      <p>${L('Resuming work usually means replaying a long session or explaining the context again, and both cost tokens. MESA Lore keeps that history searchable, so the agent loads details only when they are useful.', 'İşe devam etmek genellikle uzun bir oturumu yeniden yüklemek ya da bağlamı baştan anlatmak demektir ve ikisi de token harcar. MESA Lore bu geçmişi aranabilir tutar; ajan ayrıntıları yalnızca işe yaradığında yükler.')}</p>
+      <h2 id="lore-problem">${L('Rules carry over. Past work is harder to find.', 'Kurallar taşınır. Geçmiş çalışmayı bulmak zordur.')}</h2>
+      <p>${L('Each coding session starts with a fresh context window. Project instructions and saved notes can carry over, but details from older sessions are often left behind. Replaying a long session or explaining it again costs tokens. MESA Lore keeps that history searchable, so the agent loads details only when they are useful.', 'Her kodlama oturumu yeni bir bağlam penceresiyle başlar. Proje talimatları ve kayıtlı notlar taşınabilir, ama eski oturumlardaki ayrıntılar çoğu zaman geride kalır. Uzun bir oturumu yeniden yüklemek veya baştan anlatmak token harcar. MESA Lore bu geçmişi aranabilir tutar; ajan ayrıntıları yalnızca işe yaradığında yükler.')}</p>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-compare">
+      <p class="eyebrow">${L('CLAUDE CODE MEMORY', 'CLAUDE CODE HAFIZASI')}</p>
+      <h2 id="lore-compare">${L('How it differs from CLAUDE.md and auto memory', 'CLAUDE.md ve otomatik hafızadan farkı')}</h2>
+      <p>${L('MESA Lore does not replace Claude Code’s built-in memory. Keep rules in CLAUDE.md and let auto memory hold learned preferences. Use Lore when you need to find what happened in earlier sessions.', 'MESA Lore, Claude Code’un yerleşik hafızasının yerine geçmez. Kuralları CLAUDE.md’de tutun, öğrenilen tercihleri otomatik hafızaya bırakın. Önceki oturumlarda ne olduğunu bulmanız gerektiğinde Lore’u kullanın.')}</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="${L('Claude Code memory comparison', 'Claude Code hafıza karşılaştırması')}"><table><thead><tr><th scope="col">${L('Compare', 'Karşılaştırma')}</th><th scope="col">CLAUDE.md</th><th scope="col">${L('Auto memory', 'Otomatik hafıza')}</th><th scope="col">MESA Lore</th></tr></thead><tbody>${comparison.map(([name, ...cells]) => `<tr><th scope="row">${name}</th>${cells.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+      <p class="lore-related">${L('Claude Code details come from the', 'Claude Code bilgileri')} ${external('https://code.claude.com/docs/en/memory', L('official memory documentation', 'resmî hafıza dokümanına'), 'lore-source')}${L('.', ' dayanır.')}</p>
     </section>
 
     <section class="section lore-block" aria-labelledby="lore-how">

@@ -6,7 +6,13 @@ BEGIN;
 
 -- 2. Seed Articles and Revisions
 
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'en', 'AI memory: what survives after a conversation?', '', 'Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.', 'Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.', '## Three different meanings of “remember”
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'en', 'What is AI agent memory?', '', 'AI agent memory keeps useful information outside the model and brings it back when needed. Learn the main types and design your first memory policy.', 'AI agent memory is a system outside the language model that saves selected information and retrieves it for later requests. It lets an agent use earlier facts, decisions and experience across sessions. The model is not retrained; the application supplies the relevant memory as context.', '## What is AI agent memory?
+
+AI memory is the set of mechanisms that lets an application use information beyond the current request. For an AI agent, this usually means storing observations, facts, decisions or instructions, then retrieving the relevant ones when a later task needs them.
+
+The important point is that the language model does not automatically learn from each conversation. Memory works because the application chooses what to save, finds it again and places it in the model’s context.
+
+## Three different meanings of “remember”
 
 Imagine an assistant helping with a fictional Atlas archive. On Monday you say that the reading room opens at nine. On Tuesday you open a new conversation and ask for its opening time. The model can answer only if the application supplies a usable record, or if the information happens to be in its parameters. A confident answer does not tell you which happened.
 
@@ -19,6 +25,17 @@ A large language model (LLM) generates text by predicting tokens from the input 
 | Persistent memory | Records outside the model | Authorized write/update/delete |
 
 Writing a row to a database does not retrain a model. Retrieving that row makes it available in one request, subject to selection and context limits. Conversely, leaving a statement in conversation history does not guarantee that it will be present after truncation or in another session. These are separate mechanisms with separate failure modes.
+
+## Types of AI agent memory
+
+The [CoALA framework](https://arxiv.org/abs/2309.02427) describes agent memory with four useful categories. Real products may combine them or use different names.
+
+| Type | What it holds | Example |
+| --- | --- | --- |
+| Working memory | Active information for the current decision | The current task and recent tool result |
+| Episodic memory | Past experiences and behavior | A failed deployment from last week |
+| Semantic memory | Knowledge about the world or the agent | The reading room opens at 09:00 |
+| Procedural memory | Rules and skills that guide action | Always run tests before a release |
 
 ## A useful record is more than a sentence
 
@@ -55,6 +72,24 @@ On Wednesday the room changes its hours. Appending a new sentence leaves two com
 
 The test is observable continuity: close the session, start another authorized session, ask the question, then revoke access or supersede the source and repeat. Check the returned source identity as well as the answer. Long context is not a substitute for this test. Liu et al. study position effects in particular long-context tasks; their finding is a reason to evaluate your model, not a timeless limit for every model. [Read the study](https://arxiv.org/abs/2307.03172).
 
+## AI memory vs context window vs RAG
+
+| Concept | Main question | Lifetime |
+| --- | --- | --- |
+| Context window | What can the model see in this request? | One request |
+| RAG | Which source text should support this answer? | Depends on the knowledge base |
+| Agent memory | What should the agent retain and reuse? | Across tasks and sessions until changed or deleted |
+
+RAG can be one way to retrieve memory, but memory also needs write, update, scope and deletion rules. Continue with [RAG and memory](/learn/rag-vs-ai-memory/).
+
+## Common AI memory mistakes
+
+- Saving every message and retrieving noise, private data or old instructions.
+- Keeping only a summary and losing the original evidence.
+- Treating a retrieved document’s instruction as a trusted user preference.
+- Having no way to correct, supersede or delete a memory.
+- Measuring whether a row was saved, but not whether a later session can use it.
+
 ## Design your first memory policy
 
 > [!EXERCISE]
@@ -63,14 +98,39 @@ The test is observable continuity: close the session, start another authorized s
 >
 > **Answer:** You cannot verify or revise the source-backed claim reliably, and you cannot enforce its access boundary. Retrieval success alone solves neither provenance nor authorization. Add source/revision and scope fields before measuring search quality.
 
+> [!NOTE]
+> **Example: memory for coding agents**
+> [MESA Lore](/lore/) applies this idea to coding sessions. It keeps past Claude Code and Codex work in a local, searchable record with sources.
+
+## AI agent memory questions
+
+**Does AI memory retrain the model?**
+: No. Most agent memory is stored outside the model and added to context when needed.
+
+**Is a larger context window the same as memory?**
+: No. It holds more text in one request, but it does not decide what persists, what is current or who may access it.
+
+**Does AI agent memory need a vector database?**
+: No. Depending on the task, memory can start with files, SQL or keyword search. Add vectors when you measure a need for meaning-based retrieval.
+
+**What should an AI agent remember?**
+: Keep information likely to help later, with its source, scope and time. Avoid storing secrets, temporary noise and claims you cannot trace.
+
 ## Sources and further reading
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
 3. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
+4. [Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 
-', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'AI memory: what survives after a conversation? — MESA Learn', 'Distinguish model weights, the current context and persistent records. Design a memory write before choosing a database.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'tr', 'Yapay zekâ hafızası: sohbet bitince ne kalır?', '', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', '## “Hatırlamanın” üç ayrı anlamı
+', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 6, 'published', 'What Is AI Agent Memory? Types and Design — MESA', 'AI agent memory stores useful information outside the model and retrieves it later. Learn working, episodic, semantic and procedural memory.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-ai-memory', 'learn', 'tr', 'Yapay zekâ ajanı hafızası nedir?', '', 'Yapay zekâ ajanı hafızası, yararlı bilgiyi model dışında saklar ve gerektiğinde geri getirir. Temel türleri öğrenin ve ilk hafıza politikanızı tasarlayın.', 'Yapay zekâ ajanı hafızası, seçilen bilgileri dil modelinin dışında saklayan ve sonraki isteklerde geri getiren sistemdir. Ajanın önceki bilgi, karar ve deneyimleri oturumlar arasında kullanmasını sağlar. Model yeniden eğitilmez; uygulama ilgili hafızayı bağlam olarak verir.', '## Yapay zekâ hafızası nedir?
+
+Yapay zekâ hafızası, bir uygulamanın o anki isteğin ötesindeki bilgileri kullanmasını sağlayan mekanizmaların bütünüdür. Bir yapay zekâ ajanında bu genellikle gözlem, bilgi, karar veya talimatları saklamak ve sonraki bir görevde ilgili olanları geri getirmek demektir.
+
+Önemli nokta şudur: Dil modeli her konuşmadan kendiliğinden öğrenmez. Hafıza, uygulamanın neyi saklayacağını seçmesi, onu yeniden bulması ve modelin bağlamına eklemesiyle çalışır.
+
+## “Hatırlamanın” üç ayrı anlamı
 
 Atlas arşivi için çalışan kurgusal bir asistan düşünün. Pazartesi, okuma salonunun dokuzda açıldığını söylüyorsunuz. Salı yeni bir sohbette açılış saatini soruyorsunuz. Uygulama önceki kaydı modele sunmazsa model yalnızca eğitimde öğrendiklerine dayanabilir. Kendinden emin bir yanıt vermesi, bilgiyi gerçekten hatırladığını göstermez.
 
@@ -83,6 +143,17 @@ Büyük dil modeli (LLM), girdiden sonra hangi token’ların geleceğini tahmin
 | Kalıcı hafıza | Model dışındaki kayıtlar | Yetkili yazma/güncelleme/silme |
 
 Veritabanına bir satır eklemek modeli yeniden eğitmez. Uygulama o satırı bulup bağlama eklerse model, yalnızca ilgili istekte bu bilgiden yararlanabilir. Konuşma geçmişinde duran bir cümlenin de geçmiş kısaltıldığında veya yeni oturum açıldığında erişilebilir kalacağı garanti değildir. Bunlar, farklı biçimlerde hata verebilen ayrı mekanizmalardır.
+
+## Yapay zekâ ajanı hafıza türleri
+
+[CoALA çerçevesi](https://arxiv.org/abs/2309.02427) ajan hafızasını dört kullanışlı kategoriyle açıklar. Gerçek ürünler bunları birleştirebilir veya farklı adlarla kullanabilir.
+
+| Tür | İçeriği | Örnek |
+| --- | --- | --- |
+| Çalışma hafızası | O anki karar için etkin bilgi | Güncel görev ve son araç sonucu |
+| Olay (epizodik) hafızası | Geçmiş deneyim ve davranışlar | Geçen haftaki başarısız dağıtım |
+| Anlamsal hafıza | Dünya veya ajan hakkındaki bilgiler | Okuma salonu 09.00’da açılır |
+| Yöntem (prosedürel) hafızası | Davranışı yönlendiren kural ve beceriler | Sürümden önce testleri çalıştır |
 
 ## Kullanışlı kayıt bir cümleden fazlasıdır
 
@@ -119,6 +190,24 @@ Neyin saklanacağına açıkça karar verin. Her mesajı kaydetmek; özel bilgil
 
 Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka bir yetkili oturum açın ve aynı soruyu sorun. Ardından erişimi kaldırıp veya kaynağı değiştirip testi tekrarlayın. Yanıtla birlikte kaynak kimliğini de kontrol edin. Uzun bir bağlam penceresi bu testin yerini tutmaz. Liu ve arkadaşlarının belirli uzun bağlam görevlerinde bulduğu konum etkisi, her model için değişmez bir sınır değil; kendi sisteminizi ölçmeniz için bir gerekçedir. [Araştırma](https://arxiv.org/abs/2307.03172)
 
+## Yapay zekâ hafızası, bağlam penceresi ve RAG farkı
+
+| Kavram | Temel soru | Ömrü |
+| --- | --- | --- |
+| Bağlam penceresi | Model bu istekte neyi görebilir? | Tek istek |
+| RAG | Bu yanıtı hangi kaynak metin desteklemeli? | Bilgi tabanına bağlıdır |
+| Ajan hafızası | Ajan neyi saklayıp yeniden kullanmalı? | Değiştirilene veya silinene kadar görev ve oturumlar boyunca |
+
+RAG, hafızayı geri getirmenin bir yolu olabilir; ancak hafıza ayrıca yazma, güncelleme, kapsam ve silme kuralları ister. [RAG ve hafıza](/learn/rag-vs-ai-memory/) dersiyle devam edin.
+
+## Yapay zekâ hafızasında sık yapılan hatalar
+
+- Her mesajı saklayıp gürültü, özel veri veya eski talimatları geri getirmek.
+- Yalnızca özet tutup özgün kanıtı kaybetmek.
+- Getirilen bir belgedeki talimatı güvenilir kullanıcı tercihi saymak.
+- Bir kaydı düzeltme, geçersiz kılma veya silme yolu bırakmamak.
+- Kaydın yazıldığını ölçüp sonraki oturumun onu kullanabildiğini ölçmemek.
+
 ## İlk hafıza politikanızı tasarlayın
 
 > [!EXERCISE]
@@ -127,13 +216,32 @@ Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka b
 >
 > **Açıklama:** Kaynağıyla bağlantılı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Arama başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
 
+> [!NOTE]
+> **Örnek: kodlama ajanları için hafıza**
+> [MESA Lore](/lore/) bu fikri kodlama oturumlarına uygular. Geçmiş Claude Code ve Codex çalışmalarını kaynaklarıyla birlikte yerel ve aranabilir bir kayıtta tutar.
+
+## Yapay zekâ ajanı hafızası hakkında sorular
+
+**Yapay zekâ hafızası modeli yeniden eğitir mi?**
+: Hayır. Ajan hafızasının çoğu model dışında saklanır ve gerektiğinde bağlama eklenir.
+
+**Daha büyük bağlam penceresi hafıza demek mi?**
+: Hayır. Tek istekte daha fazla metin taşır, ama neyin kalıcı olacağına, neyin güncel olduğuna veya kimin erişebileceğine karar vermez.
+
+**Ajan hafızası için vektör veritabanı şart mı?**
+: Hayır. Göreve göre dosyalar, SQL veya sözcük aramasıyla başlanabilir. Anlam tabanlı aramaya ihtiyaç ölçtüğünüzde vektör ekleyin.
+
+**Bir yapay zekâ ajanı neyi hatırlamalı?**
+: Sonradan işe yarayacak bilgileri kaynağı, kapsamı ve zamanıyla saklayın. Gizli bilgileri, geçici gürültüyü ve izlenemeyen iddiaları saklamayın.
+
 ## Kaynaklar ve ileri okuma
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
 3. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
+4. [Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 
-', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 5, 'published', 'Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA', 'Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 6, 'published', 'Yapay Zekâ Hafızası Nedir? Ajan Hafızası Rehberi — MESA', 'Yapay zekâ ajanı hafızası, bilgiyi model dışında saklayıp gerektiğinde geri getirir. Çalışma, olay, anlamsal ve yöntem hafızasını ve tasarımını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('rag-vs-ai-memory', 'learn', 'en', 'RAG and memory: build the request step by step', '', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', 'Trace a source from retrieval into an answer. Learn why RAG and memory overlap, how context budgets work, and where grounding can fail.', '## RAG is a pattern, memory is a lifecycle concern
 
 Retrieval-augmented generation means fetching external information and conditioning a generated answer on it. An application may retrieve a manual, a user preference or a previous task record. “Memory” describes what the application retains and how it manages that information over time. A memory system can supply a RAG pipeline; a RAG corpus can be updated continuously. Static versus dynamic is not the defining distinction.
@@ -618,7 +726,18 @@ SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanlar
 2. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 
 ', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 5, 'published', 'BM25: bir sözcük ne zaman daha önemli olur? — MESA', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'en', 'Hybrid retrieval: candidates, fusion and reranking', '', 'Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.', 'Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.', '## Two ways to miss the same answer
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'en', 'What is hybrid search? BM25, vectors and reranking', '', 'Hybrid search combines keyword and vector retrieval. Learn when it helps, how to fuse results and which stage to fix when search fails.', 'Hybrid search runs keyword search, usually BM25, and vector search for the same query, then combines their results. Keyword search preserves exact terms, while vector search can match different wording. It helps when each method finds relevant results the other misses.', '## What is hybrid search?
+
+Hybrid search, also called hybrid retrieval, combines at least two retrieval methods in one search pipeline. The common pair is BM25 keyword search and dense vector search. Each method returns candidates, a fusion step such as RRF merges them, and an optional reranker refines the top results.
+
+| Compare | BM25 keyword search | Vector search |
+| --- | --- | --- |
+| Matches | Words and terms in the text | Similarity between embeddings |
+| Strong at | Names, codes, IDs and exact phrases | Paraphrases and different wording |
+| Can miss | The same idea in other words | A rare exact code or number |
+| Needs | A text index and language analysis | An embedding model and vector index |
+
+## Two ways to miss the same answer
 
 A reader asks “When can I visit on the last working day?” The handbook says “Friday opening: 10:00.” Dense retrieval may bridge the wording; lexical retrieval may preserve exact room names and policy IDs. Hybrid retrieval combines complementary candidate sets. It is useful only when the additional lane finds relevant items that the baseline misses, or improves their ordering at acceptable cost.
 
@@ -654,6 +773,24 @@ A cross-encoder scores a query and candidate together, allowing direct interacti
 
 A reranker cannot recover a relevant record missing from its input. If the union has zero relevant candidates, changing the reranker will not solve recall. Nor should a reranker override access control or revive a superseded source. Enforce eligibility and verify final evidence identity throughout the pipeline; “highly relevant but forbidden” is still forbidden.
 
+## When should you use hybrid search?
+
+- Users search with both exact identifiers and natural language.
+- Your documents contain codes, names, dates or legal citations that must not be blurred.
+- Keyword search misses paraphrases, while vector search misses exact terms.
+- Judged questions show that the second method adds relevant results.
+
+Keep one method if it already finds the evidence and a second lane adds only latency. In Turkish, also test suffixes and characters such as ı and i, because language analysis can change what keyword search finds.
+
+## A simple first hybrid search pipeline
+
+1. Apply access scope before retrieval.
+2. Run BM25 and vector search separately, for example top 50 from each.
+3. Deduplicate each list using the same retrieval unit.
+4. Fuse with [Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/), starting with k = 60.
+5. Measure recall, MRR or nDCG on judged questions.
+6. Add a reranker only if the right evidence is already in the candidates but ranks too low.
+
 ## Locate the failure
 
 > [!EXERCISE]
@@ -662,14 +799,40 @@ A reranker cannot recover a relevant record missing from its input. If the union
 >
 > **Answer:** No. It never reaches the reranker. Investigate query representation, lane cutoff, chunking and candidate recall. Compare changes on the same judged questions before spending more on reranking.
 
+## Hybrid search questions
+
+**Is hybrid search always better than vector search?**
+: No. It helps when the lanes find different relevant results. Compare both on your own judged questions.
+
+**Is hybrid search the same as RAG?**
+: No. Hybrid search is a retrieval method. RAG uses retrieved text to help a language model generate an answer, and it may or may not use hybrid search.
+
+**Do I need a reranker?**
+: Not always. A reranker can improve ordering, but it adds cost and cannot recover a result missing from its input.
+
+**How do you combine BM25 and vector scores?**
+: A common starting point is RRF, which uses ranks. If you combine raw scores, choose and test an explicit normalization first.
+
 ## Sources and further reading
 
 1. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 2. [Nogueira & Cho (2019) · Passage Re-ranking with BERT](https://arxiv.org/abs/1901.04085)
 3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+4. [Microsoft Learn · Hybrid search scoring (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hybrid retrieval: candidates, fusion and reranking — MESA Learn', 'Design a search pipeline where lexical and semantic lanes contribute different evidence. Diagnose whether recall, fusion or reranking is failing.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'tr', 'Hibrit arama: farklı sonuçları birleştirmek', '', 'Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.', 'Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.', '## Aynı cevabı kaçırmanın iki yolu
+', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'What Is Hybrid Search? BM25 and Vector Search — MESA', 'Hybrid search combines keyword and vector retrieval. Learn when BM25 plus vectors helps, how fusion and reranking work and how to measure the result.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'tr', 'Hibrit arama nedir? BM25, vektörler ve yeniden sıralama', '', 'Hibrit arama, sözcük ve vektör aramayı birleştirir. Ne zaman işe yaradığını, sonuçların nasıl birleştirildiğini ve hatanın hangi aşamada olduğunu öğrenin.', 'Hibrit arama, aynı sorgu için sözcük aramasını (genellikle BM25) ve vektör aramayı çalıştırıp sonuçlarını birleştirir. Sözcük araması tam terimleri korur, vektör arama ise farklı ifadeleri eşleştirebilir. Her yöntem diğerinin kaçırdığı ilgili sonuçları buluyorsa işe yarar.', '## Hibrit arama nedir?
+
+Hibrit arama, en az iki arama yöntemini tek akışta birleştirir. En yaygın ikili BM25 sözcük araması ve yoğun vektör aramadır. Her yöntem aday döndürür, RRF gibi bir birleştirme adımı bunları tek listede toplar ve isteğe bağlı bir yeniden sıralayıcı üst sonuçları iyileştirir.
+
+| Karşılaştırma | BM25 sözcük araması | Vektör arama |
+| --- | --- | --- |
+| Eşleştirdiği | Metindeki sözcükler ve terimler | Embedding’ler arasındaki benzerlik |
+| Güçlü olduğu | Ad, kod, kimlik ve tam ifadeler | Farklı sözcüklerle anlatılan aynı fikir |
+| Kaçırabileceği | Başka sözcüklerle yazılmış aynı fikir | Nadir bir kod veya tam sayı |
+| Gereksinimi | Metin dizini ve dil analizi | Embedding modeli ve vektör dizini |
+
+## Aynı cevabı kaçırmanın iki yolu
 
 Kullanıcı “Son iş gününde ne zaman gelebilirim?” diye sorsun; kılavuzda ise “Cuma açılışı: 10.00” yazsın. Anlamsal arama bu ifade farkını aşabilir. Sözcük tabanlı arama da salon adını veya kural kodunu tam eşleştirebilir. Hibrit arama, farklı yöntemlerin bulduğu adayları birleştirir. Yeni bir kanal, diğerinin kaçırdığı ilgili sonucu buluyorsa veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır.
 
@@ -705,6 +868,24 @@ Cross-encoder, sorguyla adayı birlikte değerlendirir; iki metindeki token’la
 
 Yeniden sıralayıcı, kendisine ulaşmayan ilgili bir kaydı bulamaz. Birleşen adaylar arasında doğru pasaj yoksa yalnızca bu bileşeni değiştirmek eksik sonucu çözmez. Yeniden sıralama erişim izinlerini de aşmamalı veya geçersiz kaynağı geri getirmemelidir. Uygunluk denetimini akış boyunca koruyun ve son dayanağın kimliğini doğrulayın. Çok ilgili olması, erişimi yasak bir kaydı kullanılabilir yapmaz.
 
+## Hibrit arama ne zaman kullanılmalı?
+
+- Kullanıcılar hem tam kimliklerle hem doğal dille arıyorsa.
+- Belgelerde bulanıklaşmaması gereken kod, ad, tarih veya hukuki atıflar varsa.
+- Sözcük araması farklı ifadeleri, vektör arama ise tam terimleri kaçırıyorsa.
+- Etiketli sorular ikinci yöntemin yeni ilgili sonuçlar eklediğini gösteriyorsa.
+
+Bir yöntem kanıtı zaten buluyorsa ve ikinci kanal yalnızca gecikme ekliyorsa tek yöntemle kalın. Türkçede ekleri ve ı/i gibi harfleri de test edin; dil analizi sözcük aramasının bulduklarını değiştirebilir.
+
+## Basit bir ilk hibrit arama akışı
+
+1. Aramadan önce erişim kapsamını uygulayın.
+2. BM25 ve vektör aramayı ayrı çalıştırın; örneğin her birinden ilk 50 sonucu alın.
+3. Her listeyi aynı arama birimine göre tekilleştirin.
+4. [Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/) ile k = 60’tan başlayarak birleştirin.
+5. Etiketli sorularda Recall, MRR veya nDCG ölçün.
+6. Yeniden sıralayıcıyı yalnızca doğru kanıt adaylarda olduğu hâlde alt sıralarda kalıyorsa ekleyin.
+
 ## Hatayı konumlandırın
 
 > [!EXERCISE]
@@ -713,14 +894,35 @@ Yeniden sıralayıcı, kendisine ulaşmayan ilgili bir kaydı bulamaz. Birleşen
 >
 > **Açıklama:** Hayır. Bu pasaj yeniden sıralayıcıya hiç ulaşmıyor. Sorgu temsili, kanal kesimi, parçalama ve aday recall’unu inceleyin. Yeniden sıralamaya daha fazla kaynak ayırmadan aynı etiketli sorularda değişiklikleri karşılaştırın.
 
+## Hibrit arama hakkında sorular
+
+**Hibrit arama her zaman vektör aramadan iyi midir?**
+: Hayır. Kanallar farklı ilgili sonuçlar bulduğunda işe yarar. İkisini kendi etiketli sorularınızla karşılaştırın.
+
+**Hibrit arama ile RAG aynı şey mi?**
+: Hayır. Hibrit arama bir bilgi getirme yöntemidir. RAG ise getirilen metni dil modelinin yanıt üretmesine yardım etmek için kullanır; hibrit arama kullanmak zorunda değildir.
+
+**Yeniden sıralayıcı gerekli mi?**
+: Her zaman değil. Sıralamayı iyileştirebilir, ama maliyet ekler ve girdisinde olmayan sonucu geri getiremez.
+
+**BM25 ve vektör puanları nasıl birleştirilir?**
+: Yaygın başlangıç noktası, sıraları kullanan RRF’dir. Ham puanları birleştirecekseniz önce açık bir normalizasyon seçip test edin.
+
 ## Kaynaklar ve ileri okuma
 
 1. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 2. [Nogueira & Cho (2019) · Passage Re-ranking with BERT](https://arxiv.org/abs/1901.04085)
 3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+4. [Microsoft Learn · Hibrit arama puanlaması (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hibrit arama: farklı sonuçları birleştirmek — MESA', 'Sözcük ve anlam temelli aramanın birbirini nasıl tamamladığını görün. Aday bulma, sonuçları birleştirme ve yeniden sıralama hatalarını ayırt edin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'en', 'Reciprocal Rank Fusion: calculate and inspect every vote', '', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', '## Combine agreement without comparing raw scores
+', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hibrit Arama Nedir? BM25 ve Vektör Arama — MESA', 'Hibrit arama, sözcük ve vektör aramayı birleştirir. BM25 ile vektörlerin ne zaman işe yaradığını, birleştirme ve yeniden sıralamayı, sonucu ölçmeyi öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'en', 'What is Reciprocal Rank Fusion (RRF)?', '', 'RRF merges ranked search results using their positions instead of raw scores. Learn the formula, calculate an example and choose k.', 'Reciprocal Rank Fusion (RRF) combines several ranked lists into one. Each result receives 1/(k + rank) from every list that contains it, and the results are sorted by their total. Because it uses positions, it can combine BM25 and vector search without normalizing their scores.', '## What is RRF?
+
+Reciprocal Rank Fusion (RRF) is a rank fusion method: it turns several ranked result lists into one list. A result near the top of a list receives a larger contribution, and a result found by several lists adds those contributions together.
+
+RRF is common in hybrid search because BM25 scores and vector similarities use different scales. RRF ignores those raw values and uses only each result’s position.
+
+## Combine agreement without comparing raw scores
 
 Two retrievers disagree about the Atlas archive. Lexical ranks A, B, C; dense ranks B, C, D. You want a method that uses each list’s order without pretending their raw scores share units. Reciprocal Rank Fusion assigns a decreasing contribution to each rank and sums the contributions for the same candidate. It is a simple baseline with explicit assumptions.
 
@@ -756,11 +958,47 @@ With `k=60`, first place contributes 1/61 and second place 1/62, a small differe
 
 *The result is a rank signal, not a calibrated probability.*
 
+## Why is k usually 60 in RRF?
+
+The value comes from the [original 2009 SIGIR paper](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf). Cormack, Clarke and Büttcher fixed k = 60 during a pilot investigation and did not change it during validation. They reported that 60 was near-optimal in their pilot, but that the choice was not critical.
+
+Search systems often keep this starting point. [Elasticsearch](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) defaults `rank_constant` to 60, and [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking) describes 60 as a small value that performs well in experiments. Neither fact proves that 60 is best for your documents.
+
+| k | Rank 1 | Rank 2 | Rank 10 | Rank 1 / Rank 10 |
+| --- | --- | --- | --- | --- |
+| 1 | 0.5000 | 0.3333 | 0.0909 | 5.50× |
+| 10 | 0.0909 | 0.0833 | 0.0500 | 1.82× |
+| 60 | 0.0164 | 0.0161 | 0.0143 | 1.15× |
+
+The last column shows how strongly k favors the top. At k = 1, first place counts 5.50 times as much as tenth place. At k = 60, it counts only 1.15 times as much, so agreement across lists matters more than one first-place result.
+
+> [!NOTE]
+> **Do not confuse the two k values**
+> In vector search, k often means how many nearest neighbors to return. The RRF k is a separate smoothing constant.
+
 ## Specify the edge cases before deployment
 
 Deduplicate a candidate within each lane before assigning its vote. Otherwise a backend returning the same ID twice changes the method. Decide what the ID represents and keep it consistent across lanes. If one lane returns document IDs and another assertion IDs, reconcile them into the same unit before fusion; matching strings alone is not a sound identity contract.
 
 For exactly tied fused scores, use a documented stable rule such as canonical ID ordering. For weighted fusion, reject non-finite weights and decide whether zero disables a lane. Giving two copies of the same retriever separate full weights can double-count correlated evidence. More votes do not make an incorrect or unauthorized source acceptable.
+
+## RRF vs score normalization and reranking
+
+| Method | Uses | Main strength | Main limit |
+| --- | --- | --- | --- |
+| RRF | Ranks | Simple, needs no training or score calibration | Ignores how large the score gap was |
+| Score normalization | Rescaled scores | Keeps score gaps | Depends on the normalization and score distribution |
+| Cross-encoder reranking | Query and passage text | Can compare meaning more directly | Costs more and sees only its shortlist |
+
+## When should you not use RRF?
+
+- You have only one retriever, so there is nothing to fuse.
+- Score gaps carry reliable meaning that you do not want to discard.
+- Your lanes return nearly the same results, so fusion adds little new evidence.
+- You need a calibrated confidence value. An RRF score is not a probability.
+- You have enough judged data to train and validate a better ranking model.
+
+MESA Core uses weighted RRF with k = 60, vector weight 8 and weight 1 for BM25, assertion and graph lanes. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
 
 ## Recalculate after a weight change
 
@@ -770,13 +1008,38 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 >
 > **Answer:** A, B, C keep the lexical order. D has zero contribution; whether zero-score candidates are excluded is an explicit output policy. Do not interpret the zero as proof that D is false or irrelevant.
 
+## RRF questions
+
+**Does RRF need score normalization?**
+: No. RRF uses ranks, so BM25 and vector scores do not need a shared scale.
+
+**What is a good k value for RRF?**
+: Start with 60, then compare a few values such as 10, 30 and 100 on judged questions from your own data.
+
+**Does RRF rank start at 0 or 1?**
+: The original formula and Elasticsearch use ranks starting at 1. Keep this consistent, because zero-based ranks change every contribution.
+
+**What happens if a document is missing from one list?**
+: That list contributes 0 for the document. Its other lists still count.
+
+**Is a higher RRF score a confidence score?**
+: No. It is useful for ordering results in one query. Do not read it as a probability that the answer is correct.
+
 ## Sources and further reading
 
-1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+1. [Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 2. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
+3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
+4. [Microsoft Learn · Hybrid search scoring (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'Reciprocal Rank Fusion: calculate and inspect every vote — MESA Learn', 'Fuse two ranked lists by hand, handle duplicates and ties, and understand why an RRF score is not confidence.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'tr', 'RRF: iki sıralama nasıl birleştirilir?', '', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', '## Farklı listelerdeki sıraları kullanın
+', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 6, 'published', 'What Is RRF? Reciprocal Rank Fusion and k=60 — MESA', 'Reciprocal Rank Fusion (RRF) merges ranked lists using positions, not raw scores. Learn the formula, a worked example, why k is often 60 and when to avoid it.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'tr', 'RRF nedir? Reciprocal Rank Fusion nasıl çalışır?', '', 'RRF, arama sonuçlarını ham puanlar yerine listedeki sıralarıyla birleştirir. Formülü öğrenin, örneği hesaplayın ve k değerini seçin.', 'Reciprocal Rank Fusion (RRF), birden fazla sıralı listeyi tek listede birleştirir. Her sonuç, bulunduğu her listeden 1/(k + sıra) katkısı alır ve sonuçlar toplam katkıya göre sıralanır. Konumları kullandığı için BM25 ile vektör aramayı puanları normalize etmeden birleştirebilir.', '## RRF nedir?
+
+Reciprocal Rank Fusion (RRF), birden fazla sıralı sonuç listesini tek listeye dönüştüren bir sıralama birleştirme yöntemidir. Listenin üst sıralarındaki sonuç daha büyük katkı alır. Birden fazla listede bulunan sonuç ise bu katkıları toplar.
+
+RRF hibrit aramada sık kullanılır, çünkü BM25 puanları ile vektör benzerlikleri farklı ölçeklerdedir. RRF bu ham değerleri yok sayar ve yalnızca sonucun sırasını kullanır.
+
+## Farklı listelerdeki sıraları kullanın
 
 Atlas arşivinde iki arama yöntemi farklı listeler üretsin: Sözcük tabanlı liste A, B, C; anlamsal liste B, C, D olsun. Ham puanları aynı ölçekteymiş gibi toplamadan bu listeleri birleştirmek istiyorsunuz. Reciprocal Rank Fusion (RRF), her konuma giderek azalan bir katkı verir ve aynı adayın farklı listelerdeki katkılarını toplar. Hesabı açık, basit bir başlangıç yöntemidir.
 
@@ -785,9 +1048,9 @@ Cormack, Clarke ve Büttcher, yöntemi belirli arama deneylerinde değerlendirdi
 ## Sıralamayı birden başlatın
 
 ```text
-RRF(d) = sum over lanes containing d: w_lane / (k + rank_lane(d))
-rank starts at 1; missing candidate contributes 0.
-Example below: k = 60, every weight = 1.
+RRF(d) = d’yi içeren kanallar üzerinden toplam: w_kanal / (k + sıra_kanal(d))
+Sıra 1’den başlar; listede olmayan aday 0 katkı alır.
+Aşağıdaki örnek: k = 60, tüm ağırlıklar = 1.
 ```
 
 | Aday | Sözcüksel sıra | Yoğun sıra | RRF katkı toplamı |
@@ -812,11 +1075,47 @@ Birleşen liste B, C, A, D olur. A tek kanalda birinci olsa da iki listede birde
 
 *Sonuç bir sıra sinyalidir; kalibre edilmiş olasılık değildir.*
 
+## RRF’de k neden çoğu zaman 60?
+
+Bu değer [2009 tarihli özgün SIGIR makalesinden](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf) gelir. Cormack, Clarke ve Büttcher, k = 60 değerini pilot çalışmada sabitlemiş ve doğrulama sırasında değiştirmemiştir. Pilot sonuçlarında 60’ın optimuma yakın olduğunu, ancak seçimin kritik olmadığını bildirmişlerdir.
+
+Arama sistemleri çoğu zaman bu başlangıç noktasını korur. [Elasticsearch](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) `rank_constant` değerini varsayılan olarak 60 yapar. [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking) da 60’ı deneylerde iyi sonuç veren küçük bir değer olarak anar. Bunlar, 60’ın sizin belgeleriniz için en iyi değer olduğunu kanıtlamaz.
+
+| k | 1. sıra | 2. sıra | 10. sıra | 1. sıra / 10. sıra |
+| --- | --- | --- | --- | --- |
+| 1 | 0,5000 | 0,3333 | 0,0909 | 5,50× |
+| 10 | 0,0909 | 0,0833 | 0,0500 | 1,82× |
+| 60 | 0,0164 | 0,0161 | 0,0143 | 1,15× |
+
+Son sütun, k değerinin üst sıraları ne kadar öne çıkardığını gösterir. k = 1 iken birinci sıra, onuncu sıranın 5,50 katı değerlidir. k = 60 iken bu oran yalnızca 1,15’tir; yani listeler arasındaki uyum, tek bir birincilikten daha önemli hâle gelir.
+
+> [!NOTE]
+> **İki farklı k değerini karıştırmayın**
+> Vektör aramada k çoğu zaman döndürülecek en yakın komşu sayısıdır. RRF’deki k ise ayrı bir yumuşatma sabitidir.
+
 ## Uç durumları dağıtımdan önce belirleyin
 
 Katkıları toplamadan önce her kanalın kendi içindeki tekrarları ayıklayın. Aynı kimliğin iki kez dönmesi iki katkı sayılırsa yöntem değişir. Kimliğin belgeyi mi, pasajı mı, bilgi kaydını mı gösterdiğini belirleyin. Kanallar farklı birimler döndürüyorsa önce ortak birimde eşleştirin. Metnin aynı olması tek başına güvenilir kimlik eşleştirmesi değildir.
 
 Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve belgelenmiş bir kural kullanın. Ağırlıklı birleştirmede sonlu olmayan ağırlıkları reddedin; sıfır ağırlığın kanalı kapatıp kapatmadığını açıkça belirleyin. Aynı arama yönteminin iki kopyasına tam ağırlık vermek aynı dayanağı iki kez sayabilir. Çok katkı alması, yanlış veya yetkisiz bir kaynağı kabul edilebilir yapmaz.
+
+## RRF, puan normalizasyonu ve yeniden sıralama farkı
+
+| Yöntem | Kullandığı bilgi | Güçlü yanı | Temel sınırı |
+| --- | --- | --- | --- |
+| RRF | Sıralar | Basittir; eğitim veya puan kalibrasyonu istemez | Puan farkının büyüklüğünü yok sayar |
+| Puan normalizasyonu | Yeniden ölçeklenmiş puanlar | Puan farklarını korur | Normalizasyona ve puan dağılımına bağlıdır |
+| Cross-encoder ile yeniden sıralama | Sorgu ve pasaj metni | Anlamı daha doğrudan karşılaştırabilir | Daha pahalıdır ve yalnızca kısa listeyi görür |
+
+## RRF ne zaman kullanılmamalı?
+
+- Tek bir arama yönteminiz varsa birleştirilecek liste yoktur.
+- Puan farkları güvenilir bir anlam taşıyorsa ve bunu kaybetmek istemiyorsanız.
+- Kanallar neredeyse aynı sonuçları döndürüyorsa birleştirme az yeni kanıt ekler.
+- Kalibre edilmiş bir güven değeri gerekiyorsa. RRF puanı olasılık değildir.
+- Daha iyi bir sıralama modelini eğitip doğrulayacak kadar etiketli veriniz varsa.
+
+MESA Core, k = 60 ile ağırlıklı RRF kullanır; vektör ağırlığı 8, BM25, bilgi kaydı ve çizge kanallarının ağırlığı 1’dir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
 
 ## Ağırlık değişince yeniden hesaplayın
 
@@ -826,12 +1125,31 @@ Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve bel
 >
 > **Açıklama:** A, B, C sözcüksel sırada kalır. D sıfır katkı alır; sıfır skorlu adayın çıkarılması açık çıktı politikasıdır. Sıfır, D’nin yanlış veya ilgisiz olduğunu kanıtlamaz.
 
+## RRF hakkında sorular
+
+**RRF puan normalizasyonu gerektirir mi?**
+: Hayır. RRF sıraları kullandığı için BM25 ve vektör puanlarının ortak ölçekte olması gerekmez.
+
+**RRF için iyi bir k değeri nedir?**
+: 60 ile başlayın, ardından 10, 30 ve 100 gibi birkaç değeri kendi verinizdeki etiketli sorularla karşılaştırın.
+
+**RRF’de sıra 0’dan mı 1’den mi başlar?**
+: Özgün formül ve Elasticsearch sırayı 1’den başlatır. Bunu tutarlı kullanın, çünkü sıfır tabanlı sıra bütün katkıları değiştirir.
+
+**Belge bir listede yoksa ne olur?**
+: O liste belgeye 0 katkı verir. Belgenin bulunduğu diğer listeler sayılmaya devam eder.
+
+**Yüksek RRF puanı güven puanı mıdır?**
+: Hayır. Tek bir sorgudaki sonuçları sıralamak için kullanışlıdır. Yanıtın doğru olma olasılığı olarak okunmamalıdır.
+
 ## Kaynaklar ve ileri okuma
 
-1. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+1. [Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 2. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
+3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
+4. [Microsoft Learn · Hibrit arama puanlaması (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 5, 'published', 'RRF: iki sıralama nasıl birleştirilir? — MESA', 'İki sonuç listesini adım adım birleştirin; tekrarları, eşit puanları ve ağırlıkları inceleyin. RRF puanının neden doğruluk olasılığı olmadığını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 6, 'published', 'RRF Nedir? Reciprocal Rank Fusion ve k=60 — MESA', 'RRF, sonuç listelerini ham puanlar yerine sıralarıyla birleştirir. Formülü, çözümlü örneği, k değerinin neden çoğu zaman 60 olduğunu ve sınırlarını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'en', 'Knowledge graphs: follow relations without inventing proof', '', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', '## A relationship needs identity and evidence
 
 A text search finds passages. A graph query follows explicitly represented relationships. For the fictional Atlas archive, create nodes for the reading room, archive and district, then edges for “part of” and “located in”. Use stable node IDs and link each asserted edge to the source revision that supports it. A label such as “Central” is not enough to resolve identity.
@@ -1189,13 +1507,17 @@ MESA Core v0.9.3 uses one combined owner per root and treats LanceDB/Kùzu as pr
 >
 > **Answer:** First inspect the original mutation status. Retry using the declared idempotency contract if appropriate. A fresh ID may duplicate an already admitted operation; a timeout is an observation failure, not proof of rollback.
 
+> [!NOTE]
+> **Example: one local SQLite file**
+> [MESA Lore](/lore/) stores coding agent sessions and notes in one local SQLite file and searches them without an LLM.
+
 ## Sources and further reading
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
 3. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
 
-', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Canonical storage and projections: survive a partial write — MESA Learn', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Canonical storage and projections: survive a partial write — MESA Learn', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'tr', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak', '', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', '## Hangi deponun asıl kayıt olacağını belirleyin
 
 Bir hafıza uygulaması asıl kayıtlar için SQL, benzerlik araması için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa bir kaydın hâlâ var ve etkin olduğuna hangisi karar verecek? Ana kayıt deposu bu kararın dayanağıdır. Diğer arama görünümleri, asıl veriden tanımlı bir dönüşümle yeniden üretilebilir. “Türetilmiş” olmaları önemsiz olduklarını değil, asıl kayıt yerine geçmediklerini anlatır.
@@ -1235,13 +1557,17 @@ MESA Core v0.9.3’de her veri dizinini tek combined süreci yönetir; LanceDB v
 >
 > **Açıklama:** Önce ilk işlemin durumunu kontrol edin. Yeniden deneme uygunsa aynı işlem kimliği ve güvenli tekrar kurallarıyla ilerleyin. Yeni kimlik, zaten kabul edilmiş işlemi çoğaltabilir. Zaman aşımı, istemcinin sonucu göremediğini gösterir; işlemin geri alındığını göstermez.
 
+> [!NOTE]
+> **Örnek: tek yerel SQLite dosyası**
+> [MESA Lore](/lore/), kodlama ajanı oturumlarını ve notlarını tek bir yerel SQLite dosyasında saklar ve LLM kullanmadan arar.
+
 ## Kaynaklar ve ileri okuma
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
 3. [MESA Core v0.9.3 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/531209bc45805b478264f6dfa8a9e40a94e345cb/docs/architecture-v4.md)
 
-', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'en', 'Changing facts: validity, contradiction and forgetting', '', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', '## Two clocks answer different questions
 
 The archive announces a new Friday opening time on 18 October, effective 1 November. The system learns the announcement on 20 October. “What is the opening time today?” and “What had our system recorded by 19 October?” are different questions. A single `updated_at` field cannot represent both meanings reliably.

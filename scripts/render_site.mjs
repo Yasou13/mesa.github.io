@@ -733,6 +733,8 @@ function mcpPage() {
         </article>
       </section>
 
+      <p class="docs-lore-note">${hubText('This page covers MESA Core. To search past Claude Code or Codex sessions, use <a href="' + route('lore/') + '">MESA Lore</a>, a separate local MCP memory server.', 'Bu sayfa MESA Core içindir. Geçmiş Claude Code veya Codex oturumlarını aramak için ayrı bir yerel MCP hafıza sunucusu olan <a href="' + route('lore/') + '">MESA Lore</a>’u kullanın.')}</p>
+
       <section id="bridge-tools" class="tool-section">
         <div class="section-heading">
           <div>

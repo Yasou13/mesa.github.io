@@ -11,7 +11,7 @@ category: "Evidence & Trust"
 tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-23"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -61,6 +61,10 @@ MESA Core v0.9.3 uses one combined owner per root and treats LanceDB/Kùzu as pr
 > A client times out after the vector write. Should it create a fresh mutation with a fresh ID immediately?
 >
 > **Answer:** First inspect the original mutation status. Retry using the declared idempotency contract if appropriate. A fresh ID may duplicate an already admitted operation; a timeout is an observation failure, not proof of rollback.
+
+> [!NOTE]
+> **Example: one local SQLite file**
+> [MESA Lore](/lore/) stores coding agent sessions and notes in one local SQLite file and searches them without an LLM.
 
 ## Sources and further reading
 
