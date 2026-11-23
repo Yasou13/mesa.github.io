@@ -90,3 +90,7 @@ Karara dayanmayın. Aramada çıkmaması tek başına kararın uydurma olduğunu
 2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
 3. [Memurlar.net · Yapay zekâ atfı soruşturması haberi](https://memurlar.net/haber/1170388/)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Yazılım atıfı bulabilir ama doğrulayamaz. [MESA’nın kural çıkarıcısı](/research/turkish-legal-citation-extraction/) etiketli parçalarda karar künyelerini tanıdı; yine de kararın var olup olmadığını denetlemez.
+

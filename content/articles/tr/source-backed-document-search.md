@@ -103,3 +103,7 @@ Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde C
 2. [MESA Core · CLI referansı](docs/core/cli-reference/)
 3. [PyPI’da mesa-memory 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Arama sonuçları çıkarılmış hukuki öğeler taşıyabilir. [Bu çıkarıcıyı](/research/turkish-legal-citation-extraction/) 150 etiketli parçada ölçtük (MESA 0.9.4): 357 doğru öğe, 25 yanlış sonuç, 18 eksik.
+

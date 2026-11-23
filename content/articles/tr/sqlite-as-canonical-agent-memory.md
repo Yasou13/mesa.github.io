@@ -54,6 +54,10 @@ SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme
 
 MESA Core v0.9.4’te her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> MESA 0.9.4, [eski V3 deposunu kaldırdı](/research/deleting-code-mesa-0-9-4/). Silmeden sonra 128 dev sorusunun tamamında arama sırası aynı kaldı (benchmark v2, Tier M, modeller kapalı).
+
 ## Zaman aşımını yorumlayın
 
 > [!EXERCISE]

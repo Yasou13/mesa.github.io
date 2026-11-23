@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["hybrid", "reranking", "candidate recall", "cross encoder", "hibrit", "yeniden sıralama", "aday"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-11-23"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "Hibrit Arama Nedir? BM25 ve Vektör Arama — MESA"
@@ -87,6 +87,31 @@ Bir yöntem kanıtı zaten buluyorsa ve ikinci kanal yalnızca gecikme ekliyorsa
 4. [Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/) ile k = 60’tan başlayarak birleştirin.
 5. Etiketli sorularda Recall, MRR veya nDCG ölçün.
 6. Yeniden sıralayıcıyı yalnızca doğru kanıt adaylarda olduğu hâlde alt sıralarda kalıyorsa ekleyin.
+
+## MESA’da ne ölçtük?
+
+Türkçe hukuk dev kümemizde eklenen her aşama sonucu iyileştirdi; her biri de zaman maliyeti getirdi.
+
+| MESA 0.9.4 varsayılanları, dev, Tier M | MRR | Hit@5 | Arama p50 |
+| --- | --- | --- | --- |
+| T0: yalnızca sözcük araması, modeller kapalı | 0,3954 | 0,5446 | 0,33 sn |
+| T1b: + bge-m3 gömme vektörleri | 0,6487 | 0,7768 | 1,64 sn |
+| T2: + bge-reranker-v2-m3 | 0,7945 | 0,9107 | 2,27 sn |
+
+| Kategoriye göre pasaj Hit@5, dev (soru) | T0 | T1b | T2 |
+| --- | --- | --- | --- |
+| Birebir ifade (31) | 0,6774 | 0,8710 | 0,9355 |
+| Sayı, tarih, esas no (35) | 0,6286 | 0,8571 | 0,9429 |
+| Yeniden ifade (32) | 0,5312 | 0,7812 | 0,9375 |
+| Çok belgeli (14) | 0,0714 | 0,3571 | 0,7143 |
+
+> [!NOTE]
+> **Kurulum**
+> Yayımlanan MESA 0.9.4, tek bir Colab NVIDIA A100 80 GB ortamı, benchmark v2 dev bölümü, Tier M, 141 belge, 5.041 parça. İlgililik 112 yanıtlanabilir soruyu, gecikme 128 sorunun tamamını kullanır.
+
+Gömme vektörleri en çok, Türkçe sorgu sözcüklerinin kaynaktan sıkça ayrıldığı yeniden ifade sorularında işe yaradı. [BM25 analizimizde](/research/bm25-turkish-prefix-matching/) yeniden ifade sorularındaki 243 uygun terimin 119’u kanıtla hiç eşleşmedi. Birebir hukuki aramalar için sözcük kanalını korumak yine yararlıdır.
+
+Daha çok kanal her zaman yararlı değildir. [0.9.4 birleştirme varsayılanları](/research/what-improved-search-in-0-9-4/) T0 ve T1b dev Hit@5’i artırdı, T2 dev Hit@5’i ise 0,9286’dan 0,9107’ye düşürdü. Yeniden sıralamadan sonra model seçiminin etkisi de azaldı: [embedding karşılaştırmasında](/research/turkish-legal-embedding-comparison/) 112 sorunun 48’i yeniden sıralayıcı olmadan, 101’i onunla eşit sırada kaldı (MESA 0.9.3, benchmark v2 dev, Tier M).
 
 ## Hatayı konumlandırın
 

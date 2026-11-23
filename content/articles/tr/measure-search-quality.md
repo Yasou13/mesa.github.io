@@ -100,3 +100,7 @@ Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçe
 1. [MESA Learn · Arama kalitesini ölçmek](learn/evaluating-ndcg-and-mrr-in-memory/)
 2. [MESA · Arama değerlendirme yöntemi](methodology/retrieval-evaluation/)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Soru kuralları, puanlama ve açıklama için çalışılmış bir örnek olarak [benchmark v2’yi nasıl kurduğumuza](/research/turkish-legal-benchmark-v2/) bakın.
+

@@ -533,6 +533,24 @@ Record provider, model, revision, dimension, normalization and encoding instruct
 
 Identifiers, negation and near-duplicate versions expose limits. “Rule A-17 applies” and “Rule A-17 does not apply” may be semantically close. Use lexical retrieval for exact symbols and structured filters for validity. DPR and Sentence-BERT provide examples of learned dense retrieval and sentence representation, not a guarantee for every multilingual archive. [DPR](https://arxiv.org/abs/2004.04906), [Sentence-BERT](https://arxiv.org/abs/1908.10084).
 
+## What we measured in MESA
+
+We compared two 1,024-dimensional models on the same Turkish legal corpus. BAAI/bge-m3 was ahead overall, while the Turkish model Mürşit Large led on number, date and docket questions without a reranker.
+
+| MESA 0.9.3, dev, Tier M, T1 | bge-m3 | Mürşit Large |
+| --- | --- | --- |
+| MRR | 0.5758 | 0.5626 |
+| Hit@1 | 0.4375 | 0.4464 |
+| Hit@5 | 0.7411 | 0.6875 |
+| Hit@5, paraphrase (32 questions) | 0.7188 | 0.5938 |
+| Hit@5, number/date/docket (35 questions) | 0.8286 | 0.8571 |
+
+The overall gap is six of 112 answerable questions, so it may not hold on another sample. Read the setup and limits in the [embedding comparison](/research/turkish-legal-embedding-comparison/).
+
+Embeddings also have a cost. With MESA 0.9.4 defaults on benchmark v2 dev, adding bge-m3 raised Hit@5 from 0.5446 to 0.7768. Median search time rose from 0.33 s to 1.64 s, and ingestion of 141 documents rose from 399.44 s to 637.68 s (one Colab A100 runtime).
+
+Model identity matters in practice. MESA changed its default from a 768-dimensional model to bge-m3 in 0.9.3. An older store must keep both its model and dimension settings, or be rebuilt before switching.
+
 ## Explain a suspicious improvement
 
 > [!EXERCISE]
@@ -547,7 +565,7 @@ Identifiers, negation and near-duplicate versions expose limits. “Rule A-17 ap
 2. [Reimers & Gurevych (2019) · Sentence-BERT](https://arxiv.org/abs/1908.10084)
 3. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 
-', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 5, 'published', 'Embeddings and semantic search, with numbers — MESA Learn', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 6, 'published', 'Embeddings and semantic search, with numbers — MESA Learn', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('semantic-search', 'learn', 'tr', 'Anlamsal arama: vektörler neyi anlatır?', '', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', '## Embedding neyi temsil eder?
 
 Bir sayısal temsil (embedding) modeli, girdiyi vektör hâlinde düzenlenmiş sayılara dönüştürür. Eğitim sırasında bazı anlam ilişkileri bu uzaydaki yakınlığa yansır. Örneğin “Açılış saatleri” başlıklı belge, ortak sözcük bulunmasa da “Ne zaman girebilirim?” sorusuna yakın çıkabilir. Bu yöntem aday bulmaya yardımcı olur. Ancak vektörün boyutları “doğruluk”, “erişim izni” veya “güncellik” gibi açıkça adlandırılmış alanlar değildir.
@@ -587,6 +605,24 @@ Sağlayıcıyı, modeli, model sürümünü, boyut sayısını, normalizasyonu v
 
 Kimlik numaraları, olumsuzluklar ve birbirine benzeyen belge sürümleri anlamsal aramanın sınırlarını gösterir. “A-17 kuralı uygulanır” ile “A-17 kuralı uygulanmaz” yakın vektörler üretebilir. Tam kodlar için sözcük tabanlı aramadan, geçerlilik için yapılandırılmış filtrelerden yararlanın. DPR ve Sentence-BERT, öğrenilmiş yoğun arama ve cümle temsili örnekleridir; her çok dilli arşivde aynı başarıyı garanti etmez. [DPR](https://arxiv.org/abs/2004.04906) [Sentence-BERT](https://arxiv.org/abs/1908.10084)
 
+## MESA’da ne ölçtük?
+
+1.024 boyutlu iki modeli aynı Türkçe hukuk derleminde karşılaştırdık. BAAI/bge-m3 genel olarak öndeydi; Türkçe model Mürşit Large ise yeniden sıralama olmadan sayı, tarih ve esas numarası sorularında öne geçti.
+
+| MESA 0.9.3, dev, Tier M, T1 | bge-m3 | Mürşit Large |
+| --- | --- | --- |
+| MRR | 0,5758 | 0,5626 |
+| Hit@1 | 0,4375 | 0,4464 |
+| Hit@5 | 0,7411 | 0,6875 |
+| Hit@5, yeniden ifade (32 soru) | 0,7188 | 0,5938 |
+| Hit@5, sayı/tarih/esas no (35 soru) | 0,8286 | 0,8571 |
+
+Genel fark 112 yanıtlanabilir sorunun altısıdır; başka bir örneklemde korunmayabilir. Kurulum ve sınırlar için [embedding karşılaştırmasını](/research/turkish-legal-embedding-comparison/) okuyun.
+
+Gömme vektörlerinin bir maliyeti de var. MESA 0.9.4 varsayılanlarıyla benchmark v2 dev kümesinde bge-m3 eklemek Hit@5’i 0,5446’dan 0,7768’e çıkardı. Ortanca arama süresi 0,33 sn’den 1,64 sn’ye, 141 belgenin alımı 399,44 sn’den 637,68 sn’ye yükseldi (tek Colab A100 ortamı).
+
+Model kimliği uygulamada önemlidir. MESA, 0.9.3’te varsayılanını 768 boyutlu bir modelden bge-m3’e geçirdi. Eski bir depo hem model hem boyut ayarını korumalı ya da geçişten önce yeniden oluşturulmalıdır.
+
 ## Model değişikliğini değerlendirin
 
 > [!EXERCISE]
@@ -601,7 +637,7 @@ Kimlik numaraları, olumsuzluklar ve birbirine benzeyen belge sürümleri anlams
 2. [Reimers & Gurevych (2019) · Sentence-BERT](https://arxiv.org/abs/1908.10084)
 3. [Thakur et al. (2021) · BEIR](https://arxiv.org/abs/2104.08663)
 
-', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 5, 'published', 'Anlamsal arama: vektörler neyi anlatır? — MESA', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['embedding', 'dense', 'sparse', 'cosine', 'vector', 'vektör', 'kosinüs', 'anlamsal arama']::text[], 'MESA contributors', 6, 'published', 'Anlamsal arama: vektörler neyi anlatır? — MESA', 'Sayısal temsillerin nasıl karşılaştırıldığını örneklerle görün. Benzerliğin neden doğruluk veya erişim izni anlamına gelmediğini öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-tuning-for-domain-documents', 'learn', 'en', 'BM25: why a rare word can beat repeated words', '', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', '## Three questions behind lexical ranking
 
 For “Atlas Friday hours”, a lexical retriever finds passages containing query terms. It needs to decide which match matters most. BM25 combines term rarity, within-document frequency and a correction for document length. Repeating “hours” fifty times should not make a long irrelevant document unbeatable; an uncommon identifier may be a more discriminating clue.
@@ -650,6 +686,30 @@ For Turkish, inspect dotted/dotless I, inflections and diacritics using real que
 
 SQLite FTS5 uses fixed `k1=1.2` and `b=0.75`; its `bm25(table, ...)` arguments are column weights, not these parameters. It also returns smaller values for better matches, so ascending order is intentional. Do not copy a descending-score rule from another engine. Our worked formula uses an explicit IDF variant; FTS5’s exact scoring definition is in its own reference. [FTS5](https://www.sqlite.org/fts5.html).
 
+## Why is Turkish harder for BM25?
+
+BM25 matches whole tokens, and Turkish adds suffixes to stems. `sözleşme`, `sözleşmesinin` and `sözleşmelerinde` are three index terms. In our 141-document legal corpus, the prefix `karar` covers 87 distinct forms, `yonet` 55, `sozle` 44 and `madde` 39.
+
+- Suffixes split one concept across many terms, which also splits its term statistics.
+- A shared prefix can join unrelated words. `sözle*` finds `sözleşmesinin`, and it also finds `sözlerini`.
+- Default lowercasing maps `I` to `i`, while Turkish maps it to `ı`. SQLite’s `unicode61` tokenizer stores `YARGITAY` as `yargitay` and `Yargıtay` as `yargıtay`.
+- Numbers need exact matching. A law number such as `6098` must not match by prefix.
+
+## What we measured in MESA
+
+MESA 0.9.4 searches the first five characters of query tokens with 6 or more characters and no digits. We tested how often that matters on 112 answerable Turkish legal dev questions.
+
+| Eligible query terms against gold evidence | Count | Share |
+| --- | --- | --- |
+| Found exactly | 290 | 33.2% |
+| Found only through the 5-character prefix | 252 | 28.9% |
+| Not found | 331 | 37.9% |
+| Total | 873 | 100% |
+
+Those numbers suggest a large opportunity, but the measured gain was small. Prefix matching moved Hit@5 from 50/112 to 52/112: four questions entered the top 5 and two left it (pre-release 0.9.4 build, benchmark v2 dev, Tier M, models off, shared store).
+
+Read the method, examples and limits in [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/). Larger gains came from [changing fusion weights](/research/what-improved-search-in-0-9-4/).
+
 ## Choose the first debugging step
 
 > [!EXERCISE]
@@ -663,7 +723,7 @@ SQLite FTS5 uses fixed `k1=1.2` and `b=0.75`; its `bm25(table, ...)` arguments a
 1. [Manning, Raghavan & Schütze · Okapi BM25](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
 2. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 
-', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 5, 'published', 'BM25: why a rare word can beat repeated words — MESA Learn', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 7, 'published', 'BM25: why a rare word can beat repeated words — MESA Learn', 'Work through term frequency, rarity and length normalization. Tune tokenization and field weights before chasing a larger model.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-tuning-for-domain-documents', 'learn', 'tr', 'BM25: bir sözcük ne zaman daha önemli olur?', '', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', '## Sözcüksel sıralamanın arkasındaki üç soru
 
 “Atlas cuma saatleri” sorgusunda sözcük tabanlı arama, bu terimleri içeren pasajları bulur. BM25 hangi eşleşmenin daha önemli olduğuna karar verirken sözcüğün nadirliğini, belge içindeki sıklığını ve belge uzunluğunu birlikte kullanır. “Saat” sözcüğünü elli kez yineleyen ilgisiz bir belge sırf bu yüzden öne çıkmamalıdır. Nadir bir kimlik kodu çok daha ayırt edici olabilir.
@@ -712,6 +772,30 @@ Türkçe sorgu ve belgelerde noktalı/noktasız I, ekler ve düzeltme işaretler
 
 SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanları bu parametreler değil sütun ağırlıklarıdır. Daha iyi eşleşmeye daha küçük değer döndürdüğü için artan sıralama bilinçlidir. Başka motordan azalan-skor kuralı kopyalamayın. Hesap örneğimiz belirli bir IDF çeşidi kullanır; FTS5’in tam tanımı kendi referansındadır. [FTS5](https://www.sqlite.org/fts5.html).
 
+## Türkçe BM25 için neden daha zordur?
+
+BM25 tam token eşleştirir; Türkçe ise köklere ek getirir. `sözleşme`, `sözleşmesinin` ve `sözleşmelerinde` üç ayrı dizin terimidir. 141 belgelik hukuk derlemimizde `karar` öneki 87, `yonet` 55, `sozle` 44, `madde` 39 farklı biçimi kapsıyor.
+
+- Ekler tek kavramı birçok terime böler; terim istatistikleri de bölünür.
+- Ortak önek ilgisiz sözcükleri birleştirebilir. `sözle*`, `sözleşmesinin` biçimini bulur; `sözlerini` sözcüğünü de bulur.
+- Varsayılan küçük harf dönüşümü `I` harfini `i` yapar; Türkçede ise `ı` olmalıdır. SQLite’ın `unicode61` tokenizer’ı `YARGITAY` sözcüğünü `yargitay`, `Yargıtay` sözcüğünü `yargıtay` olarak saklar.
+- Sayılar birebir eşleşmelidir. `6098` gibi bir kanun numarası önekle eşleşmemelidir.
+
+## MESA’da ne ölçtük?
+
+MESA 0.9.4, 6 veya daha uzun olan ve rakam içermeyen sorgu token’larının ilk beş karakterini arar. Bunun ne kadar önemli olduğunu 112 yanıtlanabilir Türkçe hukuk dev sorusunda ölçtük.
+
+| Uygun sorgu terimlerinin doğru kanıtla eşleşmesi | Sayı | Pay |
+| --- | --- | --- |
+| Birebir bulundu | 290 | %33,2 |
+| Yalnızca 5 karakterlik önekle bulundu | 252 | %28,9 |
+| Bulunamadı | 331 | %37,9 |
+| Toplam | 873 | %100 |
+
+Bu sayılar büyük bir fırsat varmış gibi gösteriyor; ama ölçülen kazanç küçüktü. Önek eşleştirme Hit@5’i 50/112’den 52/112’ye taşıdı: dört soru ilk 5’e girdi, iki soru çıktı (0.9.4 öncesi derleme, benchmark v2 dev, Tier M, modeller kapalı, ortak depo).
+
+Yöntem, örnekler ve sınırlar için [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısını okuyun. Daha büyük kazançlar [birleştirme ağırlıklarını değiştirmekten](/research/what-improved-search-in-0-9-4/) geldi.
+
 ## İlk teşhis adımını seçin
 
 > [!EXERCISE]
@@ -725,7 +809,7 @@ SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanlar
 1. [Manning, Raghavan & Schütze · Okapi BM25](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
 2. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 
-', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 5, 'published', 'BM25: bir sözcük ne zaman daha önemli olur? — MESA', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-18T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['BM25', 'IDF', 'tokenization', 'FTS5', 'lexical', 'sözcüksel', 'Türkçe', 'tokenizasyon']::text[], 'MESA contributors', 7, 'published', 'BM25: bir sözcük ne zaman daha önemli olur? — MESA', 'Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'en', 'What is hybrid search? BM25, vectors and reranking', '', 'Hybrid search combines keyword and vector retrieval. Learn when it helps, how to fuse results and which stage to fix when search fails.', 'Hybrid search runs keyword search, usually BM25, and vector search for the same query, then combines their results. Keyword search preserves exact terms, while vector search can match different wording. It helps when each method finds relevant results the other misses.', '## What is hybrid search?
 
 Hybrid search, also called hybrid retrieval, combines at least two retrieval methods in one search pipeline. The common pair is BM25 keyword search and dense vector search. Each method returns candidates, a fusion step such as RRF merges them, and an optional reranker refines the top results.
@@ -791,6 +875,31 @@ Keep one method if it already finds the evidence and a second lane adds only lat
 5. Measure recall, MRR or nDCG on judged questions.
 6. Add a reranker only if the right evidence is already in the candidates but ranks too low.
 
+## What we measured in MESA
+
+Each added stage helped on our Turkish legal dev set, and each one cost time.
+
+| MESA 0.9.4 defaults, dev, Tier M | MRR | Hit@5 | Search p50 |
+| --- | --- | --- | --- |
+| T0: lexical only, models off | 0.3954 | 0.5446 | 0.33 s |
+| T1b: + bge-m3 embeddings | 0.6487 | 0.7768 | 1.64 s |
+| T2: + bge-reranker-v2-m3 | 0.7945 | 0.9107 | 2.27 s |
+
+| Passage Hit@5 by category, dev (questions) | T0 | T1b | T2 |
+| --- | --- | --- | --- |
+| Exact wording (31) | 0.6774 | 0.8710 | 0.9355 |
+| Number, date, docket (35) | 0.6286 | 0.8571 | 0.9429 |
+| Paraphrase (32) | 0.5312 | 0.7812 | 0.9375 |
+| Cross-document (14) | 0.0714 | 0.3571 | 0.7143 |
+
+> [!NOTE]
+> **Setup**
+> Published MESA 0.9.4, one Colab NVIDIA A100 80 GB runtime, benchmark v2 dev split, Tier M, 141 documents, 5,041 chunks. Relevance uses 112 answerable questions and latency uses all 128.
+
+Embeddings helped most on paraphrases, where Turkish query words often differ from the source. In our [BM25 analysis](/research/bm25-turkish-prefix-matching/), 119 of 243 eligible paraphrase query terms did not match the evidence at all. Exact legal lookups still benefit from keeping a lexical lane.
+
+More lanes do not always help. [The 0.9.4 fusion defaults](/research/what-improved-search-in-0-9-4/) raised T0 and T1b dev Hit@5, but lowered T2 dev Hit@5 from 0.9286 to 0.9107. Model choice also mattered less after reranking: the [embedding comparison](/research/turkish-legal-embedding-comparison/) found 48 tied questions without a reranker and 101 with one, out of 112 (MESA 0.9.3, benchmark v2 dev, Tier M).
+
 ## Locate the failure
 
 > [!EXERCISE]
@@ -820,7 +929,7 @@ Keep one method if it already finds the evidence and a second lane adds only lat
 3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 4. [Microsoft Learn · Hybrid search scoring (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'What Is Hybrid Search? BM25 and Vector Search — MESA', 'Hybrid search combines keyword and vector retrieval. Learn when BM25 plus vectors helps, how fusion and reranking work and how to measure the result.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 7, 'published', 'What Is Hybrid Search? BM25 and Vector Search — MESA', 'Hybrid search combines keyword and vector retrieval. Learn when BM25 plus vectors helps, how fusion and reranking work and how to measure the result.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('hybrid-retrieval-explained', 'learn', 'tr', 'Hibrit arama nedir? BM25, vektörler ve yeniden sıralama', '', 'Hibrit arama, sözcük ve vektör aramayı birleştirir. Ne zaman işe yaradığını, sonuçların nasıl birleştirildiğini ve hatanın hangi aşamada olduğunu öğrenin.', 'Hibrit arama, aynı sorgu için sözcük aramasını (genellikle BM25) ve vektör aramayı çalıştırıp sonuçlarını birleştirir. Sözcük araması tam terimleri korur, vektör arama ise farklı ifadeleri eşleştirebilir. Her yöntem diğerinin kaçırdığı ilgili sonuçları buluyorsa işe yarar.', '## Hibrit arama nedir?
 
 Hibrit arama, en az iki arama yöntemini tek akışta birleştirir. En yaygın ikili BM25 sözcük araması ve yoğun vektör aramadır. Her yöntem aday döndürür, RRF gibi bir birleştirme adımı bunları tek listede toplar ve isteğe bağlı bir yeniden sıralayıcı üst sonuçları iyileştirir.
@@ -886,6 +995,31 @@ Bir yöntem kanıtı zaten buluyorsa ve ikinci kanal yalnızca gecikme ekliyorsa
 5. Etiketli sorularda Recall, MRR veya nDCG ölçün.
 6. Yeniden sıralayıcıyı yalnızca doğru kanıt adaylarda olduğu hâlde alt sıralarda kalıyorsa ekleyin.
 
+## MESA’da ne ölçtük?
+
+Türkçe hukuk dev kümemizde eklenen her aşama sonucu iyileştirdi; her biri de zaman maliyeti getirdi.
+
+| MESA 0.9.4 varsayılanları, dev, Tier M | MRR | Hit@5 | Arama p50 |
+| --- | --- | --- | --- |
+| T0: yalnızca sözcük araması, modeller kapalı | 0,3954 | 0,5446 | 0,33 sn |
+| T1b: + bge-m3 gömme vektörleri | 0,6487 | 0,7768 | 1,64 sn |
+| T2: + bge-reranker-v2-m3 | 0,7945 | 0,9107 | 2,27 sn |
+
+| Kategoriye göre pasaj Hit@5, dev (soru) | T0 | T1b | T2 |
+| --- | --- | --- | --- |
+| Birebir ifade (31) | 0,6774 | 0,8710 | 0,9355 |
+| Sayı, tarih, esas no (35) | 0,6286 | 0,8571 | 0,9429 |
+| Yeniden ifade (32) | 0,5312 | 0,7812 | 0,9375 |
+| Çok belgeli (14) | 0,0714 | 0,3571 | 0,7143 |
+
+> [!NOTE]
+> **Kurulum**
+> Yayımlanan MESA 0.9.4, tek bir Colab NVIDIA A100 80 GB ortamı, benchmark v2 dev bölümü, Tier M, 141 belge, 5.041 parça. İlgililik 112 yanıtlanabilir soruyu, gecikme 128 sorunun tamamını kullanır.
+
+Gömme vektörleri en çok, Türkçe sorgu sözcüklerinin kaynaktan sıkça ayrıldığı yeniden ifade sorularında işe yaradı. [BM25 analizimizde](/research/bm25-turkish-prefix-matching/) yeniden ifade sorularındaki 243 uygun terimin 119’u kanıtla hiç eşleşmedi. Birebir hukuki aramalar için sözcük kanalını korumak yine yararlıdır.
+
+Daha çok kanal her zaman yararlı değildir. [0.9.4 birleştirme varsayılanları](/research/what-improved-search-in-0-9-4/) T0 ve T1b dev Hit@5’i artırdı, T2 dev Hit@5’i ise 0,9286’dan 0,9107’ye düşürdü. Yeniden sıralamadan sonra model seçiminin etkisi de azaldı: [embedding karşılaştırmasında](/research/turkish-legal-embedding-comparison/) 112 sorunun 48’i yeniden sıralayıcı olmadan, 101’i onunla eşit sırada kaldı (MESA 0.9.3, benchmark v2 dev, Tier M).
+
 ## Hatayı konumlandırın
 
 > [!EXERCISE]
@@ -915,7 +1049,7 @@ Bir yöntem kanıtı zaten buluyorsa ve ikinci kanal yalnızca gecikme ekliyorsa
 3. [Cormack, Clarke & Büttcher (2009) · Reciprocal Rank Fusion](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 4. [Microsoft Learn · Hibrit arama puanlaması (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 5, 'published', 'Hibrit Arama Nedir? BM25 ve Vektör Arama — MESA', 'Hibrit arama, sözcük ve vektör aramayı birleştirir. BM25 ile vektörlerin ne zaman işe yaradığını, birleştirme ve yeniden sıralamayı, sonucu ölçmeyi öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['hybrid', 'reranking', 'candidate recall', 'cross encoder', 'hibrit', 'yeniden sıralama', 'aday']::text[], 'MESA contributors', 7, 'published', 'Hibrit Arama Nedir? BM25 ve Vektör Arama — MESA', 'Hibrit arama, sözcük ve vektör aramayı birleştirir. BM25 ile vektörlerin ne zaman işe yaradığını, birleştirme ve yeniden sıralamayı, sonucu ölçmeyi öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'en', 'What is Reciprocal Rank Fusion (RRF)?', '', 'RRF merges ranked search results using their positions instead of raw scores. Learn the formula, calculate an example and choose k.', 'Reciprocal Rank Fusion (RRF) combines several ranked lists into one. Each result receives 1/(k + rank) from every list that contains it, and the results are sorted by their total. Because it uses positions, it can combine BM25 and vector search without normalizing their scores.', '## What is RRF?
 
 Reciprocal Rank Fusion (RRF) is a rank fusion method: it turns several ranked result lists into one list. A result near the top of a list receives a larger contribution, and a result found by several lists adds those contributions together.
@@ -998,7 +1132,28 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 - You need a calibrated confidence value. An RRF score is not a probability.
 - You have enough judged data to train and validate a better ranking model.
 
-MESA Core uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and the graph lane off by default. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
+MESA Core 0.9.4 uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and graph weight 1. The graph lane is off by default, so its weight applies only when it is enabled. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
+
+## What we measured in MESA
+
+MESA’s vector weight of 8 came from a dev-set grid, not from theory. We changed only that weight and kept the other lanes at 1.
+
+| Vector weight | Hit@5, no reranker | MRR, no reranker | MRR, with reranker |
+| --- | --- | --- | --- |
+| 1 | 0.5176 | 0.3953 | 0.6816 |
+| 2 | 0.5765 | 0.4565 | 0.7055 |
+| 4 | 0.6588 | 0.5152 | 0.7069 |
+| 8 | 0.6706 | 0.5663 | 0.6973 |
+
+> [!NOTE]
+> **Setup**
+> 0.9.1 development build, benchmark v1 dev split, Tier M, 141 documents, 5,041 chunks, 85 answerable questions, bge-m3, graph on, search limit 50, reranker depth 50.
+
+Weight 8 was best without a reranker. With a reranker, weight 4 had a slightly higher MRR. Eight was also the largest value we tried, so we do not know whether a higher weight would do better. We have not rerun this grid on benchmark v2.
+
+A large weight changes the worked example above. With a dense weight of 8, the scores are B 0.147277, C 0.144905, D 0.126984 and A 0.016393. D now outranks A, even though A was first in the lexical list.
+
+Equal RRF scores are also common. In a [fresh-store test](/research/why-two-search-runs-differed/), random tie-breaks changed ranks on 49 of 112 answerable questions (benchmark v2 dev, Tier M, models off, build before 0.9.4). Setting the assertion weight to 0 was part of a [0.9.4 change](/research/what-improved-search-in-0-9-4/) that helped T0 and T1b on dev and lowered reranked dev Hit@5 from 0.9286 to 0.9107.
 
 ## Recalculate after a weight change
 
@@ -1032,7 +1187,7 @@ MESA Core uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, asserti
 3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
 4. [Microsoft Learn · Hybrid search scoring (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 6, 'published', 'What Is RRF? Reciprocal Rank Fusion and k=60 — MESA', 'Reciprocal Rank Fusion (RRF) merges ranked lists using positions, not raw scores. Learn the formula, a worked example, why k is often 60 and when to avoid it.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 8, 'published', 'What Is RRF? Reciprocal Rank Fusion and k=60 — MESA', 'Reciprocal Rank Fusion (RRF) merges ranked lists using positions, not raw scores. Learn the formula, a worked example, why k is often 60 and when to avoid it.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('reciprocal-rank-fusion-explained', 'learn', 'tr', 'RRF nedir? Reciprocal Rank Fusion nasıl çalışır?', '', 'RRF, arama sonuçlarını ham puanlar yerine listedeki sıralarıyla birleştirir. Formülü öğrenin, örneği hesaplayın ve k değerini seçin.', 'Reciprocal Rank Fusion (RRF), birden fazla sıralı listeyi tek listede birleştirir. Her sonuç, bulunduğu her listeden 1/(k + sıra) katkısı alır ve sonuçlar toplam katkıya göre sıralanır. Konumları kullandığı için BM25 ile vektör aramayı puanları normalize etmeden birleştirebilir.', '## RRF nedir?
 
 Reciprocal Rank Fusion (RRF), birden fazla sıralı sonuç listesini tek listeye dönüştüren bir sıralama birleştirme yöntemidir. Listenin üst sıralarındaki sonuç daha büyük katkı alır. Birden fazla listede bulunan sonuç ise bu katkıları toplar.
@@ -1115,7 +1270,28 @@ Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve bel
 - Kalibre edilmiş bir güven değeri gerekiyorsa. RRF puanı olasılık değildir.
 - Daha iyi bir sıralama modelini eğitip doğrulayacak kadar etiketli veriniz varsa.
 
-MESA Core, k = 60 ile ağırlıklı RRF kullanır; varsayılan olarak vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0’dır ve çizge kanalı kapalıdır. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
+MESA Core 0.9.4, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0, çizge ağırlığı 1’dir. Çizge kanalı varsayılan olarak kapalıdır; ağırlığı yalnızca bu kanal açıkken geçerlidir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
+
+## MESA’da ne ölçtük?
+
+MESA’daki 8 vektör ağırlığı teoriden değil, dev kümesindeki bir denemeden geldi. Yalnızca bu ağırlığı değiştirdik, diğer kanalları 1’de tuttuk.
+
+| Vektör ağırlığı | Hit@5, yeniden sıralama yok | MRR, yeniden sıralama yok | MRR, yeniden sıralamayla |
+| --- | --- | --- | --- |
+| 1 | 0,5176 | 0,3953 | 0,6816 |
+| 2 | 0,5765 | 0,4565 | 0,7055 |
+| 4 | 0,6588 | 0,5152 | 0,7069 |
+| 8 | 0,6706 | 0,5663 | 0,6973 |
+
+> [!NOTE]
+> **Kurulum**
+> 0.9.1 geliştirme derlemesi, benchmark v1 dev bölümü, Tier M, 141 belge, 5.041 parça, 85 yanıtlanabilir soru, bge-m3, çizge açık, arama limiti 50, yeniden sıralama derinliği 50.
+
+Yeniden sıralama olmadan en iyi sonucu 8 verdi. Yeniden sıralamayla 4’ün MRR değeri biraz daha yüksekti. Denediğimiz en büyük değer de 8’di; yani daha yüksek bir ağırlığın daha iyi olup olmadığını bilmiyoruz. Bu denemeyi benchmark v2’de yinelemedik.
+
+Büyük ağırlık, yukarıdaki çözümlü örneği de değiştirir. Yoğun (dense) kanalın ağırlığı 8 olursa puanlar B 0,147277, C 0,144905, D 0,126984 ve A 0,016393 olur. A sözcük listesinde birinci olduğu hâlde D artık A’nın önüne geçer.
+
+Eşit RRF puanları da sık görülür. [Sıfırdan kurulan depolarla yaptığımız testte](/research/why-two-search-runs-differed/) rastgele eşitlik bozma, 112 yanıtlanabilir sorunun 49’unda sırayı değiştirdi (benchmark v2 dev, Tier M, modeller kapalı, 0.9.4 öncesi derleme). Bilgi kaydı ağırlığını 0 yapmak, T0 ve T1b’yi dev kümesinde iyileştiren, yeniden sıralamalı dev Hit@5’i ise 0,9286’dan 0,9107’ye düşüren [0.9.4 değişikliğinin](/research/what-improved-search-in-0-9-4/) parçasıydı.
 
 ## Ağırlık değişince yeniden hesaplayın
 
@@ -1149,7 +1325,7 @@ MESA Core, k = 60 ile ağırlıklı RRF kullanır; varsayılan olarak vektör a�
 3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
 4. [Microsoft Learn · Hibrit arama puanlaması (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
-', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 6, 'published', 'RRF Nedir? Reciprocal Rank Fusion ve k=60 — MESA', 'RRF, sonuç listelerini ham puanlar yerine sıralarıyla birleştirir. Formülü, çözümlü örneği, k değerinin neden çoğu zaman 60 olduğunu ve sınırlarını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['RRF', 'rank fusion', 'weighted', 'k=60', 'sıra birleştirme', 'ağırlık']::text[], 'MESA contributors', 8, 'published', 'RRF Nedir? Reciprocal Rank Fusion ve k=60 — MESA', 'RRF, sonuç listelerini ham puanlar yerine sıralarıyla birleştirir. Formülü, çözümlü örneği, k değerinin neden çoğu zaman 60 olduğunu ve sınırlarını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'en', 'Knowledge graphs: follow relations without inventing proof', '', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', '## A relationship needs identity and evidence
 
 A text search finds passages. A graph query follows explicitly represented relationships. For the fictional Atlas archive, create nodes for the reading room, archive and district, then edges for “part of” and “located in”. Use stable node IDs and link each asserted edge to the source revision that supports it. A label such as “Central” is not enough to resolve identity.
@@ -1499,6 +1675,10 @@ SQLite documents atomic commit and crash-recovery mechanisms for its own transac
 
 MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
 
+> [!NOTE]
+> **What we measured in MESA**
+> MESA 0.9.4 [removed its legacy V3 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off).
+
 ## Interpret a timeout
 
 > [!EXERCISE]
@@ -1548,6 +1728,10 @@ Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmes
 SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
 MESA Core v0.9.4’te her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
+
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> MESA 0.9.4, [eski V3 deposunu kaldırdı](/research/deleting-code-mesa-0-9-4/). Silmeden sonra 128 dev sorusunun tamamında arama sırası aynı kaldı (benchmark v2, Tier M, modeller kapalı).
 
 ## Zaman aşımını yorumlayın
 
@@ -1723,6 +1907,10 @@ The system retrieved every relevant item but ranked an irrelevant one first. Rec
 
 Compare per-query changes and useful slices: identifier versus paraphrase, short versus long source, language and source age. Report uncertainty when sample size permits, and retain the raw query-level results. BEIR demonstrates evaluation across heterogeneous retrieval tasks; reuse its discipline, not its scores as your own. [BEIR](https://arxiv.org/abs/2104.08663), [IR evaluation](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html).
 
+> [!NOTE]
+> **What we measured in MESA**
+> Small rank moves can look like quality changes. [Two fresh stores](/research/why-two-search-runs-differed/) built from the same input scored 48/112 and 52/112 on Hit@5 (benchmark v2 dev, Tier M, models off, build before 0.9.4). A benchmark needs evidence as well as metrics. [Benchmark v2](/research/turkish-legal-benchmark-v2/) ties each answer to a verbatim quote, and it discloses that its test split has been read six times.
+
 ## Measure speed without hiding failures
 
 Measure end-to-end retrieval and stage timings separately. Declare hardware, corpus size, concurrency, cache state, warm-up, request count and timeout. Report median and tail latency with errors and empty responses. Dropping timed-out requests from the latency table can make a failing system look fast. A local deterministic fixture tests a contract; it does not measure real embedding-provider quality or production capacity.
@@ -1777,6 +1965,10 @@ Sistem bütün ilgili öğeleri bulmuş, ancak ilgisiz bir öğeyi ilk sıraya k
 *Daha yüksek ortalama kimlik, dil veya yetkilendirme gerilemesini gizleyebilir.*
 
 Değişimi sorgu başına ve anlamlı alt gruplarda inceleyin: kimlik araması veya farklı ifade, kısa veya uzun kaynak, dil ve kaynak yaşı. Örneklem uygunsa belirsizliği raporlayın ve ham sonuçları koruyun. BEIR, farklı görevleri birlikte değerlendirmeye örnektir. O çalışmanın puanını kendi başarınız gibi kullanmak yerine değerlendirme yaklaşımından yararlanın. [BEIR](https://arxiv.org/abs/2104.08663) [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
+
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Küçük sıra değişimleri kalite değişimi gibi görünebilir. Aynı girdiyle [sıfırdan kurulan iki depo](/research/why-two-search-runs-differed/) Hit@5’te 48/112 ve 52/112 aldı (benchmark v2 dev, Tier M, modeller kapalı, 0.9.4 öncesi derleme). Benchmark için ölçüt kadar kanıt da gerekir. [Benchmark v2](/research/turkish-legal-benchmark-v2/) her yanıtı birebir bir alıntıya bağlar ve test bölümünün altı kez okunduğunu açıkça belirtir.
 
 ## Hataları gizlemeden hızı ölçün
 
@@ -1843,9 +2035,72 @@ SQL parameters prevent query values from becoming SQL syntax, but they do not di
 
 ## Make one change and predict the outcome
 
-Replace Friday with Monday and update the expected ID to c2. Add a second Friday passage that says the room is closed for maintenance. Both now match the words: retrieval has exposed a conflict, not resolved it. Add explicit source revision and validity metadata before choosing the current answer. Finally try “last working day”; this lexical baseline does not know that phrase is intended to mean Friday.
+Make these changes in order. Each one shows a different limit of lexical retrieval.
 
-Build a file of judged queries and expected source IDs, then calculate Recall@k and MRR using the previous lesson. Keep an untouched test split. Only after you understand the lexical failures should you add dense retrieval or a reranker. For an actual MESA integration, move to the version-pinned quickstart with credentials and providers; this lab is independent instructional code.
+1. Change `Friday` to `Monday` in the query and the expected ID to `handbook-r3/c2`. Run it, then change both back.
+2. Add a passage: `("notice-r1/c1", "Atlas reading room is closed for maintenance on Friday.")`. The assertion now fails because two passages match. Retrieval has exposed a conflict and has not resolved it. Choosing the current answer needs source revision and validity metadata.
+3. Search for `"last working day"`. It returns nothing, because this lexical baseline does not know that the phrase can mean Friday.
+4. Search for `"reading` with the closing quote missing. SQLite raises `OperationalError`, so a real search path needs error handling.
+
+Next, turn those checks into a small judged test. Save this as `search_eval.py` and run `python3 search_eval.py`. It uses only the standard library.
+
+```text
+import sqlite3
+
+PASSAGES = [
+    ("handbook-r3/c1", "Atlas reading room opens at 10:00 on Friday."),
+    ("handbook-r3/c2", "Atlas reading room opens at 09:00 on Monday."),
+    ("directory-r1/c1", "The garden is closed on Friday."),
+    ("notice-r1/c1", "Atlas reading room is closed for maintenance on Friday."),
+]
+JUDGED = [
+    (''"reading room" AND Friday'', "handbook-r3/c1"),
+    (''"reading room" AND Monday'', "handbook-r3/c2"),
+    ("garden", "directory-r1/c1"),
+    (''"last working day"'', "handbook-r3/c1"),
+]
+
+def search(db, query, limit=3):
+    try:
+        rows = db.execute(
+            "SELECT source_id FROM atlas WHERE atlas MATCH ? "
+            "ORDER BY bm25(atlas), source_id LIMIT ?",
+            (query, limit),
+        ).fetchall()
+    except sqlite3.OperationalError:
+        return []  # Malformed FTS syntax is a failed search, not a crash.
+    return [row[0] for row in rows]
+
+with sqlite3.connect(":memory:") as db:
+    db.execute("CREATE VIRTUAL TABLE atlas USING fts5(source_id UNINDEXED, body)")
+    db.executemany("INSERT INTO atlas VALUES (?, ?)", PASSAGES)
+
+    reciprocal_ranks = []
+    for query, expected in JUDGED:
+        results = search(db, query)
+        rank = results.index(expected) + 1 if expected in results else None
+        reciprocal_ranks.append(1 / rank if rank else 0)
+        print(f"{query:<28} rank={rank} results={results}")
+
+    hits = sum(1 for value in reciprocal_ranks if value > 0)
+    print(f"Recall@3: {hits / len(JUDGED):.2f}")
+    print(f"MRR: {sum(reciprocal_ranks) / len(JUDGED):.2f}")
+    print("Malformed query:", search(db, ''"reading''))
+```
+
+Expected output, checked with Python’s `sqlite3` on SQLite 3.46.1:
+
+```text
+"reading room" AND Friday    rank=1 results=[''handbook-r3/c1'', ''notice-r1/c1'']
+"reading room" AND Monday    rank=1 results=[''handbook-r3/c2'']
+garden                       rank=1 results=[''directory-r1/c1'']
+"last working day"           rank=None results=[]
+Recall@3: 0.75
+MRR: 0.75
+Malformed query: []
+```
+
+The 0.75 scores come from four invented queries, so they teach the calculation and say nothing about real search quality. Keep a separate test split, and record every time you read it. Only after you understand the lexical failures should you add dense retrieval or a reranker. For Turkish text, try the tokenizer example in [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/). For a MESA integration, move to the version-pinned quickstart; this lab is independent instructional code.
 
 ## Find the boundary of the demonstration
 
@@ -1861,7 +2116,7 @@ Build a file of judged queries and expected source IDs, then calculate Recall@k 
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
 
-', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'Build a small search lab, without an LLM — MESA Learn', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 7, 'published', 'Build a small search lab, without an LLM — MESA Learn', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('build-a-small-search-lab', 'learn', 'tr', 'Dil modeli olmadan küçük bir arama sistemi kurun', '', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', '## Ne kuracaksınız?
 
 Bu alıştırmada küçük bir arşivden ilgili kaynak pasajını bulan program kuracaksınız. Python’ın standart `sqlite3` modülü ve FTS5 desteği açık bir SQLite yeterlidir. Model, ağ çağrısı, temsil modeli indirme veya MESA sunucusu gerekmez. Kodu `search_lab.py` adıyla kaydedip `python3 search_lab.py` komutuyla çalıştırın. “no such module: fts5” hatası alırsanız FTS5 içeren bir Python/SQLite kurulumu kullanın.
@@ -1911,9 +2166,72 @@ SQL parametreleri sorgu değerinin SQL komutuna dönüşmesini önler; ancak FTS
 
 ## Tek değişiklik yapıp sonucu öngörün
 
-Friday yerine Monday yazıp beklenen kimliği c2 yapın. Sonra salonun bakım nedeniyle kapalı olduğunu belirten ikinci bir cuma pasajı ekleyin. Artık iki metin de aynı sözcüklere uyar: Arama çelişkiyi bulmuştur, çözmemiştir. Güncel yanıtı seçmeden önce kaynak sürümü ve geçerlilik bilgisi ekleyin. Son olarak “last working day” ifadesini deneyin. Bu sözcük tabanlı yöntem, ifadenin Friday anlamında kullanıldığını kendi başına bilemez.
+Bu değişiklikleri sırayla yapın. Her biri sözcük tabanlı aramanın farklı bir sınırını gösterir.
 
-Etiketli sorguları ve beklenen kaynak kimliklerini bir dosyada tutun; önceki dersteki Recall@k ile MRR ölçümlerini hesaplayın. Ayar yaparken hiç kullanmadığınız bir test kümesi ayırın. Sözcük tabanlı aramanın hatalarını anladıktan sonra anlamsal arama veya yeniden sıralama ekleyin. Gerçek MESA bağlantısı için erişim bilgileri ve sağlayıcı gereksinimleri bulunan hızlı başlangıca geçin. Bu alıştırma bağımsız bir eğitim örneğidir.
+1. Sorgudaki `Friday` sözcüğünü `Monday`, beklenen kimliği `handbook-r3/c2` yapın. Çalıştırın, sonra ikisini de geri alın.
+2. Şu pasajı ekleyin: `("notice-r1/c1", "Atlas reading room is closed for maintenance on Friday.")`. İki pasaj eşleştiği için doğrulama artık başarısız olur. Arama bir çelişkiyi ortaya çıkardı ama çözmedi. Güncel yanıtı seçmek için kaynak sürümü ve geçerlilik bilgisi gerekir.
+3. `"last working day"` ifadesini arayın. Sonuç dönmez; çünkü bu sözcük tabanlı temel sistem, ifadenin cuma anlamına gelebileceğini bilmez.
+4. Kapanış tırnağı eksik `"reading` sorgusunu deneyin. SQLite `OperationalError` verir; gerçek bir arama akışında hata yönetimi gerekir.
+
+Şimdi bu kontrolleri küçük bir etiketli teste dönüştürün. Kodu `search_eval.py` olarak kaydedip `python3 search_eval.py` komutuyla çalıştırın. Yalnızca standart kütüphaneyi kullanır.
+
+```text
+import sqlite3
+
+PASSAGES = [
+    ("handbook-r3/c1", "Atlas reading room opens at 10:00 on Friday."),
+    ("handbook-r3/c2", "Atlas reading room opens at 09:00 on Monday."),
+    ("directory-r1/c1", "The garden is closed on Friday."),
+    ("notice-r1/c1", "Atlas reading room is closed for maintenance on Friday."),
+]
+JUDGED = [
+    (''"reading room" AND Friday'', "handbook-r3/c1"),
+    (''"reading room" AND Monday'', "handbook-r3/c2"),
+    ("garden", "directory-r1/c1"),
+    (''"last working day"'', "handbook-r3/c1"),
+]
+
+def search(db, query, limit=3):
+    try:
+        rows = db.execute(
+            "SELECT source_id FROM atlas WHERE atlas MATCH ? "
+            "ORDER BY bm25(atlas), source_id LIMIT ?",
+            (query, limit),
+        ).fetchall()
+    except sqlite3.OperationalError:
+        return []  # Malformed FTS syntax is a failed search, not a crash.
+    return [row[0] for row in rows]
+
+with sqlite3.connect(":memory:") as db:
+    db.execute("CREATE VIRTUAL TABLE atlas USING fts5(source_id UNINDEXED, body)")
+    db.executemany("INSERT INTO atlas VALUES (?, ?)", PASSAGES)
+
+    reciprocal_ranks = []
+    for query, expected in JUDGED:
+        results = search(db, query)
+        rank = results.index(expected) + 1 if expected in results else None
+        reciprocal_ranks.append(1 / rank if rank else 0)
+        print(f"{query:<28} rank={rank} results={results}")
+
+    hits = sum(1 for value in reciprocal_ranks if value > 0)
+    print(f"Recall@3: {hits / len(JUDGED):.2f}")
+    print(f"MRR: {sum(reciprocal_ranks) / len(JUDGED):.2f}")
+    print("Malformed query:", search(db, ''"reading''))
+```
+
+Beklenen çıktı (Python `sqlite3`, SQLite 3.46.1 ile denendi):
+
+```text
+"reading room" AND Friday    rank=1 results=[''handbook-r3/c1'', ''notice-r1/c1'']
+"reading room" AND Monday    rank=1 results=[''handbook-r3/c2'']
+garden                       rank=1 results=[''directory-r1/c1'']
+"last working day"           rank=None results=[]
+Recall@3: 0.75
+MRR: 0.75
+Malformed query: []
+```
+
+0,75 puanları uydurma dört sorgudan geliyor; hesaplamayı öğretir, gerçek arama kalitesi hakkında bir şey söylemez. Ayrı bir test bölümü tutun ve onu her okuduğunuzda kaydedin. Yoğun (dense) aramayı veya yeniden sıralayıcıyı, sözcük tabanlı hataları anladıktan sonra ekleyin. Türkçe metin için [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısındaki tokenizer örneğini deneyin. MESA entegrasyonu için sürümü sabitlenmiş hızlı başlangıca geçin; bu laboratuvar bağımsız bir eğitim kodudur.
 
 ## Gösterimin sınırını bulun
 
@@ -1929,7 +2247,7 @@ Etiketli sorguları ve beklenen kaynak kimliklerini bir dosyada tutun; önceki d
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
 
-', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 5, 'published', 'Dil modeli olmadan küçük bir arama sistemi kurun — MESA', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 7, 'published', 'Dil modeli olmadan küçük bir arama sistemi kurun — MESA', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('keyword-vs-semantic-search', 'research', 'en', 'Keyword vs semantic search', 'A planned retrieval benchmark protocol', 'This publication defines a proposed comparison. It reports no benchmark result.', '', '## Research question
 
 Under a frozen legal retrieval corpus and independently judged query set, how do lexical, semantic, and hybrid retrieval differ in relevance and operational cost?
@@ -1994,6 +2312,1382 @@ Arama yöntemleri bazen kullanılan belgeler, sorular, etiketler ve ayarlar aç�
 Yayımlanacak bir deneyde veri kümesi, sorgu ve değerlendirme sürümleri; model kimlikleri, ayarlar, kod sürümü, gerekiyorsa rastgelelik başlangıç değerleri, çalışma ortamı, ham çıktılar ve analiz adımları kaydedilmelidir.
 
 ', ARRAY['benchmark', 'retrieval', 'semantic-search']::text[], 'MESA contributors', 9, 'published', 'Sözcük ve anlam temelli arama nasıl karşılaştırılacak? — MESA', 'Bu plan, farklı arama yöntemlerini karşılaştırmak için hazırlanmıştır. Henüz deney yapılmadı ve sonuç yayımlanmadı.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-embedding-comparison', 'research', 'en', 'bge-m3 vs Mürşit on Turkish Legal Retrieval', 'A dev-set comparison, including where the Turkish model won', 'On 112 answerable Turkish legal dev questions, bge-m3 scored higher overall on MRR and Hit@5. Mürşit Large won on some questions and categories.', '', '## Which embedding model did better on Turkish legal search?
+
+On our dev set, BAAI/bge-m3 did better overall. With embeddings alone (T1), it reached Hit@5 0.7411 and MRR 0.5758. Mürşit Large reached Hit@5 0.6875 and MRR 0.5626. With reranking (T2), bge-m3 reached Hit@5 0.9286 and Mürşit Large reached 0.8929.
+
+This does not show that bge-m3 is better for Turkish law in general. The gap is 6 of 112 questions at T1 and 4 of 112 at T2. Mürşit Large ranked higher on 29 questions at T1, and it led on Hit@1. We kept bge-m3 as the MESA default because this run gave us no reason to change it.
+
+## How did we run the comparison?
+
+- MESA 0.9.3 from PyPI with the `ml` extra, on one Colab NVIDIA A100 80 GB runtime.
+- Benchmark v2 dev split, Tier M: 141 Turkish legal documents, 5,041 chunks, 128 questions, 112 answerable.
+- A new store for each Mürşit configuration. Search started after all 5,041 vectors were complete. The bge-m3 numbers come from the 0.9.3 reference run on the same inputs.
+- Both models at 1,024 dimensions, L2-normalized by MESA.
+- T1: embeddings with hybrid search. T2: T1 plus `BAAI/bge-reranker-v2-m3` at depth 20.
+- Evaluator v2.1, search limit 50.
+
+> [!NOTE]
+> **About normalization**
+> The published Mürşit pipeline has no final Normalize module and specifies cosine similarity. MESA applied L2 normalization to both models, so both were compared on the same vector setup.
+
+## What were the overall results?
+
+| MESA 0.9.3, dev, Tier M | Model | MRR | Hit@1 | Hit@5 | Hit@10 | Search p50 |
+| --- | --- | --- | --- | --- | --- | --- |
+| T1 | bge-m3 | 0.5758 | 0.4375 | 0.7411 | 0.8661 | 1.67 s |
+| T1 | Mürşit Large | 0.5626 | 0.4464 | 0.6875 | 0.8304 | 1.66 s |
+| T2 | bge-m3 | 0.8076 | 0.7143 | 0.9286 | 0.9554 | 2.35 s |
+| T2 | Mürşit Large | 0.7814 | 0.6964 | 0.8929 | 0.9196 | 2.31 s |
+
+Speed was not a deciding factor. Median search time and ingestion time were close. Ingestion to full readiness at T1 took 741.60 s with bge-m3 and 738.32 s with Mürşit Large.
+
+## Where did each model win?
+
+The largest gap was on paraphrased questions, where the query uses different words from the source. Mürşit Large led on number, date and docket questions at T1.
+
+| Category, dev (questions) | T1 bge-m3 | T1 Mürşit | T2 bge-m3 | T2 Mürşit |
+| --- | --- | --- | --- | --- |
+| Exact wording (31) | 0.8387 | 0.7742 | 0.9355 | 0.9355 |
+| Number, date, docket (35) | 0.8286 | 0.8571 | 1.0000 | 0.9714 |
+| Paraphrase (32) | 0.7188 | 0.5938 | 0.9375 | 0.8438 |
+| Cross-document (14) | 0.3571 | 0.2857 | 0.7143 | 0.7143 |
+
+The table shows passage Hit@5. Small categories move in large steps: one cross-document question is worth about 0.07.
+
+| Passage rank, 112 answerable | Mürşit better | Mürşit worse | Tied |
+| --- | --- | --- | --- |
+| T1 | 29 | 35 | 48 |
+| T2 | 4 | 7 | 101 |
+
+At T1 the two models disagree often, and the wins are nearly balanced. That suggests they make different errors. We did not test whether combining them helps. Reranking narrows the difference: at T2, 101 of 112 questions rank the same.
+
+## How did the earlier default compare?
+
+Before 0.9.3, MESA defaulted to `magibu/embeddingmagibu-200m`. Our direct comparison with bge-m3 used an older question set, so it cannot be merged with the tables above.
+
+| MESA 0.9.2, benchmark v1 test, Tier M, T1 | MRR | Hit@5 |
+| --- | --- | --- |
+| magibu/embeddingmagibu-200m | 0.4095 | 0.5041 |
+| BAAI/bge-m3 | 0.5136 | 0.6777 |
+
+> [!WARNING]
+> **Caveat on test results**
+> This is a benchmark v1 test result. The test split was read in several MESA release runs, so it is not an untouched holdout. Treat it as a regression signal.
+
+## What should you take from this?
+
+- Test candidate models on your own documents and questions. This corpus is Turkish legal text, with many citations and numbers.
+- Read results by question type. An overall score hid Mürşit''s lead on number, date and docket questions.
+- Compare with and without a reranker. Here, the reranker reduced the model gap.
+- Plan for a rebuild. In MESA, a change of embedding identity requires rebuilding active vectors.
+
+For the concepts, see [semantic search](/learn/semantic-search/) and [hybrid retrieval](/learn/hybrid-retrieval-explained/). The [embedding provider docs](/docs/core/embedding-providers/) cover MESA configuration.
+
+## What can this comparison not show?
+
+- Mürşit Large was run only on the dev split.
+- With 112 answerable questions, gaps of 4 to 6 questions may not hold on a new sample. We did not run a significance test.
+- We tested each model only through MESA''s chunking and fusion pipeline. A different pipeline could change the order.
+- Mürşit Base was not tested.
+- These are results for this corpus, not a general ranking of the two models.
+
+## Sources
+
+1. [BAAI/bge-m3 model card](https://huggingface.co/BAAI/bge-m3)
+2. [BGE-M3 paper](https://arxiv.org/abs/2402.03216)
+3. [newmindai/Mursit-Large-TR-Retrieval model card](https://huggingface.co/newmindai/Mursit-Large-TR-Retrieval)
+4. [BAAI/bge-reranker-v2-m3 model card](https://huggingface.co/BAAI/bge-reranker-v2-m3)
+5. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+
+', ARRAY['benchmark', 'embeddings', 'turkish', 'legal-search']::text[], 'MESA contributors', 7, 'published', 'bge-m3 vs Mürşit on Turkish Legal Retrieval', 'We compared bge-m3 and Mürşit Large on 112 answerable Turkish legal dev questions. See where each model won, and what the sample cannot show.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-embedding-comparison', 'research', 'tr', 'Türkçe Hukukta Hangi Embedding Modeli Daha İyi?', 'bge-m3 ve Mürşit Large için dev kümesi karşılaştırması', '112 yanıtlanabilir Türkçe hukuk sorusunda bge-m3, MRR ve Hit@5’te genel olarak önde kaldı. Mürşit Large bazı soru ve kategorilerde kazandı.', '', '## Türkçe hukuk aramasında hangi model daha iyi sonuç verdi?
+
+Dev kümemizde genel olarak BAAI/bge-m3 daha iyi sonuç verdi. Yalnızca gömme vektörleriyle (embedding, T1) Hit@5 0,7411 ve MRR 0,5758 aldı. Mürşit Large ise Hit@5 0,6875 ve MRR 0,5626 aldı. Yeniden sıralama (reranking, T2) eklenince bge-m3 Hit@5’te 0,9286’ya, Mürşit Large 0,8929’a çıktı.
+
+Bu sonuç, bge-m3’ün Türk hukukunda her zaman daha iyi olduğunu göstermez. Fark T1’de 112 sorunun 6’sı, T2’de 4’üdür. Mürşit Large, T1’de 29 soruda daha üst sıraya çıktı ve Hit@1’de önde kaldı. Bu çalıştırma varsayılanı değiştirmek için bir gerekçe sunmadığından MESA’da bge-m3’ü koruduk.
+
+## Karşılaştırmayı nasıl yaptık?
+
+- PyPI’dan `ml` ekiyle MESA 0.9.3, tek bir Colab NVIDIA A100 80 GB ortamında.
+- Benchmark v2 dev bölümü, Tier M: 141 Türkçe hukuk belgesi, 5.041 parça (chunk), 112’si yanıtlanabilir 128 soru.
+- Her Mürşit yapılandırması için yeni bir depo. Arama, 5.041 vektörün tamamı hazır olunca başladı. bge-m3 sayıları, aynı girdilerle yapılan 0.9.3 referans çalıştırmasından geliyor.
+- İki model de 1.024 boyutlu ve MESA tarafından L2 normalize edildi.
+- T1: hibrit aramayla gömme vektörleri. T2: T1’e ek olarak derinliği 20 olan `BAAI/bge-reranker-v2-m3`.
+- Değerlendirici v2.1, arama limiti 50.
+
+> [!NOTE]
+> **Normalizasyon notu**
+> Yayımlanan Mürşit hattında son bir Normalize modülü yoktur ve kosinüs benzerliği belirtilir. MESA iki modele de L2 normalizasyonu uyguladı; böylece ikisi aynı vektör düzeniyle karşılaştırıldı.
+
+## Genel sonuçlar neydi?
+
+| MESA 0.9.3, dev, Tier M | Model | MRR | Hit@1 | Hit@5 | Hit@10 | Arama p50 |
+| --- | --- | --- | --- | --- | --- | --- |
+| T1 | bge-m3 | 0,5758 | 0,4375 | 0,7411 | 0,8661 | 1,67 sn |
+| T1 | Mürşit Large | 0,5626 | 0,4464 | 0,6875 | 0,8304 | 1,66 sn |
+| T2 | bge-m3 | 0,8076 | 0,7143 | 0,9286 | 0,9554 | 2,35 sn |
+| T2 | Mürşit Large | 0,7814 | 0,6964 | 0,8929 | 0,9196 | 2,31 sn |
+
+Hız belirleyici olmadı. Ortanca arama süreleri ve veri alım süreleri birbirine yakındı. T1’de tüm belgelerin hazır olması bge-m3 ile 741,60 sn, Mürşit Large ile 738,32 sn sürdü.
+
+## Hangi model nerede öne geçti?
+
+En büyük fark, sorunun kaynaktan farklı sözcüklerle sorulduğu yeniden ifade (paraphrase) sorularında çıktı. Sayı, tarih ve esas numarası sorularında T1’de Mürşit Large öndeydi.
+
+| Kategori, dev (soru) | T1 bge-m3 | T1 Mürşit | T2 bge-m3 | T2 Mürşit |
+| --- | --- | --- | --- | --- |
+| Birebir ifade (31) | 0,8387 | 0,7742 | 0,9355 | 0,9355 |
+| Sayı, tarih, esas no (35) | 0,8286 | 0,8571 | 1,0000 | 0,9714 |
+| Yeniden ifade (32) | 0,7188 | 0,5938 | 0,9375 | 0,8438 |
+| Çok belgeli (14) | 0,3571 | 0,2857 | 0,7143 | 0,7143 |
+
+Tablo, pasaj Hit@5 değerlerini gösterir. Küçük kategorilerde değerler büyük adımlarla oynar: çok belgeli tek bir soru yaklaşık 0,07 eder.
+
+| Pasaj sırası, 112 yanıtlanabilir soru | Mürşit daha iyi | Mürşit daha kötü | Eşit |
+| --- | --- | --- | --- |
+| T1 | 29 | 35 | 48 |
+| T2 | 4 | 7 | 101 |
+
+T1’de iki model sık sık ayrışıyor ve kazanımlar neredeyse dengeli. Bu, modellerin farklı hatalar yaptığını düşündürüyor. İkisini birleştirmenin işe yarayıp yaramadığını denemedik. Yeniden sıralama farkı daraltıyor: T2’de 112 sorunun 101’i aynı sırada.
+
+## Önceki varsayılan model nasıldı?
+
+MESA, 0.9.3’ten önce varsayılan olarak `magibu/embeddingmagibu-200m` kullanıyordu. Bu modeli bge-m3 ile doğrudan karşılaştırdığımız ölçüm eski bir soru kümesine dayanıyor; yukarıdaki tablolarla birleştirilemez.
+
+| MESA 0.9.2, benchmark v1 test, Tier M, T1 | MRR | Hit@5 |
+| --- | --- | --- |
+| magibu/embeddingmagibu-200m | 0,4095 | 0,5041 |
+| BAAI/bge-m3 | 0,5136 | 0,6777 |
+
+> [!WARNING]
+> **Test sonuçları için uyarı**
+> Bu, benchmark v1 test sonucudur. Test bölümü birkaç MESA sürüm çalıştırmasında okundu; dolayısıyla hiç görülmemiş bir küme değildir. Bu sonucu yalnızca gerileme sinyali olarak okuyun.
+
+## Bu sonuçtan ne çıkarmalısınız?
+
+- Aday modelleri kendi belgeleriniz ve sorularınızla deneyin. Bu derlem, atıf ve sayı yoğun Türkçe hukuk metinlerinden oluşuyor.
+- Sonuçları soru türüne göre okuyun. Genel puan, Mürşit’in sayı, tarih ve esas numarası sorularındaki önünü gizledi.
+- Yeniden sıralayıcıyla ve onsuz karşılaştırın. Burada yeniden sıralayıcı model farkını azalttı.
+- Yeniden kurulumu hesaba katın. MESA’da embedding kimliği değişince etkin vektörler yeniden oluşturulmalıdır.
+
+Kavramlar için [anlamsal arama](/learn/semantic-search/) ve [hibrit arama](/learn/hybrid-retrieval-explained/) derslerine, MESA ayarları için [embedding sağlayıcıları dokümanına](/docs/core/embedding-providers/) bakın.
+
+## Bu karşılaştırma neyi gösteremez?
+
+- Mürşit Large yalnızca dev bölümünde çalıştırıldı.
+- 112 yanıtlanabilir soruda 4 ila 6 soruluk fark, yeni bir örneklemde korunmayabilir. Anlamlılık testi yapmadık.
+- Modelleri yalnızca MESA’nın parçalama ve birleştirme hattı üzerinden denedik. Farklı bir hat sırayı değiştirebilir.
+- Mürşit Base denenmedi.
+- Sonuçlar bu derlem içindir; iki modelin genel bir sıralaması değildir.
+
+## Kaynaklar
+
+1. [BAAI/bge-m3 model kartı](https://huggingface.co/BAAI/bge-m3)
+2. [BGE-M3 makalesi](https://arxiv.org/abs/2402.03216)
+3. [newmindai/Mursit-Large-TR-Retrieval model kartı](https://huggingface.co/newmindai/Mursit-Large-TR-Retrieval)
+4. [BAAI/bge-reranker-v2-m3 model kartı](https://huggingface.co/BAAI/bge-reranker-v2-m3)
+5. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+
+', ARRAY['benchmark', 'embeddings', 'turkish', 'legal-search']::text[], 'MESA contributors', 7, 'published', 'Türkçe Hukukta Hangi Embedding Modeli Daha İyi?', 'bge-m3 ile Mürşit Large’ı 112 yanıtlanabilir Türkçe hukuk sorusunda karşılaştırdık. Hangi modelin nerede öne geçtiğini görün.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-two-search-runs-differed', 'research', 'en', 'Why Two Identical Search Runs Gave Different Results', 'A ranking bug that looked like a quality change', 'Two fresh MESA stores built from the same documents disagreed on 49 of 112 dev questions. Random IDs were deciding tied ranks.', '', '## Why did the same search give different results?
+
+Random IDs were breaking ties. When two passages had the same score, their order depended on a UUID created at ingest. Two fresh stores built from the same 141 documents therefore ranked some passages differently. On benchmark v2 dev (Tier M, models off), one store scored 48/112 on Hit@5 and the other scored 52/112.
+
+The fix was to break ties by stable content identity. On the published MESA 0.9.4 package, two independently built stores returned the same order for all 128 dev questions, in all three tested configurations.
+
+## What did the two runs show?
+
+The difference appeared only between separately built stores. Repeating the search on one store changed nothing, so query-time randomness was not the cause.
+
+| Comparison (dev, T0, before the fix) | Hit@5 | MRR | Answerable questions with a different rank |
+| --- | --- | --- | --- |
+| Fresh store A | 48/112 | 0.3314 | 49, A vs B |
+| Fresh store B | 52/112 | 0.3500 | 49, A vs B |
+| Shared store, run 1 | 50/112 | 0.3411 | 0, run 1 vs run 2 |
+| Shared store, run 2 | 50/112 | 0.3411 | 0, run 1 vs run 2 |
+
+The Hit@5 gap hides how much moved. Forty-nine answerable questions changed rank. Only six crossed the top-5 boundary: one in store A''s favor and five in store B''s. The net result was a four-question gap.
+
+> [!NOTE]
+> **Setup**
+> Development build before the 0.9.4 ranking changes, with graph on and models off. Benchmark v2 dev split, Tier M, 141 documents, 5,041 chunks, 128 questions, 112 of them answerable. Search limit 50.
+
+## Why do ties happen in rank fusion?
+
+[Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/) scores a passage from its rank in each list, not from the raw score. Ranks are integers, so exact ties are normal.
+
+Here is an illustrative example. With k = 60 and equal weights, a passage ranked third only by BM25 scores 1/(60+3). A passage ranked third only by the assertion lane also scores 1/(60+3). The fused score cannot separate them, so the next sort key decides.
+
+Before the fix, that next key could be a random UUID. The UUID was stable inside one store, which is why repeated runs agreed. A new store generated new UUIDs, so the same tie could resolve the other way.
+
+## How did we make ranking repeatable?
+
+MESA 0.9.4 changed two things. Search lanes and fusion now break equal scores by content identity. The catalog also assigns tenant-scoped, deterministic UUID5 keys, so the same corpus produces the same internal keys. Scores do not change.
+
+```text
+# Pseudo-code, simplified from MESA 0.9.4
+results = sorted(
+    candidates,
+    key=lambda c: (
+        -c.fused_score,
+        c.document_id,
+        c.revision_number,
+        c.chunk_ordinal,
+        c.chunk_id,
+    ),
+)
+```
+
+During development, one pair of fresh stores still differed on 2 of 112 answerable questions, with no change to the top-5 count. The next pair differed on none. The check that matters is the published package:
+
+| MESA 0.9.4 from PyPI, dev, Tier M | Identical questions | Gold-rank differences | Returned-order differences |
+| --- | --- | --- | --- |
+| T0 (models off) | 128/128 | 0 | 0 |
+| T1b (bge-m3) | 128/128 | 0 | 0 |
+| T2 (bge-m3 + reranker) | 128/128 | 0 | 0 |
+
+That run used 0.9.3 graph and assertion settings. A separate run with the 0.9.4 release defaults repeated the result. Its T1b ranks also matched on a different LanceDB version, 128 of 128.
+
+## Why does this matter for evaluation?
+
+A four-question swing is larger than some real improvements. In the same development cycle, prefix BM25 alone added a net two questions on a shared store. On fresh stores, that gain could not have been told apart from tie noise.
+
+So we changed how we compare. Before the fix, we measured changes on one shared store. Since the fix, we also build fresh stores and compare the ordered results. Read the full before-and-after numbers in [What Improved MESA Search Quality in 0.9.4](/research/what-improved-search-in-0-9-4/).
+
+## How can you check your own search system?
+
+1. Build two indexes from the same input, in separate locations.
+2. Run the same queries against both.
+3. Compare the ordered result IDs, not only Hit@k or MRR.
+4. If orders differ, look for ties first, then for generated IDs, insertion order and parallel ingestion.
+5. Add a final sort key that comes from the content, and keep a test that builds two fresh stores.
+
+Our [evaluation method](/methodology/retrieval-evaluation/) lists what to record with each run. The [MRR and nDCG lesson](/learn/evaluating-ndcg-and-mrr-in-memory/) explains why small rank moves can change a score.
+
+## What can this result not show?
+
+- It covers one Turkish legal corpus and 128 dev questions.
+- It shows repeatability for the same corpus, package and settings. Adding a document can still change ranks.
+- A deterministic tie-break makes the order repeatable. It does not make the tied passages more relevant.
+- We did not count how many of the 49 rank differences came from each lane.
+
+## Sources
+
+1. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+2. [Cormack, Clarke and Büttcher: Reciprocal Rank Fusion (SIGIR 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+3. [RFC 9562: Universally Unique IDentifiers](https://www.rfc-editor.org/rfc/rfc9562.html)
+
+', ARRAY['benchmark', 'determinism', 'rrf', 'evaluation']::text[], 'MESA contributors', 7, 'published', 'Why Two Identical Search Runs Gave Different Results', 'Two fresh MESA stores disagreed on 49 of 112 questions. Here is how random tie-breaks caused it and how we made ranking repeatable.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-two-search-runs-differed', 'research', 'tr', 'Aynı Arama İki Kez Neden Farklı Sonuç Verdi?', 'Kalite değişimi gibi görünen bir sıralama hatası', 'Aynı belgelerle sıfırdan kurulan iki MESA deposu, 112 dev sorusunun 49’unda farklı sıra verdi. Eşit sıraları rastgele kimlikler belirliyordu.', '', '## Aynı arama neden farklı sonuç verdi?
+
+Eşit puanları rastgele kimlikler ayırıyordu. İki pasajın puanı aynı olduğunda sıralarını, belge alınırken üretilen UUID belirliyordu. Bu yüzden aynı 141 belgeyle ayrı ayrı kurulan iki depo bazı pasajları farklı sıraladı. Benchmark v2 dev bölümünde (Tier M, modeller kapalı) depolardan biri Hit@5’te 48/112, diğeri 52/112 aldı.
+
+Çözüm, eşitliği içeriğin kalıcı kimliğiyle bozmak oldu. PyPI’da yayımlanan MESA 0.9.4 paketiyle bağımsız kurulan iki depo, denenen üç yapılandırmanın hepsinde 128 dev sorusunun tamamı için aynı sırayı döndürdü.
+
+## İki çalıştırma ne gösterdi?
+
+Fark yalnızca ayrı kurulan depolar arasında çıktı. Aynı depoda aramayı tekrarlamak hiçbir şeyi değiştirmedi. Demek ki sorun sorgu anındaki bir rastgelelik değildi.
+
+| Karşılaştırma (dev, T0, düzeltmeden önce) | Hit@5 | MRR | Sırası değişen yanıtlanabilir soru |
+| --- | --- | --- | --- |
+| Sıfırdan kurulan A deposu | 48/112 | 0,3314 | 49, A ve B arasında |
+| Sıfırdan kurulan B deposu | 52/112 | 0,3500 | 49, A ve B arasında |
+| Ortak depo, 1. çalıştırma | 50/112 | 0,3411 | 0, 1. ve 2. arasında |
+| Ortak depo, 2. çalıştırma | 50/112 | 0,3411 | 0, 1. ve 2. arasında |
+
+Hit@5 farkı, ne kadar şeyin oynadığını gizliyor. Yanıtlanabilir 49 sorunun sırası değişti. Bunların yalnızca altısı ilk 5 sınırını geçti: biri A deposunun, beşi B deposunun lehine. Net fark dört soru oldu.
+
+> [!NOTE]
+> **Kurulum**
+> 0.9.4 sıralama değişikliklerinden önceki geliştirme derlemesi, çizge açık, modeller kapalı. Benchmark v2 dev bölümü, Tier M, 141 belge, 5.041 parça, 112’si yanıtlanabilir 128 soru. Arama limiti 50.
+
+## Sıralama birleştirmede eşitlik neden oluşur?
+
+[Reciprocal Rank Fusion (RRF)](/learn/reciprocal-rank-fusion-explained/), bir pasajı ham puanına göre değil, her listedeki sırasına göre puanlar. Sıralar tam sayı olduğu için birebir eşitlik sık görülür.
+
+Örnek olarak k = 60 ve eşit ağırlık alalım. Yalnızca BM25’te üçüncü olan pasaj 1/(60+3) puan alır. Yalnızca bilgi kaydı (assertion) kanalında üçüncü olan pasaj da 1/(60+3) alır. Birleşik puan ikisini ayıramaz; sırayı bir sonraki sıralama anahtarı belirler.
+
+Düzeltmeden önce bu anahtar rastgele bir UUID olabiliyordu. UUID aynı depoda değişmediği için tekrar eden çalıştırmalar aynı sonucu veriyordu. Yeni bir depo ise yeni UUID’ler üretiyor, aynı eşitlik bu kez öteki yöne çözülebiliyordu.
+
+## Sıralamayı nasıl tekrarlanabilir yaptık?
+
+MESA 0.9.4 iki şeyi değiştirdi. Arama kanalları ve birleştirme adımı artık eşit puanları içerik kimliğiyle ayırıyor. Katalog da kiracı (tenant) kapsamlı, belirlenimci UUID5 anahtarları üretiyor; böylece aynı derlem aynı iç anahtarları alıyor. Puanlar değişmiyor.
+
+```text
+# Sözde kod, MESA 0.9.4''ten sadeleştirildi
+results = sorted(
+    candidates,
+    key=lambda c: (
+        -c.fused_score,
+        c.document_id,
+        c.revision_number,
+        c.chunk_ordinal,
+        c.chunk_id,
+    ),
+)
+```
+
+Geliştirme sırasında sıfırdan kurulan bir depo çifti, 112 yanıtlanabilir sorunun 2’sinde hâlâ ayrışıyordu; ilk 5 sayısı ise değişmedi. Sonraki çiftte hiç fark kalmadı. Asıl önemli kontrol yayımlanan paketle yapıldı:
+
+| PyPI’dan MESA 0.9.4, dev, Tier M | Aynı kalan soru | Doğru yanıt sırası farkı | Dönen sıra farkı |
+| --- | --- | --- | --- |
+| T0 (modeller kapalı) | 128/128 | 0 | 0 |
+| T1b (bge-m3) | 128/128 | 0 | 0 |
+| T2 (bge-m3 + yeniden sıralayıcı) | 128/128 | 0 | 0 |
+
+Bu çalıştırmada 0.9.3’ün çizge ve bilgi kaydı ayarları kullanıldı. 0.9.4 varsayılanlarıyla yapılan ayrı çalıştırma da aynı sonucu verdi. Bu çalıştırmanın T1b sıraları, farklı bir LanceDB sürümünde de 128 sorunun 128’inde aynı kaldı.
+
+## Bu, değerlendirme için neden önemli?
+
+Dört soruluk oynama, bazı gerçek iyileştirmelerden büyüktür. Aynı geliştirme döneminde önek eşleştirmeli BM25, ortak depoda tek başına net iki soru kazandırdı. Sıfırdan kurulan depolarda bu kazancı eşitlik gürültüsünden ayırmak mümkün olmazdı.
+
+Bu yüzden karşılaştırma yöntemimizi değiştirdik. Düzeltmeden önce değişiklikleri tek bir ortak depoda ölçtük. Düzeltmeden sonra sıfırdan depolar da kurup dönen sırayı karşılaştırıyoruz. Öncesi ve sonrası için [MESA 0.9.4’te Arama Kalitesini Ne Artırdı?](/research/what-improved-search-in-0-9-4/) yazısına bakın.
+
+## Kendi arama sisteminizi nasıl kontrol edersiniz?
+
+1. Aynı girdiden, ayrı konumlarda iki dizin kurun.
+2. Aynı sorguları ikisinde de çalıştırın.
+3. Yalnızca Hit@k veya MRR’yi değil, sıralı sonuç kimliklerini karşılaştırın.
+4. Sıralar farklıysa önce eşit puanlara, sonra üretilen kimliklere, ekleme sırasına ve paralel veri alımına bakın.
+5. İçerikten gelen son bir sıralama anahtarı ekleyin ve iki temiz depo kuran bir test bulundurun.
+
+[Değerlendirme yöntemimiz](/methodology/retrieval-evaluation/), her çalıştırmayla birlikte nelerin kaydedileceğini listeler. [MRR ve nDCG dersi](/learn/evaluating-ndcg-and-mrr-in-memory/), küçük sıra değişimlerinin puanı neden etkilediğini açıklar.
+
+## Bu sonuç neyi gösteremez?
+
+- Tek bir Türkçe hukuk derlemini ve 128 dev sorusunu kapsar.
+- Aynı derlem, paket ve ayarlar için tekrarlanabilirliği gösterir. Yeni bir belge eklemek sıraları yine değiştirebilir.
+- Belirlenimci eşitlik bozma sırayı tekrarlanabilir yapar; eşit puanlı pasajları daha ilgili yapmaz.
+- 49 sıra farkının kaçının hangi kanaldan geldiğini saymadık.
+
+## Kaynaklar
+
+1. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+2. [Cormack, Clarke ve Büttcher: Reciprocal Rank Fusion (SIGIR 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+3. [RFC 9562: Universally Unique IDentifiers](https://www.rfc-editor.org/rfc/rfc9562.html)
+
+', ARRAY['benchmark', 'determinism', 'rrf', 'evaluation']::text[], 'MESA contributors', 7, 'published', 'Aynı Arama İki Kez Neden Farklı Sonuç Verdi?', 'Aynı belgelerle kurulan iki MESA deposu 112 sorunun 49’unda ayrıştı. Rastgele eşitlik bozmanın etkisini ve çözümü anlatıyoruz.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-improved-search-in-0-9-4', 'research', 'en', 'What Improved MESA Search Quality in 0.9.4', 'Two modes improved on dev. The reranked mode got worse.', 'Prefix BM25 and new fusion defaults improved models-off and embedding search on dev. Reranked dev Hit@5 fell from 0.9286 to 0.9107.', '', '## Did MESA 0.9.4 improve search quality?
+
+Partly. On benchmark v2 dev, models-off search (T0) rose from Hit@5 0.4732 to 0.5446. Embedding search (T1b) rose from 0.7411 to 0.7768. Reranked search (T2), the strongest mode, fell from Hit@5 0.9286 to 0.9107, and its MRR fell from 0.8076 to 0.7945.
+
+> [!WARNING]
+> **0.9.4 is not a clean win**
+> With the 0.9.4 defaults, reranked dev Hit@5 fell from 0.9286 to 0.9107, or from 104/112 to 102/112 questions (benchmark v2, Tier M, T2).
+
+Three changes drove this: 5-character prefix matching in BM25, assertion lane weight 0, and the graph lane off by default. p95 search latency dropped in all three modes. 0.9.4 is a better default for models-off and embedding search. It is not a clean win.
+
+| 0.9.3 → 0.9.4 defaults, dev, Tier M | MRR | Hit@5 | Search p50 (s) | Search p95 (s) |
+| --- | --- | --- | --- | --- |
+| T0, models off | 0.3405 → 0.3954 | 0.4732 → 0.5446 | 0.6615 → 0.3291 | 4.5369 → 0.8155 |
+| T1b, bge-m3 | 0.5758 → 0.6487 | 0.7411 → 0.7768 | 1.6736 → 1.6373 | 7.0309 → 2.1655 |
+| T2, bge-m3 + reranker | 0.8076 → 0.7945 | 0.9286 → 0.9107 | 2.3461 → 2.2725 | 7.8343 → 2.7771 |
+
+> [!NOTE]
+> **Setup**
+> Published PyPI wheels, one Colab NVIDIA A100 80 GB runtime, evaluator v2.1, search limit 50. Benchmark v2 dev split, Tier M, 141 documents, 5,041 chunks, 128 questions. Relevance uses the 112 answerable questions; latency uses all 128. 0.9.4 defaults: graph off, assertion weight 0, BM25 weight 1, vector weight 8.
+
+## What got worse in reranked search?
+
+Reranked dev Hit@5 fell by two questions, from 104/112 to 102/112. Both losses were in the number, date and docket category, where Hit@5 fell from 1.0000 to 0.9429 (35/35 to 33/35). Exact, paraphrase and cross-document Hit@5 did not change.
+
+The new defaults are the likely source. MESA 0.9.4 run with the old 0.9.3 graph and assertion settings kept T2 at Hit@5 0.9286 and MRR 0.8076. Switching to the 0.9.4 defaults produced the drop. We did not test the two settings separately at T2, so we cannot say which one caused it.
+
+If you use reranking and depend on number, date or docket lookups, compare both settings on your own data. These variables restore the earlier fusion behavior in 0.9.4:
+
+```text
+MESA_RRF_ASSERTION_WEIGHT=1.0
+MESA_GRAPH_ENABLED=true
+```
+
+Enabling the graph backfills skipped graph projections at startup. The p95 gain shown above came with the graph off, so expect slower search if you turn it back on.
+
+## Which change helped models-off search?
+
+We tested each change on one shared store, because [fresh stores varied by up to four questions](/research/why-two-search-runs-differed/) at that time. These runs are from a pre-release 0.9.4 development build, on a local machine, with models off. Compare the steps within this table only.
+
+| Step, dev, T0, shared store | Hit@5 | MRR | Search p50 |
+| --- | --- | --- | --- |
+| Baseline | 50/112 | 0.3411 | 361.3 ms |
+| + prefix BM25 | 52/112 | 0.3444 | 357.3 ms |
+| + prefix, assertion weight 0 | 56/112 | 0.3529 | 351.8 ms |
+| + prefix, graph off | 52/112 | 0.3535 | 182.2 ms |
+| + prefix, both | 61/112 | 0.3955 | 181.4 ms |
+
+The two lane changes interact. Starting from prefix BM25, assertion weight 0 added 4 questions and graph off added 0. Together they added 9. With models off, that combination leaves BM25 as the only fused lane. The result suggests the other two lanes were pushing good BM25 hits down.
+
+From baseline to the final step, 14 questions entered the top 5 and 3 left it. Number/date/docket went from 17 to 22 of 35, paraphrase from 12 to 17 of 32, and cross-document from 0 to 1 of 14. Exact-wording questions stayed at 21 of 31.
+
+See [how RRF combines lanes](/learn/reciprocal-rank-fusion-explained/) and [hybrid retrieval](/learn/hybrid-retrieval-explained/) for the mechanics.
+
+## What did prefix matching do for Turkish?
+
+Turkish adds suffixes to word stems, so one legal term appears in many surface forms. Exact token matching treats them as different words. MESA 0.9.4 matches the first 5 characters of query tokens that have 6 or more characters and no digits. Shorter tokens, tokens with digits and `ı` → `i` variants stay exact.
+
+Here is an illustrative example. The query word `sözleşmesi` becomes the prefix `sözle*`. It now matches `sözleşme` and `sözleşmesinin`. It can also match different words that begin with `sözle`, such as `sözler`.
+
+The measured gain was small: 4 questions entered the top 5 and 2 left it, for a net +2. Three of the four gains moved only from rank 6 to rank 5. One moved from rank 38 to rank 4. This is a useful but limited change. See [BM25 for domain documents](/learn/bm25-tuning-for-domain-documents/) for tuning background.
+
+> [!NOTE]
+> **What we measured in MESA**
+> For the full per-question analysis, see [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/).
+
+## Why did search get faster?
+
+Most of the tail-latency gain came from turning off the graph lane. In the shared-store ablation, p95 fell from 2.07 s to 0.45 s with graph off.
+
+One caveat applies to the release comparison. 0.9.4 caps LanceDB below 0.35, so it ran on 0.34.0 while the 0.9.3 run used 0.41.0. On 0.9.4 defaults at T1b, LanceDB 0.41.0 gave p50 1.2285 s against 1.6373 s on 0.34.0, with identical ranks on 128 of 128 questions. The version cap currently costs some embedding-search speed.
+
+## What about the test split?
+
+> [!WARNING]
+> **Read these numbers with care**
+> The test split has been read in six runs: three on benchmark v1 and three on v2. MESA 0.9.4 was evaluated on the v2 test split twice. Most v2 test questions were derived from the v1 test set. These results are not an independent holdout, so dev results are our main numbers.
+
+| 0.9.3 → 0.9.4 defaults, v2 test, Tier M (173 questions, 149 answerable) | MRR | Hit@5 |
+| --- | --- | --- |
+| T0, models off | 0.3988 → 0.4810 | 0.5503 → 0.5772 |
+| T1b, bge-m3 | 0.6198 → 0.6413 | 0.7919 → 0.8188 |
+| T2, bge-m3 + reranker | 0.7867 → 0.7868 | 0.8993 → 0.8993 |
+
+The reranked drop seen on dev did not appear in test Hit@5. Given how the split has been used, that does not cancel the dev result.
+
+## What can these results not show?
+
+- All results come from one Turkish legal corpus.
+- With 112 answerable dev questions, one question is worth about 0.009 Hit@5. The reranked drop is two questions.
+- The defaults were chosen using the same dev set, so dev gains may be optimistic.
+- We did not test assertion weight and graph settings separately at T2.
+- The changelog reports 50 → 61 on a shared local store. The official Colab run reports 53 → 61 (0.4732 → 0.5446). Both are valid, but they use different baselines.
+
+> [!NOTE]
+> **What we measured in MESA**
+> 0.9.4 also removed two subsystems without changing dev ranks. See [what we deleted](/research/deleting-code-mesa-0-9-4/).
+
+## Sources
+
+1. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+2. [mesa-memory 0.9.4 on PyPI](https://pypi.org/project/mesa-memory/0.9.4/)
+3. [SQLite FTS5 documentation](https://www.sqlite.org/fts5.html)
+4. [Cormack, Clarke and Büttcher: Reciprocal Rank Fusion (SIGIR 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+
+', ARRAY['benchmark', 'bm25', 'hybrid-search', 'ablation', 'turkish']::text[], 'MESA contributors', 9, 'published', 'What Improved MESA Search Quality in 0.9.4', 'Prefix BM25 and new fusion defaults helped models-off and embedding search, but reranked dev Hit@5 fell from 0.9286 to 0.9107.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-improved-search-in-0-9-4', 'research', 'tr', 'MESA 0.9.4’te Arama Kalitesini Ne Artırdı?', 'Dev kümesinde iki mod iyileşti, yeniden sıralamalı mod geriledi', 'Önekli BM25 ve yeni birleştirme ayarları, modelsiz ve embedding aramasını dev kümesinde iyileştirdi. Yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.', '', '## MESA 0.9.4 arama kalitesini artırdı mı?
+
+Kısmen. Benchmark v2 dev bölümünde modellerin kapalı olduğu arama (T0), Hit@5’te 0,4732’den 0,5446’ya çıktı. Embedding araması (T1b) 0,7411’den 0,7768’e yükseldi. En güçlü mod olan yeniden sıralamalı arama (T2) ise Hit@5’te 0,9286’dan 0,9107’ye, MRR’de 0,8076’dan 0,7945’e düştü.
+
+> [!WARNING]
+> **0.9.4 tartışmasız bir kazanç değil**
+> 0.9.4 varsayılanlarıyla yeniden sıralamalı dev Hit@5, 0,9286’dan 0,9107’ye, yani 104/112 sorudan 102/112 soruya düştü (benchmark v2, Tier M, T2).
+
+Bu sonucu üç değişiklik belirledi: BM25’te 5 karakterlik önek eşleştirme, bilgi kaydı (assertion) kanalının ağırlığının 0 olması ve çizge kanalının varsayılan olarak kapanması. Üç modda da p95 arama süresi düştü. 0.9.4, modelsiz ve embedding araması için daha iyi bir varsayılandır; ama tartışmasız bir kazanç değildir.
+
+| 0.9.3 → 0.9.4 varsayılanları, dev, Tier M | MRR | Hit@5 | Arama p50 (sn) | Arama p95 (sn) |
+| --- | --- | --- | --- | --- |
+| T0, modeller kapalı | 0,3405 → 0,3954 | 0,4732 → 0,5446 | 0,6615 → 0,3291 | 4,5369 → 0,8155 |
+| T1b, bge-m3 | 0,5758 → 0,6487 | 0,7411 → 0,7768 | 1,6736 → 1,6373 | 7,0309 → 2,1655 |
+| T2, bge-m3 + yeniden sıralayıcı | 0,8076 → 0,7945 | 0,9286 → 0,9107 | 2,3461 → 2,2725 | 7,8343 → 2,7771 |
+
+> [!NOTE]
+> **Kurulum**
+> PyPI’da yayımlanan paketler, tek bir Colab NVIDIA A100 80 GB ortamı, değerlendirici v2.1, arama limiti 50. Benchmark v2 dev bölümü, Tier M, 141 belge, 5.041 parça, 128 soru. İlgililik ölçümleri 112 yanıtlanabilir soruyu, gecikme ölçümleri 128 sorunun tamamını kullanır. 0.9.4 varsayılanları: çizge kapalı, bilgi kaydı ağırlığı 0, BM25 ağırlığı 1, vektör ağırlığı 8.
+
+## Yeniden sıralamalı aramada ne kötüleşti?
+
+Yeniden sıralamalı dev Hit@5 iki soru geriledi: 104/112’den 102/112’ye. İki kayıp da sayı, tarih ve esas numarası kategorisinde oldu; bu kategoride Hit@5 1,0000’den 0,9429’a indi (35/35’ten 33/35’e). Birebir ifade, yeniden ifade ve çok belgeli sorularda Hit@5 değişmedi.
+
+Düşüşün kaynağı büyük olasılıkla yeni varsayılanlar. MESA 0.9.4, eski 0.9.3 çizge ve bilgi kaydı ayarlarıyla çalıştırıldığında T2 Hit@5 0,9286, MRR 0,8076 olarak kaldı. 0.9.4 varsayılanlarına geçince düşüş görüldü. T2’de iki ayarı ayrı ayrı denemedik; bu yüzden hangisinin neden olduğunu söyleyemiyoruz.
+
+Yeniden sıralama kullanıyor ve sayı, tarih ya da esas numarası aramalarına güveniyorsanız iki ayarı kendi verinizde karşılaştırın. Şu değişkenler 0.9.4’te önceki birleştirme davranışını geri getirir:
+
+```text
+MESA_RRF_ASSERTION_WEIGHT=1.0
+MESA_GRAPH_ENABLED=true
+```
+
+Çizgeyi açmak, başlangıçta atlanmış çizge projeksiyonlarını tamamlar. Yukarıdaki p95 kazancı çizge kapalıyken elde edildi; yeniden açarsanız aramanın yavaşlamasını bekleyin.
+
+## Modelsiz aramayı hangi değişiklik iyileştirdi?
+
+Her değişikliği tek bir ortak depoda denedik; çünkü o dönemde [sıfırdan kurulan depolar dört soruya kadar oynuyordu](/research/why-two-search-runs-differed/). Bu çalıştırmalar, modeller kapalıyken yerel bir makinede, 0.9.4 öncesi geliştirme derlemesiyle yapıldı. Adımları yalnızca bu tablo içinde karşılaştırın.
+
+| Adım, dev, T0, ortak depo | Hit@5 | MRR | Arama p50 |
+| --- | --- | --- | --- |
+| Başlangıç | 50/112 | 0,3411 | 361,3 ms |
+| + önekli BM25 | 52/112 | 0,3444 | 357,3 ms |
+| + önek, bilgi kaydı ağırlığı 0 | 56/112 | 0,3529 | 351,8 ms |
+| + önek, çizge kapalı | 52/112 | 0,3535 | 182,2 ms |
+| + önek, ikisi birlikte | 61/112 | 0,3955 | 181,4 ms |
+
+İki kanal değişikliği birbirini etkiliyor. Önekli BM25’ten başlayınca bilgi kaydı ağırlığını 0 yapmak 4 soru, çizgeyi kapatmak 0 soru ekledi. İkisi birlikte 9 soru ekledi. Modeller kapalıyken bu birleşim, BM25’i birleştirilen tek kanal olarak bırakıyor. Sonuç, diğer iki kanalın iyi BM25 sonuçlarını aşağı ittiğini düşündürüyor.
+
+Başlangıçtan son adıma 14 soru ilk 5’e girdi, 3 soru çıktı. Sayı/tarih/esas sorularında 35’te 17’den 22’ye, yeniden ifade sorularında 32’de 12’den 17’ye, çok belgeli sorularda 14’te 0’dan 1’e çıkıldı. Birebir ifade soruları 31’de 21’de kaldı.
+
+İşleyişi görmek için [RRF’nin kanalları nasıl birleştirdiğine](/learn/reciprocal-rank-fusion-explained/) ve [hibrit aramaya](/learn/hybrid-retrieval-explained/) bakın.
+
+## Önek eşleştirme Türkçede ne işe yaradı?
+
+Türkçe sözcük köklerine ek alır; bu yüzden tek bir hukuk terimi metinde pek çok biçimde görünür. Birebir token eşleştirme bunları farklı sözcükler sayar. MESA 0.9.4, 6 veya daha uzun olan ve rakam içermeyen sorgu token’larının ilk 5 karakterini eşleştirir. Daha kısa token’lar, rakamlı token’lar ve `ı` → `i` varyantları birebir kalır.
+
+Örnek olarak sorgudaki `sözleşmesi` sözcüğü `sözle*` önekine dönüşür. Böylece `sözleşme` ve `sözleşmesinin` biçimleriyle eşleşir. Aynı önek, `sözler` gibi `sözle` ile başlayan ilgisiz sözcükleri de yakalayabilir.
+
+Ölçülen kazanç küçük: 4 soru ilk 5’e girdi, 2 soru çıktı; net +2. Dört kazancın üçü yalnızca 6. sıradan 5. sıraya geçti. Biri ise 38. sıradan 4. sıraya çıktı. Yararlı ama sınırlı bir değişiklik. Ayar konusunda [alan belgeleri için BM25](/learn/bm25-tuning-for-domain-documents/) dersine bakabilirsiniz.
+
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Soru başına tam analiz için [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısına bakın.
+
+## Arama neden hızlandı?
+
+Uç gecikmedeki kazancın çoğu çizge kanalını kapatmaktan geldi. Ortak depodaki ablasyon testinde çizge kapanınca p95, 2,07 sn’den 0,45 sn’ye indi.
+
+Sürüm karşılaştırmasında bir uyarı gerekiyor. 0.9.4, LanceDB’yi 0.35’in altında tutar; bu yüzden 0.34.0 ile çalıştı, 0.9.3 çalıştırması ise 0.41.0 kullandı. 0.9.4 varsayılanlarıyla T1b’de LanceDB 0.41.0, 0.34.0’daki 1,6373 sn’ye karşı 1,2285 sn p50 verdi ve 128 sorunun 128’inde sıralar aynı kaldı. Sürüm sınırı şu anda embedding aramasından bir miktar hız götürüyor.
+
+## Test bölümünde durum ne?
+
+> [!WARNING]
+> **Bu sayıları dikkatle okuyun**
+> Test bölümü altı çalıştırmada okundu: üçü benchmark v1, üçü v2 üzerinde. MESA 0.9.4, v2 test bölümünde iki kez değerlendirildi. v2 test sorularının çoğu v1 test kümesinden türetildi. Bu sonuçlar bağımsız bir sınama değildir; ana sayılarımız dev sonuçlarıdır.
+
+| 0.9.3 → 0.9.4 varsayılanları, v2 test, Tier M (173 soru, 149’u yanıtlanabilir) | MRR | Hit@5 |
+| --- | --- | --- |
+| T0, modeller kapalı | 0,3988 → 0,4810 | 0,5503 → 0,5772 |
+| T1b, bge-m3 | 0,6198 → 0,6413 | 0,7919 → 0,8188 |
+| T2, bge-m3 + yeniden sıralayıcı | 0,7867 → 0,7868 | 0,8993 → 0,8993 |
+
+Dev’de görülen yeniden sıralama düşüşü test Hit@5’te görünmedi. Bu bölümün geçmişi düşünüldüğünde bu, dev sonucunu ortadan kaldırmaz.
+
+## Bu sonuçlar neyi gösteremez?
+
+- Tüm sonuçlar tek bir Türkçe hukuk derleminden geliyor.
+- 112 yanıtlanabilir dev sorusunda bir soru yaklaşık 0,009 Hit@5 eder. Yeniden sıralamalı düşüş iki sorudur.
+- Varsayılanlar aynı dev kümesiyle seçildi; dev kazançları olduğundan iyi görünebilir.
+- T2’de bilgi kaydı ağırlığı ve çizge ayarlarını ayrı ayrı denemedik.
+- Değişiklik günlüğü, ortak yerel depoda 50 → 61 bildirir. Resmî Colab çalıştırması 53 → 61 (0,4732 → 0,5446) verir. İkisi de doğrudur, ama başlangıç noktaları farklıdır.
+
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> 0.9.4, dev sıralarını değiştirmeden iki alt sistemi de kaldırdı. [Neleri sildiğimize](/research/deleting-code-mesa-0-9-4/) bakın.
+
+## Kaynaklar
+
+1. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+2. [PyPI’da mesa-memory 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/)
+3. [SQLite FTS5 belgeleri](https://www.sqlite.org/fts5.html)
+4. [Cormack, Clarke ve Büttcher: Reciprocal Rank Fusion (SIGIR 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
+
+', ARRAY['benchmark', 'bm25', 'hybrid-search', 'ablation', 'turkish']::text[], 'MESA contributors', 9, 'published', 'MESA 0.9.4’te Arama Kalitesini Ne Artırdı?', 'Önekli BM25 ve yeni birleştirme ayarları iki modu iyileştirdi; yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-benchmark-v2', 'research', 'en', 'How We Built a Turkish Legal Retrieval Benchmark', 'What we rebuilt, how we score it, and where it falls short', 'Benchmark v2 rebuilt 246 older questions into 128 dev and 173 test questions with verbatim evidence. Its test split has been read six times, so dev results come first.', '', '## How did we build the benchmark?
+
+We reviewed all 246 questions from benchmark v1 and found that many depended on missing context or on phrases that appeared in several places. We rewrote or rebuilt most of them, dropped 39, added open-style questions, and tied every answer to a verbatim quote in a source file. The result has 128 dev questions and 173 test questions over Turkish legal documents.
+
+> [!WARNING]
+> **The test split is not an independent holdout**
+> It has been read in six MESA runs, and most v2 test questions derive from a v1 test set that had already been read. We report dev results as our main numbers. Test results appear only with this caveat.
+
+## Why was the first benchmark not good enough?
+
+Mechanical checks over all 246 v1 questions showed that a correct passage could be hard to define:
+
+| Check on v1 questions | Dev | Test | Total |
+| --- | --- | --- | --- |
+| Wording depends on context and was flagged | 40 | 54 | 94 |
+| Expected phrase also occurs in another file | 37 | 48 | 85 |
+| Expected phrase occurs in 10 or more other files | 14 | 19 | 33 |
+| Expected phrase repeats inside its own file | 25 | 39 | 64 |
+
+A question such as "what does this regulation say" has no answer without knowing which regulation. A short phrase that repeats across files can also give credit to the wrong passage. In the worst case, one phrase repeated 172 times within a single file.
+
+## What changed from v1 to v2?
+
+| Review action on v1 questions | Dev | Test | Total |
+| --- | --- | --- | --- |
+| Rewritten | 73 | 104 | 177 |
+| Rebuilt | 13 | 17 | 30 |
+| Dropped | 15 | 24 | 39 |
+| Kept unchanged | 0 | 0 | 0 |
+
+The review first produced 207 questions. We then added open-style questions and applied a further correction pass. The final v2 set looks like this:
+
+| Category | Dev | Test |
+| --- | --- | --- |
+| Exact wording | 31 | 39 |
+| Number, date, docket | 35 | 46 |
+| Paraphrase | 32 | 48 |
+| Cross-document | 14 | 16 |
+| No answer in corpus | 16 | 24 |
+| Total | 128 | 173 |
+
+## What makes a question valid?
+
+- A question names its source when the answer depends on it. Law names carry their numbers, and decisions carry court, docket and decision numbers.
+- Each answer has a verbatim quote of at most 200 characters that occurs once in the full corpus after Turkish normalization.
+- Cross-document questions name two sources and require one passage from each.
+- No-answer questions were checked against 33,954 indexed windows from all 182 documents, using at least two query variants.
+- Automated validation rejects overlapping gold spans between dev and test.
+
+## What is an open-style question?
+
+Named questions tell the system which law to use. Open-style questions describe a situation, as a person would. Here is a real pair from the dev split:
+
+> [!NOTE]
+> **Named**
+> 6098 sayılı Türk Borçlar Kanunu uyarınca, aralıksız evde çalışan işçinin hazırladığı ürünü işveren teslim almada temerrüde düşerse işçinin ücretini ödeme borcu sürer mi?
+
+> [!NOTE]
+> **Open**
+> Evde sürekli parça başı üretim yapıyorum. İşveren hazırladığım ürünleri teslim almada temerrüde düşerse ücretimi yine de ödemek zorunda mı?
+
+Both point to the same evidence. That makes the pair useful for testing wording, but it also means the two results are not independent.
+
+## How are results scored?
+
+A hit must come from the correct file. It then counts if it contains the normalized answer quote, or if it overlaps the quote by at least 60 characters or by the quote''s full length when the quote is shorter. A passage from the right article that lacks the evidence earns no passage credit.
+
+For cross-document questions, the rank is the position at which all required passages have appeared. See the [MRR and nDCG lesson](/learn/evaluating-ndcg-and-mrr-in-memory/) for how the metrics behave.
+
+| Configuration | What runs |
+| --- | --- |
+| T0 | Models off, lexical search |
+| T1b | T0 plus normalized BAAI/bge-m3 embeddings |
+| T2 | T1b plus BAAI/bge-reranker-v2-m3 |
+
+## How is a run performed?
+
+1. Install the published package from PyPI.
+2. Create a fresh store for each configuration on one Colab NVIDIA A100 80 GB runtime.
+3. Ingest Tier M: 141 documents, 5,041 chunks.
+4. Run dev twice on independently built stores and compare the returned order.
+5. Save the dev report locally before the test file is uploaded.
+6. Run test once per configuration.
+
+The evaluator exits if a test file is passed without an explicit `--split test`. We added the two-store comparison after [random tie-breaks changed results between stores](/research/why-two-search-runs-differed/).
+
+## How many times was the test split read?
+
+Six runs read a test split. The process above limits accidental use, but it cannot undo repeated reads.
+
+| Run date | Question set | MESA run |
+| --- | --- | --- |
+| 2026-10-29 | v1 | 0.9.0 experiments |
+| 2026-11-07 | v1 | 0.9.2 release |
+| 2026-11-17 | v1 | 0.9.3 release |
+| 2026-11-21 | v2 | 0.9.3 reference |
+| 2026-11-23 | v2 | 0.9.4 with 0.9.3 settings |
+| 2026-11-23 | v2 | 0.9.4 release defaults |
+
+The second 0.9.4 read happened because the first run did not use the release defaults. Those defaults were committed before the first v2 test read, but later development followed that read. For measured results, see [What Improved MESA Search Quality in 0.9.4](/research/what-improved-search-in-0-9-4/).
+
+## What can this benchmark not show?
+
+- Annotation had a review pass and an evidence spot check, but no independent agreement measure.
+- It covers one snapshot of Turkish legal text. A no-answer label applies to this snapshot only.
+- Lexical review can miss answers that are stated indirectly or distorted by OCR.
+- Some source PDFs split words or insert page numbers, and those artifacts remain.
+- Cross-document results rest on only 14 dev questions.
+- The question files and evaluator are not public yet, so outside teams cannot rerun it.
+
+## Sources
+
+1. [SQLite FTS5 documentation](https://www.sqlite.org/fts5.html)
+2. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+3. [Manning, Raghavan and Schütze: Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
+
+', ARRAY['benchmark', 'evaluation', 'turkish', 'legal-search']::text[], 'MESA contributors', 9, 'published', 'How We Built a Turkish Legal Retrieval Benchmark', 'How MESA rebuilt 246 Turkish legal questions into benchmark v2, how runs are scored, and why its test split is no longer an independent holdout.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-benchmark-v2', 'research', 'tr', 'Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?', 'Neyi yeniden kurduk, nasıl puanlıyoruz, nerede eksik kalıyor?', 'Benchmark v2, eski 246 soruyu birebir kanıtlı 128 dev ve 173 test sorusuna dönüştürdü. Test bölümü altı kez okunduğu için ana sonuçlarımız dev bölümünden gelir.', '', '## Benchmark’ı nasıl kurduk?
+
+Benchmark v1’deki 246 sorunun tamamını inceledik. Birçoğu eksik bağlama ya da birden çok yerde geçen ifadelere dayanıyordu. Soruların çoğunu yeniden yazdık veya yeniden kurduk, 39’unu çıkardık, açık uçlu sorular ekledik ve her yanıtı kaynak dosyadaki birebir bir alıntıya bağladık. Sonuçta Türkçe hukuk belgeleri üzerinde 128 dev ve 173 test sorusu oluştu.
+
+> [!WARNING]
+> **Test bölümü bağımsız bir sınama değil**
+> Bu bölüm altı MESA çalıştırmasında okundu. v2 test sorularının çoğu da daha önce okunmuş v1 test kümesinden türetildi. Ana sayılarımız dev sonuçlarıdır; test sonuçlarını yalnızca bu uyarıyla veriyoruz.
+
+## İlk benchmark neden yetersiz kaldı?
+
+246 v1 sorusu üzerindeki otomatik kontroller, doğru pasajı tanımlamanın çoğu zaman zor olduğunu gösterdi:
+
+| v1 soruları üzerindeki kontrol | Dev | Test | Toplam |
+| --- | --- | --- | --- |
+| İfade bağlama dayanıyor ve işaretlendi | 40 | 54 | 94 |
+| Beklenen ifade başka bir dosyada da geçiyor | 37 | 48 | 85 |
+| Beklenen ifade 10 veya daha çok başka dosyada geçiyor | 14 | 19 | 33 |
+| Beklenen ifade kendi dosyasında tekrar ediyor | 25 | 39 | 64 |
+
+“Bu yönetmelik ne diyor?” gibi bir soru, hangi yönetmelik olduğu bilinmeden yanıtlanamaz. Dosyalarda tekrar eden kısa bir ifade de yanlış pasaja puan kazandırabilir. En uç örnekte bir ifade tek dosyada 172 kez geçiyordu.
+
+## v1’den v2’ye ne değişti?
+
+| v1 soruları için inceleme kararı | Dev | Test | Toplam |
+| --- | --- | --- | --- |
+| Yeniden yazıldı | 73 | 104 | 177 |
+| Yeniden kuruldu | 13 | 17 | 30 |
+| Çıkarıldı | 15 | 24 | 39 |
+| Değişmeden kaldı | 0 | 0 | 0 |
+
+İnceleme önce 207 soru üretti. Ardından açık uçlu sorular ekledik ve bir düzeltme turu daha yaptık. Son v2 kümesi şöyle:
+
+| Kategori | Dev | Test |
+| --- | --- | --- |
+| Birebir ifade | 31 | 39 |
+| Sayı, tarih, esas no | 35 | 46 |
+| Yeniden ifade | 32 | 48 |
+| Çok belgeli | 14 | 16 |
+| Derlemde yanıtı yok | 16 | 24 |
+| Toplam | 128 | 173 |
+
+## Bir soru hangi koşullarda geçerli sayılır?
+
+- Yanıt kaynağa bağlıysa soru kaynağın adını verir. Kanun adları numarasıyla, kararlar mahkeme, esas ve karar numarasıyla yazılır.
+- Her yanıtın en çok 200 karakterlik birebir bir alıntısı vardır; bu alıntı Türkçe normalizasyondan sonra tüm derlemde bir kez geçer.
+- Çok belgeli sorular iki kaynağı adıyla anar ve her birinden bir pasaj ister.
+- Yanıtı olmayan sorular, 182 belgenin tamamından çıkarılan 33.954 pencere üzerinde en az iki sorgu çeşidiyle denetlendi.
+- Otomatik doğrulama, dev ve test arasında çakışan doğru yanıt aralıklarını reddeder.
+
+## Açık uçlu soru nedir?
+
+Adı belirtilen sorular sisteme hangi kanuna bakacağını söyler. Açık uçlu sorular ise bir insanın anlatacağı gibi durumu tarif eder. Dev bölümünden gerçek bir çift:
+
+> [!NOTE]
+> **Adı belirtilen**
+> 6098 sayılı Türk Borçlar Kanunu uyarınca, aralıksız evde çalışan işçinin hazırladığı ürünü işveren teslim almada temerrüde düşerse işçinin ücretini ödeme borcu sürer mi?
+
+> [!NOTE]
+> **Açık uçlu**
+> Evde sürekli parça başı üretim yapıyorum. İşveren hazırladığım ürünleri teslim almada temerrüde düşerse ücretimi yine de ödemek zorunda mı?
+
+İkisi de aynı kanıta dayanır. Bu, ifade farkını sınamak için yararlıdır; ama iki sonucun birbirinden bağımsız olmadığı anlamına da gelir.
+
+## Sonuçlar nasıl puanlanıyor?
+
+İsabet sayılması için sonuç doğru dosyadan gelmelidir. Ardından normalize edilmiş alıntıyı içeriyorsa ya da alıntıyla en az 60 karakter örtüşüyorsa geçerli olur; alıntı daha kısaysa tamamıyla örtüşmesi gerekir. Doğru maddeden gelen ama kanıtı içermeyen pasaj puan almaz.
+
+Çok belgeli sorularda sıra, gerekli pasajların tamamının göründüğü konumdur. Ölçütlerin davranışı için [MRR ve nDCG dersine](/learn/evaluating-ndcg-and-mrr-in-memory/) bakın.
+
+| Yapılandırma | Ne çalışıyor? |
+| --- | --- |
+| T0 | Modeller kapalı, sözcük tabanlı arama |
+| T1b | T0’a ek olarak normalize BAAI/bge-m3 gömme vektörleri |
+| T2 | T1b’ye ek olarak BAAI/bge-reranker-v2-m3 |
+
+## Bir çalıştırma nasıl yapılıyor?
+
+1. Yayımlanan paketi PyPI’dan kurun.
+2. Tek bir Colab NVIDIA A100 80 GB ortamında her yapılandırma için yeni bir depo oluşturun.
+3. Tier M’yi alın: 141 belge, 5.041 parça.
+4. Dev bölümünü bağımsız kurulan iki depoda çalıştırıp dönen sırayı karşılaştırın.
+5. Test dosyası yüklenmeden önce dev raporunu yerelde kaydedin.
+6. Testi her yapılandırma için bir kez çalıştırın.
+
+Değerlendirici, açıkça `--split test` verilmeden test dosyası alırsa durur. İki depolu karşılaştırmayı, [rastgele eşitlik bozmanın depolar arasında sonucu değiştirdiğini](/research/why-two-search-runs-differed/) gördükten sonra ekledik.
+
+## Test bölümü kaç kez okundu?
+
+Altı çalıştırma bir test bölümünü okudu. Yukarıdaki süreç yanlışlıkla kullanımı sınırlar; ama tekrar eden okumaları geri alamaz.
+
+| Çalıştırma tarihi | Soru kümesi | MESA çalıştırması |
+| --- | --- | --- |
+| 2026-10-29 | v1 | 0.9.0 deneyleri |
+| 2026-11-07 | v1 | 0.9.2 sürümü |
+| 2026-11-17 | v1 | 0.9.3 sürümü |
+| 2026-11-21 | v2 | 0.9.3 referansı |
+| 2026-11-23 | v2 | 0.9.3 ayarlarıyla 0.9.4 |
+| 2026-11-23 | v2 | 0.9.4 sürüm varsayılanları |
+
+İkinci 0.9.4 okuması, ilk çalıştırma sürüm varsayılanlarını kullanmadığı için yapıldı. Bu varsayılanlar ilk v2 test okumasından önce işlenmişti; ama sonraki geliştirme o okumadan sonra sürdü. Ölçülen sonuçlar için [MESA 0.9.4’te Arama Kalitesini Ne Artırdı?](/research/what-improved-search-in-0-9-4/) yazısına bakın.
+
+## Bu benchmark neyi gösteremez?
+
+- Etiketleme bir inceleme turu ve kanıt örneklemesinden geçti; bağımsız uyum ölçümü yapılmadı.
+- Türkçe hukuk metinlerinin tek bir anlık görüntüsünü kapsar. “Yanıt yok” etiketi yalnızca bu görüntü için geçerlidir.
+- Sözcük tabanlı inceleme, dolaylı anlatılan veya OCR ile bozulan yanıtları kaçırabilir.
+- Bazı kaynak PDF’ler sözcükleri böler ya da sayfa numarası ekler; bu izler metinde kalır.
+- Çok belgeli sonuçlar yalnızca 14 dev sorusuna dayanır.
+- Soru dosyaları ve değerlendirici henüz açık değil; dış ekipler yeniden çalıştıramaz.
+
+## Kaynaklar
+
+1. [SQLite FTS5 belgeleri](https://www.sqlite.org/fts5.html)
+2. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+3. [Manning, Raghavan ve Schütze: Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
+
+', ARRAY['benchmark', 'evaluation', 'turkish', 'legal-search']::text[], 'MESA contributors', 9, 'published', 'Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?', 'MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('deleting-code-mesa-0-9-4', 'research', 'en', 'What We Deleted From MESA, and Why', 'Removing two subsystems without changing a search rank', 'MESA 0.9.4 removed the V3 node store and LLM consolidation. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal.', '', '## What did we remove from MESA?
+
+MESA 0.9.4 removed the legacy V3 node store, the LLM consolidation subsystem and related settings. Runtime Python code fell from 48,591 to 42,541 lines, a drop of 6,050 lines or 12.5%. Settings read through the main config fell from 68 to 54.
+
+We checked each removal against benchmark v2 dev with models off. All 128 questions kept the same passage and document ranks after every step.
+
+## What exactly was deleted?
+
+| Area | Lines removed | Lines added |
+| --- | --- | --- |
+| `mesa_storage/dao.py` (V3 node, purge and WAL methods) | 2,307 | 211 |
+| `consolidation/loop.py` | 1,179 | 0 |
+| `mesa_storage/vector_engine.py` (soft-delete, Procrustes) | 590 | 1 |
+| `consolidation/router.py` | 392 | 0 |
+| `consolidation/validator.py` | 286 | 0 |
+| `consolidation/parser.py` | 271 | 0 |
+| `consolidation/policy.py` | 173 | 0 |
+
+| Scope, v0.9.3 → v0.9.4 | Files changed | Added | Removed |
+| --- | --- | --- | --- |
+| Runtime packages | 40 | 599 | 6,667 |
+| Tests | 88 | 2,672 | 7,887 |
+| Whole repository | 149 | 3,523 | 14,737 |
+
+Five database structures also went away: the V3 tables `nodes`, `nodes_fts`, `lancedb_wal`, `purge_journal` and `system_config`. A later migration dropped `routing_telemetry`.
+
+## Why did we delete working code?
+
+Neither subsystem was part of the default document and search flow. MESA''s document and search flow runs on the V4 tables, so the V3 store had become a second storage model to keep correct. Default validation was already deterministic (Mode 0), and in 0.9.3 finishing a session in that mode did not need a consolidation loop.
+
+Keeping them still had a cost. Each path needed tests, documentation, settings and security review. A setting that few runs exercise can also fail quietly. Removing a subsystem turns that ongoing cost into a one-time migration.
+
+## How did we check that search did not change?
+
+We ran the full dev set before and after each removal, on a shared store with models off.
+
+| Removal step, dev, T0 | Hit@5 before → after | MRR before → after | Questions with changed rank |
+| --- | --- | --- | --- |
+| V3 node store | 61/112 → 61/112 | 0.3955 → 0.3955 | 0 of 128 |
+| LLM consolidation | 61/112 → 61/112 | 0.3955 → 0.3955 | 0 of 128 |
+| Unused scaffolding | 61/112 → 61/112 | 0.3955 → 0.3955 | 0 of 128 |
+
+We compared per-question ranks as well as averages, because [an average can hide rank changes](/research/why-two-search-runs-differed/). Median latency across these runs ranged from 178 ms to 315 ms with no consistent direction, so we make no speed claim from these removals.
+
+## What happens to the removed settings?
+
+MESA 0.9.4 retires 20 environment variables, including `MESA_TIER3_MODE`, `MESA_USE_V4` and `CONSOLIDATION_BATCH_SIZE`. If one is still set, MESA logs one warning for that key at startup and ignores it. An old configuration file therefore does not stop the server.
+
+See the [configuration guide](/docs/core/configuration/) for current settings and the [migration guide](/docs/core/migration/) before upgrading.
+
+## What did deleting cost?
+
+- The storage migrations are forward-only. To go back, you need a store snapshot from before the upgrade and MESA 0.9.3.
+- LLM validator modes 1 and 2 no longer exist.
+- Tests were deleted along with the code. Security and durability contract tests for the old path were ported to V4 first.
+- Optional fact extraction remains, through `MESA_EXTRACTION_ENABLED=true`.
+
+The [SQLite lesson](/learn/sqlite-as-canonical-agent-memory/) explains why MESA keeps one canonical store.
+
+## What can this result not show?
+
+- The rank checks cover T0 on dev. They do not separately prove unchanged ranks for embedding or reranked search.
+- They ran on development builds. The final 0.9.4 quality changes are covered in [a separate post](/research/what-improved-search-in-0-9-4/).
+- Fewer lines do not prove better code.
+- MESA has no production users yet, so this work has not been tested by real upgrades.
+
+## Sources
+
+1. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+2. [v0.9.3 to v0.9.4 comparison](https://github.com/Yasou13/MESA/compare/v0.9.3...v0.9.4)
+
+', ARRAY['engineering', 'maintenance', 'configuration', 'release']::text[], 'MESA contributors', 6, 'published', 'What We Deleted From MESA, and Why', 'MESA 0.9.4 removed the V3 store and LLM consolidation, cutting 6,050 Python lines. Dev search ranks stayed identical after each removal.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('deleting-code-mesa-0-9-4', 'research', 'tr', 'MESA’dan Neleri Sildik, Neden?', 'Tek bir arama sırası değişmeden iki alt sistemi kaldırmak', 'MESA 0.9.4, V3 düğüm deposunu ve LLM birleştirme sistemini kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı.', '', '## MESA’dan neleri kaldırdık?
+
+MESA 0.9.4, eski V3 düğüm deposunu, LLM birleştirme (consolidation) alt sistemini ve bunlara bağlı ayarları kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541 satıra indi; yani 6.050 satır, %12,5 azaldı. Ana yapılandırmanın okuduğu ayar sayısı 68’den 54’e düştü.
+
+Her silmeyi modeller kapalıyken benchmark v2 dev bölümüyle denetledik. 128 sorunun tamamı her adımdan sonra aynı pasaj ve belge sırasını korudu.
+
+## Tam olarak neler silindi?
+
+| Alan | Silinen satır | Eklenen satır |
+| --- | --- | --- |
+| `mesa_storage/dao.py` (V3 düğüm, temizleme ve WAL yöntemleri) | 2.307 | 211 |
+| `consolidation/loop.py` | 1.179 | 0 |
+| `mesa_storage/vector_engine.py` (geçici silme, Procrustes) | 590 | 1 |
+| `consolidation/router.py` | 392 | 0 |
+| `consolidation/validator.py` | 286 | 0 |
+| `consolidation/parser.py` | 271 | 0 |
+| `consolidation/policy.py` | 173 | 0 |
+
+| Kapsam, v0.9.3 → v0.9.4 | Değişen dosya | Eklenen | Silinen |
+| --- | --- | --- | --- |
+| Çalışan paketler | 40 | 599 | 6.667 |
+| Testler | 88 | 2.672 | 7.887 |
+| Tüm depo | 149 | 3.523 | 14.737 |
+
+Beş veritabanı yapısı da kaldırıldı: V3’ün `nodes`, `nodes_fts`, `lancedb_wal`, `purge_journal` ve `system_config` tabloları. Sonraki bir geçiş `routing_telemetry` tablosunu da sildi.
+
+## Çalışan kodu neden sildik?
+
+İki alt sistem de varsayılan belge ve arama akışının parçası değildi. MESA’nın belge ve arama akışı V4 tablolarını kullanıyor; V3 deposu doğru tutulması gereken ikinci bir depolama modeline dönüşmüştü. Varsayılan doğrulama zaten kurallara dayanıyordu (Mode 0) ve 0.9.3’te bu modda oturumu bitirmek için birleştirme döngüsü gerekmiyordu.
+
+Yine de bu kodları tutmanın bir bedeli vardı. Her yol test, belge, ayar ve güvenlik incelemesi istiyordu. Az çalıştırılan bir ayar sessizce bozulabilir. Bir alt sistemi kaldırmak, bu sürekli maliyeti tek seferlik bir geçişe çevirir.
+
+## Aramanın değişmediğini nasıl denetledik?
+
+Her silmeden önce ve sonra, modeller kapalıyken ortak bir depoda tüm dev kümesini çalıştırdık.
+
+| Silme adımı, dev, T0 | Hit@5 önce → sonra | MRR önce → sonra | Sırası değişen soru |
+| --- | --- | --- | --- |
+| V3 düğüm deposu | 61/112 → 61/112 | 0,3955 → 0,3955 | 128’de 0 |
+| LLM birleştirme | 61/112 → 61/112 | 0,3955 → 0,3955 | 128’de 0 |
+| Kullanılmayan iskelet kod | 61/112 → 61/112 | 0,3955 → 0,3955 | 128’de 0 |
+
+Yalnızca ortalamaları değil, soru başına sıraları da karşılaştırdık; çünkü [ortalama, sıra değişimlerini gizleyebilir](/research/why-two-search-runs-differed/). Bu çalıştırmalarda ortanca gecikme 178 ms ile 315 ms arasında, belirli bir yön izlemeden değişti. Bu yüzden silmelerden hız iddiası çıkarmıyoruz.
+
+## Kaldırılan ayarlara ne oluyor?
+
+MESA 0.9.4, aralarında `MESA_TIER3_MODE`, `MESA_USE_V4` ve `CONSOLIDATION_BATCH_SIZE` olan 20 ortam değişkenini emekli etti. Biri hâlâ tanımlıysa MESA başlangıçta o anahtar için bir kez uyarı yazar ve ayarı yok sayar. Yani eski yapılandırma dosyası sunucuyu durdurmaz.
+
+Güncel ayarlar için [yapılandırma rehberine](/docs/core/configuration/), yükseltmeden önce [geçiş rehberine](/docs/core/migration/) bakın.
+
+## Silmenin bedeli neydi?
+
+- Depolama geçişleri yalnızca ileri yönlüdür. Geri dönmek için yükseltme öncesi depo kopyası ve MESA 0.9.3 gerekir.
+- LLM doğrulayıcı modları 1 ve 2 artık yok.
+- Kodla birlikte testler de silindi. Eski yolun güvenlik ve dayanıklılık sözleşme testleri önce V4’e taşındı.
+- İsteğe bağlı bilgi çıkarımı `MESA_EXTRACTION_ENABLED=true` ile duruyor.
+
+[SQLite dersi](/learn/sqlite-as-canonical-agent-memory/), MESA’nın neden tek bir ana depo tuttuğunu anlatır.
+
+## Bu sonuç neyi gösteremez?
+
+- Sıra kontrolleri dev bölümündeki T0’ı kapsar. Embedding veya yeniden sıralamalı aramanın sırasının değişmediğini ayrıca kanıtlamaz.
+- Geliştirme derlemelerinde yapıldı. 0.9.4’ün son kalite değişiklikleri [ayrı bir yazıda](/research/what-improved-search-in-0-9-4/) anlatılıyor.
+- Daha az satır, daha iyi kod anlamına gelmez.
+- MESA’nın henüz üretimde kullanıcısı yok; bu iş gerçek yükseltmelerle sınanmadı.
+
+## Kaynaklar
+
+1. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+2. [v0.9.3 ile v0.9.4 karşılaştırması](https://github.com/Yasou13/MESA/compare/v0.9.3...v0.9.4)
+
+', ARRAY['engineering', 'maintenance', 'configuration', 'release']::text[], 'MESA contributors', 6, 'published', 'MESA’dan Neleri Sildik, Neden?', 'MESA 0.9.4, V3 deposunu ve LLM birleştirmeyi kaldırdı; 6.050 Python satırı azaldı. Her silmeden sonra dev arama sıraları aynı kaldı.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-citation-extraction', 'research', 'en', 'How Rule-Based Turkish Citation Extraction Works', 'What the rules find, how often they are right, and where they fail', 'MESA''s rule extractor finds six kinds of legal item without a model. On 150 labeled chunks it found 357 correct items, with 25 false positives and 18 misses.', '', '## How does MESA extract Turkish legal citations?
+
+MESA 0.9.4 uses hand-written rules, with no language model. The rules find six item types in each chunk: law citations, decision references, dates, amounts, durations and outcomes. Each item keeps its exact character position in the source text.
+
+We scored the released extractor on three labeled sets of 50 chunks. Across all 150 chunks it found 357 correct items, produced 25 false positives and missed 18. Its weakest areas were citation precision on one set (0.8222) and duration precision on another (0.6957).
+
+> [!WARNING]
+> **Not legal advice**
+> This post explains a software measurement. A detected citation may still be wrong, repealed or irrelevant. Check legal sources yourself and consult a qualified lawyer for legal decisions.
+
+## What does the extractor return?
+
+This example runs against the released `mesa-memory` 0.9.4 package. The sentence is illustrative.
+
+```text
+from mesa_storage.legal_rules import extract_all_rules
+
+text = ("6098 sayılı Kanunun 49. maddesi uyarınca dava 15 gün içinde açılır. "
+        "Ceza Genel Kurulunun 28/11/2017 tarihli ve 2016/1307 E., 2017/551 K. "
+        "sayılı kararı. Davacıya 5.000 TL ödenmesine, hükmün ONANMASINA karar verildi.")
+
+for item in extract_all_rules(text):
+    print(item["type"], "|", item["text"], "|", item["start"], item["end"])
+```
+
+```text
+citation | 6098 sayılı Kanunun 49. maddesi | 0 31
+duration | 15 gün | 46 52
+decision_ref | Ceza Genel Kurulunun 28/11/2017 tarihli ve 2016/1307 E., 2017/551 K | 68 135
+amount | 5.000 TL | 161 169
+outcome | ONANMASINA | 189 199
+```
+
+The extractor also normalizes values. It returned docket `2016/1307`, decision `2017/551`, date `2017-11-28` and amount `5000` for this text. The outcome `ONANMASINA` became `onama`.
+
+## Why are Turkish legal citations hard to parse?
+
+- Law references appear as `6098 sayılı Kanun`, by name, or by abbreviation such as `TBK m. 49`.
+- A decision can be written with `E.` and `K.`, or in short form as `tarihli ve 54-280 sayılı`.
+- Suffixes change court names: `Mahkemesi`, `Mahkemesince`, `Dairesinin`.
+- Dates inside a decision reference or an amendment note must not count as separate dates.
+- OCR can split numbers. Our labeled data includes `50 6 sayılı`, with a space inside a law number.
+
+## How accurate is it?
+
+A predicted item counts as correct when it has the same type as a labeled item and their character spans overlap by an intersection-over-union of at least 0.5. Each label can match only one prediction.
+
+| MESA 0.9.4, 50 chunks per set | Correct | False | Missed | Precision | Recall | F1 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Set 1 (also used in development) | 125 | 2 | 14 | 0.9843 | 0.8993 | 0.9398 |
+| Set 2 | 115 | 11 | 2 | 0.9127 | 0.9829 | 0.9465 |
+| Set 3 | 117 | 12 | 2 | 0.9070 | 0.9832 | 0.9435 |
+
+| Item type, all 150 chunks | Correct | False | Missed | Precision | Recall |
+| --- | --- | --- | --- | --- | --- |
+| Citation | 132 | 13 | 14 | 0.9103 | 0.9041 |
+| Decision reference | 38 | 0 | 0 | 1.0000 | 1.0000 |
+| Date | 72 | 2 | 3 | 0.9730 | 0.9600 |
+| Amount | 33 | 0 | 1 | 1.0000 | 0.9706 |
+| Duration | 74 | 10 | 0 | 0.8810 | 1.0000 |
+| Outcome | 8 | 0 | 0 | 1.0000 | 1.0000 |
+
+Perfect scores on small groups need care. Outcome has only 8 labeled items, and decision reference has 38.
+
+## Did extraction help search?
+
+An early prototype added a citation index outside MESA 0.9.1. On 50 template-generated citation questions, passage Hit@5 rose from 8/50 to 50/50. On 85 answerable questions from the older dev set, Hit@5 stayed at 28/85.
+
+MESA 0.9.2 then shipped exact-match handling. With models off, it reached Hit@5 of 50/50 on the template set and 39/40 on a natural-language citation set. These sets are narrow: template questions name the citation directly, so they test lookup more than understanding.
+
+For the general search picture, read [What Improved MESA Search Quality in 0.9.4](/research/what-improved-search-in-0-9-4/).
+
+## How should you use extracted citations?
+
+1. Treat an extracted item as a pointer to the source.
+2. Open the exact source span and read the surrounding text.
+3. Check the law on [mevzuat.gov.tr](https://www.mevzuat.gov.tr/) and decisions on [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) or [UYAP Emsal](https://emsal.uyap.gov.tr/).
+4. Confirm that the provision applied on the relevant date.
+
+Our guide on [verifying an AI-cited Yargıtay decision](/law/guides/yapay-zeka-yargitay-karari-dogrulama/) walks through these checks, and [common AI citation errors](/law/guides/yapay-zeka-hukuk-atif-hatalari/) lists what to look for.
+
+## What can this result not show?
+
+- The sample is 150 chunks from one corpus.
+- Set 1 was used during development. We cannot show that sets 2 and 3 remained independent of later changes.
+- We did not compare these rules with an LLM, so this post makes no claim that rules beat models.
+- The extractor does not check that a citation exists, is current or supports a claim.
+- MESA 0.9.4 does not answer in-force-on-date questions.
+
+## Sources
+
+1. [MESA legal rules source, v0.9.4](https://github.com/Yasou13/MESA/blob/v0.9.4/mesa_storage/legal_rules.py)
+2. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+3. [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/)
+4. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+5. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+
+', ARRAY['legal-search', 'citations', 'extraction', 'turkish']::text[], 'MESA contributors', 8, 'published', 'How Rule-Based Turkish Citation Extraction Works', 'We scored MESA''s Turkish legal rule extractor on 150 labeled chunks: 357 correct items, 25 false positives and 18 misses, with weak spots shown.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-citation-extraction', 'research', 'tr', 'Hukuki Atıflar Kurallarla Nasıl Çıkarılır?', 'Kurallar neyi buluyor, ne kadar doğru, nerede yanılıyor?', 'MESA’nın kural çıkarıcısı, model kullanmadan altı tür hukuki öğe bulur. 150 etiketli parçada 357 doğru öğe buldu; 25 yanlış sonuç verdi, 18 öğeyi kaçırdı.', '', '## MESA Türkçe hukuki atıfları nasıl çıkarıyor?
+
+MESA 0.9.4, dil modeli yerine elle yazılmış kurallar kullanır. Kurallar her parçada altı tür öğe arar: kanun atıfları, karar künyeleri, tarihler, tutarlar, süreler ve karar sonuçları. Her öğe, kaynak metindeki tam karakter konumunu korur.
+
+Yayımlanan çıkarıcıyı 50’şer parçalık üç etiketli kümede puanladık. 150 parçanın tamamında 357 doğru öğe buldu, 25 yanlış sonuç üretti ve 18 öğeyi kaçırdı. En zayıf noktaları bir kümede atıf kesinliği (0,8222), başka bir kümede süre kesinliği (0,6957) oldu.
+
+> [!WARNING]
+> **Hukuki tavsiye değildir**
+> Bu yazı bir yazılım ölçümünü anlatır. Bulunan bir atıf yine de yanlış, yürürlükten kalkmış veya ilgisiz olabilir. Hukuki kaynakları kendiniz denetleyin; hukuki kararlar için yetkin bir avukata danışın.
+
+## Çıkarıcı ne döndürüyor?
+
+Bu örnek, yayımlanan `mesa-memory` 0.9.4 paketiyle çalışır. Cümle örnek amaçlıdır.
+
+```text
+from mesa_storage.legal_rules import extract_all_rules
+
+text = ("6098 sayılı Kanunun 49. maddesi uyarınca dava 15 gün içinde açılır. "
+        "Ceza Genel Kurulunun 28/11/2017 tarihli ve 2016/1307 E., 2017/551 K. "
+        "sayılı kararı. Davacıya 5.000 TL ödenmesine, hükmün ONANMASINA karar verildi.")
+
+for item in extract_all_rules(text):
+    print(item["type"], "|", item["text"], "|", item["start"], item["end"])
+```
+
+```text
+citation | 6098 sayılı Kanunun 49. maddesi | 0 31
+duration | 15 gün | 46 52
+decision_ref | Ceza Genel Kurulunun 28/11/2017 tarihli ve 2016/1307 E., 2017/551 K | 68 135
+amount | 5.000 TL | 161 169
+outcome | ONANMASINA | 189 199
+```
+
+Çıkarıcı değerleri de normalize eder. Bu metin için `2016/1307` esas, `2017/551` karar, `2017-11-28` tarih ve `5000` tutar döndürdü. `ONANMASINA` sonucu `onama` oldu.
+
+## Türkçe hukuki atıflar neden zor ayrıştırılır?
+
+- Kanun atıfları `6098 sayılı Kanun` biçiminde, adıyla veya `TBK m. 49` gibi kısaltmayla yazılır.
+- Karar künyesi `E.` ve `K.` ile ya da kısa biçimde `tarihli ve 54-280 sayılı` olarak geçebilir.
+- Ekler mahkeme adlarını değiştirir: `Mahkemesi`, `Mahkemesince`, `Dairesinin`.
+- Karar künyesi veya değişiklik notu içindeki tarihler ayrı tarih sayılmamalıdır.
+- OCR sayıları bölebilir. Etiketli verimizde, kanun numarasının içinde boşluk bulunan `50 6 sayılı` ifadesi var.
+
+## Ne kadar doğru çalışıyor?
+
+Bir tahmin, etiketli öğeyle aynı türdeyse ve karakter aralıklarının kesişim/birleşim oranı (IoU) en az 0,5 ise doğru sayılır. Her etiket yalnızca bir tahminle eşleşebilir.
+
+| MESA 0.9.4, küme başına 50 parça | Doğru | Yanlış | Eksik | Kesinlik | Duyarlılık | F1 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1. küme (geliştirmede de kullanıldı) | 125 | 2 | 14 | 0,9843 | 0,8993 | 0,9398 |
+| 2. küme | 115 | 11 | 2 | 0,9127 | 0,9829 | 0,9465 |
+| 3. küme | 117 | 12 | 2 | 0,9070 | 0,9832 | 0,9435 |
+
+| Öğe türü, 150 parçanın tamamı | Doğru | Yanlış | Eksik | Kesinlik | Duyarlılık |
+| --- | --- | --- | --- | --- | --- |
+| Kanun atfı | 132 | 13 | 14 | 0,9103 | 0,9041 |
+| Karar künyesi | 38 | 0 | 0 | 1,0000 | 1,0000 |
+| Tarih | 72 | 2 | 3 | 0,9730 | 0,9600 |
+| Tutar | 33 | 0 | 1 | 1,0000 | 0,9706 |
+| Süre | 74 | 10 | 0 | 0,8810 | 1,0000 |
+| Karar sonucu | 8 | 0 | 0 | 1,0000 | 1,0000 |
+
+Küçük gruplardaki tam puanları dikkatle okuyun. Karar sonucunda yalnızca 8, karar künyesinde 38 etiketli öğe var.
+
+## Çıkarım aramaya yardımcı oldu mu?
+
+İlk prototip, MESA 0.9.1’in dışına bir atıf dizini ekledi. Şablonla üretilmiş 50 atıf sorusunda pasaj Hit@5, 8/50’den 50/50’ye çıktı. Eski dev kümesindeki 85 yanıtlanabilir soruda Hit@5 28/85’te kaldı.
+
+MESA 0.9.2 ardından tam eşleşme desteğiyle yayımlandı. Modeller kapalıyken şablon kümesinde 50/50, doğal dille yazılmış atıf kümesinde 39/40 Hit@5 aldı. Bu kümeler dardır: şablon soruları atfı doğrudan söylediği için anlamadan çok aramayı sınar.
+
+Genel arama tablosu için [MESA 0.9.4’te Arama Kalitesini Ne Artırdı?](/research/what-improved-search-in-0-9-4/) yazısını okuyun.
+
+## Çıkarılan atıfları nasıl kullanmalısınız?
+
+1. Çıkarılan öğeyi kaynağa giden bir işaret olarak görün.
+2. Kaynak metindeki tam aralığı açıp çevresini okuyun.
+3. Kanunu [mevzuat.gov.tr](https://www.mevzuat.gov.tr/) üzerinden, kararı [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) veya [UYAP Emsal](https://emsal.uyap.gov.tr/) üzerinden denetleyin.
+4. Hükmün ilgili tarihte uygulanıp uygulanmadığını doğrulayın.
+
+[Yapay zekânın gösterdiği Yargıtay kararını doğrulama rehberimiz](/law/guides/yapay-zeka-yargitay-karari-dogrulama/) bu adımları anlatır. [Yapay zekâ atıf hataları rehberi](/law/guides/yapay-zeka-hukuk-atif-hatalari/) neye bakacağınızı listeler.
+
+## Bu sonuç neyi gösteremez?
+
+- Örneklem tek derlemden 150 parçadır.
+- 1. küme geliştirme sırasında kullanıldı. 2. ve 3. kümelerin sonraki değişikliklerden bağımsız kaldığını gösteremiyoruz.
+- Kuralları bir LLM ile karşılaştırmadık; bu yazı kuralların modellerden iyi olduğunu savunmuyor.
+- Çıkarıcı, atfın var olduğunu, güncel olduğunu veya iddiayı desteklediğini denetlemez.
+- MESA 0.9.4, belirli bir tarihte yürürlükte olma sorularını yanıtlamaz.
+
+## Kaynaklar
+
+1. [MESA hukuk kuralları kaynağı, v0.9.4](https://github.com/Yasou13/MESA/blob/v0.9.4/mesa_storage/legal_rules.py)
+2. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+3. [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/)
+4. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+5. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+
+', ARRAY['legal-search', 'citations', 'extraction', 'turkish']::text[], 'MESA contributors', 8, 'published', 'Hukuki Atıflar Kurallarla Nasıl Çıkarılır?', 'MESA’nın Türkçe hukuk kural çıkarıcısını 150 etiketli parçada ölçtük: 357 doğru, 25 yanlış, 18 eksik öğe. Zayıf noktaları da gösteriyoruz.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-turkish-prefix-matching', 'research', 'en', 'Why BM25 Struggles With Turkish', 'One legal word, dozens of index terms', 'BM25 matches whole tokens, while Turkish adds suffixes to words. In 112 legal dev questions, 252 of 873 query terms reached the evidence only through a shared prefix.', '', '## Why does BM25 struggle with Turkish?
+
+BM25 scores whole tokens, and Turkish builds many tokens from one stem. `sözleşme`, `sözleşmesinin` and `sözleşmelerinde` are three different index terms, so a query containing one form can miss the others.
+
+We measured this on MESA''s Turkish legal benchmark. Of 873 eligible query terms in 112 answerable dev questions, 290 appeared exactly in the correct evidence, 252 matched only through their first five characters, and 331 did not match at all. Prefix matching addresses the middle group, but its measured gain was small: a net two questions in the top 5.
+
+## How many forms does one Turkish word have?
+
+We indexed the 141 Tier M documents with the tokenizer MESA uses and grouped every term of 6 or more characters by its first five characters. The tokenizer removes most diacritics, so `sözle` is stored as `sozle`.
+
+| Tier M corpus, terms with 6+ characters | Value |
+| --- | --- |
+| Distinct terms | 26,664 |
+| Five-character prefix groups | 5,144 |
+| Median forms per group | 2 |
+| 90th percentile | 12 |
+| Groups with 10 or more forms | 670 |
+| Groups with 50 or more forms | 58 |
+| Largest group | 191 |
+
+| Prefix | Forms in corpus | Examples |
+| --- | --- | --- |
+| karar | 87 | kararı, kararın, kararlarına, kararnamenin |
+| yonet | 55 | yönetim, yönetmelik, yönetmeliğin, yönetici |
+| sozle | 44 | sözleşme, sözleşmesinin, sözleşmelerinde |
+| yargı | 41 | yargıtay, yargılama, yargısal |
+| madde | 39 | maddesi, maddesinde, maddelerine |
+| mahke | 38 | mahkemesi, mahkemece, mahkemelerinin |
+
+Most prefix groups are small. The problem concentrates in common legal words, and those are the words legal queries use.
+
+## How often do query words miss the evidence?
+
+| Dev category, eligible query terms | Exact in evidence | Prefix only | No match |
+| --- | --- | --- | --- |
+| Exact wording | 95 | 66 | 91 |
+| Number, date, docket | 88 | 85 | 93 |
+| Paraphrase | 63 | 61 | 119 |
+| Cross-document | 44 | 40 | 28 |
+| All | 290 | 252 | 331 |
+
+In 102 of 112 answerable questions, at least one query term reached the evidence only through its prefix. Paraphrases have the largest no-match group: 119 of 243 terms. Prefix matching cannot help there, because the words differ. That is where [semantic search](/learn/semantic-search/) and [hybrid retrieval](/learn/hybrid-retrieval-explained/) come in.
+
+## How does MESA''s prefix matching work?
+
+MESA 0.9.4 uses a simple rule. A query token with 6 or more characters and no digits is truncated to five characters and searched as a prefix. Shorter tokens and tokens with digits stay exact, so `6098` cannot match `60981`.
+
+You can see the behavior with Python''s standard library, using the same FTS5 tokenizer settings:
+
+```text
+import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("""CREATE VIRTUAL TABLE docs USING fts5(
+    text, tokenize=''unicode61 remove_diacritics 2'', prefix=''5'')""")
+rows = ["Yargıtay kararı", "YARGITAY KARARI", "sözleşmesinin feshi", "sözlerini söyledi"]
+db.executemany("INSERT INTO docs VALUES (?)", [(r,) for r in rows])
+
+for query in [''"sözleşme"'', ''"sözle"*'', ''"yargı"*'', ''"yargi"*'']:
+    hits = [r[0] for r in db.execute("SELECT text FROM docs WHERE docs MATCH ?", (query,))]
+    print(query, "->", hits)
+```
+
+```text
+"sözleşme" -> []
+"sözle"* -> [''sözleşmesinin feshi'', ''sözlerini söyledi'']
+"yargı"* -> [''Yargıtay kararı'']
+"yargi"* -> [''YARGITAY KARARI'']
+```
+
+The output shows both sides of the rule. `sözle*` finds `sözleşmesinin`, which the exact term misses. It also finds `sözlerini`, which has nothing to do with contracts.
+
+## Why are ı and İ a separate problem?
+
+Turkish has dotted and dotless i. In the output above, `yargı*` finds `Yargıtay` but not `YARGITAY`, because the tokenizer lowercases `I` to `i` rather than `ı`.
+
+MESA handles part of this at query time. It normalizes Turkish case, then searches both the `ı` form and an `i` variant. So `Yargıtay` and `YARGITAY` as queries find text written either way. The ASCII query `yargitay` still does not find `Yargıtay`, because index-side Turkish folding is not implemented in 0.9.4.
+
+## What did prefix matching actually change?
+
+On a shared store with models off, prefix matching took dev Hit@5 from 50/112 to 52/112 (pre-release 0.9.4 build, benchmark v2, Tier M). Six questions crossed the top-5 line:
+
+| Category | Rank before → after | Effect | Prefix-only terms in evidence |
+| --- | --- | --- | --- |
+| Number, date, docket | 6 → 5 | Gain | 2 |
+| Cross-document | 6 → 5 | Gain | 7 |
+| Number, date, docket | 6 → 5 | Gain | 3 |
+| Paraphrase | 38 → 4 | Gain | 0 |
+| Exact wording | 5 → 8 | Loss | 1 |
+| Number, date, docket | 4 → 11 | Loss | 5 |
+
+Three gains were one-position moves. The largest gain had no prefix-only term in its evidence, so its improvement came indirectly, probably because competing passages changed rank. Both losses had prefix-only terms too. The presence of such a term does not predict whether a question improves.
+
+The [0.9.4 quality post](/research/what-improved-search-in-0-9-4/) shows that larger gains came from changing fusion weights.
+
+## What should you do for Turkish search?
+
+- Measure before adding a stemmer. Over-matching can cost as much as it gains.
+- Keep tokens with digits exact. Law numbers, dockets and dates must not match by prefix.
+- Handle ı and İ explicitly. Default Unicode lowercasing is wrong for Turkish.
+- Combine lexical search with embeddings, because many query words never appear in the evidence.
+- Compare ranks per question, not only an average.
+
+## What can this analysis not show?
+
+- It checks each query term against the gold evidence span, not against all candidate passages.
+- It does not apply MESA''s filtering of citation tokens, so counts are approximate for citation-heavy questions.
+- We did not test a real Turkish stemmer or morphological analyzer.
+- A net change of two questions in 112 is small and may not hold on another sample.
+- The corpus is legal text. General Turkish may behave differently.
+
+## Sources
+
+1. [SQLite FTS5 documentation](https://www.sqlite.org/fts5.html)
+2. [Manning, Raghavan and Schütze: Okapi BM25](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
+3. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+
+', ARRAY['bm25', 'turkish', 'tokenization', 'legal-search']::text[], 'MESA contributors', 8, 'published', 'Why BM25 Struggles With Turkish', 'Turkish suffixes split one word into many index terms. We measured the problem on legal text and what 5-character prefix matching actually fixed.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('bm25-turkish-prefix-matching', 'research', 'tr', 'Türkçe Metinlerde BM25 Neden Zorlanır?', 'Tek hukuk sözcüğü, onlarca dizin terimi', 'BM25 tam token eşleştirir; Türkçe ise sözcüklere ek getirir. 112 hukuk dev sorusundaki 873 sorgu teriminin 252’si kanıta yalnızca ortak önek üzerinden ulaştı.', '', '## BM25 Türkçede neden zorlanır?
+
+BM25 tam token’ları puanlar; Türkçe ise tek kökten çok sayıda token üretir. `sözleşme`, `sözleşmesinin` ve `sözleşmelerinde` üç ayrı dizin terimidir. Bu yüzden sorguda geçen biçim, metindeki öteki biçimleri kaçırabilir.
+
+Bunu MESA’nın Türkçe hukuk benchmark’ında ölçtük. 112 yanıtlanabilir dev sorusundaki 873 uygun sorgu teriminin 290’ı doğru kanıtta birebir geçti, 252’si yalnızca ilk beş karakteriyle eşleşti, 331’i hiç eşleşmedi. Önek eşleştirme ortadaki grubu hedefler; ama ölçülen kazancı küçüktü: ilk 5’te net iki soru.
+
+## Türkçe bir sözcüğün kaç biçimi olur?
+
+141 Tier M belgesini MESA’nın kullandığı tokenizer ile dizinledik. 6 veya daha uzun terimleri ilk beş karakterlerine göre grupladık. Tokenizer çoğu aksanı kaldırdığı için `sözle`, dizinde `sozle` olarak saklanır.
+
+| Tier M derlemi, 6+ karakterli terimler | Değer |
+| --- | --- |
+| Farklı terim | 26.664 |
+| Beş karakterlik önek grubu | 5.144 |
+| Grup başına ortanca biçim | 2 |
+| 90. yüzdelik | 12 |
+| 10 veya daha çok biçimli grup | 670 |
+| 50 veya daha çok biçimli grup | 58 |
+| En büyük grup | 191 |
+
+| Önek | Derlemdeki biçim | Örnekler |
+| --- | --- | --- |
+| karar | 87 | kararı, kararın, kararlarına, kararnamenin |
+| yonet | 55 | yönetim, yönetmelik, yönetmeliğin, yönetici |
+| sozle | 44 | sözleşme, sözleşmesinin, sözleşmelerinde |
+| yargı | 41 | yargıtay, yargılama, yargısal |
+| madde | 39 | maddesi, maddesinde, maddelerine |
+| mahke | 38 | mahkemesi, mahkemece, mahkemelerinin |
+
+Önek gruplarının çoğu küçüktür. Sorun sık kullanılan hukuk sözcüklerinde yoğunlaşır; hukuk sorguları da tam olarak bu sözcükleri kullanır.
+
+## Sorgu sözcükleri kanıtı ne sıklıkla kaçırıyor?
+
+| Dev kategorisi, uygun sorgu terimleri | Kanıtta birebir | Yalnızca önek | Eşleşme yok |
+| --- | --- | --- | --- |
+| Birebir ifade | 95 | 66 | 91 |
+| Sayı, tarih, esas no | 88 | 85 | 93 |
+| Yeniden ifade | 63 | 61 | 119 |
+| Çok belgeli | 44 | 40 | 28 |
+| Toplam | 290 | 252 | 331 |
+
+112 yanıtlanabilir sorunun 102’sinde en az bir sorgu terimi kanıta yalnızca öneki üzerinden ulaştı. En büyük eşleşmeme grubu yeniden ifade sorularında: 243 terimin 119’u. Önek burada işe yaramaz, çünkü sözcükler farklıdır. [Anlamsal arama](/learn/semantic-search/) ve [hibrit arama](/learn/hybrid-retrieval-explained/) bu noktada devreye girer.
+
+## MESA’da önek eşleştirme nasıl çalışıyor?
+
+MESA 0.9.4 basit bir kural kullanır. 6 veya daha uzun olan ve rakam içermeyen sorgu token’ı beş karaktere kısaltılır ve önek olarak aranır. Daha kısa token’lar ile rakamlı token’lar birebir kalır; böylece `6098`, `60981` ile eşleşmez.
+
+Aynı FTS5 tokenizer ayarlarıyla bu davranışı Python’un standart kütüphanesinde görebilirsiniz:
+
+```text
+import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("""CREATE VIRTUAL TABLE docs USING fts5(
+    text, tokenize=''unicode61 remove_diacritics 2'', prefix=''5'')""")
+rows = ["Yargıtay kararı", "YARGITAY KARARI", "sözleşmesinin feshi", "sözlerini söyledi"]
+db.executemany("INSERT INTO docs VALUES (?)", [(r,) for r in rows])
+
+for query in [''"sözleşme"'', ''"sözle"*'', ''"yargı"*'', ''"yargi"*'']:
+    hits = [r[0] for r in db.execute("SELECT text FROM docs WHERE docs MATCH ?", (query,))]
+    print(query, "->", hits)
+```
+
+```text
+"sözleşme" -> []
+"sözle"* -> [''sözleşmesinin feshi'', ''sözlerini söyledi'']
+"yargı"* -> [''Yargıtay kararı'']
+"yargi"* -> [''YARGITAY KARARI'']
+```
+
+Çıktı kuralın iki yüzünü gösteriyor. `sözle*`, birebir terimin kaçırdığı `sözleşmesinin` biçimini bulur. Ama sözleşmeyle ilgisi olmayan `sözlerini` sözcüğünü de bulur.
+
+## ı ve İ neden ayrı bir sorun?
+
+Türkçede noktalı ve noktasız i vardır. Yukarıdaki çıktıda `yargı*`, `Yargıtay` biçimini bulur ama `YARGITAY` biçimini bulmaz; çünkü tokenizer `I` harfini `ı` yerine `i` yapar.
+
+MESA bunun bir bölümünü sorgu anında çözer. Türkçe büyük-küçük harfi normalize eder, sonra hem `ı` biçimini hem `i` varyantını arar. Böylece `Yargıtay` ve `YARGITAY` sorguları iki yazımı da bulur. ASCII `yargitay` sorgusu ise `Yargıtay` metnini hâlâ bulamaz; çünkü 0.9.4’te dizin tarafında Türkçe harf katlama yoktur.
+
+## Önek eşleştirme gerçekte neyi değiştirdi?
+
+Modeller kapalıyken ortak depoda önek eşleştirme, dev Hit@5’i 50/112’den 52/112’ye taşıdı (0.9.4 öncesi derleme, benchmark v2, Tier M). Altı soru ilk 5 sınırını geçti:
+
+| Kategori | Sıra önce → sonra | Etki | Kanıtta yalnızca önekle eşleşen terim |
+| --- | --- | --- | --- |
+| Sayı, tarih, esas no | 6 → 5 | Kazanç | 2 |
+| Çok belgeli | 6 → 5 | Kazanç | 7 |
+| Sayı, tarih, esas no | 6 → 5 | Kazanç | 3 |
+| Yeniden ifade | 38 → 4 | Kazanç | 0 |
+| Birebir ifade | 5 → 8 | Kayıp | 1 |
+| Sayı, tarih, esas no | 4 → 11 | Kayıp | 5 |
+
+Üç kazanç tek sıralık hareketti. En büyük kazancın kanıtında yalnızca önekle eşleşen terim yoktu; iyileşme büyük olasılıkla rakip pasajların sırası değiştiği için dolaylı geldi. İki kayıpta da bu tür terimler vardı. Yani böyle bir terimin varlığı, sorunun iyileşeceğini göstermiyor.
+
+[0.9.4 kalite yazısı](/research/what-improved-search-in-0-9-4/), daha büyük kazançların birleştirme ağırlıklarını değiştirmekten geldiğini gösteriyor.
+
+## Türkçe arama için ne yapmalısınız?
+
+- Kök bulucu (stemmer) eklemeden önce ölçün. Fazla eşleşme, kazandırdığı kadar kaybettirebilir.
+- Rakamlı token’ları birebir tutun. Kanun, esas numaraları ve tarihler önekle eşleşmemelidir.
+- ı ve İ harflerini açıkça ele alın. Varsayılan Unicode küçük harf dönüşümü Türkçe için yanlıştır.
+- Sözcük tabanlı aramayı gömme vektörleriyle birleştirin; çünkü birçok sorgu sözcüğü kanıtta hiç geçmez.
+- Yalnızca ortalamayı değil, soru başına sırayı karşılaştırın.
+
+## Bu analiz neyi gösteremez?
+
+- Her sorgu terimini tüm aday pasajlarla değil, doğru yanıtın kanıt aralığıyla karşılaştırır.
+- MESA’nın atıf token’larını süzme adımını uygulamaz; atıf yoğun sorularda sayılar yaklaşıktır.
+- Gerçek bir Türkçe kök bulucu veya biçimbilimsel çözümleyici denemedik.
+- 112 soruda net iki soruluk değişim küçüktür; başka bir örneklemde korunmayabilir.
+- Derlem hukuk metinlerinden oluşuyor; genel Türkçe farklı davranabilir.
+
+## Kaynaklar
+
+1. [SQLite FTS5 belgeleri](https://www.sqlite.org/fts5.html)
+2. [Manning, Raghavan ve Schütze: Okapi BM25](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
+3. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
+
+', ARRAY['bm25', 'turkish', 'tokenization', 'legal-search']::text[], 'MESA contributors', 8, 'published', 'Türkçe Metinlerde BM25 Neden Zorlanır?', 'Türkçe ekler tek sözcüğü onlarca dizin terimine böler. Sorunu hukuk metinlerinde ölçtük ve 5 karakterlik önek eşleştirmenin etkisini gösterdik.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('claude-code-persistent-memory', 'guide', 'en', 'How do you add persistent memory to Claude Code?', '', 'Combine CLAUDE.md, auto memory and searchable session history without loading everything into every conversation.', 'Put stable project rules in CLAUDE.md and let auto memory keep learned preferences. If you also need to find decisions and failed attempts from older sessions, add a local MCP memory server such as MESA Lore.', '## 1. Choose the right memory layer
 
 Each Claude Code session starts with a fresh context window. Three layers can carry useful information forward, and they solve different problems.
@@ -2335,6 +4029,10 @@ A result looks like this. Your document ID can differ.
 > **A score is not proof**
 > The score orders results for this query. It is not a probability that the text is correct. Read the returned passage before using it.
 
+> [!NOTE]
+> **What we measured in MESA**
+> Search results can carry extracted legal items. [We measured that extractor](/research/turkish-legal-citation-extraction/) on 150 labeled chunks (MESA 0.9.4): 357 correct items, 25 false positives, 18 misses.
+
 ## 5. Update the document
 
 Add changed text with the same source. MESA creates a new revision of the same document, and search uses the current text.
@@ -2457,6 +4155,10 @@ Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde C
 2. [MESA Core · CLI referansı](docs/core/cli-reference/)
 3. [PyPI’da mesa-memory 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Arama sonuçları çıkarılmış hukuki öğeler taşıyabilir. [Bu çıkarıcıyı](/research/turkish-legal-citation-extraction/) 150 etiketli parçada ölçtük (MESA 0.9.4): 357 doğru öğe, 25 yanlış sonuç, 18 eksik.
+
 ', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 6, 'published', 'Kaynak Gösteren Belge Araması Nasıl Kurulur? — MESA', 'Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni sürüm yükleyin ve her sonucun kaynağına bağlandığını doğrulayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('measure-search-quality', 'guide', 'en', 'How do you measure search quality with Recall and MRR?', '', 'Create a small judged question set, record where the right document appears and compare two search settings.', 'Write real questions, mark the correct document for each and record its rank before and after a change. Recall@5 shows how often it appears in the top five. MRR shows how close to the top it appears.', '## 1. Write a small question set
 
@@ -2483,6 +4185,10 @@ q3,,4
 q4,2,1
 q5,6,
 ```
+
+> [!NOTE]
+> **What we measured in MESA**
+> For a worked example of question rules, scoring and disclosure, see [how we built benchmark v2](/research/turkish-legal-benchmark-v2/).
 
 ## 4. Calculate Recall@5 and MRR
 
@@ -2621,6 +4327,10 @@ Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçe
 1. [MESA Learn · Arama kalitesini ölçmek](learn/evaluating-ndcg-and-mrr-in-memory/)
 2. [MESA · Arama değerlendirme yöntemi](methodology/retrieval-evaluation/)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Soru kuralları, puanlama ve açıklama için çalışılmış bir örnek olarak [benchmark v2’yi nasıl kurduğumuza](/research/turkish-legal-benchmark-v2/) bakın.
+
 ', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 6, 'published', 'Arama Kalitesi Recall ve MRR ile Nasıl Ölçülür? — MESA', 'Küçük bir etiketli soru seti hazırlayın, sonuç sıralarını kaydedin ve iki arama ayarını kısa bir Python betiğiyle Recall@5 ve MRR üzerinden karşılaştırın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'en', 'How do you verify an AI-cited Yargıtay decision?', '', 'Treat the citation as an unverified lead until its identity, official text, quoted passage and legal fit are checked.', 'Search the decision yourself in Yargıtay Karar Arama using its chamber, docket number, decision number and date. Then read the full text, find the quoted passage and check whether the decision really supports the claim. A decision that exists can still be the wrong authority.', '## Why an AI citation needs checking
 
@@ -2665,6 +4375,10 @@ For regional appeal and first-instance civil decisions, use [UYAP Emsal Karar Ar
 | Quotation | Same words, in the same context |
 
 If only some fields match, do not repair the citation yourself and continue. It may point to a different decision.
+
+> [!NOTE]
+> **What we measured in MESA**
+> Software can find a citation but cannot confirm it. [MESA''s rule extractor](/research/turkish-legal-citation-extraction/) recognized decision references in labeled chunks, yet it does not check whether a decision exists.
 
 ## 4. Assess legal fit
 
@@ -2764,6 +4478,10 @@ Karara dayanmayın. Aramada çıkmaması tek başına kararın uydurma olduğunu
 1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
 2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
 3. [Memurlar.net · Yapay zekâ atfı soruşturması haberi](https://memurlar.net/haber/1170388/)
+
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Yazılım atıfı bulabilir ama doğrulayamaz. [MESA’nın kural çıkarıcısı](/research/turkish-legal-citation-extraction/) etiketli parçalarda karar künyelerini tanıdı; yine de kararın var olup olmadığını denetlemez.
 
 ', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 7, 'published', 'Yapay Zekânın Verdiği Yargıtay Kararı Nasıl Doğrulanır? — MESA Law', 'Yapay zekânın gösterdiği Yargıtay kararını resmî aramada bulun, esas ve karar numarasını eşleştirin, tam metni okuyun ve iddiayı destekleyip desteklemediğini kontrol edin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('uyap-emsal-karar-dogrulama', 'guide', 'en', 'How do you check a decision in UYAP Emsal?', '', 'Read the citation, choose the right search, enter its numbers and compare every detail with the full decision.', 'Open UYAP Emsal Karar Arama, choose the court group, enter the docket and decision numbers or a date range, and compare the result with the citation. Use Yargıtay Karar Arama first when the citation names a Yargıtay board or chamber.', '## Which search should you use?
@@ -3062,8 +4780,24 @@ Judgment guidance should define graded relevance, evidence requirements, disagre
 - [ ] Failure cases and exclusions
 - [ ] Known limitations
 - [ ] Correction date and change record when findings are amended
+- [ ] Fresh-build comparison of ordered results
+- [ ] A log of every test-split read
 
-', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 8, 'published', 'Retrieval Evaluation Methodology — MESA Research', 'Review the minimum evidence, judgments, metrics, versioning, and reporting rules for MESA retrieval evaluations.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+## What did MESA’s own benchmark teach us?
+
+These rules come from mistakes and limits in our benchmark work. All numbers use benchmark v2 on Tier M.
+
+| What happened | Evidence | Rule we now follow |
+| --- | --- | --- |
+| Two identical builds scored differently | 48/112 and 52/112 Hit@5 on dev, models off, before 0.9.4 | Build two fresh indexes and compare ordered results |
+| An average hid rank movement | 49 of 112 answerable questions changed rank | Keep per-query results |
+| A change helped two modes and hurt a third | T2 dev Hit@5 fell from 0.9286 to 0.9107 in 0.9.4 | Report every configuration, including losses |
+| The test split was reused | Read in six runs across v1 and v2 | Log every read and do not call the split untouched |
+| Labels had one review pass | No independent agreement measure | State annotation limits next to results |
+
+The details are in [How We Built a Turkish Legal Retrieval Benchmark](/research/turkish-legal-benchmark-v2/) and [Why Two Identical Search Runs Gave Different Results](/research/why-two-search-runs-differed/).
+
+', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 9, 'published', 'Retrieval Evaluation Methodology — MESA Research', 'Review the minimum evidence, judgments, metrics, versioning, and reporting rules for MESA retrieval evaluations.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('retrieval-evaluation', 'methodology', 'tr', 'Arama sistemleri nasıl değerlendirilir?', '', 'Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?', 'Girdileri sabitleyin. Soruları hazırlayanlarla sonuçları değerlendirenleri ayırın. Birden çok ölçümü ve hata örneklerini raporlayın; sonuçları kullanılan sürümler ve ham çıktılarla birlikte kaydedin.', '## Kapsam
 
 Bu yöntem, farklı arama sistemlerini karşılaştırmak içindir. Tek bir veri kümesinde veya soru listesinde elde edilen sonuçlar, bütün kullanım alanları için başarı garantisi vermez.
@@ -3096,7 +4830,23 @@ Değerlendirme kılavuzu; ilgililik derecelerini, gerekli dayanakları, değerle
 - [ ] Hata örnekleri ve hariç tutmalar
 - [ ] Bilinen sınırlılıklar
 - [ ] Bulgular değiştirildiğinde düzeltme tarihi ve değişiklik kaydı
+- [ ] Temiz kurulumlar arasında sıralı sonuç karşılaştırması
+- [ ] Test bölümünün her okunmasının kaydı
 
-', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 8, 'published', 'Arama sistemleri nasıl değerlendirilir? — MESA', 'Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+## MESA’nın kendi benchmark’ı bize ne öğretti?
+
+Bu kurallar, benchmark çalışmamızdaki hatalardan ve sınırlardan çıktı. Tüm sayılar Tier M üzerinde benchmark v2 kullanır.
+
+| Ne oldu? | Kanıt | Artık uyguladığımız kural |
+| --- | --- | --- |
+| Aynı iki kurulum farklı puan aldı | Dev’de 48/112 ve 52/112 Hit@5, modeller kapalı, 0.9.4 öncesi | İki temiz dizin kurup sıralı sonuçları karşılaştır |
+| Ortalama, sıra hareketini gizledi | 112 yanıtlanabilir sorunun 49’unda sıra değişti | Sorgu başına sonuçları sakla |
+| Bir değişiklik iki modu iyileştirip üçüncüsünü kötüleştirdi | 0.9.4’te T2 dev Hit@5, 0,9286’dan 0,9107’ye düştü | Kayıplar dâhil her yapılandırmayı raporla |
+| Test bölümü yeniden kullanıldı | v1 ve v2’de altı çalıştırmada okundu | Her okumayı kaydet; bölümü “hiç görülmemiş” diye sunma |
+| Etiketler tek inceleme turundan geçti | Bağımsız uyum ölçümü yok | Etiketleme sınırlarını sonuçların yanında yaz |
+
+Ayrıntılar [Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?](/research/turkish-legal-benchmark-v2/) ve [Aynı Arama İki Kez Neden Farklı Sonuç Verdi?](/research/why-two-search-runs-differed/) yazılarında.
+
+', ARRAY['methodology', 'retrieval', 'evaluation']::text[], 'MESA contributors', 9, 'published', 'Arama sistemleri nasıl değerlendirilir? — MESA', 'Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 
 COMMIT;

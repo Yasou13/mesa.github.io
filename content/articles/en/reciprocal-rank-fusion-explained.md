@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["RRF", "rank fusion", "weighted", "k=60", "sıra birleştirme", "ağırlık"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-11-23"
-readingMinutes: 6
+updatedAt: "2026-11-24"
+readingMinutes: 8
 status: "published"
 indexable: true
 seoTitle: "What Is RRF? Reciprocal Rank Fusion and k=60 — MESA"
@@ -105,7 +105,28 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 - You need a calibrated confidence value. An RRF score is not a probability.
 - You have enough judged data to train and validate a better ranking model.
 
-MESA Core uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and the graph lane off by default. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
+MESA Core 0.9.4 uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and graph weight 1. The graph lane is off by default, so its weight applies only when it is enabled. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
+
+## What we measured in MESA
+
+MESA’s vector weight of 8 came from a dev-set grid, not from theory. We changed only that weight and kept the other lanes at 1.
+
+| Vector weight | Hit@5, no reranker | MRR, no reranker | MRR, with reranker |
+| --- | --- | --- | --- |
+| 1 | 0.5176 | 0.3953 | 0.6816 |
+| 2 | 0.5765 | 0.4565 | 0.7055 |
+| 4 | 0.6588 | 0.5152 | 0.7069 |
+| 8 | 0.6706 | 0.5663 | 0.6973 |
+
+> [!NOTE]
+> **Setup**
+> 0.9.1 development build, benchmark v1 dev split, Tier M, 141 documents, 5,041 chunks, 85 answerable questions, bge-m3, graph on, search limit 50, reranker depth 50.
+
+Weight 8 was best without a reranker. With a reranker, weight 4 had a slightly higher MRR. Eight was also the largest value we tried, so we do not know whether a higher weight would do better. We have not rerun this grid on benchmark v2.
+
+A large weight changes the worked example above. With a dense weight of 8, the scores are B 0.147277, C 0.144905, D 0.126984 and A 0.016393. D now outranks A, even though A was first in the lexical list.
+
+Equal RRF scores are also common. In a [fresh-store test](/research/why-two-search-runs-differed/), random tie-breaks changed ranks on 49 of 112 answerable questions (benchmark v2 dev, Tier M, models off, build before 0.9.4). Setting the assertion weight to 0 was part of a [0.9.4 change](/research/what-improved-search-in-0-9-4/) that helped T0 and T1b on dev and lowered reranked dev Hit@5 from 0.9286 to 0.9107.
 
 ## Recalculate after a weight change
 

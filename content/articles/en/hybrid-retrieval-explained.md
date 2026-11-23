@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["hybrid", "reranking", "candidate recall", "cross encoder", "hibrit", "yeniden sıralama", "aday"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-11-23"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "What Is Hybrid Search? BM25 and Vector Search — MESA"
@@ -87,6 +87,31 @@ Keep one method if it already finds the evidence and a second lane adds only lat
 4. Fuse with [Reciprocal Rank Fusion](/learn/reciprocal-rank-fusion-explained/), starting with k = 60.
 5. Measure recall, MRR or nDCG on judged questions.
 6. Add a reranker only if the right evidence is already in the candidates but ranks too low.
+
+## What we measured in MESA
+
+Each added stage helped on our Turkish legal dev set, and each one cost time.
+
+| MESA 0.9.4 defaults, dev, Tier M | MRR | Hit@5 | Search p50 |
+| --- | --- | --- | --- |
+| T0: lexical only, models off | 0.3954 | 0.5446 | 0.33 s |
+| T1b: + bge-m3 embeddings | 0.6487 | 0.7768 | 1.64 s |
+| T2: + bge-reranker-v2-m3 | 0.7945 | 0.9107 | 2.27 s |
+
+| Passage Hit@5 by category, dev (questions) | T0 | T1b | T2 |
+| --- | --- | --- | --- |
+| Exact wording (31) | 0.6774 | 0.8710 | 0.9355 |
+| Number, date, docket (35) | 0.6286 | 0.8571 | 0.9429 |
+| Paraphrase (32) | 0.5312 | 0.7812 | 0.9375 |
+| Cross-document (14) | 0.0714 | 0.3571 | 0.7143 |
+
+> [!NOTE]
+> **Setup**
+> Published MESA 0.9.4, one Colab NVIDIA A100 80 GB runtime, benchmark v2 dev split, Tier M, 141 documents, 5,041 chunks. Relevance uses 112 answerable questions and latency uses all 128.
+
+Embeddings helped most on paraphrases, where Turkish query words often differ from the source. In our [BM25 analysis](/research/bm25-turkish-prefix-matching/), 119 of 243 eligible paraphrase query terms did not match the evidence at all. Exact legal lookups still benefit from keeping a lexical lane.
+
+More lanes do not always help. [The 0.9.4 fusion defaults](/research/what-improved-search-in-0-9-4/) raised T0 and T1b dev Hit@5, but lowered T2 dev Hit@5 from 0.9286 to 0.9107. Model choice also mattered less after reranking: the [embedding comparison](/research/turkish-legal-embedding-comparison/) found 48 tied questions without a reranker and 101 with one, out of 112 (MESA 0.9.3, benchmark v2 dev, Tier M).
 
 ## Locate the failure
 

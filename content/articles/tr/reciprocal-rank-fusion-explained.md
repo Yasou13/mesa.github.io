@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["RRF", "rank fusion", "weighted", "k=60", "sıra birleştirme", "ağırlık"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-11-23"
-readingMinutes: 6
+updatedAt: "2026-11-24"
+readingMinutes: 8
 status: "published"
 indexable: true
 seoTitle: "RRF Nedir? Reciprocal Rank Fusion ve k=60 — MESA"
@@ -105,7 +105,28 @@ Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve bel
 - Kalibre edilmiş bir güven değeri gerekiyorsa. RRF puanı olasılık değildir.
 - Daha iyi bir sıralama modelini eğitip doğrulayacak kadar etiketli veriniz varsa.
 
-MESA Core, k = 60 ile ağırlıklı RRF kullanır; varsayılan olarak vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0’dır ve çizge kanalı kapalıdır. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
+MESA Core 0.9.4, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0, çizge ağırlığı 1’dir. Çizge kanalı varsayılan olarak kapalıdır; ağırlığı yalnızca bu kanal açıkken geçerlidir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
+
+## MESA’da ne ölçtük?
+
+MESA’daki 8 vektör ağırlığı teoriden değil, dev kümesindeki bir denemeden geldi. Yalnızca bu ağırlığı değiştirdik, diğer kanalları 1’de tuttuk.
+
+| Vektör ağırlığı | Hit@5, yeniden sıralama yok | MRR, yeniden sıralama yok | MRR, yeniden sıralamayla |
+| --- | --- | --- | --- |
+| 1 | 0,5176 | 0,3953 | 0,6816 |
+| 2 | 0,5765 | 0,4565 | 0,7055 |
+| 4 | 0,6588 | 0,5152 | 0,7069 |
+| 8 | 0,6706 | 0,5663 | 0,6973 |
+
+> [!NOTE]
+> **Kurulum**
+> 0.9.1 geliştirme derlemesi, benchmark v1 dev bölümü, Tier M, 141 belge, 5.041 parça, 85 yanıtlanabilir soru, bge-m3, çizge açık, arama limiti 50, yeniden sıralama derinliği 50.
+
+Yeniden sıralama olmadan en iyi sonucu 8 verdi. Yeniden sıralamayla 4’ün MRR değeri biraz daha yüksekti. Denediğimiz en büyük değer de 8’di; yani daha yüksek bir ağırlığın daha iyi olup olmadığını bilmiyoruz. Bu denemeyi benchmark v2’de yinelemedik.
+
+Büyük ağırlık, yukarıdaki çözümlü örneği de değiştirir. Yoğun (dense) kanalın ağırlığı 8 olursa puanlar B 0,147277, C 0,144905, D 0,126984 ve A 0,016393 olur. A sözcük listesinde birinci olduğu hâlde D artık A’nın önüne geçer.
+
+Eşit RRF puanları da sık görülür. [Sıfırdan kurulan depolarla yaptığımız testte](/research/why-two-search-runs-differed/) rastgele eşitlik bozma, 112 yanıtlanabilir sorunun 49’unda sırayı değiştirdi (benchmark v2 dev, Tier M, modeller kapalı, 0.9.4 öncesi derleme). Bilgi kaydı ağırlığını 0 yapmak, T0 ve T1b’yi dev kümesinde iyileştiren, yeniden sıralamalı dev Hit@5’i ise 0,9286’dan 0,9107’ye düşüren [0.9.4 değişikliğinin](/research/what-improved-search-in-0-9-4/) parçasıydı.
 
 ## Ağırlık değişince yeniden hesaplayın
 

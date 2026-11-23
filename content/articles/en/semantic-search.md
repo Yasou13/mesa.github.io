@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["embedding", "dense", "sparse", "cosine", "vector", "vektör", "kosinüs", "anlamsal arama"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-18"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 6
 status: "published"
 indexable: true
 seoTitle: "Embeddings and semantic search, with numbers — MESA Learn"
@@ -61,6 +61,24 @@ Exact search scores every eligible vector. Approximate nearest-neighbor search t
 Record provider, model, revision, dimension, normalization and encoding instructions. Two models can both return 768 numbers while using incompatible spaces. Some retrieval models intentionally use different query/document encoders or prefixes; compatibility means the model’s prescribed pairing, not necessarily identical strings. Changing representation usually requires re-encoding documents and rebuilding the derived index.
 
 Identifiers, negation and near-duplicate versions expose limits. “Rule A-17 applies” and “Rule A-17 does not apply” may be semantically close. Use lexical retrieval for exact symbols and structured filters for validity. DPR and Sentence-BERT provide examples of learned dense retrieval and sentence representation, not a guarantee for every multilingual archive. [DPR](https://arxiv.org/abs/2004.04906), [Sentence-BERT](https://arxiv.org/abs/1908.10084).
+
+## What we measured in MESA
+
+We compared two 1,024-dimensional models on the same Turkish legal corpus. BAAI/bge-m3 was ahead overall, while the Turkish model Mürşit Large led on number, date and docket questions without a reranker.
+
+| MESA 0.9.3, dev, Tier M, T1 | bge-m3 | Mürşit Large |
+| --- | --- | --- |
+| MRR | 0.5758 | 0.5626 |
+| Hit@1 | 0.4375 | 0.4464 |
+| Hit@5 | 0.7411 | 0.6875 |
+| Hit@5, paraphrase (32 questions) | 0.7188 | 0.5938 |
+| Hit@5, number/date/docket (35 questions) | 0.8286 | 0.8571 |
+
+The overall gap is six of 112 answerable questions, so it may not hold on another sample. Read the setup and limits in the [embedding comparison](/research/turkish-legal-embedding-comparison/).
+
+Embeddings also have a cost. With MESA 0.9.4 defaults on benchmark v2 dev, adding bge-m3 raised Hit@5 from 0.5446 to 0.7768. Median search time rose from 0.33 s to 1.64 s, and ingestion of 141 documents rose from 399.44 s to 637.68 s (one Colab A100 runtime).
+
+Model identity matters in practice. MESA changed its default from a 768-dimensional model to bge-m3 in 0.9.3. An older store must keep both its model and dimension settings, or be rebuilt before switching.
 
 ## Explain a suspicious improvement
 

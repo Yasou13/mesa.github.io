@@ -63,6 +63,10 @@ For regional appeal and first-instance civil decisions, use [UYAP Emsal Karar Ar
 
 If only some fields match, do not repair the citation yourself and continue. It may point to a different decision.
 
+> [!NOTE]
+> **What we measured in MESA**
+> Software can find a citation but cannot confirm it. [MESA's rule extractor](/research/turkish-legal-citation-extraction/) recognized decision references in labeled chunks, yet it does not check whether a decision exists.
+
 ## 4. Assess legal fit
 
 > [!WARNING]

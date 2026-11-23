@@ -45,6 +45,10 @@ q4,2,1
 q5,6,
 ```
 
+> [!NOTE]
+> **What we measured in MESA**
+> For a worked example of question rules, scoring and disclosure, see [how we built benchmark v2](/research/turkish-legal-benchmark-v2/).
+
 ## 4. Calculate Recall@5 and MRR
 
 Each example question has one correct document, so Recall@5 is the share of questions answered in the top five. A result after rank five counts as a miss.

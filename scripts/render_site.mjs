@@ -1013,9 +1013,10 @@ function renderHubBlock(block) {
 
 function renderResearchMetadata(entry) {
   if (entry.type !== 'research') return '';
-  const limitations = currentLanguage === 'tr'
+  const record = entry.record?.[currentLanguage];
+  const limitations = record?.limitations || (currentLanguage === 'tr'
     ? ['Henüz deney yürütülmedi.', 'Veri seti büyüklüğü, skor veya performans iddiası sunulmuyor.', 'Araştırma planı, ön kayıt yapılana kadar değişebilir.']
-    : entry.limitations;
+    : entry.limitations);
   const reviewers = [
     ...(entry.reviewers?.technical || []).map((name) => [hubText('Technical reviewer', 'Teknik incelemeyi yapan'), name]),
     ...(entry.reviewers?.legal || []).map((name) => [hubText('Legal reviewer', 'Hukuki incelemeyi yapan'), name])
@@ -1032,22 +1033,22 @@ function renderResearchMetadata(entry) {
       <dl>
         <div>
           <dt>${hubText('Status', 'Durum')}</dt>
-          <dd>${hubText('Planned protocol · no results', 'Araştırma planı · henüz sonuç yok')}</dd>
+          <dd>${record ? escapeHtml(record.status) : hubText('Planned protocol · no results', 'Araştırma planı · henüz sonuç yok')}</dd>
         </div>
         <div>
           <dt>${hubText('MESA version', 'MESA sürümü')}</dt>
-          <dd>${hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd>
+          <dd>${record ? escapeHtml(record.version) : hubText('To be pinned before execution', 'Çalıştırmadan önce sabitlenecek')}</dd>
         </div>
         <div>
           <dt>${hubText('Dataset', 'Veri kümesi')}</dt>
-          <dd>${hubText('Not selected; criteria must be frozen first', 'Henüz seçilmedi; önce seçim ölçütleri kesinleştirilecek')}</dd>
+          <dd>${record ? escapeHtml(record.dataset) : hubText('Not selected; criteria must be frozen first', 'Henüz seçilmedi; önce seçim ölçütleri kesinleştirilecek')}</dd>
         </div>
         <div>
           <dt>${hubText('Models', 'Modeller')}</dt>
-          <dd>${hubText('To be declared and version-pinned', 'Modeller ve kullanılacak sürümleri açıklanacak')}</dd>
+          <dd>${record ? escapeHtml(record.models) : hubText('To be declared and version-pinned', 'Modeller ve kullanılacak sürümleri açıklanacak')}</dd>
         </div>
         <div>
-          <dt>${hubText('Planned metrics', 'Planlanan metrikler')}</dt>
+          <dt>${record ? hubText('Metrics', 'Metrikler') : hubText('Planned metrics', 'Planlanan metrikler')}</dt>
           <dd>${entry.metrics.map(escapeHtml).join(' · ')}</dd>
         </div>
         ${reviewers.map(([label, name]) => `

@@ -54,6 +54,10 @@ SQLite documents atomic commit and crash-recovery mechanisms for its own transac
 
 MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
 
+> [!NOTE]
+> **What we measured in MESA**
+> MESA 0.9.4 [removed its legacy V3 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off).
+
 ## Interpret a timeout
 
 > [!EXERCISE]

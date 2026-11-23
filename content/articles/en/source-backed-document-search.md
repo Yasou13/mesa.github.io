@@ -66,6 +66,10 @@ A result looks like this. Your document ID can differ.
 > **A score is not proof**
 > The score orders results for this query. It is not a probability that the text is correct. Read the returned passage before using it.
 
+> [!NOTE]
+> **What we measured in MESA**
+> Search results can carry extracted legal items. [We measured that extractor](/research/turkish-legal-citation-extraction/) on 150 labeled chunks (MESA 0.9.4): 357 correct items, 25 false positives, 18 misses.
+
 ## 5. Update the document
 
 Add changed text with the same source. MESA creates a new revision of the same document, and search uses the current text.
