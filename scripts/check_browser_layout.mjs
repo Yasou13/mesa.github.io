@@ -243,7 +243,7 @@ async function checkMemoryDisclosure(routePath) {
       const summary = details.querySelector('summary');
       summary.click();
       const opened = details.open && details.querySelector('.memory-example__expanded').getBoundingClientRect().height > 0;
-      const score = details.querySelector('.fixture-score').textContent.includes('4 ÷ 61');
+      const score = details.querySelector('.fixture-score').textContent.includes('3 ÷ 61');
       const ranks = [...details.querySelectorAll('.signal-list li')].length === 4;
       const overflow = document.documentElement.scrollWidth - document.documentElement.clientWidth;
       summary.click();
