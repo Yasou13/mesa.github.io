@@ -118,7 +118,7 @@ export function renderMarkdown(markdown = '', options = {}) {
     const content = quoteLines.map((l) => renderInlineMarkdown(l, options)).join('<br>');
     if (quoteAlert) {
       const alertClass = quoteAlert.toLowerCase();
-      htmlParts.push(`<aside class="article-callout ${alertClass}"><strong>${quoteAlert}</strong><p>${content}</p></aside>`);
+      htmlParts.push(`<div class="article-callout ${alertClass}" role="note"><strong>${quoteAlert}</strong><p>${content}</p></div>`);
     } else {
       htmlParts.push(`<blockquote><p>${content}</p></blockquote>`);
     }
