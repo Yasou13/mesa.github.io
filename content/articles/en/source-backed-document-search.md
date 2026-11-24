@@ -21,13 +21,13 @@ seoDescription: "Add text documents to MESA Core, search them locally, update a 
 
 ## 1. Check what you need
 
-- Python 3.11, 3.12 or 3.13
+- Python 3.11 or newer
 - Linux, macOS or WSL
 - UTF-8 text files. Convert PDF and Word files to text first.
 
 This guide uses word search, so it needs no model account. MESA Core is alpha software and is not ready for production use.
 
-Checked against `mesa-memory` 0.9.4 from PyPI on 24 November 2026. Your document IDs can differ.
+Checked against `mesa-memory` 0.9.5 from PyPI on 24 November 2026, on Python 3.14. Your document IDs can differ.
 
 ## 2. Install and start MESA Core
 
@@ -36,7 +36,7 @@ Run this in a new folder and keep the terminal open.
 ```text
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.4
+python -m pip install mesa-memory==0.9.5
 mesa start
 ```
 
@@ -131,14 +131,14 @@ After deletion, the same search should no longer return the document. Then stop 
 | `UnicodeDecodeError: 'utf-8' codec can't decode byte` | The file is not UTF-8 | Convert it first, as shown below |
 | `No matching memories found.` | No document contains the query words | Try words that appear in the text, or enable a model for meaning-based search |
 
-Older Turkish files are often saved as Windows-1254. In 0.9.4 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:
+Older Turkish files are often saved as Windows-1254. In 0.9.5 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:
 
 ```text
 iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
 mesa add notes-utf8.txt --source file://notes.txt
 ```
 
-Turkish letters matter in queries. In our test on 0.9.4, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause.
+Turkish letters matter in queries. In our test on 0.9.5, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause.
 
 ## Document search questions
 
@@ -155,5 +155,5 @@ Turkish letters matter in queries. In our test on 0.9.4, `YARGITAY` and `sözle�
 
 1. [MESA Core · Getting started](docs/core/getting-started/)
 2. [MESA Core · CLI reference](docs/core/cli-reference/)
-3. [mesa-memory 0.9.4 on PyPI](https://pypi.org/project/mesa-memory/0.9.4/)
+3. [mesa-memory 0.9.5 on PyPI](https://pypi.org/project/mesa-memory/0.9.5/)
 

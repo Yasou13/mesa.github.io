@@ -86,7 +86,29 @@ Evet. Geçiş hükümleri bir maddeyi belirli durumlar için askıya alabilir. 6
 
 ## MESA bu soruyu yanıtlayabilir mi?
 
-Hayır. MESA 0.9.4 belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. Sürümlü belgeleri saklayıp kaynak metni döndürebilir; ama yukarıdaki hukuki denetim resmî kaynaklar üzerinden yapılmalıdır. Sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın.
+Kısmen. MESA 0.9.5 bir maddenin ne zaman yürürlüğe girdiğine karar vermez: geçiş hükümleri, ertelenmiş yürürlük ve iptal kararları yine yukarıdaki resmî kaynaklardan denetlenmelidir. Yapabildiği, denetlediğiniz her sürümü saklamak ve verdiğiniz bir anda yürürlükte olan metni döndürmektir.
+
+Maddenin her sürümünü aynı `document_id` altında, belirlediğiniz tarihi saat dilimi içeren bir `metadata.valid_from` olarak vererek yükleyin. Sürümler herhangi bir sırayla yüklenebilir. Ardından `valid_at` ile arayın. Bu örnek, Core belgelerindeki kurgusal bir kuralı kullanır:
+
+```text
+from mesa_client import Mesa
+
+mesa = Mesa()
+for start, days in [("2025-06-01T00:00:00+03:00", 30), ("2024-01-01T00:00:00+03:00", 15)]:
+    mesa.add(
+        f"MADDE 1 - Arşiv başvuru süresi {days} gündür.",
+        source=f"file://arsiv-{start[:10]}.txt",
+        document_id="ornek-arsiv-yonetmeligi",
+        title="Örnek Arşiv Yönetmeliği",
+        metadata={"valid_from": start},
+        wait=True,
+    )
+
+hit = mesa.search("Arşiv başvuru süresi", valid_at="2025-05-31T23:59:59+03:00")[0]
+print(hit["evidence_span"])  # MADDE 1 - Arşiv başvuru süresi 15 gündür.
+```
+
+Aralıklar yarı açıktır: tam `2025-06-01T00:00:00+03:00` anında arama 30 günlük sürümü, bir saniye önce ise 15 günlük sürümü döndürür. Sonuçlar `revision_number`, `valid_from` ve `valid_to` taşır; hangi sürümün yanıt verdiğini görebilirsiniz. Girdiğiniz `valid_from` yanlışsa yanıt da yanlış olur. Bkz. [sürümlü belgeler](/docs/core/concepts-and-ingestion/#guide-surumlu-belgeler); sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın.
 
 ## Kaynaklar
 

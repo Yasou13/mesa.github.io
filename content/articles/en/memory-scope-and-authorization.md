@@ -11,7 +11,7 @@ category: "Evidence & Trust"
 tags: ["authorization", "RBAC", "tenant", "scope", "cache", "multi agent", "yetki", "kapsam", "yalıtım"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-24"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -51,13 +51,13 @@ Imagine a global top-10 list contains ten forbidden records. Removing them gives
 
 ## Statistics, caches and paths also carry scope
 
-Filtering returned rows is not the entire isolation problem. Global corpus statistics can change lexical ranking when another tenant adds documents. Cache entries can replay evidence from a wider scope. Graph traversal can cross an allowed seed into a forbidden neighbor. State your isolation contract: preventing text disclosure and preventing cross-scope ranking influence are related but distinct properties.
+Filtering returned rows is not the entire isolation problem. Global corpus statistics can change lexical ranking when another tenant adds documents. Cache entries can replay evidence from a wider scope. Graph traversal can cross an allowed seed into a forbidden neighbor. State your isolation contract: preventing text disclosure and preventing cross-scope ranking influence are related but distinct properties. In MESA Core 0.9.5, a dataset-wide search uses that dataset's own persistent BM25 index, never shared across datasets or tenants; narrower scopes build a temporary index of authorized rows only, so BM25 statistics stay inside the scope. Vector candidates are prefiltered by tenant, dataset and agent and checked against SQLite before ranking.
 
 Cache keys should distinguish caller/resource scope, query parameters, source generation and representation settings. Permission changes need invalidation or revalidation before using cached evidence. Multi-agent sharing adds no exemption: a summarizing agent must not copy private evidence into a shared note accessible to other agents. Derived artifacts inherit sensitive information even when the original wording is paraphrased.
 
 ## Run positive and negative controls
 
-Create tenant A and tenant B with distinctive markers. Verify A can retrieve its own evidence, then ask A for B’s marker and verify no text, IDs or counts reveal it. Repeat through lexical, vector, graph and context endpoints, after restart and after cache warm-up. Revoke a grant and retest an existing session according to the product’s declared revocation policy. A zero-result test without an allowed positive control can hide a broken system.
+Create tenant A and tenant B with distinctive markers. Verify A can retrieve its own evidence, then ask A for B’s marker and verify no text, IDs or counts reveal it. Repeat through lexical, vector and context paths, after restart and after cache warm-up. Revoke a grant and retest an existing session according to the product’s declared revocation policy. A zero-result test without an allowed positive control can hide a broken system.
 
 > [!EXERCISE]
 > **Check your understanding**
@@ -69,5 +69,5 @@ Create tenant A and tenant B with distinctive markers. Verify A can retrieve its
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 

@@ -645,8 +645,8 @@
                       "href": "https://arxiv.org/abs/2005.11401"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     },
                     {
                       "label": "Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents",
@@ -924,8 +924,8 @@
                       "href": "https://arxiv.org/abs/2005.11401"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     },
                     {
                       "label": "Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents",
@@ -1305,7 +1305,7 @@
       "slug": "structured-vs-unstructured-memory",
       "path": "learn/structured-vs-unstructured-memory/",
       "publishedAt": "2026-10-01",
-      "updatedAt": "2026-10-28",
+      "updatedAt": "2026-11-24",
       "author": "MESA contributors",
       "tags": [
         "assertion",
@@ -1378,6 +1378,16 @@
                 {
                   "kind": "paragraph",
                   "text": "Choose representations according to the question. “What does paragraph four say?” needs exact text. “Which rooms open after nine on Friday?” benefits from typed time/day fields. Keeping a source-linked assertion alongside the text serves both. Treat the structured row as a derived interpretation that can be re-extracted when the parser or model changes."
+                }
+              ]
+            },
+            {
+              "id": "in-mesa",
+              "title": "In MESA 0.9.5",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA keeps the exact source revision, its chunks, the built-in legal items with their original offsets, and optional model-extracted assertions, all in SQLite. Conditions that make a whole document change over time, such as “starting 1 November”, go on the revision as `valid_from` and `valid_to`, so a search with `valid_at` returns the version in force on that date. MESA has no graph store since 0.9.5. See [versioned documents](/docs/core/concepts-and-ingestion/#guide-versioned-documents)."
                 }
               ]
             },
@@ -1458,8 +1468,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -1513,6 +1523,16 @@
                 {
                   "kind": "paragraph",
                   "text": "Temsili, soracağınız soruya göre seçin. “Dördüncü paragraf ne diyor?” için tam metin gerekir. “Cuma günü dokuzdan sonra hangi salonlar açılıyor?” sorusu ise saat ve gün alanlarından yararlanır. Kaynak metni ve ona bağlı yapılandırılmış kaydı birlikte tutmak iki ihtiyacı da karşılar. Yapılandırılmış kaydı, ayrıştırıcı veya model değiştiğinde kaynaktan yeniden üretilebilen bir yorum olarak ele alın."
+                }
+              ]
+            },
+            {
+              "id": "in-mesa",
+              "title": "MESA 0.9.5’te",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA; özgün kaynak sürümünü, parçalarını, özgün konumlarıyla yerleşik hukuki öğeleri ve isteğe bağlı model çıkarımı bilgi kayıtlarını SQLite’ta tutar. Bir belgenin tamamını zamanla değiştiren koşullar, örneğin “1 Kasım’dan itibaren”, sürüme `valid_from` ve `valid_to` olarak yazılır; böylece `valid_at` ile yapılan arama o tarihte yürürlükte olan sürümü döndürür. MESA’da 0.9.5’ten beri çizge deposu yoktur. Bkz. [sürümlü belgeler](/docs/core/concepts-and-ingestion/#guide-surumlu-belgeler)."
                 }
               ]
             },
@@ -1593,8 +1613,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -2580,7 +2600,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Adding a graph or another embedding model is not automatically an improvement. Nearly identical lanes can reinforce the same mistake. Begin with one interpretable lexical baseline and one compatible dense model; measure overlap, unique relevant hits, empty results and latency. Add complexity only when a documented failure calls for it. BEIR illustrates that retrieval methods vary across datasets; its benchmark results are not a score for your archive. [BEIR](https://arxiv.org/abs/2104.08663)."
+                  "text": "Adding a graph or another embedding model is not automatically an improvement. Nearly identical lanes can reinforce the same mistake. Begin with one interpretable lexical baseline and one compatible dense model; measure overlap, unique relevant hits, empty results and latency. Add complexity only when a documented failure calls for it. MESA removed its own graph store in 0.9.5 for this reason: on its dev questions graph search found no correct passage the other lanes missed, and turning it off lost no question ([measurements](/research/why-mesa-removed-its-graph-store/)). BEIR illustrates that retrieval methods vary across datasets; its benchmark results are not a score for your archive. [BEIR](https://arxiv.org/abs/2104.08663)."
                 }
               ]
             },
@@ -2905,7 +2925,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Çizge veya başka bir model eklemek, aramayı kendiliğinden iyileştirmez. Birbirine çok benzeyen kanallar aynı hatayı güçlendirebilir. Önce anlaşılır bir sözcük tabanlı yöntem ve uyumlu bir anlamsal model kurun. Ortak ve yalnızca tek kanalda bulunan ilgili sonuçları, boş yanıtları ve gecikmeyi ölçün. Karmaşıklığı, gördüğünüz bir hatayı çözmek için artırın. BEIR, yöntemlerin başarısının veri kümesine göre değiştiğini gösterir; o çalışmanın puanı sizin arşivinizin puanı değildir. [BEIR](https://arxiv.org/abs/2104.08663)"
+                  "text": "Çizge veya başka bir model eklemek, aramayı kendiliğinden iyileştirmez. Birbirine çok benzeyen kanallar aynı hatayı güçlendirebilir. Önce anlaşılır bir sözcük tabanlı yöntem ve uyumlu bir anlamsal model kurun. Ortak ve yalnızca tek kanalda bulunan ilgili sonuçları, boş yanıtları ve gecikmeyi ölçün. Karmaşıklığı, gördüğünüz bir hatayı çözmek için artırın. MESA da 0.9.5’te kendi çizge deposunu bu nedenle kaldırdı: dev sorularında çizge araması, diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı ve kapatılması hiçbir soruyu kaybettirmedi ([ölçümler](/research/why-mesa-removed-its-graph-store/)). BEIR, yöntemlerin başarısının veri kümesine göre değiştiğini gösterir; o çalışmanın puanı sizin arşivinizin puanı değildir. [BEIR](https://arxiv.org/abs/2104.08663)"
                 }
               ]
             },
@@ -3461,7 +3481,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core 0.9.4 uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and graph weight 1. The graph lane is off by default, so its weight applies only when it is enabled. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/)."
+                  "text": "MESA Core 0.9.5 uses weighted RRF with k = 60, vector weight 8, BM25 weight 1 and assertion weight 0. The vector lane runs only when an embedding model is set, so with models off BM25 decides the order. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/)."
                 }
               ]
             },
@@ -3582,8 +3602,8 @@
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     },
                     {
                       "label": "Elastic · Reciprocal rank fusion",
@@ -3824,7 +3844,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core 0.9.4, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0, çizge ağırlığı 1’dir. Çizge kanalı varsayılan olarak kapalıdır; ağırlığı yalnızca bu kanal açıkken geçerlidir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın."
+                  "text": "MESA Core 0.9.5, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0’dır. Vektör kanalı yalnızca bir embedding modeli ayarlıyken çalışır; modeller kapalıyken sırayı BM25 belirler. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın."
                 }
               ]
             },
@@ -3945,8 +3965,8 @@
                       "href": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     },
                     {
                       "label": "Elastic · Reciprocal rank fusion",
@@ -3996,13 +4016,12 @@
       "slug": "why-graphs-matter-in-ai-memory",
       "path": "learn/why-graphs-matter-in-ai-memory/",
       "publishedAt": "2026-10-01",
-      "updatedAt": "2026-10-28",
+      "updatedAt": "2026-11-24",
       "author": "MESA contributors",
       "tags": [
         "graph",
         "GraphRAG",
         "multi hop",
-        "Kuzu",
         "knowledge graph",
         "çizge",
         "ilişki"
@@ -4077,7 +4096,17 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Likewise, graph centrality measures connectivity under a chosen definition. A popular node may be frequently cited and wrong. Do not use PageRank as a truth score or allow it to suppress an inconvenient source without an explicit policy. Source quality, relevance and graph prominence answer different questions."
+                  "text": "Likewise, graph centrality measures connectivity under a chosen definition. A popular node may be frequently cited and wrong. Do not use a centrality score as a truth score or allow it to suppress an inconvenient source without an explicit policy. Source quality, relevance and graph prominence answer different questions."
+                }
+              ]
+            },
+            {
+              "id": "graphs-in-mesa",
+              "title": "Graphs in MESA",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA Core 0.9.5 has no graph store. In MESA's own measurements graph search never found a correct passage that the other lanes missed (benchmark v1 dev), turning it off lost no benchmark v2 dev question, and following stored legal citations from the top results lowered Hit@1, so Core keeps entities, assertions and citations in SQLite and searches them with BM25 and optional vectors. Read [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/). The ideas in this lesson still apply if you build a graph yourself."
                 }
               ]
             },
@@ -4123,8 +4152,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4187,7 +4216,17 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. PageRank’i doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir."
+                  "text": "Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. Bir merkezilik puanını doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir."
+                }
+              ]
+            },
+            {
+              "id": "graphs-in-mesa",
+              "title": "MESA’da çizgeler",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA Core 0.9.5’te çizge deposu yoktur. MESA’nın kendi ölçümlerinde çizge araması, diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı (benchmark v1 dev); kapatılması benchmark v2 dev bölümünde hiçbir soruyu kaybettirmedi; en üst sonuçlardaki kayıtlı hukuki atıfları izlemek ise Hit@1’i düşürdü. Bu yüzden Core varlıkları, bilgi kayıtlarını ve atıfları SQLite’ta tutar ve BM25 ile isteğe bağlı vektörlerle arar. [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısını okuyun. Kendi çizgenizi kurarsanız bu dersteki fikirler geçerliliğini korur."
                 }
               ]
             },
@@ -4233,8 +4272,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4431,8 +4470,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4567,8 +4606,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4608,7 +4647,7 @@
       "slug": "memory-scope-and-authorization",
       "path": "learn/memory-scope-and-authorization/",
       "publishedAt": "2026-10-01",
-      "updatedAt": "2026-10-28",
+      "updatedAt": "2026-11-24",
       "author": "MESA contributors",
       "tags": [
         "authorization",
@@ -4713,7 +4752,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Filtering returned rows is not the entire isolation problem. Global corpus statistics can change lexical ranking when another tenant adds documents. Cache entries can replay evidence from a wider scope. Graph traversal can cross an allowed seed into a forbidden neighbor. State your isolation contract: preventing text disclosure and preventing cross-scope ranking influence are related but distinct properties."
+                  "text": "Filtering returned rows is not the entire isolation problem. Global corpus statistics can change lexical ranking when another tenant adds documents. Cache entries can replay evidence from a wider scope. Graph traversal can cross an allowed seed into a forbidden neighbor. State your isolation contract: preventing text disclosure and preventing cross-scope ranking influence are related but distinct properties. In MESA Core 0.9.5, a dataset-wide search uses that dataset's own persistent BM25 index, never shared across datasets or tenants; narrower scopes build a temporary index of authorized rows only, so BM25 statistics stay inside the scope. Vector candidates are prefiltered by tenant, dataset and agent and checked against SQLite before ranking."
                 },
                 {
                   "kind": "paragraph",
@@ -4727,7 +4766,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Create tenant A and tenant B with distinctive markers. Verify A can retrieve its own evidence, then ask A for B’s marker and verify no text, IDs or counts reveal it. Repeat through lexical, vector, graph and context endpoints, after restart and after cache warm-up. Revoke a grant and retest an existing session according to the product’s declared revocation policy. A zero-result test without an allowed positive control can hide a broken system."
+                  "text": "Create tenant A and tenant B with distinctive markers. Verify A can retrieve its own evidence, then ask A for B’s marker and verify no text, IDs or counts reveal it. Repeat through lexical, vector and context paths, after restart and after cache warm-up. Revoke a grant and retest an existing session according to the product’s declared revocation policy. A zero-result test without an allowed positive control can hide a broken system."
                 },
                 {
                   "kind": "exercise",
@@ -4753,8 +4792,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4839,7 +4878,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Yalnızca dönen satırları filtrelemek tam yalıtım sağlamaz. Başka bir erişim alanına belge eklenmesi, bütün veriler üzerinden hesaplanan sözcük istatistiklerini ve sıralamayı değiştirebilir. Önbellek daha geniş bir kapsamdan bilgi döndürebilir. Çizge, izinli bir düğümden kapalı bir komşuya geçebilir. İçeriğin dışarı sızmasını önlemekle, kapsam dışındaki verilerin sıralamayı etkilemesini önlemek ayrı güvencelerdir; hangisini sağladığınızı açıkça belirtin."
+                  "text": "Yalnızca dönen satırları filtrelemek tam yalıtım sağlamaz. Başka bir erişim alanına belge eklenmesi, bütün veriler üzerinden hesaplanan sözcük istatistiklerini ve sıralamayı değiştirebilir. Önbellek daha geniş bir kapsamdan bilgi döndürebilir. Çizge, izinli bir düğümden kapalı bir komşuya geçebilir. İçeriğin dışarı sızmasını önlemekle, kapsam dışındaki verilerin sıralamayı etkilemesini önlemek ayrı güvencelerdir; hangisini sağladığınızı açıkça belirtin. MESA Core 0.9.5’te tüm veri kümesini kapsayan bir arama, o veri kümesinin kendi kalıcı BM25 indeksini kullanır; bu indeks veri kümeleri veya kurumlar arasında paylaşılmaz. Daha dar kapsamlar yalnızca izinli satırları içeren geçici bir indeks kurar; böylece BM25 istatistikleri kapsamın içinde kalır. Vektör adayları kurum, veri kümesi ve ajana göre önceden süzülür ve sıralamadan önce SQLite’a karşı denetlenir."
                 },
                 {
                   "kind": "paragraph",
@@ -4853,7 +4892,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici işaretler ekleyin. A’nın kendi kaynağını bulduğunu doğrulayın; sonra B’nin işaretini sorup metin, kimlik veya sayılar üzerinden bilgi sızmadığını kontrol edin. Sözcük, vektör, çizge ve bağlam arayüzlerinde; yeniden başlatmadan ve önbellek dolduktan sonra testi tekrarlayın. İzni kaldırıp mevcut oturumun bildirilen iptal kuralına uyduğunu da sınayın. İzinli bir sonucun bulunabildiğini kontrol etmeden yalnızca boş yanıt beklemek, çalışmayan bir sistemi güvenliymiş gibi gösterebilir."
+                  "text": "A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici işaretler ekleyin. A’nın kendi kaynağını bulduğunu doğrulayın; sonra B’nin işaretini sorup metin, kimlik veya sayılar üzerinden bilgi sızmadığını kontrol edin. Sözcük, vektör ve bağlam yollarında; yeniden başlatmadan ve önbellek dolduktan sonra testi tekrarlayın. İzni kaldırıp mevcut oturumun bildirilen iptal kuralına uyduğunu da sınayın. İzinli bir sonucun bulunabildiğini kontrol etmeden yalnızca boş yanıt beklemek, çalışmayan bir sistemi güvenliymiş gibi gösterebilir."
                 },
                 {
                   "kind": "exercise",
@@ -4879,8 +4918,8 @@
                       "href": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -4922,7 +4961,7 @@
       "slug": "sqlite-as-canonical-agent-memory",
       "path": "learn/sqlite-as-canonical-agent-memory/",
       "publishedAt": "2026-10-17",
-      "updatedAt": "2026-11-23",
+      "updatedAt": "2026-11-24",
       "author": "MESA contributors",
       "tags": [
         "SQLite",
@@ -4930,7 +4969,6 @@
         "idempotency",
         "projection",
         "LanceDB",
-        "Kuzu",
         "projeksiyon",
         "kalıcılık"
       ],
@@ -5019,12 +5057,12 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/)."
+                  "text": "MESA Core v0.9.5 uses one combined owner per root and treats LanceDB as its only projection; its BM25 indexes live in SQLite and change in the same transaction as the canonical rows. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/)."
                 },
                 {
                   "kind": "callout",
                   "title": "What we measured in MESA",
-                  "text": "MESA 0.9.4 [removed its legacy V3 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off)."
+                  "text": "MESA 0.9.4 [removed its legacy pre-V4 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off). Version 0.9.5 then [removed its graph store](/research/why-mesa-removed-its-graph-store/), leaving SQLite and LanceDB."
                 }
               ]
             },
@@ -5061,8 +5099,8 @@
                       "href": "https://www.sqlite.org/wal.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -5135,12 +5173,12 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "MESA Core v0.9.4’te her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)"
+                  "text": "MESA Core v0.9.5’te her veri dizinini tek combined süreci yönetir; tek arama görünümü LanceDB’dir. BM25 indeksleri SQLite’ta tutulur ve asıl satırlarla aynı transaction içinde değişir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)"
                 },
                 {
                   "kind": "callout",
                   "title": "MESA’da ne ölçtük?",
-                  "text": "MESA 0.9.4, [eski V3 deposunu kaldırdı](/research/deleting-code-mesa-0-9-4/). Silmeden sonra 128 dev sorusunun tamamında arama sırası aynı kaldı (benchmark v2, Tier M, modeller kapalı)."
+                  "text": "MESA 0.9.4, [V4 öncesinden kalan eski depoyu kaldırdı](/research/deleting-code-mesa-0-9-4/). Silmeden sonra 128 dev sorusunun tamamında arama sırası aynı kaldı (benchmark v2, Tier M, modeller kapalı). 0.9.5 ise [çizge deposunu kaldırdı](/research/why-mesa-removed-its-graph-store/); geriye SQLite ve LanceDB kaldı."
                 }
               ]
             },
@@ -5177,8 +5215,8 @@
                       "href": "https://www.sqlite.org/wal.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -5371,8 +5409,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -5503,8 +5541,8 @@
                       "href": "https://www.w3.org/TR/prov-overview/"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -6018,8 +6056,8 @@
                       "href": "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -6151,8 +6189,8 @@
                       "href": "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html"
                     },
                     {
-                      "label": "MESA Core v0.9.4 · Architecture and limitations",
-                      "href": "https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md"
+                      "label": "MESA Core v0.9.5 · Architecture and limitations",
+                      "href": "https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md"
                     }
                   ]
                 }
@@ -7554,7 +7592,7 @@
       "type": "research",
       "path": "research/what-improved-search-in-0-9-4/",
       "publishedAt": "2026-11-23",
-      "updatedAt": "2026-11-23",
+      "updatedAt": "2026-11-24",
       "author": "MESA contributors",
       "tags": [
         "benchmark",
@@ -7643,6 +7681,11 @@
               "id": "short-answer",
               "title": "Did MESA 0.9.4 improve search quality?",
               "blocks": [
+                {
+                  "kind": "warning",
+                  "title": "Historical record: MESA 0.9.4",
+                  "text": "This post describes MESA 0.9.4 as measured in November 2026. Version 0.9.5 has since removed the graph store; see [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/) and the [benchmark page](/benchmark/) for later results."
+                },
                 {
                   "kind": "paragraph",
                   "text": "Partly. On benchmark v2 dev, models-off search (T0) rose from Hit@5 0.4732 to 0.5446. Embedding search (T1b) rose from 0.7411 to 0.7768. Reranked search (T2), the strongest mode, fell from Hit@5 0.9286 to 0.9107, and its MRR fell from 0.8076 to 0.7945."
@@ -7922,6 +7965,11 @@
               "id": "short-answer",
               "title": "MESA 0.9.4 arama kalitesini artırdı mı?",
               "blocks": [
+                {
+                  "kind": "warning",
+                  "title": "Tarihsel kayıt: MESA 0.9.4",
+                  "text": "Bu yazı, Kasım 2026’da ölçüldüğü hâliyle MESA 0.9.4’ü anlatır. 0.9.5 o zamandan beri çizge deposunu kaldırdı; sonraki sonuçlar için [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısına ve [benchmark sayfasına](/benchmark/) bakın."
+                },
                 {
                   "kind": "paragraph",
                   "text": "Kısmen. Benchmark v2 dev bölümünde modellerin kapalı olduğu arama (T0), Hit@5’te 0,4732’den 0,5446’ya çıktı. Embedding araması (T1b) 0,7411’den 0,7768’e yükseldi. En güçlü mod olan yeniden sıralamalı arama (T2) ise Hit@5’te 0,9286’dan 0,9107’ye, MRR’de 0,8076’dan 0,7945’e düştü."
@@ -8979,7 +9027,7 @@
       "type": "research",
       "path": "research/deleting-code-mesa-0-9-4/",
       "publishedAt": "2026-11-23",
-      "updatedAt": "2026-11-23",
+      "updatedAt": "2026-11-24",
       "author": "MESA contributors",
       "tags": [
         "engineering",
@@ -9056,12 +9104,17 @@
         "en": {
           "title": "What We Deleted From MESA, and Why",
           "subtitle": "Removing two subsystems without changing a search rank",
-          "summary": "MESA 0.9.4 removed the V3 node store and LLM consolidation. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal.",
+          "summary": "MESA 0.9.4 removed the legacy pre-V4 node store and model-based fact merging. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal.",
           "sections": [
             {
               "id": "short-answer",
               "title": "What did we remove from MESA?",
               "blocks": [
+                {
+                  "kind": "warning",
+                  "title": "Historical record: MESA 0.9.4",
+                  "text": "This post describes MESA 0.9.4 as measured in November 2026. Version 0.9.5 has since removed the graph store; see [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/) and the [benchmark page](/benchmark/) for later results."
+                },
                 {
                   "kind": "paragraph",
                   "text": "MESA 0.9.4 removed the legacy V3 node store, the LLM consolidation subsystem and related settings. Runtime Python code fell from 48,591 to 42,541 lines, a drop of 6,050 lines or 12.5%. Settings read through the main config fell from 68 to 54."
@@ -9285,12 +9338,17 @@
         "tr": {
           "title": "MESA’dan Neleri Sildik, Neden?",
           "subtitle": "Tek bir arama sırası değişmeden iki alt sistemi kaldırmak",
-          "summary": "MESA 0.9.4, V3 düğüm deposunu ve LLM birleştirme sistemini kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı.",
+          "summary": "MESA 0.9.4, V4 öncesinden kalan düğüm deposunu ve model tabanlı bilgi birleştirmeyi kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı.",
           "sections": [
             {
               "id": "short-answer",
               "title": "MESA’dan neleri kaldırdık?",
               "blocks": [
+                {
+                  "kind": "warning",
+                  "title": "Tarihsel kayıt: MESA 0.9.4",
+                  "text": "Bu yazı, Kasım 2026’da ölçüldüğü hâliyle MESA 0.9.4’ü anlatır. 0.9.5 o zamandan beri çizge deposunu kaldırdı; sonraki sonuçlar için [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısına ve [benchmark sayfasına](/benchmark/) bakın."
+                },
                 {
                   "kind": "paragraph",
                   "text": "MESA 0.9.4, eski V3 düğüm deposunu, LLM birleştirme (consolidation) alt sistemini ve bunlara bağlı ayarları kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541 satıra indi; yani 6.050 satır, %12,5 azaldı. Ana yapılandırmanın okuduğu ayar sayısı 68’den 54’e düştü."
@@ -9511,6 +9569,411 @@
             }
           ],
           "category": "Arama değerlendirmesi"
+        }
+      }
+    },
+    {
+      "id": "why-mesa-removed-its-graph-store",
+      "slug": "why-mesa-removed-its-graph-store",
+      "type": "research",
+      "path": "research/why-mesa-removed-its-graph-store/",
+      "publishedAt": "2026-11-24",
+      "updatedAt": "2026-11-24",
+      "author": "MESA contributors",
+      "tags": [
+        "graph",
+        "ablation",
+        "architecture",
+        "release"
+      ],
+      "category": "Retrieval Evaluation",
+      "draft": false,
+      "indexable": true,
+      "readingMinutes": 5,
+      "status": "completed-measurement",
+      "systemVersion": "MESA 0.9.3 → 0.9.5",
+      "dataset": "Benchmark v1 dev (85 answerable) and benchmark v2 dev, Tier M, 128 questions (112 answerable)",
+      "models": "T0 models off; T1b for the v1 re-scoring",
+      "metrics": [
+        "Hit@1",
+        "Hit@5",
+        "MRR",
+        "lines removed"
+      ],
+      "limitations": [
+        "All results are from dev splits; the test split was not used for these decisions.",
+        "The v1 re-scoring and the v2 ablation used different question sets and builds.",
+        "A graph built from model-extracted relations was not tested.",
+        "Results describe one corpus of Turkish legal texts."
+      ],
+      "methodology": [
+        "retrieval-evaluation"
+      ],
+      "record": {
+        "en": {
+          "status": "Completed measurement · dev splits",
+          "version": "0.9.3 review, 0.9.4 and Round 23 development builds; removal in tag v0.9.5",
+          "dataset": "Benchmark v1 dev (85 answerable); benchmark v2 dev, Tier M, 128 questions (112 answerable)",
+          "models": "T0, models off; T1b for the v1 re-scoring",
+          "limitations": [
+            "All results are from dev splits; the test split was not used for these decisions.",
+            "The v1 re-scoring and the v2 ablation used different question sets and builds.",
+            "A graph built from model-extracted relations was not tested.",
+            "Results describe one corpus of Turkish legal texts."
+          ]
+        },
+        "tr": {
+          "status": "Tamamlanmış ölçüm · dev bölümleri",
+          "version": "0.9.3 incelemesi, 0.9.4 ve Round 23 geliştirme derlemeleri; kaldırma v0.9.5 etiketinde",
+          "dataset": "Benchmark v1 dev (85 yanıtlanabilir); benchmark v2 dev, Tier M, 128 soru (112’si yanıtlanabilir)",
+          "models": "T0, modeller kapalı; v1 yeniden puanlaması için T1b",
+          "limitations": [
+            "Tüm sonuçlar dev bölümlerinden; bu kararlar için test bölümü kullanılmadı.",
+            "v1 yeniden puanlaması ile v2 karşılaştırması farklı soru kümeleri ve derlemeler kullandı.",
+            "Model çıkarımı ilişkilerinden kurulan bir çizge denenmedi.",
+            "Sonuçlar tek bir Türk hukuku metinleri derlemini anlatır."
+          ]
+        }
+      },
+      "seo": {
+        "en": {
+          "title": "Why MESA Removed Its Graph Store",
+          "description": "MESA 0.9.5 removed its graph database after dev measurements: turning the graph off lost no question and a citation-following lane lowered Hit@1."
+        },
+        "tr": {
+          "title": "MESA Çizge Deposunu Neden Kaldırdı?",
+          "description": "MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü."
+        }
+      },
+      "related": [
+        "what-improved-search-0-9-4",
+        "deleting-code-mesa-0-9-4",
+        "why-graphs-matter"
+      ],
+      "locales": {
+        "en": {
+          "title": "Why MESA Removed Its Graph Store",
+          "subtitle": "What the graph lane added on the benchmark dev questions",
+          "summary": "MESA 0.9.5 removed its graph database. In our dev measurements graph search never found a correct passage that the other lanes missed, turning it off lost no question, and a citation-following replacement lowered Hit@1.",
+          "shortAnswer": "",
+          "sections": [
+            {
+              "title": "What did 0.9.5 remove?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA Core 0.9.5 removed the Kùzu graph database, the worker that wrote graph projections, the graph search lane and the graph rebuild paths. The four Kùzu modules in `mesa_storage` alone were 2,610 lines. Search now uses BM25, vector search when an embedding model is set, the built-in legal rules and an optional reranker. Entities, assertions and legal citations stay in SQLite with their sources."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "The graph had already been off by default since 0.9.4. This post explains the measurements behind that default and the removal."
+                }
+              ],
+              "id": "what-removed"
+            },
+            {
+              "title": "Did the graph find anything the other lanes missed?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "No. With model extraction off, which is the default, the graph held a simple document → chunk structure. A Round 21 review of 0.9.3 re-scored the benchmark v1 dev results: the graph lane found the correct passage first and alone for 0 of 85 answerable questions, in both the models-off (T0) and embedding (T1b) runs."
+                }
+              ],
+              "id": "graph-only"
+            },
+            {
+              "title": "What happened when we turned it off?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "We turned each lane off on the shared benchmark v2 dev store (Tier M, 141 documents, 5,041 chunks, 128 questions of which 112 are answerable, models off, a 0.9.4 development build with prefix BM25). The starting point was 52 of 112 questions with the correct passage in the top five."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Change from the 52-hit baseline",
+                    "Hit@5 (of 112)"
+                  ],
+                  "rows": [
+                    [
+                      "Assertion fusion weight 0",
+                      "56"
+                    ],
+                    [
+                      "Graph off",
+                      "52"
+                    ],
+                    [
+                      "Both",
+                      "61"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Turning the graph off lost no question. Together with the zero assertion weight, it became the 0.9.4 default."
+                }
+              ],
+              "id": "graph-off"
+            },
+            {
+              "title": "Could citations replace the graph?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Legal documents cite each other, so we tested the obvious replacement in Round 23: take the top 20 fused results, follow the statute and article citations already stored for them, and rank the cited in-scope articles as a separate lane. The rule was to keep it only if Hit@5 gained at least two questions and no category lost more than one."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Citation lane weight",
+                    "Hit@1",
+                    "Hit@5",
+                    "MRR"
+                  ],
+                  "rows": [
+                    [
+                      "0 (off)",
+                      "30",
+                      "62",
+                      "0.3958"
+                    ],
+                    [
+                      "0.5",
+                      "28",
+                      "62",
+                      "0.3828"
+                    ],
+                    [
+                      "1",
+                      "20",
+                      "60",
+                      "0.3313"
+                    ],
+                    [
+                      "2",
+                      "20",
+                      "60",
+                      "0.3304"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Same store and split as above, models off, at the Round 23 development commit. Following citations pulled frequently cited articles ahead of the passage that answered the question. The lane, its setting and its tests were deleted in the same unit."
+                }
+              ],
+              "id": "citations"
+            },
+            {
+              "title": "What does this mean for you?",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "If you upgrade, the migration clears the old graph bookkeeping rows. Old `kuzu_db` files are ignored; delete them by hand after checking your backup.",
+                    "`MESA_GRAPH_ENABLED`, `MESA_RRF_GRAPH_WEIGHT` and `MESA_V4_GRAPH_TIMEOUT_SECONDS` are ignored with one startup warning each.",
+                    "The package now installs on Python 3.14, because Kùzu was the dependency that had no wheel there."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "See [graph store removed](/docs/core/graph/) for the upgrade note."
+                }
+              ],
+              "id": "what-it-means"
+            },
+            {
+              "title": "Limits of these measurements",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "All numbers are dev-split results; the held-out test split was not used for these decisions.",
+                    "The v1 re-scoring and the v2 ablation used different question sets and builds.",
+                    "The graph had no extracted relations by default. A graph built from model-extracted relations was not tested, because model extraction is off by default and earlier measurements showed it lowered quality.",
+                    "These results describe this corpus of Turkish legal texts; another corpus with rich typed relations could behave differently."
+                  ]
+                }
+              ],
+              "id": "limits"
+            },
+            {
+              "title": "Sources",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "[MESA Core 0.9.5 changelog](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24)",
+                    "[MESA Core 0.9.4 changelog: graph off by default](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23)"
+                  ]
+                }
+              ],
+              "id": "sources"
+            }
+          ]
+        },
+        "tr": {
+          "title": "MESA Çizge Deposunu Neden Kaldırdı?",
+          "subtitle": "Çizge kanalının benchmark dev sorularına kattıkları",
+          "summary": "MESA 0.9.5 çizge veritabanını kaldırdı. Dev ölçümlerimizde çizge araması diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı, kapatılması hiçbir soruyu kaybettirmedi ve atıf izleyen bir alternatif Hit@1’i düşürdü.",
+          "shortAnswer": "",
+          "sections": [
+            {
+              "title": "0.9.5 neyi kaldırdı?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "MESA Core 0.9.5; Kùzu çizge veritabanını, çizge görünümünü yazan worker’ı, çizge arama kanalını ve çizge yeniden oluşturma yollarını kaldırdı. Yalnızca `mesa_storage` içindeki dört Kùzu modülü 2.610 satırdı. Arama artık BM25, bir embedding modeli ayarlıysa vektör araması, yerleşik hukuk kuralları ve isteğe bağlı yeniden sıralama ile yapılır. Varlıklar, bilgi kayıtları ve hukuki atıflar kaynaklarıyla birlikte SQLite’ta kalır."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Çizge 0.9.4’ten beri zaten varsayılan olarak kapalıydı. Bu yazı, o varsayılanın ve kaldırmanın arkasındaki ölçümleri anlatır."
+                }
+              ],
+              "id": "what-removed"
+            },
+            {
+              "title": "Çizge, diğer kanalların kaçırdığı bir şey buldu mu?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Hayır. Varsayılan olarak model çıkarımı kapalıyken çizge yalnızca belge → parça yapısını tutuyordu. 0.9.3 üzerinde yapılan Round 21 incelemesi benchmark v1 dev sonuçlarını yeniden puanladı: çizge kanalı, modelsiz (T0) ve embedding (T1b) koşularının ikisinde de 85 yanıtlanabilir sorunun hiçbirinde doğru pasajı tek başına ilk bulan kanal olmadı (0/85)."
+                }
+              ],
+              "id": "graph-only"
+            },
+            {
+              "title": "Kapattığımızda ne oldu?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Her kanalı paylaşılan benchmark v2 dev deposunda tek tek kapattık (Tier M, 141 belge, 5.041 parça, 112’si yanıtlanabilir 128 soru, modeller kapalı, önekli BM25 içeren bir 0.9.4 geliştirme derlemesi). Başlangıç noktası, doğru pasajın ilk beşte olduğu 112 sorudan 52’siydi."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "52 isabetlik temel çizgiden değişiklik",
+                    "Hit@5 (112’de)"
+                  ],
+                  "rows": [
+                    [
+                      "Bilgi kaydı füzyon ağırlığı 0",
+                      "56"
+                    ],
+                    [
+                      "Çizge kapalı",
+                      "52"
+                    ],
+                    [
+                      "İkisi birlikte",
+                      "61"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Çizgeyi kapatmak hiçbir soruyu kaybettirmedi. Sıfır bilgi kaydı ağırlığıyla birlikte 0.9.4 varsayılanı oldu."
+                }
+              ],
+              "id": "graph-off"
+            },
+            {
+              "title": "Atıflar çizgenin yerini alabilir miydi?",
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "Hukuk metinleri birbirine atıf yapar; bu yüzden Round 23’te akla gelen ilk alternatifi denedik: birleştirilmiş ilk 20 sonucu alıp onlar için zaten kayıtlı kanun ve madde atıflarını izlemek ve atıf yapılan kapsam içi maddeleri ayrı bir kanal olarak sıralamak. Kural, kanalı yalnızca Hit@5 en az iki soru kazanırsa ve hiçbir kategori birden fazla soru kaybetmezse tutmaktı."
+                },
+                {
+                  "kind": "table",
+                  "headers": [
+                    "Atıf kanalı ağırlığı",
+                    "Hit@1",
+                    "Hit@5",
+                    "MRR"
+                  ],
+                  "rows": [
+                    [
+                      "0 (kapalı)",
+                      "30",
+                      "62",
+                      "0,3958"
+                    ],
+                    [
+                      "0,5",
+                      "28",
+                      "62",
+                      "0,3828"
+                    ],
+                    [
+                      "1",
+                      "20",
+                      "60",
+                      "0,3313"
+                    ],
+                    [
+                      "2",
+                      "20",
+                      "60",
+                      "0,3304"
+                    ]
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Depo ve bölüm yukarıdakiyle aynı, modeller kapalı, Round 23 geliştirme commit’i. Atıfları izlemek, sık atıf alan maddeleri soruyu yanıtlayan pasajın önüne çekti. Kanal, ayarı ve testleri aynı iş biriminde silindi."
+                }
+              ],
+              "id": "citations"
+            },
+            {
+              "title": "Bu sizin için ne anlama geliyor?",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Yükseltirseniz migration eski çizge kayıt satırlarını temizler. Eski `kuzu_db` dosyaları yok sayılır; yedeğinizi denetledikten sonra elle silin.",
+                    "`MESA_GRAPH_ENABLED`, `MESA_RRF_GRAPH_WEIGHT` ve `MESA_V4_GRAPH_TIMEOUT_SECONDS` başlangıçta her biri için bir uyarıyla yok sayılır.",
+                    "Paket artık Python 3.14’e kurulur; orada wheel’i olmayan bağımlılık Kùzu idi."
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Yükseltme notu için [çizge deposu kaldırıldı](/docs/core/graph/) sayfasına bakın."
+                }
+              ],
+              "id": "what-it-means"
+            },
+            {
+              "title": "Bu ölçümlerin sınırları",
+              "blocks": [
+                {
+                  "kind": "list",
+                  "items": [
+                    "Tüm sayılar dev bölümü sonuçlarıdır; bu kararlar için ayrılmış test bölümü kullanılmadı.",
+                    "v1 yeniden puanlaması ile v2 karşılaştırması farklı soru kümeleri ve derlemeler kullandı.",
+                    "Çizgede varsayılan olarak çıkarılmış ilişki yoktu. Model çıkarımı ilişkilerinden kurulan bir çizge denenmedi; çünkü model çıkarımı varsayılan olarak kapalıdır ve önceki ölçümler kaliteyi düşürdüğünü gösterdi.",
+                    "Sonuçlar bu Türk hukuku metinleri derlemini anlatır; zengin türlü ilişkileri olan başka bir derlem farklı davranabilir."
+                  ]
+                }
+              ],
+              "id": "limits"
+            },
+            {
+              "title": "Kaynaklar",
+              "blocks": [
+                {
+                  "kind": "numbered-list",
+                  "items": [
+                    "[MESA Core 0.9.5 changelog](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24)",
+                    "[MESA Core 0.9.4 changelog: çizge varsayılan olarak kapalı](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23)"
+                  ]
+                }
+              ],
+              "id": "sources"
+            }
+          ]
         }
       }
     },
@@ -11821,7 +12284,7 @@
                 {
                   "kind": "list",
                   "items": [
-                    "Python 3.11, 3.12 or 3.13",
+                    "Python 3.11 or newer",
                     "Linux, macOS or WSL",
                     "UTF-8 text files. Convert PDF and Word files to text first."
                   ]
@@ -11832,7 +12295,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Checked against `mesa-memory` 0.9.4 from PyPI on 24 November 2026. Your document IDs can differ."
+                  "text": "Checked against `mesa-memory` 0.9.5 from PyPI on 24 November 2026, on Python 3.14. Your document IDs can differ."
                 }
               ]
             },
@@ -11846,7 +12309,7 @@
                 },
                 {
                   "kind": "code",
-                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.4\nmesa start"
+                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.5\nmesa start"
                 }
               ]
             },
@@ -11996,7 +12459,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Older Turkish files are often saved as Windows-1254. In 0.9.4 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:"
+                  "text": "Older Turkish files are often saved as Windows-1254. In 0.9.5 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:"
                 },
                 {
                   "kind": "code",
@@ -12005,7 +12468,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Turkish letters matter in queries. In our test on 0.9.4, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause."
+                  "text": "Turkish letters matter in queries. In our test on 0.9.5, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause."
                 }
               ]
             },
@@ -12046,8 +12509,8 @@
                       "href": "docs/core/cli-reference/"
                     },
                     {
-                      "label": "mesa-memory 0.9.4 on PyPI",
-                      "href": "https://pypi.org/project/mesa-memory/0.9.4/"
+                      "label": "mesa-memory 0.9.5 on PyPI",
+                      "href": "https://pypi.org/project/mesa-memory/0.9.5/"
                     }
                   ]
                 }
@@ -12068,7 +12531,7 @@
                 {
                   "kind": "list",
                   "items": [
-                    "Python 3.11, 3.12 veya 3.13",
+                    "Python 3.11 veya daha yenisi",
                     "Linux, macOS veya WSL",
                     "UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün."
                   ]
@@ -12079,7 +12542,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.4 ile denendi. Belge kimlikleriniz farklı olabilir."
+                  "text": "24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.5 ile, Python 3.14 üzerinde denendi. Belge kimlikleriniz farklı olabilir."
                 }
               ]
             },
@@ -12093,7 +12556,7 @@
                 },
                 {
                   "kind": "code",
-                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.4\nmesa start"
+                  "code": "python3 -m venv .venv\n. .venv/bin/activate\npython -m pip install mesa-memory==0.9.5\nmesa start"
                 }
               ]
             },
@@ -12238,7 +12701,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.4’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:"
+                  "text": "Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.5’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:"
                 },
                 {
                   "kind": "code",
@@ -12247,7 +12710,7 @@
                 },
                 {
                   "kind": "paragraph",
-                  "text": "Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar."
+                  "text": "Sorgularda Türkçe harfler önemlidir. 0.9.5 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar."
                 }
               ]
             },
@@ -12288,8 +12751,8 @@
                       "href": "docs/core/cli-reference/"
                     },
                     {
-                      "label": "PyPI’da mesa-memory 0.9.4",
-                      "href": "https://pypi.org/project/mesa-memory/0.9.4/"
+                      "label": "PyPI’da mesa-memory 0.9.5",
+                      "href": "https://pypi.org/project/mesa-memory/0.9.5/"
                     }
                   ]
                 },
@@ -14509,7 +14972,20 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "No. MESA 0.9.4 does not answer in-force-on-date questions. It can store versioned documents and return source text, but the legal check above must be done against official sources. See [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes."
+                  "text": "Partly. MESA 0.9.5 does not decide when an article took effect: transitional rules, deferred commencement and annulments still have to be checked against the official sources above. What it can do is store each version you have checked and return the wording that was in force at an instant you give."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Upload every version of the article under the same `document_id`, with the date you established as a timezone-aware `metadata.valid_from`. Versions can be uploaded in any order. Then search with `valid_at`. This example uses a fictional rule from the Core documentation:"
+                },
+                {
+                  "kind": "code",
+                  "language": "python",
+                  "code": "from mesa_client import Mesa\n\nmesa = Mesa()\nfor start, days in [(\"2025-06-01T00:00:00+03:00\", 30), (\"2024-01-01T00:00:00+03:00\", 15)]:\n    mesa.add(\n        f\"MADDE 1 - Arşiv başvuru süresi {days} gündür.\",\n        source=f\"file://arsiv-{start[:10]}.txt\",\n        document_id=\"ornek-arsiv-yonetmeligi\",\n        title=\"Örnek Arşiv Yönetmeliği\",\n        metadata={\"valid_from\": start},\n        wait=True,\n    )\n\nhit = mesa.search(\"Arşiv başvuru süresi\", valid_at=\"2025-05-31T23:59:59+03:00\")[0]\nprint(hit[\"evidence_span\"])  # MADDE 1 - Arşiv başvuru süresi 15 gündür."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Intervals are half-open: at exactly `2025-06-01T00:00:00+03:00` the search returns the 30-day version, and one second earlier it returns the 15-day version. Results carry `revision_number`, `valid_from` and `valid_to`, so you can see which version answered. If the `valid_from` you entered is wrong, the answer is wrong too. See [versioned documents](/docs/core/concepts-and-ingestion/#guide-versioned-documents), and [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes."
                 }
               ]
             },
@@ -14691,7 +15167,20 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Hayır. MESA 0.9.4 belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. Sürümlü belgeleri saklayıp kaynak metni döndürebilir; ama yukarıdaki hukuki denetim resmî kaynaklar üzerinden yapılmalıdır. Sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın."
+                  "text": "Kısmen. MESA 0.9.5 bir maddenin ne zaman yürürlüğe girdiğine karar vermez: geçiş hükümleri, ertelenmiş yürürlük ve iptal kararları yine yukarıdaki resmî kaynaklardan denetlenmelidir. Yapabildiği, denetlediğiniz her sürümü saklamak ve verdiğiniz bir anda yürürlükte olan metni döndürmektir."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Maddenin her sürümünü aynı `document_id` altında, belirlediğiniz tarihi saat dilimi içeren bir `metadata.valid_from` olarak vererek yükleyin. Sürümler herhangi bir sırayla yüklenebilir. Ardından `valid_at` ile arayın. Bu örnek, Core belgelerindeki kurgusal bir kuralı kullanır:"
+                },
+                {
+                  "kind": "code",
+                  "language": "python",
+                  "code": "from mesa_client import Mesa\n\nmesa = Mesa()\nfor start, days in [(\"2025-06-01T00:00:00+03:00\", 30), (\"2024-01-01T00:00:00+03:00\", 15)]:\n    mesa.add(\n        f\"MADDE 1 - Arşiv başvuru süresi {days} gündür.\",\n        source=f\"file://arsiv-{start[:10]}.txt\",\n        document_id=\"ornek-arsiv-yonetmeligi\",\n        title=\"Örnek Arşiv Yönetmeliği\",\n        metadata={\"valid_from\": start},\n        wait=True,\n    )\n\nhit = mesa.search(\"Arşiv başvuru süresi\", valid_at=\"2025-05-31T23:59:59+03:00\")[0]\nprint(hit[\"evidence_span\"])  # MADDE 1 - Arşiv başvuru süresi 15 gündür."
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "Aralıklar yarı açıktır: tam `2025-06-01T00:00:00+03:00` anında arama 30 günlük sürümü, bir saniye önce ise 15 günlük sürümü döndürür. Sonuçlar `revision_number`, `valid_from` ve `valid_to` taşır; hangi sürümün yanıt verdiğini görebilirsiniz. Girdiğiniz `valid_from` yanlışsa yanıt da yanlış olur. Bkz. [sürümlü belgeler](/docs/core/concepts-and-ingestion/#guide-surumlu-belgeler); sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın."
                 }
               ]
             },
@@ -14889,7 +15378,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Not as a legal service. MESA keeps document revisions when you add a new version under the same source, so you can store each text you checked. It does not watch the Resmî Gazete, decide which version applies or answer in-force-on-date questions in 0.9.4. See [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text."
+                  "text": "Not as a legal service. MESA 0.9.5 does not watch the Resmî Gazete or decide which version applies. It can keep every version you have checked: upload each one under the same `document_id` with `metadata.valid_from` set to the date it took effect. MESA orders versions by that date rather than by upload order, so you can add an older text later and it becomes history. A search with `valid_at` then returns the wording in force at that instant, and a search without a date returns the current version. See [checking an article in force on a date](/law/guides/yururluk-kontrolu/) for an example, and [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text."
                 }
               ]
             },
@@ -15033,7 +15522,7 @@
               "blocks": [
                 {
                   "kind": "paragraph",
-                  "text": "Hukuki bir hizmet olarak hayır. Aynı kaynakla yeni bir sürüm eklediğinizde MESA belge sürümlerini saklar; böylece denetlediğiniz her metni tutabilirsiniz. 0.9.4 Resmî Gazete’yi izlemez, hangi sürümün uygulanacağına karar vermez ve belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın."
+                  "text": "Hukuki bir hizmet olarak hayır. MESA 0.9.5 Resmî Gazete’yi izlemez ve hangi sürümün uygulanacağına karar vermez. Denetlediğiniz her sürümü saklayabilir: her birini aynı `document_id` altında, yürürlüğe girdiği tarihi `metadata.valid_from` olarak vererek yükleyin. MESA sürümleri yükleme sırasına göre değil bu tarihe göre sıralar; eski bir metni sonradan eklerseniz geçmişe yerleşir. `valid_at` ile yapılan arama o anda yürürlükte olan metni, tarihsiz arama ise güncel sürümü döndürür. Örnek için [bir maddenin belirli bir tarihte yürürlükte olup olmadığını denetleme](/law/guides/yururluk-kontrolu/) rehberine, MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın."
                 }
               ]
             },

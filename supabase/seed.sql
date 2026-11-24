@@ -120,7 +120,7 @@ RAG can be one way to retrieve memory, but memory also needs write, update, scop
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 4. [Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 
 ', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 6, 'published', 'What Is AI Agent Memory? Types and Design — MESA', 'AI agent memory stores useful information outside the model and retrieves it later. Learn working, episodic, semantic and procedural memory.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
@@ -238,7 +238,7 @@ RAG, hafızayı geri getirmenin bir yolu olabilir; ancak hafıza ayrıca yazma, 
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 4. [Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 
 ', ARRAY['memory', 'context window', 'session', 'kalıcı hafıza', 'bağlam', 'oturum']::text[], 'MESA contributors', 6, 'published', 'Yapay Zekâ Hafızası Nedir? Ajan Hafızası Rehberi — MESA', 'Yapay zekâ ajanı hafızası, bilgiyi model dışında saklayıp gerektiğinde geri getirir. Çalışma, olay, anlamsal ve yöntem hafızasını ve tasarımını öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
@@ -381,6 +381,10 @@ The Atlas handbook says “Starting 1 November, the reading room opens at 10:00 
 
 Choose representations according to the question. “What does paragraph four say?” needs exact text. “Which rooms open after nine on Friday?” benefits from typed time/day fields. Keeping a source-linked assertion alongside the text serves both. Treat the structured row as a derived interpretation that can be re-extracted when the parser or model changes.
 
+## In MESA 0.9.5
+
+MESA keeps the exact source revision, its chunks, the built-in legal items with their original offsets, and optional model-extracted assertions, all in SQLite. Conditions that make a whole document change over time, such as “starting 1 November”, go on the revision as `valid_from` and `valid_to`, so a search with `valid_at` returns the version in force on that date. MESA has no graph store since 0.9.5. See [versioned documents](/docs/core/concepts-and-ingestion/#guide-versioned-documents).
+
 ## Build a claim that retains its conditions
 
 ```text
@@ -428,9 +432,9 @@ For corrections, distinguish a changed source from a changed interpretation. If 
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'From documents to claims: preserve what extraction loses — MESA Learn', 'Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'From documents to claims: preserve what extraction loses — MESA Learn', 'Represent exact text, entities and assertions without confusing an extracted claim with verified truth. Work through a source-linked record.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('structured-vs-unstructured-memory', 'learn', 'tr', 'Metinden bilgi kaydına: kaynakta neyi korumalı?', '', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', '## Aynı kaynağın üç temsili
 
 Atlas kılavuzunda “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00’da açılır; diğer hafta içi günlerde saat 09.00 olarak kalır” yazsın. Ham metin özgün ifadeyi korur. Metin parçası, ilgili bölümü aramada bulmayı sağlar. Yapılandırılmış kayıt; özneyi, ilişkiyi, değeri ve koşulları ayrı alanlara ayırır. Çizge de ilişkilerin izlenmesini kolaylaştırır. Bu temsillerin hiçbiri kaynağın doğruluğunu kendiliğinden kanıtlamaz.
@@ -443,6 +447,10 @@ Atlas kılavuzunda “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00�
 | Çizge kenarı | İlişki gezintisi | Açıkça bağlanmazsa kanıt |
 
 Temsili, soracağınız soruya göre seçin. “Dördüncü paragraf ne diyor?” için tam metin gerekir. “Cuma günü dokuzdan sonra hangi salonlar açılıyor?” sorusu ise saat ve gün alanlarından yararlanır. Kaynak metni ve ona bağlı yapılandırılmış kaydı birlikte tutmak iki ihtiyacı da karşılar. Yapılandırılmış kaydı, ayrıştırıcı veya model değiştiğinde kaynaktan yeniden üretilebilen bir yorum olarak ele alın.
+
+## MESA 0.9.5’te
+
+MESA; özgün kaynak sürümünü, parçalarını, özgün konumlarıyla yerleşik hukuki öğeleri ve isteğe bağlı model çıkarımı bilgi kayıtlarını SQLite’ta tutar. Bir belgenin tamamını zamanla değiştiren koşullar, örneğin “1 Kasım’dan itibaren”, sürüme `valid_from` ve `valid_to` olarak yazılır; böylece `valid_at` ile yapılan arama o tarihte yürürlükte olan sürümü döndürür. MESA’da 0.9.5’ten beri çizge deposu yoktur. Bkz. [sürümlü belgeler](/docs/core/concepts-and-ingestion/#guide-surumlu-belgeler).
 
 ## Koşullarını koruyan bir iddia kurun
 
@@ -491,9 +499,9 @@ Düzeltme yaparken kaynağın mı, yorumun mu değiştiğini ayırın. Kaynak ay
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'Metinden bilgi kaydına: kaynakta neyi korumalı? — MESA', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['assertion', 'entity', 'schema', 'chunk', 'iddia', 'varlık', 'şema', 'kanıt aralığı']::text[], 'MESA contributors', 5, 'published', 'Metinden bilgi kaydına: kaynakta neyi korumalı? — MESA', 'Bir belgeyi parçalara, varlıklara ve bilgi kayıtlarına dönüştürürken koşulları ve dayanakları nasıl koruyacağınızı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('semantic-search', 'learn', 'en', 'Embeddings and semantic search, with numbers', '', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', 'Calculate similarity, distinguish dense and sparse representations, and understand why nearest neighbors are neither facts nor access decisions.', '## What an embedding actually represents
 
 An embedding model maps input into numbers arranged as a vector. Training encourages some relationships to be reflected in geometric proximity. A document about “opening hours” may be close to “when can I enter?” even without shared words. This is useful for candidate retrieval. The coordinates are learned features, not labeled columns such as “truth”, “permission” or “currentness”.
@@ -825,7 +833,7 @@ Hybrid search, also called hybrid retrieval, combines at least two retrieval met
 
 A reader asks “When can I visit on the last working day?” The handbook says “Friday opening: 10:00.” Dense retrieval may bridge the wording; lexical retrieval may preserve exact room names and policy IDs. Hybrid retrieval combines complementary candidate sets. It is useful only when the additional lane finds relevant items that the baseline misses, or improves their ordering at acceptable cost.
 
-Adding a graph or another embedding model is not automatically an improvement. Nearly identical lanes can reinforce the same mistake. Begin with one interpretable lexical baseline and one compatible dense model; measure overlap, unique relevant hits, empty results and latency. Add complexity only when a documented failure calls for it. BEIR illustrates that retrieval methods vary across datasets; its benchmark results are not a score for your archive. [BEIR](https://arxiv.org/abs/2104.08663).
+Adding a graph or another embedding model is not automatically an improvement. Nearly identical lanes can reinforce the same mistake. Begin with one interpretable lexical baseline and one compatible dense model; measure overlap, unique relevant hits, empty results and latency. Add complexity only when a documented failure calls for it. MESA removed its own graph store in 0.9.5 for this reason: on its dev questions graph search found no correct passage the other lanes missed, and turning it off lost no question ([measurements](/research/why-mesa-removed-its-graph-store/)). BEIR illustrates that retrieval methods vary across datasets; its benchmark results are not a score for your archive. [BEIR](https://arxiv.org/abs/2104.08663).
 
 ## Keep the stages separate
 
@@ -945,7 +953,7 @@ Hibrit arama, en az iki arama yöntemini tek akışta birleştirir. En yaygın i
 
 Kullanıcı “Son iş gününde ne zaman gelebilirim?” diye sorsun; kılavuzda ise “Cuma açılışı: 10.00” yazsın. Anlamsal arama bu ifade farkını aşabilir. Sözcük tabanlı arama da salon adını veya kural kodunu tam eşleştirebilir. Hibrit arama, farklı yöntemlerin bulduğu adayları birleştirir. Yeni bir kanal, diğerinin kaçırdığı ilgili sonucu buluyorsa veya kabul edilebilir maliyetle sıralamayı iyileştiriyorsa yararlıdır.
 
-Çizge veya başka bir model eklemek, aramayı kendiliğinden iyileştirmez. Birbirine çok benzeyen kanallar aynı hatayı güçlendirebilir. Önce anlaşılır bir sözcük tabanlı yöntem ve uyumlu bir anlamsal model kurun. Ortak ve yalnızca tek kanalda bulunan ilgili sonuçları, boş yanıtları ve gecikmeyi ölçün. Karmaşıklığı, gördüğünüz bir hatayı çözmek için artırın. BEIR, yöntemlerin başarısının veri kümesine göre değiştiğini gösterir; o çalışmanın puanı sizin arşivinizin puanı değildir. [BEIR](https://arxiv.org/abs/2104.08663)
+Çizge veya başka bir model eklemek, aramayı kendiliğinden iyileştirmez. Birbirine çok benzeyen kanallar aynı hatayı güçlendirebilir. Önce anlaşılır bir sözcük tabanlı yöntem ve uyumlu bir anlamsal model kurun. Ortak ve yalnızca tek kanalda bulunan ilgili sonuçları, boş yanıtları ve gecikmeyi ölçün. Karmaşıklığı, gördüğünüz bir hatayı çözmek için artırın. MESA da 0.9.5’te kendi çizge deposunu bu nedenle kaldırdı: dev sorularında çizge araması, diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı ve kapatılması hiçbir soruyu kaybettirmedi ([ölçümler](/research/why-mesa-removed-its-graph-store/)). BEIR, yöntemlerin başarısının veri kümesine göre değiştiğini gösterir; o çalışmanın puanı sizin arşivinizin puanı değildir. [BEIR](https://arxiv.org/abs/2104.08663)
 
 ## Aşamaları ayrı tutun
 
@@ -1132,7 +1140,7 @@ For exactly tied fused scores, use a documented stable rule such as canonical ID
 - You need a calibrated confidence value. An RRF score is not a probability.
 - You have enough judged data to train and validate a better ranking model.
 
-MESA Core 0.9.4 uses weighted RRF with k = 60, vector weight 8, BM25 weight 1, assertion weight 0 and graph weight 1. The graph lane is off by default, so its weight applies only when it is enabled. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
+MESA Core 0.9.5 uses weighted RRF with k = 60, vector weight 8, BM25 weight 1 and assertion weight 0. The vector lane runs only when an embedding model is set, so with models off BM25 decides the order. These are defaults for this system, not universal settings. See the [retrieval documentation](/docs/core/retrieval-and-graph/).
 
 ## What we measured in MESA
 
@@ -1183,7 +1191,7 @@ Equal RRF scores are also common. In a [fresh-store test](/research/why-two-sear
 ## Sources and further reading
 
 1. [Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
 4. [Microsoft Learn · Hybrid search scoring (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
@@ -1270,7 +1278,7 @@ Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve bel
 - Kalibre edilmiş bir güven değeri gerekiyorsa. RRF puanı olasılık değildir.
 - Daha iyi bir sıralama modelini eğitip doğrulayacak kadar etiketli veriniz varsa.
 
-MESA Core 0.9.4, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0, çizge ağırlığı 1’dir. Çizge kanalı varsayılan olarak kapalıdır; ağırlığı yalnızca bu kanal açıkken geçerlidir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
+MESA Core 0.9.5, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0’dır. Vektör kanalı yalnızca bir embedding modeli ayarlıyken çalışır; modeller kapalıyken sırayı BM25 belirler. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
 
 ## MESA’da ne ölçtük?
 
@@ -1321,7 +1329,7 @@ Eşit RRF puanları da sık görülür. [Sıfırdan kurulan depolarla yaptığı
 ## Kaynaklar ve ileri okuma
 
 1. [Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
 4. [Microsoft Learn · Hibrit arama puanlaması (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
@@ -1355,7 +1363,11 @@ Ask “Which district contains the archive that owns room 7?” Resolve room 7, 
 
 Suppose A cites B and B cites C. You can say there is a two-edge citation path from A to C. You cannot conclude that A agrees with C, that C is correct or even that A directly cited C. A valid inference needs a rule whose meaning permits composition. Distinguish a retrieved path from a proposition actually established by that path.
 
-Likewise, graph centrality measures connectivity under a chosen definition. A popular node may be frequently cited and wrong. Do not use PageRank as a truth score or allow it to suppress an inconvenient source without an explicit policy. Source quality, relevance and graph prominence answer different questions.
+Likewise, graph centrality measures connectivity under a chosen definition. A popular node may be frequently cited and wrong. Do not use a centrality score as a truth score or allow it to suppress an inconvenient source without an explicit policy. Source quality, relevance and graph prominence answer different questions.
+
+## Graphs in MESA
+
+MESA Core 0.9.5 has no graph store. In MESA''s own measurements graph search never found a correct passage that the other lanes missed (benchmark v1 dev), turning it off lost no benchmark v2 dev question, and following stored legal citations from the top results lowered Hit@1, so Core keeps entities, assertions and citations in SQLite and searches them with BM25 and optional vectors. Read [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/). The ideas in this lesson still apply if you build a graph yourself.
 
 ## Bound cost and recognize incompleteness
 
@@ -1375,9 +1387,9 @@ GraphRAG is a family of retrieval-augmented approaches using graph information. 
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Knowledge graphs: follow relations without inventing proof — MESA Learn', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['graph', 'GraphRAG', 'multi hop', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Knowledge graphs: follow relations without inventing proof — MESA Learn', 'Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-graphs-matter-in-ai-memory', 'learn', 'tr', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek', '', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', '## İlişkinin kimliğini ve dayanağını koruyun
 
 Metin araması ilgili pasajları bulur; çizge araması ise açıkça kaydedilmiş ilişkileri izler. Kurgusal Atlas arşivinde okuma salonu, arşiv ve ilçe için düğümler; “parçasıdır” ve “bulunur” ilişkileri için bağlantılar kurun. Her düğüme sabit kimlik verin ve her ilişkiyi destekleyen kaynak sürümüne bağlayın. “Merkez” gibi bir ad, hangi varlıktan söz edildiğini tek başına belirlemez.
@@ -1407,7 +1419,11 @@ room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
 
 A, B’ye; B de C’ye atıf yapıyor olsun. A’dan C’ye iki kenarlı atıf yolu olduğunu söyleyebilirsiniz. A’nın C’ye katıldığını, C’nin doğru olduğunu veya A’nın doğrudan C’ye atıf yaptığını çıkaramazsınız. Geçerli çıkarım, anlamı bileşime izin veren kural gerektirir. Bulunan yol ile yolun gerçekten desteklediği önermeyi ayırın.
 
-Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. PageRank’i doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir.
+Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. Bir merkezilik puanını doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir.
+
+## MESA’da çizgeler
+
+MESA Core 0.9.5’te çizge deposu yoktur. MESA’nın kendi ölçümlerinde çizge araması, diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı (benchmark v1 dev); kapatılması benchmark v2 dev bölümünde hiçbir soruyu kaybettirmedi; en üst sonuçlardaki kayıtlı hukuki atıfları izlemek ise Hit@1’i düşürdü. Bu yüzden Core varlıkları, bilgi kayıtlarını ve atıfları SQLite’ta tutar ve BM25 ile isteğe bağlı vektörlerle arar. [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısını okuyun. Kendi çizgenizi kurarsanız bu dersteki fikirler geçerliliğini korur.
 
 ## Maliyeti sınırlayın, eksikliği tanıyın
 
@@ -1427,9 +1443,9 @@ GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['graph', 'GraphRAG', 'multi hop', 'Kuzu', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek — MESA', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['graph', 'GraphRAG', 'multi hop', 'knowledge graph', 'çizge', 'ilişki']::text[], 'MESA contributors', 5, 'published', 'Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek — MESA', 'Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'en', 'Evidence and provenance: what a citation actually proves', '', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', '## Four checks, four different conclusions
 
 An assistant answers “The room opens at ten on Fridays” and displays a link. A real link is only the first step. You must ask whether the source exists, whether the cited passage says what the answer claims, whether that source applies to this time and scope, and whether the source itself is trustworthy. Passing one check does not imply the others.
@@ -1485,7 +1501,7 @@ If no eligible source supports the answer, return a clear evidence gap or ask a 
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
 ', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Evidence and provenance: what a citation actually proves — MESA Learn', 'Build a verifiable citation with source revision and exact span. Distinguish integrity, provenance, claim support and source truth.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-is-evidence-aware-memory', 'learn', 'tr', 'Kaynak izi: bir atıf neyi kanıtlar?', '', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', '## Dört kontrol, dört ayrı sonuç
@@ -1543,7 +1559,7 @@ Uygun kaynaklar yanıtı desteklemiyorsa kanıtın eksik olduğunu söyleyin vey
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
 ', ARRAY['provenance', 'citation', 'hash', 'SHA256', 'evidence', 'kaynak izi', 'atıf', 'kanıt', 'halüsinasyon']::text[], 'MESA contributors', 5, 'published', 'Kaynak izi: bir atıf neyi kanıtlar? — MESA', 'Bir atfı belge sürümüne ve dayanak pasajına kadar izleyin. İçerik bütünlüğü, kaynak güvenilirliği ve yanıtın desteklenmesi arasındaki farkı öğrenin.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'en', 'Shared memory: who may retrieve what?', '', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', '## A name in the prompt is not an identity
@@ -1574,13 +1590,13 @@ Imagine a global top-10 list contains ten forbidden records. Removing them gives
 
 ## Statistics, caches and paths also carry scope
 
-Filtering returned rows is not the entire isolation problem. Global corpus statistics can change lexical ranking when another tenant adds documents. Cache entries can replay evidence from a wider scope. Graph traversal can cross an allowed seed into a forbidden neighbor. State your isolation contract: preventing text disclosure and preventing cross-scope ranking influence are related but distinct properties.
+Filtering returned rows is not the entire isolation problem. Global corpus statistics can change lexical ranking when another tenant adds documents. Cache entries can replay evidence from a wider scope. Graph traversal can cross an allowed seed into a forbidden neighbor. State your isolation contract: preventing text disclosure and preventing cross-scope ranking influence are related but distinct properties. In MESA Core 0.9.5, a dataset-wide search uses that dataset''s own persistent BM25 index, never shared across datasets or tenants; narrower scopes build a temporary index of authorized rows only, so BM25 statistics stay inside the scope. Vector candidates are prefiltered by tenant, dataset and agent and checked against SQLite before ranking.
 
 Cache keys should distinguish caller/resource scope, query parameters, source generation and representation settings. Permission changes need invalidation or revalidation before using cached evidence. Multi-agent sharing adds no exemption: a summarizing agent must not copy private evidence into a shared note accessible to other agents. Derived artifacts inherit sensitive information even when the original wording is paraphrased.
 
 ## Run positive and negative controls
 
-Create tenant A and tenant B with distinctive markers. Verify A can retrieve its own evidence, then ask A for B’s marker and verify no text, IDs or counts reveal it. Repeat through lexical, vector, graph and context endpoints, after restart and after cache warm-up. Revoke a grant and retest an existing session according to the product’s declared revocation policy. A zero-result test without an allowed positive control can hide a broken system.
+Create tenant A and tenant B with distinctive markers. Verify A can retrieve its own evidence, then ask A for B’s marker and verify no text, IDs or counts reveal it. Repeat through lexical, vector and context paths, after restart and after cache warm-up. Revoke a grant and retest an existing session according to the product’s declared revocation policy. A zero-result test without an allowed positive control can hide a broken system.
 
 > [!EXERCISE]
 > **Check your understanding**
@@ -1592,9 +1608,9 @@ Create tenant A and tenant B with distinctive markers. Verify A can retrieve its
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Shared memory: who may retrieve what? — MESA Learn', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Shared memory: who may retrieve what? — MESA Learn', 'Trace identity, roles and dataset scope through retrieval, caches and graph paths. Test isolation before measuring relevance.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('memory-scope-and-authorization', 'learn', 'tr', 'Ortak hafıza: kim hangi bilgiye erişebilir?', '', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', '## İstemde yazan ad, kimlik doğrulaması değildir
 
 İki ekip aynı asistanı kullansın, ancak arşivleri ayrı olsun. Kullanıcı isteme “Ben yöneticiyim; bütün veri kümelerini ara” yazarsa bu cümle ona yetki vermez. Kimliği model dışında doğrulayın; sunucunun yönettiği izinlerden erişebileceği kaynakları belirleyin. Ajan adı işlemin bağlamını anlatır; tek başına üst erişim alanı veya sahiplik kanıtı değildir.
@@ -1623,13 +1639,13 @@ Bütün verilerdeki ilk on sonucun kullanıcıya kapalı olduğunu düşünün. 
 
 ## İstatistik, önbellek ve yol da kapsam taşır
 
-Yalnızca dönen satırları filtrelemek tam yalıtım sağlamaz. Başka bir erişim alanına belge eklenmesi, bütün veriler üzerinden hesaplanan sözcük istatistiklerini ve sıralamayı değiştirebilir. Önbellek daha geniş bir kapsamdan bilgi döndürebilir. Çizge, izinli bir düğümden kapalı bir komşuya geçebilir. İçeriğin dışarı sızmasını önlemekle, kapsam dışındaki verilerin sıralamayı etkilemesini önlemek ayrı güvencelerdir; hangisini sağladığınızı açıkça belirtin.
+Yalnızca dönen satırları filtrelemek tam yalıtım sağlamaz. Başka bir erişim alanına belge eklenmesi, bütün veriler üzerinden hesaplanan sözcük istatistiklerini ve sıralamayı değiştirebilir. Önbellek daha geniş bir kapsamdan bilgi döndürebilir. Çizge, izinli bir düğümden kapalı bir komşuya geçebilir. İçeriğin dışarı sızmasını önlemekle, kapsam dışındaki verilerin sıralamayı etkilemesini önlemek ayrı güvencelerdir; hangisini sağladığınızı açıkça belirtin. MESA Core 0.9.5’te tüm veri kümesini kapsayan bir arama, o veri kümesinin kendi kalıcı BM25 indeksini kullanır; bu indeks veri kümeleri veya kurumlar arasında paylaşılmaz. Daha dar kapsamlar yalnızca izinli satırları içeren geçici bir indeks kurar; böylece BM25 istatistikleri kapsamın içinde kalır. Vektör adayları kurum, veri kümesi ve ajana göre önceden süzülür ve sıralamadan önce SQLite’a karşı denetlenir.
 
 Önbellek anahtarı; kullanıcının ve kaynakların erişim kapsamını, sorgu ayarlarını, kaynak güncellemesini ve temsil ayarlarını ayırt etmelidir. İzinler değiştiğinde eski sonucu yeniden kullanmadan önce geçersizleştirme veya tekrar doğrulama gerekir. Birden fazla ajanın çalışması bu kuralı değiştirmez: Özetleyen ajan özel bilgiyi herkese açık ortak nota taşımamalıdır. Sözcükler değişse bile türetilen özet hassas bilgiyi koruyabilir.
 
 ## Olumlu ve olumsuz kontrolleri çalıştırın
 
-A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici işaretler ekleyin. A’nın kendi kaynağını bulduğunu doğrulayın; sonra B’nin işaretini sorup metin, kimlik veya sayılar üzerinden bilgi sızmadığını kontrol edin. Sözcük, vektör, çizge ve bağlam arayüzlerinde; yeniden başlatmadan ve önbellek dolduktan sonra testi tekrarlayın. İzni kaldırıp mevcut oturumun bildirilen iptal kuralına uyduğunu da sınayın. İzinli bir sonucun bulunabildiğini kontrol etmeden yalnızca boş yanıt beklemek, çalışmayan bir sistemi güvenliymiş gibi gösterebilir.
+A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici işaretler ekleyin. A’nın kendi kaynağını bulduğunu doğrulayın; sonra B’nin işaretini sorup metin, kimlik veya sayılar üzerinden bilgi sızmadığını kontrol edin. Sözcük, vektör ve bağlam yollarında; yeniden başlatmadan ve önbellek dolduktan sonra testi tekrarlayın. İzni kaldırıp mevcut oturumun bildirilen iptal kuralına uyduğunu da sınayın. İzinli bir sonucun bulunabildiğini kontrol etmeden yalnızca boş yanıt beklemek, çalışmayan bir sistemi güvenliymiş gibi gösterebilir.
 
 > [!EXERCISE]
 > **Kendinizi sınayın**
@@ -1641,9 +1657,9 @@ A ve B için ayrı üst erişim alanları oluşturup belgelerine ayırt edici i�
 
 1. [NIST · Role Based Access Control](https://csrc.nist.gov/projects/role-based-access-control)
 2. [OWASP · LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Ortak hafıza: kim hangi bilgiye erişebilir? — MESA', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['authorization', 'RBAC', 'tenant', 'scope', 'cache', 'multi agent', 'yetki', 'kapsam', 'yalıtım']::text[], 'MESA contributors', 5, 'published', 'Ortak hafıza: kim hangi bilgiye erişebilir? — MESA', 'Kimliği ve izinleri arama, önbellek ve çizge boyunca izleyin. Sonuçların ilgililiğini ölçmeden önce veri yalıtımını sınayın.', true, '2026-10-01T00:00:00Z', '2026-10-01T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'en', 'Canonical storage and projections: survive a partial write', '', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', '## Pick an authority for identity and lifecycle
 
 A memory application may use SQL for source records, a vector index for similarity and a graph for relationships. If the three stores disagree, which decides whether a claim exists and is active? A canonical store owns that decision. A projection is a derived representation rebuilt from the canonical data and its declared transformation. “Derived” describes authority, not importance or search quality.
@@ -1673,11 +1689,11 @@ A lease lets a worker claim work temporarily. A fencing token or equivalent owne
 
 SQLite documents atomic commit and crash-recovery mechanisms for its own transactions under stated assumptions. WAL allows readers and a writer to overlap, but still serializes writers. It does not turn embedded stores into a distributed multi-writer database. Filesystem durability, backup procedure and checkpoint behavior remain operational concerns. [Atomic commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
+MESA Core v0.9.5 uses one combined owner per root and treats LanceDB as its only projection; its BM25 indexes live in SQLite and change in the same transaction as the canonical rows. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
 
 > [!NOTE]
 > **What we measured in MESA**
-> MESA 0.9.4 [removed its legacy V3 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off).
+> MESA 0.9.4 [removed its legacy pre-V4 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off). Version 0.9.5 then [removed its graph store](/research/why-mesa-removed-its-graph-store/), leaving SQLite and LanceDB.
 
 ## Interpret a timeout
 
@@ -1695,9 +1711,9 @@ MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as pr
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Canonical storage and projections: survive a partial write — MESA Learn', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Canonical storage and projections: survive a partial write — MESA Learn', 'Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('sqlite-as-canonical-agent-memory', 'learn', 'tr', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak', '', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', '## Hangi deponun asıl kayıt olacağını belirleyin
 
 Bir hafıza uygulaması asıl kayıtlar için SQL, benzerlik araması için vektör indeksi, ilişkiler için çizge kullanabilir. Üçü uyuşmazsa bir kaydın hâlâ var ve etkin olduğuna hangisi karar verecek? Ana kayıt deposu bu kararın dayanağıdır. Diğer arama görünümleri, asıl veriden tanımlı bir dönüşümle yeniden üretilebilir. “Türetilmiş” olmaları önemsiz olduklarını değil, asıl kayıt yerine geçmediklerini anlatır.
@@ -1727,11 +1743,11 @@ Süreli iş sahipliği (lease), bir çalışanın işi geçici olarak üstlenmes
 
 SQLite kendi işlemleri için belirtilen varsayımlarda atomik commit ve çökme kurtarmayı belgeler. WAL okuyucularla yazıcının örtüşmesine izin verir; yazıcıları yine sıraya koyar. Gömülü depoları dağıtık çok yazıcılı veritabanına dönüştürmez. Dosya sistemi dayanıklılığı, yedekleme yöntemi ve checkpoint davranışı operasyon konularıdır. [Atomik commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.9.4’te her veri dizinini tek combined süreci yönetir; LanceDB ve Kùzu arama görünümleridir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
+MESA Core v0.9.5’te her veri dizinini tek combined süreci yönetir; tek arama görünümü LanceDB’dir. BM25 indeksleri SQLite’ta tutulur ve asıl satırlarla aynı transaction içinde değişir. Yeniden oluşturma çevrimdışıdır ve bütün veri dizinini kapsar. Tek bir üst erişim alanını çevrimiçi onarma işlemi değildir. Bunlar MESA’ya özgü sınırlardır; başka bir sistem farklı depolama düzeni seçebilir. Yeniden oluştururken asıl kanıtı ve temsil kimliğini koruyun; geçişten önce yeni görünümü doğrulayın. [Core sözleşmesi](docs/core/architecture/)
 
 > [!NOTE]
 > **MESA’da ne ölçtük?**
-> MESA 0.9.4, [eski V3 deposunu kaldırdı](/research/deleting-code-mesa-0-9-4/). Silmeden sonra 128 dev sorusunun tamamında arama sırası aynı kaldı (benchmark v2, Tier M, modeller kapalı).
+> MESA 0.9.4, [V4 öncesinden kalan eski depoyu kaldırdı](/research/deleting-code-mesa-0-9-4/). Silmeden sonra 128 dev sorusunun tamamında arama sırası aynı kaldı (benchmark v2, Tier M, modeller kapalı). 0.9.5 ise [çizge deposunu kaldırdı](/research/why-mesa-removed-its-graph-store/); geriye SQLite ve LanceDB kaldı.
 
 ## Zaman aşımını yorumlayın
 
@@ -1749,9 +1765,9 @@ MESA Core v0.9.4’te her veri dizinini tek combined süreci yönetir; LanceDB v
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
-', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'Kuzu', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['SQLite', 'outbox', 'idempotency', 'projection', 'LanceDB', 'projeksiyon', 'kalıcılık']::text[], 'MESA contributors', 5, 'published', 'Ana kayıt ve arama görünümleri: yarım kalan yazmayı tamamlamak — MESA', 'Bir değişikliğin SQL, vektör ve çizge depolarına nasıl yazıldığını izleyin. Yeniden denemeyi, güvenli tekrarı ve arama görünümlerini yeniden kurmayı öğrenin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'en', 'Changing facts: validity, contradiction and forgetting', '', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', '## Two clocks answer different questions
 
 The archive announces a new Friday opening time on 18 October, effective 1 November. The system learns the announcement on 20 October. “What is the opening time today?” and “What had our system recorded by 19 October?” are different questions. A single `updated_at` field cannot represent both meanings reliably.
@@ -1807,7 +1823,7 @@ A recent task note may deserve more attention than an old one. A historical cont
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
 ', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Changing facts: validity, contradiction and forgetting — MESA Learn', 'Distinguish when a statement applies from when it was recorded. Handle corrections and conflicts without equating age with invalidity.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('temporal-decay-in-ai-memory', 'learn', 'tr', 'Bilgi değiştiğinde: güncelleme, çelişki ve unutma', '', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', '## Geçerlilik zamanı ve kayıt zamanı farklıdır
@@ -1865,7 +1881,7 @@ Yeni görev notu eskiden daha fazla dikkat gerektirebilir. Geçmiş sözleşme y
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
 ', ARRAY['temporal', 'validity', 'decay', 'contradiction', 'version', 'zaman', 'geçerlilik', 'çelişki', 'unutma']::text[], 'MESA contributors', 5, 'published', 'Bilgi değiştiğinde: güncelleme, çelişki ve unutma — MESA', 'Bilginin ne zaman geçerli olduğuyla ne zaman kaydedildiğini ayırın. Eski olan her kaydı yanlış saymadan düzeltmeleri ve çelişkileri yönetin.', true, '2026-10-17T00:00:00Z', '2026-10-17T00:00:00Z', '2026-10-28T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('evaluating-ndcg-and-mrr-in-memory', 'learn', 'en', 'Evaluate retrieval: recall, MRR, nDCG and latency', '', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', 'Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.', '## Start with questions and relevance judgments
@@ -2114,7 +2130,7 @@ The 0.75 scores come from four invented queries, so they teach the calculation a
 
 1. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
 ', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 7, 'published', 'Build a small search lab, without an LLM — MESA Learn', 'Run a complete Python/SQLite example, predict its results and add a judged regression case. Connect the course concepts to an inspectable program.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('build-a-small-search-lab', 'learn', 'tr', 'Dil modeli olmadan küçük bir arama sistemi kurun', '', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', '## Ne kuracaksınız?
@@ -2245,7 +2261,7 @@ Malformed query: []
 
 1. [SQLite · FTS5 reference](https://www.sqlite.org/fts5.html)
 2. [Manning, Raghavan & Schütze · Evaluation of ranked retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 
 ', ARRAY['Python', 'SQLite', 'FTS5', 'lab', 'tutorial', 'uygulama', 'laboratuvar', 'kod']::text[], 'MESA contributors', 7, 'published', 'Dil modeli olmadan küçük bir arama sistemi kurun — MESA', 'Python ve SQLite ile tam bir örnek çalıştırın. Sonucu tahmin edin, değişiklikler yapın ve daha önce çalışan davranışları koruyan testler ekleyin.', true, '2026-10-18T00:00:00Z', '2026-10-18T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('keyword-vs-semantic-search', 'research', 'en', 'Keyword vs semantic search', 'A planned retrieval benchmark protocol', 'This publication defines a proposed comparison. It reports no benchmark result.', '', '## Research question
@@ -2670,6 +2686,10 @@ Bu yüzden karşılaştırma yöntemimizi değiştirdik. Düzeltmeden önce değ
 ', ARRAY['benchmark', 'determinism', 'rrf', 'evaluation']::text[], 'MESA contributors', 7, 'published', 'Aynı Arama İki Kez Neden Farklı Sonuç Verdi?', 'Aynı belgelerle kurulan iki MESA deposu 112 sorunun 49’unda ayrıştı. Rastgele eşitlik bozmanın etkisini ve çözümü anlatıyoruz.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-improved-search-in-0-9-4', 'research', 'en', 'What Improved MESA Search Quality in 0.9.4', 'Two modes improved on dev. The reranked mode got worse.', 'Prefix BM25 and new fusion defaults improved models-off and embedding search on dev. Reranked dev Hit@5 fell from 0.9286 to 0.9107.', '', '## Did MESA 0.9.4 improve search quality?
 
+> [!WARNING]
+> **Historical record: MESA 0.9.4**
+> This post describes MESA 0.9.4 as measured in November 2026. Version 0.9.5 has since removed the graph store; see [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/) and the [benchmark page](/benchmark/) for later results.
+
 Partly. On benchmark v2 dev, models-off search (T0) rose from Hit@5 0.4732 to 0.5446. Embedding search (T1b) rose from 0.7411 to 0.7768. Reranked search (T2), the strongest mode, fell from Hit@5 0.9286 to 0.9107, and its MRR fell from 0.8076 to 0.7945.
 
 > [!WARNING]
@@ -2772,8 +2792,12 @@ The reranked drop seen on dev did not appear in test Hit@5. Given how the split 
 3. [SQLite FTS5 documentation](https://www.sqlite.org/fts5.html)
 4. [Cormack, Clarke and Büttcher: Reciprocal Rank Fusion (SIGIR 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 
-', ARRAY['benchmark', 'bm25', 'hybrid-search', 'ablation', 'turkish']::text[], 'MESA contributors', 9, 'published', 'What Improved MESA Search Quality in 0.9.4', 'Prefix BM25 and new fusion defaults helped models-off and embedding search, but reranked dev Hit@5 fell from 0.9286 to 0.9107.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['benchmark', 'bm25', 'hybrid-search', 'ablation', 'turkish']::text[], 'MESA contributors', 9, 'published', 'What Improved MESA Search Quality in 0.9.4', 'Prefix BM25 and new fusion defaults helped models-off and embedding search, but reranked dev Hit@5 fell from 0.9286 to 0.9107.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('what-improved-search-in-0-9-4', 'research', 'tr', 'MESA 0.9.4’te Arama Kalitesini Ne Artırdı?', 'Dev kümesinde iki mod iyileşti, yeniden sıralamalı mod geriledi', 'Önekli BM25 ve yeni birleştirme ayarları, modelsiz ve embedding aramasını dev kümesinde iyileştirdi. Yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.', '', '## MESA 0.9.4 arama kalitesini artırdı mı?
+
+> [!WARNING]
+> **Tarihsel kayıt: MESA 0.9.4**
+> Bu yazı, Kasım 2026’da ölçüldüğü hâliyle MESA 0.9.4’ü anlatır. 0.9.5 o zamandan beri çizge deposunu kaldırdı; sonraki sonuçlar için [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısına ve [benchmark sayfasına](/benchmark/) bakın.
 
 Kısmen. Benchmark v2 dev bölümünde modellerin kapalı olduğu arama (T0), Hit@5’te 0,4732’den 0,5446’ya çıktı. Embedding araması (T1b) 0,7411’den 0,7768’e yükseldi. En güçlü mod olan yeniden sıralamalı arama (T2) ise Hit@5’te 0,9286’dan 0,9107’ye, MRR’de 0,8076’dan 0,7945’e düştü.
 
@@ -2877,7 +2901,7 @@ Dev’de görülen yeniden sıralama düşüşü test Hit@5’te görünmedi. Bu
 3. [SQLite FTS5 belgeleri](https://www.sqlite.org/fts5.html)
 4. [Cormack, Clarke ve Büttcher: Reciprocal Rank Fusion (SIGIR 2009)](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
 
-', ARRAY['benchmark', 'bm25', 'hybrid-search', 'ablation', 'turkish']::text[], 'MESA contributors', 9, 'published', 'MESA 0.9.4’te Arama Kalitesini Ne Artırdı?', 'Önekli BM25 ve yeni birleştirme ayarları iki modu iyileştirdi; yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['benchmark', 'bm25', 'hybrid-search', 'ablation', 'turkish']::text[], 'MESA contributors', 9, 'published', 'MESA 0.9.4’te Arama Kalitesini Ne Artırdı?', 'Önekli BM25 ve yeni birleştirme ayarları iki modu iyileştirdi; yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-benchmark-v2', 'research', 'en', 'How We Built a Turkish Legal Retrieval Benchmark', 'What we rebuilt, how we score it, and where it falls short', 'Benchmark v2 rebuilt 246 older questions into 128 dev and 173 test questions with verbatim evidence. Its test split has been read six times, so dev results come first.', '', '## How did we build the benchmark?
 
 We reviewed all 246 questions from benchmark v1 and found that many depended on missing context or on phrases that appeared in several places. We rewrote or rebuilt most of them, dropped 39, added open-style questions, and tied every answer to a verbatim quote in a source file. The result has 128 dev questions and 173 test questions over Turkish legal documents.
@@ -3112,7 +3136,11 @@ Altı çalıştırma bir test bölümünü okudu. Yukarıdaki süreç yanlışl�
 3. [Manning, Raghavan ve Schütze: Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html)
 
 ', ARRAY['benchmark', 'evaluation', 'turkish', 'legal-search']::text[], 'MESA contributors', 9, 'published', 'Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?', 'MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('deleting-code-mesa-0-9-4', 'research', 'en', 'What We Deleted From MESA, and Why', 'Removing two subsystems without changing a search rank', 'MESA 0.9.4 removed the V3 node store and LLM consolidation. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal.', '', '## What did we remove from MESA?
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('deleting-code-mesa-0-9-4', 'research', 'en', 'What We Deleted From MESA, and Why', 'Removing two subsystems without changing a search rank', 'MESA 0.9.4 removed the legacy pre-V4 node store and model-based fact merging. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal.', '', '## What did we remove from MESA?
+
+> [!WARNING]
+> **Historical record: MESA 0.9.4**
+> This post describes MESA 0.9.4 as measured in November 2026. Version 0.9.5 has since removed the graph store; see [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/) and the [benchmark page](/benchmark/) for later results.
 
 MESA 0.9.4 removed the legacy V3 node store, the LLM consolidation subsystem and related settings. Runtime Python code fell from 48,591 to 42,541 lines, a drop of 6,050 lines or 12.5%. Settings read through the main config fell from 68 to 54.
 
@@ -3183,8 +3211,12 @@ The [SQLite lesson](/learn/sqlite-as-canonical-agent-memory/) explains why MESA 
 1. [MESA 0.9.4 changelog](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
 2. [v0.9.3 to v0.9.4 comparison](https://github.com/Yasou13/MESA/compare/v0.9.3...v0.9.4)
 
-', ARRAY['engineering', 'maintenance', 'configuration', 'release']::text[], 'MESA contributors', 6, 'published', 'What We Deleted From MESA, and Why', 'MESA 0.9.4 removed the V3 store and LLM consolidation, cutting 6,050 Python lines. Dev search ranks stayed identical after each removal.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
-INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('deleting-code-mesa-0-9-4', 'research', 'tr', 'MESA’dan Neleri Sildik, Neden?', 'Tek bir arama sırası değişmeden iki alt sistemi kaldırmak', 'MESA 0.9.4, V3 düğüm deposunu ve LLM birleştirme sistemini kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı.', '', '## MESA’dan neleri kaldırdık?
+', ARRAY['engineering', 'maintenance', 'configuration', 'release']::text[], 'MESA contributors', 6, 'published', 'What We Deleted From MESA, and Why', 'MESA 0.9.4 removed the V3 store and LLM consolidation, cutting 6,050 Python lines. Dev search ranks stayed identical after each removal.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('deleting-code-mesa-0-9-4', 'research', 'tr', 'MESA’dan Neleri Sildik, Neden?', 'Tek bir arama sırası değişmeden iki alt sistemi kaldırmak', 'MESA 0.9.4, V4 öncesinden kalan düğüm deposunu ve model tabanlı bilgi birleştirmeyi kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı.', '', '## MESA’dan neleri kaldırdık?
+
+> [!WARNING]
+> **Tarihsel kayıt: MESA 0.9.4**
+> Bu yazı, Kasım 2026’da ölçüldüğü hâliyle MESA 0.9.4’ü anlatır. 0.9.5 o zamandan beri çizge deposunu kaldırdı; sonraki sonuçlar için [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısına ve [benchmark sayfasına](/benchmark/) bakın.
 
 MESA 0.9.4, eski V3 düğüm deposunu, LLM birleştirme (consolidation) alt sistemini ve bunlara bağlı ayarları kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541 satıra indi; yani 6.050 satır, %12,5 azaldı. Ana yapılandırmanın okuduğu ayar sayısı 68’den 54’e düştü.
 
@@ -3255,7 +3287,119 @@ Güncel ayarlar için [yapılandırma rehberine](/docs/core/configuration/), yü
 1. [MESA 0.9.4 değişiklik günlüğü](https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md)
 2. [v0.9.3 ile v0.9.4 karşılaştırması](https://github.com/Yasou13/MESA/compare/v0.9.3...v0.9.4)
 
-', ARRAY['engineering', 'maintenance', 'configuration', 'release']::text[], 'MESA contributors', 6, 'published', 'MESA’dan Neleri Sildik, Neden?', 'MESA 0.9.4, V3 deposunu ve LLM birleştirmeyi kaldırdı; 6.050 Python satırı azaldı. Her silmeden sonra dev arama sıraları aynı kaldı.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['engineering', 'maintenance', 'configuration', 'release']::text[], 'MESA contributors', 6, 'published', 'MESA’dan Neleri Sildik, Neden?', 'MESA 0.9.4, V3 deposunu ve LLM birleştirmeyi kaldırdı; 6.050 Python satırı azaldı. Her silmeden sonra dev arama sıraları aynı kaldı.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-mesa-removed-its-graph-store', 'research', 'en', 'Why MESA Removed Its Graph Store', 'What the graph lane added on the benchmark dev questions', 'MESA 0.9.5 removed its graph database. In our dev measurements graph search never found a correct passage that the other lanes missed, turning it off lost no question, and a citation-following replacement lowered Hit@1.', '', '## What did 0.9.5 remove?
+
+MESA Core 0.9.5 removed the Kùzu graph database, the worker that wrote graph projections, the graph search lane and the graph rebuild paths. The four Kùzu modules in `mesa_storage` alone were 2,610 lines. Search now uses BM25, vector search when an embedding model is set, the built-in legal rules and an optional reranker. Entities, assertions and legal citations stay in SQLite with their sources.
+
+The graph had already been off by default since 0.9.4. This post explains the measurements behind that default and the removal.
+
+## Did the graph find anything the other lanes missed?
+
+No. With model extraction off, which is the default, the graph held a simple document → chunk structure. A Round 21 review of 0.9.3 re-scored the benchmark v1 dev results: the graph lane found the correct passage first and alone for 0 of 85 answerable questions, in both the models-off (T0) and embedding (T1b) runs.
+
+## What happened when we turned it off?
+
+We turned each lane off on the shared benchmark v2 dev store (Tier M, 141 documents, 5,041 chunks, 128 questions of which 112 are answerable, models off, a 0.9.4 development build with prefix BM25). The starting point was 52 of 112 questions with the correct passage in the top five.
+
+| Change from the 52-hit baseline | Hit@5 (of 112) |
+| --- | --- |
+| Assertion fusion weight 0 | 56 |
+| Graph off | 52 |
+| Both | 61 |
+
+Turning the graph off lost no question. Together with the zero assertion weight, it became the 0.9.4 default.
+
+## Could citations replace the graph?
+
+Legal documents cite each other, so we tested the obvious replacement in Round 23: take the top 20 fused results, follow the statute and article citations already stored for them, and rank the cited in-scope articles as a separate lane. The rule was to keep it only if Hit@5 gained at least two questions and no category lost more than one.
+
+| Citation lane weight | Hit@1 | Hit@5 | MRR |
+| --- | --- | --- | --- |
+| 0 (off) | 30 | 62 | 0.3958 |
+| 0.5 | 28 | 62 | 0.3828 |
+| 1 | 20 | 60 | 0.3313 |
+| 2 | 20 | 60 | 0.3304 |
+
+Same store and split as above, models off, at the Round 23 development commit. Following citations pulled frequently cited articles ahead of the passage that answered the question. The lane, its setting and its tests were deleted in the same unit.
+
+## What does this mean for you?
+
+- If you upgrade, the migration clears the old graph bookkeeping rows. Old `kuzu_db` files are ignored; delete them by hand after checking your backup.
+- `MESA_GRAPH_ENABLED`, `MESA_RRF_GRAPH_WEIGHT` and `MESA_V4_GRAPH_TIMEOUT_SECONDS` are ignored with one startup warning each.
+- The package now installs on Python 3.14, because Kùzu was the dependency that had no wheel there.
+
+See [graph store removed](/docs/core/graph/) for the upgrade note.
+
+## Limits of these measurements
+
+- All numbers are dev-split results; the held-out test split was not used for these decisions.
+- The v1 re-scoring and the v2 ablation used different question sets and builds.
+- The graph had no extracted relations by default. A graph built from model-extracted relations was not tested, because model extraction is off by default and earlier measurements showed it lowered quality.
+- These results describe this corpus of Turkish legal texts; another corpus with rich typed relations could behave differently.
+
+## Sources
+
+1. [MESA Core 0.9.5 changelog](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24)
+2. [MESA Core 0.9.4 changelog: graph off by default](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23)
+
+', ARRAY['graph', 'ablation', 'architecture', 'release']::text[], 'MESA contributors', 5, 'published', 'Why MESA Removed Its Graph Store', 'MESA 0.9.5 removed its graph database after dev measurements: turning the graph off lost no question and a citation-following lane lowered Hit@1.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('why-mesa-removed-its-graph-store', 'research', 'tr', 'MESA Çizge Deposunu Neden Kaldırdı?', 'Çizge kanalının benchmark dev sorularına kattıkları', 'MESA 0.9.5 çizge veritabanını kaldırdı. Dev ölçümlerimizde çizge araması diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı, kapatılması hiçbir soruyu kaybettirmedi ve atıf izleyen bir alternatif Hit@1’i düşürdü.', '', '## 0.9.5 neyi kaldırdı?
+
+MESA Core 0.9.5; Kùzu çizge veritabanını, çizge görünümünü yazan worker’ı, çizge arama kanalını ve çizge yeniden oluşturma yollarını kaldırdı. Yalnızca `mesa_storage` içindeki dört Kùzu modülü 2.610 satırdı. Arama artık BM25, bir embedding modeli ayarlıysa vektör araması, yerleşik hukuk kuralları ve isteğe bağlı yeniden sıralama ile yapılır. Varlıklar, bilgi kayıtları ve hukuki atıflar kaynaklarıyla birlikte SQLite’ta kalır.
+
+Çizge 0.9.4’ten beri zaten varsayılan olarak kapalıydı. Bu yazı, o varsayılanın ve kaldırmanın arkasındaki ölçümleri anlatır.
+
+## Çizge, diğer kanalların kaçırdığı bir şey buldu mu?
+
+Hayır. Varsayılan olarak model çıkarımı kapalıyken çizge yalnızca belge → parça yapısını tutuyordu. 0.9.3 üzerinde yapılan Round 21 incelemesi benchmark v1 dev sonuçlarını yeniden puanladı: çizge kanalı, modelsiz (T0) ve embedding (T1b) koşularının ikisinde de 85 yanıtlanabilir sorunun hiçbirinde doğru pasajı tek başına ilk bulan kanal olmadı (0/85).
+
+## Kapattığımızda ne oldu?
+
+Her kanalı paylaşılan benchmark v2 dev deposunda tek tek kapattık (Tier M, 141 belge, 5.041 parça, 112’si yanıtlanabilir 128 soru, modeller kapalı, önekli BM25 içeren bir 0.9.4 geliştirme derlemesi). Başlangıç noktası, doğru pasajın ilk beşte olduğu 112 sorudan 52’siydi.
+
+| 52 isabetlik temel çizgiden değişiklik | Hit@5 (112’de) |
+| --- | --- |
+| Bilgi kaydı füzyon ağırlığı 0 | 56 |
+| Çizge kapalı | 52 |
+| İkisi birlikte | 61 |
+
+Çizgeyi kapatmak hiçbir soruyu kaybettirmedi. Sıfır bilgi kaydı ağırlığıyla birlikte 0.9.4 varsayılanı oldu.
+
+## Atıflar çizgenin yerini alabilir miydi?
+
+Hukuk metinleri birbirine atıf yapar; bu yüzden Round 23’te akla gelen ilk alternatifi denedik: birleştirilmiş ilk 20 sonucu alıp onlar için zaten kayıtlı kanun ve madde atıflarını izlemek ve atıf yapılan kapsam içi maddeleri ayrı bir kanal olarak sıralamak. Kural, kanalı yalnızca Hit@5 en az iki soru kazanırsa ve hiçbir kategori birden fazla soru kaybetmezse tutmaktı.
+
+| Atıf kanalı ağırlığı | Hit@1 | Hit@5 | MRR |
+| --- | --- | --- | --- |
+| 0 (kapalı) | 30 | 62 | 0,3958 |
+| 0,5 | 28 | 62 | 0,3828 |
+| 1 | 20 | 60 | 0,3313 |
+| 2 | 20 | 60 | 0,3304 |
+
+Depo ve bölüm yukarıdakiyle aynı, modeller kapalı, Round 23 geliştirme commit’i. Atıfları izlemek, sık atıf alan maddeleri soruyu yanıtlayan pasajın önüne çekti. Kanal, ayarı ve testleri aynı iş biriminde silindi.
+
+## Bu sizin için ne anlama geliyor?
+
+- Yükseltirseniz migration eski çizge kayıt satırlarını temizler. Eski `kuzu_db` dosyaları yok sayılır; yedeğinizi denetledikten sonra elle silin.
+- `MESA_GRAPH_ENABLED`, `MESA_RRF_GRAPH_WEIGHT` ve `MESA_V4_GRAPH_TIMEOUT_SECONDS` başlangıçta her biri için bir uyarıyla yok sayılır.
+- Paket artık Python 3.14’e kurulur; orada wheel’i olmayan bağımlılık Kùzu idi.
+
+Yükseltme notu için [çizge deposu kaldırıldı](/docs/core/graph/) sayfasına bakın.
+
+## Bu ölçümlerin sınırları
+
+- Tüm sayılar dev bölümü sonuçlarıdır; bu kararlar için ayrılmış test bölümü kullanılmadı.
+- v1 yeniden puanlaması ile v2 karşılaştırması farklı soru kümeleri ve derlemeler kullandı.
+- Çizgede varsayılan olarak çıkarılmış ilişki yoktu. Model çıkarımı ilişkilerinden kurulan bir çizge denenmedi; çünkü model çıkarımı varsayılan olarak kapalıdır ve önceki ölçümler kaliteyi düşürdüğünü gösterdi.
+- Sonuçlar bu Türk hukuku metinleri derlemini anlatır; zengin türlü ilişkileri olan başka bir derlem farklı davranabilir.
+
+## Kaynaklar
+
+1. [MESA Core 0.9.5 changelog](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24)
+2. [MESA Core 0.9.4 changelog: çizge varsayılan olarak kapalı](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23)
+
+', ARRAY['graph', 'ablation', 'architecture', 'release']::text[], 'MESA contributors', 5, 'published', 'MESA Çizge Deposunu Neden Kaldırdı?', 'MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('turkish-legal-citation-extraction', 'research', 'en', 'How Rule-Based Turkish Citation Extraction Works', 'What the rules find, how often they are right, and where they fail', 'MESA''s rule extractor finds six kinds of legal item without a model. On 150 labeled chunks it found 357 correct items, with 25 false positives and 18 misses.', '', '## How does MESA extract Turkish legal citations?
 
 MESA 0.9.4 uses hand-written rules, with no language model. The rules find six item types in each chunk: law citations, decision references, dates, amounts, durations and outcomes. Each item keeps its exact character position in the source text.
@@ -4074,13 +4218,13 @@ Diğer durumlar için [MESA Lore sorun giderme](/docs/lore/troubleshooting/) say
 ', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'Codex CLI için MCP Hafızası Nasıl Kurulur? — MESA', 'Codex CLI’a yerel MCP hafıza sunucusu ekleyin, hook’ları onaylayın ve proje kurallarını AGENTS.md’de tutarken eski oturumları arayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('source-backed-document-search', 'guide', 'en', 'How do you build source-backed document search?', '', 'Add a document with a source reference, search it locally, update it and check that results come from the current revision.', 'Install MESA Core, start the local server, add each text file with a stable --source value and search with mesa search. Results return the matching text and document ID, so you can check the answer against its source.', '## 1. Check what you need
 
-- Python 3.11, 3.12 or 3.13
+- Python 3.11 or newer
 - Linux, macOS or WSL
 - UTF-8 text files. Convert PDF and Word files to text first.
 
 This guide uses word search, so it needs no model account. MESA Core is alpha software and is not ready for production use.
 
-Checked against `mesa-memory` 0.9.4 from PyPI on 24 November 2026. Your document IDs can differ.
+Checked against `mesa-memory` 0.9.5 from PyPI on 24 November 2026, on Python 3.14. Your document IDs can differ.
 
 ## 2. Install and start MESA Core
 
@@ -4089,7 +4233,7 @@ Run this in a new folder and keep the terminal open.
 ```text
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.4
+python -m pip install mesa-memory==0.9.5
 mesa start
 ```
 
@@ -4184,14 +4328,14 @@ After deletion, the same search should no longer return the document. Then stop 
 | `UnicodeDecodeError: ''utf-8'' codec can''t decode byte` | The file is not UTF-8 | Convert it first, as shown below |
 | `No matching memories found.` | No document contains the query words | Try words that appear in the text, or enable a model for meaning-based search |
 
-Older Turkish files are often saved as Windows-1254. In 0.9.4 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:
+Older Turkish files are often saved as Windows-1254. In 0.9.5 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:
 
 ```text
 iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
 mesa add notes-utf8.txt --source file://notes.txt
 ```
 
-Turkish letters matter in queries. In our test on 0.9.4, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause.
+Turkish letters matter in queries. In our test on 0.9.5, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause.
 
 ## Document search questions
 
@@ -4208,18 +4352,18 @@ Turkish letters matter in queries. In our test on 0.9.4, `YARGITAY` and `sözle�
 
 1. [MESA Core · Getting started](docs/core/getting-started/)
 2. [MESA Core · CLI reference](docs/core/cli-reference/)
-3. [mesa-memory 0.9.4 on PyPI](https://pypi.org/project/mesa-memory/0.9.4/)
+3. [mesa-memory 0.9.5 on PyPI](https://pypi.org/project/mesa-memory/0.9.5/)
 
 ', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 7, 'published', 'How to Build Source-Backed Document Search — MESA', 'Add text documents to MESA Core, search them locally, update a revision and verify that each result points back to its source.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('source-backed-document-search', 'guide', 'tr', 'Kaynak gösteren belge araması nasıl kurulur?', '', 'Belgeyi kaynak bilgisiyle ekleyin, yerelde arayın, güncelleyin ve sonuçların geçerli sürümden geldiğini kontrol edin.', 'MESA Core’u kurun, yerel sunucuyu başlatın, her metin dosyasını sabit bir --source değeriyle ekleyin ve mesa search ile arayın. Sonuçlar eşleşen metni ve belge kimliğini döndürür; böylece yanıtı kaynağıyla kontrol edebilirsiniz.', '## 1. Gerekenleri kontrol edin
 
-- Python 3.11, 3.12 veya 3.13
+- Python 3.11 veya daha yenisi
 - Linux, macOS veya WSL
 - UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün.
 
 Bu rehber sözcük aramasını kullanır, bu yüzden model hesabı gerekmez. MESA Core alfa aşamasındadır ve canlı kullanıma hazır değildir.
 
-24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.4 ile denendi. Belge kimlikleriniz farklı olabilir.
+24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.5 ile, Python 3.14 üzerinde denendi. Belge kimlikleriniz farklı olabilir.
 
 ## 2. MESA Core’u kurup başlatın
 
@@ -4228,7 +4372,7 @@ Bunu yeni bir klasörde çalıştırın ve terminali açık bırakın.
 ```text
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.4
+python -m pip install mesa-memory==0.9.5
 mesa start
 ```
 
@@ -4319,14 +4463,14 @@ Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde C
 | `UnicodeDecodeError: ''utf-8'' codec can''t decode byte` | Dosya UTF-8 değil | Aşağıdaki gibi önce dönüştürün |
 | `No matching memories found.` | Hiçbir belgede sorgu sözcükleri yok | Metinde geçen sözcükleri deneyin veya anlam tabanlı arama için bir model açın |
 
-Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.4’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:
+Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.5’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:
 
 ```text
 iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
 mesa add notes-utf8.txt --source file://notes.txt
 ```
 
-Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar.
+Sorgularda Türkçe harfler önemlidir. 0.9.5 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar.
 
 ## Belge araması hakkında sorular
 
@@ -4343,7 +4487,7 @@ Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY`
 
 1. [MESA Core · Başlangıç](docs/core/getting-started/)
 2. [MESA Core · CLI referansı](docs/core/cli-reference/)
-3. [PyPI’da mesa-memory 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/)
+3. [PyPI’da mesa-memory 0.9.5](https://pypi.org/project/mesa-memory/0.9.5/)
 
 > [!NOTE]
 > **MESA’da ne ölçtük?**
@@ -5115,7 +5259,29 @@ The consolidated text shows the current wording with notes. To read the wording 
 
 ## Can MESA answer this question?
 
-No. MESA 0.9.4 does not answer in-force-on-date questions. It can store versioned documents and return source text, but the legal check above must be done against official sources. See [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes.
+Partly. MESA 0.9.5 does not decide when an article took effect: transitional rules, deferred commencement and annulments still have to be checked against the official sources above. What it can do is store each version you have checked and return the wording that was in force at an instant you give.
+
+Upload every version of the article under the same `document_id`, with the date you established as a timezone-aware `metadata.valid_from`. Versions can be uploaded in any order. Then search with `valid_at`. This example uses a fictional rule from the Core documentation:
+
+```text
+from mesa_client import Mesa
+
+mesa = Mesa()
+for start, days in [("2025-06-01T00:00:00+03:00", 30), ("2024-01-01T00:00:00+03:00", 15)]:
+    mesa.add(
+        f"MADDE 1 - Arşiv başvuru süresi {days} gündür.",
+        source=f"file://arsiv-{start[:10]}.txt",
+        document_id="ornek-arsiv-yonetmeligi",
+        title="Örnek Arşiv Yönetmeliği",
+        metadata={"valid_from": start},
+        wait=True,
+    )
+
+hit = mesa.search("Arşiv başvuru süresi", valid_at="2025-05-31T23:59:59+03:00")[0]
+print(hit["evidence_span"])  # MADDE 1 - Arşiv başvuru süresi 15 gündür.
+```
+
+Intervals are half-open: at exactly `2025-06-01T00:00:00+03:00` the search returns the 30-day version, and one second earlier it returns the 15-day version. Results carry `revision_number`, `valid_from` and `valid_to`, so you can see which version answered. If the `valid_from` you entered is wrong, the answer is wrong too. See [versioned documents](/docs/core/concepts-and-ingestion/#guide-versioned-documents), and [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes.
 
 ## Sources
 
@@ -5191,7 +5357,29 @@ Evet. Geçiş hükümleri bir maddeyi belirli durumlar için askıya alabilir. 6
 
 ## MESA bu soruyu yanıtlayabilir mi?
 
-Hayır. MESA 0.9.4 belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. Sürümlü belgeleri saklayıp kaynak metni döndürebilir; ama yukarıdaki hukuki denetim resmî kaynaklar üzerinden yapılmalıdır. Sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın.
+Kısmen. MESA 0.9.5 bir maddenin ne zaman yürürlüğe girdiğine karar vermez: geçiş hükümleri, ertelenmiş yürürlük ve iptal kararları yine yukarıdaki resmî kaynaklardan denetlenmelidir. Yapabildiği, denetlediğiniz her sürümü saklamak ve verdiğiniz bir anda yürürlükte olan metni döndürmektir.
+
+Maddenin her sürümünü aynı `document_id` altında, belirlediğiniz tarihi saat dilimi içeren bir `metadata.valid_from` olarak vererek yükleyin. Sürümler herhangi bir sırayla yüklenebilir. Ardından `valid_at` ile arayın. Bu örnek, Core belgelerindeki kurgusal bir kuralı kullanır:
+
+```text
+from mesa_client import Mesa
+
+mesa = Mesa()
+for start, days in [("2025-06-01T00:00:00+03:00", 30), ("2024-01-01T00:00:00+03:00", 15)]:
+    mesa.add(
+        f"MADDE 1 - Arşiv başvuru süresi {days} gündür.",
+        source=f"file://arsiv-{start[:10]}.txt",
+        document_id="ornek-arsiv-yonetmeligi",
+        title="Örnek Arşiv Yönetmeliği",
+        metadata={"valid_from": start},
+        wait=True,
+    )
+
+hit = mesa.search("Arşiv başvuru süresi", valid_at="2025-05-31T23:59:59+03:00")[0]
+print(hit["evidence_span"])  # MADDE 1 - Arşiv başvuru süresi 15 gündür.
+```
+
+Aralıklar yarı açıktır: tam `2025-06-01T00:00:00+03:00` anında arama 30 günlük sürümü, bir saniye önce ise 15 günlük sürümü döndürür. Sonuçlar `revision_number`, `valid_from` ve `valid_to` taşır; hangi sürümün yanıt verdiğini görebilirsiniz. Girdiğiniz `valid_from` yanlışsa yanıt da yanlış olur. Bkz. [sürümlü belgeler](/docs/core/concepts-and-ingestion/#guide-surumlu-belgeler); sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın.
 
 ## Kaynaklar
 
@@ -5246,7 +5434,7 @@ Checked: 2026-11-24, mevzuat.gov.tr
 
 ## Can MESA track amendments for me?
 
-Not as a legal service. MESA keeps document revisions when you add a new version under the same source, so you can store each text you checked. It does not watch the Resmî Gazete, decide which version applies or answer in-force-on-date questions in 0.9.4. See [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text.
+Not as a legal service. MESA 0.9.5 does not watch the Resmî Gazete or decide which version applies. It can keep every version you have checked: upload each one under the same `document_id` with `metadata.valid_from` set to the date it took effect. MESA orders versions by that date rather than by upload order, so you can add an older text later and it becomes history. A search with `valid_at` then returns the wording in force at that instant, and a search without a date returns the current version. See [checking an article in force on a date](/law/guides/yururluk-kontrolu/) for an example, and [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text.
 
 ## Sources
 
@@ -5301,7 +5489,7 @@ Denetim: 2026-11-24, mevzuat.gov.tr
 
 ## MESA değişiklikleri benim için izleyebilir mi?
 
-Hukuki bir hizmet olarak hayır. Aynı kaynakla yeni bir sürüm eklediğinizde MESA belge sürümlerini saklar; böylece denetlediğiniz her metni tutabilirsiniz. 0.9.4 Resmî Gazete’yi izlemez, hangi sürümün uygulanacağına karar vermez ve belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
+Hukuki bir hizmet olarak hayır. MESA 0.9.5 Resmî Gazete’yi izlemez ve hangi sürümün uygulanacağına karar vermez. Denetlediğiniz her sürümü saklayabilir: her birini aynı `document_id` altında, yürürlüğe girdiği tarihi `metadata.valid_from` olarak vererek yükleyin. MESA sürümleri yükleme sırasına göre değil bu tarihe göre sıralar; eski bir metni sonradan eklerseniz geçmişe yerleşir. `valid_at` ile yapılan arama o anda yürürlükte olan metni, tarihsiz arama ise güncel sürümü döndürür. Örnek için [bir maddenin belirli bir tarihte yürürlükte olup olmadığını denetleme](/law/guides/yururluk-kontrolu/) rehberine, MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
 
 ## Kaynaklar
 

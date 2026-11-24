@@ -5,13 +5,13 @@ type: "research"
 language: "tr"
 title: "MESA’dan Neleri Sildik, Neden?"
 subtitle: "Tek bir arama sırası değişmeden iki alt sistemi kaldırmak"
-summary: "MESA 0.9.4, V3 düğüm deposunu ve LLM birleştirme sistemini kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı."
+summary: "MESA 0.9.4, V4 öncesinden kalan düğüm deposunu ve model tabanlı bilgi birleştirmeyi kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı."
 shortAnswer: ""
 category: "Retrieval Evaluation"
 tags: ["engineering", "maintenance", "configuration", "release"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
+updatedAt: "2026-11-24"
 readingMinutes: 6
 status: "published"
 indexable: true
@@ -20,6 +20,10 @@ seoDescription: "MESA 0.9.4, V3 deposunu ve LLM birleştirmeyi kaldırdı; 6.050
 ---
 
 ## MESA’dan neleri kaldırdık?
+
+> [!WARNING]
+> **Tarihsel kayıt: MESA 0.9.4**
+> Bu yazı, Kasım 2026’da ölçüldüğü hâliyle MESA 0.9.4’ü anlatır. 0.9.5 o zamandan beri çizge deposunu kaldırdı; sonraki sonuçlar için [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısına ve [benchmark sayfasına](/benchmark/) bakın.
 
 MESA 0.9.4, eski V3 düğüm deposunu, LLM birleştirme (consolidation) alt sistemini ve bunlara bağlı ayarları kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541 satıra indi; yani 6.050 satır, %12,5 azaldı. Ana yapılandırmanın okuduğu ayar sayısı 68’den 54’e düştü.
 

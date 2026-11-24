@@ -11,7 +11,7 @@ category: "Retrieval Evaluation"
 tags: ["benchmark", "bm25", "hybrid-search", "ablation", "turkish"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
+updatedAt: "2026-11-24"
 readingMinutes: 9
 status: "published"
 indexable: true
@@ -20,6 +20,10 @@ seoDescription: "Prefix BM25 and new fusion defaults helped models-off and embed
 ---
 
 ## Did MESA 0.9.4 improve search quality?
+
+> [!WARNING]
+> **Historical record: MESA 0.9.4**
+> This post describes MESA 0.9.4 as measured in November 2026. Version 0.9.5 has since removed the graph store; see [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/) and the [benchmark page](/benchmark/) for later results.
 
 Partly. On benchmark v2 dev, models-off search (T0) rose from Hit@5 0.4732 to 0.5446. Embedding search (T1b) rose from 0.7411 to 0.7768. Reranked search (T2), the strongest mode, fell from Hit@5 0.9286 to 0.9107, and its MRR fell from 0.8076 to 0.7945.
 

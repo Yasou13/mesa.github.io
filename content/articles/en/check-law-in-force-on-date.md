@@ -86,7 +86,29 @@ The consolidated text shows the current wording with notes. To read the wording 
 
 ## Can MESA answer this question?
 
-No. MESA 0.9.4 does not answer in-force-on-date questions. It can store versioned documents and return source text, but the legal check above must be done against official sources. See [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes.
+Partly. MESA 0.9.5 does not decide when an article took effect: transitional rules, deferred commencement and annulments still have to be checked against the official sources above. What it can do is store each version you have checked and return the wording that was in force at an instant you give.
+
+Upload every version of the article under the same `document_id`, with the date you established as a timezone-aware `metadata.valid_from`. Versions can be uploaded in any order. Then search with `valid_at`. This example uses a fictional rule from the Core documentation:
+
+```text
+from mesa_client import Mesa
+
+mesa = Mesa()
+for start, days in [("2025-06-01T00:00:00+03:00", 30), ("2024-01-01T00:00:00+03:00", 15)]:
+    mesa.add(
+        f"MADDE 1 - Arşiv başvuru süresi {days} gündür.",
+        source=f"file://arsiv-{start[:10]}.txt",
+        document_id="ornek-arsiv-yonetmeligi",
+        title="Örnek Arşiv Yönetmeliği",
+        metadata={"valid_from": start},
+        wait=True,
+    )
+
+hit = mesa.search("Arşiv başvuru süresi", valid_at="2025-05-31T23:59:59+03:00")[0]
+print(hit["evidence_span"])  # MADDE 1 - Arşiv başvuru süresi 15 gündür.
+```
+
+Intervals are half-open: at exactly `2025-06-01T00:00:00+03:00` the search returns the 30-day version, and one second earlier it returns the 15-day version. Results carry `revision_number`, `valid_from` and `valid_to`, so you can see which version answered. If the `valid_from` you entered is wrong, the answer is wrong too. See [versioned documents](/docs/core/concepts-and-ingestion/#guide-versioned-documents), and [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes.
 
 ## Sources
 

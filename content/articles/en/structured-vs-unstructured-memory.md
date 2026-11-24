@@ -11,7 +11,7 @@ category: "Foundations"
 tags: ["assertion", "entity", "schema", "chunk", "iddia", "varlık", "şema", "kanıt aralığı"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-24"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -35,6 +35,10 @@ The Atlas handbook says “Starting 1 November, the reading room opens at 10:00 
 | Graph edge | Relationship traversal | Evidence unless explicitly linked |
 
 Choose representations according to the question. “What does paragraph four say?” needs exact text. “Which rooms open after nine on Friday?” benefits from typed time/day fields. Keeping a source-linked assertion alongside the text serves both. Treat the structured row as a derived interpretation that can be re-extracted when the parser or model changes.
+
+## In MESA 0.9.5
+
+MESA keeps the exact source revision, its chunks, the built-in legal items with their original offsets, and optional model-extracted assertions, all in SQLite. Conditions that make a whole document change over time, such as “starting 1 November”, go on the revision as `valid_from` and `valid_to`, so a search with `valid_at` returns the version in force on that date. MESA has no graph store since 0.9.5. See [versioned documents](/docs/core/concepts-and-ingestion/#guide-versioned-documents).
 
 ## Build a claim that retains its conditions
 
@@ -83,5 +87,5 @@ For corrections, distinguish a changed source from a changed interpretation. If 
 ## Sources and further reading
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 

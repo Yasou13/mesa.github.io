@@ -8,10 +8,10 @@ subtitle: ""
 summary: "Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds."
 shortAnswer: "Trace one mutation through SQL, vector and graph stores. Understand durable admission, retries, idempotency and projection rebuilds."
 category: "Evidence & Trust"
-tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "Kuzu", "projeksiyon", "kalıcılık"]
+tags: ["SQLite", "outbox", "idempotency", "projection", "LanceDB", "projeksiyon", "kalıcılık"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-11-23"
+updatedAt: "2026-11-24"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -52,11 +52,11 @@ A lease lets a worker claim work temporarily. A fencing token or equivalent owne
 
 SQLite documents atomic commit and crash-recovery mechanisms for its own transactions under stated assumptions. WAL allows readers and a writer to overlap, but still serializes writers. It does not turn embedded stores into a distributed multi-writer database. Filesystem durability, backup procedure and checkpoint behavior remain operational concerns. [Atomic commit](https://www.sqlite.org/atomiccommit.html), [WAL](https://www.sqlite.org/wal.html).
 
-MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as projections. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
+MESA Core v0.9.5 uses one combined owner per root and treats LanceDB as its only projection; its BM25 indexes live in SQLite and change in the same transaction as the canonical rows. Its rebuild is offline and full-root, not an online per-tenant repair. Those are product-specific limits; another system may choose different storage. Rebuild correctness requires preserving canonical evidence and representation identity, then verifying the replacement before cutover. [Core contract](docs/core/architecture/).
 
 > [!NOTE]
 > **What we measured in MESA**
-> MESA 0.9.4 [removed its legacy V3 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off).
+> MESA 0.9.4 [removed its legacy pre-V4 store](/research/deleting-code-mesa-0-9-4/). Dev search ranks stayed identical on all 128 questions after the removal (benchmark v2, Tier M, models off). Version 0.9.5 then [removed its graph store](/research/why-mesa-removed-its-graph-store/), leaving SQLite and LanceDB.
 
 ## Interpret a timeout
 
@@ -74,5 +74,5 @@ MESA Core v0.9.4 uses one combined owner per root and treats LanceDB/Kùzu as pr
 
 1. [SQLite · Atomic Commit](https://www.sqlite.org/atomiccommit.html)
 2. [SQLite · Write-Ahead Logging](https://www.sqlite.org/wal.html)
-3. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 

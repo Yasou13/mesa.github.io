@@ -5,13 +5,13 @@ type: "research"
 language: "en"
 title: "What We Deleted From MESA, and Why"
 subtitle: "Removing two subsystems without changing a search rank"
-summary: "MESA 0.9.4 removed the V3 node store and LLM consolidation. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal."
+summary: "MESA 0.9.4 removed the legacy pre-V4 node store and model-based fact merging. Runtime Python fell from 48,591 to 42,541 lines, and dev search ranks stayed identical after each removal."
 shortAnswer: ""
 category: "Retrieval Evaluation"
 tags: ["engineering", "maintenance", "configuration", "release"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
+updatedAt: "2026-11-24"
 readingMinutes: 6
 status: "published"
 indexable: true
@@ -20,6 +20,10 @@ seoDescription: "MESA 0.9.4 removed the V3 store and LLM consolidation, cutting 
 ---
 
 ## What did we remove from MESA?
+
+> [!WARNING]
+> **Historical record: MESA 0.9.4**
+> This post describes MESA 0.9.4 as measured in November 2026. Version 0.9.5 has since removed the graph store; see [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/) and the [benchmark page](/benchmark/) for later results.
 
 MESA 0.9.4 removed the legacy V3 node store, the LLM consolidation subsystem and related settings. Runtime Python code fell from 48,591 to 42,541 lines, a drop of 6,050 lines or 12.5%. Settings read through the main config fell from 68 to 54.
 

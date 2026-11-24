@@ -105,7 +105,7 @@ Toplam puanlar eşitse asıl kayıt kimliğine göre sıralama gibi sabit ve bel
 - Kalibre edilmiş bir güven değeri gerekiyorsa. RRF puanı olasılık değildir.
 - Daha iyi bir sıralama modelini eğitip doğrulayacak kadar etiketli veriniz varsa.
 
-MESA Core 0.9.4, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0, çizge ağırlığı 1’dir. Çizge kanalı varsayılan olarak kapalıdır; ağırlığı yalnızca bu kanal açıkken geçerlidir. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
+MESA Core 0.9.5, k = 60 ile ağırlıklı RRF kullanır. Vektör ağırlığı 8, BM25 ağırlığı 1, bilgi kaydı ağırlığı 0’dır. Vektör kanalı yalnızca bir embedding modeli ayarlıyken çalışır; modeller kapalıyken sırayı BM25 belirler. Bunlar bu sistemin varsayılanlarıdır, evrensel ayarlar değildir. Ayrıntılar için [arama dokümanına](/docs/core/retrieval-and-graph/) bakın.
 
 ## MESA’da ne ölçtük?
 
@@ -156,7 +156,7 @@ Eşit RRF puanları da sık görülür. [Sıfırdan kurulan depolarla yaptığı
 ## Kaynaklar ve ileri okuma
 
 1. [Cormack, Clarke & Büttcher (SIGIR 2009) · Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf)
-2. [MESA Core v0.9.4 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 3. [Elastic · Reciprocal rank fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)
 4. [Microsoft Learn · Hibrit arama puanlaması (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 

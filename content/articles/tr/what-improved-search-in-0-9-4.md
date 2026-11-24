@@ -11,7 +11,7 @@ category: "Retrieval Evaluation"
 tags: ["benchmark", "bm25", "hybrid-search", "ablation", "turkish"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
+updatedAt: "2026-11-24"
 readingMinutes: 9
 status: "published"
 indexable: true
@@ -20,6 +20,10 @@ seoDescription: "Önekli BM25 ve yeni birleştirme ayarları iki modu iyileştir
 ---
 
 ## MESA 0.9.4 arama kalitesini artırdı mı?
+
+> [!WARNING]
+> **Tarihsel kayıt: MESA 0.9.4**
+> Bu yazı, Kasım 2026’da ölçüldüğü hâliyle MESA 0.9.4’ü anlatır. 0.9.5 o zamandan beri çizge deposunu kaldırdı; sonraki sonuçlar için [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısına ve [benchmark sayfasına](/benchmark/) bakın.
 
 Kısmen. Benchmark v2 dev bölümünde modellerin kapalı olduğu arama (T0), Hit@5’te 0,4732’den 0,5446’ya çıktı. Embedding araması (T1b) 0,7411’den 0,7768’e yükseldi. En güçlü mod olan yeniden sıralamalı arama (T2) ise Hit@5’te 0,9286’dan 0,9107’ye, MRR’de 0,8076’dan 0,7945’e düştü.
 

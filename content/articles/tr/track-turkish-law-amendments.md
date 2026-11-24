@@ -65,7 +65,7 @@ Denetim: 2026-11-24, mevzuat.gov.tr
 
 ## MESA değişiklikleri benim için izleyebilir mi?
 
-Hukuki bir hizmet olarak hayır. Aynı kaynakla yeni bir sürüm eklediğinizde MESA belge sürümlerini saklar; böylece denetlediğiniz her metni tutabilirsiniz. 0.9.4 Resmî Gazete’yi izlemez, hangi sürümün uygulanacağına karar vermez ve belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
+Hukuki bir hizmet olarak hayır. MESA 0.9.5 Resmî Gazete’yi izlemez ve hangi sürümün uygulanacağına karar vermez. Denetlediğiniz her sürümü saklayabilir: her birini aynı `document_id` altında, yürürlüğe girdiği tarihi `metadata.valid_from` olarak vererek yükleyin. MESA sürümleri yükleme sırasına göre değil bu tarihe göre sıralar; eski bir metni sonradan eklerseniz geçmişe yerleşir. `valid_at` ile yapılan arama o anda yürürlükte olan metni, tarihsiz arama ise güncel sürümü döndürür. Örnek için [bir maddenin belirli bir tarihte yürürlükte olup olmadığını denetleme](/law/guides/yururluk-kontrolu/) rehberine, MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
 
 ## Kaynaklar
 

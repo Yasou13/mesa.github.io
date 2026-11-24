@@ -21,13 +21,13 @@ seoDescription: "Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni 
 
 ## 1. Gerekenleri kontrol edin
 
-- Python 3.11, 3.12 veya 3.13
+- Python 3.11 veya daha yenisi
 - Linux, macOS veya WSL
 - UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün.
 
 Bu rehber sözcük aramasını kullanır, bu yüzden model hesabı gerekmez. MESA Core alfa aşamasındadır ve canlı kullanıma hazır değildir.
 
-24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.4 ile denendi. Belge kimlikleriniz farklı olabilir.
+24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.5 ile, Python 3.14 üzerinde denendi. Belge kimlikleriniz farklı olabilir.
 
 ## 2. MESA Core’u kurup başlatın
 
@@ -36,7 +36,7 @@ Bunu yeni bir klasörde çalıştırın ve terminali açık bırakın.
 ```text
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.4
+python -m pip install mesa-memory==0.9.5
 mesa start
 ```
 
@@ -127,14 +127,14 @@ Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde C
 | `UnicodeDecodeError: 'utf-8' codec can't decode byte` | Dosya UTF-8 değil | Aşağıdaki gibi önce dönüştürün |
 | `No matching memories found.` | Hiçbir belgede sorgu sözcükleri yok | Metinde geçen sözcükleri deneyin veya anlam tabanlı arama için bir model açın |
 
-Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.4’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:
+Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.5’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:
 
 ```text
 iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
 mesa add notes-utf8.txt --source file://notes.txt
 ```
 
-Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar.
+Sorgularda Türkçe harfler önemlidir. 0.9.5 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar.
 
 ## Belge araması hakkında sorular
 
@@ -151,7 +151,7 @@ Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY`
 
 1. [MESA Core · Başlangıç](docs/core/getting-started/)
 2. [MESA Core · CLI referansı](docs/core/cli-reference/)
-3. [PyPI’da mesa-memory 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/)
+3. [PyPI’da mesa-memory 0.9.5](https://pypi.org/project/mesa-memory/0.9.5/)
 
 > [!NOTE]
 > **MESA’da ne ölçtük?**
