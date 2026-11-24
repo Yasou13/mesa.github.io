@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why Two Identical Search Runs Gave Different Results</title>
+  <meta name="description" content="Two fresh MESA stores disagreed on 49 of 112 questions. Here is how random tie-breaks caused it and how we made ranking repeatable.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/research/why-two-search-runs-differed/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/why-two-search-runs-differed/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/why-two-search-runs-differed/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/why-two-search-runs-differed/">
+  <meta property="og:title" content="Why Two Identical Search Runs Gave Different Results">
+  <meta property="og:description" content="Two fresh MESA stores disagreed on 49 of 112 questions. Here is how random tie-breaks caused it and how we made ranking repeatable.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/research/why-two-search-runs-differed/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Two Identical Search Runs Gave Different Results">
+  <meta name="twitter:description" content="Two fresh MESA stores disagreed on 49 of 112 questions. Here is how random tie-breaks caused it and how we made ranking repeatable.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide."},{"@type":"WebPage","@id":"https://mesamemory.dev/research/why-two-search-runs-differed/#webpage","url":"https://mesamemory.dev/research/why-two-search-runs-differed/","name":"Why Two Identical Search Runs Gave Different Results","description":"Two fresh MESA stores disagreed on 49 of 112 questions. Here is how random tie-breaks caused it and how we made ranking repeatable.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mesamemory.dev/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://mesamemory.dev/resources/"},{"@type":"ListItem","position":3,"name":"Research","item":"https://mesamemory.dev/research/"},{"@type":"ListItem","position":4,"name":"Why Two Identical Search Runs Gave Different Results","item":"https://mesamemory.dev/research/why-two-search-runs-differed/"}]},{"@type":"Article","headline":"Why Two Identical Search Runs Gave Different Results","description":"Two fresh MESA stores disagreed on 49 of 112 questions. Here is how random tie-breaks caused it and how we made ranking repeatable.","datePublished":"2026-11-23","dateModified":"2026-11-23","inLanguage":"en","mainEntityOfPage":"https://mesamemory.dev/research/why-two-search-runs-differed/","author":{"@type":"Organization","name":"MESA contributors"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Research","keywords":"benchmark, determinism, rrf, evaluation"}]}</script>
+  <link rel="icon" href="../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../../learn.css?v=19f1fc8d0d08">
+
+  <script src="../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../research/why-two-search-runs-differed/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../tr/research/why-two-search-runs-differed/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Product</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Product</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../../how-it-works/">How it works</a><a class="nav-link" href="../../architecture/">Architecture</a><a class="nav-link" href="../../ecosystem/">Ecosystem</a><a class="nav-link" href="../../#use-cases">Use cases</a><a class="nav-link" href="../../law/">MESA Law</a><a class="nav-link" href="../../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Developers</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Developers</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../../get-started/">Get started</a><a class="nav-link" href="../../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../../docs/core/examples/">Python SDK</a><a class="nav-link" href="../../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../../docs/mcp/">MCP</a><a class="nav-link" href="../../docs/core/security/">Security</a></div>
+          </div><div class="nav-group is-current" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Learn</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Learn</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../../learn/">Lessons</a><a class="nav-link" href="../../guides/">Guides</a><a class="nav-link" href="../../glossary/">Glossary</a><a class="nav-link" href="../../faq/">FAQ</a><a class="nav-link" href="../../changelog/">Changelog</a><a class="nav-link" href="../../resources/">All resources</a></div>
+          </div><a class="nav-item nav-item--plain" href="../../docs/">Docs</a><a class="nav-item nav-item--plain" href="../../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../../status/">Status</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../../research/why-two-search-runs-differed/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../../tr/research/why-two-search-runs-differed/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../../account/sign-in/">Sign in</a>
+              <a class="nav-cta" href="../../account/sign-up/">Sign up</a>
+              <a class="nav-cta nav-account-link" href="../../account/" hidden>My account</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div>
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a><span aria-hidden="true">/</span></li><li><a href="../../resources/">Resources</a><span aria-hidden="true">/</span></li><li><a href="../../research/">Research</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Why Two Identical Search Runs Gave Different Results</span></li></ol></nav>
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">Research · Retrieval Evaluation</p>
+          <h1>Why Two Identical Search Runs Gave Different Results</h1>
+          <p class="article-subtitle">A ranking bug that looked like a quality change</p>
+          <p class="article-summary">Two fresh MESA stores built from the same documents disagreed on 49 of 112 dev questions. Random IDs were deciding tied ranks.</p>
+          <dl class="article-byline">
+            <div>
+              <dt>Published</dt>
+              <dd><time datetime="2026-11-23">23 Nov 2026</time></dd>
+            </div>
+            <div>
+              <dt>Updated</dt>
+              <dd><time datetime="2026-11-23">23 Nov 2026</time></dd>
+            </div>
+            <div>
+              <dt>Author</dt>
+              <dd>MESA contributors</dd>
+            </div>
+            <div>
+              <dt>Reading time</dt>
+              <dd>7 minutes</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          
+    <nav class="article-toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ol>
+        <li><a href="#short-answer">Why did the same search give different results?</a></li><li><a href="#what-we-saw">What did the two runs show?</a></li><li><a href="#why-ties-happen">Why do ties happen in rank fusion?</a></li><li><a href="#the-fix">How did we make ranking repeatable?</a></li><li><a href="#why-it-matters">Why does this matter for evaluation?</a></li><li><a href="#check-your-system">How can you check your own search system?</a></li><li><a href="#limits">What can this result not show?</a></li><li><a href="#sources">Sources</a></li>
+      </ol>
+    </nav>
+          <div class="article-body">
+            
+            
+    <section class="research-record" aria-labelledby="research-record-title">
+      <h2 id="research-record-title">Research record</h2>
+      <dl>
+        <div>
+          <dt>Status</dt>
+          <dd>Completed measurement · dev split</dd>
+        </div>
+        <div>
+          <dt>MESA version</dt>
+          <dd>Development build before 0.9.4; fix verified on MESA 0.9.4</dd>
+        </div>
+        <div>
+          <dt>Dataset</dt>
+          <dd>Benchmark v2 dev, Tier M, 141 documents, 5,041 chunks, 128 questions (112 answerable)</dd>
+        </div>
+        <div>
+          <dt>Models</dt>
+          <dd>Before the fix: T0 (models off). After the fix: T0, T1b and T2</dd>
+        </div>
+        <div>
+          <dt>Metrics</dt>
+          <dd>Hit@5 · MRR · rank equality</dd>
+        </div>
+        
+      </dl>
+      <div class="research-links"><a href="../../methodology/retrieval-evaluation/">Retrieval evaluation<span aria-hidden="true"> →</span></a></div>
+      <div class="limitations">
+        <h3>Known limitations</h3>
+        <ul>
+          <li>One corpus and 128 dev questions.</li><li>Repeatability was checked for the same corpus, package and settings. It does not cover a changed corpus.</li><li>A stable order is repeatable. It is not automatically a better order.</li><li>No test-split data is used in this post.</li>
+        </ul>
+      </div>
+    </section>
+            
+    <section id="short-answer" class="article-section">
+      <h2>Why did the same search give different results?<a class="heading-anchor" href="#short-answer" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>Random IDs were breaking ties. When two passages had the same score, their order depended on a UUID created at ingest. Two fresh stores built from the same 141 documents therefore ranked some passages differently. On benchmark v2 dev (Tier M, models off), one store scored 48/112 on Hit@5 and the other scored 52/112.</p><p>The fix was to break ties by stable content identity. On the published MESA 0.9.4 package, two independently built stores returned the same order for all 128 dev questions, in all three tested configurations.</p>
+    </section>
+    <section id="what-we-saw" class="article-section">
+      <h2>What did the two runs show?<a class="heading-anchor" href="#what-we-saw" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>The difference appeared only between separately built stores. Repeating the search on one store changed nothing, so query-time randomness was not the cause.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table: Comparison (dev, T0, before the fix) · Hit@5 · MRR · Answerable questions with a different rank"><table><thead><tr><th scope="col">Comparison (dev, T0, before the fix)</th><th scope="col">Hit@5</th><th scope="col">MRR</th><th scope="col">Answerable questions with a different rank</th></tr></thead><tbody><tr><th scope="row">Fresh store A</th><td>48/112</td><td>0.3314</td><td>49, A vs B</td></tr><tr><th scope="row">Fresh store B</th><td>52/112</td><td>0.3500</td><td>49, A vs B</td></tr><tr><th scope="row">Shared store, run 1</th><td>50/112</td><td>0.3411</td><td>0, run 1 vs run 2</td></tr><tr><th scope="row">Shared store, run 2</th><td>50/112</td><td>0.3411</td><td>0, run 1 vs run 2</td></tr></tbody></table></div><p>The Hit@5 gap hides how much moved. Forty-nine answerable questions changed rank. Only six crossed the top-5 boundary: one in store A's favor and five in store B's. The net result was a four-question gap.</p><div class="article-callout callout"><strong>Setup</strong><p>Development build before the 0.9.4 ranking changes, with graph on and models off. Benchmark v2 dev split, Tier M, 141 documents, 5,041 chunks, 128 questions, 112 of them answerable. Search limit 50.</p></div>
+    </section>
+    <section id="why-ties-happen" class="article-section">
+      <h2>Why do ties happen in rank fusion?<a class="heading-anchor" href="#why-ties-happen" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p><a href="../../learn/reciprocal-rank-fusion-explained/">Reciprocal Rank Fusion</a> scores a passage from its rank in each list, not from the raw score. Ranks are integers, so exact ties are normal.</p><p>Here is an illustrative example. With k = 60 and equal weights, a passage ranked third only by BM25 scores 1/(60+3). A passage ranked third only by the assertion lane also scores 1/(60+3). The fused score cannot separate them, so the next sort key decides.</p><p>Before the fix, that next key could be a random UUID. The UUID was stable inside one store, which is why repeated runs agreed. A new store generated new UUIDs, so the same tie could resolve the other way.</p>
+    </section>
+    <section id="the-fix" class="article-section">
+      <h2>How did we make ranking repeatable?<a class="heading-anchor" href="#the-fix" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>MESA 0.9.4 changed two things. Search lanes and fusion now break equal scores by content identity. The catalog also assigns tenant-scoped, deterministic UUID5 keys, so the same corpus produces the same internal keys. Scores do not change.</p><div class="learn-code"><div><span>Worked example</span><button class="copy-button" type="button" data-copy-target="lesson-code-14">Copy</button></div><pre tabindex="0" class="article-code" id="lesson-code-14"><code># Pseudo-code, simplified from MESA 0.9.4
+results = sorted(
+    candidates,
+    key=lambda c: (
+        -c.fused_score,
+        c.document_id,
+        c.revision_number,
+        c.chunk_ordinal,
+        c.chunk_id,
+    ),
+)</code></pre></div><p>During development, one pair of fresh stores still differed on 2 of 112 answerable questions, with no change to the top-5 count. The next pair differed on none. The check that matters is the published package:</p><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table: MESA 0.9.4 from PyPI, dev, Tier M · Identical questions · Gold-rank differences · Returned-order differences"><table><thead><tr><th scope="col">MESA 0.9.4 from PyPI, dev, Tier M</th><th scope="col">Identical questions</th><th scope="col">Gold-rank differences</th><th scope="col">Returned-order differences</th></tr></thead><tbody><tr><th scope="row">T0 (models off)</th><td>128/128</td><td>0</td><td>0</td></tr><tr><th scope="row">T1b (bge-m3)</th><td>128/128</td><td>0</td><td>0</td></tr><tr><th scope="row">T2 (bge-m3 + reranker)</th><td>128/128</td><td>0</td><td>0</td></tr></tbody></table></div><p>That run used 0.9.3 graph and assertion settings. A separate run with the 0.9.4 release defaults repeated the result. Its T1b ranks also matched on a different LanceDB version, 128 of 128.</p>
+    </section>
+    <section id="why-it-matters" class="article-section">
+      <h2>Why does this matter for evaluation?<a class="heading-anchor" href="#why-it-matters" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <p>A four-question swing is larger than some real improvements. In the same development cycle, prefix BM25 alone added a net two questions on a shared store. On fresh stores, that gain could not have been told apart from tie noise.</p><p>So we changed how we compare. Before the fix, we measured changes on one shared store. Since the fix, we also build fresh stores and compare the ordered results. Read the full before-and-after numbers in <a href="../../research/what-improved-search-in-0-9-4/">What Improved MESA Search Quality in 0.9.4</a>.</p>
+    </section>
+    <section id="check-your-system" class="article-section">
+      <h2>How can you check your own search system?<a class="heading-anchor" href="#check-your-system" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <ol><li>Build two indexes from the same input, in separate locations.</li><li>Run the same queries against both.</li><li>Compare the ordered result IDs, not only Hit@k or MRR.</li><li>If orders differ, look for ties first, then for generated IDs, insertion order and parallel ingestion.</li><li>Add a final sort key that comes from the content, and keep a test that builds two fresh stores.</li></ol><p>Our <a href="../../methodology/retrieval-evaluation/">evaluation method</a> lists what to record with each run. The <a href="../../learn/evaluating-ndcg-and-mrr-in-memory/">MRR and nDCG lesson</a> explains why small rank moves can change a score.</p>
+    </section>
+    <section id="limits" class="article-section">
+      <h2>What can this result not show?<a class="heading-anchor" href="#limits" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <ul><li>It covers one Turkish legal corpus and 128 dev questions.</li><li>It shows repeatability for the same corpus, package and settings. Adding a document can still change ranks.</li><li>A deterministic tie-break makes the order repeatable. It does not make the tied passages more relevant.</li><li>We did not count how many of the 49 rank differences came from each lane.</li></ul>
+    </section>
+    <section id="sources" class="article-section">
+      <h2>Sources<a class="heading-anchor" href="#sources" aria-label="Link to this section" title="Copy section link">#</a></h2>
+      <ol class="reference-list"><li><a class="" href="https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span>MESA 0.9.4 changelog</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf" target="_blank" rel="noopener noreferrer"><span>Cormack, Clarke and Büttcher: Reciprocal Rank Fusion (SIGIR 2009)</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://www.rfc-editor.org/rfc/rfc9562.html" target="_blank" rel="noopener noreferrer"><span>RFC 9562: Universally Unique IDentifiers</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
+    </section>
+          </div>
+        </div>
+        
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">CONNECTED KNOWLEDGE</p>
+      <h2 id="related-title">Continue through the evidence graph.</h2>
+      <div class="publication-grid">
+        <article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/reciprocal-rank-fusion-explained/">What is Reciprocal Rank Fusion (RRF)?</a></h3><p>RRF merges ranked search results using their positions instead of raw scores. Learn the formula, calculate an example and choose k.</p><div><span>8 min read</span><a href="../../learn/reciprocal-rank-fusion-explained/">Read<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Methodology</p><h3><a href="../../methodology/retrieval-evaluation/">Retrieval evaluation</a></h3><p>A minimum methodology for claims about whether a retrieval system finds useful, source-grounded material.</p><div><span>9 min read</span><a href="../../methodology/retrieval-evaluation/">Read<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Learn</p><h3><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/">Evaluate retrieval: recall, MRR, nDCG and latency</a></h3><p>Calculate ranking metrics on a judged list, separate quality from speed, and design an experiment that does not grade its own training examples.</p><div><span>5 min read</span><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/">Read<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Research</p><h3><a href="../../research/what-improved-search-in-0-9-4/">What Improved MESA Search Quality in 0.9.4</a></h3><p>Prefix BM25 and new fusion defaults improved models-off and embedding search on dev. Reranked dev Hit@5 fell from 0.9286 to 0.9107.</p><div><span>9 min read</span><a href="../../research/what-improved-search-in-0-9-4/">Read<span aria-hidden="true"> →</span></a></div></article>
+      </div>
+    </section>
+        
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">PRODUCT CONTEXT</p>
+          <h2>See how provenance appears in MESA Law.</h2>
+          <p>A restrained product link for readers who want the application context.</p>
+        </div>
+        <a class="button secondary" href="../../law/">Explore MESA Law</a>
+      </div>
+      </article>
+      <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Memory that brings your documents to your AI.</p><p class="footer-note"><span>v0.9.5</span> · <span>Alpha</span> · <a href="../../status/">Project status →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a><a class="footer-pill" href="../../early-access/">Early access</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Product</h3><a href="../../how-it-works/">How it works</a><a href="../../architecture/">Architecture</a><a href="../../ecosystem/">Ecosystem</a><a href="../../#use-cases">Use cases</a><a href="../../lore/">MESA Lore</a><a href="../../law/">MESA Law</a><a href="../../data/">MESA Data</a><a href="../../benchmark/">Benchmark</a></div>
+        <div><h3>Developers</h3><a href="../../get-started/">Quickstart</a><a href="../../docs/">Documentation</a><a href="../../docs/core/cli-reference/">MESA CLI</a><a href="../../docs/core/api-reference/">API reference</a><a href="../../docs/core/examples/">Python SDK</a><a href="../../docs/mcp/">MCP</a><a href="../../docs/core/security/">Security</a></div>
+        <div><h3>Learn</h3><a href="../../learn/">Lessons</a><a href="../../guides/">Guides</a><a href="../../glossary/">Glossary</a><a href="../../research/">Research</a><a href="../../faq/">FAQ</a></div>
+        <div><h3>Project</h3><a href="../../about/">About</a><a href="../../status/">Status</a><a href="../../changelog/">Changelog</a><a href="../../account/">My account</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE" target="_blank" rel="noopener noreferrer"><span>Apache License 2.0</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <nav class="footer-legal" aria-label="Legal"><a href="../../privacy/">Privacy Policy</a><a href="../../legal/kvkk/">KVKK Notice</a><a href="../../legal/cookies/">Cookie Policy</a><a href="../../legal/terms/">Terms of Use</a><a href="../../legal/commercial-messages/">Commercial Messages</a></nav>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.5</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer>
+    </main>
+  <script src="../../app.js?v=bfc5b0414e06"></script>
+
+</body>
+</html>

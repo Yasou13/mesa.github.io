@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA Changelog — What Changed in Each Release</title>
+  <meta name="description" content="The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/changelog/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/changelog/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/changelog/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/changelog/">
+  <meta property="og:title" content="MESA Changelog — What Changed in Each Release">
+  <meta property="og:description" content="The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/changelog/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA Changelog — What Changed in Each Release">
+  <meta name="twitter:description" content="The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide."},{"@type":"WebPage","@id":"https://mesamemory.dev/changelog/#webpage","url":"https://mesamemory.dev/changelog/","name":"MESA Changelog — What Changed in Each Release","description":"The changes that matter in each MESA Core release, with upgrade notes, measured results and known limits.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"}]}</script>
+  <link rel="icon" href="../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../learn.css?v=19f1fc8d0d08">
+
+  <link rel="stylesheet" href="../changelog.css?v=890847ca35ee">
+  <link rel="alternate" type="application/rss+xml" title="MESA Changelog" href="https://mesamemory.dev/changelog/feed.xml">
+  <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../changelog/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../tr/changelog/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Product</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Product</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../how-it-works/">How it works</a><a class="nav-link" href="../architecture/">Architecture</a><a class="nav-link" href="../ecosystem/">Ecosystem</a><a class="nav-link" href="../#use-cases">Use cases</a><a class="nav-link" href="../law/">MESA Law</a><a class="nav-link" href="../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Developers</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Developers</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../get-started/">Get started</a><a class="nav-link" href="../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../docs/core/examples/">Python SDK</a><a class="nav-link" href="../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../docs/mcp/">MCP</a><a class="nav-link" href="../docs/core/security/">Security</a></div>
+          </div><div class="nav-group is-current" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Learn</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Learn</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../learn/">Lessons</a><a class="nav-link" href="../guides/">Guides</a><a class="nav-link" href="../glossary/">Glossary</a><a class="nav-link" href="../faq/">FAQ</a><a class="nav-link active" aria-current="page" href="../changelog/">Changelog</a><a class="nav-link" href="../resources/">All resources</a></div>
+          </div><a class="nav-item nav-item--plain" href="../docs/">Docs</a><a class="nav-item nav-item--plain" href="../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../status/">Status</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../changelog/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../tr/changelog/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../account/sign-in/">Sign in</a>
+              <a class="nav-cta" href="../account/sign-up/">Sign up</a>
+              <a class="nav-cta nav-account-link" href="../account/" hidden>My account</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header><main id="main-content" class="changelog-page"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span>Project</span></li><li><span aria-current="page">Changelog</span></li></ol></nav>
+    <section class="page-hero compact"><div class="passage-mark passage-mark--page" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="157" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="251" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="245" height="6" rx="3"/><rect class="pm-band" x="0" y="65" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="72" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 75 C330 75 334 164 300 188" pathLength="1"/><g class="pm-tag"><rect x="190" y="176" width="110" height="26" rx="5"/><path d="M202 182h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="186" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="104" width="177" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="237" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="137" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="185" height="6" rx="3"/></svg></div>
+      <p class="eyebrow">CHANGELOG</p>
+      <h1>What changed in MESA</h1>
+      <p>The changes that matter in each MESA Core release, including what to check before upgrading and what is still limited.</p>
+      <p class="changelog-actions"><a href="../changelog/feed.xml">Follow with RSS</a><a href="../status/">Project status</a></p>
+    </section>
+    <section class="section changelog-list" aria-label="Releases">
+      <p class="changelog-notice">MESA is alpha software and is not yet recommended for production use.</p>
+      <article class="changelog-release" id="v0-9-5" aria-labelledby="v0-9-5-title">
+      <div class="changelog-meta">
+        <time datetime="2026-11-24">24 November 2026</time>
+        <span class="changelog-latest">Latest</span>
+      </div>
+      <div class="changelog-body">
+        <h2 id="v0-9-5-title"><a href="#v0-9-5">v0.9.5</a></h2>
+        <p class="changelog-summary">Versioned documents with point-in-time search, a persistent BM25 index, faster local search on large stores and resumable uploads. The graph store is removed and the package installs on Python 3.14.</p>
+        <section class="changelog-group changelog-group--improved">
+          <h3>Improved</h3>
+          <ul><li>Upload each version of a document with metadata.valid_from and search with valid_at. Validity order, not upload order, decides the active version, and intervals are half-open. Results carry revision_number, valid_from and valid_to.</li><li>In the four-law Turkish temporal fixture, the correct version ranked first on all 18 dated and all 8 undated questions.</li><li>In a local run with 100,820 chunks on one 8 vCPU machine, the warm models-off HTTP search median fell from 1,223 ms to 753 ms and the deterministic vector lane median was 287 ms.</li><li>Interrupted whole-document uploads resume from their saved chunks with the chunking plan chosen at admission.</li></ul>
+        </section><section class="changelog-group changelog-group--upgrade">
+          <h3>Before you upgrade</h3>
+          <ul><li>Take an offline backup first. A forward-only migration clears old graph bookkeeping rows; going back needs v0.9.4 and the pre-upgrade snapshot.</li><li>The Kùzu graph store is removed. Old kuzu_db files are ignored and can be deleted by hand; graph settings are ignored with a startup warning.</li><li>LanceDB is locked to 0.41.0; startup adds scope keys to older vector tables.</li></ul>
+        </section><section class="changelog-group changelog-group--limits">
+          <h3>Known limits</h3>
+          <ul><li>The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. No 0.9.5 benchmark is published yet.</li><li>Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.</li></ul>
+        </section>
+        <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24" target="_blank" rel="noopener noreferrer">Full technical changelog</a></p>
+      </div>
+    </article><article class="changelog-release" id="v0-9-4" aria-labelledby="v0-9-4-title">
+      <div class="changelog-meta">
+        <time datetime="2026-11-23">23 November 2026</time>
+        
+      </div>
+      <div class="changelog-body">
+        <h2 id="v0-9-4-title"><a href="#v0-9-4">v0.9.4</a></h2>
+        <p class="changelog-summary">Search gets simpler defaults and repeatable ranking, whole-document uploads finish sooner, and legacy V3 and LLM consolidation code is removed.</p>
+        <section class="changelog-group changelog-group--improved">
+          <h3>Improved</h3>
+          <ul><li>On the shared Tier M DEV store with models and reranking off, passage Hit@5 rose from 50/112 to 61/112, MRR from 0.3411 to 0.3955, and median search latency fell from 361.3 ms to 233.9 ms.</li><li>A 5 MB models-off document became fully ready in 172.61 s instead of 249.99 s.</li><li>Two fresh stores built from the same corpus now produce identical ranks.</li></ul>
+        </section><section class="changelog-group changelog-group--upgrade">
+          <h3>Before you upgrade</h3>
+          <ul><li>Take an offline backup first. Two forward-only migrations remove the V3 node store and routing telemetry; going back needs v0.9.3 and the pre-upgrade snapshot.</li><li>The graph is now off and the assertion weight is 0.0. Set MESA_GRAPH_ENABLED=true and MESA_RRF_ASSERTION_WEIGHT=1.0 to restore the earlier fusion.</li><li>V3 routes and clients, LLM consolidation and Tier 3 modes 1/2 are removed. Retired settings are ignored with a startup warning.</li></ul>
+        </section><section class="changelog-group changelog-group--limits">
+          <h3>Known limits</h3>
+          <ul><li>The search figures are DEV results with models off. No 0.9.4 benchmark is published yet, and the 0.9.3 benchmark does not describe this release.</li><li>Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.</li></ul>
+        </section>
+        <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23" target="_blank" rel="noopener noreferrer">Full technical changelog</a></p>
+      </div>
+    </article><article class="changelog-release" id="v0-9-3" aria-labelledby="v0-9-3-title">
+      <div class="changelog-meta">
+        <time datetime="2026-11-16">16 November 2026</time>
+        
+      </div>
+      <div class="changelog-body">
+        <h2 id="v0-9-3-title"><a href="#v0-9-3">v0.9.3</a></h2>
+        <p class="changelog-summary">Large documents become ready much faster, the default embedding model changes, and Turkish search handles uppercase text better.</p>
+        <section class="changelog-group changelog-group--improved">
+          <h3>Improved</h3>
+          <ul><li>A 4,999,000-byte document became fully ready in 245.20 s instead of 718.27 s (2.93× faster), measured with models off and graph on.</li><li>Legal extraction skips impossible reference scans. CPU time for the API-limit TCK/1 input fell from 129.861 ms to 52.330 ms with identical outputs.</li><li>The default embedding model is now local:BAAI/bge-m3 with 1024 dimensions. Models remain off by default.</li></ul>
+        </section><section class="changelog-group changelog-group--fixed">
+          <h3>Fixed</h3>
+          <ul><li>Turkish legal comparisons and date lookups handle uppercase İ and I consistently, so YARGITAY and yargıtay find the same text.</li><li>MCP sessions now work on a fresh store by creating missing workspace and dataset entries.</li><li>Startup now fails with a clear error for invalid consolidation settings.</li></ul>
+        </section><section class="changelog-group changelog-group--upgrade">
+          <h3>Before you upgrade</h3>
+          <ul><li>Stores created with the old default must keep MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m and MESA_EMBEDDING_DIMENSION=768, or be rebuilt.</li></ul>
+        </section><section class="changelog-group changelog-group--limits">
+          <h3>Known limits</h3>
+          <ul><li>Per-minute and daily rate limits are not enforced for /v4/* and /control/*.</li><li>ASCII yargitay still does not match Yargıtay.</li></ul>
+        </section>
+        <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#093---2026-11-16" target="_blank" rel="noopener noreferrer">Full technical changelog</a><a href="../benchmark/0.9.3/">Benchmark 0.9.3</a></p>
+      </div>
+    </article><article class="changelog-release" id="v0-9-2" aria-labelledby="v0-9-2-title">
+      <div class="changelog-meta">
+        <time datetime="2026-11-06">6 November 2026</time>
+        
+      </div>
+      <div class="changelog-body">
+        <h2 id="v0-9-2-title"><a href="#v0-9-2">v0.9.2</a></h2>
+        <p class="changelog-summary">Legal search understands citations and decision references, and heavy requests no longer stall the service.</p>
+        <section class="changelog-group changelog-group--new">
+          <h3>New</h3>
+          <ul><li>New chunks keep versioned rule items for citations, decision references, dates, amounts, durations and outcomes, with offsets into the original text.</li><li>An exact law and article, or a decision’s own reference, can take up to three leading result positions.</li></ul>
+        </section><section class="changelog-group changelog-group--improved">
+          <h3>Improved</h3>
+          <ul><li>Document admission briefly waits for queue capacity without repeating the full chunk plan.</li></ul>
+        </section><section class="changelog-group changelog-group--fixed">
+          <h3>Fixed</h3>
+          <ul><li>Request-path stalls affecting 0.9.1 are fixed, keeping /health responsive in the measured heavy cases. Upgrading is recommended.</li></ul>
+        </section><section class="changelog-group changelog-group--upgrade">
+          <h3>Before you upgrade</h3>
+          <ul><li>Set MESA_LEGAL_RULES_ENABLED=false to turn off the new legal rules. Generic retrieval stays available.</li></ul>
+        </section><section class="changelog-group changelog-group--limits">
+          <h3>Known limits</h3>
+          <ul><li>Heavy queries did not become faster: a 1,000-candidate search still took about 11.6 seconds.</li></ul>
+        </section>
+        <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#092---2026-11-06" target="_blank" rel="noopener noreferrer">Full technical changelog</a><a href="../benchmark/0.9.2/">Benchmark 0.9.2</a></p>
+      </div>
+    </article><article class="changelog-release" id="v0-9-1" aria-labelledby="v0-9-1-title">
+      <div class="changelog-meta">
+        <time datetime="2026-11-01">1 November 2026</time>
+        
+      </div>
+      <div class="changelog-body">
+        <h2 id="v0-9-1-title"><a href="#v0-9-1">v0.9.1</a></h2>
+        <p class="changelog-summary">Search ranking is retuned, optional reranking arrives, and the CLI waits until documents are ready.</p>
+        <section class="changelog-group changelog-group--new">
+          <h3>New</h3>
+          <ul><li>MESA_CHUNKING=auto|plain selects how documents are split.</li><li>Optional BGE reranking loads only when it is used.</li><li>Documents can be deleted by source.</li></ul>
+        </section><section class="changelog-group changelog-group--improved">
+          <h3>Improved</h3>
+          <ul><li>Vector weight moves to 8.0. On the Turkish Round 14 DEV set with reranking off, passage MRR rose from 0.3953 to 0.5663.</li><li>The CLI waits for ACTIVE by default. Use --no-wait to return at admission.</li><li>A four-scope cache and ingestion indexes reduce bookkeeping work.</li></ul>
+        </section><section class="changelog-group changelog-group--upgrade">
+          <h3>Before you upgrade</h3>
+          <ul><li>The Python SDK’s Mesa.add still defaults to wait=False. Pass wait=True to wait for readiness.</li></ul>
+        </section><section class="changelog-group changelog-group--limits">
+          <h3>Known limits</h3>
+          <ul><li>The ranking results are corpus-specific development measurements, not test-split evidence.</li></ul>
+        </section>
+        <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#091---2026-11-01" target="_blank" rel="noopener noreferrer">Full technical changelog</a></p>
+      </div>
+    </article><article class="changelog-release" id="v0-9-0" aria-labelledby="v0-9-0-title">
+      <div class="changelog-meta">
+        <time datetime="2026-10-28">28 October 2026</time>
+        
+      </div>
+      <div class="changelog-body">
+        <h2 id="v0-9-0-title"><a href="#v0-9-0">v0.9.0</a></h2>
+        <p class="changelog-summary">MESA can run locally for one user, with a CLI, a Python SDK and lossless document ingestion.</p>
+        <section class="changelog-group changelog-group--new">
+          <h3>New</h3>
+          <ul><li>Local CLI with start, add, search, delete, status and mcp-config commands.</li><li>Python SDK Mesa client with zero-config local defaults.</li><li>Lossless document ingestion through POST /v4/documents, with duplicate detection and revision tracking.</li><li>MESA_GRAPH_ENABLED=false allows lightweight operation without KùzuDB.</li></ul>
+        </section><section class="changelog-group changelog-group--improved">
+          <h3>Improved</h3>
+          <ul><li>Document purge fully erases stored source and assertion text while keeping audit state and hashes.</li></ul>
+        </section><section class="changelog-group changelog-group--fixed">
+          <h3>Fixed</h3>
+          <ul><li>Retry and dead-letter fixes stop records from hanging in RETRY_PENDING.</li><li>The chunker handles Turkish abbreviations and list numbering without splitting mid-citation.</li></ul>
+        </section>
+        <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#090---2026-10-28" target="_blank" rel="noopener noreferrer">Full technical changelog</a><a href="../benchmark/0.9.0/">Benchmark 0.9.0</a></p>
+      </div>
+    </article>
+    </section>
+  <section class="next-step" aria-labelledby="next-step-title"><p class="eyebrow">NEXT STEP</p><h2 id="next-step-title">Where to go from here</h2><div class="next-step__grid"><a class="next-card next-card--primary" href="../status/"><span class="next-card__label">Next</span><strong>Project status</strong><span>Versions, test results and current limits.</span><span class="next-card__arrow" aria-hidden="true">→</span></a><a class="next-card" href="../get-started/"><span class="next-card__label">Or</span><strong>Try it on your computer</strong><span>Install, start and run your first search.</span><span class="next-card__arrow" aria-hidden="true">→</span></a></div></section></main><footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Memory that brings your documents to your AI.</p><p class="footer-note"><span>v0.9.5</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a><a class="footer-pill" href="../early-access/">Early access</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Product</h3><a href="../how-it-works/">How it works</a><a href="../architecture/">Architecture</a><a href="../ecosystem/">Ecosystem</a><a href="../#use-cases">Use cases</a><a href="../lore/">MESA Lore</a><a href="../law/">MESA Law</a><a href="../data/">MESA Data</a><a href="../benchmark/">Benchmark</a></div>
+        <div><h3>Developers</h3><a href="../get-started/">Quickstart</a><a href="../docs/">Documentation</a><a href="../docs/core/cli-reference/">MESA CLI</a><a href="../docs/core/api-reference/">API reference</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Security</a></div>
+        <div><h3>Learn</h3><a href="../learn/">Lessons</a><a href="../guides/">Guides</a><a href="../glossary/">Glossary</a><a href="../research/">Research</a><a href="../faq/">FAQ</a></div>
+        <div><h3>Project</h3><a href="../about/">About</a><a href="../status/">Status</a><a href="../changelog/">Changelog</a><a href="../account/">My account</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE" target="_blank" rel="noopener noreferrer"><span>Apache License 2.0</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <nav class="footer-legal" aria-label="Legal"><a href="../privacy/">Privacy Policy</a><a href="../legal/kvkk/">KVKK Notice</a><a href="../legal/cookies/">Cookie Policy</a><a href="../legal/terms/">Terms of Use</a><a href="../legal/commercial-messages/">Commercial Messages</a></nav>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.5</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer>
+  <script src="../app.js?v=bfc5b0414e06"></script>
+
+</body>
+</html>

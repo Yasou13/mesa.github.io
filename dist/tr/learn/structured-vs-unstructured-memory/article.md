@@ -11,7 +11,7 @@ category: "Foundations"
 tags: ["assertion", "entity", "schema", "chunk", "iddia", "varlık", "şema", "kanıt aralığı"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-24"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -35,6 +35,10 @@ Atlas kılavuzunda “1 Kasım’dan itibaren okuma salonu cuma günleri 10.00�
 | Çizge kenarı | İlişki gezintisi | Açıkça bağlanmazsa kanıt |
 
 Temsili, soracağınız soruya göre seçin. “Dördüncü paragraf ne diyor?” için tam metin gerekir. “Cuma günü dokuzdan sonra hangi salonlar açılıyor?” sorusu ise saat ve gün alanlarından yararlanır. Kaynak metni ve ona bağlı yapılandırılmış kaydı birlikte tutmak iki ihtiyacı da karşılar. Yapılandırılmış kaydı, ayrıştırıcı veya model değiştiğinde kaynaktan yeniden üretilebilen bir yorum olarak ele alın.
+
+## MESA 0.9.5’te
+
+MESA; özgün kaynak sürümünü, parçalarını, özgün konumlarıyla yerleşik hukuki öğeleri ve isteğe bağlı model çıkarımı bilgi kayıtlarını SQLite’ta tutar. Bir belgenin tamamını zamanla değiştiren koşullar, örneğin “1 Kasım’dan itibaren”, sürüme `valid_from` ve `valid_to` olarak yazılır; böylece `valid_at` ile yapılan arama o tarihte yürürlükte olan sürümü döndürür. MESA’da 0.9.5’ten beri çizge deposu yoktur. Bkz. [sürümlü belgeler](/docs/core/concepts-and-ingestion/#guide-surumlu-belgeler).
 
 ## Koşullarını koruyan bir iddia kurun
 
@@ -83,5 +87,5 @@ Düzeltme yaparken kaynağın mı, yorumun mu değiştiğini ayırın. Kaynak ay
 ## Kaynaklar ve ileri okuma
 
 1. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-2. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+2. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 

@@ -1,12 +1,12 @@
 # MESA Learn — Öğrenme yolu
 
-1. [Yapay zekâ hafızası: sohbet bitince ne kalır?](https://mesamemory.dev/tr/learn/what-is-ai-memory/article.md)
+1. [Yapay zekâ ajanı hafızası nedir?](https://mesamemory.dev/tr/learn/what-is-ai-memory/article.md)
 2. [RAG ve hafıza: kaynaktan yanıta](https://mesamemory.dev/tr/learn/rag-vs-ai-memory/article.md)
 3. [Metinden bilgi kaydına: kaynakta neyi korumalı?](https://mesamemory.dev/tr/learn/structured-vs-unstructured-memory/article.md)
 4. [Anlamsal arama: vektörler neyi anlatır?](https://mesamemory.dev/tr/learn/semantic-search/article.md)
 5. [BM25: bir sözcük ne zaman daha önemli olur?](https://mesamemory.dev/tr/learn/bm25-tuning-for-domain-documents/article.md)
-6. [Hibrit arama: farklı sonuçları birleştirmek](https://mesamemory.dev/tr/learn/hybrid-retrieval-explained/article.md)
-7. [RRF: iki sıralama nasıl birleştirilir?](https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/article.md)
+6. [Hibrit arama nedir? BM25, vektörler ve yeniden sıralama](https://mesamemory.dev/tr/learn/hybrid-retrieval-explained/article.md)
+7. [RRF nedir? Reciprocal Rank Fusion nasıl çalışır?](https://mesamemory.dev/tr/learn/reciprocal-rank-fusion-explained/article.md)
 8. [Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek](https://mesamemory.dev/tr/learn/why-graphs-matter-in-ai-memory/article.md)
 9. [Kaynak izi: bir atıf neyi kanıtlar?](https://mesamemory.dev/tr/learn/what-is-evidence-aware-memory/article.md)
 10. [Ortak hafıza: kim hangi bilgiye erişebilir?](https://mesamemory.dev/tr/learn/memory-scope-and-authorization/article.md)

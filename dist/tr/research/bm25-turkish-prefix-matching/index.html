@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Türkçe Metinlerde BM25 Neden Zorlanır?</title>
+  <meta name="description" content="Türkçe ekler tek sözcüğü onlarca dizin terimine böler. Sorunu hukuk metinlerinde ölçtük ve 5 karakterlik önek eşleştirmenin etkisini gösterdik.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/bm25-turkish-prefix-matching/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/bm25-turkish-prefix-matching/">
+  <meta property="og:title" content="Türkçe Metinlerde BM25 Neden Zorlanır?">
+  <meta property="og:description" content="Türkçe ekler tek sözcüğü onlarca dizin terimine böler. Sorunu hukuk metinlerinde ölçtük ve 5 karakterlik önek eşleştirmenin etkisini gösterdik.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Türkçe Metinlerde BM25 Neden Zorlanır?">
+  <meta name="twitter:description" content="Türkçe ekler tek sözcüğü onlarca dizin terimine böler. Sorunu hukuk metinlerinde ölçtük ve 5 karakterlik önek eşleştirmenin etkisini gösterdik.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/#webpage","url":"https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/","name":"Türkçe Metinlerde BM25 Neden Zorlanır?","description":"Türkçe ekler tek sözcüğü onlarca dizin terimine böler. Sorunu hukuk metinlerinde ölçtük ve 5 karakterlik önek eşleştirmenin etkisini gösterdik.","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Araştırma","item":"https://mesamemory.dev/tr/research/"},{"@type":"ListItem","position":4,"name":"Türkçe Metinlerde BM25 Neden Zorlanır?","item":"https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/"}]},{"@type":"Article","headline":"Türkçe Metinlerde BM25 Neden Zorlanır?","description":"Türkçe ekler tek sözcüğü onlarca dizin terimine böler. Sorunu hukuk metinlerinde ölçtük ve 5 karakterlik önek eşleştirmenin etkisini gösterdik.","datePublished":"2026-11-23","dateModified":"2026-11-23","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/","author":{"@type":"Organization","name":"MESA’ya katkıda bulunanlar"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Araştırma","keywords":"bm25, turkish, tokenization, legal-search"}]}</script>
+  <link rel="icon" href="../../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../../../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../../../learn.css?v=19f1fc8d0d08">
+
+  <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+
+    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../research/bm25-turkish-prefix-matching/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../research/bm25-turkish-prefix-matching/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Ürün</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Ürün</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../../how-it-works/">Nasıl çalışır</a><a class="nav-link" href="../../architecture/">Mimari</a><a class="nav-link" href="../../ecosystem/">Ekosistem</a><a class="nav-link" href="../../#use-cases">Kullanım alanları</a><a class="nav-link" href="../../law/">MESA Law</a><a class="nav-link" href="../../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Geliştiriciler</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Geliştiriciler</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../../get-started/">Başlayın</a><a class="nav-link" href="../../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../../docs/core/examples/">Python SDK</a><a class="nav-link" href="../../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../../docs/mcp/">MCP</a><a class="nav-link" href="../../docs/core/security/">Güvenlik</a></div>
+          </div><div class="nav-group is-current" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Öğrenin</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Öğrenin</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../../learn/">Dersler</a><a class="nav-link" href="../../guides/">Rehberler</a><a class="nav-link" href="../../glossary/">Sözlük</a><a class="nav-link" href="../../faq/">SSS</a><a class="nav-link" href="../../changelog/">Değişiklik günlüğü</a><a class="nav-link" href="../../resources/">Tüm kaynaklar</a></div>
+          </div><a class="nav-item nav-item--plain" href="../../docs/">Dokümanlar</a><a class="nav-item nav-item--plain" href="../../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../../status/">Durum</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Ara</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../research/bm25-turkish-prefix-matching/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../research/bm25-turkish-prefix-matching/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../../account/sign-in/">Giriş yap</a>
+              <a class="nav-cta" href="../../account/sign-up/">Kayıt ol</a>
+              <a class="nav-cta nav-account-link" href="../../account/" hidden>Hesabım</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div>
+      <nav class="breadcrumbs" aria-label="Sayfa yolu"><ol><li><a href="../../">Ana sayfa</a><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../research/">Araştırma</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Türkçe Metinlerde BM25 Neden Zorlanır?</span></li></ol></nav>
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">Araştırma · Arama değerlendirmesi</p>
+          <h1>Türkçe Metinlerde BM25 Neden Zorlanır?</h1>
+          <p class="article-subtitle">Tek hukuk sözcüğü, onlarca dizin terimi</p>
+          <p class="article-summary">BM25 tam token eşleştirir; Türkçe ise sözcüklere ek getirir. 112 hukuk dev sorusundaki 873 sorgu teriminin 252’si kanıta yalnızca ortak önek üzerinden ulaştı.</p>
+          <dl class="article-byline">
+            <div>
+              <dt>Yayın</dt>
+              <dd><time datetime="2026-11-23">23 Kas 2026</time></dd>
+            </div>
+            <div>
+              <dt>Güncelleme</dt>
+              <dd><time datetime="2026-11-23">23 Kas 2026</time></dd>
+            </div>
+            <div>
+              <dt>Yazar</dt>
+              <dd>MESA’ya katkıda bulunanlar</dd>
+            </div>
+            <div>
+              <dt>Okuma süresi</dt>
+              <dd>8 dakika</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          
+    <nav class="article-toc" aria-label="Bu sayfada">
+      <strong>Bu sayfada</strong>
+      <ol>
+        <li><a href="#short-answer">BM25 Türkçede neden zorlanır?</a></li><li><a href="#agglutination">Türkçe bir sözcüğün kaç biçimi olur?</a></li><li><a href="#query-evidence">Sorgu sözcükleri kanıtı ne sıklıkla kaçırıyor?</a></li><li><a href="#prefix-rule">MESA’da önek eşleştirme nasıl çalışıyor?</a></li><li><a href="#i-problem">ı ve İ neden ayrı bir sorun?</a></li><li><a href="#what-it-fixed">Önek eşleştirme gerçekte neyi değiştirdi?</a></li><li><a href="#what-to-do">Türkçe arama için ne yapmalısınız?</a></li><li><a href="#limits">Bu analiz neyi gösteremez?</a></li><li><a href="#sources">Kaynaklar</a></li>
+      </ol>
+    </nav>
+          <div class="article-body">
+            
+            
+    <section class="research-record" aria-labelledby="research-record-title">
+      <h2 id="research-record-title">Araştırma kaydı</h2>
+      <dl>
+        <div>
+          <dt>Durum</dt>
+          <dd>Tamamlanmış ölçüm · dev bölümü</dd>
+        </div>
+        <div>
+          <dt>MESA sürümü</dt>
+          <dd>MESA 0.9.4 sorgu mantığı; sıra değişimi 0.9.4 öncesi derlemeden</dd>
+        </div>
+        <div>
+          <dt>Veri kümesi</dt>
+          <dd>Benchmark v2 dev, Tier M, 141 belge, 112 yanıtlanabilir soru</dd>
+        </div>
+        <div>
+          <dt>Modeller</dt>
+          <dd>Model yok; T0 sözcük tabanlı arama</dd>
+        </div>
+        <div>
+          <dt>Metrikler</dt>
+          <dd>token match type · forms per prefix · Hit@5</dd>
+        </div>
+        
+      </dl>
+      <div class="research-links"><a href="../../methodology/retrieval-evaluation/">Arama sistemleri nasıl değerlendirilir?<span aria-hidden="true"> →</span></a></div>
+      <div class="limitations">
+        <h3>Bilinen sınırlılıklar</h3>
+        <ul>
+          <li>Token analizi her aday pasajı değil, doğru yanıtın kanıt aralığını denetler.</li><li>MESA’nın atıf token’ı süzmesini uygulamaz.</li><li>Kanıtta yalnızca önekle eşleşme olması, sıra değişimine önekin yol açtığını kanıtlamaz.</li><li>Tek bir Türkçe hukuk derlemi kullanıldı.</li>
+        </ul>
+      </div>
+    </section>
+            
+    <section id="short-answer" class="article-section">
+      <h2>BM25 Türkçede neden zorlanır?<a class="heading-anchor" href="#short-answer" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>BM25 tam token’ları puanlar; Türkçe ise tek kökten çok sayıda token üretir. <code>sözleşme</code>, <code>sözleşmesinin</code> ve <code>sözleşmelerinde</code> üç ayrı dizin terimidir. Bu yüzden sorguda geçen biçim, metindeki öteki biçimleri kaçırabilir.</p><p>Bunu MESA’nın Türkçe hukuk benchmark’ında ölçtük. 112 yanıtlanabilir dev sorusundaki 873 uygun sorgu teriminin 290’ı doğru kanıtta birebir geçti, 252’si yalnızca ilk beş karakteriyle eşleşti, 331’i hiç eşleşmedi. Önek eşleştirme ortadaki grubu hedefler; ama ölçülen kazancı küçüktü: ilk 5’te net iki soru.</p>
+    </section>
+    <section id="agglutination" class="article-section">
+      <h2>Türkçe bir sözcüğün kaç biçimi olur?<a class="heading-anchor" href="#agglutination" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>141 Tier M belgesini MESA’nın kullandığı tokenizer ile dizinledik. 6 veya daha uzun terimleri ilk beş karakterlerine göre grupladık. Tokenizer çoğu aksanı kaldırdığı için <code>sözle</code>, dizinde <code>sozle</code> olarak saklanır.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Tier M derlemi, 6+ karakterli terimler · Değer"><table><thead><tr><th scope="col">Tier M derlemi, 6+ karakterli terimler</th><th scope="col">Değer</th></tr></thead><tbody><tr><th scope="row">Farklı terim</th><td>26.664</td></tr><tr><th scope="row">Beş karakterlik önek grubu</th><td>5.144</td></tr><tr><th scope="row">Grup başına ortanca biçim</th><td>2</td></tr><tr><th scope="row">90. yüzdelik</th><td>12</td></tr><tr><th scope="row">10 veya daha çok biçimli grup</th><td>670</td></tr><tr><th scope="row">50 veya daha çok biçimli grup</th><td>58</td></tr><tr><th scope="row">En büyük grup</th><td>191</td></tr></tbody></table></div><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Önek · Derlemdeki biçim · Örnekler"><table><thead><tr><th scope="col">Önek</th><th scope="col">Derlemdeki biçim</th><th scope="col">Örnekler</th></tr></thead><tbody><tr><th scope="row">karar</th><td>87</td><td>kararı, kararın, kararlarına, kararnamenin</td></tr><tr><th scope="row">yonet</th><td>55</td><td>yönetim, yönetmelik, yönetmeliğin, yönetici</td></tr><tr><th scope="row">sozle</th><td>44</td><td>sözleşme, sözleşmesinin, sözleşmelerinde</td></tr><tr><th scope="row">yargı</th><td>41</td><td>yargıtay, yargılama, yargısal</td></tr><tr><th scope="row">madde</th><td>39</td><td>maddesi, maddesinde, maddelerine</td></tr><tr><th scope="row">mahke</th><td>38</td><td>mahkemesi, mahkemece, mahkemelerinin</td></tr></tbody></table></div><p>Önek gruplarının çoğu küçüktür. Sorun sık kullanılan hukuk sözcüklerinde yoğunlaşır; hukuk sorguları da tam olarak bu sözcükleri kullanır.</p>
+    </section>
+    <section id="query-evidence" class="article-section">
+      <h2>Sorgu sözcükleri kanıtı ne sıklıkla kaçırıyor?<a class="heading-anchor" href="#query-evidence" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Dev kategorisi, uygun sorgu terimleri · Kanıtta birebir · Yalnızca önek · Eşleşme yok"><table><thead><tr><th scope="col">Dev kategorisi, uygun sorgu terimleri</th><th scope="col">Kanıtta birebir</th><th scope="col">Yalnızca önek</th><th scope="col">Eşleşme yok</th></tr></thead><tbody><tr><th scope="row">Birebir ifade</th><td>95</td><td>66</td><td>91</td></tr><tr><th scope="row">Sayı, tarih, esas no</th><td>88</td><td>85</td><td>93</td></tr><tr><th scope="row">Yeniden ifade</th><td>63</td><td>61</td><td>119</td></tr><tr><th scope="row">Çok belgeli</th><td>44</td><td>40</td><td>28</td></tr><tr><th scope="row">Toplam</th><td>290</td><td>252</td><td>331</td></tr></tbody></table></div><p>112 yanıtlanabilir sorunun 102’sinde en az bir sorgu terimi kanıta yalnızca öneki üzerinden ulaştı. En büyük eşleşmeme grubu yeniden ifade sorularında: 243 terimin 119’u. Önek burada işe yaramaz, çünkü sözcükler farklıdır. <a href="../../learn/semantic-search/">Anlamsal arama</a> ve <a href="../../learn/hybrid-retrieval-explained/">hibrit arama</a> bu noktada devreye girer.</p>
+    </section>
+    <section id="prefix-rule" class="article-section">
+      <h2>MESA’da önek eşleştirme nasıl çalışıyor?<a class="heading-anchor" href="#prefix-rule" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>MESA 0.9.4 basit bir kural kullanır. 6 veya daha uzun olan ve rakam içermeyen sorgu token’ı beş karaktere kısaltılır ve önek olarak aranır. Daha kısa token’lar ile rakamlı token’lar birebir kalır; böylece <code>6098</code>, <code>60981</code> ile eşleşmez.</p><p>Aynı FTS5 tokenizer ayarlarıyla bu davranışı Python’un standart kütüphanesinde görebilirsiniz:</p><div class="learn-code"><div><span>Çözümlü örnek</span><button class="copy-button" type="button" data-copy-target="lesson-code-60">Kopyala</button></div><pre tabindex="0" class="article-code" id="lesson-code-60"><code>import sqlite3
+
+db = sqlite3.connect(&quot;:memory:&quot;)
+db.execute(&quot;&quot;&quot;CREATE VIRTUAL TABLE docs USING fts5(
+    text, tokenize='unicode61 remove_diacritics 2', prefix='5')&quot;&quot;&quot;)
+rows = [&quot;Yargıtay kararı&quot;, &quot;YARGITAY KARARI&quot;, &quot;sözleşmesinin feshi&quot;, &quot;sözlerini söyledi&quot;]
+db.executemany(&quot;INSERT INTO docs VALUES (?)&quot;, [(r,) for r in rows])
+
+for query in ['&quot;sözleşme&quot;', '&quot;sözle&quot;*', '&quot;yargı&quot;*', '&quot;yargi&quot;*']:
+    hits = [r[0] for r in db.execute(&quot;SELECT text FROM docs WHERE docs MATCH ?&quot;, (query,))]
+    print(query, &quot;-&gt;&quot;, hits)</code></pre></div><div class="learn-code"><div><span>Çözümlü örnek</span><button class="copy-button" type="button" data-copy-target="lesson-code-61">Kopyala</button></div><pre tabindex="0" class="article-code" id="lesson-code-61"><code>&quot;sözleşme&quot; -&gt; []
+&quot;sözle&quot;* -&gt; ['sözleşmesinin feshi', 'sözlerini söyledi']
+&quot;yargı&quot;* -&gt; ['Yargıtay kararı']
+&quot;yargi&quot;* -&gt; ['YARGITAY KARARI']</code></pre></div><p>Çıktı kuralın iki yüzünü gösteriyor. <code>sözle*</code>, birebir terimin kaçırdığı <code>sözleşmesinin</code> biçimini bulur. Ama sözleşmeyle ilgisi olmayan <code>sözlerini</code> sözcüğünü de bulur.</p>
+    </section>
+    <section id="i-problem" class="article-section">
+      <h2>ı ve İ neden ayrı bir sorun?<a class="heading-anchor" href="#i-problem" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Türkçede noktalı ve noktasız i vardır. Yukarıdaki çıktıda <code>yargı*</code>, <code>Yargıtay</code> biçimini bulur ama <code>YARGITAY</code> biçimini bulmaz; çünkü tokenizer <code>I</code> harfini <code>ı</code> yerine <code>i</code> yapar.</p><p>MESA bunun bir bölümünü sorgu anında çözer. Türkçe büyük-küçük harfi normalize eder, sonra hem <code>ı</code> biçimini hem <code>i</code> varyantını arar. Böylece <code>Yargıtay</code> ve <code>YARGITAY</code> sorguları iki yazımı da bulur. ASCII <code>yargitay</code> sorgusu ise <code>Yargıtay</code> metnini hâlâ bulamaz; çünkü 0.9.4’te dizin tarafında Türkçe harf katlama yoktur.</p>
+    </section>
+    <section id="what-it-fixed" class="article-section">
+      <h2>Önek eşleştirme gerçekte neyi değiştirdi?<a class="heading-anchor" href="#what-it-fixed" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Modeller kapalıyken ortak depoda önek eşleştirme, dev Hit@5’i 50/112’den 52/112’ye taşıdı (0.9.4 öncesi derleme, benchmark v2, Tier M). Altı soru ilk 5 sınırını geçti:</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Kategori · Sıra önce → sonra · Etki · Kanıtta yalnızca önekle eşleşen terim"><table><thead><tr><th scope="col">Kategori</th><th scope="col">Sıra önce → sonra</th><th scope="col">Etki</th><th scope="col">Kanıtta yalnızca önekle eşleşen terim</th></tr></thead><tbody><tr><th scope="row">Sayı, tarih, esas no</th><td>6 → 5</td><td>Kazanç</td><td>2</td></tr><tr><th scope="row">Çok belgeli</th><td>6 → 5</td><td>Kazanç</td><td>7</td></tr><tr><th scope="row">Sayı, tarih, esas no</th><td>6 → 5</td><td>Kazanç</td><td>3</td></tr><tr><th scope="row">Yeniden ifade</th><td>38 → 4</td><td>Kazanç</td><td>0</td></tr><tr><th scope="row">Birebir ifade</th><td>5 → 8</td><td>Kayıp</td><td>1</td></tr><tr><th scope="row">Sayı, tarih, esas no</th><td>4 → 11</td><td>Kayıp</td><td>5</td></tr></tbody></table></div><p>Üç kazanç tek sıralık hareketti. En büyük kazancın kanıtında yalnızca önekle eşleşen terim yoktu; iyileşme büyük olasılıkla rakip pasajların sırası değiştiği için dolaylı geldi. İki kayıpta da bu tür terimler vardı. Yani böyle bir terimin varlığı, sorunun iyileşeceğini göstermiyor.</p><p><a href="../../research/what-improved-search-in-0-9-4/">0.9.4 kalite yazısı</a>, daha büyük kazançların birleştirme ağırlıklarını değiştirmekten geldiğini gösteriyor.</p>
+    </section>
+    <section id="what-to-do" class="article-section">
+      <h2>Türkçe arama için ne yapmalısınız?<a class="heading-anchor" href="#what-to-do" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ul><li>Kök bulucu (stemmer) eklemeden önce ölçün. Fazla eşleşme, kazandırdığı kadar kaybettirebilir.</li><li>Rakamlı token’ları birebir tutun. Kanun, esas numaraları ve tarihler önekle eşleşmemelidir.</li><li>ı ve İ harflerini açıkça ele alın. Varsayılan Unicode küçük harf dönüşümü Türkçe için yanlıştır.</li><li>Sözcük tabanlı aramayı gömme vektörleriyle birleştirin; çünkü birçok sorgu sözcüğü kanıtta hiç geçmez.</li><li>Yalnızca ortalamayı değil, soru başına sırayı karşılaştırın.</li></ul>
+    </section>
+    <section id="limits" class="article-section">
+      <h2>Bu analiz neyi gösteremez?<a class="heading-anchor" href="#limits" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ul><li>Her sorgu terimini tüm aday pasajlarla değil, doğru yanıtın kanıt aralığıyla karşılaştırır.</li><li>MESA’nın atıf token’larını süzme adımını uygulamaz; atıf yoğun sorularda sayılar yaklaşıktır.</li><li>Gerçek bir Türkçe kök bulucu veya biçimbilimsel çözümleyici denemedik.</li><li>112 soruda net iki soruluk değişim küçüktür; başka bir örneklemde korunmayabilir.</li><li>Derlem hukuk metinlerinden oluşuyor; genel Türkçe farklı davranabilir.</li></ul>
+    </section>
+    <section id="sources" class="article-section">
+      <h2>Kaynaklar<a class="heading-anchor" href="#sources" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ol class="reference-list"><li><a class="" href="https://www.sqlite.org/fts5.html" target="_blank" rel="noopener noreferrer"><span>SQLite FTS5 belgeleri</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html" target="_blank" rel="noopener noreferrer"><span>Manning, Raghavan ve Schütze: Okapi BM25</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span>MESA 0.9.4 değişiklik günlüğü</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
+    </section>
+          </div>
+        </div>
+        
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
+      <h2 id="related-title">İlgili konularla devam edin.</h2>
+      <div class="publication-grid">
+        <article class="resource-card"><p class="resource-type">Ders</p><h3><a href="../../learn/bm25-tuning-for-domain-documents/">BM25: bir sözcük ne zaman daha önemli olur?</a></h3><p>Sözcük sıklığının, nadirliğin ve belge uzunluğunun sıralamayı nasıl etkilediğini hesaplayın. Modeli büyütmeden önce metnin nasıl işlendiğini inceleyin.</p><div><span>7 dk okuma</span><a href="../../learn/bm25-tuning-for-domain-documents/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Araştırma</p><h3><a href="../../research/what-improved-search-in-0-9-4/">MESA 0.9.4’te Arama Kalitesini Ne Artırdı?</a></h3><p>Önekli BM25 ve yeni birleştirme ayarları, modelsiz ve embedding aramasını dev kümesinde iyileştirdi. Yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.</p><div><span>9 dk okuma</span><a href="../../research/what-improved-search-in-0-9-4/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Ders</p><h3><a href="../../learn/hybrid-retrieval-explained/">Hibrit arama nedir? BM25, vektörler ve yeniden sıralama</a></h3><p>Hibrit arama, sözcük ve vektör aramayı birleştirir. Ne zaman işe yaradığını, sonuçların nasıl birleştirildiğini ve hatanın hangi aşamada olduğunu öğrenin.</p><div><span>7 dk okuma</span><a href="../../learn/hybrid-retrieval-explained/">Oku<span aria-hidden="true"> →</span></a></div></article>
+      </div>
+    </section>
+        
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
+          <h2>Kaynak izinin MESA Law’da nasıl kullanıldığına bakın.</h2>
+          <p>Hukuk alanındaki örnek uygulamada dosyaların, belgelerin ve kaynakların nasıl birlikte ele alındığını inceleyin.</p>
+        </div>
+        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
+      </div>
+      </article>
+      <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Belgelerinizi yapay zekânıza taşıyan hafıza.</p><p class="footer-note"><span>v0.9.5</span> · <span>Alfa</span> · <a href="../../status/">Proje durumu →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a><a class="footer-pill" href="../../early-access/">Erken erişim</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Ürün</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../architecture/">Mimari</a><a href="../../ecosystem/">Ekosistem</a><a href="../../#use-cases">Kullanım alanları</a><a href="../../lore/">MESA Lore</a><a href="../../law/">MESA Law</a><a href="../../data/">MESA Data</a><a href="../../benchmark/">Benchmark</a></div>
+        <div><h3>Geliştiriciler</h3><a href="../../get-started/">Hızlı başlangıç</a><a href="../../docs/">Dokümantasyon</a><a href="../../docs/core/cli-reference/">MESA CLI</a><a href="../../docs/core/api-reference/">API referansı</a><a href="../../docs/core/examples/">Python SDK</a><a href="../../docs/mcp/">MCP</a><a href="../../docs/core/security/">Güvenlik</a></div>
+        <div><h3>Öğrenin</h3><a href="../../learn/">Dersler</a><a href="../../guides/">Rehberler</a><a href="../../glossary/">Sözlük</a><a href="../../research/">Araştırma</a><a href="../../faq/">SSS</a></div>
+        <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../status/">Durum</a><a href="../../changelog/">Değişiklik günlüğü</a><a href="../../account/">Hesabım</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE" target="_blank" rel="noopener noreferrer"><span>Apache 2.0 Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <nav class="footer-legal" aria-label="Yasal"><a href="../../privacy/">Gizlilik Politikası</a><a href="../../legal/kvkk/">KVKK Aydınlatma Metni</a><a href="../../legal/cookies/">Çerez Politikası</a><a href="../../legal/terms/">Kullanım Koşulları</a><a href="../../legal/commercial-messages/">Ticari İleti Onayı</a></nav>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.5 ile uyumlu</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer>
+    </main>
+  <script src="../../../app.js?v=bfc5b0414e06"></script>
+
+</body>
+</html>

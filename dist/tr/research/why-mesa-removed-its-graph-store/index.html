@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA Çizge Deposunu Neden Kaldırdı?</title>
+  <meta name="description" content="MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/why-mesa-removed-its-graph-store/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/why-mesa-removed-its-graph-store/">
+  <meta property="og:title" content="MESA Çizge Deposunu Neden Kaldırdı?">
+  <meta property="og:description" content="MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA Çizge Deposunu Neden Kaldırdı?">
+  <meta name="twitter:description" content="MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/#webpage","url":"https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/","name":"MESA Çizge Deposunu Neden Kaldırdı?","description":"MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü.","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Araştırma","item":"https://mesamemory.dev/tr/research/"},{"@type":"ListItem","position":4,"name":"MESA Çizge Deposunu Neden Kaldırdı?","item":"https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/"}]},{"@type":"Article","headline":"MESA Çizge Deposunu Neden Kaldırdı?","description":"MESA 0.9.5, dev ölçümlerinden sonra çizge veritabanını kaldırdı: çizgeyi kapatmak hiçbir soruyu kaybettirmedi, atıf izleyen kanal Hit@1’i düşürdü.","datePublished":"2026-11-24","dateModified":"2026-11-24","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/","author":{"@type":"Organization","name":"MESA’ya katkıda bulunanlar"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Araştırma","keywords":"graph, ablation, architecture, release"}]}</script>
+  <link rel="icon" href="../../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../../../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../../../learn.css?v=19f1fc8d0d08">
+
+  <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+
+    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../research/why-mesa-removed-its-graph-store/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../research/why-mesa-removed-its-graph-store/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Ürün</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Ürün</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../../how-it-works/">Nasıl çalışır</a><a class="nav-link" href="../../architecture/">Mimari</a><a class="nav-link" href="../../ecosystem/">Ekosistem</a><a class="nav-link" href="../../#use-cases">Kullanım alanları</a><a class="nav-link" href="../../law/">MESA Law</a><a class="nav-link" href="../../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Geliştiriciler</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Geliştiriciler</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../../get-started/">Başlayın</a><a class="nav-link" href="../../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../../docs/core/examples/">Python SDK</a><a class="nav-link" href="../../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../../docs/mcp/">MCP</a><a class="nav-link" href="../../docs/core/security/">Güvenlik</a></div>
+          </div><div class="nav-group is-current" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Öğrenin</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Öğrenin</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../../learn/">Dersler</a><a class="nav-link" href="../../guides/">Rehberler</a><a class="nav-link" href="../../glossary/">Sözlük</a><a class="nav-link" href="../../faq/">SSS</a><a class="nav-link" href="../../changelog/">Değişiklik günlüğü</a><a class="nav-link" href="../../resources/">Tüm kaynaklar</a></div>
+          </div><a class="nav-item nav-item--plain" href="../../docs/">Dokümanlar</a><a class="nav-item nav-item--plain" href="../../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../../status/">Durum</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Ara</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../research/why-mesa-removed-its-graph-store/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../research/why-mesa-removed-its-graph-store/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../../account/sign-in/">Giriş yap</a>
+              <a class="nav-cta" href="../../account/sign-up/">Kayıt ol</a>
+              <a class="nav-cta nav-account-link" href="../../account/" hidden>Hesabım</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div>
+      <nav class="breadcrumbs" aria-label="Sayfa yolu"><ol><li><a href="../../">Ana sayfa</a><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../research/">Araştırma</a><span aria-hidden="true">/</span></li><li><span aria-current="page">MESA Çizge Deposunu Neden Kaldırdı?</span></li></ol></nav>
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">Araştırma · Retrieval Evaluation</p>
+          <h1>MESA Çizge Deposunu Neden Kaldırdı?</h1>
+          <p class="article-subtitle">Çizge kanalının benchmark dev sorularına kattıkları</p>
+          <p class="article-summary">MESA 0.9.5 çizge veritabanını kaldırdı. Dev ölçümlerimizde çizge araması diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı, kapatılması hiçbir soruyu kaybettirmedi ve atıf izleyen bir alternatif Hit@1’i düşürdü.</p>
+          <dl class="article-byline">
+            <div>
+              <dt>Yayın</dt>
+              <dd><time datetime="2026-11-24">24 Kas 2026</time></dd>
+            </div>
+            <div>
+              <dt>Güncelleme</dt>
+              <dd><time datetime="2026-11-24">24 Kas 2026</time></dd>
+            </div>
+            <div>
+              <dt>Yazar</dt>
+              <dd>MESA’ya katkıda bulunanlar</dd>
+            </div>
+            <div>
+              <dt>Okuma süresi</dt>
+              <dd>5 dakika</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          
+    <nav class="article-toc" aria-label="Bu sayfada">
+      <strong>Bu sayfada</strong>
+      <ol>
+        <li><a href="#what-removed">0.9.5 neyi kaldırdı?</a></li><li><a href="#graph-only">Çizge, diğer kanalların kaçırdığı bir şey buldu mu?</a></li><li><a href="#graph-off">Kapattığımızda ne oldu?</a></li><li><a href="#citations">Atıflar çizgenin yerini alabilir miydi?</a></li><li><a href="#what-it-means">Bu sizin için ne anlama geliyor?</a></li><li><a href="#limits">Bu ölçümlerin sınırları</a></li><li><a href="#sources">Kaynaklar</a></li>
+      </ol>
+    </nav>
+          <div class="article-body">
+            
+            
+    <section class="research-record" aria-labelledby="research-record-title">
+      <h2 id="research-record-title">Araştırma kaydı</h2>
+      <dl>
+        <div>
+          <dt>Durum</dt>
+          <dd>Tamamlanmış ölçüm · dev bölümleri</dd>
+        </div>
+        <div>
+          <dt>MESA sürümü</dt>
+          <dd>0.9.3 incelemesi, 0.9.4 ve Round 23 geliştirme derlemeleri; kaldırma v0.9.5 etiketinde</dd>
+        </div>
+        <div>
+          <dt>Veri kümesi</dt>
+          <dd>Benchmark v1 dev (85 yanıtlanabilir); benchmark v2 dev, Tier M, 128 soru (112’si yanıtlanabilir)</dd>
+        </div>
+        <div>
+          <dt>Modeller</dt>
+          <dd>T0, modeller kapalı; v1 yeniden puanlaması için T1b</dd>
+        </div>
+        <div>
+          <dt>Metrikler</dt>
+          <dd>Hit@1 · Hit@5 · MRR · lines removed</dd>
+        </div>
+        
+      </dl>
+      <div class="research-links"><a href="../../methodology/retrieval-evaluation/">Arama sistemleri nasıl değerlendirilir?<span aria-hidden="true"> →</span></a></div>
+      <div class="limitations">
+        <h3>Bilinen sınırlılıklar</h3>
+        <ul>
+          <li>Tüm sonuçlar dev bölümlerinden; bu kararlar için test bölümü kullanılmadı.</li><li>v1 yeniden puanlaması ile v2 karşılaştırması farklı soru kümeleri ve derlemeler kullandı.</li><li>Model çıkarımı ilişkilerinden kurulan bir çizge denenmedi.</li><li>Sonuçlar tek bir Türk hukuku metinleri derlemini anlatır.</li>
+        </ul>
+      </div>
+    </section>
+            
+    <section id="what-removed" class="article-section">
+      <h2>0.9.5 neyi kaldırdı?<a class="heading-anchor" href="#what-removed" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>MESA Core 0.9.5; Kùzu çizge veritabanını, çizge görünümünü yazan worker’ı, çizge arama kanalını ve çizge yeniden oluşturma yollarını kaldırdı. Yalnızca <code>mesa_storage</code> içindeki dört Kùzu modülü 2.610 satırdı. Arama artık BM25, bir embedding modeli ayarlıysa vektör araması, yerleşik hukuk kuralları ve isteğe bağlı yeniden sıralama ile yapılır. Varlıklar, bilgi kayıtları ve hukuki atıflar kaynaklarıyla birlikte SQLite’ta kalır.</p><p>Çizge 0.9.4’ten beri zaten varsayılan olarak kapalıydı. Bu yazı, o varsayılanın ve kaldırmanın arkasındaki ölçümleri anlatır.</p>
+    </section>
+    <section id="graph-only" class="article-section">
+      <h2>Çizge, diğer kanalların kaçırdığı bir şey buldu mu?<a class="heading-anchor" href="#graph-only" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Hayır. Varsayılan olarak model çıkarımı kapalıyken çizge yalnızca belge → parça yapısını tutuyordu. 0.9.3 üzerinde yapılan Round 21 incelemesi benchmark v1 dev sonuçlarını yeniden puanladı: çizge kanalı, modelsiz (T0) ve embedding (T1b) koşularının ikisinde de 85 yanıtlanabilir sorunun hiçbirinde doğru pasajı tek başına ilk bulan kanal olmadı (0/85).</p>
+    </section>
+    <section id="graph-off" class="article-section">
+      <h2>Kapattığımızda ne oldu?<a class="heading-anchor" href="#graph-off" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Her kanalı paylaşılan benchmark v2 dev deposunda tek tek kapattık (Tier M, 141 belge, 5.041 parça, 112’si yanıtlanabilir 128 soru, modeller kapalı, önekli BM25 içeren bir 0.9.4 geliştirme derlemesi). Başlangıç noktası, doğru pasajın ilk beşte olduğu 112 sorudan 52’siydi.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: 52 isabetlik temel çizgiden değişiklik · Hit@5 (112’de)"><table><thead><tr><th scope="col">52 isabetlik temel çizgiden değişiklik</th><th scope="col">Hit@5 (112’de)</th></tr></thead><tbody><tr><th scope="row">Bilgi kaydı füzyon ağırlığı 0</th><td>56</td></tr><tr><th scope="row">Çizge kapalı</th><td>52</td></tr><tr><th scope="row">İkisi birlikte</th><td>61</td></tr></tbody></table></div><p>Çizgeyi kapatmak hiçbir soruyu kaybettirmedi. Sıfır bilgi kaydı ağırlığıyla birlikte 0.9.4 varsayılanı oldu.</p>
+    </section>
+    <section id="citations" class="article-section">
+      <h2>Atıflar çizgenin yerini alabilir miydi?<a class="heading-anchor" href="#citations" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Hukuk metinleri birbirine atıf yapar; bu yüzden Round 23’te akla gelen ilk alternatifi denedik: birleştirilmiş ilk 20 sonucu alıp onlar için zaten kayıtlı kanun ve madde atıflarını izlemek ve atıf yapılan kapsam içi maddeleri ayrı bir kanal olarak sıralamak. Kural, kanalı yalnızca Hit@5 en az iki soru kazanırsa ve hiçbir kategori birden fazla soru kaybetmezse tutmaktı.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Atıf kanalı ağırlığı · Hit@1 · Hit@5 · MRR"><table><thead><tr><th scope="col">Atıf kanalı ağırlığı</th><th scope="col">Hit@1</th><th scope="col">Hit@5</th><th scope="col">MRR</th></tr></thead><tbody><tr><th scope="row">0 (kapalı)</th><td>30</td><td>62</td><td>0,3958</td></tr><tr><th scope="row">0,5</th><td>28</td><td>62</td><td>0,3828</td></tr><tr><th scope="row">1</th><td>20</td><td>60</td><td>0,3313</td></tr><tr><th scope="row">2</th><td>20</td><td>60</td><td>0,3304</td></tr></tbody></table></div><p>Depo ve bölüm yukarıdakiyle aynı, modeller kapalı, Round 23 geliştirme commit’i. Atıfları izlemek, sık atıf alan maddeleri soruyu yanıtlayan pasajın önüne çekti. Kanal, ayarı ve testleri aynı iş biriminde silindi.</p>
+    </section>
+    <section id="what-it-means" class="article-section">
+      <h2>Bu sizin için ne anlama geliyor?<a class="heading-anchor" href="#what-it-means" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ul><li>Yükseltirseniz migration eski çizge kayıt satırlarını temizler. Eski <code>kuzu_db</code> dosyaları yok sayılır; yedeğinizi denetledikten sonra elle silin.</li><li><code>MESA_GRAPH_ENABLED</code>, <code>MESA_RRF_GRAPH_WEIGHT</code> ve <code>MESA_V4_GRAPH_TIMEOUT_SECONDS</code> başlangıçta her biri için bir uyarıyla yok sayılır.</li><li>Paket artık Python 3.14’e kurulur; orada wheel’i olmayan bağımlılık Kùzu idi.</li></ul><p>Yükseltme notu için <a href="../../docs/core/graph/">çizge deposu kaldırıldı</a> sayfasına bakın.</p>
+    </section>
+    <section id="limits" class="article-section">
+      <h2>Bu ölçümlerin sınırları<a class="heading-anchor" href="#limits" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ul><li>Tüm sayılar dev bölümü sonuçlarıdır; bu kararlar için ayrılmış test bölümü kullanılmadı.</li><li>v1 yeniden puanlaması ile v2 karşılaştırması farklı soru kümeleri ve derlemeler kullandı.</li><li>Çizgede varsayılan olarak çıkarılmış ilişki yoktu. Model çıkarımı ilişkilerinden kurulan bir çizge denenmedi; çünkü model çıkarımı varsayılan olarak kapalıdır ve önceki ölçümler kaliteyi düşürdüğünü gösterdi.</li><li>Sonuçlar bu Türk hukuku metinleri derlemini anlatır; zengin türlü ilişkileri olan başka bir derlem farklı davranabilir.</li></ul>
+    </section>
+    <section id="sources" class="article-section">
+      <h2>Kaynaklar<a class="heading-anchor" href="#sources" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ol><li><a class="" href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24" target="_blank" rel="noopener noreferrer"><span>MESA Core 0.9.5 changelog</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23" target="_blank" rel="noopener noreferrer"><span>MESA Core 0.9.4 changelog: çizge varsayılan olarak kapalı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
+    </section>
+          </div>
+        </div>
+        
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
+      <h2 id="related-title">İlgili konularla devam edin.</h2>
+      <div class="publication-grid">
+        <article class="resource-card"><p class="resource-type">Araştırma</p><h3><a href="../../research/what-improved-search-in-0-9-4/">MESA 0.9.4’te Arama Kalitesini Ne Artırdı?</a></h3><p>Önekli BM25 ve yeni birleştirme ayarları, modelsiz ve embedding aramasını dev kümesinde iyileştirdi. Yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.</p><div><span>9 dk okuma</span><a href="../../research/what-improved-search-in-0-9-4/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Araştırma</p><h3><a href="../../research/deleting-code-mesa-0-9-4/">MESA’dan Neleri Sildik, Neden?</a></h3><p>MESA 0.9.4, V4 öncesinden kalan düğüm deposunu ve model tabanlı bilgi birleştirmeyi kaldırdı. Çalışan Python kodu 48.591 satırdan 42.541’e indi; dev arama sıraları her silmeden sonra aynı kaldı.</p><div><span>6 dk okuma</span><a href="../../research/deleting-code-mesa-0-9-4/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Ders</p><h3><a href="../../learn/why-graphs-matter-in-ai-memory/">Bilgi çizgeleri: ilişkileri kaynaklarıyla izlemek</a></h3><p>Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün.</p><div><span>5 dk okuma</span><a href="../../learn/why-graphs-matter-in-ai-memory/">Oku<span aria-hidden="true"> →</span></a></div></article>
+      </div>
+    </section>
+        
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
+          <h2>Kaynak izinin MESA Law’da nasıl kullanıldığına bakın.</h2>
+          <p>Hukuk alanındaki örnek uygulamada dosyaların, belgelerin ve kaynakların nasıl birlikte ele alındığını inceleyin.</p>
+        </div>
+        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
+      </div>
+      </article>
+      <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Belgelerinizi yapay zekânıza taşıyan hafıza.</p><p class="footer-note"><span>v0.9.5</span> · <span>Alfa</span> · <a href="../../status/">Proje durumu →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a><a class="footer-pill" href="../../early-access/">Erken erişim</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Ürün</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../architecture/">Mimari</a><a href="../../ecosystem/">Ekosistem</a><a href="../../#use-cases">Kullanım alanları</a><a href="../../lore/">MESA Lore</a><a href="../../law/">MESA Law</a><a href="../../data/">MESA Data</a><a href="../../benchmark/">Benchmark</a></div>
+        <div><h3>Geliştiriciler</h3><a href="../../get-started/">Hızlı başlangıç</a><a href="../../docs/">Dokümantasyon</a><a href="../../docs/core/cli-reference/">MESA CLI</a><a href="../../docs/core/api-reference/">API referansı</a><a href="../../docs/core/examples/">Python SDK</a><a href="../../docs/mcp/">MCP</a><a href="../../docs/core/security/">Güvenlik</a></div>
+        <div><h3>Öğrenin</h3><a href="../../learn/">Dersler</a><a href="../../guides/">Rehberler</a><a href="../../glossary/">Sözlük</a><a href="../../research/">Araştırma</a><a href="../../faq/">SSS</a></div>
+        <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../status/">Durum</a><a href="../../changelog/">Değişiklik günlüğü</a><a href="../../account/">Hesabım</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE" target="_blank" rel="noopener noreferrer"><span>Apache 2.0 Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <nav class="footer-legal" aria-label="Yasal"><a href="../../privacy/">Gizlilik Politikası</a><a href="../../legal/kvkk/">KVKK Aydınlatma Metni</a><a href="../../legal/cookies/">Çerez Politikası</a><a href="../../legal/terms/">Kullanım Koşulları</a><a href="../../legal/commercial-messages/">Ticari İleti Onayı</a></nav>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.5 ile uyumlu</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer>
+    </main>
+  <script src="../../../app.js?v=bfc5b0414e06"></script>
+
+</body>
+</html>

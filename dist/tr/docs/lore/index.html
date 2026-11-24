@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Genel bakış — MESA Lore Belgeleri</title>
+  <meta name="description" content="MESA Lore için Genel bakış teknik dokümantasyonu (v0.1.0).">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/tr/docs/lore/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/">
+  <meta property="og:title" content="Genel bakış — MESA Lore Belgeleri">
+  <meta property="og:description" content="MESA Lore için Genel bakış teknik dokümantasyonu (v0.1.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/docs/lore/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Genel bakış — MESA Lore Belgeleri">
+  <meta name="twitter:description" content="MESA Lore için Genel bakış teknik dokümantasyonu (v0.1.0).">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/docs/lore/#webpage","url":"https://mesamemory.dev/tr/docs/lore/","name":"Genel bakış — MESA Lore Belgeleri","description":"MESA Lore için Genel bakış teknik dokümantasyonu (v0.1.0).","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Dokümantasyon","item":"https://mesamemory.dev/tr/docs/"},{"@type":"ListItem","position":3,"name":"Genel bakış","item":"https://mesamemory.dev/tr/docs/lore/"}]},{"@type":"TechArticle","headline":"Genel bakış","description":"MESA Lore için Genel bakış teknik dokümantasyonu (v0.1.0).","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/docs/lore/","publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"keywords":"lore, documentation, v0.1.0"}]}</script>
+  <link rel="icon" href="../../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../../../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../../../learn.css?v=19f1fc8d0d08">
+
+  <link rel="stylesheet" href="../../../docs.css?v=c7d47ae76f45">
+  <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../docs/lore/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../docs/lore/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Ürün</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Ürün</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../../how-it-works/">Nasıl çalışır</a><a class="nav-link" href="../../architecture/">Mimari</a><a class="nav-link" href="../../ecosystem/">Ekosistem</a><a class="nav-link" href="../../#use-cases">Kullanım alanları</a><a class="nav-link" href="../../law/">MESA Law</a><a class="nav-link" href="../../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Geliştiriciler</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Geliştiriciler</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../../get-started/">Başlayın</a><a class="nav-link" href="../../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../../docs/core/examples/">Python SDK</a><a class="nav-link" href="../../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../../docs/mcp/">MCP</a><a class="nav-link" href="../../docs/core/security/">Güvenlik</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Öğrenin</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Öğrenin</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../../learn/">Dersler</a><a class="nav-link" href="../../guides/">Rehberler</a><a class="nav-link" href="../../glossary/">Sözlük</a><a class="nav-link" href="../../faq/">SSS</a><a class="nav-link" href="../../changelog/">Değişiklik günlüğü</a><a class="nav-link" href="../../resources/">Tüm kaynaklar</a></div>
+          </div><a class="nav-item nav-item--plain active" aria-current="page" href="../../docs/">Dokümanlar</a><a class="nav-item nav-item--plain" href="../../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../../status/">Durum</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Ara</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../docs/lore/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../docs/lore/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../../account/sign-in/">Giriş yap</a>
+              <a class="nav-cta" href="../../account/sign-up/">Kayıt ol</a>
+              <a class="nav-cta nav-account-link" href="../../account/" hidden>Hesabım</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+<main id="main-content" class="docs-layout">
+<nav class="docs-tabs" aria-label="Dokümantasyon alanları"><a href="../../docs/" class="active"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Dokümantasyon</span></a><a href="../../docs/core/installation/"><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>Kurulum</span></a><a href="../../docs/core/cli-reference/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>MESA CLI</span></a><a href="../../docs/core/examples/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Python SDK</span></a><a href="../../docs/core/api-reference/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 6 6-6 6m9 0h7"/></svg><span>HTTP API</span></a><a href="../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg><span>MCP</span></a><a class="docs-tabs-release" href="../../docs/lore/">v0.1.0<span class="docs-release-dot" aria-hidden="true"></span></a></nav>
+<aside class="docs-sidebar" aria-label="Dokümantasyon gezintisi"><details class="docs-navigation" open><summary><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Belge menüsü</span><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div class="docs-sidebar-inner">
+    <div class="docs-sidebar-header"><a href="../../docs/" class="docs-wordmark">MESA <span>/ docs</span></a><span class="docs-sidebar-caption">Geliştirici dokümantasyonu</span></div>
+    <details class="docs-product-select"><summary><svg class="mesa-icon lucide-icon" data-nav-icon="layers" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span>MESA Lore</span><small>v0.1.0</small><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><nav aria-label="Bileşen seçimi"><a href="../../docs/core/"><span>MESA Core</span><small>v0.9.5</small></a><a href="../../docs/lore/" aria-current="true"><span>MESA Lore</span><small>v0.1.0</small></a><a href="../../docs/data/"><span>MESA Data</span><small>v0.1.0</small></a><a href="../../docs/law/"><span>MESA Law</span><small>v0.1.0</small></a><span class="docs-product-divider">İç test araçları</span><a href="../../docs/qa/"><span>MESA QA</span><small>v0.1.0</small></a><a href="../../docs/e2e/"><span>MESA E2E Sertifikasyonu</span><small>v0.1.0</small></a></nav></details>
+    <button class="search-trigger docs-search" type="button" aria-label="Dokümantasyonda ara"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Belgelerde ara…</span><kbd>Ctrl K</kbd></button>
+    <nav class="docs-nav" aria-label="Belge konuları"><ul class="sidebar-links docs-overview-links"><li><a href="../../docs/"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg>Giriş</a></li><li><a href="../../docs/mcp/"><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v5"/></svg>MCP entegrasyonu</a></li></ul><section class="sidebar-group"><div class="sidebar-group-header"><svg class="mesa-icon lucide-icon" data-nav-icon="book-open" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /> </svg><span>Rehberler ve referanslar</span></div><ul class="sidebar-links"><li><a href="../../docs/lore/" class="active" aria-current="page">Genel bakış</a></li><li><a href="../../docs/lore/installation/">Kurulum</a></li><li><a href="../../docs/lore/agents/">Ajan kurulumu</a></li><li><a href="../../docs/lore/mcp-tools/">MCP araçları</a></li><li><a href="../../docs/lore/cli/">CLI komutları</a></li><li><a href="../../docs/lore/notes-and-handoffs/">Notlar ve devir notları</a></li><li><a href="../../docs/lore/data-and-privacy/">Veri ve gizlilik</a></li><li><a href="../../docs/lore/troubleshooting/">Sorun giderme ve sınırlar</a></li></ul></section></nav>
+    <div class="docs-sidebar-footer"><a href="https://github.com/Yasou13/MESA_Lore" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span><span aria-hidden="true">↗</span></a><a href="../../status/">Proje durumu<span aria-hidden="true">↗</span></a></div>
+  </div></details></aside>
+  <div class="docs-main-container">
+    <div class="docs-content-column">
+      <nav class="breadcrumbs docs-breadcrumbs" aria-label="Konum"><ol>
+    <li><a href="../../">Ana sayfa</a></li>
+    <li><a href="../../docs/">Dokümantasyon</a></li>
+    <li aria-current="page">Genel bakış</li>
+  </ol></nav>
+      <article class="docs-article" data-doc-copy-content>
+        <header class="docs-article-header">
+          <p class="eyebrow">MESA Lore · v0.1.0</p>
+          <div class="docs-title-row"><h1>Genel bakış</h1><button class="docs-copy-page" type="button" hidden><svg class="docs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span aria-live="polite">Sayfayı kopyala</span></button></div>
+          <div class="docs-meta-bar">
+    <span class="docs-version-pill">v0.1.0</span>
+    <span class="docs-source-pill">kaynak: <code>README.md</code></span>
+  </div>
+          <p class="docs-language-notice">Bu rehberin Türkçe ve İngilizce sürümleri aynı konuyu açıklar. Dayanak kaynaklar sayfanın sonunda listelenir.</p>
+
+        </header>
+        <div class="docs-body">
+
+          <h2 id="guide-mesa-lore-nedir">MESA Lore nedir?<a class="heading-anchor" href="#guide-mesa-lore-nedir" aria-label="Bölüm bağlantısı: MESA Lore nedir?" title="Bu bölümün bağlantısı">#</a></h2>
+<p>MESA Lore, kodlama ajanları için yerel bir MCP hafıza sunucusudur. Geçmiş Claude Code, Codex CLI ve Antigravity oturumlarını ve ajanların kısa notlarını tek bir SQLite dosyasında dizinler. Yeni bir oturum önceki kararları, hataları ve çalışmaları arayabilir ve yalnızca kaynaklarıyla birlikte küçük bölümleri geri çağırır.</p>
+<p>CPU üzerinde çalışır, LLM çağrısı yapmaz, embedding kullanmaz ve çalışırken ağ üzerinden hiçbir şey göndermez. Ayrı bir araçtır ve MESA Core gerektirmez.</p>
+<h2 id="guide-bir-oturum-nasil-isler">Bir oturum nasıl işler?<a class="heading-anchor" href="#guide-bir-oturum-nasil-isler" aria-label="Bölüm bağlantısı: Bir oturum nasıl işler?" title="Bu bölümün bağlantısı">#</a></h2>
+<ol><li><code class="inline-code">mesa-lore install</code> ajanlarınızı bağlar ve mevcut oturum geçmişini içe aktarır.</li><li>Claude Code ve Codex’te <code class="inline-code">SessionStart</code> hook’u yeni oturuma kısa bir proje dizini ekler.</li><li>Ajan bir ayrıntıya ihtiyaç duyduğunda <code class="inline-code">memory_search</code>, çevresindeki bağlamı okumak için <code class="inline-code">memory_get</code> çağırır.</li><li><code class="inline-code">Stop</code> ve <code class="inline-code">SessionEnd</code> hook’ları dökümü kuyruğa alır; döküm sonraki oturum başladığında dizinlenir.</li><li>Ajan <code class="inline-code">memory_save</code> ile karar, bilgi, yapılacak iş, başarısız deneme ve devir notu kaydedebilir.</li></ol>
+<h2 id="guide-ne-zaman-kullanmalisiniz">Ne zaman kullanmalısınız?<a class="heading-anchor" href="#guide-ne-zaman-kullanmalisiniz" aria-label="Bölüm bağlantısı: Ne zaman kullanmalısınız?" title="Bu bölümün bağlantısı">#</a></h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo"><table><thead><tr><th scope="col">İhtiyaç</th><th scope="col">Daha uygun çözüm</th></tr></thead><tbody><tr><th scope="row">Proje kuralları ve kod standartları</th><td><code class="inline-code">CLAUDE.md</code> veya <code class="inline-code">AGENTS.md</code></td></tr><tr><th scope="row">Claude Code’da öğrenilen tercihler</th><td>Claude Code otomatik hafızası</td></tr><tr><th scope="row">Önceki oturumlarda ne olduğunu bulmak</th><td>MESA Lore</td></tr><tr><th scope="row">Geliştirdiğiniz uygulama için belge hafızası</th><td><a href="../../docs/core/">MESA Core</a></td></tr></tbody></table></div>
+<p>MESA Lore, ajanların yerleşik hafızasını tamamlar. Talimat dosyalarınızın yerine geçmez.</p>
+<h2 id="guide-guncel-durum">Güncel durum<a class="heading-anchor" href="#guide-guncel-durum" aria-label="Bölüm bağlantısı: Güncel durum" title="Bu bölümün bağlantısı">#</a></h2>
+<p>0.1.0 sürümü Apache-2.0 lisanslı açık kaynak bir sürümdür. Python 3.10 veya üstü gerektirir ve GitHub’dan kurulur. Linux test edildi, macOS test edilmedi, Windows henüz desteklenmiyor. <a href="../../docs/lore/troubleshooting/">Sınırlar ve ölçülen sonuçlara</a> bakın.</p>
+<h2 id="guide-sonraki-adimlar">Sonraki adımlar<a class="heading-anchor" href="#guide-sonraki-adimlar" aria-label="Bölüm bağlantısı: Sonraki adımlar" title="Bu bölümün bağlantısı">#</a></h2>
+<ul><li><a href="../../docs/lore/installation/">MESA Lore’u kurun</a></li><li><a href="../../docs/lore/agents/">Ajanlarınızı bağlayın</a></li><li><a href="../../docs/lore/mcp-tools/">MCP araçlarını öğrenin</a></li></ul>
+          <div class="guide-source-list"><strong>Dayanak kaynaklar</strong><ul><li><a href="https://github.com/Yasou13/MESA_Lore/blob/efb3406e7798fdb8ade25418082150376690b633/README.md" target="_blank" rel="noopener noreferrer"><code>README.md</code></a></li><li><a href="https://github.com/Yasou13/MESA_Lore/blob/efb3406e7798fdb8ade25418082150376690b633/pyproject.toml" target="_blank" rel="noopener noreferrer"><code>pyproject.toml</code></a></li></ul></div>
+        </div>
+        <div class="docs-page-nav"><div class="docs-page-empty"></div><a class="docs-page-next" href="../../docs/lore/installation/"><span class="nav-dir">Sonraki →</span><span class="nav-title">Kurulum</span></a></div>
+      </article>
+    </div>
+    <div class="docs-toc-column" aria-label="İçindekiler">
+      <nav class="article-toc" aria-label="Bu rehberde"><strong>Bu rehberde</strong><ol><li class="toc-item"><a href="#guide-mesa-lore-nedir">MESA Lore nedir?</a></li><li class="toc-item"><a href="#guide-bir-oturum-nasil-isler">Bir oturum nasıl işler?</a></li><li class="toc-item"><a href="#guide-ne-zaman-kullanmalisiniz">Ne zaman kullanmalısınız?</a></li><li class="toc-item"><a href="#guide-guncel-durum">Güncel durum</a></li><li class="toc-item"><a href="#guide-sonraki-adimlar">Sonraki adımlar</a></li></ol></nav>
+      <div class="docs-source-link">
+        <a href="https://github.com/Yasou13/MESA_Lore/blob/efb3406e7798fdb8ade25418082150376690b633/README.md" target="_blank" rel="noopener noreferrer">
+          <svg class="mesa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub üzerinde kaynağı aç</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="application/json" data-doc-copy>"# Genel bakış\n\n## MESA Lore nedir?\n\nMESA Lore, kodlama ajanları için yerel bir MCP hafıza sunucusudur. Geçmiş Claude Code, Codex CLI ve Antigravity oturumlarını ve ajanların kısa notlarını tek bir SQLite dosyasında dizinler. Yeni bir oturum önceki kararları, hataları ve çalışmaları arayabilir ve yalnızca kaynaklarıyla birlikte küçük bölümleri geri çağırır.\n\nCPU üzerinde çalışır, LLM çağrısı yapmaz, embedding kullanmaz ve çalışırken ağ üzerinden hiçbir şey göndermez. Ayrı bir araçtır ve MESA Core gerektirmez.\n\n## Bir oturum nasıl işler?\n\n1. `mesa-lore install` ajanlarınızı bağlar ve mevcut oturum geçmişini içe aktarır.\n2. Claude Code ve Codex’te `SessionStart` hook’u yeni oturuma kısa bir proje dizini ekler.\n3. Ajan bir ayrıntıya ihtiyaç duyduğunda `memory_search`, çevresindeki bağlamı okumak için `memory_get` çağırır.\n4. `Stop` ve `SessionEnd` hook’ları dökümü kuyruğa alır; döküm sonraki oturum başladığında dizinlenir.\n5. Ajan `memory_save` ile karar, bilgi, yapılacak iş, başarısız deneme ve devir notu kaydedebilir.\n\n## Ne zaman kullanmalısınız?\n\n| İhtiyaç | Daha uygun çözüm |\n| --- | --- |\n| Proje kuralları ve kod standartları | `CLAUDE.md` veya `AGENTS.md` |\n| Claude Code’da öğrenilen tercihler | Claude Code otomatik hafızası |\n| Önceki oturumlarda ne olduğunu bulmak | MESA Lore |\n| Geliştirdiğiniz uygulama için belge hafızası | [MESA Core](docs/core/) |\n\nMESA Lore, ajanların yerleşik hafızasını tamamlar. Talimat dosyalarınızın yerine geçmez.\n\n## Güncel durum\n\n0.1.0 sürümü Apache-2.0 lisanslı açık kaynak bir sürümdür. Python 3.10 veya üstü gerektirir ve GitHub’dan kurulur. Linux test edildi, macOS test edilmedi, Windows henüz desteklenmiyor. [Sınırlar ve ölçülen sonuçlara](docs/lore/troubleshooting/) bakın.\n\n## Sonraki adımlar\n\n- [MESA Lore’u kurun](docs/lore/installation/)\n- [Ajanlarınızı bağlayın](docs/lore/agents/)\n- [MCP araçlarını öğrenin](docs/lore/mcp-tools/)\n\n\nhttps://github.com/Yasou13/MESA_Lore/blob/efb3406e7798fdb8ade25418082150376690b633/README.md"</script>
+<footer class="docs-footer"><span>MESA <span aria-hidden="true">/</span> Kaynağını koruyan hafıza.</span><a href="../../docs/lore/">v0.1.0</a><a href="../../docs/lore/data-and-privacy/">Veri ve gizlilik</a><span>Apache 2.0 · Açık kaynak</span></footer>
+  <script src="../../../app.js?v=bfc5b0414e06"></script>
+
+  <script src="../../../docs.js?v=c6166317ecca"></script>
+</body>
+</html>

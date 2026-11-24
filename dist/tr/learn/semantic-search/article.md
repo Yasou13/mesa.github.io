@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["embedding", "dense", "sparse", "cosine", "vector", "vektör", "kosinüs", "anlamsal arama"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-18"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 6
 status: "published"
 indexable: true
 seoTitle: "Anlamsal arama: vektörler neyi anlatır? — MESA"
@@ -61,6 +61,24 @@ Tam arama, uygun olan bütün vektörleri puanlar. Yaklaşık en yakın komşu a
 Sağlayıcıyı, modeli, model sürümünü, boyut sayısını, normalizasyonu ve kodlama talimatını kaydedin. İki model de 768 sayı üretebilir, ancak bu sayılar farklı anlam uzaylarına ait olabilir. Bazı modeller sorgu ve belge için ayrı kodlayıcılar veya ön ekler kullanır. Önemli olan girdilerin aynı olması değil, modelin öngördüğü biçimde eşleşmesidir. Temsil değiştiğinde belgeleri yeniden kodlamak ve arama indeksini yeniden kurmak genellikle gerekir.
 
 Kimlik numaraları, olumsuzluklar ve birbirine benzeyen belge sürümleri anlamsal aramanın sınırlarını gösterir. “A-17 kuralı uygulanır” ile “A-17 kuralı uygulanmaz” yakın vektörler üretebilir. Tam kodlar için sözcük tabanlı aramadan, geçerlilik için yapılandırılmış filtrelerden yararlanın. DPR ve Sentence-BERT, öğrenilmiş yoğun arama ve cümle temsili örnekleridir; her çok dilli arşivde aynı başarıyı garanti etmez. [DPR](https://arxiv.org/abs/2004.04906) [Sentence-BERT](https://arxiv.org/abs/1908.10084)
+
+## MESA’da ne ölçtük?
+
+1.024 boyutlu iki modeli aynı Türkçe hukuk derleminde karşılaştırdık. BAAI/bge-m3 genel olarak öndeydi; Türkçe model Mürşit Large ise yeniden sıralama olmadan sayı, tarih ve esas numarası sorularında öne geçti.
+
+| MESA 0.9.3, dev, Tier M, T1 | bge-m3 | Mürşit Large |
+| --- | --- | --- |
+| MRR | 0,5758 | 0,5626 |
+| Hit@1 | 0,4375 | 0,4464 |
+| Hit@5 | 0,7411 | 0,6875 |
+| Hit@5, yeniden ifade (32 soru) | 0,7188 | 0,5938 |
+| Hit@5, sayı/tarih/esas no (35 soru) | 0,8286 | 0,8571 |
+
+Genel fark 112 yanıtlanabilir sorunun altısıdır; başka bir örneklemde korunmayabilir. Kurulum ve sınırlar için [embedding karşılaştırmasını](/research/turkish-legal-embedding-comparison/) okuyun.
+
+Gömme vektörlerinin bir maliyeti de var. MESA 0.9.4 varsayılanlarıyla benchmark v2 dev kümesinde bge-m3 eklemek Hit@5’i 0,5446’dan 0,7768’e çıkardı. Ortanca arama süresi 0,33 sn’den 1,64 sn’ye, 141 belgenin alımı 399,44 sn’den 637,68 sn’ye yükseldi (tek Colab A100 ortamı).
+
+Model kimliği uygulamada önemlidir. MESA, 0.9.3’te varsayılanını 768 boyutlu bir modelden bge-m3’e geçirdi. Eski bir depo hem model hem boyut ayarını korumalı ya da geçişten önce yeniden oluşturulmalıdır.
 
 ## Model değişikliğini değerlendirin
 

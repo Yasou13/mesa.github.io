@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="../changelog-feed.css?v=46739b4250c1"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <channel>
+    <title>MESA Changelog</title>
+    <link>https://mesamemory.dev/changelog/</link>
+    <description>The changes that matter in each MESA Core release.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://mesamemory.dev/changelog/feed.xml" rel="self" type="application/rss+xml" />
+    <xhtml:meta name="viewport" content="width=device-width, initial-scale=1" />
+    <xhtml:header class="feed-intro">
+      <xhtml:p class="feed-eyebrow">RSS</xhtml:p>
+      <xhtml:h1>MESA Changelog</xhtml:h1>
+      <xhtml:p>This is an RSS feed. Add its address to a feed reader to hear about new MESA releases. No account or email is needed.</xhtml:p>
+      <xhtml:div class="feed-address"><xhtml:code id="feed-url">https://mesamemory.dev/changelog/feed.xml</xhtml:code><xhtml:button id="feed-copy" type="button" hidden="hidden" data-done="Copied">Copy address</xhtml:button></xhtml:div>
+      <xhtml:a class="feed-back" href="https://mesamemory.dev/changelog/">Read the full changelog</xhtml:a>
+    </xhtml:header>
+    <item>
+      <title>MESA v0.9.5</title>
+      <link>https://mesamemory.dev/changelog/#v0-9-5</link>
+      <guid isPermaLink="true">https://mesamemory.dev/changelog/#v0-9-5</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Versioned documents with point-in-time search, a persistent BM25 index, faster local search on large stores and resumable uploads. The graph store is removed and the package installs on Python 3.14.&lt;/p&gt;&lt;h3&gt;Improved&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Upload each version of a document with metadata.valid_from and search with valid_at. Validity order, not upload order, decides the active version, and intervals are half-open. Results carry revision_number, valid_from and valid_to.&lt;/li&gt;&lt;li&gt;In the four-law Turkish temporal fixture, the correct version ranked first on all 18 dated and all 8 undated questions.&lt;/li&gt;&lt;li&gt;In a local run with 100,820 chunks on one 8 vCPU machine, the warm models-off HTTP search median fell from 1,223 ms to 753 ms and the deterministic vector lane median was 287 ms.&lt;/li&gt;&lt;li&gt;Interrupted whole-document uploads resume from their saved chunks with the chunking plan chosen at admission.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Before you upgrade&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Take an offline backup first. A forward-only migration clears old graph bookkeeping rows; going back needs v0.9.4 and the pre-upgrade snapshot.&lt;/li&gt;&lt;li&gt;The Kùzu graph store is removed. Old kuzu_db files are ignored and can be deleted by hand; graph settings are ignored with a startup warning.&lt;/li&gt;&lt;li&gt;LanceDB is locked to 0.41.0; startup adds scope keys to older vector tables.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Known limits&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. No 0.9.5 benchmark is published yet.&lt;/li&gt;&lt;li&gt;Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-24">24 November 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/changelog/#v0-9-5">v0.9.5</xhtml:a></xhtml:h2>
+        <xhtml:p>Versioned documents with point-in-time search, a persistent BM25 index, faster local search on large stores and resumable uploads. The graph store is removed and the package installs on Python 3.14.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.4</title>
+      <link>https://mesamemory.dev/changelog/#v0-9-4</link>
+      <guid isPermaLink="true">https://mesamemory.dev/changelog/#v0-9-4</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Search gets simpler defaults and repeatable ranking, whole-document uploads finish sooner, and legacy V3 and LLM consolidation code is removed.&lt;/p&gt;&lt;h3&gt;Improved&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;On the shared Tier M DEV store with models and reranking off, passage Hit@5 rose from 50/112 to 61/112, MRR from 0.3411 to 0.3955, and median search latency fell from 361.3 ms to 233.9 ms.&lt;/li&gt;&lt;li&gt;A 5 MB models-off document became fully ready in 172.61 s instead of 249.99 s.&lt;/li&gt;&lt;li&gt;Two fresh stores built from the same corpus now produce identical ranks.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Before you upgrade&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Take an offline backup first. Two forward-only migrations remove the V3 node store and routing telemetry; going back needs v0.9.3 and the pre-upgrade snapshot.&lt;/li&gt;&lt;li&gt;The graph is now off and the assertion weight is 0.0. Set MESA_GRAPH_ENABLED=true and MESA_RRF_ASSERTION_WEIGHT=1.0 to restore the earlier fusion.&lt;/li&gt;&lt;li&gt;V3 routes and clients, LLM consolidation and Tier 3 modes 1/2 are removed. Retired settings are ignored with a startup warning.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Known limits&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;The search figures are DEV results with models off. No 0.9.4 benchmark is published yet, and the 0.9.3 benchmark does not describe this release.&lt;/li&gt;&lt;li&gt;Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-23">23 November 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/changelog/#v0-9-4">v0.9.4</xhtml:a></xhtml:h2>
+        <xhtml:p>Search gets simpler defaults and repeatable ranking, whole-document uploads finish sooner, and legacy V3 and LLM consolidation code is removed.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.3</title>
+      <link>https://mesamemory.dev/changelog/#v0-9-3</link>
+      <guid isPermaLink="true">https://mesamemory.dev/changelog/#v0-9-3</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Large documents become ready much faster, the default embedding model changes, and Turkish search handles uppercase text better.&lt;/p&gt;&lt;h3&gt;Improved&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;A 4,999,000-byte document became fully ready in 245.20 s instead of 718.27 s (2.93× faster), measured with models off and graph on.&lt;/li&gt;&lt;li&gt;Legal extraction skips impossible reference scans. CPU time for the API-limit TCK/1 input fell from 129.861 ms to 52.330 ms with identical outputs.&lt;/li&gt;&lt;li&gt;The default embedding model is now local:BAAI/bge-m3 with 1024 dimensions. Models remain off by default.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Fixed&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Turkish legal comparisons and date lookups handle uppercase İ and I consistently, so YARGITAY and yargıtay find the same text.&lt;/li&gt;&lt;li&gt;MCP sessions now work on a fresh store by creating missing workspace and dataset entries.&lt;/li&gt;&lt;li&gt;Startup now fails with a clear error for invalid consolidation settings.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Before you upgrade&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Stores created with the old default must keep MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m and MESA_EMBEDDING_DIMENSION=768, or be rebuilt.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Known limits&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Per-minute and daily rate limits are not enforced for /v4/* and /control/*.&lt;/li&gt;&lt;li&gt;ASCII yargitay still does not match Yargıtay.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#093---2026-11-16&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-16">16 November 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/changelog/#v0-9-3">v0.9.3</xhtml:a></xhtml:h2>
+        <xhtml:p>Large documents become ready much faster, the default embedding model changes, and Turkish search handles uppercase text better.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.2</title>
+      <link>https://mesamemory.dev/changelog/#v0-9-2</link>
+      <guid isPermaLink="true">https://mesamemory.dev/changelog/#v0-9-2</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Legal search understands citations and decision references, and heavy requests no longer stall the service.&lt;/p&gt;&lt;h3&gt;New&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;New chunks keep versioned rule items for citations, decision references, dates, amounts, durations and outcomes, with offsets into the original text.&lt;/li&gt;&lt;li&gt;An exact law and article, or a decision’s own reference, can take up to three leading result positions.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Improved&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Document admission briefly waits for queue capacity without repeating the full chunk plan.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Fixed&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Request-path stalls affecting 0.9.1 are fixed, keeping /health responsive in the measured heavy cases. Upgrading is recommended.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Before you upgrade&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Set MESA_LEGAL_RULES_ENABLED=false to turn off the new legal rules. Generic retrieval stays available.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Known limits&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Heavy queries did not become faster: a 1,000-candidate search still took about 11.6 seconds.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#092---2026-11-06&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-06">6 November 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/changelog/#v0-9-2">v0.9.2</xhtml:a></xhtml:h2>
+        <xhtml:p>Legal search understands citations and decision references, and heavy requests no longer stall the service.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.1</title>
+      <link>https://mesamemory.dev/changelog/#v0-9-1</link>
+      <guid isPermaLink="true">https://mesamemory.dev/changelog/#v0-9-1</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Search ranking is retuned, optional reranking arrives, and the CLI waits until documents are ready.&lt;/p&gt;&lt;h3&gt;New&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;MESA_CHUNKING=auto|plain selects how documents are split.&lt;/li&gt;&lt;li&gt;Optional BGE reranking loads only when it is used.&lt;/li&gt;&lt;li&gt;Documents can be deleted by source.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Improved&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Vector weight moves to 8.0. On the Turkish Round 14 DEV set with reranking off, passage MRR rose from 0.3953 to 0.5663.&lt;/li&gt;&lt;li&gt;The CLI waits for ACTIVE by default. Use --no-wait to return at admission.&lt;/li&gt;&lt;li&gt;A four-scope cache and ingestion indexes reduce bookkeeping work.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Before you upgrade&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;The Python SDK’s Mesa.add still defaults to wait=False. Pass wait=True to wait for readiness.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Known limits&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;The ranking results are corpus-specific development measurements, not test-split evidence.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#091---2026-11-01&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-01">1 November 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/changelog/#v0-9-1">v0.9.1</xhtml:a></xhtml:h2>
+        <xhtml:p>Search ranking is retuned, optional reranking arrives, and the CLI waits until documents are ready.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.0</title>
+      <link>https://mesamemory.dev/changelog/#v0-9-0</link>
+      <guid isPermaLink="true">https://mesamemory.dev/changelog/#v0-9-0</guid>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;MESA can run locally for one user, with a CLI, a Python SDK and lossless document ingestion.&lt;/p&gt;&lt;h3&gt;New&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Local CLI with start, add, search, delete, status and mcp-config commands.&lt;/li&gt;&lt;li&gt;Python SDK Mesa client with zero-config local defaults.&lt;/li&gt;&lt;li&gt;Lossless document ingestion through POST /v4/documents, with duplicate detection and revision tracking.&lt;/li&gt;&lt;li&gt;MESA_GRAPH_ENABLED=false allows lightweight operation without KùzuDB.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Improved&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Document purge fully erases stored source and assertion text while keeping audit state and hashes.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Fixed&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Retry and dead-letter fixes stop records from hanging in RETRY_PENDING.&lt;/li&gt;&lt;li&gt;The chunker handles Turkish abbreviations and list numbering without splitting mid-citation.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#090---2026-10-28&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-10-28">28 October 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/changelog/#v0-9-0">v0.9.0</xhtml:a></xhtml:h2>
+        <xhtml:p>MESA can run locally for one user, with a CLI, a Python SDK and lossless document ingestion.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <xhtml:script src="../changelog-feed.js?v=86582ddd3474" defer="defer"></xhtml:script>
+  </channel>
+</rss>

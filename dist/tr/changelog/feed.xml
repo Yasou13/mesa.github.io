@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="../../changelog-feed.css?v=46739b4250c1"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <channel>
+    <title>MESA Değişiklik Günlüğü</title>
+    <link>https://mesamemory.dev/tr/changelog/</link>
+    <description>MESA Core sürümlerindeki önemli değişiklikler.</description>
+    <language>tr</language>
+    <lastBuildDate>Tue, 24 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://mesamemory.dev/tr/changelog/feed.xml" rel="self" type="application/rss+xml" />
+    <xhtml:meta name="viewport" content="width=device-width, initial-scale=1" />
+    <xhtml:header class="feed-intro">
+      <xhtml:p class="feed-eyebrow">RSS</xhtml:p>
+      <xhtml:h1>MESA Değişiklik Günlüğü</xhtml:h1>
+      <xhtml:p>Bu bir RSS akışıdır. Yeni MESA sürümlerinden haberdar olmak için adresini bir RSS okuyucuya ekleyin. Hesap veya e-posta gerekmez.</xhtml:p>
+      <xhtml:div class="feed-address"><xhtml:code id="feed-url">https://mesamemory.dev/tr/changelog/feed.xml</xhtml:code><xhtml:button id="feed-copy" type="button" hidden="hidden" data-done="Kopyalandı">Adresi kopyala</xhtml:button></xhtml:div>
+      <xhtml:a class="feed-back" href="https://mesamemory.dev/tr/changelog/">Değişiklik günlüğünün tamamını oku</xhtml:a>
+    </xhtml:header>
+    <item>
+      <title>MESA v0.9.5</title>
+      <link>https://mesamemory.dev/tr/changelog/#v0-9-5</link>
+      <guid isPermaLink="true">https://mesamemory.dev/tr/changelog/#v0-9-5</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Belirli bir andaki hâliyle aranabilen sürümlü belgeler, kalıcı BM25 indeksi, büyük depolarda daha hızlı yerel arama ve kaldığı yerden devam eden yüklemeler. Çizge deposu kaldırıldı; paket Python 3.14’e kurulur.&lt;/p&gt;&lt;h3&gt;İyileşti&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Belgenin her sürümünü metadata.valid_from ile yükleyip valid_at ile arayın. Etkin sürüme yükleme sırası değil geçerlilik sırası karar verir; aralıklar yarı açıktır. Sonuçlar revision_number, valid_from ve valid_to taşır.&lt;/li&gt;&lt;li&gt;Dört kanunluk Türkçe zaman fikstüründe doğru sürüm 18 tarihli ve 8 tarihsiz sorunun tamamında ilk sırada geldi.&lt;/li&gt;&lt;li&gt;Tek bir 8 vCPU makinede 100.820 parçalık yerel koşuda modelsiz sıcak HTTP arama medyanı 1.223 ms’den 753 ms’ye indi; belirlenimci vektör kanalı medyanı 287 ms oldu.&lt;/li&gt;&lt;li&gt;Yarıda kalan tam belge yüklemeleri, kabulde seçilen parçalama planıyla kayıtlı parçalardan devam eder.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Yükseltmeden önce&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Önce çevrimdışı yedek alın. Yalnızca ileri yönlü bir migration eski çizge kayıt satırlarını temizler; geri dönmek için v0.9.4 ve yükseltme öncesi anlık görüntü gerekir.&lt;/li&gt;&lt;li&gt;Kùzu çizge deposu kaldırıldı. Eski kuzu_db dosyaları yok sayılır ve elle silinebilir; çizge ayarları başlangıçta uyarıyla yok sayılır.&lt;/li&gt;&lt;li&gt;LanceDB 0.41.0’a kilitlendi; başlangıç eski vektör tablolarına kapsam anahtarları ekler.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Bilinen sınırlar&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Ölçek sayıları tek bir derlemin kopyaları üzerinde yapılmış yerel ölçümlerdir; o boyuttaki arama kalitesini ölçmez. 0.9.5 benchmark’ı henüz yayımlanmadı.&lt;/li&gt;&lt;li&gt;Dakikalık ve günlük istek sınırları /v4/* ve /control/* için hâlâ uygulanmıyor.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-24">24 Kasım 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/tr/changelog/#v0-9-5">v0.9.5</xhtml:a></xhtml:h2>
+        <xhtml:p>Belirli bir andaki hâliyle aranabilen sürümlü belgeler, kalıcı BM25 indeksi, büyük depolarda daha hızlı yerel arama ve kaldığı yerden devam eden yüklemeler. Çizge deposu kaldırıldı; paket Python 3.14’e kurulur.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.4</title>
+      <link>https://mesamemory.dev/tr/changelog/#v0-9-4</link>
+      <guid isPermaLink="true">https://mesamemory.dev/tr/changelog/#v0-9-4</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Arama daha sade varsayılanlara ve tekrarlanabilir sıralamaya geçiyor, tam belge yüklemeleri daha erken bitiyor, eski V3 ve LLM consolidation kodu kaldırılıyor.&lt;/p&gt;&lt;h3&gt;İyileşti&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 50/112’den 61/112’ye, MRR 0,3411’den 0,3955’e çıktı; medyan arama gecikmesi 361,3 ms’den 233,9 ms’ye indi.&lt;/li&gt;&lt;li&gt;5 MB’lık modelsiz belge 249,99 sn yerine 172,61 sn’de tamamen hazır hâle geldi.&lt;/li&gt;&lt;li&gt;Aynı derlemden kurulan iki yeni depo artık aynı sıralamayı üretiyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Yükseltmeden önce&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Önce çevrimdışı yedek alın. Yalnızca ileri yönlü iki migration V3 düğüm deposunu ve yönlendirme telemetrisini siler; geri dönmek için v0.9.3 ve yükseltme öncesi anlık görüntü gerekir.&lt;/li&gt;&lt;li&gt;Çizge artık kapalı, bilgi kaydı ağırlığı 0.0. Önceki füzyon için MESA_GRAPH_ENABLED=true ve MESA_RRF_ASSERTION_WEIGHT=1.0 ayarlayın.&lt;/li&gt;&lt;li&gt;V3 route ve istemcileri, LLM consolidation ve Tier 3 mod 1/2 kaldırıldı. Emekli ayarlar başlangıçta uyarı verilerek yok sayılıyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Bilinen sınırlar&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Arama sayıları modeller kapalıyken alınan DEV sonuçlarıdır. 0.9.4 benchmark’ı henüz yayımlanmadı; 0.9.3 benchmark’ı bu sürümü anlatmaz.&lt;/li&gt;&lt;li&gt;Dakikalık ve günlük istek sınırları /v4/* ve /control/* için hâlâ uygulanmıyor.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#094---2026-11-23&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-23">23 Kasım 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/tr/changelog/#v0-9-4">v0.9.4</xhtml:a></xhtml:h2>
+        <xhtml:p>Arama daha sade varsayılanlara ve tekrarlanabilir sıralamaya geçiyor, tam belge yüklemeleri daha erken bitiyor, eski V3 ve LLM consolidation kodu kaldırılıyor.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.3</title>
+      <link>https://mesamemory.dev/tr/changelog/#v0-9-3</link>
+      <guid isPermaLink="true">https://mesamemory.dev/tr/changelog/#v0-9-3</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Büyük belgeler çok daha hızlı hazır hâle geliyor, varsayılan embedding modeli değişiyor ve Türkçe arama büyük harfleri daha iyi işliyor.&lt;/p&gt;&lt;h3&gt;İyileşti&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;4.999.000 baytlık bir belge 718,27 sn yerine 245,20 sn’de tamamen hazır hâle geldi (2,93 kat hızlı). Ölçüm modeller kapalı, graf açıkken yapıldı.&lt;/li&gt;&lt;li&gt;Hukuki çıkarım, sonuç veremeyecek atıf taramalarını atlıyor. API sınırındaki TCK/1 girdisinde CPU süresi aynı çıktılarla 129,861 ms’den 52,330 ms’ye indi.&lt;/li&gt;&lt;li&gt;Varsayılan embedding modeli artık 1024 boyutlu local:BAAI/bge-m3. Modeller varsayılan olarak kapalı kalmaya devam ediyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Düzeltildi&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Türkçe hukuki karşılaştırmalar ve tarih aramaları büyük İ ve I harflerini tutarlı işliyor; YARGITAY ve yargıtay aynı metni buluyor.&lt;/li&gt;&lt;li&gt;MCP oturumları, eksik çalışma alanı ve veri kümesi kayıtlarını oluşturarak yeni bir depoda da çalışıyor.&lt;/li&gt;&lt;li&gt;Geçersiz birleştirme ayarlarında başlatma artık açık bir hatayla duruyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Yükseltmeden önce&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Eski varsayılanla oluşturulan depolar MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m ve MESA_EMBEDDING_DIMENSION=768 ayarlarını korumalı ya da yeniden oluşturulmalı.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Bilinen sınırlar&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Dakikalık ve günlük istek sınırları /v4/* ve /control/* için uygulanmıyor.&lt;/li&gt;&lt;li&gt;ASCII yazımlı yargitay hâlâ Yargıtay ile eşleşmiyor.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#093---2026-11-16&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-16">16 Kasım 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/tr/changelog/#v0-9-3">v0.9.3</xhtml:a></xhtml:h2>
+        <xhtml:p>Büyük belgeler çok daha hızlı hazır hâle geliyor, varsayılan embedding modeli değişiyor ve Türkçe arama büyük harfleri daha iyi işliyor.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.2</title>
+      <link>https://mesamemory.dev/tr/changelog/#v0-9-2</link>
+      <guid isPermaLink="true">https://mesamemory.dev/tr/changelog/#v0-9-2</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Hukuki arama atıfları ve karar künyelerini anlıyor, ağır istekler artık servisi kilitlemiyor.&lt;/p&gt;&lt;h3&gt;Yeni&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Yeni parçalar atıf, karar künyesi, tarih, tutar, süre ve sonuç bilgilerini özgün metindeki konumlarıyla, sürümlü kurallar olarak saklıyor.&lt;/li&gt;&lt;li&gt;Tam kanun ve madde eşleşmesi ya da kararın kendi künyesi, sonuçların ilk üç sırasına kadar yükselebiliyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;İyileşti&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Belge kabulü, parçalama planını baştan yapmadan kuyrukta yer açılmasını kısa süre bekliyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Düzeltildi&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;0.9.1’i etkileyen istek yolu takılmaları giderildi; ölçülen ağır durumlarda /health yanıt vermeye devam ediyor. Yükseltme öneriliyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Yükseltmeden önce&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Yeni hukuk kurallarını kapatmak için MESA_LEGAL_RULES_ENABLED=false kullanın. Genel arama çalışmaya devam eder.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Bilinen sınırlar&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Ağır sorgular hızlanmadı: 1.000 adaylı bir arama hâlâ yaklaşık 11,6 saniye sürdü.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#092---2026-11-06&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-06">6 Kasım 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/tr/changelog/#v0-9-2">v0.9.2</xhtml:a></xhtml:h2>
+        <xhtml:p>Hukuki arama atıfları ve karar künyelerini anlıyor, ağır istekler artık servisi kilitlemiyor.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.1</title>
+      <link>https://mesamemory.dev/tr/changelog/#v0-9-1</link>
+      <guid isPermaLink="true">https://mesamemory.dev/tr/changelog/#v0-9-1</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Arama sıralaması yeniden ayarlandı, isteğe bağlı yeniden sıralama geldi ve CLI belgeler hazır olana kadar bekliyor.&lt;/p&gt;&lt;h3&gt;Yeni&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;MESA_CHUNKING=auto|plain belgelerin nasıl bölüneceğini seçiyor.&lt;/li&gt;&lt;li&gt;İsteğe bağlı BGE yeniden sıralama yalnızca kullanıldığında yükleniyor.&lt;/li&gt;&lt;li&gt;Belgeler kaynağa göre silinebiliyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;İyileşti&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Vektör ağırlığı 8,0 oldu. Türkçe Round 14 DEV kümesinde, yeniden sıralama kapalıyken pasaj MRR değeri 0,3953’ten 0,5663’e çıktı.&lt;/li&gt;&lt;li&gt;CLI varsayılan olarak ACTIVE durumunu bekliyor. Kabul anında dönmek için --no-wait kullanın.&lt;/li&gt;&lt;li&gt;Dört kapsamlı önbellek ve veri alımı indeksleri kayıt işlerini azaltıyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Yükseltmeden önce&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Python SDK’daki Mesa.add hâlâ varsayılan olarak wait=False kullanıyor. Hazır olmasını beklemek için wait=True verin.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Bilinen sınırlar&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Sıralama sonuçları bu veri kümesine özgü geliştirme ölçümleridir, test kümesi kanıtı değildir.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#091---2026-11-01&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-11-01">1 Kasım 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/tr/changelog/#v0-9-1">v0.9.1</xhtml:a></xhtml:h2>
+        <xhtml:p>Arama sıralaması yeniden ayarlandı, isteğe bağlı yeniden sıralama geldi ve CLI belgeler hazır olana kadar bekliyor.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <item>
+      <title>MESA v0.9.0</title>
+      <link>https://mesamemory.dev/tr/changelog/#v0-9-0</link>
+      <guid isPermaLink="true">https://mesamemory.dev/tr/changelog/#v0-9-0</guid>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <description>&lt;p&gt;MESA tek kullanıcı için yerelde çalışabiliyor; CLI, Python SDK ve kayıpsız belge alımı geldi.&lt;/p&gt;&lt;h3&gt;Yeni&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;start, add, search, delete, status ve mcp-config komutlarıyla yerel CLI.&lt;/li&gt;&lt;li&gt;Yerelde ayar gerektirmeyen varsayılanlarla Python SDK Mesa istemcisi.&lt;/li&gt;&lt;li&gt;POST /v4/documents ile kopya tespiti ve revizyon takibi yapan kayıpsız belge alımı.&lt;/li&gt;&lt;li&gt;MESA_GRAPH_ENABLED=false, KùzuDB olmadan hafif çalışmayı sağlıyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;İyileşti&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Belge silme, denetim durumu ve özetleri korurken saklanan kaynak ve iddia metinlerini tamamen siliyor.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Düzeltildi&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Yeniden deneme ve dead-letter düzeltmeleri kayıtların RETRY_PENDING durumunda takılmasını önlüyor.&lt;/li&gt;&lt;li&gt;Parçalayıcı Türkçe kısaltmaları ve liste numaralarını atıfı ortadan bölmeden işliyor.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#090---2026-10-28&quot;&gt;CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+      <xhtml:article class="feed-release">
+        <xhtml:time datetime="2026-10-28">28 Ekim 2026</xhtml:time>
+        <xhtml:div><xhtml:h2><xhtml:a href="https://mesamemory.dev/tr/changelog/#v0-9-0">v0.9.0</xhtml:a></xhtml:h2>
+        <xhtml:p>MESA tek kullanıcı için yerelde çalışabiliyor; CLI, Python SDK ve kayıpsız belge alımı geldi.</xhtml:p></xhtml:div>
+      </xhtml:article>
+    </item>
+    <xhtml:script src="../../changelog-feed.js?v=86582ddd3474" defer="defer"></xhtml:script>
+  </channel>
+</rss>

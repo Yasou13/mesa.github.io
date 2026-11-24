@@ -62,6 +62,10 @@ The system retrieved every relevant item but ranked an irrelevant one first. Rec
 
 Compare per-query changes and useful slices: identifier versus paraphrase, short versus long source, language and source age. Report uncertainty when sample size permits, and retain the raw query-level results. BEIR demonstrates evaluation across heterogeneous retrieval tasks; reuse its discipline, not its scores as your own. [BEIR](https://arxiv.org/abs/2104.08663), [IR evaluation](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html).
 
+> [!NOTE]
+> **What we measured in MESA**
+> Small rank moves can look like quality changes. [Two fresh stores](/research/why-two-search-runs-differed/) built from the same input scored 48/112 and 52/112 on Hit@5 (benchmark v2 dev, Tier M, models off, build before 0.9.4). A benchmark needs evidence as well as metrics. [Benchmark v2](/research/turkish-legal-benchmark-v2/) ties each answer to a verbatim quote, and it discloses that its test split has been read six times.
+
 ## Measure speed without hiding failures
 
 Measure end-to-end retrieval and stage timings separately. Declare hardware, corpus size, concurrency, cache state, warm-up, request count and timeout. Report median and tail latency with errors and empty responses. Dropping timed-out requests from the latency table can make a failing system look fast. A local deterministic fixture tests a contract; it does not measure real embedding-provider quality or production capacity.

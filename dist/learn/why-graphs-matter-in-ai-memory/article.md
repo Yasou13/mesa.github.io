@@ -8,10 +8,10 @@ subtitle: ""
 summary: "Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference."
 shortAnswer: "Build a source-linked graph, trace a two-hop question, and distinguish graph traversal from GraphRAG summaries and valid inference."
 category: "Memory & Retrieval"
-tags: ["graph", "GraphRAG", "multi hop", "Kuzu", "knowledge graph", "çizge", "ilişki"]
+tags: ["graph", "GraphRAG", "multi hop", "knowledge graph", "çizge", "ilişki"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-24"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -52,7 +52,11 @@ Ask “Which district contains the archive that owns room 7?” Resolve room 7, 
 
 Suppose A cites B and B cites C. You can say there is a two-edge citation path from A to C. You cannot conclude that A agrees with C, that C is correct or even that A directly cited C. A valid inference needs a rule whose meaning permits composition. Distinguish a retrieved path from a proposition actually established by that path.
 
-Likewise, graph centrality measures connectivity under a chosen definition. A popular node may be frequently cited and wrong. Do not use PageRank as a truth score or allow it to suppress an inconvenient source without an explicit policy. Source quality, relevance and graph prominence answer different questions.
+Likewise, graph centrality measures connectivity under a chosen definition. A popular node may be frequently cited and wrong. Do not use a centrality score as a truth score or allow it to suppress an inconvenient source without an explicit policy. Source quality, relevance and graph prominence answer different questions.
+
+## Graphs in MESA
+
+MESA Core 0.9.5 has no graph store. In MESA's own measurements graph search never found a correct passage that the other lanes missed (benchmark v1 dev), turning it off lost no benchmark v2 dev question, and following stored legal citations from the top results lowered Hit@1, so Core keeps entities, assertions and citations in SQLite and searches them with BM25 and optional vectors. Read [why MESA removed its graph store](/research/why-mesa-removed-its-graph-store/). The ideas in this lesson still apply if you build a graph yourself.
 
 ## Bound cost and recognize incompleteness
 
@@ -72,5 +76,5 @@ GraphRAG is a family of retrieval-augmented approaches using graph information. 
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 

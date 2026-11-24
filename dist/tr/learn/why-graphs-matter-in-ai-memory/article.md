@@ -8,10 +8,10 @@ subtitle: ""
 summary: "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün."
 shortAnswer: "Kaynakları belli bir çizge kurun ve iki adımlı bir soruyu çözün. Bir bağlantıyı bulmakla, o bağlantıdan geçerli bir sonuç çıkarmanın farkını görün."
 category: "Memory & Retrieval"
-tags: ["graph", "GraphRAG", "multi hop", "Kuzu", "knowledge graph", "çizge", "ilişki"]
+tags: ["graph", "GraphRAG", "multi hop", "knowledge graph", "çizge", "ilişki"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-28"
+updatedAt: "2026-11-24"
 readingMinutes: 5
 status: "published"
 indexable: true
@@ -52,7 +52,11 @@ room-7 --opening_time [day: Friday; from: Nov 1]--> 10:00
 
 A, B’ye; B de C’ye atıf yapıyor olsun. A’dan C’ye iki kenarlı atıf yolu olduğunu söyleyebilirsiniz. A’nın C’ye katıldığını, C’nin doğru olduğunu veya A’nın doğrudan C’ye atıf yaptığını çıkaramazsınız. Geçerli çıkarım, anlamı bileşime izin veren kural gerektirir. Bulunan yol ile yolun gerçekten desteklediği önermeyi ayırın.
 
-Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. PageRank’i doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir.
+Merkezilik ölçüsü, bir düğümün seçilen kurala göre ne kadar bağlantılı olduğunu anlatır. Çok atıf alan bir düğüm yine de yanlış bilgi taşıyabilir. Bir merkezilik puanını doğruluk puanı olarak kullanmayın. Hangi kaynakların neden geri plana alınacağını da açıkça tanımlayın. Kaynak güvenilirliği, sorguyla ilgililik ve çizgede görünürlük farklı ölçütlerdir.
+
+## MESA’da çizgeler
+
+MESA Core 0.9.5’te çizge deposu yoktur. MESA’nın kendi ölçümlerinde çizge araması, diğer kanalların kaçırdığı hiçbir doğru pasajı bulmadı (benchmark v1 dev); kapatılması benchmark v2 dev bölümünde hiçbir soruyu kaybettirmedi; en üst sonuçlardaki kayıtlı hukuki atıfları izlemek ise Hit@1’i düşürdü. Bu yüzden Core varlıkları, bilgi kayıtlarını ve atıfları SQLite’ta tutar ve BM25 ile isteğe bağlı vektörlerle arar. [MESA çizge deposunu neden kaldırdı](/research/why-mesa-removed-its-graph-store/) yazısını okuyun. Kendi çizgenizi kurarsanız bu dersteki fikirler geçerliliğini korur.
 
 ## Maliyeti sınırlayın, eksikliği tanıyın
 
@@ -72,5 +76,5 @@ GraphRAG, çizge bilgisinden yararlanan ve aramayla desteklenen yaklaşımların
 
 1. [Edge et al. · From Local to Global: A Graph RAG Approach](https://arxiv.org/abs/2404.16130)
 2. [W3C · PROV Overview](https://www.w3.org/TR/prov-overview/)
-3. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
 

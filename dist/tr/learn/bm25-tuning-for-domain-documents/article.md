@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["BM25", "IDF", "tokenization", "FTS5", "lexical", "sözcüksel", "Türkçe", "tokenizasyon"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-18"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "BM25: bir sözcük ne zaman daha önemli olur? — MESA"
@@ -70,6 +70,30 @@ IDF ve sözcük sıklığı aynıysa kısa pasaj daha yüksek katkı alır. Bu h
 Türkçe sorgu ve belgelerde noktalı/noktasız I, ekler ve düzeltme işaretleriyle oluşan farkları inceleyin. Küçük harfe dönüştürmek veya işaretleri kaldırmak bazı eşleşmeleri kolaylaştırırken anlamlı ayrımları da silebilir. Özgün metni koruyun; hem kimlik kodlarının tam eşleşmesini hem doğal dilde ilgili sonuçları bulma oranını test edin. Arama motorunun sorgu dili ve token üretimi, arayüzdeki metin normalizasyonundan ayrıdır.
 
 SQLite FTS5 sabit `k1=1.2` ve `b=0.75` kullanır; `bm25(table, ...)` argümanları bu parametreler değil sütun ağırlıklarıdır. Daha iyi eşleşmeye daha küçük değer döndürdüğü için artan sıralama bilinçlidir. Başka motordan azalan-skor kuralı kopyalamayın. Hesap örneğimiz belirli bir IDF çeşidi kullanır; FTS5’in tam tanımı kendi referansındadır. [FTS5](https://www.sqlite.org/fts5.html).
+
+## Türkçe BM25 için neden daha zordur?
+
+BM25 tam token eşleştirir; Türkçe ise köklere ek getirir. `sözleşme`, `sözleşmesinin` ve `sözleşmelerinde` üç ayrı dizin terimidir. 141 belgelik hukuk derlemimizde `karar` öneki 87, `yonet` 55, `sozle` 44, `madde` 39 farklı biçimi kapsıyor.
+
+- Ekler tek kavramı birçok terime böler; terim istatistikleri de bölünür.
+- Ortak önek ilgisiz sözcükleri birleştirebilir. `sözle*`, `sözleşmesinin` biçimini bulur; `sözlerini` sözcüğünü de bulur.
+- Varsayılan küçük harf dönüşümü `I` harfini `i` yapar; Türkçede ise `ı` olmalıdır. SQLite’ın `unicode61` tokenizer’ı `YARGITAY` sözcüğünü `yargitay`, `Yargıtay` sözcüğünü `yargıtay` olarak saklar.
+- Sayılar birebir eşleşmelidir. `6098` gibi bir kanun numarası önekle eşleşmemelidir.
+
+## MESA’da ne ölçtük?
+
+MESA 0.9.4, 6 veya daha uzun olan ve rakam içermeyen sorgu token’larının ilk beş karakterini arar. Bunun ne kadar önemli olduğunu 112 yanıtlanabilir Türkçe hukuk dev sorusunda ölçtük.
+
+| Uygun sorgu terimlerinin doğru kanıtla eşleşmesi | Sayı | Pay |
+| --- | --- | --- |
+| Birebir bulundu | 290 | %33,2 |
+| Yalnızca 5 karakterlik önekle bulundu | 252 | %28,9 |
+| Bulunamadı | 331 | %37,9 |
+| Toplam | 873 | %100 |
+
+Bu sayılar büyük bir fırsat varmış gibi gösteriyor; ama ölçülen kazanç küçüktü. Önek eşleştirme Hit@5’i 50/112’den 52/112’ye taşıdı: dört soru ilk 5’e girdi, iki soru çıktı (0.9.4 öncesi derleme, benchmark v2 dev, Tier M, modeller kapalı, ortak depo).
+
+Yöntem, örnekler ve sınırlar için [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısını okuyun. Daha büyük kazançlar [birleştirme ağırlıklarını değiştirmekten](/research/what-improved-search-in-0-9-4/) geldi.
 
 ## İlk teşhis adımını seçin
 

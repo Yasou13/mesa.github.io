@@ -56,8 +56,8 @@
       {
         "id": "T1m",
         "label": {
-          "en": "MiniLM embeddings (T1m)",
-          "tr": "MiniLM gömme modeli (T1m)"
+          "en": "Magibu embeddings (T1m)",
+          "tr": "Magibu gömme modeli (T1m)"
         },
         "gpu": "Colab A100",
         "source": "20261107T141454Z",

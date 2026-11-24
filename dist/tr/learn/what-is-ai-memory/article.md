@@ -3,25 +3,31 @@ id: "what-is-ai-memory"
 slug: "what-is-ai-memory"
 type: "learn"
 language: "tr"
-title: "Yapay zekâ hafızası: sohbet bitince ne kalır?"
+title: "Yapay zekâ ajanı hafızası nedir?"
 subtitle: ""
-summary: "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
-shortAnswer: "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
+summary: "Yapay zekâ ajanı hafızası, yararlı bilgiyi model dışında saklar ve gerektiğinde geri getirir. Temel türleri öğrenin ve ilk hafıza politikanızı tasarlayın."
+shortAnswer: "Yapay zekâ ajanı hafızası, seçilen bilgileri dil modelinin dışında saklayan ve sonraki isteklerde geri getiren sistemdir. Ajanın önceki bilgi, karar ve deneyimleri oturumlar arasında kullanmasını sağlar. Model yeniden eğitilmez; uygulama ilgili hafızayı bağlam olarak verir."
 category: "Foundations"
 tags: ["memory", "context window", "session", "kalıcı hafıza", "bağlam", "oturum"]
 author: "MESA contributors"
 publishedAt: "2026-10-01"
-updatedAt: "2026-10-28"
-readingMinutes: 5
+updatedAt: "2026-11-23"
+readingMinutes: 6
 status: "published"
 indexable: true
-seoTitle: "Yapay zekâ hafızası: sohbet bitince ne kalır? — MESA"
-seoDescription: "Modelin öğrendiklerini, o anki konuşmayı ve kalıcı kayıtları birbirinden ayırın. Veritabanı seçmeden önce neyi, nasıl saklayacağınıza karar verin."
+seoTitle: "Yapay Zekâ Hafızası Nedir? Ajan Hafızası Rehberi — MESA"
+seoDescription: "Yapay zekâ ajanı hafızası, bilgiyi model dışında saklayıp gerektiğinde geri getirir. Çalışma, olay, anlamsal ve yöntem hafızasını ve tasarımını öğrenin."
 lessonOrder: 1
 learningStage: "foundation"
 prerequisites: []
 learningObjectives: ["Bağlamı kalıcı depodan ayırmak", "Neyi saklayıp ne zaman sileceğini belirlemek", "Bir bilgiyi gözlemden sonraki kullanıma izlemek"]
 ---
+
+## Yapay zekâ hafızası nedir?
+
+Yapay zekâ hafızası, bir uygulamanın o anki isteğin ötesindeki bilgileri kullanmasını sağlayan mekanizmaların bütünüdür. Bir yapay zekâ ajanında bu genellikle gözlem, bilgi, karar veya talimatları saklamak ve sonraki bir görevde ilgili olanları geri getirmek demektir.
+
+Önemli nokta şudur: Dil modeli her konuşmadan kendiliğinden öğrenmez. Hafıza, uygulamanın neyi saklayacağını seçmesi, onu yeniden bulması ve modelin bağlamına eklemesiyle çalışır.
 
 ## “Hatırlamanın” üç ayrı anlamı
 
@@ -36,6 +42,17 @@ Büyük dil modeli (LLM), girdiden sonra hangi token’ların geleceğini tahmin
 | Kalıcı hafıza | Model dışındaki kayıtlar | Yetkili yazma/güncelleme/silme |
 
 Veritabanına bir satır eklemek modeli yeniden eğitmez. Uygulama o satırı bulup bağlama eklerse model, yalnızca ilgili istekte bu bilgiden yararlanabilir. Konuşma geçmişinde duran bir cümlenin de geçmiş kısaltıldığında veya yeni oturum açıldığında erişilebilir kalacağı garanti değildir. Bunlar, farklı biçimlerde hata verebilen ayrı mekanizmalardır.
+
+## Yapay zekâ ajanı hafıza türleri
+
+[CoALA çerçevesi](https://arxiv.org/abs/2309.02427) ajan hafızasını dört kullanışlı kategoriyle açıklar. Gerçek ürünler bunları birleştirebilir veya farklı adlarla kullanabilir.
+
+| Tür | İçeriği | Örnek |
+| --- | --- | --- |
+| Çalışma hafızası | O anki karar için etkin bilgi | Güncel görev ve son araç sonucu |
+| Olay (epizodik) hafızası | Geçmiş deneyim ve davranışlar | Geçen haftaki başarısız dağıtım |
+| Anlamsal hafıza | Dünya veya ajan hakkındaki bilgiler | Okuma salonu 09.00’da açılır |
+| Yöntem (prosedürel) hafızası | Davranışı yönlendiren kural ve beceriler | Sürümden önce testleri çalıştır |
 
 ## Kullanışlı kayıt bir cümleden fazlasıdır
 
@@ -72,6 +89,24 @@ Neyin saklanacağına açıkça karar verin. Her mesajı kaydetmek; özel bilgil
 
 Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka bir yetkili oturum açın ve aynı soruyu sorun. Ardından erişimi kaldırıp veya kaynağı değiştirip testi tekrarlayın. Yanıtla birlikte kaynak kimliğini de kontrol edin. Uzun bir bağlam penceresi bu testin yerini tutmaz. Liu ve arkadaşlarının belirli uzun bağlam görevlerinde bulduğu konum etkisi, her model için değişmez bir sınır değil; kendi sisteminizi ölçmeniz için bir gerekçedir. [Araştırma](https://arxiv.org/abs/2307.03172)
 
+## Yapay zekâ hafızası, bağlam penceresi ve RAG farkı
+
+| Kavram | Temel soru | Ömrü |
+| --- | --- | --- |
+| Bağlam penceresi | Model bu istekte neyi görebilir? | Tek istek |
+| RAG | Bu yanıtı hangi kaynak metin desteklemeli? | Bilgi tabanına bağlıdır |
+| Ajan hafızası | Ajan neyi saklayıp yeniden kullanmalı? | Değiştirilene veya silinene kadar görev ve oturumlar boyunca |
+
+RAG, hafızayı geri getirmenin bir yolu olabilir; ancak hafıza ayrıca yazma, güncelleme, kapsam ve silme kuralları ister. [RAG ve hafıza](/learn/rag-vs-ai-memory/) dersiyle devam edin.
+
+## Yapay zekâ hafızasında sık yapılan hatalar
+
+- Her mesajı saklayıp gürültü, özel veri veya eski talimatları geri getirmek.
+- Yalnızca özet tutup özgün kanıtı kaybetmek.
+- Getirilen bir belgedeki talimatı güvenilir kullanıcı tercihi saymak.
+- Bir kaydı düzeltme, geçersiz kılma veya silme yolu bırakmamak.
+- Kaydın yazıldığını ölçüp sonraki oturumun onu kullanabildiğini ölçmemek.
+
 ## İlk hafıza politikanızı tasarlayın
 
 > [!EXERCISE]
@@ -80,9 +115,28 @@ Kalıcılığı gözlenebilir davranışla sınayın: Oturumu kapatın, başka b
 >
 > **Açıklama:** Kaynağıyla bağlantılı iddiayı güvenilir biçimde doğrulayamaz veya revize edemezsiniz; erişim sınırını da uygulayamazsınız. Arama başarısı kaynak izi ve yetkilendirmeyi çözmez. Arama kalitesini ölçmeden önce kaynak/revizyon ve kapsam alanlarını ekleyin.
 
+> [!NOTE]
+> **Örnek: kodlama ajanları için hafıza**
+> [MESA Lore](/lore/) bu fikri kodlama oturumlarına uygular. Geçmiş Claude Code ve Codex çalışmalarını kaynaklarıyla birlikte yerel ve aranabilir bir kayıtta tutar.
+
+## Yapay zekâ ajanı hafızası hakkında sorular
+
+**Yapay zekâ hafızası modeli yeniden eğitir mi?**
+: Hayır. Ajan hafızasının çoğu model dışında saklanır ve gerektiğinde bağlama eklenir.
+
+**Daha büyük bağlam penceresi hafıza demek mi?**
+: Hayır. Tek istekte daha fazla metin taşır, ama neyin kalıcı olacağına, neyin güncel olduğuna veya kimin erişebileceğine karar vermez.
+
+**Ajan hafızası için vektör veritabanı şart mı?**
+: Hayır. Göreve göre dosyalar, SQL veya sözcük aramasıyla başlanabilir. Anlam tabanlı aramaya ihtiyaç ölçtüğünüzde vektör ekleyin.
+
+**Bir yapay zekâ ajanı neyi hatırlamalı?**
+: Sonradan işe yarayacak bilgileri kaynağı, kapsamı ve zamanıyla saklayın. Gizli bilgileri, geçici gürültüyü ve izlenemeyen iddiaları saklamayın.
+
 ## Kaynaklar ve ileri okuma
 
 1. [Liu et al. (2023) · Lost in the Middle](https://arxiv.org/abs/2307.03172)
 2. [Lewis et al. (2020) · Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
-3. [MESA Core v0.9.2 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/8cd2cfe1df5356e73b3bef83ae640850fd54c798/docs/architecture-v4.md)
+3. [MESA Core v0.9.5 · Architecture and limitations](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/architecture-v4.md)
+4. [Sumers et al. (TMLR 2024) · Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 

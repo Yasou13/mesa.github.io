@@ -11,8 +11,8 @@ category: "Memory & Retrieval"
 tags: ["BM25", "IDF", "tokenization", "FTS5", "lexical", "sözcüksel", "Türkçe", "tokenizasyon"]
 author: "MESA contributors"
 publishedAt: "2026-10-17"
-updatedAt: "2026-10-18"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "BM25: why a rare word can beat repeated words — MESA Learn"
@@ -70,6 +70,30 @@ With the same IDF and term frequency, the shorter passage receives the larger co
 For Turkish, inspect dotted/dotless I, inflections and diacritics using real query/document pairs. Lowercasing and accent removal can help some matches while collapsing meaningful distinctions. Preserve original text and test both identifier precision and ordinary-language recall. Search syntax and tokenizer behavior are separate from your UI’s text normalization.
 
 SQLite FTS5 uses fixed `k1=1.2` and `b=0.75`; its `bm25(table, ...)` arguments are column weights, not these parameters. It also returns smaller values for better matches, so ascending order is intentional. Do not copy a descending-score rule from another engine. Our worked formula uses an explicit IDF variant; FTS5’s exact scoring definition is in its own reference. [FTS5](https://www.sqlite.org/fts5.html).
+
+## Why is Turkish harder for BM25?
+
+BM25 matches whole tokens, and Turkish adds suffixes to stems. `sözleşme`, `sözleşmesinin` and `sözleşmelerinde` are three index terms. In our 141-document legal corpus, the prefix `karar` covers 87 distinct forms, `yonet` 55, `sozle` 44 and `madde` 39.
+
+- Suffixes split one concept across many terms, which also splits its term statistics.
+- A shared prefix can join unrelated words. `sözle*` finds `sözleşmesinin`, and it also finds `sözlerini`.
+- Default lowercasing maps `I` to `i`, while Turkish maps it to `ı`. SQLite’s `unicode61` tokenizer stores `YARGITAY` as `yargitay` and `Yargıtay` as `yargıtay`.
+- Numbers need exact matching. A law number such as `6098` must not match by prefix.
+
+## What we measured in MESA
+
+MESA 0.9.4 searches the first five characters of query tokens with 6 or more characters and no digits. We tested how often that matters on 112 answerable Turkish legal dev questions.
+
+| Eligible query terms against gold evidence | Count | Share |
+| --- | --- | --- |
+| Found exactly | 290 | 33.2% |
+| Found only through the 5-character prefix | 252 | 28.9% |
+| Not found | 331 | 37.9% |
+| Total | 873 | 100% |
+
+Those numbers suggest a large opportunity, but the measured gain was small. Prefix matching moved Hit@5 from 50/112 to 52/112: four questions entered the top 5 and two left it (pre-release 0.9.4 build, benchmark v2 dev, Tier M, models off, shared store).
+
+Read the method, examples and limits in [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/). Larger gains came from [changing fusion weights](/research/what-improved-search-in-0-9-4/).
 
 ## Choose the first debugging step
 

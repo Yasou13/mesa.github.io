@@ -133,6 +133,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/status/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/changelog/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/changelog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/changelog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/changelog/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/changelog/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/changelog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/changelog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/changelog/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/lore/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/lore/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/lore/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/lore/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/lore/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/lore/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/lore/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/lore/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/about/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/about/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/about/" />
@@ -217,16 +241,76 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/research/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/account/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/" />
+    <loc>https://mesamemory.dev/account/sign-in/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/sign-in/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/sign-in/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/sign-in/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/tr/account/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/" />
+    <loc>https://mesamemory.dev/tr/account/sign-in/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/sign-in/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/sign-in/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/sign-in/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/account/sign-up/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/sign-up/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/sign-up/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/sign-up/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/account/sign-up/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/account/sign-up/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/account/sign-up/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/account/sign-up/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/legal/kvkk/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/kvkk/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/kvkk/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/kvkk/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/legal/kvkk/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/kvkk/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/kvkk/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/kvkk/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/legal/cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/cookies/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/legal/cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/cookies/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/legal/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/terms/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/legal/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/terms/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/legal/commercial-messages/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/commercial-messages/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/commercial-messages/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/commercial-messages/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/legal/commercial-messages/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/legal/commercial-messages/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/legal/commercial-messages/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/legal/commercial-messages/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/privacy/</loc>
@@ -517,16 +601,220 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/keyword-vs-semantic-search/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/guides/verify-ai-yargitay-decision/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
+    <loc>https://mesamemory.dev/research/turkish-legal-embedding-comparison/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-embedding-comparison/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-embedding-comparison/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-embedding-comparison/" />
   </url>
   <url>
-    <loc>https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/verify-ai-yargitay-decision/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/verify-ai-yargitay-decision/" />
+    <loc>https://mesamemory.dev/tr/research/turkish-legal-embedding-comparison/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-embedding-comparison/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-embedding-comparison/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-embedding-comparison/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/why-two-search-runs-differed/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/why-two-search-runs-differed/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/why-two-search-runs-differed/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/why-two-search-runs-differed/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/why-two-search-runs-differed/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/why-two-search-runs-differed/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/why-two-search-runs-differed/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/why-two-search-runs-differed/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/what-improved-search-in-0-9-4/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/what-improved-search-in-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/what-improved-search-in-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/what-improved-search-in-0-9-4/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/what-improved-search-in-0-9-4/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/what-improved-search-in-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/what-improved-search-in-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/what-improved-search-in-0-9-4/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/turkish-legal-benchmark-v2/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-benchmark-v2/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-benchmark-v2/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-benchmark-v2/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-benchmark-v2/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/deleting-code-mesa-0-9-4/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/deleting-code-mesa-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/deleting-code-mesa-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/deleting-code-mesa-0-9-4/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/deleting-code-mesa-0-9-4/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/deleting-code-mesa-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/deleting-code-mesa-0-9-4/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/deleting-code-mesa-0-9-4/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/why-mesa-removed-its-graph-store/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/why-mesa-removed-its-graph-store/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/why-mesa-removed-its-graph-store/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/why-mesa-removed-its-graph-store/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/why-mesa-removed-its-graph-store/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/why-mesa-removed-its-graph-store/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/turkish-legal-citation-extraction/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-citation-extraction/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-citation-extraction/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-citation-extraction/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/turkish-legal-citation-extraction/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-citation-extraction/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-citation-extraction/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-citation-extraction/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/research/bm25-turkish-prefix-matching/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/bm25-turkish-prefix-matching/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/bm25-turkish-prefix-matching/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/bm25-turkish-prefix-matching/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/bm25-turkish-prefix-matching/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/bm25-turkish-prefix-matching/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/guides/claude-code-persistent-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/claude-code-persistent-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/claude-code-persistent-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/claude-code-persistent-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/guides/claude-code-persistent-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/claude-code-persistent-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/claude-code-persistent-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/claude-code-persistent-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/guides/codex-cli-mcp-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/codex-cli-mcp-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/codex-cli-mcp-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/codex-cli-mcp-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/guides/codex-cli-mcp-memory/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/codex-cli-mcp-memory/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/codex-cli-mcp-memory/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/codex-cli-mcp-memory/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/guides/source-backed-document-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/source-backed-document-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/source-backed-document-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/source-backed-document-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/guides/source-backed-document-search/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/source-backed-document-search/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/source-backed-document-search/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/source-backed-document-search/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/guides/measure-search-quality/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/measure-search-quality/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/measure-search-quality/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/measure-search-quality/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/guides/measure-search-quality/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/guides/measure-search-quality/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/guides/measure-search-quality/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/guides/measure-search-quality/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/law/guides/yapay-zeka-yargitay-karari-dogrulama/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/yapay-zeka-yargitay-karari-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/yapay-zeka-yargitay-karari-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/yapay-zeka-yargitay-karari-dogrulama/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/law/guides/yapay-zeka-yargitay-karari-dogrulama/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/yapay-zeka-yargitay-karari-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/yapay-zeka-yargitay-karari-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/yapay-zeka-yargitay-karari-dogrulama/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/law/guides/uyap-emsal-karar-dogrulama/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/uyap-emsal-karar-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/uyap-emsal-karar-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/uyap-emsal-karar-dogrulama/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/law/guides/uyap-emsal-karar-dogrulama/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/uyap-emsal-karar-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/uyap-emsal-karar-dogrulama/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/uyap-emsal-karar-dogrulama/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/law/guides/yapay-zeka-hukuk-atif-hatalari/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/yapay-zeka-hukuk-atif-hatalari/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/yapay-zeka-hukuk-atif-hatalari/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/yapay-zeka-hukuk-atif-hatalari/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/law/guides/yapay-zeka-hukuk-atif-hatalari/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/yapay-zeka-hukuk-atif-hatalari/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/yapay-zeka-hukuk-atif-hatalari/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/yapay-zeka-hukuk-atif-hatalari/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/law/guides/yargitay-karar-kunyesi-okuma/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/yargitay-karar-kunyesi-okuma/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/yargitay-karar-kunyesi-okuma/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/yargitay-karar-kunyesi-okuma/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/law/guides/yargitay-karar-kunyesi-okuma/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/yargitay-karar-kunyesi-okuma/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/yargitay-karar-kunyesi-okuma/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/yargitay-karar-kunyesi-okuma/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/law/guides/kanun-maddesi-yururluk-tarihi/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/kanun-maddesi-yururluk-tarihi/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/kanun-maddesi-yururluk-tarihi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/kanun-maddesi-yururluk-tarihi/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/law/guides/kanun-maddesi-yururluk-tarihi/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/kanun-maddesi-yururluk-tarihi/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/kanun-maddesi-yururluk-tarihi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/kanun-maddesi-yururluk-tarihi/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/law/guides/kanun-degisiklikleri-takip/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/kanun-degisiklikleri-takip/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/kanun-degisiklikleri-takip/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/kanun-degisiklikleri-takip/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/law/guides/kanun-degisiklikleri-takip/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/law/guides/kanun-degisiklikleri-takip/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/law/guides/kanun-degisiklikleri-takip/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/law/guides/kanun-degisiklikleri-takip/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/glossary/provenance/</loc>
@@ -659,6 +947,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/release-notes/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/release-notes/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/release-notes/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/core/release-notes-0.9.5/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/release-notes-0.9.5/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/release-notes-0.9.5/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/release-notes-0.9.5/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/core/release-notes-0.9.5/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/core/release-notes-0.9.5/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/core/release-notes-0.9.5/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/release-notes-0.9.5/" />
   </url>
   <url>
     <loc>https://mesamemory.dev/docs/core/documentation-map/</loc>
@@ -985,6 +1285,102 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/core/audit/" />
   </url>
   <url>
+    <loc>https://mesamemory.dev/docs/lore/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/installation/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/installation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/installation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/installation/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/installation/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/installation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/installation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/installation/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/agents/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/agents/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/agents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/agents/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/agents/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/agents/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/agents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/agents/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/mcp-tools/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/mcp-tools/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/mcp-tools/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/mcp-tools/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/mcp-tools/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/mcp-tools/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/mcp-tools/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/mcp-tools/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/cli/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/cli/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/cli/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/cli/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/cli/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/cli/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/cli/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/cli/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/notes-and-handoffs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/notes-and-handoffs/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/notes-and-handoffs/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/notes-and-handoffs/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/notes-and-handoffs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/notes-and-handoffs/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/notes-and-handoffs/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/notes-and-handoffs/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/data-and-privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/data-and-privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/data-and-privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/data-and-privacy/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/data-and-privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/data-and-privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/data-and-privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/data-and-privacy/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/docs/lore/troubleshooting/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/troubleshooting/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/troubleshooting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/troubleshooting/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/docs/lore/troubleshooting/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/lore/troubleshooting/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/lore/troubleshooting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/docs/lore/troubleshooting/" />
+  </url>
+  <url>
     <loc>https://mesamemory.dev/docs/data/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/docs/data/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/docs/data/" />
@@ -1271,5 +1667,17 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/benchmark/0.9.2/" />
     <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/benchmark/0.9.2/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/0.9.2/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/benchmark/0.9.3/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/benchmark/0.9.3/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/benchmark/0.9.3/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/0.9.3/" />
+  </url>
+  <url>
+    <loc>https://mesamemory.dev/tr/benchmark/0.9.3/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mesamemory.dev/benchmark/0.9.3/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/benchmark/0.9.3/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/benchmark/0.9.3/" />
   </url>
 </urlset>

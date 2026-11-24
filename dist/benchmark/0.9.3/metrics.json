@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "suite": {
+    "documents": 141,
+    "dev": 101,
+    "test": 145,
+    "answerable": 121,
+    "questionTypes": {
+      "exact": 36,
+      "paraphrase": 39,
+      "cross_document": 17,
+      "number_date_docket": 29
+    },
+    "method": {
+      "en": "Tier M contains 141 Turkish laws, regulations and court decisions. A language model generated questions from the corpus. A separate model and rule checks reviewed them. Configurations were chosen on 101 development questions before evaluation on 145 held-out questions. Retrieval scores use the 121 answerable questions.",
+      "tr": "Tier M derlemi 141 Türkçe kanun, yönetmelik ve mahkeme kararı içerir. Bir dil modeli derlemden sorular üretti. Ayrı bir model ve kural kontrolleri soruları denetledi. Ayarlar 101 geliştirme sorusuyla seçildi, ardından ayrılmış 145 soruyla test edildi. Arama puanları cevaplanabilir 121 soru üzerinden hesaplandı."
+    },
+    "limits": {
+      "en": "The test measures whether MESA retrieves the correct passage or document. The 24 questions with no answer in the corpus are outside the retrieval scores. The corpus is small and its decisions come from the Court of Cassation. The questions are synthetic.",
+      "tr": "Test, MESA’nın doğru pasajı veya belgeyi bulup bulmadığını ölçer. Derlemde yanıtı bulunmayan 24 soru arama puanlarına dahil değildir. Derlem küçüktür ve kararlar Yargıtay kaynaklıdır. Sorular yapay olarak üretilmiştir."
+    }
+  },
+  "release": {
+    "version": "0.9.3",
+    "date": "2026-11-18",
+    "suite": "tier-m-v1-test",
+    "featured": "T2",
+    "configs": [
+      {
+        "id": "T0",
+        "label": {
+          "en": "Models off (T0)",
+          "tr": "Modelsiz (T0)"
+        },
+        "gpu": "Colab A100-SXM4-80GB",
+        "source": "20261117T230132Z_v093",
+        "profile": "off",
+        "experiment": false,
+        "metrics": {
+          "mrr": "0.2968",
+          "hit1": "0.2231",
+          "hit5": "0.3802",
+          "hit10": "0.4793",
+          "doc1": "0.4380",
+          "doc5": "0.5785",
+          "p50": "0.4546",
+          "p95": "0.9419"
+        },
+        "byType": {
+          "exact": "0.6944",
+          "paraphrase": "0.1795",
+          "cross_document": "0.3529",
+          "number_date_docket": "0.2759"
+        }
+      },
+      {
+        "id": "T1b",
+        "label": {
+          "en": "BGE-M3 embeddings (T1b)",
+          "tr": "BGE-M3 gömme modeli (T1b)"
+        },
+        "gpu": "Colab A100-SXM4-80GB",
+        "source": "20261117T230132Z_v093",
+        "profile": "embedding",
+        "experiment": false,
+        "metrics": {
+          "mrr": "0.5223",
+          "hit1": "0.3884",
+          "hit5": "0.6777",
+          "hit10": "0.7769",
+          "doc1": "0.5785",
+          "doc5": "0.7769",
+          "p50": "1.3715",
+          "p95": "2.3561"
+        },
+        "byType": {
+          "exact": "0.8889",
+          "paraphrase": "0.6923",
+          "cross_document": "0.5294",
+          "number_date_docket": "0.4828"
+        }
+      },
+      {
+        "id": "T2",
+        "label": {
+          "en": "BGE-M3 + built-in BGE reranker (T2)",
+          "tr": "BGE-M3 + yerleşik BGE yeniden sıralayıcı (T2)"
+        },
+        "gpu": "Colab A100-SXM4-80GB",
+        "source": "20261117T230132Z_v093",
+        "profile": "reranker",
+        "experiment": false,
+        "metrics": {
+          "mrr": "0.6560",
+          "hit1": "0.5785",
+          "hit5": "0.7438",
+          "hit10": "0.8099",
+          "doc1": "0.6942",
+          "doc5": "0.7934",
+          "p50": "2.0163",
+          "p95": "3.0000"
+        },
+        "byType": {
+          "exact": "0.9722",
+          "paraphrase": "0.7179",
+          "cross_document": "0.7647",
+          "number_date_docket": "0.4828"
+        }
+      }
+    ],
+    "summary": {
+      "en": "Same retrieval quality, faster ingest: with the built-in reranker, 0.9.2 and 0.9.3 both reach Hit@5 74.4% and MRR 0.656 at the displayed precision.",
+      "tr": "Aynı arama kalitesi, daha hızlı içe alma: yerleşik yeniden sıralayıcıyla 0.9.2 ve 0.9.3, gösterilen hassasiyette Hit@5 %74,4 ve MRR 0,656 değerlerine ulaşıyor."
+    },
+    "notes": [
+      {
+        "en": "All rows ran on a Colab A100-SXM4-80GB. T2 reused the T1b store, so it has no separate ingestion measurement.",
+        "tr": "Tüm yapılandırmalar Colab A100-SXM4-80GB üzerinde çalıştırıldı. T2, T1b deposunu kullandığı için ayrı bir içe alma ölçümü yoktur."
+      }
+    ],
+    "ingest": [
+      {
+        "config": "T0",
+        "minutes": "7.431166666666667",
+        "chunks": 5041
+      },
+      {
+        "config": "T1b",
+        "minutes": "12.047166666666667",
+        "chunks": 5041
+      }
+    ],
+    "citations": {
+      "namedCount": 50,
+      "naturalCount": 40,
+      "rows": [
+        {
+          "config": "T0",
+          "named": "1.0000",
+          "natural": "0.9750"
+        },
+        {
+          "config": "T1b",
+          "named": "1.0000",
+          "natural": "0.9750"
+        },
+        {
+          "config": "T2",
+          "named": "1.0000",
+          "natural": "1.0000"
+        }
+      ]
+    }
+  }
+}

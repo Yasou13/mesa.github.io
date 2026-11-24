@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?</title>
+  <meta name="description" content="MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/research/turkish-legal-benchmark-v2/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/research/turkish-legal-benchmark-v2/">
+  <meta property="og:title" content="Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?">
+  <meta property="og:description" content="MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Kanıtıyla birlikte hafıza.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?">
+  <meta name="twitter:description" content="MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image-tr.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin."},{"@type":"WebPage","@id":"https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/#webpage","url":"https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/","name":"Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?","description":"MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.","inLanguage":"tr","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA, büyük belge koleksiyonlarını yapay zekâ uygulamaları için kalıcı hafızaya dönüştürür ve modelinize doğru bağlamı verir. Adım adım rehberle yerelde deneyin.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana sayfa","item":"https://mesamemory.dev/tr/"},{"@type":"ListItem","position":2,"name":"Kaynaklar","item":"https://mesamemory.dev/tr/resources/"},{"@type":"ListItem","position":3,"name":"Araştırma","item":"https://mesamemory.dev/tr/research/"},{"@type":"ListItem","position":4,"name":"Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?","item":"https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/"}]},{"@type":"Article","headline":"Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?","description":"MESA’nın 246 hukuk sorusunu nasıl yeniden kurduğunu, sonuçları nasıl puanladığını ve test bölümünün neden bağımsız sayılmadığını okuyun.","datePublished":"2026-11-23","dateModified":"2026-11-23","inLanguage":"tr","mainEntityOfPage":"https://mesamemory.dev/tr/research/turkish-legal-benchmark-v2/","author":{"@type":"Organization","name":"MESA’ya katkıda bulunanlar"},"publisher":{"@type":"Organization","name":"MESA","url":"https://mesamemory.dev/"},"articleSection":"Araştırma","keywords":"benchmark, evaluation, turkish, legal-search"}]}</script>
+  <link rel="icon" href="../../../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../../../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../../../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../../../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../../../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../../../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../../../learn.css?v=19f1fc8d0d08">
+
+  <script src="../../../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--reading" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+
+    <a class="skip-link" href="#main-content">İçeriğe geç</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../research/turkish-legal-benchmark-v2/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../research/turkish-legal-benchmark-v2/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Ana menü">
+          <div class="nav-menu"><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Ürün</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Ürün</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../../how-it-works/">Nasıl çalışır</a><a class="nav-link" href="../../architecture/">Mimari</a><a class="nav-link" href="../../ecosystem/">Ekosistem</a><a class="nav-link" href="../../#use-cases">Kullanım alanları</a><a class="nav-link" href="../../law/">MESA Law</a><a class="nav-link" href="../../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Geliştiriciler</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Geliştiriciler</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../../get-started/">Başlayın</a><a class="nav-link" href="../../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../../docs/core/examples/">Python SDK</a><a class="nav-link" href="../../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../../docs/mcp/">MCP</a><a class="nav-link" href="../../docs/core/security/">Güvenlik</a></div>
+          </div><div class="nav-group is-current" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Öğrenin</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Öğrenin</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../../learn/">Dersler</a><a class="nav-link" href="../../guides/">Rehberler</a><a class="nav-link" href="../../glossary/">Sözlük</a><a class="nav-link" href="../../faq/">SSS</a><a class="nav-link" href="../../changelog/">Değişiklik günlüğü</a><a class="nav-link" href="../../resources/">Tüm kaynaklar</a></div>
+          </div><a class="nav-item nav-item--plain" href="../../docs/">Dokümanlar</a><a class="nav-item nav-item--plain" href="../../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../../status/">Durum</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Sitede ara (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Ara</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Dil seçimi">
+    <a lang="en" hreflang="en" href="../../../research/turkish-legal-benchmark-v2/">EN<span class="sr-only"> · İngilizce</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" class="active" aria-current="page" href="../../research/turkish-legal-benchmark-v2/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../../account/sign-in/">Giriş yap</a>
+              <a class="nav-cta" href="../../account/sign-up/">Kayıt ol</a>
+              <a class="nav-cta nav-account-link" href="../../account/" hidden>Hesabım</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div>
+      <nav class="breadcrumbs" aria-label="Sayfa yolu"><ol><li><a href="../../">Ana sayfa</a><span aria-hidden="true">/</span></li><li><a href="../../resources/">Kaynaklar</a><span aria-hidden="true">/</span></li><li><a href="../../research/">Araştırma</a><span aria-hidden="true">/</span></li><li><span aria-current="page">Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?</span></li></ol></nav>
+      <article class="knowledge-article">
+        <header class="article-header">
+          <p class="eyebrow">Araştırma · Arama değerlendirmesi</p>
+          <h1>Türkçe Hukuk Arama Benchmark’ı Nasıl Kurulur?</h1>
+          <p class="article-subtitle">Neyi yeniden kurduk, nasıl puanlıyoruz, nerede eksik kalıyor?</p>
+          <p class="article-summary">Benchmark v2, eski 246 soruyu birebir kanıtlı 128 dev ve 173 test sorusuna dönüştürdü. Test bölümü altı kez okunduğu için ana sonuçlarımız dev bölümünden gelir.</p>
+          <dl class="article-byline">
+            <div>
+              <dt>Yayın</dt>
+              <dd><time datetime="2026-11-23">23 Kas 2026</time></dd>
+            </div>
+            <div>
+              <dt>Güncelleme</dt>
+              <dd><time datetime="2026-11-23">23 Kas 2026</time></dd>
+            </div>
+            <div>
+              <dt>Yazar</dt>
+              <dd>MESA’ya katkıda bulunanlar</dd>
+            </div>
+            <div>
+              <dt>Okuma süresi</dt>
+              <dd>9 dakika</dd>
+            </div>
+          </dl>
+        </header>
+        <div class="article-layout">
+          
+    <nav class="article-toc" aria-label="Bu sayfada">
+      <strong>Bu sayfada</strong>
+      <ol>
+        <li><a href="#short-answer">Benchmark’ı nasıl kurduk?</a></li><li><a href="#why-rebuild">İlk benchmark neden yetersiz kaldı?</a></li><li><a href="#what-changed">v1’den v2’ye ne değişti?</a></li><li><a href="#question-rules">Bir soru hangi koşullarda geçerli sayılır?</a></li><li><a href="#open-questions">Açık uçlu soru nedir?</a></li><li><a href="#scoring">Sonuçlar nasıl puanlanıyor?</a></li><li><a href="#protocol">Bir çalıştırma nasıl yapılıyor?</a></li><li><a href="#test-reads">Test bölümü kaç kez okundu?</a></li><li><a href="#limits">Bu benchmark neyi gösteremez?</a></li><li><a href="#sources">Kaynaklar</a></li>
+      </ol>
+    </nav>
+          <div class="article-body">
+            
+            
+    <section class="research-record" aria-labelledby="research-record-title">
+      <h2 id="research-record-title">Araştırma kaydı</h2>
+      <dl>
+        <div>
+          <dt>Durum</dt>
+          <dd>Yöntem kaydı · ana sonuçlar dev bölümünden</dd>
+        </div>
+        <div>
+          <dt>MESA sürümü</dt>
+          <dd>Benchmark v2, değerlendirici v2.1; MESA 0.9.3 ve 0.9.4 ile kullanıldı</dd>
+        </div>
+        <div>
+          <dt>Veri kümesi</dt>
+          <dd>182 Türkçe hukuk belgesi, Tier M 141; 128 dev ve 173 test sorusu</dd>
+        </div>
+        <div>
+          <dt>Modeller</dt>
+          <dd>T0 modeller kapalı; T1b bge-m3; T2 bge-m3 + bge-reranker-v2-m3</dd>
+        </div>
+        <div>
+          <dt>Metrikler</dt>
+          <dd>Hit@k · MRR · document Hit@k · search latency</dd>
+        </div>
+        
+      </dl>
+      <div class="research-links"><a href="../../methodology/retrieval-evaluation/">Arama sistemleri nasıl değerlendirilir?<span aria-hidden="true"> →</span></a></div>
+      <div class="limitations">
+        <h3>Bilinen sınırlılıklar</h3>
+        <ul>
+          <li>Test bölümü altı çalıştırmada okundu; bağımsız bir sınama değildir.</li><li>Etiketleme için bağımsız uyum ölçümü yapılmadı.</li><li>Adı belirtilen ve açık sorular aynı kanıtı paylaşabilir; birbirinden bağımsız değildir.</li><li>Soru dosyaları ve değerlendirici henüz açık değil; dışarıdan yeniden çalıştırılamaz.</li><li>Türkçe hukuk metinlerinden oluşan tek bir derlem anlık görüntüsü kullanıldı.</li>
+        </ul>
+      </div>
+    </section>
+            
+    <section id="short-answer" class="article-section">
+      <h2>Benchmark’ı nasıl kurduk?<a class="heading-anchor" href="#short-answer" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Benchmark v1’deki 246 sorunun tamamını inceledik. Birçoğu eksik bağlama ya da birden çok yerde geçen ifadelere dayanıyordu. Soruların çoğunu yeniden yazdık veya yeniden kurduk, 39’unu çıkardık, açık uçlu sorular ekledik ve her yanıtı kaynak dosyadaki birebir bir alıntıya bağladık. Sonuçta Türkçe hukuk belgeleri üzerinde 128 dev ve 173 test sorusu oluştu.</p><div class="article-callout warning"><strong>Test bölümü bağımsız bir sınama değil</strong><p>Bu bölüm altı MESA çalıştırmasında okundu. v2 test sorularının çoğu da daha önce okunmuş v1 test kümesinden türetildi. Ana sayılarımız dev sonuçlarıdır; test sonuçlarını yalnızca bu uyarıyla veriyoruz.</p></div>
+    </section>
+    <section id="why-rebuild" class="article-section">
+      <h2>İlk benchmark neden yetersiz kaldı?<a class="heading-anchor" href="#why-rebuild" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>246 v1 sorusu üzerindeki otomatik kontroller, doğru pasajı tanımlamanın çoğu zaman zor olduğunu gösterdi:</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: v1 soruları üzerindeki kontrol · Dev · Test · Toplam"><table><thead><tr><th scope="col">v1 soruları üzerindeki kontrol</th><th scope="col">Dev</th><th scope="col">Test</th><th scope="col">Toplam</th></tr></thead><tbody><tr><th scope="row">İfade bağlama dayanıyor ve işaretlendi</th><td>40</td><td>54</td><td>94</td></tr><tr><th scope="row">Beklenen ifade başka bir dosyada da geçiyor</th><td>37</td><td>48</td><td>85</td></tr><tr><th scope="row">Beklenen ifade 10 veya daha çok başka dosyada geçiyor</th><td>14</td><td>19</td><td>33</td></tr><tr><th scope="row">Beklenen ifade kendi dosyasında tekrar ediyor</th><td>25</td><td>39</td><td>64</td></tr></tbody></table></div><p>“Bu yönetmelik ne diyor?” gibi bir soru, hangi yönetmelik olduğu bilinmeden yanıtlanamaz. Dosyalarda tekrar eden kısa bir ifade de yanlış pasaja puan kazandırabilir. En uç örnekte bir ifade tek dosyada 172 kez geçiyordu.</p>
+    </section>
+    <section id="what-changed" class="article-section">
+      <h2>v1’den v2’ye ne değişti?<a class="heading-anchor" href="#what-changed" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: v1 soruları için inceleme kararı · Dev · Test · Toplam"><table><thead><tr><th scope="col">v1 soruları için inceleme kararı</th><th scope="col">Dev</th><th scope="col">Test</th><th scope="col">Toplam</th></tr></thead><tbody><tr><th scope="row">Yeniden yazıldı</th><td>73</td><td>104</td><td>177</td></tr><tr><th scope="row">Yeniden kuruldu</th><td>13</td><td>17</td><td>30</td></tr><tr><th scope="row">Çıkarıldı</th><td>15</td><td>24</td><td>39</td></tr><tr><th scope="row">Değişmeden kaldı</th><td>0</td><td>0</td><td>0</td></tr></tbody></table></div><p>İnceleme önce 207 soru üretti. Ardından açık uçlu sorular ekledik ve bir düzeltme turu daha yaptık. Son v2 kümesi şöyle:</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Kategori · Dev · Test"><table><thead><tr><th scope="col">Kategori</th><th scope="col">Dev</th><th scope="col">Test</th></tr></thead><tbody><tr><th scope="row">Birebir ifade</th><td>31</td><td>39</td></tr><tr><th scope="row">Sayı, tarih, esas no</th><td>35</td><td>46</td></tr><tr><th scope="row">Yeniden ifade</th><td>32</td><td>48</td></tr><tr><th scope="row">Çok belgeli</th><td>14</td><td>16</td></tr><tr><th scope="row">Derlemde yanıtı yok</th><td>16</td><td>24</td></tr><tr><th scope="row">Toplam</th><td>128</td><td>173</td></tr></tbody></table></div>
+    </section>
+    <section id="question-rules" class="article-section">
+      <h2>Bir soru hangi koşullarda geçerli sayılır?<a class="heading-anchor" href="#question-rules" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ul><li>Yanıt kaynağa bağlıysa soru kaynağın adını verir. Kanun adları numarasıyla, kararlar mahkeme, esas ve karar numarasıyla yazılır.</li><li>Her yanıtın en çok 200 karakterlik birebir bir alıntısı vardır; bu alıntı Türkçe normalizasyondan sonra tüm derlemde bir kez geçer.</li><li>Çok belgeli sorular iki kaynağı adıyla anar ve her birinden bir pasaj ister.</li><li>Yanıtı olmayan sorular, 182 belgenin tamamından çıkarılan 33.954 pencere üzerinde en az iki sorgu çeşidiyle denetlendi.</li><li>Otomatik doğrulama, dev ve test arasında çakışan doğru yanıt aralıklarını reddeder.</li></ul>
+    </section>
+    <section id="open-questions" class="article-section">
+      <h2>Açık uçlu soru nedir?<a class="heading-anchor" href="#open-questions" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Adı belirtilen sorular sisteme hangi kanuna bakacağını söyler. Açık uçlu sorular ise bir insanın anlatacağı gibi durumu tarif eder. Dev bölümünden gerçek bir çift:</p><div class="article-callout callout"><strong>Adı belirtilen</strong><p>6098 sayılı Türk Borçlar Kanunu uyarınca, aralıksız evde çalışan işçinin hazırladığı ürünü işveren teslim almada temerrüde düşerse işçinin ücretini ödeme borcu sürer mi?</p></div><div class="article-callout callout"><strong>Açık uçlu</strong><p>Evde sürekli parça başı üretim yapıyorum. İşveren hazırladığım ürünleri teslim almada temerrüde düşerse ücretimi yine de ödemek zorunda mı?</p></div><p>İkisi de aynı kanıta dayanır. Bu, ifade farkını sınamak için yararlıdır; ama iki sonucun birbirinden bağımsız olmadığı anlamına da gelir.</p>
+    </section>
+    <section id="scoring" class="article-section">
+      <h2>Sonuçlar nasıl puanlanıyor?<a class="heading-anchor" href="#scoring" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>İsabet sayılması için sonuç doğru dosyadan gelmelidir. Ardından normalize edilmiş alıntıyı içeriyorsa ya da alıntıyla en az 60 karakter örtüşüyorsa geçerli olur; alıntı daha kısaysa tamamıyla örtüşmesi gerekir. Doğru maddeden gelen ama kanıtı içermeyen pasaj puan almaz.</p><p>Çok belgeli sorularda sıra, gerekli pasajların tamamının göründüğü konumdur. Ölçütlerin davranışı için <a href="../../learn/evaluating-ndcg-and-mrr-in-memory/">MRR ve nDCG dersine</a> bakın.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Yapılandırma · Ne çalışıyor?"><table><thead><tr><th scope="col">Yapılandırma</th><th scope="col">Ne çalışıyor?</th></tr></thead><tbody><tr><th scope="row">T0</th><td>Modeller kapalı, sözcük tabanlı arama</td></tr><tr><th scope="row">T1b</th><td>T0’a ek olarak normalize BAAI/bge-m3 gömme vektörleri</td></tr><tr><th scope="row">T2</th><td>T1b’ye ek olarak BAAI/bge-reranker-v2-m3</td></tr></tbody></table></div>
+    </section>
+    <section id="protocol" class="article-section">
+      <h2>Bir çalıştırma nasıl yapılıyor?<a class="heading-anchor" href="#protocol" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ol><li>Yayımlanan paketi PyPI’dan kurun.</li><li>Tek bir Colab NVIDIA A100 80 GB ortamında her yapılandırma için yeni bir depo oluşturun.</li><li>Tier M’yi alın: 141 belge, 5.041 parça.</li><li>Dev bölümünü bağımsız kurulan iki depoda çalıştırıp dönen sırayı karşılaştırın.</li><li>Test dosyası yüklenmeden önce dev raporunu yerelde kaydedin.</li><li>Testi her yapılandırma için bir kez çalıştırın.</li></ol><p>Değerlendirici, açıkça <code>--split test</code> verilmeden test dosyası alırsa durur. İki depolu karşılaştırmayı, <a href="../../research/why-two-search-runs-differed/">rastgele eşitlik bozmanın depolar arasında sonucu değiştirdiğini</a> gördükten sonra ekledik.</p>
+    </section>
+    <section id="test-reads" class="article-section">
+      <h2>Test bölümü kaç kez okundu?<a class="heading-anchor" href="#test-reads" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <p>Altı çalıştırma bir test bölümünü okudu. Yukarıdaki süreç yanlışlıkla kullanımı sınırlar; ama tekrar eden okumaları geri alamaz.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Kaydırılabilir tablo: Çalıştırma tarihi · Soru kümesi · MESA çalıştırması"><table><thead><tr><th scope="col">Çalıştırma tarihi</th><th scope="col">Soru kümesi</th><th scope="col">MESA çalıştırması</th></tr></thead><tbody><tr><th scope="row">2026-10-29</th><td>v1</td><td>0.9.0 deneyleri</td></tr><tr><th scope="row">2026-11-07</th><td>v1</td><td>0.9.2 sürümü</td></tr><tr><th scope="row">2026-11-17</th><td>v1</td><td>0.9.3 sürümü</td></tr><tr><th scope="row">2026-11-21</th><td>v2</td><td>0.9.3 referansı</td></tr><tr><th scope="row">2026-11-23</th><td>v2</td><td>0.9.3 ayarlarıyla 0.9.4</td></tr><tr><th scope="row">2026-11-23</th><td>v2</td><td>0.9.4 sürüm varsayılanları</td></tr></tbody></table></div><p>İkinci 0.9.4 okuması, ilk çalıştırma sürüm varsayılanlarını kullanmadığı için yapıldı. Bu varsayılanlar ilk v2 test okumasından önce işlenmişti; ama sonraki geliştirme o okumadan sonra sürdü. Ölçülen sonuçlar için <a href="../../research/what-improved-search-in-0-9-4/">MESA 0.9.4’te Arama Kalitesini Ne Artırdı?</a> yazısına bakın.</p>
+    </section>
+    <section id="limits" class="article-section">
+      <h2>Bu benchmark neyi gösteremez?<a class="heading-anchor" href="#limits" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ul><li>Etiketleme bir inceleme turu ve kanıt örneklemesinden geçti; bağımsız uyum ölçümü yapılmadı.</li><li>Türkçe hukuk metinlerinin tek bir anlık görüntüsünü kapsar. “Yanıt yok” etiketi yalnızca bu görüntü için geçerlidir.</li><li>Sözcük tabanlı inceleme, dolaylı anlatılan veya OCR ile bozulan yanıtları kaçırabilir.</li><li>Bazı kaynak PDF’ler sözcükleri böler ya da sayfa numarası ekler; bu izler metinde kalır.</li><li>Çok belgeli sonuçlar yalnızca 14 dev sorusuna dayanır.</li><li>Soru dosyaları ve değerlendirici henüz açık değil; dış ekipler yeniden çalıştıramaz.</li></ul>
+    </section>
+    <section id="sources" class="article-section">
+      <h2>Kaynaklar<a class="heading-anchor" href="#sources" aria-label="Bu bölüme bağlantı" title="Bölüm bağlantısını kopyala">#</a></h2>
+      <ol class="reference-list"><li><a class="" href="https://www.sqlite.org/fts5.html" target="_blank" rel="noopener noreferrer"><span>SQLite FTS5 belgeleri</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://github.com/Yasou13/MESA/blob/v0.9.4/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span>MESA 0.9.4 değişiklik günlüğü</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li><li><a class="" href="https://nlp.stanford.edu/IR-book/html/htmledition/okapi-bm25-a-non-binary-model-1.html" target="_blank" rel="noopener noreferrer"><span>Manning, Raghavan ve Schütze: Introduction to Information Retrieval</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></li></ol>
+    </section>
+          </div>
+        </div>
+        
+    <section class="related-content" aria-labelledby="related-title">
+      <p class="eyebrow">BAĞLANTILI BİLGİ</p>
+      <h2 id="related-title">İlgili konularla devam edin.</h2>
+      <div class="publication-grid">
+        <article class="resource-card"><p class="resource-type">Yöntem</p><h3><a href="../../methodology/retrieval-evaluation/">Arama sistemleri nasıl değerlendirilir?</a></h3><p>Bir sistemin ilgili bilgileri ve bunların dayanaklarını bulabildiğini göstermek için hangi ölçümler ve kayıtlar gerekir?</p><div><span>9 dk okuma</span><a href="../../methodology/retrieval-evaluation/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Ders</p><h3><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/">Arama kalitesini ölçmek: Recall, MRR, nDCG ve hız</a></h3><p>Etiketli bir sonuç listesinde ölçümleri hesaplayın. Kaliteyle hızı ayrı değerlendirin ve ayar yaparken kullandığınız sorulardan bağımsız bir test hazırlayın.</p><div><span>5 dk okuma</span><a href="../../learn/evaluating-ndcg-and-mrr-in-memory/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Araştırma</p><h3><a href="../../research/what-improved-search-in-0-9-4/">MESA 0.9.4’te Arama Kalitesini Ne Artırdı?</a></h3><p>Önekli BM25 ve yeni birleştirme ayarları, modelsiz ve embedding aramasını dev kümesinde iyileştirdi. Yeniden sıralamalı dev Hit@5 ise 0,9286’dan 0,9107’ye düştü.</p><div><span>9 dk okuma</span><a href="../../research/what-improved-search-in-0-9-4/">Oku<span aria-hidden="true"> →</span></a></div></article><article class="resource-card"><p class="resource-type">Araştırma</p><h3><a href="../../research/why-two-search-runs-differed/">Aynı Arama İki Kez Neden Farklı Sonuç Verdi?</a></h3><p>Aynı belgelerle sıfırdan kurulan iki MESA deposu, 112 dev sorusunun 49’unda farklı sıra verdi. Eşit sıraları rastgele kimlikler belirliyordu.</p><div><span>7 dk okuma</span><a href="../../research/why-two-search-runs-differed/">Oku<span aria-hidden="true"> →</span></a></div></article>
+      </div>
+    </section>
+        
+      <div class="contextual-cta">
+        <div>
+          <p class="eyebrow">ÜRÜN BAĞLAMI</p>
+          <h2>Kaynak izinin MESA Law’da nasıl kullanıldığına bakın.</h2>
+          <p>Hukuk alanındaki örnek uygulamada dosyaların, belgelerin ve kaynakların nasıl birlikte ele alındığını inceleyin.</p>
+        </div>
+        <a class="button secondary" href="../../law/">MESA Law’u incele</a>
+      </div>
+      </article>
+      <footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../../" aria-label="MESA ana sayfa"><span class="mesa-mark" aria-hidden="true"><img src="../../../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Belgelerinizi yapay zekânıza taşıyan hafıza.</p><p class="footer-note"><span>v0.9.5</span> · <span>Alfa</span> · <a href="../../status/">Proje durumu →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a><a class="footer-pill" href="../../early-access/">Erken erişim</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Ürün</h3><a href="../../how-it-works/">Nasıl çalışır</a><a href="../../architecture/">Mimari</a><a href="../../ecosystem/">Ekosistem</a><a href="../../#use-cases">Kullanım alanları</a><a href="../../lore/">MESA Lore</a><a href="../../law/">MESA Law</a><a href="../../data/">MESA Data</a><a href="../../benchmark/">Benchmark</a></div>
+        <div><h3>Geliştiriciler</h3><a href="../../get-started/">Hızlı başlangıç</a><a href="../../docs/">Dokümantasyon</a><a href="../../docs/core/cli-reference/">MESA CLI</a><a href="../../docs/core/api-reference/">API referansı</a><a href="../../docs/core/examples/">Python SDK</a><a href="../../docs/mcp/">MCP</a><a href="../../docs/core/security/">Güvenlik</a></div>
+        <div><h3>Öğrenin</h3><a href="../../learn/">Dersler</a><a href="../../guides/">Rehberler</a><a href="../../glossary/">Sözlük</a><a href="../../research/">Araştırma</a><a href="../../faq/">SSS</a></div>
+        <div><h3>Proje</h3><a href="../../about/">Hakkında</a><a href="../../status/">Durum</a><a href="../../changelog/">Değişiklik günlüğü</a><a href="../../account/">Hesabım</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Issue açın</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE" target="_blank" rel="noopener noreferrer"><span>Apache 2.0 Lisansı</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <nav class="footer-legal" aria-label="Yasal"><a href="../../privacy/">Gizlilik Politikası</a><a href="../../legal/kvkk/">KVKK Aydınlatma Metni</a><a href="../../legal/cookies/">Çerez Politikası</a><a href="../../legal/terms/">Kullanım Koşulları</a><a href="../../legal/commercial-messages/">Ticari İleti Onayı</a></nav>
+      <div class="footer-bottom"><span>© 2026 MESA’ya katkıda bulunanlar</span><span>Belgeler Core v0.9.5 ile uyumlu</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer>
+    </main>
+  <script src="../../../app.js?v=bfc5b0414e06"></script>
+
+</body>
+</html>

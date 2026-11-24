@@ -62,6 +62,10 @@ Sistem bütün ilgili öğeleri bulmuş, ancak ilgisiz bir öğeyi ilk sıraya k
 
 Değişimi sorgu başına ve anlamlı alt gruplarda inceleyin: kimlik araması veya farklı ifade, kısa veya uzun kaynak, dil ve kaynak yaşı. Örneklem uygunsa belirsizliği raporlayın ve ham sonuçları koruyun. BEIR, farklı görevleri birlikte değerlendirmeye örnektir. O çalışmanın puanını kendi başarınız gibi kullanmak yerine değerlendirme yaklaşımından yararlanın. [BEIR](https://arxiv.org/abs/2104.08663) [IR değerlendirme](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 
+> [!NOTE]
+> **MESA’da ne ölçtük?**
+> Küçük sıra değişimleri kalite değişimi gibi görünebilir. Aynı girdiyle [sıfırdan kurulan iki depo](/research/why-two-search-runs-differed/) Hit@5’te 48/112 ve 52/112 aldı (benchmark v2 dev, Tier M, modeller kapalı, 0.9.4 öncesi derleme). Benchmark için ölçüt kadar kanıt da gerekir. [Benchmark v2](/research/turkish-legal-benchmark-v2/) her yanıtı birebir bir alıntıya bağlar ve test bölümünün altı kez okunduğunu açıkça belirtir.
+
 ## Hataları gizlemeden hızı ölçün
 
 Aramanın toplam süresini ve her aşamasını ayrı ölçün. Donanımı, veri büyüklüğünü, eşzamanlı istek sayısını, önbelleği, ısınmayı ve zaman aşımını belirtin. Ortanca süreyi ve yüksek gecikme yüzdeliklerini; hatalar ve boş sonuçlarla birlikte raporlayın. Zaman aşımına uğrayan istekleri dışarıda bırakmak, sorunlu bir sistemi hızlı gösterebilir. Sabit girdilerle yapılan yerel örnek, davranış testidir; gerçek modelin kalitesini veya canlı kullanım kapasitesini ölçmez.

@@ -1,12 +1,12 @@
 # MESA Learn — Learning path
 
-1. [AI memory: what survives after a conversation?](https://mesamemory.dev/learn/what-is-ai-memory/article.md)
+1. [What is AI agent memory?](https://mesamemory.dev/learn/what-is-ai-memory/article.md)
 2. [RAG and memory: build the request step by step](https://mesamemory.dev/learn/rag-vs-ai-memory/article.md)
 3. [From documents to claims: preserve what extraction loses](https://mesamemory.dev/learn/structured-vs-unstructured-memory/article.md)
 4. [Embeddings and semantic search, with numbers](https://mesamemory.dev/learn/semantic-search/article.md)
 5. [BM25: why a rare word can beat repeated words](https://mesamemory.dev/learn/bm25-tuning-for-domain-documents/article.md)
-6. [Hybrid retrieval: candidates, fusion and reranking](https://mesamemory.dev/learn/hybrid-retrieval-explained/article.md)
-7. [Reciprocal Rank Fusion: calculate and inspect every vote](https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/article.md)
+6. [What is hybrid search? BM25, vectors and reranking](https://mesamemory.dev/learn/hybrid-retrieval-explained/article.md)
+7. [What is Reciprocal Rank Fusion (RRF)?](https://mesamemory.dev/learn/reciprocal-rank-fusion-explained/article.md)
 8. [Knowledge graphs: follow relations without inventing proof](https://mesamemory.dev/learn/why-graphs-matter-in-ai-memory/article.md)
 9. [Evidence and provenance: what a citation actually proves](https://mesamemory.dev/learn/what-is-evidence-aware-memory/article.md)
 10. [Shared memory: who may retrieve what?](https://mesamemory.dev/learn/memory-scope-and-authorization/article.md)

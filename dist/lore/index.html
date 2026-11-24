@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MESA Lore — MCP Memory Server for Claude Code and Codex</title>
+  <meta name="description" content="Open-source local MCP memory server for coding agents. MESA Lore lets Claude Code, Codex CLI and Antigravity search past sessions with no LLM calls.">
+  <meta name="theme-color" content="#050508">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-WO55anZ1V8A0G22bY2t72RV4dI79SLI4VnYLgsEeWUc='; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://mesamemory.dev/lore/">
+  <link rel="alternate" hreflang="en" href="https://mesamemory.dev/lore/">
+  <link rel="alternate" hreflang="tr" href="https://mesamemory.dev/tr/lore/">
+  <link rel="alternate" hreflang="x-default" href="https://mesamemory.dev/lore/">
+  <meta property="og:title" content="MESA Lore — MCP Memory Server for Claude Code and Codex">
+  <meta property="og:description" content="Open-source local MCP memory server for coding agents. MESA Lore lets Claude Code, Codex CLI and Antigravity search past sessions with no LLM calls.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesamemory.dev/lore/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MESA — Memory with evidence, not mystery.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MESA Lore — MCP Memory Server for Claude Code and Codex">
+  <meta name="twitter:description" content="Open-source local MCP memory server for coding agents. MESA Lore lets Claude Code, Codex CLI and Antigravity search past sessions with no LLM calls.">
+  <meta name="twitter:image" content="https://mesamemory.dev/og-image.png?v=9af4302fa17b">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mesamemory.dev/#website","name":"MESA","url":"https://mesamemory.dev/","inLanguage":["en","tr"],"description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide."},{"@type":"WebPage","@id":"https://mesamemory.dev/lore/#webpage","url":"https://mesamemory.dev/lore/","name":"MESA Lore — MCP Memory Server for Claude Code and Codex","description":"Open-source local MCP memory server for coding agents. MESA Lore lets Claude Code, Codex CLI and Antigravity search past sessions with no LLM calls.","inLanguage":"en","isPartOf":{"@id":"https://mesamemory.dev/#website"},"about":{"@id":"https://mesamemory.dev/#software"},"mainEntity":{"@id":"https://mesamemory.dev/lore/#software"}},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/#software","name":"Memory Engine for Structured Agents","alternateName":"MESA","description":"MESA turns large document collections into lasting memory for AI applications and gives your model the right context. Try it locally with a step-by-step guide.","codeRepository":"https://github.com/Yasou13/MESA","license":"https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE","url":"https://mesamemory.dev/"},{"@type":"SoftwareSourceCode","@id":"https://mesamemory.dev/lore/#software","name":"MESA Lore","description":"Open-source local MCP memory server for coding agents. MESA Lore lets Claude Code, Codex CLI and Antigravity search past sessions with no LLM calls.","version":"0.1.0","programmingLanguage":"Python","runtimePlatform":"Python 3.10+","codeRepository":"https://github.com/Yasou13/MESA_Lore","license":"https://www.apache.org/licenses/LICENSE-2.0","url":"https://mesamemory.dev/lore/"}]}</script>
+  <link rel="icon" href="../favicon.ico?v=72f1e22f34bf" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=c54e33ae15fa" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png?v=9af4302fa17b">
+  <link rel="icon" href="../assets/mesa-mark.webp?v=9af4302fa17b" type="image/webp">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=9af4302fa17b">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../fonts/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css?v=db5212c964fc">
+  <link rel="stylesheet" href="../cosmic.css?v=7e5407940fe1">
+  <link rel="stylesheet" href="../learn.css?v=19f1fc8d0d08">
+
+  <link rel="stylesheet" href="../lore.css?v=c551aa35b21a">
+  <script src="../cosmic-motion.js?v=7eb2c06f4e3c" defer></script>
+</head>
+<body>
+<div class="cosmic cosmic--core" aria-hidden="true"><div class="cosmic__field"><svg class="cosmic__art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false"></svg><div class="cosmic__illumination"></div></div></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a>
+        <div class="nav-lang"><div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../lore/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../tr/lore/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div></div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="main-navigation" aria-label="Main navigation">
+          <div class="nav-menu"><div class="nav-group is-current" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-product"><span>Product</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Product</p>
+            <div class="nav-group__panel" id="nav-panel-product"><a class="nav-link" href="../how-it-works/">How it works</a><a class="nav-link" href="../architecture/">Architecture</a><a class="nav-link" href="../ecosystem/">Ecosystem</a><a class="nav-link" href="../#use-cases">Use cases</a><a class="nav-link" href="../law/">MESA Law</a><a class="nav-link active" aria-current="page" href="../lore/">MESA Lore</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-developers"><span>Developers</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Developers</p>
+            <div class="nav-group__panel" id="nav-panel-developers"><a class="nav-link" href="../get-started/">Get started</a><a class="nav-link" href="../docs/core/cli-reference/">MESA CLI</a><a class="nav-link" href="../docs/core/examples/">Python SDK</a><a class="nav-link" href="../docs/core/api-reference/">HTTP API</a><a class="nav-link" href="../docs/mcp/">MCP</a><a class="nav-link" href="../docs/core/security/">Security</a></div>
+          </div><div class="nav-group" data-nav-group>
+            <button class="nav-group__toggle" type="button" aria-expanded="false" aria-controls="nav-panel-learn"><span>Learn</span><svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+            <p class="nav-group__label" aria-hidden="true">Learn</p>
+            <div class="nav-group__panel" id="nav-panel-learn"><a class="nav-link" href="../learn/">Lessons</a><a class="nav-link" href="../guides/">Guides</a><a class="nav-link" href="../glossary/">Glossary</a><a class="nav-link" href="../faq/">FAQ</a><a class="nav-link" href="../changelog/">Changelog</a><a class="nav-link" href="../resources/">All resources</a></div>
+          </div><a class="nav-item nav-item--plain" href="../docs/">Docs</a><a class="nav-item nav-item--plain" href="../benchmark/">Benchmark</a><a class="nav-item nav-item--plain" href="../status/">Status</a></div>
+          <div class="nav-tools">
+            <button class="search-trigger" type="button" aria-label="Search site (Ctrl+K)"><svg class="mesa-icon lucide-icon" data-nav-icon="search" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /> </svg><span>Search</span><kbd class="search-shortcut">Ctrl K</kbd></button>
+            <div class="language-switch" role="group" aria-label="Language">
+    <a lang="en" hreflang="en" class="active" aria-current="page" href="../lore/">EN<span class="sr-only"> · English</span></a>
+    <span aria-hidden="true">/</span>
+    <a lang="tr" hreflang="tr" href="../tr/lore/">TR<span class="sr-only"> · Türkçe</span></a>
+  </div>
+            <a class="nav-github" aria-label="GitHub" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a>
+            <div class="nav-auth" data-nav-auth>
+              <a class="nav-signin" href="../account/sign-in/">Sign in</a>
+              <a class="nav-cta" href="../account/sign-up/">Sign up</a>
+              <a class="nav-cta nav-account-link" href="../account/" hidden>My account</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header><main id="main-content" class="lore-page"><div class="page-trail" aria-hidden="true"><div class="passage-mark passage-mark--trail-l passage-mark--y20" aria-hidden="true"><svg viewBox="0 0 340 262" focusable="false"><rect class="pm-line" x="8" y="18" width="291" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="170" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="131" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="156" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="262" height="6" rx="3"/><rect class="pm-band" x="0" y="115" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="122" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 125 C330 125 334 214 300 238" pathLength="1"/><g class="pm-tag"><rect x="190" y="226" width="110" height="26" rx="5"/><path d="M202 232h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="236" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="140" width="149" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="175" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="270" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="178" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-r passage-mark--y50" aria-hidden="true"><svg viewBox="0 0 340 232" focusable="false"><rect class="pm-line" x="8" y="18" width="258" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="129" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="145" height="6" rx="3"/><rect class="pm-line" x="8" y="104" width="275" height="6" rx="3"/><rect class="pm-line" x="8" y="122" width="255" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="148" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="231" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="174" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="150" height="6" rx="3"/></svg></div><div class="passage-mark passage-mark--trail-l passage-mark--y80" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="225" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="288" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="217" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="134" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="287" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="161" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="120" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="192" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="171" height="6" rx="3"/></svg></div></div><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span>Product</span></li><li><a href="../ecosystem/">Ecosystem</a></li><li><span aria-current="page">MESA Lore</span></li></ol></nav>
+    <section class="page-hero compact"><div class="passage-mark passage-mark--page" aria-hidden="true"><svg viewBox="0 0 340 244" focusable="false"><rect class="pm-line" x="8" y="18" width="121" height="6" rx="3"/><rect class="pm-line" x="8" y="36" width="256" height="6" rx="3"/><rect class="pm-line" x="8" y="54" width="230" height="6" rx="3"/><rect class="pm-line" x="8" y="72" width="231" height="6" rx="3"/><rect class="pm-band" x="0" y="97" width="300" height="20" rx="4"/><rect class="pm-hl" x="8" y="104" width="250" height="6" rx="3"/><path class="pm-thread" d="M300 107 C330 107 334 196 300 220" pathLength="1"/><g class="pm-tag"><rect x="190" y="208" width="110" height="26" rx="5"/><path d="M202 214h7l4 4v8h-11z"/><rect class="pm-tag-bar" x="222" y="218" width="64" height="5" rx="2.5"/></g><rect class="pm-line" x="8" y="122" width="173" height="6" rx="3"/><rect class="pm-line" x="8" y="140" width="208" height="6" rx="3"/><rect class="pm-line" x="8" y="158" width="168" height="6" rx="3"/><rect class="pm-line" x="8" y="176" width="146" height="6" rx="3"/><rect class="pm-line" x="8" y="194" width="203" height="6" rx="3"/></svg></div>
+      <p class="eyebrow">MESA LORE · v0.1.0 · OPEN SOURCE</p>
+      <h1>Local MCP memory for Claude Code and Codex</h1>
+      <p>MESA Lore is an open-source MCP memory server for coding agents. It makes past Claude Code, Codex CLI and Antigravity sessions searchable on your computer. In Claude Code and Codex, each new session starts with a short index. Agents then pull back only what they need, with sources.</p>
+      <div class="actions"><a class="button primary" href="#install">Install MESA Lore</a><a class="button secondary" href="../docs/lore/">Read the docs</a><a class="button secondary" href="https://github.com/Yasou13/MESA_Lore" target="_blank" rel="noopener noreferrer">View on GitHub</a></div>
+    </section>
+
+    <section class="section lore-facts" aria-label="Key facts">
+      <dl><div><dt>Runs on</dt><dd>Your computer, on CPU</dd></div><div><dt>Storage</dt><dd>One SQLite file</dd></div><div><dt>Model calls</dt><dd>None</dd></div><div><dt>License</dt><dd>Apache-2.0</dd></div></dl>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-problem">
+      <p class="eyebrow">THE PROBLEM</p>
+      <h2 id="lore-problem">Rules carry over. Past work is harder to find.</h2>
+      <p>Each coding session starts with a fresh context window. Project instructions and saved notes can carry over, but details from older sessions are often left behind. Replaying a long session or explaining it again costs tokens. MESA Lore keeps that history searchable, so the agent loads details only when they are useful.</p>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-compare">
+      <p class="eyebrow">CLAUDE CODE MEMORY</p>
+      <h2 id="lore-compare">How it differs from CLAUDE.md and auto memory</h2>
+      <p>MESA Lore does not replace Claude Code’s built-in memory. Keep rules in CLAUDE.md and let auto memory hold learned preferences. Use Lore when you need to find what happened in earlier sessions.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Claude Code memory comparison"><table><thead><tr><th scope="col">Compare</th><th scope="col">CLAUDE.md</th><th scope="col">Auto memory</th><th scope="col">MESA Lore</th></tr></thead><tbody><tr><th scope="row">Written by</th><td>You</td><td>Claude</td><td>Hooks and the agent</td></tr><tr><th scope="row">Holds</th><td>Instructions and rules</td><td>Learnings and patterns</td><td>Past transcripts, notes and handoffs</td></tr><tr><th scope="row">Reaches a session</th><td>Loaded at session start</td><td>First 200 lines or 25KB of MEMORY.md</td><td>Short index, then search on demand</td></tr><tr><th scope="row">Best for</th><td>Standards and workflows</td><td>Preferences and corrections</td><td>Earlier decisions, failed attempts and work</td></tr></tbody></table></div>
+      <p class="lore-related">Claude Code details come from the <a class="lore-source" href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener noreferrer">official memory documentation</a>.</p>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-how">
+      <p class="eyebrow">HOW IT WORKS</p>
+      <h2 id="lore-how">Small context first. Details on demand.</h2>
+      <ol class="lore-steps"><li><h3>Capture</h3><p>Hooks and transcript scans add past sessions to a local index. Agents can also save short notes.</p></li><li><h3>Start small</h3><p>With hooks, a new session receives a short index instead of the whole history. Other agents can request it through MCP.</p></li><li><h3>Pull what is needed</h3><p>The agent searches for details when it needs them and gets small passages with their sources.</p></li><li><h3>Hand off</h3><p>A handoff tells the next session what was done, what was decided and what comes next.</p></li></ol>
+    </section>
+
+    <section class="section lore-block" id="install" aria-labelledby="lore-install">
+      <p class="eyebrow">INSTALL</p>
+      <h2 id="lore-install">Set it up in one terminal session.</h2>
+      <p>Requires Python 3.10 or newer. Tested on Linux. macOS is untested and Windows is not supported yet.</p>
+      <div class="learn-code"><div><span>Install from GitHub</span><button class="copy-button" type="button" data-copy-target="lore-install-code">Copy</button></div><pre tabindex="0" class="article-code" id="lore-install-code"><code>git clone https://github.com/Yasou13/MESA_Lore.git
+cd MESA_Lore
+python3 -m venv .venv
+.venv/bin/pip install .
+.venv/bin/mesa-lore install
+.venv/bin/mesa-lore doctor</code></pre></div>
+      <p><code>install</code> adds the MCP server and hooks to supported agents, imports existing history and backs up changed files to <code>~/.config/mesa-lore/backup/</code>.</p>
+      <div class="learn-code"><div><span>Everyday commands</span><button class="copy-button" type="button" data-copy-target="lore-usage-code">Copy</button></div><pre tabindex="0" class="article-code" id="lore-usage-code"><code>source .venv/bin/activate
+mesa-lore search "why did login fail" --project my-app
+mesa-lore index --project my-app
+mesa-lore export --project my-app --out my-app.md
+mesa-lore stats --days 30</code></pre></div>
+      <p class="lore-related">See the <a href="../docs/lore/installation/">installation guide</a>, <a href="../docs/lore/agents/">agent setup</a> and <a href="../docs/lore/cli/">CLI reference</a>.</p>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-agents">
+      <p class="eyebrow">SUPPORTED AGENTS</p>
+      <h2 id="lore-agents">One memory across your coding agents.</h2>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Supported agents"><table><thead><tr><th scope="col">Agent</th><th scope="col">Memory tools</th><th scope="col">Automatic capture</th></tr></thead><tbody><tr><th scope="row">Claude Code</th><td>MCP</td><td>SessionStart, Stop and SessionEnd hooks</td></tr><tr><th scope="row">Codex CLI</th><td>MCP</td><td>Same hooks, after you approve them with /hooks in Codex</td></tr><tr><th scope="row">Antigravity</th><td>MCP</td><td>Transcripts are scanned at server start or with ingest-pending</td></tr><tr><th scope="row">Claude desktop</th><td>MCP</td><td>None. Chats on claude.ai and in the desktop chat tab are not captured</td></tr></tbody></table></div>
+      <h3>Four MCP tools</h3>
+      <dl class="lore-tools"><div><dt><code>memory_index</code></dt><dd>Shows the short project index.</dd></div><div><dt><code>memory_search</code></dt><dd>Finds relevant passages and notes.</dd></div><div><dt><code>memory_get</code></dt><dd>Opens one result with its context.</dd></div><div><dt><code>memory_save</code></dt><dd>Saves a decision, fact, todo, failed attempt or handoff.</dd></div></dl>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-privacy">
+      <p class="eyebrow">DATA AND PRIVACY</p>
+      <h2 id="lore-privacy">Your history stays on your machine.</h2>
+      <ul><li>Data stays in <code>~/.local/share/mesa-lore/lore.db</code>. Set <code>MESA_LORE_DB</code> to use another path.</li><li>MESA Lore sends nothing over the network.</li><li>Common secrets are masked before storage. Masking is pattern-based and can miss unusual formats.</li><li>Returned text is wrapped in <code>&lt;untrusted_memory&gt;</code> tags so agents treat it as data.</li><li>Projects can be excluded with <code>excluded_projects</code> in <code>~/.config/mesa-lore/config.toml</code>.</li></ul>
+    </section>
+
+    <section class="section lore-block" aria-labelledby="lore-measured">
+      <p class="eyebrow">MEASURED RESULTS</p>
+      <h2 id="lore-measured">What has been measured, and what has not.</h2>
+      <div class="lore-metrics"><article><strong>432</strong><span>tokens at session start</span><small>163 for the index, 269 for tool definitions</small></article><article><strong>8/9</strong><span>keyword benchmark questions</span><small>Turkish search: 3 of 3</small></article><article><strong>47–86 ms</strong><span>search p95 on 10,000 chunks</span><small>Range across three benchmark runs on Linux</small></article><article><strong>200</strong><span>passing tests</span><small>All 31 required benchmark categories pass</small></article></div>
+      <p>These figures come from the repository’s test suite and benchmark at v0.1.0 on Linux with Python 3.12 and 3.14 and can be re-run from the source.</p>
+      <p>A separate private evaluation on the author’s own transcripts (38,291 entries, 168 MB) answered 51.7% of 120 questions correctly with an 800-token memory budget. Answers and grading used LLMs, and this evaluation cannot be reproduced from the repository.</p>
+      <div class="article-callout warning"><strong>Current limits</strong><p>End-to-end token savings when resuming a session have not been measured yet. Search is lexical and recall is incomplete, so check important answers against the returned source.</p></div>
+    </section>
+
+    <section class="section lore-block lore-faq" aria-labelledby="lore-faq">
+      <p class="eyebrow">QUESTIONS</p>
+      <h2 id="lore-faq">Common questions about MESA Lore</h2>
+      <article><h3>What is an MCP memory server?</h3><p>It is a service that gives an AI agent memory tools through the Model Context Protocol. MESA Lore runs locally and provides four tools for viewing an index, searching, opening results and saving notes.</p></article><article><h3>Does MESA Lore replace CLAUDE.md or auto memory?</h3><p>No. CLAUDE.md is for instructions and auto memory is for learned preferences. MESA Lore adds searchable history from past sessions alongside them.</p></article><article><h3>How do I give Claude Code memory between sessions?</h3><p>Install MESA Lore and run mesa-lore install. It adds the MCP server and hooks, imports existing history and backs up the files it changes. New sessions then start with a short index and can search earlier work.</p></article><article><h3>How do I add memory to Codex CLI?</h3><p>Run mesa-lore install. Codex gets the same memory tools and hooks. Approve the hooks with /hooks in Codex to turn on automatic capture.</p></article><article><h3>Does MESA Lore send my code or transcripts anywhere?</h3><p>MESA Lore sends nothing over the network. Your coding agent still sends the memory it retrieves to its own model provider, as it does with any other context.</p></article><article><h3>Do I need an API key, GPU or embedding model?</h3><p>No. MESA Lore makes no LLM calls and uses no embeddings. Search is lexical, so a query needs words or stems that appear in the text.</p></article><article><h3>Are secrets stored in memory?</h3><p>Common API keys, tokens, passwords and private keys are masked before storage. Masking is pattern-based, so an unusual secret format can be missed. You can exclude projects from ingest.</p></article><article><h3>How is MESA Lore different from MESA Core?</h3><p>MESA Lore remembers the work of coding agents on your computer. MESA Core stores and searches documents for the AI applications you build. Lore does not require Core.</p></article><article><h3>How do I remove it?</h3><p>Run mesa-lore uninstall. It removes MESA Lore from your agent settings and keeps the backups and database. To delete stored entries, use mesa-lore purge with a project or age limit.</p></article>
+      <p class="lore-related">Building an application over documents instead? <a href="../ecosystem/">See the MESA projects</a>.</p>
+    </section>
+  <section class="next-step" aria-labelledby="next-step-title"><p class="eyebrow">NEXT STEP</p><h2 id="next-step-title">Where to go from here</h2><div class="next-step__grid"><a class="next-card next-card--primary" href="../ecosystem/"><span class="next-card__label">Next</span><strong>Ecosystem</strong><span>What Core, Data, Law and the tests do.</span><span class="next-card__arrow" aria-hidden="true">→</span></a><a class="next-card" href="../status/"><span class="next-card__label">Or</span><strong>Project status</strong><span>Versions, test results and current limits.</span><span class="next-card__arrow" aria-hidden="true">→</span></a></div></section></main><footer class="site-footer">
+      <div class="footer-brand"><a class="logo" href="../" aria-label="MESA home"><span class="mesa-mark" aria-hidden="true"><img src="../assets/mesa-mark.webp?v=9af4302fa17b" alt="" width="256" height="124"></span><span>MESA</span></a><p>Memory that brings your documents to your AI.</p><p class="footer-note"><span>v0.9.5</span> · <span>Alpha</span> · <a href="../status/">Project status →</a></p>
+        <div class="footer-actions"><a class="footer-pill" href="https://github.com/Yasou13/MESA" target="_blank" rel="noopener noreferrer"><svg class="mesa-icon icon-github" data-nav-icon="github" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub</span></a><a class="footer-pill" href="../early-access/">Early access</a></div></div>
+      <div class="footer-groups">
+        <div><h3>Product</h3><a href="../how-it-works/">How it works</a><a href="../architecture/">Architecture</a><a href="../ecosystem/">Ecosystem</a><a href="../#use-cases">Use cases</a><a href="../lore/">MESA Lore</a><a href="../law/">MESA Law</a><a href="../data/">MESA Data</a><a href="../benchmark/">Benchmark</a></div>
+        <div><h3>Developers</h3><a href="../get-started/">Quickstart</a><a href="../docs/">Documentation</a><a href="../docs/core/cli-reference/">MESA CLI</a><a href="../docs/core/api-reference/">API reference</a><a href="../docs/core/examples/">Python SDK</a><a href="../docs/mcp/">MCP</a><a href="../docs/core/security/">Security</a></div>
+        <div><h3>Learn</h3><a href="../learn/">Lessons</a><a href="../guides/">Guides</a><a href="../glossary/">Glossary</a><a href="../research/">Research</a><a href="../faq/">FAQ</a></div>
+        <div><h3>Project</h3><a href="../about/">About</a><a href="../status/">Status</a><a href="../changelog/">Changelog</a><a href="../account/">My account</a><a class="" href="https://github.com/Yasou13/MESA/issues" target="_blank" rel="noopener noreferrer"><span>Open an issue</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a><a class="" href="https://github.com/Yasou13/MESA/blob/67c9015c5c0feaaa0e88e9dad62f8bb48a09b53a/LICENSE" target="_blank" rel="noopener noreferrer"><span>Apache License 2.0</span><svg class="mesa-icon icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+      <nav class="footer-legal" aria-label="Legal"><a href="../privacy/">Privacy Policy</a><a href="../legal/kvkk/">KVKK Notice</a><a href="../legal/cookies/">Cookie Policy</a><a href="../legal/terms/">Terms of Use</a><a href="../legal/commercial-messages/">Commercial Messages</a></nav>
+      <div class="footer-bottom"><span>© 2026 MESA contributors</span><span>Docs match Core v0.9.5</span></div>
+      <div class="footer-wordmark" aria-hidden="true"></div>
+    </footer>
+  <script src="../app.js?v=bfc5b0414e06"></script>
+
+</body>
+</html>
