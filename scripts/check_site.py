@@ -226,6 +226,67 @@ class PageParser(HTMLParser):
         return " ".join(self.text_parts)
 
 
+# Core 0.9.5 removed the graph store (Kùzu, graph lane, PageRank telemetry, graph
+# settings); 0.9.4 removed V3, LLM consolidation and Tier 3 validation. Current
+# pages must not present them. Matching is case-insensitive on visible text.
+REMOVED_FEATURE_TERMS = re.compile(
+    r"k[uù]zu|pagerank|graph[ -]lane|\bV3\b|consolidation|\bTier[ -]?3\b|MESA_GRAPH_ENABLED",
+    re.IGNORECASE,
+)
+
+# Pages allowed to name removed features, with the reason. Each prefix applies to
+# the English route and to its /tr/ counterpart.
+REMOVED_FEATURE_ALLOWLIST = {
+    # History, labelled as such on the page.
+    "changelog/": "dated changelog of every release",
+    "docs/core/release-notes/": "release notes for each version (history)",
+    "docs/core/decisions/": "index of historical architecture decision records",
+    "docs/core/adr-0009/": "historical ADR",
+    "docs/core/adr-0010/": "historical ADR",
+    "docs/core/adr-0011/": "historical ADR",
+    "docs/core/adr-0012/": "historical ADR",
+    "docs/core/adr-0013/": "historical ADR",
+    "docs/core/adr-0014/": "historical ADR",
+    "docs/core/adr-0015/": "historical ADR",
+    "benchmark/0.9.0/": "old benchmark report",
+    "benchmark/0.9.2/": "old benchmark report",
+    "benchmark/0.9.3/": "old benchmark report",
+    "research/what-improved-search-in-0-9-4/": "dated 0.9.4 research post, labelled historical",
+    "research/deleting-code-mesa-0-9-4/": "dated 0.9.4 research post, labelled historical",
+    # Removal notes: they must name what was removed and how to upgrade.
+    "docs/core/graph/": "graph store removed in 0.9.5 note",
+    "docs/core/migration/": "upgrade guide (old files and ignored settings)",
+    "docs/core/release-notes-0.9.5/": "Core 0.9.5 release notes mirrored from the tag",
+    "research/why-mesa-removed-its-graph-store/": "removal rationale with measurements",
+    # Redirect stubs whose only text is the retired URL.
+    "learn/kuzu-graph-storage-projections/": "redirect from a retired lesson URL",
+    # Verbatim mirror of another repository's pinned documentation.
+    "docs/e2e/": "E2E Certification repository docs, mirrored at its pinned commit",
+}
+
+
+def removed_feature_errors(root: Path) -> list[str]:
+    """Report removed-feature names on current pages.
+
+    Verbatim upstream source appendices (<details class="source-appendix">) are
+    skipped: they reproduce the pinned Core files and are labelled as such.
+    """
+    errors = []
+    for page in sorted(root.rglob("*.html")):
+        relative = page.relative_to(root).as_posix()
+        route = relative[3:] if relative.startswith("tr/") else relative
+        if any(route.startswith(prefix) for prefix in REMOVED_FEATURE_ALLOWLIST):
+            continue
+        text = page.read_text(encoding="utf-8", errors="ignore")
+        text = re.sub(r"<script[\s\S]*?</script>|<style[\s\S]*?</style>", " ", text)
+        text = re.sub(r'<details class="source-appendix"[\s\S]*?</details>', " ", text)
+        visible = re.sub(r"<[^>]+>", " ", text)
+        found = sorted({match.group(0) for match in REMOVED_FEATURE_TERMS.finditer(visible)})
+        if found:
+            errors.append(f"removed feature named on a current page: {relative}: {', '.join(found)}")
+    return errors
+
+
 def resolve_local(page: Path, root: Path, value: str) -> Path | None:
     parsed = urlsplit(value)
     if parsed.scheme or value.startswith("//"):
@@ -660,6 +721,8 @@ def main() -> int:
         if path.is_file() and path.suffix.lower() in {".html", ".css", ".js", ".svg", ".txt", ".xml"}:
             if forbidden_brand.search(path.read_text(encoding="utf-8")):
                 errors.append(f"forbidden legacy brand in published artifact: {path.relative_to(root)}")
+
+    errors.extend(removed_feature_errors(root))
 
     if errors:
         print("SITE CHECK FAILED")
