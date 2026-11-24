@@ -16,7 +16,7 @@ These are Round 23 local measurements on runtime commit `a0d585f`, which is part
 | Models off (BM25), v0.9.5 | 7,422.7 s | 752.7 / 871.7 ms | 14,764.0 ms | 1,965.6 MiB |
 | Deterministic vectors, v0.9.5 | 5,533.2 s backfill | 2,016.2 / 2,451.7 ms | 21,292.4 ms | 3,609.2 MiB |
 
-The warm vector lane alone took 286.7 / 342.8 ms (p50 / p95) at 100,820 chunks, against a p50 of 19,605.5 ms over three warm queries in the baseline. During the fresh 100k build the client retried one HTTP 503 caused by a SQLite busy timeout. Retrieval quality at this size was not measured: the copies repeat the same 141 documents. See the [scale results](benchmark/#scale).
+The warm vector lane alone took 286.7 / 342.8 ms (p50 / p95) at 100,820 chunks, against a p50 of 19,605.5 ms over three warm queries in the baseline. During the fresh 100k build the client retried one HTTP 503 caused by a SQLite busy timeout. Retrieval quality at this size was not measured: the copies repeat the same 141 documents.
 
 ## v0.9.4 measured changes
 

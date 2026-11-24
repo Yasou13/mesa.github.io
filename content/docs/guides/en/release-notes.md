@@ -4,7 +4,7 @@ The [tagged changelog](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd
 
 ## v0.9.5 versioned documents
 
-Upload each version under the same `document_id` with a timezone-aware `metadata.valid_from`. Validity order, not upload order, decides the ACTIVE revision and the `[valid_from, valid_to)` history, so an older version uploaded later becomes history. Search with `valid_at` returns the version valid at that instant; intervals are half-open, so an exact amendment instant returns only the new version. HTTP, SDK and MCP results add `revision_number`, `valid_from` and `valid_to`. The changelog reports that in the four-law Turkish temporal fixture the correct revision ranked first on all 18 dated and all eight undated questions; see the [benchmark page](benchmark/#temporal) for how that smoke test was run.
+Upload each version under the same `document_id` with a timezone-aware `metadata.valid_from`. Validity order, not upload order, decides the ACTIVE revision and the `[valid_from, valid_to)` history, so an older version uploaded later becomes history. Search with `valid_at` returns the version valid at that instant; intervals are half-open, so an exact amendment instant returns only the new version. HTTP, SDK and MCP results add `revision_number`, `valid_from` and `valid_to`. The changelog reports that in the four-law Turkish temporal fixture the correct revision ranked first on all 18 dated and all eight undated questions. It is a small smoke test, not a quality benchmark.
 
 ## v0.9.5 search, storage and uploads
 

@@ -298,6 +298,19 @@
       }
     },
     {
+      "id": "release-notes-095",
+      "route": "docs/core/release-notes-0.9.5/",
+      "group": "release",
+      "sources": [
+        "docs/release-notes-0.9.5.md",
+        "CHANGELOG.md"
+      ],
+      "title": {
+        "en": "MESA 0.9.5 release notes",
+        "tr": "MESA 0.9.5 sürüm notları"
+      }
+    },
+    {
       "id": "troubleshooting",
       "route": "docs/core/troubleshooting/",
       "group": "operate",

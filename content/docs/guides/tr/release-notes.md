@@ -4,7 +4,7 @@
 
 ## v0.9.5 sürümlü belgeler
 
-Her sürümü aynı `document_id` altında, saat dilimi içeren bir `metadata.valid_from` ile yükleyin. ACTIVE sürüme ve `[valid_from, valid_to)` geçmişine yükleme sırası değil geçerlilik sırası karar verir; sonradan yüklenen eski bir sürüm geçmişe eklenir. `valid_at` ile yapılan arama, o anda geçerli olan sürümü döndürür; aralıklar yarı açık olduğundan değişikliğin tam yürürlük anı yalnızca yeni sürümü döndürür. HTTP, SDK ve MCP sonuçlarına `revision_number`, `valid_from` ve `valid_to` eklenir. Changelog, dört kanunluk Türkçe zaman fikstüründe doğru sürümün 18 tarihli ve sekiz tarihsiz sorunun tamamında ilk sırada geldiğini bildirir; bu duman testinin nasıl yapıldığı için [benchmark sayfasına](benchmark/#temporal) bakın.
+Her sürümü aynı `document_id` altında, saat dilimi içeren bir `metadata.valid_from` ile yükleyin. ACTIVE sürüme ve `[valid_from, valid_to)` geçmişine yükleme sırası değil geçerlilik sırası karar verir; sonradan yüklenen eski bir sürüm geçmişe eklenir. `valid_at` ile yapılan arama, o anda geçerli olan sürümü döndürür; aralıklar yarı açık olduğundan değişikliğin tam yürürlük anı yalnızca yeni sürümü döndürür. HTTP, SDK ve MCP sonuçlarına `revision_number`, `valid_from` ve `valid_to` eklenir. Changelog, dört kanunluk Türkçe zaman fikstüründe doğru sürümün 18 tarihli ve sekiz tarihsiz sorunun tamamında ilk sırada geldiğini bildirir. Bu küçük bir duman testidir, kalite benchmark’ı değildir.
 
 ## v0.9.5 arama, depolama ve yüklemeler
 

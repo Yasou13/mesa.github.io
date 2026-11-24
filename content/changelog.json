@@ -1,6 +1,57 @@
 {
-  "sourceCommit": "e30856ec6e7ed9146bb9af992565e864f727b0b9",
+  "sourceCommit": "c725616364f3931249bd05a62676f132b65768e1",
   "releases": [
+    {
+      "version": "0.9.5",
+      "date": "2026-11-24",
+      "anchor": "095---2026-11-24",
+      "summary": {
+        "en": "Versioned documents with point-in-time search, a persistent BM25 index, faster local search on large stores and resumable uploads. The graph store is removed and the package installs on Python 3.14.",
+        "tr": "Belirli bir andaki hâliyle aranabilen sürümlü belgeler, kalıcı BM25 indeksi, büyük depolarda daha hızlı yerel arama ve kaldığı yerden devam eden yüklemeler. Çizge deposu kaldırıldı; paket Python 3.14’e kurulur."
+      },
+      "improved": [
+        {
+          "en": "Upload each version of a document with metadata.valid_from and search with valid_at. Validity order, not upload order, decides the active version, and intervals are half-open. Results carry revision_number, valid_from and valid_to.",
+          "tr": "Belgenin her sürümünü metadata.valid_from ile yükleyip valid_at ile arayın. Etkin sürüme yükleme sırası değil geçerlilik sırası karar verir; aralıklar yarı açıktır. Sonuçlar revision_number, valid_from ve valid_to taşır."
+        },
+        {
+          "en": "In the four-law Turkish temporal fixture, the correct version ranked first on all 18 dated and all 8 undated questions.",
+          "tr": "Dört kanunluk Türkçe zaman fikstüründe doğru sürüm 18 tarihli ve 8 tarihsiz sorunun tamamında ilk sırada geldi."
+        },
+        {
+          "en": "In a local run with 100,820 chunks on one 8 vCPU machine, the warm models-off HTTP search median fell from 1,223 ms to 753 ms and the deterministic vector lane median was 287 ms.",
+          "tr": "Tek bir 8 vCPU makinede 100.820 parçalık yerel koşuda modelsiz sıcak HTTP arama medyanı 1.223 ms’den 753 ms’ye indi; belirlenimci vektör kanalı medyanı 287 ms oldu."
+        },
+        {
+          "en": "Interrupted whole-document uploads resume from their saved chunks with the chunking plan chosen at admission.",
+          "tr": "Yarıda kalan tam belge yüklemeleri, kabulde seçilen parçalama planıyla kayıtlı parçalardan devam eder."
+        }
+      ],
+      "upgrade": [
+        {
+          "en": "Take an offline backup first. A forward-only migration clears old graph bookkeeping rows; going back needs v0.9.4 and the pre-upgrade snapshot.",
+          "tr": "Önce çevrimdışı yedek alın. Yalnızca ileri yönlü bir migration eski çizge kayıt satırlarını temizler; geri dönmek için v0.9.4 ve yükseltme öncesi anlık görüntü gerekir."
+        },
+        {
+          "en": "The Kùzu graph store is removed. Old kuzu_db files are ignored and can be deleted by hand; graph settings are ignored with a startup warning.",
+          "tr": "Kùzu çizge deposu kaldırıldı. Eski kuzu_db dosyaları yok sayılır ve elle silinebilir; çizge ayarları başlangıçta uyarıyla yok sayılır."
+        },
+        {
+          "en": "LanceDB is locked to 0.41.0; startup adds scope keys to older vector tables.",
+          "tr": "LanceDB 0.41.0’a kilitlendi; başlangıç eski vektör tablolarına kapsam anahtarları ekler."
+        }
+      ],
+      "limits": [
+        {
+          "en": "The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. No 0.9.5 benchmark is published yet.",
+          "tr": "Ölçek sayıları tek bir derlemin kopyaları üzerinde yapılmış yerel ölçümlerdir; o boyuttaki arama kalitesini ölçmez. 0.9.5 benchmark’ı henüz yayımlanmadı."
+        },
+        {
+          "en": "Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.",
+          "tr": "Dakikalık ve günlük istek sınırları /v4/* ve /control/* için hâlâ uygulanmıyor."
+        }
+      ]
+    },
     {
       "version": "0.9.4",
       "date": "2026-11-23",

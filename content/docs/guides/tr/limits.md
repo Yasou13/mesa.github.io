@@ -16,7 +16,7 @@ Bunlar, v0.9.5’in parçası olan `a0d585f` çalışma zamanı commit’inde ya
 | Modeller kapalı (BM25), v0.9.5 | 7.422,7 sn | 752,7 / 871,7 ms | 14.764,0 ms | 1.965,6 MiB |
 | Belirlenimci vektörler, v0.9.5 | 5.533,2 sn tamamlama | 2.016,2 / 2.451,7 ms | 21.292,4 ms | 3.609,2 MiB |
 
-Sıcak vektör kanalı tek başına 100.820 parçada 286,7 / 342,8 ms (p50 / p95) sürdü; temel çizgide üç sıcak sorguda p50 19.605,5 ms idi. Sıfırdan 100k kurulum sırasında istemci, SQLite meşgul zaman aşımından kaynaklanan bir HTTP 503’ü yeniden denedi. Bu boyutta arama kalitesi ölçülmedi: kopyalar aynı 141 belgeyi tekrarlar. [Ölçek sonuçlarına](benchmark/#scale) bakın.
+Sıcak vektör kanalı tek başına 100.820 parçada 286,7 / 342,8 ms (p50 / p95) sürdü; temel çizgide üç sıcak sorguda p50 19.605,5 ms idi. Sıfırdan 100k kurulum sırasında istemci, SQLite meşgul zaman aşımından kaynaklanan bir HTTP 503’ü yeniden denedi. Bu boyutta arama kalitesi ölçülmedi: kopyalar aynı 141 belgeyi tekrarlar.
 
 ## v0.9.4 ölçülen değişiklikler
 

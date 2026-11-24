@@ -5434,7 +5434,7 @@ Checked: 2026-11-24, mevzuat.gov.tr
 
 ## Can MESA track amendments for me?
 
-Not as a legal service. MESA 0.9.5 does not watch the Resmî Gazete or decide which version applies. It can keep every version you have checked: upload each one under the same `document_id` with `metadata.valid_from` set to the date it took effect. MESA orders versions by that date rather than by upload order, so you can add an older text later and it becomes history. A search with `valid_at` then returns the wording in force at that instant, and a search without a date returns the current version. See [checking an article in force on a date](/law/guides/yururluk-kontrolu/) for an example, and [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text.
+Not as a legal service. MESA 0.9.5 does not watch the Resmî Gazete or decide which version applies. It can keep every version you have checked: upload each one under the same `document_id` with `metadata.valid_from` set to the date it took effect. MESA orders versions by that date rather than by upload order, so you can add an older text later and it becomes history. A search with `valid_at` then returns the wording in force at that instant, and a search without a date returns the current version. See [checking an article in force on a date](/law/guides/kanun-maddesi-yururluk-tarihi/) for an example, and [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text.
 
 ## Sources
 
@@ -5489,7 +5489,7 @@ Denetim: 2026-11-24, mevzuat.gov.tr
 
 ## MESA değişiklikleri benim için izleyebilir mi?
 
-Hukuki bir hizmet olarak hayır. MESA 0.9.5 Resmî Gazete’yi izlemez ve hangi sürümün uygulanacağına karar vermez. Denetlediğiniz her sürümü saklayabilir: her birini aynı `document_id` altında, yürürlüğe girdiği tarihi `metadata.valid_from` olarak vererek yükleyin. MESA sürümleri yükleme sırasına göre değil bu tarihe göre sıralar; eski bir metni sonradan eklerseniz geçmişe yerleşir. `valid_at` ile yapılan arama o anda yürürlükte olan metni, tarihsiz arama ise güncel sürümü döndürür. Örnek için [bir maddenin belirli bir tarihte yürürlükte olup olmadığını denetleme](/law/guides/yururluk-kontrolu/) rehberine, MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
+Hukuki bir hizmet olarak hayır. MESA 0.9.5 Resmî Gazete’yi izlemez ve hangi sürümün uygulanacağına karar vermez. Denetlediğiniz her sürümü saklayabilir: her birini aynı `document_id` altında, yürürlüğe girdiği tarihi `metadata.valid_from` olarak vererek yükleyin. MESA sürümleri yükleme sırasına göre değil bu tarihe göre sıralar; eski bir metni sonradan eklerseniz geçmişe yerleşir. `valid_at` ile yapılan arama o anda yürürlükte olan metni, tarihsiz arama ise güncel sürümü döndürür. Örnek için [bir maddenin belirli bir tarihte yürürlükte olup olmadığını denetleme](/law/guides/kanun-maddesi-yururluk-tarihi/) rehberine, MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
 
 ## Kaynaklar
 
