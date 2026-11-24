@@ -1,9 +1,10 @@
 {
-  "version": "0.9.0",
-  "commit": "7062fafe2cff8442eb84d1da60df164099526c8e",
-  "recorded_at": "2026-10-29T17:42:05.199830+00:00",
+  "version": "0.9.5",
+  "commit": "c725616364f3931249bd05a62676f132b65768e1",
+  "package_source": "PyPI wheel",
+  "python": "3.14.4",
+  "recorded_at": "2026-11-24T19:59:48.239124+00:00",
   "models_enabled": false,
-  "graph_enabled": false,
   "examples": {
     "en": {
       "file": "archive-en.txt",
@@ -53,7 +54,7 @@
               "tenant_id": "local",
               "workspace_id": "default",
               "dataset_id": "default",
-              "session_id": "sess_a9264d20695f4f58ac3f5e961f45d0a8",
+              "session_id": "sess_604813da81454da8be1f128334fe7573",
               "agent_id": "local-agent",
               "principal_id": null,
               "state": "COMMITTED",
@@ -63,50 +64,50 @@
               "lease_expires_at": null,
               "retry_count": 0,
               "retry_limit": 5,
-              "created_at": "2026-10-29 17:42:10",
-              "updated_at": "2026-10-29 17:42:10",
+              "created_at": "2026-11-24 19:59:50",
+              "updated_at": "2026-11-24 19:59:50",
               "events": [
-                {
-                  "from_state": "EXTRACTED",
-                  "to_state": "VALIDATED",
-                  "event_type": "MUTATION_STATE_CHANGE",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:10"
-                },
                 {
                   "from_state": "RUNNING",
                   "to_state": "EXTRACTED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:10"
-                },
-                {
-                  "from_state": "VALIDATED",
-                  "to_state": "PROJECTING",
-                  "event_type": "MUTATION_STATE_CHANGE",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:10"
-                },
-                {
-                  "from_state": "PROJECTING",
-                  "to_state": "COMMITTED",
-                  "event_type": "MUTATION_STATE_CHANGE",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:10"
-                },
-                {
-                  "from_state": null,
-                  "to_state": "QUEUED",
-                  "event_type": "ADMITTED",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:10"
+                  "created_at": "2026-11-24 19:59:50"
                 },
                 {
                   "from_state": "QUEUED",
                   "to_state": "RUNNING",
                   "event_type": "AGGREGATE_STARTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:10"
+                  "created_at": "2026-11-24 19:59:50"
+                },
+                {
+                  "from_state": "EXTRACTED",
+                  "to_state": "VALIDATED",
+                  "event_type": "MUTATION_STATE_CHANGE",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:50"
+                },
+                {
+                  "from_state": "VALIDATED",
+                  "to_state": "PROJECTING",
+                  "event_type": "MUTATION_STATE_CHANGE",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:50"
+                },
+                {
+                  "from_state": null,
+                  "to_state": "QUEUED",
+                  "event_type": "ADMITTED",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:50"
+                },
+                {
+                  "from_state": "PROJECTING",
+                  "to_state": "COMMITTED",
+                  "event_type": "MUTATION_STATE_CHANGE",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:50"
                 }
               ]
             },
@@ -114,30 +115,23 @@
               {
                 "store_name": "SQL",
                 "artifact_kind": "ASSERTION",
-                "artifact_id": "328def77-028d-5fe3-9a5f-01506dee4991",
+                "artifact_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+                "artifact_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "9a08c7c3-5931-556c-8aef-e00974f6c623",
+                "artifact_id": "bbb37562-8bf0-5e35-b3de-728ac1a16aab",
                 "state": "ACTIVE"
               }
             ],
             "projections": [
-              {
-                "projection_name": "GRAPH",
-                "state": "SKIPPED",
-                "attempt_count": 1,
-                "retry_limit": 5,
-                "last_error_class": null
-              },
               {
                 "projection_name": "SQL",
                 "state": "COMPLETED",
@@ -157,37 +151,40 @@
         ],
         "results": [
           {
+            "revision_number": 1,
+            "valid_from": "",
+            "valid_to": "",
             "entity": {
-              "entity_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+              "entity_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
               "tenant_id": "local",
               "entity_type": "ENTITY",
-              "canonical_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
-              "normalized_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
+              "canonical_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
+              "normalized_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
               "ontology_uri": null,
-              "identity_key": "name:mesa-document-4363cab750a34eaeb83fae12621042a4",
+              "identity_key": "name:mesa-document-4190571af8a353e5b9410456ccb109b5",
               "status": "ACTIVE",
               "redirect_entity_id": null,
-              "created_at": "2026-10-29 17:42:10",
-              "updated_at": "2026-10-29 17:42:10"
+              "created_at": "2026-11-24 19:59:50",
+              "updated_at": "2026-11-24 19:59:50"
             },
-            "candidate_id": "328def77-028d-5fe3-9a5f-01506dee4991",
-            "evidence_id": "328def77-028d-5fe3-9a5f-01506dee4991",
-            "assertion_id": "328def77-028d-5fe3-9a5f-01506dee4991",
+            "candidate_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
+            "evidence_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
+            "assertion_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
             "source_chunk_id": "rev-4a1e606342ddfb3c069ec6fa51b3d3f8-c00000",
             "document_id": "doc-5239a0bb570c977f678a3a48e2947b81",
             "evidence_span": "The Atlas archive opens at 09:00 on weekdays.\n",
             "raw_score": 55.0,
-            "rrf_score": 0.03278688524590164,
+            "rrf_score": 0.01639344262295082,
             "legal_factor": 1.0,
-            "final_score": 0.03278688524590164,
+            "final_score": 0.01639344262295082,
             "provenance": [
               {
-                "assertion_id": "328def77-028d-5fe3-9a5f-01506dee4991",
+                "assertion_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+                "subject_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
                 "predicate": "madde",
-                "object_entity_id": "9a08c7c3-5931-556c-8aef-e00974f6c623",
+                "object_entity_id": "bbb37562-8bf0-5e35-b3de-728ac1a16aab",
                 "literal_value": null,
                 "source_ref": "file://archive-en.txt",
                 "document_id": "doc-5239a0bb570c977f678a3a48e2947b81",
@@ -203,7 +200,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "8db5a8d0-d6f0-592c-8d23-23d27662de2c",
                 "pipeline_run_id": "63856a18-0c64-5f51-82e0-f0ae21c1d316",
-                "created_at": "2026-10-29 17:42:10",
+                "created_at": "2026-11-24 19:59:50",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -213,20 +210,21 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
-                "object_name": "mesa-chunk-fb3a6749e53e45cea8477ef367604fe3",
+                "subject_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
+                "object_name": "mesa-chunk-94eccb19a49a537fbacd96648a6ac458",
                 "bm25_score": -1.9642857142857144e-06,
-                "direction": "asserted"
+                "direction": "asserted",
+                "revision_number": 1
               }
             ],
             "matched_assertions": [
               {
-                "assertion_id": "328def77-028d-5fe3-9a5f-01506dee4991",
+                "assertion_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+                "subject_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
                 "predicate": "madde",
-                "object_entity_id": "9a08c7c3-5931-556c-8aef-e00974f6c623",
+                "object_entity_id": "bbb37562-8bf0-5e35-b3de-728ac1a16aab",
                 "literal_value": null,
                 "source_ref": "file://archive-en.txt",
                 "document_id": "doc-5239a0bb570c977f678a3a48e2947b81",
@@ -242,7 +240,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "8db5a8d0-d6f0-592c-8d23-23d27662de2c",
                 "pipeline_run_id": "63856a18-0c64-5f51-82e0-f0ae21c1d316",
-                "created_at": "2026-10-29 17:42:10",
+                "created_at": "2026-11-24 19:59:50",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -252,10 +250,11 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
-                "object_name": "mesa-chunk-fb3a6749e53e45cea8477ef367604fe3",
+                "subject_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
+                "object_name": "mesa-chunk-94eccb19a49a537fbacd96648a6ac458",
                 "bm25_score": -1.9642857142857144e-06,
-                "direction": "asserted"
+                "direction": "asserted",
+                "revision_number": 1
               }
             ],
             "supporting_assertions": [],
@@ -272,8 +271,12 @@
                 "bm25": -1.9642857142857144e-06,
                 "assertion": 55.0
               },
-              "assertion_id": "328def77-028d-5fe3-9a5f-01506dee4991",
-              "source_chunk_id": "rev-4a1e606342ddfb3c069ec6fa51b3d3f8-c00000"
+              "assertion_id": "c97988ef-dcf4-5989-8271-2df763fdf83e",
+              "source_chunk_id": "rev-4a1e606342ddfb3c069ec6fa51b3d3f8-c00000",
+              "legal_items": {
+                "items": [],
+                "version": "tr-legal-rules-3"
+              }
             },
             "scope_identity": {
               "tenant_id": "local",
@@ -284,7 +287,7 @@
             }
           }
         ],
-        "terminal_output": "[1] score: 0.033 | doc-5239a0bb570c977f678a3a48e2947b81\n    The Atlas archive opens at 09:00 on weekdays."
+        "terminal_output": "[1] score: 0.016 | doc-5239a0bb570c977f678a3a48e2947b81\n    The Atlas archive opens at 09:00 on weekdays."
       },
       "updated": {
         "receipt": {
@@ -328,7 +331,7 @@
               "tenant_id": "local",
               "workspace_id": "default",
               "dataset_id": "default",
-              "session_id": "sess_61dbc6acb27e400aa0f69087491e3413",
+              "session_id": "sess_02eb001590e94183a3a291819b72bb6f",
               "agent_id": "local-agent",
               "principal_id": null,
               "state": "COMMITTED",
@@ -338,50 +341,50 @@
               "lease_expires_at": null,
               "retry_count": 0,
               "retry_limit": 5,
-              "created_at": "2026-10-29 17:42:16",
-              "updated_at": "2026-10-29 17:42:16",
+              "created_at": "2026-11-24 19:59:54",
+              "updated_at": "2026-11-24 19:59:54",
               "events": [
                 {
-                  "from_state": "QUEUED",
-                  "to_state": "RUNNING",
-                  "event_type": "AGGREGATE_STARTED",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:16"
-                },
-                {
-                  "from_state": "RUNNING",
-                  "to_state": "EXTRACTED",
+                  "from_state": "VALIDATED",
+                  "to_state": "PROJECTING",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:16"
+                  "created_at": "2026-11-24 19:59:54"
                 },
                 {
                   "from_state": null,
                   "to_state": "QUEUED",
                   "event_type": "ADMITTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:16"
+                  "created_at": "2026-11-24 19:59:54"
                 },
                 {
-                  "from_state": "EXTRACTED",
-                  "to_state": "VALIDATED",
-                  "event_type": "MUTATION_STATE_CHANGE",
+                  "from_state": "QUEUED",
+                  "to_state": "RUNNING",
+                  "event_type": "AGGREGATE_STARTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:16"
+                  "created_at": "2026-11-24 19:59:54"
                 },
                 {
                   "from_state": "PROJECTING",
                   "to_state": "COMMITTED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:16"
+                  "created_at": "2026-11-24 19:59:54"
                 },
                 {
-                  "from_state": "VALIDATED",
-                  "to_state": "PROJECTING",
+                  "from_state": "EXTRACTED",
+                  "to_state": "VALIDATED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:16"
+                  "created_at": "2026-11-24 19:59:54"
+                },
+                {
+                  "from_state": "RUNNING",
+                  "to_state": "EXTRACTED",
+                  "event_type": "MUTATION_STATE_CHANGE",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:54"
                 }
               ]
             },
@@ -389,30 +392,23 @@
               {
                 "store_name": "SQL",
                 "artifact_kind": "ASSERTION",
-                "artifact_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
+                "artifact_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+                "artifact_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "47e55c6a-7090-5e92-b80b-5dc46c9cb6ac",
+                "artifact_id": "bbf4a6ac-28fa-5b19-aad8-c1e1d2cac299",
                 "state": "ACTIVE"
               }
             ],
             "projections": [
-              {
-                "projection_name": "GRAPH",
-                "state": "SKIPPED",
-                "attempt_count": 1,
-                "retry_limit": 5,
-                "last_error_class": null
-              },
               {
                 "projection_name": "SQL",
                 "state": "COMPLETED",
@@ -432,37 +428,40 @@
         ],
         "results": [
           {
+            "revision_number": 2,
+            "valid_from": "",
+            "valid_to": "",
             "entity": {
-              "entity_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+              "entity_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
               "tenant_id": "local",
               "entity_type": "ENTITY",
-              "canonical_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
-              "normalized_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
+              "canonical_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
+              "normalized_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
               "ontology_uri": null,
-              "identity_key": "name:mesa-document-4363cab750a34eaeb83fae12621042a4",
+              "identity_key": "name:mesa-document-4190571af8a353e5b9410456ccb109b5",
               "status": "ACTIVE",
               "redirect_entity_id": null,
-              "created_at": "2026-10-29 17:42:10",
-              "updated_at": "2026-10-29 17:42:10"
+              "created_at": "2026-11-24 19:59:50",
+              "updated_at": "2026-11-24 19:59:50"
             },
-            "candidate_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
-            "evidence_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
-            "assertion_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
+            "candidate_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
+            "evidence_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
+            "assertion_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
             "source_chunk_id": "rev-43584e772330adffef853155afbbde79-c00000",
             "document_id": "doc-5239a0bb570c977f678a3a48e2947b81",
             "evidence_span": "The Atlas archive opens at 10:00 on weekdays.\n",
             "raw_score": 55.0,
-            "rrf_score": 0.03278688524590164,
+            "rrf_score": 0.01639344262295082,
             "legal_factor": 1.0,
-            "final_score": 0.03278688524590164,
+            "final_score": 0.01639344262295082,
             "provenance": [
               {
-                "assertion_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
+                "assertion_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+                "subject_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
                 "predicate": "madde",
-                "object_entity_id": "47e55c6a-7090-5e92-b80b-5dc46c9cb6ac",
+                "object_entity_id": "bbf4a6ac-28fa-5b19-aad8-c1e1d2cac299",
                 "literal_value": null,
                 "source_ref": "file://archive-en.txt",
                 "document_id": "doc-5239a0bb570c977f678a3a48e2947b81",
@@ -478,7 +477,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "ca763c10-7a2f-53fa-83d4-da1805e5e40a",
                 "pipeline_run_id": "92a385ea-d501-5a29-9802-98c354576f10",
-                "created_at": "2026-10-29 17:42:16",
+                "created_at": "2026-11-24 19:59:54",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -488,20 +487,21 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
-                "object_name": "mesa-chunk-805ead9bf87d4fd39c1a57afd24de66c",
+                "subject_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
+                "object_name": "mesa-chunk-797a3158e93a59b1b56f5e2547526853",
                 "bm25_score": -1.9642857142857144e-06,
-                "direction": "asserted"
+                "direction": "asserted",
+                "revision_number": 2
               }
             ],
             "matched_assertions": [
               {
-                "assertion_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
+                "assertion_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "1ff46154-9d84-5b46-9d02-6cbd34030483",
+                "subject_id": "9467219b-69db-5a7d-bb71-958dc3ea7bfd",
                 "predicate": "madde",
-                "object_entity_id": "47e55c6a-7090-5e92-b80b-5dc46c9cb6ac",
+                "object_entity_id": "bbf4a6ac-28fa-5b19-aad8-c1e1d2cac299",
                 "literal_value": null,
                 "source_ref": "file://archive-en.txt",
                 "document_id": "doc-5239a0bb570c977f678a3a48e2947b81",
@@ -517,7 +517,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "ca763c10-7a2f-53fa-83d4-da1805e5e40a",
                 "pipeline_run_id": "92a385ea-d501-5a29-9802-98c354576f10",
-                "created_at": "2026-10-29 17:42:16",
+                "created_at": "2026-11-24 19:59:54",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -527,10 +527,11 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-4363cab750a34eaeb83fae12621042a4",
-                "object_name": "mesa-chunk-805ead9bf87d4fd39c1a57afd24de66c",
+                "subject_name": "mesa-document-4190571af8a353e5b9410456ccb109b5",
+                "object_name": "mesa-chunk-797a3158e93a59b1b56f5e2547526853",
                 "bm25_score": -1.9642857142857144e-06,
-                "direction": "asserted"
+                "direction": "asserted",
+                "revision_number": 2
               }
             ],
             "supporting_assertions": [],
@@ -547,8 +548,12 @@
                 "bm25": -1.9642857142857144e-06,
                 "assertion": 55.0
               },
-              "assertion_id": "df60af93-f8ef-5a68-8ca8-89a83e9b9fa2",
-              "source_chunk_id": "rev-43584e772330adffef853155afbbde79-c00000"
+              "assertion_id": "8aaed17e-10ba-56a9-a394-2b9696d0433e",
+              "source_chunk_id": "rev-43584e772330adffef853155afbbde79-c00000",
+              "legal_items": {
+                "items": [],
+                "version": "tr-legal-rules-3"
+              }
             },
             "scope_identity": {
               "tenant_id": "local",
@@ -559,7 +564,7 @@
             }
           }
         ],
-        "terminal_output": "[1] score: 0.033 | doc-5239a0bb570c977f678a3a48e2947b81\n    The Atlas archive opens at 10:00 on weekdays."
+        "terminal_output": "[1] score: 0.016 | doc-5239a0bb570c977f678a3a48e2947b81\n    The Atlas archive opens at 10:00 on weekdays."
       }
     },
     "tr": {
@@ -610,7 +615,7 @@
               "tenant_id": "local",
               "workspace_id": "default",
               "dataset_id": "default",
-              "session_id": "sess_489b172cc9ec49fdb0194258c41968e1",
+              "session_id": "sess_ed2e1401170d430c8d6785037ebb2652",
               "agent_id": "local-agent",
               "principal_id": null,
               "state": "COMMITTED",
@@ -620,50 +625,50 @@
               "lease_expires_at": null,
               "retry_count": 0,
               "retry_limit": 5,
-              "created_at": "2026-10-29 17:42:22",
-              "updated_at": "2026-10-29 17:42:22",
+              "created_at": "2026-11-24 19:59:57",
+              "updated_at": "2026-11-24 19:59:58",
               "events": [
                 {
-                  "from_state": "RUNNING",
-                  "to_state": "EXTRACTED",
-                  "event_type": "MUTATION_STATE_CHANGE",
+                  "from_state": null,
+                  "to_state": "QUEUED",
+                  "event_type": "ADMITTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:22"
+                  "created_at": "2026-11-24 19:59:57"
                 },
                 {
                   "from_state": "EXTRACTED",
                   "to_state": "VALIDATED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:22"
+                  "created_at": "2026-11-24 19:59:57"
                 },
                 {
-                  "from_state": "PROJECTING",
-                  "to_state": "COMMITTED",
+                  "from_state": "RUNNING",
+                  "to_state": "EXTRACTED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:22"
-                },
-                {
-                  "from_state": null,
-                  "to_state": "QUEUED",
-                  "event_type": "ADMITTED",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:22"
-                },
-                {
-                  "from_state": "VALIDATED",
-                  "to_state": "PROJECTING",
-                  "event_type": "MUTATION_STATE_CHANGE",
-                  "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:22"
+                  "created_at": "2026-11-24 19:59:57"
                 },
                 {
                   "from_state": "QUEUED",
                   "to_state": "RUNNING",
                   "event_type": "AGGREGATE_STARTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:22"
+                  "created_at": "2026-11-24 19:59:57"
+                },
+                {
+                  "from_state": "PROJECTING",
+                  "to_state": "COMMITTED",
+                  "event_type": "MUTATION_STATE_CHANGE",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:58"
+                },
+                {
+                  "from_state": "VALIDATED",
+                  "to_state": "PROJECTING",
+                  "event_type": "MUTATION_STATE_CHANGE",
+                  "detail_json": "{}",
+                  "created_at": "2026-11-24 19:59:58"
                 }
               ]
             },
@@ -671,30 +676,23 @@
               {
                 "store_name": "SQL",
                 "artifact_kind": "ASSERTION",
-                "artifact_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
+                "artifact_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "2016ccc3-e38b-5cd4-b529-b1aec42b7194",
+                "artifact_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "6668a133-d524-567b-993d-c18efcd17629",
+                "artifact_id": "64e09b52-1c98-5236-bfee-c4480a7fd2f2",
                 "state": "ACTIVE"
               }
             ],
             "projections": [
-              {
-                "projection_name": "GRAPH",
-                "state": "SKIPPED",
-                "attempt_count": 1,
-                "retry_limit": 5,
-                "last_error_class": null
-              },
               {
                 "projection_name": "SQL",
                 "state": "COMPLETED",
@@ -714,37 +712,40 @@
         ],
         "results": [
           {
+            "revision_number": 1,
+            "valid_from": "",
+            "valid_to": "",
             "entity": {
-              "entity_id": "6668a133-d524-567b-993d-c18efcd17629",
+              "entity_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
               "tenant_id": "local",
               "entity_type": "ENTITY",
-              "canonical_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
-              "normalized_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
+              "canonical_name": "mesa-document-63bf7eea390d579489a88979492daef1",
+              "normalized_name": "mesa-document-63bf7eea390d579489a88979492daef1",
               "ontology_uri": null,
-              "identity_key": "name:mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
+              "identity_key": "name:mesa-document-63bf7eea390d579489a88979492daef1",
               "status": "ACTIVE",
               "redirect_entity_id": null,
-              "created_at": "2026-10-29 17:42:22",
-              "updated_at": "2026-10-29 17:42:22"
+              "created_at": "2026-11-24 19:59:58",
+              "updated_at": "2026-11-24 19:59:58"
             },
-            "candidate_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
-            "evidence_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
-            "assertion_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
+            "candidate_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
+            "evidence_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
+            "assertion_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
             "source_chunk_id": "rev-54869a4ee8272f0aad99cf953ec035da-c00000",
             "document_id": "doc-d206865140f38f4fcadb22c4645c222f",
             "evidence_span": "Atlas arşivi hafta içi 09:00 saatinde açılır.\n",
             "raw_score": 55.0,
-            "rrf_score": 0.03278688524590164,
+            "rrf_score": 0.01639344262295082,
             "legal_factor": 1.0,
-            "final_score": 0.03278688524590164,
+            "final_score": 0.01639344262295082,
             "provenance": [
               {
-                "assertion_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
+                "assertion_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "6668a133-d524-567b-993d-c18efcd17629",
+                "subject_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
                 "predicate": "madde",
-                "object_entity_id": "2016ccc3-e38b-5cd4-b529-b1aec42b7194",
+                "object_entity_id": "64e09b52-1c98-5236-bfee-c4480a7fd2f2",
                 "literal_value": null,
                 "source_ref": "file://archive-tr.txt",
                 "document_id": "doc-d206865140f38f4fcadb22c4645c222f",
@@ -760,7 +761,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "a7e6110e-5e6f-55f5-88ee-0ad1fd9086ee",
                 "pipeline_run_id": "5385fd25-397a-5b42-af5f-0521a0978438",
-                "created_at": "2026-10-29 17:42:22",
+                "created_at": "2026-11-24 19:59:58",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -770,20 +771,21 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
-                "object_name": "mesa-chunk-e90d925d6f8a4694a739abdec867ac69",
-                "bm25_score": -1.947312961011591e-06,
-                "direction": "asserted"
+                "subject_name": "mesa-document-63bf7eea390d579489a88979492daef1",
+                "object_name": "mesa-chunk-ec97695ba53e56a4a71594f6cc030579",
+                "bm25_score": -1.9489932885906036e-06,
+                "direction": "asserted",
+                "revision_number": 1
               }
             ],
             "matched_assertions": [
               {
-                "assertion_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
+                "assertion_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "6668a133-d524-567b-993d-c18efcd17629",
+                "subject_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
                 "predicate": "madde",
-                "object_entity_id": "2016ccc3-e38b-5cd4-b529-b1aec42b7194",
+                "object_entity_id": "64e09b52-1c98-5236-bfee-c4480a7fd2f2",
                 "literal_value": null,
                 "source_ref": "file://archive-tr.txt",
                 "document_id": "doc-d206865140f38f4fcadb22c4645c222f",
@@ -799,7 +801,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "a7e6110e-5e6f-55f5-88ee-0ad1fd9086ee",
                 "pipeline_run_id": "5385fd25-397a-5b42-af5f-0521a0978438",
-                "created_at": "2026-10-29 17:42:22",
+                "created_at": "2026-11-24 19:59:58",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -809,10 +811,11 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
-                "object_name": "mesa-chunk-e90d925d6f8a4694a739abdec867ac69",
-                "bm25_score": -1.947312961011591e-06,
-                "direction": "asserted"
+                "subject_name": "mesa-document-63bf7eea390d579489a88979492daef1",
+                "object_name": "mesa-chunk-ec97695ba53e56a4a71594f6cc030579",
+                "bm25_score": -1.9489932885906036e-06,
+                "direction": "asserted",
+                "revision_number": 1
               }
             ],
             "supporting_assertions": [],
@@ -826,11 +829,15 @@
                 "bm25": 1
               },
               "raw_scores": {
-                "bm25": -1.947312961011591e-06,
+                "bm25": -1.9489932885906036e-06,
                 "assertion": 55.0
               },
-              "assertion_id": "b75e91d4-1572-517f-a246-122ac7535bdf",
-              "source_chunk_id": "rev-54869a4ee8272f0aad99cf953ec035da-c00000"
+              "assertion_id": "5fbdb191-e05d-5ed6-b4b3-dbdddec63b76",
+              "source_chunk_id": "rev-54869a4ee8272f0aad99cf953ec035da-c00000",
+              "legal_items": {
+                "items": [],
+                "version": "tr-legal-rules-3"
+              }
             },
             "scope_identity": {
               "tenant_id": "local",
@@ -841,7 +848,7 @@
             }
           }
         ],
-        "terminal_output": "[1] score: 0.033 | doc-d206865140f38f4fcadb22c4645c222f\n    Atlas arşivi hafta içi 09:00 saatinde açılır."
+        "terminal_output": "[1] score: 0.016 | doc-d206865140f38f4fcadb22c4645c222f\n    Atlas arşivi hafta içi 09:00 saatinde açılır."
       },
       "updated": {
         "receipt": {
@@ -885,7 +892,7 @@
               "tenant_id": "local",
               "workspace_id": "default",
               "dataset_id": "default",
-              "session_id": "sess_72cdb5ef8f3f413aa1cd88334ef57cf6",
+              "session_id": "sess_171752589a8b47fa8ac265516e07ce61",
               "agent_id": "local-agent",
               "principal_id": null,
               "state": "COMMITTED",
@@ -895,50 +902,50 @@
               "lease_expires_at": null,
               "retry_count": 0,
               "retry_limit": 5,
-              "created_at": "2026-10-29 17:42:28",
-              "updated_at": "2026-10-29 17:42:28",
+              "created_at": "2026-11-24 20:00:01",
+              "updated_at": "2026-11-24 20:00:01",
               "events": [
                 {
-                  "from_state": null,
-                  "to_state": "QUEUED",
-                  "event_type": "ADMITTED",
+                  "from_state": "QUEUED",
+                  "to_state": "RUNNING",
+                  "event_type": "AGGREGATE_STARTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:28"
+                  "created_at": "2026-11-24 20:00:01"
                 },
                 {
                   "from_state": "VALIDATED",
                   "to_state": "PROJECTING",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:28"
+                  "created_at": "2026-11-24 20:00:01"
                 },
                 {
                   "from_state": "RUNNING",
                   "to_state": "EXTRACTED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:28"
+                  "created_at": "2026-11-24 20:00:01"
                 },
                 {
-                  "from_state": "PROJECTING",
-                  "to_state": "COMMITTED",
-                  "event_type": "MUTATION_STATE_CHANGE",
+                  "from_state": null,
+                  "to_state": "QUEUED",
+                  "event_type": "ADMITTED",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:28"
+                  "created_at": "2026-11-24 20:00:01"
                 },
                 {
                   "from_state": "EXTRACTED",
                   "to_state": "VALIDATED",
                   "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:28"
+                  "created_at": "2026-11-24 20:00:01"
                 },
                 {
-                  "from_state": "QUEUED",
-                  "to_state": "RUNNING",
-                  "event_type": "AGGREGATE_STARTED",
+                  "from_state": "PROJECTING",
+                  "to_state": "COMMITTED",
+                  "event_type": "MUTATION_STATE_CHANGE",
                   "detail_json": "{}",
-                  "created_at": "2026-10-29 17:42:28"
+                  "created_at": "2026-11-24 20:00:01"
                 }
               ]
             },
@@ -946,30 +953,23 @@
               {
                 "store_name": "SQL",
                 "artifact_kind": "ASSERTION",
-                "artifact_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
+                "artifact_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "4a5cf538-05ca-578c-a87b-b9ff7148fcf2",
+                "artifact_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
                 "state": "ACTIVE"
               },
               {
                 "store_name": "SQL",
                 "artifact_kind": "ENTITY",
-                "artifact_id": "6668a133-d524-567b-993d-c18efcd17629",
+                "artifact_id": "63dc1b2b-885a-5ea6-bb68-520a98b4bb9a",
                 "state": "ACTIVE"
               }
             ],
             "projections": [
-              {
-                "projection_name": "GRAPH",
-                "state": "SKIPPED",
-                "attempt_count": 1,
-                "retry_limit": 5,
-                "last_error_class": null
-              },
               {
                 "projection_name": "SQL",
                 "state": "COMPLETED",
@@ -989,37 +989,40 @@
         ],
         "results": [
           {
+            "revision_number": 2,
+            "valid_from": "",
+            "valid_to": "",
             "entity": {
-              "entity_id": "6668a133-d524-567b-993d-c18efcd17629",
+              "entity_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
               "tenant_id": "local",
               "entity_type": "ENTITY",
-              "canonical_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
-              "normalized_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
+              "canonical_name": "mesa-document-63bf7eea390d579489a88979492daef1",
+              "normalized_name": "mesa-document-63bf7eea390d579489a88979492daef1",
               "ontology_uri": null,
-              "identity_key": "name:mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
+              "identity_key": "name:mesa-document-63bf7eea390d579489a88979492daef1",
               "status": "ACTIVE",
               "redirect_entity_id": null,
-              "created_at": "2026-10-29 17:42:22",
-              "updated_at": "2026-10-29 17:42:22"
+              "created_at": "2026-11-24 19:59:58",
+              "updated_at": "2026-11-24 19:59:58"
             },
-            "candidate_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
-            "evidence_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
-            "assertion_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
+            "candidate_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
+            "evidence_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
+            "assertion_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
             "source_chunk_id": "rev-e34e7b32ba0b4e23f8c6095b21ebab1a-c00000",
             "document_id": "doc-d206865140f38f4fcadb22c4645c222f",
             "evidence_span": "Atlas arşivi hafta içi 10:00 saatinde açılır.\n",
             "raw_score": 55.0,
-            "rrf_score": 0.03278688524590164,
+            "rrf_score": 0.01639344262295082,
             "legal_factor": 1.0,
-            "final_score": 0.03278688524590164,
+            "final_score": 0.01639344262295082,
             "provenance": [
               {
-                "assertion_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
+                "assertion_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "6668a133-d524-567b-993d-c18efcd17629",
+                "subject_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
                 "predicate": "madde",
-                "object_entity_id": "4a5cf538-05ca-578c-a87b-b9ff7148fcf2",
+                "object_entity_id": "63dc1b2b-885a-5ea6-bb68-520a98b4bb9a",
                 "literal_value": null,
                 "source_ref": "file://archive-tr.txt",
                 "document_id": "doc-d206865140f38f4fcadb22c4645c222f",
@@ -1035,7 +1038,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "e5ef2fa9-cf9a-5e12-a220-d6fb8eb67c2f",
                 "pipeline_run_id": "4ef7bfa9-6012-56b4-9853-02eb7a92074e",
-                "created_at": "2026-10-29 17:42:28",
+                "created_at": "2026-11-24 20:00:01",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -1045,20 +1048,21 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
-                "object_name": "mesa-chunk-e9d2fbd71f814d80b6beade0f02f3958",
-                "bm25_score": -1.947312961011591e-06,
-                "direction": "asserted"
+                "subject_name": "mesa-document-63bf7eea390d579489a88979492daef1",
+                "object_name": "mesa-chunk-9680ab465ff45428976aa850779d64bc",
+                "bm25_score": -1.9489932885906036e-06,
+                "direction": "asserted",
+                "revision_number": 2
               }
             ],
             "matched_assertions": [
               {
-                "assertion_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
+                "assertion_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
                 "tenant_id": "local",
                 "dataset_id": "default",
-                "subject_id": "6668a133-d524-567b-993d-c18efcd17629",
+                "subject_id": "48f45f3e-a7b4-543d-822f-775b4f6a8dc2",
                 "predicate": "madde",
-                "object_entity_id": "4a5cf538-05ca-578c-a87b-b9ff7148fcf2",
+                "object_entity_id": "63dc1b2b-885a-5ea6-bb68-520a98b4bb9a",
                 "literal_value": null,
                 "source_ref": "file://archive-tr.txt",
                 "document_id": "doc-d206865140f38f4fcadb22c4645c222f",
@@ -1074,7 +1078,7 @@
                 "status": "ACTIVE",
                 "mutation_id": "e5ef2fa9-cf9a-5e12-a220-d6fb8eb67c2f",
                 "pipeline_run_id": "4ef7bfa9-6012-56b4-9853-02eb7a92074e",
-                "created_at": "2026-10-29 17:42:28",
+                "created_at": "2026-11-24 20:00:01",
                 "object_type": "ENTITY",
                 "representation_version": "assertion-v1",
                 "law_id": "",
@@ -1084,10 +1088,11 @@
                 "clause_id": "",
                 "legal_version_id": "",
                 "legal_identity_source": "",
-                "subject_name": "mesa-document-37f5e3b964ab485d963fbbd742e03bf7",
-                "object_name": "mesa-chunk-e9d2fbd71f814d80b6beade0f02f3958",
-                "bm25_score": -1.947312961011591e-06,
-                "direction": "asserted"
+                "subject_name": "mesa-document-63bf7eea390d579489a88979492daef1",
+                "object_name": "mesa-chunk-9680ab465ff45428976aa850779d64bc",
+                "bm25_score": -1.9489932885906036e-06,
+                "direction": "asserted",
+                "revision_number": 2
               }
             ],
             "supporting_assertions": [],
@@ -1101,11 +1106,15 @@
                 "bm25": 1
               },
               "raw_scores": {
-                "bm25": -1.947312961011591e-06,
+                "bm25": -1.9489932885906036e-06,
                 "assertion": 55.0
               },
-              "assertion_id": "13f98825-1676-5724-9e87-a8e2bd2367c7",
-              "source_chunk_id": "rev-e34e7b32ba0b4e23f8c6095b21ebab1a-c00000"
+              "assertion_id": "29a2c581-2f4f-5158-a165-a4d703696df9",
+              "source_chunk_id": "rev-e34e7b32ba0b4e23f8c6095b21ebab1a-c00000",
+              "legal_items": {
+                "items": [],
+                "version": "tr-legal-rules-3"
+              }
             },
             "scope_identity": {
               "tenant_id": "local",
@@ -1116,7 +1125,7 @@
             }
           }
         ],
-        "terminal_output": "[1] score: 0.033 | doc-d206865140f38f4fcadb22c4645c222f\n    Atlas arşivi hafta içi 10:00 saatinde açılır."
+        "terminal_output": "[1] score: 0.016 | doc-d206865140f38f4fcadb22c4645c222f\n    Atlas arşivi hafta içi 10:00 saatinde açılır."
       }
     }
   },

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {firstSearch} from '../render_first_search.mjs';
 
 test('recorded first-use evidence proves completed writes, source links and replacement revisions', () => {
-  assert.equal(firstSearch.version, '0.9.0');
+  assert.equal(firstSearch.version, '0.9.5');
   assert.equal(firstSearch.models_enabled, false);
   for (const example of Object.values(firstSearch.examples)) {
     const {initial, updated} = example;
@@ -12,6 +12,8 @@ test('recorded first-use evidence proves completed writes, source links and repl
     for (const [record, content] of [[initial, example.text], [updated, example.updated_text]]) {
       assert.deepEqual(record.states.map(state => state.mutation_id).sort(), [...record.receipt.mutation_ids].sort());
       assert.ok(record.states.length && record.states.every(state => state.state === 'COMMITTED'));
+      // 0.9.5 has no graph store: only SQL and VECTOR projections exist.
+      assert.ok(record.states.every(state => state.projections.every(p => ['SQL', 'VECTOR'].includes(p.projection_name))));
       assert.ok(record.results.length);
       for (const result of record.results) {
         assert.ok(result.evidence_span.includes(content));

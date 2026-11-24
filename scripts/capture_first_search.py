@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Record real, model-disabled Core v0.9.0 CLI evidence in an isolated temp home.
+"""Record real, model-disabled Core v0.9.5 CLI evidence in an isolated temp home.
 
-Run with the pinned Core environment:
-  /path/to/MESA/.venv/bin/python scripts/capture_first_search.py --core /path/to/MESA
+Run with a clean environment that has mesa-memory==0.9.5 installed from PyPI,
+pointing --core at a MESA checkout that contains the v0.9.5 tag:
+  /path/to/venv/bin/python scripts/capture_first_search.py --core /path/to/MESA
 No credentials or server logs are exported. No existing MESA home is used.
 """
 import argparse
@@ -17,7 +18,8 @@ from datetime import datetime, timezone
 from importlib.metadata import version
 from urllib.request import urlopen
 
-BASELINE = "7062fafe2cff8442eb84d1da60df164099526c8e"
+BASELINE = "c725616364f3931249bd05a62676f132b65768e1"
+VERSION = "0.9.5"
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -25,18 +27,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--core", type=Path, required=True)
     args = parser.parse_args()
-    assert version("mesa-memory") == "0.9.0"
-    assert subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=args.core, text=True).strip() == BASELINE
+    assert version("mesa-memory") == VERSION
+    assert subprocess.check_output(["git", "rev-parse", f"v{VERSION}^{{commit}}"], cwd=args.core, text=True).strip() == BASELINE
     from mesa_client import MesaV4Client
 
-    evidence = {"version": "0.9.0", "commit": BASELINE,
+    evidence = {"version": VERSION, "commit": BASELINE, "package_source": "PyPI wheel",
+                "python": sys.version.split()[0],
                 "recorded_at": datetime.now(timezone.utc).isoformat(),
-                "models_enabled": False, "graph_enabled": False, "examples": {}}
+                "models_enabled": False, "examples": {}}
     with tempfile.TemporaryDirectory(prefix="mesa-first-search-") as temporary:
         home = Path(temporary)
         env = {k: v for k, v in os.environ.items() if not k.startswith("MESA_")}
         env.update(MESA_HOME=str(home), MESA_PORT="18765", MESA_MODEL_ENABLED="false",
-                   MESA_GRAPH_ENABLED="false", MESA_EXTERNAL_PROVIDER_ENABLED="false",
+                   MESA_EXTERNAL_PROVIDER_ENABLED="false",
                    PYTHONDONTWRITEBYTECODE="1")
         command = [sys.executable, "-m", "mesa_mcp.codex_cli"]
         def cli(*parts):
