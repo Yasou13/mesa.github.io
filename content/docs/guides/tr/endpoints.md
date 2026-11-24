@@ -1,10 +1,10 @@
 ## Genel bakış
 
-Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.
+Core v0.9.5 (commit c725616) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.
 
 `/health/init` dışındaki her uç nokta `X-API-Key` başlığı ister. V4 çağrısının erişebileceği veri, o anahtara verilen rollerle sınırlıdır; bkz. [Güvenlik ve kapsam](docs/core/security/).
 
-[OpenAPI JSON dosyasını indirin](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/reference/openapi.json)
+[OpenAPI JSON dosyasını indirin](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/reference/openapi.json)
 
 ## V4 · hafıza, katalog ve oturumlar
 
@@ -589,7 +589,7 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 | `valid_at` | string \| null | hayır |  |
 | `valid_from` | string \| null | hayır |  |
 | `valid_to` | string \| null | hayır |  |
-| `graph_mode` | enabled · disabled | hayır | Eşleştirilmiş karşılaştırma için yalnızca çizge arama kanalını açar veya kapatır. |
+| `graph_mode` | enabled · disabled | hayır | Eski istemciler için kabul edilir. Core 0.9.5'te çizge araması yoktur; değerin etkisi olmaz. |
 
 **Yanıtlar**
 
@@ -605,7 +605,11 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
     "string"
   ],
   "results": [
-    {}
+    {
+      "revision_number": 1,
+      "valid_from": "string",
+      "valid_to": "string"
+    }
   ],
   "degraded_sources": [],
   "scope_audit": {
@@ -616,13 +620,13 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
     "query_identity": "string",
     "evaluated_candidate_count": 0
   },
-  "graph_ablation": {
+  "vector_lane": {
     "contract_version": "string",
-    "mode": "enabled",
-    "pair_identity": "string",
-    "query_identity": "string",
-    "retrieval_config_identity": "string",
-    "scope_identity": "string"
+    "status": "string",
+    "representation_version": "string",
+    "embedding_space_id": "string",
+    "registry_artifact_count": 0,
+    "compatible_registry_artifact_count": 0
   }
 }
 ```
@@ -704,8 +708,23 @@ Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örn
 
 **Yanıtlar**
 
-- `200` Başarılı yanıt
+- `200` Başarılı yanıt · `V4ContextResponse`
 - `422` Doğrulama hatası · `HTTPValidationError`
+
+*Örnek*
+
+```json
+{
+  "tenant_id": "docs-tenant",
+  "workspace_id": "docs-workspace",
+  "dataset_ids": [
+    "string"
+  ],
+  "agent_id": "docs-agent",
+  "session_id": "<session_id>",
+  "context": "string"
+}
+```
 
 ### POST /v4/sessions/{session_id}/end
 

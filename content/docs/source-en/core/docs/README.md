@@ -2,7 +2,7 @@
 
 This folder holds 12 usage/development guides and 8 architecture decision records.
 You do not need to read them in order. Pick the entry point below that matches your goal.
-Package version 0.9.4; V4 is the current API.
+Package version 0.9.5; V4 is the current API.
 
 ## Where should I start?
 
@@ -13,10 +13,10 @@ Package version 0.9.4; V4 is the current API.
 | Use it over HTTP, the Python SDK or terminal commands | [API, SDK and CLI](docs/core/api-reference/) |
 | Connect Codex/Antigravity | [MCP guide](docs/core/mcp/) |
 | Understand tenant, dataset, revision and mutation | [Concepts and ingestion](docs/core/concepts-and-ingestion/) |
-| Understand the system's modules and boundaries | [Architecture](docs/core/architecture/) |
-| Understand search scores, the graph and context | [Retrieval and graph](docs/core/retrieval-and-graph/) |
+| Understand how the system works and its boundaries | [One-page architecture summary](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/ARCHITECTURE.md), [detailed module guide](docs/core/architecture/#module-ownership) |
+| Understand search scores and source evidence | [Retrieval and evidence](docs/core/retrieval-and-graph/#lanes-and-scoring) |
 | Handle permissions, backups, failures or upgrades | [Operations guide](docs/core/operations/) |
-| Regenerate vector/graph stores from existing V4 data | [Projection rebuild](docs/core/rebuild-runbook/) |
+| Regenerate the vector store from existing V4 data | [Projection rebuild](docs/core/rebuild-runbook/) |
 | Learn the access and data security boundaries | [Security](docs/core/security/) |
 | Run the tests and read CI results | [Testing and CI](docs/core/testing/) |
 | Publish a new release | [Release procedure](docs/core/release-policy/) |

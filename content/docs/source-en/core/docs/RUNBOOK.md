@@ -7,7 +7,7 @@ complete.
 ## 1. Supported v4 topology
 
 V4 runs with a single `combined` process writing to one storage root. API
-admission, the durable consumer, validation and SQLite/LanceDB/Kùzu projection
+admission, the durable consumer, validation and SQLite/LanceDB projection
 work all live in this process.
 
 ```bash
@@ -134,7 +134,7 @@ compatibility; on its own it is not proof of consistency. The backup implementat
 also verifies/takes the storage-root writer lock, copies each SQLite file as a separate
 consistent snapshot using SQLite's online backup primitive, and publishes atomically
 only after staging verification. SQL is the authoritative/canonical truth. The LanceDB
-vector and Kùzu graph projections are rebuildable derived state and are copied only
+vector projections are rebuildable derived state and are copied only
 under the exclusive writer-lock boundary.
 
 Restore must not overwrite an existing target. Restore the backup into a new empty
@@ -165,15 +165,9 @@ shared lease/coordination service has been designed and verified.
 
 Set `MESA_MODEL_ENABLED` and `MESA_EXTERNAL_PROVIDER_ENABLED` explicitly.
 A provider timeout/rate-limit error is retryable; a broken schema is permanent; the
-same toxic payload repeating is classified as poison. SQL/vector/graph projection does
+same toxic payload repeating is classified as poison. SQL/vector projection does
 not start before the selected validation policy completes. Do not force a mutation
 straight to VALIDATED to skip the provider.
-
-## 8. PageRank
-
-V4 PageRank output is telemetry only. Low centrality cannot quarantine a memory,
-assertion, vector or source. If PageRank-based `hallucination`/delete behavior is seen,
-stop the deploy; it violates the v4 contract.
 
 ## 9. Session finalization
 
@@ -215,14 +209,12 @@ IDs and error class. Never include keys, claim tokens or full source/query text.
 | Insert 409 | Frozen revision, identity/idempotency conflict | Reuse exact retry payload or create a new revision |
 | Embedding 409/mismatch | Full provider/model/revision/dimension/normalization identity | Follow offline migration/rebuild; equal dimension is not equal space |
 | `503 vector_backend_unavailable` | Provider availability and operational identity | Restore the selected provider; no silent model switch |
-| `503 graph_backend_unavailable` | Health, timeout, Kùzu schema/parity | Diagnose query/backend and bounded traversal; do not advertise complete results |
 | `503 maintenance_pending` | Active/retryable rebuild status | Follow [rebuild runbook](docs/core/rebuild-runbook/); no manual lease/queue deletion |
 | Mutation stalls or enters DLQ | Projection predecessor, fenced claim, provider errors | Repair cause, then authorized replay if state permits |
 | Semantic rejection | Rejection reason and validation policy | Treat as terminal; generic replay returns `NON_REPLAYABLE` |
 | Cleanup `BLOCKED` | Store availability and shared ownership | Preserve evidence, repair store, run supported recovery |
 | Readiness 503 | Worker liveness, thresholds, canonical backlog | Resolve health; process alive does not mean ready |
 | FTS/parity error | Matching Alembic head and checksummed backup | Stop writers and rehearse recovery into a new root |
-| Old Kùzu timestamp/schema error | Release code and offline schema migration | Upgrade/rehearse from backups; do not issue ad hoc ALTER or wipe |
 | Growing RSS/disk | Lance fragments/versions, queues and retained generations | Measure representative workload; apply supported maintenance, reserve capacity |
 
 Inspect `/v4/capability` before assuming semantic/graph availability. A model-disabled
@@ -240,7 +232,7 @@ audit must remain `NOT EXECUTED`, never converted to a simulated success.
 
 ## Upgrading to v0.8.0
 
-Current package metadata is 0.9.4. The v0.8.1 publication was owner-approved with the limitations in
+Current package metadata is 0.9.5. The v0.8.1 publication was owner-approved with the limitations in
 the [release notes](docs/core/release-notes/#v081-publication); it does not certify production
 readiness. Confirm actual tags in GitHub Releases. This guide describes changes
 since v0.7.1, not a completed production migration.

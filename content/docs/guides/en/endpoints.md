@@ -1,10 +1,10 @@
 ## Overview
 
-Generated from the OpenAPI document published with Core v0.9.4 (commit e30856e). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.
+Generated from the OpenAPI document published with Core v0.9.5 (commit c725616). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.
 
 Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 call may touch is limited by the roles granted to that key; see [Security & Scope](docs/core/security/).
 
-[Download the OpenAPI JSON](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/reference/openapi.json)
+[Download the OpenAPI JSON](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/reference/openapi.json)
 
 ## V4 · memory, catalog and sessions
 
@@ -589,7 +589,7 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
 | `valid_at` | string \| null | no |  |
 | `valid_from` | string \| null | no |  |
 | `valid_to` | string \| null | no |  |
-| `graph_mode` | enabled · disabled | no | Enable or disable only the graph retrieval lane for matched ablation. |
+| `graph_mode` | enabled · disabled | no | Accepted for older clients. Core 0.9.5 has no graph search, so the value has no effect. |
 
 **Responses**
 
@@ -605,7 +605,11 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
     "string"
   ],
   "results": [
-    {}
+    {
+      "revision_number": 1,
+      "valid_from": "string",
+      "valid_to": "string"
+    }
   ],
   "degraded_sources": [],
   "scope_audit": {
@@ -616,13 +620,13 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
     "query_identity": "string",
     "evaluated_candidate_count": 0
   },
-  "graph_ablation": {
+  "vector_lane": {
     "contract_version": "string",
-    "mode": "enabled",
-    "pair_identity": "string",
-    "query_identity": "string",
-    "retrieval_config_identity": "string",
-    "scope_identity": "string"
+    "status": "string",
+    "representation_version": "string",
+    "embedding_space_id": "string",
+    "registry_artifact_count": 0,
+    "compatible_registry_artifact_count": 0
   }
 }
 ```
@@ -704,8 +708,23 @@ Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 cal
 
 **Responses**
 
-- `200` Successful Response
+- `200` Successful Response · `V4ContextResponse`
 - `422` Validation Error · `HTTPValidationError`
+
+*Example*
+
+```json
+{
+  "tenant_id": "docs-tenant",
+  "workspace_id": "docs-workspace",
+  "dataset_ids": [
+    "string"
+  ],
+  "agent_id": "docs-agent",
+  "session_id": "<session_id>",
+  "context": "string"
+}
+```
 
 ### POST /v4/sessions/{session_id}/end
 

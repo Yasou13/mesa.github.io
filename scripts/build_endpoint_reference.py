@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the static HTTP endpoint reference from the pinned Core OpenAPI file.
 
-Input:  content/docs/openapi-0.9.4.json (Core v0.9.4, docs/reference/openapi.json at e30856e)
+Input:  content/docs/openapi-0.9.5.json (Core v0.9.5, docs/reference/openapi.json at c725616)
 Output: content/docs/guides/{en,tr}/endpoints.md
 
 Examples are built from the schema (types, defaults, enums and declared examples).
@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = json.loads((ROOT / "content/docs/openapi-0.9.4.json").read_text(encoding="utf-8"))
+SPEC = json.loads((ROOT / "content/docs/openapi-0.9.5.json").read_text(encoding="utf-8"))
 SCHEMAS = SPEC["components"]["schemas"]
 
 # Placeholder values that match the IDs used throughout the quickstart.
@@ -30,13 +30,11 @@ GROUPS = [
     ("v4-full-cognitive", ("V4 · memory, catalog and sessions", "V4 · hafıza, katalog ve oturumlar")),
     ("-", ("Health and metrics", "Sağlık ve metrikler")),
     ("mcp-control", ("MCP control plane", "MCP kontrol düzlemi")),
-    ("memory", ("V3 compatibility · memory", "V3 uyumluluk · hafıza")),
-    ("session", ("V3 compatibility · sessions", "V3 uyumluluk · oturumlar")),
 ]
 
 LABELS = {
     "en": {
-        "title_note": "Generated from the OpenAPI document published with Core v0.9.4 (commit e30856e). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.",
+        "title_note": "Generated from the OpenAPI document published with Core v0.9.5 (commit c725616). Example bodies are built from the schema to show the shape of a request; they are not recorded server responses.",
         "download": "Download the OpenAPI JSON",
         "auth": "Every endpoint except `/health/init` needs the `X-API-Key` header. What a V4 call may touch is limited by the roles granted to that key; see [Security & Scope](docs/core/security/).",
         "params": "Parameters", "body": "Request body", "fields": "Fields", "responses": "Responses",
@@ -45,7 +43,7 @@ LABELS = {
         "contents": "Endpoints in this group",
     },
     "tr": {
-        "title_note": "Core v0.9.4 (commit e30856e) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.",
+        "title_note": "Core v0.9.5 (commit c725616) ile yayımlanan OpenAPI belgesinden üretildi. Örnek gövdeler isteğin biçimini göstermek için şemadan oluşturulur; kaydedilmiş sunucu yanıtları değildir. Alan açıklamaları kaynakta İngilizcedir.",
         "download": "OpenAPI JSON dosyasını indirin",
         "auth": "`/health/init` dışındaki her uç nokta `X-API-Key` başlığı ister. V4 çağrısının erişebileceği veri, o anahtara verilen rollerle sınırlıdır; bkz. [Güvenlik ve kapsam](docs/core/security/).",
         "params": "Parametreler", "body": "İstek gövdesi", "fields": "Alanlar", "responses": "Yanıtlar",
@@ -105,7 +103,13 @@ TR_TEXT = {
     "Metrics": "Metrikler",
     "Successful Response": "Başarılı yanıt",
     "Validation Error": "Doğrulama hatası",
-    "Enable or disable only the graph retrieval lane for matched ablation.": "Eşleştirilmiş karşılaştırma için yalnızca çizge arama kanalını açar veya kapatır."
+    "Accepted for older clients. Core 0.9.5 has no graph search, so the value has no effect.": "Eski istemciler için kabul edilir. Core 0.9.5'te çizge araması yoktur; değerin etkisi olmaz."
+}
+
+# Spec descriptions that no longer match 0.9.5 behaviour. The router still
+# declares graph_mode, but nothing reads it after the graph store was removed.
+FIELD_NOTES = {
+    "graph_mode": "Accepted for older clients. Core 0.9.5 has no graph search, so the value has no effect.",
 }
 
 
@@ -189,7 +193,7 @@ def render(lang: str) -> str:
                 continue
             ops[(op.get("tags") or ["-"])[0]].append((path, method.upper(), op))
     lines = [f"## {'Overview' if lang == 'en' else 'Genel bakış'}", "", L["title_note"], "", L["auth"], "",
-             f"[{L['download']}](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/docs/reference/openapi.json)", ""]
+             f"[{L['download']}](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/docs/reference/openapi.json)", ""]
     for key, names in GROUPS:
         group = ops.get(key) or []
         if not group:
@@ -207,7 +211,7 @@ def render(lang: str) -> str:
                 props = resolved.get("properties", {})
                 if props:
                     required = set(resolved.get("required", []))
-                    lines += [table([L["field"], L["type"], L["required"], L["description"]], [[f"`{k}`", type_name(v), L["yes"] if k in required else L["no"], short(localized(v.get("description", ""), lang))] for k, v in props.items()]), ""]
+                    lines += [table([L["field"], L["type"], L["required"], L["description"]], [[f"`{k}`", type_name(v), L["yes"] if k in required else L["no"], short(localized(FIELD_NOTES.get(k, v.get("description", "")), lang))] for k, v in props.items()]), ""]
             responses = op.get("responses", {})
             lines += [f"**{L['responses']}**", ""]
             for code, response in responses.items():

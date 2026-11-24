@@ -2,7 +2,7 @@
 
 This procedure is for the existing V4 storage-root-wide projection rebuild; its design
 started with [ADR 0014](docs/core/adr-0014/).
-LanceDB and Kùzu generations are produced from the existing canonical V4 snapshot;
+LanceDB vector generations are produced from the existing canonical V4 snapshot;
 it does not convert V3 data and does not rewrite canonical source/assertion content.
 FTS integrity is verified on the snapshot. SQLite operation/checkpoint and
 active-generation records are updated; after a successful cutover, representation
@@ -302,7 +302,7 @@ A merge, unit/integration tests or CI evidence alone is not a production `GO`.
 The decision stays `NO-GO` until all of the following are complete for the same release
 candidate:
 
-- backup → rebuild → reopen → parity → rollback rehearsal with real LanceDB/Kùzu and the
+- backup → rebuild → reopen → parity → rollback rehearsal with real LanceDB and the
   selected embedding provider;
 - production-like disk capacity, dataset size and concurrency;
 - migration/DR and content-free closure evidence artifacts;

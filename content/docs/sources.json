@@ -6,7 +6,7 @@
       "tr": "MESA Core"
     },
     "description": {
-      "en": "Deterministic AI memory infrastructure, SQLite canonical ledger, LanceDB & Kùzu projections, hybrid retrieval.",
+      "en": "Source-linked AI memory: SQLite canonical ledger, BM25 and optional LanceDB vector search, versioned documents.",
       "tr": "Bilgiyi kaynaklarıyla saklayan hafıza altyapısı; asıl kayıtlar, arama görünümleri ve hibrit arama."
     },
     "base_route": "docs/core/",
@@ -44,8 +44,8 @@
       {
         "src": "docs/retrieval-and-graph.md",
         "slug": "retrieval-and-graph",
-        "title": "Retrieval & Graph",
-        "title_tr": "Arama ve çizge"
+        "title": "Retrieval",
+        "title_tr": "Arama"
       },
       {
         "src": "docs/api-reference.md",
@@ -62,8 +62,14 @@
       {
         "src": "CHANGELOG.md",
         "slug": "release-notes",
-        "title": "Release Notes v0.9.4",
-        "title_tr": "Sürüm Notları v0.9.4"
+        "title": "Release Notes v0.9.5",
+        "title_tr": "Sürüm Notları v0.9.5"
+      },
+      {
+        "src": "docs/release-notes-0.9.5.md",
+        "slug": "release-notes-0.9.5",
+        "title": "MESA 0.9.5 release notes",
+        "title_tr": "MESA 0.9.5 sürüm notları"
       },
       {
         "src": "docs/README.md",
@@ -150,10 +156,10 @@
         "title_tr": "Uyarlanabilir sorgu planlama"
       }
     ],
-    "commit": "e30856ec6e7ed9146bb9af992565e864f727b0b9",
+    "commit": "c725616364f3931249bd05a62676f132b65768e1",
     "version_source": "pyproject.toml",
-    "release_tag": "v0.9.4",
-    "release_date": "2026-11-23"
+    "release_tag": "v0.9.5",
+    "release_date": "2026-11-24"
   },
   "lore": {
     "repo_url": "https://github.com/Yasou13/MESA_Lore.git",

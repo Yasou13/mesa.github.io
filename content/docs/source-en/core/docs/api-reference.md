@@ -1,6 +1,6 @@
 # API reference
 
-MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.4 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
+MESA exposes the V4 tenant/dataset-authorized API. This English source copy follows the v0.9.5 V4 contracts; the [website release notes](docs/core/release-notes/) record verified GitHub and PyPI publication. Production qualification remains separate.
 
 Versioned memory, health and metrics calls require `X-API-Key`. `/health/init`, OpenAPI, Swagger and ReDoc are public surfaces and need a network/reverse-proxy policy. The V4 key is
 generated with `mesa-v4-admin issue-key`; only a salted scrypt hash is stored.
@@ -18,8 +18,7 @@ response must not be used as a fixed feature promise.
 | `canonical_ledger`, `projection_outbox`, `idempotent_ingestion` | Durable canonical work and projection contracts |
 | `vector_retrieval` | Operational embedding generation, not merely configured identity |
 | `lexical_retrieval`, `assertion_relational_lane` | SQLite lexical/assertion retrieval; not graph traversal |
-| `graph_projection` | Graph projection availability |
-| `graph_neighbor_retrieval` | Operational neighbor retrieval implementation |
+| `graph_projection`, `graph_neighbor_retrieval` | Always `false`; kept for client compatibility after the graph store was removed |
 | `validity_interval_filtering` | Validity filtering, not bitemporal semantics |
 | `durable_rebuild` | Enabled by `MESA_V4_REBUILD_ENABLED`; still offline and full-root |
 | `associative_ppr`, `bitemporal_query`, `human_review` | Not advertised as implemented Core capabilities |
@@ -103,7 +102,7 @@ The HTTP insert contract accepts optional typed `legal_identity`: `law_id` and
 through the bounded legal aliases. Caller metadata cannot supply trusted
 `_mesa_*` fields. The producer remains responsible for source truth.
 
-Search includes `degraded_sources`: `vector` when embeddings are off or any scoped committed record has an incomplete VECTOR lane; `graph` for incomplete/disabled GRAPH lanes. Otherwise it is empty.
+Search includes `degraded_sources`: `vector` when embeddings are off or any scoped committed record has an incomplete VECTOR lane. Otherwise it is empty.
 
 Search and context both accept `jurisdiction`, `valid_at`, `valid_from` and
 `valid_to`. Context uses query parameters and defaults to `token_budget=2048`,
@@ -232,9 +231,9 @@ Use the running OpenAPI for differences between public/source ID validators.
 
 A search request requires `session_id` and `query`; the query is 1..4096 characters,
 `limit` defaults to 10 within 1..50, `dataset_ids`, when given, is 1..64 and a subset of the
-session, and `graph_mode` is enabled/disabled. ISO timestamp strings must include a
+session, and `graph_mode` is accepted as a compatibility no-op. ISO timestamp strings must include a
 timezone offset. `valid_from > valid_to` is rejected. The response carries `session_id`,
-`dataset_ids`, `results` and optional `scope_audit`, `graph_ablation` and `vector_lane`.
+`dataset_ids`, `results` and optional `scope_audit` and `vector_lane`.
 The presence of result provenance does not guarantee source truth.
 
 The SDK sync/async client defaults to a 10 s timeout and max_retries 3; only the safe
@@ -270,7 +269,56 @@ zero-based five-digit ordinal. Per-chunk idempotency keys are these chunk IDs.
 Errors: 409 `document is purged`; 413 for content over 5,000,000 UTF-8 bytes;
 422 for empty or whitespace-only content. Secrets and metadata use the same
 validation and errors as `/v4/memory/insert`. Queue and maintenance failures
-use the existing admission errors below.
+use the existing admission errors below. See [Versioned documents](#versioned-documents)
+for validity dates and out-of-order history rules.
+
+### Versioned documents
+
+Documents that change over time (such as amended laws or policies) can carry
+optional validity bounds in `metadata`:
+
+- **Sending dates**: pass `metadata.valid_from` (and optional `metadata.valid_to`)
+  on `POST /v4/documents` (or via SDK/MCP ingest) as ISO-8601 timestamps with a
+  timezone offset (for example `"2024-01-01T00:00:00Z"` or
+  `"2024-01-01T03:00:00+03:00"`). Date-only strings, naive timestamps, and
+  `valid_from >= valid_to` are rejected with HTTP 422 before any chunk is
+  written. Accepted timestamps are stored normalized to UTC.
+- **Half-open intervals (`[valid_from, valid_to)`)**: a revision is valid at
+  `valid_at` when `valid_from <= valid_at < valid_to` (empty `valid_from` means
+  since always; empty `valid_to` means still in force). On an exact amendment
+  instant `valid_at == T`, only the new revision starting at `T` matches. Range
+  filters (`valid_from`, `valid_to`) use the same open-end overlap rule.
+  Searches without a date return `ACTIVE` revisions only.
+- **Revisions in any order**: when a document's revisions carry `valid_from`,
+  validity order rather than upload order determines history:
+  - A revision with a later `valid_from` supersedes the `ACTIVE` revision when
+    all chunks commit and sets the predecessor's `valid_to` to the new
+    `valid_from`.
+  - A revision with an earlier `valid_from` is stored as history: its
+    `supersedes_revision_id` stays `null` so the `ACTIVE` head does not move.
+    When all chunks commit, it becomes `SUPERSEDED` with `valid_to` equal to the
+    next revision's `valid_from`, and the preceding revision (if any) moves its
+    `valid_to` to the new `valid_from`. History chunks never enter the undated
+    persistent BM25 index; their vectors are eligible only for dated searches.
+  - Uploading a new revision with a `valid_from` equal to an existing revision
+    returns HTTP 409. Uploading an undated revision to a document that already
+    has a dated revision returns HTTP 422. Undated documents behave as before.
+- **Point-in-time search example**:
+
+```json
+{
+  "session_id": "sess_012345",
+  "dataset_ids": ["legislation"],
+  "query": "TCK m. 1 gecikme faizi",
+  "valid_at": "2023-06-01T00:00:00Z",
+  "limit": 5
+}
+```
+
+- **Result fields**: every search result (HTTP `/v4/memory/search`, SDK, and MCP
+  `mesa_recall`) and every context source entry (`canonical_memories` on
+  `GET /v4/sessions/{session_id}/context`) includes additive `revision_number`,
+  `valid_from`, and `valid_to` fields (`""` when unset).
 
 ### Actionable errors
 
