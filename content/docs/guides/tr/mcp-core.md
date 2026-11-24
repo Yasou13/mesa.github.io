@@ -1,6 +1,6 @@
 ## İki bağlantı seçeneğini ayırın
 
-Doğrudan V4 stdio sunucusu ile HTTP geçidi ve yerel köprü farklı biçimde çalışır. Belirli veri kümeleriyle sınırlı köprü, sunucunun verdiği erişim kapsamını korur; tüm sistemi değiştiren yeniden oluşturma işlemini açmaz. Bir aracın kullanılabilir olması, sistemin yetenek bildirimine bağlıdır. MCP kullanmak kimlik doğrulamayı atlamaz veya desteklenmeyen çizge aramasını etkinleştirmez.
+Doğrudan V4 stdio sunucusu ile HTTP geçidi ve yerel köprü farklı biçimde çalışır. Belirli veri kümeleriyle sınırlı köprü, sunucunun verdiği erişim kapsamını korur; tüm sistemi değiştiren yeniden oluşturma işlemini açmaz. Bir aracın kullanılabilir olması, sistemin yetenek bildirimine bağlıdır. MCP kullanmak kimlik doğrulamayı atlamaz.
 
 ## Ayrıntılara geçin
 

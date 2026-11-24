@@ -68,7 +68,6 @@
         "tr": "Core mimarisi"
       },
       "appendixExclude": [
-        "Canonical entity and Graph V2",
         "Performance and limitations",
         "Ecosystem and ownership"
       ],
@@ -466,8 +465,8 @@
         "docs/adr/0010-v4-rrf-and-pagerank-observation.md"
       ],
       "title": {
-        "en": "RRF and PageRank (historical)",
-        "tr": "RRF ve PageRank (tarihsel)"
+        "en": "Rank fusion",
+        "tr": "Sıra birleştirme"
       }
     },
     {

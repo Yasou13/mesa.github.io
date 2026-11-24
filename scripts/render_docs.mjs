@@ -155,7 +155,7 @@ export function renderDocPage(item, language = 'en', { base = './', assetBase = 
     const lastHeading = rendered.headings.filter(heading => heading.level === 2).at(-1);
     const marker = `<h2 id="${lastHeading.id}">`;
     const start = rendered.html.indexOf(marker);
-    if (start >= 0) rendered.html = rendered.html.slice(0, start) + `<details class="onboarding-advanced"><summary>${isTr ? 'İleri seçenekler: modeller ve çizge' : 'Advanced: models and graph'}</summary>` + rendered.html.slice(start) + '</details>';
+    if (start >= 0) rendered.html = rendered.html.slice(0, start) + `<details class="onboarding-advanced"><summary>${isTr ? 'İleri seçenekler: modeller' : 'Advanced: models'}</summary>` + rendered.html.slice(start) + '</details>';
   }
   // Breadcrumbs
   const homeHref = route();
