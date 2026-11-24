@@ -1,6 +1,6 @@
 ## Architecture decisions
 
-This maintained decision records design rationale at v0.9.4. Current architecture and runtime contracts define implemented behavior; retired decisions remain historical context.
+**Historical records.** These architecture decisions explain why designs were chosen. Later releases changed or retired several of them, so read them as history next to the current [architecture guide](docs/core/architecture/).
 
 ## Read the maintained reference
 

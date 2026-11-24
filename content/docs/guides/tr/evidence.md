@@ -1,6 +1,6 @@
 ## Arama sonucunda neler korunur?
 
-Asıl bilgi kaydı; özne, ilişki ve nesneyi dayanak metinle birleştirir. Belge, sürüm, metin parçası, değişiklik işlemi ve işleme hattının kimlikleri bu bağın izlenmesini sağlar. Çizge aramasında da yolu destekleyen bilgi kayıtları, düğümler ve bağlantı yönleri korunur. Bulunan bir yol, onu destekleyen kaynaklardan ayrı sunulmamalıdır.
+Asıl bilgi kaydı; özne, ilişki ve nesneyi dayanak metinle birleştirir. Belge, sürüm, metin parçası, değişiklik işlemi ve işleme hattının kimlikleri bu bağın izlenmesini sağlar. Arama sonuçları ayrıca `revision_number`, `valid_from` ve `valid_to` alanlarını taşır; böylece bir pasajın belgenin hangi sürümünden geldiğini görebilirsiniz.
 
 ## Üç içerik özeti aynı şeyi göstermez
 
@@ -8,7 +8,7 @@ Belge sürümünün tamamına ait içerik özeti, sürümdeki parçaları listel
 
 ## Kanıt bağlam bütçesine tam olarak sığmalı
 
-ContextBuilder, HTTP yanıtının tamamını değil modelin göreceği biçimlendirilmiş kanıtı sayar. Bir çizge yolunun kanıtı bütçeye bütün olarak sığmalıdır. Asıl BPE sayacı yüklenemezse UTF-8 baytlarına dayanan temkinli bir üst sınır kullanılır; bu durumda bütçeye daha az kanıt sığabilir. Boş arama sonucu, uygun kanıt bulunamadığını gösterir; iddianın yanlış olduğunu kanıtlamaz.
+ContextBuilder, HTTP yanıtının tamamını değil modelin göreceği biçimlendirilmiş kanıtı sayar. Asıl BPE sayacı yüklenemezse UTF-8 baytlarına dayanan temkinli bir üst sınır kullanılır; bu durumda bütçeye daha az kanıt sığabilir. Boş arama sonucu, uygun kanıt bulunamadığını gösterir; iddianın yanlış olduğunu kanıtlamaz.
 
 ## Sürümlü hukuki öğeler parça konumlarını korur
 

@@ -1,6 +1,6 @@
 ## Yayın ve üretim doğrulaması
 
-Bu belgeler Core v0.9.4, `e30856ec6e7ed9146bb9af992565e864f727b0b9` etiket commit’ini izler. GitHub etiketi ve PyPI wheel/sdist dosyalarının mevcut ve geri çekilmemiş olması 17 Kasım 2026’da doğrulandı. Alfa / üretim NO-GO sürer.
+Bu belgeler Core v0.9.5, `c725616364f3931249bd05a62676f132b65768e1` etiket commit’ini izler. GitHub etiketi ve PyPI wheel/sdist dosyalarının mevcut ve geri çekilmemiş olması 24 Kasım 2026’da doğrulandı. Alfa / üretim NO-GO sürer.
 
 ## Yayınlar CI sonucunu bekler
 

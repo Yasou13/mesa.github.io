@@ -2,7 +2,7 @@
 
 `mesa start` provisions `~/.mesa/data`, a local catalog and `~/.mesa/credentials.json`; models and external providers default off. Direct runtime launchers still require explicit `MESA_STORAGE_ROOT`, `MESA_RUNTIME_PROFILE=combined`, keys and ACLs. `Mesa()` reads explicit arguments, environment connection settings, then local credentials.
 
-## Optional models, graph and validation
+## Optional models and validation
 
 Use `MESA_LLM_MODEL=provider:model` and `MESA_EMBEDDING_MODEL=provider:model`. For example:
 
@@ -12,9 +12,9 @@ MESA_LLM_MODEL=ollama:qwen2.5:7b
 MESA_EMBEDDING_MODEL=ollama:bge-m3
 ```
 
-Put local settings in `~/.mesa/.env` and restart the local server. The selected provider must be installed and running. `MESA_EMBEDDING_ENABLED` defaults to the model flag. `MESA_EXTRACTION_ENABLED=false` is the default even when models are enabled; set it explicitly to `true` for open-ended SPO extraction. Both off still allows ingestion and BM25 search; disabled VECTOR lanes are SKIPPED. `MESA_GRAPH_ENABLED=false` is the default: it avoids opening Kùzu, marks GRAPH lanes SKIPPED and reports graph as degraded. Set it to `true` to enable the graph. Re-enabling a lane backfills it on combined startup.
+Put local settings in `~/.mesa/.env` and restart the local server. The selected provider must be installed and running. `MESA_EMBEDDING_ENABLED` defaults to the model flag. `MESA_EXTRACTION_ENABLED=false` is the default even when models are enabled; set it explicitly to `true` for open-ended SPO extraction. Both off still allows ingestion and BM25 search; disabled VECTOR lanes are SKIPPED and reported as degraded. Enabling embeddings later backfills skipped vectors on combined startup.
 
-Validation uses deterministic mode 0; `MESA_TIER3_MODE` and the other retired settings are ignored with one startup warning per key. `MESA_RRF_K=60`, vector weight 8.0, BM25 weight 1.0 and `MESA_RRF_ASSERTION_WEIGHT=0.0` control fusion; the graph weight is 1.0 once the graph is enabled. `MESA_RRF_VECTOR_WEIGHT=1` restores the previous vector weight; zero removes a lane’s contribution. Durable rebuild remains disabled by default.
+Validation uses deterministic mode 0. Settings for removed features are ignored, and the server logs one warning per retired key at startup; in 0.9.5 this includes `MESA_RRF_GRAPH_WEIGHT` and `MESA_V4_GRAPH_TIMEOUT_SECONDS` together with the old graph switch (see [graph store removed](docs/core/graph/)). `MESA_RRF_K=60`, vector weight 8.0, BM25 weight 1.0 and `MESA_RRF_ASSERTION_WEIGHT=0.0` control fusion; zero removes a lane’s contribution. Durable rebuild remains disabled by default.
 
 ## Provider and storage boundaries
 
@@ -32,9 +32,9 @@ Local Ollama/OpenAI-compatible endpoints can run with `MESA_EXTERNAL_PROVIDER_EN
 
 `MESA_LEGAL_RULES_ENABLED=true` is independent of models. In auto plans, ordinary articles inherit a law number from `metadata.law_number` or a supported header in the first 3,000 characters; continuation chunks keep the article identity. Preambles, GEÇİCİ/EK articles and plain plans receive no automatic identity. Typed identities accept 3–5 digit law numbers; inconsistent number/code pairs and unknown names are rejected.
 
-New chunks keep versioned legal items separately from SPO facts. `false` prevents new identities/items, bypasses legal citation/ranking/exact-match and graph citation parsing, and hides existing legal overlays in result copies without deleting stored data. Generic lexical/vector/graph retrieval remains enabled. Set `MESA_EXTRACTION_ENABLED=true` explicitly if model-based SPO facts are wanted; merely enabling models no longer enables extraction.
+New chunks keep versioned legal items separately from SPO facts. `false` prevents new identities/items, bypasses legal citation/ranking/exact-match, and hides existing legal overlays in result copies without deleting stored data. Generic lexical and vector retrieval remain enabled. Set `MESA_EXTRACTION_ENABLED=true` explicitly if model-based SPO facts are wanted; merely enabling models no longer enables extraction.
 
-## v0.9.3 embedding identity and startup
+## Embedding identity and startup
 
 The default is `MESA_EMBEDDING_MODEL=local:BAAI/bge-m3`, `MESA_EMBEDDING_DIMENSION=1024`, normalized. Models remain off by default. Download the local model before enabling it. For an older store created with the previous default, keep **both** settings below, or rebuild before changing identity:
 
@@ -43,4 +43,4 @@ MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
 MESA_EMBEDDING_DIMENSION=768
 ```
 
-v0.9.4 removes Tier 3 modes 1/2 and ignores `MESA_TIER3_MODE` with a warning. Bootstrap `MESA_API_KEY` values containing `.` are rejected at startup.
+Bootstrap `MESA_API_KEY` values containing `.` are rejected at startup.

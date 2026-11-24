@@ -1,26 +1,30 @@
-## Dört arama kanalı farklı ipuçları kullanır
+## Üç ipucu, varsayılan olarak ikisi açık
 
-Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaştırır. BM25, FTS5 üzerinden pasaj ve kanıt metnini sözcüklerle arar; erişim kapsamındaki atıfları da kullanır. Bilgi kaydı kanalı özne, ilişki, nesne ve dayanağı değerlendirir. Çizge kanalı ise kaynakları belli olan sınırlı bağlantı yollarını bulur. Varsayılan yolda vektör ve BM25 çalışır; bilgi kaydı ve çizge yalnızca siz açtığınızda katkı verir. Bir kaydın sahipliği ve erişime uygunluğu, sıralamaya katkı vermesinden önce denetlenir.
+BM25, FTS5 üzerinden pasaj ve kanıt metnini sözcüklerle arar; erişim kapsamındaki atıfları da kullanır. Vektör kanalı, uyumlu sayısal temsiller arasındaki benzerliği karşılaştırır ve bir embedding modeli açıkken çalışır. Bilgi kaydı kanalı özne, ilişki, nesne ve dayanağı değerlendirir; varsayılan füzyon ağırlığı 0.0 olduğundan siz artırmadıkça katkı vermez. Bir kaydın sahipliği ve erişime uygunluğu, sıralamaya katkı vermesinden önce denetlenir.
 
 ## RRF sıralamaları birleştirir; olasılık hesaplamaz
 
-Çalışma zamanı varsayılanları k=60, vektör ağırlığı 8.0, BM25 ağırlığı 1.0, bilgi kaydı ağırlığı 0.0’dır; çizge kapalıdır (açıldığında ağırlığı 1.0’dır). v0.9.4 öncesi füzyon varsayılanları için `MESA_RRF_ASSERTION_WEIGHT=1.0` ve `MESA_GRAPH_ENABLED=true` ayarlayın. Eski vektör ağırlığı için `MESA_RRF_VECTOR_WEIGHT=1` kullanın. Sıfır ağırlık, kanalın birleştirmeye katkısını kapatır. Hesaplayıcı, öğretici örnek olarak birim ağırlık kullanır. Sıralar 1’den başlar. Aynı aday bir kanalda birden çok kez görünse de yalnızca bir katkı verir: RRF(c)=Σ w/(k+rank). Kanal içindeki atıf artırımları o kanalın sırasını değiştirir; RRF puanına doğrudan eklenmez. Birleştirmeden sonra, sorguya bağlı ayrı bir hukuk katsayısı uygulanabilir. [Arama sayfasındaki](retrieval/) örnek hesaplayıcıyla farkı inceleyebilirsiniz.
+Çalışma zamanı varsayılanları k=60, vektör ağırlığı 8.0, BM25 ağırlığı 1.0, bilgi kaydı ağırlığı 0.0’dır. Sıfır ağırlık, kanalın birleştirmeye katkısını kapatır. Hesaplayıcı, öğretici örnek olarak birim ağırlık kullanır. Sıralar 1’den başlar. Aynı aday bir kanalda birden çok kez görünse de yalnızca bir katkı verir: RRF(c)=Σ w/(k+rank). Kanal içindeki atıf artırımları o kanalın sırasını değiştirir; RRF puanına doğrudan eklenmez. Birleştirmeden sonra, sorguya bağlı ayrı bir hukuk katsayısı uygulanabilir. [Arama sayfasındaki](retrieval/) örnek hesaplayıcıyla farkı inceleyebilirsiniz.
 
-## Çizge ve bağlam sınırları
+## Bağlam sınırları
 
-Çizge araması en fazla 20 başlangıç düğümü, üç bağlantı adımı, istenen 500 sonuç, 64 düğümlük ilerleme kümesi ve düğüm başına 32 bağlantıyla sınırlandırılır. Varsayılan zaman aşımı 15 saniyedir. Bunlar kaynak tüketimini sınırlayan değerlerdir; hız garantisi değildir. Bağlam oluşturma varsayılan olarak tek arama ve 2048 token’lık biçimlendirilmiş kanıt bütçesi kullanır. İsteğe bağlı uyarlamalı mod, erişim kapsamını genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.
+Bağlam oluşturma varsayılan olarak tek arama ve 2048 token’lık biçimlendirilmiş kanıt bütçesi kullanır. İsteğe bağlı uyarlamalı mod, erişim kapsamını genişletmeden en fazla bir planlayıcı çağrısı ve iki ek arama yapar.
 
-## v0.9.4 ile çalışma
+## v0.9.5 ile çalışma
 
-Modeller kapalıyken BM25 saklanan kaynak metnini getirir. Kapalı veya eksik vektör ve çizge adımları degraded_sources içinde bildirilir. MESA_GRAPH_ENABLED=false varsayılandır ve Kùzu’yu atlar; çizge veya embedding açıldığında başlangıçta eksikler tamamlanır. Kapsamlı BM25, 6 veya daha uzun rakamsız sorgu sözcüklerini ilk 5 karakterleriyle eşler; daha kısa ve rakam içeren sözcükler tam eşleşir. Eşit skorlar kararlı içerik kimliğiyle ayrılır; aynı derlemden kurulan iki yeni depo aynı sıralamayı üretir.
+Modeller kapalıyken BM25 saklanan kaynak metnini getirir. Kapalı veya eksik vektör kanalı degraded_sources içinde bildirilir; embedding açıldığında atlanan vektörler başlangıçta tamamlanır. BM25, 6 veya daha uzun rakamsız sorgu sözcüklerini ilk 5 karakterleriyle eşler; daha kısa ve rakam içeren sözcükler tam eşleşir. Eşit skorlar kararlı içerik kimliğiyle ayrılır; aynı derlemden kurulan iki yeni depo aynı sıralamayı üretir. LanceDB 0.41 vektörleri kiracı, veri kümesi ve ajana göre önceden süzer; MESA her adayı sıralamadan önce SQLite’a karşı doğrular.
+
+## Belirli bir andaki hâliyle arama
+
+Bir anda geçerli olan sürümleri aramak için saat dilimi içeren bir `valid_at` gönderin. Aralıklar yarı açıktır: bir sürüm `valid_from <= valid_at < valid_to` olduğunda eşleşir; bu yüzden değişikliğin tam yürürlük anında yalnızca yeni sürüm eşleşir. Tarihsiz aramalar yalnızca etkin sürümleri döndürür. Sonuçlar `revision_number`, `valid_from` ve `valid_to` alanlarını içerir (ayarlı değilse boş metin). Bkz. [sürümlü belgeler](docs/core/concepts-and-ingestion/#guide-surumlu-belgeler).
 
 ## İsteğe bağlı BGE yeniden sıralama
 
-Varsayılan `MESA_RERANK_ENABLED=false` değeridir. Açmak için `[ml]` eki gerekir. `MESA_RERANK_MODEL=BAAI/bge-reranker-v2-m3` ve `MESA_RERANK_DEPTH=50` (1–50 aralığı) aşamayı yapılandırır. Model ilk kullanımda yüklenir; ilk sorguya yükleme gecikmesi eklenir. Birleştirmeden sonra izinli adayların tam parça metinleri, ortak arama bağlantısı dışında bir worker thread’de puanlanır. Sonuçlara `rerank_score` eklenir; `rrf_score` ve `final_score` birleştirme değerleri olarak kalır. Eşit puanlarda birleştirme sırası korunur. [DEV kanıtı ve donanım gecikmelerine](docs/core/release-notes/) bakın.
+Varsayılan `MESA_RERANK_ENABLED=false` değeridir. Açmak için `[ml]` eki gerekir. `MESA_RERANK_MODEL=BAAI/bge-reranker-v2-m3` ve `MESA_RERANK_DEPTH=50` (1–50 aralığı) aşamayı yapılandırır. Model ilk kullanımda yüklenir; ilk sorguya yükleme gecikmesi eklenir. Birleştirmeden sonra izinli adayların tam parça metinleri, ortak arama bağlantısı dışında bir worker thread’de puanlanır. Sonuçlara `rerank_score` eklenir; `rrf_score` ve `final_score` birleştirme değerleri olarak kalır. Eşit puanlarda birleştirme sırası korunur.
 
-## Eşzamanlı arama ve kapsam önbelleği
+## Arama indeksleri ve kapsam önbelleği
 
-`MESA_SEARCH_SCOPE_CACHE=true`, kapsama özel geçici FTS indekslerini ve satır/metin özelliklerini dört kapsamlık LRU önbelleğinde yeniden kullanır. SQLite commit değişiklikleri önbelleği geçersiz kılar; her istekte yetkilendirme yeniden denetlenir. Sorgu embedding’i arama kilidinden önce hesaplanır; yeniden sıralama bağlantı bırakıldıktan sonra çalışır. scrypt doğrulama, anahtar oluşturma ve döndürme işlemleri event loop dışında yürütülür; yetki sonuçları önbelleğe alınmaz. Çizge kapalıysa başlangıç düğümlerinin hazırlığı atlanır.
+Tarih veya yargı yeri filtresi olmayan, tüm veri kümesini kapsayan aramalar veri kümesinin kalıcı FTS5 indeksini kullanır; bu indeks SQLite transaction’ları içinde commit’lerle birlikte güncellenir. Diğer kapsamlar yalnızca izinli satırları içeren geçici bir FTS5 indeksi kurar; `MESA_SEARCH_SCOPE_CACHE=true` bunu SQLite verisi değişene kadar dört kapsamlık LRU önbelleğinde yeniden kullanır. Her istekte yetkilendirme yeniden denetlenir.
 
 ## Kapsama bağlı hukuki kimlikler ve tam eşleşme önceliği
 

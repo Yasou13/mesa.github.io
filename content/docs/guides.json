@@ -1,5 +1,5 @@
 {
-  "baseline": "e30856ec6e7ed9146bb9af992565e864f727b0b9",
+  "baseline": "c725616364f3931249bd05a62676f132b65768e1",
   "guides": [
     {
       "id": "overview",
@@ -104,8 +104,8 @@
         "mesa_storage/dao.py"
       ],
       "title": {
-        "en": "Retrieval & graph",
-        "tr": "Arama ve çizge"
+        "en": "Retrieval",
+        "tr": "Arama"
       },
       "diagrams": [
         "read-activity"
@@ -198,17 +198,14 @@
       "route": "docs/core/graph/",
       "group": "retrieval",
       "sources": [
-        "docs/architecture-v4.md",
-        "docs/retrieval-and-graph.md",
-        "mesa_storage/kuzu_provider.py"
+        "CHANGELOG.md",
+        "docs/release-notes-0.9.5.md"
       ],
       "title": {
-        "en": "Graph traversal",
-        "tr": "Çizge dolaşımı"
+        "en": "Graph store removed in 0.9.5",
+        "tr": "Çizge deposu 0.9.5’te kaldırıldı"
       },
-      "appendixSections": [
-        "Canonical entity and Graph V2"
-      ]
+      "appendixSections": []
     },
     {
       "id": "api",
@@ -282,8 +279,8 @@
         "docs/RUNBOOK.md"
       ],
       "title": {
-        "en": "Upgrade to v0.9.4",
-        "tr": "v0.9.4 yükseltmesi"
+        "en": "Upgrade to v0.9.5",
+        "tr": "v0.9.5 yükseltmesi"
       },
       "appendixSections": [
         "Upgrading to v0.8.0"
@@ -297,8 +294,8 @@
         "CHANGELOG.md"
       ],
       "title": {
-        "en": "v0.9.4 release notes",
-        "tr": "v0.9.4 sürüm notları"
+        "en": "v0.9.5 release notes",
+        "tr": "v0.9.5 sürüm notları"
       }
     },
     {
@@ -469,8 +466,8 @@
         "docs/adr/0010-v4-rrf-and-pagerank-observation.md"
       ],
       "title": {
-        "en": "RRF and PageRank",
-        "tr": "RRF ve PageRank"
+        "en": "RRF and PageRank (historical)",
+        "tr": "RRF ve PageRank (tarihsel)"
       }
     },
     {

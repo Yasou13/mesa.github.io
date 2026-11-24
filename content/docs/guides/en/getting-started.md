@@ -4,13 +4,13 @@ This is a local evaluation. You will add text and retrieve a result with its sou
 
 ### Linux and macOS
 
-You need Python 3.11–3.13 and pip. Check the version first:
+You need Python 3.11 or newer and pip. CI tests 3.11–3.13; installing the 0.9.5 package was also checked on Python 3.14. Check the version first:
 
 ```bash
 python3 --version
 ```
 
-**Success:** the output begins with `Python 3.11`, `3.12` or `3.13`. If Python is missing or a different version is installed, use the [official Python downloads](https://www.python.org/downloads/). If venv is missing on Linux, install your distribution’s Python venv package.
+**Success:** the output shows `Python 3.11` or newer. If Python is missing or a different version is installed, use the [official Python downloads](https://www.python.org/downloads/). If venv is missing on Linux, install your distribution’s Python venv package.
 
 ### Windows: WSL
 
@@ -20,16 +20,16 @@ python3 --version
 
 If you prefer containers, [install Docker](https://docs.docker.com/get-started/get-docker/) and skip to [Docker setup](#docker-setup).
 
-## Install v0.9.4
+## Install v0.9.5
 
 Run these commands in a new working directory. The virtual environment keeps MESA packages separate from your other Python projects.
 
-The v0.9.4 package is published on PyPI; the command pins that verified version. See [installation and extras](docs/core/installation/#guide-package-index-and-optional-extras).
+The v0.9.5 package is published on PyPI; the command pins that verified version. See [installation and extras](docs/core/installation/#guide-package-index-and-optional-extras).
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.4
+python -m pip install mesa-memory==0.9.5
 mesa --help
 ```
 
@@ -63,7 +63,7 @@ mesa add archive-en.txt --source file://archive-en.txt --json > receipt.json
 cat receipt.json
 ```
 
-Selected receipt fields from the historical Core v0.9.0 recording are shown below. Your identifiers can differ; `receipt.json` contains your own complete receipt.
+Selected receipt fields from the Core v0.9.5 recording are shown below. Your identifiers can differ; `receipt.json` contains your own complete receipt.
 
 ```json
 {
@@ -110,10 +110,10 @@ python wait_for_document.py
 mesa search "archive"
 ```
 
-Historical Core v0.9.0 recorded CLI output (not a v0.9.4 recording):
+Core v0.9.5 recorded CLI output:
 
 ```text
-[1] score: 0.033 | doc-5239a0bb570c977f678a3a48e2947b81
+[1] score: 0.016 | doc-5239a0bb570c977f678a3a48e2947b81
     The Atlas archive opens at 09:00 on weekdays.
 ```
 
@@ -126,7 +126,7 @@ Historical Core v0.9.0 recorded CLI output (not a v0.9.4 recording):
 This path needs Git, Docker Engine/Desktop and Compose. Open the pinned source release:
 
 ```bash
-git clone --branch v0.9.4 --depth 1 https://github.com/Yasou13/MESA.git
+git clone --branch v0.9.5 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 docker compose -f docker-compose.v4.yml up --build -d
 docker compose -f docker-compose.v4.yml exec mesa-v4 mesa status
@@ -152,10 +152,10 @@ mesa mcp-config
 
 The output contains your local API key; keep it private. MESA returns context; your application and its model write the final answer.
 
-## Enable optional models and graph
+## Enable optional models
 
-You do not need this for your first search. For semantic search and extraction, review [model configuration](docs/core/configuration/) and [providers](docs/core/embedding-providers/). External providers can transmit data and incur usage charges. Re-enabling graph/embeddings can backfill skipped work at startup. Local success does not establish production qualification; production checks remain incomplete.
+You do not need this for your first search. For semantic search and extraction, review [model configuration](docs/core/configuration/) and [providers](docs/core/embedding-providers/). External providers can transmit data and incur usage charges. Enabling embeddings later backfills skipped vectors at startup. Local success does not establish production qualification; production checks remain incomplete.
 
-## v0.9.4 waiting behavior
+## v0.9.5 waiting behavior
 
-`mesa add` returns successfully after the revision becomes ACTIVE. `--no-wait` returns admission only. Receipts and CLI output above are historical Core v0.9.0 evidence, not re-recorded with v0.9.4. The completion script remains an optional verification step.
+`mesa add` returns successfully after the revision becomes ACTIVE. `--no-wait` returns admission only. Receipts and CLI output above were recorded with the PyPI v0.9.5 package on 24 November 2026. The completion script remains an optional verification step.

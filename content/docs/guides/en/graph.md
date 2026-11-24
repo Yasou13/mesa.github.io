@@ -1,11 +1,14 @@
-## Canonical facts, derived paths
+## Removed in 0.9.5
 
-SQLite owns entities and assertions. Kùzu projects their relationships for bounded neighbor retrieval. Different assertions between the same entities remain distinct because predicate, source and temporal identity matter. Entity reachability alone is not a supported answer.
+MESA Core 0.9.5 removed the Kùzu graph database, the graph projection worker and the graph search lane. Search now uses BM25, optional vector search, the built-in legal rules and optional reranking. SQLite still stores entities and assertions with their sources; nothing in the canonical record was lost.
 
-## Read the path and the runtime flag
+The graph had been off by default since 0.9.4. In the Round 21 measurement on the benchmark v2 dev split, turning the graph off lost no dev questions. Read [why MESA removed its graph store](research/why-mesa-removed-its-graph-store/) for the measurements.
 
-Require supporting assertion IDs, aligned entity paths and edge directions, reconciled against the authorized canonical records. `graph_neighbor_retrieval` reports operational support; a projection-only adapter does not implement traversal. An operational backend failure is an explicit 503, not silently complete search.
+## Upgrading an existing store
 
-## Ablation and limits
+- The upgrade runs a forward-only migration that clears old graph bookkeeping rows. Back up the storage root first.
+- Old `kuzu_db` files on disk are ignored. After you have verified your backup, you can delete them by hand.
+- `MESA_GRAPH_ENABLED`, `MESA_RRF_GRAPH_WEIGHT` and `MESA_V4_GRAPH_TIMEOUT_SECONDS` are ignored; the server logs one warning per key at startup. Remove them from your environment.
+- The search request still accepts `graph_mode` for older clients, but the value has no effect.
 
-`graph_mode=disabled` removes the retrieval lane for matched comparisons, but keeps canonical assertion retrieval and graph projection writes. PageRank is telemetry only. Bounds on seeds, hops, fan-out and request time prevent unbounded work; they do not guarantee completeness or latency.
+See the [upgrade guide](docs/core/migration/) and the [0.9.5 release notes](docs/core/release-notes/).

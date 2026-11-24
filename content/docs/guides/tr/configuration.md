@@ -2,7 +2,7 @@
 
 `mesa start`, `~/.mesa/data`, yerel katalog ve `~/.mesa/credentials.json` dosyasını hazırlar; modeller ve dış sağlayıcılar varsayılan olarak kapalıdır. Doğrudan çalışma zamanı başlatıcıları hâlâ açık `MESA_STORAGE_ROOT`, `MESA_RUNTIME_PROFILE=combined`, anahtar ve yetki ayarları ister. `Mesa()` önce açık parametreleri, ardından bağlantı ortam değişkenlerini ve yerel kimlik bilgilerini okur.
 
-## İsteğe bağlı modeller, çizge ve doğrulama
+## İsteğe bağlı modeller ve doğrulama
 
 `MESA_LLM_MODEL=provider:model` ve `MESA_EMBEDDING_MODEL=provider:model` kullanın. Örneğin:
 
@@ -12,9 +12,9 @@ MESA_LLM_MODEL=ollama:qwen2.5:7b
 MESA_EMBEDDING_MODEL=ollama:bge-m3
 ```
 
-Yerel ayarları `~/.mesa/.env` dosyasına koyup sunucuyu yeniden başlatın. Seçilen sağlayıcı kurulu ve çalışır olmalıdır. `MESA_EMBEDDING_ENABLED`, model bayrağını izler. Modeller açık olsa da varsayılan `MESA_EXTRACTION_ENABLED=false` değeridir; açık uçlu SPO çıkarımı için açıkça `true` yapın. İkisi kapalıyken de veri alımı ve BM25 araması çalışır; VECTOR adımları SKIPPED olur. `MESA_GRAPH_ENABLED=false` varsayılandır;, Kùzu’nun açılmasını önler, GRAPH adımlarını SKIPPED yapar ve çizgeyi kullanılamayan kaynaklar arasında bildirir. Çizgeyi açmak için `true` yapın. Adım yeniden açılırsa combined başlangıcında eksikler tamamlanır.
+Yerel ayarları `~/.mesa/.env` dosyasına koyup sunucuyu yeniden başlatın. Seçilen sağlayıcı kurulu ve çalışır olmalıdır. `MESA_EMBEDDING_ENABLED`, model bayrağını izler. Modeller açık olsa da varsayılan `MESA_EXTRACTION_ENABLED=false` değeridir; açık uçlu SPO çıkarımı için açıkça `true` yapın. İkisi kapalıyken de veri alımı ve BM25 araması çalışır; VECTOR adımları SKIPPED olur ve eksik olarak bildirilir. Embedding sonradan açılırsa atlanan vektörler combined başlangıcında tamamlanır.
 
-Doğrulama kurala dayalı mod 0 ile çalışır; `MESA_TIER3_MODE` ve emekli edilen diğer ayarlar yok sayılır ve her anahtar için başlangıçta bir uyarı yazılır. `MESA_RRF_K=60`, vektör ağırlığı 8.0, BM25 ağırlığı 1.0 ve `MESA_RRF_ASSERTION_WEIGHT=0.0` birleştirmeyi yönetir; çizge açıldığında ağırlığı 1.0’dır. `MESA_RRF_VECTOR_WEIGHT=1` önceki vektör ağırlığını getirir; sıfır ağırlık kanal katkısını kapatır. Kalıcı yeniden oluşturma varsayılan olarak kapalıdır.
+Doğrulama kurala dayalı mod 0 ile çalışır. Kaldırılan özelliklere ait ayarlar yok sayılır ve sunucu başlangıçta her emekli anahtar için bir uyarı yazar; 0.9.5’te buna eski çizge anahtarıyla birlikte `MESA_RRF_GRAPH_WEIGHT` ve `MESA_V4_GRAPH_TIMEOUT_SECONDS` de dâhildir (bkz. [çizge deposu kaldırıldı](docs/core/graph/)). `MESA_RRF_K=60`, vektör ağırlığı 8.0, BM25 ağırlığı 1.0 ve `MESA_RRF_ASSERTION_WEIGHT=0.0` birleştirmeyi yönetir; sıfır ağırlık kanal katkısını kapatır.
 
 ## Sağlayıcı ve depolama sınırları
 
@@ -32,9 +32,9 @@ Varsayılan `MESA_RERANK_ENABLED=false` değeridir. Açmak için `[ml]` eki gere
 
 `MESA_LEGAL_RULES_ENABLED=true`, modellerden bağımsızdır. Otomatik planlarda normal maddeler, `metadata.law_number` veya ilk 3.000 karakterdeki desteklenen başlıktan kanun numarası alır; devam parçaları madde kimliğini korur. Önsözler, GEÇİCİ/EK maddeler ve plain planları otomatik kimlik almaz. Türlü kimlik API’si 3–5 basamaklı kanun numaralarını kabul eder; tutarsız numara/kod çiftleri ve bilinmeyen adlar reddedilir.
 
-Yeni parçalar sürümlü hukuki öğeleri SPO kayıtlarından ayrı saklar. `false`; yeni kimlik/öğeleri, hukuki atıf/sıralama/tam eşleşme ve çizge atıf ayrıştırmasını kapatır, kalıcı verileri silmeden sonuç kopyalarındaki hukuki ekleri gizler. Genel sözcük/vektör/çizge araması çalışır. Model tabanlı SPO kayıtları için `MESA_EXTRACTION_ENABLED=true` değerini açıkça ayarlayın; yalnızca modeli açmak artık çıkarımı açmaz.
+Yeni parçalar sürümlü hukuki öğeleri SPO kayıtlarından ayrı saklar. `false`; yeni kimlik/öğeleri, hukuki atıf/sıralama/tam eşleşmeyi kapatır, kalıcı verileri silmeden sonuç kopyalarındaki hukuki ekleri gizler. Genel sözcük ve vektör araması çalışır. Model tabanlı SPO kayıtları için `MESA_EXTRACTION_ENABLED=true` değerini açıkça ayarlayın; yalnızca modeli açmak artık çıkarımı açmaz.
 
-## v0.9.3 embedding kimliği ve başlangıç
+## Embedding kimliği ve başlangıç
 
 Varsayılan `MESA_EMBEDDING_MODEL=local:BAAI/bge-m3`, `MESA_EMBEDDING_DIMENSION=1024` ve normalizasyon açıktır. Modeller varsayılan kapalı kalır. Yerel modeli açmadan önce indirin. Önceki varsayılanla oluşturulmuş eski depoda aşağıdaki **iki** ayarı birlikte koruyun veya kimliği değiştirmeden önce yeniden oluşturun:
 
@@ -43,4 +43,4 @@ MESA_EMBEDDING_MODEL=local:magibu/embeddingmagibu-200m
 MESA_EMBEDDING_DIMENSION=768
 ```
 
-v0.9.4, Tier 3 mod 1/2’yi kaldırır ve `MESA_TIER3_MODE` ayarını uyarıyla yok sayar. `.` içeren başlangıç `MESA_API_KEY` değerleri de başlangıçta reddedilir.
+`.` içeren başlangıç `MESA_API_KEY` değerleri de başlangıçta reddedilir.

@@ -4,13 +4,13 @@ Bu rehber bir yerel denemedir. Metin belgesi ekleyip kaynaklı arama sonucu alac
 
 ### Linux ve macOS
 
-Python 3.11–3.13 ve pip gerekir. Önce sürümü kontrol edin:
+Python 3.11 veya daha yenisi ve pip gerekir. CI 3.11–3.13’ü test eder; 0.9.5 paketinin kurulumu Python 3.14’te de denetlendi. Önce sürümü kontrol edin:
 
 ```bash
 python3 --version
 ```
 
-**Başarı ölçütü:** çıktı `Python 3.11`, `3.12` veya `3.13` ile başlamalıdır. Python yoksa veya sürüm farklıysa [resmî Python indirme sayfasını](https://www.python.org/downloads/) kullanın. Linux’ta venv bileşeni eksikse dağıtımınızın Python venv paketini kurun.
+**Başarı ölçütü:** çıktı `Python 3.11` veya daha yeni bir sürüm göstermelidir. Python yoksa veya sürüm farklıysa [resmî Python indirme sayfasını](https://www.python.org/downloads/) kullanın. Linux’ta venv bileşeni eksikse dağıtımınızın Python venv paketini kurun.
 
 ### Windows: WSL
 
@@ -20,16 +20,16 @@ Windows’un yerel PowerShell penceresinde `mesa start` çalışmaz. [Microsoft�
 
 Python kurulumunu kullanmayacaksanız [Docker kurulumunu](https://docs.docker.com/get-started/get-docker/) tamamlayıp [Docker ile kurulum bölümüne](#docker-ile-kurulum) geçin.
 
-## v0.9.4 sürümünü kurun
+## v0.9.5 sürümünü kurun
 
 Yeni bir çalışma klasöründe bu komutları çalıştırın. Sanal ortam, MESA paketlerini diğer Python projelerinizden ayırır.
 
-v0.9.4 paketi PyPI’da yayımlandı; komut doğrulanan bu sürümü sabitler. [Kurulum ve eklere](docs/core/installation/) bakın.
+v0.9.5 paketi PyPI’da yayımlandı; komut doğrulanan bu sürümü sabitler. [Kurulum ve eklere](docs/core/installation/) bakın.
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install mesa-memory==0.9.4
+python -m pip install mesa-memory==0.9.5
 mesa --help
 ```
 
@@ -63,7 +63,7 @@ mesa add archive-tr.txt --source file://archive-tr.txt --json > receipt.json
 cat receipt.json
 ```
 
-Tarihsel Core v0.9.0 çalıştırmasından seçilmiş alındı alanları aşağıdadır. Kimlikler sizin çalıştırmanızda farklı olabilir; `receipt.json` kendi tam alındınızı içerir.
+Core v0.9.5 kaydından seçilmiş alındı alanları aşağıdadır. Kimlikler sizin çalıştırmanızda farklı olabilir; `receipt.json` kendi tam alındınızı içerir.
 
 ```json
 {
@@ -110,10 +110,10 @@ python wait_for_document.py
 mesa search "arşivi"
 ```
 
-Tarihsel Core v0.9.0 kaydından gerçek CLI çıktısı (v0.9.4 ile yeniden kaydedilmedi):
+Core v0.9.5 kaydından gerçek CLI çıktısı:
 
 ```text
-[1] score: 0.033 | doc-d206865140f38f4fcadb22c4645c222f
+[1] score: 0.016 | doc-d206865140f38f4fcadb22c4645c222f
     Atlas arşivi hafta içi 09:00 saatinde açılır.
 ```
 
@@ -126,7 +126,7 @@ Tarihsel Core v0.9.0 kaydından gerçek CLI çıktısı (v0.9.4 ile yeniden kayd
 Bu yol için Git, Docker Engine/Desktop ve Compose gerekir. Sabitlenmiş kaynak sürümünü açın:
 
 ```bash
-git clone --branch v0.9.4 --depth 1 https://github.com/Yasou13/MESA.git
+git clone --branch v0.9.5 --depth 1 https://github.com/Yasou13/MESA.git
 cd MESA
 docker compose -f docker-compose.v4.yml up --build -d
 docker compose -f docker-compose.v4.yml exec mesa-v4 mesa status
@@ -152,10 +152,10 @@ mesa mcp-config
 
 Çıktı yerel API anahtarını içerir; paylaşmayın. MESA bağlam metnini döndürür, son yanıtı uygulamanız ve onun modeli üretir.
 
-## İsteğe bağlı modelleri ve çizgeyi açın
+## İsteğe bağlı modelleri açın
 
-Bu ilk arama için gerekli değildir. Anlamsal arama ve bilgi çıkarımı için [model yapılandırmasını](docs/core/configuration/) ve [sağlayıcıları](docs/core/embedding-providers/) inceleyin. Dış sağlayıcılar veri aktarımı ve kullanım ücreti doğurabilir. Grafik/embedding yeniden açıldığında atlanan işler başlangıçta tamamlanabilir. Yerel başarı üretim yeterliliği sağlamaz; canlı kullanım doğrulamaları tamamlanmadı.
+Bu ilk arama için gerekli değildir. Anlamsal arama ve bilgi çıkarımı için [model yapılandırmasını](docs/core/configuration/) ve [sağlayıcıları](docs/core/embedding-providers/) inceleyin. Dış sağlayıcılar veri aktarımı ve kullanım ücreti doğurabilir. Embedding sonradan açılırsa atlanan vektörler başlangıçta tamamlanır. Yerel başarı üretim yeterliliği sağlamaz; canlı kullanım doğrulamaları tamamlanmadı.
 
-## v0.9.4 bekleme davranışı
+## v0.9.5 bekleme davranışı
 
-`mesa add`, başarılı dönüşten önce ACTIVE belge sürümünü bekler. `--no-wait` yalnız kabul alındısını döndürür. Yukarıdaki alındı ve CLI çıktıları tarihsel Core v0.9.0 kaydından alınmıştır; v0.9.4 ile yeniden kaydedilmedi. Ek durum kontrolü isteğe bağlı doğrulama olarak kullanılabilir.
+`mesa add`, başarılı dönüşten önce ACTIVE belge sürümünü bekler. `--no-wait` yalnız kabul alındısını döndürür. Yukarıdaki alındı ve CLI çıktıları 24 Kasım 2026’da PyPI v0.9.5 paketiyle kaydedildi. Ek durum kontrolü isteğe bağlı doğrulama olarak kullanılabilir.

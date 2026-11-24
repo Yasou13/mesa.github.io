@@ -12,7 +12,7 @@ Bir sürüm birden fazla parçadan oluşuyorsa her parçaya ayrı kimlik ve sır
 
 ## Tam belgeler ve silme
 
-`POST /v4/documents`, sunucuda özgün metni parçalar, tekrarları ve sürüm kimliklerini yönetir. Parça başına mutasyon kimliği döndürür; kabul edilmek COMMITTED olmakla aynı değildir. Modeller kapalıyken metin saklanır ve BM25 ile aranır; isteğe bağlı vektör ve çizge adımları SKIPPED olup sonradan tamamlanabilir. Belge silme, denetim kimliklerini ve özetleri korurken sahip olunan kaynak/çıkarım metnini temizler; başka bir belgenin sahip olduğu ortak metin kalır.
+`POST /v4/documents`, sunucuda özgün metni parçalar, tekrarları ve sürüm kimliklerini yönetir. Parça başına mutasyon kimliği döndürür; kabul edilmek COMMITTED olmakla aynı değildir. Modeller kapalıyken metin saklanır ve BM25 ile aranır; isteğe bağlı vektör adımı SKIPPED olup sonradan tamamlanabilir. Belge silme, denetim kimliklerini ve özetleri korurken sahip olunan kaynak/çıkarım metnini temizler; başka bir belgenin sahip olduğu ortak metin kalır.
 
 ## Madde sınırlarını koruyan parçalama ve yeniden deneme
 
@@ -20,6 +20,10 @@ Bir sürüm birden fazla parçadan oluşuyorsa her parçaya ayrı kimlik ve sır
 
 ## Kuyruk kapasitesi ve belge zaman bütçesi
 
-Belge kabulü, `queue_over_capacity` durumunda aynı istek içindeki tam parça planını koruyarak geçerli parça için kısa süre yer bekler. Baskı sürerse yine `503 queue_over_capacity` döner; kayıtlı sıralardan devam etmek için aynı gövdeyi yeniden gönderin. `add_document(deadline=600)`, HTTP isteğinde kalan belge süresini kullanır. Kabul ve tamamen hazır olma ayrıdır; büyük yüklemeler dakikalar sürebilir.
+Belge kabulü, `queue_over_capacity` durumunda aynı istek içindeki tam parça planını koruyarak geçerli parça için kısa süre yer bekler. Baskı sürerse yine `503 queue_over_capacity` döner; kayıtlı sıralardan devam etmek için aynı gövdeyi yeniden gönderin; yeniden deneme, o sürüm için kaydedilen parçalama planını korur. `add_document(deadline=600)`, HTTP isteğinde kalan belge süresini kullanır. Kabul ve tamamen hazır olma ayrıdır; büyük yüklemeler dakikalar sürebilir.
 
 Yeni kabul edilen parçalarda hukuk kuralları varsayılan açık; model tabanlı SPO çıkarımı modeller açık olsa da varsayılan kapalıdır. Hukuki öğeler özgün parça konumlarını korur ve SPO kayıtlarından ayrı kalır. Mevcut kimlikler devam sırasında değişmez.
+
+## Sürümlü belgeler
+
+Değişen bir belgenin (değiştirilen bir kanun, güncellenen bir politika) her sürümünü aynı `document_id` altında, saat dilimi içeren bir `metadata.valid_from` ve isteğe bağlı `metadata.valid_to` ile yükleyin. Yalnız tarih içeren veya saat dilimi olmayan değerler ve `valid_from >= valid_to` hiçbir parça yazılmadan HTTP 422 ile reddedilir. Sürümler herhangi bir sırayla gelebilir: hangi sürümün ACTIVE olacağına ve `[valid_from, valid_to)` geçmiş zincirinin nasıl bağlanacağına yükleme sırası değil, geçerlilik sırası karar verir. Sonradan yüklenen eski bir sürüm doğrudan geçmiş olarak saklanır. Aynı `valid_from` ile ikinci bir sürüm HTTP 409, tarihli sürümleri olan bir belgeye tarihsiz sürüm HTTP 422 döndürür. Bkz. [belirli bir andaki hâliyle arama](docs/core/retrieval-and-graph/#guide-belirli-bir-andaki-haliyle-arama).

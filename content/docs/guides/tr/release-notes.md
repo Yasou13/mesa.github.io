@@ -1,3 +1,24 @@
+## v0.9.5 · 24 Kasım 2026
+
+[Etiketli changelog](https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24) sürümü 24 Kasım olarak tarihler. GitHub `v0.9.5` etiketi `c725616364f3931249bd05a62676f132b65768e1` commit’ine çözülür. [PyPI 0.9.5](https://pypi.org/project/mesa-memory/0.9.5/) wheel ve sdist dosyalarının mevcut, geri çekilmemiş ve GitHub sürüm dosyalarıyla aynı özete sahip olduğu 24 Kasım 2026’da doğrulandı; pull request CI, push CI, dış yayın kontrolleri ve yayın iş akışı etiketli commit’te başarılı oldu. Çevrimdışı yedekten sonra `pip install --upgrade mesa-memory==0.9.5` ile yükseltin; [yükseltme rehberine](docs/core/migration/) bakın. Alfa / üretim NO-GO sürer.
+
+## v0.9.5 sürümlü belgeler
+
+Her sürümü aynı `document_id` altında, saat dilimi içeren bir `metadata.valid_from` ile yükleyin. ACTIVE sürüme ve `[valid_from, valid_to)` geçmişine yükleme sırası değil geçerlilik sırası karar verir; sonradan yüklenen eski bir sürüm geçmişe eklenir. `valid_at` ile yapılan arama, o anda geçerli olan sürümü döndürür; aralıklar yarı açık olduğundan değişikliğin tam yürürlük anı yalnızca yeni sürümü döndürür. HTTP, SDK ve MCP sonuçlarına `revision_number`, `valid_from` ve `valid_to` eklenir. Changelog, dört kanunluk Türkçe zaman fikstüründe doğru sürümün 18 tarihli ve sekiz tarihsiz sorunun tamamında ilk sırada geldiğini bildirir; bu duman testinin nasıl yapıldığı için [benchmark sayfasına](benchmark/#temporal) bakın.
+
+## v0.9.5 arama, depolama ve yüklemeler
+
+- Her veri kümesinin, tarihsiz ve tüm veri kümesini kapsayan sorgular için kalıcı bir FTS5 BM25 indeksi vardır; commit’lerle aynı SQLite transaction’ında güncellenir ve yoksa SQLite’tan yeniden kurulur. Tarihli ve daha dar sorgular geçici bir kapsam indeksi kurar.
+- LanceDB 0.41.0’a kilitlendi. Vektör araması sıralamadan önce veri kümesi ve ajana göre süzer ve uygunluğu SQLite’ta doğrular; başlangıç eski vektör tablolarına kapsam anahtarları ekler.
+- Yarıda kalan tam belge yüklemeleri, kabul sırasında seçilen parçalama planıyla kayıtlı parçalardan devam eder.
+- İç depolama kimlikleri artık sözcük puanlamasına veya atıf eşleşmesine girmez.
+- Kùzu, çizge görünümü worker’ı ve çizge arama kanalı kaldırıldı; çizge ayarları uyarıyla yok sayılır. Bkz. [çizge deposu kaldırıldı](docs/core/graph/).
+- Paket Python 3.14’e kurulur; CI hâlâ 3.11–3.13’ü test eder.
+
+## v0.9.5 ölçümleri
+
+Sürüm notları, sıfırdan kurulan bir deponun 100.820 commit edilmiş parçaya ulaştığı yerel Round 23 ölçek koşusunu bildirir: modeller kapalıyken sıcak HTTP arama medyanı 1.223 ms’den 753 ms’ye indi, belirlenimci vektör kanalı medyanı 287 ms oldu. Koşullar [ölçülen ölçek](docs/core/limitations/#guide-v095-olculen-olcek-yerel-100820-parca) bölümündedir. Bunlar tek makinedeki yerel ölçümlerdir; hizmet garantisi değildir ve bu boyuttaki arama kalitesini ölçmez.
+
 ## v0.9.4 · 23 Kasım 2026
 
 [Etiketli changelog](https://github.com/Yasou13/MESA/blob/e30856ec6e7ed9146bb9af992565e864f727b0b9/CHANGELOG.md#094---2026-11-23) sürümü 23 Kasım olarak tarihler. GitHub `v0.9.4` etiketi `e30856ec6e7ed9146bb9af992565e864f727b0b9` commit’ine işaret eder. [PyPI 0.9.4](https://pypi.org/project/mesa-memory/0.9.4/) wheel ve sdist dosyalarının mevcut, geri çekilmemiş ve GitHub sürüm dosyalarıyla aynı hash’e sahip olduğu 23 Kasım 2026’da doğrulandı. Çevrimdışı yedekten sonra `pip install --upgrade mesa-memory==0.9.4` ile yükseltin. Alfa / üretim NO-GO sürer.
@@ -12,7 +33,7 @@ Yalnızca ileri yönlü `f7a8b9c0d1e2` ve `f8b9c0d1e2f3` migration’ları eski 
 
 ## v0.9.4 ölçümleri ve yayın kontrolleri
 
-Changelog, modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 değerinin 50/112’den 61/112’ye, MRR’nin 0,3411’den 0,3955’e çıktığını, medyan arama gecikmesinin 361,3 ms’den 233,9 ms’ye indiğini bildirir. 5 MB’lık modelsiz fikstürde uçtan uca hazır olma 249,99 sn’den 172,61 sn’ye indi. Bunlar DEV ve yerel sonuçlardır; ayrılmış test sonucu veya hizmet garantisi değildir. Benchmark v2 DEV bölümünde 0.9.4 varsayılanlarıyla modelsiz ve embedding araması iyileşti; yeniden sıralamalı (T2) pasaj Hit@5 ise 0,9286’dan 0,9107’ye düştü. Ayrıntılar için [0.9.4’te arama kalitesini neyin değiştirdiğine](research/what-improved-search-in-0-9-4/) bakın. [0.9.3 benchmark’ı](benchmark/0.9.3/) 0.9.4’ü anlatmaz; 0.9.4 benchmark’ı henüz yayımlanmadı.
+Changelog, modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 değerinin 50/112’den 61/112’ye, MRR’nin 0,3411’den 0,3955’e çıktığını, medyan arama gecikmesinin 361,3 ms’den 233,9 ms’ye indiğini bildirir. 5 MB’lık modelsiz fikstürde uçtan uca hazır olma 249,99 sn’den 172,61 sn’ye indi. Bunlar DEV ve yerel sonuçlardır; ayrılmış test sonucu veya hizmet garantisi değildir. Benchmark v2 DEV bölümünde 0.9.4 varsayılanlarıyla modelsiz ve embedding araması iyileşti; yeniden sıralamalı (T2) pasaj Hit@5 ise 0,9286’dan 0,9107’ye düştü. Ayrıntılar için [0.9.4’te arama kalitesini neyin değiştirdiğine](research/what-improved-search-in-0-9-4/) bakın. [0.9.3 benchmark’ı](benchmark/0.9.3/) 0.9.4’ü anlatmaz; 0.9.4 benchmark v2 sonuçları [benchmark sayfasındadır](benchmark/).
 
 Etiketli commit’te PR CI ve yayın iş akışı başarılı oldu. Etiket sonrası push CI’ında `coverage (3.13)` işinde bir hata kaydedildi: bir hukuki çıkarım zamanlama testi 200 ms sınırını aştı, diğer 1.796 test geçti.
 
