@@ -11,8 +11,8 @@ category: "Document Memory"
 tags: ["evaluation", "recall", "mrr"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
-readingMinutes: 6
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "Arama Kalitesi Recall ve MRR ile Nasıl Ölçülür? — MESA"
@@ -83,6 +83,16 @@ Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçe
 > [!WARNING]
 > **Son test setinizde ayar yapmayın**
 > Bazı soruları ayrı tutun. Aynı sorulara göre tekrar tekrar ayar yaparsanız arama gerçekten iyileşmeden puan yükselebilir.
+
+## En sık ne ters gider?
+
+| Gördüğünüz | Neden | Çözüm |
+| --- | --- | --- |
+| `ValueError: invalid literal for int() with base 10` | Bir hücrede sıra yerine metin var | Tam sayı yazın; sonuç yoksa hücreyi boş bırakın |
+| `KeyError: 'baseline'` | Sütun adları farklı, örneğin `Baseline` | Başlığı tam olarak `question,baseline,changed` yazın |
+| Aynı iki çalıştırmada puanlar değişiyor | Eşitlikler rastgele bir şeyle, örneğin üretilen kimliklerle bozuluyor | Küçük bir kazanca güvenmeden önce dizini iki kez kurup sıralı sonuçları karşılaştırın |
+
+Son durum bizim başımıza geldi. Aynı belgelerle sıfırdan kurulan iki MESA deposu, eşitlik bozma düzeltmesinden önce Hit@5’te 48/112 ve 52/112 aldı (benchmark v2 dev, Tier M, modeller kapalı). [Aynı aramanın neden farklı sonuç verdiğini](/research/why-two-search-runs-differed/) okuyun.
 
 ## Arama değerlendirmesi hakkında sorular
 

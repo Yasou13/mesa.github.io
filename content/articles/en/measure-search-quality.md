@@ -11,8 +11,8 @@ category: "Document Memory"
 tags: ["evaluation", "recall", "mrr"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
-readingMinutes: 6
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "How to Measure Search Quality with Recall and MRR — MESA"
@@ -87,6 +87,16 @@ The change improves both metrics in this illustrative data. Five questions are t
 > [!WARNING]
 > **Do not tune on your final test set**
 > Keep some questions aside. If you repeatedly tune against the same questions, the score can improve without real search improving.
+
+## What usually goes wrong?
+
+| What you see | Cause | Fix |
+| --- | --- | --- |
+| `ValueError: invalid literal for int() with base 10` | A cell holds text instead of a rank | Use a whole number, or leave the cell empty for a miss |
+| `KeyError: 'baseline'` | Column names differ, for example `Baseline` | Use the exact header `question,baseline,changed` |
+| Scores change between two identical runs | Ties are broken by something random, such as generated IDs | Build the index twice and compare the ordered results before you trust a small gain |
+
+The last case happened to us. Two fresh MESA stores built from the same documents scored 48/112 and 52/112 on Hit@5 before a tie-break fix (benchmark v2 dev, Tier M, models off). Read [why two identical search runs differed](/research/why-two-search-runs-differed/).
 
 ## Search evaluation questions
 

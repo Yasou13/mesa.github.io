@@ -12,7 +12,7 @@ Yalnızca ileri yönlü `f7a8b9c0d1e2` ve `f8b9c0d1e2f3` migration’ları eski 
 
 ## v0.9.4 ölçümleri ve yayın kontrolleri
 
-Changelog, modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 değerinin 50/112’den 61/112’ye, MRR’nin 0,3411’den 0,3955’e çıktığını, medyan arama gecikmesinin 361,3 ms’den 233,9 ms’ye indiğini bildirir. 5 MB’lık modelsiz fikstürde uçtan uca hazır olma 249,99 sn’den 172,61 sn’ye indi. Bunlar DEV ve yerel sonuçlardır; ayrılmış test sonucu veya hizmet garantisi değildir. [0.9.3 benchmark’ı](benchmark/0.9.3/) 0.9.4’ü anlatmaz; 0.9.4 benchmark’ı henüz yayımlanmadı.
+Changelog, modeller ve yeniden sıralama kapalıyken paylaşılan Tier M DEV deposunda pasaj Hit@5 değerinin 50/112’den 61/112’ye, MRR’nin 0,3411’den 0,3955’e çıktığını, medyan arama gecikmesinin 361,3 ms’den 233,9 ms’ye indiğini bildirir. 5 MB’lık modelsiz fikstürde uçtan uca hazır olma 249,99 sn’den 172,61 sn’ye indi. Bunlar DEV ve yerel sonuçlardır; ayrılmış test sonucu veya hizmet garantisi değildir. Benchmark v2 DEV bölümünde 0.9.4 varsayılanlarıyla modelsiz ve embedding araması iyileşti; yeniden sıralamalı (T2) pasaj Hit@5 ise 0,9286’dan 0,9107’ye düştü. Ayrıntılar için [0.9.4’te arama kalitesini neyin değiştirdiğine](research/what-improved-search-in-0-9-4/) bakın. [0.9.3 benchmark’ı](benchmark/0.9.3/) 0.9.4’ü anlatmaz; 0.9.4 benchmark’ı henüz yayımlanmadı.
 
 Etiketli commit’te PR CI ve yayın iş akışı başarılı oldu. Etiket sonrası push CI’ında `coverage (3.13)` işinde bir hata kaydedildi: bir hukuki çıkarım zamanlama testi 200 ms sınırını aştı, diğer 1.796 test geçti.
 

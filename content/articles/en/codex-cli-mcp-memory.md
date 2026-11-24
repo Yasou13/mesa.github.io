@@ -11,8 +11,8 @@ category: "Coding Agents"
 tags: ["codex-cli", "agent-memory", "mcp"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 6
 status: "published"
 indexable: true
 seoTitle: "How to Set Up MCP Memory for Codex CLI — MESA"
@@ -40,7 +40,7 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
-Install adds a `mesa-lore` server to `~/.codex/config.toml`, the default Codex MCP configuration, and adds session hooks to `~/.codex/hooks.json`. It backs up changed files first.
+Install adds a `mesa-lore` server to `~/.codex/config.toml`, the default Codex MCP configuration, and adds session hooks to `~/.codex/hooks.json`. It backs up changed files first. Codex can also read hooks from other places, such as a trusted project’s `.codex/hooks.json`; `~/.codex/hooks.json` is the default user location.
 
 > [!WARNING]
 > **Existing history is imported**
@@ -59,6 +59,8 @@ mesa-lore doctor
 
 `codex mcp list` should show `mesa-lore`. Inside Codex, `/mcp` shows active servers. `mesa-lore doctor` should report `OK` for Codex MCP and hooks.
 
+After install and hook approval, the Codex line reads `Codex MCP: OK | hooks: OK (approve with /hooks in Codex)`. Before setup it reads `Codex MCP: missing | hooks: missing`.
+
 ## 5. Test memory in a new session
 
 1. Start a new Codex session in the project.
@@ -66,6 +68,21 @@ mesa-lore doctor
 3. Ask: “Search memory for the last failed test fix.”
 4. Check that the answer points to a real source.
 5. Save a decision: “Save this as a decision in memory.”
+
+> [!NOTE]
+> **What the MESA Lore tests measured**
+> From the mesa-lore 0.1.0 test suite and benchmark on Linux: session startup cost 432 tokens (163 for the index, 269 for tool definitions), and search p95 was 84 ms of CPU time on 10,000 chunks in one run. End-to-end token savings when resuming a session have not been measured. Search is lexical, so a query needs words or stems that appear in the transcript.
+
+## What if Codex does not use memory?
+
+| What you see | Fix |
+| --- | --- |
+| `codex mcp list` does not show `mesa-lore` | Run `mesa-lore install` again, then check `~/.codex/config.toml` |
+| No memory index at session start | Approve the hooks with `/hooks`, then start a new session |
+| `Codex MCP: missing` in `mesa-lore doctor` | The MCP entry is absent. Reinstall, or restore it from the backup that install made |
+| Search finds nothing for a known decision | Use words from the original session; search is lexical |
+
+More cases are in [MESA Lore troubleshooting](/docs/lore/troubleshooting/).
 
 ## Codex memory questions
 

@@ -11,8 +11,8 @@ category: "Coding Agents"
 tags: ["claude-code", "agent-memory", "mcp"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
-readingMinutes: 6
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "How to Add Persistent Memory to Claude Code — MESA"
@@ -31,7 +31,7 @@ Each Claude Code session starts with a fresh context window. Three layers can ca
 
 ## 2. Put stable rules in CLAUDE.md
 
-Create `CLAUDE.md` in the project root and keep it short. Write what you would otherwise repeat in each session.
+Create `CLAUDE.md` in the project root and keep it short. Write what you would otherwise repeat in each session. Anthropic’s documentation suggests keeping each CLAUDE.md under 200 lines.
 
 ```text
 # Project rules
@@ -63,6 +63,19 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
+`mesa-lore doctor` reports each connection. On a machine where nothing is configured yet, it prints:
+
+```text
+Schema version: v12
+DB: ~/.local/share/mesa-lore/lore.db (4096 B), Last ingest: never
+Claude Code MCP: missing | hooks: missing
+Codex MCP: missing | hooks: missing
+Antigravity MCP: missing | Claude Desktop MCP: missing
+Warnings: none (0)
+```
+
+After a successful install, the Claude Code line changes to `Claude Code MCP: OK | hooks: OK` and `Last ingest` shows a time.
+
 > [!WARNING]
 > **Review what will be imported**
 > Install imports existing Claude Code, Codex and Antigravity transcripts into the local database. [Exclude private projects](/docs/lore/data-and-privacy/) before you run it.
@@ -75,6 +88,21 @@ python3 -m venv .venv
 4. Open the returned source and confirm that it supports the answer.
 
 If the tools are missing, run `mesa-lore doctor` and see [troubleshooting](/docs/lore/troubleshooting/).
+
+> [!NOTE]
+> **What the MESA Lore tests measured**
+> From the mesa-lore 0.1.0 test suite and benchmark on Linux: session startup cost 432 tokens (163 for the index, 269 for tool definitions), and search p95 was 84 ms of CPU time on 10,000 chunks in one run. End-to-end token savings when resuming a session have not been measured. Search is lexical, so a query needs words or stems that appear in the transcript.
+
+## What if memory does not work?
+
+| What you see | Fix |
+| --- | --- |
+| `Claude Code MCP: missing` in `mesa-lore doctor` | Run `mesa-lore install` again and restart Claude Code |
+| `Last ingest: never` | Install has not imported a transcript yet. Finish a session, then run `mesa-lore doctor` again |
+| The memory tools exist but return nothing useful | Search with words that appear in the earlier session; Lore has no synonym matching |
+| CLAUDE.md rules are ignored | Run `/context all` and check that the file is listed under Memory files |
+
+More cases are in [MESA Lore troubleshooting](/docs/lore/troubleshooting/).
 
 ## Claude Code memory questions
 

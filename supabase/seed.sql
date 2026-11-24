@@ -3700,7 +3700,7 @@ Each Claude Code session starts with a fresh context window. Three layers can ca
 
 ## 2. Put stable rules in CLAUDE.md
 
-Create `CLAUDE.md` in the project root and keep it short. Write what you would otherwise repeat in each session.
+Create `CLAUDE.md` in the project root and keep it short. Write what you would otherwise repeat in each session. Anthropic’s documentation suggests keeping each CLAUDE.md under 200 lines.
 
 ```text
 # Project rules
@@ -3732,6 +3732,19 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
+`mesa-lore doctor` reports each connection. On a machine where nothing is configured yet, it prints:
+
+```text
+Schema version: v12
+DB: ~/.local/share/mesa-lore/lore.db (4096 B), Last ingest: never
+Claude Code MCP: missing | hooks: missing
+Codex MCP: missing | hooks: missing
+Antigravity MCP: missing | Claude Desktop MCP: missing
+Warnings: none (0)
+```
+
+After a successful install, the Claude Code line changes to `Claude Code MCP: OK | hooks: OK` and `Last ingest` shows a time.
+
 > [!WARNING]
 > **Review what will be imported**
 > Install imports existing Claude Code, Codex and Antigravity transcripts into the local database. [Exclude private projects](/docs/lore/data-and-privacy/) before you run it.
@@ -3744,6 +3757,21 @@ python3 -m venv .venv
 4. Open the returned source and confirm that it supports the answer.
 
 If the tools are missing, run `mesa-lore doctor` and see [troubleshooting](/docs/lore/troubleshooting/).
+
+> [!NOTE]
+> **What the MESA Lore tests measured**
+> From the mesa-lore 0.1.0 test suite and benchmark on Linux: session startup cost 432 tokens (163 for the index, 269 for tool definitions), and search p95 was 84 ms of CPU time on 10,000 chunks in one run. End-to-end token savings when resuming a session have not been measured. Search is lexical, so a query needs words or stems that appear in the transcript.
+
+## What if memory does not work?
+
+| What you see | Fix |
+| --- | --- |
+| `Claude Code MCP: missing` in `mesa-lore doctor` | Run `mesa-lore install` again and restart Claude Code |
+| `Last ingest: never` | Install has not imported a transcript yet. Finish a session, then run `mesa-lore doctor` again |
+| The memory tools exist but return nothing useful | Search with words that appear in the earlier session; Lore has no synonym matching |
+| CLAUDE.md rules are ignored | Run `/context all` and check that the file is listed under Memory files |
+
+More cases are in [MESA Lore troubleshooting](/docs/lore/troubleshooting/).
 
 ## Claude Code memory questions
 
@@ -3764,7 +3792,7 @@ If the tools are missing, run `mesa-lore doctor` and see [troubleshooting](/docs
 1. [Claude Code Docs · How Claude remembers your project](https://code.claude.com/docs/en/memory)
 2. [MESA Lore on GitHub](https://github.com/Yasou13/MESA_Lore)
 
-', ARRAY['claude-code', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'How to Add Persistent Memory to Claude Code — MESA', 'Use CLAUDE.md, auto memory and a local MCP memory server together so Claude Code can keep rules and find work from earlier sessions.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['claude-code', 'agent-memory', 'mcp']::text[], 'MESA contributors', 7, 'published', 'How to Add Persistent Memory to Claude Code — MESA', 'Use CLAUDE.md, auto memory and a local MCP memory server together so Claude Code can keep rules and find work from earlier sessions.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('claude-code-persistent-memory', 'guide', 'tr', 'Claude Code’a kalıcı hafıza nasıl eklenir?', '', 'CLAUDE.md, otomatik hafıza ve aranabilir oturum geçmişini her konuşmaya her şeyi yüklemeden birlikte kullanın.', 'Kalıcı proje kurallarını CLAUDE.md’ye yazın, öğrenilen tercihleri otomatik hafızaya bırakın. Eski oturumlardaki karar ve başarısız denemeleri de bulmak istiyorsanız MESA Lore gibi yerel bir MCP hafıza sunucusu ekleyin.', '## 1. Doğru hafıza katmanını seçin
 
 Her Claude Code oturumu yeni bir bağlam penceresiyle başlar. Yararlı bilgiyi üç katman taşıyabilir ve her biri farklı bir sorunu çözer.
@@ -3777,7 +3805,7 @@ Her Claude Code oturumu yeni bir bağlam penceresiyle başlar. Yararlı bilgiyi 
 
 ## 2. Kalıcı kuralları CLAUDE.md’ye yazın
 
-Proje kökünde `CLAUDE.md` oluşturun ve kısa tutun. Her oturumda yeniden söyleyeceğiniz şeyleri yazın.
+Proje kökünde `CLAUDE.md` oluşturun ve kısa tutun. Her oturumda yeniden söyleyeceğiniz şeyleri yazın. Anthropic’in belgeleri her CLAUDE.md dosyasını 200 satırın altında tutmayı önerir.
 
 ```text
 # Project rules
@@ -3809,6 +3837,19 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
+`mesa-lore doctor` her bağlantının durumunu bildirir. Henüz hiçbir şeyin yapılandırılmadığı bir makinede şunu yazar:
+
+```text
+Schema version: v12
+DB: ~/.local/share/mesa-lore/lore.db (4096 B), Last ingest: never
+Claude Code MCP: missing | hooks: missing
+Codex MCP: missing | hooks: missing
+Antigravity MCP: missing | Claude Desktop MCP: missing
+Warnings: none (0)
+```
+
+Başarılı bir kurulumdan sonra Claude Code satırı `Claude Code MCP: OK | hooks: OK` olur ve `Last ingest` bir zaman gösterir.
+
 > [!WARNING]
 > **İçe aktarılacakları gözden geçirin**
 > Kurulum, mevcut Claude Code, Codex ve Antigravity dökümlerini yerel veritabanına aktarır. Çalıştırmadan önce [özel projeleri hariç tutun](/docs/lore/data-and-privacy/).
@@ -3821,6 +3862,21 @@ python3 -m venv .venv
 4. Dönen kaynağı açın ve yanıtı desteklediğini doğrulayın.
 
 Araçlar görünmüyorsa `mesa-lore doctor` çalıştırın ve [sorun giderme](/docs/lore/troubleshooting/) sayfasına bakın.
+
+> [!NOTE]
+> **MESA Lore testlerinin ölçtükleri**
+> Linux üzerinde mesa-lore 0.1.0 test paketi ve benchmark’ına göre oturum başlangıcı 432 token tuttu (163’ü dizin, 269’u araç tanımları). Bir çalıştırmada 10.000 parçada arama p95 değeri 84 ms CPU süresiydi. Oturuma dönerken uçtan uca token tasarrufu henüz ölçülmedi. Arama sözcük tabanlıdır; sorguda dökümde geçen sözcükler veya kökler bulunmalıdır.
+
+## Hafıza çalışmazsa ne yapmalı?
+
+| Gördüğünüz | Çözüm |
+| --- | --- |
+| `mesa-lore doctor` çıktısında `Claude Code MCP: missing` | `mesa-lore install` komutunu yeniden çalıştırın ve Claude Code’u yeniden başlatın |
+| `Last ingest: never` | Kurulum henüz döküm aktarmadı. Bir oturumu bitirin, sonra `mesa-lore doctor` çalıştırın |
+| Hafıza araçları var ama işe yarar sonuç dönmüyor | Önceki oturumda geçen sözcüklerle arayın; Lore eş anlamlı sözcükleri eşleştirmez |
+| CLAUDE.md kuralları dikkate alınmıyor | `/context all` çalıştırın ve dosyanın Memory files altında listelendiğini kontrol edin |
+
+Diğer durumlar için [MESA Lore sorun giderme](/docs/lore/troubleshooting/) sayfasına bakın.
 
 ## Claude Code hafızası hakkında sorular
 
@@ -3841,7 +3897,7 @@ Araçlar görünmüyorsa `mesa-lore doctor` çalıştırın ve [sorun giderme](/
 1. [Claude Code Docs · How Claude remembers your project](https://code.claude.com/docs/en/memory)
 2. [GitHub’da MESA Lore](https://github.com/Yasou13/MESA_Lore)
 
-', ARRAY['claude-code', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'Claude Code’a Kalıcı Hafıza Nasıl Eklenir? — MESA', 'CLAUDE.md, otomatik hafıza ve yerel MCP hafıza sunucusunu birlikte kullanarak Claude Code’un kuralları korumasını ve eski oturumları bulmasını sağlayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['claude-code', 'agent-memory', 'mcp']::text[], 'MESA contributors', 7, 'published', 'Claude Code’a Kalıcı Hafıza Nasıl Eklenir? — MESA', 'CLAUDE.md, otomatik hafıza ve yerel MCP hafıza sunucusunu birlikte kullanarak Claude Code’un kuralları korumasını ve eski oturumları bulmasını sağlayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('codex-cli-mcp-memory', 'guide', 'en', 'How do you set up MCP memory for Codex CLI?', '', 'Keep instructions in AGENTS.md and add a local MCP server that can search earlier Codex sessions.', 'Keep project instructions in AGENTS.md. Install MESA Lore to add a local MCP memory server to Codex, approve its hooks with /hooks, then start a new session and test memory_search.', '## 1. Separate instructions from history
 
 Codex reads `AGENTS.md` files before doing work, so use them for standards and project rules. A memory server has a different job: it helps the agent find what happened in earlier sessions.
@@ -3863,7 +3919,7 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
-Install adds a `mesa-lore` server to `~/.codex/config.toml`, the default Codex MCP configuration, and adds session hooks to `~/.codex/hooks.json`. It backs up changed files first.
+Install adds a `mesa-lore` server to `~/.codex/config.toml`, the default Codex MCP configuration, and adds session hooks to `~/.codex/hooks.json`. It backs up changed files first. Codex can also read hooks from other places, such as a trusted project’s `.codex/hooks.json`; `~/.codex/hooks.json` is the default user location.
 
 > [!WARNING]
 > **Existing history is imported**
@@ -3882,6 +3938,8 @@ mesa-lore doctor
 
 `codex mcp list` should show `mesa-lore`. Inside Codex, `/mcp` shows active servers. `mesa-lore doctor` should report `OK` for Codex MCP and hooks.
 
+After install and hook approval, the Codex line reads `Codex MCP: OK | hooks: OK (approve with /hooks in Codex)`. Before setup it reads `Codex MCP: missing | hooks: missing`.
+
 ## 5. Test memory in a new session
 
 1. Start a new Codex session in the project.
@@ -3889,6 +3947,21 @@ mesa-lore doctor
 3. Ask: “Search memory for the last failed test fix.”
 4. Check that the answer points to a real source.
 5. Save a decision: “Save this as a decision in memory.”
+
+> [!NOTE]
+> **What the MESA Lore tests measured**
+> From the mesa-lore 0.1.0 test suite and benchmark on Linux: session startup cost 432 tokens (163 for the index, 269 for tool definitions), and search p95 was 84 ms of CPU time on 10,000 chunks in one run. End-to-end token savings when resuming a session have not been measured. Search is lexical, so a query needs words or stems that appear in the transcript.
+
+## What if Codex does not use memory?
+
+| What you see | Fix |
+| --- | --- |
+| `codex mcp list` does not show `mesa-lore` | Run `mesa-lore install` again, then check `~/.codex/config.toml` |
+| No memory index at session start | Approve the hooks with `/hooks`, then start a new session |
+| `Codex MCP: missing` in `mesa-lore doctor` | The MCP entry is absent. Reinstall, or restore it from the backup that install made |
+| Search finds nothing for a known decision | Use words from the original session; search is lexical |
+
+More cases are in [MESA Lore troubleshooting](/docs/lore/troubleshooting/).
 
 ## Codex memory questions
 
@@ -3911,7 +3984,7 @@ mesa-lore doctor
 3. [Codex · Hooks](https://learn.chatgpt.com/docs/hooks)
 4. [MESA Lore on GitHub](https://github.com/Yasou13/MESA_Lore)
 
-', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 5, 'published', 'How to Set Up MCP Memory for Codex CLI — MESA', 'Add a local MCP memory server to Codex CLI, approve its hooks and search earlier sessions while keeping project rules in AGENTS.md.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'How to Set Up MCP Memory for Codex CLI — MESA', 'Add a local MCP memory server to Codex CLI, approve its hooks and search earlier sessions while keeping project rules in AGENTS.md.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('codex-cli-mcp-memory', 'guide', 'tr', 'Codex CLI için MCP hafızası nasıl kurulur?', '', 'Talimatları AGENTS.md’de tutun ve önceki Codex oturumlarını arayabilen yerel bir MCP sunucusu ekleyin.', 'Proje talimatlarını AGENTS.md’de tutun. Codex’e yerel MCP hafıza sunucusu eklemek için MESA Lore’u kurun, hook’larını /hooks ile onaylayın, sonra yeni oturum açıp memory_search aracını test edin.', '## 1. Talimatları geçmişten ayırın
 
 Codex işe başlamadan önce `AGENTS.md` dosyalarını okur; standartlar ve proje kuralları için bunları kullanın. Hafıza sunucusunun görevi farklıdır: ajanın önceki oturumlarda ne olduğunu bulmasına yardım eder.
@@ -3933,7 +4006,7 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
-Kurulum, Codex’in varsayılan MCP yapılandırması olan `~/.codex/config.toml` dosyasına `mesa-lore` sunucusunu, `~/.codex/hooks.json` dosyasına oturum hook’larını ekler. Değiştirdiği dosyaları önce yedekler.
+Kurulum, Codex’in varsayılan MCP yapılandırması olan `~/.codex/config.toml` dosyasına `mesa-lore` sunucusunu, `~/.codex/hooks.json` dosyasına oturum hook’larını ekler. Değiştirdiği dosyaları önce yedekler. Codex hook’ları başka yerlerden de okuyabilir; örneğin güvenilir bir projenin `.codex/hooks.json` dosyası. `~/.codex/hooks.json` varsayılan kullanıcı konumudur.
 
 > [!WARNING]
 > **Mevcut geçmiş içe aktarılır**
@@ -3952,6 +4025,8 @@ mesa-lore doctor
 
 `codex mcp list` çıktısında `mesa-lore` görünmelidir. Codex içinde `/mcp` etkin sunucuları gösterir. `mesa-lore doctor`, Codex MCP ve hook’ları için `OK` bildirmelidir.
 
+Kurulum ve hook onayından sonra Codex satırı `Codex MCP: OK | hooks: OK (approve with /hooks in Codex)` olur. Kurulumdan önce `Codex MCP: missing | hooks: missing` yazar.
+
 ## 5. Hafızayı yeni oturumda test edin
 
 1. Projede yeni bir Codex oturumu başlatın.
@@ -3959,6 +4034,21 @@ mesa-lore doctor
 3. Şunu sorun: “Son başarısız test düzeltmesini hafızada ara.”
 4. Yanıtın gerçek bir kaynağa dayandığını kontrol edin.
 5. Bir karar kaydedin: “Bunu hafızaya karar olarak kaydet.”
+
+> [!NOTE]
+> **MESA Lore testlerinin ölçtükleri**
+> Linux üzerinde mesa-lore 0.1.0 test paketi ve benchmark’ına göre oturum başlangıcı 432 token tuttu (163’ü dizin, 269’u araç tanımları). Bir çalıştırmada 10.000 parçada arama p95 değeri 84 ms CPU süresiydi. Oturuma dönerken uçtan uca token tasarrufu henüz ölçülmedi. Arama sözcük tabanlıdır; sorguda dökümde geçen sözcükler veya kökler bulunmalıdır.
+
+## Codex hafızayı kullanmazsa ne yapmalı?
+
+| Gördüğünüz | Çözüm |
+| --- | --- |
+| `codex mcp list` çıktısında `mesa-lore` yok | `mesa-lore install` komutunu yeniden çalıştırın, sonra `~/.codex/config.toml` dosyasını kontrol edin |
+| Oturum başında hafıza dizini yok | Hook’ları `/hooks` ile onaylayın ve yeni oturum açın |
+| `mesa-lore doctor` çıktısında `Codex MCP: missing` | MCP kaydı yok. Yeniden kurun ya da kurulumun aldığı yedekten geri yükleyin |
+| Bilinen bir karar için arama sonuç vermiyor | Asıl oturumdaki sözcüklerle arayın; arama sözcük tabanlıdır |
+
+Diğer durumlar için [MESA Lore sorun giderme](/docs/lore/troubleshooting/) sayfasına bakın.
 
 ## Codex hafızası hakkında sorular
 
@@ -3981,7 +4071,7 @@ mesa-lore doctor
 3. [Codex · Hooks](https://learn.chatgpt.com/docs/hooks)
 4. [GitHub’da MESA Lore](https://github.com/Yasou13/MESA_Lore)
 
-', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 5, 'published', 'Codex CLI için MCP Hafızası Nasıl Kurulur? — MESA', 'Codex CLI’a yerel MCP hafıza sunucusu ekleyin, hook’ları onaylayın ve proje kurallarını AGENTS.md’de tutarken eski oturumları arayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['codex-cli', 'agent-memory', 'mcp']::text[], 'MESA contributors', 6, 'published', 'Codex CLI için MCP Hafızası Nasıl Kurulur? — MESA', 'Codex CLI’a yerel MCP hafıza sunucusu ekleyin, hook’ları onaylayın ve proje kurallarını AGENTS.md’de tutarken eski oturumları arayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('source-backed-document-search', 'guide', 'en', 'How do you build source-backed document search?', '', 'Add a document with a source reference, search it locally, update it and check that results come from the current revision.', 'Install MESA Core, start the local server, add each text file with a stable --source value and search with mesa search. Results return the matching text and document ID, so you can check the answer against its source.', '## 1. Check what you need
 
 - Python 3.11, 3.12 or 3.13
@@ -3989,6 +4079,8 @@ INSERT INTO public.articles (slug, type, language, title, subtitle, summary, sho
 - UTF-8 text files. Convert PDF and Word files to text first.
 
 This guide uses word search, so it needs no model account. MESA Core is alpha software and is not ready for production use.
+
+Checked against `mesa-memory` 0.9.4 from PyPI on 24 November 2026. Your document IDs can differ.
 
 ## 2. Install and start MESA Core
 
@@ -4005,10 +4097,30 @@ mesa start
 
 Open a second terminal in the same folder. Use a stable `--source`, because it identifies the document when you update or delete it.
 
+First confirm that the server is ready:
+
+```text
+. .venv/bin/activate
+mesa status
+```
+
+```text
+MESA Server: http://127.0.0.1:8000
+Readiness (/health/init): ready
+Health (/health): healthy
+```
+
 ```text
 . .venv/bin/activate
 printf ''%s\n'' ''Refunds are accepted within 30 days of purchase.'' ''Damaged items are replaced at no cost.'' > refund-policy.txt
 mesa add refund-policy.txt --source file://refund-policy.txt
+```
+
+`mesa add` waits until the document is searchable:
+
+```text
+Added document doc-72f2f9bee031b87753ed5b3b1affae68 with 1 chunk(s)
+searchable
 ```
 
 ## 4. Search and inspect the source
@@ -4020,10 +4132,12 @@ mesa search "refund days"
 A result looks like this. Your document ID can differ.
 
 ```text
-[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68
+[1] score: 0.016 | doc-72f2f9bee031b87753ed5b3b1affae68
     Refunds are accepted within 30 days of purchase.
     Damaged items are replaced at no cost.
 ```
+
+With models off, BM25 is the only fused lane, so a first-place match scores 1/61, about 0.016. The number is a rank signal, not a quality grade.
 
 > [!WARNING]
 > **A score is not proof**
@@ -4051,7 +4165,33 @@ The result should now say 45 days.
 mesa delete --source file://refund-policy.txt
 ```
 
+Expected output, followed by the same search:
+
+```text
+Purged document doc-72f2f9bee031b87753ed5b3b1affae68
+$ mesa search "refund days"
+No matching memories found.
+```
+
 After deletion, the same search should no longer return the document. Then stop the server in the first terminal with Ctrl+C.
+
+## What are the common errors and fixes?
+
+| What you see | Cause | Fix |
+| --- | --- | --- |
+| `mesa add: error: the following arguments are required: --source` | No source reference | Add `--source`, for example `--source file://refund-policy.txt` |
+| `File not found: nope.txt` | Wrong path | Check the file name and the current folder |
+| `UnicodeDecodeError: ''utf-8'' codec can''t decode byte` | The file is not UTF-8 | Convert it first, as shown below |
+| `No matching memories found.` | No document contains the query words | Try words that appear in the text, or enable a model for meaning-based search |
+
+Older Turkish files are often saved as Windows-1254. In 0.9.4 such a file stops `mesa add` with a Python traceback rather than a short message. Convert it to UTF-8 and add the converted file:
+
+```text
+iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
+mesa add notes-utf8.txt --source file://notes.txt
+```
+
+Turkish letters matter in queries. In our test on 0.9.4, `YARGITAY` and `sözleşme` found a line containing `Yargıtay` and `sözleşmesinin`, but the ASCII query `yargitay` found nothing. Type `ı`, `ğ`, `ş` and the other Turkish letters when you search. [Why BM25 Struggles With Turkish](/research/bm25-turkish-prefix-matching/) explains the cause.
 
 ## Document search questions
 
@@ -4070,7 +4210,7 @@ After deletion, the same search should no longer return the document. Then stop 
 2. [MESA Core · CLI reference](docs/core/cli-reference/)
 3. [mesa-memory 0.9.4 on PyPI](https://pypi.org/project/mesa-memory/0.9.4/)
 
-', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 6, 'published', 'How to Build Source-Backed Document Search — MESA', 'Add text documents to MESA Core, search them locally, update a revision and verify that each result points back to its source.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 7, 'published', 'How to Build Source-Backed Document Search — MESA', 'Add text documents to MESA Core, search them locally, update a revision and verify that each result points back to its source.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('source-backed-document-search', 'guide', 'tr', 'Kaynak gösteren belge araması nasıl kurulur?', '', 'Belgeyi kaynak bilgisiyle ekleyin, yerelde arayın, güncelleyin ve sonuçların geçerli sürümden geldiğini kontrol edin.', 'MESA Core’u kurun, yerel sunucuyu başlatın, her metin dosyasını sabit bir --source değeriyle ekleyin ve mesa search ile arayın. Sonuçlar eşleşen metni ve belge kimliğini döndürür; böylece yanıtı kaynağıyla kontrol edebilirsiniz.', '## 1. Gerekenleri kontrol edin
 
 - Python 3.11, 3.12 veya 3.13
@@ -4078,6 +4218,8 @@ INSERT INTO public.articles (slug, type, language, title, subtitle, summary, sho
 - UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün.
 
 Bu rehber sözcük aramasını kullanır, bu yüzden model hesabı gerekmez. MESA Core alfa aşamasındadır ve canlı kullanıma hazır değildir.
+
+24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.4 ile denendi. Belge kimlikleriniz farklı olabilir.
 
 ## 2. MESA Core’u kurup başlatın
 
@@ -4094,10 +4236,30 @@ mesa start
 
 Aynı klasörde ikinci bir terminal açın. Güncelleme ve silmede belgeyi tanımladığı için sabit bir `--source` kullanın.
 
+Önce sunucunun hazır olduğunu doğrulayın:
+
+```text
+. .venv/bin/activate
+mesa status
+```
+
+```text
+MESA Server: http://127.0.0.1:8000
+Readiness (/health/init): ready
+Health (/health): healthy
+```
+
 ```text
 . .venv/bin/activate
 printf ''%s\n'' ''Refunds are accepted within 30 days of purchase.'' ''Damaged items are replaced at no cost.'' > refund-policy.txt
 mesa add refund-policy.txt --source file://refund-policy.txt
+```
+
+`mesa add`, belge aranabilir olana kadar bekler:
+
+```text
+Added document doc-72f2f9bee031b87753ed5b3b1affae68 with 1 chunk(s)
+searchable
 ```
 
 ## 4. Arayın ve kaynağı inceleyin
@@ -4109,10 +4271,12 @@ mesa search "refund days"
 Sonuç aşağıdaki gibi görünür. Belge kimliğiniz farklı olabilir.
 
 ```text
-[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68
+[1] score: 0.016 | doc-72f2f9bee031b87753ed5b3b1affae68
     Refunds are accepted within 30 days of purchase.
     Damaged items are replaced at no cost.
 ```
+
+Modeller kapalıyken birleştirilen tek kanal BM25’tir; birinci sıradaki eşleşme 1/61, yani yaklaşık 0,016 puan alır. Bu sayı bir sıralama işaretidir, kalite notu değildir.
 
 > [!WARNING]
 > **Puan kanıt değildir**
@@ -4136,7 +4300,33 @@ Sonuç artık 45 gün demelidir.
 mesa delete --source file://refund-policy.txt
 ```
 
+Beklenen çıktı ve ardından aynı arama:
+
+```text
+Purged document doc-72f2f9bee031b87753ed5b3b1affae68
+$ mesa search "refund days"
+No matching memories found.
+```
+
 Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde Ctrl+C ile sunucuyu durdurun.
+
+## Sık görülen hatalar ve çözümleri neler?
+
+| Gördüğünüz | Neden | Çözüm |
+| --- | --- | --- |
+| `mesa add: error: the following arguments are required: --source` | Kaynak bilgisi yok | `--source` ekleyin; örneğin `--source file://refund-policy.txt` |
+| `File not found: nope.txt` | Yol yanlış | Dosya adını ve bulunduğunuz klasörü kontrol edin |
+| `UnicodeDecodeError: ''utf-8'' codec can''t decode byte` | Dosya UTF-8 değil | Aşağıdaki gibi önce dönüştürün |
+| `No matching memories found.` | Hiçbir belgede sorgu sözcükleri yok | Metinde geçen sözcükleri deneyin veya anlam tabanlı arama için bir model açın |
+
+Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.4’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:
+
+```text
+iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
+mesa add notes-utf8.txt --source file://notes.txt
+```
+
+Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar.
 
 ## Belge araması hakkında sorular
 
@@ -4159,7 +4349,7 @@ Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde C
 > **MESA’da ne ölçtük?**
 > Arama sonuçları çıkarılmış hukuki öğeler taşıyabilir. [Bu çıkarıcıyı](/research/turkish-legal-citation-extraction/) 150 etiketli parçada ölçtük (MESA 0.9.4): 357 doğru öğe, 25 yanlış sonuç, 18 eksik.
 
-', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 6, 'published', 'Kaynak Gösteren Belge Araması Nasıl Kurulur? — MESA', 'Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni sürüm yükleyin ve her sonucun kaynağına bağlandığını doğrulayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['document-search', 'provenance', 'mesa-core']::text[], 'MESA contributors', 7, 'published', 'Kaynak Gösteren Belge Araması Nasıl Kurulur? — MESA', 'Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni sürüm yükleyin ve her sonucun kaynağına bağlandığını doğrulayın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('measure-search-quality', 'guide', 'en', 'How do you measure search quality with Recall and MRR?', '', 'Create a small judged question set, record where the right document appears and compare two search settings.', 'Write real questions, mark the correct document for each and record its rank before and after a change. Recall@5 shows how often it appears in the top five. MRR shows how close to the top it appears.', '## 1. Write a small question set
 
 Start with 20 to 50 questions from real use, then grow the set. Include exact terms, natural wording and questions with no answer in the documents.
@@ -4229,6 +4419,16 @@ The change improves both metrics in this illustrative data. Five questions are t
 > **Do not tune on your final test set**
 > Keep some questions aside. If you repeatedly tune against the same questions, the score can improve without real search improving.
 
+## What usually goes wrong?
+
+| What you see | Cause | Fix |
+| --- | --- | --- |
+| `ValueError: invalid literal for int() with base 10` | A cell holds text instead of a rank | Use a whole number, or leave the cell empty for a miss |
+| `KeyError: ''baseline''` | Column names differ, for example `Baseline` | Use the exact header `question,baseline,changed` |
+| Scores change between two identical runs | Ties are broken by something random, such as generated IDs | Build the index twice and compare the ordered results before you trust a small gain |
+
+The last case happened to us. Two fresh MESA stores built from the same documents scored 48/112 and 52/112 on Hit@5 before a tie-break fix (benchmark v2 dev, Tier M, models off). Read [why two identical search runs differed](/research/why-two-search-runs-differed/).
+
 ## Search evaluation questions
 
 **What is a good MRR score?**
@@ -4245,7 +4445,7 @@ The change improves both metrics in this illustrative data. Five questions are t
 1. [MESA Learn · Evaluate retrieval](learn/evaluating-ndcg-and-mrr-in-memory/)
 2. [MESA · Retrieval evaluation methodology](methodology/retrieval-evaluation/)
 
-', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 6, 'published', 'How to Measure Search Quality with Recall and MRR — MESA', 'Build a small judged question set, record result ranks and compare two search settings with Recall@5 and MRR using a short Python script.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 7, 'published', 'How to Measure Search Quality with Recall and MRR — MESA', 'Build a small judged question set, record result ranks and compare two search settings with Recall@5 and MRR using a short Python script.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('measure-search-quality', 'guide', 'tr', 'Arama kalitesi Recall ve MRR ile nasıl ölçülür?', '', 'Küçük bir etiketli soru seti hazırlayın, doğru belgenin nerede çıktığını kaydedin ve iki arama ayarını karşılaştırın.', 'Gerçek sorular yazın, her biri için doğru belgeyi işaretleyin ve değişiklikten önce ve sonra sırasını kaydedin. Recall@5 doğru belgenin ne sıklıkla ilk beşte çıktığını, MRR ise zirveye ne kadar yakın olduğunu gösterir.', '## 1. Küçük bir soru seti yazın
 
 Gerçek kullanımdan 20 ila 50 soruyla başlayın, sonra seti büyütün. Tam terimler, doğal ifadeler ve belgelerde yanıtı olmayan sorular ekleyin.
@@ -4311,6 +4511,16 @@ Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçe
 > **Son test setinizde ayar yapmayın**
 > Bazı soruları ayrı tutun. Aynı sorulara göre tekrar tekrar ayar yaparsanız arama gerçekten iyileşmeden puan yükselebilir.
 
+## En sık ne ters gider?
+
+| Gördüğünüz | Neden | Çözüm |
+| --- | --- | --- |
+| `ValueError: invalid literal for int() with base 10` | Bir hücrede sıra yerine metin var | Tam sayı yazın; sonuç yoksa hücreyi boş bırakın |
+| `KeyError: ''baseline''` | Sütun adları farklı, örneğin `Baseline` | Başlığı tam olarak `question,baseline,changed` yazın |
+| Aynı iki çalıştırmada puanlar değişiyor | Eşitlikler rastgele bir şeyle, örneğin üretilen kimliklerle bozuluyor | Küçük bir kazanca güvenmeden önce dizini iki kez kurup sıralı sonuçları karşılaştırın |
+
+Son durum bizim başımıza geldi. Aynı belgelerle sıfırdan kurulan iki MESA deposu, eşitlik bozma düzeltmesinden önce Hit@5’te 48/112 ve 52/112 aldı (benchmark v2 dev, Tier M, modeller kapalı). [Aynı aramanın neden farklı sonuç verdiğini](/research/why-two-search-runs-differed/) okuyun.
+
 ## Arama değerlendirmesi hakkında sorular
 
 **İyi bir MRR değeri nedir?**
@@ -4331,7 +4541,7 @@ Bu örnek veride değişiklik iki ölçüyü de iyileştiriyor. Beş soru gerçe
 > **MESA’da ne ölçtük?**
 > Soru kuralları, puanlama ve açıklama için çalışılmış bir örnek olarak [benchmark v2’yi nasıl kurduğumuza](/research/turkish-legal-benchmark-v2/) bakın.
 
-', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 6, 'published', 'Arama Kalitesi Recall ve MRR ile Nasıl Ölçülür? — MESA', 'Küçük bir etiketli soru seti hazırlayın, sonuç sıralarını kaydedin ve iki arama ayarını kısa bir Python betiğiyle Recall@5 ve MRR üzerinden karşılaştırın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+', ARRAY['evaluation', 'recall', 'mrr']::text[], 'MESA contributors', 7, 'published', 'Arama Kalitesi Recall ve MRR ile Nasıl Ölçülür? — MESA', 'Küçük bir etiketli soru seti hazırlayın, sonuç sıralarını kaydedin ve iki arama ayarını kısa bir Python betiğiyle Recall@5 ve MRR üzerinden karşılaştırın.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('verify-ai-yargitay-decision', 'guide', 'en', 'How do you verify an AI-cited Yargıtay decision?', '', 'Treat the citation as an unverified lead until its identity, official text, quoted passage and legal fit are checked.', 'Search the decision yourself in Yargıtay Karar Arama using its chamber, docket number, decision number and date. Then read the full text, find the quoted passage and check whether the decision really supports the claim. A decision that exists can still be the wrong authority.', '## Why an AI citation needs checking
 
 A language model can produce a citation that looks correct while its number, chamber, date or quotation is wrong. According to [press reports](https://memurlar.net/haber/1170388/), an investigation was opened in Türkiye after Yargıtay decisions added to a petition with AI had incorrect docket and decision numbers.
@@ -4712,6 +4922,394 @@ Yöntemin tamamı için [yapay zekânın verdiği Yargıtay kararı nasıl doğr
 3. [Memurlar.net · Yapay zekâ atfı soruşturması haberi](https://memurlar.net/haber/1170388/)
 
 ', ARRAY['legal-research', 'verification', 'provenance']::text[], 'MESA contributors', 6, 'published', 'Yapay Zekâ Hukuk Atıf Hataları ve Tespit Yöntemleri — MESA Law', 'Uydurma karar, yanlış numara, değiştirilmiş alıntı, ilgisiz içtihat ve güncel olmayan mevzuat gibi yapay zekâ atıf hatalarını nasıl fark edeceğinizi öğrenin.', true, '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z', '2026-11-23T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('read-turkish-court-citation', 'guide', 'en', 'How to Read a Turkish Court Citation', '', 'A Yargıtay citation names the court or chamber, an esas (E.) number, a karar (K.) number and a date. Match all of them before you rely on a decision.', 'Read the court or chamber first, then the esas (E.) number, then the karar (K.) number, then the decision date. Two decisions can share a number in different chambers or years, so all parts must match.', '## What does a Yargıtay citation contain?
+
+A Yargıtay citation (künye) identifies one decision with four parts: the court or chamber, the esas number, the karar number and the decision date. A complete example from an official decision text is:
+
+> [!NOTE]
+> **Example**
+> Yargıtay Ceza Genel Kurulu, 2017/885 E., 2021/693 K., 29.12.2021
+
+> [!WARNING]
+> **Not legal advice**
+> This guide explains how to read and check official sources. It is not legal advice. For a decision that affects rights or deadlines, consult a qualified lawyer.
+
+## What does each part mean?
+
+| Part | In the example | What it tells you |
+| --- | --- | --- |
+| Court or chamber | Ceza Genel Kurulu | Which body decided. Chambers are numbered, such as 12. Ceza Dairesi or 3. Hukuk Dairesi. |
+| Esas number (E.) | 2017/885 | The file number: the year the file was registered and its sequence number. |
+| Karar number (K.) | 2021/693 | The decision number: the year of the decision and its sequence number. |
+| Date | 29.12.2021 | The day of the decision. The text above ends with “29.12.2021 tarihinde yapılan müzakerede oy birliğiyle karar verildi”. |
+
+Numbers are counted per court or chamber, so `2017/885 E.` can exist in many chambers. Never match on one number alone.
+
+## Which abbreviations appear most often?
+
+| Abbreviation | Meaning |
+| --- | --- |
+| HGK | Hukuk Genel Kurulu (Civil General Assembly) |
+| CGK | Ceza Genel Kurulu (Criminal General Assembly) |
+| İBK | İçtihadı Birleştirme Kurulu (Assembly for unifying case law) |
+| E. / K. | Esas / Karar |
+| HD / CD | Hukuk Dairesi / Ceza Dairesi, as in 3. HD or 12. CD |
+
+## How do short forms and earlier decisions appear?
+
+Decision texts often refer to earlier decisions in a shorter form. These lines come from the same official texts:
+
+- `Kararı veren Yargıtay Dairesi: 12. Ceza Dairesi` and `Sayısı: 131-288` give the chamber and the numbers of the earlier decision under review, without years.
+- `20.02.2019 tarih ve 84-14 sayı ile` refers to a decision by date and short numbers.
+- `28/11/2017 gün ve 2016/1307 Esas, 2017/9551 Karar` spells the words out instead of using E. and K.
+
+A short form is not enough to find a decision. Use it to locate the full citation in the decision text.
+
+## How do you check a citation?
+
+1. Write down the court or chamber, E. number, K. number and date exactly as given.
+2. Search for the decision in [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) or [UYAP Emsal](https://emsal.uyap.gov.tr/).
+3. Confirm that all four parts match the decision you found.
+4. Read the full text and check that it supports the claim.
+
+The guide on [verifying an AI-cited Yargıtay decision](/law/guides/yapay-zeka-yargitay-karari-dogrulama/) covers the full process. [Common AI citation errors](/law/guides/yapay-zeka-hukuk-atif-hatalari/) shows what usually goes wrong.
+
+## What can MESA do with citations?
+
+MESA 0.9.4 recognizes decision references in Turkish text. In our labeled test it found all 38 labeled decision references across 150 chunks, with no false positives. It does not check whether a decision exists or supports a claim. See [how the extraction was measured](/research/turkish-legal-citation-extraction/).
+
+## Sources
+
+1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+3. [Yargıtay](https://www.yargitay.gov.tr/)
+
+', ARRAY['Yargıtay', 'mevzuat', 'künye', 'Resmî Gazete', 'legal research']::text[], 'MESA contributors', 6, 'published', 'How to Read a Turkish Court Citation — MESA Law', 'Read a Yargıtay citation: chamber, esas (E.) and karar (K.) numbers, decision date and short forms, with real examples from official decision texts.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('read-turkish-court-citation', 'guide', 'tr', 'Yargıtay Kararı Künyesi Nasıl Okunur?', '', 'Yargıtay künyesi mahkemeyi veya daireyi, esas (E.) numarasını, karar (K.) numarasını ve tarihi gösterir. Bir karara dayanmadan önce hepsini eşleştirin.', 'Önce mahkemeyi veya daireyi, sonra esas (E.) numarasını, karar (K.) numarasını ve karar tarihini okuyun. Farklı daire veya yıllarda aynı numara bulunabileceği için tüm parçalar eşleşmelidir.', '## Yargıtay künyesinde neler bulunur?
+
+Yargıtay künyesi tek bir kararı dört parçayla tanımlar: mahkeme veya daire, esas numarası, karar numarası ve karar tarihi. Resmî bir karar metninden tam bir örnek:
+
+> [!NOTE]
+> **Örnek**
+> Yargıtay Ceza Genel Kurulu, 2017/885 E., 2021/693 K., 29.12.2021
+
+> [!WARNING]
+> **Hukuki tavsiye değildir**
+> Bu rehber resmî kaynakları okumayı ve denetlemeyi anlatır; hukuki tavsiye değildir. Hakları veya süreleri etkileyen bir karar için yetkin bir avukata danışın.
+
+## Her parça ne anlama gelir?
+
+| Parça | Örnekte | Size ne söyler? |
+| --- | --- | --- |
+| Mahkeme veya daire | Ceza Genel Kurulu | Kararı hangi kurulun verdiğini. Daireler numaralıdır; örneğin 12. Ceza Dairesi veya 3. Hukuk Dairesi. |
+| Esas numarası (E.) | 2017/885 | Dosya numarası: dosyanın kaydedildiği yıl ve sıra numarası. |
+| Karar numarası (K.) | 2021/693 | Karar numarası: kararın verildiği yıl ve sıra numarası. |
+| Tarih | 29.12.2021 | Kararın verildiği gün. Yukarıdaki metin “29.12.2021 tarihinde yapılan müzakerede oy birliğiyle karar verildi” cümlesiyle biter. |
+
+Numaralar her mahkeme veya daire için ayrı sayılır; `2017/885 E.` birçok dairede bulunabilir. Tek bir numarayla eşleştirme yapmayın.
+
+## En sık hangi kısaltmalar geçer?
+
+| Kısaltma | Anlamı |
+| --- | --- |
+| HGK | Hukuk Genel Kurulu |
+| CGK | Ceza Genel Kurulu |
+| İBK | İçtihadı Birleştirme Kurulu |
+| E. / K. | Esas / Karar |
+| HD / CD | Hukuk Dairesi / Ceza Dairesi; örneğin 3. HD veya 12. CD |
+
+## Kısa yazımlar ve önceki kararlar nasıl görünür?
+
+Karar metinleri önceki kararlara çoğu zaman kısa biçimde atıf yapar. Şu satırlar aynı resmî metinlerden alındı:
+
+- `Kararı veren Yargıtay Dairesi: 12. Ceza Dairesi` ve `Sayısı: 131-288`, incelenen önceki kararın dairesini ve yıl içermeyen numaralarını verir.
+- `20.02.2019 tarih ve 84-14 sayı ile`, bir karara tarih ve kısa numaralarla atıf yapar.
+- `28/11/2017 gün ve 2016/1307 Esas, 2017/9551 Karar`, E. ve K. yerine sözcükleri açık yazar.
+
+Kısa yazım bir kararı bulmak için yetmez. Onu, karar metnindeki tam künyeyi bulmak için kullanın.
+
+## Künye nasıl denetlenir?
+
+1. Mahkemeyi veya daireyi, E. numarasını, K. numarasını ve tarihi verildiği gibi not edin.
+2. Kararı [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/) veya [UYAP Emsal](https://emsal.uyap.gov.tr/) üzerinde arayın.
+3. Dört parçanın da bulduğunuz kararla eşleştiğini doğrulayın.
+4. Tam metni okuyun ve iddiayı destekleyip desteklemediğine bakın.
+
+Sürecin tamamı [yapay zekânın gösterdiği Yargıtay kararını doğrulama](/law/guides/yapay-zeka-yargitay-karari-dogrulama/) rehberinde anlatılıyor. [Yapay zekâ atıf hataları](/law/guides/yapay-zeka-hukuk-atif-hatalari/) sık yapılan yanlışları gösterir.
+
+## MESA künyelerle ne yapabilir?
+
+MESA 0.9.4 Türkçe metindeki karar künyelerini tanır. Etiketli testimizde 150 parçadaki 38 etiketli karar künyesinin tamamını, yanlış sonuç vermeden buldu. Kararın var olup olmadığını veya iddiayı destekleyip desteklemediğini denetlemez. [Çıkarımın nasıl ölçüldüğüne](/research/turkish-legal-citation-extraction/) bakın.
+
+## Kaynaklar
+
+1. [Yargıtay Karar Arama](https://karararama.yargitay.gov.tr/)
+2. [UYAP Emsal Karar Arama](https://emsal.uyap.gov.tr/)
+3. [Yargıtay](https://www.yargitay.gov.tr/)
+
+', ARRAY['Yargıtay', 'mevzuat', 'künye', 'Resmî Gazete', 'legal research']::text[], 'MESA contributors', 6, 'published', 'Yargıtay Kararı Künyesi Nasıl Okunur? — MESA Law', 'Yargıtay künyesindeki daire, esas (E.) ve karar (K.) numarası, karar tarihi ve kısa yazımları resmî karar metinlerinden gerçek örneklerle okuyun.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('check-law-in-force-on-date', 'guide', 'en', 'Was a Turkish Law Article in Force on a Given Date?', '', 'Publication is not the same as entry into force. Check the yürürlük article, every amendment note on the article, the effective-date list and any Constitutional Court ruling.', 'Find the law on mevzuat.gov.tr, read its yürürlük article, check the notes on the article you need, read the effective-date list at the end of the text and check for Constitutional Court annulments. Then confirm in the Resmî Gazete.', '## How do you check whether an article was in force?
+
+A law can be published on one date and apply from another, and each article can change separately. To know whether an article applied on a given date, check five things: the law’s own yürürlük article, the notes on that article, the effective-date list at the end of the consolidated text, any Constitutional Court annulment, and the Resmî Gazete.
+
+> [!WARNING]
+> **Not legal advice**
+> This guide explains how to read and check official sources. It is not legal advice. For a decision that affects rights or deadlines, consult a qualified lawyer.
+
+## 1. Read the law’s header
+
+Consolidated texts on [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/) start with the law’s number, adoption date and Resmî Gazete issue. For the Turkish Code of Obligations:
+
+```text
+Kanun Numarası: 6098
+Kabul Tarihi: 11/1/2011
+Yayımlandığı Resmî Gazete: Tarih: 4/2/2011 Sayı: 27836
+```
+
+The adoption date and the publication date are different. Neither tells you yet when the law took effect.
+
+## 2. Read the yürürlük article
+
+Near the end of each law, an article titled “Yürürlük” sets the effective date. Law 6098 was published on 4/2/2011, but its article 648 says: “Bu Kanun 1 Temmuz 2012 tarihinde yürürlüğe girer.”
+
+Different articles can start on different dates. Law 6325 on mediation, published on 22/6/2012, says in article 37 that articles 28 to 32 and the transitional articles took effect on publication, and the other provisions one year after publication.
+
+## 3. Check the notes on the article
+
+Consolidated texts mark later changes in brackets. These are real notes from official texts:
+
+| Note | Meaning |
+| --- | --- |
+| (Değişik: 2/7/2012-6352/53 md.) | Amended by article 53 of Law 6352 |
+| (Ek: 3/5/2012-6302/3 md.) | Added by article 3 of Law 6302 |
+| (Mülga: 18/6/2014-6545/103 md.) | Repealed by article 103 of Law 6545 |
+| (Ek fıkra:4/3/2021-7292/19 md.) | A paragraph added by Law 7292 |
+
+> [!WARNING]
+> **The date in a note is not the effective date**
+> For Law 6352, the note shows 2/7/2012, but Mevzuat Bilgi Sistemi lists its Resmî Gazete date as 05.07.2012 (issue 28344). Check the amending law’s own yürürlük article for the date it took effect.
+
+## 4. Read the effective-date list
+
+Many consolidated texts end with a list titled “… EK VE DEĞİŞİKLİK GETİREN MEVZUATIN VEYA ANAYASA MAHKEMESİ İPTAL KARARLARININ YÜRÜRLÜĞE GİRİŞ TARİHLERİNİ GÖSTERİR LİSTE”. It pairs each amending law with the articles it changed and their effective dates. For Law 6325, one row reads:
+
+```text
+7036    2, 4, 6, 8, 13, 15, 17, 18, 20, 28, 31, 36    25/10/2017
+```
+
+In the 31 consolidated law texts in our test corpus, 27 contained this list. When it is missing, read each amending law.
+
+## 5. Check for a Constitutional Court annulment
+
+An annulment note names the ruling, for example: “Anayasa Mahkemesinin 5/6/2008 tarihli ve E.: 2008/16, K.: 2008/116 sayılı Kararı ile iptal edilmiştir.”
+
+Article 153 of the Constitution says annulled provisions cease to apply on the date the ruling is published in the Resmî Gazete. The Court can set a later date, at most one year after publication, and annulment rulings do not apply retroactively. So check the ruling’s own publication date and any deferral it sets.
+
+## Can an article be in force and still not apply?
+
+Yes. Transitional rules can suspend an article for certain cases. The consolidated text of Law 6098 lists, under “6098 SAYILI KANUNA İŞLENEMEYEN HÜKÜMLER”, a provision of Law 6217 under which certain articles of the Code did not apply for 8 years from 1/7/2012 to commercial leases where the tenant is a merchant or a legal person. Read these sections and the transitional articles (geçici maddeler).
+
+## How do you read the earlier wording?
+
+The consolidated text shows the current wording with notes. To read the wording that applied on an earlier date, open the original law and each amending law in the [Resmî Gazete](https://www.resmigazete.gov.tr/). Check the date range you need against each change. Record the sources you used.
+
+## Can MESA answer this question?
+
+No. MESA 0.9.4 does not answer in-force-on-date questions. It can store versioned documents and return source text, but the legal check above must be done against official sources. See [how to track amendments](/law/guides/kanun-degisiklikleri-takip/) for following later changes.
+
+## Sources
+
+1. [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/)
+2. [Resmî Gazete](https://www.resmigazete.gov.tr/)
+3. [Türkiye Cumhuriyeti Anayasası on Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2709&MevzuatTur=1&MevzuatTertip=5)
+
+', ARRAY['Yargıtay', 'mevzuat', 'künye', 'Resmî Gazete', 'legal research']::text[], 'MESA contributors', 7, 'published', 'Was a Turkish Law in Force on a Date? — MESA Law', 'Check whether a Turkish law article applied on a date: the yürürlük article, amendment notes, the effective-date list and Constitutional Court rulings.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('check-law-in-force-on-date', 'guide', 'tr', 'Kanun Maddesi Belirli Bir Tarihte Yürürlükte miydi?', '', 'Yayımlanmak yürürlüğe girmekle aynı şey değildir. Yürürlük maddesini, maddedeki değişiklik notlarını, yürürlük listesini ve Anayasa Mahkemesi kararlarını denetleyin.', 'Kanunu mevzuat.gov.tr’de bulun, yürürlük maddesini okuyun, ihtiyaç duyduğunuz maddedeki notları kontrol edin, metnin sonundaki yürürlük listesine bakın ve Anayasa Mahkemesi iptallerini denetleyin. Ardından Resmî Gazete’den doğrulayın.', '## Bir maddenin yürürlükte olup olmadığını nasıl denetlersiniz?
+
+Bir kanun bir tarihte yayımlanıp başka bir tarihten itibaren uygulanabilir; her madde de ayrı ayrı değişebilir. Bir maddenin belirli bir tarihte uygulanıp uygulanmadığını anlamak için beş şeye bakın: kanunun yürürlük maddesi, o maddedeki notlar, işlenmiş metnin sonundaki yürürlük listesi, varsa Anayasa Mahkemesi iptali ve Resmî Gazete.
+
+> [!WARNING]
+> **Hukuki tavsiye değildir**
+> Bu rehber resmî kaynakları okumayı ve denetlemeyi anlatır; hukuki tavsiye değildir. Hakları veya süreleri etkileyen bir karar için yetkin bir avukata danışın.
+
+## 1. Kanunun başlık bilgilerini okuyun
+
+[Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/) üzerindeki işlenmiş metinler kanun numarası, kabul tarihi ve Resmî Gazete sayısıyla başlar. Türk Borçlar Kanunu için:
+
+```text
+Kanun Numarası: 6098
+Kabul Tarihi: 11/1/2011
+Yayımlandığı Resmî Gazete: Tarih: 4/2/2011 Sayı: 27836
+```
+
+Kabul tarihi ile yayım tarihi farklıdır. İkisi de kanunun ne zaman uygulanmaya başladığını henüz söylemez.
+
+## 2. Yürürlük maddesini okuyun
+
+Her kanunun sonlarında “Yürürlük” başlıklı bir madde yürürlük tarihini belirler. 6098 sayılı Kanun 4/2/2011’de yayımlandı; ama 648. maddesi şöyle der: “Bu Kanun 1 Temmuz 2012 tarihinde yürürlüğe girer.”
+
+Farklı maddeler farklı tarihlerde başlayabilir. 22/6/2012’de yayımlanan 6325 sayılı Arabuluculuk Kanunu’nun 37. maddesine göre 28 ilâ 32. maddeler ile geçici maddeler yayımı tarihinde, diğer hükümler ise yayımından bir yıl sonra yürürlüğe girdi.
+
+## 3. Maddedeki notları kontrol edin
+
+İşlenmiş metinler sonraki değişiklikleri parantez içinde gösterir. Şunlar resmî metinlerden alınmış gerçek notlardır:
+
+| Not | Anlamı |
+| --- | --- |
+| (Değişik: 2/7/2012-6352/53 md.) | 6352 sayılı Kanunun 53. maddesiyle değiştirildi |
+| (Ek: 3/5/2012-6302/3 md.) | 6302 sayılı Kanunun 3. maddesiyle eklendi |
+| (Mülga: 18/6/2014-6545/103 md.) | 6545 sayılı Kanunun 103. maddesiyle yürürlükten kaldırıldı |
+| (Ek fıkra:4/3/2021-7292/19 md.) | 7292 sayılı Kanunla fıkra eklendi |
+
+> [!WARNING]
+> **Nottaki tarih yürürlük tarihi değildir**
+> 6352 sayılı Kanun için not 2/7/2012 tarihini gösterir; Mevzuat Bilgi Sistemi ise Resmî Gazete tarihini 05.07.2012 (sayı 28344) olarak verir. Değişikliğin yürürlük tarihi için değiştiren kanunun kendi yürürlük maddesine bakın.
+
+## 4. Yürürlük listesini okuyun
+
+Birçok işlenmiş metin “… EK VE DEĞİŞİKLİK GETİREN MEVZUATIN VEYA ANAYASA MAHKEMESİ İPTAL KARARLARININ YÜRÜRLÜĞE GİRİŞ TARİHLERİNİ GÖSTERİR LİSTE” başlıklı bir listeyle biter. Liste her değiştiren kanunu, değiştirdiği maddeler ve yürürlük tarihleriyle eşleştirir. 6325 sayılı Kanunda bir satır şöyle:
+
+```text
+7036    2, 4, 6, 8, 13, 15, 17, 18, 20, 28, 31, 36    25/10/2017
+```
+
+Test derlemimizdeki 31 işlenmiş kanun metninin 27’sinde bu liste vardı. Liste yoksa her değiştiren kanunu okuyun.
+
+## 5. Anayasa Mahkemesi iptalini kontrol edin
+
+İptal notu kararı adıyla anar; örneğin: “Anayasa Mahkemesinin 5/6/2008 tarihli ve E.: 2008/16, K.: 2008/116 sayılı Kararı ile iptal edilmiştir.”
+
+Anayasa’nın 153. maddesine göre iptal edilen hükümler, iptal kararının Resmî Gazete’de yayımlandığı tarihte yürürlükten kalkar. Mahkeme, yayımdan başlayarak bir yılı geçmemek üzere daha sonraki bir tarih belirleyebilir; iptal kararları geriye yürümez. Bu yüzden kararın yayım tarihine ve varsa ertelediği tarihe bakın.
+
+## Bir madde yürürlükte olup yine de uygulanmayabilir mi?
+
+Evet. Geçiş hükümleri bir maddeyi belirli durumlar için askıya alabilir. 6098 sayılı Kanunun işlenmiş metni, “6098 SAYILI KANUNA İŞLENEMEYEN HÜKÜMLER” başlığı altında 6217 sayılı Kanunun bir hükmünü gösterir. Bu hükme göre Kanunun bazı maddeleri, kiracının tacir veya tüzel kişi olduğu işyeri kiralarında 1/7/2012’den itibaren 8 yıl süreyle uygulanmadı. Bu bölümleri ve geçici maddeleri mutlaka okuyun.
+
+## Eski metni nasıl okursunuz?
+
+İşlenmiş metin güncel hükmü notlarla birlikte gösterir. Daha önceki bir tarihte uygulanan metni okumak için asıl kanunu ve her değiştiren kanunu [Resmî Gazete](https://www.resmigazete.gov.tr/) üzerinden açın. İhtiyaç duyduğunuz tarih aralığını her değişiklikle karşılaştırın ve kullandığınız kaynakları kaydedin.
+
+## MESA bu soruyu yanıtlayabilir mi?
+
+Hayır. MESA 0.9.4 belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. Sürümlü belgeleri saklayıp kaynak metni döndürebilir; ama yukarıdaki hukuki denetim resmî kaynaklar üzerinden yapılmalıdır. Sonraki değişiklikleri izlemek için [kanun değişikliklerini takip etme](/law/guides/kanun-degisiklikleri-takip/) rehberine bakın.
+
+## Kaynaklar
+
+1. [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/)
+2. [Resmî Gazete](https://www.resmigazete.gov.tr/)
+3. [Mevzuat Bilgi Sistemi’nde Türkiye Cumhuriyeti Anayasası](https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2709&MevzuatTur=1&MevzuatTertip=5)
+
+', ARRAY['Yargıtay', 'mevzuat', 'künye', 'Resmî Gazete', 'legal research']::text[], 'MESA contributors', 7, 'published', 'Kanun Maddesi Belirli Tarihte Yürürlükte miydi?', 'Bir kanun maddesinin belirli bir tarihte uygulanıp uygulanmadığını yürürlük maddesi, değişiklik notları, yürürlük listesi ve AYM kararlarıyla denetleyin.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('track-turkish-law-amendments', 'guide', 'en', 'How to Track Changes to a Turkish Law', '', 'Consolidated texts mark each change with a note that names the amending law and article. Use those notes to find the amending law, its effective date and the old wording.', 'Read the bracketed notes in the consolidated text, open each amending law in the Resmî Gazete, check its yürürlük article, and record every change you checked with its source.', '## How do you follow changes to a law?
+
+Each change in a consolidated Turkish law is marked with a note that names the amending law and article. Follow each note to the amending law in the Resmî Gazete, check when it took effect, and keep a dated record of what you checked.
+
+> [!WARNING]
+> **Not legal advice**
+> This guide explains how to read and check official sources. It is not legal advice. For a decision that affects rights or deadlines, consult a qualified lawyer.
+
+## 1. Learn the note types
+
+| Note type | Real example | What changed |
+| --- | --- | --- |
+| Değişik | (Değişik: 10/6/1994-4001/1 md.) | Wording replaced |
+| Ek | (Ek: 29/12/2005-5444/2 md.) | Article or text added |
+| Ek fıkra | (Ek fıkra:17/1/2019-7161/1 md.) | Paragraph added |
+| Mülga | (Mülga: 2/7/2018 - KHK-703/185 md.) | Repealed, here by a decree-law |
+| Combined | (Ek: 12/3/1985 - 3163/1 md.; Mülga son fıkra: 15/1/2009-5831/1 md.) | Added, then its last paragraph repealed |
+
+Read the pattern as date, amending law number and article. In `6352/53`, 6352 is the law and 53 its article. Spacing varies between texts, as in `(Değişik:6/3/1981-2421/1 md.)`, so search for the law number rather than the exact string.
+
+## 2. Open the amending law
+
+Search for the amending law by number in [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/) and open its [Resmî Gazete](https://www.resmigazete.gov.tr/) issue. The date in the note may not match: Law 6352’s notes show 2/7/2012, while its Resmî Gazete date is 05.07.2012, issue 28344.
+
+Read the amending law’s yürürlük article. It can set different dates for different articles. [Checking whether an article was in force](/law/guides/kanun-maddesi-yururluk-tarihi/) explains these steps in detail.
+
+## 3. Use the lists at the end of the text
+
+- The effective-date list pairs each amending law or annulment ruling with the changed articles and their effective dates.
+- The section on provisions that could not be incorporated (“İŞLENEMEYEN HÜKÜMLER”) holds rules in other laws that still affect this one.
+- Annulment notes cite the Constitutional Court ruling by date, E. and K. numbers.
+
+## 4. Keep a record
+
+For each change, record the article, the note, the amending law, its Resmî Gazete date and issue, the effective date, and the date you checked. Keep a link or copy of each source. A record lets someone else repeat the check and shows when it needs updating.
+
+```text
+Article: 6325 md. 18
+Note: amended by 7036
+Amending law RG: (date, issue)
+Effective: 25/10/2017 (list at end of 6325)
+Checked: 2026-11-24, mevzuat.gov.tr
+```
+
+## Can MESA track amendments for me?
+
+Not as a legal service. MESA keeps document revisions when you add a new version under the same source, so you can store each text you checked. It does not watch the Resmî Gazete, decide which version applies or answer in-force-on-date questions in 0.9.4. See [how citations are extracted](/research/turkish-legal-citation-extraction/) for what MESA recognizes in legal text.
+
+## Sources
+
+1. [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/)
+2. [Resmî Gazete](https://www.resmigazete.gov.tr/)
+3. [Constitution of the Republic of Türkiye on Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2709&MevzuatTur=1&MevzuatTertip=5)
+
+', ARRAY['Yargıtay', 'mevzuat', 'künye', 'Resmî Gazete', 'legal research']::text[], 'MESA contributors', 5, 'published', 'How to Track Changes to a Turkish Law — MESA Law', 'Read amendment notes in Turkish consolidated laws, find the amending law and its effective date, and keep a record of the changes you checked.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
+INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('track-turkish-law-amendments', 'guide', 'tr', 'Kanun Değişiklikleri Nasıl Takip Edilir?', '', 'İşlenmiş metinler her değişikliği, değiştiren kanunu ve maddeyi gösteren bir notla işaretler. Bu notlarla değiştiren kanunu, yürürlük tarihini ve eski metni bulun.', 'İşlenmiş metindeki parantez içi notları okuyun, her değiştiren kanunu Resmî Gazete’de açın, yürürlük maddesine bakın ve denetlediğiniz her değişikliği kaynağıyla kaydedin.', '## Bir kanundaki değişiklikler nasıl izlenir?
+
+İşlenmiş bir Türk kanunundaki her değişiklik, değiştiren kanunu ve maddeyi gösteren bir notla işaretlenir. Her notu Resmî Gazete’deki değiştiren kanuna kadar izleyin, ne zaman yürürlüğe girdiğini kontrol edin ve neyi denetlediğinizi tarihiyle kaydedin.
+
+> [!WARNING]
+> **Hukuki tavsiye değildir**
+> Bu rehber resmî kaynakları okumayı ve denetlemeyi anlatır; hukuki tavsiye değildir. Hakları veya süreleri etkileyen bir karar için yetkin bir avukata danışın.
+
+## 1. Not türlerini öğrenin
+
+| Not türü | Gerçek örnek | Ne değişti? |
+| --- | --- | --- |
+| Değişik | (Değişik: 10/6/1994-4001/1 md.) | Metin değiştirildi |
+| Ek | (Ek: 29/12/2005-5444/2 md.) | Madde veya metin eklendi |
+| Ek fıkra | (Ek fıkra:17/1/2019-7161/1 md.) | Fıkra eklendi |
+| Mülga | (Mülga: 2/7/2018 - KHK-703/185 md.) | Yürürlükten kaldırıldı; burada bir KHK ile |
+| Birleşik | (Ek: 12/3/1985 - 3163/1 md.; Mülga son fıkra: 15/1/2009-5831/1 md.) | Eklendi, sonra son fıkrası kaldırıldı |
+
+Kalıbı tarih, değiştiren kanun numarası ve madde olarak okuyun. `6352/53` ifadesinde 6352 kanunu, 53 ise maddesini gösterir. Boşluklar metinden metne değişir; örneğin `(Değişik:6/3/1981-2421/1 md.)`. Bu yüzden tam ifade yerine kanun numarasını arayın.
+
+## 2. Değiştiren kanunu açın
+
+Değiştiren kanunu [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/) üzerinde numarasıyla arayın ve [Resmî Gazete](https://www.resmigazete.gov.tr/) sayısını açın. Nottaki tarih bununla aynı olmayabilir: 6352 sayılı Kanunun notlarında 2/7/2012 yazar; Resmî Gazete tarihi ise 05.07.2012, sayısı 28344’tür.
+
+Değiştiren kanunun yürürlük maddesini okuyun; farklı maddeler için farklı tarihler koyabilir. [Bir maddenin yürürlükte olup olmadığını denetleme](/law/guides/kanun-maddesi-yururluk-tarihi/) rehberi bu adımları ayrıntılı anlatır.
+
+## 3. Metnin sonundaki listeleri kullanın
+
+- Yürürlük listesi, her değiştiren kanunu veya iptal kararını değişen maddeler ve yürürlük tarihleriyle eşleştirir.
+- “İŞLENEMEYEN HÜKÜMLER” bölümü, başka kanunlarda yer alıp bu kanunu hâlâ etkileyen kuralları gösterir.
+- İptal notları Anayasa Mahkemesi kararını tarih, E. ve K. numarasıyla anar.
+
+## 4. Kayıt tutun
+
+Her değişiklik için maddeyi, notu, değiştiren kanunu, Resmî Gazete tarih ve sayısını, yürürlük tarihini ve denetlediğiniz günü yazın. Her kaynağın bağlantısını veya kopyasını saklayın. Kayıt, başka birinin denetimi tekrarlamasını sağlar ve ne zaman güncellenmesi gerektiğini gösterir.
+
+```text
+Madde: 6325 md. 18
+Not: 7036 ile değişti
+Değiştiren kanun RG: (tarih, sayı)
+Yürürlük: 25/10/2017 (6325 sonundaki liste)
+Denetim: 2026-11-24, mevzuat.gov.tr
+```
+
+## MESA değişiklikleri benim için izleyebilir mi?
+
+Hukuki bir hizmet olarak hayır. Aynı kaynakla yeni bir sürüm eklediğinizde MESA belge sürümlerini saklar; böylece denetlediğiniz her metni tutabilirsiniz. 0.9.4 Resmî Gazete’yi izlemez, hangi sürümün uygulanacağına karar vermez ve belirli bir tarihte yürürlükte olma sorularını yanıtlamaz. MESA’nın hukuk metninde neleri tanıdığı için [atıfların nasıl çıkarıldığına](/research/turkish-legal-citation-extraction/) bakın.
+
+## Kaynaklar
+
+1. [Mevzuat Bilgi Sistemi](https://www.mevzuat.gov.tr/)
+2. [Resmî Gazete](https://www.resmigazete.gov.tr/)
+3. [Mevzuat Bilgi Sistemi’nde Türkiye Cumhuriyeti Anayasası](https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2709&MevzuatTur=1&MevzuatTertip=5)
+
+', ARRAY['Yargıtay', 'mevzuat', 'künye', 'Resmî Gazete', 'legal research']::text[], 'MESA contributors', 5, 'published', 'Kanun Değişiklikleri Nasıl Takip Edilir? — MESA Law', 'İşlenmiş kanun metinlerindeki değişiklik notlarını okuyun, değiştiren kanunu ve yürürlük tarihini bulun, denetlediğiniz değişiklikleri kaydedin.', true, '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z', '2026-11-24T00:00:00Z') ON CONFLICT (slug, language) DO UPDATE SET title = EXCLUDED.title, body_markdown = EXCLUDED.body_markdown, updated_at = timezone('utc'::text, now());
 INSERT INTO public.articles (slug, type, language, title, subtitle, summary, short_answer, body_markdown, tags, author, reading_minutes, status, seo_title, seo_description, indexable, published_at, created_at, updated_at) VALUES ('provenance', 'glossary', 'en', 'Provenance', '', 'Provenance is the recorded origin and processing history of information.', 'It answers where information came from, which version was used, how it was transformed, and which evidence supports its use.', '## Simple explanation
 
 **Provenance**

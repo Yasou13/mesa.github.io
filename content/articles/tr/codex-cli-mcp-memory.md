@@ -11,8 +11,8 @@ category: "Coding Agents"
 tags: ["codex-cli", "agent-memory", "mcp"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
-readingMinutes: 5
+updatedAt: "2026-11-24"
+readingMinutes: 6
 status: "published"
 indexable: true
 seoTitle: "Codex CLI için MCP Hafızası Nasıl Kurulur? — MESA"
@@ -40,7 +40,7 @@ python3 -m venv .venv
 .venv/bin/mesa-lore doctor
 ```
 
-Kurulum, Codex’in varsayılan MCP yapılandırması olan `~/.codex/config.toml` dosyasına `mesa-lore` sunucusunu, `~/.codex/hooks.json` dosyasına oturum hook’larını ekler. Değiştirdiği dosyaları önce yedekler.
+Kurulum, Codex’in varsayılan MCP yapılandırması olan `~/.codex/config.toml` dosyasına `mesa-lore` sunucusunu, `~/.codex/hooks.json` dosyasına oturum hook’larını ekler. Değiştirdiği dosyaları önce yedekler. Codex hook’ları başka yerlerden de okuyabilir; örneğin güvenilir bir projenin `.codex/hooks.json` dosyası. `~/.codex/hooks.json` varsayılan kullanıcı konumudur.
 
 > [!WARNING]
 > **Mevcut geçmiş içe aktarılır**
@@ -59,6 +59,8 @@ mesa-lore doctor
 
 `codex mcp list` çıktısında `mesa-lore` görünmelidir. Codex içinde `/mcp` etkin sunucuları gösterir. `mesa-lore doctor`, Codex MCP ve hook’ları için `OK` bildirmelidir.
 
+Kurulum ve hook onayından sonra Codex satırı `Codex MCP: OK | hooks: OK (approve with /hooks in Codex)` olur. Kurulumdan önce `Codex MCP: missing | hooks: missing` yazar.
+
 ## 5. Hafızayı yeni oturumda test edin
 
 1. Projede yeni bir Codex oturumu başlatın.
@@ -66,6 +68,21 @@ mesa-lore doctor
 3. Şunu sorun: “Son başarısız test düzeltmesini hafızada ara.”
 4. Yanıtın gerçek bir kaynağa dayandığını kontrol edin.
 5. Bir karar kaydedin: “Bunu hafızaya karar olarak kaydet.”
+
+> [!NOTE]
+> **MESA Lore testlerinin ölçtükleri**
+> Linux üzerinde mesa-lore 0.1.0 test paketi ve benchmark’ına göre oturum başlangıcı 432 token tuttu (163’ü dizin, 269’u araç tanımları). Bir çalıştırmada 10.000 parçada arama p95 değeri 84 ms CPU süresiydi. Oturuma dönerken uçtan uca token tasarrufu henüz ölçülmedi. Arama sözcük tabanlıdır; sorguda dökümde geçen sözcükler veya kökler bulunmalıdır.
+
+## Codex hafızayı kullanmazsa ne yapmalı?
+
+| Gördüğünüz | Çözüm |
+| --- | --- |
+| `codex mcp list` çıktısında `mesa-lore` yok | `mesa-lore install` komutunu yeniden çalıştırın, sonra `~/.codex/config.toml` dosyasını kontrol edin |
+| Oturum başında hafıza dizini yok | Hook’ları `/hooks` ile onaylayın ve yeni oturum açın |
+| `mesa-lore doctor` çıktısında `Codex MCP: missing` | MCP kaydı yok. Yeniden kurun ya da kurulumun aldığı yedekten geri yükleyin |
+| Bilinen bir karar için arama sonuç vermiyor | Asıl oturumdaki sözcüklerle arayın; arama sözcük tabanlıdır |
+
+Diğer durumlar için [MESA Lore sorun giderme](/docs/lore/troubleshooting/) sayfasına bakın.
 
 ## Codex hafızası hakkında sorular
 

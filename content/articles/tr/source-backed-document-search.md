@@ -11,8 +11,8 @@ category: "Document Memory"
 tags: ["document-search", "provenance", "mesa-core"]
 author: "MESA contributors"
 publishedAt: "2026-11-23"
-updatedAt: "2026-11-23"
-readingMinutes: 6
+updatedAt: "2026-11-24"
+readingMinutes: 7
 status: "published"
 indexable: true
 seoTitle: "Kaynak Gösteren Belge Araması Nasıl Kurulur? — MESA"
@@ -26,6 +26,8 @@ seoDescription: "Metin belgelerini MESA Core’a ekleyin, yerelde arayın, yeni 
 - UTF-8 metin dosyaları. PDF ve Word dosyalarını önce metne dönüştürün.
 
 Bu rehber sözcük aramasını kullanır, bu yüzden model hesabı gerekmez. MESA Core alfa aşamasındadır ve canlı kullanıma hazır değildir.
+
+24 Kasım 2026’da PyPI’daki `mesa-memory` 0.9.4 ile denendi. Belge kimlikleriniz farklı olabilir.
 
 ## 2. MESA Core’u kurup başlatın
 
@@ -42,10 +44,30 @@ mesa start
 
 Aynı klasörde ikinci bir terminal açın. Güncelleme ve silmede belgeyi tanımladığı için sabit bir `--source` kullanın.
 
+Önce sunucunun hazır olduğunu doğrulayın:
+
+```text
+. .venv/bin/activate
+mesa status
+```
+
+```text
+MESA Server: http://127.0.0.1:8000
+Readiness (/health/init): ready
+Health (/health): healthy
+```
+
 ```text
 . .venv/bin/activate
 printf '%s\n' 'Refunds are accepted within 30 days of purchase.' 'Damaged items are replaced at no cost.' > refund-policy.txt
 mesa add refund-policy.txt --source file://refund-policy.txt
+```
+
+`mesa add`, belge aranabilir olana kadar bekler:
+
+```text
+Added document doc-72f2f9bee031b87753ed5b3b1affae68 with 1 chunk(s)
+searchable
 ```
 
 ## 4. Arayın ve kaynağı inceleyin
@@ -57,10 +79,12 @@ mesa search "refund days"
 Sonuç aşağıdaki gibi görünür. Belge kimliğiniz farklı olabilir.
 
 ```text
-[1] score: 0.049 | doc-72f2f9bee031b87753ed5b3b1affae68
+[1] score: 0.016 | doc-72f2f9bee031b87753ed5b3b1affae68
     Refunds are accepted within 30 days of purchase.
     Damaged items are replaced at no cost.
 ```
+
+Modeller kapalıyken birleştirilen tek kanal BM25’tir; birinci sıradaki eşleşme 1/61, yani yaklaşık 0,016 puan alır. Bu sayı bir sıralama işaretidir, kalite notu değildir.
 
 > [!WARNING]
 > **Puan kanıt değildir**
@@ -84,7 +108,33 @@ Sonuç artık 45 gün demelidir.
 mesa delete --source file://refund-policy.txt
 ```
 
+Beklenen çıktı ve ardından aynı arama:
+
+```text
+Purged document doc-72f2f9bee031b87753ed5b3b1affae68
+$ mesa search "refund days"
+No matching memories found.
+```
+
 Silmeden sonra aynı arama belgeyi döndürmemelidir. Ardından ilk terminalde Ctrl+C ile sunucuyu durdurun.
+
+## Sık görülen hatalar ve çözümleri neler?
+
+| Gördüğünüz | Neden | Çözüm |
+| --- | --- | --- |
+| `mesa add: error: the following arguments are required: --source` | Kaynak bilgisi yok | `--source` ekleyin; örneğin `--source file://refund-policy.txt` |
+| `File not found: nope.txt` | Yol yanlış | Dosya adını ve bulunduğunuz klasörü kontrol edin |
+| `UnicodeDecodeError: 'utf-8' codec can't decode byte` | Dosya UTF-8 değil | Aşağıdaki gibi önce dönüştürün |
+| `No matching memories found.` | Hiçbir belgede sorgu sözcükleri yok | Metinde geçen sözcükleri deneyin veya anlam tabanlı arama için bir model açın |
+
+Eski Türkçe dosyalar çoğu zaman Windows-1254 kodlamasıyla kaydedilmiştir. 0.9.4’te böyle bir dosya `mesa add` komutunu kısa bir mesaj yerine Python hata dökümüyle durdurur. Dosyayı UTF-8’e dönüştürüp dönüştürülmüş dosyayı ekleyin:
+
+```text
+iconv -f WINDOWS-1254 -t UTF-8 notes.txt > notes-utf8.txt
+mesa add notes-utf8.txt --source file://notes.txt
+```
+
+Sorgularda Türkçe harfler önemlidir. 0.9.4 üzerindeki denememizde `YARGITAY` ve `sözleşme` sorguları `Yargıtay` ve `sözleşmesinin` geçen satırı buldu; ASCII `yargitay` sorgusu ise hiçbir şey bulmadı. Ararken `ı`, `ğ`, `ş` ve diğer Türkçe harfleri kullanın. Nedenini [Türkçe Metinlerde BM25 Neden Zorlanır?](/research/bm25-turkish-prefix-matching/) yazısı açıklar.
 
 ## Belge araması hakkında sorular
 

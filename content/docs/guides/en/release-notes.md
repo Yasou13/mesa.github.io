@@ -12,7 +12,7 @@ Forward-only migrations `f7a8b9c0d1e2` and `f8b9c0d1e2f3` drop the legacy V3 nod
 
 ## v0.9.4 measurements and release checks
 
-The changelog reports, on the shared Tier M DEV store with models and reranking off, passage Hit@5 from 50/112 to 61/112, MRR from 0.3411 to 0.3955 and median search latency from 361.3 ms to 233.9 ms. A 5 MB models-off fixture went from 249.99 s to 172.61 s end-to-end readiness. These are DEV and local results, not held-out test results or service guarantees. The [0.9.3 benchmark](benchmark/0.9.3/) does not describe 0.9.4, and no 0.9.4 benchmark is published yet.
+The changelog reports, on the shared Tier M DEV store with models and reranking off, passage Hit@5 from 50/112 to 61/112, MRR from 0.3411 to 0.3955 and median search latency from 361.3 ms to 233.9 ms. A 5 MB models-off fixture went from 249.99 s to 172.61 s end-to-end readiness. These are DEV and local results, not held-out test results or service guarantees. On the benchmark v2 DEV split with the 0.9.4 defaults, models-off and embedding search improved, but reranked (T2) passage Hit@5 fell from 0.9286 to 0.9107; see [what changed search quality in 0.9.4](research/what-improved-search-in-0-9-4/). The [0.9.3 benchmark](benchmark/0.9.3/) does not describe 0.9.4, and no 0.9.4 benchmark is published yet.
 
 The pull-request CI and the release workflow passed on the tagged commit. The post-tag push CI recorded one failure in `coverage (3.13)`: a legal-extraction timing test exceeded its 200 ms bound, with 1,796 other tests passing.
 
