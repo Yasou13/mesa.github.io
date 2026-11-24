@@ -23,7 +23,7 @@ URL redirects to this configured custom domain.
 - `scripts/check_site.py` — validates static content, metadata, links, anchors,
   assets, and legacy-brand absence
 - `scripts/build_endpoint_reference.py` — regenerates the HTTP endpoint reference
-  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.4.json`
+  (`content/docs/guides/*/endpoints.md`) from the pinned `content/docs/openapi-0.9.5.json`
 - `content/docs/source-en/` — English copies of upstream docs that mix in Turkish;
   English doc pages show these in their source appendix
 - `content/glossary-terms.json` — short bilingual definitions on `/glossary/`
@@ -154,19 +154,20 @@ node scripts/render_site.mjs \
 
 ## Recorded first-search example
 
-The home page replays real Core v0.9.0 searches over fictional EN/TR archive-hours
+The home page replays real Core v0.9.5 searches over fictional EN/TR archive-hours
 text, including a completed second revision. It does not query a live service or
 accept uploads. `content/examples/first-search.json` preserves the receipts,
 terminal states, source references and original outputs without credentials.
 
-Re-record using the environment of the pinned Core checkout (7062faf):
+Re-record from a clean environment with `mesa-memory==0.9.5` from PyPI, pointing
+`--core` at a MESA checkout that contains the v0.9.5 tag (c725616):
 
 ```bash
-/path/to/MESA/.venv/bin/python scripts/capture_first_search.py --core /path/to/MESA
+/path/to/venv/bin/python scripts/capture_first_search.py --core /path/to/MESA
 ```
 
-The script uses a temporary MESA home and port 18765, with models, external
-providers and graph disabled, then terminates its server. It never uses the
+The script uses a temporary MESA home and port 18765, with models and external
+providers disabled, then terminates its server. It never uses the
 operator's existing MESA home. Review the record before regenerating the site.
 
 With the local site preview running, run the focused UX regression checks:
@@ -425,3 +426,9 @@ See [the verification record](reports/website-v093-alignment/README.md). Builds 
 The current Core baseline is tag `v0.9.4`, commit `e30856ec6e7ed9146bb9af992565e864f727b0b9`. Current installation commands use `mesa-memory==0.9.4`. The 23-page Core cache and OpenAPI snapshot come from committed tag objects. Maintained EN/TR guides describe the changed search defaults, V3 and Tier 3 removals, forward-only migrations and retired settings.
 
 The public benchmark remains labelled 0.9.3 until a 0.9.4 result is reviewed. Source evidence is recorded in `CLAIMS.md`.
+
+## Core v0.9.5 website refresh — 24–25 November 2026
+
+The current Core baseline is tag `v0.9.5`, commit `c725616364f3931249bd05a62676f132b65768e1`. Install commands use `mesa-memory==0.9.5`; the docs cache, OpenAPI snapshot and endpoint reference come from the tag. Current pages describe BM25 (prefix), vector search when a model is set, legal rules, the optional reranker, versioned documents with `valid_at`, resumable uploads and Python 3.14 installs. The graph guide is a short removal note. Changelog, ADR pages, old benchmark reports, old OpenAPI files and the two 0.9.4 research posts are kept as labelled history.
+
+`scripts/check_site.py` fails when a current page names a removed feature; its allowlist (history, removal notes, redirects and mirrored upstream source) is listed in the script. No 0.9.5 benchmark result is published yet. Claim sources are in `CLAIMS.md`.

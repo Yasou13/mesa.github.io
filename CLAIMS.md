@@ -209,3 +209,28 @@ Current Core source: tag `v0.9.4`, commit `e30856ec6e7ed9146bb9af992565e864f727b
 | Post-tag CI | PR CI and Release passed on the tagged commit; push CI run 45105643755 failed one 200 ms timing test in `coverage (3.13)`. |
 
 The public benchmark remains 0.9.3 and is labelled as not describing 0.9.4. No 0.9.4 benchmark result is published.
+
+## v0.9.5 alignment — 24–25 November 2026
+
+Current Core source: tag `v0.9.5`, commit `c725616364f3931249bd05a62676f132b65768e1` (GitHub tag ref and local tag agree). PyPI wheel (`cee695f82f74e687a761cd4217a8b226afc482d334d79d7f1a0c4e4b4d02a271`) and sdist (`b42ea48e…aa74b5`) are present, not yanked and identical to the GitHub release `SHA256SUMS`. PR CI, push CI, external release gates and the Release workflow passed on the tagged commit. Every claim below was re-read at that tag; earlier entries stay as dated history.
+
+| Current claim | Source and limit |
+| --- | --- |
+| Kùzu, graph projection worker, graph search lane and graph rebuild removed; migration `f9c0d1e2f3a4` clears graph bookkeeping rows | Tagged CHANGELOG (D79), `mesa_storage/alembic/versions/f9c0d1e2f3a4_drop_graph_projection_rows.py`. Forward-only. |
+| Old `kuzu_db` files ignored, deletable by hand; `MESA_GRAPH_ENABLED`, `MESA_RRF_GRAPH_WEIGHT`, `MESA_V4_GRAPH_TIMEOUT_SECONDS` ignored with one startup warning | Tagged CHANGELOG and release notes. |
+| `graph_mode` accepted but has no effect; `graph_projection` / `graph_neighbor_retrieval` always false | `mesa_api/v4_router.py` (field declared, never read: no `.graph_mode` use in the tag), `docs/api-reference.md`. |
+| Search = prefix BM25, vector when an embedding model is set, legal rules on by default, assertion weight 0, optional reranker (off, depth 1–50, default 50) | `mesa_memory/config.py` defaults (`legal_rules_enabled=True`, `rrf_assertion_weight=0.0`, `rerank_enabled=False`, `rerank_depth=50`), `docs/retrieval-and-graph.md`. |
+| Persistent per-dataset FTS5 BM25 index for undated dataset-wide queries; narrower or dated scopes use a temporary index | Tagged CHANGELOG (D80), `docs/retrieval-and-graph.md`. |
+| Versioned documents: `metadata.valid_from`/`valid_to`, timezone required, half-open intervals, any upload order, 409/422 rules, `valid_at`, result fields `revision_number`/`valid_from`/`valid_to` | Tagged CHANGELOG (D85–D88), `docs/api-reference.md#versioned-documents`, `docs/getting-started.md#law-versions` (example reused verbatim on the law guides). |
+| Mutation path SQL_APPLIED → VECTOR_APPLIED → COMMITTED | `mesa_storage/dao.py` milestone logic at the tag; drawn in the UML state/sequence views. |
+| Interrupted uploads resume with the recorded chunking plan | Tagged CHANGELOG (Fixed) and `docs/configuration.md`. |
+| LanceDB locked to 0.41.0 (range <0.42) | Tagged CHANGELOG, `pyproject.toml`. |
+| Installs on Python 3.14 without Kùzu; CI tests 3.11–3.13 | `.github/workflows/ci.yml` matrix; PROGRESS P17-06 (clean 3.14.4 wheel install, `/health` 200, `x-api-version: 0.9.5`); re-checked on 24 November: PyPI wheel in a clean Python 3.14.4 venv resolves LanceDB 0.41.0 and no `kuzu`. |
+| 100,820-chunk local scale figures (ingest 7,422.7 s; warm HTTP p50/p95 752.7/871.7 ms vs 1,222.7/1,616.2 ms; deterministic vectors 2,016.2/2,451.7 ms; vector lane 286.7/342.8 ms) | MESA `.agents/audits/R23-scale.md` (P16-08 final rerun on `a0d585f`, an ancestor of the tag) and raw `mesa_bench/runs/r23_final_sol_a0d585f/`. Conditions stated with every number: one 8 vCPU / 14 GiB host, Tier M ×20 in one dataset, 128 dev questions × 3 passes, limit 50, deterministic localhost 1,024-dim vectors. Quality at that size not measured. |
+| Temporal fixture: 26/26 Hit@1 (18 dated, 8 undated) | Tagged release notes; `mesa_bench/runs/20261124T194729Z_v095_v2_release/temporal_v1/` run on the verified PyPI wheel. Smoke test only. |
+| Graph removal evidence: graph off kept dev Hit@5 at 52/112; graph lane found 0/85 correct passages alone (v1 dev); citation lane Hit@1 30 → 28 (w 0.5), 20 (w 1, 2) | `.agents/audits/R21-quality.md`, `R21-technical-review.md`, PROGRESS P16-03. Dev splits only. |
+| Rate limits not enforced; ASCII `yargitay` does not match `Yargıtay` | Tagged docs (`api-reference.md`) and 0.9.3 known issues not marked fixed in 0.9.5. |
+| First-search example | Re-recorded on 24 November with the PyPI 0.9.5 wheel (`scripts/capture_first_search.py`, temporary home, models off): SQL + VECTOR (SKIPPED) only. |
+| Document search guide outputs | Re-run on 0.9.5 on 24 November; identical IDs, scores, errors and Turkish query behaviour. |
+
+No 0.9.5 benchmark v2 result is published: the Colab run `20261124T194729Z_v095_v2_release` got no A100 (24 × HTTP 503) and the test split stayed unopened. The public benchmark page states that 0.9.3 results do not describe 0.9.4 or 0.9.5. No production readiness, certification or competitor comparison is claimed.
