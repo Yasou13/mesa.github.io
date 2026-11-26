@@ -43,8 +43,8 @@
       ],
       "limits": [
         {
-          "en": "The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. No 0.9.5 benchmark is published yet.",
-          "tr": "Ölçek sayıları tek bir derlemin kopyaları üzerinde yapılmış yerel ölçümlerdir; o boyuttaki arama kalitesini ölçmez. 0.9.5 benchmark’ı henüz yayımlanmadı."
+          "en": "The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. Benchmark v2 results ran on a Colab L4, so their speed is not comparable with earlier A100 runs; quality is.",
+          "tr": "Ölçek sayıları tek bir derlemin kopyaları üzerinde yapılmış yerel ölçümlerdir; o boyuttaki arama kalitesini ölçmez. Benchmark v2 sonuçları Colab L4 üzerinde alındı; hızları önceki A100 koşularıyla karşılaştırılamaz, kalite sayıları karşılaştırılabilir."
         },
         {
           "en": "Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.",
