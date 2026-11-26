@@ -33,21 +33,31 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
 
   let content;
   if (!version) {
-    const reference = releases.find(release => release !== selected && release.suite === selected.suite) || releases[1];
-    const opts = active => releases.map(release => `<option value="${release.version}"${release === active ? ' selected' : ''}>MESA ${release.version}</option>`).join('');
-    const results = reference
+    // The newest release leads. Releases measured on an older suite stay as a separate,
+    // labelled block: their numbers are not comparable with the newest suite.
+    const legacy = releases.filter(release => release.suite !== selected.suite);
+    const legacySuite = legacy.length ? catalog.suites[legacy[0].suite] : null;
+    const legacyCurrent = legacy[0];
+    const legacyReference = legacy[1];
+    const opts = (list, active) => list.map(release => `<option value="${release.version}"${release === active ? ' selected' : ''}>MESA ${release.version}</option>`).join('');
+    const compare = legacyReference
       ? `<form id="benchmark-compare" class="bm-controls" hidden>
-        <label for="bm-reference">${L('Reference version', 'Referans sürüm')}<select id="bm-reference" name="reference">${opts(reference)}</select></label>
-        <label for="bm-version">${L('Selected version', 'Seçilen sürüm')}<select id="bm-version" name="version">${opts(selected)}</select></label>
+        <label for="bm-reference">${L('Reference version', 'Referans sürüm')}<select id="bm-reference" name="reference">${opts(legacy, legacyReference)}</select></label>
+        <label for="bm-version">${L('Selected version', 'Seçilen sürüm')}<select id="bm-version" name="version">${opts(legacy, legacyCurrent)}</select></label>
         </form>
-        <div id="benchmark-comparison" aria-live="polite">${comparison(reference, selected, language)}</div>
-        <script type="application/json" id="benchmark-data">${JSON.stringify(releases).replaceAll('<', '\\u003c')}</script>`
-      : `<p class="bm-note">${L('Comparison becomes available when two releases have reports.', 'İki sürümün raporu yayımlandığında karşılaştırma açılır.')}</p>`;
-    content = hero(L('Turkish legal retrieval benchmark', 'Türkçe hukuk metinlerinde arama benchmark’ı'),
-      currentReport ? e(selected.summary[language]) : L('Compare how MESA versions find the right passage, or open a version report for test conditions and detailed results.',
-        'MESA sürümlerinin doğru pasajı bulma başarısını karşılaştır. Test koşulları ve ayrıntılı sonuçlar için bir sürüm raporunu aç.'))
-      + section('compare', L('Compare results', 'Sonuçları karşılaştır'), results)
-      + (currentReport ? overview({ releases, suite, language, section, assetBase }) : '') + method + limits;
+        <div id="benchmark-comparison" aria-live="polite">${comparison(legacyReference, legacyCurrent, language)}</div>
+        <script type="application/json" id="benchmark-data">${JSON.stringify(legacy).replaceAll('<', '\\u003c')}</script>`
+      : '';
+    const history = legacy.length
+      ? section('earlier', L(`Earlier results on benchmark v1 (MESA ${legacy.at(-1).version}–${legacyCurrent.version})`, `Benchmark v1’deki önceki sonuçlar (MESA ${legacy.at(-1).version}–${legacyCurrent.version})`),
+        `<p class="bm-note">${L('Benchmark v1 used different questions and scoring. Compare these releases with each other, not with the benchmark v2 numbers above.', 'Benchmark v1 farklı sorular ve puanlama kullandı. Bu sürümleri yukarıdaki benchmark v2 sayılarıyla değil, kendi aralarında karşılaştırın.')}</p>
+        <p>${e(legacySuite.method[language])}</p><p>${e(legacySuite.limits[language])}</p>${legacyCurrent.version === '0.9.3' ? currentLimitations(language) : ''}${compare}`)
+        + overview({ releases: legacy, suite: legacySuite, language, section, assetBase })
+        + `<p class="bm-note">${L('0.9.3 run: 18 November 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. These results do not describe 0.9.4 or 0.9.5, which changed search defaults.', '0.9.3 koşusu: 18 Kasım 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. Bu sonuçlar, arama varsayılanlarını değiştiren 0.9.4 ve 0.9.5’i anlatmaz.')}</p>`
+      : '';
+    content = hero(L('Turkish legal retrieval benchmark', 'Türkçe hukuk metinlerinde arama benchmark’ı'), e(selected.summary[language]))
+      + latestResults(selected, suite, language, section, base)
+      + method + limits + history;
     content = content.replace('</section>', `${stats(selected, language)}</section>`);
   } else {
     content = hero(L(`MESA ${version} benchmark report`, `MESA ${version} benchmark raporu`),
@@ -55,9 +65,28 @@ export function benchmarkPage({ header, footer, language, base, assetBase, catal
       + report({ selected, suite, language, section, assetBase }) + method + limits;
   }
 
-  if (currentReport) content += `<p class="bm-note">${L('0.9.3 run: 18 November 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. These results do not describe 0.9.4 or 0.9.5, which changed search defaults. Benchmark results for 0.9.5 are not published yet.', '0.9.3 koşusu: 18 Kasım 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. Bu sonuçlar, arama varsayılanlarını değiştiren 0.9.4 ve 0.9.5’i anlatmaz. 0.9.5 benchmark sonuçları henüz yayımlanmadı.')}</p>`;
+  if (version === '0.9.3') content += `<p class="bm-note">${L('0.9.3 run: 18 November 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. These results do not describe 0.9.4 or 0.9.5, which changed search defaults.', '0.9.3 koşusu: 18 Kasım 2026 · mesa-memory 0.9.3 · 20261117T230132Z_v093. Bu sonuçlar, arama varsayılanlarını değiştiren 0.9.4 ve 0.9.5’i anlatmaz.')}</p>`;
 
   return `${header}<main id="main-content" class="benchmark-page">${content}${footer}</main>`;
+}
+
+// Newest release on the landing page: quality and speed side by side, with the GPU
+// next to the speed columns because speed depends on the hardware.
+function latestResults(release, suite, language, section, base) {
+  const L = (en, tr) => language === 'tr' ? tr : en;
+  const seconds = value => value === null ? '—' : `${number(value, language, 2)} ${L('s', 'sn')}`;
+  const rows = release.configs.filter(row => !row.experiment).map(({ id, label, gpu, metrics: m }) => `<tr${id === release.featured ? ' class="bm-row--featured"' : ''}><th scope="row">${e(label[language])}</th>${[
+    percent(m.hit5, language), percent(m.hit1, language), number(m.mrr, language, 3), percent(m.doc5, language),
+    seconds(m.p50), seconds(m.p95), e(gpu)
+  ].map(value => `<td>${value}</td>`).join('')}</tr>`).join('');
+  const caption = L(`MESA ${release.version} · benchmark v2 test split`, `MESA ${release.version} · benchmark v2 test bölümü`);
+  return section('latest', L(`MESA ${release.version} results`, `MESA ${release.version} sonuçları`),
+    `<p class="bm-note">${suite.answerable} / ${suite.test} ${L('answerable test questions', 'cevaplanabilir test sorusu')} · ${suite.documents} ${L('documents', 'belge')}</p>
+    <div class="table-scroll bm-table" tabindex="0" role="region" aria-label="${caption}"><table><caption>${caption}</caption>
+    <thead><tr><th scope="col">${L('Configuration', 'Yapılandırma')}</th><th scope="col">Hit@5</th><th scope="col">Hit@1</th><th scope="col">MRR</th><th scope="col">Doc@5</th><th scope="col">p50</th><th scope="col">p95</th><th scope="col">${L('GPU', 'GPU')}</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>
+    <ul class="bm-footnotes">${release.notes.map(note => `<li>${e(note[language])}</li>`).join('')}</ul>
+    <p><a class="text-link" href="${base}benchmark/${release.version}/">${L(`Full MESA ${release.version} report: question types, ingestion and download →`, `MESA ${release.version} raporunun tamamı: soru türleri, içe alma ve indirme →`)}</a></p>`);
 }
 
 function stats(release, language) {

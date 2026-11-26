@@ -7,7 +7,8 @@ import { benchmarkPage } from '../render_benchmark.mjs';
 
 const catalog = await loadBenchmarkCatalog();
 const [old, current] = catalog.releases;
-assert.deepEqual(catalog.releases.map(release => release.version), ['0.9.0', '0.9.2', '0.9.3']);
+assert.deepEqual(catalog.releases.map(release => release.version), ['0.9.0', '0.9.2', '0.9.3', '0.9.5']);
+assert.deepEqual([...new Set(catalog.releases.map(release => release.suite))], ['tier-m-v1-test', 'tier-m-v2-test']);
 
 const en = comparison(old, current, 'en');
 assert.match(en, /33\.1%/);
@@ -29,15 +30,22 @@ assert.match(report('0.9.2'), /%74,4/);
 assert.match(report('0.9.2'), /Açık madde atfı \(50\)/);
 assert.match(report('0.9.2'), /href="\.\.\/\.\.\/\.\.\/benchmark\/0\.9\.2\/metrics\.json"/);
 
-// The overview defaults to the latest run, keeps all reports available, and
-// exposes detailed results without requiring client-side comparison controls.
+// The overview leads with the newest release (benchmark v2) and keeps the v1
+// releases as a separate block with their own comparison and reports.
 for (const language of ['en', 'tr']) {
   const overview = benchmarkPage({ header: '', footer: '', language, base: '../', assetBase: '../', catalog });
-  assert.match(overview, /BENCHMARK · MESA 0\.9\.3/);
+  assert.match(overview, /BENCHMARK · MESA 0\.9\.5/);
+  assert.match(overview, /id="latest"/);
+  assert.match(overview, /id="earlier"/);
+  assert.match(overview, /Colab L4/);
+  assert.match(overview, language === 'en' ? /not comparable with earlier A100 runs; quality metrics are/ : /A100 koşularıyla karşılaştırılamaz/);
+  assert.match(overview, language === 'en' ? /89\.9%/ : /%89,9/);
+  assert.match(overview, /href="\.\.\/benchmark\/0\.9\.5\/"/);
+  assert.doesNotMatch(overview, /<option value="0\.9\.5"/);
   assert.equal((overview.match(/class="bm-bars__group"/g) || []).length, 3);
   assert.equal((overview.match(/class="bm-bars__row"/g) || []).length, 9);
   for (const id of ['results', 'by-type', 'citations', 'ingest', 'limitations']) assert.match(overview, new RegExp(`id="${id}"`));
-  for (const release of catalog.releases) assert.match(overview, new RegExp(`benchmark/${release.version.replaceAll('.', '\\.')}/metrics\\.json`));
+  for (const release of catalog.releases.filter(release => release.suite === 'tier-m-v1-test')) assert.match(overview, new RegExp(`benchmark/${release.version.replaceAll('.', '\\.')}/metrics\\.json`));
   assert.match(overview, /14\/29/);
   assert.doesNotMatch(overview, /Ollama/);
 }
@@ -45,6 +53,12 @@ assert.match(report('0.9.3'), /12,0 dk/);
 assert.match(report('0.9.3'), /%75,3/);
 assert.match(report('0.9.3'), /mesa-memory 0\.9\.3/);
 assert.doesNotMatch(report('0.9.2'), /14\/29|bm-strip--four/);
+// 0.9.5 ran on an L4: every speed row names the GPU and the report keeps the run's note.
+assert.match(report('0.9.5'), /%89,9/);
+assert.match(report('0.9.5'), /1,76 sn<\/td><td>2,23 sn<\/td><td>Colab L4/);
+assert.match(report('0.9.5'), /A100 koşularıyla karşılaştırılamaz; kalite ölçütleri karşılaştırılabilir/);
+assert.match(report('0.9.5'), /149 \/ 173/);
+assert.match(comparison(current, catalog.releases.at(-1), 'en'), /different test protocols/);
 
 const raw = await readFile(new URL('../../content/benchmark/catalog.json', import.meta.url));
 const digest = createHash('sha256').update(raw).digest('hex');
