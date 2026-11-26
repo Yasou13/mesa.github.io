@@ -111,7 +111,7 @@
           <ul><li>Take an offline backup first. A forward-only migration clears old graph bookkeeping rows; going back needs v0.9.4 and the pre-upgrade snapshot.</li><li>The Kùzu graph store is removed. Old kuzu_db files are ignored and can be deleted by hand; graph settings are ignored with a startup warning.</li><li>LanceDB is locked to 0.41.0; startup adds scope keys to older vector tables.</li></ul>
         </section><section class="changelog-group changelog-group--limits">
           <h3>Known limits</h3>
-          <ul><li>The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. No 0.9.5 benchmark is published yet.</li><li>Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.</li></ul>
+          <ul><li>The scale figures are local measurements on repeated copies of one corpus; they do not measure retrieval quality at that size. Benchmark v2 results ran on a Colab L4, so their speed is not comparable with earlier A100 runs; quality is.</li><li>Per-minute and daily rate limits are still not enforced for /v4/* and /control/*.</li></ul>
         </section>
         <p class="changelog-links"><a href="https://github.com/Yasou13/MESA/blob/c725616364f3931249bd05a62676f132b65768e1/CHANGELOG.md#095---2026-11-24" target="_blank" rel="noopener noreferrer">Full technical changelog</a></p>
       </div>

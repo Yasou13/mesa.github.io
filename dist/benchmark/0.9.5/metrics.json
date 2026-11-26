@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "suite": {
+    "documents": 141,
+    "dev": 128,
+    "test": 173,
+    "answerable": 149,
+    "questionTypes": {
+      "exact": 39,
+      "paraphrase": 48,
+      "cross_document": 16,
+      "number_date_docket": 46
+    },
+    "method": {
+      "en": "Benchmark v2 uses the same 141 Tier M Turkish legal documents with 128 development and 173 test questions. Every answer is tied to a verbatim quote in a source file. An independent audit of the question set found dev/test overlaps and mislabelled categories; they were fixed and the scoring tool was updated to evaluator v2.1 before the release runs. Configurations are checked on the dev split first, then each runs once on the test split. Retrieval scores use the 149 answerable test questions.",
+      "tr": "Benchmark v2 aynı 141 Tier M Türk hukuku belgesini, 128 geliştirme ve 173 test sorusuyla kullanır. Her yanıt bir kaynak dosyadaki birebir alıntıya bağlıdır. Soru kümesinin bağımsız denetimi dev/test çakışmaları ve yanlış etiketlenmiş kategoriler buldu; bunlar düzeltildi ve puanlama aracı sürüm koşularından önce evaluator v2.1’e güncellendi. Yapılandırmalar önce dev bölümünde denetlenir, ardından her biri test bölümünde bir kez çalışır. Arama puanları yanıtlanabilir 149 test sorusunu kullanır."
+    },
+    "limits": {
+      "en": "The test split has been opened in 4 release runs, so it is not an untouched holdout. With the reranker, scores are close to the ceiling, which leaves little room to show further gains. The corpus is small, and most questions name the law or decision they ask about. The 24 questions with no answer in the corpus are not scored, because MESA does not abstain. Retrieval quality on much larger collections has not been measured with this benchmark.",
+      "tr": "Test bölümü 4 sürüm koşusunda açıldı; bu yüzden dokunulmamış bir ayrılmış küme değildir. Yeniden sıralayıcıyla puanlar tavana yakındır; bu da yeni kazanımları göstermeye az yer bırakır. Derlem küçüktür ve soruların çoğu sorduğu kanunu veya kararı adıyla anar. Derlemde yanıtı olmayan 24 soru puanlanmaz, çünkü MESA yanıt vermekten kaçınmaz. Çok daha büyük koleksiyonlardaki arama kalitesi bu benchmark ile ölçülmedi."
+    }
+  },
+  "release": {
+    "version": "0.9.5",
+    "date": "2026-11-25",
+    "suite": "tier-m-v2-test",
+    "featured": "T2",
+    "configs": [
+      {
+        "id": "T0",
+        "label": {
+          "en": "Models off (T0)",
+          "tr": "Modelsiz (T0)"
+        },
+        "gpu": "Colab L4",
+        "source": "20261124T194729Z_v095_v2_release",
+        "profile": "off",
+        "experiment": false,
+        "metrics": {
+          "mrr": "0.4821",
+          "hit1": "0.3826",
+          "hit5": "0.5772",
+          "hit10": "0.651",
+          "doc1": "0.8456",
+          "doc5": "0.9597",
+          "p50": "0.288",
+          "p95": "0.6248"
+        },
+        "byType": {
+          "exact": "0.6923",
+          "paraphrase": "0.5625",
+          "cross_document": "0.1875",
+          "number_date_docket": "0.6304"
+        }
+      },
+      {
+        "id": "T1b",
+        "label": {
+          "en": "BGE-M3 embeddings (T1b)",
+          "tr": "BGE-M3 gömme modeli (T1b)"
+        },
+        "gpu": "Colab L4",
+        "source": "20261124T194729Z_v095_v2_release",
+        "profile": "embedding",
+        "experiment": false,
+        "metrics": {
+          "mrr": "0.6444",
+          "hit1": "0.5101",
+          "hit5": "0.8121",
+          "hit10": "0.8926",
+          "doc1": "0.8658",
+          "doc5": "0.9732",
+          "p50": "0.4336",
+          "p95": "0.8462"
+        },
+        "byType": {
+          "exact": "0.8718",
+          "paraphrase": "0.8125",
+          "cross_document": "0.25",
+          "number_date_docket": "0.9565"
+        }
+      },
+      {
+        "id": "T2",
+        "label": {
+          "en": "BGE-M3 + built-in BGE reranker (T2)",
+          "tr": "BGE-M3 + yerleşik BGE yeniden sıralayıcı (T2)"
+        },
+        "gpu": "Colab L4",
+        "source": "20261124T194729Z_v095_v2_release",
+        "profile": "reranker",
+        "experiment": false,
+        "metrics": {
+          "mrr": "0.7868",
+          "hit1": "0.6846",
+          "hit5": "0.8993",
+          "hit10": "0.9463",
+          "doc1": "0.8725",
+          "doc5": "0.9799",
+          "p50": "1.7585",
+          "p95": "2.2301"
+        },
+        "byType": {
+          "exact": "0.9231",
+          "paraphrase": "0.9583",
+          "cross_document": "0.375",
+          "number_date_docket": "1.0"
+        }
+      }
+    ],
+    "summary": {
+      "en": "On benchmark v2 test questions, MESA 0.9.5 with the built-in reranker puts the correct passage in the first five results for 89.9% of answerable questions (MRR 0.787).",
+      "tr": "Benchmark v2 test sorularında, yerleşik yeniden sıralayıcıyla MESA 0.9.5, yanıtlanabilir soruların %89,9 kadarında doğru pasajı ilk beş sonuçta buluyor (MRR 0,787)."
+    },
+    "notes": [
+      {
+        "en": "All rows ran on one Colab L4 (23034 MiB GPU memory). Search and ingest times are not comparable with earlier A100 runs; quality metrics are.",
+        "tr": "Tüm satırlar tek bir Colab L4 üzerinde çalıştı (23034 MiB GPU belleği). Arama ve içe alma süreleri önceki A100 koşularıyla karşılaştırılamaz; kalite ölçütleri karşılaştırılabilir."
+      },
+      {
+        "en": "Each configuration was built twice from scratch for the 128 dev questions and returned identical ranks both times; the test split then ran once on the first store. T2 reranks up to 50 candidates.",
+        "tr": "Her yapılandırma 128 dev sorusu için iki kez sıfırdan kuruldu ve iki seferde de aynı sıraları döndürdü; test bölümü ardından ilk depoda bir kez çalıştı. T2 en fazla 50 adayı yeniden sıralar."
+      }
+    ],
+    "ingest": [
+      {
+        "config": "T0",
+        "minutes": "6.4350303920666665",
+        "chunks": 5041
+      },
+      {
+        "config": "T1b",
+        "minutes": "9.0840829261",
+        "chunks": 5041
+      },
+      {
+        "config": "T2",
+        "minutes": "9.108482098333335",
+        "chunks": 5041
+      }
+    ],
+    "citations": null
+  }
+}
